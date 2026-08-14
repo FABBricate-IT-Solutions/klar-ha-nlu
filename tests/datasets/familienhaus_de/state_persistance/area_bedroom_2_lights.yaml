@@ -1,0 +1,22 @@
+- name: bedroom_2_lights_set_brightness
+  setup:
+  - entity_id: light.bedroom2_ceiling
+    brightness: 72
+  conditions:
+  - entity_id: light.bedroom2_ceiling
+    brightness: 20
+  sentences:
+  - - Status Lichter Kinderzimmer 2
+    - auf 20
+  - - Status Lichter Kinderzimmer 2
+    - auf 20
+  - - Status Lichter Kinderzimmer 2
+    - auf 20
+  - - Status Lichter Kinderzimmer 2
+    - auf 20
+  - - Mach Lichter Kinderzimmer 2 an
+    - auf 20
+  - - Status Lichter Kinderzimmer 2
+    - auf 20
+  - - Status Lichter Kinderzimmer 2
+    - auf 20

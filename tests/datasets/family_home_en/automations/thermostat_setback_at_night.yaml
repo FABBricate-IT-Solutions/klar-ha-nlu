@@ -1,0 +1,15 @@
+name: thermostat_setback_at_night
+sentences:
+- Create an automation to set the thermostat to 18 degrees at 10pm every night
+- Set up a nightly rule at ten to lower the thermostat to 18 degrees
+- Make an automation at 10pm that sets the temperature to 18
+- Automate the thermostat to drop to 18 degrees each night at 10
+- Can you create a rule that sets the thermostat to 18 every night at ten o'clock
+expected:
+  trigger:
+    platform: time
+    at: '22:00:00'
+  actions:
+  - action: climate.set_temperature
+    entity_id: climate.main_thermostat
+    temperature: 18

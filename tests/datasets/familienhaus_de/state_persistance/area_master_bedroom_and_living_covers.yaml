@@ -1,0 +1,28 @@
+- name: master_bedroom_and_living_covers_set_position
+  setup:
+  - entity_id: cover.master_blinds
+    position: 42
+  - entity_id: cover.living_blinds
+    position: 42
+  conditions:
+  - entity_id: cover.master_blinds
+    position: 15
+  - entity_id: cover.living_blinds
+    position: 15
+  sentences:
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15
+  - - Mach Rollo Schlafzimmer und Wohnzimmer an
+    - auf 15
+  - - Status Rollo Schlafzimmer und Wohnzimmer
+    - auf 15

@@ -1,0 +1,43 @@
+- name: light_master_bedside_right_turn_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer an
+  - Lichter Schlafzimmer an
+  - Schalt die Lichter im Schlafzimmer ein
+  - Schlafzimmer Lichter an
+  - Kannst du die Lichter im Schlafzimmer anmachen
+- name: light_master_bedside_right_turn_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus
+  - Lichter Schlafzimmer aus
+  - Schalt die Lichter im Schlafzimmer aus
+  - Schlafzimmer Lichter aus
+- name: light_master_bedside_right_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 25
+  sentences:
+  - Setze Schlafzimmer auf 25 Prozent
+  - Schlafzimmer Helligkeit 25
+  - Dimme Schlafzimmer auf 25
+  - Lichter Schlafzimmer 25 Prozent
+- name: light_master_bedside_right_change_color
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: red
+  sentences:
+  - Mach Schlafzimmer rot
+  - Setze Schlafzimmer auf rot
+  - Schlafzimmer rot
+  - Lichter Schlafzimmer rot

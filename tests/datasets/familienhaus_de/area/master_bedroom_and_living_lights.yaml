@@ -1,0 +1,48 @@
+- name: master_bedroom_and_living_lights_turn_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer an und Mach die Lichter im Wohnzimmer an
+- name: master_bedroom_and_living_lights_turn_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus und Mach die Lichter im Wohnzimmer aus
+- name: master_bedroom_and_living_lights_change_brightness
+  conditions:
+  - area: master_bedroom
+    domain: light
+    attributes:
+      brightness: 25
+  - area: living
+    domain: light
+    attributes:
+      brightness: 25
+  sentences:
+  - Setze Schlafzimmer auf 25 Prozent und Setze Wohnzimmer auf 25 Prozent
+- name: master_bedroom_and_living_lights_change_color
+  conditions:
+  - area: master_bedroom
+    domain: light
+    attributes:
+      color: white
+  - area: living
+    domain: light
+    attributes:
+      color: white
+  sentences:
+  - Mach Schlafzimmer weiß und Mach Wohnzimmer weiß

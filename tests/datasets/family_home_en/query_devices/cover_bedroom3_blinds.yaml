@@ -1,0 +1,27 @@
+-
+  name: cover_bedroom3_blinds_get_status
+  conditions:
+    -
+      type: query
+      entity_id: cover.bedroom3_blinds
+  sentences:
+    - "What's the status of the Bedroom 3 Blinds?"
+    - 'Get the current state of bedroom 3 blinds'
+    - 'Please check the bedroom 3 blinds for me'
+    - "If you don't mind, tell me the position of the Bedroom 3 Blinds"
+    - 'bedroom 3 blinds status'
+    - 'Report the state of the blinds in bedroom 3'
+-
+  name: cover_bedroom3_blinds_get_position
+  conditions:
+    -
+      type: query
+      entity_id: cover.bedroom3_blinds
+  sentences:
+    - "What's the position of the Bedroom 3 Blinds?"
+    - 'bedroom 3 blinds position'
+    - "please tell me the current position of the bedroom 3 blinds if you don't mind"
+    - 'get bedroom 3 blinds status'
+    - 'could you check the bedroom 3 blinds for me'
+    - 'where are the bedroom 3 blinds at right now'
+    - 'bedroom 3 blinds current position please'

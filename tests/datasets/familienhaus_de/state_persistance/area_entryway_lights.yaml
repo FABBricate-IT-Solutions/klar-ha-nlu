@@ -1,0 +1,24 @@
+- name: entryway_lights_set_brightness
+  setup:
+  - entity_id: light.entryway_light
+    brightness: 95
+  conditions:
+  - entity_id: light.entryway_light
+    brightness: 54
+  sentences:
+  - - Status Lichter Eingang
+    - auf 54
+  - - Status Lichter Eingang
+    - auf 54
+  - - Status Lichter Eingang
+    - auf 54
+  - - Status Lichter Eingang
+    - auf 54
+  - - Status Lichter Eingang
+    - auf 54
+  - - Mach Lichter Eingang an
+    - auf 54
+  - - Status Lichter Eingang
+    - auf 54
+  - - Status Lichter Eingang
+    - auf 54

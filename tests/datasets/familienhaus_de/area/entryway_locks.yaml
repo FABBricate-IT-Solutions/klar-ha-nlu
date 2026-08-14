@@ -1,0 +1,20 @@
+- name: entryway_locks_lock
+  conditions:
+  - type: action
+    area: entryway
+    domain: lock
+    state: locked
+  sentences:
+  - Schließ Schloss Eingang ab
+  - Schloss Eingang abschließen
+  - Tür Eingang zu
+- name: entryway_locks_unlock
+  conditions:
+  - type: action
+    area: entryway
+    domain: lock
+    state: unlocked
+  sentences:
+  - Schließ Schloss Eingang auf
+  - Schloss Eingang aufschließen
+  - Tür Eingang auf

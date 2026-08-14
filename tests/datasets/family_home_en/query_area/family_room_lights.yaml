@@ -1,0 +1,59 @@
+-
+  name: family_room_lights_get_state
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+  sentences:
+    - "What's the status of the family room lights?"
+    - 'Family room lights state'
+    - "Please tell me the current state of the lights in the family room if you don't mind"
+    - 'Hey, can you check the family room lights for me?'
+    - 'Could you please show me the family room light status?'
+    - 'Get family room lights state now'
+    - "If it's not too much trouble, what's the family room lighting situation?"
+-
+  name: family_room_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+  sentences:
+    - "What's the status of the family room lights"
+    - 'Family room lights state'
+    - "Please tell me the current state of the family room lights if you don't mind"
+    - 'Are the family room lights on or off right now'
+    - 'Could you check the family room lighting situation for me'
+    - 'Family room lights report'
+    - "Hey what's going on with the lights in the family room"
+-
+  name: family_room_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+  sentences:
+    - "What's the status of the family room lights?"
+    - 'Family room lights state'
+    - 'Please check the lights in the family room for me'
+    - "If you don't mind, could you tell me if the family room lights are on or off?"
+    - 'Family room lights?'
+    - 'Get me the current state of the family room lights'
+    - 'Are the family room lights on?'
+-
+  name: family_room_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+  sentences:
+    - "What's the status of the family room lights?"
+    - "If you don't mind, could you check the family room lights for me?"
+    - 'Family room lights state'
+    - 'Tell me about the lights in the family room'
+    - 'Please check family room lighting status'
+    - 'Are the family room lights on or off?'

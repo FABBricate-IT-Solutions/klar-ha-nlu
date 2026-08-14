@@ -1,0 +1,40 @@
+- name: kitchen_lights_get_state
+  conditions:
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das light in der Küche an
+- name: kitchen_lights_list_on_lights
+  conditions:
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das light in der Küche an
+- name: kitchen_lights_list_off_lights
+  conditions:
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das light in der Küche an
+- name: kitchen_lights_get_brightness
+  conditions:
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das light in der Küche an

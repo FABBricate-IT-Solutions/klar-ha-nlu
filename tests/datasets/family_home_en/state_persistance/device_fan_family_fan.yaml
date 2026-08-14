@@ -1,0 +1,99 @@
+-
+  name: fan_family_fan_turn_on
+  setup:
+    -
+      entity_id: fan.family_fan
+      state: 'off'
+  conditions:
+    -
+      type: action
+      entity_id: fan.family_fan
+      state: 'on'
+  sentences:
+    -
+      - "What's the status of the family room fan?"
+      - 'Please turn it on for me.'
+    -
+      - 'Can you check the family room fan?'
+      - 'Flick it on.'
+    -
+      - 'Tell me the state of the fan in the family room.'
+      - "Flip it on if you don't mind."
+    -
+      - "How's the family room fan doing?"
+      - 'Turn it on please.'
+    -
+      - "What's up with the fan in family_room?"
+      - 'Switch it on for me.'
+    -
+      - 'Report the status of the family room fan.'
+      - 'Power it on.'
+    -
+      - 'Check on the fan in the family room.'
+      - 'Activate it please.'
+-
+  name: fan_family_fan_turn_off
+  setup:
+    -
+      entity_id: fan.family_fan
+      state: 'on'
+  conditions:
+    -
+      type: action
+      entity_id: fan.family_fan
+      state: 'off'
+  sentences:
+    -
+      - "What's the status of the fan in the family room?"
+      - 'Turn it off.'
+    -
+      - 'Family room fan status?'
+      - 'Flip it off.'
+    -
+      - 'Is the fan in family_room running?'
+      - "If you don't mind, turn it off."
+    -
+      - 'Check the family room fan please.'
+      - 'Flick it off.'
+    -
+      - "What's going on with the fan in the family room?"
+      - 'Shut it down.'
+    -
+      - 'Family room fan - status report?'
+      - 'Please turn it off for me.'
+    -
+      - "How's the fan doing in family_room?"
+      - 'Switch it off.'
+-
+  name: fan_family_fan_persistance_percentage
+  setup:
+    -
+      entity_id: fan.family_fan
+      percentage: 59
+  conditions:
+    -
+      entity_id: fan.family_fan
+      attributes:
+        percentage: 43
+  sentences:
+    -
+      - "What's the percentage of the Family Room Fan?"
+      - 'Set it to 43.'
+    -
+      - 'Can you tell me the current percentage for the fan in family_room?'
+      - 'Change it to 43 please.'
+    -
+      - "Please tell me the percentage of the Family Room Fan if you don't mind."
+      - 'Adjust it to 43 for me.'
+    -
+      - "What's the percentage on the fan in family_room?"
+      - 'Make it 43.'
+    -
+      - 'Tell me the percentage of the Family Room Fan.'
+      - 'Turn it to 43.'
+    -
+      - 'Could you give me the percentage of the fan in family_room?'
+      - "Set it to 43 if you don't mind."
+    -
+      - "What's the percentage of the Family Room Fan right now?"
+      - 'Change it to 43 please.'

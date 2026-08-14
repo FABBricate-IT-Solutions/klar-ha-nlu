@@ -1,0 +1,26 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "data": {
+          "url": "URL der Klar-API"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Klar NLU ist bereits eingerichtet"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Wenn Klar keinen Hausbefehl erkennt, übernimmt der gewählte Agent den Smalltalk. Rückfragen von Klar bleiben bei Klar.",
+        "data": {
+          "fallback_agent": "Conversation-Agent für Smalltalk"
+        }
+      }
+    }
+  }
+}

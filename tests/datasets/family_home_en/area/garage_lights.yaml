@@ -1,0 +1,67 @@
+-
+  name: garage_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: garage
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the garage lights'
+    - 'Flick on the garage lights please'
+    - "If you don't mind, flip on the lights in the garage for me"
+    - 'Garage lights on'
+    - 'Please turn on the garage lights'
+    - 'Switch on the garage lights if you could'
+    - 'Activate the garage lights'
+    - 'Could you turn on the lights in the garage'
+-
+  name: garage_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: garage
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the garage lights'
+    - 'Please switch off the garage lights for me'
+    - "If you don't mind, could you flick off the garage lights"
+    - 'Garage lights off'
+    - 'Flip the garage lights off please'
+    - 'Deactivate the garage lighting'
+    - 'Would you mind turning off the garage lights'
+-
+  name: garage_lights_change_brightness
+  conditions:
+    -
+      area: garage
+      domain: light
+      attributes:
+        brightness: 16
+  sentences:
+    - 'Set the garage lights to 16'
+    - 'Garage brightness to 16'
+    - 'Please dim the garage lights to 16 for me'
+    - "If you don't mind, flick the garage lights to 16"
+    - 'Quickly adjust garage lights to 16'
+    - 'Flip the garage lights down to 16'
+    - 'Make the garage lights 16 please'
+    - 'Turn garage brightness to 16'
+-
+  name: garage_lights_change_color
+  conditions:
+    -
+      area: garage
+      domain: light
+      attributes:
+        color: blue
+  sentences:
+    - 'Change the garage lights to blue'
+    - 'Set garage lights to blue'
+    - 'Please turn the garage lights blue for me'
+    - "If you don't mind, flip the garage lights to blue"
+    - 'Flick the garage lights on blue'
+    - 'Make the garage lights blue please'
+    - 'Quickly set garage lights to blue'
+    - 'Turn garage lights blue if possible'

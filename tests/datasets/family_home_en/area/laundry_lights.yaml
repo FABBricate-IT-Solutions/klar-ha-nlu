@@ -1,0 +1,64 @@
+-
+  name: laundry_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: laundry
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the laundry lights'
+    - 'Flick on the lights in the laundry'
+    - 'Please flip on the laundry lights for me'
+    - "If you don't mind, could you turn on the laundry lights"
+    - 'Activate the lights in the laundry room'
+    - 'Switch on the laundry lights'
+    - 'Hey, can you turn on the lights in the laundry'
+-
+  name: laundry_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: laundry
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the laundry lights'
+    - 'Please switch off the lights in the laundry for me'
+    - "If you don't mind, flick off the laundry lights"
+    - 'Deactivate laundry room lighting'
+    - 'Flip the laundry lights off'
+    - 'Could you please extinguish the lights in the laundry'
+    - 'Kill the laundry lights'
+-
+  name: laundry_lights_change_brightness
+  conditions:
+    -
+      area: laundry
+      domain: light
+      attributes:
+        brightness: 62
+  sentences:
+    - 'Set laundry lights to 62 percent brightness'
+    - "Please adjust the laundry room lights to 62 if you don't mind"
+    - 'Flick laundry brightness to sixty two'
+    - 'Could you dim the laundry lights down to 62 for me'
+    - 'Make laundry lights sixty two percent'
+    - 'Turn laundry illumination to 62'
+    - 'If possible set laundry lights brightness level to 62 please'
+-
+  name: laundry_lights_change_color
+  conditions:
+    -
+      area: laundry
+      domain: light
+      attributes:
+        color: yellow
+  sentences:
+    - 'Turn the laundry lights yellow'
+    - 'Flick on the laundry lights to yellow'
+    - 'Please change the laundry lights to yellow for me'
+    - "If you don't mind, flip the laundry lights to yellow"
+    - 'Set the laundry lights to yellow'
+    - 'Make the laundry lights yellow please'
+    - 'Quickly turn the laundry lights yellow'

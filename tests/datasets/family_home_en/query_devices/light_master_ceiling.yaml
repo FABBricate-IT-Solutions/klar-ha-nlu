@@ -1,0 +1,27 @@
+-
+  name: light_master_ceiling_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.master_ceiling
+  sentences:
+    - "What's the status of the Master Ceiling light?"
+    - 'Please check the master ceiling light for me'
+    - "If you don't mind, what's the state of the master ceiling?"
+    - 'Master ceiling light status'
+    - 'Could you tell me if the master ceiling light is on or off?'
+    - "What's the current state of the master ceiling light?"
+-
+  name: light_master_ceiling_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.master_ceiling
+  sentences:
+    - "What's the brightness of the Master Ceiling light?"
+    - 'Tell me how bright the master ceiling is right now'
+    - 'Please check the brightness level of the master ceiling light for me'
+    - "If you don't mind, what's the current brightness on the Master Ceiling?"
+    - 'Master ceiling brightness status'
+    - 'How bright is the master ceiling light set to?'
+    - 'Can you tell me the brightness of the master ceiling please'

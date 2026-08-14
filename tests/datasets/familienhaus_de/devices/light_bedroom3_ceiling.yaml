@@ -1,0 +1,43 @@
+- name: light_bedroom3_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 3 an
+  - Lichter Kinderzimmer 3 an
+  - Schalt die Lichter in Kinderzimmer 3 ein
+  - Kinderzimmer 3 Lichter an
+  - Kannst du die Lichter in Kinderzimmer 3 anmachen
+- name: light_bedroom3_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 3 aus
+  - Lichter Kinderzimmer 3 aus
+  - Schalt die Lichter in Kinderzimmer 3 aus
+  - Kinderzimmer 3 Lichter aus
+- name: light_bedroom3_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 36
+  sentences:
+  - Setze Kinderzimmer 3 auf 36 Prozent
+  - Kinderzimmer 3 Helligkeit 36
+  - Dimme Kinderzimmer 3 auf 36
+  - Lichter Kinderzimmer 3 36 Prozent
+- name: light_bedroom3_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - Mach Kinderzimmer 3 gelb
+  - Setze Kinderzimmer 3 auf gelb
+  - Kinderzimmer 3 gelb
+  - Lichter Kinderzimmer 3 gelb

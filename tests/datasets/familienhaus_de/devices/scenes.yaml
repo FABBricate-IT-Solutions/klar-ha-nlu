@@ -1,0 +1,83 @@
+- name: movie_night
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+    attributes:
+      brightness: 20
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - Szene Filmabend
+  - Starte Filmabend
+  - Filmabend Szene an
+  - Aktiviere Filmabend
+- name: dinner_time
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+    attributes:
+      brightness: 90
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+    attributes:
+      brightness: 80
+  sentences:
+  - Szene Abendessen
+  - Starte Abendessen
+  - Abendessen Szene an
+  - Aktiviere Abendessen
+- name: kids_bedtime
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+    attributes:
+      brightness: 15
+  sentences:
+  - Szene Kinder ins Bett
+  - Starte Kinder ins Bett
+  - Kinder ins Bett Szene an
+  - Aktiviere Kinder ins Bett
+- name: good_morning
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+    attributes:
+      brightness: 100
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - Szene Guten Morgen
+  - Starte Guten Morgen
+  - Guten Morgen Szene an
+  - Aktiviere Guten Morgen

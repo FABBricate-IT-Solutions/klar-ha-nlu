@@ -1,0 +1,47 @@
+-
+  name: main_bath_switchs_get_state
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: switch
+  sentences:
+    - "What's the status of the main bathroom switches"
+    - 'Are the main bathroom switches on or off'
+    - 'Please check the main bathroom switches for me'
+    - "If you don't mind, could you tell me about the main bathroom switches"
+    - 'Main bath switches status'
+    - 'Get me the current state of switches in main bath'
+    - 'Hey can you check if main bathroom switches are on'
+    - 'Report main bathroom switch states'
+-
+  name: main_bath_switchs_list_on_switchs
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: switch
+  sentences:
+    - "What's the status of the main bathroom switches"
+    - 'Tell me the state of switches in the main bathroom'
+    - "Please check the main bathroom switches for me if you don't mind"
+    - 'Main bath switches status'
+    - 'Could you report the current state of the main bathroom switches'
+    - 'Get main bathroom switch states'
+    - "Show me what's going on with the switches in the main bath"
+-
+  name: main_bath_switchs_list_off_switchs
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: switch
+  sentences:
+    - "What's the status of the main bathroom switches?"
+    - 'Are the main bathroom switches on or off?'
+    - 'Please check the main bathroom switches for me'
+    - "If you don't mind, tell me the state of the main bathroom switches"
+    - 'Main bath switches status'
+    - 'Could you check if the main bathroom switches are on?'
+    - 'Report main bathroom switch states'
+    - "Hey, what's up with the main bathroom switches?"

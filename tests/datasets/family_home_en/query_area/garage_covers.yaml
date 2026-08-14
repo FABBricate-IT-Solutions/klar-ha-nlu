@@ -1,0 +1,62 @@
+-
+  name: garage_covers_get_state
+  conditions:
+    -
+      type: query
+      area: garage
+      domain: cover
+  sentences:
+    - "What's the status of the garage windows?"
+    - 'Check garage blinds state'
+    - "Please tell me if the garage curtains are open or closed if you don't mind"
+    - 'Garage windows status please'
+    - 'Could you check the garage blinds for me?'
+    - 'Are the garage curtains open?'
+    - 'Quick check on garage window states'
+-
+  name: garage_covers_list_open_covers
+  conditions:
+    -
+      type: query
+      area: garage
+      domain: cover
+  sentences:
+    - "What's the status of the garage windows?"
+    - 'Check garage blinds state'
+    - 'Please tell me if the garage curtains are open or closed'
+    - 'Could you check the garage windows for me?'
+    - 'Garage blinds status please'
+    - "If you don't mind, what's the current state of the garage curtains?"
+    - 'Are the garage windows open?'
+-
+  name: garage_covers_list_closed_covers
+  conditions:
+    -
+      type: query
+      area: garage
+      domain: cover
+  sentences:
+    - "What's the status of the garage windows?"
+    - 'Check garage blinds please'
+    - "If you don't mind, could you tell me if the garage curtains are open?"
+    - 'Garage window state'
+    - 'Please check the garage blinds for me'
+    - 'Are the garage curtains closed?'
+    - 'Quick check on garage windows'
+    - 'Tell me about the garage blinds status'
+-
+  name: garage_covers_get_position
+  conditions:
+    -
+      type: query
+      area: garage
+      domain: cover
+  sentences:
+    - "What's the status of the garage windows?"
+    - 'Check garage blinds state'
+    - "Please tell me if the garage curtains are open or closed if you don't mind"
+    - 'Garage windows status please'
+    - 'Could you check the garage blinds for me'
+    - 'Are the garage curtains open'
+    - 'Get current garage window state'
+    - 'Quick check on garage blinds'

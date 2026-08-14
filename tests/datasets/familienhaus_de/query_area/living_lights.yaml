@@ -1,0 +1,40 @@
+- name: living_lights_get_state
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das light im Wohnzimmer an
+- name: living_lights_list_on_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das light im Wohnzimmer an
+- name: living_lights_list_off_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das light im Wohnzimmer an
+- name: living_lights_get_brightness
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das light im Wohnzimmer an

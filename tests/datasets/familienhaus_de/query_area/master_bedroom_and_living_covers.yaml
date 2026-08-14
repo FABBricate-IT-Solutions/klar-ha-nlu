@@ -1,0 +1,40 @@
+- name: master_bedroom_and_living_covers_get_state
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: cover
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Schlafzimmer an und Ist Wohnzimmer an
+- name: master_bedroom_and_living_covers_list_open_covers
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: cover
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Schlafzimmer an und Ist Wohnzimmer an
+- name: master_bedroom_and_living_covers_list_closed_covers
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: cover
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Schlafzimmer an und Ist Wohnzimmer an
+- name: master_bedroom_and_living_covers_get_position
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: cover
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Schlafzimmer an und Ist Wohnzimmer an

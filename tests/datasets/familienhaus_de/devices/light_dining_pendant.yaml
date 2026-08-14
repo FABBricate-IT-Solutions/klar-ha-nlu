@@ -1,0 +1,43 @@
+- name: light_dining_pendant_turn_on
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Esszimmer an
+  - Lichter Esszimmer an
+  - Schalt die Lichter im Esszimmer ein
+  - Esszimmer Lichter an
+  - Kannst du die Lichter im Esszimmer anmachen
+- name: light_dining_pendant_turn_off
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Esszimmer aus
+  - Lichter Esszimmer aus
+  - Schalt die Lichter im Esszimmer aus
+  - Esszimmer Lichter aus
+- name: light_dining_pendant_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 21
+  sentences:
+  - Setze Esszimmer auf 21 Prozent
+  - Esszimmer Helligkeit 21
+  - Dimme Esszimmer auf 21
+  - Lichter Esszimmer 21 Prozent
+- name: light_dining_pendant_change_color
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: blue
+  sentences:
+  - Mach Esszimmer blau
+  - Setze Esszimmer auf blau
+  - Esszimmer blau
+  - Lichter Esszimmer blau

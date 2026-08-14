@@ -1,0 +1,64 @@
+-
+  name: lock_front_door_lock
+  setup:
+    -
+      entity_id: lock.front_door
+      state: unlocked
+  conditions:
+    -
+      type: action
+      entity_id: lock.front_door
+      state: locked
+  sentences:
+    -
+      - "What's the status of the Front Door?"
+      - 'Please lock it for me.'
+    -
+      - 'Is the Front Door locked?'
+      - "Lock it if you don't mind."
+    -
+      - 'Can you tell me if the Front Door is locked?'
+      - 'Flick it locked, please.'
+    -
+      - 'Front Door status in the entryway?'
+      - 'Flip it locked.'
+    -
+      - "What's the Front Door doing?"
+      - 'Lock it now.'
+    -
+      - 'Check the Front Door lock in the entryway.'
+      - 'Please secure it for me.'
+    -
+      - 'Is the Front Door secure?'
+      - "Lock it if you don't mind."
+    -
+      - 'Front Door state?'
+      - 'Lock it.'
+-
+  name: lock_front_door_unlock
+  setup:
+    -
+      entity_id: lock.front_door
+      state: locked
+  conditions:
+    -
+      type: action
+      entity_id: lock.front_door
+      state: unlocked
+  sentences:
+    -
+      - 'Is the Front Door locked?'
+      - 'Flick it open.'
+    -
+      - 'Check the Front Door status in the entryway.'
+      - "Flip it unlocked if you don't mind."
+    -
+      - 'Front Door state?'
+      - 'Please unlock it for me.'
+    -
+      - "What's up with the Front Door in the entryway?"
+      - "Unlock it if you don't mind."
+    -
+      - 'Front Door locked or unlocked?'
+      - 'Flick it open for me please.'
+

@@ -1,0 +1,59 @@
+-
+  name: master_bedroom_lights_get_state
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: light
+  sentences:
+    - "What's the status of the master bedroom lights?"
+    - 'Lights in master bedroom?'
+    - "Please tell me the current state of the master bedroom lights if you don't mind"
+    - 'Master bedroom lights state'
+    - 'Could you check the master bedroom lights for me'
+    - 'Are the master bedroom lights on or off right now'
+    - 'Get master bedroom lighting status'
+-
+  name: master_bedroom_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: light
+  sentences:
+    - "What's the status of the lights in the master bedroom?"
+    - 'Lights master bedroom state'
+    - 'Please check the master bedroom lights for me'
+    - "If you don't mind, could you tell me if the lights are on in the master bedroom?"
+    - 'Master bedroom lights current state'
+    - 'Quick check: master bedroom lights on or off?'
+    - 'Tell me the master bedroom lighting status please'
+-
+  name: master_bedroom_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: light
+  sentences:
+    - "What's the status of the master bedroom lights?"
+    - 'Lights master bedroom state'
+    - 'Please tell me if the lights are on in the master bedroom'
+    - "If you don't mind, could you check the master bedroom lighting for me?"
+    - 'Master bedroom lights?'
+    - 'Get current state of master bedroom lights'
+    - 'Are the lights on or off in the master bedroom?'
+-
+  name: master_bedroom_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: light
+  sentences:
+    - "What's the status of the master bedroom lights?"
+    - 'Lights in master bedroom?'
+    - "Please tell me the current state of the master bedroom lights if you don't mind."
+    - 'Master bedroom lights state.'
+    - 'Could you check the master bedroom lights for me?'
+    - 'Get me the master bedroom lighting status please.'

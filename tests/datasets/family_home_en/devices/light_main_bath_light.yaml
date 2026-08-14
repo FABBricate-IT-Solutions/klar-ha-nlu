@@ -1,0 +1,64 @@
+-
+  name: light_main_bath_light_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.main_bath_light
+      state: 'on'
+  sentences:
+    - 'Turn on the main bathroom light'
+    - 'Flick on the main bathroom light'
+    - 'Please flip on the main bathroom light for me'
+    - "If you don't mind, turn on the main bathroom light"
+    - 'Activate the main bathroom light'
+    - 'Switch on the main bathroom light please'
+    - 'Can you turn on the main bathroom light'
+    - 'Flip on the main bathroom light'
+-
+  name: light_main_bath_light_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.main_bath_light
+      state: 'off'
+  sentences:
+    - 'Turn off the main bathroom light'
+    - 'Please turn off the main bathroom light for me'
+    - "If you don't mind, flick off the main bathroom light"
+    - 'Flip off the light in the main bath'
+    - 'Quickly turn off the main bathroom light'
+    - 'Switch off the main bathroom light please'
+    - "Deactivate the main bathroom light if you don't mind"
+    - 'Shut off the main bathroom light'
+-
+  name: light_main_bath_light_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.main_bath_light
+      attributes:
+        brightness: 85
+  sentences:
+    - 'Set the main bathroom light to 85 percent brightness'
+    - "Please adjust the main bathroom light to 85 if you don't mind"
+    - 'Turn the Main Bath Light brightness up to 85'
+    - 'Flick the main bathroom light to 85 percent'
+    - 'Could you set the main bathroom light brightness to 85 for me'
+    - 'Change the Main Bath Light to 85'
+    - 'Make the main bathroom light 85 percent bright'
+-
+  name: light_main_bath_light_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.main_bath_light
+      attributes:
+        color: blue
+  sentences:
+    - 'Turn the main bathroom light blue'
+    - 'Flick on the main bathroom light to blue'
+    - 'Please change the Main Bath Light to blue for me'
+    - "If you don't mind, set the main bathroom light to blue"
+    - 'Flip the main bathroom light to blue'
+    - 'Quickly turn the Main Bath Light blue'
+    - 'Change main bathroom light color to blue please'

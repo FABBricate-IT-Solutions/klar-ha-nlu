@@ -1,0 +1,28 @@
+- name: bedroom_2_fans_turn_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: fan
+    state: 'on'
+  sentences:
+  - Lüfter Kinderzimmer 2 an
+  - Mach Lüfter Kinderzimmer 2 an
+- name: bedroom_2_fans_turn_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: fan
+    state: 'off'
+  sentences:
+  - Lüfter Kinderzimmer 2 aus
+  - Mach Lüfter Kinderzimmer 2 aus
+- name: bedroom_2_fans_set_fan_speed
+  conditions:
+  - area: bedroom_2
+    domain: fan
+    attributes:
+      percentage: 32
+  sentences:
+  - Lüfter Kinderzimmer 2 auf 32 Prozent
+  - Setze Lüfter Kinderzimmer 2 auf 32
+  - Lüfter Kinderzimmer 2 32 Prozent

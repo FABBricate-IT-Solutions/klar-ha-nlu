@@ -1,0 +1,48 @@
+- name: hallway_and_powder_room_lights_turn_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Flur an und Mach die Lichter im Gäste-WC an
+- name: hallway_and_powder_room_lights_turn_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Flur aus und Mach die Lichter im Gäste-WC aus
+- name: hallway_and_powder_room_lights_change_brightness
+  conditions:
+  - area: hallway
+    domain: light
+    attributes:
+      brightness: 26
+  - area: powder_room
+    domain: light
+    attributes:
+      brightness: 26
+  sentences:
+  - Setze Flur auf 26 Prozent und Setze Gäste-WC auf 26 Prozent
+- name: hallway_and_powder_room_lights_change_color
+  conditions:
+  - area: hallway
+    domain: light
+    attributes:
+      color: purple
+  - area: powder_room
+    domain: light
+    attributes:
+      color: purple
+  sentences:
+  - Mach Flur lila und Mach Gäste-WC lila

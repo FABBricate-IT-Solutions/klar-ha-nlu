@@ -1,0 +1,61 @@
+-
+  name: bedroom_2_covers_get_state
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: cover
+  sentences:
+    - "What's the status of the bedroom 2 windows?"
+    - 'bedroom 2 blinds state'
+    - 'please check the curtains in bedroom 2 for me'
+    - "if you don't mind, can you tell me if the bedroom 2 windows are open"
+    - 'bedroom 2 window status please'
+    - 'are the blinds in bedroom 2 closed'
+    - 'quick check bedroom 2 curtains'
+    - 'tell me the current state of bedroom 2 windows'
+-
+  name: bedroom_2_covers_list_open_covers
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: cover
+  sentences:
+    - "What's the status of the windows in bedroom 2"
+    - 'bedroom 2 windows state'
+    - "please tell me the current state of the blinds in bedroom 2 if you don't mind"
+    - 'are the curtains open in bedroom 2'
+    - 'bedroom 2 window status check'
+    - 'could you check the blinds position for me in bedroom 2'
+    - 'bedroom 2 curtains state please'
+-
+  name: bedroom_2_covers_list_closed_covers
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: cover
+  sentences:
+    - "What's the status of the windows in bedroom 2?"
+    - 'bedroom 2 windows state'
+    - 'please check the blinds for me in bedroom 2'
+    - "if you don't mind, could you tell me if the curtains are open in bedroom 2"
+    - 'bedroom 2 window status please'
+    - 'are the blinds up or down in bedroom 2'
+    - 'quick check bedroom 2 curtains'
+-
+  name: bedroom_2_covers_get_position
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: cover
+  sentences:
+    - "What's the status of the bedroom 2 windows?"
+    - 'Bedroom 2 blinds state please'
+    - 'Can you tell me if the curtains in bedroom 2 are open or closed?'
+    - 'Please check the bedroom 2 window status for me'
+    - "Bedroom 2 curtains - what's their position?"
+    - "If you don't mind, could you report the current state of bedroom 2 blinds?"
+    - 'Quick check: bedroom 2 windows open or shut?'

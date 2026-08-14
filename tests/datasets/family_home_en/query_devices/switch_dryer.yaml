@@ -1,0 +1,13 @@
+-
+  name: switch_dryer_get_status
+  conditions:
+    -
+      type: query
+      entity_id: switch.dryer
+  sentences:
+    - "What's the dryer doing?"
+    - 'Dryer status'
+    - 'Please tell me if the dryer is running'
+    - 'Can you check the laundry dryer for me'
+    - "If you don't mind, what's the status of the dryer in the laundry room"
+    - 'Dryer state please'

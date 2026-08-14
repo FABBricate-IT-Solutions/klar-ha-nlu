@@ -1,0 +1,58 @@
+-
+  name: master_bath_lights_get_state
+  conditions:
+    -
+      type: query
+      area: master_bath
+      domain: light
+  sentences:
+    - "What's the status of the lights in the master bath"
+    - 'Master bath lights state'
+    - 'Please tell me if the master bathroom lights are on or off'
+    - "If you don't mind, could you check the master bathroom lighting for me"
+    - 'Are the lights on in the master bathroom'
+    - 'Quick check master bathroom lights status'
+    - 'Can you tell me the current state of the master bathroom lights'
+-
+  name: master_bath_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: master_bath
+      domain: light
+  sentences:
+    - "What's the status of the master bathroom lights"
+    - "Please tell me the current state of the lights in the master bathroom if you don't mind"
+    - 'Master bath lights status'
+    - 'Could you check the master bathroom lights for me'
+    - 'Are the lights on in the master bath'
+    - 'Master bathroom lighting state please'
+-
+  name: master_bath_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: master_bath
+      domain: light
+  sentences:
+    - "What's the status of the master bathroom lights"
+    - "Please tell me the current state of the master bathroom lights if you don't mind"
+    - 'Master bath lights status'
+    - 'Could you check the lights in the master bathroom for me'
+    - 'Are the master bathroom lights on or off'
+    - 'Get master bathroom light state'
+-
+  name: master_bath_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: master_bath
+      domain: light
+  sentences:
+    - "What's the status of the master bathroom lights?"
+    - 'Lights in master bathroom?'
+    - 'Please tell me if the master bathroom lights are on or off.'
+    - 'Could you check the lighting status in the master bathroom for me?'
+    - 'Master bath lights state please.'
+    - "If you don't mind, what's the current state of the lights in the master bath?"
+    - 'Are the master bathroom lights on?'

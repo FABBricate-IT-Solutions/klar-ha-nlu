@@ -1,0 +1,420 @@
+name: Familienhaus Mittel
+difficulty: medium
+floors:
+- id: ground
+  name: Ground Floor
+  level: 0
+- id: upper
+  name: Upper Floor
+  level: 1
+areas:
+- id: entryway
+  name: Eingang
+  floor: ground
+  aliases:
+  - eingang
+  - diele
+- id: living
+  name: Wohnzimmer
+  floor: ground
+  aliases:
+  - wohnzimmer
+  - wohnraum
+- id: dining
+  name: Esszimmer
+  floor: ground
+  aliases:
+  - esszimmer
+- id: kitchen
+  name: Küche
+  floor: ground
+  aliases:
+  - kueche
+  - kuche
+- id: family_room
+  name: Familienzimmer
+  floor: ground
+  aliases:
+  - familienzimmer
+- id: laundry
+  name: Waschküche
+  floor: ground
+  aliases:
+  - waschkueche
+- id: powder_room
+  name: Gäste-WC
+  floor: ground
+  aliases:
+  - gaestewc
+  - gaeste wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: master_bedroom
+  name: Schlafzimmer
+  floor: upper
+  aliases:
+  - schlafzimmer
+  - elternschlafzimmer
+- id: bedroom_2
+  name: Kinderzimmer 2
+  floor: upper
+  aliases:
+  - kinderzimmer 2
+- id: bedroom_3
+  name: Kinderzimmer 3
+  floor: upper
+  aliases:
+  - kinderzimmer 3
+- id: bedroom_4
+  name: Kinderzimmer 4
+  floor: upper
+  aliases:
+  - kinderzimmer 4
+- id: master_bath
+  name: Elternbad
+  floor: upper
+  aliases:
+  - elternbad
+- id: main_bath
+  name: Badezimmer
+  floor: upper
+  aliases:
+  - badezimmer
+  - bad
+- id: hallway
+  name: Flur
+  floor: upper
+  aliases:
+  - flur
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: Eingangslicht
+  state: 'off'
+- id: lock.front_door
+  area_id: entryway
+  name: Haustür
+  state: locked
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: Türsensor
+  state: 'off'
+  attributes:
+    device_class: door
+- id: light.living_ceiling
+  area_id: living
+  name: Wohnzimmer Decke
+  state: 'on'
+  attributes:
+    brightness: 80
+- id: light.living_lamp
+  area_id: living
+  name: Wohnzimmer Lampe
+  state: 'off'
+  attributes:
+    brightness: 50
+    rgb_color:
+    - 255
+    - 200
+    - 120
+- id: media_player.living_tv
+  area_id: living
+  name: Wohnzimmer Fernseher
+  state: 'off'
+- id: cover.living_blinds
+  area_id: living
+  name: Wohnzimmer Rollo
+  state: open
+  attributes:
+    current_position: 100
+- id: light.dining_pendant
+  area_id: dining
+  name: Esszimmer Pendelleuchte
+  state: 'off'
+  attributes:
+    brightness: 100
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: Küche Decke
+  state: 'off'
+- id: light.kitchen_island
+  area_id: kitchen
+  name: Insel Licht
+  state: 'off'
+  attributes:
+    brightness: 100
+- id: switch.rangehood
+  area_id: kitchen
+  name: Dunstabzug
+  state: 'off'
+- id: switch.dishwasher
+  area_id: kitchen
+  name: Spülmaschine
+  state: 'off'
+- id: light.family_ceiling
+  area_id: family_room
+  name: Familienzimmer Decke
+  state: 'off'
+  attributes:
+    brightness: 80
+- id: media_player.family_tv
+  area_id: family_room
+  name: Familienzimmer Fernseher
+  state: 'off'
+- id: fan.family_fan
+  area_id: family_room
+  name: Familienzimmer Lüfter
+  state: 'off'
+  attributes:
+    percentage: 50
+- id: light.laundry_light
+  area_id: laundry
+  name: Waschküche Licht
+  state: 'off'
+- id: switch.washing_machine
+  area_id: laundry
+  name: Waschmaschine
+  state: 'off'
+- id: switch.dryer
+  area_id: laundry
+  name: Trockner
+  state: 'off'
+- id: light.powder_room_light
+  area_id: powder_room
+  name: Gäste-WC Licht
+  state: 'off'
+- id: light.garage_light
+  area_id: garage
+  name: Garagenlicht
+  state: 'off'
+- id: cover.garage_door
+  area_id: garage
+  name: Garagentor
+  state: closed
+  attributes:
+    current_position: 0
+- id: lock.garage_entry
+  area_id: garage
+  name: Garagentür
+  state: locked
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: Schlafzimmer Decke
+  state: 'off'
+  attributes:
+    brightness: 100
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: Ankleide Licht
+  state: 'off'
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: Nachttisch links
+  state: 'off'
+  attributes:
+    brightness: 30
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: Nachttisch rechts
+  state: 'off'
+  attributes:
+    brightness: 30
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: Schlafzimmer Lüfter
+  state: 'off'
+  attributes:
+    percentage: 40
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: Schlafzimmer Rollo
+  state: open
+  attributes:
+    current_position: 100
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: Kinderzimmer 2 Decke
+  state: 'off'
+  attributes:
+    brightness: 100
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: Kinderzimmer 2 Lüfter
+  state: 'off'
+  attributes:
+    percentage: 40
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: Kinderzimmer 2 Rollo
+  state: open
+  attributes:
+    current_position: 100
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: Kinderzimmer 3 Decke
+  state: 'off'
+  attributes:
+    brightness: 100
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: Kinderzimmer 3 Rollo
+  state: open
+  attributes:
+    current_position: 100
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: Kinderzimmer 4 Decke
+  state: 'off'
+  attributes:
+    brightness: 100
+- id: light.master_bath_light
+  area_id: master_bath
+  name: Elternbad Licht
+  state: 'off'
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: Elternbad Lüfter
+  state: 'off'
+- id: light.main_bath_light
+  area_id: main_bath
+  name: Badezimmer Licht
+  state: 'off'
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: Badezimmer Lüfter
+  state: 'off'
+- id: light.hallway_light
+  area_id: hallway
+  name: Flur Licht
+  state: 'off'
+- id: climate.ground_thermostat
+  area_id: living
+  name: Heizung Erdgeschoss
+  state: cool
+  attributes:
+    temperature: 23
+    current_temperature: 25
+    hvac_modes:
+    - cool
+    - heat
+    - 'off'
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: Heizung Obergeschoss
+  state: 'off'
+  attributes:
+    temperature: 21
+    current_temperature: 23
+    hvac_modes:
+    - cool
+    - heat
+    - 'off'
+scenes:
+- id: movie_night
+  name: Filmabend
+  entities:
+    light.living_ceiling:
+      state: 'off'
+    light.living_lamp:
+      state: 'on'
+      brightness: 20
+    media_player.living_tv:
+      state: 'on'
+    cover.living_blinds:
+      state: closed
+- id: dinner_time
+  name: Abendessen
+  entities:
+    light.dining_pendant:
+      state: 'on'
+      brightness: 90
+    light.kitchen_ceiling:
+      state: 'on'
+    light.kitchen_island:
+      state: 'on'
+      brightness: 80
+- id: kids_bedtime
+  name: Kinder ins Bett
+  entities:
+    light.bedroom2_ceiling:
+      state: 'off'
+    light.bedroom3_ceiling:
+      state: 'off'
+    light.bedroom4_ceiling:
+      state: 'off'
+    light.hallway_light:
+      state: 'on'
+      brightness: 15
+- id: good_morning
+  name: Guten Morgen
+  entities:
+    light.kitchen_ceiling:
+      state: 'on'
+    light.dining_pendant:
+      state: 'on'
+      brightness: 100
+    cover.living_blinds:
+      state: open
+    cover.master_blinds:
+      state: open
+scripts:
+- id: good_night
+  name: Gute Nacht
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.living_ceiling
+      - light.living_lamp
+      - light.dining_pendant
+      - light.kitchen_ceiling
+      - light.kitchen_island
+      - light.family_ceiling
+      - light.entryway_light
+      - light.hallway_light
+  - action: lock.lock
+    target:
+      entity_id:
+      - lock.front_door
+      - lock.garage_entry
+  - action: climate.set_temperature
+    target:
+      entity_id: climate.upper_thermostat
+    data:
+      temperature: 20
+- id: leaving_home
+  name: Haus verlassen
+  actions:
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.living_ceiling
+      - light.living_lamp
+      - light.kitchen_ceiling
+      - light.family_ceiling
+      - light.entryway_light
+  - action: lock.lock
+    target:
+      entity_id:
+      - lock.front_door
+      - lock.garage_entry
+  - action: cover.close_cover
+    target:
+      entity_id: cover.garage_door
+timers:
+- id: oven
+  name: Ofen-Timer
+  state: idle
+- id: laundry
+  name: Wäsche-Timer
+  state: idle
+- id: abstract
+  name: Timer
+  state: idle
+lists:
+- id: chores
+  name: Aufgaben
+language: de

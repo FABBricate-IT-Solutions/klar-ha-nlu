@@ -1,0 +1,30 @@
+- name: entryway_locks_get_state
+  conditions:
+  - type: query
+    area: entryway
+    domain: lock
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das lock am Eingang an
+- name: entryway_locks_list_locked_locks
+  conditions:
+  - type: query
+    area: entryway
+    domain: lock
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das lock am Eingang an
+- name: entryway_locks_list_unlocked_locks
+  conditions:
+  - type: query
+    area: entryway
+    domain: lock
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das lock am Eingang an

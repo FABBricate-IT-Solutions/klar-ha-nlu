@@ -1,0 +1,29 @@
+-
+  name: light_main_bath_light_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.main_bath_light
+  sentences:
+    - "What's the status of the Main Bath Light?"
+    - 'Is the main bathroom light on or off?'
+    - 'Please check the Main Bath Light for me'
+    - 'Main bath light state'
+    - "If you don't mind, could you tell me if the main bathroom light is on?"
+    - 'Get current state of light main bathroom light'
+    - 'Main Bath Light status please'
+    - 'Tell me about the main bathroom light'
+-
+  name: light_main_bath_light_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.main_bath_light
+  sentences:
+    - "What's the brightness of the Main Bath Light?"
+    - 'How bright is the main bathroom light right now?'
+    - "Please tell me the brightness level of the Main Bath Light if you don't mind."
+    - 'Get current brightness for light main bathroom light.'
+    - 'Could you check the brightness of the Main Bath Light for me?'
+    - 'Main bath light brightness status please.'
+    - "What's the current brightness setting on the main bathroom light?"

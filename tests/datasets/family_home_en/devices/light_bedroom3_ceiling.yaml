@@ -1,0 +1,62 @@
+-
+  name: light_bedroom3_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom3_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the Bedroom 3 Ceiling light'
+    - 'Flick on bedroom 3 ceiling'
+    - 'Please flip on the ceiling light in bedroom 3 for me'
+    - "If you don't mind, could you turn on the bedroom 3 ceiling light"
+    - 'Activate bedroom 3 ceiling light'
+    - 'Switch on the ceiling light in bedroom 3'
+    - 'Quickly turn on bedroom 3 ceiling'
+-
+  name: light_bedroom3_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom3_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off bedroom 3 ceiling'
+    - 'Please switch off the bedroom 3 ceiling light for me'
+    - "Flick off bedroom three ceiling if you don't mind"
+    - 'Kill the bedroom 3 ceiling light'
+    - 'Could you turn off bedroom 3 ceiling please'
+    - 'Flip off the ceiling in bedroom three'
+    - 'Deactivate bedroom 3 ceiling light'
+-
+  name: light_bedroom3_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom3_ceiling
+      attributes:
+        brightness: 36
+  sentences:
+    - 'Set Bedroom 3 Ceiling to 36 percent'
+    - "Please dim the bedroom 3 ceiling light to 36 if you don't mind"
+    - 'Flick bedroom 3 ceiling brightness down to 36'
+    - 'Turn bedroom 3 ceiling to thirty-six percent brightness'
+    - 'Can you please adjust the Bedroom 3 Ceiling light to 36 for me'
+    - 'Make bedroom 3 ceiling 36 percent'
+    - 'Quickly set bedroom 3 ceiling brightness to 36'
+-
+  name: light_bedroom3_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom3_ceiling
+      attributes:
+        color: yellow
+  sentences:
+    - 'Change bedroom 3 ceiling to yellow'
+    - 'Set bedroom 3 light to yellow please'
+    - "Flick on yellow for bedroom 3 ceiling if you don't mind"
+    - 'Quickly make bedroom 3 ceiling yellow'
+    - 'Turn bedroom 3 ceiling light yellow for me'
+    - 'Flip bedroom 3 to yellow now'
+    - 'Please change the color of bedroom 3 ceiling to yellow'

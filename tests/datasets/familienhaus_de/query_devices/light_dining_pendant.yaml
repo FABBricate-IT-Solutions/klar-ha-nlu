@@ -1,0 +1,18 @@
+- name: light_dining_pendant_get_status
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - Ist Esszimmer an
+  - Status Esszimmer
+  - Wie ist der Zustand von Esszimmer
+  - Ist das light im Esszimmer an
+- name: light_dining_pendant_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - Ist Esszimmer an
+  - Status Esszimmer
+  - Wie ist der Zustand von Esszimmer
+  - Ist das light im Esszimmer an

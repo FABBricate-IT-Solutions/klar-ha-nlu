@@ -1,0 +1,43 @@
+- name: light_master_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer an
+  - Lichter Schlafzimmer an
+  - Schalt die Lichter im Schlafzimmer ein
+  - Schlafzimmer Lichter an
+  - Kannst du die Lichter im Schlafzimmer anmachen
+- name: light_master_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus
+  - Lichter Schlafzimmer aus
+  - Schalt die Lichter im Schlafzimmer aus
+  - Schlafzimmer Lichter aus
+- name: light_master_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 77
+  sentences:
+  - Setze Schlafzimmer auf 77 Prozent
+  - Schlafzimmer Helligkeit 77
+  - Dimme Schlafzimmer auf 77
+  - Lichter Schlafzimmer 77 Prozent
+- name: light_master_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - Mach Schlafzimmer blau
+  - Setze Schlafzimmer auf blau
+  - Schlafzimmer blau
+  - Lichter Schlafzimmer blau

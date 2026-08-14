@@ -1,0 +1,9 @@
+- name: climate_ground_thermostat_get_temperature
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - Wie warm ist es im Wohnzimmer
+  - Temperatur Wohnzimmer
+  - Wie ist die Temperatur im Wohnzimmer
+  - Wie kalt ist es im Wohnzimmer

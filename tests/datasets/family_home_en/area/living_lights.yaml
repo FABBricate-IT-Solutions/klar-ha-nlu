@@ -1,0 +1,65 @@
+-
+  name: living_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: living
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the living room lights'
+    - 'Please turn on the lights in the living room for me'
+    - "Flick on the living room lights if you don't mind"
+    - 'Hey, can you turn on the living room lights'
+    - 'Activate the living room lights'
+    - 'Switch on the lights in the living room please'
+-
+  name: living_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: living
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the living room lights'
+    - 'Please switch off the lights in the living room for me'
+    - "If you don't mind, flick off the living room lights"
+    - 'Kill the lights in the living room'
+    - 'Can you flip off the living room lights please'
+    - 'Shut down the living room lights if possible'
+    - 'Turn the living room lights off'
+-
+  name: living_lights_change_brightness
+  conditions:
+    -
+      area: living
+      domain: light
+      attributes:
+        brightness: 84
+  sentences:
+    - 'Set living room lights to 84 percent brightness'
+    - 'Please adjust the living room lights to 84 for me'
+    - "If you don't mind, flick the living room lights to 84"
+    - 'Quickly dim living room lights to 84'
+    - 'Turn living room lights to 84 percent'
+    - 'Could you set the living room lights to 84 brightness please'
+    - 'Flip living room lights to 84'
+    - 'Make living room lights 84 percent bright'
+-
+  name: living_lights_change_color
+  conditions:
+    -
+      area: living
+      domain: light
+      attributes:
+        color: blue
+  sentences:
+    - 'Turn the living room lights blue'
+    - 'Flick on the living room lights to blue'
+    - 'Please set the living room lights to blue for me'
+    - "If you don't mind, flip the living room lights to blue"
+    - 'Change living room lights to blue'
+    - 'Make the living room lights blue please'
+    - 'Quickly set living room lights to blue'
+    - 'Flip on living room lights to blue if possible'

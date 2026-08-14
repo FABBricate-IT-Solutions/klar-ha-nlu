@@ -1,0 +1,28 @@
+-
+  name: fan_master_fan_get_status
+  conditions:
+    -
+      type: query
+      entity_id: fan.master_fan
+  sentences:
+    - "What's the status of the master fan?"
+    - 'Please check the master fan for me'
+    - "If you don't mind, what's the current state of the master fan?"
+    - 'Master fan status'
+    - 'Can you tell me if the master fan is on or off?'
+    - 'Quick check on master fan please'
+    - "What's going on with the master fan in master bedroom?"
+-
+  name: fan_master_fan_get_fan_speed
+  conditions:
+    -
+      type: query
+      entity_id: fan.master_fan
+  sentences:
+    - "What's the Master Fan percentage?"
+    - 'Current speed of master fan'
+    - "Please tell me the master fan level if you don't mind"
+    - 'Fan master fan status in master bedroom'
+    - 'How fast is the master fan right now'
+    - 'Could you check the master fan percentage for me'
+    - 'Master fan speed percentage please'

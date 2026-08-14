@@ -1,0 +1,63 @@
+-
+  name: light_kitchen_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the kitchen ceiling light'
+    - 'Kitchen ceiling on'
+    - 'Please flick on the kitchen ceiling light for me'
+    - "If you don't mind, flip on the kitchen ceiling"
+    - 'Activate kitchen ceiling light'
+    - 'Turn the kitchen ceiling on now'
+    - 'Could you switch on the kitchen ceiling light'
+-
+  name: light_kitchen_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off the kitchen ceiling light'
+    - 'Please turn off the kitchen ceiling for me'
+    - "If you don't mind, flick off the kitchen ceiling light"
+    - 'Kitchen ceiling off'
+    - 'Flip off the kitchen ceiling light please'
+    - 'Turn the kitchen ceiling light off'
+    - 'Can you switch off the kitchen ceiling for me'
+-
+  name: light_kitchen_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      attributes:
+        brightness: 25
+  sentences:
+    - 'Set kitchen ceiling to 25 percent'
+    - 'Kitchen ceiling brightness 25'
+    - 'Please dim the kitchen ceiling light to 25 for me'
+    - "If you don't mind, flick kitchen ceiling down to 25"
+    - 'Turn kitchen ceiling brightness to 25%'
+    - 'Flip kitchen ceiling to 25'
+    - 'Robot, set kitchen ceiling light to 25 brightness'
+-
+  name: light_kitchen_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      attributes:
+        color: orange
+  sentences:
+    - 'Turn the kitchen ceiling light orange'
+    - 'Set kitchen ceiling to orange'
+    - 'Please change the Kitchen Ceiling light to orange for me'
+    - 'Flick the kitchen ceiling light to orange'
+    - "If you don't mind, make the kitchen ceiling orange"
+    - 'Flip kitchen ceiling light to orange please'
+    - 'Kitchen ceiling to orange now'
+    - 'Could you set the Kitchen Ceiling light orange?'

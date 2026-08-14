@@ -1,0 +1,14 @@
+name: master_bedside_on_at_9pm
+sentences:
+- Create an automation to turn on the master left bedside lamp every evening at 9pm
+- Set up a rule at nine in the evening to switch on the left bedside lamp
+- Make an automation that turns the left bedside lamp on at 9pm every night
+- Automate the left master bedside lamp to come on at nine every evening
+- Can you create an evening automation at 9pm to turn on the left bedside lamp
+expected:
+  trigger:
+    platform: time
+    at: '21:00:00'
+  actions:
+  - action: light.turn_on
+    entity_id: light.master_bedside_left

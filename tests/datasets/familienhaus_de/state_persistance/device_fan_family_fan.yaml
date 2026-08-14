@@ -1,0 +1,69 @@
+- name: fan_family_fan_turn_on
+  setup:
+  - entity_id: fan.family_fan
+    state: 'off'
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+  - - Status Lüfter Familienzimmer
+    - mach sie an
+- name: fan_family_fan_turn_off
+  setup:
+  - entity_id: fan.family_fan
+    state: 'on'
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+  - - Status Lüfter Familienzimmer
+    - mach sie aus
+- name: fan_family_fan_persistance_percentage
+  setup:
+  - entity_id: fan.family_fan
+    percentage: 59
+  conditions:
+  - entity_id: fan.family_fan
+    attributes:
+      percentage: 43
+  sentences:
+  - - Status Lüfter Familienzimmer
+    - auf 43
+  - - Status Lüfter Familienzimmer
+    - auf 43
+  - - Status Lüfter Familienzimmer
+    - auf 43
+  - - Status Lüfter Familienzimmer
+    - auf 43
+  - - Status Lüfter Familienzimmer
+    - auf 43
+  - - Mach Lüfter Familienzimmer an
+    - auf 43
+  - - Status Lüfter Familienzimmer
+    - auf 43

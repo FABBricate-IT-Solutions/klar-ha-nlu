@@ -1,0 +1,76 @@
+-
+  name: master_bedroom_and_living_covers_get_state
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the windows in the master bedroom and living room?"
+    - 'Check the blinds and curtains in the master bedroom and living area'
+    - "Please tell me if the windows are open in the master bedroom and living room if you don't mind"
+    - 'Master bedroom and living room window status'
+    - 'Could you check the current state of all windows, blinds, and curtains in the master bedroom and living room for me'
+    - 'Are the curtains open in the master bedroom and living?'
+    - 'Window and blind status master bedroom living room please'
+-
+  name: master_bedroom_and_living_covers_list_open_covers
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the windows in the master bedroom and living room?"
+    - 'Check blinds and curtains in master bedroom and living please'
+    - "If you don't mind, could you tell me if the windows are open in the master bedroom and living area?"
+    - 'Master bedroom and living windows status'
+    - 'Please check the blinds for me in the master bedroom and living room'
+    - 'Are the curtains open in the master bedroom and living?'
+    - 'Quick check on windows and blinds in master bedroom and living room'
+-
+  name: master_bedroom_and_living_covers_list_closed_covers
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the windows in the master bedroom and living room?"
+    - 'Check blinds and curtains in master bedroom and living please'
+    - "If you don't mind, could you tell me if the windows are open in the master bedroom and living room?"
+    - 'Master bedroom and living windows status'
+    - 'Please check the blinds for me in the master bedroom and living room'
+    - 'Are the curtains open in the master bedroom and living?'
+    - 'Quick check: windows and blinds master bedroom living room'
+    - 'Tell me the current state of all windows in the master bedroom and living room'
+-
+  name: master_bedroom_and_living_covers_get_position
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the windows and blinds in the master bedroom and living room?"
+    - 'Check the curtains in the master bedroom and living room please.'
+    - "Tell me if the windows are open in the master bedroom and living room if you don't mind."
+    - 'Master bedroom and living room window status.'
+    - 'Could you check the blinds for me in the master bedroom and living room?'
+    - 'Get the current state of all windows and blinds in the master bedroom and living room.'

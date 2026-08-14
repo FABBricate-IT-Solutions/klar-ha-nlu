@@ -1,0 +1,30 @@
+- name: kitchen_switchs_get_state
+  conditions:
+  - type: query
+    area: kitchen
+    domain: switch
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das switch in der Küche an
+- name: kitchen_switchs_list_on_switchs
+  conditions:
+  - type: query
+    area: kitchen
+    domain: switch
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das switch in der Küche an
+- name: kitchen_switchs_list_off_switchs
+  conditions:
+  - type: query
+    area: kitchen
+    domain: switch
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das switch in der Küche an

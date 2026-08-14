@@ -1,0 +1,6 @@
+- name: living_then_off
+  conditions:
+    - {type: action, entity_id: light.wohnzimmer, state: 'off'}
+  sentences:
+    - - Turn on the living room lights
+      - turn it off

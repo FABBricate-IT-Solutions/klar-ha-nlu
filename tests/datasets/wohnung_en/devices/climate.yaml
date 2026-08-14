@@ -1,0 +1,10 @@
+- name: living_heat_23
+  conditions:
+    - type: action
+      entity_id: climate.better_thermostat_wohnzimmer
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Set the living room heater to 23 degrees'
+    - 'Living room thermostat 23'
+    - 'Set heating in the living room to 23'

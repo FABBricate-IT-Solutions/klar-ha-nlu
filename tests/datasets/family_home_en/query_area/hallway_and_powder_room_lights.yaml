@@ -1,0 +1,77 @@
+-
+  name: hallway_and_powder_room_lights_get_state
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the hallway and powder room lights?"
+    - 'Get light states for hallway and powder room'
+    - 'Please check the lights in the hallway and powder room for me'
+    - "If you don't mind, tell me if the hallway and powder room lights are on"
+    - 'Hallway and powder room lights status'
+    - 'Could you check the current state of lights in hallway and powder room please'
+    - 'Are the lights on in the hallway and powder room?'
+-
+  name: hallway_and_powder_room_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the hallway and powder room lights?"
+    - 'Check lights in hallway and powder room'
+    - 'Please tell me if the hallway and powder room lights are on'
+    - 'Get current state of lights hallway powder room'
+    - "If you don't mind, could you check the hallway and powder room lights for me?"
+    - 'Lights status hallway powder room'
+    - 'Are the hallway and powder room lights on or off right now?'
+-
+  name: hallway_and_powder_room_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the hallway and powder room lights?"
+    - 'Lights hallway powder room state'
+    - 'Please check the lights in the hallway and powder room for me'
+    - "If you don't mind, could you tell me if the hallway and powder room lights are on or off?"
+    - 'Hallway and powder room lights status please'
+    - 'Get current state of hallway and powder room lighting'
+    - 'Are the hallway and powder room lights on right now?'
+-
+  name: hallway_and_powder_room_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the hallway and powder room lights?"
+    - 'Lights in hallway and powder room state please'
+    - 'Could you check the current state of the lights in the hallway and powder room for me?'
+    - 'Get light status hallway powder room'
+    - "If you don't mind, tell me if the hallway and powder room lights are on or off"
+    - 'Hallway powder room lights current state'
+    - 'Please check the lights status in hallway and powder room'
+    - 'Are the hallway and powder room lights on?'

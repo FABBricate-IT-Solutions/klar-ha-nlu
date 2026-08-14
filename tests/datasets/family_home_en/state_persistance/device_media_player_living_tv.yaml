@@ -1,0 +1,105 @@
+-
+  name: media_player_living_tv_turn_on
+  setup:
+    -
+      entity_id: media_player.living_tv
+      state: 'off'
+  conditions:
+    -
+      type: action
+      entity_id: media_player.living_tv
+      state: 'on'
+  sentences:
+    -
+      - "What's the status of the living room TV?"
+      - 'Please turn it on for me.'
+    -
+      - 'Can you check the living room TV?'
+      - 'Flick it on.'
+    -
+      - 'Living room TV status please.'
+      - "Flip it on if you don't mind."
+    -
+      - "How's the living room TV doing?"
+      - 'Turn it on.'
+    -
+      - 'Check the living room TV for me.'
+      - 'Power it on please.'
+    -
+      - "What's up with the living room TV?"
+      - 'Switch it on for me.'
+    -
+      - 'Living room TV state?'
+      - 'Fire it up.'
+    -
+      - 'Living room TV status check.'
+      - "Turn it on if you don't mind."
+-
+  name: media_player_living_tv_turn_off
+  setup:
+    -
+      entity_id: media_player.living_tv
+      state: 'on'
+  conditions:
+    -
+      type: action
+      entity_id: media_player.living_tv
+      state: 'off'
+  sentences:
+    -
+      - "What's the status of the living room TV?"
+      - 'Turn it off.'
+    -
+      - 'Can you check the living room TV please?'
+      - 'Please switch it off for me.'
+    -
+      - 'Living room TV status?'
+      - 'Flick it off.'
+    -
+      - "Tell me about the living room TV if you don't mind."
+      - 'Flip it off please.'
+    -
+      - "How's the living room TV doing?"
+      - 'Shut it down.'
+    -
+      - 'Living room TV state check.'
+      - 'Turn it off now.'
+    -
+      - "What's happening with the living room TV?"
+      - 'Power it off for me.'
+    -
+      - 'Living room TV update please?'
+      - 'Kill it.'
+-
+  name: media_player_living_tv_persistance_volume_level
+  setup:
+    -
+      entity_id: media_player.living_tv
+      volume_level: 11
+  conditions:
+    -
+      entity_id: media_player.living_tv
+      attributes:
+        volume_level: 12
+  sentences:
+    -
+      - "What's the volume level of the Living Room TV?"
+      - 'Set it to 12.'
+    -
+      - 'Can you tell me the volume on the living room TV?'
+      - 'Please change it to 12 for me.'
+    -
+      - 'Living room TV volume level?'
+      - "Adjust to 12 if you don't mind."
+    -
+      - "What's the current volume of the TV in the living room?"
+      - 'Make it 12.'
+    -
+      - 'Volume level living room TV please?'
+      - 'Turn it up to 12.'
+    -
+      - 'How loud is the living room TV right now?'
+      - 'Set volume to 12.'
+    -
+      - "Living room TV, what's your volume?"
+      - 'Change it to 12 please.'

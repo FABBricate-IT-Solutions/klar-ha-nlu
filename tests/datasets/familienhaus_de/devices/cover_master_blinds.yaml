@@ -1,0 +1,28 @@
+- name: cover_master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - Mach Rollo Schlafzimmer auf
+  - Rollo Schlafzimmer auf
+  - Öffne Rollo Schlafzimmer
+- name: cover_master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - Mach Rollo Schlafzimmer zu
+  - Rollo Schlafzimmer zu
+  - Schließ Rollo Schlafzimmer
+- name: cover_master_blinds_change_position
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 19
+  sentences:
+  - Rollo Schlafzimmer auf 19 Prozent
+  - Setze Schlafzimmer Rollo auf 19
+  - Schlafzimmer Position 19

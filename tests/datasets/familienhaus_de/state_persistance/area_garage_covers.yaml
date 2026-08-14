@@ -1,0 +1,22 @@
+- name: garage_covers_set_position
+  setup:
+  - entity_id: cover.garage_door
+    position: 95
+  conditions:
+  - entity_id: cover.garage_door
+    position: 18
+  sentences:
+  - - Status Rollo Garage
+    - auf 18
+  - - Status Rollo Garage
+    - auf 18
+  - - Status Rollo Garage
+    - auf 18
+  - - Status Rollo Garage
+    - auf 18
+  - - Status Rollo Garage
+    - auf 18
+  - - Status Rollo Garage
+    - auf 18
+  - - Mach Rollo Garage an
+    - auf 18

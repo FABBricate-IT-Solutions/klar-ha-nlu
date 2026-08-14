@@ -1,0 +1,73 @@
+- name: media_player_living_tv_turn_on
+  setup:
+  - entity_id: media_player.living_tv
+    state: 'off'
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+  - - Mach Fernseher Wohnzimmer an
+    - ja
+  - - Status Fernseher Wohnzimmer
+    - mach sie an
+- name: media_player_living_tv_turn_off
+  setup:
+  - entity_id: media_player.living_tv
+    state: 'on'
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Status Fernseher Wohnzimmer
+    - mach sie aus
+  - - Mach Fernseher Wohnzimmer an
+    - mach sie aus
+- name: media_player_living_tv_persistance_volume_level
+  setup:
+  - entity_id: media_player.living_tv
+    volume_level: 11
+  conditions:
+  - entity_id: media_player.living_tv
+    attributes:
+      volume_level: 12
+  sentences:
+  - - Status Fernseher Wohnzimmer
+    - auf 21
+  - - Status Fernseher Wohnzimmer
+    - auf 21
+  - - Mach Fernseher Wohnzimmer an
+    - auf 21
+  - - Status Fernseher Wohnzimmer
+    - auf 21
+  - - Mach Fernseher Wohnzimmer an
+    - auf 21
+  - - Status Fernseher Wohnzimmer
+    - auf 21
+  - - Status Fernseher Wohnzimmer
+    - auf 21

@@ -1,0 +1,43 @@
+- name: light_master_ensuite_turn_on
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer an
+  - Lichter Schlafzimmer an
+  - Schalt die Lichter im Schlafzimmer ein
+  - Schlafzimmer Lichter an
+  - Kannst du die Lichter im Schlafzimmer anmachen
+- name: light_master_ensuite_turn_off
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus
+  - Lichter Schlafzimmer aus
+  - Schalt die Lichter im Schlafzimmer aus
+  - Schlafzimmer Lichter aus
+- name: light_master_ensuite_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 55
+  sentences:
+  - Setze Schlafzimmer auf 55 Prozent
+  - Schlafzimmer Helligkeit 55
+  - Dimme Schlafzimmer auf 55
+  - Lichter Schlafzimmer 55 Prozent
+- name: light_master_ensuite_change_color
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: black
+  sentences:
+  - Mach Schlafzimmer black
+  - Setze Schlafzimmer auf black
+  - Schlafzimmer black
+  - Lichter Schlafzimmer black

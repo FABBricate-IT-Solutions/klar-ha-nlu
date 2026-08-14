@@ -1,0 +1,13 @@
+-
+  name: climate_upper_thermostat_get_temperature
+  conditions:
+    -
+      type: query
+      entity_id: climate.upper_thermostat
+  sentences:
+    - "What's the temperature on the Upper Floor Thermostat?"
+    - 'Tell me the current temp of the upper thermostat'
+    - 'Please check the temperature for me on the Upper Floor Thermostat'
+    - 'Upper Floor Thermostat temperature please'
+    - 'Can you get me the current reading from the upper thermostat?'
+    - "Hey, what's the temp on the Upper Floor Thermostat right now?"

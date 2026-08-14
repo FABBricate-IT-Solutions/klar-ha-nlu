@@ -1,0 +1,40 @@
+- name: family_room_and_kitchen_lights_get_state
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Familienzimmer an und Ist Küche an
+- name: family_room_and_kitchen_lights_list_on_lights
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Familienzimmer an und Ist Küche an
+- name: family_room_and_kitchen_lights_list_off_lights
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Familienzimmer an und Ist Küche an
+- name: family_room_and_kitchen_lights_get_brightness
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - Ist Familienzimmer an und Ist Küche an

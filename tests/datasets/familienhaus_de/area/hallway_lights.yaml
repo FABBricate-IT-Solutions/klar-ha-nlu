@@ -1,0 +1,45 @@
+- name: hallway_lights_turn_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Flur an
+  - Lichter Flur an
+  - Schalt die Lichter im Flur ein
+  - Flur Lichter an
+  - Kannst du die Lichter im Flur anmachen
+- name: hallway_lights_turn_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Flur aus
+  - Lichter Flur aus
+  - Schalt die Lichter im Flur aus
+  - Flur Lichter aus
+- name: hallway_lights_change_brightness
+  conditions:
+  - area: hallway
+    domain: light
+    attributes:
+      brightness: 61
+  sentences:
+  - Setze Flur auf 61 Prozent
+  - Flur Helligkeit 61
+  - Dimme Flur auf 61
+  - Lichter Flur 61 Prozent
+- name: hallway_lights_change_color
+  conditions:
+  - area: hallway
+    domain: light
+    attributes:
+      color: orange
+  sentences:
+  - Mach Flur orange
+  - Setze Flur auf orange
+  - Flur orange
+  - Lichter Flur orange

@@ -1,0 +1,48 @@
+- name: family_room_and_kitchen_lights_turn_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Familienzimmer an und Mach die Lichter in der Küche an
+- name: family_room_and_kitchen_lights_turn_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Familienzimmer aus und Mach die Lichter in der Küche aus
+- name: family_room_and_kitchen_lights_change_brightness
+  conditions:
+  - area: family_room
+    domain: light
+    attributes:
+      brightness: 39
+  - area: kitchen
+    domain: light
+    attributes:
+      brightness: 39
+  sentences:
+  - Setze Familienzimmer auf 39 Prozent und Setze Küche auf 39 Prozent
+- name: family_room_and_kitchen_lights_change_color
+  conditions:
+  - area: family_room
+    domain: light
+    attributes:
+      color: purple
+  - area: kitchen
+    domain: light
+    attributes:
+      color: purple
+  sentences:
+  - Mach Familienzimmer lila und Mach Küche lila

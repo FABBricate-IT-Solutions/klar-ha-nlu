@@ -1,0 +1,28 @@
+- name: cover_bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - Mach Rollo Kinderzimmer 2 auf
+  - Rollo Kinderzimmer 2 auf
+  - Öffne Rollo Kinderzimmer 2
+- name: cover_bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - Mach Rollo Kinderzimmer 2 zu
+  - Rollo Kinderzimmer 2 zu
+  - Schließ Rollo Kinderzimmer 2
+- name: cover_bedroom2_blinds_change_position
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 67
+  sentences:
+  - Rollo Kinderzimmer 2 auf 67 Prozent
+  - Setze Kinderzimmer 2 Rollo auf 67
+  - Kinderzimmer 2 Position 67

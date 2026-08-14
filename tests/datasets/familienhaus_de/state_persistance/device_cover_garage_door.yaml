@@ -1,0 +1,65 @@
+- name: cover_garage_door_open
+  setup:
+  - entity_id: cover.garage_door
+    state: closed
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - - Status Rollo Garage
+    - mach sie auf
+  - - Status Rollo Garage
+    - mach sie auf
+  - - Mach Rollo Garage an
+    - ja
+  - - Status Rollo Garage
+    - mach sie auf
+  - - Status Rollo Garage
+    - mach sie auf
+  - - Status Rollo Garage
+    - mach sie auf
+- name: cover_garage_door_close
+  setup:
+  - entity_id: cover.garage_door
+    state: open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - - Status Rollo Garage
+    - mach sie zu
+  - - Status Rollo Garage
+    - mach sie zu
+  - - Status Rollo Garage
+    - mach sie zu
+  - - Status Rollo Garage
+    - mach sie zu
+  - - Status Rollo Garage
+    - mach sie zu
+  - - Mach Rollo Garage an
+    - mach sie zu
+  - - Status Rollo Garage
+    - mach sie zu
+- name: cover_garage_door_persistance_position
+  setup:
+  - entity_id: cover.garage_door
+    position: 62
+  conditions:
+  - entity_id: cover.garage_door
+    attributes:
+      position: 23
+  sentences:
+  - - Status Rollo Garage
+    - auf 23
+  - - Status Rollo Garage
+    - auf 23
+  - - Mach Rollo Garage an
+    - auf 23
+  - - Status Rollo Garage
+    - auf 23
+  - - Status Rollo Garage
+    - auf 23
+  - - Status Rollo Garage
+    - auf 23

@@ -1,0 +1,20 @@
+- name: main_bath_switchs_turn_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: switch
+    state: 'on'
+  sentences:
+  - Schalt die Schalter im Badezimmer an
+  - Schalter Badezimmer an
+  - Mach die Schalter im Badezimmer an
+- name: main_bath_switchs_turn_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: switch
+    state: 'off'
+  sentences:
+  - Schalt die Schalter im Badezimmer aus
+  - Schalter Badezimmer aus
+  - Mach die Schalter im Badezimmer aus

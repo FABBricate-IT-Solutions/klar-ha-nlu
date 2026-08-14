@@ -1,0 +1,9 @@
+- name: switch_dryer_get_status
+  conditions:
+  - type: query
+    entity_id: switch.dryer
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das switch in der Waschküche an

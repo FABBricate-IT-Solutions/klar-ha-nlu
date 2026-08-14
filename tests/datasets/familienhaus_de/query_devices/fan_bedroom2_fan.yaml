@@ -1,0 +1,18 @@
+- name: fan_bedroom2_fan_get_status
+  conditions:
+  - type: query
+    entity_id: fan.bedroom2_fan
+  sentences:
+  - Ist Kinderzimmer 2 Lüfter an
+  - Status Kinderzimmer 2 Lüfter
+  - Wie ist der Zustand von Kinderzimmer 2 Lüfter
+  - Ist das fan in Kinderzimmer 2 an
+- name: fan_bedroom2_fan_get_fan_speed
+  conditions:
+  - type: query
+    entity_id: fan.bedroom2_fan
+  sentences:
+  - Ist Kinderzimmer 2 Lüfter an
+  - Status Kinderzimmer 2 Lüfter
+  - Wie ist der Zustand von Kinderzimmer 2 Lüfter
+  - Ist das fan in Kinderzimmer 2 an

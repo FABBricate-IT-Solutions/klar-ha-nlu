@@ -1,0 +1,43 @@
+- name: light_living_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Wohnzimmer an
+  - Lichter Wohnzimmer an
+  - Schalt die Lichter im Wohnzimmer ein
+  - Wohnzimmer Lichter an
+  - Kannst du die Lichter im Wohnzimmer anmachen
+- name: light_living_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Wohnzimmer aus
+  - Lichter Wohnzimmer aus
+  - Schalt die Lichter im Wohnzimmer aus
+  - Wohnzimmer Lichter aus
+- name: light_living_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 72
+  sentences:
+  - Setze Wohnzimmer auf 72 Prozent
+  - Wohnzimmer Helligkeit 72
+  - Dimme Wohnzimmer auf 72
+  - Lichter Wohnzimmer 72 Prozent
+- name: light_living_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: black
+  sentences:
+  - Mach Wohnzimmer black
+  - Setze Wohnzimmer auf black
+  - Wohnzimmer black
+  - Lichter Wohnzimmer black

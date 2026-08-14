@@ -1,0 +1,16 @@
+- name: schlafzimmer_lampe_kugel
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'on'}
+  sentences:
+    - - Mach die Lampe im Schlafzimmer an
+      - Kugel
+    - - Schlafzimmer Lampe an
+      - die Kugel
+- name: schlafzimmer_lampe_decke
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'on'}
+  sentences:
+    - - Mach die Lampe im Schlafzimmer an
+      - Deckenlampe
+    - - Schlafzimmer Lampe an
+      - die Decke

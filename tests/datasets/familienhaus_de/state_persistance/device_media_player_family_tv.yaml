@@ -1,0 +1,61 @@
+- name: media_player_family_tv_turn_on
+  setup:
+  - entity_id: media_player.family_tv
+    state: 'off'
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - - Status Fernseher Familienzimmer
+    - mach sie an
+  - - Status Fernseher Familienzimmer
+    - mach sie an
+  - - Status Fernseher Familienzimmer
+    - mach sie an
+  - - Mach Fernseher Familienzimmer an
+    - ja
+  - - Status Fernseher Familienzimmer
+    - mach sie an
+  - - Status Fernseher Familienzimmer
+    - mach sie an
+- name: media_player_family_tv_turn_off
+  setup:
+  - entity_id: media_player.family_tv
+    state: 'on'
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - - Status Fernseher Familienzimmer
+    - mach sie aus
+  - - Status Fernseher Familienzimmer
+    - mach sie aus
+  - - Status Fernseher Familienzimmer
+    - mach sie aus
+  - - Status Fernseher Familienzimmer
+    - mach sie aus
+  - - Status Fernseher Familienzimmer
+    - mach sie aus
+  - - Status Fernseher Familienzimmer
+    - mach sie aus
+- name: media_player_family_tv_persistance_volume_level
+  setup:
+  - entity_id: media_player.family_tv
+    volume_level: 29
+  conditions:
+  - entity_id: media_player.family_tv
+    attributes:
+      volume_level: 50
+  sentences:
+  - - Status Fernseher Familienzimmer
+    - auf 21
+  - - Status Fernseher Familienzimmer
+    - auf 21
+  - - Status Fernseher Familienzimmer
+    - auf 21
+  - - Status Fernseher Familienzimmer
+    - auf 21
+  - - Status Fernseher Familienzimmer
+    - auf 21

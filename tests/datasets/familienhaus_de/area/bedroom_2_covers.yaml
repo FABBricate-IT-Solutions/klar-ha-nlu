@@ -1,0 +1,30 @@
+- name: bedroom_2_covers_open
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: cover
+    state: open
+  sentences:
+  - Mach Rollo Kinderzimmer 2 auf
+  - Rollo Kinderzimmer 2 auf
+  - Öffne Rollo Kinderzimmer 2
+- name: bedroom_2_covers_close
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: cover
+    state: closed
+  sentences:
+  - Mach Rollo Kinderzimmer 2 zu
+  - Rollo Kinderzimmer 2 zu
+  - Schließ Rollo Kinderzimmer 2
+- name: bedroom_2_covers_set_position
+  conditions:
+  - area: bedroom_2
+    domain: cover
+    attributes:
+      position: 16
+  sentences:
+  - Rollo Kinderzimmer 2 auf 16 Prozent
+  - Setze Rollo Kinderzimmer 2 auf 16
+  - Kinderzimmer 2 Position 16

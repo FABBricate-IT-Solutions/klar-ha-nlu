@@ -1,0 +1,60 @@
+-
+  name: master_bedroom_fans_get_state
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: fan
+  sentences:
+    - "What's the status of the master bedroom fans?"
+    - 'Tell me the current state of the fans in the master bedroom'
+    - 'Please check the master bedroom fans for me'
+    - "If you don't mind, could you tell me about the fans in the master bedroom?"
+    - 'Master bedroom fans status'
+    - 'Get me the fan states in the master bedroom please'
+    - 'Are the fans in the master bedroom on or off?'
+-
+  name: master_bedroom_fans_list_on_fans
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: fan
+  sentences:
+    - "What's the status of the master bedroom fans?"
+    - 'Are the fans on in the master bedroom?'
+    - 'Please check the master bedroom fan status for me'
+    - 'Fan state master bedroom'
+    - "If you don't mind, could you tell me if the fans are running in the master bedroom?"
+    - 'Master bedroom fans current state'
+    - 'Can you let me know the fan status in the master bedroom please?'
+-
+  name: master_bedroom_fans_list_off_fans
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: fan
+  sentences:
+    - "What's the status of the master bedroom fans?"
+    - 'Are the fans in the master bedroom on or off?'
+    - "Please check the fan state for me in the master bedroom if you don't mind"
+    - 'Master bedroom fans status'
+    - 'Could you tell me if the master bedroom fans are running?'
+    - 'Get current state of master bedroom fans'
+    - "If it's not too much trouble, what's going on with the fans in the master bedroom?"
+-
+  name: master_bedroom_fans_get_fan_speed
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: fan
+  sentences:
+    - "What's the status of the master bedroom fans?"
+    - 'Tell me the current state of the fans in the master bedroom'
+    - 'Please check the master bedroom fans for me'
+    - "If you don't mind, could you tell me if the master bedroom fans are on or off?"
+    - 'Master bedroom fans status'
+    - "Hey, what's going on with the fans in the master bedroom?"
+    - 'Can you check the master bedroom fan state please?'

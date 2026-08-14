@@ -1,0 +1,55 @@
+- name: status_licht_wohnzimmer
+  conditions:
+    - {type: query, area: wohnzimmer, domain: light}
+  sentences:
+    - 'Wie ist der Status vom Licht im Wohnzimmer'
+    - 'Ist das Licht im Wohnzimmer an'
+    - 'Licht Wohnzimmer Status'
+
+- name: status_licht_esszimmer
+  conditions:
+    - {type: query, area: esszimmer, domain: light}
+  sentences:
+    - 'Wie ist der Status vom Licht im Esszimmer'
+    - 'Ist das Licht im Esszimmer an'
+    - 'Licht Esszimmer Status'
+
+- name: status_licht_kuche
+  conditions:
+    - {type: query, area: kuche, domain: light}
+  sentences:
+    - 'Wie ist der Status vom Licht in der Küche'
+    - 'Ist das Licht in der Küche an'
+    - 'Licht Küche Status'
+
+- name: status_licht_arbeitszimmer
+  conditions:
+    - {type: query, area: arbeitszimmer, domain: light}
+  sentences:
+    - 'Wie ist der Status vom Licht im Arbeitszimmer'
+    - 'Ist das Licht im Arbeitszimmer an'
+    - 'Licht Arbeitszimmer Status'
+
+- name: status_licht_badezimmer
+  conditions:
+    - {type: query, area: badezimmer, domain: light}
+  sentences:
+    - 'Wie ist der Status vom Licht im Bad'
+    - 'Ist das Licht im Bad an'
+    - 'Licht Bad Status'
+
+- name: temperatur_wohnung
+  conditions:
+    - {type: query, area: wohnung, domain: climate}
+  sentences:
+    - 'Wie warm ist es in der Wohnung'
+    - 'Temperatur Wohnung'
+    - 'Wie ist die Temperatur zuhause'
+
+- name: temperatur_wohnzimmer
+  conditions:
+    - {type: query, area: wohnzimmer, domain: climate}
+  sentences:
+    - 'Wie warm ist es im Wohnzimmer'
+    - 'Temperatur Wohnzimmer'
+    - 'Wie kalt ist es im Wohnzimmer'

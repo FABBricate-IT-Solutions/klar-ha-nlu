@@ -1,0 +1,14 @@
+- name: thermostat_setback_at_night
+  sentences:
+  - Ist  an
+  - 'Status '
+  - 'Wie ist der Zustand von '
+  - 'Status '
+  expected:
+    trigger:
+      platform: time
+      at: '22:00:00'
+    actions:
+    - action: climate.set_temperature
+      entity_id: climate.main_thermostat
+      temperature: 18

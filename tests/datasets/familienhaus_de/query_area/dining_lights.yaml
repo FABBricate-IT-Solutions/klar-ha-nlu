@@ -1,0 +1,40 @@
+- name: dining_lights_get_state
+  conditions:
+  - type: query
+    area: dining
+    domain: light
+  sentences:
+  - Ist Esszimmer an
+  - Status Esszimmer
+  - Wie ist der Zustand von Esszimmer
+  - Ist das light im Esszimmer an
+- name: dining_lights_list_on_lights
+  conditions:
+  - type: query
+    area: dining
+    domain: light
+  sentences:
+  - Ist Esszimmer an
+  - Status Esszimmer
+  - Wie ist der Zustand von Esszimmer
+  - Ist das light im Esszimmer an
+- name: dining_lights_list_off_lights
+  conditions:
+  - type: query
+    area: dining
+    domain: light
+  sentences:
+  - Ist Esszimmer an
+  - Status Esszimmer
+  - Wie ist der Zustand von Esszimmer
+  - Ist das light im Esszimmer an
+- name: dining_lights_get_brightness
+  conditions:
+  - type: query
+    area: dining
+    domain: light
+  sentences:
+  - Ist Esszimmer an
+  - Status Esszimmer
+  - Wie ist der Zustand von Esszimmer
+  - Ist das light im Esszimmer an

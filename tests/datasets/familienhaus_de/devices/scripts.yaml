@@ -1,0 +1,72 @@
+- name: good_night
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - Szene Gute Nacht
+  - Starte Gute Nacht
+  - Gute Nacht Szene an
+  - Aktiviere Gute Nacht
+- name: leaving_home
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - Szene Haus verlassen
+  - Starte Haus verlassen
+  - Haus verlassen Szene an
+  - Aktiviere Haus verlassen

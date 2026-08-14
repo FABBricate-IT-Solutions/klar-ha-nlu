@@ -1,0 +1,28 @@
+-
+  name: fan_bedroom2_fan_get_status
+  conditions:
+    -
+      type: query
+      entity_id: fan.bedroom2_fan
+  sentences:
+    - "What's the status of the bedroom 2 fan?"
+    - 'Get bedroom 2 fan state'
+    - "Please tell me the current state of the fan in bedroom 2 if you don't mind"
+    - 'Bedroom 2 fan status'
+    - 'Could you check the bedroom 2 fan for me?'
+    - 'Fan bedroom 2 fan state please'
+    - "What's going on with the fan in bedroom 2?"
+-
+  name: fan_bedroom2_fan_get_fan_speed
+  conditions:
+    -
+      type: query
+      entity_id: fan.bedroom2_fan
+  sentences:
+    - "What's the current speed of the Bedroom 2 Fan?"
+    - 'Get the percentage of fan bedroom 2 fan'
+    - "Please tell me the fan speed in bedroom 2 if you don't mind"
+    - 'Bedroom 2 Fan percentage now'
+    - 'Could you check how fast the fan is running in bedroom 2 for me?'
+    - 'fan bedroom 2 fan speed percentage'
+    - "What's the Bedroom 2 Fan at right now?"

@@ -1,0 +1,16 @@
+-
+  name: climate_upper_thermostat_set_temperature
+  conditions:
+    -
+      type: action
+      entity_id: climate.upper_thermostat
+      attributes:
+        temperature: 19
+  sentences:
+    - 'Set the Upper Floor Thermostat to 19 degrees'
+    - 'Turn the climate upper thermostat down to 19'
+    - 'Please set the temperature to 19 for me'
+    - "If you don't mind, change the Upper Floor Thermostat to 19"
+    - 'Flick the climate upper thermostat to 19'
+    - 'Could you adjust the temperature in the master bedroom to 19 please'
+    - 'Flip the Upper Floor Thermostat down to 19 degrees'

@@ -1,0 +1,38 @@
+-
+  name: kitchen_lights_set_brightness
+  setup:
+    -
+      entity_id: light.kitchen_ceiling
+      brightness: 73
+    -
+      entity_id: light.kitchen_island
+      brightness: 73
+  conditions:
+    -
+      entity_id: light.kitchen_ceiling
+      brightness: 46
+    -
+      entity_id: light.kitchen_island
+      brightness: 46
+  sentences:
+    -
+      - 'What is the brightness of the kitchen lights?'
+      - 'Set it to 46.'
+    -
+      - 'Can you tell me how bright the kitchen is right now?'
+      - 'Please set it to 46 for me.'
+    -
+      - "What's the current brightness level in the kitchen?"
+      - "If you don't mind, set it to 46."
+    -
+      - 'How bright are the kitchen lights?'
+      - 'Flick it to 46.'
+    -
+      - 'Tell me the kitchen light brightness.'
+      - 'Flip it to 46.'
+    -
+      - "What's the brightness in the kitchen?"
+      - 'Make it 46 please.'
+    -
+      - 'How bright is the kitchen right now?'
+      - "Set it to 46 if you don't mind."

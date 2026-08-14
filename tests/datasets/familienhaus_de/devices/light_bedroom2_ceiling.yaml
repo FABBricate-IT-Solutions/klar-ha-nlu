@@ -1,0 +1,43 @@
+- name: light_bedroom2_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 2 an
+  - Lichter Kinderzimmer 2 an
+  - Schalt die Lichter in Kinderzimmer 2 ein
+  - Kinderzimmer 2 Lichter an
+  - Kannst du die Lichter in Kinderzimmer 2 anmachen
+- name: light_bedroom2_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 2 aus
+  - Lichter Kinderzimmer 2 aus
+  - Schalt die Lichter in Kinderzimmer 2 aus
+  - Kinderzimmer 2 Lichter aus
+- name: light_bedroom2_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 94
+  sentences:
+  - Setze Kinderzimmer 2 auf 94 Prozent
+  - Kinderzimmer 2 Helligkeit 94
+  - Dimme Kinderzimmer 2 auf 94
+  - Lichter Kinderzimmer 2 94 Prozent
+- name: light_bedroom2_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: pink
+  sentences:
+  - Mach Kinderzimmer 2 pink
+  - Setze Kinderzimmer 2 auf pink
+  - Kinderzimmer 2 pink
+  - Lichter Kinderzimmer 2 pink

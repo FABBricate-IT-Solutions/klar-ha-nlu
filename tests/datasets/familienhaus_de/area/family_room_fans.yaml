@@ -1,0 +1,28 @@
+- name: family_room_fans_turn_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: fan
+    state: 'on'
+  sentences:
+  - Lüfter Familienzimmer an
+  - Mach Lüfter Familienzimmer an
+- name: family_room_fans_turn_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: fan
+    state: 'off'
+  sentences:
+  - Lüfter Familienzimmer aus
+  - Mach Lüfter Familienzimmer aus
+- name: family_room_fans_set_fan_speed
+  conditions:
+  - area: family_room
+    domain: fan
+    attributes:
+      percentage: 32
+  sentences:
+  - Lüfter Familienzimmer auf 32 Prozent
+  - Setze Lüfter Familienzimmer auf 32
+  - Lüfter Familienzimmer 32 Prozent

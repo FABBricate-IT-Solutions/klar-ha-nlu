@@ -1,0 +1,35 @@
+-
+  name: family_room_lights_set_brightness
+  setup:
+    -
+      entity_id: light.family_ceiling
+      brightness: 84
+  conditions:
+    -
+      entity_id: light.family_ceiling
+      brightness: 94
+  sentences:
+    -
+      - "What's the brightness of the family room lights?"
+      - 'Set it to 94.'
+    -
+      - 'Can you tell me the brightness level in the family room?'
+      - 'Please set it to 94 for me.'
+    -
+      - 'How bright are the lights in the family room right now?'
+      - "If you don't mind, set it to 94."
+    -
+      - 'Family room lights brightness?'
+      - 'Flick it up to 94.'
+    -
+      - "What's the current brightness setting for the family room?"
+      - 'Flip it to 94 please.'
+    -
+      - 'Tell me the brightness of the family room lights.'
+      - 'Make it 94.'
+    -
+      - 'How bright is the family room?'
+      - "Set it to 94 if you don't mind."
+    -
+      - 'Brightness level in the family room?'
+      - 'Quickly set it to 94.'

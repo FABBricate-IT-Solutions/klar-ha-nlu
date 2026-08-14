@@ -1,0 +1,38 @@
+-
+  name: hallway_and_powder_room_lights_set_brightness
+  setup:
+    -
+      entity_id: light.hallway_light
+      brightness: 31
+    -
+      entity_id: light.powder_room_light
+      brightness: 31
+  conditions:
+    -
+      entity_id: light.hallway_light
+      brightness: 100
+    -
+      entity_id: light.powder_room_light
+      brightness: 100
+  sentences:
+    -
+      - 'What is the brightness of the lights in the hallway and powder room?'
+      - 'Set it to 100.'
+    -
+      - "Please tell me the brightness level for the hallway and powder room lights if you don't mind."
+      - 'Flick it up to 100.'
+    -
+      - 'Can you check the brightness in the hallway and powder room?'
+      - 'Turn it to 100.'
+    -
+      - "What's the current brightness of the hallway and powder room lights?"
+      - 'Flip it to 100.'
+    -
+      - 'Tell me the brightness for the hallway and powder room please.'
+      - 'Make it 100.'
+    -
+      - 'Check the brightness in the hallway and powder room for me.'
+      - 'Set it to 100.'
+    -
+      - "What's the brightness level in the hallway and powder room?"
+      - 'Crank it up to 100.'

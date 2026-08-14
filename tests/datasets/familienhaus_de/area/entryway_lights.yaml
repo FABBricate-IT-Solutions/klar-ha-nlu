@@ -1,0 +1,45 @@
+- name: entryway_lights_turn_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter am Eingang an
+  - Lichter Eingang an
+  - Schalt die Lichter am Eingang ein
+  - Eingang Lichter an
+  - Kannst du die Lichter am Eingang anmachen
+- name: entryway_lights_turn_off
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter am Eingang aus
+  - Lichter Eingang aus
+  - Schalt die Lichter am Eingang aus
+  - Eingang Lichter aus
+- name: entryway_lights_change_brightness
+  conditions:
+  - area: entryway
+    domain: light
+    attributes:
+      brightness: 72
+  sentences:
+  - Setze Eingang auf 72 Prozent
+  - Eingang Helligkeit 72
+  - Dimme Eingang auf 72
+  - Lichter Eingang 72 Prozent
+- name: entryway_lights_change_color
+  conditions:
+  - area: entryway
+    domain: light
+    attributes:
+      color: black
+  sentences:
+  - Mach Eingang black
+  - Setze Eingang auf black
+  - Eingang black
+  - Lichter Eingang black

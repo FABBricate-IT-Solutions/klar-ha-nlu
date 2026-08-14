@@ -1,0 +1,24 @@
+- name: master_bedroom_covers_set_position
+  setup:
+  - entity_id: cover.master_blinds
+    position: 73
+  conditions:
+  - entity_id: cover.master_blinds
+    position: 88
+  sentences:
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Status Rollo Schlafzimmer
+    - auf 88
+  - - Mach Rollo Schlafzimmer an
+    - auf 88

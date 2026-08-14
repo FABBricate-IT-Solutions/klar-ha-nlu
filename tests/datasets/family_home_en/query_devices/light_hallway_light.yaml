@@ -1,0 +1,27 @@
+-
+  name: light_hallway_light_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.hallway_light
+  sentences:
+    - "What's the status of the hallway light?"
+    - 'Hallway light state please'
+    - "If you don't mind, can you tell me if the hallway light is on or off?"
+    - 'Please check the hallway light for me'
+    - 'Could you let me know the current state of the hallway light?'
+    - 'Hallway light - on or off?'
+-
+  name: light_hallway_light_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.hallway_light
+  sentences:
+    - "What's the brightness of the hallway light?"
+    - 'Hallway light brightness please'
+    - "If you don't mind, what's the current brightness of the hallway light for me?"
+    - 'Tell me how bright the hallway light is'
+    - 'Get brightness level for hallway light'
+    - 'Please check the hallway light brightness'
+    - 'How bright is the hallway light right now?'

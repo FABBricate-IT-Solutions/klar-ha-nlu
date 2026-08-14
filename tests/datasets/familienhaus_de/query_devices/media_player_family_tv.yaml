@@ -1,0 +1,9 @@
+- name: media_player_family_tv_get_status
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das media_player im Familienzimmer an

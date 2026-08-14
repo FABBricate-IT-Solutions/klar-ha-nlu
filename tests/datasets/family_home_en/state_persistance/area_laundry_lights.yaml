@@ -1,0 +1,35 @@
+-
+  name: laundry_lights_set_brightness
+  setup:
+    -
+      entity_id: light.laundry_light
+      brightness: 18
+  conditions:
+    -
+      entity_id: light.laundry_light
+      brightness: 62
+  sentences:
+    -
+      - "What's the brightness of the lights in the laundry?"
+      - 'Set it to 62.'
+    -
+      - 'Can you tell me the brightness level for the laundry lights?'
+      - 'Please set it to 62 for me.'
+    -
+      - 'Laundry light brightness?'
+      - 'Flick it to 62.'
+    -
+      - "If you don't mind, what's the brightness in the laundry?"
+      - "Flip it to 62 if you don't mind."
+    -
+      - 'Tell me the brightness of the laundry lights please.'
+      - 'Quickly set it to 62.'
+    -
+      - 'Brightness of laundry lights?'
+      - 'Make it 62.'
+    -
+      - 'Could you check the brightness in the laundry area?'
+      - 'Set it to 62 please.'
+    -
+      - "What's the laundry brightness level?"
+      - 'Turn it to 62.'

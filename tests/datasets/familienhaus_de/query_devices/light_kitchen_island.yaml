@@ -1,0 +1,18 @@
+- name: light_kitchen_island_get_status
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das light in der Küche an
+- name: light_kitchen_island_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das light in der Küche an

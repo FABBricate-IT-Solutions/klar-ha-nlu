@@ -1,0 +1,63 @@
+-
+  name: hallway_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: hallway
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the hallway lights'
+    - 'Flick on the hall lights'
+    - 'Please flip on the hallway lights for me'
+    - "If you don't mind, turn on the hall lights"
+    - 'Activate the hallway lighting'
+    - 'Could you switch on the lights in the hallway please'
+    - 'Flip on the hall lights now'
+    - "Turn the hallway lights on if you don't mind"
+-
+  name: hallway_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: hallway
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the hallway lights'
+    - 'Please switch off the lights in the hallway for me'
+    - "Flick off the hall lights if you don't mind"
+    - 'Deactivate hallway lighting'
+    - 'Could you kill the lights in the corridor please'
+    - 'Flip off the hall lights'
+    - 'Turn the hallway lights off now'
+-
+  name: hallway_lights_change_brightness
+  conditions:
+    -
+      area: hallway
+      domain: light
+      attributes:
+        brightness: 61
+  sentences:
+    - 'Set hallway lights to 61%'
+    - 'Please dim the hallway to 61 for me'
+    - "Flick hallway brightness to 61 if you don't mind"
+    - 'Hallway lights 61%'
+    - 'Could you adjust hallway lights to 61 please'
+    - 'Flip hallway brightness to 61'
+    - 'Make hallway 61% if possible'
+-
+  name: hallway_lights_change_color
+  conditions:
+    -
+      area: hallway
+      domain: light
+      attributes:
+        color: orange
+  sentences:
+    - 'Change the hallway lights to orange'
+    - 'Set hallway lighting to orange please'
+    - "If you don't mind, could you flick the hallway lights to orange for me"
+    - 'Please change hallway lights to orange'
+    - 'Make the hallway glow orange'

@@ -1,0 +1,32 @@
+-
+  name: garage_locks_lock
+  conditions:
+    -
+      type: action
+      area: garage
+      domain: lock
+      state: locked
+  sentences:
+    - 'Lock the garage locks'
+    - 'Please lock the garage locks for me'
+    - "If you don't mind, lock the garage locks"
+    - 'Secure the garage locks'
+    - 'Can you lock the garage locks'
+    - 'Lock up the garage locks'
+    - 'Activate the garage locks'
+-
+  name: garage_locks_unlock
+  conditions:
+    -
+      type: action
+      area: garage
+      domain: lock
+      state: unlocked
+  sentences:
+    - 'unlock the garage locks'
+    - 'please unlock the garage locks for me'
+    - "flick the garage locks open if you don't mind"
+    - 'open up the garage locks'
+    - 'could you unlock the garage locks please'
+    - 'disengage the garage locks'
+    - "release the garage locks if you don't mind"

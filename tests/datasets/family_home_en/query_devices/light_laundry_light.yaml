@@ -1,0 +1,28 @@
+-
+  name: light_laundry_light_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.laundry_light
+  sentences:
+    - "What's the status of the laundry light?"
+    - 'Laundry light state'
+    - 'Please tell me if the laundry light is on or off'
+    - 'Could you check the laundry light for me?'
+    - "If you don't mind, what's the laundry light doing?"
+    - 'Get me the current state of the laundry light in the laundry area'
+    - 'Is the laundry light on?'
+-
+  name: light_laundry_light_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.laundry_light
+  sentences:
+    - "What's the brightness of the laundry light"
+    - 'How bright is the laundry light right now'
+    - "Please tell me the current brightness level of the laundry light if you don't mind"
+    - 'Laundry light brightness status'
+    - 'Can you check how bright the laundry light is for me'
+    - 'Get me the brightness of the laundry light please'
+    - "What's the laundry light's current brightness setting"

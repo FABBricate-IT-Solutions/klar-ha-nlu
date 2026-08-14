@@ -1,0 +1,29 @@
+-
+  name: cover_living_blinds_get_status
+  conditions:
+    -
+      type: query
+      entity_id: cover.living_blinds
+  sentences:
+    - "What's the status of the living room blinds?"
+    - 'Living blinds state'
+    - "Please tell me the current position of the living room blinds if you don't mind"
+    - 'Check living room cover living blinds'
+    - 'Could you get the living blinds status for me please'
+    - 'Living room blinds position'
+    - "What's up with the living blinds"
+    - 'Get living room blinds state'
+-
+  name: cover_living_blinds_get_position
+  conditions:
+    -
+      type: query
+      entity_id: cover.living_blinds
+  sentences:
+    - "What's the position of the living room blinds?"
+    - 'Living blinds status'
+    - 'Please check the living room blinds position for me'
+    - "If you don't mind, could you tell me where the living blinds are at?"
+    - 'Living room blinds position please'
+    - 'Get living blinds status'
+    - 'Can you check the living room blinds for me?'

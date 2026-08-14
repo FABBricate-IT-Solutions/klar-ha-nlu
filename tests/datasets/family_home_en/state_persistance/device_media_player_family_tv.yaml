@@ -1,0 +1,87 @@
+-
+  name: media_player_family_tv_turn_on
+  setup:
+    -
+      entity_id: media_player.family_tv
+      state: 'off'
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      state: 'on'
+  sentences:
+    -
+      - "What's the status of the Family Room TV?"
+      - 'Turn it on.'
+    -
+      - 'Family Room TV status?'
+      - 'Flip it on.'
+    -
+      - "What's happening with the Family Room TV?"
+      - "Please turn it on if you don't mind."
+    -
+      - 'Family Room TV state?'
+      - 'Power it on for me.'
+    -
+      - 'Check the Family Room TV status please.'
+      - 'Turn it on.'
+    -
+      - "What's the Family Room TV up to?"
+      - "Flip it on if you don't mind."
+-
+  name: media_player_family_tv_turn_off
+  setup:
+    -
+      entity_id: media_player.family_tv
+      state: 'on'
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      state: 'off'
+  sentences:
+    -
+      - "What's the status of the Family Room TV?"
+      - 'Turn it off.'
+    -
+      - 'Can you check the Family Room TV for me?'
+      - "Please switch it off if you don't mind."
+    -
+      - 'Family Room TV status?'
+      - 'Flick it off.'
+    -
+      - "What's happening with the media player in family_room?"
+      - 'Flip it off for me.'
+    -
+      - 'Tell me the Family Room TV state please.'
+      - 'Shut it down.'
+    -
+      - 'Family Room TV check?'
+      - 'Power it down please.'
+-
+  name: media_player_family_tv_persistance_volume_level
+  setup:
+    -
+      entity_id: media_player.family_tv
+      volume_level: 29
+  conditions:
+    -
+      entity_id: media_player.family_tv
+      attributes:
+        volume_level: 50
+  sentences:
+    -
+      - "What's the volume_level of the Family Room TV?"
+      - 'Set it to 50.'
+    -
+      - 'Can you tell me the volume_level for the family_room media player?'
+      - "Please change it to 50 if you don't mind."
+    -
+      - "What's the current volume_level in the family_room?"
+      - 'Make it 50 for me.'
+    -
+      - 'Tell me the volume_level of the Family Room TV please.'
+      - 'Change it to 50.'
+    -
+      - "What's the volume_level on the family_room TV?"
+      - 'Turn it up or down to 50.'

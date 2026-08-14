@@ -1,0 +1,61 @@
+-
+  name: dining_lights_get_state
+  conditions:
+    -
+      type: query
+      area: dining
+      domain: light
+  sentences:
+    - "What's the status of the dining room lights?"
+    - 'Lights in dining?'
+    - 'Please check the dining lights for me'
+    - "If you don't mind, could you tell me about the dining lights?"
+    - 'Dining lights state'
+    - 'Hey, are the dining lights on or off?'
+    - 'Quick check on dining room lighting please'
+    - 'Tell me the current dining lights status'
+-
+  name: dining_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: dining
+      domain: light
+  sentences:
+    - "What's the status of the dining room lights?"
+    - 'Lights dining room state'
+    - "Please tell me the current state of the dining lights if you don't mind"
+    - 'Are the dining lights on or off right now?'
+    - 'Get dining lights status'
+    - 'Could you check the dining room lighting for me please'
+    - 'Dining lights current state'
+    - "Show me what's happening with the lights in the dining area"
+-
+  name: dining_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: dining
+      domain: light
+  sentences:
+    - "What's the status of the dining room lights?"
+    - 'Lights in dining?'
+    - 'Please tell me if the dining lights are on or off'
+    - 'Could you check the dining room lighting for me?'
+    - 'Dining lights state'
+    - "If you don't mind, what's the current state of the dining lights?"
+    - 'Are the dining lights on?'
+-
+  name: dining_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: dining
+      domain: light
+  sentences:
+    - "What's the status of the dining room lights?"
+    - "If you don't mind, could you check the dining lights for me?"
+    - 'Dining lights state'
+    - 'Please tell me if the dining room lights are on or off'
+    - 'Get current dining lights status'
+    - 'Are the dining lights on?'

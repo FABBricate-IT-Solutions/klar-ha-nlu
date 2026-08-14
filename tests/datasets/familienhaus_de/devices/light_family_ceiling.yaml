@@ -1,0 +1,43 @@
+- name: light_family_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Familienzimmer an
+  - Lichter Familienzimmer an
+  - Schalt die Lichter im Familienzimmer ein
+  - Familienzimmer Lichter an
+  - Kannst du die Lichter im Familienzimmer anmachen
+- name: light_family_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Familienzimmer aus
+  - Lichter Familienzimmer aus
+  - Schalt die Lichter im Familienzimmer aus
+  - Familienzimmer Lichter aus
+- name: light_family_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 98
+  sentences:
+  - Setze Familienzimmer auf 98 Prozent
+  - Familienzimmer Helligkeit 98
+  - Dimme Familienzimmer auf 98
+  - Lichter Familienzimmer 98 Prozent
+- name: light_family_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: purple
+  sentences:
+  - Mach Familienzimmer lila
+  - Setze Familienzimmer auf lila
+  - Familienzimmer lila
+  - Lichter Familienzimmer lila

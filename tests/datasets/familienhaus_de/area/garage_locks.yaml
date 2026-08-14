@@ -1,0 +1,20 @@
+- name: garage_locks_lock
+  conditions:
+  - type: action
+    area: garage
+    domain: lock
+    state: locked
+  sentences:
+  - Schließ Schloss Garage ab
+  - Schloss Garage abschließen
+  - Tür Garage zu
+- name: garage_locks_unlock
+  conditions:
+  - type: action
+    area: garage
+    domain: lock
+    state: unlocked
+  sentences:
+  - Schließ Schloss Garage auf
+  - Schloss Garage aufschließen
+  - Tür Garage auf

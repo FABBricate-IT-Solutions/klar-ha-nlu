@@ -1,0 +1,65 @@
+- name: cover_living_blinds_open
+  setup:
+  - entity_id: cover.living_blinds
+    state: closed
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - - Status Rollo Wohnzimmer
+    - mach sie auf
+  - - Status Rollo Wohnzimmer
+    - mach sie auf
+  - - Mach Rollo Wohnzimmer an
+    - ja
+  - - Status Rollo Wohnzimmer
+    - mach sie auf
+  - - Status Rollo Wohnzimmer
+    - mach sie auf
+  - - Status Rollo Wohnzimmer
+    - mach sie auf
+  - - Status Rollo Wohnzimmer
+    - mach sie auf
+- name: cover_living_blinds_close
+  setup:
+  - entity_id: cover.living_blinds
+    state: open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+  - - Status Rollo Wohnzimmer
+    - mach sie zu
+- name: cover_living_blinds_persistance_position
+  setup:
+  - entity_id: cover.living_blinds
+    position: 20
+  conditions:
+  - entity_id: cover.living_blinds
+    attributes:
+      position: 85
+  sentences:
+  - - Status Rollo Wohnzimmer
+    - auf 85
+  - - Status Rollo Wohnzimmer
+    - auf 85
+  - - Mach Rollo Wohnzimmer an
+    - auf 85
+  - - Status Rollo Wohnzimmer
+    - auf 85
+  - - Status Rollo Wohnzimmer
+    - auf 85

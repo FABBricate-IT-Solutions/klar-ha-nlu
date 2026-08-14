@@ -1,0 +1,38 @@
+-
+  name: fan_master_fan_and_light_kitchen_island_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: fan.master_fan
+      state: 'on'
+    -
+      type: action
+      entity_id: light.kitchen_island
+      state: 'on'
+  sentences:
+    - 'Turn on the master fan and island lights'
+    - 'Flick on master bedroom fan and kitchen island lights'
+    - 'Please flip on the fan master fan and light kitchen island for me'
+    - "If you don't mind, turn on the master fan and kitchen island lights"
+    - 'Activate master bedroom fan and kitchen island lights'
+    - 'Switch on the fan master fan and light kitchen island'
+    - 'Quickly turn on master fan and island lights'
+-
+  name: fan_master_fan_and_light_kitchen_island_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: fan.master_fan
+      state: 'off'
+    -
+      type: action
+      entity_id: light.kitchen_island
+      state: 'off'
+  sentences:
+    - 'Turn off the master fan and island lights'
+    - 'Please turn off the master fan and island lights for me'
+    - "If you don't mind, flip off the master fan and island lights"
+    - 'Turn off the master bedroom fan and kitchen island lights'
+    - 'Shut off the master fan and island lights'
+    - 'Could you turn off the master fan and kitchen island lights please'
+    - 'Flip off the master fan and island lights'

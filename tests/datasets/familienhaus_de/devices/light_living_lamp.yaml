@@ -1,0 +1,43 @@
+- name: light_living_lamp_turn_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Wohnzimmer an
+  - Lichter Wohnzimmer an
+  - Schalt die Lichter im Wohnzimmer ein
+  - Wohnzimmer Lichter an
+  - Kannst du die Lichter im Wohnzimmer anmachen
+- name: light_living_lamp_turn_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Wohnzimmer aus
+  - Lichter Wohnzimmer aus
+  - Schalt die Lichter im Wohnzimmer aus
+  - Wohnzimmer Lichter aus
+- name: light_living_lamp_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 72
+  sentences:
+  - Setze Wohnzimmer auf 72 Prozent
+  - Wohnzimmer Helligkeit 72
+  - Dimme Wohnzimmer auf 72
+  - Lichter Wohnzimmer 72 Prozent
+- name: light_living_lamp_change_color
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: red
+  sentences:
+  - Mach Wohnzimmer rot
+  - Setze Wohnzimmer auf rot
+  - Wohnzimmer rot
+  - Lichter Wohnzimmer rot

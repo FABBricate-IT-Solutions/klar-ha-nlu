@@ -1,0 +1,49 @@
+-
+  name: family_room_fans_turn_on
+  conditions:
+    -
+      type: action
+      area: family_room
+      domain: fan
+      state: 'on'
+  sentences:
+    - 'Turn on the family room fans'
+    - 'Flick on the fans in the family room'
+    - 'Please flip on the family room fans for me'
+    - "If you don't mind, could you turn on the fans in the family room"
+    - 'Activate the family room fans'
+    - 'Hey, switch on the fans in the family room'
+    - 'Flip on the family room fans please'
+-
+  name: family_room_fans_turn_off
+  conditions:
+    -
+      type: action
+      area: family_room
+      domain: fan
+      state: 'off'
+  sentences:
+    - 'Turn off the family room fans'
+    - 'Please shut down the fans in the family room for me'
+    - "Flick off the family room fans if you don't mind"
+    - 'Deactivate the fans in the family room'
+    - 'Flip the family room fans off'
+    - 'Stop the family room fans please'
+    - 'Switch off the fans in the family room'
+    - 'Kill the family room fans'
+-
+  name: family_room_fans_set_fan_speed
+  conditions:
+    -
+      area: family_room
+      domain: fan
+      attributes:
+        percentage: 32
+  sentences:
+    - 'Set the family room fans to 32'
+    - 'Please set the family room fans to 32 for me'
+    - 'Flick the family room fans to speed 32'
+    - "If you don't mind, set the family room fans to 32"
+    - 'Flip the family room fans to 32'
+    - 'Quickly set family room fans speed to 32'
+    - 'Set family room fans to thirty two please'

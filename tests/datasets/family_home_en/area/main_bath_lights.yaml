@@ -1,0 +1,64 @@
+-
+  name: main_bath_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: main_bath
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the main bath lights'
+    - 'Please flick on the bathroom lights for me'
+    - "If you don't mind, flip on the main bathroom lights"
+    - 'Activate the lights in the main bath'
+    - 'Hey, switch on the main bath lights'
+    - 'Can you turn on the lights in the main bathroom please'
+    - 'Quickly enable the main bath lighting'
+-
+  name: main_bath_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: main_bath
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the main bath lights'
+    - 'Please switch off the bathroom lights for me'
+    - "If you don't mind, flick off the main bathroom lights"
+    - 'Flip the main bath lights off'
+    - 'Kill the lights in the main bathroom'
+    - 'Can you turn off the main bath lights please'
+    - 'Shut off the bathroom lights if you would'
+    - 'Deactivate the main bath lighting'
+-
+  name: main_bath_lights_change_brightness
+  conditions:
+    -
+      area: main_bath
+      domain: light
+      attributes:
+        brightness: 73
+  sentences:
+    - 'set the main bath lights to 73 percent'
+    - 'flick the main bathroom brightness to 73'
+    - 'please turn the main bath lights down to 73 for me'
+    - "if you don't mind, flip the main bath lights to 73"
+    - 'quickly adjust main bathroom lights to 73'
+    - 'change main bath brightness to 73 percent please'
+    - 'set main bath lights brightness to 73'
+-
+  name: main_bath_lights_change_color
+  conditions:
+    -
+      area: main_bath
+      domain: light
+      attributes:
+        color: pink
+  sentences:
+    - 'Change the main bath lights to pink'
+    - 'Flick on pink in the main bath'
+    - "If you don't mind, turn the main bathroom lights pink"
+    - 'Flip the main bath lights to pink please'
+    - 'Make the main bathroom lights pink'
+    - 'Quickly change main bath lights to pink'

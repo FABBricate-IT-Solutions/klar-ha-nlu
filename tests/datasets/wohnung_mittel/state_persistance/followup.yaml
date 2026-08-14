@@ -1,0 +1,19 @@
+- name: wohnzimmer_dann_aus
+  conditions:
+    - {type: action, entity_id: light.wohnzimmer, state: 'off'}
+  sentences:
+    - - Licht im Wohnzimmer an
+      - mach sie aus
+    - - Mach das Licht im Wohnzimmer an
+      - aus
+- name: heizung_dann_grad
+  conditions:
+    - type: action
+      entity_id: climate.better_thermostat_wohnzimmer
+      attributes:
+        temperature: 21
+  sentences:
+    - - Heizung Wohnzimmer auf 23 Grad
+      - auf 21
+    - - Stell die Heizung im Wohnzimmer auf 23
+      - mach 21 Grad

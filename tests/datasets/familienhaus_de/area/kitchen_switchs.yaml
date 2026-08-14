@@ -1,0 +1,20 @@
+- name: kitchen_switchs_turn_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: switch
+    state: 'on'
+  sentences:
+  - Schalt die Schalter in der Küche an
+  - Schalter Küche an
+  - Mach die Schalter in der Küche an
+- name: kitchen_switchs_turn_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: switch
+    state: 'off'
+  sentences:
+  - Schalt die Schalter in der Küche aus
+  - Schalter Küche aus
+  - Mach die Schalter in der Küche aus

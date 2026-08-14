@@ -1,0 +1,193 @@
+- name: timer_oven_start
+  conditions:
+  - entity_id: timer.oven
+    minutes: 2
+    seconds: 30
+  sentences:
+  - Starte den Timer Ofen-Timer für 2 Minuten
+  - Timer Ofen-Timer 2 Minuten
+  - Setze Ofen-Timer auf 2 Minuten
+- name: timer_oven_increase
+  setup:
+  - entity_id: timer.oven
+    minutes: 30
+  conditions:
+  - entity_id: timer.oven
+    minutes: 30
+    seconds: 30
+  sentences:
+  - Starte den Timer Ofen-Timer für 30 Minuten
+  - Timer Ofen-Timer 30 Minuten
+  - Setze Ofen-Timer auf 30 Minuten
+- name: timer_oven_decrease
+  setup:
+  - entity_id: timer.oven
+    minutes: 45
+  conditions:
+  - entity_id: timer.oven
+    minutes: 44
+    seconds: 30
+  sentences:
+  - Starte den Timer Ofen-Timer für 44 Minuten
+  - Timer Ofen-Timer 44 Minuten
+  - Setze Ofen-Timer auf 44 Minuten
+- name: timer_oven_pause
+  setup:
+  - entity_id: timer.oven
+    minutes: 20
+  conditions:
+  - entity_id: timer.oven
+    state: paused
+  sentences:
+  - Starte den Timer Ofen-Timer für 2 Minuten
+  - Timer Ofen-Timer 2 Minuten
+  - Setze Ofen-Timer auf 2 Minuten
+- name: timer_oven_unpause
+  setup:
+  - entity_id: timer.oven
+    minutes: 20
+  conditions:
+  - entity_id: timer.oven
+    state: active
+  sentences:
+  - Starte den Timer Ofen-Timer für 2 Minuten
+  - Timer Ofen-Timer 2 Minuten
+  - Setze Ofen-Timer auf 2 Minuten
+- name: timer_oven_cancel
+  setup:
+  - entity_id: timer.oven
+    minutes: 20
+  conditions:
+  - entity_id: timer.oven
+    state: idle
+  sentences:
+  - Starte den Timer Ofen-Timer für 2 Minuten
+  - Timer Ofen-Timer 2 Minuten
+  - Setze Ofen-Timer auf 2 Minuten
+- name: timer_oven_status
+  setup:
+  - entity_id: timer.oven
+    minutes: 20
+  conditions:
+  - type: query
+    entity_id: timer.oven
+  sentences:
+  - Ist Ofen-Timer an
+  - Status Ofen-Timer
+  - Wie ist der Zustand von Ofen-Timer
+  - Status Ofen-Timer
+- name: timer_laundry_start
+  conditions:
+  - entity_id: timer.laundry
+    seconds: 90
+  sentences:
+  - Starte den Timer Wäsche-Timer für 90 Sekunden
+  - Timer Wäsche-Timer 90 Sekunden
+  - Setze Wäsche-Timer auf 90 Sekunden
+- name: timer_laundry_increase
+  setup:
+  - entity_id: timer.laundry
+    minutes: 15
+  conditions:
+  - entity_id: timer.laundry
+    minutes: 16
+  sentences:
+  - Starte den Timer Wäsche-Timer für 16 Minuten
+  - Timer Wäsche-Timer 16 Minuten
+  - Setze Wäsche-Timer auf 16 Minuten
+- name: timer_laundry_decrease
+  setup:
+  - entity_id: timer.laundry
+    minutes: 10
+  conditions:
+  - entity_id: timer.laundry
+    minutes: 5
+  sentences:
+  - Starte den Timer Wäsche-Timer für 5 Minuten
+  - Timer Wäsche-Timer 5 Minuten
+  - Setze Wäsche-Timer auf 5 Minuten
+- name: timer_laundry_pause
+  setup:
+  - entity_id: timer.laundry
+    hours: 1
+  conditions:
+  - entity_id: timer.laundry
+    state: paused
+  sentences:
+  - Starte den Timer Wäsche-Timer für 2 Minuten
+  - Timer Wäsche-Timer 2 Minuten
+  - Setze Wäsche-Timer auf 2 Minuten
+- name: timer_laundry_unpause
+  setup:
+  - entity_id: timer.laundry
+    hours: 1
+  conditions:
+  - entity_id: timer.laundry
+    state: active
+  sentences:
+  - Starte den Timer Wäsche-Timer für 2 Minuten
+  - Timer Wäsche-Timer 2 Minuten
+  - Setze Wäsche-Timer auf 2 Minuten
+- name: timer_laundry_cancel
+  setup:
+  - entity_id: timer.laundry
+    hours: 1
+  conditions:
+  - entity_id: timer.laundry
+    state: idle
+  sentences:
+  - Starte den Timer Wäsche-Timer für 2 Minuten
+  - Timer Wäsche-Timer 2 Minuten
+  - Setze Wäsche-Timer auf 2 Minuten
+- name: timer_laundry_status
+  setup:
+  - entity_id: timer.laundry
+    hours: 1
+  conditions:
+  - type: query
+    entity_id: timer.laundry
+  sentences:
+  - Ist Wäsche-Timer an
+  - Status Wäsche-Timer
+  - Wie ist der Zustand von Wäsche-Timer
+  - Status Wäsche-Timer
+- name: abstract_start
+  conditions:
+  - entity_id: timer.abstract
+    minutes: 45
+  sentences:
+  - Starte den Timer Timer für 45 Minuten
+  - Timer Timer 45 Minuten
+  - Setze Timer auf 45 Minuten
+- name: abstract_start_seconds
+  conditions:
+  - entity_id: timer.abstract
+    seconds: 45
+  sentences:
+  - Starte den Timer Timer für 45 Sekunden
+  - Timer Timer 45 Sekunden
+  - Setze Timer auf 45 Sekunden
+- name: abstract_start_hours_minutes
+  conditions:
+  - entity_id: timer.abstract
+    hours: 1
+    minutes: 20
+  sentences:
+  - Starte den Timer Timer für 20 Minuten
+  - Timer Timer 20 Minuten
+  - Setze Timer auf 20 Minuten
+- name: cancel_all_timers
+  setup:
+  - entity_id: timer.oven
+    minutes: 45
+  - entity_id: timer.laundry
+    minutes: 45
+  conditions:
+  - entity_id: timer.oven
+    state: idle
+  - entity_id: timer.laundry
+    state: idle
+  sentences:
+  - Starte den Timer Ofen-Timer für 2 Minuten
+  - Timer Ofen-Timer 2 Minuten
+  - Setze Ofen-Timer auf 2 Minuten

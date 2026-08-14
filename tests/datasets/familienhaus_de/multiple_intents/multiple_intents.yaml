@@ -1,0 +1,178 @@
+- name: multi_0
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  - type: action
+    entity_id: scene.good_morning
+  sentences:
+  - Mach die Lichter im Gäste-WC aus und Ist Guten Morgen an
+- name: multi_1
+  conditions:
+  - type: query
+    entity_id: switch.dishwasher
+  - type: action
+    entity_id: script.leaving_home
+  sentences:
+  - Ist Küche an und Ist Haus verlassen an
+- name: multi_2
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - Ist Garage an und Mach Rollo Wohnzimmer zu
+- name: multi_3
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - Wie warm ist es im Wohnzimmer und Mach die Lichter im Wohnzimmer aus
+- name: multi_4
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: cover
+    state: closed
+  - type: action
+    area: garage
+    domain: cover
+    state: closed
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - Mach Rollo Kinderzimmer 3 zu und Mach Rollo Garage zu und Mach die Lichter in
+    Kinderzimmer 2 an
+- name: multi_5
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 50
+  sentences:
+  - Mach die Lichter im Esszimmer aus und Lüfter Kinderzimmer 2 auf 50 Prozent
+- name: multi_6
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 3 an und Mach die Lichter am Eingang aus
+- name: multi_7
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - Ist Filmabend an und Schalt die Schalter in der Küche aus
+- name: multi_8
+  conditions:
+  - type: action
+    area: garage
+    domain: lock
+    state: unlocked
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - Schließ Schloss Garage auf und Ist Garage an
+- name: multi_9
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - Pause Wohnzimmer Fernseher und Mach die Lichter im Wohnzimmer aus
+- name: multi_10
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 50
+  - type: query
+    area: bedroom_2
+    domain: cover
+  - type: query
+    area: master_bedroom
+    domain: cover
+  sentences:
+  - Lüfter Kinderzimmer 2 auf 50 Prozent und Ist Kinderzimmer 2 an und Ist Schlafzimmer
+    an
+- name: multi_12
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus und Mach die Lichter in der Waschküche an
+- name: multi_14
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: query
+    area: hallway
+    domain: light
+  sentences:
+  - Mach die Lichter in der Küche aus und Ist Flur an
+- name: multi_15
+  conditions:
+  - type: query
+    entity_id: cover.bedroom2_blinds
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - Ist Kinderzimmer 2 an und Mach die Lichter in der Küche aus
+- name: multi_16
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: query
+    area: hallway
+    domain: light
+  sentences:
+  - Mach die Lichter in der Küche an und Ist Flur an
+- name: multi_18
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 20
+  sentences:
+  - Lüfter Familienzimmer aus und Setze Küche auf 20 Prozent
+- name: multi_19
+  conditions:
+  - type: query
+    entity_id: fan.bedroom2_fan
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - Ist Kinderzimmer 2 Lüfter an und Mach die Lichter in der Waschküche an

@@ -1,0 +1,22 @@
+- name: garage_lights_set_brightness
+  setup:
+  - entity_id: light.garage_light
+    brightness: 15
+  conditions:
+  - entity_id: light.garage_light
+    brightness: 27
+  sentences:
+  - - Status Lichter Garage
+    - auf 27
+  - - Status Lichter Garage
+    - auf 27
+  - - Status Lichter Garage
+    - auf 27
+  - - Status Lichter Garage
+    - auf 27
+  - - Status Lichter Garage
+    - auf 27
+  - - Status Lichter Garage
+    - auf 27
+  - - Status Lichter Garage
+    - auf 27

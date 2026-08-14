@@ -1,0 +1,24 @@
+- name: main_bath_lights_set_brightness
+  setup:
+  - entity_id: light.main_bath_light
+    brightness: 77
+  conditions:
+  - entity_id: light.main_bath_light
+    brightness: 96
+  sentences:
+  - - Status Lichter Badezimmer
+    - auf 96
+  - - Status Lichter Badezimmer
+    - auf 96
+  - - Status Lichter Badezimmer
+    - auf 96
+  - - Status Lichter Badezimmer
+    - auf 96
+  - - Status Lichter Badezimmer
+    - auf 96
+  - - Mach Lichter Badezimmer an
+    - auf 96
+  - - Status Lichter Badezimmer
+    - auf 96
+  - - Status Lichter Badezimmer
+    - auf 96

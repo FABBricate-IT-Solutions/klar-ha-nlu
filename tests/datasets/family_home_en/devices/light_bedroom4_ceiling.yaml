@@ -1,0 +1,63 @@
+-
+  name: light_bedroom4_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom4_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the Bedroom 4 Ceiling light'
+    - 'Flick on bedroom 4 ceiling please'
+    - "If you don't mind, flip on the light in bedroom 4 for me"
+    - 'Activate bedroom 4 ceiling light'
+    - 'Please turn on the ceiling light in Bedroom 4'
+    - 'Switch on bedroom 4 ceiling'
+    - 'Could you turn on the Bedroom 4 Ceiling for me'
+-
+  name: light_bedroom4_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom4_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off bedroom 4 ceiling'
+    - 'Please turn off the Bedroom 4 Ceiling light for me'
+    - "If you don't mind, flick off the bedroom 4 ceiling"
+    - 'Flip off bedroom 4 ceiling light'
+    - 'Could you please switch off the Bedroom 4 Ceiling'
+    - 'Quickly turn off bedroom 4 ceiling'
+    - 'Deactivate the bedroom 4 ceiling light'
+    - 'Shut off Bedroom 4 Ceiling'
+-
+  name: light_bedroom4_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom4_ceiling
+      attributes:
+        brightness: 60
+  sentences:
+    - 'Set Bedroom 4 Ceiling to 60 percent'
+    - "Please dim the bedroom 4 ceiling light to 60 if you don't mind"
+    - 'Flick bedroom 4 ceiling brightness down to 60'
+    - 'Turn the Bedroom 4 Ceiling light to sixty percent'
+    - 'Could you please adjust bedroom 4 ceiling to 60 for me'
+    - 'Flip bedroom 4 ceiling brightness to 60'
+    - 'Make the Bedroom 4 Ceiling sixty percent brightness'
+-
+  name: light_bedroom4_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom4_ceiling
+      attributes:
+        color: red
+  sentences:
+    - 'Change Bedroom 4 Ceiling to red'
+    - 'Please set the light in bedroom 4 to red for me'
+    - "Flick on red for the Bedroom 4 Ceiling if you don't mind"
+    - 'Turn the bedroom 4 ceiling light red'
+    - 'Make Bedroom 4 Ceiling red please'
+    - 'Flip the bedroom 4 ceiling to red'
+    - 'Set bedroom 4 ceiling light color to red'

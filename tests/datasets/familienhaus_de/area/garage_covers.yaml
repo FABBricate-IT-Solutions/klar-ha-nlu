@@ -1,0 +1,30 @@
+- name: garage_covers_open
+  conditions:
+  - type: action
+    area: garage
+    domain: cover
+    state: open
+  sentences:
+  - Mach Rollo Garage auf
+  - Rollo Garage auf
+  - Öffne Rollo Garage
+- name: garage_covers_close
+  conditions:
+  - type: action
+    area: garage
+    domain: cover
+    state: closed
+  sentences:
+  - Mach Rollo Garage zu
+  - Rollo Garage zu
+  - Schließ Rollo Garage
+- name: garage_covers_set_position
+  conditions:
+  - area: garage
+    domain: cover
+    attributes:
+      position: 86
+  sentences:
+  - Rollo Garage auf 86 Prozent
+  - Setze Rollo Garage auf 86
+  - Garage Position 86

@@ -1,0 +1,31 @@
+[package]
+name = "klar-nlu"
+version = "0.1.0"
+edition = "2021"
+description = "Deterministische deutsche NLU für Home Assistant"
+license = "MIT"
+default-run = "klar"
+
+[[bin]]
+name = "klar"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.8", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.6", features = ["fs", "cors"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { version = "4", features = ["derive"] }
+thiserror = "2"
+strsim = "0.11"
+uuid = { version = "1", features = ["v4"] }
+serde_yaml = "0.9"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = "z"
+strip = true

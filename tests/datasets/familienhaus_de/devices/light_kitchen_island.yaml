@@ -1,0 +1,43 @@
+- name: light_kitchen_island_turn_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Küche an
+  - Lichter Küche an
+  - Schalt die Lichter in der Küche ein
+  - Küche Lichter an
+  - Kannst du die Lichter in der Küche anmachen
+- name: light_kitchen_island_turn_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Küche aus
+  - Lichter Küche aus
+  - Schalt die Lichter in der Küche aus
+  - Küche Lichter aus
+- name: light_kitchen_island_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 99
+  sentences:
+  - Setze Küche auf 99 Prozent
+  - Küche Helligkeit 99
+  - Dimme Küche auf 99
+  - Lichter Küche 99 Prozent
+- name: light_kitchen_island_change_color
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: green
+  sentences:
+  - Mach Küche grün
+  - Setze Küche auf grün
+  - Küche grün
+  - Lichter Küche grün

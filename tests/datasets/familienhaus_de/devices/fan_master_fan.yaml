@@ -1,0 +1,26 @@
+- name: fan_master_fan_turn_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - Lüfter Schlafzimmer an
+  - Mach Schlafzimmer Lüfter an
+- name: fan_master_fan_turn_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - Lüfter Schlafzimmer aus
+  - Mach Schlafzimmer Lüfter aus
+- name: fan_master_fan_set_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 28
+  sentences:
+  - Lüfter Schlafzimmer auf 28 Prozent
+  - Setze Schlafzimmer Lüfter auf 28
+  - Schlafzimmer Lüfter 28 Prozent

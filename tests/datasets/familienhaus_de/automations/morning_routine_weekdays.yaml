@@ -1,0 +1,15 @@
+- name: morning_routine_weekdays
+  sentences:
+  - Ist  an
+  - 'Status '
+  - 'Wie ist der Zustand von '
+  - 'Status '
+  expected:
+    trigger:
+      platform: time
+      at: 07:00:00
+    actions:
+    - action: light.turn_on
+      entity_id: light.kitchen_ceiling
+    - action: cover.open_cover
+      entity_id: cover.garage_door

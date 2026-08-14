@@ -1,0 +1,11 @@
+- name: climate_upper_thermostat_set_temperature
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - Heizung Schlafzimmer auf 19 Grad
+  - Stell die Temperatur im Schlafzimmer auf 19
+  - Temperatur Schlafzimmer 19
+  - Schlafzimmer auf 19 Grad

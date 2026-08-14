@@ -1,0 +1,64 @@
+-
+  name: kitchen_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: kitchen
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the kitchen lights'
+    - 'Flick on the kitchen lights'
+    - 'Please flip on the lights in the kitchen for me'
+    - "If you don't mind, could you turn on the kitchen lights"
+    - 'Activate the kitchen lights'
+    - 'Hey, switch on the lights in the kitchen'
+    - 'Can you please light up the kitchen'
+-
+  name: kitchen_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: kitchen
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the kitchen lights'
+    - 'Please kill the lights in the kitchen for me'
+    - "If you don't mind, flick off the kitchen lights"
+    - 'Kitchen lights off'
+    - 'Flip the kitchen lights off please'
+    - 'Could you extinguish the kitchen lights'
+    - "Shut off the lights in the kitchen if you don't mind"
+-
+  name: kitchen_lights_change_brightness
+  conditions:
+    -
+      area: kitchen
+      domain: light
+      attributes:
+        brightness: 45
+  sentences:
+    - 'Set kitchen lights to 45 percent'
+    - 'Please dim the kitchen lights to 45 for me'
+    - "Flick kitchen brightness down to 45 if you don't mind"
+    - 'Kitchen lights 45'
+    - 'Could you adjust the kitchen illumination to 45 please'
+    - 'Turn kitchen lights brightness to 45%'
+    - 'Make the kitchen lights 45 brightness'
+-
+  name: kitchen_lights_change_color
+  conditions:
+    -
+      area: kitchen
+      domain: light
+      attributes:
+        color: pink
+  sentences:
+    - 'Change the kitchen lights to pink'
+    - 'Set kitchen lights pink please'
+    - "If you don't mind, could you make the kitchen lights pink for me"
+    - 'Flick the kitchen lights to pink'
+    - 'Please turn the kitchen lights pink'
+    - 'Flip kitchen lights to pink if possible'
+    - 'Make the kitchen lights pink now'

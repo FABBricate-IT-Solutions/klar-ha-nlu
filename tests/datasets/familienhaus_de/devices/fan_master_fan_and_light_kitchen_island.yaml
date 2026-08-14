@@ -1,0 +1,20 @@
+- name: fan_master_fan_and_light_kitchen_island_turn_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - Lüfter Schlafzimmer an und Mach die Lichter in der Küche an
+- name: fan_master_fan_and_light_kitchen_island_turn_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - Lüfter Schlafzimmer aus und Mach die Lichter in der Küche aus

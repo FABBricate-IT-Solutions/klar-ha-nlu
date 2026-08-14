@@ -1,0 +1,35 @@
+-
+  name: master_bedroom_covers_set_position
+  setup:
+    -
+      entity_id: cover.master_blinds
+      position: 73
+  conditions:
+    -
+      entity_id: cover.master_blinds
+      position: 88
+  sentences:
+    -
+      - 'What is the position of the windows in the master bedroom?'
+      - 'Set them to 88.'
+    -
+      - 'Can you tell me where the blinds are at in the master bedroom?'
+      - 'Please adjust to 88 for me.'
+    -
+      - "If you don't mind, what's the current position of the curtains in the master bedroom?"
+      - 'Flick them to 88.'
+    -
+      - 'Tell me the status of the windows in the master bedroom.'
+      - 'Flip to 88.'
+    -
+      - "What's the position of the blinds in the master bedroom?"
+      - "Set to 88 if you don't mind."
+    -
+      - 'Could you check the curtains in the master bedroom?'
+      - 'Please set them to 88.'
+    -
+      - 'Where are the windows at in the master bedroom?'
+      - 'Quickly set to 88.'
+    -
+      - 'Report the position of the blinds in the master bedroom.'
+      - 'Adjust to 88.'

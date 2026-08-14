@@ -1,0 +1,53 @@
+- name: media_player_living_tv_turn_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - Mach Wohnzimmer Fernseher an
+  - Wohnzimmer Fernseher an
+  - Fernseher Wohnzimmer an
+- name: media_player_living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - Pause Wohnzimmer Fernseher
+  - Wohnzimmer Fernseher pausieren
+- name: media_player_living_tv_unpause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: playing
+  sentences:
+  - Mach Wohnzimmer Fernseher an
+  - Wohnzimmer Fernseher an
+  - Fernseher Wohnzimmer an
+- name: media_player_living_tv_mute
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    attributes:
+      is_volume_muted: 'true'
+  sentences:
+  - Wohnzimmer Fernseher stumm
+  - Stumm Wohnzimmer Fernseher
+  - Wohnzimmer Fernseher lautlos
+- name: media_player_living_tv_unmute
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    attributes:
+      is_volume_muted: 'false'
+  sentences:
+  - Wohnzimmer Fernseher laut
+  - Stummschaltung Wohnzimmer Fernseher aus
+- name: media_player_living_tv_turn_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - Mach Wohnzimmer Fernseher aus
+  - Wohnzimmer Fernseher aus

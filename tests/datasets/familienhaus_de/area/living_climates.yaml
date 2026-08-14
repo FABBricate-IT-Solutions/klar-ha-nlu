@@ -1,0 +1,11 @@
+- name: living_climates_set_temperature
+  conditions:
+  - area: living
+    domain: climate
+    attributes:
+      temperature: 20
+  sentences:
+  - Heizung Wohnzimmer auf 20 Grad
+  - Stell die Temperatur im Wohnzimmer auf 20
+  - Temperatur Wohnzimmer 20
+  - Wohnzimmer auf 20 Grad

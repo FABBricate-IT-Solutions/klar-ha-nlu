@@ -1,0 +1,40 @@
+- name: main_bath_lights_get_state
+  conditions:
+  - type: query
+    area: main_bath
+    domain: light
+  sentences:
+  - Ist Badezimmer an
+  - Status Badezimmer
+  - Wie ist der Zustand von Badezimmer
+  - Ist das light im Badezimmer an
+- name: main_bath_lights_list_on_lights
+  conditions:
+  - type: query
+    area: main_bath
+    domain: light
+  sentences:
+  - Ist Badezimmer an
+  - Status Badezimmer
+  - Wie ist der Zustand von Badezimmer
+  - Ist das light im Badezimmer an
+- name: main_bath_lights_list_off_lights
+  conditions:
+  - type: query
+    area: main_bath
+    domain: light
+  sentences:
+  - Ist Badezimmer an
+  - Status Badezimmer
+  - Wie ist der Zustand von Badezimmer
+  - Ist das light im Badezimmer an
+- name: main_bath_lights_get_brightness
+  conditions:
+  - type: query
+    area: main_bath
+    domain: light
+  sentences:
+  - Ist Badezimmer an
+  - Status Badezimmer
+  - Wie ist der Zustand von Badezimmer
+  - Ist das light im Badezimmer an

@@ -1,0 +1,9 @@
+- name: lock_front_door_get_status
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das lock am Eingang an

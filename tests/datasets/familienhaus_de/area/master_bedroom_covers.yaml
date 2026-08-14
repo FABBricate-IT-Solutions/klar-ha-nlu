@@ -1,0 +1,30 @@
+- name: master_bedroom_covers_open
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  sentences:
+  - Mach Rollo Schlafzimmer auf
+  - Rollo Schlafzimmer auf
+  - Öffne Rollo Schlafzimmer
+- name: master_bedroom_covers_close
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  sentences:
+  - Mach Rollo Schlafzimmer zu
+  - Rollo Schlafzimmer zu
+  - Schließ Rollo Schlafzimmer
+- name: master_bedroom_covers_set_position
+  conditions:
+  - area: master_bedroom
+    domain: cover
+    attributes:
+      position: 38
+  sentences:
+  - Rollo Schlafzimmer auf 38 Prozent
+  - Setze Rollo Schlafzimmer auf 38
+  - Schlafzimmer Position 38

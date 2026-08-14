@@ -1,0 +1,19 @@
+- name: living_light_ceiling_vs_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - - Mach Licht Wohnzimmer an
+    - die Decke
+  - - Mach Licht Wohnzimmer an
+    - die Decke
+  - - Mach Licht Wohnzimmer an
+    - die Decke
+  - - Mach Licht Wohnzimmer an
+    - die Decke
+  - - Mach Licht Wohnzimmer an
+    - die Decke

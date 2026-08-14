@@ -1,0 +1,55 @@
+name: Wohnung Mittel
+language: de
+difficulty: medium
+areas:
+  - id: wohnzimmer
+    name: Wohnzimmer
+    aliases: [wohnraum, living, livingroom]
+  - id: esszimmer
+    name: Esszimmer
+    aliases: [ess, dining]
+  - id: schlafzimmer
+    name: Schlafzimmer
+    aliases: [schlaf, bedroom]
+  - id: kuche
+    name: Küche
+    aliases: [kueche, kuche, kitchen]
+  - id: badezimmer
+    name: Badezimmer
+    aliases: [bad, bathroom]
+  - id: arbeitszimmer
+    name: Arbeitszimmer
+    aliases: [buero, office]
+  - id: flur
+    name: Flur
+    aliases: [diele, hallway]
+  - id: balkon
+    name: Balkon
+    aliases: [terrasse, balcony]
+  - id: wohnung
+    name: Wohnung
+    aliases: [haus, zuhause, home, apartment]
+devices:
+  - {id: light.wohnzimmer, area_id: wohnzimmer, name: Wohnzimmer Licht}
+  - {id: light.esszimmer, area_id: esszimmer, name: Esszimmer Licht}
+  - {id: light.kuche_kuche, area_id: kuche, name: Küche Licht}
+  - {id: light.arbeitszimmer, area_id: arbeitszimmer, name: Arbeitszimmer}
+  - {id: light.schlafzimmer_kugel, area_id: schlafzimmer, name: Kugel}
+  - {id: light.schlafzimmer_decke, area_id: schlafzimmer, name: Deckenlampe}
+  - {id: light.schlafzimmer_licht, area_id: schlafzimmer, name: Schlafzimmer Licht}
+  - {id: light.alle_lichter, area_id: wohnung, name: Alle Lichter}
+  - {id: climate.better_thermostat_wohnzimmer, area_id: wohnzimmer, name: Heizung Wohnzimmer}
+  - {id: climate.better_thermostat_esszimmer, area_id: esszimmer, name: Heizung Esszimmer}
+  - {id: climate.better_thermostat_schlafzimmer, area_id: schlafzimmer, name: Heizung Schlafzimmer}
+  - {id: climate.better_thermostat_badezimmer, area_id: badezimmer, name: Heizung Bad}
+  - {id: climate.schlafzimmer_ac, area_id: schlafzimmer, name: Klimaanlage}
+  - {id: vacuum.r2d2, area_id: wohnzimmer, name: R2D2}
+  - {id: switch.pc_steckdose, area_id: arbeitszimmer, name: PC Steckdose}
+  - {id: switch.schlafzimmer_tv, area_id: schlafzimmer, name: Schlafzimmer TV}
+  - {id: switch.badezimmer_waschmaschine, area_id: badezimmer, name: Waschmaschine}
+  - {id: switch.kuche_trockner, area_id: kuche, name: Trockner}
+  - {id: switch.kuche_spulmaschine, area_id: kuche, name: Spülmaschine}
+  - {id: fan.arc_casual, area_id: arbeitszimmer, name: Lüfter}
+  - {id: cover.wohnzimmer_rollo, area_id: wohnzimmer, name: Rollo Wohnzimmer}
+  - {id: lock.wohnungstuer, area_id: flur, name: Wohnungstür}
+  - {id: scene.filmabend, area_id: wohnzimmer, name: Filmabend}

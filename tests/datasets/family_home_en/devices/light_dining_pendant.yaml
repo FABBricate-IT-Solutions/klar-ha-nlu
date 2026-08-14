@@ -1,0 +1,63 @@
+-
+  name: light_dining_pendant_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.dining_pendant
+      state: 'on'
+  sentences:
+    - 'Turn on the dining pendant'
+    - 'Flick on dining pendant'
+    - 'Please flip on the light dining pendant for me'
+    - "If you don't mind, turn on the dining area pendant"
+    - 'Activate dining pendant light'
+    - 'Can you please switch on the dining pendant'
+    - 'Turn the dining pendant on now'
+-
+  name: light_dining_pendant_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.dining_pendant
+      state: 'off'
+  sentences:
+    - 'Turn off the dining pendant'
+    - 'Please switch off the dining pendant for me'
+    - 'Flick off the dining pendant light'
+    - "If you don't mind, turn off the dining pendant"
+    - 'Flip off the dining pendant'
+    - 'Shut down the dining pendant light'
+    - 'Could you please kill the dining pendant for me'
+-
+  name: light_dining_pendant_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.dining_pendant
+      attributes:
+        brightness: 21
+  sentences:
+    - 'Set the dining pendant to 21%'
+    - 'Turn the dining room light to 21'
+    - 'Please dim the dining pendant to 21 for me'
+    - "Flick the dining pendant brightness to 21 if you don't mind"
+    - 'Adjust dining pendant to 21 percent'
+    - 'Flip the dining light down to 21'
+    - 'Could you set dining pendant brightness to 21 please'
+-
+  name: light_dining_pendant_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.dining_pendant
+      attributes:
+        color: blue
+  sentences:
+    - 'Change the dining pendant to blue'
+    - 'Set dining pendant color to blue'
+    - 'Please turn the dining pendant blue for me'
+    - "If you don't mind, could you flick the dining pendant to blue"
+    - 'Make the dining area pendant blue'
+    - 'Flip the dining pendant on blue'
+    - 'Quickly set dining pendant to blue'
+    - 'Change dining pendant color to blue please'

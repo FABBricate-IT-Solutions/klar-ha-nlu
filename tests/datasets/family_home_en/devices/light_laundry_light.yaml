@@ -1,0 +1,63 @@
+-
+  name: light_laundry_light_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.laundry_light
+      state: 'on'
+  sentences:
+    - 'Turn on the laundry light'
+    - 'Please flick on the laundry light for me'
+    - "Flip on the laundry light if you don't mind"
+    - 'Activate the laundry light'
+    - 'Switch on the laundry light please'
+    - 'Can you turn on the laundry light'
+    - 'Turn on the light in the laundry room'
+-
+  name: light_laundry_light_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.laundry_light
+      state: 'off'
+  sentences:
+    - 'Turn off the laundry light'
+    - 'Please switch off the laundry light for me'
+    - "Flick off the laundry light if you don't mind"
+    - 'Flip the laundry light off'
+    - 'Could you turn off the light in the laundry area'
+    - 'Deactivate the laundry light please'
+    - 'Shut off the laundry light for me'
+    - 'Kill the laundry light'
+-
+  name: light_laundry_light_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.laundry_light
+      attributes:
+        brightness: 18
+  sentences:
+    - 'Set the laundry light to 18 percent'
+    - "Please dim the laundry light to 18 if you don't mind"
+    - 'Flick the laundry light down to 18%'
+    - 'Turn the laundry light brightness to 18'
+    - 'Hey, can you set laundry light to 18 brightness'
+    - 'Adjust laundry light to 18 percent please'
+    - 'Make the laundry light 18'
+-
+  name: light_laundry_light_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.laundry_light
+      attributes:
+        color: white
+  sentences:
+    - 'Set the laundry light to white'
+    - 'Please change laundry light color to white for me'
+    - 'Flick laundry light to white'
+    - "If you don't mind, flip the laundry light to white"
+    - 'Make laundry light white'
+    - 'Turn laundry light white'
+    - 'Change laundry light color to white please'

@@ -1,0 +1,43 @@
+- name: light_master_bath_light_turn_on
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Elternbad an
+  - Lichter Elternbad an
+  - Schalt die Lichter im Elternbad ein
+  - Elternbad Lichter an
+  - Kannst du die Lichter im Elternbad anmachen
+- name: light_master_bath_light_turn_off
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Elternbad aus
+  - Lichter Elternbad aus
+  - Schalt die Lichter im Elternbad aus
+  - Elternbad Lichter aus
+- name: light_master_bath_light_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 18
+  sentences:
+  - Setze Elternbad auf 18 Prozent
+  - Elternbad Helligkeit 18
+  - Dimme Elternbad auf 18
+  - Lichter Elternbad 18 Prozent
+- name: light_master_bath_light_change_color
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: black
+  sentences:
+  - Mach Elternbad black
+  - Setze Elternbad auf black
+  - Elternbad black
+  - Lichter Elternbad black

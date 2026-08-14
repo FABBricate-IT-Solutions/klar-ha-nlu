@@ -1,0 +1,17 @@
+- name: laundry_washing_machine_vs_dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - - Mach Gerät Waschküche an
+    - ja
+  - - Mach Gerät Waschküche an
+    - ja
+  - - Mach Gerät Waschküche an
+    - ja
+  - - Mach Gerät Waschküche an
+    - ja

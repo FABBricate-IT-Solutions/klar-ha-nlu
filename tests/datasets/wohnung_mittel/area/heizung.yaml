@@ -1,0 +1,47 @@
+- name: heizung_wohnzimmer_23
+  conditions:
+    - type: action
+      entity_id: climate.better_thermostat_wohnzimmer
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Heizung Wohnzimmer auf 23 Grad'
+    - 'Stell die Heizung im Wohnzimmer auf 23'
+    - 'Temperatur Wohnzimmer 23'
+    - 'Heizung Wohnzimmer auf dreiundzwanzig Grad'
+
+- name: heizung_esszimmer_23
+  conditions:
+    - type: action
+      entity_id: climate.better_thermostat_esszimmer
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Heizung Esszimmer auf 23 Grad'
+    - 'Stell die Heizung im Esszimmer auf 23'
+    - 'Temperatur Esszimmer 23'
+    - 'Heizung Esszimmer auf dreiundzwanzig Grad'
+
+- name: heizung_schlafzimmer_23
+  conditions:
+    - type: action
+      entity_id: climate.better_thermostat_schlafzimmer
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Heizung Schlafzimmer auf 23 Grad'
+    - 'Stell die Heizung im Schlafzimmer auf 23'
+    - 'Temperatur Schlafzimmer 23'
+    - 'Heizung Schlafzimmer auf dreiundzwanzig Grad'
+
+- name: heizung_badezimmer_23
+  conditions:
+    - type: action
+      entity_id: climate.better_thermostat_badezimmer
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Heizung Bad auf 23 Grad'
+    - 'Stell die Heizung im Bad auf 23'
+    - 'Temperatur Bad 23'
+    - 'Heizung Bad auf dreiundzwanzig Grad'

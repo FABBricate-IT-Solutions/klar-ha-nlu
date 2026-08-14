@@ -1,0 +1,45 @@
+- name: bedroom_4_lights_turn_on
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 4 an
+  - Lichter Kinderzimmer 4 an
+  - Schalt die Lichter in Kinderzimmer 4 ein
+  - Kinderzimmer 4 Lichter an
+  - Kannst du die Lichter in Kinderzimmer 4 anmachen
+- name: bedroom_4_lights_turn_off
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 4 aus
+  - Lichter Kinderzimmer 4 aus
+  - Schalt die Lichter in Kinderzimmer 4 aus
+  - Kinderzimmer 4 Lichter aus
+- name: bedroom_4_lights_change_brightness
+  conditions:
+  - area: bedroom_4
+    domain: light
+    attributes:
+      brightness: 69
+  sentences:
+  - Setze Kinderzimmer 4 auf 69 Prozent
+  - Kinderzimmer 4 Helligkeit 69
+  - Dimme Kinderzimmer 4 auf 69
+  - Lichter Kinderzimmer 4 69 Prozent
+- name: bedroom_4_lights_change_color
+  conditions:
+  - area: bedroom_4
+    domain: light
+    attributes:
+      color: green
+  sentences:
+  - Mach Kinderzimmer 4 grün
+  - Setze Kinderzimmer 4 auf grün
+  - Kinderzimmer 4 grün
+  - Lichter Kinderzimmer 4 grün

@@ -1,0 +1,22 @@
+- name: master_bedroom_climates_set_temperature
+  setup:
+  - entity_id: climate.upper_thermostat
+    temperature: 11
+  conditions:
+  - entity_id: climate.upper_thermostat
+    temperature: 44
+  sentences:
+  - - Status Heizung Schlafzimmer
+    - auf 44
+  - - Status Heizung Schlafzimmer
+    - auf 44
+  - - Mach Heizung Schlafzimmer an
+    - auf 44
+  - - Status Heizung Schlafzimmer
+    - auf 44
+  - - Status Heizung Schlafzimmer
+    - auf 44
+  - - Mach Heizung Schlafzimmer an
+    - auf 44
+  - - Status Heizung Schlafzimmer
+    - auf 44

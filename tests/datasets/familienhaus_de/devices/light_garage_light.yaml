@@ -1,0 +1,43 @@
+- name: light_garage_light_turn_on
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Garage an
+  - Lichter Garage an
+  - Schalt die Lichter in der Garage ein
+  - Garage Lichter an
+  - Kannst du die Lichter in der Garage anmachen
+- name: light_garage_light_turn_off
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Garage aus
+  - Lichter Garage aus
+  - Schalt die Lichter in der Garage aus
+  - Garage Lichter aus
+- name: light_garage_light_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 76
+  sentences:
+  - Setze Garage auf 76 Prozent
+  - Garage Helligkeit 76
+  - Dimme Garage auf 76
+  - Lichter Garage 76 Prozent
+- name: light_garage_light_change_color
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: green
+  sentences:
+  - Mach Garage grün
+  - Setze Garage auf grün
+  - Garage grün
+  - Lichter Garage grün

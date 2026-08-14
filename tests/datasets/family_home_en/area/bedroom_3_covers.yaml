@@ -1,0 +1,47 @@
+-
+  name: bedroom_3_covers_open
+  conditions:
+    -
+      type: action
+      area: bedroom_3
+      domain: cover
+      state: open
+  sentences:
+    - 'Open the blinds in bedroom 3'
+    - 'Please open the curtains in bedroom 3 for me'
+    - "If you don't mind, could you open the windows in bedroom 3"
+    - 'Flick on the blinds in bedroom 3'
+    - 'Flip open the curtains in bedroom 3 please'
+    - 'Open bedroom 3 windows'
+    - "Turn on the blinds in bedroom 3 if you don't mind"
+-
+  name: bedroom_3_covers_close
+  conditions:
+    -
+      type: action
+      area: bedroom_3
+      domain: cover
+      state: closed
+  sentences:
+    - 'Close the blinds in bedroom 3'
+    - 'Shut the curtains in bedroom 3 please'
+    - "If you don't mind, close the windows in bedroom 3 for me"
+    - 'Pull down the curtains in bedroom 3'
+    - 'Close bedroom 3 windows'
+    - 'Shut the blinds in bedroom 3 if you could'
+-
+  name: bedroom_3_covers_set_position
+  conditions:
+    -
+      area: bedroom_3
+      domain: cover
+      attributes:
+        position: 29
+  sentences:
+    - 'Set bedroom 3 blinds to 29'
+    - 'Please adjust the bedroom 3 curtains to position 29 for me'
+    - "If you don't mind, set the bedroom 3 windows to 29"
+    - 'Flick bedroom 3 blinds to 29'
+    - 'Could you please move bedroom 3 curtains to 29'
+    - 'Quickly set bedroom 3 windows to 29'
+    - 'Flip bedroom 3 blinds to position 29'

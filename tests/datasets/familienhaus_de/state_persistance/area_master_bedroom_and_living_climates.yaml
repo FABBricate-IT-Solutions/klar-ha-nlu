@@ -1,0 +1,28 @@
+- name: master_bedroom_and_living_climates_set_temperature
+  setup:
+  - entity_id: climate.upper_thermostat
+    temperature: 28
+  - entity_id: climate.ground_thermostat
+    temperature: 28
+  conditions:
+  - entity_id: climate.upper_thermostat
+    temperature: 69
+  - entity_id: climate.ground_thermostat
+    temperature: 69
+  sentences:
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69
+  - - Mach Heizung Schlafzimmer und Wohnzimmer an
+    - auf 69
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69
+  - - Status Heizung Schlafzimmer und Wohnzimmer
+    - auf 69

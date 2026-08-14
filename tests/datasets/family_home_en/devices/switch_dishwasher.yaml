@@ -1,0 +1,31 @@
+-
+  name: switch_dishwasher_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: switch.dishwasher
+      state: 'on'
+  sentences:
+    - 'Turn on the dishwasher'
+    - 'Please start the dishwasher for me'
+    - 'Flick on the dishwasher in the kitchen'
+    - "If you don't mind, flip on the dishwasher"
+    - 'Activate the dishwasher'
+    - 'Could you turn on the dishwasher in the kitchen'
+    - 'Quickly start the dishwasher'
+    - 'Switch on the dishwasher please'
+-
+  name: switch_dishwasher_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: switch.dishwasher
+      state: 'off'
+  sentences:
+    - 'Turn off the dishwasher'
+    - 'Please switch off the dishwasher for me'
+    - 'Flick off the kitchen dishwasher'
+    - "If you don't mind, flip off the dishwasher"
+    - 'Deactivate the dishwasher in the kitchen'
+    - 'Shut down the dishwasher'
+    - 'Can you turn off the dishwasher please'

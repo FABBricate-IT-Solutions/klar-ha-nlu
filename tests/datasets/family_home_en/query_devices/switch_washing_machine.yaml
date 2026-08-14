@@ -1,0 +1,13 @@
+-
+  name: switch_washing_machine_get_status
+  conditions:
+    -
+      type: query
+      entity_id: switch.washing_machine
+  sentences:
+    - "What's the status of the washing machine"
+    - 'washing machine state'
+    - 'please check the washing machine for me'
+    - "if you don't mind, tell me if the washing machine is running"
+    - 'laundry room washing machine status'
+    - 'can you tell me the current state of the washing machine'

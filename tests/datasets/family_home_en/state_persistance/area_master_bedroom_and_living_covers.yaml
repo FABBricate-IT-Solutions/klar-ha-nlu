@@ -1,0 +1,41 @@
+-
+  name: master_bedroom_and_living_covers_set_position
+  setup:
+    -
+      entity_id: cover.master_blinds
+      position: 42
+    -
+      entity_id: cover.living_blinds
+      position: 42
+  conditions:
+    -
+      entity_id: cover.master_blinds
+      position: 15
+    -
+      entity_id: cover.living_blinds
+      position: 15
+  sentences:
+    -
+      - 'What is the position of the windows in the master bedroom and living room?'
+      - 'Set them to 15.'
+    -
+      - 'Can you tell me where the blinds are in the master bedroom and living room please?'
+      - 'Please set them to around 15 for me.'
+    -
+      - "What's the current position of the curtains in the master bedroom and living room if you don't mind?"
+      - 'Flick them to 15.'
+    -
+      - 'Tell me the position of the windows in the master bedroom and living room.'
+      - 'Flip them to 15.'
+    -
+      - 'Could you check the blinds position in the master bedroom and living room?'
+      - 'Adjust them to 15 please.'
+    -
+      - "What's the status of the curtains in the master bedroom and living room?"
+      - 'Set to 15.'
+    -
+      - 'Report the position of the windows in the master bedroom and living room.'
+      - 'Make it 15.'
+    -
+      - 'Where are the blinds set in the master bedroom and living room?'
+      - 'Change them to 15.'

@@ -1,0 +1,45 @@
+- name: dining_lights_turn_on
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Esszimmer an
+  - Lichter Esszimmer an
+  - Schalt die Lichter im Esszimmer ein
+  - Esszimmer Lichter an
+  - Kannst du die Lichter im Esszimmer anmachen
+- name: dining_lights_turn_off
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Esszimmer aus
+  - Lichter Esszimmer aus
+  - Schalt die Lichter im Esszimmer aus
+  - Esszimmer Lichter aus
+- name: dining_lights_change_brightness
+  conditions:
+  - area: dining
+    domain: light
+    attributes:
+      brightness: 54
+  sentences:
+  - Setze Esszimmer auf 54 Prozent
+  - Esszimmer Helligkeit 54
+  - Dimme Esszimmer auf 54
+  - Lichter Esszimmer 54 Prozent
+- name: dining_lights_change_color
+  conditions:
+  - area: dining
+    domain: light
+    attributes:
+      color: blue
+  sentences:
+  - Mach Esszimmer blau
+  - Setze Esszimmer auf blau
+  - Esszimmer blau
+  - Lichter Esszimmer blau

@@ -1,0 +1,97 @@
+- name: wohnzimmer_lichter_an
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+  sentences:
+    - 'Mach das Licht im Wohnzimmer an'
+    - 'Licht Wohnzimmer an'
+    - 'Schalt die Lichter im Wohnzimmer ein'
+    - 'Kannst du das Licht im Wohnzimmer anmachen'
+    - 'Wohnzimmer Licht an'
+
+- name: wohnzimmer_lichter_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+  sentences:
+    - 'Mach das Licht im Wohnzimmer aus'
+    - 'Licht Wohnzimmer aus'
+    - 'Schalt die Lichter im Wohnzimmer aus'
+    - 'Wohnzimmer Licht aus'
+
+- name: esszimmer_lichter_an
+  conditions:
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+  sentences:
+    - 'Mach das Licht im Esszimmer an'
+    - 'Licht Esszimmer an'
+    - 'Schalt die Lichter im Esszimmer ein'
+    - 'Kannst du das Licht im Esszimmer anmachen'
+    - 'Esszimmer Licht an'
+
+- name: esszimmer_lichter_aus
+  conditions:
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+  sentences:
+    - 'Mach das Licht im Esszimmer aus'
+    - 'Licht Esszimmer aus'
+    - 'Schalt die Lichter im Esszimmer aus'
+    - 'Esszimmer Licht aus'
+
+- name: kuche_lichter_an
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'on'}
+  sentences:
+    - 'Mach das Licht in der Küche an'
+    - 'Licht Küche an'
+    - 'Schalt die Lichter in der Küche ein'
+    - 'Kannst du das Licht in der Küche anmachen'
+    - 'Küche Licht an'
+
+- name: kuche_lichter_aus
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'off'}
+  sentences:
+    - 'Mach das Licht in der Küche aus'
+    - 'Licht Küche aus'
+    - 'Schalt die Lichter in der Küche aus'
+    - 'Küche Licht aus'
+
+- name: arbeitszimmer_lichter_an
+  conditions:
+    - {type: action, area: arbeitszimmer, domain: light, state: 'on'}
+  sentences:
+    - 'Mach das Licht im Arbeitszimmer an'
+    - 'Licht Arbeitszimmer an'
+    - 'Schalt die Lichter im Arbeitszimmer ein'
+    - 'Kannst du das Licht im Arbeitszimmer anmachen'
+    - 'Arbeitszimmer Licht an'
+
+- name: arbeitszimmer_lichter_aus
+  conditions:
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  sentences:
+    - 'Mach das Licht im Arbeitszimmer aus'
+    - 'Licht Arbeitszimmer aus'
+    - 'Schalt die Lichter im Arbeitszimmer aus'
+    - 'Arbeitszimmer Licht aus'
+
+- name: alle_lichter_aus
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'off'}
+  sentences:
+    - 'Alle Lichter aus'
+    - 'Mach überall das Licht aus'
+    - 'Wohnung Licht aus'
+    - 'Schalt alle Lampen aus'
+
+- name: wohnzimmer_helligkeit
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        brightness: 45
+  sentences:
+    - 'Setze das Licht im Wohnzimmer auf 45 Prozent'
+    - 'Wohnzimmer Helligkeit 45'
+    - 'Dimme das Wohnzimmer auf 45'
+    - 'Licht Wohnzimmer 45 Prozent'

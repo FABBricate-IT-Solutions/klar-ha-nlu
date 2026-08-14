@@ -1,0 +1,66 @@
+-
+  name: powder_room_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: powder_room
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the powder room lights'
+    - 'Flick on the powder room lights'
+    - 'Flip on the lights in the powder room'
+    - 'Please turn on the powder room lights for me'
+    - "If you don't mind, could you flip on the powder room lights"
+    - 'Activate the powder room lighting'
+    - 'Switch on the lights in the powder room'
+    - 'Hey, turn on the powder room lights'
+-
+  name: powder_room_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: powder_room
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the powder room lights'
+    - 'Please switch off the powder room lights for me'
+    - "If you don't mind, flick off the lights in the powder room"
+    - 'Flip off the powder room lights'
+    - 'Could you turn off the powder room lights please'
+    - 'Kill the lights in the powder room'
+    - "Shut off the powder room lights if you don't mind"
+-
+  name: powder_room_lights_change_brightness
+  conditions:
+    -
+      area: powder_room
+      domain: light
+      attributes:
+        brightness: 52
+  sentences:
+    - 'Set the powder room lights to 52 percent brightness'
+    - 'Dim the powder room lights to 52'
+    - 'Please adjust the powder room lighting to 52% for me'
+    - "If you don't mind, could you set the powder room lights to 52 brightness"
+    - 'Flick the powder room lights down to 52'
+    - 'Turn the powder room illumination to 52 percent'
+    - 'Hey, make the powder room lights 52 brightness please'
+-
+  name: powder_room_lights_change_color
+  conditions:
+    -
+      area: powder_room
+      domain: light
+      attributes:
+        color: purple
+  sentences:
+    - 'Change the powder room lights to purple'
+    - 'Set powder room lighting to purple'
+    - 'Please turn the powder room lights purple for me'
+    - "If you don't mind, flick the powder room lights to purple"
+    - 'Flip the powder room lights on purple'
+    - 'Make the powder room lights purple'
+    - 'Could you please set the powder room lights to purple'
+    - 'Change powder room lights to purple now'

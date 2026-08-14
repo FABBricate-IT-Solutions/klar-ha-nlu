@@ -1,0 +1,28 @@
+-
+  name: light_entryway_light_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.entryway_light
+  sentences:
+    - "What's the status of the entryway light?"
+    - 'Entryway light state please'
+    - "If you don't mind, could you check the entryway light for me?"
+    - 'Please tell me if the entryway light is on or off'
+    - 'Quick check on entryway light'
+    - 'Entryway light current state'
+-
+  name: light_entryway_light_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.entryway_light
+  sentences:
+    - "What's the brightness of the Entryway Light?"
+    - 'Entryway Light brightness please'
+    - "If you don't mind, could you tell me the current brightness of the light in the entryway?"
+    - 'How bright is the Entryway Light right now?'
+    - 'Please check the brightness level for the Entryway Light'
+    - "Entryway Light, what's your brightness setting?"
+    - 'Can you tell me how bright the entryway light is?'
+    - 'Get me the brightness value for the Entryway Light'

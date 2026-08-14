@@ -1,0 +1,28 @@
+-
+  name: fan_family_fan_get_status
+  conditions:
+    -
+      type: query
+      entity_id: fan.family_fan
+  sentences:
+    - "What's the status of the family room fan?"
+    - 'Fan family fan state'
+    - 'Please check the family room fan for me'
+    - "If you don't mind, could you tell me if the family room fan is on?"
+    - 'family room fan status'
+    - 'Get me the current state of the Family Room Fan'
+-
+  name: fan_family_fan_get_fan_speed
+  conditions:
+    -
+      type: query
+      entity_id: fan.family_fan
+  sentences:
+    - "What's the percentage of the Family Room Fan?"
+    - 'Get the current percentage for the fan family fan in family room'
+    - 'Please check the Family Room Fan percentage for me'
+    - "If you don't mind, what's the percentage of the fan family fan?"
+    - 'Current percentage of Family Room Fan please'
+    - 'Tell me the percentage for the fan family fan in family room'
+    - 'Quick check: Family Room Fan percentage'
+    - "What's the fan family fan percentage right now?"

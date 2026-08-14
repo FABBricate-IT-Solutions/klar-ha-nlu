@@ -1,0 +1,22 @@
+- name: kitchen_lights_on
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'on'}
+  sentences:
+    - 'Turn on the kitchen lights'
+    - 'Kitchen lights on'
+    - 'Switch on the lights in the kitchen'
+
+- name: living_lights_off
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+  sentences:
+    - 'Turn off the living room lights'
+    - 'Living room lights off'
+    - 'Switch off the lights in the living room'
+
+- name: all_lights_off
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'off'}
+  sentences:
+    - 'Turn off all lights'
+    - 'All lights off'

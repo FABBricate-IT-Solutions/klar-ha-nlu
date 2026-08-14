@@ -1,0 +1,41 @@
+-
+  name: master_bedroom_and_living_climates_set_temperature
+  setup:
+    -
+      entity_id: climate.upper_thermostat
+      temperature: 28
+    -
+      entity_id: climate.ground_thermostat
+      temperature: 28
+  conditions:
+    -
+      entity_id: climate.upper_thermostat
+      temperature: 69
+    -
+      entity_id: climate.ground_thermostat
+      temperature: 69
+  sentences:
+    -
+      - "What's the temperature in the master bedroom and living room?"
+      - 'Set it to 69.'
+    -
+      - 'Can you tell me the current temperature for the master bedroom and living room please?'
+      - "If you don't mind, make it 69 for me."
+    -
+      - 'Temperature check master bedroom and living room.'
+      - 'Flick it to 69.'
+    -
+      - "Please report the temperature in the master bedroom and living room if you don't mind."
+      - 'Flip it to 69 real quick.'
+    -
+      - "What's the temp in the master bedroom and living?"
+      - 'Turn it to 69.'
+    -
+      - 'Could you check the temperature for the master bedroom and living room?'
+      - 'Set it to 69 please.'
+    -
+      - 'Master bedroom and living room temperature status.'
+      - 'Make it 69.'
+    -
+      - 'Tell me the temperature in the master bedroom and living room.'
+      - 'Adjust it to 69.'

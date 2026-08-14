@@ -1,0 +1,40 @@
+- name: living_covers_get_state
+  conditions:
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das cover im Wohnzimmer an
+- name: living_covers_list_open_covers
+  conditions:
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das cover im Wohnzimmer an
+- name: living_covers_list_closed_covers
+  conditions:
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das cover im Wohnzimmer an
+- name: living_covers_get_position
+  conditions:
+  - type: query
+    area: living
+    domain: cover
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das cover im Wohnzimmer an

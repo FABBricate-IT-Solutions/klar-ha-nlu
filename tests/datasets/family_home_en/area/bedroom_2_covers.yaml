@@ -1,0 +1,48 @@
+-
+  name: bedroom_2_covers_open
+  conditions:
+    -
+      type: action
+      area: bedroom_2
+      domain: cover
+      state: open
+  sentences:
+    - 'Open the bedroom 2 windows'
+    - 'Please open the blinds in bedroom 2 for me'
+    - "If you don't mind, could you flick on the curtains in bedroom 2"
+    - 'Flip on the bedroom 2 blinds'
+    - 'Turn on the windows in bedroom 2 if possible'
+    - 'Quickly open bedroom 2 curtains'
+    - 'Would you mind opening the blinds for bedroom 2'
+-
+  name: bedroom_2_covers_close
+  conditions:
+    -
+      type: action
+      area: bedroom_2
+      domain: cover
+      state: closed
+  sentences:
+    - 'Close the blinds in bedroom 2'
+    - 'Shut the curtains in bedroom 2 please'
+    - "If you don't mind, close the windows in bedroom 2 for me"
+    - 'Please shut the curtains in bedroom 2'
+    - 'Close bedroom 2 windows'
+    - 'Could you shut the windows in bedroom 2'
+-
+  name: bedroom_2_covers_set_position
+  conditions:
+    -
+      area: bedroom_2
+      domain: cover
+      attributes:
+        position: 16
+  sentences:
+    - 'Set bedroom 2 blinds to 16'
+    - "Please position the curtains in bedroom 2 to 16 if you don't mind"
+    - 'Flick bedroom 2 windows to position 16'
+    - 'Can you set the bedroom 2 blinds to 16 for me'
+    - 'Adjust bedroom 2 curtains to 16 please'
+    - 'Flip bedroom 2 windows to 16'
+    - 'Would you mind setting bedroom 2 blinds to 16'
+    - 'Position bedroom 2 curtains at 16'

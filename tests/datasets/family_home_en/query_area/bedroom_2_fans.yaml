@@ -1,0 +1,58 @@
+-
+  name: bedroom_2_fans_get_state
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: fan
+  sentences:
+    - "What's the status of the fans in bedroom 2?"
+    - 'Bedroom 2 fans state'
+    - 'Please check the fans in bedroom 2 for me'
+    - "If you don't mind, could you tell me the current state of the bedroom 2 fans?"
+    - 'Get me the fan status in bedroom 2'
+    - 'Are the fans in bedroom 2 on or off?'
+-
+  name: bedroom_2_fans_list_on_fans
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: fan
+  sentences:
+    - "What's the status of the fans in bedroom 2?"
+    - 'Bedroom 2 fans state'
+    - "Please tell me the current state of the bedroom 2 fans if you don't mind"
+    - 'Check fans bedroom 2'
+    - 'Could you get me the fan status for bedroom 2 please'
+    - "Bedroom 2 fans - what's their state right now"
+    - 'Report bedroom 2 fan conditions'
+-
+  name: bedroom_2_fans_list_off_fans
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: fan
+  sentences:
+    - "What's the status of the fans in bedroom 2"
+    - 'bedroom 2 fans state'
+    - "please tell me the current state of the fans in bedroom 2 if you don't mind"
+    - 'get bedroom 2 fan status'
+    - 'could you check the fans in bedroom 2 for me'
+    - 'show me the state of bedroom 2 fans please'
+-
+  name: bedroom_2_fans_get_fan_speed
+  conditions:
+    -
+      type: query
+      area: bedroom_2
+      domain: fan
+  sentences:
+    - "What's the status of the fans in bedroom 2"
+    - 'bedroom 2 fans state'
+    - "please tell me the current state of the bedroom 2 fans if you don't mind"
+    - 'check fans bedroom 2'
+    - 'could you get the fan status for bedroom 2 please'
+    - 'bedroom 2 fan state now'
+    - "what's going on with the fans in bedroom 2"

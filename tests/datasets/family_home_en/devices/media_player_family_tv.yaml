@@ -1,0 +1,89 @@
+-
+  name: media_player_family_tv_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      state: 'on'
+  sentences:
+    - 'Turn on the Family Room TV'
+    - 'Flick on the family room media player'
+    - 'Please flip on the Family Room TV for me'
+    - "If you don't mind, turn on the family room TV"
+    - 'Activate the Family Room TV'
+    - 'Switch on the family room TV'
+    - 'Could you power on the Family Room TV please'
+-
+  name: media_player_family_tv_pause
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      state: paused
+  sentences:
+    - 'Pause the family room TV'
+    - 'Pause family room media player'
+    - 'Please pause the TV in the family room for me'
+    - "If you don't mind, pause the family room television"
+    - 'Stop playback on family room TV'
+    - 'Halt the family room TV'
+    - 'Pause the TV in family room if you could'
+    - 'Freeze the family room media player'
+-
+  name: media_player_family_tv_unpause
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      state: playing
+  sentences:
+    - 'unpause the family room tv'
+    - 'please resume the family room tv for me'
+    - 'resume playback on the family room tv'
+    - 'unpause family room tv please'
+-
+  name: media_player_family_tv_mute
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      attributes:
+        is_volume_muted: 'true'
+  sentences:
+    - 'Mute the Family Room TV'
+    - 'Please mute the family room media player for me'
+    - "If you don't mind, silence the Family Room TV"
+    - 'Flick the family room TV to mute'
+    - 'Quickly mute the Family Room TV'
+    - 'Flip the Family Room TV to mute'
+    - 'Silence the family room TV if you would'
+-
+  name: media_player_family_tv_unmute
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      attributes:
+        is_volume_muted: 'false'
+  sentences:
+    - 'Unmute the Family Room TV'
+    - 'Please unmute the family tv for me'
+    - 'Flick the unmute off on the family room media player'
+    - 'Can you unmute the family tv please'
+    - 'Quickly unmute the Family Room TV'
+-
+  name: media_player_family_tv_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: media_player.family_tv
+      state: 'off'
+  sentences:
+    - 'Turn off the Family Room TV'
+    - 'Please turn off the family room TV for me'
+    - "If you don't mind, switch off the Family Room TV"
+    - 'Flick off the media player family tv'
+    - 'Flip the family room TV off'
+    - 'Shut down the Family Room TV please'
+    - 'Power down the family room TV if you could'
+    - 'Kill the Family Room TV'

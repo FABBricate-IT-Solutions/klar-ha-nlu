@@ -1,0 +1,49 @@
+-
+  name: cover_bedroom3_blinds_open
+  conditions:
+    -
+      type: action
+      entity_id: cover.bedroom3_blinds
+      state: open
+  sentences:
+    - 'Open the bedroom 3 blinds'
+    - 'Please open bedroom 3 blinds for me'
+    - "Flick up the Bedroom 3 blinds if you don't mind"
+    - 'Raise the blinds in bedroom 3'
+    - 'Flip the bedroom 3 blinds open'
+    - 'Could you open the blinds for bedroom 3'
+    - 'Pull up the Bedroom 3 blinds please'
+    - 'Open bedroom 3 cover'
+-
+  name: cover_bedroom3_blinds_close
+  conditions:
+    -
+      type: action
+      entity_id: cover.bedroom3_blinds
+      state: closed
+  sentences:
+    - 'Close the bedroom 3 blinds'
+    - 'Shut bedroom 3 blinds'
+    - 'Please close the blinds in bedroom 3 for me'
+    - "If you don't mind, close the bedroom 3 blinds"
+    - 'Lower the blinds in bedroom 3'
+    - 'Pull down bedroom 3 blinds'
+    - 'Close bedroom three blinds now'
+    - 'Roll down the blinds in bedroom 3'
+-
+  name: cover_bedroom3_blinds_change_position
+  conditions:
+    -
+      type: action
+      entity_id: cover.bedroom3_blinds
+      attributes:
+        position: 27
+  sentences:
+    - 'Set the bedroom 3 blinds to 27'
+    - 'Close bedroom 3 blinds to 27 percent'
+    - 'Please adjust the Bedroom 3 blinds to 27 for me'
+    - "If you don't mind, set bedroom 3 blinds to 27"
+    - 'Flick the bedroom 3 blinds to 27'
+    - 'Move bedroom 3 blinds to 27 percent'
+    - 'Could you please set the Bedroom 3 blinds to 27'
+    - 'Quickly set bedroom 3 blinds to 27'

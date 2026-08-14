@@ -1,0 +1,10 @@
+- name: klima_schlaf_21
+  conditions:
+    - type: action
+      entity_id: climate.schlafzimmer_ac
+      attributes:
+        temperature: 21
+  sentences:
+    - 'Klimaanlage auf 21 Grad'
+    - 'Klima auf 21'
+    - 'Stell die Klimaanlage auf einundzwanzig'

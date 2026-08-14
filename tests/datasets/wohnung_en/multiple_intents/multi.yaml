@@ -1,0 +1,6 @@
+- name: kitchen_and_living_on
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+  sentences:
+    - 'Turn on the kitchen and living room lights'

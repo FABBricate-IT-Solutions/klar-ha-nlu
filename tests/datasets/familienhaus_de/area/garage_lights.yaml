@@ -1,0 +1,45 @@
+- name: garage_lights_turn_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Garage an
+  - Lichter Garage an
+  - Schalt die Lichter in der Garage ein
+  - Garage Lichter an
+  - Kannst du die Lichter in der Garage anmachen
+- name: garage_lights_turn_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Garage aus
+  - Lichter Garage aus
+  - Schalt die Lichter in der Garage aus
+  - Garage Lichter aus
+- name: garage_lights_change_brightness
+  conditions:
+  - area: garage
+    domain: light
+    attributes:
+      brightness: 16
+  sentences:
+  - Setze Garage auf 16 Prozent
+  - Garage Helligkeit 16
+  - Dimme Garage auf 16
+  - Lichter Garage 16 Prozent
+- name: garage_lights_change_color
+  conditions:
+  - area: garage
+    domain: light
+    attributes:
+      color: blue
+  sentences:
+  - Mach Garage blau
+  - Setze Garage auf blau
+  - Garage blau
+  - Lichter Garage blau

@@ -1,0 +1,46 @@
+-
+  name: fan_bedroom2_fan_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: fan.bedroom2_fan
+      state: 'on'
+  sentences:
+    - 'Turn on the Bedroom 2 Fan'
+    - 'Flick on the fan in bedroom 2'
+    - 'Please flip on the Bedroom 2 Fan for me'
+    - "If you don't mind, turn on the fan in bedroom 2"
+    - 'Activate the Bedroom 2 Fan'
+    - 'Switch on the fan in bedroom 2'
+    - 'Can you turn on the Bedroom 2 Fan please'
+-
+  name: fan_bedroom2_fan_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: fan.bedroom2_fan
+      state: 'off'
+  sentences:
+    - 'turn off the bedroom 2 fan'
+    - 'please switch off the fan in bedroom 2 for me'
+    - "flick off bedroom 2 fan if you don't mind"
+    - 'flip off the fan in bedroom 2'
+    - 'shut down bedroom 2 fan'
+    - 'turn the bedroom 2 fan off please'
+    - 'stop the fan in bedroom 2'
+-
+  name: fan_bedroom2_fan_set_fan_speed
+  conditions:
+    -
+      type: action
+      entity_id: fan.bedroom2_fan
+      attributes:
+        percentage: 72
+  sentences:
+    - 'Set the Bedroom 2 Fan to 72'
+    - 'Please set fan bedroom 2 fan to 72 for me'
+    - "Flick the bedroom 2 fan speed to 72 if you don't mind"
+    - 'Change Bedroom 2 Fan speed to 72'
+    - 'Turn the fan bedroom 2 fan to 72 please'
+    - 'Adjust bedroom 2 fan to speed 72'
+    - 'Flip on Bedroom 2 Fan at 72'

@@ -1,0 +1,65 @@
+-
+  name: bedroom_4_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: bedroom_4
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the lights in bedroom 4'
+    - 'Flick on bedroom 4 lights'
+    - 'Please flip on the lights in bedroom 4 for me'
+    - "If you don't mind, turn on bedroom 4 lights"
+    - 'Activate the lights in bedroom 4'
+    - 'Switch on bedroom 4 lights please'
+    - 'Could you turn on the bedroom 4 lights'
+    - 'Quickly turn on bedroom 4 lights'
+-
+  name: bedroom_4_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: bedroom_4
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the lights in bedroom 4'
+    - 'Please switch off bedroom 4 lights for me'
+    - "If you don't mind, flick off the lights in bedroom 4"
+    - 'Kill the lights in bedroom 4'
+    - "Could you turn off bedroom 4's lights please"
+    - "Flip off the bedroom 4 lights if it's not too much trouble"
+    - 'Shut off bedroom 4 lights'
+-
+  name: bedroom_4_lights_change_brightness
+  conditions:
+    -
+      area: bedroom_4
+      domain: light
+      attributes:
+        brightness: 69
+  sentences:
+    - 'Set bedroom 4 lights to 69 percent brightness'
+    - 'Please dim the bedroom 4 lights to 69 for me'
+    - "Flick bedroom 4 lights to 69 percent if you don't mind"
+    - 'Adjust bedroom 4 illumination to 69'
+    - 'Turn bedroom 4 lights down to 69 percent please'
+    - 'Flip bedroom 4 lights to 69 brightness'
+    - 'Could you set bedroom 4 lights to 69 percent'
+-
+  name: bedroom_4_lights_change_color
+  conditions:
+    -
+      area: bedroom_4
+      domain: light
+      attributes:
+        color: green
+  sentences:
+    - 'Change bedroom 4 lights to green'
+    - 'Please set the bedroom 4 lights to green for me'
+    - 'Flick the bedroom 4 lights to green'
+    - "If you don't mind, flip the bedroom 4 lights on green"
+    - 'Quickly turn bedroom 4 lights green'
+    - 'Set bedroom 4 lighting to green please'
+    - 'Make the bedroom 4 lights green now'

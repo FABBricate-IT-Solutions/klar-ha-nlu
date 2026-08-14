@@ -1,0 +1,35 @@
+-
+  name: dining_lights_set_brightness
+  setup:
+    -
+      entity_id: light.dining_pendant
+      brightness: 65
+  conditions:
+    -
+      entity_id: light.dining_pendant
+      brightness: 68
+  sentences:
+    -
+      - "What's the brightness of the dining room lights?"
+      - 'Set it to 68.'
+    -
+      - 'Can you tell me the current brightness in the dining area please?'
+      - 'Please adjust it to 68 for me.'
+    -
+      - 'Dining lights brightness status?'
+      - "Flick it up to 68 if you don't mind."
+    -
+      - 'How bright are the lights in the dining room right now?'
+      - 'Flip them to 68.'
+    -
+      - 'Tell me the dining area light brightness level.'
+      - 'Crank it to 68.'
+    -
+      - "What's the brightness setting for the dining lights?"
+      - 'Bump it to 68 please.'
+    -
+      - 'Check the brightness of the dining room lights for me.'
+      - 'Make it 68.'
+    -
+      - 'Dining lights brightness check?'
+      - 'Turn it to 68.'

@@ -1,0 +1,15 @@
+- name: lock_door_and_all_lights_off_at_11pm
+  sentences:
+  - Ist  an
+  - 'Status '
+  - 'Wie ist der Zustand von '
+  - 'Status '
+  expected:
+    trigger:
+      platform: time
+      at: '23:00:00'
+    actions:
+    - action: lock.lock
+      entity_id: lock.front_door
+    - action: light.turn_off
+      domain: light

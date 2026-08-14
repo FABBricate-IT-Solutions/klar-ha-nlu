@@ -1,0 +1,85 @@
+-
+  name: family_room_and_kitchen_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: family_room
+      domain: light
+      state: 'on'
+    -
+      type: action
+      area: kitchen
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the family room and kitchen lights'
+    - 'Flick on lights in the family room and kitchen'
+    - 'Please flip on the lights for me in the family room and kitchen'
+    - "If you don't mind, could you turn on the family room and kitchen lights"
+    - 'Activate lights family room kitchen'
+    - 'Hey turn on family room kitchen lights now'
+    - 'Flip on the lights in the family room and kitchen please'
+    - 'Turn the family room and kitchen lights on'
+-
+  name: family_room_and_kitchen_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: family_room
+      domain: light
+      state: 'off'
+    -
+      type: action
+      area: kitchen
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the lights in the family room and kitchen'
+    - 'Please turn off the lights in the family room and kitchen for me'
+    - "If you don't mind, could you flick off the lights in the family room and kitchen"
+    - 'Hey, flip off the lights in the family room and kitchen'
+    - 'Turn off the family room and kitchen lights'
+    - 'Can you please switch off the lights in the family room and kitchen'
+    - "Shut off the lights in the family room and kitchen if you don't mind"
+-
+  name: family_room_and_kitchen_lights_change_brightness
+  conditions:
+    -
+      area: family_room
+      domain: light
+      attributes:
+        brightness: 39
+    -
+      area: kitchen
+      domain: light
+      attributes:
+        brightness: 39
+  sentences:
+    - 'Set the family room and kitchen lights to 39 percent'
+    - "Please dim the lights in the family room and kitchen to 39 if you don't mind"
+    - 'Flick the family room and kitchen lights down to 39'
+    - 'Hey could you please set the family room and kitchen lights to 39 for me'
+    - 'Adjust family room and kitchen brightness to 39 percent'
+    - 'Turn the family room and kitchen lights to 39'
+    - "If you don't mind, flip the family room and kitchen lights to 39 for me"
+-
+  name: family_room_and_kitchen_lights_change_color
+  conditions:
+    -
+      area: family_room
+      domain: light
+      attributes:
+        color: purple
+    -
+      area: kitchen
+      domain: light
+      attributes:
+        color: purple
+  sentences:
+    - 'Change the family room and kitchen lights to purple'
+    - 'Please set the lights in the family room and kitchen to purple for me'
+    - 'Flick the family room and kitchen lights on purple'
+    - "If you don't mind, flip the lights in the family room and kitchen to purple"
+    - 'Turn the family room and kitchen lights purple'
+    - 'Could you make the family room and kitchen lights purple please'
+    - 'Set family room and kitchen to purple lighting'

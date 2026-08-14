@@ -1,0 +1,43 @@
+- name: light_kitchen_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Küche an
+  - Lichter Küche an
+  - Schalt die Lichter in der Küche ein
+  - Küche Lichter an
+  - Kannst du die Lichter in der Küche anmachen
+- name: light_kitchen_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Küche aus
+  - Lichter Küche aus
+  - Schalt die Lichter in der Küche aus
+  - Küche Lichter aus
+- name: light_kitchen_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 25
+  sentences:
+  - Setze Küche auf 25 Prozent
+  - Küche Helligkeit 25
+  - Dimme Küche auf 25
+  - Lichter Küche 25 Prozent
+- name: light_kitchen_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: orange
+  sentences:
+  - Mach Küche orange
+  - Setze Küche auf orange
+  - Küche orange
+  - Lichter Küche orange

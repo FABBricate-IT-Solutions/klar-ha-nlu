@@ -1,0 +1,90 @@
+-
+  name: light_entryway_light_turn_on
+  setup:
+    -
+      entity_id: light.entryway_light
+      state: 'off'
+  conditions:
+    -
+      type: action
+      entity_id: light.entryway_light
+      state: 'on'
+  sentences:
+    -
+      - "What's the status of the entryway light?"
+      - 'Please turn it on for me.'
+    -
+      - 'Is the entryway light on or off?'
+      - 'Flick it on.'
+    -
+      - 'Can you check the entryway light status?'
+      - "Flip it on if you don't mind."
+    -
+      - 'Entryway light status please?'
+      - 'Turn it on.'
+    -
+      - "What's happening with the entryway light?"
+      - 'Switch it on for me.'
+    -
+      - "How's the entryway light doing?"
+      - 'Please flick it on.'
+    -
+      - 'Entryway light check?'
+      - 'Flip it on.'
+-
+  name: light_entryway_light_turn_off
+  setup:
+    -
+      entity_id: light.entryway_light
+      state: 'on'
+  conditions:
+    -
+      type: action
+      entity_id: light.entryway_light
+      state: 'off'
+  sentences:
+    -
+      - "What's the status of the entryway light?"
+      - 'Turn it off.'
+    -
+      - 'Is the entryway light on?'
+      - 'Please switch it off for me.'
+    -
+      - 'Can you check the entryway light?'
+      - "Flip it off if you don't mind."
+    -
+      - 'Entryway light status?'
+      - 'Flick it off.'
+    -
+      - 'Is the entryway light currently on?'
+      - 'Shut it off for me.'
+    -
+      - 'Check the entryway light status.'
+      - 'Turn it off.'
+-
+  name: light_entryway_light_persistance_brightness
+  setup:
+    -
+      entity_id: light.entryway_light
+      brightness: 60
+  conditions:
+    -
+      entity_id: light.entryway_light
+      attributes:
+        brightness: 12
+  sentences:
+    -
+      - "What's the brightness of the Entryway Light?"
+      - 'Set it to 12.'
+    -
+      - 'How bright is the light in the entryway?'
+      - 'Change it to 12 please.'
+    -
+      - 'Can you tell me the brightness level for the entryway light?'
+      - "Adjust it to 12 if you don't mind."
+    -
+      - 'How bright is the Entryway Light right now?'
+      - 'Please set it to 12.'
+    -
+      - 'Tell me the brightness of the light in entryway.'
+      - 'Change it to 12 please.'

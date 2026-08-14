@@ -1,0 +1,9 @@
+- name: lock_garage_entry_get_status
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das lock in der Garage an

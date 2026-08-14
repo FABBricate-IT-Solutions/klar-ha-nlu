@@ -1,0 +1,63 @@
+-
+  name: light_living_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the living room ceiling light'
+    - 'Living ceiling on'
+    - 'Please flick on the living room ceiling light for me'
+    - "If you don't mind, flip on the living ceiling"
+    - 'Activate living room ceiling light'
+    - 'Could you switch on the living ceiling light please'
+    - 'Living room ceiling light on now'
+-
+  name: light_living_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off the living room ceiling light'
+    - 'Please turn off the living ceiling for me'
+    - "If you don't mind, flick off the living room ceiling light"
+    - 'Deactivate the living ceiling light'
+    - 'Flip off the living room ceiling light'
+    - 'Switch off the living ceiling'
+    - 'Kill the living room ceiling light'
+    - 'Shut down the living ceiling light'
+-
+  name: light_living_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      attributes:
+        brightness: 72
+  sentences:
+    - 'Set the living room ceiling light to 72 percent'
+    - 'Living ceiling brightness 72'
+    - "Please adjust the living room ceiling to 72 if you don't mind"
+    - 'Flick the living ceiling light up to 72%'
+    - 'Could you dim the living room ceiling light to 72 for me'
+    - 'Living room ceiling at 72 brightness'
+    - 'Turn the living ceiling light to seventy two percent please'
+-
+  name: light_living_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      attributes:
+        color: black
+  sentences:
+    - 'Set the living room ceiling light to black'
+    - 'Living room ceiling, turn to black'
+    - 'Please change the living room ceiling light to black for me'
+    - "If you don't mind, flick the living ceiling to black"
+    - 'Flip the living room ceiling light on to black'
+    - 'Quickly set living room ceiling to black'
+    - 'Change the living ceiling light color to black'

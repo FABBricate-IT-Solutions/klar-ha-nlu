@@ -1,0 +1,66 @@
+-
+  name: bedroom_2_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: bedroom_2
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the lights in bedroom 2'
+    - 'Flick on bedroom 2 lights'
+    - 'Please flip on the lights in bedroom 2 for me'
+    - "If you don't mind, could you turn on bedroom 2 lights"
+    - 'Activate the bedroom 2 lighting'
+    - 'Switch on the lights in bedroom 2 please'
+    - 'Quickly turn on bedroom 2 lights'
+    - 'Can you illuminate bedroom 2'
+-
+  name: bedroom_2_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: bedroom_2
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the lights in bedroom 2'
+    - 'Please switch off the bedroom 2 lights for me'
+    - "If you don't mind, flick off the lights in bedroom 2"
+    - 'Kill the lights in bedroom 2'
+    - 'Can you flip off bedroom 2 lights please'
+    - "Shut down the lights in bedroom 2 if you don't mind"
+    - 'Turn the bedroom 2 lights off'
+    - 'Deactivate bedroom 2 lighting'
+-
+  name: bedroom_2_lights_change_brightness
+  conditions:
+    -
+      area: bedroom_2
+      domain: light
+      attributes:
+        brightness: 65
+  sentences:
+    - 'Set bedroom 2 lights to 65 percent'
+    - 'Please dim the bedroom 2 lights to 65 for me'
+    - 'Flick bedroom 2 brightness to sixty-five'
+    - "If you don't mind, adjust bedroom 2 lights to 65%"
+    - 'Flip bedroom 2 lights down to sixty-five percent'
+    - 'Change bedroom 2 brightness level to 65'
+    - 'Could you set bedroom 2 lights to sixty-five please'
+-
+  name: bedroom_2_lights_change_color
+  conditions:
+    -
+      area: bedroom_2
+      domain: light
+      attributes:
+        color: pink
+  sentences:
+    - 'Change bedroom 2 lights to pink'
+    - 'Please set the bedroom 2 lights to pink for me'
+    - 'Flick bedroom 2 lights to pink'
+    - "If you don't mind, flip the bedroom 2 lights to pink"
+    - 'Make bedroom 2 lights pink please'
+    - 'Turn bedroom 2 lights pink'
+    - 'Could you change bedroom 2 lights to pink for me'

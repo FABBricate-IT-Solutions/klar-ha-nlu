@@ -1,0 +1,32 @@
+-
+  name: lock_front_door_lock
+  conditions:
+    -
+      type: action
+      entity_id: lock.front_door
+      state: locked
+  sentences:
+    - 'Lock the front door'
+    - 'Please secure the front door for me'
+    - "If you don't mind, lock the entryway door"
+    - 'Flick the front door lock on'
+    - 'Quickly lock the front door'
+    - 'Engage the front door lock if you could'
+    - 'Flip the entryway lock on'
+    - 'Secure the front door please'
+-
+  name: lock_front_door_unlock
+  conditions:
+    -
+      type: action
+      entity_id: lock.front_door
+      state: unlocked
+  sentences:
+    - 'Unlock the front door'
+    - 'Please unlock the front door for me'
+    - "If you don't mind, unlock the front door"
+    - 'Flick the front door lock open'
+    - 'Open the front door lock'
+    - 'Unlock the entryway door'
+    - 'Can you unlock the front door'
+    - 'Flip the front door lock to open'

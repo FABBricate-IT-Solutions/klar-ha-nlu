@@ -1,0 +1,32 @@
+-
+  name: garage_lights_set_brightness
+  setup:
+    -
+      entity_id: light.garage_light
+      brightness: 15
+  conditions:
+    -
+      entity_id: light.garage_light
+      brightness: 27
+  sentences:
+    -
+      - "What's the brightness of the garage lights?"
+      - 'Set it to 27.'
+    -
+      - 'Please tell me the garage light brightness.'
+      - "If you don't mind, make it 27 for me."
+    -
+      - "Can you check the garage lights' brightness?"
+      - 'Flick it up to 27.'
+    -
+      - 'Garage lights brightness status?'
+      - 'Flip it to 27 please.'
+    -
+      - 'What brightness are the lights in the garage?'
+      - 'Turn it to 27.'
+    -
+      - 'Tell me how bright the garage lights are.'
+      - 'Adjust it to 27.'
+    -
+      - 'Check brightness level in garage.'
+      - 'Set to 27.'

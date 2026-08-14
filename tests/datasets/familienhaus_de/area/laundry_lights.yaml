@@ -1,0 +1,45 @@
+- name: laundry_lights_turn_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Waschküche an
+  - Lichter Waschküche an
+  - Schalt die Lichter in der Waschküche ein
+  - Waschküche Lichter an
+  - Kannst du die Lichter in der Waschküche anmachen
+- name: laundry_lights_turn_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Waschküche aus
+  - Lichter Waschküche aus
+  - Schalt die Lichter in der Waschküche aus
+  - Waschküche Lichter aus
+- name: laundry_lights_change_brightness
+  conditions:
+  - area: laundry
+    domain: light
+    attributes:
+      brightness: 62
+  sentences:
+  - Setze Waschküche auf 62 Prozent
+  - Waschküche Helligkeit 62
+  - Dimme Waschküche auf 62
+  - Lichter Waschküche 62 Prozent
+- name: laundry_lights_change_color
+  conditions:
+  - area: laundry
+    domain: light
+    attributes:
+      color: yellow
+  sentences:
+  - Mach Waschküche gelb
+  - Setze Waschküche auf gelb
+  - Waschküche gelb
+  - Lichter Waschküche gelb

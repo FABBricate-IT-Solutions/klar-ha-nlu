@@ -1,0 +1,40 @@
+- name: lock_garage_entry_lock
+  setup:
+  - entity_id: lock.garage_entry
+    state: unlocked
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - - Status Schloss Garage
+    - mach sie an
+  - - Status Schloss Garage
+    - mach sie an
+  - - Status Schloss Garage
+    - mach sie an
+  - - Status Schloss Garage
+    - mach sie an
+  - - Status Schloss Garage
+    - mach sie an
+- name: lock_garage_entry_unlock
+  setup:
+  - entity_id: lock.garage_entry
+    state: locked
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - - Status Schloss Garage
+    - mach sie aus
+  - - Status Schloss Garage
+    - mach sie aus
+  - - Mach Schloss Garage an
+    - mach sie aus
+  - - Status Schloss Garage
+    - mach sie aus
+  - - Status Schloss Garage
+    - mach sie aus
+  - - Mach Schloss Garage an
+    - mach sie aus

@@ -1,0 +1,22 @@
+name: garage_door_and_lights_on_arrival
+sentences:
+- Create an automation to open the garage door and turn on the kitchen lights when
+  the front door sensor detects motion
+- Set up a rule so the garage door opens and kitchen ceiling comes on when motion
+  is detected at the front door
+- Make an automation that opens the garage and turns on the kitchen lights when motion
+  is detected at the front
+- Automate the garage door to open and the kitchen ceiling to come on when the front
+  door sensor triggers
+- When motion is detected at the front door I want the garage door to open and the
+  kitchen light to come on
+expected:
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door_sensor
+    to: 'on'
+  actions:
+  - action: cover.open_cover
+    entity_id: cover.garage_door
+  - action: light.turn_on
+    entity_id: light.kitchen_ceiling

@@ -1,0 +1,13 @@
+-
+  name: climate_ground_thermostat_get_temperature
+  conditions:
+    -
+      type: query
+      entity_id: climate.ground_thermostat
+  sentences:
+    - "What's the temperature on the ground floor thermostat?"
+    - 'Tell me the current temp of the ground floor thermostat'
+    - 'Please check the temperature for me on the ground floor thermostat'
+    - "If you don't mind, what's the temperature reading on the ground floor thermostat?"
+    - 'Ground floor thermostat temperature'
+    - 'Can you tell me how warm it is on the ground floor thermostat right now?'

@@ -1,0 +1,113 @@
+-
+  name: shopping_list_add_apples
+  conditions:
+    -
+      type: shopping_list
+      item: apples
+      complete: false
+  sentences:
+    - 'Add apples to the shopping list'
+    - 'Please put some apples on my list'
+    - "Stick apples on the shopping list if you don't mind"
+    - 'Place apples on the list please'
+    - 'Put apples on the shopping list'
+    - 'Could you add apples to my list'
+-
+  name: shopping_list_complete_bread
+  setup:
+    -
+      shopping_list_item: bread
+    -
+      shopping_list_item: butter
+    -
+      shopping_list_item: milk
+    -
+      shopping_list_item: chicken
+    -
+      shopping_list_item: bananas
+  conditions:
+    -
+      type: shopping_list
+      item: bread
+      complete: true
+  sentences:
+    - 'mark bread as done on the shopping list'
+    - 'put bread on the done list'
+    - 'please mark bread as done for me'
+    - "if you don't mind, stick bread on the completed list"
+    - 'place bread as finished on the shopping list'
+    - 'mark bread as done'
+    - 'put bread on the done list please'
+-
+  name: chores_add_wipe_down_the_counte
+  conditions:
+    -
+      type: todo_list
+      list_name: Chores
+      item: 'Wipe down the counters'
+      complete: false
+  sentences:
+    - 'Add wipe down the counters to the Chores list'
+    - 'Put wipe down the counters on Chores'
+    - 'Please add wipe down the counters to Chores for me'
+    - "Stick wipe down the counters on the Chores list if you don't mind"
+    - 'Place wipe down the counters in Chores'
+    - 'Quickly add wipe down the counters to Chores'
+    - 'Could you put wipe down the counters on the Chores list please'
+-
+  name: chores_complete_scrub_the_toilet
+  setup:
+    -
+      list_name: Chores
+      todo_item: 'scrub the toilet'
+    -
+      list_name: Chores
+      todo_item: 'mop the kitchen floor'
+    -
+      list_name: Chores
+      todo_item: 'sweep the porch'
+    -
+      list_name: Chores
+      todo_item: 'empty the dishwasher'
+  conditions:
+    -
+      type: todo_list
+      list_name: Chores
+      item: 'Scrub the toilet'
+      complete: true
+  sentences:
+    - 'Mark scrub the toilet as done on the Chores list'
+    - "If you don't mind, mark scrub the toilet as done on the Chores list"
+    - 'Put scrub the toilet as done on the Chores list'
+    - 'Stick scrub the toilet as done on the Chores list'
+    - 'Place scrub the toilet as done on the Chores list'
+    - 'Mark scrub the toilet as complete on the Chores list'
+-
+  name: chores_remove_mop_the_kitchen_floo
+  setup:
+    -
+      list_name: Chores
+      todo_item: 'scrub the toilet'
+    -
+      list_name: Chores
+      todo_item: 'mop the kitchen floor'
+    -
+      list_name: Chores
+      todo_item: 'sweep the porch'
+    -
+      list_name: Chores
+      todo_item: 'empty the dishwasher'
+  conditions:
+    -
+      type: todo_list
+      list_name: Chores
+      item: 'Mop the kitchen floor'
+      removed: true
+  sentences:
+    - 'remove mop the kitchen floor from the Chores list'
+    - 'take mop the kitchen floor off the Chores list'
+    - 'please delete mop the kitchen floor from the Chores list for me'
+    - "if you don't mind, remove mop the kitchen floor from the Chores list"
+    - 'erase mop the kitchen floor from the Chores list'
+    - 'take mop the kitchen floor off the Chores list please'
+    - "delete mop the kitchen floor from the Chores list if you don't mind"

@@ -1,0 +1,35 @@
+-
+  name: living_climates_set_temperature
+  setup:
+    -
+      entity_id: climate.ground_thermostat
+      temperature: 91
+  conditions:
+    -
+      entity_id: climate.ground_thermostat
+      temperature: 95
+  sentences:
+    -
+      - "What's the temperature in the living room?"
+      - 'Set it to 95.'
+    -
+      - 'Can you tell me the climate temperature for the living area please?'
+      - "If you don't mind, change it to 95 for me."
+    -
+      - 'Temperature check on living room climates?'
+      - 'Flick it up to 95.'
+    -
+      - 'How warm is the living room right now?'
+      - 'Please bump it to 95.'
+    -
+      - 'Living room climate status?'
+      - 'Flip it to 95.'
+    -
+      - "What's the current temperature for the living climates?"
+      - 'Crank it up to 95.'
+    -
+      - 'Tell me the living room temperature please?'
+      - 'Set that to 95.'
+    -
+      - 'Living room temps?'
+      - 'Make it 95.'

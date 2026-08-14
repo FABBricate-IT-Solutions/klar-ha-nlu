@@ -1,0 +1,26 @@
+- name: hallway_and_powder_room_lights_set_brightness
+  setup:
+  - entity_id: light.hallway_light
+    brightness: 31
+  - entity_id: light.powder_room_light
+    brightness: 31
+  conditions:
+  - entity_id: light.hallway_light
+    brightness: 100
+  - entity_id: light.powder_room_light
+    brightness: 100
+  sentences:
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100
+  - - Status Lichter Flur und Gäste-WC
+    - auf 100

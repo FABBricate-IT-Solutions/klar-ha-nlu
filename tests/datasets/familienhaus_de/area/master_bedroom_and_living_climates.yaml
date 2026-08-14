@@ -1,0 +1,12 @@
+- name: master_bedroom_and_living_climates_set_temperature
+  conditions:
+  - area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 20
+  - area: living
+    domain: climate
+    attributes:
+      temperature: 20
+  sentences:
+  - Heizung Schlafzimmer auf 20 Grad und Heizung Wohnzimmer auf 20 Grad

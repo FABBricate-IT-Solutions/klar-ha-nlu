@@ -1,0 +1,31 @@
+-
+  name: switch_washing_machine_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: switch.washing_machine
+      state: 'on'
+  sentences:
+    - 'Turn on the washing machine'
+    - 'Please start the washing machine for me'
+    - 'Flick on the laundry switch'
+    - "Flip on the washing machine if you don't mind"
+    - 'Activate the washing machine in the laundry room'
+    - 'Could you turn on the washer please'
+    - 'Power up the washing machine'
+    - 'Start the laundry machine now'
+-
+  name: switch_washing_machine_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: switch.washing_machine
+      state: 'off'
+  sentences:
+    - 'Turn off the washing machine'
+    - 'Please switch off the washer for me'
+    - "Flick off the washing machine in the laundry room if you don't mind"
+    - 'Deactivate the laundry washer'
+    - 'Flip the washing machine off'
+    - 'Shut down the washer in the laundry area'
+    - 'Could you power down the washing machine please'

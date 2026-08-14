@@ -1,0 +1,40 @@
+- name: laundry_lights_get_state
+  conditions:
+  - type: query
+    area: laundry
+    domain: light
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das light in der Waschküche an
+- name: laundry_lights_list_on_lights
+  conditions:
+  - type: query
+    area: laundry
+    domain: light
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das light in der Waschküche an
+- name: laundry_lights_list_off_lights
+  conditions:
+  - type: query
+    area: laundry
+    domain: light
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das light in der Waschküche an
+- name: laundry_lights_get_brightness
+  conditions:
+  - type: query
+    area: laundry
+    domain: light
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das light in der Waschküche an

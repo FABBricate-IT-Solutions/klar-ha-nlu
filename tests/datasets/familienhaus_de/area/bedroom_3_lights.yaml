@@ -1,0 +1,45 @@
+- name: bedroom_3_lights_turn_on
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 3 an
+  - Lichter Kinderzimmer 3 an
+  - Schalt die Lichter in Kinderzimmer 3 ein
+  - Kinderzimmer 3 Lichter an
+  - Kannst du die Lichter in Kinderzimmer 3 anmachen
+- name: bedroom_3_lights_turn_off
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 3 aus
+  - Lichter Kinderzimmer 3 aus
+  - Schalt die Lichter in Kinderzimmer 3 aus
+  - Kinderzimmer 3 Lichter aus
+- name: bedroom_3_lights_change_brightness
+  conditions:
+  - area: bedroom_3
+    domain: light
+    attributes:
+      brightness: 76
+  sentences:
+  - Setze Kinderzimmer 3 auf 76 Prozent
+  - Kinderzimmer 3 Helligkeit 76
+  - Dimme Kinderzimmer 3 auf 76
+  - Lichter Kinderzimmer 3 76 Prozent
+- name: bedroom_3_lights_change_color
+  conditions:
+  - area: bedroom_3
+    domain: light
+    attributes:
+      color: blue
+  sentences:
+  - Mach Kinderzimmer 3 blau
+  - Setze Kinderzimmer 3 auf blau
+  - Kinderzimmer 3 blau
+  - Lichter Kinderzimmer 3 blau

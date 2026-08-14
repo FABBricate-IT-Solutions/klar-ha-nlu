@@ -1,0 +1,84 @@
+-
+  name: master_bedroom_and_living_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: master_bedroom
+      domain: light
+      state: 'on'
+    -
+      type: action
+      area: living
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the lights in the master bedroom and living room'
+    - 'Flick on the lights in the master bedroom and living room'
+    - 'Please turn on the lights in the master bedroom and living room for me'
+    - "If you don't mind, flip on the lights in the master bedroom and living room"
+    - 'Activate the lights in the master bedroom and living room'
+    - 'Could you turn on the lights in the master bedroom and living room'
+    - 'Switch on the lights in the master bedroom and living room please'
+-
+  name: master_bedroom_and_living_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: master_bedroom
+      domain: light
+      state: 'off'
+    -
+      type: action
+      area: living
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the lights in the master bedroom and living room'
+    - 'Please switch off the lights in the master bedroom and living room for me'
+    - "Flick off the lights in the master bedroom and living room if you don't mind"
+    - 'Flip off the lights in the master bedroom and living room'
+    - 'Could you turn off the lights in the master bedroom and living room please'
+    - 'Shut off the lights in the master bedroom and living room'
+    - 'Kill the lights in the master bedroom and living room'
+-
+  name: master_bedroom_and_living_lights_change_brightness
+  conditions:
+    -
+      area: master_bedroom
+      domain: light
+      attributes:
+        brightness: 25
+    -
+      area: living
+      domain: light
+      attributes:
+        brightness: 25
+  sentences:
+    - 'Set the master bedroom and living room lights to 25 percent brightness'
+    - 'Please dim the lights in the master bedroom and living room to 25 for me'
+    - "Flick the master bedroom and living room lights down to 25 if you don't mind"
+    - 'Turn the master bedroom and living room lights to 25 percent'
+    - 'Could you please set the master bedroom and living room lights to 25 brightness'
+    - 'Flip the master bedroom and living room lights down to 25'
+    - 'Adjust the master bedroom and living room lights to 25 percent brightness please'
+-
+  name: master_bedroom_and_living_lights_change_color
+  conditions:
+    -
+      area: master_bedroom
+      domain: light
+      attributes:
+        color: white
+    -
+      area: living
+      domain: light
+      attributes:
+        color: white
+  sentences:
+    - 'Set the master bedroom and living room lights to white'
+    - 'Please change the lights in the master bedroom and living room to white for me'
+    - 'Flick the master bedroom and living room lights to white'
+    - "If you don't mind, flip the lights in the master bedroom and living room to white"
+    - 'Turn the master bedroom and living room lights white'
+    - 'Quickly set the lights in the master bedroom and living room to white'
+    - 'Change the color of the master bedroom and living room lights to white please'

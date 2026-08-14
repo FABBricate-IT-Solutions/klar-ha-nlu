@@ -1,0 +1,45 @@
+- name: main_bath_lights_turn_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Badezimmer an
+  - Lichter Badezimmer an
+  - Schalt die Lichter im Badezimmer ein
+  - Badezimmer Lichter an
+  - Kannst du die Lichter im Badezimmer anmachen
+- name: main_bath_lights_turn_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Badezimmer aus
+  - Lichter Badezimmer aus
+  - Schalt die Lichter im Badezimmer aus
+  - Badezimmer Lichter aus
+- name: main_bath_lights_change_brightness
+  conditions:
+  - area: main_bath
+    domain: light
+    attributes:
+      brightness: 73
+  sentences:
+  - Setze Badezimmer auf 73 Prozent
+  - Badezimmer Helligkeit 73
+  - Dimme Badezimmer auf 73
+  - Lichter Badezimmer 73 Prozent
+- name: main_bath_lights_change_color
+  conditions:
+  - area: main_bath
+    domain: light
+    attributes:
+      color: pink
+  sentences:
+  - Mach Badezimmer pink
+  - Setze Badezimmer auf pink
+  - Badezimmer pink
+  - Lichter Badezimmer pink

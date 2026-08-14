@@ -1,0 +1,30 @@
+- name: living_covers_open
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  sentences:
+  - Mach Rollo Wohnzimmer auf
+  - Rollo Wohnzimmer auf
+  - Öffne Rollo Wohnzimmer
+- name: living_covers_close
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  sentences:
+  - Mach Rollo Wohnzimmer zu
+  - Rollo Wohnzimmer zu
+  - Schließ Rollo Wohnzimmer
+- name: living_covers_set_position
+  conditions:
+  - area: living
+    domain: cover
+    attributes:
+      position: 46
+  sentences:
+  - Rollo Wohnzimmer auf 46 Prozent
+  - Setze Rollo Wohnzimmer auf 46
+  - Wohnzimmer Position 46

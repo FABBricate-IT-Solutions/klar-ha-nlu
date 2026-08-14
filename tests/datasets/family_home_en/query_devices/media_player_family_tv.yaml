@@ -1,0 +1,13 @@
+-
+  name: media_player_family_tv_get_status
+  conditions:
+    -
+      type: query
+      entity_id: media_player.family_tv
+  sentences:
+    - "What's the state of the Family Room TV"
+    - 'Get the current status of media player family tv'
+    - "Please tell me the status of the TV in the family room if you don't mind"
+    - 'Family room TV status'
+    - 'Could you check on the family room media player for me'
+    - "What's playing on the Family Room TV right now"

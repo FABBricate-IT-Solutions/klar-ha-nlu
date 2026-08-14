@@ -1,0 +1,43 @@
+- name: light_powder_room_light_turn_on
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Gäste-WC an
+  - Lichter Gäste-WC an
+  - Schalt die Lichter im Gäste-WC ein
+  - Gäste-WC Lichter an
+  - Kannst du die Lichter im Gäste-WC anmachen
+- name: light_powder_room_light_turn_off
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Gäste-WC aus
+  - Lichter Gäste-WC aus
+  - Schalt die Lichter im Gäste-WC aus
+  - Gäste-WC Lichter aus
+- name: light_powder_room_light_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 22
+  sentences:
+  - Setze Gäste-WC auf 22 Prozent
+  - Gäste-WC Helligkeit 22
+  - Dimme Gäste-WC auf 22
+  - Lichter Gäste-WC 22 Prozent
+- name: light_powder_room_light_change_color
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: black
+  sentences:
+  - Mach Gäste-WC black
+  - Setze Gäste-WC auf black
+  - Gäste-WC black
+  - Lichter Gäste-WC black

@@ -1,0 +1,32 @@
+-
+  name: hallway_lights_set_brightness
+  setup:
+    -
+      entity_id: light.hallway_light
+      brightness: 40
+  conditions:
+    -
+      entity_id: light.hallway_light
+      brightness: 69
+  sentences:
+    -
+      - 'What is the brightness of the hallway lights?'
+      - 'Set it to 69.'
+    -
+      - 'Could you tell me the current brightness in the hallway?'
+      - 'Please adjust it to 69 for me.'
+    -
+      - 'How bright are the lights in the hallway right now?'
+      - "Flick it up to 69 if you don't mind."
+    -
+      - "What's the hallway lighting level?"
+      - 'Flip it to 69.'
+    -
+      - 'Tell me the brightness of the hallway lights.'
+      - 'Make it 69 please.'
+    -
+      - 'How bright is the hallway?'
+      - 'Crank it to 69.'
+    -
+      - "What's the current brightness setting for the hallway?"
+      - 'Bump it to 69 for me.'

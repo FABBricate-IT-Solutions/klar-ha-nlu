@@ -1,0 +1,64 @@
+-
+  name: master_bath_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: master_bath
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the master bath lights'
+    - 'Please flick on the lights in the master bathroom for me'
+    - "If you don't mind, flip on the master bath lights"
+    - 'Activate master bathroom lighting'
+    - 'Can you turn on the lights in the master bath please'
+    - 'Switch on the master bath lights'
+    - 'Hey, turn on the lights in the master bathroom'
+-
+  name: master_bath_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: master_bath
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the master bath lights'
+    - 'Please switch off the lights in the master bathroom for me'
+    - "If you don't mind, flick off the master bath lights"
+    - 'Kill the lights in the master bath'
+    - 'Flip off the master bathroom lights please'
+    - 'Could you turn off the lights in the master bath'
+    - 'Deactivate the master bath lighting'
+-
+  name: master_bath_lights_change_brightness
+  conditions:
+    -
+      area: master_bath
+      domain: light
+      attributes:
+        brightness: 60
+  sentences:
+    - 'Set the master bath lights to 60 percent brightness'
+    - 'Please dim the master bathroom lights to 60 for me'
+    - "If you don't mind, adjust the master bath lighting to 60%"
+    - 'Flick the master bathroom lights down to 60'
+    - 'Quickly set master bath brightness to 60'
+    - 'Turn the master bath lights to 60 percent'
+    - 'Could you please change the master bathroom lights to 60 brightness'
+    - 'Flip the master bath lights to 60%'
+-
+  name: master_bath_lights_change_color
+  conditions:
+    -
+      area: master_bath
+      domain: light
+      attributes:
+        color: black
+  sentences:
+    - 'Turn the master bath lights black'
+    - 'Set master bathroom to black'
+    - 'Please change the master bath lights to black for me'
+    - "If you don't mind, flick the master bathroom lights to black"
+    - 'Flip the master bath lights to black please'
+    - 'Change master bathroom lights to black if you could'

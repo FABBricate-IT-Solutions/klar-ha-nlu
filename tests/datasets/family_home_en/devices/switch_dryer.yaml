@@ -1,0 +1,31 @@
+-
+  name: switch_dryer_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: switch.dryer
+      state: 'on'
+  sentences:
+    - 'Turn on the dryer'
+    - 'Please turn on the dryer for me'
+    - "If you don't mind, flick on the dryer in the laundry room"
+    - 'Flip on the dryer'
+    - 'Activate the dryer'
+    - 'Can you switch on the dryer in the laundry area'
+    - 'Turn the dryer on please'
+-
+  name: switch_dryer_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: switch.dryer
+      state: 'off'
+  sentences:
+    - 'Turn off the dryer'
+    - 'Please switch off the dryer for me'
+    - 'Deactivate dryer'
+    - "If you don't mind, flip off the dryer in the laundry"
+    - 'Kill the dryer'
+    - 'Can you turn the dryer off please'
+    - 'Shut down dryer in laundry room'
+    - 'Flick off the dryer'

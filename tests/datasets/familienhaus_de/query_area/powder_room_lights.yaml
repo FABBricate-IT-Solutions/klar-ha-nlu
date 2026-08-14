@@ -1,0 +1,40 @@
+- name: powder_room_lights_get_state
+  conditions:
+  - type: query
+    area: powder_room
+    domain: light
+  sentences:
+  - Ist Gäste-WC an
+  - Status Gäste-WC
+  - Wie ist der Zustand von Gäste-WC
+  - Ist das light im Gäste-WC an
+- name: powder_room_lights_list_on_lights
+  conditions:
+  - type: query
+    area: powder_room
+    domain: light
+  sentences:
+  - Ist Gäste-WC an
+  - Status Gäste-WC
+  - Wie ist der Zustand von Gäste-WC
+  - Ist das light im Gäste-WC an
+- name: powder_room_lights_list_off_lights
+  conditions:
+  - type: query
+    area: powder_room
+    domain: light
+  sentences:
+  - Ist Gäste-WC an
+  - Status Gäste-WC
+  - Wie ist der Zustand von Gäste-WC
+  - Ist das light im Gäste-WC an
+- name: powder_room_lights_get_brightness
+  conditions:
+  - type: query
+    area: powder_room
+    domain: light
+  sentences:
+  - Ist Gäste-WC an
+  - Status Gäste-WC
+  - Wie ist der Zustand von Gäste-WC
+  - Ist das light im Gäste-WC an

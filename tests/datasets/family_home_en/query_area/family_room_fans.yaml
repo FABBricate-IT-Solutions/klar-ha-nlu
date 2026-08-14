@@ -1,0 +1,60 @@
+-
+  name: family_room_fans_get_state
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: fan
+  sentences:
+    - "What's the status of the family room fans?"
+    - 'Family room fans state'
+    - 'Please check the fans in the family room for me'
+    - "If you don't mind, could you tell me if the family room fans are on?"
+    - 'Fan status family room'
+    - 'Are the family room fans running right now?'
+    - 'Get me the current state of the family room fans'
+-
+  name: family_room_fans_list_on_fans
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: fan
+  sentences:
+    - "What's the status of the family room fans?"
+    - 'Family room fans state'
+    - "Please tell me the current state of the fans in the family room if you don't mind"
+    - 'Check family room fan status'
+    - 'Could you get me the family room fans state please'
+    - 'Family room fans - current state'
+    - "If possible, what's happening with the fans in the family room"
+-
+  name: family_room_fans_list_off_fans
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: fan
+  sentences:
+    - "What's the status of the family room fans?"
+    - 'family room fans state'
+    - "please tell me the current state of the fans in the family room if you don't mind"
+    - 'check family room fans'
+    - 'could you check on the family room fans for me'
+    - 'family room fan status please'
+    - 'are the family room fans on or off'
+-
+  name: family_room_fans_get_fan_speed
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: fan
+  sentences:
+    - "What's the status of the family room fans?"
+    - 'Family room fans state please'
+    - "If you don't mind, could you tell me the current state of the fans in the family room?"
+    - 'Check family room fans'
+    - "Please give me the family room fan status if you don't mind"
+    - 'Family room fans - current state'
+    - 'Can you check the fans in the family room for me?'

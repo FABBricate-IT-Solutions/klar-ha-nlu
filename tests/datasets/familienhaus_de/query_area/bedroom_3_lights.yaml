@@ -1,0 +1,40 @@
+- name: bedroom_3_lights_get_state
+  conditions:
+  - type: query
+    area: bedroom_3
+    domain: light
+  sentences:
+  - Ist Kinderzimmer 3 an
+  - Status Kinderzimmer 3
+  - Wie ist der Zustand von Kinderzimmer 3
+  - Ist das light in Kinderzimmer 3 an
+- name: bedroom_3_lights_list_on_lights
+  conditions:
+  - type: query
+    area: bedroom_3
+    domain: light
+  sentences:
+  - Ist Kinderzimmer 3 an
+  - Status Kinderzimmer 3
+  - Wie ist der Zustand von Kinderzimmer 3
+  - Ist das light in Kinderzimmer 3 an
+- name: bedroom_3_lights_list_off_lights
+  conditions:
+  - type: query
+    area: bedroom_3
+    domain: light
+  sentences:
+  - Ist Kinderzimmer 3 an
+  - Status Kinderzimmer 3
+  - Wie ist der Zustand von Kinderzimmer 3
+  - Ist das light in Kinderzimmer 3 an
+- name: bedroom_3_lights_get_brightness
+  conditions:
+  - type: query
+    area: bedroom_3
+    domain: light
+  sentences:
+  - Ist Kinderzimmer 3 an
+  - Status Kinderzimmer 3
+  - Wie ist der Zustand von Kinderzimmer 3
+  - Ist das light in Kinderzimmer 3 an

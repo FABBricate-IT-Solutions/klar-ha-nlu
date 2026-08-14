@@ -1,0 +1,28 @@
+-
+  name: light_living_ceiling_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.living_ceiling
+  sentences:
+    - "What's the status of the living room ceiling light?"
+    - 'living ceiling state'
+    - "Please tell me the current state of the living room ceiling light if you don't mind"
+    - 'living ceiling light status'
+    - 'Could you check the living room ceiling light for me?'
+    - "What's going on with the living ceiling light right now?"
+    - 'living room ceiling light state please'
+-
+  name: light_living_ceiling_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.living_ceiling
+  sentences:
+    - "What's the brightness of the living room ceiling light?"
+    - 'Living ceiling brightness please'
+    - "If you don't mind, could you tell me the current brightness level for the living room ceiling light?"
+    - 'Get living ceiling brightness'
+    - 'Please check the brightness of the living room ceiling for me'
+    - 'Living room ceiling light brightness status'
+    - 'Can you tell me how bright the living ceiling is right now?'

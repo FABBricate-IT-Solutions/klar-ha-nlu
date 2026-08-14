@@ -1,0 +1,64 @@
+-
+  name: light_hallway_light_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.hallway_light
+      state: 'on'
+  sentences:
+    - 'Turn on the hallway light'
+    - 'Flick on the hallway light'
+    - 'Please flip on the hallway light for me'
+    - "If you don't mind, turn on the hallway light"
+    - 'Activate the hallway light'
+    - 'Switch on the hallway light'
+    - 'Can you please turn on the hallway light'
+    - 'Turn on the light in the hallway'
+-
+  name: light_hallway_light_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.hallway_light
+      state: 'off'
+  sentences:
+    - 'Turn off the hallway light'
+    - 'Please switch off the hallway light for me'
+    - "Flick off the light in the hallway if you don't mind"
+    - 'Flip the hallway light off'
+    - 'Could you turn off the light in the hallway'
+    - 'Deactivate the hallway light please'
+    - 'Shut off the hallway light'
+-
+  name: light_hallway_light_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.hallway_light
+      attributes:
+        brightness: 11
+  sentences:
+    - 'Set the hallway light to 11'
+    - 'Please dim the hallway light to 11 for me'
+    - 'Hallway light brightness 11'
+    - "If you don't mind, flick the hallway light to 11"
+    - 'Turn the hallway light brightness down to 11'
+    - 'Quickly set hallway light to 11'
+    - 'Flip the hallway light to 11 please'
+    - 'Hallway light 11'
+-
+  name: light_hallway_light_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.hallway_light
+      attributes:
+        color: white
+  sentences:
+    - 'Change the hallway light to white'
+    - 'Please set the Hallway Light to white for me'
+    - "Flick on white for the hallway light if you don't mind"
+    - 'Turn the light hallway light white'
+    - 'Could you make the Hallway Light white please'
+    - 'Flip the hallway light to white color'
+    - 'Set Hallway Light color to white'

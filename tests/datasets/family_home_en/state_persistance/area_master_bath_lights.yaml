@@ -1,0 +1,32 @@
+-
+  name: master_bath_lights_set_brightness
+  setup:
+    -
+      entity_id: light.master_bath_light
+      brightness: 34
+  conditions:
+    -
+      entity_id: light.master_bath_light
+      brightness: 50
+  sentences:
+    -
+      - "What's the brightness in the master bath?"
+      - 'Set it to fifty percent.'
+    -
+      - 'How bright are the lights in the master bath right now?'
+      - 'Please adjust to about fifty.'
+    -
+      - "Can you tell me the current brightness level in the master bath if you don't mind?"
+      - 'Flick it to fifty percent for me.'
+    -
+      - 'Master bath light brightness?'
+      - 'Flip it to fifty.'
+    -
+      - 'Tell me how bright the master bath is.'
+      - 'Turn it down to fifty percent please.'
+    -
+      - "What's the master bath brightness at?"
+      - "Make it fifty if you don't mind."
+    -
+      - 'How bright is the master bath lighting?'
+      - 'Set brightness to fifty percent.'

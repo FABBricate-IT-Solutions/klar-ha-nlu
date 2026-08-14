@@ -1,0 +1,36 @@
+- name: master_bedroom_and_living_covers_open
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  sentences:
+  - Mach Rollo Schlafzimmer auf und Mach Rollo Wohnzimmer auf
+- name: master_bedroom_and_living_covers_close
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  sentences:
+  - Mach Rollo Schlafzimmer zu und Mach Rollo Wohnzimmer zu
+- name: master_bedroom_and_living_covers_set_position
+  conditions:
+  - area: master_bedroom
+    domain: cover
+    attributes:
+      position: 19
+  - area: living
+    domain: cover
+    attributes:
+      position: 19
+  sentences:
+  - Rollo Schlafzimmer auf 19 Prozent und Rollo Wohnzimmer auf 19 Prozent

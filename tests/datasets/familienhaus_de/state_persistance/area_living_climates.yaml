@@ -1,0 +1,24 @@
+- name: living_climates_set_temperature
+  setup:
+  - entity_id: climate.ground_thermostat
+    temperature: 91
+  conditions:
+  - entity_id: climate.ground_thermostat
+    temperature: 95
+  sentences:
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Status Heizung Wohnzimmer
+    - auf 95
+  - - Mach Heizung Wohnzimmer an
+    - auf 95

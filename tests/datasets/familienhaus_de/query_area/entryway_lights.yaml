@@ -1,0 +1,40 @@
+- name: entryway_lights_get_state
+  conditions:
+  - type: query
+    area: entryway
+    domain: light
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das light am Eingang an
+- name: entryway_lights_list_on_lights
+  conditions:
+  - type: query
+    area: entryway
+    domain: light
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das light am Eingang an
+- name: entryway_lights_list_off_lights
+  conditions:
+  - type: query
+    area: entryway
+    domain: light
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das light am Eingang an
+- name: entryway_lights_get_brightness
+  conditions:
+  - type: query
+    area: entryway
+    domain: light
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das light am Eingang an

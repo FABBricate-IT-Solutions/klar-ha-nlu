@@ -1,0 +1,9 @@
+- name: media_player_living_tv_get_status
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das media_player im Wohnzimmer an

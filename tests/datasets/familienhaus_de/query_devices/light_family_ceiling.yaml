@@ -1,0 +1,18 @@
+- name: light_family_ceiling_get_status
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das light im Familienzimmer an
+- name: light_family_ceiling_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das light im Familienzimmer an

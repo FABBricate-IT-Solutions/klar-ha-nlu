@@ -1,0 +1,24 @@
+- name: laundry_lights_set_brightness
+  setup:
+  - entity_id: light.laundry_light
+    brightness: 18
+  conditions:
+  - entity_id: light.laundry_light
+    brightness: 62
+  sentences:
+  - - Status Lichter Waschküche
+    - auf 62
+  - - Status Lichter Waschküche
+    - auf 62
+  - - Mach Lichter Waschküche an
+    - auf 62
+  - - Status Lichter Waschküche
+    - auf 62
+  - - Status Lichter Waschküche
+    - auf 62
+  - - Mach Lichter Waschküche an
+    - auf 62
+  - - Status Lichter Waschküche
+    - auf 62
+  - - Status Lichter Waschküche
+    - auf 62

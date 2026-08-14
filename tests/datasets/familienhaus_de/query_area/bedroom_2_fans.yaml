@@ -1,0 +1,40 @@
+- name: bedroom_2_fans_get_state
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: fan
+  sentences:
+  - Ist Lüfter Kinderzimmer 2 an
+  - Status Lüfter Kinderzimmer 2
+  - Wie ist der Zustand von Lüfter Kinderzimmer 2
+  - Ist das fan in Kinderzimmer 2 an
+- name: bedroom_2_fans_list_on_fans
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: fan
+  sentences:
+  - Ist Lüfter Kinderzimmer 2 an
+  - Status Lüfter Kinderzimmer 2
+  - Wie ist der Zustand von Lüfter Kinderzimmer 2
+  - Ist das fan in Kinderzimmer 2 an
+- name: bedroom_2_fans_list_off_fans
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: fan
+  sentences:
+  - Ist Lüfter Kinderzimmer 2 an
+  - Status Lüfter Kinderzimmer 2
+  - Wie ist der Zustand von Lüfter Kinderzimmer 2
+  - Ist das fan in Kinderzimmer 2 an
+- name: bedroom_2_fans_get_fan_speed
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: fan
+  sentences:
+  - Ist Lüfter Kinderzimmer 2 an
+  - Status Lüfter Kinderzimmer 2
+  - Wie ist der Zustand von Lüfter Kinderzimmer 2
+  - Ist das fan in Kinderzimmer 2 an

@@ -1,0 +1,14 @@
+-
+  name: media_player_living_tv_get_status
+  conditions:
+    -
+      type: query
+      entity_id: media_player.living_tv
+  sentences:
+    - "What's the status of the living room TV?"
+    - 'living tv state'
+    - 'please check the living room TV for me'
+    - "if you don't mind, what's the living room TV doing"
+    - 'get living tv status'
+    - 'living room TV current state please'
+    - 'tell me about the living room TV'

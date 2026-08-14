@@ -1,0 +1,28 @@
+-
+  name: light_master_ensuite_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.master_ensuite
+  sentences:
+    - "What's the status of the Master Ensuite Light?"
+    - "If you don't mind, could you tell me if the master bedroom light is on or off?"
+    - 'Master Ensuite Light status check'
+    - 'Please check the light in the master ensuite for me'
+    - 'Is the Master Ensuite Light currently on?'
+    - 'Quick check: master bedroom light state'
+    - 'Tell me the current state of the light in master bedroom ensuite'
+-
+  name: light_master_ensuite_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.master_ensuite
+  sentences:
+    - "What's the brightness of the Master Ensuite Light?"
+    - 'Get brightness for light master ensuite'
+    - "Please tell me the current brightness of the Master Ensuite Light if you don't mind"
+    - 'Master Ensuite Light brightness level'
+    - 'Could you check how bright the Master Ensuite Light is right now'
+    - 'light master ensuite brightness'
+    - "If you don't mind, what's the brightness setting on the Master Ensuite Light"

@@ -1,0 +1,64 @@
+-
+  name: light_garage_light_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.garage_light
+      state: 'on'
+  sentences:
+    - 'Turn on the garage light'
+    - 'Please flick on the garage light for me'
+    - "If you don't mind, flip on the light in the garage"
+    - 'Garage light on'
+    - 'Could you turn on the light in the garage area'
+    - 'Activate the garage light'
+    - 'Hey, switch on the garage light please'
+-
+  name: light_garage_light_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.garage_light
+      state: 'off'
+  sentences:
+    - 'Turn off the garage light'
+    - 'Please switch off the garage light for me'
+    - "Flick off the garage light if you don't mind"
+    - 'Flip the garage light off'
+    - 'Deactivate the garage light'
+    - 'Kill the garage light please'
+    - 'Garage light off'
+    - 'Shut off the garage light for me'
+-
+  name: light_garage_light_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.garage_light
+      attributes:
+        brightness: 76
+  sentences:
+    - 'Set the garage light to 76 percent brightness'
+    - 'Please adjust the garage light brightness to 76 for me'
+    - "Turn the garage light brightness up to 76 if you don't mind"
+    - 'Flick the garage light to 76 percent'
+    - 'Change garage light brightness to 76'
+    - 'Could you set the garage light to 76 brightness please'
+    - 'Make the garage light 76 percent bright'
+    - 'Flip the garage light brightness to 76'
+-
+  name: light_garage_light_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.garage_light
+      attributes:
+        color: green
+  sentences:
+    - 'Change the garage light to green'
+    - 'Set garage light color to green'
+    - 'Please turn the garage light green for me'
+    - "Flick the garage light to green if you don't mind"
+    - 'Flip on green for the garage light'
+    - 'Make the garage light green now'
+    - 'Change garage light color to green please'

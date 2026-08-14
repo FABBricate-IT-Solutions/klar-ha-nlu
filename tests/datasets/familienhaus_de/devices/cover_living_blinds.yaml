@@ -1,0 +1,28 @@
+- name: cover_living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - Mach Rollo Wohnzimmer auf
+  - Rollo Wohnzimmer auf
+  - Öffne Rollo Wohnzimmer
+- name: cover_living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - Mach Rollo Wohnzimmer zu
+  - Rollo Wohnzimmer zu
+  - Schließ Rollo Wohnzimmer
+- name: cover_living_blinds_change_position
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 35
+  sentences:
+  - Rollo Wohnzimmer auf 35 Prozent
+  - Setze Wohnzimmer Rollo auf 35
+  - Wohnzimmer Position 35

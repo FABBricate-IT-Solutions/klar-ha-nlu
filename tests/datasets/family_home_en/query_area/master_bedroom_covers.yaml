@@ -1,0 +1,61 @@
+-
+  name: master_bedroom_covers_get_state
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+  sentences:
+    - "What's the status of the master bedroom windows?"
+    - 'Check the blinds in the master bedroom'
+    - "Please tell me if the curtains are open in the master bedroom if you don't mind"
+    - 'Master bedroom window state'
+    - 'Could you check the blinds for me in the master bedroom please'
+    - 'Are the master bedroom curtains open or closed'
+    - 'Get current state of master bedroom windows'
+    - 'Quick check on master bedroom blinds status'
+-
+  name: master_bedroom_covers_list_open_covers
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+  sentences:
+    - "What's the status of the master bedroom windows?"
+    - 'Are the blinds open in the master bedroom?'
+    - 'Check the curtains in the master bedroom please'
+    - 'Master bedroom window state'
+    - "If you don't mind, tell me if the blinds are open in the master bedroom"
+    - 'Quick check on master bedroom curtains'
+    - 'Could you tell me the current state of the windows in the master bedroom?'
+-
+  name: master_bedroom_covers_list_closed_covers
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+  sentences:
+    - "What's the status of the master bedroom windows?"
+    - 'Check the blinds in the master bedroom'
+    - "Please tell me if the curtains are open in the master bedroom if you don't mind"
+    - 'Master bedroom window state'
+    - 'Could you check the blinds for me in the master bedroom?'
+    - 'Are the master bedroom curtains closed or open?'
+    - 'Get current state of master bedroom windows please'
+    - 'Quick check on master bedroom blinds status'
+-
+  name: master_bedroom_covers_get_position
+  conditions:
+    -
+      type: query
+      area: master_bedroom
+      domain: cover
+  sentences:
+    - "What's the status of the master bedroom windows?"
+    - 'Are the blinds open in the master bedroom?'
+    - 'Please check the curtains in the master bedroom for me'
+    - 'Master bedroom window state'
+    - 'Quick check on master bedroom curtains'
+    - 'Tell me the current position of the master bedroom windows'

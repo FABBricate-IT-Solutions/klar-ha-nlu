@@ -1,0 +1,17 @@
+name: master_light_ceiling_vs_bedside_left_on
+conditions:
+- type: action
+  entity_id: light.master_ceiling
+  state: 'on'
+- type: action
+  entity_id: light.master_bedside_left
+  state: 'off'
+sentences:
+- - turn on the master bedroom light
+  - ceiling
+- - switch on the bedroom light
+  - the ceiling one
+- - master bedroom light on
+  - ceiling please
+- - flip the bedroom light on
+  - ceiling

@@ -1,0 +1,22 @@
+- name: bedroom_3_covers_set_position
+  setup:
+  - entity_id: cover.bedroom3_blinds
+    position: 32
+  conditions:
+  - entity_id: cover.bedroom3_blinds
+    position: 67
+  sentences:
+  - - Status Rollo Kinderzimmer 3
+    - auf 67
+  - - Status Rollo Kinderzimmer 3
+    - auf 67
+  - - Status Rollo Kinderzimmer 3
+    - auf 67
+  - - Status Rollo Kinderzimmer 3
+    - auf 67
+  - - Status Rollo Kinderzimmer 3
+    - auf 67
+  - - Status Rollo Kinderzimmer 3
+    - auf 67
+  - - Status Rollo Kinderzimmer 3
+    - auf 67

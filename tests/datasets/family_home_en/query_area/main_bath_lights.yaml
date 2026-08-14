@@ -1,0 +1,61 @@
+-
+  name: main_bath_lights_get_state
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: light
+  sentences:
+    - "What's the status of the main bathroom lights?"
+    - "If you don't mind, could you tell me the state of the main bathroom lights?"
+    - 'Main bath lights status'
+    - 'Please check the main bathroom lights for me'
+    - 'Are the main bathroom lights on or off?'
+    - 'Quick check main bathroom lighting state'
+    - 'Tell me about the main bathroom lights'
+-
+  name: main_bath_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: light
+  sentences:
+    - "What's the status of the main bathroom lights?"
+    - 'Are the main bathroom lights on or off?'
+    - 'Please check the main bathroom lights for me'
+    - "If you don't mind, tell me the main bathroom light status"
+    - 'Main bath lights state'
+    - 'Could you get the current state of the main bathroom lights please'
+    - "Lights in the main bathroom - what's their status?"
+-
+  name: main_bath_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: light
+  sentences:
+    - "What's the status of the main bathroom lights?"
+    - 'Are the lights on in the main bathroom?'
+    - "Please tell me the current state of the main bathroom lights if you don't mind."
+    - 'Main bath lights status.'
+    - 'Could you check if the main bathroom lights are on for me?'
+    - 'Get the main bathroom light state.'
+    - 'If you could, please report the main bathroom lights condition.'
+    - 'Main bathroom lights - current status?'
+-
+  name: main_bath_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: main_bath
+      domain: light
+  sentences:
+    - "What's the status of the main bathroom lights?"
+    - 'Are the lights on in the main bathroom?'
+    - 'Please check the main bathroom lights for me'
+    - 'Main bath lights state'
+    - "If you don't mind, could you tell me if the main bathroom lights are on?"
+    - 'Lights in main bathroom - current status please'
+    - 'Tell me the main bathroom light status'

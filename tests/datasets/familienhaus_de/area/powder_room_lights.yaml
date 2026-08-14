@@ -1,0 +1,45 @@
+- name: powder_room_lights_turn_on
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Gäste-WC an
+  - Lichter Gäste-WC an
+  - Schalt die Lichter im Gäste-WC ein
+  - Gäste-WC Lichter an
+  - Kannst du die Lichter im Gäste-WC anmachen
+- name: powder_room_lights_turn_off
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Gäste-WC aus
+  - Lichter Gäste-WC aus
+  - Schalt die Lichter im Gäste-WC aus
+  - Gäste-WC Lichter aus
+- name: powder_room_lights_change_brightness
+  conditions:
+  - area: powder_room
+    domain: light
+    attributes:
+      brightness: 52
+  sentences:
+  - Setze Gäste-WC auf 52 Prozent
+  - Gäste-WC Helligkeit 52
+  - Dimme Gäste-WC auf 52
+  - Lichter Gäste-WC 52 Prozent
+- name: powder_room_lights_change_color
+  conditions:
+  - area: powder_room
+    domain: light
+    attributes:
+      color: purple
+  sentences:
+  - Mach Gäste-WC lila
+  - Setze Gäste-WC auf lila
+  - Gäste-WC lila
+  - Lichter Gäste-WC lila

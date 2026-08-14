@@ -1,0 +1,40 @@
+- name: family_room_fans_get_state
+  conditions:
+  - type: query
+    area: family_room
+    domain: fan
+  sentences:
+  - Ist Lüfter Familienzimmer an
+  - Status Lüfter Familienzimmer
+  - Wie ist der Zustand von Lüfter Familienzimmer
+  - Ist das fan im Familienzimmer an
+- name: family_room_fans_list_on_fans
+  conditions:
+  - type: query
+    area: family_room
+    domain: fan
+  sentences:
+  - Ist Lüfter Familienzimmer an
+  - Status Lüfter Familienzimmer
+  - Wie ist der Zustand von Lüfter Familienzimmer
+  - Ist das fan im Familienzimmer an
+- name: family_room_fans_list_off_fans
+  conditions:
+  - type: query
+    area: family_room
+    domain: fan
+  sentences:
+  - Ist Lüfter Familienzimmer an
+  - Status Lüfter Familienzimmer
+  - Wie ist der Zustand von Lüfter Familienzimmer
+  - Ist das fan im Familienzimmer an
+- name: family_room_fans_get_fan_speed
+  conditions:
+  - type: query
+    area: family_room
+    domain: fan
+  sentences:
+  - Ist Lüfter Familienzimmer an
+  - Status Lüfter Familienzimmer
+  - Wie ist der Zustand von Lüfter Familienzimmer
+  - Ist das fan im Familienzimmer an

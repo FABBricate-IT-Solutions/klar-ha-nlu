@@ -1,0 +1,59 @@
+-
+  name: living_lights_get_state
+  conditions:
+    -
+      type: query
+      area: living
+      domain: light
+  sentences:
+    - "What's the status of the living room lights?"
+    - 'Are the living room lights on or off?'
+    - 'Please check the living room lights for me.'
+    - 'Living room lights state.'
+    - "If you don't mind, could you tell me about the living room lights?"
+    - 'Quick check: living room lights?'
+    - 'Tell me the current state of the living room lights.'
+    - "Living room lights - what's their status?"
+-
+  name: living_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: living
+      domain: light
+  sentences:
+    - "What's the status of the living room lights"
+    - 'Lights living room state'
+    - "Please tell me the current state of the living room lights if you don't mind"
+    - 'Get living room lights status'
+    - 'Could you check the living room lights for me'
+    - 'Living room lights current state please'
+    - 'Are the living room lights on or off right now'
+-
+  name: living_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: living
+      domain: light
+  sentences:
+    - "What's the status of the living room lights?"
+    - 'Are the living room lights on?'
+    - 'Please check the lights in the living room for me.'
+    - "If you don't mind, could you tell me if the living room lights are on?"
+    - 'Living room lights status.'
+    - 'Can you check the living room lights?'
+-
+  name: living_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: living
+      domain: light
+  sentences:
+    - "What's the status of the living room lights?"
+    - 'Living room lights state please'
+    - "If you don't mind, could you check the living room lights for me?"
+    - 'Please tell me if the living room lights are on or off'
+    - 'Current living room lighting status'
+    - "Hey, what's up with the living room lights?"

@@ -1,0 +1,45 @@
+- name: kitchen_lights_turn_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Küche an
+  - Lichter Küche an
+  - Schalt die Lichter in der Küche ein
+  - Küche Lichter an
+  - Kannst du die Lichter in der Küche anmachen
+- name: kitchen_lights_turn_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Küche aus
+  - Lichter Küche aus
+  - Schalt die Lichter in der Küche aus
+  - Küche Lichter aus
+- name: kitchen_lights_change_brightness
+  conditions:
+  - area: kitchen
+    domain: light
+    attributes:
+      brightness: 45
+  sentences:
+  - Setze Küche auf 45 Prozent
+  - Küche Helligkeit 45
+  - Dimme Küche auf 45
+  - Lichter Küche 45 Prozent
+- name: kitchen_lights_change_color
+  conditions:
+  - area: kitchen
+    domain: light
+    attributes:
+      color: pink
+  sentences:
+  - Mach Küche pink
+  - Setze Küche auf pink
+  - Küche pink
+  - Lichter Küche pink

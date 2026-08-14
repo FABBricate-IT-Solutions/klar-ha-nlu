@@ -1,0 +1,43 @@
+- name: light_laundry_light_turn_on
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in der Waschküche an
+  - Lichter Waschküche an
+  - Schalt die Lichter in der Waschküche ein
+  - Waschküche Lichter an
+  - Kannst du die Lichter in der Waschküche anmachen
+- name: light_laundry_light_turn_off
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in der Waschküche aus
+  - Lichter Waschküche aus
+  - Schalt die Lichter in der Waschküche aus
+  - Waschküche Lichter aus
+- name: light_laundry_light_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 18
+  sentences:
+  - Setze Waschküche auf 18 Prozent
+  - Waschküche Helligkeit 18
+  - Dimme Waschküche auf 18
+  - Lichter Waschküche 18 Prozent
+- name: light_laundry_light_change_color
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: white
+  sentences:
+  - Mach Waschküche weiß
+  - Setze Waschküche auf weiß
+  - Waschküche weiß
+  - Lichter Waschküche weiß

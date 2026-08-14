@@ -1,0 +1,45 @@
+-
+  name: entryway_locks_get_state
+  conditions:
+    -
+      type: query
+      area: entryway
+      domain: lock
+  sentences:
+    - "What's the status of the entryway locks?"
+    - 'Check entryway locks'
+    - 'Please tell me if the entryway is locked'
+    - "If you don't mind, what's the lock status for the entryway?"
+    - 'Entryway locks state'
+    - 'Could you check the locks in the entryway for me?'
+    - 'Are the entryway locks locked or unlocked?'
+-
+  name: entryway_locks_list_locked_locks
+  conditions:
+    -
+      type: query
+      area: entryway
+      domain: lock
+  sentences:
+    - "What's the status of the entryway locks?"
+    - 'Check entryway locks'
+    - 'Please tell me if the entryway is locked'
+    - "If you don't mind, what's the lock status for the entryway?"
+    - 'Entryway locks state'
+    - 'Could you check the entryway locks for me?'
+    - 'Are the entryway locks locked or unlocked?'
+-
+  name: entryway_locks_list_unlocked_locks
+  conditions:
+    -
+      type: query
+      area: entryway
+      domain: lock
+  sentences:
+    - "What's the status of the entryway locks?"
+    - 'Check entryway locks'
+    - 'Please tell me if the entryway locks are locked'
+    - "If you don't mind, what's the current state of the entryway locks for me?"
+    - 'Entryway locks state'
+    - 'Could you check the entryway locks please'
+    - 'Are the entryway locks locked or unlocked?'

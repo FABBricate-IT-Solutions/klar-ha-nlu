@@ -1,0 +1,9 @@
+- name: climate_upper_thermostat_get_temperature
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - Wie warm ist es im Schlafzimmer
+  - Temperatur Schlafzimmer
+  - Wie ist die Temperatur im Schlafzimmer
+  - Wie kalt ist es im Schlafzimmer

@@ -1,0 +1,18 @@
+- name: cover_bedroom3_blinds_get_status
+  conditions:
+  - type: query
+    entity_id: cover.bedroom3_blinds
+  sentences:
+  - Ist Kinderzimmer 3 an
+  - Status Kinderzimmer 3
+  - Wie ist der Zustand von Kinderzimmer 3
+  - Ist das cover in Kinderzimmer 3 an
+- name: cover_bedroom3_blinds_get_position
+  conditions:
+  - type: query
+    entity_id: cover.bedroom3_blinds
+  sentences:
+  - Ist Kinderzimmer 3 an
+  - Status Kinderzimmer 3
+  - Wie ist der Zustand von Kinderzimmer 3
+  - Ist das cover in Kinderzimmer 3 an

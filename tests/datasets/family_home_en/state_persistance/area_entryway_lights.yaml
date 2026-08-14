@@ -1,0 +1,35 @@
+-
+  name: entryway_lights_set_brightness
+  setup:
+    -
+      entity_id: light.entryway_light
+      brightness: 95
+  conditions:
+    -
+      entity_id: light.entryway_light
+      brightness: 54
+  sentences:
+    -
+      - 'What is the brightness of the entryway lights?'
+      - 'Set it to 54.'
+    -
+      - 'Can you tell me how bright the entryway is right now?'
+      - 'Please adjust it to 54 for me.'
+    -
+      - "What's the current brightness level in the entryway?"
+      - "If you don't mind, make it 54."
+    -
+      - 'How bright are the entryway lights?'
+      - 'Flick it up to 54.'
+    -
+      - 'Tell me the brightness of the entryway lights please.'
+      - 'Flip it to 54.'
+    -
+      - 'Entryway light brightness?'
+      - 'Turn it to 54.'
+    -
+      - "What's the entryway brightness at?"
+      - 'Set it to 54 if you could.'
+    -
+      - 'How bright is the entryway right now?'
+      - 'Make it 54 please.'

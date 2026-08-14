@@ -1,0 +1,11 @@
+- name: master_bedroom_climates_set_temperature
+  conditions:
+  - area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 20
+  sentences:
+  - Heizung Schlafzimmer auf 20 Grad
+  - Stell die Temperatur im Schlafzimmer auf 20
+  - Temperatur Schlafzimmer 20
+  - Schlafzimmer auf 20 Grad

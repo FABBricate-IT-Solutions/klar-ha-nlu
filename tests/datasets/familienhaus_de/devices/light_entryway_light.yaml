@@ -1,0 +1,43 @@
+- name: light_entryway_light_turn_on
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - Mach die Lichter am Eingang an
+  - Lichter Eingang an
+  - Schalt die Lichter am Eingang ein
+  - Eingang Lichter an
+  - Kannst du die Lichter am Eingang anmachen
+- name: light_entryway_light_turn_off
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter am Eingang aus
+  - Lichter Eingang aus
+  - Schalt die Lichter am Eingang aus
+  - Eingang Lichter aus
+- name: light_entryway_light_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 88
+  sentences:
+  - Setze Eingang auf 88 Prozent
+  - Eingang Helligkeit 88
+  - Dimme Eingang auf 88
+  - Lichter Eingang 88 Prozent
+- name: light_entryway_light_change_color
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: yellow
+  sentences:
+  - Mach Eingang gelb
+  - Setze Eingang auf gelb
+  - Eingang gelb
+  - Lichter Eingang gelb

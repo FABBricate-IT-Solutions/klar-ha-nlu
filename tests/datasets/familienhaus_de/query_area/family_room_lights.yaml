@@ -1,0 +1,40 @@
+- name: family_room_lights_get_state
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das light im Familienzimmer an
+- name: family_room_lights_list_on_lights
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das light im Familienzimmer an
+- name: family_room_lights_list_off_lights
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das light im Familienzimmer an
+- name: family_room_lights_get_brightness
+  conditions:
+  - type: query
+    area: family_room
+    domain: light
+  sentences:
+  - Ist Familienzimmer an
+  - Status Familienzimmer
+  - Wie ist der Zustand von Familienzimmer
+  - Ist das light im Familienzimmer an

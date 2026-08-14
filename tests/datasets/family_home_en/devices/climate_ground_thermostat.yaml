@@ -1,0 +1,16 @@
+-
+  name: climate_ground_thermostat_set_temperature
+  conditions:
+    -
+      type: action
+      entity_id: climate.ground_thermostat
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Set the Ground Floor Thermostat to 23 degrees'
+    - "Please adjust the living room climate ground thermostat to 23 if you don't mind"
+    - 'Flick the ground thermostat up to 23'
+    - 'Turn the living area climate ground thermostat to 23 please'
+    - 'Flip the Ground Floor Thermostat to 23 degrees'
+    - 'Could you set the living room ground thermostat to 23 for me'
+    - 'Make the climate ground thermostat 23 degrees'

@@ -1,0 +1,9 @@
+- name: switch_dishwasher_get_status
+  conditions:
+  - type: query
+    entity_id: switch.dishwasher
+  sentences:
+  - Ist Küche an
+  - Status Küche
+  - Wie ist der Zustand von Küche
+  - Ist das switch in der Küche an

@@ -1,0 +1,24 @@
+- name: bedroom_4_lights_set_brightness
+  setup:
+  - entity_id: light.bedroom4_ceiling
+    brightness: 93
+  conditions:
+  - entity_id: light.bedroom4_ceiling
+    brightness: 80
+  sentences:
+  - - Status Lichter Kinderzimmer 4
+    - auf 80
+  - - Status Lichter Kinderzimmer 4
+    - auf 80
+  - - Status Lichter Kinderzimmer 4
+    - auf 80
+  - - Status Lichter Kinderzimmer 4
+    - auf 80
+  - - Mach Lichter Kinderzimmer 4 an
+    - auf 80
+  - - Status Lichter Kinderzimmer 4
+    - auf 80
+  - - Status Lichter Kinderzimmer 4
+    - auf 80
+  - - Status Lichter Kinderzimmer 4
+    - auf 80

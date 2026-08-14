@@ -1,0 +1,45 @@
+- name: bedroom_2_lights_turn_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 2 an
+  - Lichter Kinderzimmer 2 an
+  - Schalt die Lichter in Kinderzimmer 2 ein
+  - Kinderzimmer 2 Lichter an
+  - Kannst du die Lichter in Kinderzimmer 2 anmachen
+- name: bedroom_2_lights_turn_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 2 aus
+  - Lichter Kinderzimmer 2 aus
+  - Schalt die Lichter in Kinderzimmer 2 aus
+  - Kinderzimmer 2 Lichter aus
+- name: bedroom_2_lights_change_brightness
+  conditions:
+  - area: bedroom_2
+    domain: light
+    attributes:
+      brightness: 65
+  sentences:
+  - Setze Kinderzimmer 2 auf 65 Prozent
+  - Kinderzimmer 2 Helligkeit 65
+  - Dimme Kinderzimmer 2 auf 65
+  - Lichter Kinderzimmer 2 65 Prozent
+- name: bedroom_2_lights_change_color
+  conditions:
+  - area: bedroom_2
+    domain: light
+    attributes:
+      color: pink
+  sentences:
+  - Mach Kinderzimmer 2 pink
+  - Setze Kinderzimmer 2 auf pink
+  - Kinderzimmer 2 pink
+  - Lichter Kinderzimmer 2 pink

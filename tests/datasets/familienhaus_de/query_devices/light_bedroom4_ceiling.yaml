@@ -1,0 +1,18 @@
+- name: light_bedroom4_ceiling_get_status
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - Ist Kinderzimmer 4 an
+  - Status Kinderzimmer 4
+  - Wie ist der Zustand von Kinderzimmer 4
+  - Ist das light in Kinderzimmer 4 an
+- name: light_bedroom4_ceiling_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - Ist Kinderzimmer 4 an
+  - Status Kinderzimmer 4
+  - Wie ist der Zustand von Kinderzimmer 4
+  - Ist das light in Kinderzimmer 4 an

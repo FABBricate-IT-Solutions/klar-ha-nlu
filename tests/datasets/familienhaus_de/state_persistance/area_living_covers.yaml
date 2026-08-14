@@ -1,0 +1,22 @@
+- name: living_covers_set_position
+  setup:
+  - entity_id: cover.living_blinds
+    position: 13
+  conditions:
+  - entity_id: cover.living_blinds
+    position: 86
+  sentences:
+  - - Status Rollo Wohnzimmer
+    - auf 86
+  - - Status Rollo Wohnzimmer
+    - auf 86
+  - - Status Rollo Wohnzimmer
+    - auf 86
+  - - Status Rollo Wohnzimmer
+    - auf 86
+  - - Status Rollo Wohnzimmer
+    - auf 86
+  - - Status Rollo Wohnzimmer
+    - auf 86
+  - - Status Rollo Wohnzimmer
+    - auf 86

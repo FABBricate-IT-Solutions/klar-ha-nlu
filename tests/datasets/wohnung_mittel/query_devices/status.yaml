@@ -1,0 +1,15 @@
+- name: status_waschmaschine
+  conditions:
+    - {type: query, entity_id: switch.badezimmer_waschmaschine}
+  sentences:
+    - 'Ist die Waschmaschine an'
+    - 'Status Waschmaschine'
+    - 'Läuft die Waschmaschine'
+
+- name: status_r2d2
+  conditions:
+    - {type: query, entity_id: vacuum.r2d2}
+  sentences:
+    - 'Was macht R2D2'
+    - 'Status Staubsauger'
+    - 'Ist der Sauger an'

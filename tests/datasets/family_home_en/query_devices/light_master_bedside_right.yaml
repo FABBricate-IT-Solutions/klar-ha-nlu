@@ -1,0 +1,29 @@
+-
+  name: light_master_bedside_right_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.master_bedside_right
+  sentences:
+    - "What's the status of the right bedside lamp?"
+    - 'Right bedside lamp state please'
+    - "If you don't mind, can you tell me if the right bedside lamp is on in the master bedroom?"
+    - 'Please check the right bedside lamp for me'
+    - 'Is the master bedroom right bedside lamp currently on?'
+    - 'Quick check: right bedside lamp status'
+    - 'Could you let me know the state of the light master bedside right please?'
+-
+  name: light_master_bedside_right_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.master_bedside_right
+  sentences:
+    - "What's the brightness of the Right Bedside Lamp?"
+    - 'Tell me the current brightness level of the Right Bedside Lamp in the master bedroom'
+    - 'Please check the brightness of the Right Bedside Lamp for me'
+    - "If you don't mind, what's the brightness setting on the Right Bedside Lamp?"
+    - 'Right Bedside Lamp brightness'
+    - 'Could you tell me how bright the Right Bedside Lamp is right now?'
+    - 'Get brightness for light master bedside right'
+    - "What's the brightness level of the Right Bedside Lamp in master bedroom?"

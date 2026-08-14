@@ -1,0 +1,30 @@
+- name: laundry_switchs_get_state
+  conditions:
+  - type: query
+    area: laundry
+    domain: switch
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das switch in der Waschküche an
+- name: laundry_switchs_list_on_switchs
+  conditions:
+  - type: query
+    area: laundry
+    domain: switch
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das switch in der Waschküche an
+- name: laundry_switchs_list_off_switchs
+  conditions:
+  - type: query
+    area: laundry
+    domain: switch
+  sentences:
+  - Ist Waschküche an
+  - Status Waschküche
+  - Wie ist der Zustand von Waschküche
+  - Ist das switch in der Waschküche an

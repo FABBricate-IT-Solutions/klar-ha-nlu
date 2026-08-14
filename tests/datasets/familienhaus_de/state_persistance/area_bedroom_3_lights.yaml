@@ -1,0 +1,20 @@
+- name: bedroom_3_lights_set_brightness
+  setup:
+  - entity_id: light.bedroom3_ceiling
+    brightness: 57
+  conditions:
+  - entity_id: light.bedroom3_ceiling
+    brightness: 63
+  sentences:
+  - - Status Lichter Kinderzimmer 3
+    - auf 63
+  - - Status Lichter Kinderzimmer 3
+    - auf 63
+  - - Status Lichter Kinderzimmer 3
+    - auf 63
+  - - Status Lichter Kinderzimmer 3
+    - auf 63
+  - - Status Lichter Kinderzimmer 3
+    - auf 63
+  - - Mach Lichter Kinderzimmer 3 an
+    - auf 63

@@ -1,0 +1,22 @@
+- name: hallway_lights_set_brightness
+  setup:
+  - entity_id: light.hallway_light
+    brightness: 40
+  conditions:
+  - entity_id: light.hallway_light
+    brightness: 69
+  sentences:
+  - - Status Lichter Flur
+    - auf 69
+  - - Status Lichter Flur
+    - auf 69
+  - - Status Lichter Flur
+    - auf 69
+  - - Status Lichter Flur
+    - auf 69
+  - - Status Lichter Flur
+    - auf 69
+  - - Status Lichter Flur
+    - auf 69
+  - - Status Lichter Flur
+    - auf 69

@@ -1,0 +1,28 @@
+- name: living_lights_set_brightness
+  setup:
+  - entity_id: light.living_ceiling
+    brightness: 83
+  - entity_id: light.living_lamp
+    brightness: 83
+  conditions:
+  - entity_id: light.living_ceiling
+    brightness: 55
+  - entity_id: light.living_lamp
+    brightness: 55
+  sentences:
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55
+  - - Status Lichter Wohnzimmer
+    - auf 55

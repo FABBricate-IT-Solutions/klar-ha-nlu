@@ -1,0 +1,20 @@
+- name: laundry_switchs_turn_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: switch
+    state: 'on'
+  sentences:
+  - Schalt die Schalter in der Waschküche an
+  - Schalter Waschküche an
+  - Mach die Schalter in der Waschküche an
+- name: laundry_switchs_turn_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: switch
+    state: 'off'
+  sentences:
+  - Schalt die Schalter in der Waschküche aus
+  - Schalter Waschküche aus
+  - Mach die Schalter in der Waschküche aus

@@ -1,0 +1,18 @@
+- name: light_living_ceiling_get_status
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das light im Wohnzimmer an
+- name: light_living_ceiling_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - Ist Wohnzimmer an
+  - Status Wohnzimmer
+  - Wie ist der Zustand von Wohnzimmer
+  - Ist das light im Wohnzimmer an

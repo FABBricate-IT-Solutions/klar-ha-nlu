@@ -1,0 +1,41 @@
+-
+  name: living_lights_set_brightness
+  setup:
+    -
+      entity_id: light.living_ceiling
+      brightness: 83
+    -
+      entity_id: light.living_lamp
+      brightness: 83
+  conditions:
+    -
+      entity_id: light.living_ceiling
+      brightness: 55
+    -
+      entity_id: light.living_lamp
+      brightness: 55
+  sentences:
+    -
+      - 'What is the brightness of the living room lights?'
+      - 'Set it to fifty five percent.'
+    -
+      - 'Can you tell me how bright the lights are in the living room please?'
+      - 'Make it fifty five.'
+    -
+      - 'Please check the brightness level of the living room lights for me.'
+      - "Adjust it to around fifty five percent if you don't mind."
+    -
+      - "What's the current brightness in the living room?"
+      - 'Flick it up to fifty five.'
+    -
+      - 'Tell me the brightness of the living room lights.'
+      - 'Flip it to fifty five percent.'
+    -
+      - 'How bright are the living room lights right now?'
+      - 'Turn it to fifty five.'
+    -
+      - 'Could you check the living room light brightness for me?'
+      - 'Change it to fifty five percent please.'
+    -
+      - "What's the brightness setting in the living room?"
+      - 'Set it around fifty five.'

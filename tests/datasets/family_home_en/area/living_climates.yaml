@@ -1,0 +1,16 @@
+-
+  name: living_climates_set_temperature
+  conditions:
+    -
+      area: living
+      domain: climate
+      attributes:
+        temperature: 20
+  sentences:
+    - 'Set living room climate to 20 degrees'
+    - 'Please adjust the living room temperature to 20 for me'
+    - "Flick the living room climate to 20 if you don't mind"
+    - 'Turn living room temp to 20'
+    - 'Flip the living room climate control to 20 please'
+    - 'Could you set the living room to 20 degrees for me'
+    - 'Make living room climate 20'

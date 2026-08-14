@@ -1,0 +1,114 @@
+-
+  name: movie_night
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.living_lamp
+      state: 'on'
+      attributes:
+        brightness: 20
+    -
+      type: action
+      entity_id: media_player.living_tv
+      state: 'on'
+    -
+      type: action
+      entity_id: cover.living_blinds
+      state: closed
+  sentences:
+    - 'Turn on the Movie Night scene'
+    - 'Flick on movie night scene'
+    - 'Flip on the Movie Night scene in ~area~'
+    - 'Please start the Movie Night scene for me'
+    - "If you don't mind, activate movie night scene"
+    - 'Quickly turn on movie night scene'
+    - 'Engage the Movie Night scene now'
+-
+  name: dinner_time
+  conditions:
+    -
+      type: action
+      entity_id: light.dining_pendant
+      state: 'on'
+      attributes:
+        brightness: 90
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      state: 'on'
+    -
+      type: action
+      entity_id: light.kitchen_island
+      state: 'on'
+      attributes:
+        brightness: 80
+  sentences:
+    - 'Turn on the Dinner Time scene'
+    - 'Flick on dinner time scene'
+    - 'Please activate dinner time scene for me'
+    - "If you don't mind, flip on the Dinner Time scene in ~area~"
+    - 'Activate dinner time scene'
+    - 'Quickly turn on dinner time scene'
+    - 'Can you start the dinner time scene please'
+-
+  name: kids_bedtime
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom2_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.bedroom3_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.bedroom4_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.hallway_light
+      state: 'on'
+      attributes:
+        brightness: 15
+  sentences:
+    - 'Turn on the Kids Bedtime scene'
+    - 'Please flick on kids bedtime scene for me'
+    - "If you don't mind, flip on the Kids Bedtime scene in the ~area~"
+    - 'Activate kids bedtime scene'
+    - 'Could you switch on kids bedtime scene please'
+    - 'Start the Kids Bedtime scene'
+    - 'Quickly enable kids bedtime scene for me'
+-
+  name: good_morning
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      state: 'on'
+    -
+      type: action
+      entity_id: light.dining_pendant
+      state: 'on'
+      attributes:
+        brightness: 100
+    -
+      type: action
+      entity_id: cover.living_blinds
+      state: open
+    -
+      type: action
+      entity_id: cover.master_blinds
+      state: open
+  sentences:
+    - 'Turn on the Good Morning scene'
+    - 'Flip on good morning scene'
+    - 'Please activate the Good Morning scene for me'
+    - "If you don't mind, flick on the Good Morning scene"
+    - 'Activate good morning scene in the ~area~'
+    - 'Quickly turn on good morning scene'
+    - 'Could you enable the Good Morning scene please'

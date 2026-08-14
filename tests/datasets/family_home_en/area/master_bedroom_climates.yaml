@@ -1,0 +1,16 @@
+-
+  name: master_bedroom_climates_set_temperature
+  conditions:
+    -
+      area: master_bedroom
+      domain: climate
+      attributes:
+        temperature: 20
+  sentences:
+    - 'Set the master bedroom climate to 20 degrees'
+    - 'Please adjust the master bedroom temperature to 20 for me'
+    - "If you don't mind, set the master bedroom climate to 20"
+    - 'Flick the master bedroom temperature to 20'
+    - 'Turn the master bedroom climate down to 20'
+    - 'Could you please change the master bedroom to 20 degrees'
+    - 'Flip the master bedroom temperature to 20'

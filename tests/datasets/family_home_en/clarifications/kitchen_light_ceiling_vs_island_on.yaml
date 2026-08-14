@@ -1,0 +1,17 @@
+name: kitchen_light_ceiling_vs_island_on
+conditions:
+- type: action
+  entity_id: light.kitchen_ceiling
+  state: 'on'
+- type: action
+  entity_id: light.kitchen_island
+  state: 'off'
+sentences:
+- - turn on the kitchen light
+  - ceiling
+- - switch on the kitchen lights
+  - just the ceiling
+- - kitchen light on
+  - ceiling one
+- - can you turn on the kitchen light
+  - ceiling please

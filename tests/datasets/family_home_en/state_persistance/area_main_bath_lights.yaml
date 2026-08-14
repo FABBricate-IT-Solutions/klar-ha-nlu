@@ -1,0 +1,35 @@
+-
+  name: main_bath_lights_set_brightness
+  setup:
+    -
+      entity_id: light.main_bath_light
+      brightness: 77
+  conditions:
+    -
+      entity_id: light.main_bath_light
+      brightness: 96
+  sentences:
+    -
+      - "What's the brightness of the main bath lights?"
+      - 'Set it to 96.'
+    -
+      - 'Tell me how bright the bathroom lights are right now.'
+      - 'Please change it to 96 for me.'
+    -
+      - 'Can you check the brightness level in the main bath?'
+      - "If you don't mind, flick it up to 96."
+    -
+      - 'How bright are the lights in the main bathroom?'
+      - 'Flip it to 96.'
+    -
+      - "What's the current brightness setting for the main bath lights?"
+      - 'Turn it to 96 please.'
+    -
+      - 'Report the brightness of the main bath lights.'
+      - 'Make it 96.'
+    -
+      - 'Check the brightness in the main bathroom.'
+      - "Bump it to 96 if you don't mind."
+    -
+      - 'How bright is the main bath right now?'
+      - 'Set to 96.'

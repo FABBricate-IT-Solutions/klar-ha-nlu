@@ -1,0 +1,64 @@
+-
+  name: light_master_ensuite_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ensuite
+      state: 'on'
+  sentences:
+    - 'Turn on the Master Ensuite Light'
+    - 'Please flick on the light in the master bedroom ensuite for me'
+    - "Flip on the Master Ensuite Light if you don't mind"
+    - 'Activate the master bedroom ensuite light'
+    - 'Could you turn on the light in the master ensuite please'
+    - 'Switch on the Master Ensuite Light'
+    - 'Turn on the light in the master bedroom ensuite area'
+-
+  name: light_master_ensuite_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ensuite
+      state: 'off'
+  sentences:
+    - 'Turn off the Master Ensuite Light'
+    - 'Please switch off the master ensuite light for me'
+    - 'Flick off the light in the master bedroom ensuite'
+    - "If you don't mind, flip off the master ensuite light"
+    - 'Kill the Master Ensuite Light'
+    - 'Can you turn off the light in the master bedroom ensuite please'
+    - 'Shut off the master ensuite light'
+    - 'Deactivate the Master Ensuite Light'
+-
+  name: light_master_ensuite_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ensuite
+      attributes:
+        brightness: 55
+  sentences:
+    - 'Set the Master Ensuite Light to 55%'
+    - 'Please turn the master ensuite light to 55 for me'
+    - "If you don't mind, flick the light master ensuite to 55%"
+    - 'Hey, flip on the master ensuite brightness to 55'
+    - 'Adjust the light master ensuite in master bedroom to 55 percent'
+    - 'Can you set the Master Ensuite Light brightness to 55%'
+    - 'Quickly change the master ensuite light to 55'
+-
+  name: light_master_ensuite_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ensuite
+      attributes:
+        color: black
+  sentences:
+    - 'Turn the Master Ensuite Light to black'
+    - 'Flick the light master ensuite to black'
+    - 'Please set the master bedroom light to black for me'
+    - "If you don't mind, change the Master Ensuite Light to black"
+    - 'Flip on black for the light master ensuite'
+    - 'Quickly turn the master bedroom light to black'
+    - 'Set the Master Ensuite Light color to black'
+    - 'Make the light master ensuite black now'

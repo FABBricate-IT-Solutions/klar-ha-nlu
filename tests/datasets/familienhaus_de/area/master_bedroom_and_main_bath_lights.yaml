@@ -1,0 +1,48 @@
+- name: master_bedroom_and_main_bath_lights_turn_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer an und Mach die Lichter im Badezimmer an
+- name: master_bedroom_and_main_bath_lights_turn_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus und Mach die Lichter im Badezimmer aus
+- name: master_bedroom_and_main_bath_lights_change_brightness
+  conditions:
+  - area: master_bedroom
+    domain: light
+    attributes:
+      brightness: 57
+  - area: main_bath
+    domain: light
+    attributes:
+      brightness: 57
+  sentences:
+  - Setze Schlafzimmer auf 57 Prozent und Setze Badezimmer auf 57 Prozent
+- name: master_bedroom_and_main_bath_lights_change_color
+  conditions:
+  - area: master_bedroom
+    domain: light
+    attributes:
+      color: pink
+  - area: main_bath
+    domain: light
+    attributes:
+      color: pink
+  sentences:
+  - Mach Schlafzimmer pink und Mach Badezimmer pink

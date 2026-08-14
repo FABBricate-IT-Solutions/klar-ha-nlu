@@ -1,0 +1,45 @@
+- name: family_room_lights_turn_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Familienzimmer an
+  - Lichter Familienzimmer an
+  - Schalt die Lichter im Familienzimmer ein
+  - Familienzimmer Lichter an
+  - Kannst du die Lichter im Familienzimmer anmachen
+- name: family_room_lights_turn_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Familienzimmer aus
+  - Lichter Familienzimmer aus
+  - Schalt die Lichter im Familienzimmer aus
+  - Familienzimmer Lichter aus
+- name: family_room_lights_change_brightness
+  conditions:
+  - area: family_room
+    domain: light
+    attributes:
+      brightness: 44
+  sentences:
+  - Setze Familienzimmer auf 44 Prozent
+  - Familienzimmer Helligkeit 44
+  - Dimme Familienzimmer auf 44
+  - Lichter Familienzimmer 44 Prozent
+- name: family_room_lights_change_color
+  conditions:
+  - area: family_room
+    domain: light
+    attributes:
+      color: green
+  sentences:
+  - Mach Familienzimmer grün
+  - Setze Familienzimmer auf grün
+  - Familienzimmer grün
+  - Lichter Familienzimmer grün

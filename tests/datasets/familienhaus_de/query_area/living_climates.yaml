@@ -1,0 +1,10 @@
+- name: living_climates_get_temperature
+  conditions:
+  - type: query
+    area: living
+    domain: climate
+  sentences:
+  - Wie warm ist es im Wohnzimmer
+  - Temperatur Wohnzimmer
+  - Wie ist die Temperatur im Wohnzimmer
+  - Wie kalt ist es im Wohnzimmer

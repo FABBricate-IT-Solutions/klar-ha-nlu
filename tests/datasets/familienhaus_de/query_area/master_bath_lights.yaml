@@ -1,0 +1,40 @@
+- name: master_bath_lights_get_state
+  conditions:
+  - type: query
+    area: master_bath
+    domain: light
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das light im Elternbad an
+- name: master_bath_lights_list_on_lights
+  conditions:
+  - type: query
+    area: master_bath
+    domain: light
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das light im Elternbad an
+- name: master_bath_lights_list_off_lights
+  conditions:
+  - type: query
+    area: master_bath
+    domain: light
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das light im Elternbad an
+- name: master_bath_lights_get_brightness
+  conditions:
+  - type: query
+    area: master_bath
+    domain: light
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das light im Elternbad an

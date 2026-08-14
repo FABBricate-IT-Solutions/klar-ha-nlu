@@ -1,0 +1,75 @@
+-
+  name: family_room_and_kitchen_lights_get_state
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+    -
+      type: query
+      area: kitchen
+      domain: light
+  sentences:
+    - "What's the light status in the family room and kitchen?"
+    - 'Lights family room kitchen state'
+    - "Could you please tell me the current lights status for the family room and kitchen if you don't mind?"
+    - "If it's not too much trouble, what's the lighting situation in the family room and kitchen?"
+    - 'Family room kitchen lights current state please'
+    - 'Hey could you check the lights in the family room and kitchen for me?'
+-
+  name: family_room_and_kitchen_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+    -
+      type: query
+      area: kitchen
+      domain: light
+  sentences:
+    - "What's the status of the lights in the family room and kitchen"
+    - 'lights family room kitchen state'
+    - "please tell me the current state of the lights in the family room and kitchen if you don't mind"
+    - 'check lights family room kitchen'
+    - 'could you get the light status for family room and kitchen please'
+    - 'family room kitchen lights current state'
+    - "if it's not too much trouble, what's the light situation in the family room and kitchen"
+-
+  name: family_room_and_kitchen_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+    -
+      type: query
+      area: kitchen
+      domain: light
+  sentences:
+    - "What's the status of the lights in the family room and kitchen"
+    - 'Lights family room kitchen status'
+    - "Could you please tell me the current state of the lights in the family room and kitchen if you don't mind"
+    - 'Check lights family room kitchen'
+    - 'Hey could you check on the lights in the family room and kitchen for me'
+    - 'Family room kitchen lights state please'
+    - 'What are the lights doing in the family room and kitchen'
+-
+  name: family_room_and_kitchen_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: family_room
+      domain: light
+    -
+      type: query
+      area: kitchen
+      domain: light
+  sentences:
+    - "What's the status of the lights in the family room and kitchen"
+    - 'lights family room kitchen status'
+    - "if you don't mind, could you check the lights in the family room and kitchen for me"
+    - 'are the family room and kitchen lights on or off'
+    - 'please tell me the light status in family room and kitchen'
+    - 'family room kitchen lights state'
+    - 'can you check if the lights are on in the family room and kitchen'

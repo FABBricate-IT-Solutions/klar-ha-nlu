@@ -1,0 +1,93 @@
+-
+  name: cover_garage_door_open
+  setup:
+    -
+      entity_id: cover.garage_door
+      state: closed
+  conditions:
+    -
+      type: action
+      entity_id: cover.garage_door
+      state: open
+  sentences:
+    -
+      - "What's the status of the garage door?"
+      - 'Open it.'
+    -
+      - 'Is the garage door open or closed?'
+      - 'Please open it for me.'
+    -
+      - 'Garage door state?'
+      - 'Flick it on.'
+    -
+      - 'Can you tell me if the garage door is closed?'
+      - "If you don't mind, open it for me."
+    -
+      - "What's the garage door doing right now?"
+      - 'Flip it open.'
+    -
+      - 'Is the garage door up or down?'
+      - 'Go ahead and open it please.'
+-
+  name: cover_garage_door_close
+  setup:
+    -
+      entity_id: cover.garage_door
+      state: open
+  conditions:
+    -
+      type: action
+      entity_id: cover.garage_door
+      state: closed
+  sentences:
+    -
+      - "What's the status of the garage door?"
+      - 'Close it please.'
+    -
+      - 'Garage door status?'
+      - "Shut it if you don't mind."
+    -
+      - 'Can you tell me if the garage door is open?'
+      - 'Close it for me.'
+    -
+      - 'Is the garage door closed right now?'
+      - 'Flick it shut.'
+    -
+      - "What's going on with the garage door?"
+      - 'Please shut it.'
+    -
+      - 'Garage door state in the garage?'
+      - 'Flip it closed.'
+    -
+      - 'Tell me the garage door status.'
+      - 'Close it please for me.'
+-
+  name: cover_garage_door_persistance_position
+  setup:
+    -
+      entity_id: cover.garage_door
+      position: 62
+  conditions:
+    -
+      entity_id: cover.garage_door
+      attributes:
+        position: 23
+  sentences:
+    -
+      - "What's the position of the garage door?"
+      - 'Set it to 23.'
+    -
+      - 'Can you tell me where the garage door is at?'
+      - 'Change it to 23 please.'
+    -
+      - 'Garage door position?'
+      - "Adjust to 23 if you don't mind."
+    -
+      - "What's the current state of the garage door in the garage?"
+      - 'Make it 23 for me.'
+    -
+      - 'Where is the garage door right now?'
+      - 'Change it to 23.'
+    -
+      - 'Garage door status in the garage?'
+      - 'Adjust to 23 please.'

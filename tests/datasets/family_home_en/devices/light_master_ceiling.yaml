@@ -1,0 +1,64 @@
+-
+  name: light_master_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the master ceiling'
+    - 'Please turn on the master ceiling light for me'
+    - 'Flick on the master ceiling in the master bedroom'
+    - "If you don't mind, flip on the master ceiling light"
+    - 'Activate master ceiling'
+    - 'Could you please switch on the master ceiling in master bedroom'
+    - 'Turn on master ceiling light in the master bedroom'
+    - 'Quickly enable the master ceiling'
+-
+  name: light_master_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off the master ceiling light'
+    - 'Please turn off the master ceiling for me'
+    - "If you don't mind, flip off the master ceiling light in the master bedroom"
+    - 'Flick off the master ceiling'
+    - 'Could you switch off the master ceiling light please'
+    - 'Turn the master ceiling off in master bedroom'
+    - 'Quickly turn off master ceiling light'
+-
+  name: light_master_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ceiling
+      attributes:
+        brightness: 77
+  sentences:
+    - 'Set the master ceiling light to 77%'
+    - 'Please adjust the Master Ceiling brightness to 77 for me'
+    - "Flick the master bedroom master ceiling to 77 if you don't mind"
+    - 'Turn the light master ceiling up to 77 percent'
+    - 'Quickly set master ceiling brightness to 77'
+    - 'Flip the Master Ceiling to 77 in master bedroom'
+    - 'Change the master ceiling light brightness to 77 please'
+-
+  name: light_master_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.master_ceiling
+      attributes:
+        color: blue
+  sentences:
+    - 'Change the master ceiling light to blue'
+    - 'Please set the light master ceiling to blue for me'
+    - "Flick the master ceiling light to blue if you don't mind"
+    - 'Turn the master ceiling to blue in the master bedroom'
+    - 'Flip on blue for the light master ceiling'
+    - 'Make the master ceiling light blue please'
+    - 'Set master bedroom master ceiling to blue'
+    - 'Quickly change light master ceiling to blue'

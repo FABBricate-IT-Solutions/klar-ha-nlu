@@ -1,0 +1,33 @@
+-
+  name: kitchen_switchs_turn_on
+  conditions:
+    -
+      type: action
+      area: kitchen
+      domain: switch
+      state: 'on'
+  sentences:
+    - 'Turn on the kitchen switches'
+    - 'Flick on the kitchen switches'
+    - 'Please flip on the kitchen switches for me'
+    - "If you don't mind, switch on the kitchen switches"
+    - 'Activate the kitchen switches'
+    - 'Can you turn on the kitchen switches please'
+    - "Flip on the kitchen switches if you don't mind"
+-
+  name: kitchen_switchs_turn_off
+  conditions:
+    -
+      type: action
+      area: kitchen
+      domain: switch
+      state: 'off'
+  sentences:
+    - 'Turn off the kitchen switches'
+    - 'Please switch off all kitchen switches for me'
+    - "If you don't mind, flick off the kitchen switches"
+    - 'Deactivate kitchen switches'
+    - 'Flip off every switch in the kitchen'
+    - 'Could you turn off the switches in the kitchen please'
+    - 'Shut down all kitchen switches'
+    - 'Kill the power to the kitchen switches'

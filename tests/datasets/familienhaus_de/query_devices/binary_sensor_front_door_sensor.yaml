@@ -1,0 +1,9 @@
+- name: binary_sensor_front_door_sensor_get_status
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - Ist Eingang an
+  - Status Eingang
+  - Wie ist der Zustand von Eingang
+  - Ist das binary_sensor am Eingang an

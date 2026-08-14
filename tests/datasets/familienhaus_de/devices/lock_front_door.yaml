@@ -1,0 +1,18 @@
+- name: lock_front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - Schließ Haustür ab
+  - Haustür abschließen
+  - Tür Eingang zu
+- name: lock_front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - Schließ Haustür auf
+  - Haustür aufschließen
+  - Tür Eingang auf

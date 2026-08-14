@@ -1,0 +1,6 @@
+- name: how_warm_home
+  conditions:
+    - {type: query, area: wohnung, domain: climate}
+  sentences:
+    - 'How warm is it in the apartment'
+    - "What's the temperature at home"

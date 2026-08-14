@@ -1,0 +1,63 @@
+-
+  name: light_bedroom2_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom2_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the Bedroom 2 Ceiling light'
+    - 'Flick on bedroom 2 ceiling'
+    - 'Please flip on the light in bedroom 2 for me'
+    - "If you don't mind, turn on the ceiling light in bedroom 2"
+    - 'Activate bedroom 2 ceiling light'
+    - 'Switch on the Bedroom 2 Ceiling'
+    - 'Could you please turn on the ceiling light in bedroom 2 for me'
+-
+  name: light_bedroom2_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom2_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off bedroom 2 ceiling'
+    - 'Please switch off the ceiling light in bedroom 2'
+    - "If you don't mind, flick off bedroom 2 ceiling for me"
+    - 'Kill bedroom 2 ceiling light'
+    - 'Can you shut down the ceiling in bedroom 2'
+    - 'Flip off bedroom 2 ceiling'
+    - 'Deactivate bedroom 2 ceiling light please'
+-
+  name: light_bedroom2_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom2_ceiling
+      attributes:
+        brightness: 94
+  sentences:
+    - 'Set the Bedroom 2 Ceiling light to 94 percent'
+    - 'Turn the bedroom 2 ceiling brightness to 94'
+    - "Please flick on the Bedroom 2 Ceiling to 94 if you don't mind"
+    - 'Quickly adjust bedroom 2 ceiling to 94 percent brightness'
+    - 'Change the Bedroom 2 Ceiling light to 94'
+    - 'Flip the bedroom 2 ceiling brightness up to 94'
+    - 'Set bedroom 2 ceiling to 94 percent please'
+    - 'Adjust the Bedroom 2 Ceiling to 94 brightness'
+-
+  name: light_bedroom2_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.bedroom2_ceiling
+      attributes:
+        color: pink
+  sentences:
+    - 'Change the bedroom 2 ceiling light to pink'
+    - 'Set bedroom 2 ceiling to pink'
+    - 'Please turn the Bedroom 2 Ceiling light pink for me'
+    - "Flick on pink for bedroom 2 ceiling if you don't mind"
+    - 'Flip the bedroom 2 ceiling light to pink'
+    - 'Make bedroom 2 ceiling pink'
+    - 'Could you change the Bedroom 2 Ceiling to pink please'

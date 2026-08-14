@@ -1,0 +1,100 @@
+-
+  name: good_night
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.living_lamp
+      state: 'off'
+    -
+      type: action
+      entity_id: light.dining_pendant
+      state: 'off'
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.kitchen_island
+      state: 'off'
+    -
+      type: action
+      entity_id: light.family_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.entryway_light
+      state: 'off'
+    -
+      type: action
+      entity_id: light.hallway_light
+      state: 'off'
+    -
+      type: action
+      entity_id: lock.front_door
+      state: locked
+    -
+      type: action
+      entity_id: lock.garage_entry
+      state: locked
+    -
+      type: action
+      entity_id: climate.upper_thermostat
+      attributes:
+        temperature: 20
+  sentences:
+    - 'Run the Good Night script'
+    - 'Please execute good night script for me'
+    - "If you don't mind, start good night script"
+    - 'Flick on the good night script routine'
+    - 'Flip on good night script'
+    - 'Activate good night script in the ~area~'
+    - 'Trigger good night script now'
+    - 'Begin the good night script sequence'
+-
+  name: leaving_home
+  conditions:
+    -
+      type: action
+      entity_id: light.living_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.living_lamp
+      state: 'off'
+    -
+      type: action
+      entity_id: light.kitchen_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.family_ceiling
+      state: 'off'
+    -
+      type: action
+      entity_id: light.entryway_light
+      state: 'off'
+    -
+      type: action
+      entity_id: lock.front_door
+      state: locked
+    -
+      type: action
+      entity_id: lock.garage_entry
+      state: locked
+    -
+      type: action
+      entity_id: cover.garage_door
+      state: closed
+  sentences:
+    - 'Run the leaving home script'
+    - 'Please run leaving home script for me'
+    - "If you don't mind, execute leaving home script"
+    - 'Flick on leaving home script'
+    - 'Flip on leaving home script'
+    - 'Activate leaving home script routine'
+    - 'Trigger the leaving home script'

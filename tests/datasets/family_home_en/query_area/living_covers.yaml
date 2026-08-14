@@ -1,0 +1,62 @@
+-
+  name: living_covers_get_state
+  conditions:
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the living room windows?"
+    - 'Living room blinds state please'
+    - "If you don't mind, could you check the curtains in the living room for me?"
+    - 'Living room windows status'
+    - 'Please tell me if the living room blinds are open or closed'
+    - 'Quick check living room curtains'
+    - 'Are the living room windows open right now?'
+-
+  name: living_covers_list_open_covers
+  conditions:
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the living room windows?"
+    - 'Living room blinds state please'
+    - "Could you check the curtains in the living room for me if you don't mind"
+    - 'Living room windows position'
+    - 'Tell me if living room blinds are open or closed'
+    - 'Please report living room curtain status'
+    - 'Are the living room windows open'
+    - 'Quick check living room blinds'
+-
+  name: living_covers_list_closed_covers
+  conditions:
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the living room windows?"
+    - 'Living room blinds state please'
+    - 'Can you tell me if the living room curtains are open or closed?'
+    - 'Please check the living room window status for me'
+    - "If you don't mind, what's the current state of the living room blinds?"
+    - 'Living room windows - current position?'
+    - 'Could you report the living room curtain status please?'
+-
+  name: living_covers_get_position
+  conditions:
+    -
+      type: query
+      area: living
+      domain: cover
+  sentences:
+    - "What's the status of the living room windows?"
+    - 'Living room blinds state please'
+    - "Could you check the curtains in the living room for me if you don't mind?"
+    - 'Are the living room windows open or closed?'
+    - 'Tell me about the living room blinds'
+    - 'Please check living room curtains status'
+    - 'Living room window state'
+    - "If possible, what's happening with the living room blinds right now?"

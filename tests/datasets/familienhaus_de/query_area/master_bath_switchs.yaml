@@ -1,0 +1,30 @@
+- name: master_bath_switchs_get_state
+  conditions:
+  - type: query
+    area: master_bath
+    domain: switch
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das switch im Elternbad an
+- name: master_bath_switchs_list_on_switchs
+  conditions:
+  - type: query
+    area: master_bath
+    domain: switch
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das switch im Elternbad an
+- name: master_bath_switchs_list_off_switchs
+  conditions:
+  - type: query
+    area: master_bath
+    domain: switch
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das switch im Elternbad an

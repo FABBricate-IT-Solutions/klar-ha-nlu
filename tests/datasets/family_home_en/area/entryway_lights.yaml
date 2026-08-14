@@ -1,0 +1,65 @@
+-
+  name: entryway_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: entryway
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the entryway lights'
+    - 'Flick on the lights in the entryway'
+    - 'Please turn on the entryway lights for me'
+    - "If you don't mind, flip on the entryway lights"
+    - 'Activate the lights in the entryway'
+    - 'Hey, can you turn on the entryway lights'
+    - 'Switch on the entryway lights please'
+-
+  name: entryway_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: entryway
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the entryway lights'
+    - 'Please switch off the lights in the entryway for me'
+    - "If you don't mind, flick off the entryway lights"
+    - 'Kill the lights in the foyer'
+    - 'Could you please flip off the entryway lights for me'
+    - 'Entryway lights off'
+    - "Shut off the lights in the entryway if you don't mind"
+    - 'Deactivate the entryway lights'
+-
+  name: entryway_lights_change_brightness
+  conditions:
+    -
+      area: entryway
+      domain: light
+      attributes:
+        brightness: 72
+  sentences:
+    - 'Set entryway lights to 72%'
+    - 'Please dim the entryway lights to 72 for me'
+    - "Flick the entryway brightness to 72 if you don't mind"
+    - 'Adjust entryway lights brightness to 72%'
+    - 'Turn entryway lights down to 72'
+    - 'Could you set the entryway to 72 brightness please'
+    - 'Flip entryway lights to 72%'
+-
+  name: entryway_lights_change_color
+  conditions:
+    -
+      area: entryway
+      domain: light
+      attributes:
+        color: black
+  sentences:
+    - 'Change the entryway lights to black'
+    - 'Set entryway lights to black'
+    - 'Please turn the entryway lights black for me'
+    - "If you don't mind, flick the entryway lights to black"
+    - 'Flip the entryway lights to black'
+    - 'Make the entryway lights black'
+    - 'Could you please set the entryway lights to black'

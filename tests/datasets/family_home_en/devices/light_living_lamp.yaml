@@ -1,0 +1,63 @@
+-
+  name: light_living_lamp_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.living_lamp
+      state: 'on'
+  sentences:
+    - 'Turn on the living room lamp'
+    - 'Please flick on the living lamp for me'
+    - "If you don't mind, flip on the living room light"
+    - 'Activate living lamp'
+    - 'Could you turn on the living room lamp please'
+    - 'Switch on the living lamp now'
+    - 'Quickly turn on living room light'
+-
+  name: light_living_lamp_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.living_lamp
+      state: 'off'
+  sentences:
+    - 'Turn off the living room lamp'
+    - 'Please switch off the living lamp for me'
+    - "If you don't mind, could you flick off the living room light"
+    - 'Kill the living lamp'
+    - 'Flip off the living room lamp'
+    - 'Deactivate the living lamp please'
+    - 'Shut down the living room light'
+-
+  name: light_living_lamp_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.living_lamp
+      attributes:
+        brightness: 72
+  sentences:
+    - 'Set the living room lamp to 72 percent brightness'
+    - 'Living room lamp brightness 72'
+    - "Please adjust the living lamp to seventy two percent if you don't mind"
+    - 'Flick the living room light to seventy two'
+    - 'Could you set the living lamp brightness to 72 for me'
+    - 'Living room lamp at 72 percent please'
+    - 'Turn the living room light down to 72'
+    - 'Flip the living lamp brightness to 72 percent'
+-
+  name: light_living_lamp_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.living_lamp
+      attributes:
+        color: red
+  sentences:
+    - 'Turn the living room lamp red'
+    - 'Set living lamp to red'
+    - 'Please change the living room light to red for me'
+    - "If you don't mind, flick the living lamp red"
+    - 'Make the living room lamp red'
+    - 'Flip the living lamp to red please'
+    - 'Change living room light to red if you could'

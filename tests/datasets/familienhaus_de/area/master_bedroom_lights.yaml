@@ -1,0 +1,45 @@
+- name: master_bedroom_lights_turn_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Schlafzimmer an
+  - Lichter Schlafzimmer an
+  - Schalt die Lichter im Schlafzimmer ein
+  - Schlafzimmer Lichter an
+  - Kannst du die Lichter im Schlafzimmer anmachen
+- name: master_bedroom_lights_turn_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Schlafzimmer aus
+  - Lichter Schlafzimmer aus
+  - Schalt die Lichter im Schlafzimmer aus
+  - Schlafzimmer Lichter aus
+- name: master_bedroom_lights_change_brightness
+  conditions:
+  - area: master_bedroom
+    domain: light
+    attributes:
+      brightness: 73
+  sentences:
+  - Setze Schlafzimmer auf 73 Prozent
+  - Schlafzimmer Helligkeit 73
+  - Dimme Schlafzimmer auf 73
+  - Lichter Schlafzimmer 73 Prozent
+- name: master_bedroom_lights_change_color
+  conditions:
+  - area: master_bedroom
+    domain: light
+    attributes:
+      color: pink
+  sentences:
+  - Mach Schlafzimmer pink
+  - Setze Schlafzimmer auf pink
+  - Schlafzimmer pink
+  - Lichter Schlafzimmer pink

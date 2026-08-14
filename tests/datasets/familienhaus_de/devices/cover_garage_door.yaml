@@ -1,0 +1,28 @@
+- name: cover_garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - Mach Rollo Garage auf
+  - Rollo Garage auf
+  - Öffne Rollo Garage
+- name: cover_garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - Mach Rollo Garage zu
+  - Rollo Garage zu
+  - Schließ Rollo Garage
+- name: cover_garage_door_change_position
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 52
+  sentences:
+  - Rollo Garage auf 52 Prozent
+  - Setze Garagentor auf 52
+  - Garage Position 52

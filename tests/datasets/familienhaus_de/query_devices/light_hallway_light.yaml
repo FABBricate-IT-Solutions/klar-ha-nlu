@@ -1,0 +1,18 @@
+- name: light_hallway_light_get_status
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - Ist Flur an
+  - Status Flur
+  - Wie ist der Zustand von Flur
+  - Ist das light im Flur an
+- name: light_hallway_light_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - Ist Flur an
+  - Status Flur
+  - Wie ist der Zustand von Flur
+  - Ist das light im Flur an

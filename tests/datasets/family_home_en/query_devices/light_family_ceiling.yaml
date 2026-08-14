@@ -1,0 +1,27 @@
+-
+  name: light_family_ceiling_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.family_ceiling
+  sentences:
+    - "What's the status of the family room ceiling light?"
+    - 'family room ceiling light state'
+    - "please tell me the current state of the Family Room Ceiling if you don't mind"
+    - 'get state of light family ceiling'
+    - 'could you check the family room ceiling light for me'
+    - 'family room ceiling light status please'
+    - "what's the family room ceiling light doing right now"
+-
+  name: light_family_ceiling_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.family_ceiling
+  sentences:
+    - "What's the brightness of the family room ceiling light?"
+    - "Please tell me the current brightness of the Family Room Ceiling if you don't mind"
+    - 'How bright is the family room ceiling light right now?'
+    - 'Can you check the brightness level on the Family Room Ceiling for me?'
+    - 'Report brightness family room ceiling'
+    - "What's the Family Room Ceiling light brightness at the moment?"

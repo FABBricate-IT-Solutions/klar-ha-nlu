@@ -1,0 +1,44 @@
+- name: lock_front_door_lock
+  setup:
+  - entity_id: lock.front_door
+    state: unlocked
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Status Schloss Eingang
+    - mach sie an
+  - - Mach Schloss Eingang an
+    - ja
+- name: lock_front_door_unlock
+  setup:
+  - entity_id: lock.front_door
+    state: locked
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - - Status Schloss Eingang
+    - mach sie aus
+  - - Status Schloss Eingang
+    - mach sie aus
+  - - Mach Schloss Eingang an
+    - mach sie aus
+  - - Status Schloss Eingang
+    - mach sie aus
+  - - Mach Schloss Eingang an
+    - mach sie aus

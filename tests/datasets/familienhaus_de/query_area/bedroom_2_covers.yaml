@@ -1,0 +1,40 @@
+- name: bedroom_2_covers_get_state
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: cover
+  sentences:
+  - Ist Kinderzimmer 2 an
+  - Status Kinderzimmer 2
+  - Wie ist der Zustand von Kinderzimmer 2
+  - Ist das cover in Kinderzimmer 2 an
+- name: bedroom_2_covers_list_open_covers
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: cover
+  sentences:
+  - Ist Kinderzimmer 2 an
+  - Status Kinderzimmer 2
+  - Wie ist der Zustand von Kinderzimmer 2
+  - Ist das cover in Kinderzimmer 2 an
+- name: bedroom_2_covers_list_closed_covers
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: cover
+  sentences:
+  - Ist Kinderzimmer 2 an
+  - Status Kinderzimmer 2
+  - Wie ist der Zustand von Kinderzimmer 2
+  - Ist das cover in Kinderzimmer 2 an
+- name: bedroom_2_covers_get_position
+  conditions:
+  - type: query
+    area: bedroom_2
+    domain: cover
+  sentences:
+  - Ist Kinderzimmer 2 an
+  - Status Kinderzimmer 2
+  - Wie ist der Zustand von Kinderzimmer 2
+  - Ist das cover in Kinderzimmer 2 an

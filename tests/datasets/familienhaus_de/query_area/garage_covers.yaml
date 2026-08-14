@@ -1,0 +1,40 @@
+- name: garage_covers_get_state
+  conditions:
+  - type: query
+    area: garage
+    domain: cover
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das cover in der Garage an
+- name: garage_covers_list_open_covers
+  conditions:
+  - type: query
+    area: garage
+    domain: cover
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das cover in der Garage an
+- name: garage_covers_list_closed_covers
+  conditions:
+  - type: query
+    area: garage
+    domain: cover
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das cover in der Garage an
+- name: garage_covers_get_position
+  conditions:
+  - type: query
+    area: garage
+    domain: cover
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das cover in der Garage an

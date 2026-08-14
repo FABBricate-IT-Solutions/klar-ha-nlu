@@ -1,0 +1,26 @@
+- name: kitchen_lights_set_brightness
+  setup:
+  - entity_id: light.kitchen_ceiling
+    brightness: 73
+  - entity_id: light.kitchen_island
+    brightness: 73
+  conditions:
+  - entity_id: light.kitchen_ceiling
+    brightness: 46
+  - entity_id: light.kitchen_island
+    brightness: 46
+  sentences:
+  - - Status Lichter Küche
+    - auf 46
+  - - Status Lichter Küche
+    - auf 46
+  - - Status Lichter Küche
+    - auf 46
+  - - Status Lichter Küche
+    - auf 46
+  - - Status Lichter Küche
+    - auf 46
+  - - Status Lichter Küche
+    - auf 46
+  - - Status Lichter Küche
+    - auf 46

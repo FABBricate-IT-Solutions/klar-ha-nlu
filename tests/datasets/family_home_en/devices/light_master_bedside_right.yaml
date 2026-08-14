@@ -1,0 +1,63 @@
+-
+  name: light_master_bedside_right_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bedside_right
+      state: 'on'
+  sentences:
+    - 'Turn on the Right Bedside Lamp'
+    - 'Flick on the master bedroom right bedside light'
+    - 'Please flip on the Right Bedside Lamp for me'
+    - "If you don't mind, could you turn on the master bedroom right bedside lamp"
+    - 'Activate the Right Bedside Lamp'
+    - 'Switch on the master bedroom right bedside light please'
+    - 'Quickly turn on the Right Bedside Lamp'
+    - 'Turn the master bedroom right bedside lamp on'
+-
+  name: light_master_bedside_right_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bedside_right
+      state: 'off'
+  sentences:
+    - 'Turn off the right bedside lamp'
+    - 'Please switch off the master bedroom right bedside light for me'
+    - 'Flick off the light master bedside right'
+    - "If you don't mind, turn off the right bedside lamp in the master bedroom"
+    - 'Flip off the master bedroom right bedside light'
+    - 'Could you please deactivate the light master bedside right'
+    - 'Shut off the right bedside lamp in master bedroom'
+-
+  name: light_master_bedside_right_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bedside_right
+      attributes:
+        brightness: 25
+  sentences:
+    - 'Set the Right Bedside Lamp to 25%'
+    - 'Turn the master bedroom light master bedside right down to 25'
+    - 'Please dim the Right Bedside Lamp to 25 for me'
+    - "Flick the master bedroom Right Bedside Lamp brightness to 25 if you don't mind"
+    - 'Flip the light master bedside right to 25%'
+    - 'Could you lower the Right Bedside Lamp in master bedroom to 25'
+    - 'Set brightness of light master bedside right to 25 in the master bedroom'
+-
+  name: light_master_bedside_right_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bedside_right
+      attributes:
+        color: red
+  sentences:
+    - 'Turn the right bedside lamp red'
+    - 'Please change the master bedroom right bedside light to red for me'
+    - 'Flick the right bedside lamp to red'
+    - "If you don't mind, set the master bedroom right bedside light to red"
+    - 'Make the right bedside lamp red'
+    - 'Could you please turn the master bedroom right bedside light red'
+    - 'Flip the right bedside lamp to red'

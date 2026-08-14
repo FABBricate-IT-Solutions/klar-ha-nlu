@@ -1,0 +1,66 @@
+-
+  name: bedroom_3_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: bedroom_3
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the lights in bedroom 3'
+    - 'Flick on bedroom three lights'
+    - 'Please turn on the bedroom 3 lights for me'
+    - "If you don't mind, flip on the lights in bedroom three"
+    - 'Activate bedroom 3 lighting'
+    - 'Could you switch on the bedroom three lights please'
+    - 'Bedroom 3 lights on'
+    - 'Turn the lights on in bedroom 3 if possible'
+-
+  name: bedroom_3_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: bedroom_3
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the lights in bedroom 3'
+    - 'Please switch off the bedroom 3 lights for me'
+    - "If you don't mind, flick off the lights in bedroom 3"
+    - 'Kill the lights in bedroom 3'
+    - 'Can you flip off the bedroom 3 lights please'
+    - 'Deactivate bedroom 3 lighting'
+    - "Shut off the lights in bedroom 3 if you don't mind"
+-
+  name: bedroom_3_lights_change_brightness
+  conditions:
+    -
+      area: bedroom_3
+      domain: light
+      attributes:
+        brightness: 76
+  sentences:
+    - 'Set bedroom 3 lights to 76 percent'
+    - 'Please dim the bedroom 3 lights to 76 for me'
+    - 'Flick bedroom 3 brightness up to 76%'
+    - "If you don't mind, adjust bedroom 3 lights to 76"
+    - 'Turn bedroom 3 lights to 76 brightness'
+    - 'Could you set bedroom 3 to 76 percent please'
+    - 'Make bedroom 3 lights 76'
+    - 'Flip bedroom 3 brightness to 76'
+-
+  name: bedroom_3_lights_change_color
+  conditions:
+    -
+      area: bedroom_3
+      domain: light
+      attributes:
+        color: blue
+  sentences:
+    - 'Set bedroom 3 lights to blue'
+    - 'Please change the bedroom 3 lights to blue for me'
+    - "Flick bedroom 3 lights blue if you don't mind"
+    - 'Flip bedroom 3 lights to blue'
+    - 'Turn bedroom 3 lights blue please'
+    - 'Make bedroom 3 lights blue'
+    - 'Could you set bedroom 3 lights to blue'

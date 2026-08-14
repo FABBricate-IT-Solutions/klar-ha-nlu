@@ -1,0 +1,26 @@
+- name: fan_family_fan_turn_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - Lüfter Familienzimmer an
+  - Mach Familienzimmer Lüfter an
+- name: fan_family_fan_turn_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - Lüfter Familienzimmer aus
+  - Mach Familienzimmer Lüfter aus
+- name: fan_family_fan_set_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 63
+  sentences:
+  - Lüfter Familienzimmer auf 63 Prozent
+  - Setze Familienzimmer Lüfter auf 63
+  - Familienzimmer Lüfter 63 Prozent

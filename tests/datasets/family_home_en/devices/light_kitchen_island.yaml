@@ -1,0 +1,64 @@
+-
+  name: light_kitchen_island_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_island
+      state: 'on'
+  sentences:
+    - 'Turn on the island lights'
+    - 'Flick on the kitchen island lights'
+    - 'Please flip on the island lights for me'
+    - "If you don't mind, turn on the kitchen island lights"
+    - 'Activate the island lights'
+    - 'Can you switch on the kitchen island lights please'
+    - 'Turn the island lights on in the kitchen'
+-
+  name: light_kitchen_island_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_island
+      state: 'off'
+  sentences:
+    - 'Turn off the island lights'
+    - 'Please switch off the kitchen island lights for me'
+    - "Flick off the island lights if you don't mind"
+    - 'Flip off the kitchen island lights'
+    - 'Deactivate the island lights please'
+    - 'Turn the kitchen island lights off'
+    - 'Shut off the island lights'
+-
+  name: light_kitchen_island_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_island
+      attributes:
+        brightness: 99
+  sentences:
+    - 'Set the island lights in the kitchen to 99'
+    - 'Turn the kitchen island lights up to 99'
+    - 'Flick the island lights to 99 please'
+    - "If you don't mind, set the kitchen island lights to 99 for me"
+    - 'Crank the island lights up to 99'
+    - 'Bump the kitchen island lights to 99'
+    - 'Make the island lights 99'
+    - 'Please adjust the kitchen island lights to 99'
+-
+  name: light_kitchen_island_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.kitchen_island
+      attributes:
+        color: green
+  sentences:
+    - 'Turn the island lights green'
+    - 'Flick on the kitchen island lights to green'
+    - 'Please change the Island Lights to green for me'
+    - "If you don't mind, set the kitchen island lights to green"
+    - 'Make the Island Lights green'
+    - 'Flip the kitchen island lights to green please'
+    - 'Change the Island Lights color to green'
+    - 'Set the kitchen island lights to green'

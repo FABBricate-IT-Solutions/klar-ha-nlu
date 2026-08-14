@@ -1,0 +1,17 @@
+name: laundry_dryer_on_after_washer
+sentences:
+- Create an automation to turn on the dryer when the washing machine finishes
+- Set up a rule so the dryer starts when the washing machine turns off
+- Make an automation that switches the dryer on when the washing machine finishes
+  its cycle
+- Automate the dryer to turn on when the washing machine turns off
+- When the washing machine turns off I want the dryer to start automatically
+- Please create a rule that turns the dryer on when the washing machine is done
+expected:
+  trigger:
+    platform: state
+    entity_id: switch.washing_machine
+    to: 'off'
+  actions:
+  - action: switch.turn_on
+    entity_id: switch.dryer

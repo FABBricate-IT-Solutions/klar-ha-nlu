@@ -1,0 +1,46 @@
+-
+  name: fan_family_fan_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: fan.family_fan
+      state: 'on'
+  sentences:
+    - 'Turn on the family room fan'
+    - 'Please flick on the fan in the family room for me'
+    - "Flip on the family room fan if you don't mind"
+    - 'Activate the fan family fan in family room'
+    - 'Could you turn on the fan in the family room please'
+    - 'Switch on the family room fan'
+    - 'Start the fan family fan in family room now'
+-
+  name: fan_family_fan_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: fan.family_fan
+      state: 'off'
+  sentences:
+    - 'Turn off the family room fan'
+    - 'Please turn off the fan in the family room for me'
+    - 'Flick off the family room fan'
+    - "If you don't mind, flip off the fan in family room"
+    - 'Shut down the family room fan'
+    - 'Could you turn off the fan in family room please'
+    - 'Deactivate the family room fan'
+-
+  name: fan_family_fan_set_fan_speed
+  conditions:
+    -
+      type: action
+      entity_id: fan.family_fan
+      attributes:
+        percentage: 63
+  sentences:
+    - 'Set the Family Room Fan to 63'
+    - 'Please set fan family fan speed to 63 for me'
+    - "If you don't mind, flick the family room fan to 63"
+    - 'Flip on the Family Room Fan at 63 percent'
+    - 'Quickly adjust fan family fan to 63'
+    - 'Turn the family room fan speed to 63 please'
+    - 'Set fan family fan to sixty three in family room'

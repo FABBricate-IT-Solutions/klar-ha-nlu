@@ -1,0 +1,58 @@
+-
+  name: bedroom_4_lights_get_state
+  conditions:
+    -
+      type: query
+      area: bedroom_4
+      domain: light
+  sentences:
+    - "What's the status of the lights in bedroom 4"
+    - "please tell me the current state of bedroom 4 lights if you don't mind"
+    - 'get bedroom 4 lighting status'
+    - 'could you check the lights in bedroom 4 for me'
+    - 'bedroom 4 lights state'
+    - "what's going on with the lights in bedroom 4"
+    - 'report bedroom 4 light status'
+-
+  name: bedroom_4_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: bedroom_4
+      domain: light
+  sentences:
+    - "What's the status of the lights in bedroom 4"
+    - 'bedroom 4 lights state'
+    - 'please check the bedroom 4 lights for me'
+    - "if you don't mind, could you tell me about the lights in bedroom 4"
+    - 'bedroom 4 lighting current condition'
+    - 'get bedroom 4 lights status'
+    - 'are the lights on in bedroom 4'
+-
+  name: bedroom_4_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: bedroom_4
+      domain: light
+  sentences:
+    - "What's the status of the lights in bedroom 4"
+    - 'bedroom 4 lights state'
+    - 'please check the bedroom 4 lights for me'
+    - "if you don't mind, could you tell me if the lights are on in bedroom 4"
+    - 'get current state of bedroom 4 lighting'
+    - 'are the lights on in bedroom 4 right now'
+-
+  name: bedroom_4_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: bedroom_4
+      domain: light
+  sentences:
+    - "What's the status of the lights in bedroom 4"
+    - 'bedroom 4 lights state'
+    - "please tell me the current lights status for bedroom 4 if you don't mind"
+    - 'get bedroom 4 lights'
+    - 'could you check the lights in bedroom 4 for me'
+    - 'bedroom 4 lighting status please'

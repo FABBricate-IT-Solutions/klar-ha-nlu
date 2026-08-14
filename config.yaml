@@ -1,0 +1,24 @@
+name: Klar NLU
+version: "0.1.0"
+slug: klar_nlu
+description: Deterministische deutsche NLU für Assist. Wyoming-Server plus UI.
+arch:
+  - amd64
+  - aarch64
+  - armv7
+init: false
+startup: services
+boot: auto
+host_network: true
+ports:
+  10520/tcp: 10520
+  10500/tcp: 10500
+ports_description:
+  10520/tcp: Web-UI und Parse-API
+  10500/tcp: Wyoming Intent
+map:
+  - type: homeassistant_config
+    read_only: true
+    path: /config
+options: {}
+schema: {}

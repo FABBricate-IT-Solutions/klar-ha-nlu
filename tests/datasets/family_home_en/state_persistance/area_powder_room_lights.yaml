@@ -1,0 +1,35 @@
+-
+  name: powder_room_lights_set_brightness
+  setup:
+    -
+      entity_id: light.powder_room_light
+      brightness: 88
+  conditions:
+    -
+      entity_id: light.powder_room_light
+      brightness: 70
+  sentences:
+    -
+      - "What's the brightness of the lights in the powder room?"
+      - 'Set it to 70.'
+    -
+      - 'Can you tell me the brightness level in the powder room please?'
+      - "Make it 70 if you don't mind."
+    -
+      - 'Powder room light brightness?'
+      - 'Flick it to 70.'
+    -
+      - "What's the current brightness in the powder room?"
+      - 'Please set to 70 for me.'
+    -
+      - 'Tell me the brightness of the powder room lights.'
+      - 'Flip it to 70.'
+    -
+      - 'Brightness level powder room?'
+      - 'Turn it up to 70.'
+    -
+      - 'How bright are the powder room lights right now?'
+      - 'Adjust to 70 please.'
+    -
+      - 'Powder room brightness status?'
+      - 'Set brightness to 70.'

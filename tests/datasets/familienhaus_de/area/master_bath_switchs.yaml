@@ -1,0 +1,20 @@
+- name: master_bath_switchs_turn_on
+  conditions:
+  - type: action
+    area: master_bath
+    domain: switch
+    state: 'on'
+  sentences:
+  - Schalt die Schalter im Elternbad an
+  - Schalter Elternbad an
+  - Mach die Schalter im Elternbad an
+- name: master_bath_switchs_turn_off
+  conditions:
+  - type: action
+    area: master_bath
+    domain: switch
+    state: 'off'
+  sentences:
+  - Schalt die Schalter im Elternbad aus
+  - Schalter Elternbad aus
+  - Mach die Schalter im Elternbad aus

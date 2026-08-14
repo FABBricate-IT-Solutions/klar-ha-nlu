@@ -1,0 +1,47 @@
+-
+  name: laundry_switchs_get_state
+  conditions:
+    -
+      type: query
+      area: laundry
+      domain: switch
+  sentences:
+    - "What's the status of the laundry switches?"
+    - 'Check laundry switches'
+    - "Please tell me the state of the switches in the laundry if you don't mind"
+    - 'Laundry switches status'
+    - 'Could you check the laundry room switches for me'
+    - 'Are the laundry switches on or off'
+    - 'Get current state of laundry switches'
+    - "Laundry switches - what's their status?"
+-
+  name: laundry_switchs_list_on_switchs
+  conditions:
+    -
+      type: query
+      area: laundry
+      domain: switch
+  sentences:
+    - "What's the status of the laundry switches"
+    - 'Please check the laundry switches for me'
+    - "Could you tell me the state of the laundry switches if you don't mind"
+    - 'Laundry switches status'
+    - 'Are the laundry switches currently on'
+    - 'Get me the laundry switches state please'
+    - 'Show laundry switches state'
+-
+  name: laundry_switchs_list_off_switchs
+  conditions:
+    -
+      type: query
+      area: laundry
+      domain: switch
+  sentences:
+    - "What's the status of the laundry switches"
+    - 'Tell me the state of all switches in the laundry room'
+    - 'Please check the laundry switches for me'
+    - "If you don't mind, could you get the current state of the laundry switches"
+    - 'Laundry switches status'
+    - 'Report switch states laundry'
+    - "Hey could you please tell me what's going on with the laundry switches"
+    - 'Give me the laundry switch states'

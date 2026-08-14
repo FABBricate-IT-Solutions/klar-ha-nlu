@@ -1,0 +1,40 @@
+- name: hallway_lights_get_state
+  conditions:
+  - type: query
+    area: hallway
+    domain: light
+  sentences:
+  - Ist Flur an
+  - Status Flur
+  - Wie ist der Zustand von Flur
+  - Ist das light im Flur an
+- name: hallway_lights_list_on_lights
+  conditions:
+  - type: query
+    area: hallway
+    domain: light
+  sentences:
+  - Ist Flur an
+  - Status Flur
+  - Wie ist der Zustand von Flur
+  - Ist das light im Flur an
+- name: hallway_lights_list_off_lights
+  conditions:
+  - type: query
+    area: hallway
+    domain: light
+  sentences:
+  - Ist Flur an
+  - Status Flur
+  - Wie ist der Zustand von Flur
+  - Ist das light im Flur an
+- name: hallway_lights_get_brightness
+  conditions:
+  - type: query
+    area: hallway
+    domain: light
+  sentences:
+  - Ist Flur an
+  - Status Flur
+  - Wie ist der Zustand von Flur
+  - Ist das light im Flur an

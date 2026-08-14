@@ -1,0 +1,32 @@
+-
+  name: lock_garage_entry_lock
+  conditions:
+    -
+      type: action
+      entity_id: lock.garage_entry
+      state: locked
+  sentences:
+    - 'Lock the garage entry door'
+    - 'Please lock the garage entry for me'
+    - "If you don't mind, secure the garage entry door"
+    - 'Flick the lock on the garage entry'
+    - 'Turn on the lock for the garage entry door'
+    - 'Engage the garage entry lock'
+    - 'Lock the garage entry door if you could'
+    - 'Secure the garage entry door please'
+-
+  name: lock_garage_entry_unlock
+  conditions:
+    -
+      type: action
+      entity_id: lock.garage_entry
+      state: unlocked
+  sentences:
+    - 'Unlock the garage entry door'
+    - 'Please unlock the garage entry door for me'
+    - "If you don't mind, unlock the garage entry door"
+    - 'Flick the lock on the garage entry door'
+    - 'Flip the garage entry door lock open'
+    - 'Quickly unlock the garage entry door'
+    - 'Can you unlock the garage entry door please'
+    - 'Unlock the lock on the garage entry door'

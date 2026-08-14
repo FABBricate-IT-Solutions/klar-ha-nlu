@@ -1,0 +1,63 @@
+- name: light_entryway_light_turn_on
+  setup:
+  - entity_id: light.entryway_light
+    state: 'off'
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - - Status Licht Eingang
+    - mach sie an
+  - - Status Licht Eingang
+    - mach sie an
+  - - Status Licht Eingang
+    - mach sie an
+  - - Status Licht Eingang
+    - mach sie an
+  - - Status Licht Eingang
+    - mach sie an
+  - - Status Licht Eingang
+    - mach sie an
+  - - Status Licht Eingang
+    - mach sie an
+- name: light_entryway_light_turn_off
+  setup:
+  - entity_id: light.entryway_light
+    state: 'on'
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - - Status Licht Eingang
+    - mach sie aus
+  - - Status Licht Eingang
+    - mach sie aus
+  - - Status Licht Eingang
+    - mach sie aus
+  - - Status Licht Eingang
+    - mach sie aus
+  - - Status Licht Eingang
+    - mach sie aus
+  - - Status Licht Eingang
+    - mach sie aus
+- name: light_entryway_light_persistance_brightness
+  setup:
+  - entity_id: light.entryway_light
+    brightness: 60
+  conditions:
+  - entity_id: light.entryway_light
+    attributes:
+      brightness: 12
+  sentences:
+  - - Status Lichter Eingang
+    - auf 12
+  - - Status Lichter Eingang
+    - auf 12
+  - - Status Lichter Eingang
+    - auf 12
+  - - Status Lichter Eingang
+    - auf 12
+  - - Status Lichter Eingang
+    - auf 12

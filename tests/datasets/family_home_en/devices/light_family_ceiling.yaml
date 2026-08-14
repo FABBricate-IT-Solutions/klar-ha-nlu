@@ -1,0 +1,62 @@
+-
+  name: light_family_ceiling_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.family_ceiling
+      state: 'on'
+  sentences:
+    - 'Turn on the Family Room Ceiling'
+    - 'Flick on the family room light'
+    - 'Please flip on the ceiling light in the family room for me'
+    - "If you don't mind, turn on the Family Room Ceiling"
+    - 'Activate the family room ceiling light'
+    - 'Quickly turn on the family room ceiling'
+    - 'Switch on the Family Room Ceiling light'
+-
+  name: light_family_ceiling_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.family_ceiling
+      state: 'off'
+  sentences:
+    - 'Turn off the Family Room Ceiling'
+    - 'Please turn off the family room ceiling light for me'
+    - 'Flick off the ceiling light in the family room'
+    - "If you don't mind, could you switch off the Family Room Ceiling"
+    - 'Flip off the family room ceiling light'
+    - 'Shut off the ceiling light in the family room'
+    - 'Deactivate the Family Room Ceiling please'
+-
+  name: light_family_ceiling_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.family_ceiling
+      attributes:
+        brightness: 98
+  sentences:
+    - 'Set the Family Room Ceiling light to 98%'
+    - "Please turn the family room ceiling light up to 98 if you don't mind"
+    - 'Flick the Family Room Ceiling to ninety eight percent'
+    - 'Could you adjust the family room ceiling brightness to 98 for me'
+    - 'Make the Family Room Ceiling light 98%'
+    - 'Flip the family room ceiling light up to 98 please'
+    - 'Set brightness of Family Room Ceiling to 98'
+-
+  name: light_family_ceiling_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.family_ceiling
+      attributes:
+        color: purple
+  sentences:
+    - 'Change the family room ceiling light to purple'
+    - 'Please set the family room ceiling to purple for me'
+    - "Flick the Family Room Ceiling light purple if you don't mind"
+    - 'Turn the family room ceiling purple right now'
+    - 'Flip on purple for the family room ceiling light'
+    - 'Make the Family Room Ceiling light purple please'
+    - 'Set family room ceiling color to purple'

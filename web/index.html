@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Klar NLU</title>
+  <style>
+    :root {
+      --bg: #14110e;
+      --surface: #1c1916;
+      --line: #2a241e;
+      --text: #ece7dc;
+      --muted: #9a9083;
+      --accent: #c45c26;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.45 "IBM Plex Sans", "Noto Sans", sans-serif;
+    }
+    header {
+      height: 52px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 24px;
+    }
+    header strong { font-weight: 650; letter-spacing: -0.02em; }
+    nav { display: flex; gap: 16px; }
+    nav button {
+      background: none;
+      border: 0;
+      color: var(--muted);
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+    nav button.active { color: var(--text); }
+    main { max-width: 920px; margin: 0 auto; padding: 24px; }
+    textarea, input, select {
+      width: 100%;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font: inherit;
+    }
+    textarea { min-height: 88px; resize: vertical; }
+    button.act {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font: inherit;
+      cursor: pointer;
+    }
+    pre {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+    label { display: block; margin: 16px 0 6px; color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); }
+    .row { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Klar</strong>
+    <nav>
+      <button class="active" data-tab="parse">Satz</button>
+      <button data-tab="custom">Sätze</button>
+      <button data-tab="entities">Geräte</button>
+      <button data-tab="settings">Einstellungen</button>
+    </nav>
+  </header>
+  <main>
+    <section id="parse">
+      <label for="text">Deutscher Befehl</label>
+      <textarea id="text">Mach das Licht im Wohnzimmer und in der Küche an und stell die Heizung auf 23</textarea>
+      <div class="row">
+        <button class="act" id="send">Zerlegen</button>
+        <span id="speech" style="color:var(--muted)"></span>
+      </div>
+      <pre id="out">{}</pre>
+    </section>
+    <section id="custom" class="hidden">
+      <label>Eigene Sätze (JSON-Liste: phrase, intent, slots)</label>
+      <textarea id="customBox">[]</textarea>
+      <div class="row"><button class="act" id="saveCustom">Speichern</button></div>
+    </section>
+    <section id="entities" class="hidden">
+      <table>
+        <thead><tr><th>Gerät</th><th>Raum</th><th>Tags</th></tr></thead>
+        <tbody id="ents"></tbody>
+      </table>
+    </section>
+    <section id="settings" class="hidden">
+      <label>Persönlichkeit</label>
+      <select id="personality">
+        <option value="default">Normal</option>
+        <option value="butler">Butler</option>
+        <option value="locker">Locker</option>
+        <option value="fuersorglich">Fürsorglich</option>
+        <option value="party">Party</option>
+        <option value="grantig">Grantig</option>
+        <option value="sarkastisch">Sarkastisch</option>
+        <option value="pirat">Pirat</option>
+        <option value="hippie">Hippie</option>
+        <option value="gollum">Gollum</option>
+      </select>
+      <label>Modus</label>
+      <select id="mode">
+        <option value="full">Geräte + Kontext</option>
+        <option value="context_only">Nur Kontext</option>
+      </select>
+      <div class="row"><button class="act" id="saveSet">Speichern</button></div>
+    </section>
+  </main>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    document.querySelectorAll("nav button").forEach((btn) => {
+      btn.onclick = () => {
+        document.querySelectorAll("nav button").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        ["parse", "custom", "entities", "settings"].forEach((id) => {
+          $(id).classList.toggle("hidden", id !== btn.dataset.tab);
+        });
+      };
+    });
+    $("send").onclick = async () => {
+      const res = await fetch("/api/parse", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ text: $("text").value }),
+      });
+      const data = await res.json();
+      $("speech").textContent = data.speech || "";
+      $("out").textContent = JSON.stringify(data, null, 2);
+    };
+    $("saveCustom").onclick = async () => {
+      const body = JSON.parse($("customBox").value || "[]");
+      await fetch("/api/custom", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+    };
+    $("saveSet").onclick = async () => {
+      await fetch("/api/settings", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          personality: $("personality").value,
+          mode: $("mode").value,
+        }),
+      });
+    };
+    (async () => {
+      const ents = await (await fetch("/api/entities")).json();
+      $("ents").innerHTML = ents.map((e) =>
+        `<tr><td>${e.name}<br><span style="color:#9a9083">${e.entity_id}</span></td><td>${e.area || ""}</td><td>${(e.tags || []).join(", ")}</td></tr>`
+      ).join("");
+      const custom = await (await fetch("/api/custom")).json();
+      $("customBox").value = JSON.stringify(custom, null, 2);
+      const set = await (await fetch("/api/settings")).json();
+      $("personality").value = set.personality;
+      $("mode").value = set.mode;
+    })();
+  </script>
+</body>
+</html>

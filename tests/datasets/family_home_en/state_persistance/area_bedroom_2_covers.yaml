@@ -1,0 +1,32 @@
+-
+  name: bedroom_2_covers_set_position
+  setup:
+    -
+      entity_id: cover.bedroom2_blinds
+      position: 79
+  conditions:
+    -
+      entity_id: cover.bedroom2_blinds
+      position: 51
+  sentences:
+    -
+      - "What's the position of the windows in bedroom 2?"
+      - 'Set them to 51.'
+    -
+      - 'Can you tell me where the blinds are in bedroom 2 please?'
+      - "Adjust to 51 if you don't mind."
+    -
+      - 'Check the curtains position bedroom 2 for me.'
+      - 'Flick them to 51.'
+    -
+      - 'Report bedroom 2 window status.'
+      - 'Flip to 51.'
+    -
+      - 'Where are the blinds set in bedroom 2?'
+      - 'Please change to 51 for me.'
+    -
+      - "What's the current position of the curtains bedroom 2?"
+      - 'Set 51.'
+    -
+      - "Tell me the window position in bedroom 2 if you don't mind."
+      - 'Adjust them to 51.'

@@ -1,0 +1,47 @@
+-
+  name: cover_bedroom2_blinds_open
+  conditions:
+    -
+      type: action
+      entity_id: cover.bedroom2_blinds
+      state: open
+  sentences:
+    - 'Open the Bedroom 2 blinds'
+    - 'Please open bedroom 2 blinds for me'
+    - 'Flick on the bedroom 2 cover'
+    - "If you don't mind, raise the blinds in bedroom 2"
+    - 'Flip up the Bedroom 2 blinds'
+    - 'Could you open the cover in bedroom 2'
+    - 'Raise bedroom 2 blinds please'
+-
+  name: cover_bedroom2_blinds_close
+  conditions:
+    -
+      type: action
+      entity_id: cover.bedroom2_blinds
+      state: closed
+  sentences:
+    - 'Close the bedroom 2 blinds'
+    - 'Shut bedroom 2 blinds'
+    - 'Please close the Bedroom 2 blinds for me'
+    - "If you don't mind, close the bedroom 2 blinds"
+    - 'Lower bedroom 2 blinds'
+    - 'Pull down the Bedroom 2 blinds'
+    - 'Roll down bedroom 2 blinds'
+    - 'Close the blinds in bedroom 2'
+-
+  name: cover_bedroom2_blinds_change_position
+  conditions:
+    -
+      type: action
+      entity_id: cover.bedroom2_blinds
+      attributes:
+        position: 67
+  sentences:
+    - 'Set the bedroom 2 blinds to 67 percent'
+    - 'Please adjust bedroom 2 blinds to 67 for me'
+    - "If you don't mind, move the Bedroom 2 blinds to 67%"
+    - 'Quickly set bedroom 2 blinds position to 67'
+    - 'Flick the bedroom 2 blinds to 67 percent'
+    - 'Change bedroom 2 blinds to 67 if you can'
+    - 'Set bedroom 2 blinds to 67 right now'

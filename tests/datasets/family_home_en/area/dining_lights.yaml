@@ -1,0 +1,66 @@
+-
+  name: dining_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: dining
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the dining room lights'
+    - 'Flick on the dining lights'
+    - 'Please turn on the lights in the dining room for me'
+    - "If you don't mind, flip on the dining lights"
+    - 'Activate the dining room lighting'
+    - 'Can you please switch on the dining lights'
+    - 'Turn the dining lights on'
+    - 'Flip on the lights in the dining area'
+-
+  name: dining_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: dining
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the dining room lights'
+    - 'Please switch off the lights in the dining area for me'
+    - "If you don't mind, flick off the dining lights"
+    - 'Kill the dining room lights'
+    - 'Could you flip off the lights in the dining room please'
+    - 'Dining lights off'
+    - 'Shut down the dining room illumination'
+-
+  name: dining_lights_change_brightness
+  conditions:
+    -
+      area: dining
+      domain: light
+      attributes:
+        brightness: 54
+  sentences:
+    - 'Set dining room lights to 54 percent brightness'
+    - 'Please dim the dining lights to 54 for me'
+    - "If you don't mind, flick dining lights to 54%"
+    - 'Change dining room brightness to 54'
+    - 'Turn dining lights down to fifty-four percent'
+    - 'Adjust dining lights brightness to 54 if possible'
+    - 'Make dining room lights 54 percent'
+    - 'Set dining lights brightness level to 54'
+-
+  name: dining_lights_change_color
+  conditions:
+    -
+      area: dining
+      domain: light
+      attributes:
+        color: blue
+  sentences:
+    - 'Turn the dining room lights blue'
+    - 'Flick the dining lights to blue'
+    - 'Please change the dining room lights to blue for me'
+    - "If you don't mind, flip the dining lights on to blue"
+    - 'Set dining room lights to blue'
+    - 'Quickly make the dining lights blue'
+    - 'Change the dining room lights to blue please'

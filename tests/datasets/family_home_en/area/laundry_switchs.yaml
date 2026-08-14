@@ -1,0 +1,32 @@
+-
+  name: laundry_switchs_turn_on
+  conditions:
+    -
+      type: action
+      area: laundry
+      domain: switch
+      state: 'on'
+  sentences:
+    - 'Turn on the laundry switches'
+    - 'Flick on the laundry switches'
+    - 'Please flip on the laundry switches for me'
+    - "If you don't mind, switch on the laundry switches"
+    - 'Activate the laundry switches'
+    - 'Can you turn on the laundry switches please'
+    - 'Flip on the laundry switches if possible'
+-
+  name: laundry_switchs_turn_off
+  conditions:
+    -
+      type: action
+      area: laundry
+      domain: switch
+      state: 'off'
+  sentences:
+    - 'Turn off the laundry switches'
+    - 'Please switch off the laundry switches for me'
+    - "Flick off the laundry switches if you don't mind"
+    - 'Flip off the laundry switches'
+    - 'Deactivate the laundry switches please'
+    - 'Could you turn off the laundry switches'
+    - 'Shut off the laundry switches for me'

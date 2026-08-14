@@ -1,0 +1,115 @@
+- name: device_wohnzimmer_an
+  conditions:
+    - {type: action, entity_id: light.wohnzimmer, state: 'on'}
+  sentences:
+    - 'Mach das Wohnzimmer Licht an'
+    - 'Schalt Wohnzimmer ein'
+    - 'Wohnzimmer an'
+
+- name: device_esszimmer_an
+  conditions:
+    - {type: action, entity_id: light.esszimmer, state: 'on'}
+  sentences:
+    - 'Mach das Esszimmer Licht an'
+    - 'Schalt Esszimmer ein'
+    - 'Esszimmer an'
+
+- name: device_kuche_kuche_an
+  conditions:
+    - {type: action, entity_id: light.kuche_kuche, state: 'on'}
+  sentences:
+    - 'Mach das Küche Licht an'
+    - 'Schalt Küche ein'
+    - 'Küche an'
+
+- name: device_arbeitszimmer_an
+  conditions:
+    - {type: action, entity_id: light.arbeitszimmer, state: 'on'}
+  sentences:
+    - 'Mach das Arbeitszimmer Licht an'
+    - 'Schalt Arbeitszimmer ein'
+    - 'Arbeitszimmer an'
+
+- name: kugel_an
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'on'}
+  sentences:
+    - 'Mach die Kugel an'
+    - 'Kugel an'
+    - 'Schalt die Kugel ein'
+
+- name: deckenlampe_aus
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+  sentences:
+    - 'Deckenlampe aus'
+    - 'Mach die Deckenlampe aus'
+    - 'Schalt die Decke aus'
+
+- name: r2d2_saugen
+  conditions:
+    - {type: action, entity_id: vacuum.r2d2}
+  sentences:
+    - 'R2D2 soll saugen'
+    - 'Staubsauger starten'
+    - 'R2D2 saugen'
+    - 'Saugroboter an'
+
+- name: waschmaschine_an
+  conditions:
+    - {type: action, entity_id: switch.badezimmer_waschmaschine, state: 'on'}
+  sentences:
+    - 'Waschmaschine an'
+    - 'Mach die Waschmaschine an'
+    - 'Schalt die Waschmaschine ein'
+
+- name: spuelmaschine_aus
+  conditions:
+    - {type: action, entity_id: switch.kuche_spulmaschine, state: 'off'}
+  sentences:
+    - 'Spülmaschine aus'
+    - 'Mach die Spülmaschine aus'
+    - 'Spuelmaschine aus'
+
+- name: pc_an
+  conditions:
+    - {type: action, entity_id: switch.pc_steckdose, state: 'on'}
+  sentences:
+    - 'PC an'
+    - 'Mach den PC an'
+    - 'Schalt die PC Steckdose ein'
+
+- name: luefter_50
+  conditions:
+    - type: action
+      entity_id: fan.arc_casual
+      attributes:
+        percentage: 50
+  sentences:
+    - 'Lüfter auf 50 Prozent'
+    - 'Ventilator 50'
+    - 'Setze den Lüfter auf 50'
+
+- name: rollo_zu
+  conditions:
+    - {type: action, entity_id: cover.wohnzimmer_rollo, state: 'off'}
+  sentences:
+    - 'Rollo zu'
+    - 'Mach das Rollo im Wohnzimmer zu'
+    - 'Schließ das Rollo'
+
+- name: tuer_abschliessen
+  conditions:
+    - {type: action, entity_id: lock.wohnungstuer, state: 'on'}
+  sentences:
+    - 'Wohnungstür abschließen'
+    - 'Schließ die Tür ab'
+    - 'Tür verriegeln'
+
+- name: filmabend
+  conditions:
+    - {type: action, entity_id: scene.filmabend}
+  sentences:
+    - 'Szene Filmabend'
+    - 'Starte Filmabend'
+    - 'Filmabend Szene an'

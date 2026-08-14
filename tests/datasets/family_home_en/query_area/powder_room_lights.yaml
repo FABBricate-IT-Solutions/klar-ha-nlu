@@ -1,0 +1,61 @@
+-
+  name: powder_room_lights_get_state
+  conditions:
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the powder room lights?"
+    - 'Lights in powder room?'
+    - "Please tell me the current state of the powder room lights if you don't mind."
+    - 'Check powder room lighting for me.'
+    - 'Are the powder room lights on or off?'
+    - 'Get me the powder room light status please.'
+    - 'Powder room lights state?'
+-
+  name: powder_room_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the powder room lights?"
+    - 'Lights in the powder room?'
+    - 'Please tell me if the powder room lights are on or off'
+    - 'Could you check the powder room lighting for me?'
+    - 'powder room lights status'
+    - "If you don't mind, what's the current state of the lights in the powder room?"
+    - 'Are the powder room lights on?'
+-
+  name: powder_room_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the powder room lights?"
+    - 'Are the powder room lights on?'
+    - 'Check powder room lighting please'
+    - "If you don't mind, could you tell me if the lights are on in the powder room?"
+    - 'Powder room lights status'
+    - 'Please check the powder room lights for me'
+    - 'Are the lights on in the powder room right now?'
+-
+  name: powder_room_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: powder_room
+      domain: light
+  sentences:
+    - "What's the status of the powder room lights"
+    - 'Are the lights on in the powder room'
+    - 'Please check the powder room lights for me'
+    - "If you don't mind, tell me if the powder room lights are on"
+    - 'Powder room lights status'
+    - 'Can you tell me the current state of the powder room lights'
+    - 'Quick check on powder room lighting please'
+    - 'Get me the powder room light status'

@@ -1,0 +1,22 @@
+- name: master_bath_lights_set_brightness
+  setup:
+  - entity_id: light.master_bath_light
+    brightness: 34
+  conditions:
+  - entity_id: light.master_bath_light
+    brightness: 50
+  sentences:
+  - - Status Lichter Elternbad
+    - auf 50
+  - - Status Lichter Elternbad
+    - auf 50
+  - - Status Lichter Elternbad
+    - auf 50
+  - - Mach Lichter Elternbad an
+    - auf 50
+  - - Status Lichter Elternbad
+    - auf 50
+  - - Status Lichter Elternbad
+    - auf 50
+  - - Status Lichter Elternbad
+    - auf 50

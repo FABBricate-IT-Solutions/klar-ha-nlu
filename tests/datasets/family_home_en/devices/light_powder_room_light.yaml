@@ -1,0 +1,63 @@
+-
+  name: light_powder_room_light_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.powder_room_light
+      state: 'on'
+  sentences:
+    - 'Turn on the powder room light'
+    - 'Flick on the light in the powder room'
+    - 'Please flip on the powder room light for me'
+    - "If you don't mind, turn on the light in powder room"
+    - 'Activate the powder room light'
+    - 'Switch on the light in the powder room'
+    - 'Could you turn on the powder room light please'
+-
+  name: light_powder_room_light_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.powder_room_light
+      state: 'off'
+  sentences:
+    - 'Turn off the powder room light'
+    - 'Please switch off the light in the powder room for me'
+    - 'Flick off the powder room light'
+    - "If you don't mind, flip off the powder room light"
+    - 'Deactivate the light powder room light'
+    - 'Shut off the powder room light please'
+    - 'Kill the powder room light'
+    - 'Can you turn off the light in powder room'
+-
+  name: light_powder_room_light_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.powder_room_light
+      attributes:
+        brightness: 22
+  sentences:
+    - 'Set the powder room light to 22 percent'
+    - 'Please dim the Powder Room Light to 22 for me'
+    - 'Turn the light in the powder room down to 22'
+    - "If you don't mind, flick the powder room light to 22"
+    - 'Quickly set powder room light brightness to 22'
+    - 'Flip the Powder Room Light down to 22'
+    - 'Adjust the light in powder room to 22 percent brightness'
+-
+  name: light_powder_room_light_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.powder_room_light
+      attributes:
+        color: black
+  sentences:
+    - 'Change the powder room light to black'
+    - 'Set light powder room light color to black'
+    - 'Please turn the powder room light black for me'
+    - "If you don't mind, flick the powder room light to black"
+    - 'Flip the powder room light color to black'
+    - 'Make the powder room light black'
+    - 'Quickly set powder room light to black'

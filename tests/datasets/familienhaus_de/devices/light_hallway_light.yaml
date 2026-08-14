@@ -1,0 +1,43 @@
+- name: light_hallway_light_turn_on
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - Mach die Lichter im Flur an
+  - Lichter Flur an
+  - Schalt die Lichter im Flur ein
+  - Flur Lichter an
+  - Kannst du die Lichter im Flur anmachen
+- name: light_hallway_light_turn_off
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - Mach die Lichter im Flur aus
+  - Lichter Flur aus
+  - Schalt die Lichter im Flur aus
+  - Flur Lichter aus
+- name: light_hallway_light_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 11
+  sentences:
+  - Setze Flur auf 11 Prozent
+  - Flur Helligkeit 11
+  - Dimme Flur auf 11
+  - Lichter Flur 11 Prozent
+- name: light_hallway_light_change_color
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: white
+  sentences:
+  - Mach Flur weiß
+  - Setze Flur auf weiß
+  - Flur weiß
+  - Lichter Flur weiß

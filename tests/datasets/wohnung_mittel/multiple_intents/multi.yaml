@@ -1,0 +1,29 @@
+- name: wz_und_kuche_licht
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - {type: action, area: kuche, domain: light, state: 'on'}
+  sentences:
+    - 'Mach das Licht im Wohnzimmer und in der Küche an'
+    - 'Licht Wohnzimmer und Küche an'
+    - 'Schalt Wohnzimmer und Küche ein'
+
+- name: licht_und_heizung
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - type: action
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Mach das Licht im Wohnzimmer an und stell die Heizung auf 23'
+    - 'Licht Wohnzimmer an und Heizung auf 23 Grad'
+    - 'Wohnzimmer Licht an und Heizung dreiundzwanzig'
+
+- name: zwei_raeume_und_heizung
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - type: action
+      attributes:
+        temperature: 23
+  sentences:
+    - 'Mach das Licht im Wohnzimmer und in der Küche an und stell die Heizung auf 23'

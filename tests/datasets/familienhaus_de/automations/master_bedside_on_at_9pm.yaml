@@ -1,0 +1,13 @@
+- name: master_bedside_on_at_9pm
+  sentences:
+  - Ist  an
+  - 'Status '
+  - 'Wie ist der Zustand von '
+  - 'Status '
+  expected:
+    trigger:
+      platform: time
+      at: '21:00:00'
+    actions:
+    - action: light.turn_on
+      entity_id: light.master_bedside_left

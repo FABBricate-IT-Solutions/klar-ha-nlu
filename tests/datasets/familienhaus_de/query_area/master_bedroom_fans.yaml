@@ -1,0 +1,40 @@
+- name: master_bedroom_fans_get_state
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: fan
+  sentences:
+  - Ist Lüfter Schlafzimmer an
+  - Status Lüfter Schlafzimmer
+  - Wie ist der Zustand von Lüfter Schlafzimmer
+  - Ist das fan im Schlafzimmer an
+- name: master_bedroom_fans_list_on_fans
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: fan
+  sentences:
+  - Ist Lüfter Schlafzimmer an
+  - Status Lüfter Schlafzimmer
+  - Wie ist der Zustand von Lüfter Schlafzimmer
+  - Ist das fan im Schlafzimmer an
+- name: master_bedroom_fans_list_off_fans
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: fan
+  sentences:
+  - Ist Lüfter Schlafzimmer an
+  - Status Lüfter Schlafzimmer
+  - Wie ist der Zustand von Lüfter Schlafzimmer
+  - Ist das fan im Schlafzimmer an
+- name: master_bedroom_fans_get_fan_speed
+  conditions:
+  - type: query
+    area: master_bedroom
+    domain: fan
+  sentences:
+  - Ist Lüfter Schlafzimmer an
+  - Status Lüfter Schlafzimmer
+  - Wie ist der Zustand von Lüfter Schlafzimmer
+  - Ist das fan im Schlafzimmer an

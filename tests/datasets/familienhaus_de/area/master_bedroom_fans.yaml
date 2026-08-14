@@ -1,0 +1,28 @@
+- name: master_bedroom_fans_turn_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: fan
+    state: 'on'
+  sentences:
+  - Lüfter Schlafzimmer an
+  - Mach Lüfter Schlafzimmer an
+- name: master_bedroom_fans_turn_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: fan
+    state: 'off'
+  sentences:
+  - Lüfter Schlafzimmer aus
+  - Mach Lüfter Schlafzimmer aus
+- name: master_bedroom_fans_set_fan_speed
+  conditions:
+  - area: master_bedroom
+    domain: fan
+    attributes:
+      percentage: 79
+  sentences:
+  - Lüfter Schlafzimmer auf 79 Prozent
+  - Setze Lüfter Schlafzimmer auf 79
+  - Lüfter Schlafzimmer 79 Prozent

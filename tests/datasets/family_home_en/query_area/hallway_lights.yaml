@@ -1,0 +1,59 @@
+-
+  name: hallway_lights_get_state
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+  sentences:
+    - "What's the status of the hallway lights?"
+    - 'Hallway lights state'
+    - 'Please check the hallway lights for me'
+    - "If you don't mind, could you tell me if the hallway lights are on?"
+    - 'Can you check the hallway lights please'
+    - 'Tell me the current state of the hallway lights'
+-
+  name: hallway_lights_list_on_lights
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+  sentences:
+    - "What's the status of the hallway lights?"
+    - 'Hallway lights state please'
+    - "If you don't mind, could you check the hallway lights for me?"
+    - 'Please tell me if the hallway lights are on or off'
+    - 'Get current state of hallway lights'
+    - 'Are the hallway lights on?'
+-
+  name: hallway_lights_list_off_lights
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+  sentences:
+    - "What's the status of the hallway lights?"
+    - 'Hallway lights state please'
+    - "Could you tell me if the hallway lights are on or off, if you don't mind?"
+    - 'Check hallway lighting for me'
+    - 'Are the lights in the hallway currently on?'
+    - 'Please report hallway light status'
+    - 'Hallway lights - on or off?'
+-
+  name: hallway_lights_get_brightness
+  conditions:
+    -
+      type: query
+      area: hallway
+      domain: light
+  sentences:
+    - "What's the status of the hallway lights?"
+    - 'Hallway lights state please'
+    - "Could you check the hallway lights for me if you don't mind?"
+    - 'Tell me about the lights in the hallway'
+    - 'Are the hallway lights on or off?'
+    - 'Quick check hallway lights'
+    - 'Please get the current state of the hallway lights'
+    - 'Hallway lighting status report'

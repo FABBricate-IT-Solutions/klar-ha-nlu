@@ -1,0 +1,66 @@
+-
+  name: family_room_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: family_room
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the family room lights'
+    - 'Flick on the family room lights'
+    - 'Please flip on the family room lights for me'
+    - "If you don't mind, turn on the family room lights"
+    - 'Flip on the family room lights'
+    - 'Could you flick on the family room lights for me'
+    - 'Turn on the lights in the family room'
+    - 'Please turn on the family room lights'
+-
+  name: family_room_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: family_room
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the family room lights'
+    - 'Please kill the lights in the family room for me'
+    - "If you don't mind, flick off the family room lights"
+    - 'Family room lights off'
+    - 'Could you please flip off the family room lights'
+    - "Shut down the family room lights if you don't mind"
+    - 'Kill the family room lights please'
+-
+  name: family_room_lights_change_brightness
+  conditions:
+    -
+      area: family_room
+      domain: light
+      attributes:
+        brightness: 44
+  sentences:
+    - 'Set the family room lights to 44%'
+    - 'Turn the family room lights down to 44'
+    - 'Please dim the family room lights to 44% for me'
+    - "If you don't mind, could you flick the family room lights to 44"
+    - 'Change family room brightness to 44 percent'
+    - 'Flip the family room lights to 44%'
+    - 'Would you mind setting the family room lights to 44'
+    - 'Adjust family room lights brightness to 44'
+-
+  name: family_room_lights_change_color
+  conditions:
+    -
+      area: family_room
+      domain: light
+      attributes:
+        color: green
+  sentences:
+    - 'Change the family room lights to green'
+    - 'Set family room lights green please'
+    - "If you don't mind, could you flick the family room lights to green for me"
+    - 'Flip family room lights green'
+    - 'Make the family room lights green'
+    - 'Turn family room lights green now'
+    - 'Please set the family room lights to green'

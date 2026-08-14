@@ -1,0 +1,28 @@
+-
+  name: light_dining_pendant_get_status
+  conditions:
+    -
+      type: query
+      entity_id: light.dining_pendant
+  sentences:
+    - "What's the status of the dining pendant?"
+    - 'Dining pendant state'
+    - "Please tell me the current state of the dining pendant light if you don't mind"
+    - 'Get dining pendant status'
+    - 'Could you check the dining area pendant for me please'
+    - 'Dining pendant light state'
+    - "What's going on with the dining pendant"
+-
+  name: light_dining_pendant_get_brightness
+  conditions:
+    -
+      type: query
+      entity_id: light.dining_pendant
+  sentences:
+    - "What's the brightness of the Dining Pendant?"
+    - 'Tell me how bright the dining pendant is'
+    - 'Please check the brightness level of the dining pendant for me'
+    - "If you don't mind, what's the current brightness of the Dining Pendant?"
+    - 'Dining pendant brightness'
+    - 'Can you tell me the brightness of the dining pendant light?'
+    - "What's the brightness level on the dining pendant right now?"

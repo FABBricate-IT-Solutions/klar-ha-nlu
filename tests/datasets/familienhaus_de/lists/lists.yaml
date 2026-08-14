@@ -1,0 +1,72 @@
+- name: shopping_list_add_apples
+  conditions:
+  - type: shopping_list
+    item: apples
+    complete: false
+  sentences:
+  - Setze apples auf die Einkaufsliste
+  - Füge apples zur Liste hinzu
+  - apples auf die Liste
+- name: shopping_list_complete_bread
+  setup:
+  - shopping_list_item: bread
+  - shopping_list_item: butter
+  - shopping_list_item: milk
+  - shopping_list_item: chicken
+  - shopping_list_item: bananas
+  conditions:
+  - type: shopping_list
+    item: bread
+    complete: true
+  sentences:
+  - Setze bread auf die Einkaufsliste
+  - Füge bread zur Liste hinzu
+  - bread auf die Liste
+- name: chores_add_wipe_down_the_counte
+  conditions:
+  - type: todo_list
+    list_name: Chores
+    item: Wipe down the counters
+    complete: false
+  sentences:
+  - Setze Wipe down the counters auf die Einkaufsliste
+  - Füge Wipe down the counters zur Liste hinzu
+  - Wipe down the counters auf die Liste
+- name: chores_complete_scrub_the_toilet
+  setup:
+  - list_name: Chores
+    todo_item: scrub the toilet
+  - list_name: Chores
+    todo_item: mop the kitchen floor
+  - list_name: Chores
+    todo_item: sweep the porch
+  - list_name: Chores
+    todo_item: empty the dishwasher
+  conditions:
+  - type: todo_list
+    list_name: Chores
+    item: Scrub the toilet
+    complete: true
+  sentences:
+  - Setze Scrub the toilet auf die Einkaufsliste
+  - Füge Scrub the toilet zur Liste hinzu
+  - Scrub the toilet auf die Liste
+- name: chores_remove_mop_the_kitchen_floo
+  setup:
+  - list_name: Chores
+    todo_item: scrub the toilet
+  - list_name: Chores
+    todo_item: mop the kitchen floor
+  - list_name: Chores
+    todo_item: sweep the porch
+  - list_name: Chores
+    todo_item: empty the dishwasher
+  conditions:
+  - type: todo_list
+    list_name: Chores
+    item: Mop the kitchen floor
+    removed: true
+  sentences:
+  - Setze Mop the kitchen floor auf die Einkaufsliste
+  - Füge Mop the kitchen floor zur Liste hinzu
+  - Mop the kitchen floor auf die Liste

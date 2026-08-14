@@ -1,0 +1,51 @@
+-
+  name: master_bedroom_covers_open
+  conditions:
+    -
+      type: action
+      area: master_bedroom
+      domain: cover
+      state: open
+  sentences:
+    - 'Open the master bedroom windows'
+    - 'Please open the blinds in the master bedroom for me'
+    - "If you don't mind, could you flick on the curtains in the master bedroom"
+    - 'Flip on the master bedroom blinds'
+    - 'Quickly open the curtains in the master bedroom'
+    - 'Turn on the windows in the master bedroom'
+    - 'Would you mind opening the blinds for me in the master bedroom'
+    - 'Open up the master bedroom curtains'
+-
+  name: master_bedroom_covers_close
+  conditions:
+    -
+      type: action
+      area: master_bedroom
+      domain: cover
+      state: closed
+  sentences:
+    - 'Close the master bedroom windows'
+    - 'Shut the blinds in the master bedroom please'
+    - "If you don't mind, close the curtains for me"
+    - 'Flick the master bedroom blinds shut'
+    - 'Please shut the curtains in the master bedroom'
+    - 'Close up the windows in the master bedroom if you could'
+    - 'Flip the blinds closed in the master bedroom'
+    - 'Shut the master bedroom curtains for me'
+-
+  name: master_bedroom_covers_set_position
+  conditions:
+    -
+      area: master_bedroom
+      domain: cover
+      attributes:
+        position: 38
+  sentences:
+    - 'Set the master bedroom blinds to 38 percent'
+    - "Please adjust the master bedroom curtains to 38 if you don't mind"
+    - 'Flick the master bedroom windows to position 38'
+    - 'Could you set the master bedroom blinds to 38 for me'
+    - 'Quickly move the master bedroom curtains to 38'
+    - 'Set master bedroom windows position 38'
+    - "If you don't mind, position the master bedroom blinds at 38 please"
+    - 'Flip the master bedroom curtains to 38'

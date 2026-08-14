@@ -1,0 +1,64 @@
+-
+  name: light_master_bath_light_turn_on
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bath_light
+      state: 'on'
+  sentences:
+    - 'Turn on the master bathroom light'
+    - 'Please turn on the master bathroom light for me'
+    - 'Flick on the light in the master bathroom'
+    - "Flip on the master bathroom light if you don't mind"
+    - 'Activate the master bathroom light'
+    - 'Turn on the light in master bathroom please'
+    - 'Switch on the master bathroom light for me'
+    - 'Could you turn on the master bathroom light'
+-
+  name: light_master_bath_light_turn_off
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bath_light
+      state: 'off'
+  sentences:
+    - 'Turn off the master bathroom light'
+    - 'Please switch off the master bathroom light for me'
+    - "If you don't mind, flick off the Master Bath Light"
+    - 'Flip off the master bathroom light'
+    - 'Kill the master bathroom light'
+    - 'Can you turn off the light in the master bath'
+    - 'Deactivate the Master Bath Light please'
+-
+  name: light_master_bath_light_change_brightness
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bath_light
+      attributes:
+        brightness: 18
+  sentences:
+    - 'Set the Master Bath Light to 18'
+    - 'Please dim the light master bathroom light to 18 for me'
+    - "Flick the master bathroom light down to 18 if you don't mind"
+    - 'Turn the Master Bath Light brightness to 18'
+    - 'Flip on the master bathroom light at 18 percent'
+    - 'Could you set the light master bathroom light to 18 please'
+    - 'Adjust the Master Bath Light brightness to 18'
+    - 'Make the master bathroom light 18'
+-
+  name: light_master_bath_light_change_color
+  conditions:
+    -
+      type: action
+      entity_id: light.master_bath_light
+      attributes:
+        color: black
+  sentences:
+    - 'Turn the master bathroom light to black'
+    - 'Please set the Master Bath Light to black for me'
+    - 'Flick the master bathroom light to black'
+    - "If you don't mind, change the Master Bath Light color to black"
+    - 'Flip the master bathroom light to black'
+    - 'Set the master bathroom light color to black please'
+    - 'Make the Master Bath Light black'

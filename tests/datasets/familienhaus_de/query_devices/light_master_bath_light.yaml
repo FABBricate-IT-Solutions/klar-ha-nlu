@@ -1,0 +1,18 @@
+- name: light_master_bath_light_get_status
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das light im Elternbad an
+- name: light_master_bath_light_get_brightness
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - Ist Elternbad an
+  - Status Elternbad
+  - Wie ist der Zustand von Elternbad
+  - Ist das light im Elternbad an

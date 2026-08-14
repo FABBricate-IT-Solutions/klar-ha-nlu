@@ -1,0 +1,43 @@
+- name: light_bedroom4_ceiling_turn_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'on'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 4 an
+  - Lichter Kinderzimmer 4 an
+  - Schalt die Lichter in Kinderzimmer 4 ein
+  - Kinderzimmer 4 Lichter an
+  - Kannst du die Lichter in Kinderzimmer 4 anmachen
+- name: light_bedroom4_ceiling_turn_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  sentences:
+  - Mach die Lichter in Kinderzimmer 4 aus
+  - Lichter Kinderzimmer 4 aus
+  - Schalt die Lichter in Kinderzimmer 4 aus
+  - Kinderzimmer 4 Lichter aus
+- name: light_bedroom4_ceiling_change_brightness
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - Setze Kinderzimmer 4 auf 60 Prozent
+  - Kinderzimmer 4 Helligkeit 60
+  - Dimme Kinderzimmer 4 auf 60
+  - Lichter Kinderzimmer 4 60 Prozent
+- name: light_bedroom4_ceiling_change_color
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: red
+  sentences:
+  - Mach Kinderzimmer 4 rot
+  - Setze Kinderzimmer 4 auf rot
+  - Kinderzimmer 4 rot
+  - Lichter Kinderzimmer 4 rot

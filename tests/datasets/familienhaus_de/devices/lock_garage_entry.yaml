@@ -1,0 +1,18 @@
+- name: lock_garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - Schließ Garagentür ab
+  - Garagentür abschließen
+  - Tür Garage zu
+- name: lock_garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - Schließ Garagentür auf
+  - Garagentür aufschließen
+  - Tür Garage auf

@@ -1,0 +1,32 @@
+-
+  name: master_bedroom_climates_set_temperature
+  setup:
+    -
+      entity_id: climate.upper_thermostat
+      temperature: 11
+  conditions:
+    -
+      entity_id: climate.upper_thermostat
+      temperature: 44
+  sentences:
+    -
+      - "What's the temperature in the master bedroom?"
+      - 'Set it to 44.'
+    -
+      - 'Can you tell me the current temperature of the climates in the master bedroom please?'
+      - 'Please set it to 44 for me.'
+    -
+      - 'Master bedroom climate temperatures?'
+      - 'Flick it to 44.'
+    -
+      - "If you don't mind, what's the temperature of the master bedroom climates?"
+      - "Flip it to 44 if you don't mind."
+    -
+      - 'Tell me the master bedroom temperature please.'
+      - 'Turn it to 44.'
+    -
+      - 'Quickly, master bedroom climate temps?'
+      - 'Crank it to 44.'
+    -
+      - 'Could you check the temperature in the master bedroom climates?'
+      - 'Adjust it to 44 please.'

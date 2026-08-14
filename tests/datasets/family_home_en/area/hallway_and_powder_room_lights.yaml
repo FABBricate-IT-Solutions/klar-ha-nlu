@@ -1,0 +1,82 @@
+-
+  name: hallway_and_powder_room_lights_turn_on
+  conditions:
+    -
+      type: action
+      area: hallway
+      domain: light
+      state: 'on'
+    -
+      type: action
+      area: powder_room
+      domain: light
+      state: 'on'
+  sentences:
+    - 'Turn on the hallway and powder room lights'
+    - 'Flick on the lights in the hallway and powder room'
+    - 'Please flip on the hallway and powder room lights for me'
+    - "If you don't mind, turn on the lights in the hallway and powder room"
+    - 'Activate the hallway and powder room lights'
+    - 'Could you switch on the lights in the hallway and powder room please'
+    - 'Turn the hallway and powder room lights on'
+-
+  name: hallway_and_powder_room_lights_turn_off
+  conditions:
+    -
+      type: action
+      area: hallway
+      domain: light
+      state: 'off'
+    -
+      type: action
+      area: powder_room
+      domain: light
+      state: 'off'
+  sentences:
+    - 'Turn off the hallway and powder room lights'
+    - 'Please switch off the lights in the hallway and powder room for me'
+    - "Flick off the lights in the hallway and powder room if you don't mind"
+    - 'Flip the hallway and powder room lights off'
+    - 'Could you turn off the lights in the hallway and powder room please'
+    - 'Deactivate the lights in the hallway and powder room'
+    - 'Shut off the hallway and powder room lights for me'
+-
+  name: hallway_and_powder_room_lights_change_brightness
+  conditions:
+    -
+      area: hallway
+      domain: light
+      attributes:
+        brightness: 26
+    -
+      area: powder_room
+      domain: light
+      attributes:
+        brightness: 26
+  sentences:
+    - 'Set hallway and powder room lights to 26 percent brightness'
+    - 'Please dim the hallway and powder room lights to 26 for me'
+    - "Flick the hallway and powder room lights down to 26 if you don't mind"
+    - 'Adjust brightness of hallway and powder room to 26 percent'
+    - 'Turn the hallway and powder room lights to 26 brightness please'
+    - 'Set brightness level of hallway and powder room to 26'
+-
+  name: hallway_and_powder_room_lights_change_color
+  conditions:
+    -
+      area: hallway
+      domain: light
+      attributes:
+        color: purple
+    -
+      area: powder_room
+      domain: light
+      attributes:
+        color: purple
+  sentences:
+    - 'Set hallway and powder room lights to purple'
+    - 'Please turn the hallway and powder room lights purple for me'
+    - "If you don't mind, flip on purple lights in the hallway and powder room"
+    - 'Change hallway and powder room to purple now'
+    - 'Quickly set purple lights in hallway and powder room'
+    - 'Make the hallway and powder room purple please'

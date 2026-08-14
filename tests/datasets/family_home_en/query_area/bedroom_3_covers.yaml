@@ -1,0 +1,59 @@
+-
+  name: bedroom_3_covers_get_state
+  conditions:
+    -
+      type: query
+      area: bedroom_3
+      domain: cover
+  sentences:
+    - "What's the status of the windows in bedroom 3?"
+    - 'bedroom 3 blinds state'
+    - 'please check the curtains for me in bedroom 3'
+    - "if you don't mind, tell me if the windows are open in bedroom 3"
+    - 'bedroom three window status'
+    - 'can you show me the current state of bedroom 3 curtains'
+    - 'quick check bedroom 3 windows please'
+-
+  name: bedroom_3_covers_list_open_covers
+  conditions:
+    -
+      type: query
+      area: bedroom_3
+      domain: cover
+  sentences:
+    - "What's the status of the windows in bedroom 3"
+    - 'bedroom 3 window state'
+    - 'please check the blinds for me in bedroom 3'
+    - "if you don't mind, can you tell me if the curtains are open in bedroom 3"
+    - 'get current state of bedroom 3 blinds'
+    - 'are the windows open in bedroom 3'
+-
+  name: bedroom_3_covers_list_closed_covers
+  conditions:
+    -
+      type: query
+      area: bedroom_3
+      domain: cover
+  sentences:
+    - "What's the status of the windows in bedroom 3"
+    - 'bedroom 3 windows state'
+    - 'please check the blinds in bedroom 3 for me'
+    - "if you don't mind, could you tell me if the curtains are open in bedroom 3"
+    - 'bedroom 3 window status please'
+    - 'are the blinds up or down in bedroom 3'
+    - 'quick check bedroom 3 curtains'
+-
+  name: bedroom_3_covers_get_position
+  conditions:
+    -
+      type: query
+      area: bedroom_3
+      domain: cover
+  sentences:
+    - "What's the status of the windows in bedroom 3?"
+    - 'Bedroom 3 blinds state'
+    - 'Please check the curtains in bedroom 3 for me'
+    - "If you don't mind, could you tell me if the windows are open in bedroom 3?"
+    - 'Bedroom 3 window status please'
+    - 'Are the blinds up or down in bedroom 3?'
+    - 'Quick check: bedroom 3 curtains position'

@@ -1,0 +1,53 @@
+- name: media_player_family_tv_turn_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - Mach Familienzimmer Fernseher an
+  - Familienzimmer Fernseher an
+  - Fernseher Familienzimmer an
+- name: media_player_family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - Pause Familienzimmer Fernseher
+  - Familienzimmer Fernseher pausieren
+- name: media_player_family_tv_unpause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: playing
+  sentences:
+  - Mach Familienzimmer Fernseher an
+  - Familienzimmer Fernseher an
+  - Fernseher Familienzimmer an
+- name: media_player_family_tv_mute
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    attributes:
+      is_volume_muted: 'true'
+  sentences:
+  - Familienzimmer Fernseher stumm
+  - Stumm Familienzimmer Fernseher
+  - Familienzimmer Fernseher lautlos
+- name: media_player_family_tv_unmute
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    attributes:
+      is_volume_muted: 'false'
+  sentences:
+  - Familienzimmer Fernseher laut
+  - Stummschaltung Familienzimmer Fernseher aus
+- name: media_player_family_tv_turn_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - Mach Familienzimmer Fernseher aus
+  - Familienzimmer Fernseher aus

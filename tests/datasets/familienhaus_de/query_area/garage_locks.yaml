@@ -1,0 +1,30 @@
+- name: garage_locks_get_state
+  conditions:
+  - type: query
+    area: garage
+    domain: lock
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das lock in der Garage an
+- name: garage_locks_list_locked_locks
+  conditions:
+  - type: query
+    area: garage
+    domain: lock
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das lock in der Garage an
+- name: garage_locks_list_unlocked_locks
+  conditions:
+  - type: query
+    area: garage
+    domain: lock
+  sentences:
+  - Ist Garage an
+  - Status Garage
+  - Wie ist der Zustand von Garage
+  - Ist das lock in der Garage an

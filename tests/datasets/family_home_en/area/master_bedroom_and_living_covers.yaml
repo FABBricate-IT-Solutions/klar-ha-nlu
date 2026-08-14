@@ -1,0 +1,62 @@
+-
+  name: master_bedroom_and_living_covers_open
+  conditions:
+    -
+      type: action
+      area: master_bedroom
+      domain: cover
+      state: open
+    -
+      type: action
+      area: living
+      domain: cover
+      state: open
+  sentences:
+    - 'Open the blinds in the master bedroom and living room'
+    - 'Please open the curtains for me in the master bedroom and living'
+    - "If you don't mind, could you flick on the windows in the master bedroom and living room"
+    - 'Flip on the blinds in the master bedroom and living'
+    - 'Quickly open the curtains in the master bedroom and living room'
+    - 'Turn on the windows for me in the master bedroom and living'
+    - 'Open the blinds please in the master bedroom and living room'
+    - 'Roll up the curtains in the master bedroom and living'
+-
+  name: master_bedroom_and_living_covers_close
+  conditions:
+    -
+      type: action
+      area: master_bedroom
+      domain: cover
+      state: closed
+    -
+      type: action
+      area: living
+      domain: cover
+      state: closed
+  sentences:
+    - 'Close the master bedroom and living room windows'
+    - 'Shut the blinds in the master bedroom and living room'
+    - 'Please close the curtains for me in the master bedroom and living room'
+    - "If you don't mind, close the windows in the master bedroom and living room"
+    - 'Close the windows and blinds in the master bedroom and living room for me'
+-
+  name: master_bedroom_and_living_covers_set_position
+  conditions:
+    -
+      area: master_bedroom
+      domain: cover
+      attributes:
+        position: 19
+    -
+      area: living
+      domain: cover
+      attributes:
+        position: 19
+  sentences:
+    - 'Set the blinds in the master bedroom and living room to 19'
+    - 'Please adjust the curtains and windows in the master bedroom and living room to 19 for me'
+    - 'Flick the blinds and curtains in the master bedroom and living room to position 19'
+    - "If you don't mind, set the windows and blinds in the master bedroom and living room to 19"
+    - 'Quickly move the curtains and blinds in the master bedroom and living room to 19'
+    - 'Flip the windows and curtains in the master bedroom and living room to 19 please'
+    - 'Adjust the blinds and windows in the master bedroom and living room to position 19'
