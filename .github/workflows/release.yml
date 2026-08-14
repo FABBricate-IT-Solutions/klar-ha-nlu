@@ -1,0 +1,77 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Semver bump from conventional commits (auto) or forced
+        type: choice
+        options: [auto, patch, minor, major]
+        default: auto
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    name: tag
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.ver.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: git-cliff
+
+      - name: Next version
+        id: ver
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: |
+          extra=()
+          if [[ "$BUMP" != "auto" ]]; then
+            extra=(--bump "$BUMP")
+          fi
+          raw="$(git-cliff --bumped-version "${extra[@]}")"
+          raw="$(tr -d '[:space:]' <<<"$raw")"
+          if [[ -z "$raw" ]]; then
+            echo "git-cliff did not produce a version" >&2
+            exit 1
+          fi
+          tag="$raw"
+          [[ "$tag" == v* ]] || tag="v$tag"
+          version="${tag#v}"
+          if git rev-parse "refs/tags/$tag" >/dev/null 2>&1; then
+            echo "Tag $tag already exists — nothing to release" >&2
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Bump crate and add-on versions
+        run: python3 scripts/bump-version.py "${{ steps.ver.outputs.version }}"
+
+      - name: Write CHANGELOG.md
+        run: git-cliff --tag "${{ steps.ver.outputs.tag }}" -o CHANGELOG.md
+
+      - name: Commit and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Cargo.toml config.yaml addon/config.yaml \
+            custom_components/klar_nlu/manifest.json CHANGELOG.md
+          git commit -m "chore(release): prepare for ${{ steps.ver.outputs.tag }}"
+          git tag -a "${{ steps.ver.outputs.tag }}" -m "${{ steps.ver.outputs.tag }}"
+          git push origin HEAD --follow-tags
+
+  artifacts:
+    needs: prepare
+    uses: ./.github/workflows/build.yml
+    with:
+      release_tag: ${{ needs.prepare.outputs.tag }}
+    permissions:
+      contents: write

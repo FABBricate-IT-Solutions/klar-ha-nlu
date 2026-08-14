@@ -66,11 +66,15 @@ Details: [docs/en/home-assistant.md](docs/en/home-assistant.md)
 | Home Assistant | [docs/en/home-assistant.md](docs/en/home-assistant.md) | [docs/home-assistant.md](docs/home-assistant.md) |
 | Adding languages | [docs/en/languages.md](docs/en/languages.md) | [docs/languages.md](docs/languages.md) |
 | Tests | [docs/en/testing.md](docs/en/testing.md) | [docs/testing.md](docs/testing.md) |
+| Releases | [docs/en/releases.md](docs/en/releases.md) | [docs/releases.md](docs/releases.md) |
 
 ## Releases
 
-GitHub Actions builds `klar` for **linux-x86_64**, **linux-aarch64**, and **linux-armv7** (Raspberry Pi).
-Push a tag `v0.1.0` to attach tarballs to a GitHub Release. Dependabot opens weekly PRs for crates and Actions; `cargo-audit` and `cargo-deny` run on every change.
+Changelogs come from [git-cliff](https://git-cliff.org/) and [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, …). See [CHANGELOG.md](CHANGELOG.md).
+
+**Actions → Release → Run workflow** bumps the version, writes the changelog, and tags `vX.Y.Z`. The Build workflow then attaches linux-x86_64, linux-aarch64, and linux-armv7 tarballs to the GitHub Release. A manual `git tag v0.1.0 && git push origin v0.1.0` still works.
+
+Dependabot opens weekly PRs for crates and Actions; `cargo-audit` and `cargo-deny` run on every change.
 
 ## Tests
 
