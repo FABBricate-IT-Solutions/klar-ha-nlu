@@ -33,7 +33,7 @@ jobs:
           - target: armv7-unknown-linux-gnueabihf
             name: linux-armv7
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.release_tag || github.ref }}
       - uses: dtolnay/rust-toolchain@stable
@@ -53,7 +53,7 @@ jobs:
           cp "target/${{ matrix.target }}/release/klar" "$dest"
           chmod +x "$dest"
           tar -czf "${dest}.tar.gz" "$dest"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: klar-${{ matrix.name }}
           path: klar-${{ matrix.name }}.tar.gz
@@ -67,11 +67,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ inputs.release_tag || github.ref }}
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           path: dist
           merge-multiple: true
@@ -83,7 +83,7 @@ jobs:
         env:
           OUTPUT: CHANGES.md
           GITHUB_REPO: ${{ github.repository }}
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ inputs.release_tag || github.ref_name }}
           files: dist/*.tar.gz
