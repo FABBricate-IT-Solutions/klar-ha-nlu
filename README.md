@@ -9,6 +9,8 @@
 [![CI](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/ci.yml/badge.svg)](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/ci.yml)
 [![Security](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/security.yml/badge.svg)](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/security.yml)
 [![Build](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/build.yml/badge.svg)](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/build.yml)
+[![Validate](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/validate.yml/badge.svg)](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/actions/workflows/validate.yml)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Deterministic voice control for Home Assistant. Klar turns spoken sentences into HA intents — no cloud, no model weights.
@@ -49,11 +51,18 @@ UI: <http://127.0.0.1:10520>
 
 ## Home Assistant
 
-1. Copy `custom_components/klar_nlu` to `config/custom_components/klar_nlu`
-2. Start the Klar binary or add-on
-3. Add the **Klar NLU** integration (URL, default `http://127.0.0.1:10520`)
-4. Assist pipeline: conversation engine = **Klar NLU**
-5. Optionally pick a conversation agent for chit-chat in the options
+HACS installs the conversation integration. The Klar engine (binary, Docker, or add-on) still has to run separately.
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
+
+1. Click the badge, or in HACS → Integrations → ⋮ → Custom repositories add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as **Integration**
+2. Download **Klar NLU** and restart Home Assistant
+3. Start the Klar engine
+4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) (URL default `http://127.0.0.1:10520`)
+5. Assist pipeline: conversation engine = **Klar NLU**
+6. Optionally pick a conversation agent for chit-chat in the options
+
+Manual install: copy `custom_components/klar_nlu` to `config/custom_components/klar_nlu`, then restart.
 
 Details: [docs/en/home-assistant.md](docs/en/home-assistant.md)
 
