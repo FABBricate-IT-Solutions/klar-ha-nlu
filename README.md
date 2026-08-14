@@ -1,7 +1,7 @@
 # Klar NLU
 
 <p align="center">
-  <img src="docs/klar-logo.png" alt="Klar — Rust crab saying Klar!" width="280">
+  <img src="https://raw.githubusercontent.com/FABBricate-IT-Solutions/klar-ha-nlu/main/docs/klar-logo.png" alt="Klar — Rust crab saying Klar!" width="280">
 </p>
 
 [English](README.md) · [Deutsch](README.de.md)
