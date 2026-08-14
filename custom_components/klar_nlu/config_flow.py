@@ -8,13 +8,34 @@ from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
 
-from .const import CONF_FALLBACK_AGENT, CONF_URL, DEFAULT_URL, DOMAIN
+from .const import (
+    CONF_FALLBACK_AGENT,
+    CONF_MODE,
+    CONF_URL,
+    DEFAULT_URL,
+    DOMAIN,
+    MODE_LOCAL,
+    MODE_REMOTE,
+)
 
 OPTIONS_SCHEMA = vol.Schema(
     {
         vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
             selector.ConversationAgentSelectorConfig()
         ),
+    }
+)
+
+USER_SCHEMA = vol.Schema(
+    {
+        vol.Required(CONF_MODE, default=MODE_LOCAL): selector.SelectSelector(
+            selector.SelectSelectorConfig(
+                options=[MODE_LOCAL, MODE_REMOTE],
+                translation_key="engine_mode",
+                mode=selector.SelectSelectorMode.LIST,
+            )
+        ),
+        vol.Optional(CONF_URL, default=DEFAULT_URL): str,
     }
 )
 
@@ -27,16 +48,20 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_abort(reason="already_configured")
         if user_input is not None:
             await self.async_set_unique_id(DOMAIN)
-            return self.async_create_entry(title="Klar NLU", data=user_input)
-        return self.async_show_form(
-            step_id="user",
-            data_schema=vol.Schema(
-                {vol.Required(CONF_URL, default=DEFAULT_URL): str}
-            ),
-        )
+            mode = user_input.get(CONF_MODE, MODE_LOCAL)
+            url = DEFAULT_URL if mode == MODE_LOCAL else (
+                user_input.get(CONF_URL) or DEFAULT_URL
+            )
+            return self.async_create_entry(
+                title="Klar NLU",
+                data={CONF_MODE: mode, CONF_URL: url},
+            )
+        return self.async_show_form(step_id="user", data_schema=USER_SCHEMA)
 
     async def async_step_hassio(self, discovery_info) -> FlowResult:
-        return await self.async_step_user({CONF_URL: DEFAULT_URL})
+        return await self.async_step_user(
+            {CONF_MODE: MODE_REMOTE, CONF_URL: DEFAULT_URL}
+        )
 
     @staticmethod
     @callback

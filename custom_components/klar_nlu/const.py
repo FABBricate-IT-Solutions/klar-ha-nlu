@@ -1,4 +1,8 @@
 DOMAIN = "klar_nlu"
 DEFAULT_URL = "http://127.0.0.1:10520"
 CONF_URL = "url"
+CONF_MODE = "mode"
 CONF_FALLBACK_AGENT = "fallback_agent"
+MODE_LOCAL = "local"
+MODE_REMOTE = "remote"
+GITHUB_REPO = "FABBricate-IT-Solutions/klar-ha-nlu"

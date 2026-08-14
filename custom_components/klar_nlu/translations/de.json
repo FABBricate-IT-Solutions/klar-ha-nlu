@@ -3,7 +3,9 @@
     "step": {
       "user": {
         "title": "Klar NLU",
+        "description": "Die mitgelieferte Engine kommt von GitHub Releases und wird von der Integration gestartet. Eine URL nur angeben, wenn Klar schon woanders läuft.",
         "data": {
+          "mode": "Engine",
           "url": "URL der Klar-API"
         }
       }
@@ -20,6 +22,14 @@
         "data": {
           "fallback_agent": "Conversation-Agent für Smalltalk"
         }
+      }
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Mitgelieferte Engine starten (empfohlen)",
+        "remote": "Bereits laufende Engine verwenden"
       }
     }
   }

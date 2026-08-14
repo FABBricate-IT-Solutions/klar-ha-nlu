@@ -2,20 +2,17 @@
 
 [Deutsch](../home-assistant.md) · [English](home-assistant.md)
 
-Klar attaches to Assist as a conversation entity. The engine runs separately (binary, Docker, or add-on); the integration talks to it over HTTP.
+Klar attaches to Assist as a conversation entity. HACS cannot start the Rust engine. The integration can: it downloads the matching GitHub Release into `.storage/klar_nlu/` and runs it on `127.0.0.1:10520`.
 
 ## Integration
-
-HACS installs only the conversation integration. The engine (binary, Docker, or add-on) runs separately.
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
 1. Click the badge, or HACS → Integrations → ⋮ → Custom repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → category **Integration**.
 2. Download **Klar NLU** and restart Home Assistant.
-3. Start the Klar engine.
-4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
+3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
    or Settings → Devices & services → Add integration → **Klar NLU**.
-5. Engine URL, default `http://127.0.0.1:10520`.
+4. Keep **Start the bundled engine** (needs a GitHub Release with linux tarballs). Or pick **Use an engine that is already running** and set the URL.
 
 Without HACS, copy `custom_components/klar_nlu` to `<config>/custom_components/klar_nlu` and restart.
 

@@ -3,23 +3,33 @@
     "step": {
       "user": {
         "title": "Klar NLU",
+        "description": "The bundled engine is downloaded from GitHub Releases and started by this integration. Pick a URL only if Klar already runs elsewhere.",
         "data": {
-          "url": "URL der Klar-API"
+          "mode": "Engine",
+          "url": "Klar API URL"
         }
       }
     },
     "abort": {
-      "already_configured": "Klar NLU ist bereits eingerichtet"
+      "already_configured": "Klar NLU is already set up"
     }
   },
   "options": {
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Wenn Klar keinen Hausbefehl erkennt, übernimmt der gewählte Agent den Smalltalk. Rückfragen von Klar bleiben bei Klar.",
+        "description": "When Klar sees no home command, the chosen agent handles chit-chat. Klar clarifications stay with Klar.",
         "data": {
-          "fallback_agent": "Conversation-Agent für Smalltalk"
+          "fallback_agent": "Conversation agent for chit-chat"
         }
+      }
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Start the bundled engine (recommended)",
+        "remote": "Use an engine that is already running"
       }
     }
   }

@@ -53,16 +53,17 @@ UI: <http://127.0.0.1:10520>
 
 ## Home Assistant
 
-HACS installs the conversation integration. The Klar engine (binary, Docker, or add-on) still has to run separately.
+HACS installs the conversation integration. On setup, pick **Start the bundled engine** — the integration downloads the matching GitHub Release and starts Klar next to Home Assistant. HACS cannot start the Rust process itself.
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
 1. Click the badge, or in HACS → Integrations → ⋮ → Custom repositories add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as **Integration**
 2. Download **Klar NLU** and restart Home Assistant
-3. Start the Klar engine
-4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) (URL default `http://127.0.0.1:10520`)
-5. Assist pipeline: conversation engine = **Klar NLU**
-6. Optionally pick a conversation agent for chit-chat in the options
+3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and keep **Start the bundled engine**
+4. Assist pipeline: conversation engine = **Klar NLU**
+5. Optionally pick a conversation agent for chit-chat in the options
+
+If Klar already runs (binary, Docker, or add-on), choose **Use an engine that is already running** and set the URL (default `http://127.0.0.1:10520`).
 
 Manual install: copy `custom_components/klar_nlu` to `config/custom_components/klar_nlu`, then restart.
 

@@ -53,16 +53,17 @@ UI: <http://127.0.0.1:10520>
 
 ## Home Assistant
 
-HACS installiert die Conversation-Integration. Die Klar-Engine (Binary, Docker oder Add-on) läuft weiter getrennt.
+HACS installiert die Conversation-Integration. Beim Einrichten **Mitgelieferte Engine starten** wählen — die Integration lädt das passende GitHub-Release und startet Klar neben Home Assistant. HACS selbst kann den Rust-Prozess nicht starten.
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
 1. Badge klicken, oder in HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als **Integration** hinzufügen
 2. **Klar NLU** herunterladen und Home Assistant neu starten
-3. Klar-Engine starten
-4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) (URL-Standard `http://127.0.0.1:10520`)
-5. Assist-Pipeline: Conversation-Engine = **Klar NLU**
-6. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen
+3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten** behalten
+4. Assist-Pipeline: Conversation-Engine = **Klar NLU**
+5. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen
+
+Läuft Klar schon (Binary, Docker oder Add-on), **Bereits laufende Engine verwenden** wählen und die URL setzen (Standard `http://127.0.0.1:10520`).
 
 Manuell: `custom_components/klar_nlu` nach `config/custom_components/klar_nlu` kopieren, dann neu starten.
 
