@@ -43,20 +43,29 @@ Der Agent bekommt den Hinweis, keine Geräte zu steuern. Wenn der Agent in seine
 
 ## Engine starten
 
-Lokal, mit der HA-Config nur lesend:
+**Mitgeliefert (am einfachsten):** HACS-Integration → **Mitgelieferte Engine starten**. Lädt das GitHub-Release nach `.storage/klar_nlu/`.
+
+**Add-on (HAOS):**
+
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
+
+`https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als Add-on-Repository hinzufügen, **Klar NLU** installieren, Integration auf `http://klar-nlu:10520` zeigen.
+
+**Docker:**
+
+```bash
+docker run --rm --network host \
+  -v /pfad/zur/homeassistant/config:/config:ro \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
+```
+
+Integrations-URL: `http://127.0.0.1:10520`. Aus dem Quellcode: `docker build -t klar-nlu .` (Root-Dockerfile).
+
+**Cargo:**
 
 ```bash
 cargo run --release -- --config-dir /config
 ```
-
-Oder Docker (Root-Dockerfile):
-
-```bash
-docker build -t klar-nlu .
-docker run --network host -v /config:/config:ro klar-nlu
-```
-
-Add-on-Metadaten liegen unter `addon/` (`host_network`, Ports 10520/10500, Config read-only).
 
 Die Engine liest `.storage/core.entity_registry` und `core.area_registry`. Aliase und Areas in HA pflegen — Klar hat keine zweite Gerätedatenbank.
 

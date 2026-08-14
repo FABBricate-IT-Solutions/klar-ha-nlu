@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   prepare:
@@ -75,3 +76,4 @@ jobs:
       release_tag: ${{ needs.prepare.outputs.tag }}
     permissions:
       contents: write
+      packages: write

@@ -1,5 +1,6 @@
 DOMAIN = "klar_nlu"
 DEFAULT_URL = "http://127.0.0.1:10520"
+DEFAULT_ADDON_URL = "http://klar-nlu:10520"
 CONF_URL = "url"
 CONF_MODE = "mode"
 CONF_FALLBACK_AGENT = "fallback_agent"

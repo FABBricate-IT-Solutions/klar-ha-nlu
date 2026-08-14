@@ -63,7 +63,23 @@ HACS installiert die Conversation-Integration. Beim Einrichten **Mitgelieferte E
 4. Assist-Pipeline: Conversation-Engine = **Klar NLU**
 5. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen
 
-Läuft Klar schon (Binary, Docker oder Add-on), **Bereits laufende Engine verwenden** wählen und die URL setzen (Standard `http://127.0.0.1:10520`).
+Läuft Klar schon, **Bereits laufende Engine verwenden** wählen und die URL setzen.
+
+### Add-on (Home Assistant OS)
+
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
+
+Einstellungen → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Klar NLU** installieren. Integration mit URL `http://klar-nlu:10520`.
+
+### Docker
+
+```bash
+docker run --rm --network host \
+  -v /pfad/zur/homeassistant/config:/config:ro \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
+```
+
+Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`, `klar-nlu-armv7`).
 
 Manuell: `custom_components/klar_nlu` nach `config/custom_components/klar_nlu` kopieren, dann neu starten.
 

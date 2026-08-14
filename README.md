@@ -63,7 +63,23 @@ HACS installs the conversation integration. On setup, pick **Start the bundled e
 4. Assist pipeline: conversation engine = **Klar NLU**
 5. Optionally pick a conversation agent for chit-chat in the options
 
-If Klar already runs (binary, Docker, or add-on), choose **Use an engine that is already running** and set the URL (default `http://127.0.0.1:10520`).
+If Klar already runs, choose **Use an engine that is already running** and set the URL.
+
+### Add-on (Home Assistant OS)
+
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
+
+Settings → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → install **Klar NLU**. Then add the integration with URL `http://klar-nlu:10520`.
+
+### Docker
+
+```bash
+docker run --rm --network host \
+  -v /path/to/homeassistant/config:/config:ro \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
+```
+
+Integration URL: `http://127.0.0.1:10520`. Images also exist per arch (`klar-nlu-amd64`, `klar-nlu-aarch64`, `klar-nlu-armv7`).
 
 Manual install: copy `custom_components/klar_nlu` to `config/custom_components/klar_nlu`, then restart.
 

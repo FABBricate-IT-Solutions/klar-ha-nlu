@@ -12,6 +12,7 @@ from .const import (
     CONF_FALLBACK_AGENT,
     CONF_MODE,
     CONF_URL,
+    DEFAULT_ADDON_URL,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
@@ -60,7 +61,7 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_hassio(self, discovery_info) -> FlowResult:
         return await self.async_step_user(
-            {CONF_MODE: MODE_REMOTE, CONF_URL: DEFAULT_URL}
+            {CONF_MODE: MODE_REMOTE, CONF_URL: DEFAULT_ADDON_URL}
         )
 
     @staticmethod

@@ -43,20 +43,29 @@ The agent is told not to control devices. If that agent still has HA tools in it
 
 ## Starting the engine
 
-Locally, HA config read-only:
+**Bundled (simplest):** HACS integration → **Start the bundled engine**. Downloads the GitHub Release into `.storage/klar_nlu/`.
+
+**Add-on (HAOS):**
+
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
+
+Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, install **Klar NLU**, then point the integration at `http://klar-nlu:10520`.
+
+**Docker:**
+
+```bash
+docker run --rm --network host \
+  -v /path/to/homeassistant/config:/config:ro \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
+```
+
+Integration URL: `http://127.0.0.1:10520`. From source: `docker build -t klar-nlu .` (root Dockerfile).
+
+**Cargo:**
 
 ```bash
 cargo run --release -- --config-dir /config
 ```
-
-Or Docker (root Dockerfile):
-
-```bash
-docker build -t klar-nlu .
-docker run --network host -v /config:/config:ro klar-nlu
-```
-
-Add-on metadata is under `addon/` (`host_network`, ports 10520/10500, config read-only).
 
 The engine reads `.storage/core.entity_registry` and `core.area_registry`. Keep aliases and areas in HA — Klar has no second device database.
 
