@@ -1,6 +1,6 @@
 use crate::lang::catalog;
 use crate::normalize::compact;
-use crate::types::{EntityRec, HomeGraph};
+use crate::types::{EntityRec, HomeGraph, Settings};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;
@@ -329,6 +329,8 @@ pub struct Overlay {
     pub preferred: Vec<String>,
     #[serde(default)]
     pub areas: HashMap<String, String>,
+    #[serde(default)]
+    pub settings: Option<Settings>,
 }
 
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {

@@ -2,7 +2,7 @@ use crate::compound::{apply_overlay, load_overlay, save_overlay, Overlay};
 use crate::gaps::{assist_visible, leftover};
 use crate::parse::parse;
 use crate::session::Sessions;
-use crate::types::{AreaRec, CustomSentence, EntityRec, HomeGraph, ParseResult, Settings};
+use crate::types::{AreaRec, CustomSentence, EntityRec, HomeGraph, Settings};
 use std::path::PathBuf;
 use axum::extract::State;
 use axum::response::Html;
@@ -46,7 +46,7 @@ async fn index() -> Html<&'static str> {
     Html(include_str!("../web/index.html"))
 }
 
-async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Json<ParseResult> {
+async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Json<ParseOut> {
     let home = state.home.lock().await.clone();
     let settings = settings_for_parse(
         state.settings.lock().await.clone(),
@@ -55,7 +55,18 @@ async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> 
     let custom = state.custom.lock().await.clone();
     let mut sessions = state.sessions.lock().await;
     let session = sessions.get_or_create(body.conversation_id.as_deref());
-    Json(parse(&body.text, &home, session, &custom, &settings))
+    let result = parse(&body.text, &home, session, &custom, &settings);
+    Json(ParseOut {
+        personality: settings.personality,
+        result,
+    })
+}
+
+#[derive(serde::Serialize)]
+struct ParseOut {
+    #[serde(flatten)]
+    result: crate::types::ParseResult,
+    personality: crate::types::Personality,
 }
 
 fn settings_for_parse(mut settings: Settings, language: Option<&str>) -> Settings {
@@ -79,6 +90,9 @@ async fn get_settings(State(state): State<AppState>) -> Json<Settings> {
 
 async fn set_settings(State(state): State<AppState>, Json(body): Json<Settings>) -> Json<Settings> {
     *state.settings.lock().await = body.clone();
+    let mut overlay = load_overlay(&state.data_dir);
+    overlay.settings = Some(body.clone());
+    let _ = save_overlay(&state.data_dir, &overlay);
     Json(body)
 }
 
