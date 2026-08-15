@@ -6,66 +6,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
-## [2026.8.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.7...2026.8.8) - 2026-08-15
+## [2026.8.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.8...2026.8.9) - 2026-08-15
+
+
 
 ### Bug Fixes
 
-- Pick the only matching Heizung or Klimaanlage when the sentence has no room and no alias
+- elide needless lifetime on fallback_climate([b934148](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b9341485a9aa8e483bcffbe11e6aee6ff0f766d1))
 
-## [2026.8.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.6...2026.8.7) - 2026-08-15
-
-### Features
-
-- Route casual and special speech to the LLM fallback even when that agent advertises Assist tools
-- Distinguish Heizung and Klimaanlage by name, alias, and HA tags
-
-### Bug Fixes
-
-- Treat genitive room status (*Status der Küche*) as the area, not the kitchen lamp
-- Set *Klimaanlage auf 20° / 20 Grad* on the AC instead of the bedroom heater
-
-## [2026.8.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.5...2026.8.6) - 2026-08-15
-
-### Bug Fixes
-
-- Start the GHCR add-on image through `klar-entry.sh` so HTTP and Wyoming bind `0.0.0.0` even when Supervisor passes extra args
-- Allow parse and GET from the Supervisor network without a token so Assist reaches the add-on out of the box
-
-## [2026.8.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.4...2026.8.5) - 2026-08-15
-
-### Bug Fixes
-
-- Skip Adaptive Lighting switches when expanding Licht, so room follow-ups do not flip adapt or sleep modes
-- Take GitHub release notes from CHANGELOG.md instead of `git-cliff --latest` after a `chore(release):` squash
-
-## [2026.8.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.3...2026.8.4) - 2026-08-15
-
-### Security
-
-- Require loopback or token for parse and GET APIs; bind localhost by default; keep addon ports off the host
-- Fail engine download without a SHA-256 digest
-- Skip LLM fallback when the agent advertises Assist tools
-- Filter unexposed entities in resolve, compound, roles, timers, and follow-ups
-
-### Features
-
-- Speak clarify and vacuum replies from friendly names
-- Reload the home graph when HA registries change
-- Persist custom sentences in the overlay; cap sessions at 256
 
 ### Miscellaneous
 
-- Split lang, parse, and registry modules under 500 lines
-- Raise English smoke to 99%; add Wyoming, digest, speech, and fallback tests
-- Wait for rustfmt and clippy before tagging a release
+- include ENGINE_VERSION in the release land commit([6c7bc7d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c7bc7dd1578baa9b58bc54bdd70d66543e3fec8))
+
+
+### Other
+
+- Merge pull request #47 from FABBricate-IT-Solutions/refactor/packs-and-home-policy([0ca5ff0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0ca5ff0ac60c7542813d6784642e2113100a8e0a))
+
+
+### Refactor
+
+- extract language packs and home policy from the parse pipeline([483d93e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/483d93e9379da6e1ff5c33afefe1b1c1c7d3838b))
+
+## [2026.8.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.4...2026.8.5) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- skip Adaptive Lighting switches when expanding Licht([70ee27c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70ee27c4b90ef92b18d53d0f74618b694fecea60))
 
 ## [2026.8.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.2...2026.8.3) - 2026-08-15
 
 
 
-### Features
+### Other
 
-- role tags, natural speech, and CalVer tags without v([2a90d58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2a90d58))
+- Release 2026.8.3 (#39)([c752170](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c7521701e1f46880f7b38aec6456608f65033104))
+
+- Potential fix for code scanning alert no. 8: Cache Poisoning via code injection (#38)([8107a9c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8107a9c049c51107d2da54918eb04e3e7173390e))
 
 ## [2026.8.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.1...v2026.8.2) - 2026-08-15
 
