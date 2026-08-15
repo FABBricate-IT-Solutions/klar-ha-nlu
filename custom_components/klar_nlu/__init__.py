@@ -6,14 +6,16 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
 from .const import (
+    CONF_ASSIST_FILTER,
+    CONF_LANGUAGES,
     CONF_MODE,
     CONF_PERSONALITY,
     CONF_TOKEN,
     CONF_URL,
-    DEFAULT_PERSONALITY,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
+    resolve_personality,
 )
 from .engine import KlarEngine, async_push_personality
 
@@ -38,25 +40,43 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     token = (engine.token if engine is not None else None) or entry.options.get(
         CONF_TOKEN
     ) or entry.data.get(CONF_TOKEN)
-    hass.data[DOMAIN][entry.entry_id] = {"engine": engine, "token": token}
+    hass.data[DOMAIN][entry.entry_id] = {
+        "engine": engine,
+        "token": token,
+        "applied_options": dict(entry.options),
+    }
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-    url = (
-        entry.options.get(CONF_URL)
-        or entry.data.get(CONF_URL)
-        or DEFAULT_URL
-    )
-    await async_push_personality(
-        hass,
-        url,
-        str(entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY)),
-        token=str(token) if token else None,
-    )
-    entry.async_on_unload(entry.add_update_listener(_async_reload))
+    await _async_sync_personality(hass, entry)
+    entry.async_on_unload(entry.add_update_listener(_async_on_update))
     return True
 
 
-async def _async_reload(hass: HomeAssistant, entry: ConfigEntry) -> None:
-    await hass.config_entries.async_reload(entry.entry_id)
+def _option(entry: ConfigEntry, key: str) -> object:
+    return entry.options.get(key, entry.data.get(key))
+
+
+async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
+    token = stored.get("token") or _option(entry, CONF_TOKEN)
+    url = _option(entry, CONF_URL) or DEFAULT_URL
+    await async_push_personality(
+        hass,
+        str(url),
+        resolve_personality(entry.options.get(CONF_PERSONALITY)),
+        token=str(token) if token else None,
+    )
+
+
+async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id)
+    previous = dict(stored.get("applied_options") or {}) if stored else {}
+    current = dict(entry.options)
+    if stored is not None:
+        stored["applied_options"] = current
+    await _async_sync_personality(hass, entry)
+    reload_keys = (CONF_URL, CONF_TOKEN, CONF_LANGUAGES, CONF_ASSIST_FILTER)
+    if any(previous.get(key) != current.get(key) for key in reload_keys):
+        await hass.config_entries.async_reload(entry.entry_id)
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

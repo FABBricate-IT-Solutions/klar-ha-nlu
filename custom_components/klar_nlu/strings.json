@@ -22,7 +22,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "The personality is stored here, so it survives reinstalling the Klar app. Assist uses it on every reply.",
+        "description": "The personality is stored here, so it survives reinstalling the Klar app. Assist and the LLM refine voice follow it on every reply.",
         "data": {
           "personality": "Personality",
           "languages": "Languages",
@@ -34,9 +34,9 @@
           "assist_filter": "Only control entities exposed to Assist"
         },
         "data_description": {
-          "personality": "Stored in this integration, not in the Klar app. Survives reinstalling the app.",
-          "refine_speech": "When on, device control still comes from Klar NLU, but the fallback LLM rewrites only the finished NLU reply.",
-          "refine_prompt": "Optional extra style instruction. Klar still keeps the safety rules: no device control, no new facts, same language.",
+          "personality": "Stored in this integration, not in the Klar app. Assist, the spoken cue, and the LLM refine prompt all switch with this choice.",
+          "refine_speech": "When on, device control still comes from Klar NLU, but the fallback LLM rewrites only the finished NLU reply in the selected personality. Klar sends enable_thinking=false on that request.",
+          "refine_prompt": "Optional extra style on top of the selected personality. Klar still keeps the safety rules: no device control, no new facts, same language.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device."
         }

@@ -17,6 +17,8 @@ Text
   → speak                   kurze Bestätigung
 ```
 
+In Home Assistant kann der gesprochene Satz eine Persönlichkeitsformel bekommen und, wenn eingeschaltet, vom LLM umformuliert werden (`custom_components/klar_nlu/refine.py`). Die Engine selbst bleibt regelbasiert.
+
 `parse()` in `src/parse.rs` ist der Einstieg. Vor dem Parse bindet Klar die in `Settings.languages` gewählten Pakete (`de`, `en`, …).
 
 ## Schichten
@@ -61,5 +63,5 @@ Slots: `entity_id`, `area`, `domain`, plus je nach Aktion `brightness`, `tempera
 ## Grenzen
 
 - Kein freies Weltwissen. „Erzähl einen Witz“ bleibt leer — in HA übernimmt dann der Fallback-Agent.
-- Keine Werkzeuge im Motor. Geräte laufen nur über die erkannten Intents.
+- Keine Werkzeuge im Motor. Geräte laufen nur über die erkannten Intents. Ein optionales LLM in HA darf die fertige Bestätigung umformulieren; Assist-Werkzeuge bekommt es dafür nicht.
 - Dateien unter 500 Zeilen halten; neue Sprache = neues Paket, nicht eine längere `match`-Liste.

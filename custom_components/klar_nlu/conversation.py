@@ -32,11 +32,10 @@ from .const import (
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
-    DEFAULT_PERSONALITY,
     DEFAULT_URL,
     DOMAIN,
     LANGUAGE_VARIANTS,
-    PERSONALITIES,
+    resolve_personality,
     SUPPORTED_LANGUAGES,
 )
 from .fallback import (
@@ -147,8 +146,7 @@ class KlarConversationEntity(ConversationEntity):
         return None
 
     def _personality(self) -> str:
-        value = str(self._entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY))
-        return value if value in PERSONALITIES else DEFAULT_PERSONALITY
+        return resolve_personality(self._entry.options.get(CONF_PERSONALITY))
 
     def _token(self) -> str | None:
         stored = (self.hass.data.get(DOMAIN) or {}).get(self._entry.entry_id) or {}
@@ -227,8 +225,9 @@ class KlarConversationEntity(ConversationEntity):
                 spoken.append(ha_speech)
         if spoken:
             speech = " ".join(spoken)
+        if not clarify:
+            speech = style(speech, personality, pack)
         agent_id = self._fallback_agent_id()
-        refined = None
         if should_refine(
             bool(self._entry.options.get(CONF_REFINE_SPEECH)),
             agent_id,
@@ -247,10 +246,8 @@ class KlarConversationEntity(ConversationEntity):
                 personality,
                 str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
             )
-        if refined:
-            speech = refined
-        elif not clarify:
-            speech = style(speech, personality, pack)
+            if refined:
+                speech = style(refined, personality, pack)
 
         return self._spoken(user_input, chat_log, pack, speech, conversation_id, clarify)
 

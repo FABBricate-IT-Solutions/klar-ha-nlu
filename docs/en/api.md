@@ -9,7 +9,7 @@ Two interfaces: HTTP on port **10520**, Wyoming on **10500**.
 ### `POST /api/parse`
 
 ```json
-{ "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id", "language": "de" }
+{ "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id", "language": "de", "personality": "butler" }
 ```
 
 Response:
@@ -33,6 +33,8 @@ Response:
 ```
 
 `language` is optional (`de`, `en`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request so Assist can switch between German and English. `speech` follows the pinned pack.
+
+`personality` is optional and prefixes `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant stores the choice in the integration and sends it on every parse; the engine settings copy is only for the Klar UI. LLM refine of that sentence happens in the HA integration, not on this endpoint.
 
 `clarify: true` means: do not run intents, speak the question in `speech`, keep the same `conversation_id` for the answer.
 

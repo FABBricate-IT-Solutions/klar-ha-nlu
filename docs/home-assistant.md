@@ -41,6 +41,55 @@ Ablauf:
 
 Der Agent bekommt den Hinweis, keine Geräte zu steuern. Wenn der Agent in seiner eigenen Integration HA-Tools hat, können die trotzdem greifen — Tools dort aus lassen, wenn Smalltalk nur reden soll.
 
+## Persönlichkeit
+
+Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Persönlichkeit**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät.
+
+Die Auswahl liegt in dieser Integration, nicht in der Klar-App, und überlebt eine Neuinstallation der Engine. Assist, Sprechformel und LLM-Verfeinerungs-Prompt wechseln mit. Nur die Persönlichkeit zu ändern startet die Engine nicht neu.
+
+| Id | Formel (DE) | Stilwort |
+|----|-------------|----------|
+| `default` | — | schlichte Bestätigung |
+| `butler` | Sehr wohl. | …, wie gewünscht. |
+| `locker` | Geht klar. | …, passt. |
+| `fuersorglich` | Mache ich sofort. | …, alles gut. |
+| `party` | Läuft! | …, super! |
+| `grantig` | Schon gut. | …, na gut. |
+| `sarkastisch` | Wie überraschend, wieder ein Befehl. | …, natürlich. |
+| `pirat` | Aye. | …, Käpt'n. |
+| `hippie` | Alles easy. | …, ganz ruhig. |
+| `gollum` | Ja, mein Schatz. | …, ja. |
+
+Englisch nutzt die passenden Formeln (`Very well.`, `Got it.`, `Aye.`, `Yes, my precious.`, …).
+
+## LLM-Verfeinerung
+
+Standardmäßig aus. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren:
+
+1. **Conversation-Agent für Smalltalk** setzen (OpenAI-kompatibel, lokales Gemma reicht).
+2. **NLU-Antworten vom LLM verfeinern** einschalten.
+3. Assist-Pipeline: Conversation-Engine = **Klar NLU**.
+4. Assist-Werkzeuge bei diesem LLM-Agenten **aus**. Kann der Agent das Haus steuern, fällt Refine aus.
+
+Ablauf nach einem Hausbefehl:
+
+1. Klar parst, HA führt die Intents aus.
+2. Klar setzt die Formel der gewählten Persönlichkeit davor.
+3. Das Fallback-LLM formuliert nur diesen fertigen Satz um (kein Smalltalk, kein News-Briefing).
+4. Fehlt die Formel danach, setzt Klar sie wieder.
+
+Der Prompt ist pro Persönlichkeit (Few-Shots plus festes Stilwort). Das Feld **Verfeinerungs-Prompt** ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
+
+Die Sicherheit bleibt bei Klar, nicht beim Modell:
+
+- keine Gerätesteuerung, keine Home-Assistant-Werkzeuge
+- Räume, Namen, an/aus/offen/zu bleiben
+- Ziffern bleiben Ziffern (`21` bleibt `21`, nicht einundzwanzig)
+- keine erfundenen Zahlen (Temperatur ohne Wert bleibt ohne Wert)
+- Intent-Namen wie `HassSetPosition` werden verworfen
+
+Bei OpenAI-kompatiblen Agenten schickt Klar `chat_template_kwargs.enable_thinking=false`, damit Gemma 4 nicht die ganze Runde im Thought-Kanal verbringt. Prompt-Text schaltet Thinking nicht aus. Fehlt ein direkter Chat-Client, fällt Klar auf `conversation.async_converse` zurück und behält die NLU-Antwort, wenn nichts rechtzeitig kommt (6 s).
+
 ## Engine starten
 
 **Mitgeliefert (am einfachsten):** HACS-Integration → **Mitgelieferte Engine starten**. Lädt das GitHub-Release nach `.storage/klar_nlu/`.

@@ -30,9 +30,11 @@ German and English ship in-tree and run side by side. Further languages are pack
 - Multiple clauses (`living room and kitchen`, `turn the lights off and set heat to 21`)
 - Clarification when a device is ambiguous
 - Session: “turn it off” refers to the last target
+- Personalities in Home Assistant (butler, grumpy, pirate, …) — Assist, the spoken cue, and the optional LLM rewrite all follow the same choice
 - Optional LLM fallback in Home Assistant for chit-chat once Klar sees no home command
+- Optional LLM refine of finished NLU replies (off by default; device control stays with Klar)
 
-Klar drives devices itself. An LLM only runs when nothing was matched.
+Klar drives devices itself. An LLM only talks or rewrites speech — it does not run home intents.
 
 ## Quick start
 
@@ -61,7 +63,7 @@ HACS installs the conversation integration. On setup, pick **Start the bundled e
 2. Download **Klar NLU** and restart Home Assistant
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) and keep **Start the bundled engine**
 4. Assist pipeline: conversation engine = **Klar NLU**
-5. Optionally pick a conversation agent for chit-chat in the options
+5. Optionally pick a conversation agent for chit-chat in the options. Same place: personality, and **Let the LLM refine NLU replies** if that agent should rewrite confirmations
 
 If Klar already runs, choose **Use an engine that is already running** and set the URL.
 

@@ -30,9 +30,11 @@ Deutsch und Englisch sind eingebaut und laufen parallel. Weitere Sprachen kommen
 - Mehrere Klauseln (`Wohnzimmer und Küche`, `mach das Licht aus und die Heizung auf 21`)
 - Rückfragen, wenn ein Gerät nicht eindeutig ist
 - Sitzung: „mach sie aus“ bezieht sich auf das letzte Ziel
+- Persönlichkeiten in Home Assistant (Butler, Grantig, Pirat, …) — Assist, Sprechformel und optionale LLM-Umformulierung folgen derselben Auswahl
 - Optionaler LLM-Fallback in Home Assistant für Smalltalk, sobald Klar keinen Hausbefehl sieht
+- Optionale LLM-Verfeinerung fertiger NLU-Antworten (standardmäßig aus; Gerätesteuerung bleibt bei Klar)
 
-Klar steuert Geräte selbst. Ein LLM kommt nur zum Zug, wenn nichts zugeordnet wurde.
+Klar steuert Geräte selbst. Ein LLM redet oder formuliert um — Haus-Intents führt es nicht aus.
 
 ## Schnellstart
 
@@ -61,7 +63,7 @@ HACS installiert die Conversation-Integration. Beim Einrichten **Mitgelieferte E
 2. **Klar NLU** herunterladen und Home Assistant neu starten
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten** behalten
 4. Assist-Pipeline: Conversation-Engine = **Klar NLU**
-5. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen
+5. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen. Dort auch: Persönlichkeit, und **NLU-Antworten vom LLM verfeinern**, wenn der Agent Bestätigungen umformulieren soll
 
 Läuft Klar schon, **Bereits laufende Engine verwenden** wählen und die URL setzen.
 

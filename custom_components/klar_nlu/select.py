@@ -9,9 +9,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     CONF_PERSONALITY,
-    DEFAULT_PERSONALITY,
     DOMAIN,
     PERSONALITIES,
+    resolve_personality,
 )
 
 
@@ -38,14 +38,21 @@ class KlarPersonalitySelect(SelectEntity):
             manufacturer="FABBricate IT Solutions",
         )
 
+    async def async_added_to_hass(self) -> None:
+        self.async_on_remove(self._entry.add_update_listener(self._async_entry_updated))
+
+    async def _async_entry_updated(self, hass: HomeAssistant, entry: ConfigEntry) -> None:
+        self.async_write_ha_state()
+
     @property
     def current_option(self) -> str:
-        value = str(self._entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY))
-        return value if value in PERSONALITIES else DEFAULT_PERSONALITY
+        return resolve_personality(self._entry.options.get(CONF_PERSONALITY))
 
     async def async_select_option(self, option: str) -> None:
-        if option not in PERSONALITIES:
+        personality = resolve_personality(option)
+        if personality not in PERSONALITIES or personality == self.current_option:
             return
         self.hass.config_entries.async_update_entry(
-            self._entry, options={**self._entry.options, CONF_PERSONALITY: option}
+            self._entry, options={**self._entry.options, CONF_PERSONALITY: personality}
         )
+        self.async_write_ha_state()

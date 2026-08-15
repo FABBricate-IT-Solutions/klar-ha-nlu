@@ -44,3 +44,15 @@ The script translates `family_home_en` into `familienhaus_de`, including `home_c
 - `ein` is not the number 1
 
 A change to `src/lang/de.rs` or `en.rs` without a suite run is incomplete. The lists are the tests.
+
+## Home Assistant helpers
+
+Stdlib tests, no Home Assistant install:
+
+```bash
+python3 tests/test_refine.py
+python3 tests/test_speech.py
+python3 tests/test_fallback.py
+```
+
+`test_refine.py` locks the per-personality prompts, digit/fact guards, and that the spoken cue stays aligned with the refine voice.

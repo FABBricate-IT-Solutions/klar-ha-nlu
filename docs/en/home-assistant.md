@@ -41,6 +41,55 @@ Flow:
 
 The agent is told not to control devices. If that agent still has HA tools in its own integration, they can still fire — turn tools off there if chit-chat should only talk.
 
+## Personality
+
+Settings → Devices & services → Klar NLU → Configure → **Personality**, or the **Personality** select entity on the Klar device.
+
+The choice lives in this integration, not in the Klar app, so it survives reinstalling the engine. Assist, the spoken cue, and the LLM refine prompt all switch with it. Changing only the personality does not restart the engine.
+
+| Id | Cue (DE) | Spoken tag |
+|----|----------|------------|
+| `default` | — | plain confirmation |
+| `butler` | Sehr wohl. | …, wie gewünscht. |
+| `locker` | Geht klar. | …, passt. |
+| `fuersorglich` | Mache ich sofort. | …, alles gut. |
+| `party` | Läuft! | …, super! |
+| `grantig` | Schon gut. | …, na gut. |
+| `sarkastisch` | Wie überraschend, wieder ein Befehl. | …, natürlich. |
+| `pirat` | Aye. | …, Käpt'n. |
+| `hippie` | Alles easy. | …, ganz ruhig. |
+| `gollum` | Ja, mein Schatz. | …, ja. |
+
+English uses the matching cues (`Very well.`, `Got it.`, `Aye.`, `Yes, my precious.`, …).
+
+## LLM refine
+
+Off by default. Settings → Devices & services → Klar NLU → Configure:
+
+1. Set **Conversation agent for chit-chat** (OpenAI-compatible, local Gemma is fine).
+2. Turn on **Let the LLM refine NLU replies**.
+3. Keep Assist’s conversation engine = **Klar NLU**.
+4. Turn Assist tools **off** on that LLM agent. If the agent can control the home, refine is skipped.
+
+Flow after a home command:
+
+1. Klar parses and HA runs the intents.
+2. Klar prefixes the selected personality cue.
+3. The fallback LLM rewrites only that finished sentence (not chit-chat, not news briefings).
+4. If the model drops the cue, Klar puts it back.
+
+The rewrite prompt is per personality (few-shots plus a fixed style tag). The **Refinement prompt** field is an optional extra line on top — it does not replace the voice.
+
+Safety stays with Klar, not the model:
+
+- no device control, no Home Assistant tools
+- rooms, names, on/off/open/closed stay
+- digits stay digits (`21` stays `21`, not twenty-one)
+- no invented numbers (a temperature fragment without a value stays without a value)
+- intent names such as `HassSetPosition` are rejected
+
+On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=false` so Gemma 4 does not spend the turn in a thought channel. Prompt text cannot turn thinking off. If the agent has no direct chat client, Klar falls back to `conversation.async_converse` and keeps the NLU sentence when the model returns nothing in time (6 s).
+
 ## Starting the engine
 
 **Bundled (simplest):** HACS integration → **Start the bundled engine**. Downloads the GitHub Release into `.storage/klar_nlu/`.

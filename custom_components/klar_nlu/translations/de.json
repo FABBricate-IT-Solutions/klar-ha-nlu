@@ -22,7 +22,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Die Persönlichkeit liegt in Home Assistant und bleibt nach einer Neuinstallation der Klar-App erhalten. Assist nutzt sie bei jeder Antwort.",
+        "description": "Die Persönlichkeit liegt in Home Assistant und bleibt nach einer Neuinstallation der Klar-App erhalten. Assist und die LLM-Verfeinerung nutzen sie bei jeder Antwort.",
         "data": {
           "personality": "Persönlichkeit",
           "languages": "Sprachen",
@@ -34,9 +34,9 @@
           "assist_filter": "Nur für Assist freigegebene Entitäten steuern"
         },
         "data_description": {
-          "personality": "Liegt in dieser Integration, nicht in der Klar-App. Bleibt nach einer Neuinstallation erhalten.",
-          "refine_speech": "Wenn aktiv, steuert Klar NLU weiterhin die Geräte. Das Fallback-LLM formuliert nur die fertige NLU-Antwort um.",
-          "refine_prompt": "Optionale Stil-Anweisung. Klar behält die Sicherheitsregeln bei: keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
+          "personality": "Liegt in dieser Integration, nicht in der Klar-App. Assist, die Sprechformel und der LLM-Verfeinerungs-Prompt wechseln mit dieser Auswahl.",
+          "refine_speech": "Wenn aktiv, steuert Klar NLU weiterhin die Geräte. Das Fallback-LLM formuliert nur die fertige NLU-Antwort in der gewählten Persönlichkeit um. Klar schickt enable_thinking=false mit.",
+          "refine_prompt": "Optionale Extra-Stil-Anweisung zur gewählten Persönlichkeit. Klar behält die Sicherheitsregeln bei: keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät."
         }

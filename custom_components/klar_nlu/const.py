@@ -27,6 +27,11 @@ PERSONALITIES = (
     "hippie",
     "gollum",
 )
+
+
+def resolve_personality(value: object) -> str:
+    name = str(value or DEFAULT_PERSONALITY)
+    return name if name in PERSONALITIES else DEFAULT_PERSONALITY
 MODE_LOCAL = "local"
 MODE_REMOTE = "remote"
 GITHUB_REPO = "FABBricate-IT-Solutions/klar-ha-nlu"

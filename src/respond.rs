@@ -83,7 +83,9 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassToggle" => fill(pack.toggle),
         "HassLightSet" => fill(pack.light_set).replace("{n}", intent.slot("brightness").unwrap_or("?")),
         "HassClimateSetTemperature" => {
-            fill(pack.climate_set).replace("{noun}", climate_noun(intent)).replace("{n}", intent.slot("temperature").unwrap_or("?"))
+            let noun = climate_noun(intent);
+            let subject = if climate_named(&target, noun) { target } else { format!("{noun} {target}") };
+            pack.climate_set.replace("{noun} {target}", &subject).replace("{n}", intent.slot("temperature").unwrap_or("?"))
         }
         "HassGetState" if intent.slot("device_class") == Some("temperature") => fill(pack.get_temp),
         "HassGetState" => fill(pack.get_state),
@@ -179,6 +181,18 @@ fn climate_noun(intent: &Intent) -> &'static str {
     } else {
         pack.heat_noun
     }
+}
+
+fn climate_named(target: &str, noun: &str) -> bool {
+    let noun_folded = compact(noun);
+    target.split_whitespace().any(|part| {
+        let folded = compact(part);
+        folded == noun_folded
+            || catalog().climate_nouns.contains(folded.as_str())
+            || catalog().climate_cool.contains(folded.as_str())
+            || catalog().climate_heat.contains(folded.as_str())
+            || matches!(folded.as_str(), "heizung" | "heat" | "heater" | "thermostat" | "klima" | "klimaanlage" | "ac" | "aircon")
+    })
 }
 
 fn vacuum_name(where_: &str) -> String {
@@ -314,5 +328,28 @@ mod tests {
         let speech = speak(&[intent], Personality::Default, false, Some(&home));
         assert!(speech.contains("Saugroboter"), "{speech}");
         assert!(!speech.contains("R2D2"), "{speech}");
+    }
+
+    #[test]
+    fn climate_speech_does_not_repeat_heizung() {
+        let home = crate::types::default_home();
+        let intent =
+            Intent::new("HassClimateSetTemperature").with("entity_id", "climate.better_thermostat_wohnzimmer").with("temperature", "21");
+        let _de = bind(&["de".into()]);
+        let de = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
+        assert_eq!(de, "Heizung Wohnzimmer auf 21 Grad.");
+        assert_eq!(de.matches("Heizung").count(), 1, "{de}");
+        drop(_de);
+        let _en = bind(&["en".into()]);
+        let en = speak(&[intent], Personality::Default, false, Some(&home));
+        assert_eq!(en, "Heizung Wohnzimmer is at 21 degrees.");
+        assert!(!en.contains("Heat Heizung"), "{en}");
+    }
+
+    #[test]
+    fn climate_speech_adds_noun_when_target_is_room_only() {
+        let _de = bind(&["de".into()]);
+        let intent = Intent::new("HassClimateSetTemperature").with("area", "wohnzimmer").with("temperature", "21");
+        assert_eq!(speak(&[intent], Personality::Default, false, None), "Heizung Wohnzimmer auf 21 Grad.");
     }
 }

@@ -29,6 +29,7 @@ from .const import (
     MODE_REMOTE,
     PERSONALITIES,
     SUPPORTED_LANGUAGES,
+    resolve_personality,
 )
 
 
@@ -144,8 +145,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 for code in (user_input.get(CONF_LANGUAGES) or [])
                 if code in SUPPORTED_LANGUAGES
             ] or list(SUPPORTED_LANGUAGES)
-            chosen = user_input.get(CONF_PERSONALITY, DEFAULT_PERSONALITY)
-            personality = chosen if chosen in PERSONALITIES else DEFAULT_PERSONALITY
+            personality = resolve_personality(user_input.get(CONF_PERSONALITY))
             data: dict[str, Any] = {
                 CONF_LANGUAGES: langs,
                 CONF_PERSONALITY: personality,
