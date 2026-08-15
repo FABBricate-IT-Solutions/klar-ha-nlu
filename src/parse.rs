@@ -1,4 +1,4 @@
-use crate::chat::wants_llm;
+use crate::chat::{briefing_followup, is_news, is_news_dismiss, looks_like_home, wants_llm};
 use crate::clause::{last_visible, parse_clause};
 use crate::compound::expand_compounds;
 use crate::lang::catalog;
@@ -17,6 +17,28 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     let split = expand_compounds(&strip_fillers(&raw_tokens), home);
     let tokens = split.tokens;
 
+    if is_news(&raw_tokens, home) || is_news(&tokens, home) {
+        session.briefing = true;
+        return done(text, session, Vec::new(), catalog().news_intro.to_string(), false, true);
+    }
+    if session.briefing && (is_news_dismiss(&tokens) || is_news_dismiss(&raw_tokens)) {
+        session.briefing = false;
+        return ParseResult {
+            text: text.to_string(),
+            intents: Vec::new(),
+            speech: catalog().news_done.to_string(),
+            clarify: false,
+            conversation_id: session.id.clone(),
+            chat: false,
+            briefing: true,
+        };
+    }
+    if briefing_followup(&tokens, home, session) || briefing_followup(&raw_tokens, home, session) {
+        return done(text, session, Vec::new(), String::new(), false, true);
+    }
+    if looks_like_home(&tokens, home) || looks_like_home(&raw_tokens, home) {
+        session.briefing = false;
+    }
     if wants_llm(&raw_tokens, home) || wants_llm(&tokens, home) {
         return done(text, session, Vec::new(), String::new(), false, true);
     }
@@ -108,5 +130,5 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
 }
 
 fn done(text: &str, session: &Session, intents: Vec<Intent>, speech: String, clarify: bool, chat: bool) -> ParseResult {
-    ParseResult { text: text.to_string(), intents, speech, clarify, conversation_id: session.id.clone(), chat }
+    ParseResult { text: text.to_string(), intents, speech, clarify, conversation_id: session.id.clone(), chat, briefing: session.briefing }
 }

@@ -11,7 +11,39 @@ pub fn wants_llm(tokens: &[String], home: &HomeGraph) -> bool {
     is_casual(tokens) || is_special(tokens) || is_open_question(tokens)
 }
 
-fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
+pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {
+    if tokens.is_empty() || looks_like_home(tokens, home) {
+        return false;
+    }
+    catalog().any(tokens, &catalog().chat_news)
+}
+
+pub fn is_news_dismiss(tokens: &[String]) -> bool {
+    if tokens.is_empty() {
+        return false;
+    }
+    let cat = catalog();
+    if cat.any(tokens, &cat.chat_news) {
+        return false;
+    }
+    let closing = cat.any(tokens, &cat.chat_news_dismiss) || cat.any(tokens, &cat.chat_thanks);
+    if !closing {
+        return false;
+    }
+    tokens.iter().all(|t| {
+        cat.chat_news_dismiss.contains(t.as_str())
+            || cat.chat_thanks.contains(t.as_str())
+            || cat.fillers.contains(t.as_str())
+            || cat.particles.contains(t.as_str())
+            || cat.affirm.contains(t.as_str())
+    })
+}
+
+pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
+    session.briefing && !tokens.is_empty() && !looks_like_home(tokens, home) && !is_news_dismiss(tokens)
+}
+
+pub(crate) fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
     let cat = catalog();
     if cat.any(tokens, &cat.light_nouns)
         || cat.any(tokens, &cat.climate_nouns)
@@ -119,5 +151,29 @@ mod tests {
     fn garbage_is_not_chat() {
         let home = default_home();
         assert!(!wants_llm(&toks("asdfghjkl qwerty"), &home));
+    }
+
+    #[test]
+    fn news_nouns_are_news_not_home() {
+        let home = default_home();
+        for text in
+            ["Was sind die aktuellen Nachrichten", "Was sind die aktuellen News", "aktuelle Schlagzeilen", "What is the latest news"]
+        {
+            assert!(is_news(&toks(text), &home), "{text}");
+            assert!(!looks_like_home(&toks(text), &home), "{text}");
+        }
+        assert!(!is_news(&toks("Licht im Wohnzimmer an"), &home));
+        assert!(!is_news(&toks("Was ist die Hauptstadt von Frankreich"), &home));
+        assert!(!is_news(&toks("Wie ist das Wetter"), &home));
+    }
+
+    #[test]
+    fn news_dismiss_is_short_close() {
+        assert!(is_news_dismiss(&toks("nein")));
+        assert!(is_news_dismiss(&toks("nein danke")));
+        assert!(is_news_dismiss(&toks("das reicht")));
+        assert!(is_news_dismiss(&toks("danke")));
+        assert!(!is_news_dismiss(&toks("nein die erste")));
+        assert!(!is_news_dismiss(&toks("mehr zur ersten Meldung")));
     }
 }

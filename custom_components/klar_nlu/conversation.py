@@ -37,7 +37,13 @@ from .const import (
     PERSONALITIES,
     SUPPORTED_LANGUAGES,
 )
-from .fallback import agent_has_home_control, can_use_fallback_agent, chat_only_prompt
+from .fallback import (
+    agent_has_home_control,
+    can_use_fallback_agent,
+    chat_only_prompt,
+    news_followup_prompt,
+    news_prompt,
+)
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -48,6 +54,7 @@ from .intents import (
     list_slots,
     timer_slots,
 )
+from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .speech import from_handled, style
 
 _LOGGER = logging.getLogger(__name__)
@@ -188,6 +195,18 @@ class KlarConversationEntity(ConversationEntity):
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
         personality = self._personality()
 
+        if payload.get("briefing"):
+            if payload.get("chat"):
+                briefing = await self._briefing(
+                    user_input, chat_log, pack, engine_speech, conversation_id
+                )
+                if briefing is not None:
+                    return briefing
+            else:
+                return self._spoken(
+                    user_input, chat_log, pack, engine_speech or _DONE[pack], conversation_id, False
+                )
+
         if not clarify and not intents and not payload.get("unreachable"):
             fallback = await self._fallback(
                 user_input, chat_log, pack, bool(payload.get("chat"))
@@ -208,6 +227,17 @@ class KlarConversationEntity(ConversationEntity):
         if not clarify:
             speech = style(speech, personality, pack)
 
+        return self._spoken(user_input, chat_log, pack, speech, conversation_id, clarify)
+
+    def _spoken(
+        self,
+        user_input: ConversationInput,
+        chat_log: ChatLog,
+        pack: str,
+        speech: str,
+        conversation_id: str | None,
+        continue_conversation: bool,
+    ) -> ConversationResult:
         chat_log.async_add_assistant_content_without_tools(
             AssistantContent(agent_id=user_input.agent_id, content=speech)
         )
@@ -216,7 +246,40 @@ class KlarConversationEntity(ConversationEntity):
         return ConversationResult(
             conversation_id=conversation_id,
             response=response,
-            continue_conversation=clarify,
+            continue_conversation=continue_conversation,
+        )
+
+    async def _briefing(
+        self,
+        user_input: ConversationInput,
+        chat_log: ChatLog,
+        pack: str,
+        intro: str,
+        conversation_id: str | None,
+    ) -> ConversationResult | None:
+        extra = getattr(user_input, "extra_system_prompt", None)
+        extra_s = extra if isinstance(extra, str) else None
+        announced = False
+        if intro:
+            announced = await announce(self.hass, user_input, intro)
+            headlines = await fetch_headlines(self.hass, pack)
+            prompt = news_prompt(pack, headlines, extra_s)
+        else:
+            prompt = news_followup_prompt(pack, extra_s)
+        result = await self._fallback(user_input, chat_log, pack, True, prompt, False)
+        llm = _speech_from_result(result) if result is not None else ""
+        extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
+        spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _DONE[pack]
+        if result is None:
+            return self._spoken(user_input, chat_log, pack, spoken, conversation_id, True)
+        result.response.async_set_speech(spoken)
+        return self._spoken(
+            user_input,
+            chat_log,
+            pack,
+            spoken,
+            result.conversation_id or conversation_id,
+            True,
         )
 
     async def _fallback(
@@ -225,6 +288,8 @@ class KlarConversationEntity(ConversationEntity):
         chat_log: ChatLog,
         pack: str,
         chat: bool = False,
+        prompt: str | None = None,
+        record: bool = True,
     ) -> ConversationResult | None:
         agent_id = self._fallback_agent_id()
         if not agent_id:
@@ -233,7 +298,7 @@ class KlarConversationEntity(ConversationEntity):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
             return None
         extra = getattr(user_input, "extra_system_prompt", None)
-        prompt = chat_only_prompt(pack, extra if isinstance(extra, str) else None)
+        system = prompt or chat_only_prompt(pack, extra if isinstance(extra, str) else None)
         try:
             result = await conversation.async_converse(
                 self.hass,
@@ -244,11 +309,13 @@ class KlarConversationEntity(ConversationEntity):
                 agent_id=agent_id,
                 device_id=user_input.device_id,
                 satellite_id=getattr(user_input, "satellite_id", None),
-                extra_system_prompt=prompt,
+                extra_system_prompt=system,
             )
         except Exception as err:  # noqa: BLE001 — other agent is a system boundary
             _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)
             return None
+        if not record:
+            return result
         last = chat_log.content[-1] if chat_log.content else None
         if getattr(last, "role", None) != "assistant":
             speech = _speech_from_result(result)
