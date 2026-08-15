@@ -5,10 +5,18 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
-from .const import CONF_MODE, DOMAIN, MODE_LOCAL
-from .engine import KlarEngine
+from .const import (
+    CONF_MODE,
+    CONF_PERSONALITY,
+    CONF_URL,
+    DEFAULT_PERSONALITY,
+    DEFAULT_URL,
+    DOMAIN,
+    MODE_LOCAL,
+)
+from .engine import KlarEngine, async_push_personality
 
-PLATFORMS = [Platform.CONVERSATION]
+PLATFORMS = [Platform.CONVERSATION, Platform.SELECT]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -28,6 +36,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         )
     hass.data[DOMAIN][entry.entry_id] = {"engine": engine}
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    url = (
+        entry.options.get(CONF_URL)
+        or entry.data.get(CONF_URL)
+        or DEFAULT_URL
+    )
+    await async_push_personality(
+        hass,
+        url,
+        str(entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY)),
+    )
     entry.async_on_unload(entry.add_update_listener(_async_reload))
     return True
 

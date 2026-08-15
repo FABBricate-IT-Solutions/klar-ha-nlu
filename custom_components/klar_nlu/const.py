@@ -6,7 +6,21 @@ CONF_MODE = "mode"
 CONF_FALLBACK_AGENT = "fallback_agent"
 CONF_LANGUAGES = "languages"
 CONF_ASSIST_FILTER = "assist_filter"
+CONF_PERSONALITY = "personality"
 DEFAULT_ASSIST_FILTER = True
+DEFAULT_PERSONALITY = "default"
+PERSONALITIES = (
+    "default",
+    "butler",
+    "locker",
+    "fuersorglich",
+    "party",
+    "grantig",
+    "sarkastisch",
+    "pirat",
+    "hippie",
+    "gollum",
+)
 MODE_LOCAL = "local"
 MODE_REMOTE = "remote"
 GITHUB_REPO = "FABBricate-IT-Solutions/klar-ha-nlu"

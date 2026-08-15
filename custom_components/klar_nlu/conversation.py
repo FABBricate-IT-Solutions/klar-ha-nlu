@@ -15,16 +15,21 @@ from homeassistant.components.conversation import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import intent
+from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     CONF_ASSIST_FILTER,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
+    CONF_PERSONALITY,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_PERSONALITY,
     DEFAULT_URL,
+    DOMAIN,
     LANGUAGE_VARIANTS,
+    PERSONALITIES,
     SUPPORTED_LANGUAGES,
 )
 from .speech import from_handled, style
@@ -160,6 +165,11 @@ class KlarConversationEntity(ConversationEntity):
         self.hass = hass
         self._entry = entry
         self._attr_unique_id = entry.entry_id
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, entry.entry_id)},
+            name="Klar NLU",
+            manufacturer="FABBricate IT Solutions",
+        )
 
     @property
     def supported_languages(self) -> list[str]:
@@ -184,6 +194,10 @@ class KlarConversationEntity(ConversationEntity):
             return "conversation"
         return None
 
+    def _personality(self) -> str:
+        value = str(self._entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY))
+        return value if value in PERSONALITIES else DEFAULT_PERSONALITY
+
     async def _async_handle_message(
         self,
         user_input: ConversationInput,
@@ -198,7 +212,7 @@ class KlarConversationEntity(ConversationEntity):
         intents = _home_intents(payload.get("intents") or [])
         clarify = bool(payload.get("clarify"))
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
-        personality = str(payload.get("personality") or "default")
+        personality = self._personality()
 
         if not clarify and not intents and not payload.get("unreachable"):
             fallback = await self._fallback(user_input, chat_log, pack)
@@ -274,6 +288,7 @@ class KlarConversationEntity(ConversationEntity):
             "text": text,
             "conversation_id": conversation_id,
             "language": pack,
+            "personality": self._personality(),
         }
         try:
             async with aiohttp.ClientSession() as session:

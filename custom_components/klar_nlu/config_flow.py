@@ -13,18 +13,28 @@ from .const import (
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
+    CONF_PERSONALITY,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_PERSONALITY,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
     MODE_REMOTE,
+    PERSONALITIES,
     SUPPORTED_LANGUAGES,
 )
 
 
 def _options_schema(advanced: bool) -> vol.Schema:
     fields: dict[Any, Any] = {
+        vol.Optional(CONF_PERSONALITY, default=DEFAULT_PERSONALITY): selector.SelectSelector(
+            selector.SelectSelectorConfig(
+                options=list(PERSONALITIES),
+                mode=selector.SelectSelectorMode.DROPDOWN,
+                translation_key="personality",
+            )
+        ),
         vol.Optional(CONF_LANGUAGES, default=list(SUPPORTED_LANGUAGES)): selector.SelectSelector(
             selector.SelectSelectorConfig(
                 options=list(SUPPORTED_LANGUAGES),
@@ -101,7 +111,12 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 for code in (user_input.get(CONF_LANGUAGES) or [])
                 if code in SUPPORTED_LANGUAGES
             ] or list(SUPPORTED_LANGUAGES)
-            data: dict[str, Any] = {CONF_LANGUAGES: langs}
+            chosen = user_input.get(CONF_PERSONALITY, DEFAULT_PERSONALITY)
+            personality = chosen if chosen in PERSONALITIES else DEFAULT_PERSONALITY
+            data: dict[str, Any] = {
+                CONF_LANGUAGES: langs,
+                CONF_PERSONALITY: personality,
+            }
             agent = user_input.get(CONF_FALLBACK_AGENT) or None
             if agent:
                 data[CONF_FALLBACK_AGENT] = agent
@@ -120,6 +135,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         suggested = {
             CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
             CONF_ASSIST_FILTER: DEFAULT_ASSIST_FILTER,
+            CONF_PERSONALITY: DEFAULT_PERSONALITY,
             **self.config_entry.options,
         }
         if CONF_URL not in suggested:
