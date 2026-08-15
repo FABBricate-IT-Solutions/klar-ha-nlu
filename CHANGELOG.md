@@ -6,13 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.10...v2026.8.0) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- store Assist personality in the Home Assistant integration (#30)([27b4846](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/27b48467b7e7accef7ffa5f9d47335e33eb22771))
+
+- keep room-scoped all-lights and run the parsed entity (#29)([ad298e4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ad298e4d8f2ac3ddf1965e4d5e3191adb8f4c0ec))
+
+
+### Miscellaneous
+
+- switch releases to Home Assistant calendar versions (#31)([e099c83](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e099c8388927f995fa4ad63337c6f4617af91b32))
+
 ## [0.1.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.9...v0.1.10) - 2026-08-15
 
 
 
 ### Bug Fixes
 
-- keep und-names in questions and prefer the outlet (#27)([d8d5585](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d8d5585))
+- keep und-names in questions and prefer the outlet (#27)([d8d5585](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d8d5585027d21fb0d2636cfe6d4129ec61309b54))
 
 ## [0.1.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.8...v0.1.9) - 2026-08-15
 
@@ -20,8 +35,9 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Bug Fixes
 
-- do not match aus to the Alles-aus scene (#24)([f3a3bd6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f3a3bd6))
-- pass the device name so Assist can run entity-only intents (#26)([904cd85](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/904cd85))
+- pass the device name so Assist can run entity-only intents (#26)([904cd85](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/904cd856aebd043a63dabc184333b9473497fd43))
+
+- do not match aus to the Alles-aus scene (#24)([f3a3bd6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f3a3bd622bf668c70ee8c9a9d3205eb386a3d92b))
 
 ## [0.1.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.7...v0.1.8) - 2026-08-15
 
@@ -29,7 +45,7 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Bug Fixes
 
-- keep one target and replay pronoun follow-ups (#22)([50a2ca2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/50a2ca2))
+- keep one target and replay pronoun follow-ups (#22)([50a2ca2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/50a2ca285881d57f16f968917ad0d8d7472e828d))
 
 ## [0.1.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.6...v0.1.7) - 2026-08-15
 
@@ -53,7 +69,7 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Bug Fixes
 
-- inherit Hue room areas so Schlafzimmerlicht hits the Kugel (#16)([2ee34c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2ee34c863db6d8e310eeff259131848056cd6597))
+- inherit Hue room areas so Schlafzimmerlicht hits the Kugel([2ee34c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2ee34c863db6d8e310eeff259131848056cd6597))
 
 ## [0.1.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.3...v0.1.4) - 2026-08-15
 
@@ -61,7 +77,7 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Bug Fixes
 
-- resolve live Wohnung lights, names, and English phrases (#14)([8fa3318](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8fa331880af731590b7ffae678adfc222d35a972))
+- resolve live Wohnung lights, names, and English phrases([8fa3318](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8fa331880af731590b7ffae678adfc222d35a972))
 
 ## [0.1.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.2...v0.1.3) - 2026-08-15
 
