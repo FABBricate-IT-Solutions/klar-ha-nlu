@@ -125,12 +125,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Multi-arch tags
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           addon="$(sed -n 's/^version: "\([^"]*\)"/\1/p' addon/config.yaml | head -1)"
-          if [[ "${{ github.ref }}" == refs/tags/v* || "${{ github.ref }}" == refs/tags/20* ]]; then
+          if [[ "$GITHUB_REF" == refs/tags/v* || "$GITHUB_REF" == refs/tags/20* ]]; then
             version="${GITHUB_REF_NAME#v}"
-          elif [[ -n "${{ inputs.release_tag }}" ]]; then
-            t="${{ inputs.release_tag }}"
+          elif [[ -n "$RELEASE_TAG" ]]; then
+            t="$RELEASE_TAG"
             version="${t#v}"
           else
             version="$addon"
@@ -145,7 +148,7 @@ jobs:
           if [[ "${extra_edge:-}" == "true" ]]; then
             docker buildx imagetools create -t "${GHCR}:edge" "${src[@]}"
           fi
-          if [[ "${{ github.ref }}" == refs/tags/v* || "${{ github.ref }}" == refs/tags/20* || -n "${{ inputs.release_tag }}" ]]; then
+          if [[ "$GITHUB_REF" == refs/tags/v* || "$GITHUB_REF" == refs/tags/20* || -n "$RELEASE_TAG" ]]; then
             docker buildx imagetools create -t "${GHCR}:latest" "${src[@]}"
           fi
 
@@ -175,8 +178,10 @@ jobs:
           GITHUB_REPO: ${{ github.repository }}
       - name: Release identity
         id: rel
+        env:
+          RAW_TAG: ${{ inputs.release_tag || github.ref_name }}
         run: |
-          raw="${{ inputs.release_tag || github.ref_name }}"
+          raw="$RAW_TAG"
           echo "tag=$raw" >> "$GITHUB_OUTPUT"
           echo "title=${raw#v}" >> "$GITHUB_OUTPUT"
       - uses: softprops/action-gh-release@v3
