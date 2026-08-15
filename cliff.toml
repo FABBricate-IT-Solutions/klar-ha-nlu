@@ -68,6 +68,8 @@ commit_parsers = [
     { message = "^refactor", group = "Refactor" },
     { message = "^style", group = "Styling" },
     { message = "^test", group = "Testing" },
+    # Skipped so prepare does not list the bump commit. GitHub release notes
+    # must come from CHANGELOG.md (scripts/release-notes.py), not --latest.
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore\\(deps", skip = true },
     { message = "^chore|^ci", group = "Miscellaneous" },
