@@ -13,6 +13,7 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 ### Bug Fixes
 
 - do not match aus to the Alles-aus scene (#24)([f3a3bd6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f3a3bd6))
+- pass the device name so Assist can run entity-only intents (#26)([904cd85](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/904cd85))
 
 ## [0.1.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.7...v0.1.8) - 2026-08-15
 
