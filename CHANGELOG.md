@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.12](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.11...2026.8.12) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- detect formal news follow-up prompts([af6dcde](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/af6dcde6e9fd3e94c92ebbe5aa51b25d1c6439ca))
+
+
+### Other
+
+- Merge pull request #52 from FABBricate-IT-Solutions/fix/news-nudge-formal([f38c279](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f38c279d17936ca0fe4bb834f7db297b4bbfa360))
+
 ## [2026.8.11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.10...2026.8.11) - 2026-08-15
 
 
