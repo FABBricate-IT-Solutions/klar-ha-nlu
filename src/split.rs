@@ -149,6 +149,8 @@ fn is_same_command(a: Action, b: Action) -> bool {
             | (Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause, Action::GetState)
             | (Action::GetState, Action::VacuumDock | Action::VacuumStart)
             | (Action::VacuumDock | Action::VacuumStart, Action::GetState)
+            | (Action::VacuumStart | Action::VacuumDock, Action::On | Action::Off)
+            | (Action::On | Action::Off, Action::VacuumStart | Action::VacuumDock)
             | (Action::ListAdd | Action::ListComplete, Action::On | Action::Off | Action::SetLight)
             | (Action::On | Action::Off | Action::SetLight, Action::ListAdd | Action::ListComplete)
     )

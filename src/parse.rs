@@ -291,7 +291,7 @@ fn parse_clause(
 
     let mut intents = Vec::new();
 
-    if matches!(action, Action::On | Action::Scene) {
+    if !question && matches!(action, Action::On | Action::Scene | Action::GetState) {
         if let Some(id) = named_scene_or_script(tokens, home) {
             intents.push(Intent::new("HassTurnOn").with("entity_id", &id).with(
                 "domain",

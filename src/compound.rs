@@ -148,6 +148,31 @@ pub(crate) fn is_tv_switch(domain: &str, entity: &EntityRec) -> bool {
         }
 }
 
+pub(crate) fn is_infra(entity: &EntityRec) -> bool {
+    is_infra_light(entity) || is_infra_switch(entity)
+}
+
+fn is_infra_switch(entity: &EntityRec) -> bool {
+    if entity.domain != "switch" {
+        return false;
+    }
+    let id = entity.entity_id.to_ascii_lowercase();
+    let name = compact(&entity.name);
+    id.contains("r2d2_")
+        || id.contains("adaptive_lighting")
+        || id.contains("adaptiv_")
+        || id.contains("cloud_alexa")
+        || id.contains("cloud_google")
+        || id.contains("adguard")
+        || id.contains("bitte_nicht_storen")
+        || id.contains("durchsagen")
+        || id.contains("kommunikation")
+        || id.contains("child_lock")
+        || id.contains("wake_sound")
+        || name.contains("klimaanlage")
+        || name.contains("adaptive")
+}
+
 pub(crate) fn is_infra_light(entity: &EntityRec) -> bool {
     if entity.domain != "light" {
         return false;
@@ -177,6 +202,14 @@ pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> boo
     home.areas.iter().any(|area| {
         generic_name(&name, &compact(&area.name)) || generic_name(&name, &compact(&area.area_id))
     })
+}
+
+pub(crate) fn short_name_token(entity: &EntityRec) -> Option<String> {
+    entity
+        .name
+        .split(|c: char| !c.is_ascii_alphanumeric())
+        .map(compact)
+        .find(|part| part.len() >= 2 && part.len() <= 3 && !GENERIC.contains(&part.as_str()))
 }
 
 pub(crate) fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
@@ -241,8 +274,7 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     let lights: Vec<&EntityRec> = home
         .entities
         .iter()
-        .filter(|e| e.domain == "light" && e.area.as_deref() == Some(area))
-        .filter(|e| !is_generic_room_light(e, home))
+        .filter(|e| e.domain == "light" && e.area.as_deref() == Some(area) && !is_infra_light(e))
         .collect();
     if let Some(hit) = lights.iter().find(|e| e.tags.iter().any(|t| t == "preferred")) {
         return Some((*hit).clone());
@@ -253,6 +285,10 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     {
         return Some((*hit).clone());
     }
+    let lights: Vec<&EntityRec> = lights
+        .into_iter()
+        .filter(|e| !is_generic_room_light(e, home))
+        .collect();
     let named: Vec<&EntityRec> = lights
         .iter()
         .copied()

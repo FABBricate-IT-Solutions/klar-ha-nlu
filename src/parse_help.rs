@@ -20,8 +20,10 @@ pub(crate) fn refine_action(
     if question && matches!(action, Action::VacuumDock | Action::VacuumStart) {
         return Action::GetState;
     }
-    if matches!(action, Action::On)
-        && catalog().any(tokens, &catalog().vacuum_nouns)
+    if catalog().any(tokens, &catalog().vacuum_nouns)
+        && (matches!(action, Action::On)
+            || catalog().any(tokens, &catalog().start_words)
+            || tokens.iter().any(|t| matches!(t.as_str(), "an" | "on" | "start")))
     {
         return Action::VacuumStart;
     }
@@ -128,7 +130,7 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
         }
     }
     let named = mentioned || catalog().any(tokens, &catalog().scene_named);
-    (hits.len() == 1 && named).then_some(hits.pop()).flatten()
+    (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
 }
 
 fn scene_name_hit(tokens: &[String], name: &str) -> bool {
