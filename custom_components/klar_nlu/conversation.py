@@ -18,9 +18,11 @@ from homeassistant.helpers import intent
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
+    CONF_ASSIST_FILTER,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_URL,
+    DEFAULT_ASSIST_FILTER,
     DEFAULT_URL,
     LANGUAGE_VARIANTS,
     SUPPORTED_LANGUAGES,
@@ -225,6 +227,11 @@ class KlarConversationEntity(ConversationEntity):
             return None
         return agent_id
 
+    def _assistant(self) -> str | None:
+        if self._entry.options.get(CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER):
+            return "conversation"
+        return None
+
     async def _async_handle_message(
         self,
         user_input: ConversationInput,
@@ -345,6 +352,7 @@ class KlarConversationEntity(ConversationEntity):
                 user_input.text,
                 user_input.context,
                 user_input.language or pack,
+                assistant=self._assistant(),
             )
         except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
             _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)

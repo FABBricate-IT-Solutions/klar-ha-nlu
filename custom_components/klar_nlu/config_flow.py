@@ -9,10 +9,12 @@ from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
 
 from .const import (
+    CONF_ASSIST_FILTER,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
     CONF_URL,
+    DEFAULT_ASSIST_FILTER,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
@@ -20,8 +22,9 @@ from .const import (
     SUPPORTED_LANGUAGES,
 )
 
-OPTIONS_SCHEMA = vol.Schema(
-    {
+
+def _options_schema(advanced: bool) -> vol.Schema:
+    fields: dict[Any, Any] = {
         vol.Optional(CONF_LANGUAGES, default=list(SUPPORTED_LANGUAGES)): selector.SelectSelector(
             selector.SelectSelectorConfig(
                 options=list(SUPPORTED_LANGUAGES),
@@ -35,7 +38,11 @@ OPTIONS_SCHEMA = vol.Schema(
         ),
         vol.Optional(CONF_URL): str,
     }
-)
+    if advanced:
+        fields[vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER)] = (
+            selector.BooleanSelector()
+        )
+    return vol.Schema(fields)
 
 USER_SCHEMA = vol.Schema(
     {
@@ -101,14 +108,25 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             url = (user_input.get(CONF_URL) or "").strip()
             if url:
                 data[CONF_URL] = url
+            if CONF_ASSIST_FILTER in user_input:
+                data[CONF_ASSIST_FILTER] = bool(user_input[CONF_ASSIST_FILTER])
+            else:
+                data[CONF_ASSIST_FILTER] = bool(
+                    self.config_entry.options.get(
+                        CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER
+                    )
+                )
             return self.async_create_entry(data=data)
         suggested = {
             CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
+            CONF_ASSIST_FILTER: DEFAULT_ASSIST_FILTER,
             **self.config_entry.options,
         }
         if CONF_URL not in suggested:
             suggested[CONF_URL] = self.config_entry.data.get(CONF_URL, "")
         return self.async_show_form(
             step_id="init",
-            data_schema=self.add_suggested_values_to_schema(OPTIONS_SCHEMA, suggested),
+            data_schema=self.add_suggested_values_to_schema(
+                _options_schema(self.show_advanced_options), suggested
+            ),
         )
