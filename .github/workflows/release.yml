@@ -69,7 +69,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           branch="release/${TAG}"
           git checkout -b "$branch"
-          git add Cargo.toml config.yaml addon/config.yaml \
+          git add Cargo.toml Cargo.lock config.yaml addon/config.yaml \
             custom_components/klar_nlu/manifest.json CHANGELOG.md
           git commit -m "chore(release): prepare for ${TAG}"
           git push origin HEAD
