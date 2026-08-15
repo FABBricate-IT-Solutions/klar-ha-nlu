@@ -226,6 +226,59 @@ fn geraet_nicht_raum_oder_szene() {
         &["light.schlafzimmer", "light.hue_color_lamp_2"],
         &["light.schlafzimmer_licht", "switch.schlafzimmer_tv"],
     );
+    assert_target(
+        "Wie ist der Status von Schlafzimmer",
+        "HassGetState",
+        &["schlafzimmer"],
+        &["light.alle_lichter"],
+    );
+}
+
+#[test]
+fn alle_lichter_im_raum_nicht_ueberall() {
+    let forbid = &["light.alle_lichter"];
+    assert_target(
+        "Schalte alle Lichter im Schlafzimmer ein",
+        "HassTurnOn",
+        &["light.schlafzimmer", "schlafzimmer"],
+        forbid,
+    );
+    assert_target(
+        "Schalte alle Lichter im Arbeitszimmer ein",
+        "HassTurnOn",
+        &["light.arbeitszimmer", "arbeitszimmer"],
+        forbid,
+    );
+    assert_target(
+        "Schalte alle Lichter im Wohnzimmer ein",
+        "HassTurnOn",
+        &["light.wohnzimmer", "wohnzimmer"],
+        forbid,
+    );
+    assert_target(
+        "Schalte alle Lichter im Esszimmer ein",
+        "HassTurnOn",
+        &["light.esszimmer", "esszimmer"],
+        forbid,
+    );
+    assert_target(
+        "Schalte alle Lichter in der Küche ein",
+        "HassTurnOn",
+        &["light.kuche_kuche", "kuche"],
+        forbid,
+    );
+    assert_target(
+        "Schalte alle Lichter in der Wohnung ein",
+        "HassTurnOn",
+        &["light.alle_lichter"],
+        &["light.schlafzimmer", "light.wohnzimmer"],
+    );
+    assert_target(
+        "Schalte alle Lichter ein",
+        "HassTurnOn",
+        &["light.alle_lichter"],
+        &["light.schlafzimmer"],
+    );
 }
 
 #[test]

@@ -237,6 +237,8 @@ pub(crate) fn short_name_token(entity: &EntityRec) -> Option<String> {
             && part.len() <= 3
             && !GENERIC.contains(&part.as_str())
             && !cat.is_particle(part)
+            && !cat.is_filler(part)
+            && !matches!(part.as_str(), "von" | "vom" | "of" | "und" | "and")
             && !cat.on_words.contains(part.as_str())
             && !cat.off_words.contains(part.as_str())
     })

@@ -13,7 +13,7 @@ from aiohttp import ClientError, ClientTimeout
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import DEFAULT_URL, GITHUB_REPO
+from .const import DEFAULT_URL, GITHUB_REPO, PERSONALITIES
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -155,3 +155,24 @@ class KlarEngine:
                 return resp.status < 500
         except ClientError:
             return False
+
+
+async def async_push_personality(hass: HomeAssistant, url: str, personality: str) -> None:
+    """Write the HA personality onto the engine so the Klar UI matches Assist."""
+    if personality not in PERSONALITIES:
+        personality = "default"
+    session = async_get_clientsession(hass)
+    settings_url = f"{url.rstrip('/')}/api/settings"
+    try:
+        async with session.get(settings_url, timeout=ClientTimeout(total=3)) as resp:
+            resp.raise_for_status()
+            data = await resp.json()
+        if not isinstance(data, dict):
+            return
+        data["personality"] = personality
+        async with session.post(
+            settings_url, json=data, timeout=ClientTimeout(total=3)
+        ) as resp:
+            resp.raise_for_status()
+    except (ClientError, TimeoutError, OSError) as err:
+        _LOGGER.debug("Klar personality not synced: %s", err)

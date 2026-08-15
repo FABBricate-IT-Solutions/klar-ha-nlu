@@ -28,6 +28,8 @@ pub struct ParseIn {
     pub conversation_id: Option<String>,
     /// BCP-47 tag from Assist (`de`, `en-US`, …). Pins the pack for this request.
     pub language: Option<String>,
+    /// Home Assistant option. Wins over the addon overlay for this request.
+    pub personality: Option<crate::types::Personality>,
 }
 
 pub fn router(state: AppState) -> Router {
@@ -51,6 +53,7 @@ async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> 
     let settings = settings_for_parse(
         state.settings.lock().await.clone(),
         body.language.as_deref(),
+        body.personality,
     );
     let custom = state.custom.lock().await.clone();
     let mut sessions = state.sessions.lock().await;
@@ -69,7 +72,14 @@ struct ParseOut {
     personality: crate::types::Personality,
 }
 
-fn settings_for_parse(mut settings: Settings, language: Option<&str>) -> Settings {
+fn settings_for_parse(
+    mut settings: Settings,
+    language: Option<&str>,
+    personality: Option<crate::types::Personality>,
+) -> Settings {
+    if let Some(personality) = personality {
+        settings.personality = personality;
+    }
     let Some(raw) = language.filter(|s| !s.is_empty()) else {
         return settings;
     };
@@ -190,20 +200,28 @@ mod tests {
     fn pins_assist_language_to_pack() {
         let base = Settings::default();
         assert_eq!(
-            settings_for_parse(base.clone(), Some("en-US")).languages,
+            settings_for_parse(base.clone(), Some("en-US"), None).languages,
             vec!["en".to_string()]
         );
         assert_eq!(
-            settings_for_parse(base.clone(), Some("de-DE")).languages,
+            settings_for_parse(base.clone(), Some("de-DE"), None).languages,
             vec!["de".to_string()]
         );
         assert_eq!(
-            settings_for_parse(base.clone(), None).languages,
+            settings_for_parse(base.clone(), None, None).languages,
             vec!["de".to_string(), "en".to_string()]
         );
         assert_eq!(
-            settings_for_parse(base, Some("fr")).languages,
+            settings_for_parse(base, Some("fr"), None).languages,
             vec!["de".to_string(), "en".to_string()]
         );
+    }
+
+    #[test]
+    fn assist_personality_overrides_overlay() {
+        let mut base = Settings::default();
+        base.personality = crate::types::Personality::Default;
+        let out = settings_for_parse(base, None, Some(crate::types::Personality::Butler));
+        assert_eq!(out.personality, crate::types::Personality::Butler);
     }
 }
