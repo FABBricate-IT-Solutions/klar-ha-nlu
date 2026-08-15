@@ -91,3 +91,16 @@ fn en_smalltalk_after_device_has_no_home_intent() {
         assert!(result.intents.is_empty(), "{text}: {:?} {}", result.intents, result.speech);
     }
 }
+
+#[test]
+fn en_casual_and_special_are_chat() {
+    let home = default_home();
+    for text in ["Tell a story", "Tell a joke", "How are you", "What is the capital of France", "What's the weather"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &settings("en"));
+        assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
+        assert!(result.chat, "{text}: chat fehlt");
+    }
+    let home_cmd = parse("Turn on the light in the office", &home, &mut Session::new(), &[], &settings("en"));
+    assert!(!home_cmd.chat, "{:?}", home_cmd.intents);
+}

@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.6...2026.8.7) - 2026-08-15
+
+### Features
+
+- Route casual and special speech to the LLM fallback even when that agent advertises Assist tools
+- Distinguish Heizung and Klimaanlage by name, alias, and HA tags
+
+### Bug Fixes
+
+- Treat genitive room status (*Status der Küche*) as the area, not the kitchen lamp
+- Set *Klimaanlage auf 20° / 20 Grad* on the AC instead of the bedroom heater
+
 ## [2026.8.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.5...2026.8.6) - 2026-08-15
 
 ### Bug Fixes

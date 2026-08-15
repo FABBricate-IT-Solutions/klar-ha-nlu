@@ -6,14 +6,66 @@ use serde::Deserialize;
 use std::collections::HashMap;
 use std::path::Path;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ClimateKind {
+    Heat,
+    Cool,
+}
+
 pub fn role_of_tag(tag: &str) -> Option<&'static str> {
     match compact(tag).as_str() {
         "licht" | "light" | "lampe" | "lampen" | "leuchte" | "beleuchtung" | "lighting" => Some("light"),
-        "heizung" | "thermostat" | "klima" | "klimaanlage" | "heater" | "climate" | "heat" => Some("climate"),
+        "heizung" | "thermostat" | "klima" | "klimaanlage" | "heater" | "climate" | "heat" | "ac" | "aircon" | "kuehlung" => {
+            Some("climate")
+        }
         "tv" | "fernseher" | "media" => Some("media_player"),
         "luefter" | "ventilator" | "fan" | "geblaese" => Some("fan"),
         _ => None,
     }
+}
+
+pub fn wanted_climate_kind(tokens: &[String]) -> Option<ClimateKind> {
+    let cool = tokens.iter().any(|t| matches!(t.as_str(), "klima" | "klimaanlage" | "ac" | "aircon" | "kuehlung"));
+    let heat = tokens.iter().any(|t| matches!(t.as_str(), "heizung" | "thermostat" | "heater" | "heat" | "heizen"));
+    match (cool, heat) {
+        (true, false) => Some(ClimateKind::Cool),
+        (false, true) => Some(ClimateKind::Heat),
+        _ => None,
+    }
+}
+
+pub fn climate_kind(entity: &EntityRec) -> Option<ClimateKind> {
+    if entity.domain != "climate" && !has_role(entity, "climate") {
+        return None;
+    }
+    if cool_named(entity) {
+        return Some(ClimateKind::Cool);
+    }
+    if heat_named(entity) {
+        return Some(ClimateKind::Heat);
+    }
+    let tags: Vec<String> = entity.tags.iter().map(|tag| compact(tag)).collect();
+    if tags.iter().any(|tag| matches!(tag.as_str(), "klima" | "klimaanlage" | "ac" | "aircon" | "kuehlung")) {
+        return Some(ClimateKind::Cool);
+    }
+    if tags.iter().any(|tag| matches!(tag.as_str(), "heizung" | "thermostat" | "heater" | "heat")) {
+        return Some(ClimateKind::Heat);
+    }
+    Some(ClimateKind::Heat)
+}
+
+fn climate_blob(entity: &EntityRec) -> String {
+    compact(&format!("{} {} {}", entity.entity_id, entity.name, entity.aliases.join(" ")))
+}
+
+fn cool_named(entity: &EntityRec) -> bool {
+    let blob = climate_blob(entity);
+    blob.contains("klimaanlage") || blob.contains("aircon") || blob.contains("kuehlung") || blob.ends_with("ac")
+}
+
+fn heat_named(entity: &EntityRec) -> bool {
+    let blob = climate_blob(entity);
+    blob.contains("heizung") || blob.contains("thermostat") || blob.contains("heater")
 }
 
 pub fn is_role_tag(tag: &str) -> bool {
@@ -112,7 +164,28 @@ mod tests {
         assert_eq!(role_of_tag("Licht"), Some("light"));
         assert_eq!(role_of_tag("lüfter"), Some("fan"));
         assert_eq!(role_of_tag("Heizung"), Some("climate"));
+        assert_eq!(role_of_tag("Klima"), Some("climate"));
         assert_eq!(role_of_tag("TV"), Some("media_player"));
+        let ac = EntityRec {
+            entity_id: "climate.schlafzimmer_ac".into(),
+            name: "Schlafzimmer AC".into(),
+            domain: "climate".into(),
+            area: Some("schlafzimmer".into()),
+            aliases: vec!["Klimaanlage".into()],
+            tags: vec!["Klima".into()],
+        };
+        let heat = EntityRec {
+            entity_id: "climate.better_thermostat_schlafzimmer".into(),
+            name: "Better Thermostat Schlafzimmer".into(),
+            domain: "climate".into(),
+            area: Some("schlafzimmer".into()),
+            aliases: vec!["Heizung Schlafzimmer".into()],
+            tags: vec!["Klima".into()],
+        };
+        assert_eq!(climate_kind(&ac), Some(ClimateKind::Cool));
+        assert_eq!(climate_kind(&heat), Some(ClimateKind::Heat));
+        assert_eq!(wanted_climate_kind(&["klimaanlage".into(), "20".into()]), Some(ClimateKind::Cool));
+        assert_eq!(wanted_climate_kind(&["heizung".into(), "20".into()]), Some(ClimateKind::Heat));
         assert_eq!(role_of_tag("wichtig"), None);
         assert_eq!(role_of_tag("og"), None);
     }

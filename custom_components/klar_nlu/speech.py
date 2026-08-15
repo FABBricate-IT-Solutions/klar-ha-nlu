@@ -67,7 +67,7 @@ def style(speech: str, personality: str, pack: str) -> str:
 def from_handled(handled: Any, pack: str, item: dict) -> str | None:
     name = str(item.get("name") or "")
     if _is_query(handled, name):
-        query = query_speech(handled, pack)
+        query = query_speech(handled, pack, item)
         if query:
             return query
     template = (_ACTION.get(name) or {}).get(pack)
@@ -81,15 +81,18 @@ def from_handled(handled: Any, pack: str, item: dict) -> str | None:
                 text = text.replace(f": {eng}", f" ist {de}")
                 text = text.replace(f" {eng}.", f" {de}.")
         return text
-    return query_speech(handled, pack) or None
+    return query_speech(handled, pack, item) or None
 
 
-def query_speech(handled: Any, pack: str) -> str:
+def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
     states = list(getattr(handled, "matched_states", None) or [])
     if not states:
         states = list(getattr(handled, "unmatched_states", None) or [])
     rows = [_state_value(state, pack) for state in states[:12]]
     rows = [row for row in rows if row[0] and row[1]]
+    area = _room_label(item)
+    if area:
+        return _room_status(rows, area, pack)
     lights = [row for row in rows if row[2] == "light"]
     if len(lights) >= 2:
         on_word, off_word = ("on", "off") if pack == "en" else ("an", "aus")
@@ -116,6 +119,64 @@ def query_speech(handled: Any, pack: str) -> str:
         else:
             parts.append(f"{name} ist {spoken}.")
     return " ".join(parts)
+
+
+def _room_label(item: dict | None) -> str:
+    if not item:
+        return ""
+    slots = _slots(item)
+    if slots.get("entity_id"):
+        return ""
+    return str(slots.get("area_name") or slots.get("area") or "").strip()
+
+
+def _in_area(area: str, pack: str) -> str:
+    pretty = _humanize(area)
+    if pretty:
+        pretty = pretty[:1].upper() + pretty[1:]
+    if pack != "de":
+        return f"in the {pretty}"
+    folded = pretty.lower().replace("ü", "u").replace("ä", "a").replace("ö", "o")
+    if folded.endswith("e") or folded in {"wohnung"}:
+        return f"in der {pretty}"
+    return f"im {pretty}"
+
+
+def _room_status(rows: list[tuple[str, str, str]], area: str, pack: str) -> str:
+    where = _in_area(area, pack)
+    lights = [row for row in rows if row[2] == "light"]
+    others = [(n, v) for n, v, d in rows if d != "light"][:3]
+    if len(rows) == 1 and rows[0][2] == "light":
+        spoken = rows[0][1]
+        if pack == "en":
+            return f"The light {where} is {spoken}."
+        return f"{where[:1].upper()}{where[1:]} ist das Licht {spoken}."
+    if len(lights) >= 2:
+        on_word, off_word = ("on", "off") if pack == "en" else ("an", "aus")
+        on = sum(1 for row in lights if row[1] == on_word)
+        off = sum(1 for row in lights if row[1] == off_word)
+        if pack == "en":
+            bits = [f"{on} lights on"] if on else []
+            if off:
+                bits.append(f"{off} lights off")
+            extra = [f"{n} is {v}" for n, v in others]
+            return f"{where[:1].upper()}{where[1:]}: " + ", ".join(bits + extra) + "."
+        bits = [f"{on} Licht an" if on == 1 else f"{on} Lichter an"] if on else []
+        if off:
+            bits.append(f"{off} Licht aus" if off == 1 else f"{off} Lichter aus")
+        extra = [f"{n} {v}" for n, v in others]
+        return f"{where[:1].upper()}{where[1:]}: " + ", ".join(bits + extra) + "."
+    parts: list[str] = []
+    for name, spoken, domain in rows[:4]:
+        label = "Licht" if pack == "de" and domain == "light" and name.lower() in _LIGHT_TAIL else name
+        if pack == "en":
+            parts.append(f"{label} is {spoken.replace(',', '.')}")
+        else:
+            parts.append(f"{label} ist {spoken}")
+    body = ". ".join(parts)
+    if not body:
+        return f"{where[:1].upper()}{where[1:]} ist in Ordnung." if pack == "de" else f"{where[:1].upper()}{where[1:]} looks fine."
+    return f"{where[:1].upper()}{where[1:]}: {body}."
 
 
 def _speak_state(raw: str, pack: str) -> str:

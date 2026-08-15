@@ -35,6 +35,8 @@ pub struct ParseResult {
     pub speech: String,
     pub clarify: bool,
     pub conversation_id: String,
+    #[serde(default)]
+    pub chat: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

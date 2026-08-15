@@ -39,6 +39,11 @@ class FallbackTests(unittest.TestCase):
         self.assertIn("Sei kurz.", prompt)
         self.assertIn("keine Home-Assistant-Werkzeuge", prompt)
 
+    def test_chat_may_use_home_agent(self) -> None:
+        self.assertTrue(fallback.can_use_fallback_agent(False, False))
+        self.assertFalse(fallback.can_use_fallback_agent(True, False))
+        self.assertTrue(fallback.can_use_fallback_agent(True, True))
+
 
 if __name__ == "__main__":
     unittest.main()

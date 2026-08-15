@@ -186,6 +186,36 @@ fn smalltalk_hat_keinen_home_intent() {
 }
 
 #[test]
+fn casual_und_sonderfaelle_gehen_an_llm() {
+    let home = default_home();
+    let settings = Settings::default();
+    for text in [
+        "Erzähle eine Geschichte",
+        "Erzähle einen Witz",
+        "Erzähl einen Katzenwitz",
+        "Wie geht es dir",
+        "Guten Morgen",
+        "Danke",
+        "Was ist die Hauptstadt von Frankreich",
+        "Wie ist das Wetter",
+        "Was soll ich kochen",
+        "Wer bist du",
+        "Unterhalte mich",
+    ] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &settings);
+        assert!(!result.clarify, "{text}: {}", result.speech);
+        assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
+        assert!(result.chat, "{text}: chat fehlt");
+    }
+    for text in ["Licht im Wohnzimmer an", "Wie ist der Status der Küche", "Wie warm ist es im Schlafzimmer", "asdfghjkl qwerty"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &settings);
+        assert!(!result.chat, "{text}: NLU/Müll darf nicht chat sein {:?}", result.intents);
+    }
+}
+
+#[test]
 fn smalltalk_nach_geraet_geht_an_llm() {
     let home = default_home();
     let mut session = Session::new();
