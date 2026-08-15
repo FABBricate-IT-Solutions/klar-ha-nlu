@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.16](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.15...2026.8.16) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- unify room light targeting and harden the parse path([ff33d9b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ff33d9bedad485888dd9570a382a479aa715d47f))
+
 ## [2026.8.15](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.14...2026.8.15) - 2026-08-15
 
 
