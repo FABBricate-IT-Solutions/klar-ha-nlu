@@ -268,7 +268,6 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
     }
     ids
 }
-
 fn token_hit(tokens: &[String], label: &str) -> bool {
     if label.is_empty() {
         return false;
@@ -297,7 +296,7 @@ fn token_eq(token: &str, label: &str) -> bool {
     matches!(
         (token, label),
         ("left" | "links", "left" | "links")
-            | ("right" | "rechts", "right" | "rechts")
+            | ("right" | "rechts", "right" | "rechts") | ("globe" | "kugel", "globe" | "kugel")
     )
 }
 
@@ -368,6 +367,7 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
         if let Some(short) = short_name_token(entity) {
             if tokens.iter().any(|t| t == &short) { best = 0.92; }
         }
+        best = best.max(crate::compound::fixture_boost(tokens, entity));
     }
     (best >= 0.86).then_some(best)
 }

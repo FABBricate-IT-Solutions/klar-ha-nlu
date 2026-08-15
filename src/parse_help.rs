@@ -139,15 +139,19 @@ fn scene_name_hit(tokens: &[String], name: &str) -> bool {
         .filter(|p| p.len() > 3 && !catalog().weak_scene.contains(p))
         .map(str::to_string)
         .collect();
-    if parts.is_empty() {
-        return false;
+    if parts.is_empty() { return false; }
+    let mapped: Vec<String> = tokens.iter().map(|t| scene_token(t)).collect();
+    parts.iter().any(|p| p.len() > 5 && mapped.iter().any(|t| t == p))
+        || (parts.len() > 1 && parts.iter().all(|p| mapped.iter().any(|t| t == p)))
+        || mapped.iter().any(|t| t == &parts[0] && parts[0].len() > 4)
+}
+
+fn scene_token(token: &str) -> String {
+    match token {
+        "movie" => "filmabend".into(),
+        "cozy" => "gemuetlich".into(),
+        other => fold_umlaut(other),
     }
-    if parts.len() > 1 {
-        return parts.iter().all(|p| tokens.iter().any(|t| t.as_str() == p));
-    }
-    tokens
-        .iter()
-        .any(|t| t.as_str() == parts[0] && parts[0].len() > 4)
 }
 
 pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[String]) -> bool {
@@ -270,7 +274,12 @@ pub(crate) fn fill_intent(
     }
     match action {
         Action::SetLight | Action::On => {
-            if let Some(c) = color_word(tokens) {
+            if domain == Some("climate") || entity_id.is_some_and(|id| id.starts_with("climate.")) {
+                if let Some(n) = number {
+                    intent.name = "HassClimateSetTemperature".into();
+                    intent = intent.with("temperature", n.to_string());
+                }
+            } else if let Some(c) = color_word(tokens) {
                 intent.name = "HassLightSet".into();
                 intent = intent.with("color", c);
             } else if let Some(n) = number {

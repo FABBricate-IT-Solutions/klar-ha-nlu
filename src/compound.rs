@@ -204,6 +204,18 @@ pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> boo
     })
 }
 
+pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
+    let name = compact(&entity.name);
+    tokens.iter().any(|t| {
+        catalog().fixture_alias(t).iter().any(|alias| {
+            let a = compact(alias);
+            a.len() >= 5 && !GENERIC.contains(&a.as_str()) && name.contains(&a)
+        })
+    })
+    .then_some(0.94)
+    .unwrap_or(0.0)
+}
+
 pub(crate) fn short_name_token(entity: &EntityRec) -> Option<String> {
     entity
         .name
