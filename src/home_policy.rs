@@ -60,7 +60,7 @@ pub fn laundry_areas(home: &HomeGraph) -> Vec<String> {
         .collect()
 }
 
-pub fn fallback_climate<'a>(home: &'a HomeGraph) -> Option<&'a str> {
+pub fn fallback_climate(home: &HomeGraph) -> Option<&str> {
     let climates: Vec<&EntityRec> =
         home.entities.iter().filter(|entity| assist_visible(entity, home) && entity.domain == "climate" && !is_infra(entity)).collect();
     climates
