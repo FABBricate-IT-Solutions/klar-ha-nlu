@@ -27,12 +27,16 @@
           "personality": "Personality",
           "languages": "Languages",
           "fallback_agent": "Conversation agent for chit-chat",
+          "refine_speech": "Let the LLM refine NLU replies",
+          "refine_prompt": "Refinement prompt",
           "url": "Klar API URL",
           "token": "Write token",
           "assist_filter": "Only control entities exposed to Assist"
         },
         "data_description": {
           "personality": "Stored in this integration, not in the Klar app. Survives reinstalling the app.",
+          "refine_speech": "When on, device control still comes from Klar NLU, but the fallback LLM rewrites only the finished NLU reply.",
+          "refine_prompt": "Optional extra style instruction. Klar still keeps the safety rules: no device control, no new facts, same language.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device."
         }

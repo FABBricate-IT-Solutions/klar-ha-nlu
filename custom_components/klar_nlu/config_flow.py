@@ -15,10 +15,14 @@ from .const import (
     CONF_LANGUAGES,
     CONF_MODE,
     CONF_PERSONALITY,
+    CONF_REFINE_PROMPT,
+    CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_PERSONALITY,
+    DEFAULT_REFINE_PROMPT,
+    DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
@@ -47,6 +51,16 @@ def _options_schema(advanced: bool) -> vol.Schema:
         ),
         vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
             selector.ConversationAgentSelectorConfig()
+        ),
+        vol.Optional(CONF_REFINE_SPEECH, default=DEFAULT_REFINE_SPEECH): (
+            selector.BooleanSelector()
+        ),
+        vol.Optional(CONF_REFINE_PROMPT, default=DEFAULT_REFINE_PROMPT): (
+            selector.TextSelector(
+                selector.TextSelectorConfig(
+                    multiline=True,
+                )
+            )
         ),
         vol.Optional(CONF_URL): str,
         vol.Optional(CONF_TOKEN): str,
@@ -139,6 +153,10 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             agent = user_input.get(CONF_FALLBACK_AGENT) or None
             if agent:
                 data[CONF_FALLBACK_AGENT] = agent
+            data[CONF_REFINE_SPEECH] = bool(user_input.get(CONF_REFINE_SPEECH))
+            refine_prompt = (user_input.get(CONF_REFINE_PROMPT) or "").strip()
+            if refine_prompt:
+                data[CONF_REFINE_PROMPT] = refine_prompt
             url = (user_input.get(CONF_URL) or "").strip()
             if url:
                 if not _valid_engine_url(url):
@@ -166,6 +184,8 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
             CONF_ASSIST_FILTER: DEFAULT_ASSIST_FILTER,
             CONF_PERSONALITY: DEFAULT_PERSONALITY,
+            CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
+            CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
             **self.config_entry.options,
         }
         if CONF_URL not in suggested:
