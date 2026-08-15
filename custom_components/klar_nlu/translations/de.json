@@ -18,14 +18,16 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Assist kann zwischen den gewählten Sprachen umschalten. Wenn Klar keinen Hausbefehl erkennt, übernimmt der gewählte Agent den Smalltalk.",
+        "description": "Die Persönlichkeit liegt in Home Assistant und bleibt nach einer Neuinstallation der Klar-App erhalten. Assist nutzt sie bei jeder Antwort.",
         "data": {
+          "personality": "Persönlichkeit",
           "languages": "Sprachen",
           "fallback_agent": "Conversation-Agent für Smalltalk",
           "url": "URL der Klar-API",
           "assist_filter": "Nur für Assist freigegebene Entitäten steuern"
         },
         "data_description": {
+          "personality": "Liegt in dieser Integration, nicht in der Klar-App. Bleibt nach einer Neuinstallation erhalten.",
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät."
         }
       }
@@ -42,6 +44,39 @@
       "options": {
         "de": "Deutsch",
         "en": "Englisch"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Locker",
+        "fuersorglich": "Fürsorglich",
+        "party": "Party",
+        "grantig": "Grantig",
+        "sarkastisch": "Sarkastisch",
+        "pirat": "Pirat",
+        "hippie": "Hippie",
+        "gollum": "Gollum"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Persönlichkeit",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Locker",
+          "fuersorglich": "Fürsorglich",
+          "party": "Party",
+          "grantig": "Grantig",
+          "sarkastisch": "Sarkastisch",
+          "pirat": "Pirat",
+          "hippie": "Hippie",
+          "gollum": "Gollum"
+        }
       }
     }
   }

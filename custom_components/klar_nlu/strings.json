@@ -18,14 +18,16 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Assist can switch between the selected languages. When Klar sees no home command, the chosen agent handles chit-chat.",
+        "description": "The personality is stored here, so it survives reinstalling the Klar app. Assist uses it on every reply.",
         "data": {
+          "personality": "Personality",
           "languages": "Languages",
           "fallback_agent": "Conversation agent for chit-chat",
           "url": "Klar API URL",
           "assist_filter": "Only control entities exposed to Assist"
         },
         "data_description": {
+          "personality": "Stored in this integration, not in the Klar app. Survives reinstalling the app.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device."
         }
       }
@@ -42,6 +44,39 @@
       "options": {
         "de": "German",
         "en": "English"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Casual",
+        "fuersorglich": "Caring",
+        "party": "Party",
+        "grantig": "Grumpy",
+        "sarkastisch": "Sarcastic",
+        "pirat": "Pirate",
+        "hippie": "Hippie",
+        "gollum": "Gollum"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personality",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Casual",
+          "fuersorglich": "Caring",
+          "party": "Party",
+          "grantig": "Grumpy",
+          "sarkastisch": "Sarcastic",
+          "pirat": "Pirate",
+          "hippie": "Hippie",
+          "gollum": "Gollum"
+        }
       }
     }
   }
