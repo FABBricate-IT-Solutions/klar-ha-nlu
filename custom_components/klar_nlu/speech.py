@@ -208,12 +208,12 @@ def _pretty_where(handled: Any, item: dict, pack: str) -> str:
     if names:
         return (" und " if pack == "de" else " and ").join(names)
     raw = str(slots.get("name") or slots.get("area") or "")
-    if raw and "." not in raw:
+    if "." in raw:
+        raw = ""
+    if raw:
         return _spoken_device(raw, entity_id, pack)
     if entity_id:
         return _spoken_device("", entity_id, pack)
-    if raw:
-        return _spoken_device(_humanize(raw), entity_id, pack)
     return "Zuhause" if pack == "de" else "home"
 
 

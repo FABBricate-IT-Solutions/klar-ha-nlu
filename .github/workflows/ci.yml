@@ -43,6 +43,8 @@ jobs:
       - uses: actions/checkout@v7
       - name: CalVer bump script
         run: python3 scripts/bump-version.py --self-test
+      - name: Python tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Test

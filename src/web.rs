@@ -69,7 +69,7 @@ pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Opt
     request_token(headers) == Some(expected)
 }
 
-fn gate_write(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
+fn gate(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
     if writes_allowed(Some(peer), headers, token) {
         Ok(())
     } else {
@@ -77,7 +77,13 @@ fn gate_write(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> 
     }
 }
 
-async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Result<Json<ParseOut>, StatusCode> {
+async fn api_parse(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<ParseIn>,
+) -> Result<Json<ParseOut>, StatusCode> {
+    gate(peer, &headers, &state.token)?;
     if body.text.chars().count() > MAX_PARSE_CHARS {
         return Err(StatusCode::PAYLOAD_TOO_LARGE);
     }
@@ -111,8 +117,13 @@ fn settings_for_parse(mut settings: Settings, language: Option<&str>, personalit
     settings
 }
 
-async fn get_settings(State(state): State<AppState>) -> Json<Settings> {
-    Json(state.settings.lock().await.clone())
+async fn get_settings(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+) -> Result<Json<Settings>, StatusCode> {
+    gate(peer, &headers, &state.token)?;
+    Ok(Json(state.settings.lock().await.clone()))
 }
 
 async fn set_settings(
@@ -121,7 +132,7 @@ async fn set_settings(
     headers: HeaderMap,
     Json(body): Json<Settings>,
 ) -> Result<Json<Settings>, StatusCode> {
-    gate_write(peer, &headers, &state.token)?;
+    gate(peer, &headers, &state.token)?;
     *state.settings.lock().await = body.clone();
     let mut overlay = load_overlay(&state.data_dir);
     overlay.settings = Some(body.clone());
@@ -129,8 +140,13 @@ async fn set_settings(
     Ok(Json(body))
 }
 
-async fn get_custom(State(state): State<AppState>) -> Json<Vec<CustomSentence>> {
-    Json(state.custom.lock().await.clone())
+async fn get_custom(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
+    gate(peer, &headers, &state.token)?;
+    Ok(Json(state.custom.lock().await.clone()))
 }
 
 async fn set_custom(
@@ -139,7 +155,7 @@ async fn set_custom(
     headers: HeaderMap,
     Json(body): Json<Vec<CustomSentence>>,
 ) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
-    gate_write(peer, &headers, &state.token)?;
+    gate(peer, &headers, &state.token)?;
     if body.len() > 64 || body.iter().any(|row| row.phrase.len() > 200 || row.intent.len() > 64) {
         return Err(StatusCode::BAD_REQUEST);
     }
@@ -150,9 +166,14 @@ async fn set_custom(
     Ok(Json(body))
 }
 
-async fn get_entities(State(state): State<AppState>) -> Json<Vec<EntityRec>> {
+async fn get_entities(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+) -> Result<Json<Vec<EntityRec>>, StatusCode> {
+    gate(peer, &headers, &state.token)?;
     let home = state.home.lock().await;
-    Json(home.entities.iter().filter(|e| assist_visible(e, &home)).cloned().collect())
+    Ok(Json(home.entities.iter().filter(|e| assist_visible(e, &home)).cloned().collect()))
 }
 
 #[derive(serde::Serialize)]
@@ -162,9 +183,14 @@ struct GapsOut {
     overlay: Overlay,
 }
 
-async fn get_gaps(State(state): State<AppState>) -> Json<GapsOut> {
+async fn get_gaps(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+) -> Result<Json<GapsOut>, StatusCode> {
+    gate(peer, &headers, &state.token)?;
     let home = state.home.lock().await.clone();
-    Json(GapsOut { leftover: leftover(&home), rooms: home.areas, overlay: load_overlay(&state.data_dir) })
+    Ok(Json(GapsOut { leftover: leftover(&home), rooms: home.areas, overlay: load_overlay(&state.data_dir) }))
 }
 
 #[derive(Deserialize)]
@@ -190,7 +216,7 @@ async fn tag_entity(
     headers: HeaderMap,
     Json(body): Json<TagIn>,
 ) -> Result<Json<EntityRec>, StatusCode> {
-    gate_write(peer, &headers, &state.token)?;
+    gate(peer, &headers, &state.token)?;
     if !valid_entity_id(&body.entity_id) {
         return Err(StatusCode::BAD_REQUEST);
     }
@@ -257,6 +283,15 @@ mod tests {
         headers.insert("x-klar-token", "secret".parse().unwrap());
         assert!(writes_allowed(Some(peer), &headers, &Some("secret".into())));
         assert!(!writes_allowed(Some(peer), &headers, &Some("other".into())));
+    }
+
+    #[test]
+    fn lan_parse_needs_token() {
+        let peer = "10.0.0.8:9".parse().unwrap();
+        assert!(!writes_allowed(Some(peer), &HeaderMap::new(), &Some("secret".into())));
+        let mut headers = HeaderMap::new();
+        headers.insert("x-klar-token", "secret".parse().unwrap());
+        assert!(writes_allowed(Some(peer), &headers, &Some("secret".into())));
     }
 
     #[test]

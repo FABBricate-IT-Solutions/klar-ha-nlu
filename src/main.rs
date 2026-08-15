@@ -16,10 +16,10 @@ use uuid::Uuid;
 #[command(name = "klar", about = "Deutsche NLU für Home Assistant")]
 struct Args {
     /// HTTP-UI und Parse-API
-    #[arg(long, default_value = "0.0.0.0:10520")]
+    #[arg(long, default_value = "127.0.0.1:10520")]
     http: String,
     /// Wyoming Intent-Server
-    #[arg(long, default_value = "0.0.0.0:10500")]
+    #[arg(long, default_value = "127.0.0.1:10500")]
     wyoming: String,
     /// Home-Assistant-Config (read-only), z. B. /config
     #[arg(long, default_value = "/config")]
@@ -46,7 +46,7 @@ async fn main() {
     let token =
         resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
     if token.is_none() {
-        tracing::warn!("Kein Write-Token: Overlay-Änderungen nur von localhost");
+        tracing::warn!("Kein Token: HTTP-API nur von localhost");
     }
     let mut home = load_home(&args.config_dir, default_home());
     let config_overlay = load_overlay(&args.config_dir);

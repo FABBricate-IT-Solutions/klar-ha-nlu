@@ -71,4 +71,18 @@ mod tests {
         apply_overlay(&mut home, &Overlay { areas: [("light.orphan".into(), String::new())].into(), ..Default::default() });
         assert_eq!(home.entities[0].area, None);
     }
+
+    #[test]
+    fn custom_sentences_survive_roundtrip() {
+        let dir = std::env::temp_dir().join(format!("klar-overlay-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        let overlay = Overlay {
+            custom: vec![CustomSentence { phrase: "filmabend".into(), intent: "HassTurnOn".into(), slots: HashMap::new() }],
+            ..Default::default()
+        };
+        save_overlay(&dir, &overlay).unwrap();
+        let loaded = load_overlay(&dir);
+        assert_eq!(loaded.custom[0].phrase, "filmabend");
+        let _ = std::fs::remove_dir_all(&dir);
+    }
 }

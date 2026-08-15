@@ -1,4 +1,5 @@
 use crate::compound::is_tv_switch;
+use crate::expose::assist_visible;
 use crate::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
 use serde::Deserialize;
@@ -35,6 +36,7 @@ pub fn unique_role_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option
     let hits: Vec<&str> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain)
         .map(|e| e.entity_id.as_str())
         .collect();
@@ -42,7 +44,10 @@ pub fn unique_role_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option
 }
 
 pub fn role_siblings<'a>(home: &'a HomeGraph, area: &str, domain: &str) -> Vec<&'a EntityRec> {
-    home.entities.iter().filter(|e| e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain).collect()
+    home.entities
+        .iter()
+        .filter(|e| assist_visible(e, home) && e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain)
+        .collect()
 }
 
 pub fn expand_entity_tags(ids: Vec<String>, names: &HashMap<String, String>) -> Vec<String> {

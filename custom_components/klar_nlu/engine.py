@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import hashlib
 import logging
 import platform
 import secrets
@@ -15,6 +14,7 @@ from aiohttp import ClientError, ClientSession, ClientTimeout
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
+from .archive import require_sha256
 from .const import DEFAULT_URL, ENGINE_VERSION, GITHUB_REPO, PERSONALITIES
 
 _LOGGER = logging.getLogger(__name__)
@@ -108,7 +108,7 @@ class KlarEngine:
                 blob = await resp.read()
         except ClientError as err:
             raise RuntimeError(f"Could not download Klar: {err}") from err
-        self._check_digest(chosen.get("digest"), blob)
+        require_sha256(chosen.get("digest"), blob)
         await self.hass.async_add_executor_job(self._extract, blob)
 
     async def _fetch_release(
@@ -125,13 +125,6 @@ class KlarEngine:
         raise RuntimeError(
             f"No GitHub release {ENGINE_VERSION.lstrip('v')}. Start Klar yourself."
         )
-
-    def _check_digest(self, digest: object, blob: bytes) -> None:
-        if not isinstance(digest, str) or not digest.startswith("sha256:"):
-            return
-        got = hashlib.sha256(blob).hexdigest()
-        if got != digest.split(":", 1)[1]:
-            raise RuntimeError("Klar archive checksum mismatch")
 
     def _extract(self, blob: bytes) -> None:
         self.bindir.mkdir(parents=True, exist_ok=True)
@@ -181,15 +174,26 @@ class KlarEngine:
             "127.0.0.1:10520",
             "--wyoming",
             "127.0.0.1:10500",
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
         )
+        asyncio.create_task(self._pipe_log(self._proc.stdout, logging.DEBUG))
+        asyncio.create_task(self._pipe_log(self._proc.stderr, logging.WARNING))
         _LOGGER.info("Started Klar engine pid=%s", self._proc.pid)
+
+    async def _pipe_log(self, stream: asyncio.StreamReader | None, level: int) -> None:
+        if stream is None:
+            return
+        while True:
+            line = await stream.readline()
+            if not line:
+                return
+            _LOGGER.log(level, "klar: %s", line.decode(errors="replace").rstrip())
 
     async def _wait_ready(self) -> None:
         for _ in range(_READY_TRIES):
             if self._proc is not None and self._proc.returncode is not None:
-                raise RuntimeError(
-                    f"Klar engine exited with {self._proc.returncode}"
-                )
+                raise RuntimeError(f"Klar engine exited with {self._proc.returncode}")
             if await self._ping():
                 return
             await asyncio.sleep(0.4)

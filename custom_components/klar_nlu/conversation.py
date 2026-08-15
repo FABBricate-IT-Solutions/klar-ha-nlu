@@ -37,20 +37,10 @@ from .const import (
     PERSONALITIES,
     SUPPORTED_LANGUAGES,
 )
+from .fallback import agent_has_home_control, chat_only_prompt
 from .speech import from_handled, style
 
 _LOGGER = logging.getLogger(__name__)
-
-_CHAT_ONLY = {
-    "de": (
-        "Du antwortest nur im Gespräch. Steuere keine Geräte "
-        "und rufe keine Home-Assistant-Werkzeuge auf."
-    ),
-    "en": (
-        "Reply in conversation only. Do not control devices "
-        "and do not call Home Assistant tools."
-    ),
-}
 
 _UNREACHABLE = {
     "de": "Klar antwortet gerade nicht.",
@@ -218,6 +208,21 @@ class KlarConversationEntity(ConversationEntity):
         token = self._token()
         return {"X-Klar-Token": token} if token else {}
 
+    def _agent_controls_home(self, agent_id: str) -> bool:
+        try:
+            agent = conversation.async_get_agent(self.hass, agent_id)
+        except Exception:  # noqa: BLE001 — other agent is a system boundary
+            return True
+        if agent is None:
+            return True
+        features = getattr(agent, "supported_features", 0)
+        if callable(features):
+            try:
+                features = features()
+            except Exception:  # noqa: BLE001 — agent API varies
+                return True
+        return agent_has_home_control(features)
+
     def _exposed(self, entity_id: str) -> bool:
         if not self._assistant():
             return True
@@ -280,9 +285,11 @@ class KlarConversationEntity(ConversationEntity):
         agent_id = self._fallback_agent_id()
         if not agent_id:
             return None
+        if self._agent_controls_home(agent_id):
+            _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
+            return None
         extra = getattr(user_input, "extra_system_prompt", None)
-        only = _CHAT_ONLY[pack]
-        prompt = f"{extra}\n{only}" if extra else only
+        prompt = chat_only_prompt(pack, extra if isinstance(extra, str) else None)
         try:
             result = await conversation.async_converse(
                 self.hass,

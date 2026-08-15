@@ -5,9 +5,12 @@ use crate::lexicon::{detect_actions, Action};
 use crate::normalize::{strip_fillers, tokenize};
 use crate::numbers::first_number;
 use crate::parse_help::{
-    all_lights_clause, fill_intent, intent_from_action, intent_with_entity, laundry_switch_clause, looks_like_correction,
-    looks_like_named_device, looks_like_question, match_custom, pick_clarification, pick_singular_lamp, prefer_action, refine_action,
-    timer_clause, wants_light_clarify,
+    looks_like_correction, looks_like_named_device, looks_like_question, match_custom, pick_clarification, prefer_action, refine_action,
+    wants_light_clarify,
+};
+use crate::parse_slots::{
+    all_lights_clause, fill_intent, intent_from_action, intent_with_entity, laundry_switch_clause, pick_singular_lamp, timer_clause,
+    ReadyClause,
 };
 use crate::resolve::{domain_hint, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
 use crate::respond::{speak, speak_clarify, speak_correction, speak_need_target, speak_unknown};
@@ -33,7 +36,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     }
 
     if session.pending_clarify.is_none() && tokens.iter().all(|t| catalog().is_affirm(t)) && !tokens.is_empty() {
-        if let Some(id) = session.last_entities.first() {
+        if let Some(id) = last_visible(session, home) {
             let name = session
                 .last_names
                 .iter()
@@ -101,12 +104,12 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     }
 
     if !clarify_names.is_empty() {
-        let speech = speak_clarify(&clarify_names);
+        let speech = speak_clarify(&clarify_names, Some(home));
         return ParseResult { text: text.to_string(), intents: Vec::new(), speech, clarify: true, conversation_id: session.id.clone() };
     }
 
     if intents.is_empty() {
-        if let Some(prev) = session.last_entities.first() {
+        if let Some(prev) = last_visible(session, home) {
             if let Some(n) = first_number(&tokens) {
                 let (name, slot) = if prev.starts_with("climate.") {
                     ("HassClimateSetTemperature", "temperature")
@@ -214,8 +217,8 @@ fn parse_clause(
         laundry_switch_clause(tokens, home, action, number, domain).or_else(|| timer_clause(tokens, home, action, number, domain))
     {
         return match out {
-            crate::parse_help::ReadyClause::Intents(list) => ClauseOut::Intents(list),
-            crate::parse_help::ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
+            ReadyClause::Intents(list) => ClauseOut::Intents(list),
+            ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
         };
     }
     let mut resolved = if use_entities {
@@ -254,8 +257,8 @@ fn parse_clause(
 
     if let Some(out) = all_lights_clause(tokens, home, action, number, &resolved.areas) {
         return match out {
-            crate::parse_help::ReadyClause::Intents(list) => ClauseOut::Intents(list),
-            crate::parse_help::ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
+            ReadyClause::Intents(list) => ClauseOut::Intents(list),
+            ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
         };
     }
 
@@ -362,7 +365,7 @@ fn parse_clause(
             let id = domain.and_then(|d| unique_in_area(home, area, d));
             intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(area), domain));
         }
-    } else if let Some(prev) = session.last_entities.first().filter(|id| domain.is_none_or(|d| id.starts_with(&format!("{d}.")))) {
+    } else if let Some(prev) = last_visible(session, home).filter(|id| domain.is_none_or(|d| id.starts_with(&format!("{d}.")))) {
         intents.push(fill_intent(action, tokens, number, Some(prev), None, domain));
     } else if !session.last_areas.is_empty() {
         for area in &session.last_areas {
@@ -423,4 +426,8 @@ fn finish_intents(
     }
     intents.retain(|i| i.name != "Unknown");
     ClauseOut::Intents(intents)
+}
+
+fn last_visible<'a>(session: &'a Session, home: &'a HomeGraph) -> Option<&'a str> {
+    session.last_entities.iter().find(|id| home.entities.iter().any(|e| e.entity_id == **id && assist_visible(e, home))).map(String::as_str)
 }

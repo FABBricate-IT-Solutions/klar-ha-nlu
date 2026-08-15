@@ -1,3 +1,4 @@
+use crate::expose::assist_visible;
 use crate::lang::catalog;
 use crate::lexicon::Action;
 use crate::normalize::{compact, fold_umlaut};
@@ -315,6 +316,7 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
     let mut hits: Vec<String> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| matches!(e.domain.as_str(), "scene" | "script"))
         .filter(|e| scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home)))
         .map(|e| e.entity_id.clone())
@@ -353,7 +355,7 @@ fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
 }
 
 pub(crate) fn room_light_id(home: &HomeGraph, area: &str) -> Option<String> {
-    home.entities.iter().find(|e| e.entity_id == format!("light.{area}")).map(|e| e.entity_id.clone())
+    home.entities.iter().find(|e| assist_visible(e, home) && e.entity_id == format!("light.{area}")).map(|e| e.entity_id.clone())
 }
 
 pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved) -> bool {
@@ -406,6 +408,7 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     let lights: Vec<&EntityRec> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| e.domain == "light" && !is_infra_light(e) && (e.area.as_deref() == Some(area) || e.entity_id == room))
         .collect();
     if let Some(hit) = lights.iter().find(|e| e.tags.iter().any(|t| t == "preferred")) {
