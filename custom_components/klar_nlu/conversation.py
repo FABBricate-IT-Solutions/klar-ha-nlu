@@ -12,9 +12,13 @@ from homeassistant.components.conversation import (
     ConversationInput,
     ConversationResult,
 )
+from homeassistant.components.homeassistant.exposed_entities import (
+    async_should_expose,
+)
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import intent
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -23,6 +27,7 @@ from .const import (
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_PERSONALITY,
+    CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_PERSONALITY,
@@ -54,7 +59,7 @@ _UNREACHABLE = {
 
 _DONE = {"de": "Erledigt.", "en": "Done."}
 
-_DE_ENGINE = ("Schalte", "Frage", "Setze", "Sag mir", "Meinst du")
+_DE_ENGINE = ("Schalte", "Frage", "Setze", "Sag mir", "Meinst du", " ist an", " ist aus", "Prozent")
 
 _TIMER_INTENTS = {
     "HassStartTimer",
@@ -204,6 +209,23 @@ class KlarConversationEntity(ConversationEntity):
         value = str(self._entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY))
         return value if value in PERSONALITIES else DEFAULT_PERSONALITY
 
+    def _token(self) -> str | None:
+        stored = (self.hass.data.get(DOMAIN) or {}).get(self._entry.entry_id) or {}
+        token = stored.get("token") or self._entry.options.get(CONF_TOKEN) or self._entry.data.get(CONF_TOKEN)
+        return str(token) if token else None
+
+    def _headers(self) -> dict[str, str]:
+        token = self._token()
+        return {"X-Klar-Token": token} if token else {}
+
+    def _exposed(self, entity_id: str) -> bool:
+        if not self._assistant():
+            return True
+        try:
+            return bool(async_should_expose(self.hass, "conversation", entity_id))
+        except Exception:  # noqa: BLE001 — expose store is a system boundary
+            return True
+
     async def _async_handle_message(
         self,
         user_input: ConversationInput,
@@ -297,14 +319,15 @@ class KlarConversationEntity(ConversationEntity):
             "personality": self._personality(),
         }
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.post(
-                    url,
-                    json=body,
-                    timeout=aiohttp.ClientTimeout(total=5),
-                ) as resp:
-                    resp.raise_for_status()
-                    return await resp.json()
+            session = async_get_clientsession(self.hass)
+            async with session.post(
+                url,
+                json=body,
+                headers=self._headers(),
+                timeout=aiohttp.ClientTimeout(total=5),
+            ) as resp:
+                resp.raise_for_status()
+                return await resp.json()
         except Exception as err:  # noqa: BLE001 — boundary to the local engine
             _LOGGER.warning("Klar nicht erreichbar: %s", err)
             return {
@@ -347,12 +370,17 @@ class KlarConversationEntity(ConversationEntity):
     ) -> str | None:
         if "." not in entity_id or self.hass.states.get(entity_id) is None:
             return None
+        if not self._exposed(entity_id):
+            return None
         domain = entity_id.split(".", 1)[0]
         data: dict[str, Any] = {"entity_id": entity_id}
         if name == "HassLightSet" and domain == "light":
             service = "turn_on"
-            if bri := slots.get("brightness", {}).get("value"):
-                data["brightness_pct"] = int(bri)
+            if (bri := slots.get("brightness", {}).get("value")) is not None:
+                try:
+                    data["brightness_pct"] = max(0, min(100, int(bri)))
+                except (TypeError, ValueError):
+                    pass
             if color := slots.get("color", {}).get("value"):
                 data["color_name"] = str(color)
         else:
@@ -364,7 +392,14 @@ class KlarConversationEntity(ConversationEntity):
         except Exception as err:  # noqa: BLE001 — HA services are a boundary
             _LOGGER.debug("Gerät %s nicht geschaltet: %s", entity_id, err)
             return None
-        return from_handled(None, pack, {**item, "name": name})
+        state = self.hass.states.get(entity_id)
+        attrs = getattr(state, "attributes", None) or {}
+        pretty = ""
+        if isinstance(attrs, dict):
+            pretty = str(attrs.get("friendly_name") or "")
+        pretty = pretty or str(getattr(state, "name", None) or "")
+        spoken = {**item, "name": name, "slots": [*(item.get("slots") or []), {"name": "name", "value": pretty}]}
+        return from_handled(None, pack, spoken)
 
     async def _handle_intent(
         self, user_input: ConversationInput, item: dict, pack: str
@@ -372,7 +407,11 @@ class KlarConversationEntity(ConversationEntity):
         name = item.get("name")
         if not name:
             return None
-        slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
+        slots = {
+            str(raw["name"]): {"value": raw.get("value")}
+            for raw in item.get("slots") or []
+            if isinstance(raw, dict) and raw.get("name")
+        }
         if "entity_id" in slots:
             entity_id = str(slots["entity_id"].get("value") or "")
             spoken = await self._run_entity(name, entity_id, slots, pack, item)

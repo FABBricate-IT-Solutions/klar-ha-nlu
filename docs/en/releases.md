@@ -15,7 +15,7 @@ feat: add French number words
 fix(lock): keep "mach sie an" as turn-on
 docs: describe the parse API
 ci: cache rustc by target
-chore(release): prepare for v2026.8.0
+chore(release): prepare for 2026.8.0
 ```
 
 | Type | Changelog group |
@@ -37,13 +37,13 @@ That job:
 1. Computes the next CalVer (or uses the input)
 2. Writes it into `Cargo.toml`, `config.yaml`, `addon/config.yaml`, and the HA manifest
 3. Regenerates `CHANGELOG.md`
-4. Commits `chore(release): prepare for vYYYY.M.PATCH` on `release/vYYYY.M.PATCH`
+4. Commits `chore(release): prepare for YYYY.M.PATCH` on `release/YYYY.M.PATCH`
 5. Opens a PR when the org allows Actions to do that — otherwise it starts CI itself (a `GITHUB_TOKEN` push does not start workflows), waits for required checks, fast-forwards `main`, and tags in the same run
 6. Calls **Build** (`workflow_call`)
 
 Build compiles linux-x86_64, linux-aarch64, and linux-armv7 and attaches the tarballs to the GitHub Release. The release body is the latest git-cliff section.
 
-A tag pushed from your machine still triggers Build on its own: `git tag v2026.8.0 && git push origin v2026.8.0`.
+A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
 ## Local changelog
 

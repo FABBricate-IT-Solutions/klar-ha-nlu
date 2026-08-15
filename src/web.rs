@@ -3,15 +3,18 @@ use crate::gaps::{assist_visible, leftover};
 use crate::parse::parse;
 use crate::session::Sessions;
 use crate::types::{AreaRec, CustomSentence, EntityRec, HomeGraph, Settings};
-use axum::extract::State;
+use axum::extract::{ConnectInfo, State};
+use axum::http::{HeaderMap, StatusCode};
 use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
+use std::net::SocketAddr;
 use std::path::PathBuf;
 use std::sync::Arc;
 use tokio::sync::Mutex;
-use tower_http::cors::CorsLayer;
+
+pub const MAX_PARSE_CHARS: usize = 4096;
 
 #[derive(Clone)]
 pub struct AppState {
@@ -20,6 +23,7 @@ pub struct AppState {
     pub settings: Arc<Mutex<Settings>>,
     pub custom: Arc<Mutex<Vec<CustomSentence>>>,
     pub data_dir: PathBuf,
+    pub token: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -40,7 +44,6 @@ pub fn router(state: AppState) -> Router {
         .route("/api/custom", get(get_custom).post(set_custom))
         .route("/api/entities", get(get_entities).post(tag_entity))
         .route("/api/gaps", get(get_gaps))
-        .layer(CorsLayer::permissive())
         .with_state(state)
 }
 
@@ -48,14 +51,43 @@ async fn index() -> Html<&'static str> {
     Html(include_str!("../web/index.html"))
 }
 
-async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Json<ParseOut> {
+fn request_token(headers: &HeaderMap) -> Option<&str> {
+    headers
+        .get("x-klar-token")
+        .and_then(|v| v.to_str().ok())
+        .filter(|s| !s.is_empty())
+        .or_else(|| headers.get(axum::http::header::AUTHORIZATION).and_then(|v| v.to_str().ok()).and_then(|s| s.strip_prefix("Bearer ")))
+}
+
+pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
+    if peer.is_some_and(|addr| addr.ip().is_loopback()) {
+        return true;
+    }
+    let Some(expected) = token.as_deref().filter(|s| !s.is_empty()) else {
+        return false;
+    };
+    request_token(headers) == Some(expected)
+}
+
+fn gate_write(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
+    if writes_allowed(Some(peer), headers, token) {
+        Ok(())
+    } else {
+        Err(StatusCode::UNAUTHORIZED)
+    }
+}
+
+async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Result<Json<ParseOut>, StatusCode> {
+    if body.text.chars().count() > MAX_PARSE_CHARS {
+        return Err(StatusCode::PAYLOAD_TOO_LARGE);
+    }
     let home = state.home.lock().await.clone();
     let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality);
     let custom = state.custom.lock().await.clone();
     let mut sessions = state.sessions.lock().await;
     let session = sessions.get_or_create(body.conversation_id.as_deref());
     let result = parse(&body.text, &home, session, &custom, &settings);
-    Json(ParseOut { personality: settings.personality, result })
+    Ok(Json(ParseOut { personality: settings.personality, result }))
 }
 
 #[derive(serde::Serialize)]
@@ -83,21 +115,39 @@ async fn get_settings(State(state): State<AppState>) -> Json<Settings> {
     Json(state.settings.lock().await.clone())
 }
 
-async fn set_settings(State(state): State<AppState>, Json(body): Json<Settings>) -> Json<Settings> {
+async fn set_settings(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<Settings>,
+) -> Result<Json<Settings>, StatusCode> {
+    gate_write(peer, &headers, &state.token)?;
     *state.settings.lock().await = body.clone();
     let mut overlay = load_overlay(&state.data_dir);
     overlay.settings = Some(body.clone());
     let _ = save_overlay(&state.data_dir, &overlay);
-    Json(body)
+    Ok(Json(body))
 }
 
 async fn get_custom(State(state): State<AppState>) -> Json<Vec<CustomSentence>> {
     Json(state.custom.lock().await.clone())
 }
 
-async fn set_custom(State(state): State<AppState>, Json(body): Json<Vec<CustomSentence>>) -> Json<Vec<CustomSentence>> {
+async fn set_custom(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<Vec<CustomSentence>>,
+) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
+    gate_write(peer, &headers, &state.token)?;
+    if body.len() > 64 || body.iter().any(|row| row.phrase.len() > 200 || row.intent.len() > 64) {
+        return Err(StatusCode::BAD_REQUEST);
+    }
     *state.custom.lock().await = body.clone();
-    Json(body)
+    let mut overlay = load_overlay(&state.data_dir);
+    overlay.custom = body.clone();
+    let _ = save_overlay(&state.data_dir, &overlay);
+    Ok(Json(body))
 }
 
 async fn get_entities(State(state): State<AppState>) -> Json<Vec<EntityRec>> {
@@ -129,7 +179,21 @@ struct TagIn {
     pub area: Option<String>,
 }
 
-async fn tag_entity(State(state): State<AppState>, Json(body): Json<TagIn>) -> Json<EntityRec> {
+fn valid_entity_id(id: &str) -> bool {
+    let mut parts = id.split('.');
+    matches!((parts.next(), parts.next(), parts.next()), (Some(d), Some(n), None) if !d.is_empty() && !n.is_empty() && id.len() <= 128)
+}
+
+async fn tag_entity(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+    Json(body): Json<TagIn>,
+) -> Result<Json<EntityRec>, StatusCode> {
+    gate_write(peer, &headers, &state.token)?;
+    if !valid_entity_id(&body.entity_id) {
+        return Err(StatusCode::BAD_REQUEST);
+    }
     let mut overlay = load_overlay(&state.data_dir);
     overlay.aliases.insert(body.entity_id.clone(), body.aliases.clone());
     if let Some(area) = &body.area {
@@ -141,6 +205,9 @@ async fn tag_entity(State(state): State<AppState>, Json(body): Json<TagIn>) -> J
     }
     let _ = save_overlay(&state.data_dir, &overlay);
     let mut home = state.home.lock().await;
+    if !home.entities.iter().any(|e| e.entity_id == body.entity_id) {
+        return Err(StatusCode::NOT_FOUND);
+    }
     apply_overlay(&mut home, &overlay);
     if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == body.entity_id) {
         if !body.aliases.is_empty() {
@@ -152,16 +219,9 @@ async fn tag_entity(State(state): State<AppState>, Json(body): Json<TagIn>) -> J
             tags.push("preferred".into());
         }
         ent.tags = tags;
-        return Json(ent.clone());
+        return Ok(Json(ent.clone()));
     }
-    Json(EntityRec {
-        entity_id: body.entity_id,
-        name: String::new(),
-        domain: String::new(),
-        area: None,
-        aliases: Vec::new(),
-        tags: Vec::new(),
-    })
+    Err(StatusCode::NOT_FOUND)
 }
 
 #[cfg(test)]
@@ -179,9 +239,31 @@ mod tests {
 
     #[test]
     fn assist_personality_overrides_overlay() {
-        let mut base = Settings::default();
-        base.personality = crate::types::Personality::Default;
-        let out = settings_for_parse(base, None, Some(crate::types::Personality::Butler));
+        let out = settings_for_parse(Settings::default(), None, Some(crate::types::Personality::Butler));
         assert_eq!(out.personality, crate::types::Personality::Butler);
+    }
+
+    #[test]
+    fn loopback_writes_without_token() {
+        let peer = "127.0.0.1:9".parse().unwrap();
+        assert!(writes_allowed(Some(peer), &HeaderMap::new(), &None));
+    }
+
+    #[test]
+    fn lan_writes_need_token() {
+        let peer = "10.0.0.8:9".parse().unwrap();
+        assert!(!writes_allowed(Some(peer), &HeaderMap::new(), &None));
+        let mut headers = HeaderMap::new();
+        headers.insert("x-klar-token", "secret".parse().unwrap());
+        assert!(writes_allowed(Some(peer), &headers, &Some("secret".into())));
+        assert!(!writes_allowed(Some(peer), &headers, &Some("other".into())));
+    }
+
+    #[test]
+    fn entity_id_shape() {
+        assert!(valid_entity_id("light.kuche"));
+        assert!(!valid_entity_id("light"));
+        assert!(!valid_entity_id("../etc/passwd"));
+        assert!(!valid_entity_id("light.kuche.extra"));
     }
 }

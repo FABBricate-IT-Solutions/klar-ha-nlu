@@ -163,6 +163,8 @@ fn geraet_nicht_raum_oder_szene() {
         &["light.schlafzimmer_licht", "switch.schlafzimmer_tv"],
     );
     assert_target("Wie ist der Status von Schlafzimmer", "HassGetState", &["schlafzimmer"], &["light.alle_lichter"]);
+    assert_target("wie ist der status von der Küche?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
+    assert_target("Wie ist der Status von der Küche", "HassGetState", &["kuche"], &["light.kuche_kuche"]);
 }
 
 #[test]

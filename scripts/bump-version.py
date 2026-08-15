@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def parse_version(raw: str) -> tuple[int, int, int]:
+    raw = raw.lstrip("vV")
     parts = raw.split(".")
     if len(parts) != 3 or not all(part.isdigit() for part in parts):
         raise ValueError(f"expected YYYY.M.PATCH, got {raw!r}")
@@ -67,11 +68,17 @@ def write_version(version: str) -> None:
         r'"version": "[^"]+"',
         f'"version": "{version}"',
     )
+    replace_once(
+        ROOT / "custom_components/klar_nlu/const.py",
+        r'^ENGINE_VERSION = "[^"]+"',
+        f'ENGINE_VERSION = "{version}"',
+    )
     print(version)
 
 
 def self_test() -> None:
     assert parse_version("2026.8.0") == (2026, 8, 0)
+    assert parse_version("v2026.8.2") == (2026, 8, 2)
     assert parse_version("2026.08.1") == (2026, 8, 1)
     assert format_version(2026, 8, 0) == "2026.8.0"
     assert next_version("0.1.10", date(2026, 8, 15)) == "2026.8.0"

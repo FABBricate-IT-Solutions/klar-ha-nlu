@@ -35,7 +35,7 @@ pub fn extract_numbers(tokens: &[String]) -> Vec<i32> {
                 i += 1;
                 continue;
             }
-            if cat.has_english_tens() && val >= 20 && val < 100 && i + 1 < tokens.len() {
+            if cat.has_english_tens() && (20..100).contains(&val) && i + 1 < tokens.len() {
                 if let Some(ones) = cat.number(&tokens[i + 1]) {
                     if ones > 0 && ones < 10 {
                         out.push(val + ones);
@@ -77,7 +77,7 @@ fn parse_german_compound(token: &str) -> Option<i32> {
 }
 
 fn is_room_index(tokens: &[String], i: usize, n: i32) -> bool {
-    if n < 1 || n > 8 {
+    if !(1..=8).contains(&n) {
         return false;
     }
     tokens.get(i.saturating_sub(1)).is_some_and(|prev| catalog().room_index_nouns.contains(prev.as_str()))

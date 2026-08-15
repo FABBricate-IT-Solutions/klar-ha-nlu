@@ -1,4 +1,5 @@
 use crate::compound::area_slots;
+use crate::gaps::assist_visible;
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, Action};
 use crate::normalize::{fold_umlaut, join_tokens};
@@ -250,7 +251,9 @@ pub(crate) fn fill_intent(
     }
     match action {
         Action::SetLight | Action::On => {
-            if domain == Some("climate") || entity_id.is_some_and(|id| id.starts_with("climate.")) {
+            if entity_id.is_some_and(|id| id.starts_with("switch.")) && matches!(action, Action::SetLight) {
+                intent.name = "HassTurnOn".into();
+            } else if domain == Some("climate") || entity_id.is_some_and(|id| id.starts_with("climate.")) {
                 if let Some(n) = number {
                     intent.name = "HassClimateSetTemperature".into();
                     intent = intent.with("temperature", n.to_string());
@@ -401,6 +404,7 @@ pub(crate) fn pick_singular_lamp(tokens: &[String], home: &HomeGraph, areas: &[S
     let lamps: Vec<&str> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| {
             e.domain == "light"
                 && e.area.as_ref().is_some_and(|a| areas.contains(a))

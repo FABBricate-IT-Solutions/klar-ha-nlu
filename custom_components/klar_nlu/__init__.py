@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryNotReady
 from .const import (
     CONF_MODE,
     CONF_PERSONALITY,
+    CONF_TOKEN,
     CONF_URL,
     DEFAULT_PERSONALITY,
     DEFAULT_URL,
@@ -34,7 +35,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         entry.async_on_unload(
             hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STOP, _stop_on_shutdown)
         )
-    hass.data[DOMAIN][entry.entry_id] = {"engine": engine}
+    token = (engine.token if engine is not None else None) or entry.options.get(
+        CONF_TOKEN
+    ) or entry.data.get(CONF_TOKEN)
+    hass.data[DOMAIN][entry.entry_id] = {"engine": engine, "token": token}
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     url = (
         entry.options.get(CONF_URL)
@@ -45,6 +49,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass,
         url,
         str(entry.options.get(CONF_PERSONALITY, DEFAULT_PERSONALITY)),
+        token=str(token) if token else None,
     )
     entry.async_on_unload(entry.add_update_listener(_async_reload))
     return True

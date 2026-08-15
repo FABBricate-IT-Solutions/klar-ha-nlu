@@ -1,5 +1,5 @@
 name: Klar NLU
-version: "2026.8.2"
+version: "2026.8.3"
 slug: klar_nlu
 description: Deterministische deutsche NLU für Assist. Wyoming-Server plus UI.
 url: https://github.com/FABBricate-IT-Solutions/klar-ha-nlu
@@ -22,6 +22,8 @@ map:
   - type: homeassistant_config
     read_only: true
     path: /config
-options: {}
-schema: {}
+options:
+  token: ""
+schema:
+  token: str?
 image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}
