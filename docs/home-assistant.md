@@ -45,22 +45,22 @@ Der Agent bekommt den Hinweis, keine Geräte zu steuern. Wenn der Agent in seine
 
 Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Persönlichkeit**, oder die Select-Entity **Persönlichkeit** am Klar-Gerät.
 
-Die Auswahl liegt in dieser Integration, nicht in der Klar-App, und überlebt eine Neuinstallation der Engine. Assist, Sprechformel und LLM-Verfeinerungs-Prompt wechseln mit. Nur die Persönlichkeit zu ändern startet die Engine nicht neu.
+Die Auswahl liegt in dieser Integration, nicht in der Klar-App, und überlebt eine Neuinstallation der Engine. Assist und der LLM-Verfeinerungs-Prompt wechseln mit. Nur die Persönlichkeit zu ändern startet die Engine nicht neu.
 
-| Id | Formel (DE) | Stilwort |
-|----|-------------|----------|
-| `default` | — | schlichte Bestätigung |
-| `butler` | Sehr wohl. | …, wie gewünscht. |
-| `locker` | Geht klar. | …, passt. |
-| `fuersorglich` | Mache ich sofort. | …, alles gut. |
-| `party` | Läuft! | …, super! |
-| `grantig` | Schon gut. | …, na gut. |
-| `sarkastisch` | Wie überraschend, wieder ein Befehl. | …, natürlich. |
-| `pirat` | Aye. | …, Käpt'n. |
-| `hippie` | Alles easy. | …, ganz ruhig. |
-| `gollum` | Ja, mein Schatz. | …, ja. |
+| Id | Stimme |
+|----|--------|
+| `default` | schlicht, freundlich |
+| `butler` | höflicher Butler, gewählt und diskret |
+| `locker` | kumpelhaft, locker |
+| `fuersorglich` | warm, beruhigend |
+| `party` | euphorisch, feiernd |
+| `grantig` | knurrig, widerwillig |
+| `sarkastisch` | trocken sarkastisch |
+| `pirat` | piratenhaft, verständlich |
+| `hippie` | entspannt, weich |
+| `gollum` | knisternd, verständlich |
 
-Englisch nutzt die passenden Formeln (`Very well.`, `Got it.`, `Aye.`, `Yes, my precious.`, …).
+Mit LLM-Refine steckt die Stimme im Satz — nicht in einem Stempel wie „Sehr wohl“. Ohne Refine bleibt eine kurze Formel als Fallback (`Sehr wohl.`, `Aye.`, …).
 
 ## LLM-Verfeinerung
 
@@ -74,11 +74,11 @@ Standardmäßig aus. Einstellungen → Geräte & Dienste → Klar NLU → Konfig
 Ablauf nach einem Hausbefehl:
 
 1. Klar parst, HA führt die Intents aus.
-2. Klar setzt die Formel der gewählten Persönlichkeit davor.
-3. Das Fallback-LLM formuliert den fertigen Satz um — nach Steuerung und nach Statusabfrage (kein Smalltalk, kein News-Briefing, keine Rückfrage).
-4. Fehlt die Formel danach, setzt Klar sie wieder.
+2. Das Fallback-LLM formuliert die fertige NLU-Antwort in der gewählten Persönlichkeit um — ein oder zwei gesprochene Sätze, nach Steuerung und nach Statusabfrage (kein Smalltalk, kein News-Briefing, keine Rückfrage).
+3. Die Umformulierung bleibt stehen. Klar klebt keine Formel mehr davor oder dahinter.
+4. Schlägt Refine fehl, bleibt die kurze Fallback-Formel.
 
-Der Prompt ist pro Persönlichkeit (Few-Shots plus festes Stilwort). Das Feld **Verfeinerungs-Prompt** ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
+Der Prompt ist pro Persönlichkeit (Stimme plus Few-Shots). Das Feld **Verfeinerungs-Prompt** ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
 
 Die Sicherheit bleibt bei Klar, nicht beim Modell:
 

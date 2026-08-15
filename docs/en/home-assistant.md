@@ -45,22 +45,22 @@ The agent is told not to control devices. If that agent still has HA tools in it
 
 Settings → Devices & services → Klar NLU → Configure → **Personality**, or the **Personality** select entity on the Klar device.
 
-The choice lives in this integration, not in the Klar app, so it survives reinstalling the engine. Assist, the spoken cue, and the LLM refine prompt all switch with it. Changing only the personality does not restart the engine.
+The choice lives in this integration, not in the Klar app, so it survives reinstalling the engine. Assist and the LLM refine prompt switch with it. Changing only the personality does not restart the engine.
 
-| Id | Cue (DE) | Spoken tag |
-|----|----------|------------|
-| `default` | — | plain confirmation |
-| `butler` | Sehr wohl. | …, wie gewünscht. |
-| `locker` | Geht klar. | …, passt. |
-| `fuersorglich` | Mache ich sofort. | …, alles gut. |
-| `party` | Läuft! | …, super! |
-| `grantig` | Schon gut. | …, na gut. |
-| `sarkastisch` | Wie überraschend, wieder ein Befehl. | …, natürlich. |
-| `pirat` | Aye. | …, Käpt'n. |
-| `hippie` | Alles easy. | …, ganz ruhig. |
-| `gollum` | Ja, mein Schatz. | …, ja. |
+| Id | Voice |
+|----|-------|
+| `default` | plain, friendly |
+| `butler` | polite butler, formal and discreet |
+| `locker` | casual, buddy-like |
+| `fuersorglich` | warm, reassuring |
+| `party` | hyped, celebratory |
+| `grantig` | grumpy, reluctant |
+| `sarkastisch` | dryly sarcastic |
+| `pirat` | pirate-like, still clear |
+| `hippie` | chill, soft |
+| `gollum` | hissy, still clear |
 
-English uses the matching cues (`Very well.`, `Got it.`, `Aye.`, `Yes, my precious.`, …).
+With LLM refine the voice lives in the sentence — not in a stamp such as “Very well.” Without refine, a short cue remains as fallback (`Sehr wohl.`, `Aye.`, …).
 
 ## LLM refine
 
@@ -74,11 +74,11 @@ Off by default. Settings → Devices & services → Klar NLU → Configure:
 Flow after a home command:
 
 1. Klar parses and HA runs the intents.
-2. Klar prefixes the selected personality cue.
-3. The fallback LLM rewrites that finished sentence after control and after a status query (not chit-chat, not news, not a clarify question).
-4. If the model drops the cue, Klar puts it back.
+2. The fallback LLM rewrites the finished NLU reply in the selected personality — one or two spoken sentences, after control and after a status query (not chit-chat, not news, not a clarify question).
+3. That rewrite stands. Klar does not stamp a cue back on.
+4. If refine fails, the short fallback cue remains.
 
-The rewrite prompt is per personality (few-shots plus a fixed style tag). The **Refinement prompt** field is an optional extra line on top — it does not replace the voice.
+The rewrite prompt is per personality (voice plus few-shots). The **Refinement prompt** field is an optional extra line on top — it does not replace the voice.
 
 Safety stays with Klar, not the model:
 

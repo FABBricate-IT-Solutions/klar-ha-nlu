@@ -219,29 +219,29 @@ class KlarConversationEntity(ConversationEntity):
                 spoken.append(ha_speech)
         if spoken:
             speech = " ".join(spoken)
-        if not clarify:
-            speech = style(speech, personality, pack)
         agent_id = self._fallback_agent_id()
         home_turn = bool(intents) and not clarify
-        if should_refine(
-            bool(self._entry.options.get(CONF_REFINE_SPEECH)),
-            agent_id,
-            speech,
-            home_turn,
-        ):
-            refined = await async_refine_speech(
-                self.hass,
-                str(agent_id),
-                self._agent_controls_home(str(agent_id)),
+        if not clarify:
+            if should_refine(
+                bool(self._entry.options.get(CONF_REFINE_SPEECH)),
+                agent_id,
                 speech,
-                user_input.context,
-                user_input.language,
-                pack,
-                personality,
-                str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
-            )
-            if refined:
-                speech = style(refined, personality, pack)
+                home_turn,
+            ):
+                refined = await async_refine_speech(
+                    self.hass,
+                    str(agent_id),
+                    self._agent_controls_home(str(agent_id)),
+                    speech,
+                    user_input.context,
+                    user_input.language,
+                    pack,
+                    personality,
+                    str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+                )
+                speech = refined or style(speech, personality, pack)
+            else:
+                speech = style(speech, personality, pack)
 
         return self._spoken(user_input, chat_log, pack, speech, conversation_id, clarify)
 
