@@ -35,10 +35,62 @@ fn en_office_light_uses_english_speech() {
     assert!(!speech.contains("Schalte"), "{speech}");
 }
 
+fn slots(text: &str, lang: &str) -> Vec<(String, Vec<(String, String)>)> {
+    let home = default_home();
+    let mut session = Session::new();
+    let result = parse(text, &home, &mut session, &[], &settings(lang));
+    result
+        .intents
+        .into_iter()
+        .map(|i| {
+            (
+                i.name,
+                i.slots.into_iter().map(|s| (s.name, s.value)).collect(),
+            )
+        })
+        .collect()
+}
+
+fn area_of(text: &str, lang: &str) -> Vec<String> {
+    slots(text, lang)
+        .into_iter()
+        .flat_map(|(_, slots)| {
+            slots
+                .into_iter()
+                .filter(|(k, _)| k == "area")
+                .map(|(_, v)| v)
+        })
+        .collect()
+}
+
 #[test]
 fn en_bedroom_temperature_uses_english_speech() {
     let (names, speech) = run("What is the temperature in the bedroom", "en");
     assert_eq!(names, vec!["HassGetState"], "{speech}");
     assert!(speech.to_lowercase().contains("temperature"), "{speech}");
     assert!(!speech.contains("Frage"), "{speech}");
+}
+
+#[test]
+fn en_office_light_targets_arbeitszimmer() {
+    let areas = area_of("Turn on the office light", "en");
+    assert_eq!(areas, vec!["arbeitszimmer"], "{areas:?}");
+}
+
+#[test]
+fn en_study_light_targets_arbeitszimmer_only() {
+    let areas = area_of("Turn on the light in the study", "en");
+    assert_eq!(areas, vec!["arbeitszimmer"], "{areas:?}");
+}
+
+#[test]
+fn en_bedroom_is_schlafzimmer_not_wohnung() {
+    let areas = area_of("Turn on the lights in the bedroom", "en");
+    assert_eq!(areas, vec!["schlafzimmer"], "{areas:?}");
+}
+
+#[test]
+fn en_smalltalk_has_no_home_intent() {
+    let (names, speech) = run("What is the capital of France", "en");
+    assert!(names.is_empty(), "{names:?} {speech}");
 }

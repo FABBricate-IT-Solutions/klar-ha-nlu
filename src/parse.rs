@@ -8,7 +8,9 @@ use crate::parse_help::{
     laundry_switch_clause, pick_clarification, pick_singular_lamp, prefer_action, refine_action,
     wants_all_lights, wants_light_clarify,
 };
-use crate::resolve::{domain_hint, pick_timers, resolve, unique_in_area};
+use crate::resolve::{
+    domain_hint, light_rooms_for_clarify, pick_timers, query_grounded, resolve, unique_in_area,
+};
 use crate::respond::{speak, speak_clarify, speak_correction, speak_unknown};
 use crate::session::Session;
 use crate::split::{follow_fixture, implied_domain, split_clauses, wants_group_clarify};
@@ -61,10 +63,14 @@ pub fn parse(
 
     if session.pending_clarify.is_some() {
         if let Some(chosen) = pick_clarification(&tokens, session) {
-            let intent = session.last_intent_template.clone().unwrap_or_else(|| {
+            let template = session.last_intent_template.clone().unwrap_or_else(|| {
                 Intent::new("HassTurnOn").with("entity_id", chosen.clone())
             });
-            let intent = intent_with_entity(intent, &chosen);
+            let intent = if home.areas.iter().any(|area| area.area_id == chosen) {
+                template.with("area", &chosen).with("domain", "light")
+            } else {
+                intent_with_entity(template, &chosen)
+            };
             session.clear_clarify();
             session.remember(&intent);
             let speech = speak(&[intent.clone()], settings.personality, false);
@@ -124,25 +130,16 @@ pub fn parse(
     if intents.is_empty() {
         if let Some(prev) = session.last_entities.first() {
             if let Some(n) = first_number(&tokens) {
-                let climate = prev.starts_with("climate.");
-                let name = if climate {
-                    "HassClimateSetTemperature"
+                let (name, slot) = if prev.starts_with("climate.") {
+                    ("HassClimateSetTemperature", "temperature")
                 } else if prev.starts_with("fan.") {
-                    "HassFanSetSpeed"
+                    ("HassFanSetSpeed", "percentage")
                 } else {
-                    "HassLightSet"
-                };
-                let slot = if climate {
-                    "temperature"
-                } else if prev.starts_with("fan.") {
-                    "percentage"
-                } else {
-                    "brightness"
+                    ("HassLightSet", "brightness")
                 };
                 intents.push(Intent::new(name).with("entity_id", prev).with(slot, n.to_string()));
             } else if catalog().any(&tokens, &catalog().replay_on_off) {
-                let name = if catalog().any(&tokens, &catalog().replay_off)
-                {
+                let name = if catalog().any(&tokens, &catalog().replay_off) {
                     "HassTurnOff"
                 } else {
                     "HassTurnOn"
@@ -411,6 +408,14 @@ fn parse_clause(
         return ClauseOut::Intents(intents);
     }
 
+    if matches!(action, Action::GetState)
+        && resolved.entities.is_empty()
+        && resolved.ambiguous.is_empty()
+        && !query_grounded(tokens, home, false, session)
+    {
+        return ClauseOut::Intents(Vec::new());
+    }
+
     if resolved.areas.len() > 1 {
         for area in &resolved.areas {
             intents.push(fill_intent(action, tokens, number, None, Some(area), domain));
@@ -452,6 +457,19 @@ fn parse_clause(
                 .and_then(|d| unique_in_area(home, area, d));
             intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(area), domain));
         }
+    } else if matches!(action, Action::On | Action::Off | Action::Toggle)
+        && (domain == Some("light") || crate::lexicon::has_light_noun(tokens))
+        && session.last_entities.is_empty()
+        && session.last_areas.is_empty()
+    {
+        let rooms = light_rooms_for_clarify(home);
+        if rooms.len() > 1 {
+            return ClauseOut::Clarify(
+                rooms,
+                intent_from_action(action, tokens).with("domain", "light"),
+            );
+        }
+        intents.push(fill_intent(action, tokens, number, None, None, domain));
     } else if matches!(action, Action::SetTemp) {
         let id = home
             .entities

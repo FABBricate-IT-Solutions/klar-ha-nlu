@@ -67,11 +67,22 @@ async def async_setup_entry(
 
 
 def _home_intents(intents: list[Any]) -> list[dict[str, Any]]:
-    return [
-        item
-        for item in intents
-        if isinstance(item, dict) and item.get("name") and item["name"] != "Unknown"
-    ]
+    out: list[dict[str, Any]] = []
+    for item in intents:
+        if not isinstance(item, dict) or not item.get("name") or item["name"] == "Unknown":
+            continue
+        if item["name"] == "HassGetState" and not _get_state_has_target(item):
+            continue
+        out.append(item)
+    return out
+
+
+def _get_state_has_target(item: dict[str, Any]) -> bool:
+    return any(
+        isinstance(slot, dict)
+        and slot.get("name") in {"area", "entity_id", "name", "device_class", "domain"}
+        for slot in (item.get("slots") or [])
+    )
 
 
 def _speech_from_result(result: ConversationResult) -> str:
@@ -252,8 +263,11 @@ class KlarConversationEntity(ConversationEntity):
             if fallback is not None:
                 return fallback
 
+        names = {item.get("name") for item in intents}
         spoken: list[str] = []
         for item in intents:
+            if item.get("name") == "HassVacuumReturnToBase" and "HassGetState" in names:
+                continue
             ha_speech = await self._handle_intent(user_input, item, pack)
             if ha_speech:
                 spoken.append(ha_speech)
@@ -343,6 +357,13 @@ class KlarConversationEntity(ConversationEntity):
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
         if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
             slots.pop("domain", None)
+        if name in {"HassShoppingListAddItem", "HassShoppingListCompleteItem"}:
+            name = name.replace("HassShoppingList", "HassList")
+            slots.setdefault("name", {"value": "shopping_list"})
+        if name in {"HassStartTimer", "HassIncreaseTimer"} and "duration" in slots:
+            duration = slots.pop("duration")
+            if "minutes" not in slots and "hours" not in slots and "seconds" not in slots:
+                slots["minutes"] = duration
         try:
             handled = await intent.async_handle(
                 self.hass,

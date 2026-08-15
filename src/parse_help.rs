@@ -17,6 +17,9 @@ pub(crate) fn refine_action(
     question: bool,
     session: &Session,
 ) -> Action {
+    if question && matches!(action, Action::VacuumDock | Action::VacuumStart) {
+        return Action::GetState;
+    }
     if matches!(action, Action::On)
         && catalog().any(tokens, &catalog().vacuum_nouns)
     {
@@ -302,12 +305,50 @@ pub(crate) fn fill_intent(
         }
         Action::TimerStart | Action::TimerAdd => {
             if let Some(n) = number {
-                intent = intent.with("duration", n.to_string());
+                intent = intent.with(timer_unit(tokens), n.to_string());
+            }
+        }
+        Action::ListAdd | Action::ListComplete => {
+            if let Some(item) = list_item(tokens) {
+                intent = intent.with("item", item);
+            }
+            if catalog().any(tokens, &catalog().list_nouns)
+                || tokens.iter().any(|t| t.contains("einkauf") || t == "shopping")
+            {
+                intent = intent.with("name", "shopping_list");
             }
         }
         _ => {}
     }
     intent
+}
+
+fn timer_unit(tokens: &[String]) -> &'static str {
+    if tokens.iter().any(|t| matches!(t.as_str(), "hour" | "hours" | "stunde" | "stunden")) {
+        "hours"
+    } else if tokens.iter().any(|t| matches!(t.as_str(), "second" | "seconds" | "sekunde" | "sekunden")) {
+        "seconds"
+    } else {
+        "minutes"
+    }
+}
+
+fn list_item(tokens: &[String]) -> Option<String> {
+    let skip = [
+        "add", "put", "place", "setze", "setz", "fuege", "fuegen", "hinzu", "auf", "zur",
+        "zu", "die", "der", "das", "den", "liste", "list", "einkauf", "einkaufsliste",
+        "shopping", "chores", "aufgaben", "my", "the", "a",
+    ];
+    let words: Vec<&str> = tokens
+        .iter()
+        .map(String::as_str)
+        .filter(|t| !skip.contains(t) && !catalog().list_nouns.contains(t))
+        .collect();
+    if words.is_empty() {
+        None
+    } else {
+        Some(words.join(" "))
+    }
 }
 
 pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
@@ -339,8 +380,8 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::Unlock => Intent::new("HassTurnOff").with("domain", "lock"),
         Action::TimerStart => Intent::new("HassStartTimer"),
         Action::TimerAdd => Intent::new("HassIncreaseTimer"),
-        Action::ListAdd => Intent::new("HassShoppingListAddItem"),
-        Action::ListComplete => Intent::new("HassShoppingListCompleteItem"),
+        Action::ListAdd => Intent::new("HassListAddItem"),
+        Action::ListComplete => Intent::new("HassListCompleteItem"),
         Action::ClarifyWrong => Intent::new("Unknown"),
     }
 }
@@ -422,3 +463,4 @@ pub(crate) fn laundry_switch_clause(
         action, tokens, number, id.as_deref(), Some("laundry"), Some("switch"),
     )]))
 }
+
