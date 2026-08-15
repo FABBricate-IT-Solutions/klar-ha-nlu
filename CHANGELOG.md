@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.14](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.13...2026.8.14) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- speak HA display names and keep compound light status([517bb37](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/517bb3784f528610f52ee9a9a1b06d68b19e1f16))
+
+
+### Other
+
+- Merge pull request #56 from FABBricate-IT-Solutions/fix/addon-entity-display-names([f4d0080](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f4d0080392145a4d3a18220174266e26dc73dd0b))
+
 ## [2026.8.13](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.12...2026.8.13) - 2026-08-15
 
 
