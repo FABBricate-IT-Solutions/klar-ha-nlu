@@ -393,7 +393,7 @@ fn suite_english_smoke() {
     print_stats("Klar NLU · English smoke (wohnung_en)", &stats);
     assert!(stats.ok + stats.fail > 0, "keine englischen Testdateien");
     let pct = 100.0 * stats.ok as f64 / (stats.ok + stats.fail) as f64;
-    assert!(pct >= 60.0, "englischer Smoke unter 60% ({pct:.1}%). Fehler:\n{}", stats.fails.join("\n"));
+    assert!(pct >= 99.0, "englischer Smoke unter 99% ({pct:.1}%). Fehler:\n{}", stats.fails.join("\n"));
 }
 
 #[test]

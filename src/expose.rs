@@ -1,6 +1,11 @@
+use crate::types::{EntityRec, HomeGraph};
 use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 use std::path::Path;
+
+pub fn assist_visible(entity: &EntityRec, home: &HomeGraph) -> bool {
+    home.assist.as_ref().is_none_or(|ids| ids.contains(&entity.entity_id))
+}
 
 const ASSISTANT: &str = "conversation";
 

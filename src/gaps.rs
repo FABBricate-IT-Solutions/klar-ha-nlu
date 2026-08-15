@@ -24,12 +24,10 @@ const WEAK: &[&str] = &[
     "pro",
 ];
 
+pub use crate::expose::assist_visible;
+
 pub fn leftover(home: &HomeGraph) -> Vec<EntityRec> {
     home.entities.iter().filter(|e| assist_visible(e, home) && needs_mapping(e, home)).cloned().collect()
-}
-
-pub fn assist_visible(entity: &EntityRec, home: &HomeGraph) -> bool {
-    home.assist.as_ref().is_none_or(|ids| ids.contains(&entity.entity_id))
 }
 
 pub fn needs_mapping(entity: &EntityRec, home: &HomeGraph) -> bool {

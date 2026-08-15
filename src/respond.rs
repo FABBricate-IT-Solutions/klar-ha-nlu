@@ -43,8 +43,8 @@ pub fn speak_correction() -> String {
     }
 }
 
-pub fn speak_clarify(names: &[String]) -> String {
-    let labels: Vec<String> = names.iter().map(|id| id.rsplit('.').next().unwrap_or(id).replace('_', " ")).collect();
+pub fn speak_clarify(names: &[String], home: Option<&HomeGraph>) -> String {
+    let labels: Vec<String> = names.iter().map(|id| clarify_label(id, home)).collect();
     if speech_lang() == LangId::En {
         format!("Do you mean {}?", labels.join(" or "))
     } else {
@@ -151,6 +151,16 @@ fn area_label(area: &str, domain: &str, intent: &str, en: bool) -> String {
     } else {
         title_word(area)
     }
+}
+
+fn clarify_label(id: &str, home: Option<&HomeGraph>) -> String {
+    if let Some(ent) = home.and_then(|h| h.entities.iter().find(|e| e.entity_id == id)) {
+        let pretty = pretty_device(&ent.name);
+        if !pretty.is_empty() {
+            return pretty;
+        }
+    }
+    pretty_device(&object_id(id))
 }
 
 fn object_id(id: &str) -> String {
@@ -373,5 +383,30 @@ mod tests {
         assert_eq!(speak(&[kugel], Personality::Default, false, None), "Schlafzimmerlicht ist an.");
         let butler = speak(&[Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer")], Personality::Butler, false, None);
         assert_eq!(butler, "Sehr wohl. Schlafzimmerlicht ist an.");
+    }
+
+    #[test]
+    fn clarify_uses_friendly_name() {
+        let _de = bind(&["de".into()]);
+        let home = crate::types::default_home();
+        let speech = speak_clarify(&["light.schlafzimmer_kugel".into()], Some(&home));
+        assert!(speech.contains("Kugel"), "{speech}");
+        assert!(!speech.contains("schlafzimmer"), "{speech}");
+        let raw = speak_clarify(&["light.schlafzimmer".into()], None);
+        assert!(raw.contains("Schlafzimmer"), "{raw}");
+        assert!(!raw.contains("light."), "{raw}");
+    }
+
+    #[test]
+    fn vacuum_speech_uses_device_name() {
+        let _de = bind(&["de".into()]);
+        let mut home = crate::types::default_home();
+        if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == "vacuum.r2d2") {
+            ent.name = "Saugroboter".into();
+        }
+        let intent = Intent::new("HassVacuumStart").with("entity_id", "vacuum.r2d2");
+        let speech = speak(&[intent], Personality::Default, false, Some(&home));
+        assert!(speech.contains("Saugroboter"), "{speech}");
+        assert!(!speech.contains("R2D2"), "{speech}");
     }
 }

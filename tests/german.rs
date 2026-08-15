@@ -360,3 +360,13 @@ fn steckdose_bleibt_schalter_trotz_licht_tag() {
         "{found:?}"
     );
 }
+
+#[test]
+fn replay_skips_entity_not_exposed_to_assist() {
+    let mut home = default_home();
+    home.assist = Some(std::collections::HashSet::new());
+    let mut session = Session::new();
+    session.last_entities.push("light.wohnzimmer".into());
+    let result = parse("aus", &home, &mut session, &[], &Settings::default());
+    assert!(result.intents.iter().all(|i| i.slot("entity_id") != Some("light.wohnzimmer")), "{:?}", result.intents);
+}

@@ -85,8 +85,13 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         && !catalog().any(tokens, &catalog().light_plural)
         && !tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light"))
     {
-        let lights: Vec<EntityRec> =
-            home.entities.iter().filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
+        let lights: Vec<EntityRec> = home
+            .entities
+            .iter()
+            .filter(|e| assist_visible(e, home))
+            .filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| areas.contains(a)))
+            .cloned()
+            .collect();
         if lights.len() > 1 {
             return Resolved { areas, entities: Vec::new(), ambiguous: lights };
         }
@@ -97,6 +102,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let in_domain: Vec<EntityRec> = home
                 .entities
                 .iter()
+                .filter(|e| assist_visible(e, home))
                 .filter(|e| matches_domain(e, d) && !is_infra(e))
                 .filter(|e| areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
                 .cloned()
@@ -135,6 +141,7 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
     let hits: Vec<EntityRec> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| e.domain == "light")
         .filter(|e| areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
         .filter(|e| fixture_matches(e, needle))
@@ -357,7 +364,8 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
 }
 
 pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
-    let ids: Vec<String> = home.entities.iter().filter(|e| e.domain == "timer").map(|e| e.entity_id.clone()).collect();
+    let ids: Vec<String> =
+        home.entities.iter().filter(|e| assist_visible(e, home) && e.domain == "timer").map(|e| e.entity_id.clone()).collect();
     let want = |n: &str| ids.iter().filter(|id| id.contains(n)).cloned().collect::<Vec<_>>();
     if tokens.iter().any(|t| catalog().is_all(t)) {
         return ids.into_iter().filter(|id| !id.contains("abstract")).collect();
@@ -375,6 +383,7 @@ pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Opti
     let hits: Vec<&str> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| matches_domain(e, domain) && !is_infra(e) && e.area.as_deref() == Some(area))
         .map(|e| e.entity_id.as_str())
         .collect();
@@ -402,7 +411,7 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
     {
         return true;
     }
-    home.entities.iter().any(|entity| {
+    home.entities.iter().filter(|entity| assist_visible(entity, home)).any(|entity| {
         let name = fold_umlaut(&entity.name);
         tokens.iter().any(|token| {
             token.len() > 3
@@ -455,5 +464,7 @@ mod tests {
         home.assist = Some(["light.hidden".into()].into());
         let hidden_only = resolve(&["geheimlampe".into()], &home, Some("light"));
         assert_eq!(hidden_only.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["light.hidden"]);
+        home.assist = Some(["light.kuche_kuche".into()].into());
+        assert_eq!(crate::compound::room_light_id(&home, "kuche"), None);
     }
 }

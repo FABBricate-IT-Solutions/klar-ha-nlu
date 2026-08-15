@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.3...2026.8.4) - 2026-08-15
+
+### Security
+
+- Require loopback or token for parse and GET APIs; bind localhost by default; keep addon ports off the host
+- Fail engine download without a SHA-256 digest
+- Skip LLM fallback when the agent advertises Assist tools
+- Filter unexposed entities in resolve, compound, roles, timers, and follow-ups
+
+### Features
+
+- Speak clarify and vacuum replies from friendly names
+- Reload the home graph when HA registries change
+- Persist custom sentences in the overlay; cap sessions at 256
+
+### Miscellaneous
+
+- Split lang, parse, and registry modules under 500 lines
+- Raise English smoke to 99%; add Wyoming, digest, speech, and fallback tests
+- Wait for rustfmt and clippy before tagging a release
+
 ## [2026.8.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.2...2026.8.3) - 2026-08-15
 
 
