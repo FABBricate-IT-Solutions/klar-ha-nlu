@@ -272,6 +272,7 @@ fn schalte_es_wieder_aus() {
     assert_eq!(off.intents[0].name, "HassTurnOff", "{:?} {}", off.intents, off.speech);
     let off_id = off.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
     assert_eq!(off_id, on_id, "{:?} {}", off.intents, off.speech);
+    assert_ne!(off_id, Some("scene.alles_aus"), "{:?} {}", off.intents, off.speech);
     assert!(!off.speech.contains("alles"), "{}", off.speech);
     assert!(!off.speech.contains("aus aus"), "{}", off.speech);
 

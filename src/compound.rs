@@ -211,11 +211,15 @@ pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
 }
 
 pub(crate) fn short_name_token(entity: &EntityRec) -> Option<String> {
-    entity
-        .name
-        .split(|c: char| !c.is_ascii_alphanumeric())
-        .map(compact)
-        .find(|part| part.len() >= 2 && part.len() <= 3 && !GENERIC.contains(&part.as_str()))
+    let cat = catalog();
+    entity.name.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).find(|part| {
+        part.len() >= 2
+            && part.len() <= 3
+            && !GENERIC.contains(&part.as_str())
+            && !cat.is_particle(part)
+            && !cat.on_words.contains(part.as_str())
+            && !cat.off_words.contains(part.as_str())
+    })
 }
 
 pub(crate) fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
