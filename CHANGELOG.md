@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.0...v2026.8.1) - 2026-08-15
+
+
+
+### Miscellaneous
+
+- run rustfmt in CI([77e0c95](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/77e0c95c7671af99e55f2b55ec99c943fe55d4e2))
+
 ## [2026.8.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.10...v2026.8.0) - 2026-08-15
 
 
