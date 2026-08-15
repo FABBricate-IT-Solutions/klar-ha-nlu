@@ -2,8 +2,8 @@
 
 All notable changes to this project are documented here.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ## [0.1.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.9...v0.1.10) - 2026-08-15

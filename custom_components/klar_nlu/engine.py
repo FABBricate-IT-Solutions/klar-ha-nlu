@@ -84,7 +84,7 @@ class KlarEngine:
             async with session.get(_RELEASES, timeout=timeout) as resp:
                 if resp.status == 404:
                     raise RuntimeError(
-                        "No GitHub release yet. Tag v0.1.0 or start Klar yourself."
+                        "No GitHub release yet. Tag v2026.8.0 or start Klar yourself."
                     )
                 resp.raise_for_status()
                 release = await resp.json()
