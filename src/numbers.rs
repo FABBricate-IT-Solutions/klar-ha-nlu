@@ -92,14 +92,7 @@ pub fn guess_numbered_action(tokens: &[String], last_climate: bool, last_cover: 
     if last_climate || cat.any(tokens, &cat.climate_nouns) {
         return Action::SetTemp;
     }
-    if last_cover
-        || cat.any(tokens, &cat.cover_nouns)
-        || (cat.any(tokens, &cat.garage_words)
-            && cat.any(tokens, &cat.garage_cover)
-            && !cat.any(tokens, &cat.light_nouns)
-            && !cat.any(tokens, &cat.lock_nouns)
-            && !tokens.iter().any(|t| t == "tuer"))
-    {
+    if last_cover || cat.any(tokens, &cat.cover_nouns) || crate::lexicon::is_garage_cover(tokens) {
         return Action::CoverSet;
     }
     if last_fan || cat.any(tokens, &cat.fan_nouns) {

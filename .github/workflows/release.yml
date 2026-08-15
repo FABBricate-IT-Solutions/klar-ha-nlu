@@ -70,7 +70,8 @@ jobs:
           branch="release/${TAG}"
           git checkout -B "$branch"
           git add Cargo.toml Cargo.lock config.yaml addon/config.yaml \
-            custom_components/klar_nlu/manifest.json CHANGELOG.md
+            custom_components/klar_nlu/manifest.json \
+            custom_components/klar_nlu/const.py CHANGELOG.md
           git commit -m "chore(release): prepare for ${TAG}"
           sha="$(git rev-parse HEAD)"
           git push origin "HEAD:refs/heads/${branch}"

@@ -74,12 +74,10 @@ pub fn compact(s: &str) -> String {
 }
 
 pub(crate) fn is_time_unit(token: &str) -> bool {
-    matches!(
-        token,
-        "minute" | "minutes" | "minuten" | "hour" | "hours" | "stunde" | "stunden" | "second" | "seconds" | "sekunde" | "sekunden"
-    )
+    let cat = catalog();
+    cat.hours.contains(token) || cat.minutes.contains(token) || cat.seconds.contains(token)
 }
 
 pub(crate) fn article_one(token: &str) -> bool {
-    matches!(token, "eine" | "ein" | "einen" | "einer" | "a" | "an")
+    catalog().article_one.contains(token)
 }

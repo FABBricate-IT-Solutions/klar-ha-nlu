@@ -14,9 +14,7 @@ pub(crate) fn refine_action(action: Action, tokens: &[String], number: Option<i3
         return Action::GetState;
     }
     if catalog().any(tokens, &catalog().vacuum_nouns)
-        && (matches!(action, Action::On)
-            || catalog().any(tokens, &catalog().start_words)
-            || tokens.iter().any(|t| matches!(t.as_str(), "an" | "on" | "start")))
+        && (matches!(action, Action::On) || catalog().any(tokens, &catalog().start_words) || catalog().any(tokens, &catalog().vacuum_start))
     {
         return Action::VacuumStart;
     }
@@ -132,8 +130,8 @@ pub(crate) fn looks_like_question(tokens: &[String]) -> bool {
 pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
     let blob = join_tokens(tokens);
     catalog().correction.iter().any(|w| blob.contains(w))
-        || blob.contains("stimmt nicht")
-        || (tokens.iter().any(|t| t == "nein") && tokens.iter().any(|t| t == "falsch" || t == "nicht"))
+        || catalog().correction_phrases.iter().any(|phrase| blob.contains(phrase))
+        || (tokens.iter().any(|t| t == "nein") && catalog().any(tokens, &catalog().correction))
 }
 
 pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option<String> {

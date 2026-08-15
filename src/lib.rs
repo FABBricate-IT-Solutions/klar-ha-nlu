@@ -1,7 +1,9 @@
 mod chat;
+mod clause;
 pub mod compound;
 pub mod expose;
 pub mod gaps;
+pub mod home_policy;
 pub mod lang;
 pub mod lexicon;
 pub mod normalize;

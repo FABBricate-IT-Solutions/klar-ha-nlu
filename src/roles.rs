@@ -13,20 +13,25 @@ pub enum ClimateKind {
 }
 
 pub fn role_of_tag(tag: &str) -> Option<&'static str> {
-    match compact(tag).as_str() {
-        "licht" | "light" | "lampe" | "lampen" | "leuchte" | "beleuchtung" | "lighting" => Some("light"),
-        "heizung" | "thermostat" | "klima" | "klimaanlage" | "heater" | "climate" | "heat" | "ac" | "aircon" | "kuehlung" => {
-            Some("climate")
-        }
-        "tv" | "fernseher" | "media" => Some("media_player"),
-        "luefter" | "ventilator" | "fan" | "geblaese" => Some("fan"),
-        _ => None,
+    let cat = crate::lang::catalog();
+    let folded = compact(tag);
+    if cat.role_light.contains(folded.as_str()) {
+        Some("light")
+    } else if cat.role_climate.contains(folded.as_str()) {
+        Some("climate")
+    } else if cat.role_media.contains(folded.as_str()) {
+        Some("media_player")
+    } else if cat.role_fan.contains(folded.as_str()) {
+        Some("fan")
+    } else {
+        None
     }
 }
 
 pub fn wanted_climate_kind(tokens: &[String]) -> Option<ClimateKind> {
-    let cool = tokens.iter().any(|t| matches!(t.as_str(), "klima" | "klimaanlage" | "ac" | "aircon" | "kuehlung"));
-    let heat = tokens.iter().any(|t| matches!(t.as_str(), "heizung" | "thermostat" | "heater" | "heat" | "heizen"));
+    let cat = crate::lang::catalog();
+    let cool = cat.any(tokens, &cat.climate_cool);
+    let heat = cat.any(tokens, &cat.climate_heat);
     match (cool, heat) {
         (true, false) => Some(ClimateKind::Cool),
         (false, true) => Some(ClimateKind::Heat),
@@ -45,10 +50,11 @@ pub fn climate_kind(entity: &EntityRec) -> Option<ClimateKind> {
         return Some(ClimateKind::Heat);
     }
     let tags: Vec<String> = entity.tags.iter().map(|tag| compact(tag)).collect();
-    if tags.iter().any(|tag| matches!(tag.as_str(), "klima" | "klimaanlage" | "ac" | "aircon" | "kuehlung")) {
+    let cat = crate::lang::catalog();
+    if tags.iter().any(|tag| cat.climate_cool.contains(tag.as_str())) {
         return Some(ClimateKind::Cool);
     }
-    if tags.iter().any(|tag| matches!(tag.as_str(), "heizung" | "thermostat" | "heater" | "heat")) {
+    if tags.iter().any(|tag| cat.climate_heat.contains(tag.as_str())) {
         return Some(ClimateKind::Heat);
     }
     Some(ClimateKind::Heat)
@@ -60,12 +66,13 @@ fn climate_blob(entity: &EntityRec) -> String {
 
 fn cool_named(entity: &EntityRec) -> bool {
     let blob = climate_blob(entity);
-    blob.contains("klimaanlage") || blob.contains("aircon") || blob.contains("kuehlung") || blob.ends_with("ac")
+    let cat = crate::lang::catalog();
+    cat.climate_cool.iter().any(|word| blob.contains(word)) || blob.ends_with("ac")
 }
 
 fn heat_named(entity: &EntityRec) -> bool {
     let blob = climate_blob(entity);
-    blob.contains("heizung") || blob.contains("thermostat") || blob.contains("heater")
+    crate::lang::catalog().climate_heat.iter().any(|word| blob.contains(word))
 }
 
 pub fn is_role_tag(tag: &str) -> bool {

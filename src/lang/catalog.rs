@@ -1,21 +1,35 @@
-use super::pack::{GroupClarify, LanguagePack as Pack, NumberStyle};
-use super::verbs::VerbKind;
+use super::groups::{GroupClarify, LanguagePack as Pack, NumberStyle};
+use super::speech::Speech;
 use super::LangId;
 use std::collections::{HashMap, HashSet};
 
 pub struct Catalog {
     pub langs: Vec<LangId>,
     verbs: HashMap<&'static str, VerbKind>,
-    fillers: HashSet<&'static str>,
-    action_keep: HashSet<&'static str>,
-    conjunctions: HashSet<&'static str>,
-    particles: HashSet<&'static str>,
-    affirm: HashSet<&'static str>,
-    or_words: HashSet<&'static str>,
-    all_words: HashSet<&'static str>,
-    query_hint: HashSet<&'static str>,
-    question_starts: HashSet<&'static str>,
-    question_words: HashSet<&'static str>,
+    pub domain_map: HashMap<&'static str, &'static str>,
+    colors: HashMap<&'static str, &'static str>,
+    numbers: HashMap<&'static str, i32>,
+    pub number_styles: Vec<NumberStyle>,
+    fixture_aliases: HashMap<&'static str, &'static [&'static str]>,
+    group_clarify: Vec<GroupClarify>,
+    pub strip_pairs: Vec<(&'static str, &'static str)>,
+    pub keep_after: Vec<(&'static [&'static str], &'static str)>,
+    pub synonym_pairs: Vec<(&'static str, &'static str)>,
+    pub scene_synonyms: Vec<(&'static str, &'static str)>,
+    pub speech: Vec<&'static Speech>,
+    pub fillers: HashSet<&'static str>,
+    pub action_keep: HashSet<&'static str>,
+    pub conjunctions: HashSet<&'static str>,
+    pub particles: HashSet<&'static str>,
+    pub affirm: HashSet<&'static str>,
+    pub or_words: HashSet<&'static str>,
+    pub all_words: HashSet<&'static str>,
+    pub query_hint: HashSet<&'static str>,
+    pub question_starts: HashSet<&'static str>,
+    pub question_words: HashSet<&'static str>,
+    pub correction: HashSet<&'static str>,
+    pub correction_phrases: HashSet<&'static str>,
+    pub clarify_pick: HashSet<&'static str>,
     pub light_nouns: HashSet<&'static str>,
     pub light_singular: HashSet<&'static str>,
     pub light_plural: HashSet<&'static str>,
@@ -36,6 +50,16 @@ pub struct Catalog {
     pub switch_plural: HashSet<&'static str>,
     pub device_side: HashSet<&'static str>,
     pub named_device: HashSet<&'static str>,
+    pub island: HashSet<&'static str>,
+    pub ceiling: HashSet<&'static str>,
+    pub lamp_fixture: HashSet<&'static str>,
+    pub pendant: HashSet<&'static str>,
+    pub bedside: HashSet<&'static str>,
+    pub left: HashSet<&'static str>,
+    pub right: HashSet<&'static str>,
+    pub sides: HashSet<&'static str>,
+    pub singular_lamp: HashSet<&'static str>,
+    pub singular_lamp_block: HashSet<&'static str>,
     pub power_words: HashSet<&'static str>,
     pub command_hedges: HashSet<&'static str>,
     pub skip_light: HashSet<&'static str>,
@@ -44,6 +68,7 @@ pub struct Catalog {
     pub kitchen: HashSet<&'static str>,
     pub open_words: HashSet<&'static str>,
     pub close_words: HashSet<&'static str>,
+    pub roll_close: HashSet<&'static str>,
     pub unlock_follow: HashSet<&'static str>,
     pub cover_open_follow: HashSet<&'static str>,
     pub garage_lock_block: HashSet<&'static str>,
@@ -52,45 +77,64 @@ pub struct Catalog {
     pub scene_named: HashSet<&'static str>,
     pub temp_query: HashSet<&'static str>,
     pub timer_query: HashSet<&'static str>,
-    pub sides: HashSet<&'static str>,
-    pub island: HashSet<&'static str>,
-    pub ceiling: HashSet<&'static str>,
-    pub lamp_fixture: HashSet<&'static str>,
-    pub pendant: HashSet<&'static str>,
-    pub bedside: HashSet<&'static str>,
-    pub left: HashSet<&'static str>,
-    pub right: HashSet<&'static str>,
     pub brightness: HashSet<&'static str>,
     pub start_words: HashSet<&'static str>,
     pub replay_on_off: HashSet<&'static str>,
     pub replay_off: HashSet<&'static str>,
-    pub domain_map: HashMap<&'static str, &'static str>,
     pub sensor_words: HashSet<&'static str>,
     pub lock_verbs: HashSet<&'static str>,
     pub entry_words: HashSet<&'static str>,
     pub oven: HashSet<&'static str>,
     pub laundry_timer: HashSet<&'static str>,
-    colors: HashMap<&'static str, &'static str>,
-    numbers: HashMap<&'static str, i32>,
-    pub number_styles: Vec<NumberStyle>,
-    pub room_index_nouns: HashSet<&'static str>,
-    fixture_aliases: HashMap<&'static str, &'static [&'static str]>,
-    group_clarify: Vec<GroupClarify>,
-    pub singular_lamp: HashSet<&'static str>,
-    pub singular_lamp_block: HashSet<&'static str>,
-    pub strip_pairs: Vec<(&'static str, &'static str)>,
-    pub keep_after: Vec<(&'static [&'static str], &'static str)>,
     pub illuminate: HashSet<&'static str>,
     pub list_down: HashSet<&'static str>,
     pub chores: HashSet<&'static str>,
     pub weak_scene: HashSet<&'static str>,
-    pub correction: HashSet<&'static str>,
-    pub clarify_pick: HashSet<&'static str>,
+    pub timer_cancel: HashSet<&'static str>,
+    pub timer_pause: HashSet<&'static str>,
+    pub timer_add: HashSet<&'static str>,
+    pub list_complete: HashSet<&'static str>,
+    pub playback_resume: HashSet<&'static str>,
+    pub vacuum_start: HashSet<&'static str>,
+    pub hours: HashSet<&'static str>,
+    pub minutes: HashSet<&'static str>,
+    pub seconds: HashSet<&'static str>,
+    pub list_skip: HashSet<&'static str>,
+    pub shopping_names: HashSet<&'static str>,
+    pub status_words: HashSet<&'static str>,
+    pub window_words: HashSet<&'static str>,
+    pub open_close: HashSet<&'static str>,
+    pub laundry_hint: HashSet<&'static str>,
+    pub bare_switch: HashSet<&'static str>,
+    pub outlet_words: HashSet<&'static str>,
+    pub tv_words: HashSet<&'static str>,
+    pub climate_cool: HashSet<&'static str>,
+    pub climate_heat: HashSet<&'static str>,
+    pub role_light: HashSet<&'static str>,
+    pub role_climate: HashSet<&'static str>,
+    pub role_media: HashSet<&'static str>,
+    pub role_fan: HashSet<&'static str>,
+    pub generic: HashSet<&'static str>,
+    pub room_level: HashSet<&'static str>,
+    pub extra_device_nouns: HashSet<&'static str>,
+    pub article_one: HashSet<&'static str>,
+    pub room_index_nouns: HashSet<&'static str>,
+    pub chat_greet: HashSet<&'static str>,
+    pub chat_thanks: HashSet<&'static str>,
+    pub chat_feeling: HashSet<&'static str>,
+    pub chat_identity: HashSet<&'static str>,
+    pub chat_tell: HashSet<&'static str>,
+    pub chat_yarn: HashSet<&'static str>,
+    pub chat_world: HashSet<&'static str>,
+    pub chat_advice: HashSet<&'static str>,
+    pub chat_open: HashSet<&'static str>,
 }
 
-macro_rules! extend_set {
-    ($dst:expr, $src:expr) => {
-        $dst.extend($src.iter().copied())
+use super::verbs::VerbKind;
+
+macro_rules! extend_sets {
+    ($dst:expr, $src:expr; $($field:ident),+ $(,)?) => {
+        $($dst.$field.extend($src.$field.iter().copied());)+
     };
 }
 
@@ -99,99 +143,44 @@ impl Catalog {
         let mut c = Self::empty();
         for p in packs {
             c.langs.push(p.id);
+            c.speech.push(&p.speech);
             for &(w, k) in p.verbs {
                 c.verbs.insert(w, k);
             }
-            extend_set!(c.fillers, p.fillers);
-            extend_set!(c.action_keep, p.action_keep);
-            extend_set!(c.conjunctions, p.conjunctions);
-            extend_set!(c.particles, p.particles);
-            extend_set!(c.affirm, p.affirm);
-            extend_set!(c.or_words, p.or_words);
-            extend_set!(c.all_words, p.all_words);
-            extend_set!(c.query_hint, p.query_hint);
-            extend_set!(c.question_starts, p.question_starts);
-            extend_set!(c.question_words, p.question_words);
-            extend_set!(c.light_nouns, p.light_nouns);
-            extend_set!(c.light_singular, p.light_singular);
-            extend_set!(c.light_plural, p.light_plural);
-            extend_set!(c.cover_nouns, p.cover_nouns);
-            extend_set!(c.curtain_nouns, p.curtain_nouns);
-            extend_set!(c.fan_nouns, p.fan_nouns);
-            extend_set!(c.climate_nouns, p.climate_nouns);
-            extend_set!(c.media_nouns, p.media_nouns);
-            extend_set!(c.lock_nouns, p.lock_nouns);
-            extend_set!(c.door_nouns, p.door_nouns);
-            extend_set!(c.garage_words, p.garage_words);
-            extend_set!(c.garage_cover, p.garage_cover);
-            extend_set!(c.timer_nouns, p.timer_nouns);
-            extend_set!(c.list_nouns, p.list_nouns);
-            extend_set!(c.vacuum_nouns, p.vacuum_nouns);
-            extend_set!(c.scene_nouns, p.scene_nouns);
-            extend_set!(c.script_words, p.script_words);
-            extend_set!(c.switch_plural, p.switch_plural);
-            extend_set!(c.device_side, p.device_side);
-            extend_set!(c.named_device, p.named_device);
-            extend_set!(c.power_words, p.power_words);
-            extend_set!(c.command_hedges, p.command_hedges);
-            extend_set!(c.skip_light, p.skip_light);
-            extend_set!(c.laundry_area, p.laundry_area);
-            extend_set!(c.laundry_machines, p.laundry_machines);
-            extend_set!(c.kitchen, p.kitchen);
-            extend_set!(c.open_words, p.open_words);
-            extend_set!(c.close_words, p.close_words);
-            extend_set!(c.unlock_follow, p.unlock_follow);
-            extend_set!(c.cover_open_follow, p.cover_open_follow);
-            extend_set!(c.garage_lock_block, p.garage_lock_block);
-            extend_set!(c.on_words, p.on_words);
-            extend_set!(c.off_words, p.off_words);
-            extend_set!(c.scene_named, p.scene_named);
-            extend_set!(c.temp_query, p.temp_query);
-            extend_set!(c.timer_query, p.timer_query);
-            extend_set!(c.sides, p.sides);
-            extend_set!(c.island, p.island);
-            extend_set!(c.ceiling, p.ceiling);
-            extend_set!(c.lamp_fixture, p.lamp_fixture);
-            extend_set!(c.pendant, p.pendant);
-            extend_set!(c.bedside, p.bedside);
-            extend_set!(c.left, p.left);
-            extend_set!(c.right, p.right);
-            extend_set!(c.brightness, p.brightness);
-            extend_set!(c.start_words, p.start_words);
-            extend_set!(c.replay_on_off, p.replay_on_off);
-            extend_set!(c.replay_off, p.replay_off);
-            for &(w, d) in p.domain_map {
+            for &(w, d) in p.maps.domain_map {
                 c.domain_map.insert(w, d);
             }
-            extend_set!(c.sensor_words, p.sensor_words);
-            extend_set!(c.lock_verbs, p.lock_verbs);
-            extend_set!(c.entry_words, p.entry_words);
-            extend_set!(c.oven, p.oven);
-            extend_set!(c.laundry_timer, p.laundry_timer);
-            for &(w, color) in p.colors {
+            for &(w, color) in p.maps.colors {
                 c.colors.insert(w, color);
             }
-            for &(w, n) in p.numbers {
+            for &(w, n) in p.maps.numbers {
                 c.numbers.insert(w, n);
             }
-            c.number_styles.push(p.number_style);
-            extend_set!(c.room_index_nouns, p.room_index_nouns);
-            for &(w, aliases) in p.fixture_aliases {
+            c.number_styles.push(p.maps.number_style);
+            for &(w, aliases) in p.fixtures.fixture_aliases {
                 c.fixture_aliases.insert(w, aliases);
             }
-            if let Some(g) = &p.group_clarify {
+            if let Some(g) = &p.fixtures.group_clarify {
                 c.group_clarify.push(GroupClarify { trigger: g.trigger, pairs: g.pairs, triples: g.triples });
             }
-            extend_set!(c.singular_lamp, p.singular_lamp);
-            extend_set!(c.singular_lamp_block, p.singular_lamp_block);
-            c.strip_pairs.extend(p.strip_pairs.iter().copied());
-            c.keep_after.extend(p.keep_after.iter().copied());
-            extend_set!(c.illuminate, p.illuminate);
-            extend_set!(c.list_down, p.list_down);
-            extend_set!(c.chores, p.chores);
-            extend_set!(c.weak_scene, p.weak_scene);
-            extend_set!(c.correction, p.correction);
-            extend_set!(c.clarify_pick, p.clarify_pick);
+            c.strip_pairs.extend(p.cues.strip_pairs.iter().copied());
+            c.keep_after.extend(p.cues.keep_after.iter().copied());
+            c.synonym_pairs.extend(p.cues.synonym_pairs.iter().copied());
+            c.scene_synonyms.extend(p.cues.scene_synonyms.iter().copied());
+            extend_sets!(c, p.talk; fillers, action_keep, conjunctions, particles, affirm, or_words, all_words, query_hint, question_starts, question_words, correction, correction_phrases, clarify_pick);
+            extend_sets!(c, p.nouns; light_nouns, light_singular, light_plural, cover_nouns, curtain_nouns, fan_nouns, climate_nouns, media_nouns, lock_nouns, door_nouns, garage_words, garage_cover, timer_nouns, list_nouns, vacuum_nouns, scene_nouns, script_words, switch_plural, device_side, named_device);
+            extend_sets!(c, p.fixtures; island, ceiling, lamp_fixture, pendant, bedside, left, right, sides, singular_lamp, singular_lamp_block);
+            extend_sets!(c, p.cues; power_words, command_hedges, skip_light, laundry_area, laundry_machines, kitchen, open_words, close_words, roll_close, unlock_follow, cover_open_follow, garage_lock_block, on_words, off_words, scene_named, temp_query, timer_query, brightness, start_words, replay_on_off, replay_off, sensor_words, lock_verbs, entry_words, oven, laundry_timer, illuminate, list_down, chores, weak_scene, timer_cancel, timer_pause, timer_add, list_complete, playback_resume, vacuum_start, hours, minutes, seconds, list_skip, shopping_names, status_words, window_words, open_close, laundry_hint, bare_switch, outlet_words, tv_words, climate_cool, climate_heat, role_light, role_climate, role_media, role_fan, generic, room_level, extra_device_nouns, article_one);
+            extend_sets!(c, p.maps; room_index_nouns);
+            c.chat_greet.extend(p.chat.greet.iter().copied());
+            c.chat_thanks.extend(p.chat.thanks.iter().copied());
+            c.chat_feeling.extend(p.chat.feeling.iter().copied());
+            c.chat_identity.extend(p.chat.identity.iter().copied());
+            c.chat_tell.extend(p.chat.tell.iter().copied());
+            c.chat_yarn.extend(p.chat.yarn.iter().copied());
+            c.chat_world.extend(p.chat.world.iter().copied());
+            c.chat_advice.extend(p.chat.advice.iter().copied());
+            c.chat_open.extend(p.chat.open.iter().copied());
         }
         c
     }
@@ -200,6 +189,17 @@ impl Catalog {
         Self {
             langs: Vec::new(),
             verbs: HashMap::new(),
+            domain_map: HashMap::new(),
+            colors: HashMap::new(),
+            numbers: HashMap::new(),
+            number_styles: Vec::new(),
+            fixture_aliases: HashMap::new(),
+            group_clarify: Vec::new(),
+            strip_pairs: Vec::new(),
+            keep_after: Vec::new(),
+            synonym_pairs: Vec::new(),
+            scene_synonyms: Vec::new(),
+            speech: Vec::new(),
             fillers: HashSet::new(),
             action_keep: HashSet::new(),
             conjunctions: HashSet::new(),
@@ -210,6 +210,9 @@ impl Catalog {
             query_hint: HashSet::new(),
             question_starts: HashSet::new(),
             question_words: HashSet::new(),
+            correction: HashSet::new(),
+            correction_phrases: HashSet::new(),
+            clarify_pick: HashSet::new(),
             light_nouns: HashSet::new(),
             light_singular: HashSet::new(),
             light_plural: HashSet::new(),
@@ -230,6 +233,16 @@ impl Catalog {
             switch_plural: HashSet::new(),
             device_side: HashSet::new(),
             named_device: HashSet::new(),
+            island: HashSet::new(),
+            ceiling: HashSet::new(),
+            lamp_fixture: HashSet::new(),
+            pendant: HashSet::new(),
+            bedside: HashSet::new(),
+            left: HashSet::new(),
+            right: HashSet::new(),
+            sides: HashSet::new(),
+            singular_lamp: HashSet::new(),
+            singular_lamp_block: HashSet::new(),
             power_words: HashSet::new(),
             command_hedges: HashSet::new(),
             skip_light: HashSet::new(),
@@ -238,6 +251,7 @@ impl Catalog {
             kitchen: HashSet::new(),
             open_words: HashSet::new(),
             close_words: HashSet::new(),
+            roll_close: HashSet::new(),
             unlock_follow: HashSet::new(),
             cover_open_follow: HashSet::new(),
             garage_lock_block: HashSet::new(),
@@ -246,40 +260,57 @@ impl Catalog {
             scene_named: HashSet::new(),
             temp_query: HashSet::new(),
             timer_query: HashSet::new(),
-            sides: HashSet::new(),
-            island: HashSet::new(),
-            ceiling: HashSet::new(),
-            lamp_fixture: HashSet::new(),
-            pendant: HashSet::new(),
-            bedside: HashSet::new(),
-            left: HashSet::new(),
-            right: HashSet::new(),
             brightness: HashSet::new(),
             start_words: HashSet::new(),
             replay_on_off: HashSet::new(),
             replay_off: HashSet::new(),
-            domain_map: HashMap::new(),
             sensor_words: HashSet::new(),
             lock_verbs: HashSet::new(),
             entry_words: HashSet::new(),
             oven: HashSet::new(),
             laundry_timer: HashSet::new(),
-            colors: HashMap::new(),
-            numbers: HashMap::new(),
-            number_styles: Vec::new(),
-            room_index_nouns: HashSet::new(),
-            fixture_aliases: HashMap::new(),
-            group_clarify: Vec::new(),
-            singular_lamp: HashSet::new(),
-            singular_lamp_block: HashSet::new(),
-            strip_pairs: Vec::new(),
-            keep_after: Vec::new(),
             illuminate: HashSet::new(),
             list_down: HashSet::new(),
             chores: HashSet::new(),
             weak_scene: HashSet::new(),
-            correction: HashSet::new(),
-            clarify_pick: HashSet::new(),
+            timer_cancel: HashSet::new(),
+            timer_pause: HashSet::new(),
+            timer_add: HashSet::new(),
+            list_complete: HashSet::new(),
+            playback_resume: HashSet::new(),
+            vacuum_start: HashSet::new(),
+            hours: HashSet::new(),
+            minutes: HashSet::new(),
+            seconds: HashSet::new(),
+            list_skip: HashSet::new(),
+            shopping_names: HashSet::new(),
+            status_words: HashSet::new(),
+            window_words: HashSet::new(),
+            open_close: HashSet::new(),
+            laundry_hint: HashSet::new(),
+            bare_switch: HashSet::new(),
+            outlet_words: HashSet::new(),
+            tv_words: HashSet::new(),
+            climate_cool: HashSet::new(),
+            climate_heat: HashSet::new(),
+            role_light: HashSet::new(),
+            role_climate: HashSet::new(),
+            role_media: HashSet::new(),
+            role_fan: HashSet::new(),
+            generic: HashSet::new(),
+            room_level: HashSet::new(),
+            extra_device_nouns: HashSet::new(),
+            article_one: HashSet::new(),
+            room_index_nouns: HashSet::new(),
+            chat_greet: HashSet::new(),
+            chat_thanks: HashSet::new(),
+            chat_feeling: HashSet::new(),
+            chat_identity: HashSet::new(),
+            chat_tell: HashSet::new(),
+            chat_yarn: HashSet::new(),
+            chat_world: HashSet::new(),
+            chat_advice: HashSet::new(),
+            chat_open: HashSet::new(),
         }
     }
 
@@ -331,6 +362,10 @@ impl Catalog {
         self.numbers.get(t).copied()
     }
 
+    pub fn number_word(&self, n: i32) -> Option<&'static str> {
+        self.numbers.iter().find(|(_, val)| **val == n).map(|(word, _)| *word)
+    }
+
     pub fn fixture_alias(&self, t: &str) -> &[&str] {
         self.fixture_aliases.get(t).copied().unwrap_or(&[])
     }
@@ -361,5 +396,25 @@ impl Catalog {
 
     pub fn has_english_tens(&self) -> bool {
         self.number_styles.contains(&NumberStyle::EnglishTens)
+    }
+
+    pub fn speech(&self) -> &'static Speech {
+        self.speech.first().copied().unwrap_or(&super::de::PACK.speech)
+    }
+
+    pub fn synonyms<'a>(&'a self, token: &'a str) -> impl Iterator<Item = &'a str> + 'a {
+        self.synonym_pairs.iter().filter_map(move |(a, b)| {
+            if *a == token {
+                Some(*b)
+            } else if *b == token {
+                Some(*a)
+            } else {
+                None
+            }
+        })
+    }
+
+    pub fn scene_token(&self, token: &str) -> String {
+        self.scene_synonyms.iter().find(|(from, _)| *from == token).map(|(_, to)| (*to).to_string()).unwrap_or_else(|| token.to_string())
     }
 }

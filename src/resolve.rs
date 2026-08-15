@@ -1,4 +1,4 @@
-use crate::compound::{is_infra, short_name_token, usable_labels, GENERIC};
+use crate::compound::{is_infra, short_name_token, usable_labels};
 use crate::gaps::assist_visible;
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
@@ -61,16 +61,18 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
 
-    if domain.is_none_or(|d| d == "light") && tokens.iter().any(|t| matches!(t.as_str(), "decke" | "deckenlampe")) {
+    if domain.is_none_or(|d| d == "light") && catalog().any(tokens, &catalog().ceiling) {
         let fixtures: Vec<EntityRec> = home
             .entities
             .iter()
             .filter(|e| assist_visible(e, home))
             .filter(|e| {
                 e.domain == "light"
-                    && (e.name.to_lowercase().contains("decke")
-                        || e.entity_id.contains("decke")
-                        || e.aliases.iter().any(|a| a.contains("decke")))
+                    && catalog().ceiling.iter().any(|needle| {
+                        e.name.to_lowercase().contains(needle)
+                            || e.entity_id.contains(needle)
+                            || e.aliases.iter().any(|a| a.contains(needle))
+                    })
                     && (areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
             })
             .cloned()
@@ -88,7 +90,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     if !areas.is_empty()
         && catalog().any(tokens, &catalog().lamp_fixture)
         && !catalog().any(tokens, &catalog().light_plural)
-        && !tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light"))
+        && !catalog().any(tokens, &catalog().room_level)
     {
         let lights: Vec<EntityRec> = home
             .entities
@@ -123,7 +125,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
     let cat = catalog();
-    let room_level = cat.any(tokens, &cat.light_plural) || tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light" | "alle"));
+    let room_level = cat.any(tokens, &cat.light_plural) || cat.any(tokens, &cat.room_level);
     let needle = if cat.any(tokens, &cat.island) {
         Some("island")
     } else if cat.any(tokens, &cat.pendant) {
@@ -157,15 +159,13 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
 
 fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
-    match needle {
-        "island" => blob.contains("island") || blob.contains("insel"),
-        "pendant" => blob.contains("pendant") || blob.contains("pendel"),
-        "right" => blob.contains("right") || blob.contains("rechts"),
-        "left" => blob.contains("left") || blob.contains("links"),
-        "bedside" => blob.contains("bedside") || blob.contains("nachttisch"),
-        "lamp" => (blob.contains("lamp") || blob.contains("lampe")) && !blob.contains("ceiling") && !blob.contains("decke"),
-        "ceiling" => blob.contains("ceiling") || blob.contains("decke"),
-        _ => false,
+    let aliases = catalog().fixture_alias(needle);
+    let hits: Vec<&str> = if aliases.is_empty() { vec![needle] } else { aliases.to_vec() };
+    let matched = hits.iter().any(|alias| blob.contains(alias));
+    if needle == "lamp" {
+        matched && !catalog().ceiling.iter().any(|word| blob.contains(word))
+    } else {
+        matched
     }
 }
 
@@ -194,15 +194,13 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         .filter(|(s, id)| *s == max || !strong.iter().any(|other| other.split('_').next() == id.split('_').next()))
         .map(|(_, id)| id)
         .collect();
-    if ids.is_empty()
-        && tokens.iter().any(|t| t == "bedroom" || t == "bedrooms")
-        && !tokens.iter().any(|t| matches!(t.as_str(), "2" | "3" | "4" | "two" | "three"))
-        && areas.iter().any(|a| a.area_id == "master_bedroom")
-    {
-        return vec!["master_bedroom".into()];
+    if ids.is_empty() && crate::home_policy::mentions_generic_bedroom(tokens) {
+        if let Some(bedroom) = crate::home_policy::primary_bedroom(&HomeGraph { areas: areas.to_vec(), ..Default::default() }) {
+            return vec![bedroom];
+        }
     }
     if ids.len() > 1 {
-        ids.retain(|id| id != "wohnung");
+        ids.retain(|id| !areas.iter().any(|area| area.area_id == *id && crate::home_policy::is_whole_home(area)));
     }
     ids
 }
@@ -225,35 +223,17 @@ fn token_eq(token: &str, label: &str) -> bool {
     if token == label {
         return true;
     }
-    if number_word(token) == Some(label) || number_word(label) == Some(token) {
+    if number_word(token).as_deref() == Some(label) || number_word(label).as_deref() == Some(token) {
         return true;
     }
-    matches!(
-        (token, label),
-        ("left" | "links", "left" | "links") | ("right" | "rechts", "right" | "rechts") | ("globe" | "kugel", "globe" | "kugel")
-    )
+    catalog().synonyms(token).any(|alias| alias == label) || catalog().synonyms(label).any(|alias| alias == token)
 }
 
-fn number_word(token: &str) -> Option<&'static str> {
-    match token {
-        "one" | "eins" | "eine" => Some("1"),
-        "two" | "zwei" => Some("2"),
-        "three" | "drei" => Some("3"),
-        "four" | "vier" => Some("4"),
-        "five" | "fuenf" => Some("5"),
-        "six" | "sechs" => Some("6"),
-        "seven" | "sieben" => Some("7"),
-        "eight" | "acht" => Some("8"),
-        "1" => Some("one"),
-        "2" => Some("two"),
-        "3" => Some("three"),
-        "4" => Some("four"),
-        "5" => Some("five"),
-        "6" => Some("six"),
-        "7" => Some("seven"),
-        "8" => Some("eight"),
-        _ => None,
+fn number_word(token: &str) -> Option<String> {
+    if let Some(n) = catalog().number(token) {
+        return Some(n.to_string());
     }
+    token.parse::<i32>().ok().and_then(|n| catalog().number_word(n).map(str::to_string))
 }
 
 fn sort_hits(hits: &mut [(f64, EntityRec)], tokens: &[String], home: &HomeGraph) {
@@ -279,11 +259,11 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
         if label.is_empty() {
             continue;
         }
-        if token_hit(tokens, &label) && !GENERIC.contains(&label.as_str()) {
+        if token_hit(tokens, &label) && !catalog().generic.contains(&label.as_str()) {
             best = best.max(if label.contains(' ') || label.contains('_') { 1.0 } else { 0.94 });
             continue;
         }
-        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty() && !GENERIC.contains(p)).collect();
+        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty() && !catalog().generic.contains(p)).collect();
         if parts.len() > 1 && parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p))) {
             best = best.max(0.96);
             continue;
@@ -293,7 +273,7 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
                 best = best.max(0.9);
             }
             for t in tokens {
-                if GENERIC.contains(&t.as_str()) {
+                if catalog().generic.contains(&t.as_str()) {
                     continue;
                 }
                 let s = normalized_levenshtein(t, part);
@@ -324,8 +304,8 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
         if *t == "hue" {
             return Some("light");
         }
-        if matches!(t.as_str(), "tuer" | "door") {
-            if tokens.iter().any(|x| x == "sensor") {
+        if cat.door_nouns.contains(t.as_str()) {
+            if cat.any(tokens, &cat.sensor_words) {
                 return Some("binary_sensor");
             }
             if tokens.iter().any(|x| cat.lock_verbs.contains(x.as_str())) {
@@ -337,12 +317,9 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
             if is_garage_cover(tokens) {
                 return Some("cover");
             }
-            if tokens.iter().any(|x| matches!(x.as_str(), "open" | "close" | "oeffne" | "oeffnen" | "auf" | "zu")) {
-                return Some("lock");
-            }
-            return Some("binary_sensor");
+            return Some("lock");
         }
-        if matches!(t.as_str(), "fenster" | "window" | "windows") {
+        if cat.window_words.contains(t.as_str()) {
             if cat.any(tokens, &cat.sensor_words) {
                 return Some("binary_sensor");
             }
@@ -357,8 +334,7 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
                     || crate::numbers::first_number(tokens).is_some()
                     || is_query_token(tokens)
                     || tokens.iter().any(|x| catalog().color(x).is_some()));
-            let skip_bare_machine = matches!(t.as_str(), "machine" | "appliance" | "geraet")
-                && !tokens.iter().any(|x| matches!(x.as_str(), "laundry" | "washing" | "washer" | "waesche"));
+            let skip_bare_machine = cat.bare_switch.contains(t.as_str()) && !cat.any(tokens, &cat.laundry_hint);
             if skip_laundry || skip_bare_machine {
                 continue;
             }
@@ -378,7 +354,9 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
     if catalog().any(tokens, &catalog().oven) {
         return want("oven");
     }
-    if catalog().any(tokens, &catalog().laundry_timer) || crate::numbers::first_number(tokens) == Some(90) {
+    if catalog().any(tokens, &catalog().laundry_timer)
+        || crate::home_policy::timer_hint(crate::numbers::first_number(tokens)) == Some("laundry")
+    {
         return want("laundry");
     }
     ids.iter().find(|id| id.contains("abstract")).cloned().into_iter().collect()
@@ -423,7 +401,7 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
         || cat.any(tokens, &cat.media_nouns)
         || cat.any(tokens, &cat.timer_nouns)
         || cat.any(tokens, &cat.list_nouns)
-        || tokens.iter().any(|t| matches!(t.as_str(), "status" | "zustand" | "state"))
+        || cat.any(tokens, &cat.status_words)
         || ((cat.any(tokens, &cat.on_words) || cat.any(tokens, &cat.off_words))
             && (tokens.first().is_some_and(|t| cat.is_question_start(t)) || tokens.iter().any(|t| cat.is_question_word(t))))
     {
@@ -443,7 +421,7 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
 pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
     home.areas
         .iter()
-        .filter(|area| area.area_id != "wohnung")
+        .filter(|area| !crate::home_policy::is_whole_home(area))
         .filter(|area| {
             home.entities.iter().any(|entity| {
                 assist_visible(entity, home) && is_light_like(entity) && entity.area.as_deref() == Some(area.area_id.as_str())

@@ -5,8 +5,12 @@
 
 mod catalog;
 mod de;
+mod de_pack;
 mod en;
+mod en_pack;
+mod groups;
 mod pack;
+mod speech;
 mod verbs;
 
 use std::cell::Cell;
@@ -15,6 +19,7 @@ use std::sync::{Mutex, OnceLock};
 
 pub use catalog::Catalog;
 pub use pack::{GroupClarify, LanguagePack, NumberStyle};
+pub use speech::Speech;
 pub use verbs::VerbKind;
 
 use pack::LanguagePack as Pack;
