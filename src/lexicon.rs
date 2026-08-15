@@ -1,4 +1,4 @@
-pub use crate::registry::default_home;
+pub use crate::types::default_home;
 
 use crate::lang::{catalog, VerbKind};
 

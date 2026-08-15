@@ -69,6 +69,22 @@ fn schlafzimmerlicht_ist_die_kugel() {
 }
 
 #[test]
+fn schlafzimmerlicht_ohne_hue_area_id() {
+    let mut home = home();
+    for ent in &mut home.entities {
+        if ent.entity_id == "light.schlafzimmer" || ent.entity_id == "light.hue_color_lamp_2" {
+            ent.area = None;
+        }
+    }
+    let mut session = Session::new();
+    let result = parse("Schlafzimmerlicht auf 50%", &home, &mut session, &[], &Settings::default());
+    let intent = result.intents.first().expect("intent");
+    let entity = intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
+    assert_eq!(entity, Some("light.schlafzimmer"), "{:?}", intent.slots);
+    assert_ne!(entity, Some("light.schlafzimmer_ambilight"));
+}
+
+#[test]
 fn raumlicht_ohne_diebstahl() {
     assert_target(
         "Küchenlicht an",
