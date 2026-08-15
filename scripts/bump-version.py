@@ -23,6 +23,11 @@ def main() -> None:
         raise SystemExit("usage: bump-version.py X.Y.Z")
     version = sys.argv[1]
     replace_once(ROOT / "Cargo.toml", r'^version = "[^"]+"', f'version = "{version}"')
+    replace_once(
+        ROOT / "Cargo.lock",
+        r'(?<=name = "klar-nlu"\nversion = ")[^"]+',
+        version,
+    )
     replace_once(ROOT / "config.yaml", r'^version: "[^"]+"', f'version: "{version}"')
     replace_once(ROOT / "addon/config.yaml", r'^version: "[^"]+"', f'version: "{version}"')
     replace_once(
