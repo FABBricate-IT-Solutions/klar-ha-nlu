@@ -17,7 +17,7 @@ from homeassistant.components.homeassistant.exposed_entities import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import intent
+from homeassistant.helpers import area_registry, intent
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -37,7 +37,7 @@ from .const import (
     PERSONALITIES,
     SUPPORTED_LANGUAGES,
 )
-from .fallback import agent_has_home_control, chat_only_prompt
+from .fallback import agent_has_home_control, can_use_fallback_agent, chat_only_prompt
 from .speech import from_handled, style
 
 _LOGGER = logging.getLogger(__name__)
@@ -117,6 +117,13 @@ def _get_state_has_target(item: dict[str, Any]) -> bool:
         and slot.get("name") in {"area", "entity_id", "name", "device_class", "domain"}
         for slot in (item.get("slots") or [])
     )
+
+
+def _area_label(hass: HomeAssistant, area_id: str) -> str:
+    if not area_id:
+        return ""
+    area = area_registry.async_get(hass).async_get_area(area_id)
+    return str(getattr(area, "name", None) or area_id)
 
 
 def _speech_from_result(result: ConversationResult) -> str:
@@ -248,7 +255,9 @@ class KlarConversationEntity(ConversationEntity):
         personality = self._personality()
 
         if not clarify and not intents and not payload.get("unreachable"):
-            fallback = await self._fallback(user_input, chat_log, pack)
+            fallback = await self._fallback(
+                user_input, chat_log, pack, bool(payload.get("chat"))
+            )
             if fallback is not None:
                 return fallback
 
@@ -281,11 +290,12 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
         pack: str,
+        chat: bool = False,
     ) -> ConversationResult | None:
         agent_id = self._fallback_agent_id()
         if not agent_id:
             return None
-        if self._agent_controls_home(agent_id):
+        if not can_use_fallback_agent(self._agent_controls_home(agent_id), chat):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
             return None
         extra = getattr(user_input, "extra_system_prompt", None)
@@ -452,4 +462,11 @@ class KlarConversationEntity(ConversationEntity):
             return await self._invoke_intent(
                 user_input, "HassClimateGetTemperature", climate, pack, item
             )
+        if name == "HassGetState" and "area" in slots and "entity_id" not in slots:
+            label = _area_label(self.hass, str(slots["area"].get("value") or ""))
+            if label:
+                item = {
+                    **item,
+                    "slots": [*(item.get("slots") or []), {"name": "area_name", "value": label}],
+                }
         return await self._invoke_intent(user_input, name, slots, pack, item)

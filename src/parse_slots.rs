@@ -31,7 +31,7 @@ pub(crate) fn all_lights_clause(
     let intents: Vec<Intent> = rooms
         .into_iter()
         .filter_map(|area| {
-            let (id, slot, dom) = area_slots(action, area, Some("light"), home);
+            let (id, slot, dom) = area_slots(action, area, Some("light"), home, tokens);
             let intent = fill_intent(action, tokens, number, id.as_deref(), slot.as_deref(), dom.as_deref());
             (intent.name != "Unknown").then_some(intent)
         })

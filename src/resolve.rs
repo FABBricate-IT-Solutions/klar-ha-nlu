@@ -25,6 +25,11 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         .filter(|e| domain.is_none_or(|d| matches_domain(e, d)))
         .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
         .collect();
+    if domain == Some("climate") {
+        if let Some(kind) = crate::roles::wanted_climate_kind(tokens) {
+            candidates.retain(|(_, entity)| crate::roles::climate_kind(entity) == Some(kind));
+        }
+    }
     if !areas.is_empty() {
         let in_area: Vec<(f64, EntityRec)> =
             candidates.iter().filter(|(_, e)| e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
@@ -379,12 +384,14 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
     ids.iter().find(|id| id.contains("abstract")).cloned().into_iter().collect()
 }
 
-pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option<String> {
+pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens: &[String]) -> Option<String> {
+    let kind = (domain == "climate").then(|| crate::roles::wanted_climate_kind(tokens)).flatten();
     let hits: Vec<&str> = home
         .entities
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| matches_domain(e, domain) && !is_infra(e) && e.area.as_deref() == Some(area))
+        .filter(|e| kind.is_none_or(|want| crate::roles::climate_kind(e) == Some(want)))
         .map(|e| e.entity_id.as_str())
         .collect();
     (hits.len() == 1).then(|| hits[0].to_string())

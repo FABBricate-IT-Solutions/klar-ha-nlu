@@ -1,3 +1,4 @@
+use crate::chat::wants_llm;
 use crate::compound::{apply_compound_light, area_slots, expand_compounds, named_scene_or_script, query_keeps_entity};
 use crate::gaps::assist_visible;
 use crate::lang::catalog;
@@ -24,6 +25,17 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     let split = expand_compounds(&strip_fillers(&raw_tokens), home);
     let tokens = split.tokens;
 
+    if wants_llm(&raw_tokens, home) || wants_llm(&tokens, home) {
+        return ParseResult {
+            text: text.to_string(),
+            intents: Vec::new(),
+            speech: String::new(),
+            clarify: false,
+            conversation_id: session.id.clone(),
+            chat: true,
+        };
+    }
+
     if looks_like_correction(&tokens) {
         session.mark_wrong();
         return ParseResult {
@@ -32,6 +44,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
             speech: speak_correction(),
             clarify: false,
             conversation_id: session.id.clone(),
+            chat: false,
         };
     }
 
@@ -51,6 +64,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
                 speech: speak(&[intent], settings.personality, false, Some(home)),
                 clarify: false,
                 conversation_id: session.id.clone(),
+                chat: false,
             };
         }
     }
@@ -73,6 +87,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
                 speech,
                 clarify: false,
                 conversation_id: session.id.clone(),
+                chat: false,
             };
         }
     }
@@ -80,7 +95,14 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     if let Some(hit) = match_custom(&tokens, text, custom) {
         session.remember(&hit);
         let speech = speak(std::slice::from_ref(&hit), settings.personality, false, Some(home));
-        return ParseResult { text: text.to_string(), intents: vec![hit], speech, clarify: false, conversation_id: session.id.clone() };
+        return ParseResult {
+            text: text.to_string(),
+            intents: vec![hit],
+            speech,
+            clarify: false,
+            conversation_id: session.id.clone(),
+            chat: false,
+        };
     }
 
     let clauses = split_clauses(&tokens, home);
@@ -105,7 +127,14 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
 
     if !clarify_names.is_empty() {
         let speech = speak_clarify(&clarify_names, Some(home));
-        return ParseResult { text: text.to_string(), intents: Vec::new(), speech, clarify: true, conversation_id: session.id.clone() };
+        return ParseResult {
+            text: text.to_string(),
+            intents: Vec::new(),
+            speech,
+            clarify: true,
+            conversation_id: session.id.clone(),
+            chat: false,
+        };
     }
 
     if intents.is_empty() {
@@ -130,6 +159,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
                 speech: speak_need_target(catalog().any(&tokens, &catalog().off_words)),
                 clarify: true,
                 conversation_id: session.id.clone(),
+                chat: false,
             };
         }
     }
@@ -137,7 +167,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
         session.remember(intent);
     }
     let speech = if intents.is_empty() { speak_unknown() } else { speak(&intents, settings.personality, false, Some(home)) };
-    ParseResult { text: text.to_string(), intents, speech, clarify: false, conversation_id: session.id.clone() }
+    ParseResult { text: text.to_string(), intents, speech, clarify: false, conversation_id: session.id.clone(), chat: false }
 }
 
 enum ClauseOut {
@@ -323,7 +353,7 @@ fn parse_clause(
             }
         }
         for area in &resolved.areas {
-            let (id, area_slot, dom) = area_slots(action, area, domain, home);
+            let (id, area_slot, dom) = area_slots(action, area, domain, home, tokens);
             intents.push(fill_intent(action, tokens, number, id.as_deref(), area_slot.as_deref(), dom.as_deref()));
         }
         return finish_intents(intents, action, tokens, number, &resolved.areas, domain, home);
@@ -362,14 +392,15 @@ fn parse_clause(
         }
     } else if session.last_areas.len() > 1 && matches!(domain, Some("climate") | Some("cover")) {
         for area in &session.last_areas {
-            let id = domain.and_then(|d| unique_in_area(home, area, d));
+            let id = domain.and_then(|d| unique_in_area(home, area, d, tokens));
             intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(area), domain));
         }
     } else if let Some(prev) = last_visible(session, home).filter(|id| domain.is_none_or(|d| id.starts_with(&format!("{d}.")))) {
         intents.push(fill_intent(action, tokens, number, Some(prev), None, domain));
     } else if !session.last_areas.is_empty() {
         for area in &session.last_areas {
-            let id = domain.filter(|d| matches!(*d, "climate" | "media_player" | "fan")).and_then(|d| unique_in_area(home, area, d));
+            let id =
+                domain.filter(|d| matches!(*d, "climate" | "media_player" | "fan")).and_then(|d| unique_in_area(home, area, d, tokens));
             intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(area), domain));
         }
     } else if matches!(action, Action::On | Action::Off | Action::Toggle)

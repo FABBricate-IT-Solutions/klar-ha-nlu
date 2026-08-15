@@ -184,7 +184,7 @@ fn describe_de(intent: &Intent, where_: &str, area: &str) -> String {
         }
         "HassClimateSetTemperature" => {
             let t = intent.slot("temperature").unwrap_or("?");
-            format!("Heizung {target} auf {t} Grad.")
+            format!("{} {target} auf {t} Grad.", climate_noun(intent, false))
         }
         "HassGetState" => {
             if intent.slot("device_class") == Some("temperature") {
@@ -224,7 +224,7 @@ fn describe_en(intent: &Intent, where_: &str, area: &str) -> String {
         }
         "HassClimateSetTemperature" => {
             let t = intent.slot("temperature").unwrap_or("?");
-            format!("Heat {target} is at {t} degrees.")
+            format!("{} {target} is at {t} degrees.", climate_noun(intent, true))
         }
         "HassGetState" => {
             if intent.slot("device_class") == Some("temperature") {
@@ -248,6 +248,22 @@ fn describe_en(intent: &Intent, where_: &str, area: &str) -> String {
         "HassPauseTimer" => "Timer is paused.".into(),
         "HassListAddItem" | "HassShoppingListAddItem" => "Added to the list.".into(),
         other => format!("Done: {other}."),
+    }
+}
+
+fn climate_noun(intent: &Intent, en: bool) -> &'static str {
+    let id = intent.slot("entity_id").unwrap_or("");
+    let cool = id.contains("_ac") || (id.contains("klima") && !id.contains("thermostat"));
+    if en {
+        if cool {
+            "AC"
+        } else {
+            "Heat"
+        }
+    } else if cool {
+        "Klimaanlage"
+    } else {
+        "Heizung"
     }
 }
 

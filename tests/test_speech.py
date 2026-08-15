@@ -58,6 +58,39 @@ class SpeechTests(unittest.TestCase):
         self.assertIn("Kugel", spoken)
         self.assertNotIn("light.", spoken)
 
+    def test_kitchen_status_names_the_room(self) -> None:
+        handled = _States(
+            [
+                _State("light.kuche_kuche", "off", "Licht"),
+            ]
+        )
+        item = {
+            "name": "HassGetState",
+            "slots": [
+                {"name": "area", "value": "kuche"},
+                {"name": "area_name", "value": "Küche"},
+            ],
+        }
+        spoken = speech.from_handled(handled, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("Küche", spoken)
+        self.assertIn("aus", spoken)
+        self.assertNotEqual(spoken, "Licht ist aus.")
+
+
+class _State:
+    def __init__(self, entity_id: str, state: str, name: str) -> None:
+        self.entity_id = entity_id
+        self.state = state
+        self.name = name
+        self.attributes = {"friendly_name": name}
+
+
+class _States:
+    def __init__(self, states: list[_State]) -> None:
+        self.matched_states = states
+        self.response_type = "query_answer"
+
 
 if __name__ == "__main__":
     unittest.main()

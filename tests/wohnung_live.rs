@@ -165,6 +165,19 @@ fn geraet_nicht_raum_oder_szene() {
     assert_target("Wie ist der Status von Schlafzimmer", "HassGetState", &["schlafzimmer"], &["light.alle_lichter"]);
     assert_target("wie ist der status von der Küche?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
     assert_target("Wie ist der Status von der Küche", "HassGetState", &["kuche"], &["light.kuche_kuche"]);
+    assert_target("Wie ist der Status der Küche?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
+    assert_target("What's the status of the kitchen?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
+    let (_, kitchen, _) = slots("Wie ist der Status der Küche?");
+    assert_eq!(slot(&kitchen, "area"), Some("kuche"), "{kitchen:?}");
+    assert!(slot(&kitchen, "entity_id").is_none(), "{kitchen:?}");
+
+    let home = home();
+    let mut session = Session::new();
+    let chat = parse("Wie geht es dir?", &home, &mut session, &[], &Settings::default());
+    assert!(chat.intents.is_empty(), "{:?}", chat.intents);
+    assert!(chat.chat, "Smalltalk muss zum LLM");
+    let status = parse("Wie ist der Status der Küche?", &home, &mut session, &[], &Settings::default());
+    assert!(!status.chat, "{:?}", status.intents);
 }
 
 #[test]

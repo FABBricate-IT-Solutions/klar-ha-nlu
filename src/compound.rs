@@ -3,6 +3,7 @@ use crate::lang::catalog;
 use crate::lexicon::Action;
 use crate::normalize::{compact, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph};
+use std::collections::HashSet;
 
 pub use crate::overlay::{apply_overlay, load_overlay, overlay_path, save_overlay, Overlay};
 
@@ -372,6 +373,9 @@ pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: 
     if cat.any(tokens, &cat.media_nouns) || tokens.iter().any(|t| matches!(t.as_str(), "steckdose" | "outlet")) {
         return true;
     }
+    if room_status_only(tokens, home, resolved) {
+        return false;
+    }
     if !resolved.areas.is_empty()
         && cat.any(tokens, &cat.light_nouns)
         && !cat.any(tokens, &cat.ceiling)
@@ -383,11 +387,42 @@ pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: 
     resolved.entities.iter().any(|e| e.domain != "light" || !is_generic_room_light(e, home))
 }
 
+fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved) -> bool {
+    if resolved.areas.is_empty() || !tokens.iter().any(|t| matches!(t.as_str(), "status" | "zustand" | "state")) {
+        return false;
+    }
+    let cat = catalog();
+    let rooms = area_words(home, &resolved.areas);
+    tokens.iter().all(|token| {
+        cat.is_filler(token)
+            || cat.is_particle(token)
+            || cat.is_query_hint(token)
+            || cat.is_question_word(token)
+            || cat.is_question_start(token)
+            || matches!(token.as_str(), "status" | "zustand" | "state" | "of" | "the")
+            || rooms.contains(token)
+    })
+}
+
+fn area_words(home: &HomeGraph, areas: &[String]) -> HashSet<String> {
+    let mut words = HashSet::new();
+    for id in areas {
+        let Some(area) = home.areas.iter().find(|area| area.area_id == *id) else {
+            continue;
+        };
+        words.insert(compact(&area.area_id));
+        words.insert(compact(&area.name));
+        words.extend(area.aliases.iter().map(|alias| compact(alias)));
+    }
+    words
+}
+
 pub(crate) fn area_slots(
     action: Action,
     area: &str,
     domain: Option<&str>,
     home: &HomeGraph,
+    tokens: &[String],
 ) -> (Option<String>, Option<String>, Option<String>) {
     if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
         if let Some(id) = room_light_id(home, area) {
@@ -398,8 +433,9 @@ pub(crate) fn area_slots(
         }
         return (None, Some(area.to_string()), Some("light".into()));
     }
-    let id =
-        domain.filter(|d| matches!(*d, "climate" | "media_player" | "fan")).and_then(|d| crate::resolve::unique_in_area(home, area, d));
+    let id = domain
+        .filter(|d| matches!(*d, "climate" | "media_player" | "fan"))
+        .and_then(|d| crate::resolve::unique_in_area(home, area, d, tokens));
     (id, Some(area.to_string()), domain.map(str::to_string))
 }
 

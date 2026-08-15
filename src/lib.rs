@@ -1,3 +1,4 @@
+mod chat;
 pub mod compound;
 pub mod expose;
 pub mod gaps;

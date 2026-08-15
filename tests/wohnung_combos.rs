@@ -59,6 +59,19 @@ fn heizung_klima_sauger() {
         &["climate.schlafzimmer_ac"],
         &["switch.153931629583704_power", "climate.better_thermostat_schlafzimmer"],
     );
+    expect(
+        "Klimaanlage auf 20",
+        "HassClimateSetTemperature",
+        &["climate.schlafzimmer_ac"],
+        &["climate.better_thermostat_schlafzimmer", "climate.heizung_schlafzimmer"],
+    );
+    expect(
+        "Klimaanlage auf 20 Grad",
+        "HassClimateSetTemperature",
+        &["climate.schlafzimmer_ac"],
+        &["climate.better_thermostat_schlafzimmer"],
+    );
+    expect("Klimaanlage auf 20°", "HassClimateSetTemperature", &["climate.schlafzimmer_ac"], &["climate.better_thermostat_schlafzimmer"]);
     expect("Staubsauger Status", "HassGetState", &["vacuum.r2d2"], &["switch.r2d2_fill_light", "switch.r2d2_child_lock"]);
     expect("R2D2 zur Station", "HassVacuumReturnToBase", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
     expect("Staubsauger starten", "HassVacuumStart", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
