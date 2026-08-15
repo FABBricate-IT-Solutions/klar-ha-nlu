@@ -32,7 +32,7 @@ Response:
 }
 ```
 
-`language` is optional (`de`, `en`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request so Assist can switch between German and English.
+`language` is optional (`de`, `en`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request so Assist can switch between German and English. `speech` follows the pinned pack.
 
 `clarify: true` means: do not run intents, speak the question in `speech`, keep the same `conversation_id` for the answer.
 

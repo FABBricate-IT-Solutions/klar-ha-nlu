@@ -97,6 +97,58 @@ fn licht_nicht_mehrdeutig() {
 }
 
 #[test]
+fn licht_ohne_raum_fragt_nach() {
+    let (names, clarify) = run("Mach das Licht an");
+    assert!(clarify, "{names:?}");
+    assert!(names.is_empty(), "{names:?}");
+}
+
+#[test]
+fn sauger_status_dock_kein_return() {
+    let found = slots("Ist R2D2 am Dock");
+    assert_eq!(found.len(), 1, "{found:?}");
+    assert_eq!(found[0].0, "HassGetState");
+}
+
+#[test]
+fn timer_nutzt_minutes() {
+    let found = slots("Stell einen Timer auf fünf Minuten");
+    assert_eq!(found[0].0, "HassStartTimer", "{found:?}");
+    assert!(
+        found[0].1.iter().any(|(k, v)| k == "minutes" && v == "5"),
+        "{found:?}"
+    );
+    assert!(!found[0].1.iter().any(|(k, _)| k == "duration"), "{found:?}");
+}
+
+#[test]
+fn einkaufsliste_heisst_list_add() {
+    let found = slots("Setze Milch auf die Einkaufsliste");
+    assert_eq!(found[0].0, "HassListAddItem", "{found:?}");
+    assert!(
+        found[0].1.iter().any(|(k, v)| k == "item" && v.contains("milch")),
+        "{found:?}"
+    );
+    assert!(
+        found[0].1.iter().any(|(k, v)| k == "name" && v == "shopping_list"),
+        "{found:?}"
+    );
+}
+
+#[test]
+fn smalltalk_hat_keinen_home_intent() {
+    for text in [
+        "Was ist die Hauptstadt von Frankreich",
+        "Erzähl einen Katzenwitz",
+        "asdfghjkl qwerty",
+    ] {
+        let (names, clarify) = run(text);
+        assert!(!clarify, "{text}: {names:?}");
+        assert!(names.is_empty(), "{text}: {names:?}");
+    }
+}
+
+#[test]
 fn follow_up_aus() {
     let home = default_home();
     let mut session = Session::new();

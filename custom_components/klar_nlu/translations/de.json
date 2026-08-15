@@ -22,7 +22,11 @@
         "data": {
           "languages": "Sprachen",
           "fallback_agent": "Conversation-Agent für Smalltalk",
-          "url": "URL der Klar-API"
+          "url": "URL der Klar-API",
+          "assist_filter": "Nur für Assist freigegebene Entitäten steuern"
+        },
+        "data_description": {
+          "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät."
         }
       }
     }

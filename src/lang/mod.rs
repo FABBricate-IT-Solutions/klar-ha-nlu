@@ -450,6 +450,11 @@ pub fn catalog() -> &'static Catalog {
     CURRENT.with(|c| c.get()).unwrap_or_else(default_catalog)
 }
 
+/// Language of spoken replies: the first bound pack (`en` when Assist pins English).
+pub fn speech_lang() -> LangId {
+    catalog().langs.first().copied().unwrap_or(LangId::De)
+}
+
 pub struct CatalogBind {
     prev: Option<&'static Catalog>,
 }

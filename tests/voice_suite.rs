@@ -120,7 +120,12 @@ fn expected_intent_names(cond: &Condition) -> Vec<&'static str> {
         return vec!["HassGetState"];
     }
     if cond.kind == "shopping_list" || cond.kind == "todo_list" || cond.item.is_some() {
-        return vec!["HassShoppingListAddItem", "HassShoppingListCompleteItem"];
+        return vec![
+            "HassListAddItem",
+            "HassListCompleteItem",
+            "HassShoppingListAddItem",
+            "HassShoppingListCompleteItem",
+        ];
     }
     if cond.minutes.is_some()
         || cond.hours.is_some()

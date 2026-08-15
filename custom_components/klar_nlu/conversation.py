@@ -18,9 +18,11 @@ from homeassistant.helpers import intent
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
+    CONF_ASSIST_FILTER,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_URL,
+    DEFAULT_ASSIST_FILTER,
     DEFAULT_URL,
     LANGUAGE_VARIANTS,
     SUPPORTED_LANGUAGES,
@@ -46,6 +48,15 @@ _UNREACHABLE = {
 
 _DONE = {"de": "Erledigt.", "en": "Done."}
 
+_ACTION = {
+    "HassTurnOn": {"de": "Schalte {where} ein.", "en": "Turn on {where}."},
+    "HassTurnOff": {"de": "Schalte {where} aus.", "en": "Turn off {where}."},
+    "HassToggle": {"de": "Schalte {where} um.", "en": "Toggle {where}."},
+    "HassLightSet": {"de": "Setze {where}.", "en": "Set {where}."},
+}
+
+_DE_ENGINE = ("Schalte", "Frage", "Setze", "Sag mir", "Meinst du")
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -56,11 +67,22 @@ async def async_setup_entry(
 
 
 def _home_intents(intents: list[Any]) -> list[dict[str, Any]]:
-    return [
-        item
-        for item in intents
-        if isinstance(item, dict) and item.get("name") and item["name"] != "Unknown"
-    ]
+    out: list[dict[str, Any]] = []
+    for item in intents:
+        if not isinstance(item, dict) or not item.get("name") or item["name"] == "Unknown":
+            continue
+        if item["name"] == "HassGetState" and not _get_state_has_target(item):
+            continue
+        out.append(item)
+    return out
+
+
+def _get_state_has_target(item: dict[str, Any]) -> bool:
+    return any(
+        isinstance(slot, dict)
+        and slot.get("name") in {"area", "entity_id", "name", "device_class", "domain"}
+        for slot in (item.get("slots") or [])
+    )
 
 
 def _speech_from_result(result: ConversationResult) -> str:
@@ -69,12 +91,13 @@ def _speech_from_result(result: ConversationResult) -> str:
     return str(plain.get("speech") or "")
 
 
-def _pack(language: str | None) -> str:
-    if not language:
-        return "de"
-    code = language.replace("_", "-").split("-", 1)[0].lower()
-    if code in SUPPORTED_LANGUAGES:
-        return code
+def _pack(language: str | None, enabled: list[str] | None = None) -> str:
+    if language:
+        code = language.replace("_", "-").split("-", 1)[0].lower()
+        if code in SUPPORTED_LANGUAGES:
+            return code
+    if enabled:
+        return enabled[0]
     return "de"
 
 
@@ -91,6 +114,101 @@ def _advertise(packs: list[str]) -> list[str]:
     for pack in packs:
         out.extend(LANGUAGE_VARIANTS.get(pack, (pack,)))
     return out
+
+
+def _plain_speech(handled: Any) -> str:
+    speech = getattr(handled, "speech", None) or {}
+    plain = speech.get("plain") if isinstance(speech, dict) else None
+    if isinstance(plain, dict):
+        text = str(plain.get("speech") or "").strip()
+        if text:
+            return text
+    as_dict = getattr(handled, "as_dict", None)
+    if callable(as_dict):
+        data = as_dict()
+        nested = (data.get("speech") or {}).get("plain") or {}
+        return str(nested.get("speech") or "").strip()
+    return ""
+
+
+def _is_query(handled: Any, name: str) -> bool:
+    rtype = getattr(handled, "response_type", None)
+    value = getattr(rtype, "value", rtype)
+    return str(value) == "query_answer" or name in {
+        "HassGetState",
+        "HassClimateGetTemperature",
+    }
+
+
+def _state_value(state: Any) -> tuple[str, str]:
+    unit = ""
+    attrs = getattr(state, "attributes", None) or {}
+    if isinstance(attrs, dict):
+        unit = str(attrs.get("unit_of_measurement") or "")
+        name = str(attrs.get("friendly_name") or "")
+    else:
+        name = ""
+    name = name or str(getattr(state, "name", None) or getattr(state, "entity_id", ""))
+    value = str(getattr(state, "state", "")).replace(".", ",")
+    spoken = f"{value} {unit}".strip() if unit else value
+    return name, spoken
+
+
+def _query_speech(handled: Any, pack: str) -> str:
+    states = list(getattr(handled, "matched_states", None) or [])
+    if not states:
+        states = list(getattr(handled, "unmatched_states", None) or [])
+    parts: list[str] = []
+    for state in states[:4]:
+        name, spoken = _state_value(state)
+        if not name or not spoken:
+            continue
+        if pack == "en":
+            parts.append(f"{name} is {spoken.replace(',', '.')}.")
+        else:
+            parts.append(f"{name}: {spoken}.")
+    return " ".join(parts)
+
+
+def _where(handled: Any, item: dict) -> str:
+    names = [
+        str(getattr(target, "name", None) or getattr(target, "id", "") or "")
+        for target in getattr(handled, "success_results", None) or []
+    ]
+    names = [name for name in names if name]
+    if names:
+        return ", ".join(dict.fromkeys(names))
+    slots = {
+        slot["name"]: slot["value"]
+        for slot in item.get("slots") or []
+        if isinstance(slot, dict) and slot.get("name")
+    }
+    return str(slots.get("area") or slots.get("name") or slots.get("entity_id") or "")
+
+
+def _speech_from_handled(handled: Any, pack: str, item: dict) -> str | None:
+    text = _plain_speech(handled)
+    if text:
+        return text
+    name = str(item.get("name") or "")
+    if _is_query(handled, name):
+        query = _query_speech(handled, pack)
+        if query:
+            return query
+    where = _where(handled, item) or ("home" if pack == "en" else "Zuhause")
+    template = (_ACTION.get(name) or {}).get(pack)
+    if template:
+        return template.format(where=where)
+    query = _query_speech(handled, pack)
+    return query or None
+
+
+def _engine_ok(speech: str, pack: str) -> bool:
+    if not speech:
+        return False
+    if pack != "en":
+        return True
+    return not any(marker in speech for marker in _DE_ENGINE)
 
 
 class KlarConversationEntity(ConversationEntity):
@@ -120,16 +238,22 @@ class KlarConversationEntity(ConversationEntity):
             return None
         return agent_id
 
+    def _assistant(self) -> str | None:
+        if self._entry.options.get(CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER):
+            return "conversation"
+        return None
+
     async def _async_handle_message(
         self,
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
-        pack = _pack(user_input.language)
+        pack = _pack(user_input.language, _enabled_packs(self._entry))
         payload = await self._parse(
-            user_input.text, user_input.conversation_id, user_input.language
+            user_input.text, user_input.conversation_id, pack
         )
-        speech = payload.get("speech") or _DONE[pack]
+        engine_speech = str(payload.get("speech") or "")
+        speech = engine_speech if _engine_ok(engine_speech, pack) else _DONE[pack]
         intents = _home_intents(payload.get("intents") or [])
         clarify = bool(payload.get("clarify"))
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
@@ -139,8 +263,16 @@ class KlarConversationEntity(ConversationEntity):
             if fallback is not None:
                 return fallback
 
+        names = {item.get("name") for item in intents}
+        spoken: list[str] = []
         for item in intents:
-            await self._handle_intent(user_input, item)
+            if item.get("name") == "HassVacuumReturnToBase" and "HassGetState" in names:
+                continue
+            ha_speech = await self._handle_intent(user_input, item, pack)
+            if ha_speech:
+                spoken.append(ha_speech)
+        if spoken:
+            speech = " ".join(spoken)
 
         chat_log.async_add_assistant_content_without_tools(
             AssistantContent(agent_id=user_input.agent_id, content=speech)
@@ -193,10 +325,12 @@ class KlarConversationEntity(ConversationEntity):
         self, text: str, conversation_id: str | None, language: str | None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/parse"
-        body: dict[str, Any] = {"text": text, "conversation_id": conversation_id}
-        pack = _pack(language)
-        if language:
-            body["language"] = pack
+        pack = _pack(language, _enabled_packs(self._entry))
+        body: dict[str, Any] = {
+            "text": text,
+            "conversation_id": conversation_id,
+            "language": pack,
+        }
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(
@@ -214,20 +348,34 @@ class KlarConversationEntity(ConversationEntity):
                 "unreachable": True,
             }
 
-    async def _handle_intent(self, user_input: ConversationInput, item: dict) -> None:
+    async def _handle_intent(
+        self, user_input: ConversationInput, item: dict, pack: str
+    ) -> str | None:
         name = item.get("name")
         if not name:
-            return
+            return None
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
+        if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
+            slots.pop("domain", None)
+        if name in {"HassShoppingListAddItem", "HassShoppingListCompleteItem"}:
+            name = name.replace("HassShoppingList", "HassList")
+            slots.setdefault("name", {"value": "shopping_list"})
+        if name in {"HassStartTimer", "HassIncreaseTimer"} and "duration" in slots:
+            duration = slots.pop("duration")
+            if "minutes" not in slots and "hours" not in slots and "seconds" not in slots:
+                slots["minutes"] = duration
         try:
-            await intent.async_handle(
+            handled = await intent.async_handle(
                 self.hass,
                 "klar_nlu",
                 name,
                 slots,
                 user_input.text,
                 user_input.context,
-                user_input.language or "de",
+                user_input.language or pack,
+                assistant=self._assistant(),
             )
-        except intent.IntentHandleError as err:
+        except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
             _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
+            return None
+        return _speech_from_handled(handled, pack, item)

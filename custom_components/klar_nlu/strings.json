@@ -22,7 +22,11 @@
         "data": {
           "languages": "Languages",
           "fallback_agent": "Conversation agent for chit-chat",
-          "url": "Klar API URL"
+          "url": "Klar API URL",
+          "assist_filter": "Only control entities exposed to Assist"
+        },
+        "data_description": {
+          "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device."
         }
       }
     }

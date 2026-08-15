@@ -1,14 +1,48 @@
+use crate::lang::{speech_lang, LangId};
 use crate::types::{Intent, Personality};
 
 pub fn speak(intents: &[Intent], personality: Personality, clarify: bool) -> String {
+    let en = speech_lang() == LangId::En;
     if clarify {
-        return "Sag mir welches Gerät du meinst.".into();
+        return if en {
+            "Tell me which device you mean.".into()
+        } else {
+            "Sag mir welches Gerät du meinst.".into()
+        };
     }
     if intents.is_empty() {
-        return "Nichts erkannt.".into();
+        return speak_unknown();
     }
     let body = intents.iter().map(describe).collect::<Vec<_>>().join(" ");
-    wrap(personality, &body)
+    wrap(personality, &body, en)
+}
+
+pub fn speak_unknown() -> String {
+    if speech_lang() == LangId::En {
+        "I did not match that. Try: turn on the living room light.".into()
+    } else {
+        "Das habe ich nicht zugeordnet. Sag zum Beispiel: Licht im Wohnzimmer an.".into()
+    }
+}
+
+pub fn speak_correction() -> String {
+    if speech_lang() == LangId::En {
+        "Noted. I will treat the last sentence as a misread.".into()
+    } else {
+        "Notiert. Den letzten Satz lege ich als Fehlinterpretation ab.".into()
+    }
+}
+
+pub fn speak_clarify(names: &[String]) -> String {
+    let labels: Vec<String> = names
+        .iter()
+        .map(|id| id.rsplit('.').next().unwrap_or(id).replace('_', " "))
+        .collect();
+    if speech_lang() == LangId::En {
+        format!("Do you mean {}?", labels.join(" or "))
+    } else {
+        format!("Meinst du {}?", labels.join(" oder "))
+    }
 }
 
 fn describe(intent: &Intent) -> String {
@@ -24,14 +58,21 @@ fn describe(intent: &Intent) -> String {
     } else {
         String::new()
     };
+    if speech_lang() == LangId::En {
+        describe_en(intent, &where_, area)
+    } else {
+        describe_de(intent, &where_, area)
+    }
+}
 
+fn describe_de(intent: &Intent, where_: &str, area: &str) -> String {
     match intent.name.as_str() {
-        "HassTurnOn" => format!("Schalte {} ein.", or_home(&where_)),
-        "HassTurnOff" => format!("Schalte {} aus.", or_home(&where_)),
-        "HassToggle" => format!("Schalte {} um.", or_home(&where_)),
+        "HassTurnOn" => format!("Schalte {} ein.", or_home(where_, false)),
+        "HassTurnOff" => format!("Schalte {} aus.", or_home(where_, false)),
+        "HassToggle" => format!("Schalte {} um.", or_home(where_, false)),
         "HassLightSet" => {
             let bri = intent.slot("brightness").unwrap_or("?");
-            format!("Setze {} auf {bri} Prozent.", or_home(&where_))
+            format!("Setze {} auf {bri} Prozent.", or_home(where_, false))
         }
         "HassClimateSetTemperature" => {
             let t = intent.slot("temperature").unwrap_or("?");
@@ -39,9 +80,9 @@ fn describe(intent: &Intent) -> String {
         }
         "HassGetState" => {
             if intent.slot("device_class") == Some("temperature") {
-                format!("Frage die Temperatur {} ab.", loc(area))
+                format!("Frage die Temperatur {} ab.", loc(area, false))
             } else {
-                format!("Frage den Zustand {} ab.", or_home(&where_))
+                format!("Frage den Zustand {} ab.", or_home(where_, false))
             }
         }
         "HassMediaPause" => "Pausiere die Wiedergabe.".into(),
@@ -54,7 +95,45 @@ fn describe(intent: &Intent) -> String {
         }
         "HassVacuumStart" => "R2D2 soll saugen.".into(),
         "HassVacuumReturnToBase" => "R2D2 zurück zur Station.".into(),
+        "HassStartTimer" => "Timer gestartet.".into(),
+        "HassListAddItem" | "HassShoppingListAddItem" => "Auf die Liste.".into(),
         other => format!("Führe {other} aus."),
+    }
+}
+
+fn describe_en(intent: &Intent, where_: &str, area: &str) -> String {
+    match intent.name.as_str() {
+        "HassTurnOn" => format!("Turn on {}.", or_home(where_, true)),
+        "HassTurnOff" => format!("Turn off {}.", or_home(where_, true)),
+        "HassToggle" => format!("Toggle {}.", or_home(where_, true)),
+        "HassLightSet" => {
+            let bri = intent.slot("brightness").unwrap_or("?");
+            format!("Set {} to {bri} percent.", or_home(where_, true))
+        }
+        "HassClimateSetTemperature" => {
+            let t = intent.slot("temperature").unwrap_or("?");
+            format!("Set heat {} to {t} degrees.", where_.trim())
+        }
+        "HassGetState" => {
+            if intent.slot("device_class") == Some("temperature") {
+                format!("Checking the temperature {}.", loc(area, true))
+            } else {
+                format!("Checking the state of {}.", or_home(where_, true))
+            }
+        }
+        "HassMediaPause" => "Pausing playback.".into(),
+        "HassMediaUnpause" => "Resuming playback.".into(),
+        "HassMediaNext" => "Next track.".into(),
+        "HassMediaPlayerMute" => "Muted.".into(),
+        "HassFanSetSpeed" => {
+            let p = intent.slot("percentage").unwrap_or("?");
+            format!("Fan to {p} percent.")
+        }
+        "HassVacuumStart" => "R2D2 will vacuum.".into(),
+        "HassVacuumReturnToBase" => "R2D2 is returning to the dock.".into(),
+        "HassStartTimer" => "Timer started.".into(),
+        "HassListAddItem" | "HassShoppingListAddItem" => "Added to the list.".into(),
+        other => format!("Running {other}."),
     }
 }
 
@@ -65,33 +144,76 @@ fn short_id(id: &str) -> String {
         .replace('_', " ")
 }
 
-fn loc(area: &str) -> String {
+fn loc(area: &str, en: bool) -> String {
     if area.is_empty() {
-        "in der Wohnung".into()
+        if en {
+            "in the home".into()
+        } else {
+            "in der Wohnung".into()
+        }
+    } else if en {
+        format!("in the {area}")
     } else {
         format!("im {area}")
     }
 }
 
-fn or_home(s: &str) -> String {
+fn or_home(s: &str, en: bool) -> String {
     if s.is_empty() {
-        "das Gerät".into()
+        if en {
+            "the device".into()
+        } else {
+            "das Gerät".into()
+        }
     } else {
         s.to_string()
     }
 }
 
-fn wrap(personality: Personality, body: &str) -> String {
-    match personality {
-        Personality::Default => body.to_string(),
-        Personality::Butler => format!("Sehr wohl. {body}"),
-        Personality::Locker => format!("Geht klar. {body}"),
-        Personality::Fuersorglich => format!("Mache ich sofort. {body}"),
-        Personality::Party => format!("Läuft! {body}"),
-        Personality::Grantig => format!("Schon gut. {body}"),
-        Personality::Sarkastisch => format!("Wie überraschend, wieder ein Befehl. {body}"),
-        Personality::Pirat => format!("Aye. {body}"),
-        Personality::Hippie => format!("Alles easy. {body}"),
-        Personality::Gollum => format!("Ja, mein Schatz. {body}"),
+fn wrap(personality: Personality, body: &str, en: bool) -> String {
+    if matches!(personality, Personality::Default) {
+        return body.to_string();
+    }
+    let prefix = match (personality, en) {
+        (Personality::Butler, false) => "Sehr wohl. ",
+        (Personality::Butler, true) => "Very well. ",
+        (Personality::Locker, false) => "Geht klar. ",
+        (Personality::Locker, true) => "Got it. ",
+        (Personality::Fuersorglich, false) => "Mache ich sofort. ",
+        (Personality::Fuersorglich, true) => "Doing that now. ",
+        (Personality::Party, false) => "Läuft! ",
+        (Personality::Party, true) => "Let's go! ",
+        (Personality::Grantig, false) => "Schon gut. ",
+        (Personality::Grantig, true) => "Fine. ",
+        (Personality::Sarkastisch, false) => "Wie überraschend, wieder ein Befehl. ",
+        (Personality::Sarkastisch, true) => "What a surprise, another command. ",
+        (Personality::Pirat, false) => "Aye. ",
+        (Personality::Pirat, true) => "Aye. ",
+        (Personality::Hippie, false) => "Alles easy. ",
+        (Personality::Hippie, true) => "All good. ",
+        (Personality::Gollum, false) => "Ja, mein Schatz. ",
+        (Personality::Gollum, true) => "Yes, my precious. ",
+        (Personality::Default, _) => "",
+    };
+    format!("{prefix}{body}")
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::lang::bind;
+    use crate::types::Intent;
+
+    #[test]
+    fn speech_follows_pinned_pack() {
+        let intent = Intent::new("HassTurnOn").with("area", "wohnzimmer");
+        let _de = bind(&["de".into()]);
+        let de = speak(&[intent.clone()], Personality::Default, false);
+        assert!(de.contains("Schalte"), "{de}");
+        drop(_de);
+        let _en = bind(&["en".into()]);
+        let en = speak(&[intent], Personality::Default, false);
+        assert!(en.contains("Turn on"), "{en}");
+        assert!(!en.contains("Schalte"), "{en}");
     }
 }

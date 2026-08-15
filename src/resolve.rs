@@ -1,6 +1,7 @@
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
 use crate::normalize::fold_umlaut;
+use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use strsim::normalized_levenshtein;
 
@@ -256,7 +257,7 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         .filter(|(s, _)| *s == max)
         .map(|(_, id)| id.clone())
         .collect();
-    let ids: Vec<String> = scored
+    let mut ids: Vec<String> = scored
         .into_iter()
         .filter(|(s, id)| {
             *s == max
@@ -269,6 +270,9 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         && areas.iter().any(|a| a.area_id == "master_bedroom")
     {
         return vec!["master_bedroom".into()];
+    }
+    if ids.len() > 1 {
+        ids.retain(|id| id != "wohnung");
     }
     ids
 }
@@ -444,4 +448,52 @@ pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Opti
         .filter(|e| e.domain == domain && e.area.as_deref() == Some(area))
         .map(|e| e.entity_id.as_str()).collect();
     (hits.len() == 1).then(|| hits[0].to_string())
+}
+
+pub(crate) fn query_grounded(
+    tokens: &[String],
+    home: &HomeGraph,
+    has_target: bool,
+    session: &Session,
+) -> bool {
+    if has_target || !session.last_entities.is_empty() || !session.last_areas.is_empty() {
+        return true;
+    }
+    let cat = catalog();
+    if cat.any(tokens, &cat.temp_query)
+        || cat.any(tokens, &cat.light_nouns)
+        || cat.any(tokens, &cat.climate_nouns)
+        || cat.any(tokens, &cat.cover_nouns)
+        || cat.any(tokens, &cat.fan_nouns)
+        || cat.any(tokens, &cat.lock_nouns)
+        || cat.any(tokens, &cat.vacuum_nouns)
+        || cat.any(tokens, &cat.media_nouns)
+        || cat.any(tokens, &cat.timer_nouns)
+        || cat.any(tokens, &cat.list_nouns)
+    {
+        return true;
+    }
+    home.entities.iter().any(|entity| {
+        let name = fold_umlaut(&entity.name);
+        tokens.iter().any(|token| {
+            token.len() > 3
+                && !cat.is_question_start(token)
+                && !cat.is_question_word(token)
+                && (name.split(|c: char| c == ' ' || c == '_').any(|part| part == token)
+                    || entity.aliases.iter().any(|alias| alias == token))
+        })
+    })
+}
+
+pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
+    home.areas
+        .iter()
+        .filter(|area| area.area_id != "wohnung")
+        .filter(|area| {
+            home.entities.iter().any(|entity| {
+                entity.domain == "light" && entity.area.as_deref() == Some(area.area_id.as_str())
+            })
+        })
+        .map(|area| area.area_id.clone())
+        .collect()
 }
