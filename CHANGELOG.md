@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.15](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.14...2026.8.15) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- harden API auth and infer action from the resolved target([79dfa13](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/79dfa1331edefd147965cc092edce671f82cf2b5))
+
+
+### Other
+
+- Merge pull request #58 from FABBricate-IT-Solutions/fix/auth-action-target-overlay([09eead6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/09eead67210fb3082e0de27d6fdfd3aa4c84c0e6))
+
+
+### Testing
+
+- cover schalte das Wohnzimmerlicht an([fd455ea](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fd455ea5acb3a5af2b59a6a73f91fdf263b0ea6d))
+
 ## [2026.8.14](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.13...2026.8.14) - 2026-08-15
 
 
