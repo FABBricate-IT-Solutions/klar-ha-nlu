@@ -10,7 +10,8 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Bug Fixes
 
-- Start the GHCR add-on image through `klar-entry.sh` so HTTP and Wyoming bind `0.0.0.0` and Home Assistant can reach the engine
+- Start the GHCR add-on image through `klar-entry.sh` so HTTP and Wyoming bind `0.0.0.0` even when Supervisor passes extra args
+- Allow parse and GET from the Supervisor network without a token so Assist reaches the add-on out of the box
 
 ## [2026.8.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.4...2026.8.5) - 2026-08-15
 
