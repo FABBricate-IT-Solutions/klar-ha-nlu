@@ -175,8 +175,10 @@ jobs:
           args: --latest --strip header
         env:
           OUTPUT: CHANGES.md
+        env:
+          RAW: ${{ inputs.release_tag || github.ref_name }}
           GITHUB_REPO: ${{ github.repository }}
-      - name: Release identity
+          raw="$RAW"
         id: rel
         env:
           RAW_TAG: ${{ inputs.release_tag || github.ref_name }}
