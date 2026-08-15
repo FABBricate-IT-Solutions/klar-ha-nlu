@@ -37,9 +37,11 @@ Der Job:
 1. berechnet die nächste CalVer-Version (oder nimmt die Eingabe)
 2. schreibt sie nach `Cargo.toml`, `config.yaml`, `addon/config.yaml` und das HA-Manifest
 3. erzeugt `CHANGELOG.md` neu
-4. committet `chore(release): prepare for vYYYY.M.PATCH` und taggt `vYYYY.M.PATCH`
+4. committet `chore(release): prepare for vYYYY.M.PATCH` auf `release/vYYYY.M.PATCH`
+5. öffnet einen PR, wenn die Organisation Actions das erlaubt — sonst wartet er auf die Pflicht-Checks und fast-forwardet `main`
+6. taggt `vYYYY.M.PATCH` und ruft **Build** auf (`workflow_call`; ein Tag-Push mit `GITHUB_TOKEN` startet keinen zweiten Workflow)
 
-Danach ruft der Job **Build** auf (ein Tag-Push mit `GITHUB_TOKEN` startet keinen zweiten Workflow). Build erzeugt linux-x86_64, linux-aarch64 und linux-armv7 und hängt die Tarballs an. Der Release-Text ist der letzte git-cliff-Abschnitt.
+Build erzeugt linux-x86_64, linux-aarch64 und linux-armv7 und hängt die Tarballs an das GitHub-Release. Der Release-Text ist der letzte git-cliff-Abschnitt.
 
 Ein Tag von deinem Rechner startet Build weiter selbst: `git tag v2026.8.0 && git push origin v2026.8.0`.
 

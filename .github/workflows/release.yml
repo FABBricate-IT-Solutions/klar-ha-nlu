@@ -22,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: main
           fetch-depth: 0
 
       - uses: taiki-e/install-action@v2
@@ -53,34 +54,80 @@ jobs:
       - name: Write CHANGELOG.md
         run: git-cliff --tag "${{ steps.ver.outputs.tag }}" -o CHANGELOG.md
 
-      - name: Open release pull request
+      - name: Land release commit on main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.ver.outputs.tag }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           branch="release/${TAG}"
-          git checkout -b "$branch"
+          git checkout -B "$branch"
           git add Cargo.toml Cargo.lock config.yaml addon/config.yaml \
             custom_components/klar_nlu/manifest.json CHANGELOG.md
           git commit -m "chore(release): prepare for ${TAG}"
-          git push origin HEAD
-          gh pr create \
+          sha="$(git rev-parse HEAD)"
+          git push origin "HEAD:refs/heads/${branch}"
+
+          # GITHUB_TOKEN cannot open PRs while the org forbids it. Prefer a PR
+          # when that setting is on; otherwise wait for required checks and
+          # fast-forward main to this already-tested SHA.
+          if gh pr create \
             --title "chore(release): prepare for ${TAG}" \
-            --body "Prepares ${TAG}. Auto-merge waits for required checks, then the tag job publishes the GitHub Release."
-          gh pr merge --squash --auto --delete-branch
+            --body "Prepares ${TAG}. Auto-merge waits for required checks, then the tag job publishes the GitHub Release."; then
+            gh pr merge --squash --auto --delete-branch
+            exit 0
+          fi
+
+          echo "Actions cannot open PRs; waiting for required checks on ${sha}"
+          required=(test cargo-audit cargo-deny hassfest hacs)
+          deadline=$((SECONDS + 900))
+          while (( SECONDS < deadline )); do
+            payload="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${sha}/check-runs?per_page=100")"
+            failed=0
+            pending=0
+            for name in "${required[@]}"; do
+              conclusion="$(jq -r --arg n "$name" '
+                [.check_runs[] | select(.name == $n)]
+                | if length == 0 then "pending"
+                  else sort_by(.started_at) | last | .conclusion // "pending"
+                  end
+              ' <<<"$payload")"
+              echo "${name}: ${conclusion}"
+              case "$conclusion" in
+                success|skipped) ;;
+                failure|cancelled|timed_out|stale) failed=1 ;;
+                *) pending=1 ;;
+              esac
+            done
+            if (( failed )); then
+              echo "Required check failed" >&2
+              exit 1
+            fi
+            if (( pending == 0 )); then
+              git push origin "${sha}:refs/heads/main"
+              git push origin --delete "$branch" || true
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Timed out waiting for required checks on ${sha}" >&2
+          exit 1
 
   publish-tag:
     if: github.event_name == 'push' && startsWith(github.event.head_commit.message, 'chore(release):')
     name: publish-tag
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
     steps:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Create release tag
+        id: tag
         env:
           MESSAGE: ${{ github.event.head_commit.message }}
         run: |
@@ -89,6 +136,7 @@ jobs:
             echo "Commit is not a versioned release prepare" >&2
             exit 0
           fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
           if git rev-parse "refs/tags/$tag" >/dev/null 2>&1; then
             echo "Tag $tag already exists"
             exit 0
@@ -97,3 +145,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git tag -a "$tag" -m "$tag"
           git push origin "refs/tags/$tag"
+
+  publish-release:
+    needs: publish-tag
+    if: needs.publish-tag.outputs.tag != ''
+    uses: ./.github/workflows/build.yml
+    with:
+      release_tag: ${{ needs.publish-tag.outputs.tag }}
+    secrets: inherit
+    permissions:
+      contents: write
+      packages: write
