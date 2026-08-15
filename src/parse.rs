@@ -6,7 +6,7 @@ use crate::numbers::first_number;
 use crate::parse_help::{
     fill_intent, intent_from_action, intent_with_entity, looks_like_correction, looks_like_named_device,
     looks_like_question, match_custom, laundry_switch_clause, pick_clarification, pick_singular_lamp,
-    prefer_action, refine_action, timer_clause, wants_all_lights, wants_light_clarify,
+    all_lights_clause, prefer_action, refine_action, timer_clause, wants_light_clarify,
 };
 use crate::resolve::{domain_hint, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
 use crate::respond::{speak, speak_clarify, speak_correction, speak_need_target, speak_unknown};
@@ -299,23 +299,11 @@ fn parse_clause(
         }
     }
 
-    if wants_all_lights(tokens) {
-        if let Some(ent) = home.entities.iter().find(|e| {
-            e.domain == "light"
-                && (e.entity_id.contains("alle")
-                    || e.aliases.iter().any(|a| matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall")))
-        }) {
-            intents.push(fill_intent(
-                action,
-                tokens,
-                number,
-                Some(&ent.entity_id),
-                ent.area.as_deref(),
-                Some("light"),
-            ));
-            intents.retain(|i| i.name != "Unknown");
-            return ClauseOut::Intents(intents);
-        }
+    if let Some(out) = all_lights_clause(tokens, home, action, number, &resolved.areas) {
+        return match out {
+            crate::parse_help::ReadyClause::Intents(list) => ClauseOut::Intents(list),
+            crate::parse_help::ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
+        };
     }
 
     if looks_like_named_device(tokens) && resolved.areas.is_empty() {

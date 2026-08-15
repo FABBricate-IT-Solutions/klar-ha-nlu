@@ -1,3 +1,4 @@
+use crate::compound::area_slots;
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, Action};
 use crate::normalize::{fold_umlaut, join_tokens};
@@ -129,6 +130,42 @@ pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[
 
 pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
     tokens.iter().any(|t| catalog().is_all(t)) && catalog().any(tokens, &catalog().light_nouns)
+}
+
+fn whole_home_lights(home: &HomeGraph) -> Option<&crate::types::EntityRec> {
+    home.entities.iter().find(|e| {
+        e.domain == "light"
+            && (e.entity_id.contains("alle")
+                || e.aliases.iter().any(|a| matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall")))
+    })
+}
+
+pub(crate) fn all_lights_clause(
+    tokens: &[String], home: &HomeGraph, action: Action, number: Option<i32>, areas: &[String],
+) -> Option<ReadyClause> {
+    if !wants_all_lights(tokens) {
+        return None;
+    }
+    let home_wide = whole_home_lights(home);
+    let rooms: Vec<&String> = areas
+        .iter()
+        .filter(|a| home_wide.is_none_or(|e| e.area.as_deref() != Some(a.as_str())))
+        .collect();
+    if rooms.is_empty() {
+        let e = home_wide?;
+        return Some(ReadyClause::Intents(vec![fill_intent(
+            action, tokens, number, Some(&e.entity_id), e.area.as_deref(), Some("light"),
+        )]));
+    }
+    let intents: Vec<Intent> = rooms
+        .into_iter()
+        .filter_map(|area| {
+            let (id, slot, dom) = area_slots(action, area, Some("light"), home);
+            let intent = fill_intent(action, tokens, number, id.as_deref(), slot.as_deref(), dom.as_deref());
+            (intent.name != "Unknown").then_some(intent)
+        })
+        .collect();
+    (!intents.is_empty()).then_some(ReadyClause::Intents(intents))
 }
 
 pub(crate) fn looks_like_named_device(tokens: &[String]) -> bool {
