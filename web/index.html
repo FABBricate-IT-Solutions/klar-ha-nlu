@@ -72,6 +72,48 @@
     th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); }
     .row { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
     .hidden { display: none; }
+    .hint { color: var(--muted); max-width: 42em; margin: 0 0 16px; }
+    .pool, .well {
+      min-height: 56px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-content: flex-start;
+    }
+    .pool { margin-bottom: 20px; background: #181410; }
+    .well.over, .pool.over { border-color: var(--accent); }
+    .room {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: start;
+    }
+    .room h3 { margin: 6px 0 0; font-size: 14px; font-weight: 600; }
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 8px;
+      width: 200px;
+      cursor: grab;
+    }
+    .chip:active { cursor: grabbing; }
+    .chip small { display: block; color: var(--muted); font-size: 11px; word-break: break-all; }
+    .chip input { margin-top: 6px; padding: 4px 6px; font-size: 13px; }
+    .chip .pin {
+      float: right;
+      background: none;
+      border: 0;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0;
+      font: inherit;
+    }
+    .chip .pin.on { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -81,7 +123,7 @@
       <button class="active" data-tab="parse">Satz</button>
       <button data-tab="custom">Sätze</button>
       <button data-tab="entities">Geräte</button>
-      <button data-tab="calibrate">Kalibrierung</button>
+      <button data-tab="calibrate">Zuordnung</button>
       <button data-tab="settings">Einstellungen</button>
     </nav>
   </header>
@@ -107,19 +149,14 @@
       </table>
     </section>
     <section id="calibrate" class="hidden">
-      <p style="color:var(--muted);max-width:40em">
-        Zusammengesetzte Wörter wie <em>Schlafzimmerlicht</em> erkennt Klar selbst.
-        Wenn im Raum mehrere Lampen sind, merkt du hier das Standardlicht
-        und optionale Spitznamen.
+      <p class="hint">
+        Nur für Assist freigegebene Geräte, die das Language Pack nicht eindeutig trifft.
+        Ziehen auf einen Raum. Spitzname ist das gesprochene Wort.
       </p>
-      <table>
-        <thead><tr><th>Licht</th><th>Raum</th><th>Spitznamen</th><th>Standard</th></tr></thead>
-        <tbody id="cal"></tbody>
-      </table>
-      <div class="row">
-        <button class="act" id="saveCal">Kalibrierung speichern</button>
-        <span id="calStatus" style="color:var(--muted)"></span>
-      </div>
+      <label>Ohne Raum</label>
+      <div class="pool" id="pool" data-area=""></div>
+      <div id="rooms"></div>
+      <div class="row"><span id="calStatus" style="color:var(--muted)"></span></div>
     </section>
     <section id="settings" class="hidden">
       <label>Persönlichkeit</label>
@@ -187,34 +224,92 @@
       $("ents").innerHTML = ents.map((e) =>
         `<tr><td>${e.name}<br><span style="color:#9a9083">${e.entity_id}</span></td><td>${e.area || ""}</td><td>${(e.tags || []).join(", ")}</td></tr>`
       ).join("");
-      const lights = ents.filter((e) => e.domain === "light");
-      $("cal").innerHTML = lights.map((e) => {
-        const pref = (e.tags || []).includes("preferred") ? "checked" : "";
-        const aliases = (e.aliases || []).join(", ");
-        const group = `pref-${e.area || "ohne"}`;
-        return `<tr data-id="${e.entity_id}">
-          <td>${e.name}<br><span style="color:#9a9083">${e.entity_id}</span></td>
-          <td>${e.area || ""}</td>
-          <td><input data-aliases value="${aliases.replace(/"/g, "&quot;")}"></td>
-          <td><input type="radio" name="${group}" data-pref ${pref}></td>
-        </tr>`;
-      }).join("");
-      $("saveCal").onclick = async () => {
-        for (const row of $("cal").querySelectorAll("tr")) {
-          const aliases = (row.querySelector("[data-aliases]").value || "")
-            .split(",").map((s) => s.trim()).filter(Boolean);
-          await fetch("/api/entities", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              entity_id: row.dataset.id,
-              aliases,
-              preferred: row.querySelector("[data-pref]").checked,
-            }),
-          });
-        }
-        $("calStatus").textContent = "Gespeichert. Gilt für Schlafzimmerlicht, Küchenlicht und so weiter.";
+      const gaps = await (await fetch("/api/gaps")).json();
+      const board = { leftover: gaps.leftover, rooms: gaps.rooms };
+      const esc = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+      }[c]));
+      const chip = (e) => {
+        const pref = (e.tags || []).includes("preferred");
+        const nick = (e.aliases || []).join(", ");
+        const pin = e.domain === "light"
+          ? `<button type="button" class="pin${pref ? " on" : ""}" data-pin title="Standardlicht">★</button>`
+          : "";
+        return `<div class="chip" draggable="true" data-id="${esc(e.entity_id)}" data-area="${esc(e.area || "")}">
+          ${pin}${esc(e.name)}<small>${esc(e.entity_id)}</small>
+          <input data-nick placeholder="Spitzname" value="${esc(nick)}">
+        </div>`;
       };
+      const paint = () => {
+        const pool = board.leftover.filter((e) => !e.area);
+        $("pool").innerHTML = pool.length
+          ? pool.map(chip).join("")
+          : '<span style="color:var(--muted)">Nichts offen.</span>';
+        $("rooms").innerHTML = board.rooms.map((r) => {
+          const here = board.leftover.filter((e) => e.area === r.area_id);
+          return `<div class="room"><h3>${esc(r.name)}</h3>
+            <div class="well" data-area="${esc(r.area_id)}">${here.map(chip).join("")}</div></div>`;
+        }).join("");
+        bind();
+      };
+      const save = async (el, extra) => {
+        const id = el.dataset.id;
+        const aliases = (el.querySelector("[data-nick]").value || "")
+          .split(",").map((s) => s.trim()).filter(Boolean);
+        const pin = el.querySelector("[data-pin]");
+        const preferred = !!(pin && pin.classList.contains("on"));
+        await fetch("/api/entities", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ entity_id: id, aliases, preferred, ...extra }),
+        });
+        const item = board.leftover.find((e) => e.entity_id === id);
+        if (item) {
+          item.aliases = aliases;
+          item.tags = preferred ? ["preferred"] : [];
+          if (Object.prototype.hasOwnProperty.call(extra, "area")) {
+            item.area = extra.area || null;
+          }
+        }
+        $("calStatus").textContent = "Gespeichert.";
+      };
+      const bind = () => {
+        document.querySelectorAll(".chip").forEach((el) => {
+          el.ondragstart = (ev) => {
+            if (ev.target.closest("input, button")) {
+              ev.preventDefault();
+              return;
+            }
+            ev.dataTransfer.setData("text/plain", el.dataset.id);
+          };
+          el.querySelector("[data-nick]").onchange = () => save(el, {});
+          const pin = el.querySelector("[data-pin]");
+          if (pin) {
+            pin.onclick = (ev) => {
+              ev.preventDefault();
+              pin.classList.toggle("on");
+              save(el, {});
+            };
+          }
+        });
+        document.querySelectorAll(".pool, .well").forEach((well) => {
+          well.ondragover = (ev) => { ev.preventDefault(); well.classList.add("over"); };
+          well.ondragleave = () => well.classList.remove("over");
+          well.ondrop = async (ev) => {
+            ev.preventDefault();
+            well.classList.remove("over");
+            const id = ev.dataTransfer.getData("text/plain");
+            const el = document.querySelector(`.chip[data-id="${CSS.escape(id)}"]`);
+            if (!el) return;
+            await save(el, { area: well.dataset.area || "" });
+            const next = await (await fetch("/api/gaps")).json();
+            board.leftover = next.leftover;
+            board.rooms = next.rooms;
+            paint();
+          };
+        });
+      };
+      paint();
       const custom = await (await fetch("/api/custom")).json();
       $("customBox").value = JSON.stringify(custom, null, 2);
       const set = await (await fetch("/api/settings")).json();

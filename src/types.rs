@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Slot {
@@ -69,6 +69,9 @@ pub struct HomeGraph {
     pub areas: Vec<AreaRec>,
     #[serde(default)]
     pub scene_members: HashMap<String, Vec<String>>,
+    /// `None` = keine Assist-Liste (Tests/Fixtures). `Some` = nur diese IDs sind freigegeben.
+    #[serde(default)]
+    pub assist: Option<HashSet<String>>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

@@ -1,4 +1,6 @@
 pub mod compound;
+pub mod expose;
+pub mod gaps;
 pub mod lang;
 pub mod lexicon;
 pub mod normalize;
