@@ -1,10 +1,10 @@
-use crate::compound::{apply_compound_light, area_slots, named_scene_or_script, query_keeps_entity};
+use crate::compound::{apply_compound_light, area_slots, named_scene_or_script, query_keeps_entity, wants_light_clarify};
 use crate::expose::assist_visible;
 use crate::home_policy::{fallback_climate, fallback_cover_area, is_infra};
 use crate::lang::catalog;
 use crate::lexicon::{detect_actions, domain_for, Action};
 use crate::numbers::first_number;
-use crate::parse_help::{infer_action, looks_like_named_device, looks_like_question, prefer_action, wants_light_clarify};
+use crate::parse_help::{infer_action, looks_like_named_device, looks_like_question, prefer_action};
 use crate::parse_slots::{
     all_lights_clause, fill_intent, intent_from_action, laundry_switch_clause, pick_singular_lamp, timer_clause, ClauseOut,
 };
@@ -44,21 +44,26 @@ pub(crate) fn parse_clause(
     } else {
         command.or_else(|| actions.first().map(|(_, a)| *a)).unwrap_or_else(|| guess_action(tokens, session, number))
     };
-    let action = infer_action(guessed, tokens, number, question, session, None);
-    let domain = domain_for(action, tokens);
+    let early = infer_action(guessed, tokens, number, question, session, None);
+    let domain = domain_for(early, tokens);
 
     if let Some(out) =
-        laundry_switch_clause(tokens, home, action, number, domain).or_else(|| timer_clause(tokens, home, action, number, domain))
+        laundry_switch_clause(tokens, home, early, number, domain).or_else(|| timer_clause(tokens, home, early, number, domain))
     {
         return out;
     }
 
-    let mut resolved = resolve_targets(tokens, home, session, settings, domain, action);
+    let mut resolved = resolve_targets(tokens, home, session, settings, domain, early);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
     let target = resolved.entities.first().map(|e| e.domain.as_str());
-    let action = infer_action(guessed, tokens, number, question, session, target);
+    let action = match target {
+        Some(domain) => infer_action(guessed, tokens, number, question, session, Some(domain)),
+        None => early,
+    };
     let domain = domain_for(action, tokens);
     let ctx = Clause { tokens, raw, home, session, action, number, domain, question, resolved, light_areas };
+    // First match wins. Later policies must not steal a more specific bind
+    // (named scene/device, compound light, LightAim room group).
     for policy in [
         named_scene,
         all_lights,
@@ -139,7 +144,9 @@ fn resolve_targets(
     }
     let first = resolve(tokens, home, domain);
     if domain.is_none() && matches!(action, Action::On | Action::Off | Action::Toggle) {
-        let skip_lights = catalog().any(tokens, &catalog().skip_light)
+        let named_other = first.entities.iter().any(|entity| entity.domain != "light");
+        let skip_lights = named_other
+            || catalog().any(tokens, &catalog().skip_light)
             || (catalog().any(tokens, &catalog().laundry_area) && !catalog().any(tokens, &catalog().light_nouns));
         if !skip_lights {
             let lights = resolve(tokens, home, Some("light"));

@@ -294,3 +294,64 @@ fn tv_luefter_nicht_medienraum() {
     );
     assert_target("Lüfter an", "HassTurnOn", &["fan.arc_casual"], &["switch.pc_steckdose"]);
 }
+
+#[test]
+fn r2d2_ist_an_startet_nicht() {
+    assert_target("Ist R2D2 an?", "HassGetState", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
+    assert_target("Ist R2D2 im Wohnzimmer an?", "HassGetState", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
+    let (name, found, _) = slots("R2D2 an");
+    assert_eq!(name, "HassVacuumStart", "{found:?}");
+    assert_eq!(slot(&found, "entity_id"), Some("vacuum.r2d2"));
+}
+
+#[test]
+fn arc_casual_im_raum_bleibt_luefter() {
+    assert_target("Schalte ARC Casual an", "HassTurnOn", &["fan.arc_casual"], &["light.arbeitszimmer"]);
+    assert_target("Schalte ARC Casual im Arbeitszimmer an", "HassTurnOn", &["fan.arc_casual"], &["light.arbeitszimmer"]);
+    assert_target("Wie ist der Status von ARC Casual im Arbeitszimmer", "HassGetState", &["fan.arc_casual"], &["light.arbeitszimmer"]);
+}
+
+#[test]
+fn schlafzimmer_raum_schaltet_nicht_nur_kugel() {
+    let (name, found, clarify) = slots("Schalte Schlafzimmer an");
+    assert_eq!(name, "HassTurnOn", "{found:?}");
+    assert!(!clarify, "{found:?}");
+    assert!(slot(&found, "area") == Some("schlafzimmer") || slot(&found, "entity_id") == Some("light.schlafzimmer_licht"), "{found:?}");
+    assert_ne!(slot(&found, "entity_id"), Some("light.schlafzimmer"), "{found:?}");
+    let (name, found, clarify) = slots("Licht im Schlafzimmer an");
+    assert_eq!(name, "HassTurnOn", "{found:?}");
+    if !clarify {
+        assert_eq!(slot(&found, "area"), Some("schlafzimmer"), "{found:?}");
+        assert_ne!(slot(&found, "entity_id"), Some("light.schlafzimmer_licht"), "{found:?}");
+    }
+}
+
+#[test]
+fn kuechenlicht_ohne_alias_trifft_kueche() {
+    let mut home = home();
+    for ent in &mut home.entities {
+        if ent.entity_id == "light.kuche_kuche" {
+            ent.name = "Licht".into();
+            ent.aliases.clear();
+        }
+    }
+    let mut session = Session::new();
+    for text in ["Küchenlicht an", "Wie ist der Status von Küchenlicht", "Schalte das Küchenlicht in der Küche an"] {
+        let result = parse(text, &home, &mut session, &[], &Settings::default());
+        let intent = result.intents.first().expect(text);
+        let entity = intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
+        let area = intent.slots.iter().find(|s| s.name == "area").map(|s| s.value.as_str());
+        assert!(!result.clarify, "{text}: {entity:?} {area:?}");
+        assert_ne!(entity, Some("light.alle_lichter"), "{text}: {:?}", intent.slots);
+        assert!(entity == Some("light.kuche_kuche") || area == Some("kuche"), "{text}: {:?}", intent.slots);
+    }
+}
+
+#[test]
+fn wohnzimmer_temperatur_ist_klima() {
+    let (name, found, clarify) = slots("Wie ist die Temperatur im Wohnzimmer?");
+    assert!(!clarify, "{found:?}");
+    assert_eq!(name, "HassClimateGetTemperature", "{name} {found:?}");
+    assert_eq!(slot(&found, "area"), Some("wohnzimmer"), "{found:?}");
+    assert!(slot(&found, "entity_id").is_none_or(|id| id.starts_with("climate.")), "{found:?}");
+}

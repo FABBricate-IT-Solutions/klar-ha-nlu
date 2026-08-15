@@ -2,13 +2,10 @@ use crate::expose::assist_visible;
 use crate::lang::catalog;
 use crate::normalize::compact;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
+use std::sync::OnceLock;
 
 /// Platform helpers (Adaptive Lighting, Voice LEDs, cloud). Apartment IDs live on the overlay.
-const PLATFORM_SWITCH_ID: &[&str] =
-    &["adaptive_lighting", "adaptiv_", "cloud_alexa", "cloud_google", "adguard", "child_lock", "wake_sound"];
-const PLATFORM_SWITCH_NAME: &[&str] = &["klimaanlage", "adaptive"];
-const PLATFORM_LIGHT_ID: &[&str] = &["led_ring", "voice_led"];
-const PLATFORM_LIGHT_NAME: &[&str] = &["ledring"];
+/// Needles are shared with `custom_components/klar_nlu/speech.py`.
 const BEDROOM_HINTS: &[&str] = &["bedroom", "bedrooms", "schlafzimmer", "master_bedroom", "master"];
 const WHOLE_HOME: &[&str] = &["wohnung", "everywhere", "ueberall", "zuhause", "home", "house", "apartment"];
 
@@ -70,25 +67,35 @@ pub fn timer_hint(home: &HomeGraph, number: Option<i32>) -> Option<&str> {
 }
 
 pub fn is_infra(entity: &EntityRec) -> bool {
-    tagged_infra(entity) || is_infra_light(entity) || is_infra_switch(entity)
+    tagged_infra(entity) || is_infra_light(entity) || is_infra_switch(entity) || is_infra_sensor(entity)
 }
 
 pub fn is_infra_light(entity: &EntityRec) -> bool {
-    entity.domain == "light" && (tagged_infra(entity) || infra_hit(entity, PLATFORM_LIGHT_ID, PLATFORM_LIGHT_NAME))
+    entity.domain == "light" && (tagged_infra(entity) || infra_hit(entity))
 }
 
 fn is_infra_switch(entity: &EntityRec) -> bool {
-    entity.domain == "switch" && (tagged_infra(entity) || infra_hit(entity, PLATFORM_SWITCH_ID, PLATFORM_SWITCH_NAME))
+    entity.domain == "switch" && (tagged_infra(entity) || infra_hit(entity))
+}
+
+fn is_infra_sensor(entity: &EntityRec) -> bool {
+    matches!(entity.domain.as_str(), "sensor" | "binary_sensor") && (tagged_infra(entity) || infra_hit(entity))
 }
 
 fn tagged_infra(entity: &EntityRec) -> bool {
     entity.tags.iter().any(|tag| tag.eq_ignore_ascii_case("infra"))
 }
 
-fn infra_hit(entity: &EntityRec, ids: &[&str], names: &[&str]) -> bool {
+fn platform_needles() -> &'static [&'static str] {
+    static RAW: &str = include_str!("../custom_components/klar_nlu/infra_needles.txt");
+    static NEEDLES: OnceLock<Vec<&'static str>> = OnceLock::new();
+    NEEDLES.get_or_init(|| RAW.lines().map(str::trim).filter(|line| !line.is_empty() && !line.starts_with('#')).collect()).as_slice()
+}
+
+fn infra_hit(entity: &EntityRec) -> bool {
     let id = entity.entity_id.to_ascii_lowercase();
     let name = compact(&entity.name);
-    ids.iter().any(|needle| id.contains(needle)) || names.iter().any(|needle| name.contains(needle))
+    platform_needles().iter().any(|needle| id.contains(needle) || name.contains(needle))
 }
 
 pub fn preferred_named<'a>(named: &[&'a EntityRec]) -> Option<&'a EntityRec> {
@@ -122,6 +129,14 @@ mod tests {
         assert!(!is_infra(&light("light.u7_pro_led", "U7 Pro LED", &[])));
         assert!(is_infra(&light("light.u7_pro_led", "U7 Pro LED", &["infra"])));
         assert!(is_infra_light(&light("light.satellite_led_ring", "LED Ring", &[])));
+        assert!(is_infra(&EntityRec {
+            entity_id: "sensor.satellite1_db12c8_temperature".into(),
+            name: "Satellite1 db12c8 Temperature".into(),
+            domain: "sensor".into(),
+            area: Some("wohnzimmer".into()),
+            aliases: Vec::new(),
+            tags: Vec::new(),
+        }));
     }
 
     #[test]

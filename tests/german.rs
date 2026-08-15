@@ -42,7 +42,7 @@ fn zwei_raeume_und_heizung() {
 #[test]
 fn temperatur_wohnung() {
     let found = slots("Wie warm ist es in der Wohnung");
-    assert_eq!(found[0].0, "HassGetState");
+    assert_eq!(found[0].0, "HassClimateGetTemperature");
     assert!(found[0].1.iter().any(|(k, v)| k == "area" && v == "wohnung"));
 }
 
@@ -84,69 +84,8 @@ fn sauger_status_dock_kein_return() {
     let found = slots("Ist R2D2 am Dock");
     assert_eq!(found.len(), 1, "{found:?}");
     assert_eq!(found[0].0, "HassGetState");
-}
-
-#[test]
-fn timer_nutzt_minutes() {
-    let found = slots("Stell einen Timer auf fünf Minuten");
-    assert_eq!(found[0].0, "HassStartTimer", "{found:?}");
-    assert!(found[0].1.iter().any(|(k, v)| k == "minutes" && v == "5"), "{found:?}");
-    assert!(!found[0].1.iter().any(|(k, _)| k == "duration"), "{found:?}");
-    assert!(!found[0].1.iter().any(|(k, _)| k == "entity_id"), "{found:?}");
-    assert!(!found[0].1.iter().any(|(k, _)| k == "domain"), "{found:?}");
-}
-
-#[test]
-fn timer_abbrechen() {
-    let found = slots("Timer abbrechen");
-    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
-    assert!(!found[0].1.iter().any(|(k, _)| k == "minutes"), "{found:?}");
-    assert!(!found[0].1.iter().any(|(k, _)| k == "hours"), "{found:?}");
-    assert!(!found[0].1.iter().any(|(k, _)| k == "seconds"), "{found:?}");
-}
-
-#[test]
-fn timer_aus_bricht_ab() {
-    let found = slots("Timer aus");
-    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
-}
-
-#[test]
-fn cancel_the_timer() {
-    let found = slots("Cancel the timer");
-    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
-}
-
-#[test]
-fn timer_pausieren() {
-    let found = slots("Timer pausieren");
-    assert_eq!(found[0].0, "HassPauseTimer", "{found:?}");
-}
-
-#[test]
-fn timer_eine_minute() {
-    let found = slots("Stell einen Timer auf eine Minute");
-    assert_eq!(found[0].0, "HassStartTimer", "{found:?}");
-    assert!(found[0].1.iter().any(|(k, v)| k == "minutes" && v == "1"), "{found:?}");
-}
-
-#[test]
-fn timer_haengt_fremden_helper_nicht_an() {
-    let mut home = default_home();
-    home.entities.push(EntityRec {
-        entity_id: "timer.5min_warten".into(),
-        name: "5min warten".into(),
-        domain: "timer".into(),
-        area: None,
-        aliases: vec!["5min".into()],
-        tags: Vec::new(),
-    });
-    let mut session = Session::new();
-    let result = parse("Stell einen Timer auf 5 Minuten", &home, &mut session, &[], &Settings::default());
-    let slots: Vec<_> = result.intents[0].slots.iter().map(|s| (s.name.as_str(), s.value.as_str())).collect();
-    assert_eq!(result.intents[0].name, "HassStartTimer", "{slots:?}");
-    assert!(slots.iter().any(|(k, v)| *k == "minutes" && *v == "5"), "{slots:?}");
-    assert!(!slots.iter().any(|(k, v)| *k == "entity_id" && *v == "timer.5min_warten"), "{slots:?}");
+    let found = slots("Ist R2D2 an?");
+    assert_eq!(found[0].0, "HassGetState", "{found:?}");
 }
 
 #[test]

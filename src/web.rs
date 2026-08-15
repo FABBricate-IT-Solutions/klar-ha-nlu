@@ -83,9 +83,12 @@ async fn api_parse(
     let home = state.home.lock().await.clone();
     let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality);
     let custom = state.custom.lock().await.clone();
-    let mut sessions = state.sessions.lock().await;
-    let session = sessions.get_or_create(body.conversation_id.as_deref());
-    let result = parse(&body.text, &home, session, &custom, &settings);
+    let mut session = {
+        let mut sessions = state.sessions.lock().await;
+        sessions.take(body.conversation_id.as_deref())
+    };
+    let result = parse(&body.text, &home, &mut session, &custom, &settings);
+    state.sessions.lock().await.put(session);
     Ok(Json(ParseOut { personality: settings.personality, result }))
 }
 

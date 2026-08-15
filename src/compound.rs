@@ -261,8 +261,62 @@ fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
     !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
 }
 
+/// Room-level light bind. Computed once; `area_slots` and clarify both use it.
+///
+/// Apartment rule: `light.{area}` is a room group only when its name is the
+/// room, `{room}licht` / `{room}light`, or a generic room light. A named
+/// fixture that reuses that id (Schlafzimmer → Hue Kugel) is `OccupiedId` —
+/// room commands target every light in the area and do not ask. Compound
+/// "Schlafzimmerlicht" still binds that fixture via `pick_compound_light`.
+/// Homes without `light.{area}` and several fixtures clarify on singular
+/// "the light".
+pub(crate) enum LightAim {
+    RoomGroup(String),
+    OccupiedId,
+    Unique(String),
+    AreaLights,
+    Clarify,
+}
+
 pub(crate) fn room_light_id(home: &HomeGraph, area: &str) -> Option<String> {
     home.entities.iter().find(|e| assist_visible(e, home) && e.entity_id == format!("light.{area}")).map(|e| e.entity_id.clone())
+}
+
+pub(crate) fn room_light_standin(home: &HomeGraph, area: &str) -> Option<String> {
+    let id = room_light_id(home, area)?;
+    let entity = home.entities.iter().find(|entity| entity.entity_id == id)?;
+    let name = compact(&entity.name);
+    let room = compact(area);
+    (name == room || name == format!("{room}licht") || name == format!("{room}light") || is_generic_room_light(entity, home)).then_some(id)
+}
+
+pub(crate) fn light_aim(home: &HomeGraph, area: &str, tokens: &[String]) -> LightAim {
+    if let Some(id) = room_light_standin(home, area) {
+        return LightAim::RoomGroup(id);
+    }
+    if room_light_id(home, area).is_some() {
+        return LightAim::OccupiedId;
+    }
+    if let Some(id) = crate::roles::unique_role_in_area(home, area, "light") {
+        return LightAim::Unique(id);
+    }
+    let cat = catalog();
+    let singular = cat.any(tokens, &cat.light_singular) && !cat.any(tokens, &cat.light_plural) && !cat.any(tokens, &cat.illuminate);
+    if singular && area_light_count(home, area) > 1 {
+        return LightAim::Clarify;
+    }
+    LightAim::AreaLights
+}
+
+fn area_light_count(home: &HomeGraph, area: &str) -> usize {
+    home.entities
+        .iter()
+        .filter(|entity| entity.domain == "light" && !is_infra_light(entity) && entity.area.as_deref() == Some(area))
+        .count()
+}
+
+pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[String]) -> bool {
+    areas.iter().any(|area| matches!(light_aim(home, area, tokens), LightAim::Clarify))
 }
 
 pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved, light_areas: &[String]) -> bool {
@@ -335,13 +389,10 @@ pub(crate) fn area_slots(
     tokens: &[String],
 ) -> (Option<String>, Option<String>, Option<String>) {
     if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
-        if let Some(id) = room_light_id(home, area) {
-            return (Some(id), None, None);
-        }
-        if let Some(id) = crate::roles::unique_role_in_area(home, area, "light") {
-            return (Some(id), None, None);
-        }
-        return (None, Some(area.to_string()), Some("light".into()));
+        return match light_aim(home, area, tokens) {
+            LightAim::RoomGroup(id) | LightAim::Unique(id) => (Some(id), None, None),
+            LightAim::OccupiedId | LightAim::AreaLights | LightAim::Clarify => (None, Some(area.to_string()), Some("light".into())),
+        };
     }
     let id = domain
         .filter(|d| matches!(*d, "climate" | "media_player" | "fan"))
@@ -360,13 +411,15 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     if let Some(hit) = lights.iter().find(|e| e.tags.iter().any(|t| t == "preferred")) {
         return Some((*hit).clone());
     }
-    if let Some(hit) = lights.iter().find(|e| e.entity_id == room) {
-        return Some((*hit).clone());
+    if let Some(id) = room_light_standin(home, area) {
+        if let Some(hit) = lights.iter().find(|e| e.entity_id == id) {
+            return Some((*hit).clone());
+        }
     }
-    let lights: Vec<&EntityRec> = lights.into_iter().filter(|e| !is_generic_room_light(e, home)).collect();
     let named: Vec<&EntityRec> = lights
         .iter()
         .copied()
+        .filter(|e| !is_generic_room_light(e, home))
         .filter(|e| {
             let blob = compact(&format!("{} {}", e.name, e.aliases.join(" ")));
             catalog().named_device.iter().any(|n| blob.contains(n))
@@ -374,6 +427,10 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
         .collect();
     if let Some(hit) = crate::home_policy::preferred_named(&named) {
         return Some(hit.clone());
+    }
+    let specific: Vec<&EntityRec> = lights.iter().copied().filter(|e| !is_generic_room_light(e, home)).collect();
+    if specific.len() == 1 {
+        return Some(specific[0].clone());
     }
     (lights.len() == 1).then(|| lights[0].clone())
 }

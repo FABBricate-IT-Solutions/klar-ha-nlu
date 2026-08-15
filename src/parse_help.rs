@@ -2,7 +2,7 @@ use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, Action};
 use crate::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
-use crate::types::{known_intent, CustomSentence, HomeGraph, Intent};
+use crate::types::{known_intent, CustomSentence, Intent};
 use strsim::normalized_levenshtein;
 
 fn last_domain(session: &Session, prefix: &str) -> bool {
@@ -25,10 +25,11 @@ pub(crate) fn infer_action(
 }
 
 fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, question: bool) -> Action {
-    if question && matches!(action, Action::VacuumDock | Action::VacuumStart) {
+    let vacuum = catalog().any(tokens, &catalog().vacuum_nouns);
+    if question && (vacuum || matches!(action, Action::VacuumDock | Action::VacuumStart)) {
         return Action::GetState;
     }
-    if catalog().any(tokens, &catalog().vacuum_nouns)
+    if vacuum
         && (matches!(action, Action::On) || catalog().any(tokens, &catalog().start_words) || catalog().any(tokens, &catalog().vacuum_start))
     {
         return Action::VacuumStart;
@@ -130,21 +131,6 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
     }
     actions.iter().find(|(_, a)| !matches!(a, Action::GetState)).map(|(_, a)| *a)
 }
-pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[String]) -> bool {
-    let cat = catalog();
-    if !cat.any(tokens, &cat.light_singular) || cat.any(tokens, &cat.light_plural) || cat.any(tokens, &cat.illuminate) {
-        return false;
-    }
-    if areas.iter().any(|area| crate::compound::room_light_id(home, area).is_some()) {
-        return false;
-    }
-    home.entities
-        .iter()
-        .filter(|e| e.domain == "light" && !crate::home_policy::is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
-        .count()
-        > 1
-}
-
 pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
     tokens.iter().any(|t| catalog().is_all(t)) && catalog().any(tokens, &catalog().light_nouns)
 }
@@ -272,6 +258,15 @@ mod tests {
         let licht = vec!["licht".into()];
         assert_eq!(bind_domain(Action::SetLight, &licht, Some(21), Some("climate")), Action::SetLight);
         assert_eq!(bind_domain(Action::On, &licht, Some(50), Some("light")), Action::SetLight);
+    }
+
+    #[test]
+    fn vacuum_question_stays_get_state() {
+        let session = Session::new();
+        let tokens = vec!["ist".into(), "r2d2".into(), "an".into()];
+        assert_eq!(infer_action(Action::On, &tokens, None, true, &session, Some("vacuum")), Action::GetState);
+        assert_eq!(infer_action(Action::GetState, &tokens, None, true, &session, Some("vacuum")), Action::GetState);
+        assert_eq!(infer_action(Action::On, &["r2d2".into(), "an".into()], None, false, &session, Some("vacuum")), Action::VacuumStart);
     }
 
     #[test]

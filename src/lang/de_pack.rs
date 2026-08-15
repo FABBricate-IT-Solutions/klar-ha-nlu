@@ -212,7 +212,7 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_add: &["plus", "mehr"],
         list_complete: &["haken", "erledigt"],
         playback_resume: &["weiter", "fortsetzen"],
-        vacuum_start: &["an", "starten", "starte"],
+        vacuum_start: &["starten", "starte"],
         hours: &["stunde", "stunden"],
         minutes: &["minute", "minuten"],
         seconds: &["sekunde", "sekunden"],

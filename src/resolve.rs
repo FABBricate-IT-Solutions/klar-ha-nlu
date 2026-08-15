@@ -272,12 +272,15 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
             if tokens.iter().any(|t| token_eq(t, part) && part.len() > 3) {
                 best = best.max(0.9);
             }
+            if best >= 0.86 {
+                continue;
+            }
             for t in tokens {
-                if catalog().generic.contains(&t.as_str()) {
+                if catalog().generic.contains(&t.as_str()) || part.len() <= 4 {
                     continue;
                 }
                 let s = normalized_levenshtein(t, part);
-                if s > 0.88 && part.len() > 3 {
+                if s > 0.88 {
                     best = best.max(s * 0.9);
                 }
             }

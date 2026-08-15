@@ -118,6 +118,16 @@ impl Sessions {
         }
     }
 
+    pub fn take(&mut self, id: Option<&str>) -> Session {
+        self.get_or_create(id).clone()
+    }
+
+    pub fn put(&mut self, mut session: Session) {
+        self.sweep_ttl();
+        session.last_used = Instant::now();
+        self.inner.insert(session.id.clone(), session);
+    }
+
     #[cfg(test)]
     pub(crate) fn len(&self) -> usize {
         self.inner.len()

@@ -77,6 +77,32 @@ class SpeechTests(unittest.TestCase):
         self.assertIn("aus", spoken)
         self.assertNotEqual(spoken, "Licht ist aus.")
 
+    def test_room_temperature_drops_satellite(self) -> None:
+        handled = _States(
+            [
+                _State("climate.better_thermostat_wohnzimmer", "heat", "Heizung Wohnzimmer"),
+                _State("sensor.satellite1_db12c8_temperature", "40.99", "Satellite1 db12c8 Temperature"),
+            ]
+        )
+        item = {
+            "name": "HassClimateGetTemperature",
+            "slots": [
+                {"name": "area", "value": "wohnzimmer"},
+                {"name": "area_name", "value": "Wohnzimmer"},
+            ],
+        }
+        spoken = speech.from_handled(handled, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("Wohnzimmer", spoken)
+        self.assertNotIn("Satellite", spoken)
+        self.assertNotIn("40", spoken)
+
+    def test_infra_needles_are_shared(self) -> None:
+        needles = speech._INFRA
+        self.assertIn("satellite", needles)
+        self.assertIn("led_ring", needles)
+        self.assertIn("cpu_temperature", needles)
+
 
 class _State:
     def __init__(self, entity_id: str, state: str, name: str) -> None:

@@ -6,6 +6,9 @@ fn speech() -> &'static crate::lang::Speech {
     catalog().speech()
 }
 
+/// Speech for `/api/parse` and Wyoming. Assist overwrites this with
+/// `speech.py` after the Home Assistant intent so the spoken line matches
+/// what actually ran. Keep Butler style and infra filtering aligned there.
 pub fn speak(intents: &[Intent], personality: Personality, clarify: bool, home: Option<&HomeGraph>) -> String {
     if clarify {
         return speech().need_which.to_string();
@@ -87,6 +90,7 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
             let subject = if climate_named(&target, noun) { target } else { format!("{noun} {target}") };
             pack.climate_set.replace("{noun} {target}", &subject).replace("{n}", intent.slot("temperature").unwrap_or("?"))
         }
+        "HassClimateGetTemperature" => fill(pack.get_temp),
         "HassGetState" if intent.slot("device_class") == Some("temperature") => fill(pack.get_temp),
         "HassGetState" => fill(pack.get_state),
         "HassMediaPause" => pack.media_pause.to_string(),

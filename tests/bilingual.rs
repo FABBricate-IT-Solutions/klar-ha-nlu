@@ -50,7 +50,7 @@ fn target_of(text: &str, lang: &str) -> Vec<String> {
 #[test]
 fn en_bedroom_temperature_uses_english_speech() {
     let (names, speech) = run("What is the temperature in the bedroom", "en");
-    assert_eq!(names, vec!["HassGetState"], "{speech}");
+    assert_eq!(names, vec!["HassClimateGetTemperature"], "{speech}");
     assert!(speech.to_lowercase().contains("temperature"), "{speech}");
     assert!(!speech.contains("Frage"), "{speech}");
 }
