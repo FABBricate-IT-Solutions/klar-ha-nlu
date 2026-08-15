@@ -166,13 +166,28 @@ fn pretty_device(raw: &str) -> String {
     let all = parts.first().is_some_and(|p| matches!(*p, "alle" | "all" | "every"));
     if light && !all && parts.len() >= 2 {
         let head = parts[..parts.len() - 1].join("");
-        let mut out = format!("{head}{tail}");
-        if let Some(first) = out.chars().next() {
-            out.replace_range(..first.len_utf8(), &first.to_uppercase().to_string());
-        }
-        return out;
+        return title_word(&format!("{head}{tail}"));
     }
-    raw.to_string()
+    parts
+        .iter()
+        .enumerate()
+        .map(|(i, part)| {
+            if i > 0 && matches!(*part, "und" | "and" | "im" | "in" | "the" | "der" | "die" | "das") {
+                (*part).to_string()
+            } else {
+                title_word(part)
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
+}
+
+fn title_word(raw: &str) -> String {
+    let mut chars = raw.chars();
+    match chars.next() {
+        Some(first) => format!("{}{}", first.to_uppercase(), chars.as_str()),
+        None => String::new(),
+    }
 }
 
 fn loc(area: &str, en: bool) -> String {
@@ -255,5 +270,10 @@ mod tests {
         let de = speak(&[intent], Personality::Default, false);
         assert_eq!(de, "Schalte Schlafzimmerlicht ein.");
         assert!(!de.contains(','));
+        let kugel = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer");
+        assert_eq!(
+            speak(&[kugel], Personality::Default, false),
+            "Schalte Schlafzimmer ein."
+        );
     }
 }

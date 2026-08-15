@@ -360,6 +360,7 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
         }
         best = best.max(crate::compound::fixture_boost(tokens, entity));
     }
+    best = best.max(crate::compound::outlet_boost(tokens, entity));
     (best >= 0.86).then_some(best)
 }
 
