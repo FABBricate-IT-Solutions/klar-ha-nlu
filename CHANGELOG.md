@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.7...2026.8.8) - 2026-08-15
+
+### Bug Fixes
+
+- Pick the only matching Heizung or Klimaanlage when the sentence has no room and no alias
+
 ## [2026.8.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.6...2026.8.7) - 2026-08-15
 
 ### Features

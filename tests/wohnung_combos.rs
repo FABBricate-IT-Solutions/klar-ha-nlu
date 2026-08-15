@@ -24,6 +24,22 @@ fn slot<'a>(found: &'a [(String, String)], name: &str) -> Option<&'a str> {
     found.iter().find(|(k, _)| k == name).map(|(_, v)| v.as_str())
 }
 
+fn klima_ohne_alias_trifft_ac() {
+    let mut graph = home();
+    for ent in &mut graph.entities {
+        if ent.entity_id == "climate.schlafzimmer_ac" {
+            ent.aliases.clear();
+        }
+    }
+    let mut session = Session::new();
+    let result = parse("Klimaanlage auf 20 Grad", &graph, &mut session, &[], &Settings::default());
+    let found: Vec<(String, String)> =
+        result.intents.first().map(|i| i.slots.iter().map(|s| (s.name.clone(), s.value.clone())).collect()).unwrap_or_default();
+    assert!(!result.clarify, "Klimaanlage ohne Alias: nachgefragt {found:?}");
+    assert_eq!(result.intents.first().map(|i| i.name.as_str()), Some("HassClimateSetTemperature"), "{found:?}");
+    assert_eq!(slot(&found, "entity_id"), Some("climate.schlafzimmer_ac"), "{found:?}");
+}
+
 fn expect(text: &str, intent: &str, allowed: &[&str], forbidden: &[&str]) {
     let (name, found, clarify) = parse_one(text);
     assert!(!clarify, "{text}: nachgefragt {found:?}");
@@ -72,6 +88,7 @@ fn heizung_klima_sauger() {
         &["climate.better_thermostat_schlafzimmer"],
     );
     expect("Klimaanlage auf 20°", "HassClimateSetTemperature", &["climate.schlafzimmer_ac"], &["climate.better_thermostat_schlafzimmer"]);
+    klima_ohne_alias_trifft_ac();
     expect("Staubsauger Status", "HassGetState", &["vacuum.r2d2"], &["switch.r2d2_fill_light", "switch.r2d2_child_lock"]);
     expect("R2D2 zur Station", "HassVacuumReturnToBase", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
     expect("Staubsauger starten", "HassVacuumStart", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);

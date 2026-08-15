@@ -397,6 +397,17 @@ pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens:
     (hits.len() == 1).then(|| hits[0].to_string())
 }
 
+pub(crate) fn climates_of_kind(home: &HomeGraph, tokens: &[String]) -> Vec<String> {
+    let kind = crate::roles::wanted_climate_kind(tokens);
+    home.entities
+        .iter()
+        .filter(|e| assist_visible(e, home))
+        .filter(|e| matches_domain(e, "climate") && !is_infra(e))
+        .filter(|e| kind.is_none_or(|want| crate::roles::climate_kind(e) == Some(want)))
+        .map(|e| e.entity_id.clone())
+        .collect()
+}
+
 pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool, _session: &Session) -> bool {
     if has_target {
         return true;
