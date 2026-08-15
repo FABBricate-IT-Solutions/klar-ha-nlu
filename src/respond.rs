@@ -110,7 +110,8 @@ fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
             return scene_label(id, home);
         }
         if let Some(ent) = home.and_then(|h| h.entities.iter().find(|e| e.entity_id == id)) {
-            return device_label(&ent.name, &ent.domain);
+            let name = if looks_like_entity_id(&ent.name) { object_id(id) } else { ent.name.clone() };
+            return device_label(&name, &ent.domain);
         }
         return device_label(&object_id(id), domain_of(id));
     }
@@ -185,14 +186,17 @@ fn climate_noun(intent: &Intent) -> &'static str {
 
 fn climate_named(target: &str, noun: &str) -> bool {
     let noun_folded = compact(noun);
-    target.split_whitespace().any(|part| {
-        let folded = compact(part);
+    crate::normalize::tokenize(target).into_iter().any(|folded| {
         folded == noun_folded
             || catalog().climate_nouns.contains(folded.as_str())
             || catalog().climate_cool.contains(folded.as_str())
             || catalog().climate_heat.contains(folded.as_str())
             || matches!(folded.as_str(), "heizung" | "heat" | "heater" | "thermostat" | "klima" | "klimaanlage" | "ac" | "aircon")
     })
+}
+
+fn looks_like_entity_id(value: &str) -> bool {
+    value.contains('.') && !value.contains(' ') && value.split('.').count() == 2
 }
 
 fn vacuum_name(where_: &str) -> String {
@@ -351,5 +355,19 @@ mod tests {
         let _de = bind(&["de".into()]);
         let intent = Intent::new("HassClimateSetTemperature").with("area", "wohnzimmer").with("temperature", "21");
         assert_eq!(speak(&[intent], Personality::Default, false, None), "Heizung Wohnzimmer auf 21 Grad.");
+    }
+
+    #[test]
+    fn climate_speech_humanizes_entity_id_names() {
+        let mut home = crate::types::default_home();
+        if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == "climate.better_thermostat_wohnzimmer") {
+            ent.name = "climate.better_thermostat_wohnzimmer".into();
+        }
+        let intent =
+            Intent::new("HassClimateSetTemperature").with("entity_id", "climate.better_thermostat_wohnzimmer").with("temperature", "21");
+        let _de = bind(&["de".into()]);
+        let speech = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
+        assert_eq!(speech, "Better Thermostat Wohnzimmer auf 21 Grad.");
+        assert!(!speech.contains("climate."), "{speech}");
     }
 }

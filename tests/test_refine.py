@@ -33,6 +33,7 @@ class RefineTests(unittest.TestCase):
         self.assertIn("Ziffern bleiben Ziffern", prompt)
         self.assertIn("2 bleibt 2", prompt)
         self.assertIn("2 Lichter sind an, 3 Lichter sind aus.", prompt)
+        self.assertIn("21,5 °C", prompt)
         self.assertIn("Keine neuen Zahlen", prompt)
         self.assertIn("butlerhaft", prompt)
         self.assertIn("Wohnzimmer Licht ist an. → Sehr wohl.", prompt)
@@ -92,6 +93,13 @@ class RefineTests(unittest.TestCase):
             refine.accept_refined("Heizung Wohnzimmer auf 21 Grad.", "Die Heizung im Wohnzimmer auf 21 Grad."),
             "Die Heizung im Wohnzimmer auf 21 Grad.",
         )
+        self.assertEqual(
+            refine.accept_refined(
+                "Better Thermostat Wohnzimmer ist 21,5 °C.",
+                "Im Wohnzimmer sind es 21,5 °C.",
+            ),
+            "Im Wohnzimmer sind es 21,5 °C.",
+        )
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Die Temperatur im Schlafzimmer ist 20 Grad."))
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Die Temperatur im Schlafzimmer ist zwanzig Grad."))
         self.assertIsNone(refine.accept_refined("Klimaanlage auf 19 Grad.", "Die Klimaanlage ist auf neunzehn Grad."))
@@ -99,17 +107,21 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an..."))
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"))
 
-    def test_should_refine_only_for_non_chat_replies_with_agent(self) -> None:
+    def test_should_refine_home_status_and_control(self) -> None:
         self.assertTrue(
-            refine.should_refine(True, "conversation.llm", "Licht ist an.", False, False)
+            refine.should_refine(True, "conversation.llm", "Licht ist an.", True)
+        )
+        self.assertTrue(
+            refine.should_refine(True, "conversation.llm", "Im Wohnzimmer sind es 21,5 °C.", True)
         )
         self.assertFalse(
-            refine.should_refine(False, "conversation.llm", "Licht ist an.", False, False)
+            refine.should_refine(False, "conversation.llm", "Licht ist an.", True)
         )
-        self.assertFalse(refine.should_refine(True, None, "Licht ist an.", False, False))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", "", False, False))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", "Hallo", True, False))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", "News", False, True))
+        self.assertFalse(refine.should_refine(True, None, "Licht ist an.", True))
+        self.assertFalse(refine.should_refine(True, "conversation.llm", "", True))
+        self.assertFalse(refine.should_refine(True, "conversation.llm", "Hallo", False))
+        self.assertFalse(refine.should_refine(True, "conversation.llm", "News", False))
+        self.assertFalse(hasattr(refine, "_TIMEOUT"))
 
     def test_extra_body_disables_thinking_for_ha_openai_client(self) -> None:
         self.assertEqual(

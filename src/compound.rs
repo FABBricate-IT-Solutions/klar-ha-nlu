@@ -267,9 +267,12 @@ pub(crate) fn room_light_id(home: &HomeGraph, area: &str) -> Option<String> {
     home.entities.iter().find(|e| assist_visible(e, home) && e.entity_id == format!("light.{area}")).map(|e| e.entity_id.clone())
 }
 
-pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved) -> bool {
+pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved, light_areas: &[String]) -> bool {
     if resolved.entities.is_empty() || resolved.areas.len() > 1 {
         return false;
+    }
+    if !light_areas.is_empty() && resolved.entities.len() == 1 {
+        return true;
     }
     let cat = catalog();
     if cat.any(tokens, &cat.named_device) {

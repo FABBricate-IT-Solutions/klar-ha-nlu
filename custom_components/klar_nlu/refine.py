@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 import logging
 import re
 from typing import Any
@@ -24,7 +23,6 @@ except ImportError:  # stdlib tests load this module without a package
         return (not controls_home) or chat
 
 _LOGGER = logging.getLogger(__name__)
-_TIMEOUT = 6
 _INTENT = re.compile(r"\bHass[A-Z][A-Za-z]+\b")
 _DIGITS = re.compile(r"\d+")
 _NUM_WORD = re.compile(
@@ -50,7 +48,8 @@ _RULES = {
         "Gleiche Sprache. Fehlt eine Zahl, erfinde keine. "
         "Ein kurzes Stilwort ist erlaubt, neue Fakten nicht.\n"
         "2 Lichter an, 3 Lichter aus. → 2 Lichter sind an, 3 Lichter sind aus.\n"
-        "Temperatur im Schlafzimmer. → Die Temperatur im Schlafzimmer."
+        "Temperatur im Schlafzimmer. → Die Temperatur im Schlafzimmer.\n"
+        "Better Thermostat Wohnzimmer ist 21,5 °C. → Im Wohnzimmer sind es 21,5 °C."
     ),
     "en": (
         "Make the sentence spoken and correct. One sentence, no explanation. "
@@ -62,7 +61,8 @@ _RULES = {
         "Same language. If a number is missing, do not invent one. "
         "A short style word is fine, new facts are not.\n"
         "2 lights on, 3 lights off. → 2 lights are on, 3 lights are off.\n"
-        "Temperature in the bedroom. → The temperature in the bedroom."
+        "Temperature in the bedroom. → The temperature in the bedroom.\n"
+        "Better Thermostat living room is 21.5 °C. → It is 21.5 °C in the living room."
     ),
 }
 
@@ -242,10 +242,9 @@ def should_refine(
     enabled: bool,
     agent_id: str | None,
     speech: str,
-    chat: bool,
-    briefing: bool,
+    home: bool,
 ) -> bool:
-    return bool(enabled and agent_id and speech.strip() and not chat and not briefing)
+    return bool(enabled and agent_id and speech.strip() and home)
 
 
 def refine_prompt(pack: str, personality: str, extra: str | None) -> str:
@@ -425,36 +424,30 @@ async def _async_refine_raw(
     if resolved is not None:
         client, model = resolved
         try:
-            result = await asyncio.wait_for(
-                client.chat.completions.create(
-                    model=model,
-                    messages=[
-                        {"role": "system", "content": prompt},
-                        {"role": "user", "content": user},
-                    ],
-                    max_tokens=64,
-                    temperature=0.25,
-                    extra_body=refine_extra_body(),
-                ),
-                timeout=_TIMEOUT,
+            result = await client.chat.completions.create(
+                model=model,
+                messages=[
+                    {"role": "system", "content": prompt},
+                    {"role": "user", "content": user},
+                ],
+                max_tokens=64,
+                temperature=0.25,
+                extra_body=refine_extra_body(),
             )
             return speech_from_completion(result)
         except Exception as err:  # noqa: BLE001 — client shape varies by agent
             _LOGGER.debug("LLM-Refine direkt fehlgeschlagen, converse: %s", err)
     try:
-        result = await asyncio.wait_for(
-            conversation.async_converse(
-                hass,
-                user,
-                f"klar-refine-{uuid4()}",
-                context,
-                language=language,
-                agent_id=agent_id,
-                device_id=None,
-                satellite_id=None,
-                extra_system_prompt=prompt,
-            ),
-            timeout=_TIMEOUT,
+        result = await conversation.async_converse(
+            hass,
+            user,
+            f"klar-refine-{uuid4()}",
+            context,
+            language=language,
+            agent_id=agent_id,
+            device_id=None,
+            satellite_id=None,
+            extra_system_prompt=prompt,
         )
     except Exception as err:  # noqa: BLE001 — other agent is a system boundary
         _LOGGER.warning("LLM-Refine fehlgeschlagen: %s", err)

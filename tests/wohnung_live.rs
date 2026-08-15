@@ -53,6 +53,10 @@ fn schlafzimmerlicht_ist_die_kugel() {
     assert_target("schalte im schlafzimmer das schlafzimmerlicht an", "HassTurnOn", kugel, forbid);
     assert_target("Kugel an", "HassTurnOn", kugel, forbid);
     assert_target("Kugel auf 40%", "HassLightSet", kugel, forbid);
+    assert_target("Wie ist der Status vom Schlafzimmerlicht", "HassGetState", kugel, forbid);
+    let (_, status, _) = slots("Wie ist der Status vom Schlafzimmerlicht");
+    assert!(slot(&status, "entity_id").is_some(), "{status:?}");
+    assert!(slot(&status, "area").is_none(), "{status:?}");
 }
 
 #[test]

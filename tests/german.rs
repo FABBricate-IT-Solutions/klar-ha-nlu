@@ -242,6 +242,14 @@ fn schlafzimmerlicht_auf_prozent() {
 }
 
 #[test]
+fn schlafzimmerlicht_status_ist_das_licht() {
+    let found = slots("Wie ist der Status vom Schlafzimmerlicht");
+    assert_eq!(found[0].0, "HassGetState", "{found:?}");
+    assert!(found[0].1.iter().any(|(k, v)| k == "entity_id" && v == "light.schlafzimmer_kugel"), "{found:?}");
+    assert!(found[0].1.iter().all(|(k, _)| k != "area"), "{found:?}");
+}
+
+#[test]
 fn schlafzimmerlicht_an_ohne_raumwort() {
     let found = slots("schalte das schlafzimmerlicht an");
     assert_eq!(found[0].0, "HassTurnOn", "{found:?}");

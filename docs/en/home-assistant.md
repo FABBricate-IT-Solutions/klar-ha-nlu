@@ -75,7 +75,7 @@ Flow after a home command:
 
 1. Klar parses and HA runs the intents.
 2. Klar prefixes the selected personality cue.
-3. The fallback LLM rewrites only that finished sentence (not chit-chat, not news briefings).
+3. The fallback LLM rewrites that finished sentence after control and after a status query (not chit-chat, not news, not a clarify question).
 4. If the model drops the cue, Klar puts it back.
 
 The rewrite prompt is per personality (few-shots plus a fixed style tag). The **Refinement prompt** field is an optional extra line on top — it does not replace the voice.
@@ -88,7 +88,7 @@ Safety stays with Klar, not the model:
 - no invented numbers (a temperature fragment without a value stays without a value)
 - intent names such as `HassSetPosition` are rejected
 
-On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=false` so Gemma 4 does not spend the turn in a thought channel. Prompt text cannot turn thinking off. If the agent has no direct chat client, Klar falls back to `conversation.async_converse` and keeps the NLU sentence when the model returns nothing in time (6 s).
+On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=false` so Gemma 4 does not spend the turn in a thought channel. Prompt text cannot turn thinking off. If the agent has no direct chat client, Klar falls back to `conversation.async_converse` and keeps the NLU sentence only if the rewrite fails.
 
 ## Starting the engine
 
