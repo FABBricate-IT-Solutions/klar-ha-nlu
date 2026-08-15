@@ -1,4 +1,5 @@
 use clap::Parser;
+use klar_nlu::compound::{apply_overlay, load_overlay};
 use klar_nlu::lexicon::default_home;
 use klar_nlu::registry::load_home;
 use klar_nlu::session::Sessions;
@@ -21,6 +22,9 @@ struct Args {
     /// Home-Assistant-Config (read-only), z. B. /config
     #[arg(long, default_value = "/config")]
     config_dir: PathBuf,
+    /// Beschreibbares Verzeichnis für Kalibrierung. Addon: /data
+    #[arg(long, default_value = "/data")]
+    data_dir: PathBuf,
 }
 
 #[tokio::main]
@@ -33,12 +37,22 @@ async fn main() {
         .init();
 
     let args = Args::parse();
-    let home = load_home(&args.config_dir, default_home());
+    let data_dir = if args.data_dir.is_dir() {
+        args.data_dir.clone()
+    } else {
+        args.config_dir.clone()
+    };
+    let mut home = load_home(&args.config_dir, default_home());
+    apply_overlay(&mut home, &load_overlay(&args.config_dir));
+    if data_dir != args.config_dir {
+        apply_overlay(&mut home, &load_overlay(&data_dir));
+    }
     let state = AppState {
         home: Arc::new(Mutex::new(home)),
         sessions: Arc::new(Mutex::new(Sessions::default())),
         settings: Arc::new(Mutex::new(Settings::default())),
         custom: Arc::new(Mutex::new(Vec::<CustomSentence>::new())),
+        data_dir,
     };
 
     let http_state = state.clone();

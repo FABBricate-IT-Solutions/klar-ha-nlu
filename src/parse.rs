@@ -1,5 +1,6 @@
 use crate::lang::catalog;
 use crate::lexicon::{detect_actions, Action};
+use crate::compound::{apply_compound_light, expand_compounds};
 use crate::normalize::{strip_fillers, tokenize};
 use crate::numbers::first_number;
 use crate::parse_help::{
@@ -25,7 +26,8 @@ pub fn parse(
 ) -> ParseResult {
     let _langs = crate::lang::bind(&settings.languages);
     let raw_tokens = tokenize(text);
-    let tokens = strip_fillers(&raw_tokens);
+    let split = expand_compounds(&strip_fillers(&raw_tokens), home);
+    let tokens = split.tokens;
 
     if looks_like_correction(&tokens) {
         session.mark_wrong();
@@ -100,7 +102,7 @@ pub fn parse(
     let mut intents = Vec::new();
     let mut clarify_names = Vec::new();
     for clause in clauses {
-        match parse_clause(&clause, &raw_tokens, home, session, settings) {
+        match parse_clause(&clause, &raw_tokens, home, session, settings, &split.light_areas) {
             ClauseOut::Intents(mut list) => {
                 for intent in &list {
                     session.remember(intent);
@@ -179,6 +181,7 @@ fn parse_clause(
     home: &HomeGraph,
     session: &Session,
     settings: &Settings,
+    light_areas: &[String],
 ) -> ClauseOut {
     let actions = detect_actions(tokens);
     let question = looks_like_question(tokens);
@@ -256,7 +259,7 @@ fn parse_clause(
             crate::parse_help::ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
         };
     }
-    let resolved = if use_entities {
+    let mut resolved = if use_entities {
         let first = resolve(tokens, home, domain);
         if domain.is_none() && matches!(action, Action::On | Action::Off | Action::Toggle) {
             let skip_lights = catalog().any(tokens, &catalog().skip_light)
@@ -284,6 +287,7 @@ fn parse_clause(
             ambiguous: Vec::new(),
         }
     };
+    apply_compound_light(home, tokens, light_areas, &mut resolved);
 
     let mut intents = Vec::new();
 

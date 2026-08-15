@@ -246,6 +246,106 @@ fn smalltalk_hat_keinen_home_intent() {
 }
 
 #[test]
+fn schlafzimmerlicht_auf_prozent() {
+    let found = slots("Schlafzimmerlicht auf 50%");
+    assert_eq!(found[0].0, "HassLightSet", "{found:?}");
+    assert!(
+        found[0].1.iter().any(|(k, v)| k == "brightness" && v == "50"),
+        "{found:?}"
+    );
+    assert!(
+        found[0]
+            .1
+            .iter()
+            .any(|(k, v)| k == "entity_id" && v == "light.schlafzimmer_kugel"),
+        "{found:?}"
+    );
+}
+
+#[test]
+fn schlafzimmerlicht_an_ohne_raumwort() {
+    let found = slots("schalte das schlafzimmerlicht an");
+    assert_eq!(found[0].0, "HassTurnOn", "{found:?}");
+    assert!(
+        found[0].1.iter().any(|(k, v)| k == "entity_id" && v == "light.schlafzimmer_kugel")
+            || found[0].1.iter().any(|(k, v)| k == "area" && v == "schlafzimmer"),
+        "{found:?}"
+    );
+    assert!(!found[0].1.is_empty(), "{found:?}");
+}
+
+#[test]
+fn schlafzimmerlicht_im_raum() {
+    let found = slots("schalte im schlafzimmer das schlafzimmerlicht an");
+    assert_eq!(found[0].0, "HassTurnOn", "{found:?}");
+    assert!(
+        found[0]
+            .1
+            .iter()
+            .any(|(k, v)| k == "entity_id" && v == "light.schlafzimmer_kugel"),
+        "{found:?}"
+    );
+}
+
+#[test]
+fn kuechenlicht_trifft_raum() {
+    let found = slots("Küchenlicht an");
+    assert_eq!(found[0].0, "HassTurnOn", "{found:?}");
+    assert!(
+        found[0].1.iter().any(|(k, v)| k == "area" && v == "kuche")
+            || found[0].1.iter().any(|(k, _)| k == "entity_id"),
+        "{found:?}"
+    );
+}
+
+/// Live-Wohnung: Hue-Raum `light.schlafzimmer` ist nur die Kugel.
+/// Die Gruppe `Schlafzimmer Licht` darf nicht das Ziel sein.
+#[test]
+fn schlafzimmerlicht_trifft_hue_kugel_nicht_gruppe() {
+    let mut home = default_home();
+    home.entities.retain(|e| e.entity_id != "light.schlafzimmer_kugel");
+    home.entities.push(EntityRec {
+        entity_id: "light.schlafzimmer".into(),
+        name: "Kugel".into(),
+        domain: "light".into(),
+        area: Some("schlafzimmer".into()),
+        aliases: vec!["kugel".into()],
+        tags: Vec::new(),
+    });
+    home.entities.push(EntityRec {
+        entity_id: "light.hue_color_lamp_2".into(),
+        name: "Kugel".into(),
+        domain: "light".into(),
+        area: Some("schlafzimmer".into()),
+        aliases: vec!["kugel".into()],
+        tags: Vec::new(),
+    });
+    let mut session = Session::new();
+    let result = parse(
+        "Schlafzimmerlicht auf 50%",
+        &home,
+        &mut session,
+        &[],
+        &Settings::default(),
+    );
+    let slots: Vec<_> = result.intents[0]
+        .slots
+        .iter()
+        .map(|s| (s.name.as_str(), s.value.as_str()))
+        .collect();
+    assert_eq!(result.intents[0].name, "HassLightSet", "{slots:?}");
+    assert!(slots.contains(&("brightness", "50")), "{slots:?}");
+    assert!(
+        slots.contains(&("entity_id", "light.schlafzimmer")),
+        "{slots:?}"
+    );
+    assert!(
+        !slots.iter().any(|(k, v)| *k == "entity_id" && *v == "light.schlafzimmer_licht"),
+        "{slots:?}"
+    );
+}
+
+#[test]
 fn follow_up_aus() {
     let home = default_home();
     let mut session = Session::new();

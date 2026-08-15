@@ -81,6 +81,7 @@
       <button class="active" data-tab="parse">Satz</button>
       <button data-tab="custom">Sätze</button>
       <button data-tab="entities">Geräte</button>
+      <button data-tab="calibrate">Kalibrierung</button>
       <button data-tab="settings">Einstellungen</button>
     </nav>
   </header>
@@ -104,6 +105,21 @@
         <thead><tr><th>Gerät</th><th>Raum</th><th>Tags</th></tr></thead>
         <tbody id="ents"></tbody>
       </table>
+    </section>
+    <section id="calibrate" class="hidden">
+      <p style="color:var(--muted);max-width:40em">
+        Zusammengesetzte Wörter wie <em>Schlafzimmerlicht</em> erkennt Klar selbst.
+        Wenn im Raum mehrere Lampen sind, merkt du hier das Standardlicht
+        und optionale Spitznamen.
+      </p>
+      <table>
+        <thead><tr><th>Licht</th><th>Raum</th><th>Spitznamen</th><th>Standard</th></tr></thead>
+        <tbody id="cal"></tbody>
+      </table>
+      <div class="row">
+        <button class="act" id="saveCal">Kalibrierung speichern</button>
+        <span id="calStatus" style="color:var(--muted)"></span>
+      </div>
     </section>
     <section id="settings" class="hidden">
       <label>Persönlichkeit</label>
@@ -133,7 +149,7 @@
       btn.onclick = () => {
         document.querySelectorAll("nav button").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        ["parse", "custom", "entities", "settings"].forEach((id) => {
+        ["parse", "custom", "entities", "calibrate", "settings"].forEach((id) => {
           $(id).classList.toggle("hidden", id !== btn.dataset.tab);
         });
       };
@@ -171,6 +187,34 @@
       $("ents").innerHTML = ents.map((e) =>
         `<tr><td>${e.name}<br><span style="color:#9a9083">${e.entity_id}</span></td><td>${e.area || ""}</td><td>${(e.tags || []).join(", ")}</td></tr>`
       ).join("");
+      const lights = ents.filter((e) => e.domain === "light");
+      $("cal").innerHTML = lights.map((e) => {
+        const pref = (e.tags || []).includes("preferred") ? "checked" : "";
+        const aliases = (e.aliases || []).join(", ");
+        const group = `pref-${e.area || "ohne"}`;
+        return `<tr data-id="${e.entity_id}">
+          <td>${e.name}<br><span style="color:#9a9083">${e.entity_id}</span></td>
+          <td>${e.area || ""}</td>
+          <td><input data-aliases value="${aliases.replace(/"/g, "&quot;")}"></td>
+          <td><input type="radio" name="${group}" data-pref ${pref}></td>
+        </tr>`;
+      }).join("");
+      $("saveCal").onclick = async () => {
+        for (const row of $("cal").querySelectorAll("tr")) {
+          const aliases = (row.querySelector("[data-aliases]").value || "")
+            .split(",").map((s) => s.trim()).filter(Boolean);
+          await fetch("/api/entities", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              entity_id: row.dataset.id,
+              aliases,
+              preferred: row.querySelector("[data-pref]").checked,
+            }),
+          });
+        }
+        $("calStatus").textContent = "Gespeichert. Gilt für Schlafzimmerlicht, Küchenlicht und so weiter.";
+      };
       const custom = await (await fetch("/api/custom")).json();
       $("customBox").value = JSON.stringify(custom, null, 2);
       const set = await (await fetch("/api/settings")).json();

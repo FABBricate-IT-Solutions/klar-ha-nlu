@@ -1,6 +1,7 @@
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
-use crate::normalize::fold_umlaut;
+use crate::compound::GENERIC;
+use crate::normalize::{compact, fold_umlaut};
 use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use strsim::normalized_levenshtein;
@@ -46,7 +47,9 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     if let Some((best, rec)) = candidates.first() {
         let peers: Vec<EntityRec> = candidates
             .iter()
-            .filter(|(s, e)| (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id)
+            .filter(|(s, e)| {
+                (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && e.name != rec.name
+            })
             .map(|(_, e)| e.clone())
             .collect();
         if *best >= 0.86 && peers.is_empty() {
@@ -217,18 +220,6 @@ fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     }
 }
 
-const GENERIC: &[&str] = &[
-    "licht", "lichter", "lampe", "lampen", "leuchte", "heizung", "thermostat",
-    "steckdose", "schalter", "szene", "sensor",
-    "light", "lights", "lamp", "lamps", "heater", "heating", "switch", "scene",
-    "ceiling", "decke", "blinds", "rollo", "curtain", "curtains", "fan", "luefter",
-    "bedroom", "bedrooms", "kinderzimmer", "bathroom", "bath", "door", "tuer",
-    "window", "windows", "fenster", "lock", "locks", "schloss", "timer",
-    "kitchen", "living", "dining", "garage", "hallway", "laundry", "entryway",
-    "family", "master", "powder", "wohnzimmer", "schlafzimmer", "kuche", "kueche",
-    "badezimmer", "flur", "esszimmer",
-];
-
 fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
     let mut scored: Vec<(usize, String)> = Vec::new();
     for area in areas {
@@ -282,6 +273,10 @@ fn token_hit(tokens: &[String], label: &str) -> bool {
         return false;
     }
     if label.contains(' ') || label.contains('_') {
+        let glued = compact(label);
+        if glued.len() > 6 && tokens.iter().any(|t| *t == glued) {
+            return true;
+        }
         let parts: Vec<&str> = label
             .split(|c: char| c == ' ' || c == '_')
             .filter(|p| !p.is_empty())
