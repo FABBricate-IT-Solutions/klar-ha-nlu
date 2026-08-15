@@ -125,7 +125,7 @@ fn area_prefixes(home: &HomeGraph) -> Vec<(String, String)> {
             }
         }
     }
-    prefixes.sort_by(|a, b| b.0.len().cmp(&a.0.len()));
+    prefixes.sort_by_key(|(prefix, _)| std::cmp::Reverse(prefix.len()));
     prefixes.dedup_by(|a, b| a.0 == b.0);
     prefixes
 }
