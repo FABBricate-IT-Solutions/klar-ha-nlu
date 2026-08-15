@@ -136,7 +136,7 @@ pub const PACK: LanguagePack = LanguagePack {
         "klar", "kannst", "koenntest", "wuerdest", "wuerde", "fuer", "mich", "mir", "uns", "du",
         "sie", "es", "ihn", "ihm", "ihr", "ihnen", "wieder", "nochmal", "nochmals",
         "einen", "eine", "einem", "einer", "den", "dem", "der", "die", "das",
-        "im", "in", "am", "an",
+        "im", "in", "am", "an", "von", "vom",
     ],
     action_keep: &["an", "aus", "ein", "auf", "zu", "starten", "starte"],
     conjunctions: &["und", "ausserdem", "dann", "danach", "waehrend", "sowie", "auch"],

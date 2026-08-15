@@ -59,6 +59,12 @@ _TIMER_INTENTS = {
     "HassPauseTimer",
 }
 
+_ENTITY_SERVICES = {
+    "HassTurnOn": "turn_on",
+    "HassTurnOff": "turn_off",
+    "HassToggle": "toggle",
+}
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -316,6 +322,35 @@ class KlarConversationEntity(ConversationEntity):
             return None
         return from_handled(handled, pack, {**item, "name": name})
 
+    async def _run_entity(
+        self,
+        name: str,
+        entity_id: str,
+        slots: dict[str, Any],
+        pack: str,
+        item: dict,
+    ) -> str | None:
+        if "." not in entity_id or self.hass.states.get(entity_id) is None:
+            return None
+        domain = entity_id.split(".", 1)[0]
+        data: dict[str, Any] = {"entity_id": entity_id}
+        if name == "HassLightSet" and domain == "light":
+            service = "turn_on"
+            if bri := slots.get("brightness", {}).get("value"):
+                data["brightness_pct"] = int(bri)
+            if color := slots.get("color", {}).get("value"):
+                data["color_name"] = str(color)
+        else:
+            service = _ENTITY_SERVICES.get(name)
+            if not service:
+                return None
+        try:
+            await self.hass.services.async_call(domain, service, data, blocking=True)
+        except Exception as err:  # noqa: BLE001 — HA services are a boundary
+            _LOGGER.debug("Gerät %s nicht geschaltet: %s", entity_id, err)
+            return None
+        return from_handled(None, pack, {**item, "name": name})
+
     async def _handle_intent(
         self, user_input: ConversationInput, item: dict, pack: str
     ) -> str | None:
@@ -325,6 +360,9 @@ class KlarConversationEntity(ConversationEntity):
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
         if "entity_id" in slots:
             entity_id = str(slots["entity_id"].get("value") or "")
+            spoken = await self._run_entity(name, entity_id, slots, pack, item)
+            if spoken:
+                return spoken
             state = self.hass.states.get(entity_id)
             if state is not None:
                 slots["name"] = {"value": state.name}
