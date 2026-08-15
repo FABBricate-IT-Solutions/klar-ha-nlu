@@ -120,26 +120,14 @@ fn expected_intent_names(cond: &Condition) -> Vec<&'static str> {
         return vec!["HassGetState"];
     }
     if cond.kind == "shopping_list" || cond.kind == "todo_list" || cond.item.is_some() {
-        return vec![
-            "HassListAddItem",
-            "HassListCompleteItem",
-            "HassShoppingListAddItem",
-            "HassShoppingListCompleteItem",
-        ];
+        return vec!["HassListAddItem", "HassListCompleteItem", "HassShoppingListAddItem", "HassShoppingListCompleteItem"];
     }
     if cond.minutes.is_some()
         || cond.hours.is_some()
         || cond.seconds.is_some()
         || cond.entity_id.as_deref().is_some_and(|e| e.starts_with("timer."))
     {
-        return vec![
-            "HassStartTimer",
-            "HassIncreaseTimer",
-            "HassDecreaseTimer",
-            "HassTimerStatus",
-            "HassPauseTimer",
-            "HassCancelTimer",
-        ];
+        return vec!["HassStartTimer", "HassIncreaseTimer", "HassDecreaseTimer", "HassTimerStatus", "HassPauseTimer", "HassCancelTimer"];
     }
     let eid = cond.entity_id.as_deref().unwrap_or("");
     if eid.starts_with("vacuum.") {
@@ -167,9 +155,7 @@ fn scene_covers(cond: &Condition, intents: &[Intent], home: &HomeGraph) -> bool 
         if sid == want && (sid.starts_with("scene.") || sid.starts_with("script.")) {
             return true;
         }
-        home.scene_members
-            .get(sid)
-            .is_some_and(|members| members.iter().any(|m| m == want))
+        home.scene_members.get(sid).is_some_and(|members| members.iter().any(|m| m == want))
     })
 }
 
@@ -196,9 +182,8 @@ fn target_ok(intent: &Intent, cond: &Condition, home: &HomeGraph) -> bool {
             if let Some(d) = cond.domain.as_deref() {
                 if intent.slot("domain").is_some_and(|got| got != d) {
                     if let Some(eid) = intent.slot("entity_id") {
-                        return entity_in(home, eid).is_some_and(|e| {
-                            e.area.as_deref() == Some(area) && e.domain == d
-                        }) && slot_attrs_ok(intent, cond);
+                        return entity_in(home, eid).is_some_and(|e| e.area.as_deref() == Some(area) && e.domain == d)
+                            && slot_attrs_ok(intent, cond);
                     }
                     return false;
                 }
@@ -206,10 +191,9 @@ fn target_ok(intent: &Intent, cond: &Condition, home: &HomeGraph) -> bool {
             return slot_attrs_ok(intent, cond);
         }
         if let Some(eid) = intent.slot("entity_id") {
-            return entity_in(home, eid).is_some_and(|e| {
-                e.area.as_deref() == Some(area)
-                    && cond.domain.as_deref().is_none_or(|d| e.domain == d)
-            }) && slot_attrs_ok(intent, cond);
+            return entity_in(home, eid)
+                .is_some_and(|e| e.area.as_deref() == Some(area) && cond.domain.as_deref().is_none_or(|d| e.domain == d))
+                && slot_attrs_ok(intent, cond);
         }
         return false;
     }
@@ -253,16 +237,11 @@ fn cond_ok(cond: &Condition, intents: &[Intent], home: &HomeGraph) -> Result<(),
         return Ok(());
     }
     let want = expected_intent_names(cond);
-    let hit = intents
-        .iter()
-        .any(|i| want.contains(&i.name.as_str()) && target_ok(i, cond, home));
+    let hit = intents.iter().any(|i| want.contains(&i.name.as_str()) && target_ok(i, cond, home));
     if hit {
         Ok(())
     } else {
-        Err(format!(
-            "wanted {want:?} {:?} / {:?} in {intents:?}",
-            cond.entity_id, cond.area
-        ))
+        Err(format!("wanted {want:?} {:?} / {:?} in {intents:?}", cond.entity_id, cond.area))
     }
 }
 
@@ -287,19 +266,9 @@ fn run_suite(name: &str, clarify_dir: bool) -> RunStats {
     let home = suite_home(name);
     let settings = Settings::default();
     let root = datasets_root().join(name);
-    let mut stats = RunStats {
-        ok: 0,
-        fail: 0,
-        fails: Vec::new(),
-    };
+    let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
 
-    let mut groups = vec![
-        "area",
-        "devices",
-        "query_area",
-        "query_devices",
-        "multiple_intents",
-    ];
+    let mut groups = vec!["area", "devices", "query_area", "query_devices", "multiple_intents"];
     if clarify_dir {
         groups.push("clarifications");
         groups.push("state_persistance");
@@ -319,10 +288,7 @@ fn run_suite(name: &str, clarify_dir: bool) -> RunStats {
                     last = Some(result.clone());
                     if is_clarify && i + 1 < turn_list.len() && !result.clarify {
                         stats.fail += 1;
-                        stats.fails.push(format!(
-                            "{group}/{label}: first turn should clarify: {sentence:?} → {:?}",
-                            result.intents
-                        ));
+                        stats.fails.push(format!("{group}/{label}: first turn should clarify: {sentence:?} → {:?}", result.intents));
                         last = None;
                         break;
                     }
@@ -330,22 +296,15 @@ fn run_suite(name: &str, clarify_dir: bool) -> RunStats {
                 let Some(result) = last else { continue };
                 if result.clarify && !is_clarify {
                     stats.fail += 1;
-                    stats.fails.push(format!(
-                        "{group}/{label}: unexpected clarify for {turn_list:?}: {}",
-                        result.speech
-                    ));
+                    stats.fails.push(format!("{group}/{label}: unexpected clarify for {turn_list:?}: {}", result.speech));
                     continue;
                 }
                 let mut err = None;
                 if is_clarify {
-                    if !case.conditions.iter().any(|c| cond_ok(c, &result.intents, &home).is_ok())
-                    {
+                    if !case.conditions.iter().any(|c| cond_ok(c, &result.intents, &home).is_ok()) {
                         err = Some(format!(
                             "wanted {:?} in {:?}",
-                            case.conditions
-                                .iter()
-                                .filter_map(|c| c.entity_id.as_deref())
-                                .collect::<Vec<_>>(),
+                            case.conditions.iter().filter_map(|c| c.entity_id.as_deref()).collect::<Vec<_>>(),
                             result.intents
                         ));
                     }
@@ -371,16 +330,9 @@ fn run_suite(name: &str, clarify_dir: bool) -> RunStats {
 
 fn print_stats(title: &str, stats: &RunStats) {
     let total = stats.ok + stats.fail;
-    let pct = if total == 0 {
-        0.0
-    } else {
-        100.0 * stats.ok as f64 / total as f64
-    };
+    let pct = if total == 0 { 0.0 } else { 100.0 * stats.ok as f64 / total as f64 };
     println!("\n=== {title} ===");
-    println!(
-        "  {total} Sätze  {} ok  {} fehl  {pct:.1}%",
-        stats.ok, stats.fail
-    );
+    println!("  {total} Sätze  {} ok  {} fehl  {pct:.1}%", stats.ok, stats.fail);
     let mut kinds: BTreeMap<String, usize> = BTreeMap::new();
     for line in &stats.fails {
         let kind = if line.contains("unexpected clarify") {
@@ -417,15 +369,7 @@ fn print_stats(title: &str, stats: &RunStats) {
     }
     let dump = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("target")
-        .join(format!(
-            "suite_fails_{}.txt",
-            title
-                .split('(')
-                .nth(1)
-                .unwrap_or("x")
-                .trim_end_matches(')')
-                .replace([' ', '·'], "_")
-        ));
+        .join(format!("suite_fails_{}.txt", title.split('(').nth(1).unwrap_or("x").trim_end_matches(')').replace([' ', '·'], "_")));
     let _ = std::fs::create_dir_all(dump.parent().unwrap());
     let _ = std::fs::write(&dump, stats.fails.join("\n"));
 }
@@ -434,10 +378,7 @@ fn print_stats(title: &str, stats: &RunStats) {
 fn suite_deutsch() {
     let stats = run_suite("wohnung_mittel", true);
     print_stats("Klar NLU · Deutsch (wohnung_mittel)", &stats);
-    assert!(
-        stats.ok + stats.fail > 0,
-        "keine Testdateien — scripts/gen_voice_suite.py ausführen"
-    );
+    assert!(stats.ok + stats.fail > 0, "keine Testdateien — scripts/gen_voice_suite.py ausführen");
     let pct = 100.0 * stats.ok as f64 / (stats.ok + stats.fail) as f64;
     assert!(
         pct >= 95.0,
@@ -452,11 +393,7 @@ fn suite_english_smoke() {
     print_stats("Klar NLU · English smoke (wohnung_en)", &stats);
     assert!(stats.ok + stats.fail > 0, "keine englischen Testdateien");
     let pct = 100.0 * stats.ok as f64 / (stats.ok + stats.fail) as f64;
-    assert!(
-        pct >= 60.0,
-        "englischer Smoke unter 60% ({pct:.1}%). Fehler:\n{}",
-        stats.fails.join("\n")
-    );
+    assert!(pct >= 60.0, "englischer Smoke unter 60% ({pct:.1}%). Fehler:\n{}", stats.fails.join("\n"));
 }
 
 #[test]

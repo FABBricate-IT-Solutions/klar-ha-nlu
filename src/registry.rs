@@ -98,12 +98,7 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
         }
     }
     tracing::info!("{} Entitäten, {} Räume aus Home Assistant geladen", entities.len(), areas.len());
-    HomeGraph {
-        entities,
-        areas,
-        assist: crate::expose::load_assist(config_dir),
-        ..fallback
-    }
+    HomeGraph { entities, areas, assist: crate::expose::load_assist(config_dir), ..fallback }
 }
 
 fn read_device_areas(path: &Path) -> HashMap<String, String> {
@@ -113,12 +108,7 @@ fn read_device_areas(path: &Path) -> HashMap<String, String> {
     let Ok(parsed) = serde_json::from_str::<DeviceStorage>(&raw) else {
         return HashMap::new();
     };
-    parsed
-        .data
-        .devices
-        .into_iter()
-        .filter_map(|d| d.area_id.map(|area| (d.id, area)))
-        .collect()
+    parsed.data.devices.into_iter().filter_map(|d| d.area_id.map(|area| (d.id, area))).collect()
 }
 
 fn infer_area(entity_id: &str, areas: &[AreaRec]) -> Option<String> {
@@ -145,21 +135,9 @@ fn read_entities(path: &Path, device_areas: &HashMap<String, String>) -> Result<
         .filter(|e| keep_domain(&e.entity_id))
         .map(|e| {
             let domain = e.entity_id.split('.').next().unwrap_or("").to_string();
-            let name = e
-                .name
-                .or(e.original_name)
-                .unwrap_or_else(|| e.entity_id.clone());
-            let area = e.area_id.or_else(|| {
-                e.device_id.as_ref().and_then(|id| device_areas.get(id).cloned())
-            });
-            EntityRec {
-                entity_id: e.entity_id,
-                name,
-                domain,
-                area,
-                aliases: e.aliases,
-                tags: e.labels,
-            }
+            let name = e.name.or(e.original_name).unwrap_or_else(|| e.entity_id.clone());
+            let area = e.area_id.or_else(|| e.device_id.as_ref().and_then(|id| device_areas.get(id).cloned()));
+            EntityRec { entity_id: e.entity_id, name, domain, area, aliases: e.aliases, tags: e.labels }
         })
         .collect())
 }
@@ -175,11 +153,7 @@ fn read_areas(path: &Path) -> Result<Vec<AreaRec>, String> {
         .into_iter()
         .map(|a| {
             let area_id = a.id.or(a.area_id).unwrap_or_else(|| fold_umlaut(&a.name));
-            AreaRec {
-                area_id: area_id.clone(),
-                name: a.name.clone(),
-                aliases: merge_area_aliases(&area_id, &a.name, a.aliases),
-            }
+            AreaRec { area_id: area_id.clone(), name: a.name.clone(), aliases: merge_area_aliases(&area_id, &a.name, a.aliases) }
         })
         .collect())
 }
@@ -265,13 +239,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
     let areas = file
         .areas
         .into_iter()
-        .map(|a| {
-            AreaRec {
-                area_id: a.id.clone(),
-                name: a.name.clone(),
-                aliases: merge_area_aliases(&a.id, &a.name, a.aliases),
-            }
-        })
+        .map(|a| AreaRec { area_id: a.id.clone(), name: a.name.clone(), aliases: merge_area_aliases(&a.id, &a.name, a.aliases) })
         .collect();
     let mut entities: Vec<EntityRec> = file
         .devices
@@ -287,23 +255,12 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
                 }
             }
             aliases.extend(extra_device_aliases(&d.id, &d.name, &domain));
-            EntityRec {
-                entity_id: d.id,
-                name: d.name,
-                domain,
-                area: d.area_id,
-                aliases,
-                tags: Vec::new(),
-            }
+            EntityRec { entity_id: d.id, name: d.name, domain, area: d.area_id, aliases, tags: Vec::new() }
         })
         .collect();
     let mut scene_members: HashMap<String, Vec<String>> = HashMap::new();
     for item in file.scenes {
-        let id = if item.id.contains('.') {
-            item.id.clone()
-        } else {
-            format!("scene.{}", item.id)
-        };
+        let id = if item.id.contains('.') { item.id.clone() } else { format!("scene.{}", item.id) };
         scene_members.insert(id.clone(), yaml_entity_ids(&item.entities));
         entities.push(EntityRec {
             entity_id: id,
@@ -315,11 +272,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
         });
     }
     for item in file.scripts {
-        let id = if item.id.contains('.') {
-            item.id.clone()
-        } else {
-            format!("script.{}", item.id)
-        };
+        let id = if item.id.contains('.') { item.id.clone() } else { format!("script.{}", item.id) };
         scene_members.insert(id.clone(), yaml_entity_ids(&item.actions));
         entities.push(EntityRec {
             entity_id: id,
@@ -332,11 +285,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
     }
     for (domain, items) in [("timer", file.timers), ("todo", file.lists)] {
         for item in items {
-            let id = if item.id.contains('.') {
-                item.id.clone()
-            } else {
-                format!("{domain}.{}", item.id)
-            };
+            let id = if item.id.contains('.') { item.id.clone() } else { format!("{domain}.{}", item.id) };
             entities.push(EntityRec {
                 entity_id: id,
                 name: item.name.clone(),
@@ -347,12 +296,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             });
         }
     }
-    Ok(HomeGraph {
-        entities,
-        areas,
-        scene_members,
-        assist: None,
-    })
+    Ok(HomeGraph { entities, areas, scene_members, assist: None })
 }
 
 fn yaml_entity_ids(value: &serde_yaml::Value) -> Vec<String> {
@@ -389,10 +333,33 @@ fn collect_entity_ids(value: &serde_yaml::Value, out: &mut Vec<String>) {
 }
 
 const GENERIC_NAME: &[&str] = &[
-    "light", "lights", "room", "floor", "the", "and", "licht", "zimmer",
-    "bedroom", "bedrooms", "kinderzimmer", "bath", "bathroom", "main",
-    "ceiling", "master", "timer", "living", "dining", "kitchen", "family",
-    "laundry", "hallway", "entryway", "powder", "ground", "upper",
+    "light",
+    "lights",
+    "room",
+    "floor",
+    "the",
+    "and",
+    "licht",
+    "zimmer",
+    "bedroom",
+    "bedrooms",
+    "kinderzimmer",
+    "bath",
+    "bathroom",
+    "main",
+    "ceiling",
+    "master",
+    "timer",
+    "living",
+    "dining",
+    "kitchen",
+    "family",
+    "laundry",
+    "hallway",
+    "entryway",
+    "powder",
+    "ground",
+    "upper",
 ];
 
 fn merge_area_aliases(area_id: &str, name: &str, existing: Vec<String>) -> Vec<String> {

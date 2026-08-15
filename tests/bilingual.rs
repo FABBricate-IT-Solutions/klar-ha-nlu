@@ -4,20 +4,14 @@ use klar_nlu::session::Session;
 use klar_nlu::types::Settings;
 
 fn settings(lang: &str) -> Settings {
-    Settings {
-        languages: vec![lang.into()],
-        ..Settings::default()
-    }
+    Settings { languages: vec![lang.into()], ..Settings::default() }
 }
 
 fn run(text: &str, lang: &str) -> (Vec<String>, String) {
     let home = default_home();
     let mut session = Session::new();
     let result = parse(text, &home, &mut session, &[], &settings(lang));
-    (
-        result.intents.iter().map(|i| i.name.clone()).collect(),
-        result.speech,
-    )
+    (result.intents.iter().map(|i| i.name.clone()).collect(), result.speech)
 }
 
 #[test]
@@ -39,38 +33,17 @@ fn slots(text: &str, lang: &str) -> Vec<(String, Vec<(String, String)>)> {
     let home = default_home();
     let mut session = Session::new();
     let result = parse(text, &home, &mut session, &[], &settings(lang));
-    result
-        .intents
-        .into_iter()
-        .map(|i| {
-            (
-                i.name,
-                i.slots.into_iter().map(|s| (s.name, s.value)).collect(),
-            )
-        })
-        .collect()
+    result.intents.into_iter().map(|i| (i.name, i.slots.into_iter().map(|s| (s.name, s.value)).collect())).collect()
 }
 
 fn area_of(text: &str, lang: &str) -> Vec<String> {
-    slots(text, lang)
-        .into_iter()
-        .flat_map(|(_, slots)| {
-            slots
-                .into_iter()
-                .filter(|(k, _)| k == "area")
-                .map(|(_, v)| v)
-        })
-        .collect()
+    slots(text, lang).into_iter().flat_map(|(_, slots)| slots.into_iter().filter(|(k, _)| k == "area").map(|(_, v)| v)).collect()
 }
 
 fn target_of(text: &str, lang: &str) -> Vec<String> {
     slots(text, lang)
         .into_iter()
-        .flat_map(|(_, slots)| {
-            slots.into_iter().filter_map(|(k, v)| {
-                matches!(k.as_str(), "entity_id" | "area").then_some(v)
-            })
-        })
+        .flat_map(|(_, slots)| slots.into_iter().filter_map(|(k, v)| matches!(k.as_str(), "entity_id" | "area").then_some(v)))
         .collect()
 }
 
@@ -85,19 +58,13 @@ fn en_bedroom_temperature_uses_english_speech() {
 #[test]
 fn en_office_light_targets_arbeitszimmer() {
     let found = target_of("Turn on the office light", "en");
-    assert!(
-        found.iter().any(|v| v == "light.arbeitszimmer" || v == "arbeitszimmer"),
-        "{found:?}"
-    );
+    assert!(found.iter().any(|v| v == "light.arbeitszimmer" || v == "arbeitszimmer"), "{found:?}");
 }
 
 #[test]
 fn en_study_light_targets_arbeitszimmer_only() {
     let found = target_of("Turn on the light in the study", "en");
-    assert!(
-        found.iter().any(|v| v == "light.arbeitszimmer" || v == "arbeitszimmer"),
-        "{found:?}"
-    );
+    assert!(found.iter().any(|v| v == "light.arbeitszimmer" || v == "arbeitszimmer"), "{found:?}");
 }
 
 #[test]

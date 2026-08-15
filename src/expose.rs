@@ -30,17 +30,11 @@ pub fn load_assist(config_dir: &Path) -> Option<HashSet<String>> {
 }
 
 pub fn resolve(hints: &[ExposeHint], store: &ExposeStore) -> HashSet<String> {
-    hints
-        .iter()
-        .filter(|hint| is_exposed(hint, store))
-        .map(|hint| hint.entity_id.clone())
-        .collect()
+    hints.iter().filter(|hint| is_exposed(hint, store)).map(|hint| hint.entity_id.clone()).collect()
 }
 
 fn is_exposed(hint: &ExposeHint, store: &ExposeStore) -> bool {
-    hint.should_expose
-        .or_else(|| store.legacy.get(&hint.entity_id).copied())
-        .unwrap_or(false)
+    hint.should_expose.or_else(|| store.legacy.get(&hint.entity_id).copied()).unwrap_or(false)
 }
 
 fn read_store(path: &Path) -> ExposeStore {
@@ -55,9 +49,7 @@ fn read_store(path: &Path) -> ExposeStore {
     };
     let legacy = entities
         .iter()
-        .filter_map(|(id, entity)| {
-            flag(entity.pointer(&format!("/assistants/{ASSISTANT}/should_expose"))).map(|f| (id.clone(), f))
-        })
+        .filter_map(|(id, entity)| flag(entity.pointer(&format!("/assistants/{ASSISTANT}/should_expose"))).map(|f| (id.clone(), f)))
         .collect();
     ExposeStore { legacy }
 }
@@ -93,23 +85,14 @@ mod tests {
     use super::*;
 
     fn hint(id: &str, expose: Option<bool>) -> ExposeHint {
-        ExposeHint {
-            entity_id: id.into(),
-            should_expose: expose,
-        }
+        ExposeHint { entity_id: id.into(), should_expose: expose }
     }
 
     #[test]
     fn only_explicit_assist_flag() {
         let store = ExposeStore::default();
-        let ids = resolve(
-            &[
-                hint("light.kugel", Some(true)),
-                hint("light.hue_play_1", Some(false)),
-                hint("light.hue_play_2", None),
-            ],
-            &store,
-        );
+        let ids =
+            resolve(&[hint("light.kugel", Some(true)), hint("light.hue_play_1", Some(false)), hint("light.hue_play_2", None)], &store);
         assert!(ids.contains("light.kugel"));
         assert!(!ids.contains("light.hue_play_1"));
         assert!(!ids.contains("light.hue_play_2"));
@@ -117,9 +100,7 @@ mod tests {
 
     #[test]
     fn legacy_store_counts_as_explicit() {
-        let store = ExposeStore {
-            legacy: [("script.musik".into(), true)].into(),
-        };
+        let store = ExposeStore { legacy: [("script.musik".into(), true)].into() };
         let ids = resolve(&[hint("script.musik", None)], &store);
         assert!(ids.contains("script.musik"));
     }

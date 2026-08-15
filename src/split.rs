@@ -92,18 +92,15 @@ fn phrase_spans_conj(tokens: &[String], home: &HomeGraph) -> bool {
 }
 
 fn name_covers_conj(name: &str, tokens: &[String], at: usize) -> bool {
-    let parts: Vec<String> = fold_umlaut(name)
-        .split(|c: char| !c.is_alphanumeric())
-        .filter(|part| !part.is_empty())
-        .map(str::to_string)
-        .collect();
+    let parts: Vec<String> =
+        fold_umlaut(name).split(|c: char| !c.is_alphanumeric()).filter(|part| !part.is_empty()).map(str::to_string).collect();
     if parts.len() < 3 || !parts.iter().any(|p| is_conj(p)) {
         return false;
     }
-    tokens.windows(parts.len()).enumerate().any(|(start, window)| {
-        (start..start + parts.len()).contains(&at)
-            && window.iter().zip(&parts).all(|(token, part)| token == part)
-    })
+    tokens
+        .windows(parts.len())
+        .enumerate()
+        .any(|(start, window)| (start..start + parts.len()).contains(&at) && window.iter().zip(&parts).all(|(token, part)| token == part))
 }
 
 fn split_two_targets(tokens: &[String]) -> Option<usize> {
@@ -111,8 +108,7 @@ fn split_two_targets(tokens: &[String]) -> Option<usize> {
     let left = &tokens[..at];
     let right = &tokens[at + 1..];
     let right_head = right.split(|t| is_conj(t)).next().unwrap_or(right);
-    if device_side(left) && device_side(right_head) && !right.iter().skip(right_head.len()).any(|t| is_conj(t))
-    {
+    if device_side(left) && device_side(right_head) && !right.iter().skip(right_head.len()).any(|t| is_conj(t)) {
         Some(at)
     } else {
         None
@@ -154,28 +150,22 @@ fn is_same_command(a: Action, b: Action) -> bool {
             | (Action::FanSpeed | Action::SetLight | Action::SetTemp, Action::GetState)
             | (
                 Action::GetState,
-                Action::On
-                    | Action::Off
-                    | Action::Lock
-                    | Action::Unlock
-                    | Action::CoverOpen
-                    | Action::CoverClose
-                    | Action::CoverSet
+                Action::On | Action::Off | Action::Lock | Action::Unlock | Action::CoverOpen | Action::CoverClose | Action::CoverSet
             )
             | (
-                Action::On
-                    | Action::Off
-                    | Action::Lock
-                    | Action::Unlock
-                    | Action::CoverOpen
-                    | Action::CoverClose
-                    | Action::CoverSet,
+                Action::On | Action::Off | Action::Lock | Action::Unlock | Action::CoverOpen | Action::CoverClose | Action::CoverSet,
                 Action::GetState
             )
             | (Action::CoverOpen, Action::CoverClose)
             | (Action::CoverClose, Action::CoverOpen)
-            | (Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause)
-            | (Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause, Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay)
+            | (
+                Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay,
+                Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause
+            )
+            | (
+                Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause,
+                Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay
+            )
             | (Action::GetState, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause)
             | (Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause, Action::GetState)
             | (Action::GetState, Action::VacuumDock | Action::VacuumStart)
@@ -191,11 +181,7 @@ pub(crate) fn wants_group_clarify(raw: &[String]) -> bool {
     catalog().wants_group_clarify(raw)
 }
 
-pub(crate) fn follow_fixture(
-    tokens: &[String],
-    home: &crate::types::HomeGraph,
-    areas: &[String],
-) -> Option<String> {
+pub(crate) fn follow_fixture(tokens: &[String], home: &crate::types::HomeGraph, areas: &[String]) -> Option<String> {
     if areas.is_empty() {
         return None;
     }

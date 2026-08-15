@@ -15,9 +15,7 @@ fn parse_one(text: &str) -> (String, Vec<(String, String)>, bool) {
     let intent = result.intents.first();
     (
         intent.map(|i| i.name.clone()).unwrap_or_default(),
-        intent
-            .map(|i| i.slots.iter().map(|s| (s.name.clone(), s.value.clone())).collect())
-            .unwrap_or_default(),
+        intent.map(|i| i.slots.iter().map(|s| (s.name.clone(), s.value.clone())).collect()).unwrap_or_default(),
         result.clarify,
     )
 }
@@ -32,12 +30,7 @@ fn expect(text: &str, intent: &str, allowed: &[&str], forbidden: &[&str]) {
     assert_eq!(name, intent, "{text}: {found:?}");
     let entity = slot(&found, "entity_id");
     let area = slot(&found, "area");
-    assert!(
-        allowed
-            .iter()
-            .any(|id| entity == Some(*id) || area == Some(*id)),
-        "{text}: Ziel {found:?}, erlaubt {allowed:?}"
-    );
+    assert!(allowed.iter().any(|id| entity == Some(*id) || area == Some(*id)), "{text}: Ziel {found:?}, erlaubt {allowed:?}");
     for bad in forbidden {
         assert!(entity != Some(*bad), "{text}: verboten {bad} in {found:?}");
     }
@@ -45,36 +38,11 @@ fn expect(text: &str, intent: &str, allowed: &[&str], forbidden: &[&str]) {
 
 #[test]
 fn weitere_lichter() {
-    expect(
-        "Esszimmerlicht an",
-        "HassTurnOn",
-        &["esszimmer", "light.esszimmer"],
-        &["light.hue_color_spot_1", "light.schlafzimmer_licht"],
-    );
-    expect(
-        "Standleuchte an",
-        "HassTurnOn",
-        &["light.hue_color_spot_1"],
-        &["light.esszimmer"],
-    );
-    expect(
-        "Ambilight an",
-        "HassTurnOn",
-        &["light.schlafzimmer_ambilight"],
-        &["light.schlafzimmer_licht"],
-    );
-    expect(
-        "Wohnzimmerlicht auf 30%",
-        "HassLightSet",
-        &["wohnzimmer", "light.wohnzimmer"],
-        &["light.satellite1_db12c8_led_ring"],
-    );
-    expect(
-        "Alle Lichter aus",
-        "HassTurnOff",
-        &["light.alle_lichter", "wohnung"],
-        &["light.u7_pro_led"],
-    );
+    expect("Esszimmerlicht an", "HassTurnOn", &["esszimmer", "light.esszimmer"], &["light.hue_color_spot_1", "light.schlafzimmer_licht"]);
+    expect("Standleuchte an", "HassTurnOn", &["light.hue_color_spot_1"], &["light.esszimmer"]);
+    expect("Ambilight an", "HassTurnOn", &["light.schlafzimmer_ambilight"], &["light.schlafzimmer_licht"]);
+    expect("Wohnzimmerlicht auf 30%", "HassLightSet", &["wohnzimmer", "light.wohnzimmer"], &["light.satellite1_db12c8_led_ring"]);
+    expect("Alle Lichter aus", "HassTurnOff", &["light.alle_lichter", "wohnung"], &["light.u7_pro_led"]);
 }
 
 #[test]
@@ -91,58 +59,18 @@ fn heizung_klima_sauger() {
         &["climate.schlafzimmer_ac"],
         &["switch.153931629583704_power", "climate.better_thermostat_schlafzimmer"],
     );
-    expect(
-        "Staubsauger Status",
-        "HassGetState",
-        &["vacuum.r2d2"],
-        &["switch.r2d2_fill_light", "switch.r2d2_child_lock"],
-    );
-    expect(
-        "R2D2 zur Station",
-        "HassVacuumReturnToBase",
-        &["vacuum.r2d2"],
-        &["switch.r2d2_fill_light"],
-    );
-    expect(
-        "Staubsauger starten",
-        "HassVacuumStart",
-        &["vacuum.r2d2"],
-        &["switch.r2d2_fill_light"],
-    );
+    expect("Staubsauger Status", "HassGetState", &["vacuum.r2d2"], &["switch.r2d2_fill_light", "switch.r2d2_child_lock"]);
+    expect("R2D2 zur Station", "HassVacuumReturnToBase", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
+    expect("Staubsauger starten", "HassVacuumStart", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
 }
 
 #[test]
 fn szene_tv_pc_r2d2_schalter() {
-    expect(
-        "Filmabend",
-        "HassTurnOn",
-        &["scene.wohnzimmer_filmabend"],
-        &["light.wohnzimmer"],
-    );
-    expect(
-        "Gemütlich",
-        "HassTurnOn",
-        &["scene.gemutlich"],
-        &["light.wohnzimmer"],
-    );
-    expect(
-        "Wohnzimmer TV an",
-        "HassTurnOn",
-        &["media_player.wohnzimmer_tv"],
-        &["media_player.lg_dsn9yg_8909", "light.wohnzimmer"],
-    );
-    expect(
-        "PC Steckdose an",
-        "HassTurnOn",
-        &["switch.pc_steckdose"],
-        &["light.arbeitszimmer"],
-    );
-    expect(
-        "PC an",
-        "HassTurnOn",
-        &["switch.pc_steckdose"],
-        &["light.arbeitszimmer"],
-    );
+    expect("Filmabend", "HassTurnOn", &["scene.wohnzimmer_filmabend"], &["light.wohnzimmer"]);
+    expect("Gemütlich", "HassTurnOn", &["scene.gemutlich"], &["light.wohnzimmer"]);
+    expect("Wohnzimmer TV an", "HassTurnOn", &["media_player.wohnzimmer_tv"], &["media_player.lg_dsn9yg_8909", "light.wohnzimmer"]);
+    expect("PC Steckdose an", "HassTurnOn", &["switch.pc_steckdose"], &["light.arbeitszimmer"]);
+    expect("PC an", "HassTurnOn", &["switch.pc_steckdose"], &["light.arbeitszimmer"]);
     let (name, found, clarify) = parse_one("R2D2 an");
     assert!(!clarify, "R2D2 an: {found:?}");
     assert_ne!(slot(&found, "entity_id"), Some("switch.r2d2_fill_light"), "{name} {found:?}");
@@ -154,13 +82,7 @@ fn zwei_raeume_und_nachsatz() {
     let home = home();
     let mut session = Session::new();
     let settings = Settings::default();
-    let first = parse(
-        "Mach das Licht im Wohnzimmer und in der Küche an",
-        &home,
-        &mut session,
-        &[],
-        &settings,
-    );
+    let first = parse("Mach das Licht im Wohnzimmer und in der Küche an", &home, &mut session, &[], &settings);
     let areas: Vec<_> = first
         .intents
         .iter()
@@ -169,16 +91,8 @@ fn zwei_raeume_und_nachsatz() {
         .collect();
     assert!(areas.contains(&"wohnzimmer") && areas.contains(&"kuche"), "{:?}", first.intents);
     let second = parse("Schlafzimmerlicht an", &home, &mut session, &[], &settings);
-    let eid = second.intents[0]
-        .slots
-        .iter()
-        .find(|s| s.name == "entity_id")
-        .map(|s| s.value.as_str());
-    assert!(
-        eid == Some("light.schlafzimmer") || eid == Some("light.hue_color_lamp_2"),
-        "{:?}",
-        second.intents
-    );
+    let eid = second.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
+    assert!(eid == Some("light.schlafzimmer") || eid == Some("light.hue_color_lamp_2"), "{:?}", second.intents);
 }
 
 #[test]

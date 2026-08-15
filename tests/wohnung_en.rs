@@ -9,10 +9,7 @@ fn home() -> HomeGraph {
 }
 
 fn settings() -> Settings {
-    Settings {
-        languages: vec!["en".into()],
-        ..Settings::default()
-    }
+    Settings { languages: vec!["en".into()], ..Settings::default() }
 }
 
 fn parse_one(text: &str) -> (String, Vec<(String, String)>, bool, String) {
@@ -22,9 +19,7 @@ fn parse_one(text: &str) -> (String, Vec<(String, String)>, bool, String) {
     let intent = result.intents.first();
     (
         intent.map(|i| i.name.clone()).unwrap_or_default(),
-        intent
-            .map(|i| i.slots.iter().map(|s| (s.name.clone(), s.value.clone())).collect())
-            .unwrap_or_default(),
+        intent.map(|i| i.slots.iter().map(|s| (s.name.clone(), s.value.clone())).collect()).unwrap_or_default(),
         result.clarify,
         result.speech,
     )
@@ -41,10 +36,7 @@ fn expect(text: &str, intent: &str, allowed: &[&str], forbidden: &[&str]) {
     assert!(!speech.contains("Schalte") && !speech.contains("Setze") && !speech.contains("Frage"), "{text}: {speech}");
     let entity = slot(&found, "entity_id");
     let area = slot(&found, "area");
-    assert!(
-        allowed.iter().any(|id| entity == Some(*id) || area == Some(*id)),
-        "{text}: got {found:?}, allowed {allowed:?}"
-    );
+    assert!(allowed.iter().any(|id| entity == Some(*id) || area == Some(*id)), "{text}: got {found:?}, allowed {allowed:?}");
     for bad in forbidden {
         assert!(entity != Some(*bad), "{text}: forbidden {bad} in {found:?}");
     }
@@ -52,11 +44,7 @@ fn expect(text: &str, intent: &str, allowed: &[&str], forbidden: &[&str]) {
 
 const GROUP: &str = "light.schlafzimmer_licht";
 const KUGEL: &[&str] = &["light.schlafzimmer", "light.hue_color_lamp_2"];
-const LED: &[&str] = &[
-    "light.satellite1_db12c8_led_ring",
-    "light.home_assistant_voice_0a8d98_led_ring",
-    "light.u7_pro_led",
-];
+const LED: &[&str] = &["light.satellite1_db12c8_led_ring", "light.home_assistant_voice_0a8d98_led_ring", "light.u7_pro_led"];
 
 #[test]
 fn bedroom_compounds_and_globe() {
@@ -77,48 +65,13 @@ fn bedroom_compounds_and_globe() {
 
 #[test]
 fn room_lights_english() {
-    expect(
-        "Turn on the kitchen light",
-        "HassTurnOn",
-        &["light.kuche_kuche", "kuche"],
-        &[GROUP],
-    );
-    expect(
-        "Turn on the kitchenlight",
-        "HassTurnOn",
-        &["light.kuche_kuche", "kuche"],
-        &[GROUP],
-    );
-    expect(
-        "Turn on the living room light",
-        "HassTurnOn",
-        &["wohnzimmer", "light.wohnzimmer"],
-        LED,
-    );
-    expect(
-        "Turn off the office light",
-        "HassTurnOff",
-        &["light.arbeitszimmer", "arbeitszimmer"],
-        &["switch.pc_steckdose"],
-    );
-    expect(
-        "Turn on the dining room light",
-        "HassTurnOn",
-        &["esszimmer", "light.esszimmer"],
-        &["light.hue_color_spot_1"],
-    );
-    expect(
-        "Turn on the hallway light",
-        "HassTurnOn",
-        &["flur"],
-        &["light.u7_pro_led"],
-    );
-    expect(
-        "Turn off all lights",
-        "HassTurnOff",
-        &["light.alle_lichter", "wohnung"],
-        &["light.u7_pro_led"],
-    );
+    expect("Turn on the kitchen light", "HassTurnOn", &["light.kuche_kuche", "kuche"], &[GROUP]);
+    expect("Turn on the kitchenlight", "HassTurnOn", &["light.kuche_kuche", "kuche"], &[GROUP]);
+    expect("Turn on the living room light", "HassTurnOn", &["wohnzimmer", "light.wohnzimmer"], LED);
+    expect("Turn off the office light", "HassTurnOff", &["light.arbeitszimmer", "arbeitszimmer"], &["switch.pc_steckdose"]);
+    expect("Turn on the dining room light", "HassTurnOn", &["esszimmer", "light.esszimmer"], &["light.hue_color_spot_1"]);
+    expect("Turn on the hallway light", "HassTurnOn", &["flur"], &["light.u7_pro_led"]);
+    expect("Turn off all lights", "HassTurnOff", &["light.alle_lichter", "wohnung"], &["light.u7_pro_led"]);
 }
 
 #[test]
@@ -129,30 +82,10 @@ fn climate_vacuum_timer_list_en() {
         &["climate.better_thermostat_badezimmer", "badezimmer"],
         &["climate.schlafzimmer_ac"],
     );
-    expect(
-        "Set the AC to 22",
-        "HassClimateSetTemperature",
-        &["climate.schlafzimmer_ac"],
-        &["switch.153931629583704_power"],
-    );
-    expect(
-        "Where is R2D2",
-        "HassGetState",
-        &["vacuum.r2d2"],
-        &["switch.r2d2_fill_light"],
-    );
-    expect(
-        "Send R2D2 to the station",
-        "HassVacuumReturnToBase",
-        &["vacuum.r2d2"],
-        &["switch.r2d2_fill_light"],
-    );
-    expect(
-        "Start the vacuum",
-        "HassVacuumStart",
-        &["vacuum.r2d2"],
-        &["switch.r2d2_fill_light"],
-    );
+    expect("Set the AC to 22", "HassClimateSetTemperature", &["climate.schlafzimmer_ac"], &["switch.153931629583704_power"]);
+    expect("Where is R2D2", "HassGetState", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
+    expect("Send R2D2 to the station", "HassVacuumReturnToBase", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
+    expect("Start the vacuum", "HassVacuumStart", &["vacuum.r2d2"], &["switch.r2d2_fill_light"]);
     let (name, found, clarify, speech) = parse_one("Start a 5 minute timer");
     assert!(!clarify && !speech.contains("Schalte"), "{speech}");
     assert_eq!(name, "HassStartTimer", "{found:?}");
@@ -163,48 +96,18 @@ fn climate_vacuum_timer_list_en() {
 
 #[test]
 fn scenes_tv_pc_fan_en() {
-    expect(
-        "Movie night",
-        "HassTurnOn",
-        &["scene.wohnzimmer_filmabend"],
-        &["light.wohnzimmer"],
-    );
-    expect(
-        "Cozy",
-        "HassTurnOn",
-        &["scene.gemutlich"],
-        &["light.wohnzimmer"],
-    );
-    expect(
-        "Turn on the floor lamp",
-        "HassTurnOn",
-        &["light.hue_color_spot_1"],
-        &["light.esszimmer", GROUP],
-    );
+    expect("Movie night", "HassTurnOn", &["scene.wohnzimmer_filmabend"], &["light.wohnzimmer"]);
+    expect("Cozy", "HassTurnOn", &["scene.gemutlich"], &["light.wohnzimmer"]);
+    expect("Turn on the floor lamp", "HassTurnOn", &["light.hue_color_spot_1"], &["light.esszimmer", GROUP]);
     expect(
         "Turn on the living room TV",
         "HassTurnOn",
         &["media_player.wohnzimmer_tv"],
         &["media_player.lg_dsn9yg_8909", "light.wohnzimmer"],
     );
-    expect(
-        "Turn on the bedroom TV",
-        "HassTurnOn",
-        &["switch.schlafzimmer_tv"],
-        &["media_player.schlafzimmer_2", GROUP],
-    );
-    expect(
-        "Turn on the PC",
-        "HassTurnOn",
-        &["switch.pc_steckdose"],
-        &["light.arbeitszimmer"],
-    );
-    expect(
-        "Set the fan to 40",
-        "HassFanSetSpeed",
-        &["fan.arc_casual"],
-        &["switch.pc_steckdose"],
-    );
+    expect("Turn on the bedroom TV", "HassTurnOn", &["switch.schlafzimmer_tv"], &["media_player.schlafzimmer_2", GROUP]);
+    expect("Turn on the PC", "HassTurnOn", &["switch.pc_steckdose"], &["light.arbeitszimmer"]);
+    expect("Set the fan to 40", "HassFanSetSpeed", &["fan.arc_casual"], &["switch.pc_steckdose"]);
 }
 
 #[test]

@@ -7,17 +7,10 @@ use crate::types::{CustomSentence, HomeGraph, Intent};
 use strsim::normalized_levenshtein;
 
 fn last_domain(session: &Session, prefix: &str) -> bool {
-    session.last_domains.iter().any(|d| d == prefix)
-        || session.last_entities.iter().any(|e| e.starts_with(&format!("{prefix}.")))
+    session.last_domains.iter().any(|d| d == prefix) || session.last_entities.iter().any(|e| e.starts_with(&format!("{prefix}.")))
 }
 
-pub(crate) fn refine_action(
-    action: Action,
-    tokens: &[String],
-    number: Option<i32>,
-    question: bool,
-    session: &Session,
-) -> Action {
+pub(crate) fn refine_action(action: Action, tokens: &[String], number: Option<i32>, question: bool, session: &Session) -> Action {
     if question && matches!(action, Action::VacuumDock | Action::VacuumStart) {
         return Action::GetState;
     }
@@ -28,20 +21,16 @@ pub(crate) fn refine_action(
     {
         return Action::VacuumStart;
     }
-    if matches!(action, Action::On | Action::Off)
-        && tokens.iter().any(|t| catalog().timer_nouns.contains(t.as_str()))
-    {
+    if matches!(action, Action::On | Action::Off) && tokens.iter().any(|t| catalog().timer_nouns.contains(t.as_str())) {
         return if matches!(action, Action::Off) { Action::TimerCancel } else { Action::TimerStart };
     }
-    if matches!(action, Action::FanSpeed | Action::TimerStart | Action::TimerAdd) && number.is_none()
-        && (matches!(action, Action::FanSpeed)
-            || question
-            || tokens.iter().any(|t| catalog().timer_query.contains(t.as_str())))
+    if matches!(action, Action::FanSpeed | Action::TimerStart | Action::TimerAdd)
+        && number.is_none()
+        && (matches!(action, Action::FanSpeed) || question || tokens.iter().any(|t| catalog().timer_query.contains(t.as_str())))
     {
         return Action::GetState;
     }
-    if matches!(action, Action::SetLight) && number.is_none() && color_word(tokens).is_none() && question
-    {
+    if matches!(action, Action::SetLight) && number.is_none() && color_word(tokens).is_none() && question {
         return Action::GetState;
     }
     if matches!(action, Action::SetLight) && !has_light_noun(tokens) {
@@ -51,16 +40,11 @@ pub(crate) fn refine_action(
         if last_domain(session, "cover") {
             return Action::CoverSet;
         }
-        if last_domain(session, "fan")
-            && !catalog().any(tokens, &catalog().kitchen)
-        {
+        if last_domain(session, "fan") && !catalog().any(tokens, &catalog().kitchen) {
             return Action::FanSpeed;
         }
     }
-    if matches!(action, Action::On | Action::Off)
-        && last_domain(session, "lock")
-        && catalog().any(tokens, &catalog().unlock_follow)
-    {
+    if matches!(action, Action::On | Action::Off) && last_domain(session, "lock") && catalog().any(tokens, &catalog().unlock_follow) {
         return Action::Unlock;
     }
     if last_domain(session, "cover") && !has_light_noun(tokens) && number.is_none() {
@@ -71,8 +55,7 @@ pub(crate) fn refine_action(
             return Action::CoverClose;
         }
     }
-    if matches!(action, Action::SetLight) && last_domain(session, "media_player") && !has_light_noun(tokens)
-    {
+    if matches!(action, Action::SetLight) && last_domain(session, "media_player") && !has_light_noun(tokens) {
         return Action::On;
     }
     action
@@ -110,10 +93,7 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
             return Some(*a);
         }
     }
-    actions
-        .iter()
-        .find(|(_, a)| !matches!(a, Action::GetState))
-        .map(|(_, a)| *a)
+    actions.iter().find(|(_, a)| !matches!(a, Action::GetState)).map(|(_, a)| *a)
 }
 pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[String]) -> bool {
     let cat = catalog();
@@ -123,9 +103,11 @@ pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[
     if areas.iter().any(|area| crate::compound::room_light_id(home, area).is_some()) {
         return false;
     }
-    home.entities.iter().filter(|e| {
-        e.domain == "light" && !crate::compound::is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a))
-    }).count() > 1
+    home.entities
+        .iter()
+        .filter(|e| e.domain == "light" && !crate::compound::is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
+        .count()
+        > 1
 }
 
 pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
@@ -135,27 +117,25 @@ pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
 fn whole_home_lights(home: &HomeGraph) -> Option<&crate::types::EntityRec> {
     home.entities.iter().find(|e| {
         e.domain == "light"
-            && (e.entity_id.contains("alle")
-                || e.aliases.iter().any(|a| matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall")))
+            && (e.entity_id.contains("alle") || e.aliases.iter().any(|a| matches!(a.as_str(), "all" | "alle" | "everywhere" | "ueberall")))
     })
 }
 
 pub(crate) fn all_lights_clause(
-    tokens: &[String], home: &HomeGraph, action: Action, number: Option<i32>, areas: &[String],
+    tokens: &[String],
+    home: &HomeGraph,
+    action: Action,
+    number: Option<i32>,
+    areas: &[String],
 ) -> Option<ReadyClause> {
     if !wants_all_lights(tokens) {
         return None;
     }
     let home_wide = whole_home_lights(home);
-    let rooms: Vec<&String> = areas
-        .iter()
-        .filter(|a| home_wide.is_none_or(|e| e.area.as_deref() != Some(a.as_str())))
-        .collect();
+    let rooms: Vec<&String> = areas.iter().filter(|a| home_wide.is_none_or(|e| e.area.as_deref() != Some(a.as_str()))).collect();
     if rooms.is_empty() {
         let e = home_wide?;
-        return Some(ReadyClause::Intents(vec![fill_intent(
-            action, tokens, number, Some(&e.entity_id), e.area.as_deref(), Some("light"),
-        )]));
+        return Some(ReadyClause::Intents(vec![fill_intent(action, tokens, number, Some(&e.entity_id), e.area.as_deref(), Some("light"))]));
     }
     let intents: Vec<Intent> = rooms
         .into_iter()
@@ -188,8 +168,7 @@ pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
     let blob = join_tokens(tokens);
     catalog().correction.iter().any(|w| blob.contains(w))
         || blob.contains("stimmt nicht")
-        || (tokens.iter().any(|t| t == "nein")
-            && tokens.iter().any(|t| t == "falsch" || t == "nicht"))
+        || (tokens.iter().any(|t| t == "nein") && tokens.iter().any(|t| t == "falsch" || t == "nicht"))
 }
 
 pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option<String> {
@@ -206,10 +185,9 @@ pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option
             blob.contains(&folded)
                 || tokens.iter().any(|t| {
                     let aliases = fixture_aliases(t);
-                    aliases.iter().any(|a| {
-                        (folded.contains(a) && a.len() > 2)
-                            || tail.split_whitespace().any(|p| a.contains(p) && p.len() > 2)
-                    })
+                    aliases
+                        .iter()
+                        .any(|a| (folded.contains(a) && a.len() > 2) || tail.split_whitespace().any(|p| a.contains(p) && p.len() > 2))
                 })
         })
         .cloned()
@@ -316,8 +294,7 @@ pub(crate) fn fill_intent(
                 intent = intent.with("item", item);
             }
             if entity_id.is_none_or(|id| !id.starts_with("todo."))
-                && (catalog().any(tokens, &catalog().list_nouns)
-                    || tokens.iter().any(|t| t.contains("einkauf") || t == "shopping"))
+                && (catalog().any(tokens, &catalog().list_nouns) || tokens.iter().any(|t| t.contains("einkauf") || t == "shopping"))
             {
                 intent = intent.with("name", "shopping_list");
             }
@@ -339,15 +316,33 @@ fn timer_unit(tokens: &[String]) -> &'static str {
 
 fn list_item(tokens: &[String]) -> Option<String> {
     let skip = [
-        "add", "put", "place", "setze", "setz", "fuege", "fuegen", "hinzu", "auf", "zur",
-        "zu", "die", "der", "das", "den", "liste", "list", "einkauf", "einkaufsliste",
-        "shopping", "chores", "aufgaben", "my", "the", "a",
+        "add",
+        "put",
+        "place",
+        "setze",
+        "setz",
+        "fuege",
+        "fuegen",
+        "hinzu",
+        "auf",
+        "zur",
+        "zu",
+        "die",
+        "der",
+        "das",
+        "den",
+        "liste",
+        "list",
+        "einkauf",
+        "einkaufsliste",
+        "shopping",
+        "chores",
+        "aufgaben",
+        "my",
+        "the",
+        "a",
     ];
-    let words: Vec<&str> = tokens
-        .iter()
-        .map(String::as_str)
-        .filter(|t| !skip.contains(t) && !catalog().list_nouns.contains(t))
-        .collect();
+    let words: Vec<&str> = tokens.iter().map(String::as_str).filter(|t| !skip.contains(t) && !catalog().list_nouns.contains(t)).collect();
     if words.is_empty() {
         None
     } else {
@@ -399,11 +394,7 @@ pub(crate) fn intent_with_entity(mut intent: Intent, entity_id: &str) -> Intent 
     intent
 }
 
-pub(crate) fn pick_singular_lamp(
-    tokens: &[String],
-    home: &HomeGraph,
-    areas: &[String],
-) -> Option<String> {
+pub(crate) fn pick_singular_lamp(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<String> {
     if !catalog().wants_singular_lamp(tokens) {
         return None;
     }
@@ -413,10 +404,7 @@ pub(crate) fn pick_singular_lamp(
         .filter(|e| {
             e.domain == "light"
                 && e.area.as_ref().is_some_and(|a| areas.contains(a))
-                && (e.entity_id.contains("lamp")
-                    || e.aliases
-                        .iter()
-                        .any(|a| a.contains("lamp") || a.contains("lampe")))
+                && (e.entity_id.contains("lamp") || e.aliases.iter().any(|a| a.contains("lamp") || a.contains("lampe")))
         })
         .map(|e| e.entity_id.as_str())
         .collect();
@@ -479,16 +467,8 @@ pub(crate) fn laundry_switch_clause(
     let start = catalog().any(tokens, &catalog().start_words);
     let one = (tokens.iter().any(|t| t == "switch") && !plural) || start;
     if !one && !plural {
-        return Some(ReadyClause::Clarify(
-            switches,
-            intent_from_action(action, tokens).with("area", "laundry").with("domain", "switch"),
-        ));
+        return Some(ReadyClause::Clarify(switches, intent_from_action(action, tokens).with("area", "laundry").with("domain", "switch")));
     }
-    let id = one.then(|| {
-        switches.iter().find(|id| id.contains("washing") || id.contains("wasch")).cloned()
-    }).flatten();
-    Some(ReadyClause::Intents(vec![fill_intent(
-        action, tokens, number, id.as_deref(), Some("laundry"), Some("switch"),
-    )]))
+    let id = one.then(|| switches.iter().find(|id| id.contains("washing") || id.contains("wasch")).cloned()).flatten();
+    Some(ReadyClause::Intents(vec![fill_intent(action, tokens, number, id.as_deref(), Some("laundry"), Some("switch"))]))
 }
-

@@ -74,9 +74,7 @@ pub struct Sessions {
 impl Sessions {
     pub fn get_or_create(&mut self, id: Option<&str>) -> &mut Session {
         match id {
-            Some(existing) if self.inner.contains_key(existing) => {
-                self.inner.get_mut(existing).expect("checked")
-            }
+            Some(existing) if self.inner.contains_key(existing) => self.inner.get_mut(existing).expect("checked"),
             Some(existing) => {
                 let mut s = Session::new();
                 s.id = existing.to_string();
