@@ -5,14 +5,18 @@ from __future__ import annotations
 
 import asyncio
 import importlib.util
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PKG = ROOT / "custom_components" / "klar_nlu"
+if str(PKG) not in sys.path:
+    sys.path.insert(0, str(PKG))
 
 
 def _load(name: str, rel: str):
-    path = ROOT / "custom_components" / "klar_nlu" / rel
+    path = PKG / rel
     spec = importlib.util.spec_from_file_location(name, path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load {path}")
@@ -28,55 +32,48 @@ speech = _load("klar_speech", "speech.py")
 
 class RefineTests(unittest.TestCase):
     def test_prompt_keeps_hard_safety_rules(self) -> None:
-        prompt = refine.refine_prompt("de", "butler", "Maximal ein Satz.")
+        prompt = refine.refine_prompt("de", "butler", "Ein oder zwei Sätze.")
         self.assertIn("Keine Home-Assistant-Werkzeuge", prompt)
         self.assertIn("Ziffern bleiben Ziffern", prompt)
         self.assertIn("2 bleibt 2", prompt)
         self.assertIn("2 Lichter sind an, 3 Lichter sind aus.", prompt)
         self.assertIn("21,5 °C", prompt)
         self.assertIn("Keine neuen Zahlen", prompt)
-        self.assertIn("butlerhaft", prompt)
-        self.assertIn("Wohnzimmer Licht ist an. → Sehr wohl.", prompt)
-        self.assertIn("Stimme (zwingend)", prompt)
-        self.assertIn("Der Satz selbst muss in dieser Stimme klingen", prompt)
-        self.assertIn("Maximal ein Satz.", prompt)
+        self.assertIn("Butler", prompt)
+        self.assertIn("ein oder zwei Sätze", prompt)
+        self.assertIn("Keine feste Eröffnungsformel", prompt)
+        self.assertIn("Klebe nicht jedes Mal dieselbe Eröffnung davor.", prompt)
+        self.assertNotIn("Formel: Sehr wohl.", prompt)
+        self.assertNotIn("Hänge immer an", prompt)
+        self.assertIn("Ein oder zwei Sätze.", prompt)
 
-    def test_each_personality_has_its_own_cue_shots(self) -> None:
-        cues = {
-            "default": "Keine Extra-Formel",
-            "butler": "Sehr wohl.",
-            "locker": "Geht klar.",
-            "fuersorglich": "Mache ich sofort.",
-            "party": "Läuft!",
-            "grantig": "Schon gut.",
-            "sarkastisch": "Wie überraschend, wieder ein Befehl.",
-            "pirat": "Aye.",
-            "hippie": "Alles easy.",
-            "gollum": "Ja, mein Schatz.",
-        }
+    def test_each_personality_has_its_own_voice(self) -> None:
         flavor = {
-            "default": "Keine Extra-Formel",
-            "butler": "wie gewünscht",
-            "locker": "passt",
-            "fuersorglich": "alles gut",
-            "party": "super!",
-            "grantig": "na gut",
-            "sarkastisch": "natürlich.",
-            "pirat": "Käpt'n",
-            "hippie": "ganz ruhig",
-            "gollum": ", ja.",
+            "default": "schlicht",
+            "butler": "Butler",
+            "locker": "locker",
+            "fuersorglich": "fürsorglich",
+            "party": "euphorisch",
+            "grantig": "grantig",
+            "sarkastisch": "sarkastisch",
+            "pirat": "piratenhaft",
+            "hippie": "entspannt",
+            "gollum": "gollumartig",
         }
-        for name, cue in cues.items():
+        seen: set[str] = set()
+        for name, marker in flavor.items():
             prompt = refine.refine_prompt("de", name, None)
-            self.assertIn(cue, prompt, name)
-            self.assertIn(flavor[name], prompt, name)
+            self.assertIn(marker, prompt, name)
+            self.assertNotIn("Hänge immer an", prompt, name)
+            self.assertNotIn(prompt, seen)
+            seen.add(prompt)
 
     def test_english_prompt_uses_personality(self) -> None:
         prompt = refine.refine_prompt("en", "locker", None)
         self.assertIn("Do not call Home Assistant tools", prompt)
         self.assertIn("casual", prompt)
-        self.assertIn("Voice (mandatory)", prompt)
-        self.assertIn("The cue alone is not enough", prompt)
+        self.assertIn("Voice:", prompt)
+        self.assertIn("Do not stamp the same opening every time.", prompt)
         self.assertIn("all set", prompt)
         self.assertNotIn("Additional style instruction", prompt)
 
@@ -106,6 +103,18 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(refine.accept_refined("Erledigt: HassSetPosition.", "HassSetPosition ist erledigt."))
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an..."))
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"))
+        self.assertEqual(
+            refine.accept_refined(
+                "Wohnzimmer Licht ist an.",
+                "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet.",
+            ),
+            "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet.",
+        )
+        self.assertEqual(
+            refine.clean_refined("Das Licht ist an.\nIch habe es eingeschaltet."),
+            "Das Licht ist an. Ich habe es eingeschaltet.",
+        )
+        self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an. " + ("x" * 400)))
 
     def test_should_refine_home_status_and_control(self) -> None:
         self.assertTrue(
@@ -137,43 +146,44 @@ class RefineTests(unittest.TestCase):
         result = _Result("")
         self.assertEqual(refine.speech_from_result(result), "")
 
-    def test_options_personality_switches_refine_prompt_and_spoken_cue(self) -> None:
+    def test_options_personality_switches_refine_prompt_and_fallback_cue(self) -> None:
         self.assertEqual(const.resolve_personality("grantig"), "grantig")
         self.assertEqual(const.resolve_personality("nope"), "default")
         self.assertEqual(set(refine._PERSONALITY), set(const.PERSONALITIES))
         for pack in ("de", "en"):
-            seen: set[str] = set()
+            seen_prompts: set[str] = set()
+            seen_cues: set[str] = set()
             for name in const.PERSONALITIES:
                 prompt = refine.refine_prompt(pack, name, None)
                 spoken = speech.style("Licht ist an.", name, pack)
+                self.assertNotIn(prompt, seen_prompts)
+                seen_prompts.add(prompt)
                 if name == "default":
                     self.assertEqual(spoken, "Licht ist an.")
-                    self.assertNotIn("Sehr wohl." if pack == "de" else "Very well.", prompt)
                     continue
                 cue = spoken[: -len("Licht ist an.")].strip()
                 self.assertTrue(cue, name)
-                self.assertIn(cue, prompt, f"{name}/{pack}")
-                self.assertNotIn(cue, seen)
-                seen.add(cue)
+                self.assertNotIn(cue, seen_cues)
+                seen_cues.add(cue)
         butler = refine.refine_prompt("de", const.resolve_personality("butler"), None)
         grantig = refine.refine_prompt("de", const.resolve_personality("grantig"), None)
-        self.assertIn("Sehr wohl.", butler)
-        self.assertNotIn("Schon gut.", butler)
-        self.assertIn("Schon gut.", grantig)
-        self.assertNotIn("Sehr wohl.", grantig)
-
-    def test_ha_path_styles_before_refine_and_restores_dropped_cue(self) -> None:
-        source = "Wohnzimmer Licht ist an."
-        styled = speech.style(source, "butler", "de")
-        self.assertEqual(styled, "Sehr wohl. Wohnzimmer Licht ist an.")
-        dropped = refine.accept_refined(styled, "Das Licht im Wohnzimmer ist an.")
-        self.assertEqual(dropped, "Das Licht im Wohnzimmer ist an.")
+        self.assertIn("Butler", butler)
+        self.assertNotIn("grantig", butler)
+        self.assertIn("grantig", grantig)
+        self.assertNotIn("Butler", grantig)
         self.assertEqual(
-            speech.style(dropped, "butler", "de"),
-            "Sehr wohl. Das Licht im Wohnzimmer ist an.",
+            speech.style("Licht ist an.", "butler", "de"),
+            "Sehr wohl. Licht ist an.",
         )
-        kept = refine.accept_refined(styled, "Sehr wohl. Das Licht im Wohnzimmer ist an.")
-        self.assertEqual(speech.style(kept, "butler", "de"), kept)
+
+    def test_successful_refine_keeps_natural_line_without_restamping_cue(self) -> None:
+        source = "Wohnzimmer Licht ist an."
+        natural = "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet."
+        self.assertEqual(refine.accept_refined(source, natural), natural)
+        self.assertEqual(
+            speech.style(source, "butler", "de"),
+            "Sehr wohl. Wohnzimmer Licht ist an.",
+        )
 
     def test_no_homeassistant_runtime_falls_back_to_none(self) -> None:
         out = asyncio.run(

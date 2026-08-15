@@ -34,7 +34,7 @@ Antwort:
 
 `language` ist optional (`de`, `en` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket — Assist kann so zwischen Deutsch und Englisch umschalten. `speech` folgt dem gesetzten Paket.
 
-`personality` ist optional und setzt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung dieses Satzes liegt in der HA-Integration, nicht auf diesem Endpunkt.
+`personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung in der HA-Integration formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
 
 `clarify: true` bedeutet: keine Intents ausführen, die Frage in `speech` vorlesen, dieselbe `conversation_id` für die Antwort behalten.
 
