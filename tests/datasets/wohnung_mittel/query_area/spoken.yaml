@@ -1,0 +1,15 @@
+- name: status_licht_wohnzimmer_casual
+  conditions:
+    - {type: query, area: wohnzimmer, domain: light}
+  sentences:
+    - 'Ist das Licht im Wohnzimmer an'
+    - 'Brennt das Licht im Wohnzimmer'
+    - 'Wohnzimmer Licht Status'
+
+- name: status_licht_kuche_casual
+  conditions:
+    - {type: query, area: kuche, domain: light}
+  sentences:
+    - 'Ist in der Küche Licht an'
+    - 'Küche Licht Status'
+    - 'Brennt in der Küche Licht'

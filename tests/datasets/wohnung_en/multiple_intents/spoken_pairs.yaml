@@ -1,0 +1,21 @@
+- name: kitchen_and_dining_on
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn on the kitchen and dining room lights'
+    - 'Turn on kitchen and dining lights'
+
+- name: living_and_office_off
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn off the living room and office lights'
+    - 'Turn off living and office lights'

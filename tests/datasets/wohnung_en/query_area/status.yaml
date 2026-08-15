@@ -4,3 +4,17 @@
   sentences:
     - 'How warm is it in the apartment'
     - "What's the temperature at home"
+
+- name: status_living_and_dining
+  conditions:
+    - {type: query, entity_id: light.wohn_und_esszimmer}
+  forbid:
+    - wohnzimmer
+    - esszimmer
+    - light.wohnzimmer
+    - light.esszimmer
+    - light.alle_lichter
+    - wohnung
+  sentences:
+    - 'Status of Wohn und Esszimmer'
+    - "What's the status of Wohn und Esszimmer"

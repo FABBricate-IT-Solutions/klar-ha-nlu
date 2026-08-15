@@ -161,3 +161,83 @@ fn dump_weitere_saetze() {
         println!("{text:?} => {name} {found:?} clarify={clarify}");
     }
 }
+
+fn mittel() -> HomeGraph {
+    klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("mittel")
+}
+
+fn parse_mittel(text: &str, session: &mut Session) -> klar_nlu::types::ParseResult {
+    parse(text, &mittel(), session, &[], &Settings::default())
+}
+
+fn intent_ids(result: &klar_nlu::types::ParseResult) -> Vec<&str> {
+    result.intents.iter().filter_map(|intent| intent.slot("entity_id")).collect()
+}
+
+#[test]
+fn kugel_und_deckenlampe_aus() {
+    let result = parse_mittel("Kugel und Deckenlampe aus", &mut Session::new());
+    assert!(!result.clarify, "{:?}", result.intents);
+    let ids = intent_ids(&result);
+    assert!(ids.contains(&"light.schlafzimmer_kugel"), "{ids:?}");
+    assert!(ids.contains(&"light.schlafzimmer_decke"), "{ids:?}");
+}
+
+#[test]
+fn wohnzimer_trifft_wohnzimmer() {
+    let result = parse_mittel("Wohnzimer Licht aus", &mut Session::new());
+    assert!(!result.clarify, "{:?}", result.intents);
+    assert_eq!(result.intents[0].name, "HassTurnOff", "{:?}", result.intents);
+    let entity = result.intents[0].slot("entity_id").unwrap_or("");
+    let area = result.intents[0].slot("area").unwrap_or("");
+    assert!(area == "wohnzimmer" || entity.contains("wohnzimmer"), "{:?}", result.intents);
+}
+
+#[test]
+fn schlafzimer_licht_aus_ist_raum() {
+    let result = parse_mittel("Schlafzimer Lichte aus", &mut Session::new());
+    assert!(!result.clarify, "{:?}", result.intents);
+    assert_eq!(result.intents[0].name, "HassTurnOff", "{:?}", result.intents);
+    let area = result.intents[0].slot("area");
+    let entity = result.intents[0].slot("entity_id").unwrap_or("");
+    assert!(area == Some("schlafzimmer") || entity.contains("schlafzimmer"), "{:?}", result.intents);
+}
+
+#[test]
+fn wohnzimmer_dann_kueche_auch() {
+    let mut session = Session::new();
+    let first = parse_mittel("Licht im Wohnzimmer an", &mut session);
+    assert_eq!(first.intents[0].name, "HassTurnOn", "{:?}", first.intents);
+    let second = parse_mittel("und die Küche auch", &mut session);
+    assert!(!second.clarify, "{:?}", second.intents);
+    assert_eq!(second.intents[0].name, "HassTurnOn", "{:?}", second.intents);
+    let entity = second.intents[0].slot("entity_id").unwrap_or("");
+    let area = second.intents[0].slot("area").unwrap_or("");
+    assert!(area == "kuche" || entity.contains("kuche"), "{:?}", second.intents);
+    assert_ne!(entity, "light.wohn_und_esszimmer", "{:?}", second.intents);
+}
+
+#[test]
+fn schlafzimmern_licht_auf_rot() {
+    let home = klar_nlu::home::default_home();
+    let mut session = Session::new();
+    let result = parse("Schlafzimmern Licht auf Rot", &home, &mut session, &[], &Settings::default());
+    assert_eq!(result.intents[0].name, "HassLightSet", "{:?}", result.intents);
+    assert_eq!(result.intents[0].slot("color"), Some("red"));
+    let entity = result.intents[0].slot("entity_id").unwrap_or("");
+    let area = result.intents[0].slot("area").unwrap_or("");
+    assert!(area == "schlafzimmer" || entity.contains("schlafzimmer"), "{:?}", result.intents);
+}
+
+#[test]
+fn wohn_und_esszimmer_auf_rot() {
+    let home = klar_nlu::home::default_home();
+    let mut session = Session::new();
+    let result = parse("Wohn und Esszimmer auf Rot", &home, &mut session, &[], &Settings::default());
+    assert_eq!(result.intents.len(), 2, "{:?}", result.intents);
+    assert!(
+        result.intents.iter().all(|intent| intent.name == "HassLightSet" && intent.slot("color") == Some("red")),
+        "{:?}",
+        result.intents
+    );
+}

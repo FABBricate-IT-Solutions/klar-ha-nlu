@@ -53,3 +53,15 @@ python3 scripts/bump-version.py --self-test
 git cliff -o CHANGELOG.md
 git cliff --unreleased
 ```
+
+## Pre-Release Checks
+
+```bash
+cargo fmt --check
+cargo check
+cargo test -- --test-threads=1
+cargo build --release
+rg 'src/(parse\.rs|web\.rs|wyoming\.rs|lexicon\.rs|numbers\.rs)|parse_help|home_policy' docs README.md README.de.md
+```
+
+The `rg` check keeps documentation and the module tree aligned. Matches are not automatically failures, but each one should be intentional and current.

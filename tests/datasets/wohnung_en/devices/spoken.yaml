@@ -1,0 +1,71 @@
+- name: globe_off
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.schlafzimmer_decke
+  sentences:
+    - 'Turn off the globe'
+    - 'Globe off'
+    - 'Switch off the globe'
+
+- name: ceiling_on
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'on'}
+  forbid:
+    - light.schlafzimmer_kugel
+    - light.alle_lichter
+  sentences:
+    - 'Turn on the ceiling light'
+    - 'Ceiling light on'
+
+- name: tv_off
+  conditions:
+    - {type: action, entity_id: switch.schlafzimmer_tv, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - scene.filmabend
+  sentences:
+    - 'Turn off the TV'
+    - 'Bedroom TV off'
+    - 'Turn off the bedroom TV'
+
+- name: dryer_on
+  conditions:
+    - {type: action, entity_id: switch.kuche_trockner, state: 'on'}
+  sentences:
+    - 'Turn on the dryer'
+    - 'Dryer on'
+
+- name: fan_off
+  conditions:
+    - {type: action, entity_id: fan.arc_casual, state: 'off'}
+  forbid:
+    - light.arbeitszimmer
+  sentences:
+    - 'Turn off the fan'
+    - 'Fan off'
+
+- name: blinds_open
+  conditions:
+    - {type: action, entity_id: cover.wohnzimmer_rollo, state: 'on'}
+  sentences:
+    - 'Open the blinds'
+    - 'Open the living room blinds'
+
+- name: pc_on
+  conditions:
+    - {type: action, entity_id: switch.pc_steckdose, state: 'on'}
+  sentences:
+    - 'Turn on the PC'
+    - 'PC on'
+
+- name: globe_and_ceiling_off
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+  forbid:
+    - light.alle_lichter
+  sentences:
+    - 'Turn off the globe and the ceiling light'
+    - 'Globe and ceiling off'

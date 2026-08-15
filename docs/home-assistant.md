@@ -116,7 +116,30 @@ Integrations-URL: `http://127.0.0.1:10520`. Aus dem Quellcode: `docker build -t 
 cargo run --release -- --config-dir /config
 ```
 
-Die Engine liest `.storage/core.entity_registry` und `core.area_registry`. Aliase und Areas in HA pflegen — Klar hat keine zweite Gerätedatenbank.
+Die Engine liest `.storage/core.entity_registry`, `core.device_registry`, `core.area_registry` und die Assist-Expose-Liste. Aliase und Areas in HA pflegen — Klar hat keine zweite Gerätedatenbank.
+
+## Registry, Overlay und Reload
+
+Klar baut beim Start einen effektiven Home-Graph:
+
+1. HA-Registries aus `--config-dir` lesen: Entities, Devices, Areas, Labels und Expose-Liste.
+2. Fehlen die Registries, die eingebaute Musterwohnung nutzen.
+3. Overlay aus `--config-dir` anwenden.
+4. Wenn `--data-dir` existiert und von `--config-dir` abweicht, Overlay aus `--data-dir` darüber anwenden.
+
+Das Overlay enthält Kalibrierung aus der Klar-UI: Aliase, manuelle Areas, bevorzugte Geräte, Infrastruktur-Filter, Timer-Hinweise, Settings und Custom Sentences. Im Add-on ist `/config` read-only gedacht und `/data` beschreibbar; bei Cargo/Docker kann beides auf dasselbe Verzeichnis zeigen.
+
+Klar beobachtet die HA-Registry-Dateien und lädt den Home-Graph bei Änderungen neu. Settings und Custom Sentences werden dabei aus den Overlays erneut übernommen. Änderungen über die Klar-UI werden sofort gespeichert und auf den laufenden `HomeStore` angewendet.
+
+## Zugriff und Token
+
+Loopback darf lesen und schreiben. Das Supervisor-Netz darf lesen; Schreibzugriffe von dort oder aus dem LAN brauchen einen Token. Setze ihn mit `--token`, `KLAR_TOKEN` oder `--token-file`.
+
+```bash
+cargo run --release -- --config-dir /config --data-dir /data --token-file /data/klar.token
+```
+
+HTTP akzeptiert den Token als `x-klar-token` oder `Authorization: Bearer ...`. Wyoming ist auf Loopback und Supervisor-Netz begrenzt.
 
 ## Intents
 

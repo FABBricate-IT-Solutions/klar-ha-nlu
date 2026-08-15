@@ -27,3 +27,54 @@
         temperature: 23
   sentences:
     - 'Mach das Licht im Wohnzimmer und in der Küche an und stell die Heizung auf 23'
+
+- name: wohn_und_ess_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Wohn und Esszimmer lichte aus'
+    - 'Wohn und Esszimmer lichter aus'
+    - 'Wohnzimmer und Esszimmer Lichter aus'
+    - 'Mach Wohn und Esszimmer Licht aus'
+
+- name: wohn_und_ess_rot
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        color: red
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - rot
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Wohn und Esszimmer auf Rot'
+    - 'Wohn und Esszimmer Licht auf rot'
+
+- name: alle_ausser_schlaf_und_kueche
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - schlafzimmer
+    - kuche
+    - light.kuche_kuche
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Alle Lichter außer Schlafzimmer und Küche aus'

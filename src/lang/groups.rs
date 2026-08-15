@@ -32,6 +32,7 @@ pub struct Talk {
     pub particles: &'static [&'static str],
     pub affirm: &'static [&'static str],
     pub or_words: &'static [&'static str],
+    pub except_words: &'static [&'static str],
     pub all_words: &'static [&'static str],
     pub query_hint: &'static [&'static str],
     pub question_starts: &'static [&'static str],

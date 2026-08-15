@@ -1,0 +1,25 @@
+- name: status_decke
+  conditions:
+    - {type: query, entity_id: light.schlafzimmer_decke}
+  forbid:
+    - light.alle_lichter
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Ist die Deckenlampe an'
+    - 'Status Deckenlampe'
+    - 'Brennt die Deckenlampe'
+
+- name: status_spuelmaschine
+  conditions:
+    - {type: query, entity_id: switch.kuche_spulmaschine}
+  sentences:
+    - 'Ist die Spülmaschine an'
+    - 'Läuft die Spülmaschine'
+    - 'Status Spülmaschine'
+
+- name: status_wasch_casual
+  conditions:
+    - {type: query, entity_id: switch.badezimmer_waschmaschine}
+  sentences:
+    - 'Läuft die Waschmaschine noch'
+    - 'Ist die Waschmaschine an'

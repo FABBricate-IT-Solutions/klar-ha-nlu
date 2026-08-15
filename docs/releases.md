@@ -53,3 +53,15 @@ python3 scripts/bump-version.py --self-test
 git cliff -o CHANGELOG.md
 git cliff --unreleased
 ```
+
+## Vor dem Release prüfen
+
+```bash
+cargo fmt --check
+cargo check
+cargo test -- --test-threads=1
+cargo build --release
+rg 'src/(parse\.rs|web\.rs|wyoming\.rs|lexicon\.rs|numbers\.rs)|parse_help|home_policy' docs README.md README.de.md
+```
+
+Der `rg`-Check hält Dokumentation und Modulbaum synchron. Treffer sind nicht automatisch Fehler, müssen aber bewusst aktuell sein.

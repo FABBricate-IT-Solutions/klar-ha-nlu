@@ -1,0 +1,31 @@
+- name: status_globe
+  conditions:
+    - {type: query, entity_id: light.schlafzimmer_kugel}
+  forbid:
+    - light.alle_lichter
+    - schlafzimmer
+  sentences:
+    - 'Is the globe on'
+    - 'Globe status'
+    - "What's the status of the globe"
+
+- name: status_tv
+  conditions:
+    - {type: query, entity_id: switch.schlafzimmer_tv}
+  sentences:
+    - 'Is the TV on'
+    - 'Bedroom TV status'
+
+- name: status_pc
+  conditions:
+    - {type: query, entity_id: switch.pc_steckdose}
+  sentences:
+    - 'Is the PC on'
+    - 'PC status'
+
+- name: status_dryer
+  conditions:
+    - {type: query, entity_id: switch.kuche_trockner}
+  sentences:
+    - 'Is the dryer on'
+    - 'Dryer status'

@@ -72,6 +72,43 @@ fn room_lights_english() {
     expect("Turn on the dining room light", "HassTurnOn", &["esszimmer", "light.esszimmer"], &["light.hue_color_spot_1"]);
     expect("Turn on the hallway light", "HassTurnOn", &["flur"], &["light.u7_pro_led"]);
     expect("Turn off all lights", "HassTurnOff", &["light.alle_lichter", "wohnung"], &["light.u7_pro_led"]);
+    expect("Turn off every lamp", "HassTurnOff", &["light.alle_lichter", "wohnung"], &["light.u7_pro_led"]);
+    expect("Turn on the whole lights", "HassTurnOn", &["light.alle_lichter", "wohnung"], &["light.u7_pro_led"]);
+    expect("Turn on the entire lighting", "HassTurnOn", &["light.alle_lichter", "wohnung"], &["light.u7_pro_led"]);
+}
+
+#[test]
+fn all_lights_off_except_kugel() {
+    let home = home();
+    let mut session = Session::new();
+    let result = parse("Turn off all lights except the globe", &home, &mut session, &[], &settings());
+    assert!(!result.clarify, "{}", result.speech);
+    let ids: Vec<&str> =
+        result.intents.iter().filter_map(|intent| intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str())).collect();
+    assert!(result.intents.iter().all(|intent| intent.name == "HassTurnOff"), "{:?}", result.intents);
+    assert!(!ids.contains(&"light.alle_lichter"), "{ids:?}");
+    assert!(!ids.contains(&"light.schlafzimmer"), "{ids:?}");
+    assert!(!ids.contains(&"light.hue_color_lamp_2"), "{ids:?}");
+    let areas: Vec<&str> =
+        result.intents.iter().filter_map(|intent| intent.slots.iter().find(|s| s.name == "area").map(|s| s.value.as_str())).collect();
+    assert!(ids.contains(&"light.wohnzimmer") || areas.contains(&"wohnzimmer"), "{:?}", result.intents);
+}
+
+#[test]
+fn all_lights_off_except_bedroom() {
+    let home = home();
+    let mut session = Session::new();
+    let result = parse("Turn off all lights except the bedroom", &home, &mut session, &[], &settings());
+    assert!(!result.clarify, "{}", result.speech);
+    assert!(result.intents.iter().all(|intent| intent.name == "HassTurnOff"), "{:?}", result.intents);
+    let ids: Vec<&str> =
+        result.intents.iter().filter_map(|intent| intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str())).collect();
+    let areas: Vec<&str> =
+        result.intents.iter().filter_map(|intent| intent.slots.iter().find(|s| s.name == "area").map(|s| s.value.as_str())).collect();
+    assert!(!ids.contains(&"light.alle_lichter"), "{:?}", result.intents);
+    assert!(!areas.contains(&"schlafzimmer"), "{:?}", result.intents);
+    assert!(!ids.iter().any(|id| id.contains("schlafzimmer") || *id == "light.hue_color_lamp_2"), "{:?}", result.intents);
+    assert!(ids.contains(&"light.wohnzimmer") || areas.contains(&"wohnzimmer"), "{:?}", result.intents);
 }
 
 #[test]

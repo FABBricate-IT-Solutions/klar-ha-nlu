@@ -36,6 +36,17 @@ German and English ship in-tree and run side by side. Further languages are pack
 
 Klar drives devices itself. An LLM only talks or rewrites speech — it does not run home intents.
 
+## How it is organized
+
+The Rust engine is split into clear layers:
+
+- `src/types/` defines intents, settings, and the home graph.
+- `src/home/` loads Home Assistant registries, overlays, expose data, roles, and the built-in sample home.
+- `src/parse/` contains tokenization, language-driven action detection, resolution, slot filling, and spoken replies.
+- `src/io/` owns HTTP, Wyoming, shared runtime state, token handling, and reloads.
+
+At runtime Klar builds one effective home graph from the HA config and the writable data directory. The parse API and Wyoming server share that graph and the same session store, so follow-ups behave the same on both interfaces.
+
 ## Quick start
 
 Rust 1.85+, then:
@@ -52,6 +63,15 @@ Without an HA config Klar uses a built-in sample home.
 | 10500 | Wyoming intent          |
 
 UI: <http://127.0.0.1:10520>
+
+Useful checks while developing:
+
+```bash
+cargo fmt --check
+cargo check
+cargo test -- --test-threads=1
+cargo build --release
+```
 
 ## Home Assistant
 

@@ -366,6 +366,10 @@ impl Catalog {
         self.all_words.contains(t)
     }
 
+    pub fn is_except(&self, t: &str) -> bool {
+        self.pack_has(t, |pack| pack.talk.except_words)
+    }
+
     pub fn is_query_hint(&self, t: &str) -> bool {
         self.query_hint.contains(t)
     }
@@ -384,7 +388,23 @@ impl Catalog {
     }
 
     pub fn color(&self, t: &str) -> Option<&'static str> {
-        self.colors.get(t).copied()
+        self.colors.get(t).copied().or_else(|| {
+            ["en", "em", "er", "es", "e"].iter().find_map(|suffix| t.strip_suffix(suffix).and_then(|stem| self.colors.get(stem)).copied())
+        })
+    }
+
+    pub fn color_spoken(&self, canonical: &str) -> String {
+        self.packs
+            .iter()
+            .find_map(|pack| {
+                pack.maps
+                    .colors
+                    .iter()
+                    .filter(|(_, color)| *color == canonical)
+                    .min_by_key(|(word, _)| word.len())
+                    .map(|(word, _)| (*word).to_string())
+            })
+            .unwrap_or_else(|| canonical.to_string())
     }
 
     pub fn number(&self, t: &str) -> Option<i32> {
@@ -459,5 +479,14 @@ mod tests {
         assert!(cat.pack_any(&licht, |p| p.nouns.light_nouns));
         assert_eq!(cat.pack_any(&licht, |p| p.nouns.light_nouns), cat.any(&licht, &cat.light_nouns));
         assert!(!cat.pack_has("licht", |p| p.nouns.cover_nouns));
+    }
+
+    #[test]
+    fn color_accepts_german_endings() {
+        let cat = catalog();
+        assert_eq!(cat.color("rot"), Some("red"));
+        assert_eq!(cat.color("rote"), Some("red"));
+        assert_eq!(cat.color("rotes"), Some("red"));
+        assert_eq!(cat.color_spoken("red"), "rot");
     }
 }

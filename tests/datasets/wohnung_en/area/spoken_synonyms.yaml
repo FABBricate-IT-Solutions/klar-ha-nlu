@@ -1,0 +1,88 @@
+- name: all_synonyms_off
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'off'}
+  sentences:
+    - 'Turn off all lamps'
+    - 'Switch off every light'
+    - 'Turn off the entire lighting'
+    - 'Turn off the whole lights'
+    - 'Turn off every lamp'
+
+- name: all_synonyms_on
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'on'}
+  sentences:
+    - 'Turn on all lights'
+    - 'Turn on every light'
+    - 'Turn on the entire lighting'
+    - 'Turn on the whole lights'
+    - 'Switch on every lamp'
+
+- name: all_except_globe_synonyms
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_licht, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Turn off every light except the globe'
+    - 'Turn off the entire lighting except the globe'
+    - 'Turn off the whole lights except the globe'
+
+- name: all_except_bedroom_synonyms
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn off every light except the bedroom'
+    - 'Turn off the entire lighting except the bedroom'
+    - 'Turn off all lights not in the bedroom'
+
+- name: living_green
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: green
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_forbids:
+    - 'percent'
+    - '?'
+  sentences:
+    - 'Set the living room lights to green'
+    - 'Living room lights to green'
+
+- name: dining_white
+  conditions:
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        color: white
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_forbids:
+    - 'percent'
+    - '?'
+  sentences:
+    - 'Set the dining room lights to white'
+    - 'Dining room lights to white'

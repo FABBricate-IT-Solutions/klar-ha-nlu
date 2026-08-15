@@ -1,9 +1,9 @@
 //! Voice suite. German (`wohnung_mittel`) is required.
 //! English (`wohnung_en`) is a smoke check — the upstream suite has no German.
 
-use klar_nlu::lexicon::default_home;
+use klar_nlu::home::default_home;
+use klar_nlu::home::load_home_config;
 use klar_nlu::parse::parse;
-use klar_nlu::registry::load_home_config;
 use klar_nlu::session::Session;
 use klar_nlu::types::{HomeGraph, Intent, Settings};
 use serde::Deserialize;
@@ -54,6 +54,13 @@ struct Case {
     #[serde(default)]
     conditions: Vec<Condition>,
     sentences: Sentences,
+    /// Entity or area ids that must not appear in any intent.
+    #[serde(default)]
+    forbid: Vec<String>,
+    #[serde(default)]
+    speech_has: Vec<String>,
+    #[serde(default)]
+    speech_forbids: Vec<String>,
 }
 
 fn datasets_root() -> PathBuf {
@@ -76,13 +83,16 @@ fn load_cases(dir: &Path) -> Vec<(String, Case)> {
         let raw = std::fs::read_to_string(&path).unwrap();
         let parsed: serde_yaml::Value = serde_yaml::from_str(&raw).unwrap();
         if parsed.as_sequence().is_some() {
-            let Ok(cases) = serde_yaml::from_value::<Vec<Case>>(parsed) else {
-                continue;
-            };
+            let cases: Vec<Case> = serde_yaml::from_value(parsed).unwrap_or_else(|err| {
+                panic!("suite yaml {}: {err}", path.display());
+            });
             for c in cases {
                 out.push((format!("{}::{}", path.file_stem().unwrap().to_string_lossy(), c.name), c));
             }
-        } else if let Ok(c) = serde_yaml::from_value::<Case>(parsed) {
+        } else {
+            let c: Case = serde_yaml::from_value(parsed).unwrap_or_else(|err| {
+                panic!("suite yaml {}: {err}", path.display());
+            });
             out.push((format!("{}::{}", path.file_stem().unwrap().to_string_lossy(), c.name), c));
         }
     }
@@ -245,6 +255,34 @@ fn cond_ok(cond: &Condition, intents: &[Intent], home: &HomeGraph) -> Result<(),
     }
 }
 
+fn intent_mentions(intent: &Intent, needle: &str) -> bool {
+    intent.slot("entity_id") == Some(needle) || intent.slot("area") == Some(needle)
+}
+
+fn forbid_ok(intents: &[Intent], forbid: &[String]) -> Result<(), String> {
+    for bad in forbid {
+        if intents.iter().any(|intent| intent_mentions(intent, bad)) {
+            return Err(format!("forbid {bad} in {intents:?}"));
+        }
+    }
+    Ok(())
+}
+
+fn speech_ok(speech: &str, has: &[String], forbids: &[String]) -> Result<(), String> {
+    let folded = speech.to_lowercase();
+    for needle in has {
+        if !folded.contains(&needle.to_lowercase()) {
+            return Err(format!("speech missing {needle:?} in {speech:?}"));
+        }
+    }
+    for needle in forbids {
+        if folded.contains(&needle.to_lowercase()) {
+            return Err(format!("speech has {needle:?} in {speech:?}"));
+        }
+    }
+    Ok(())
+}
+
 struct RunStats {
     ok: usize,
     fail: usize,
@@ -314,6 +352,16 @@ fn run_suite(name: &str, clarify_dir: bool) -> RunStats {
                             err = Some(e);
                             break;
                         }
+                    }
+                }
+                if err.is_none() {
+                    if let Err(e) = forbid_ok(&result.intents, &case.forbid) {
+                        err = Some(e);
+                    }
+                }
+                if err.is_none() {
+                    if let Err(e) = speech_ok(&result.speech, &case.speech_has, &case.speech_forbids) {
+                        err = Some(e);
                     }
                 }
                 if let Some(e) = err {

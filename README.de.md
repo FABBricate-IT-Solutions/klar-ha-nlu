@@ -36,6 +36,17 @@ Deutsch und Englisch sind eingebaut und laufen parallel. Weitere Sprachen kommen
 
 Klar steuert Geräte selbst. Ein LLM redet oder formuliert um — Haus-Intents führt es nicht aus.
 
+## Aufbau
+
+Die Rust-Engine ist in klare Schichten geteilt:
+
+- `src/types/` definiert Intents, Settings und den Home-Graph.
+- `src/home/` lädt Home-Assistant-Registries, Overlays, Expose-Daten, Rollen und die eingebaute Musterwohnung.
+- `src/parse/` enthält Tokenisierung, sprachgesteuerte Action-Erkennung, Auflösung, Slot-Füllung und gesprochene Antworten.
+- `src/io/` enthält HTTP, Wyoming, gemeinsamen Runtime-State, Token-Handling und Reloads.
+
+Zur Laufzeit baut Klar einen effektiven Home-Graph aus HA-Config und beschreibbarem Datenverzeichnis. Parse-API und Wyoming-Server teilen diesen Graphen und denselben Session-Store, deshalb verhalten sich Follow-ups auf beiden Schnittstellen gleich.
+
 ## Schnellstart
 
 Rust 1.85+, dann:
@@ -52,6 +63,15 @@ Ohne HA-Config nutzt Klar eine eingebaute Musterwohnung.
 | 10500 | Wyoming Intent      |
 
 UI: <http://127.0.0.1:10520>
+
+Nützliche Checks bei der Entwicklung:
+
+```bash
+cargo fmt --check
+cargo check
+cargo test -- --test-threads=1
+cargo build --release
+```
 
 ## Home Assistant
 

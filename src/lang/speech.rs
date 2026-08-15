@@ -16,6 +16,7 @@ pub struct Speech {
     pub turn_off: &'static str,
     pub toggle: &'static str,
     pub light_set: &'static str,
+    pub light_color: &'static str,
     pub climate_set: &'static str,
     pub heat_noun: &'static str,
     pub cool_noun: &'static str,

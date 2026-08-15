@@ -313,9 +313,31 @@ def _slots(item: dict) -> dict[str, str]:
     }
 
 
+_COLORS = {
+    "red": {"de": "rot", "en": "red"},
+    "blue": {"de": "blau", "en": "blue"},
+    "green": {"de": "grün", "en": "green"},
+    "yellow": {"de": "gelb", "en": "yellow"},
+    "orange": {"de": "orange", "en": "orange"},
+    "pink": {"de": "pink", "en": "pink"},
+    "black": {"de": "schwarz", "en": "black"},
+    "white": {"de": "weiß", "en": "white"},
+    "purple": {"de": "lila", "en": "purple"},
+}
+
+
 def _level(item: dict, pack: str) -> str:
     slots = _slots(item)
+    color = slots.get("color") or ""
+    spoken = ""
+    if color:
+        spoken = (_COLORS.get(color) or {}).get(pack) or color
     bri = slots.get("brightness") or slots.get("percentage") or ""
+    if spoken and bri:
+        unit = "Prozent" if pack == "de" else "percent"
+        return f"{spoken}, {bri} {unit}"
+    if spoken:
+        return spoken
     if not bri:
         return "die neue Stufe" if pack == "de" else "the new level"
     return f"{bri} Prozent" if pack == "de" else f"{bri} percent"

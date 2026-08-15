@@ -1,0 +1,10 @@
+- name: living_and_dining_off
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn off the living and dining room lights'
+    - 'Turn off living and dining lights'

@@ -1,0 +1,60 @@
+- name: kugel_aus
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.schlafzimmer_decke
+  sentences:
+    - 'Kugel aus'
+    - 'Mach die Kugel aus'
+    - 'Schalt die Kugel aus'
+    - 'Die Kugel bitte aus'
+
+- name: deckenlampe_an
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'on'}
+  forbid:
+    - light.schlafzimmer_kugel
+    - light.alle_lichter
+  sentences:
+    - 'Deckenlampe an'
+    - 'Mach die Decke an'
+    - 'Schalt die Deckenlampe ein'
+
+- name: tv_aus
+  conditions:
+    - {type: action, entity_id: switch.schlafzimmer_tv, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - scene.filmabend
+  sentences:
+    - 'TV aus'
+    - 'Schlafzimmer TV aus'
+    - 'Mach den Fernseher aus'
+    - 'Fernseher aus'
+
+- name: trockner_an
+  conditions:
+    - {type: action, entity_id: switch.kuche_trockner, state: 'on'}
+  sentences:
+    - 'Trockner an'
+    - 'Mach den Trockner an'
+    - 'Schalt den Trockner ein'
+
+- name: luefter_aus
+  conditions:
+    - {type: action, entity_id: fan.arc_casual, state: 'off'}
+  forbid:
+    - light.arbeitszimmer
+  sentences:
+    - 'Lüfter aus'
+    - 'Mach den Ventilator aus'
+    - 'Ventilator aus'
+
+- name: rollo_auf
+  conditions:
+    - {type: action, entity_id: cover.wohnzimmer_rollo, state: 'on'}
+  sentences:
+    - 'Rollo auf'
+    - 'Mach das Rollo auf'
+    - 'Öffne das Rollo im Wohnzimmer'

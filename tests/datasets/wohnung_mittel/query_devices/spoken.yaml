@@ -1,0 +1,34 @@
+- name: status_kugel
+  conditions:
+    - {type: query, entity_id: light.schlafzimmer_kugel}
+  forbid:
+    - light.alle_lichter
+    - schlafzimmer
+  sentences:
+    - 'Ist die Kugel an'
+    - 'Status Kugel'
+    - 'Wie ist der Status der Kugel'
+
+- name: status_tv
+  conditions:
+    - {type: query, entity_id: switch.schlafzimmer_tv}
+  sentences:
+    - 'Ist der Fernseher an'
+    - 'Status TV'
+    - 'Läuft der TV'
+
+- name: status_trockner
+  conditions:
+    - {type: query, entity_id: switch.kuche_trockner}
+  sentences:
+    - 'Ist der Trockner an'
+    - 'Läuft der Trockner'
+    - 'Status Trockner'
+
+- name: status_pc
+  conditions:
+    - {type: query, entity_id: switch.pc_steckdose}
+  sentences:
+    - 'Ist der PC an'
+    - 'Status PC'
+    - 'Läuft der PC'
