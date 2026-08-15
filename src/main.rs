@@ -3,7 +3,7 @@ use klar_nlu::compound::{apply_overlay, load_overlay};
 use klar_nlu::lexicon::default_home;
 use klar_nlu::registry::load_home;
 use klar_nlu::session::Sessions;
-use klar_nlu::types::{CustomSentence, Settings};
+use klar_nlu::types::CustomSentence;
 use klar_nlu::web::{router, AppState};
 use std::net::SocketAddr;
 use std::path::PathBuf;
@@ -43,14 +43,20 @@ async fn main() {
         args.config_dir.clone()
     };
     let mut home = load_home(&args.config_dir, default_home());
-    apply_overlay(&mut home, &load_overlay(&args.config_dir));
+    let config_overlay = load_overlay(&args.config_dir);
+    apply_overlay(&mut home, &config_overlay);
+    let mut settings = config_overlay.settings.clone().unwrap_or_default();
     if data_dir != args.config_dir {
-        apply_overlay(&mut home, &load_overlay(&data_dir));
+        let data_overlay = load_overlay(&data_dir);
+        apply_overlay(&mut home, &data_overlay);
+        if let Some(saved) = data_overlay.settings {
+            settings = saved;
+        }
     }
     let state = AppState {
         home: Arc::new(Mutex::new(home)),
         sessions: Arc::new(Mutex::new(Sessions::default())),
-        settings: Arc::new(Mutex::new(Settings::default())),
+        settings: Arc::new(Mutex::new(settings)),
         custom: Arc::new(Mutex::new(Vec::<CustomSentence>::new())),
         data_dir,
     };

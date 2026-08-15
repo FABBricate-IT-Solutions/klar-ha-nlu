@@ -27,6 +27,7 @@ from .const import (
     LANGUAGE_VARIANTS,
     SUPPORTED_LANGUAGES,
 )
+from .speech import from_handled, style
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -47,13 +48,6 @@ _UNREACHABLE = {
 }
 
 _DONE = {"de": "Erledigt.", "en": "Done."}
-
-_ACTION = {
-    "HassTurnOn": {"de": "Schalte {where} ein.", "en": "Turn on {where}."},
-    "HassTurnOff": {"de": "Schalte {where} aus.", "en": "Turn off {where}."},
-    "HassToggle": {"de": "Schalte {where} um.", "en": "Toggle {where}."},
-    "HassLightSet": {"de": "Setze {where}.", "en": "Set {where}."},
-}
 
 _DE_ENGINE = ("Schalte", "Frage", "Setze", "Sag mir", "Meinst du")
 
@@ -150,96 +144,6 @@ def _advertise(packs: list[str]) -> list[str]:
     return out
 
 
-def _plain_speech(handled: Any) -> str:
-    speech = getattr(handled, "speech", None) or {}
-    plain = speech.get("plain") if isinstance(speech, dict) else None
-    if isinstance(plain, dict):
-        text = str(plain.get("speech") or "").strip()
-        if text:
-            return text
-    as_dict = getattr(handled, "as_dict", None)
-    if callable(as_dict):
-        data = as_dict()
-        nested = (data.get("speech") or {}).get("plain") or {}
-        return str(nested.get("speech") or "").strip()
-    return ""
-
-
-def _is_query(handled: Any, name: str) -> bool:
-    rtype = getattr(handled, "response_type", None)
-    value = getattr(rtype, "value", rtype)
-    return str(value) == "query_answer" or name in {
-        "HassGetState",
-        "HassClimateGetTemperature",
-    }
-
-
-def _state_value(state: Any) -> tuple[str, str]:
-    attrs = getattr(state, "attributes", None) or {}
-    if not isinstance(attrs, dict):
-        attrs = {}
-    unit = str(attrs.get("unit_of_measurement") or attrs.get("temperature_unit") or "")
-    name = str(attrs.get("friendly_name") or "")
-    name = name or str(getattr(state, "name", None) or getattr(state, "entity_id", ""))
-    raw = attrs.get("current_temperature")
-    if raw is None or raw == "":
-        raw = getattr(state, "state", "")
-    elif not unit:
-        unit = "°C"
-    value = str(raw).replace(".", ",")
-    spoken = f"{value} {unit}".strip() if unit else value
-    return name, spoken
-
-
-def _query_speech(handled: Any, pack: str) -> str:
-    states = list(getattr(handled, "matched_states", None) or [])
-    if not states:
-        states = list(getattr(handled, "unmatched_states", None) or [])
-    parts: list[str] = []
-    for state in states[:4]:
-        name, spoken = _state_value(state)
-        if not name or not spoken:
-            continue
-        if pack == "en":
-            parts.append(f"{name} is {spoken.replace(',', '.')}.")
-        else:
-            parts.append(f"{name}: {spoken}.")
-    return " ".join(parts)
-
-
-def _where(handled: Any, item: dict) -> str:
-    names = [
-        str(getattr(target, "name", None) or getattr(target, "id", "") or "")
-        for target in getattr(handled, "success_results", None) or []
-    ]
-    names = [name for name in names if name]
-    if names:
-        return ", ".join(dict.fromkeys(names))
-    slots = {
-        slot["name"]: slot["value"]
-        for slot in item.get("slots") or []
-        if isinstance(slot, dict) and slot.get("name")
-    }
-    return str(slots.get("area") or slots.get("name") or slots.get("entity_id") or "")
-
-
-def _speech_from_handled(handled: Any, pack: str, item: dict) -> str | None:
-    text = _plain_speech(handled)
-    if text:
-        return text
-    name = str(item.get("name") or "")
-    if _is_query(handled, name):
-        query = _query_speech(handled, pack)
-        if query:
-            return query
-    where = _where(handled, item) or ("home" if pack == "en" else "Zuhause")
-    template = (_ACTION.get(name) or {}).get(pack)
-    if template:
-        return template.format(where=where)
-    query = _query_speech(handled, pack)
-    return query or None
-
-
 def _engine_ok(speech: str, pack: str) -> bool:
     if not speech:
         return False
@@ -294,6 +198,7 @@ class KlarConversationEntity(ConversationEntity):
         intents = _home_intents(payload.get("intents") or [])
         clarify = bool(payload.get("clarify"))
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
+        personality = str(payload.get("personality") or "default")
 
         if not clarify and not intents and not payload.get("unreachable"):
             fallback = await self._fallback(user_input, chat_log, pack)
@@ -310,6 +215,8 @@ class KlarConversationEntity(ConversationEntity):
                 spoken.append(ha_speech)
         if spoken:
             speech = " ".join(spoken)
+        if not clarify:
+            speech = style(speech, personality, pack)
 
         chat_log.async_add_assistant_content_without_tools(
             AssistantContent(agent_id=user_input.agent_id, content=speech)
@@ -407,7 +314,7 @@ class KlarConversationEntity(ConversationEntity):
         except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
             _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
             return None
-        return _speech_from_handled(handled, pack, {**item, "name": name})
+        return from_handled(handled, pack, {**item, "name": name})
 
     async def _handle_intent(
         self, user_input: ConversationInput, item: dict, pack: str
