@@ -38,8 +38,8 @@ That job:
 2. Writes it into `Cargo.toml`, `config.yaml`, `addon/config.yaml`, and the HA manifest
 3. Regenerates `CHANGELOG.md`
 4. Commits `chore(release): prepare for vYYYY.M.PATCH` on `release/vYYYY.M.PATCH`
-5. Opens a PR when the org allows Actions to do that — otherwise it waits for required checks and fast-forwards `main`
-6. Tags `vYYYY.M.PATCH` and calls **Build** (`workflow_call`; a `GITHUB_TOKEN` tag push would not start another workflow)
+5. Opens a PR when the org allows Actions to do that — otherwise it starts CI itself (a `GITHUB_TOKEN` push does not start workflows), waits for required checks, fast-forwards `main`, and tags in the same run
+6. Calls **Build** (`workflow_call`)
 
 Build compiles linux-x86_64, linux-aarch64, and linux-armv7 and attaches the tarballs to the GitHub Release. The release body is the latest git-cliff section.
 
