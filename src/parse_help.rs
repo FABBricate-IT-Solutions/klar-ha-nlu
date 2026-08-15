@@ -149,26 +149,20 @@ fn scene_name_hit(tokens: &[String], name: &str) -> bool {
 }
 
 pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[String]) -> bool {
-    let singular = catalog().any(tokens, &catalog().light_singular);
-    let plural = catalog().any(tokens, &catalog().light_plural);
-    if !singular || plural {
+    let cat = catalog();
+    if !cat.any(tokens, &cat.light_singular) || cat.any(tokens, &cat.light_plural) || cat.any(tokens, &cat.illuminate) {
         return false;
     }
-    if catalog().any(tokens, &catalog().illuminate) {
+    if areas.iter().any(|area| crate::compound::has_room_light(home, area)) {
         return false;
     }
-    let count = home
-        .entities
-        .iter()
-        .filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| areas.contains(a)))
-        .count();
-    count > 1
+    home.entities.iter().filter(|e| {
+        e.domain == "light" && !crate::compound::is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a))
+    }).count() > 1
 }
 
 pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
-    let all = tokens.iter().any(|t| catalog().is_all(t));
-    let lights = catalog().any(tokens, &catalog().light_nouns);
-    all && lights
+    tokens.iter().any(|t| catalog().is_all(t)) && catalog().any(tokens, &catalog().light_nouns)
 }
 
 pub(crate) fn looks_like_named_device(tokens: &[String]) -> bool {

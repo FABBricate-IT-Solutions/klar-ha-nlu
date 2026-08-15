@@ -178,7 +178,7 @@ pub const PACK: LanguagePack = LanguagePack {
     ],
     power_words: &["an", "aus", "starten", "stoppen"],
     command_hedges: &[],
-    skip_light: &["luefter", "trockner", "waschmaschine", "fernseher"],
+    skip_light: &["luefter", "trockner", "waschmaschine", "fernseher", "tv"],
     laundry_area: &["waschkueche"],
     laundry_machines: &["waschmaschine", "trockner"],
     kitchen: &["kueche", "insel"],

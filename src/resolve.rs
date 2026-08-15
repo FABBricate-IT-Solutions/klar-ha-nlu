@@ -1,6 +1,6 @@
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
-use crate::compound::GENERIC;
+use crate::compound::{is_infra_light, is_tv_switch, usable_labels, GENERIC};
 use crate::normalize::{compact, fold_umlaut};
 use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
@@ -18,8 +18,9 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     let mut candidates: Vec<(f64, EntityRec)> = home
         .entities
         .iter()
-        .filter(|e| domain.is_none_or(|d| e.domain == d))
-        .filter_map(|e| score_entity(tokens, e).map(|s| (s, e.clone())))
+        .filter(|e| !is_infra_light(e))
+        .filter(|e| domain.is_none_or(|d| e.domain == d || is_tv_switch(d, e)))
+        .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
         .collect();
     candidates.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
     if !areas.is_empty() {
@@ -120,7 +121,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let in_domain: Vec<EntityRec> = home
                 .entities
                 .iter()
-                .filter(|e| e.domain == d)
+                .filter(|e| e.domain == d && !is_infra_light(e))
                 .filter(|e| {
                     areas.is_empty()
                         || e.area.as_ref().is_some_and(|a| areas.contains(a))
@@ -138,7 +139,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let in_area: Vec<EntityRec> = home
                 .entities
                 .iter()
-                .filter(|e| e.domain == d && e.area.as_ref().is_some_and(|a| areas.contains(a)))
+                .filter(|e| e.domain == d && !is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
                 .cloned()
                 .collect();
             if in_area.len() == 1 {
@@ -322,10 +323,11 @@ fn number_word(token: &str) -> Option<&'static str> {
     }
 }
 
-fn score_entity(tokens: &[String], entity: &EntityRec) -> Option<f64> {
-    let mut labels = vec![fold_umlaut(&entity.name)];
-    labels.extend(entity.aliases.iter().map(|a| fold_umlaut(a)));
-    labels.extend(entity.tags.iter().map(|a| fold_umlaut(a)));
+fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Option<f64> {
+    let labels: Vec<String> = usable_labels(entity, home)
+        .into_iter()
+        .map(|label| fold_umlaut(&label))
+        .collect();
     let mut best = 0.0_f64;
     for label in labels {
         if label.is_empty() {
@@ -440,7 +442,7 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option<String> {
     let hits: Vec<&str> = home.entities.iter()
-        .filter(|e| e.domain == domain && e.area.as_deref() == Some(area))
+        .filter(|e| e.domain == domain && !is_infra_light(e) && e.area.as_deref() == Some(area))
         .map(|e| e.entity_id.as_str()).collect();
     (hits.len() == 1).then(|| hits[0].to_string())
 }

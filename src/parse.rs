@@ -371,6 +371,7 @@ fn parse_clause(
                 .iter()
                 .filter(|e| {
                     e.domain == "light"
+                        && !crate::compound::is_infra_light(e)
                         && e.area.as_ref().is_some_and(|a| resolved.areas.contains(a))
                 })
                 .map(|e| e.entity_id.clone())

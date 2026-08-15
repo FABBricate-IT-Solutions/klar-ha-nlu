@@ -135,7 +135,41 @@ fn is_light_noun(token: &str) -> bool {
     cat.light_nouns.contains(token) || cat.light_singular.contains(token) || token == "beleuchtung"
 }
 
-fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
+pub(crate) fn is_tv_switch(domain: &str, entity: &EntityRec) -> bool {
+    domain == "media_player"
+        && entity.domain == "switch"
+        && {
+            let blob = format!(
+                "{} {}",
+                entity.entity_id,
+                compact(&format!("{} {}", entity.name, entity.aliases.join(" ")))
+            );
+            blob.contains("tv") || blob.contains("fernseher")
+        }
+}
+
+pub(crate) fn is_infra_light(entity: &EntityRec) -> bool {
+    if entity.domain != "light" {
+        return false;
+    }
+    let id = entity.entity_id.to_ascii_lowercase();
+    let name = compact(&entity.name);
+    id.contains("led_ring")
+        || id.contains("voice_led")
+        || id.contains("u7_pro")
+        || name.contains("ledring")
+        || name.contains("u7pro")
+}
+
+pub(crate) fn has_room_light(home: &HomeGraph, area: &str) -> bool {
+    home.entities.iter().any(|e| {
+        e.domain == "light"
+            && (e.entity_id == format!("light.{area}")
+                || (is_generic_room_light(e, home) && e.area.as_deref() == Some(area)))
+    })
+}
+
+pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
     if entity.domain != "light" {
         return false;
     }
@@ -143,6 +177,57 @@ fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
     home.areas.iter().any(|area| {
         generic_name(&name, &compact(&area.name)) || generic_name(&name, &compact(&area.area_id))
     })
+}
+
+pub(crate) fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
+    let generic = is_generic_room_light(entity, home);
+    std::iter::once(entity.name.clone())
+        .chain(entity.aliases.iter().cloned())
+        .chain(entity.tags.iter().cloned())
+        .filter(|label| !generic || !stolen_label(label, entity, home))
+        .collect()
+}
+
+fn stolen_label(label: &str, entity: &EntityRec, home: &HomeGraph) -> bool {
+    let folded = compact(label);
+    if folded.is_empty() {
+        return true;
+    }
+    if catalog().named_device.iter().any(|n| compact(n) == folded) {
+        return true;
+    }
+    if home
+        .areas
+        .iter()
+        .any(|area| compact(&area.name) == folded || compact(&area.area_id) == folded)
+    {
+        return true;
+    }
+    if home.entities.iter().any(|other| {
+        other.entity_id != entity.entity_id && compact(&other.name) == folded
+    }) {
+        return true;
+    }
+    let parts: Vec<String> = label
+        .split(|c: char| !c.is_ascii_alphanumeric())
+        .map(compact)
+        .filter(|p| !p.is_empty())
+        .collect();
+    !parts.is_empty()
+        && parts.iter().all(|p| GENERIC.contains(&p.as_str()))
+        && sibling_lights(home, entity) > 0
+}
+
+fn sibling_lights(home: &HomeGraph, entity: &EntityRec) -> usize {
+    home.entities
+        .iter()
+        .filter(|other| {
+            other.entity_id != entity.entity_id
+                && other.domain == "light"
+                && !is_infra_light(other)
+                && other.area == entity.area
+        })
+        .count()
 }
 
 fn generic_name(name: &str, room: &str) -> bool {
