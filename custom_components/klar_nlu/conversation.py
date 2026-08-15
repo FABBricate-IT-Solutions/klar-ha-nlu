@@ -228,12 +228,12 @@ class KlarConversationEntity(ConversationEntity):
         if not clarify:
             speech = style(speech, personality, pack)
         agent_id = self._fallback_agent_id()
+        home_turn = bool(intents) and not clarify
         if should_refine(
             bool(self._entry.options.get(CONF_REFINE_SPEECH)),
             agent_id,
             speech,
-            bool(payload.get("chat")),
-            bool(payload.get("briefing")),
+            home_turn,
         ):
             refined = await async_refine_speech(
                 self.hass,

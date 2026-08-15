@@ -75,7 +75,7 @@ Ablauf nach einem Hausbefehl:
 
 1. Klar parst, HA führt die Intents aus.
 2. Klar setzt die Formel der gewählten Persönlichkeit davor.
-3. Das Fallback-LLM formuliert nur diesen fertigen Satz um (kein Smalltalk, kein News-Briefing).
+3. Das Fallback-LLM formuliert den fertigen Satz um — nach Steuerung und nach Statusabfrage (kein Smalltalk, kein News-Briefing, keine Rückfrage).
 4. Fehlt die Formel danach, setzt Klar sie wieder.
 
 Der Prompt ist pro Persönlichkeit (Few-Shots plus festes Stilwort). Das Feld **Verfeinerungs-Prompt** ist nur eine Extra-Zeile darüber — es ersetzt die Stimme nicht.
@@ -88,7 +88,7 @@ Die Sicherheit bleibt bei Klar, nicht beim Modell:
 - keine erfundenen Zahlen (Temperatur ohne Wert bleibt ohne Wert)
 - Intent-Namen wie `HassSetPosition` werden verworfen
 
-Bei OpenAI-kompatiblen Agenten schickt Klar `chat_template_kwargs.enable_thinking=false`, damit Gemma 4 nicht die ganze Runde im Thought-Kanal verbringt. Prompt-Text schaltet Thinking nicht aus. Fehlt ein direkter Chat-Client, fällt Klar auf `conversation.async_converse` zurück und behält die NLU-Antwort, wenn nichts rechtzeitig kommt (6 s).
+Bei OpenAI-kompatiblen Agenten schickt Klar `chat_template_kwargs.enable_thinking=false`, damit Gemma 4 nicht die ganze Runde im Thought-Kanal verbringt. Prompt-Text schaltet Thinking nicht aus. Fehlt ein direkter Chat-Client, fällt Klar auf `conversation.async_converse` zurück und behält die NLU-Antwort nur, wenn der Rewrite fehlschlägt.
 
 ## Engine starten
 

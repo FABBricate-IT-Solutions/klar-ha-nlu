@@ -40,7 +40,7 @@ In Home Assistant the spoken line can get a personality cue and, if enabled, an 
 
 ## Home graph
 
-On startup Klar reads `core.entity_registry` and `core.area_registry` from `--config-dir` (usually `/config`). If the registry is missing, `default_home()` is used.
+On startup Klar reads `core.entity_registry`, `core.device_registry`, and `core.area_registry` from `--config-dir` (usually `/config`). Display names come from the device when the entity has no name of its own (`has_entity_name`). If the registry is missing, `default_home()` is used.
 
 Devices are matched by name, aliases, tags, and area. Generic words (`Licht`, `light`) stay at area level when a room has several lights — then Klar asks.
 

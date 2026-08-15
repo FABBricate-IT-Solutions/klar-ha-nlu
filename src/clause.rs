@@ -23,6 +23,7 @@ struct Clause<'a> {
     domain: Option<&'a str>,
     question: bool,
     resolved: crate::resolve::Resolved,
+    light_areas: &'a [String],
 }
 
 pub(crate) fn parse_clause(
@@ -56,7 +57,7 @@ pub(crate) fn parse_clause(
 
     let mut resolved = resolve_targets(tokens, home, session, settings, domain, action);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
-    let ctx = Clause { tokens, raw, home, session, action, number, domain, question, resolved };
+    let ctx = Clause { tokens, raw, home, session, action, number, domain, question, resolved, light_areas };
     for policy in [named_scene, all_lights, follow_named, area_command, query_area, query_ungrounded, grounded_or_session] {
         if let Some(out) = policy(&ctx) {
             return out;
@@ -239,7 +240,10 @@ fn area_command(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn query_area(ctx: &Clause) -> Option<ClauseOut> {
-    if !matches!(ctx.action, Action::GetState) || ctx.resolved.areas.is_empty() || query_keeps_entity(ctx.tokens, ctx.home, &ctx.resolved) {
+    if !matches!(ctx.action, Action::GetState)
+        || ctx.resolved.areas.is_empty()
+        || query_keeps_entity(ctx.tokens, ctx.home, &ctx.resolved, ctx.light_areas)
+    {
         return None;
     }
     let intents =

@@ -1,4 +1,4 @@
-use crate::normalize::fold_umlaut;
+use crate::normalize::{compact, fold_umlaut};
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use serde::Deserialize;
 use std::collections::HashMap;
@@ -23,8 +23,10 @@ struct RawEntity {
     #[serde(default)]
     original_name: Option<String>,
     #[serde(default)]
-    area_id: Option<String>,
+    has_entity_name: bool,
     #[serde(default)]
+    area_id: Option<String>,
+    #[serde(default, deserialize_with = "strings_skip_null")]
     aliases: Vec<String>,
     #[serde(default)]
     labels: Vec<String>,
@@ -48,6 +50,15 @@ struct DeviceData {
 struct RawDevice {
     id: String,
     #[serde(default)]
+    name: Option<String>,
+    #[serde(default)]
+    name_by_user: Option<String>,
+    #[serde(default)]
+    area_id: Option<String>,
+}
+
+struct DeviceInfo {
+    name: String,
     area_id: Option<String>,
 }
 
@@ -80,9 +91,9 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
         return fallback;
     }
 
-    let device_areas = read_device_areas(&config_dir.join(".storage/core.device_registry"));
+    let devices = read_devices(&config_dir.join(".storage/core.device_registry"));
     let label_names = crate::roles::load_label_names(&config_dir.join(".storage/core.label_registry"));
-    let mut entities = match read_entities(&entity_path, &device_areas, &label_names) {
+    let mut entities = match read_entities(&entity_path, &devices, &label_names) {
         Ok(v) => v,
         Err(err) => {
             tracing::warn!("Entity-Registry unlesbar: {err}");
@@ -102,14 +113,76 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
     HomeGraph { entities, areas, assist: crate::expose::load_assist(config_dir), ..fallback }
 }
 
-fn read_device_areas(path: &Path) -> HashMap<String, String> {
+fn read_devices(path: &Path) -> HashMap<String, DeviceInfo> {
     let Ok(raw) = fs::read_to_string(path) else {
         return HashMap::new();
     };
     let Ok(parsed) = serde_json::from_str::<DeviceStorage>(&raw) else {
         return HashMap::new();
     };
-    parsed.data.devices.into_iter().filter_map(|d| d.area_id.map(|area| (d.id, area))).collect()
+    parsed
+        .data
+        .devices
+        .into_iter()
+        .filter_map(|d| {
+            let name = clean_label(d.name_by_user).or_else(|| clean_label(d.name))?;
+            Some((d.id, DeviceInfo { name, area_id: d.area_id }))
+        })
+        .collect()
+}
+
+fn strings_skip_null<'de, D: serde::Deserializer<'de>>(deserializer: D) -> Result<Vec<String>, D::Error> {
+    let values: Vec<Option<String>> = Deserialize::deserialize(deserializer)?;
+    Ok(values.into_iter().flatten().filter_map(|value| clean_label(Some(value))).collect())
+}
+
+fn clean_label(value: Option<String>) -> Option<String> {
+    let cleaned = value?.split_whitespace().collect::<Vec<_>>().join(" ");
+    (!cleaned.is_empty()).then_some(cleaned)
+}
+
+fn looks_like_entity_id(value: &str) -> bool {
+    value.contains('.') && !value.contains(' ') && value.split('.').count() == 2
+}
+
+fn humanize_entity_id(entity_id: &str) -> String {
+    entity_id.rsplit('.').next().unwrap_or(entity_id).replace('_', " ")
+}
+
+fn compose_device_name(device: Option<&str>, original: Option<&str>) -> Option<String> {
+    match (device, original) {
+        (Some(device), Some(original)) => {
+            let device_fold = compact(device);
+            let original_fold = compact(original);
+            if device_fold == original_fold || device_fold.contains(&original_fold) {
+                Some(device.to_string())
+            } else if original_fold.contains(&device_fold) {
+                Some(original.to_string())
+            } else {
+                Some(format!("{device} {original}"))
+            }
+        }
+        (Some(device), None) => Some(device.to_string()),
+        (None, Some(original)) => Some(original.to_string()),
+        (None, None) => None,
+    }
+}
+
+fn entity_display_name(entity: &RawEntity, device: Option<&DeviceInfo>) -> String {
+    if let Some(name) = clean_label(entity.name.clone()).filter(|name| !looks_like_entity_id(name)) {
+        return name;
+    }
+    let original = clean_label(entity.original_name.clone()).filter(|name| !looks_like_entity_id(name));
+    let device_name = device.map(|info| info.name.as_str());
+    if entity.has_entity_name || original.is_none() {
+        if let Some(composed) = compose_device_name(device_name, original.as_deref()) {
+            return composed;
+        }
+    }
+    if let Some(original) = original {
+        return original;
+    }
+    entity.aliases.iter().find(|alias| !looks_like_entity_id(alias)).cloned().unwrap_or_else(|| humanize_entity_id(&entity.entity_id))
 }
 
 fn infer_area(entity_id: &str, areas: &[AreaRec]) -> Option<String> {
@@ -127,7 +200,7 @@ fn infer_area(entity_id: &str, areas: &[AreaRec]) -> Option<String> {
 
 fn read_entities(
     path: &Path,
-    device_areas: &HashMap<String, String>,
+    devices: &HashMap<String, DeviceInfo>,
     label_names: &HashMap<String, String>,
 ) -> Result<Vec<EntityRec>, String> {
     let raw = fs::read_to_string(path).map_err(|e| e.to_string())?;
@@ -140,8 +213,9 @@ fn read_entities(
         .filter(|e| keep_domain(&e.entity_id))
         .map(|e| {
             let domain = e.entity_id.split('.').next().unwrap_or("").to_string();
-            let name = e.name.or(e.original_name).unwrap_or_else(|| e.entity_id.clone());
-            let area = e.area_id.or_else(|| e.device_id.as_ref().and_then(|id| device_areas.get(id).cloned()));
+            let device = e.device_id.as_ref().and_then(|id| devices.get(id));
+            let name = entity_display_name(&e, device);
+            let area = e.area_id.or_else(|| device.and_then(|info| info.area_id.clone()));
             EntityRec {
                 entity_id: e.entity_id,
                 name,
@@ -213,5 +287,63 @@ mod tests {
         assert_eq!(infer_area("light.schlafzimmer", &areas).as_deref(), Some("schlafzimmer"));
         assert_eq!(infer_area("light.schlafzimmer_ambilight", &areas).as_deref(), Some("schlafzimmer"));
         assert_eq!(infer_area("light.hue_color_lamp_2", &areas), None);
+    }
+
+    fn raw(id: &str) -> RawEntity {
+        RawEntity {
+            entity_id: id.into(),
+            name: None,
+            original_name: None,
+            has_entity_name: false,
+            area_id: None,
+            aliases: vec![],
+            labels: vec![],
+            disabled_by: None,
+            device_id: None,
+        }
+    }
+
+    fn device(name: &str) -> DeviceInfo {
+        DeviceInfo { name: name.into(), area_id: None }
+    }
+
+    #[test]
+    fn display_name_uses_device_when_entity_names_are_empty() {
+        let mut entity = raw("climate.better_thermostat_wohnzimmer");
+        entity.has_entity_name = true;
+        assert_eq!(entity_display_name(&entity, Some(&device("Better Thermostat Wohnzimmer"))), "Better Thermostat Wohnzimmer");
+    }
+
+    #[test]
+    fn display_name_does_not_repeat_device_and_original() {
+        let mut entity = raw("vacuum.r2d2");
+        entity.has_entity_name = true;
+        entity.original_name = Some(" R2D2".into());
+        assert_eq!(entity_display_name(&entity, Some(&device("R2D2"))), "R2D2");
+    }
+
+    #[test]
+    fn display_name_joins_device_and_distinct_original() {
+        let mut entity = raw("switch.better_thermostat_wohnzimmer_child_lock");
+        entity.has_entity_name = true;
+        entity.original_name = Some("Child Lock".into());
+        assert_eq!(entity_display_name(&entity, Some(&device("Better Thermostat Wohnzimmer"))), "Better Thermostat Wohnzimmer Child Lock");
+    }
+
+    #[test]
+    fn display_name_prefers_user_name() {
+        let mut entity = raw("light.wohnzimmer");
+        entity.name = Some("Decke".into());
+        entity.has_entity_name = true;
+        assert_eq!(entity_display_name(&entity, Some(&device("Wohnzimmer Licht"))), "Decke");
+    }
+
+    #[test]
+    fn display_name_never_keeps_entity_id() {
+        let mut entity = raw("light.wohnzimmer");
+        entity.name = Some("light.wohnzimmer".into());
+        entity.aliases = vec!["Wohnzimmer Licht".into()];
+        assert_eq!(entity_display_name(&entity, None), "Wohnzimmer Licht");
+        assert_eq!(entity_display_name(&raw("climate.better_thermostat_wohnzimmer"), None), "better thermostat wohnzimmer");
     }
 }

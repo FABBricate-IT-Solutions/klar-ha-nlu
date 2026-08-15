@@ -40,7 +40,7 @@ In Home Assistant kann der gesprochene Satz eine Persönlichkeitsformel bekommen
 
 ## Home-Graph
 
-Beim Start liest Klar `core.entity_registry` und `core.area_registry` aus `--config-dir` (meist `/config`). Fehlt die Registry, gilt `default_home()`.
+Beim Start liest Klar `core.entity_registry`, `core.device_registry` und `core.area_registry` aus `--config-dir` (meist `/config`). Anzeigenamen kommen vom Gerät, wenn die Entity keinen eigenen Namen hat (`has_entity_name`). Fehlt die Registry, gilt `default_home()`.
 
 Geräte werden über Namen, Aliase, Tags und Area getroffen. Generische Wörter (`Licht`, `light`) bleiben auf Area-Ebene, wenn mehrere Leuchten im Raum sind — dann fragt Klar nach.
 
