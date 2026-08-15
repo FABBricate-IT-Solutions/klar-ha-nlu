@@ -70,6 +70,10 @@ def from_handled(handled: Any, pack: str, item: dict) -> str | None:
         query = query_speech(handled, pack)
         if query:
             return query
+    template = (_ACTION.get(name) or {}).get(pack)
+    if template:
+        where = _pretty_where(handled, item, pack)
+        return template.format(where=where)
     text = _plain_speech(handled)
     if text:
         if pack == "de":
@@ -77,10 +81,6 @@ def from_handled(handled: Any, pack: str, item: dict) -> str | None:
                 text = text.replace(f": {eng}", f" ist {de}")
                 text = text.replace(f" {eng}.", f" {de}.")
         return text
-    where = _where(handled, item) or ("home" if pack == "en" else "Zuhause")
-    template = (_ACTION.get(name) or {}).get(pack)
-    if template:
-        return template.format(where=where)
     return query_speech(handled, pack) or None
 
 
@@ -164,6 +164,47 @@ def _is_query(handled: Any, name: str) -> bool:
         "HassGetState",
         "HassClimateGetTemperature",
     }
+
+
+_LIGHT_TAIL = {"licht", "lichter", "lampe", "lampen", "light", "lights"}
+_ALL_HEAD = {"alle", "all", "every", "überall", "ueberall"}
+
+
+def _compound_light(name: str) -> str:
+    parts = [part for part in str(name).split() if part]
+    if (
+        len(parts) >= 2
+        and parts[0].lower() not in _ALL_HEAD
+        and parts[-1].lower() in _LIGHT_TAIL
+    ):
+        head = "".join(parts[:-1])
+        return f"{head[:1].upper()}{head[1:]}{parts[-1].lower()}"
+    return name
+
+
+def _drop_prefixes(names: list[str]) -> list[str]:
+    keys = [(name, name.lower().replace(" ", "")) for name in names]
+    out: list[str] = []
+    for name, key in keys:
+        if any(key != other and other.startswith(key) for _, other in keys):
+            continue
+        if name not in out:
+            out.append(name)
+    return out
+
+
+def _pretty_where(handled: Any, item: dict, pack: str) -> str:
+    names = [
+        str(getattr(target, "name", None) or getattr(target, "id", "") or "")
+        for target in getattr(handled, "success_results", None) or []
+    ]
+    names = _drop_prefixes([_compound_light(name) for name in names if name])
+    if names:
+        return (" und " if pack == "de" else " and ").join(names)
+    raw = _where(handled, item)
+    if raw:
+        return _compound_light(raw.replace("_", " "))
+    return "home" if pack == "en" else "Zuhause"
 
 
 def _where(handled: Any, item: dict) -> str:

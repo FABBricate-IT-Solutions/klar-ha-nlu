@@ -1,5 +1,6 @@
 use crate::lang::catalog;
-use crate::normalize::compact;
+use crate::lexicon::Action;
+use crate::normalize::{compact, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph, Settings};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -187,14 +188,6 @@ pub(crate) fn is_infra_light(entity: &EntityRec) -> bool {
         || name.contains("u7pro")
 }
 
-pub(crate) fn has_room_light(home: &HomeGraph, area: &str) -> bool {
-    home.entities.iter().any(|e| {
-        e.domain == "light"
-            && (e.entity_id == format!("light.{area}")
-                || (is_generic_room_light(e, home) && e.area.as_deref() == Some(area)))
-    })
-}
-
 pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
     if entity.domain != "light" {
         return false;
@@ -281,6 +274,77 @@ fn generic_name(name: &str, room: &str) -> bool {
         && (name == format!("{room}licht")
             || name == format!("{room}light")
             || name == format!("{room}lampe"))
+}
+
+pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
+    let mentioned = tokens.iter().any(|t| catalog().scene_nouns.contains(t.as_str()) || catalog().script_words.contains(t.as_str()));
+    if !mentioned && catalog().any(tokens, &catalog().light_nouns) {
+        return None;
+    }
+    let mut hits: Vec<String> = home.entities.iter().filter(|e| matches!(e.domain.as_str(), "scene" | "script")).filter(|e| {
+        scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home))
+    }).map(|e| e.entity_id.clone()).collect();
+    let named = mentioned || catalog().any(tokens, &catalog().scene_named);
+    (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
+}
+
+fn scene_token(token: &str) -> String {
+    match token { "movie" => "filmabend".into(), "cozy" => "gemuetlich".into(), other => fold_umlaut(other) }
+}
+
+fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
+    let parts: Vec<String> = fold_umlaut(name).split_whitespace().map(scene_token)
+        .filter(|p| p.len() > 3 && !catalog().weak_scene.contains(p.as_str()) && scene_distinctive(p, home)).collect();
+    if parts.is_empty() { return false; }
+    let mapped: Vec<String> = tokens.iter().map(|t| scene_token(t)).collect();
+    parts.iter().all(|p| mapped.iter().any(|t| t == p))
+        || (parts.len() == 1 && parts[0].len() > 5 && mapped.iter().any(|t| t == &parts[0]))
+}
+
+fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
+    if catalog().light_nouns.contains(part) || GENERIC.contains(&part) { return false; }
+    let folded = compact(part);
+    !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
+}
+
+pub(crate) fn room_light_id(home: &HomeGraph, area: &str) -> Option<String> {
+    home.entities.iter().find(|e| e.entity_id == format!("light.{area}")).map(|e| e.entity_id.clone())
+}
+
+pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved) -> bool {
+    if resolved.entities.is_empty() || resolved.areas.len() > 1 { return false; }
+    let cat = catalog();
+    if cat.any(tokens, &cat.named_device) { return true; }
+    if cat.any(tokens, &cat.climate_nouns) { return false; }
+    if cat.any(tokens, &cat.media_nouns) || tokens.iter().any(|t| matches!(t.as_str(), "steckdose" | "outlet")) {
+        return true;
+    }
+    if !resolved.areas.is_empty() && cat.any(tokens, &cat.light_nouns)
+        && !cat.any(tokens, &cat.ceiling) && !cat.any(tokens, &cat.lamp_fixture) && !cat.any(tokens, &cat.island)
+    {
+        return false;
+    }
+    resolved.entities.iter().any(|e| e.domain != "light" || !is_generic_room_light(e, home))
+}
+
+pub(crate) fn area_slots(
+    action: Action,
+    area: &str,
+    domain: Option<&str>,
+    home: &HomeGraph,
+) -> (Option<String>, Option<String>, Option<String>) {
+    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight)
+        && domain.is_none_or(|d| d == "light")
+    {
+        if let Some(id) = room_light_id(home, area) {
+            return (Some(id), None, None);
+        }
+        return (None, Some(area.to_string()), Some("light".into()));
+    }
+    let id = domain
+        .filter(|d| matches!(*d, "climate" | "media_player" | "fan"))
+        .and_then(|d| crate::resolve::unique_in_area(home, area, d));
+    (id, Some(area.to_string()), domain.map(str::to_string))
 }
 
 fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {

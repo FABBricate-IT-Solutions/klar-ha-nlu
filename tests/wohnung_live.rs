@@ -180,6 +180,128 @@ fn klima_sauger_timer_liste() {
 }
 
 #[test]
+fn geraet_nicht_raum_oder_szene() {
+    assert_target(
+        "Schalte das Arbeitszimmer an",
+        "HassTurnOn",
+        &["light.arbeitszimmer"],
+        &["switch.pc_steckdose", "fan.arc_casual"],
+    );
+    let (_, found, _) = slots("Schalte das Arbeitszimmer an");
+    assert!(slot(&found, "area").is_none(), "{found:?}");
+
+    assert_target(
+        "Wie ist der Status von PC Steckdose",
+        "HassGetState",
+        &["switch.pc_steckdose"],
+        &["switch.lars_pc", "switch.schlafzimmer_tv"],
+    );
+    assert_target(
+        "Wie ist der Status von PC Steckdose im Arbeitszimmer",
+        "HassGetState",
+        &["switch.pc_steckdose"],
+        &["switch.lars_pc"],
+    );
+    assert_target(
+        "Wie ist der Status von Schlafzimmer TV",
+        "HassGetState",
+        &["switch.schlafzimmer_tv"],
+        &["media_player.schlafzimmer_2"],
+    );
+    assert_target(
+        "Wie ist der Status von Schlafzimmer TV im Schlafzimmer",
+        "HassGetState",
+        &["switch.schlafzimmer_tv"],
+        &["media_player.schlafzimmer_2"],
+    );
+    assert_target(
+        "Wie ist der Status von Kugel im Schlafzimmer",
+        "HassGetState",
+        &["light.schlafzimmer", "light.hue_color_lamp_2"],
+        &["light.schlafzimmer_licht", "switch.schlafzimmer_tv"],
+    );
+}
+
+#[test]
+fn gruppen_ohne_bereichsslot() {
+    assert_target(
+        "Wie ist der Status von Alle Lichter",
+        "HassGetState",
+        &["light.alle_lichter"],
+        &["light.wohn_und_esszimmer"],
+    );
+    let (_, found, _) = slots("Wie ist der Status von Alle Lichter");
+    assert!(slot(&found, "area").is_none(), "{found:?}");
+    assert_target(
+        "Wie ist der Status von Alle Lichter in der Wohnung",
+        "HassGetState",
+        &["light.alle_lichter"],
+        &["light.wohn_und_esszimmer"],
+    );
+    assert_target(
+        "Wie ist der Status von Wohn und Esszimmer",
+        "HassGetState",
+        &["light.wohn_und_esszimmer"],
+        &["light.esszimmer", "climate.better_thermostat_esszimmer"],
+    );
+    assert_target(
+        "Wie ist der Status von Wohn und Esszimmer in der Wohnung",
+        "HassGetState",
+        &["light.wohn_und_esszimmer"],
+        &["light.esszimmer"],
+    );
+}
+
+#[test]
+fn schalte_es_wieder_aus() {
+    let home = home();
+    let mut session = Session::new();
+    let settings = Settings::default();
+    let on = parse("schalte das schlafzimmerlicht ein", &home, &mut session, &[], &settings);
+    let on_id = on.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
+    assert_eq!(on.intents[0].name, "HassTurnOn", "{:?}", on.intents);
+    assert!(
+        matches!(on_id, Some("light.schlafzimmer") | Some("light.hue_color_lamp_2")),
+        "{on_id:?}"
+    );
+    assert!(!on.speech.contains(','), "{}", on.speech);
+    assert!(!on.speech.to_lowercase().contains("schlafzimmer, schlafzimmer"), "{}", on.speech);
+
+    let off = parse("schalte es wieder aus", &home, &mut session, &[], &settings);
+    assert!(!off.clarify, "{}", off.speech);
+    assert_eq!(off.intents[0].name, "HassTurnOff", "{:?} {}", off.intents, off.speech);
+    let off_id = off.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
+    assert_eq!(off_id, on_id, "{:?} {}", off.intents, off.speech);
+    assert!(!off.speech.contains("alles"), "{}", off.speech);
+    assert!(!off.speech.contains("aus aus"), "{}", off.speech);
+
+    let on_again = parse("schalte es wieder ein", &home, &mut session, &[], &settings);
+    assert_eq!(on_again.intents[0].name, "HassTurnOn", "{:?} {}", on_again.intents, on_again.speech);
+    let again_id = on_again.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
+    assert_eq!(again_id, on_id, "{:?} {}", on_again.intents, on_again.speech);
+}
+
+#[test]
+fn esszimmer_licht_ist_keine_szene() {
+    assert_target(
+        "Schalte Esszimmer Licht an",
+        "HassTurnOn",
+        &["light.esszimmer"],
+        &[
+            "scene.esszimmer_abendessen",
+            "scene.wohnzimmer_lesen",
+            "scene.wohnzimmer_hell",
+        ],
+    );
+    assert_target(
+        "Filmabend",
+        "HassTurnOn",
+        &["scene.wohnzimmer_filmabend"],
+        &["light.wohnzimmer"],
+    );
+}
+
+#[test]
 fn tv_luefter_nicht_medienraum() {
     assert_target(
         "Schlafzimmer TV an",

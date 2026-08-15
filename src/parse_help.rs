@@ -114,52 +114,12 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
         .find(|(_, a)| !matches!(a, Action::GetState))
         .map(|(_, a)| *a)
 }
-pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
-    let mentioned = tokens.iter().any(|t| {
-        catalog().scene_nouns.contains(t.as_str()) || catalog().script_words.contains(t.as_str())
-    });
-    let mut hits = Vec::new();
-    for ent in &home.entities {
-        if !matches!(ent.domain.as_str(), "scene" | "script") {
-            continue;
-        }
-        if scene_name_hit(tokens, &ent.name)
-            || ent.aliases.iter().any(|n| scene_name_hit(tokens, n))
-        {
-            hits.push(ent.entity_id.clone());
-        }
-    }
-    let named = mentioned || catalog().any(tokens, &catalog().scene_named);
-    (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
-}
-
-fn scene_name_hit(tokens: &[String], name: &str) -> bool {
-    let parts: Vec<String> = fold_umlaut(name)
-        .split_whitespace()
-        .filter(|p| p.len() > 3 && !catalog().weak_scene.contains(p))
-        .map(str::to_string)
-        .collect();
-    if parts.is_empty() { return false; }
-    let mapped: Vec<String> = tokens.iter().map(|t| scene_token(t)).collect();
-    parts.iter().any(|p| p.len() > 5 && mapped.iter().any(|t| t == p))
-        || (parts.len() > 1 && parts.iter().all(|p| mapped.iter().any(|t| t == p)))
-        || mapped.iter().any(|t| t == &parts[0] && parts[0].len() > 4)
-}
-
-fn scene_token(token: &str) -> String {
-    match token {
-        "movie" => "filmabend".into(),
-        "cozy" => "gemuetlich".into(),
-        other => fold_umlaut(other),
-    }
-}
-
 pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[String]) -> bool {
     let cat = catalog();
     if !cat.any(tokens, &cat.light_singular) || cat.any(tokens, &cat.light_plural) || cat.any(tokens, &cat.illuminate) {
         return false;
     }
-    if areas.iter().any(|area| crate::compound::has_room_light(home, area)) {
+    if areas.iter().any(|area| crate::compound::room_light_id(home, area).is_some()) {
         return false;
     }
     home.entities.iter().filter(|e| {
@@ -263,13 +223,14 @@ pub(crate) fn fill_intent(
     let mut intent = intent_from_action(action, tokens);
     if let Some(id) = entity_id {
         intent = intent.with("entity_id", id);
-    }
-    if let Some(a) = area {
+    } else if let Some(a) = area {
         intent = intent.with("area", a);
     }
-    if let Some(d) = domain {
-        if !matches!(action, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause) {
-            intent = intent.with("domain", d);
+    if entity_id.is_none() {
+        if let Some(d) = domain {
+            if !matches!(action, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause) {
+                intent = intent.with("domain", d);
+            }
         }
     }
     match action {

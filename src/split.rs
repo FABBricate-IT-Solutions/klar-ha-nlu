@@ -1,9 +1,14 @@
 use crate::lang::catalog;
 use crate::lexicon::{detect_actions, Action};
+use crate::normalize::fold_umlaut;
+use crate::types::HomeGraph;
 
 /// Split a token stream into clauses. "Wohnzimmer und Küche" stays one clause
 /// unless a new action verb appears after the conjunction.
-pub fn split_clauses(tokens: &[String]) -> Vec<Vec<String>> {
+pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
+    if phrase_spans_conj(tokens, home) {
+        return vec![tokens.to_vec()];
+    }
     if let Some(at) = split_two_targets(tokens) {
         let left = tokens[..at].to_vec();
         let mut right = tokens[at + 1..].to_vec();
@@ -73,6 +78,30 @@ pub fn split_clauses(tokens: &[String]) -> Vec<Vec<String>> {
     } else {
         clauses
     }
+}
+
+fn phrase_spans_conj(tokens: &[String], home: &HomeGraph) -> bool {
+    let Some(at) = tokens.iter().position(|t| is_conj(t)) else {
+        return false;
+    };
+    home.entities.iter().any(|ent| {
+        name_covers_conj(&ent.name, tokens, at)
+            || ent.aliases.iter().any(|alias| name_covers_conj(alias, tokens, at))
+    })
+}
+
+fn name_covers_conj(name: &str, tokens: &[String], at: usize) -> bool {
+    let parts: Vec<String> = fold_umlaut(name)
+        .split_whitespace()
+        .map(str::to_string)
+        .collect();
+    if parts.len() < 3 || !parts.iter().any(|p| is_conj(p)) {
+        return false;
+    }
+    tokens.windows(parts.len()).enumerate().any(|(start, window)| {
+        (start..start + parts.len()).contains(&at)
+            && window.iter().zip(&parts).all(|(token, part)| token == part)
+    })
 }
 
 fn split_two_targets(tokens: &[String]) -> Option<usize> {
