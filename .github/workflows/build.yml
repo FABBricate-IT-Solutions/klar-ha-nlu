@@ -123,13 +123,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Multi-arch tags
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           addon="$(sed -n 's/^version: "\([^"]*\)"/\1/p' addon/config.yaml | head -1)"
+          if [[ -n "$RELEASE_TAG" && ! "$RELEASE_TAG" =~ ^v[0-9]+(\.[0-9]+)*$ ]]; then
+            echo "Invalid release_tag format: $RELEASE_TAG" >&2
+            exit 1
+          fi
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             version="${GITHUB_REF_NAME#v}"
-          elif [[ -n "${{ inputs.release_tag }}" ]]; then
-            t="${{ inputs.release_tag }}"
-            version="${t#v}"
+          elif [[ -n "$RELEASE_TAG" ]]; then
+            version="${RELEASE_TAG#v}"
           else
             version="$addon"
             extra_edge=true
@@ -143,7 +148,7 @@ jobs:
           if [[ "${extra_edge:-}" == "true" ]]; then
             docker buildx imagetools create -t "${GHCR}:edge" "${src[@]}"
           fi
-          if [[ "${{ github.ref }}" == refs/tags/v* || -n "${{ inputs.release_tag }}" ]]; then
+          if [[ "${{ github.ref }}" == refs/tags/v* || -n "$RELEASE_TAG" ]]; then
             docker buildx imagetools create -t "${GHCR}:latest" "${src[@]}"
           fi
 
