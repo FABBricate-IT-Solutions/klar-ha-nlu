@@ -6,10 +6,10 @@ use crate::parse_help::{
     fill_intent, intent_from_action, intent_with_entity, looks_like_correction,
     looks_like_named_device, looks_like_question, match_custom, named_scene_or_script,
     laundry_switch_clause, pick_clarification, pick_singular_lamp, prefer_action, refine_action,
-    wants_all_lights, wants_light_clarify,
+    timer_clause, wants_all_lights, wants_light_clarify,
 };
 use crate::resolve::{
-    domain_hint, light_rooms_for_clarify, pick_timers, query_grounded, resolve, unique_in_area,
+    domain_hint, light_rooms_for_clarify, query_grounded, resolve, unique_in_area,
 };
 use crate::respond::{speak, speak_clarify, speak_correction, speak_unknown};
 use crate::session::Session;
@@ -244,7 +244,9 @@ fn parse_clause(
     };
 
     let use_entities = settings.mode != Mode::ContextOnly;
-    if let Some(out) = laundry_switch_clause(tokens, home, action, number, domain) {
+    if let Some(out) = laundry_switch_clause(tokens, home, action, number, domain)
+        .or_else(|| timer_clause(tokens, home, action, number, domain))
+    {
         return match out {
             crate::parse_help::ReadyClause::Intents(list) => ClauseOut::Intents(list),
             crate::parse_help::ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
@@ -287,16 +289,6 @@ fn parse_clause(
                 "domain",
                 if id.starts_with("script.") { "script" } else { "scene" },
             ));
-            return ClauseOut::Intents(intents);
-        }
-    }
-
-    if domain == Some("timer") {
-        for id in pick_timers(tokens, home) {
-            intents.push(fill_intent(action, tokens, number, Some(&id), None, Some("timer")));
-        }
-        if !intents.is_empty() {
-            intents.retain(|i| i.name != "Unknown");
             return ClauseOut::Intents(intents);
         }
     }

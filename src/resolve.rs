@@ -440,7 +440,7 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
     {
         return want("laundry");
     }
-    ids.iter().find(|id| id.contains("abstract")).cloned().or_else(|| ids.first().cloned()).into_iter().collect()
+    ids.iter().find(|id| id.contains("abstract")).cloned().into_iter().collect()
 }
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option<String> {
