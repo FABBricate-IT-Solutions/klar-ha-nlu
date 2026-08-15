@@ -37,9 +37,11 @@ That job:
 1. Computes the next CalVer (or uses the input)
 2. Writes it into `Cargo.toml`, `config.yaml`, `addon/config.yaml`, and the HA manifest
 3. Regenerates `CHANGELOG.md`
-4. Commits `chore(release): prepare for vYYYY.M.PATCH` and tags `vYYYY.M.PATCH`
+4. Commits `chore(release): prepare for vYYYY.M.PATCH` on `release/vYYYY.M.PATCH`
+5. Opens a PR when the org allows Actions to do that — otherwise it waits for required checks and fast-forwards `main`
+6. Tags `vYYYY.M.PATCH` and calls **Build** (`workflow_call`; a `GITHUB_TOKEN` tag push would not start another workflow)
 
-That job then calls **Build** (a `GITHUB_TOKEN` tag push would not start another workflow). Build compiles linux-x86_64, linux-aarch64, and linux-armv7 and attaches the tarballs. The release body is the latest git-cliff section.
+Build compiles linux-x86_64, linux-aarch64, and linux-armv7 and attaches the tarballs to the GitHub Release. The release body is the latest git-cliff section.
 
 A tag pushed from your machine still triggers Build on its own: `git tag v2026.8.0 && git push origin v2026.8.0`.
 
