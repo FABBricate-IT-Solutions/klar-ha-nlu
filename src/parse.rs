@@ -429,5 +429,9 @@ fn finish_intents(
 }
 
 fn last_visible<'a>(session: &'a Session, home: &'a HomeGraph) -> Option<&'a str> {
-    session.last_entities.iter().find(|id| home.entities.iter().any(|e| e.entity_id == **id && assist_visible(e, home))).map(String::as_str)
+    session
+        .last_entities
+        .iter()
+        .find(|id| home.entities.iter().any(|e| e.entity_id == **id && assist_visible(e, home) && !crate::compound::is_infra(e)))
+        .map(String::as_str)
 }
