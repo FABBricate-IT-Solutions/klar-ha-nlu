@@ -324,6 +324,12 @@ class KlarConversationEntity(ConversationEntity):
             return None
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
         if "entity_id" in slots:
+            entity_id = str(slots["entity_id"].get("value") or "")
+            state = self.hass.states.get(entity_id)
+            if state is not None:
+                slots["name"] = {"value": state.name}
+            if "." in entity_id:
+                slots.setdefault("domain", {"value": entity_id.split(".", 1)[0]})
             slots.pop("area", None)
         if name in {
             "HassListAddItem",
