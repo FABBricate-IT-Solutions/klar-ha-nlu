@@ -96,6 +96,8 @@ fn describe_de(intent: &Intent, where_: &str, area: &str) -> String {
         "HassVacuumStart" => "R2D2 soll saugen.".into(),
         "HassVacuumReturnToBase" => "R2D2 zurück zur Station.".into(),
         "HassStartTimer" => "Timer gestartet.".into(),
+        "HassCancelTimer" => "Timer abgebrochen.".into(),
+        "HassPauseTimer" => "Timer pausiert.".into(),
         "HassListAddItem" | "HassShoppingListAddItem" => "Auf die Liste.".into(),
         other => format!("Führe {other} aus."),
     }
@@ -132,6 +134,8 @@ fn describe_en(intent: &Intent, where_: &str, area: &str) -> String {
         "HassVacuumStart" => "R2D2 will vacuum.".into(),
         "HassVacuumReturnToBase" => "R2D2 is returning to the dock.".into(),
         "HassStartTimer" => "Timer started.".into(),
+        "HassCancelTimer" => "Timer cancelled.".into(),
+        "HassPauseTimer" => "Timer paused.".into(),
         "HassListAddItem" | "HassShoppingListAddItem" => "Added to the list.".into(),
         other => format!("Running {other}."),
     }

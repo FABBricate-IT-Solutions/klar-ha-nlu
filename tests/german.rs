@@ -124,6 +124,33 @@ fn timer_nutzt_minutes() {
 }
 
 #[test]
+fn timer_abbrechen() {
+    let found = slots("Timer abbrechen");
+    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
+    assert!(!found[0].1.iter().any(|(k, _)| k == "minutes"), "{found:?}");
+    assert!(!found[0].1.iter().any(|(k, _)| k == "hours"), "{found:?}");
+    assert!(!found[0].1.iter().any(|(k, _)| k == "seconds"), "{found:?}");
+}
+
+#[test]
+fn timer_aus_bricht_ab() {
+    let found = slots("Timer aus");
+    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
+}
+
+#[test]
+fn cancel_the_timer() {
+    let found = slots("Cancel the timer");
+    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
+}
+
+#[test]
+fn timer_pausieren() {
+    let found = slots("Timer pausieren");
+    assert_eq!(found[0].0, "HassPauseTimer", "{found:?}");
+}
+
+#[test]
 fn timer_eine_minute() {
     let found = slots("Stell einen Timer auf eine Minute");
     assert_eq!(found[0].0, "HassStartTimer", "{found:?}");

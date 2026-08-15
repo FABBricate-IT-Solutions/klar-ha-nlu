@@ -26,18 +26,14 @@ pub(crate) fn refine_action(
         return Action::VacuumStart;
     }
     if matches!(action, Action::On | Action::Off)
-        && tokens
-            .iter()
-            .any(|t| catalog().timer_nouns.contains(t.as_str()))
+        && tokens.iter().any(|t| catalog().timer_nouns.contains(t.as_str()))
     {
-        return Action::TimerStart;
+        return if matches!(action, Action::Off) { Action::TimerCancel } else { Action::TimerStart };
     }
     if matches!(action, Action::FanSpeed | Action::TimerStart | Action::TimerAdd) && number.is_none()
         && (matches!(action, Action::FanSpeed)
             || question
-            || tokens.iter().any(|t| {
-                catalog().timer_query.contains(t.as_str())
-            }))
+            || tokens.iter().any(|t| catalog().timer_query.contains(t.as_str())))
     {
         return Action::GetState;
     }
@@ -82,6 +78,8 @@ pub(crate) fn refine_action(
 pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
     const RANK: &[Action] = &[
         Action::TimerAdd,
+        Action::TimerCancel,
+        Action::TimerPause,
         Action::TimerStart,
         Action::ListComplete,
         Action::ListAdd,
@@ -270,7 +268,7 @@ pub(crate) fn fill_intent(
         intent = intent.with("area", a);
     }
     if let Some(d) = domain {
-        if !matches!(action, Action::TimerStart | Action::TimerAdd) {
+        if !matches!(action, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause) {
             intent = intent.with("domain", d);
         }
     }
@@ -383,6 +381,8 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::Unlock => Intent::new("HassTurnOff").with("domain", "lock"),
         Action::TimerStart => Intent::new("HassStartTimer"),
         Action::TimerAdd => Intent::new("HassIncreaseTimer"),
+        Action::TimerCancel => Intent::new("HassCancelTimer"),
+        Action::TimerPause => Intent::new("HassPauseTimer"),
         Action::ListAdd => Intent::new("HassListAddItem"),
         Action::ListComplete => Intent::new("HassListCompleteItem"),
         Action::ClarifyWrong => Intent::new("Unknown"),
@@ -439,7 +439,8 @@ pub(crate) fn timer_clause(
         .iter()
         .map(|id| fill_intent(action, tokens, number, Some(id), None, Some("timer")))
         .collect();
-    if intents.is_empty() && matches!(action, Action::TimerStart | Action::TimerAdd) {
+    let start = matches!(action, Action::TimerStart | Action::TimerAdd) && number.is_some();
+    if intents.is_empty() && (start || matches!(action, Action::TimerCancel | Action::TimerPause)) {
         intents.push(fill_intent(action, tokens, number, None, None, None));
     }
     intents.retain(|i| i.name != "Unknown");
