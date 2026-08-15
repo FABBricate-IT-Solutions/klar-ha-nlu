@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.2...2026.8.3) - 2026-08-15
+
+
+
+### Features
+
+- role tags, natural speech, and CalVer tags without v([2a90d58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2a90d58))
+
 ## [2026.8.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.1...v2026.8.2) - 2026-08-15
 
 
