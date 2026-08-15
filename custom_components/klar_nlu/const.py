@@ -4,6 +4,12 @@ DEFAULT_ADDON_URL = "http://klar-nlu:10520"
 CONF_URL = "url"
 CONF_MODE = "mode"
 CONF_FALLBACK_AGENT = "fallback_agent"
+CONF_LANGUAGES = "languages"
 MODE_LOCAL = "local"
 MODE_REMOTE = "remote"
 GITHUB_REPO = "FABBricate-IT-Solutions/klar-ha-nlu"
+SUPPORTED_LANGUAGES = ("de", "en")
+LANGUAGE_VARIANTS = {
+    "de": ("de", "de-DE", "de-CH"),
+    "en": ("en", "en-US", "en-GB"),
+}

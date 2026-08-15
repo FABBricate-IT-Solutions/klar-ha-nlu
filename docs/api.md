@@ -9,7 +9,7 @@ Zwei Schnittstellen: HTTP auf Port **10520**, Wyoming auf **10500**.
 ### `POST /api/parse`
 
 ```json
-{ "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id" }
+{ "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id", "language": "de" }
 ```
 
 Antwort:
@@ -31,6 +31,8 @@ Antwort:
   "conversation_id": "…"
 }
 ```
+
+`language` ist optional (`de`, `en` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket — Assist kann so zwischen Deutsch und Englisch umschalten.
 
 `clarify: true` bedeutet: keine Intents ausführen, die Frage in `speech` vorlesen, dieselbe `conversation_id` für die Antwort behalten.
 

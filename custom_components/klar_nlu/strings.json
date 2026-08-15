@@ -18,9 +18,11 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "When Klar sees no home command, the chosen agent handles chit-chat. Klar clarifications stay with Klar.",
+        "description": "Assist can switch between the selected languages. When Klar sees no home command, the chosen agent handles chit-chat.",
         "data": {
-          "fallback_agent": "Conversation agent for chit-chat"
+          "languages": "Languages",
+          "fallback_agent": "Conversation agent for chit-chat",
+          "url": "Klar API URL"
         }
       }
     }
@@ -30,6 +32,12 @@
       "options": {
         "local": "Start the bundled engine (recommended)",
         "remote": "Use an engine that is already running"
+      }
+    },
+    "languages": {
+      "options": {
+        "de": "German",
+        "en": "English"
       }
     }
   }
