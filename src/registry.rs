@@ -30,6 +30,25 @@ struct RawEntity {
     labels: Vec<String>,
     #[serde(default)]
     disabled_by: Option<String>,
+    #[serde(default)]
+    device_id: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct DeviceStorage {
+    data: DeviceData,
+}
+
+#[derive(Deserialize)]
+struct DeviceData {
+    devices: Vec<RawDevice>,
+}
+
+#[derive(Deserialize)]
+struct RawDevice {
+    id: String,
+    #[serde(default)]
+    area_id: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -61,7 +80,8 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
         return fallback;
     }
 
-    let entities = match read_entities(&entity_path) {
+    let device_areas = read_device_areas(&config_dir.join(".storage/core.device_registry"));
+    let mut entities = match read_entities(&entity_path, &device_areas) {
         Ok(v) => v,
         Err(err) => {
             tracing::warn!("Entity-Registry unlesbar: {err}");
@@ -72,6 +92,11 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
     if entities.is_empty() {
         return fallback;
     }
+    for ent in &mut entities {
+        if ent.area.is_none() {
+            ent.area = infer_area(&ent.entity_id, &areas);
+        }
+    }
     tracing::info!("{} Entitäten, {} Räume aus Home Assistant geladen", entities.len(), areas.len());
     HomeGraph {
         entities,
@@ -80,7 +105,35 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
     }
 }
 
-fn read_entities(path: &Path) -> Result<Vec<EntityRec>, String> {
+fn read_device_areas(path: &Path) -> HashMap<String, String> {
+    let Ok(raw) = fs::read_to_string(path) else {
+        return HashMap::new();
+    };
+    let Ok(parsed) = serde_json::from_str::<DeviceStorage>(&raw) else {
+        return HashMap::new();
+    };
+    parsed
+        .data
+        .devices
+        .into_iter()
+        .filter_map(|d| d.area_id.map(|area| (d.id, area)))
+        .collect()
+}
+
+fn infer_area(entity_id: &str, areas: &[AreaRec]) -> Option<String> {
+    let slug = entity_id.split_once('.')?.1;
+    let mut best: Option<&str> = None;
+    for area in areas {
+        if slug == area.area_id || slug.starts_with(&format!("{}_", area.area_id)) {
+            if best.is_none_or(|cur| area.area_id.len() > cur.len()) {
+                best = Some(area.area_id.as_str());
+            }
+        }
+    }
+    best.map(str::to_string)
+}
+
+fn read_entities(path: &Path, device_areas: &HashMap<String, String>) -> Result<Vec<EntityRec>, String> {
     let raw = fs::read_to_string(path).map_err(|e| e.to_string())?;
     let parsed: EntityStorage = serde_json::from_str(&raw).map_err(|e| e.to_string())?;
     Ok(parsed
@@ -95,11 +148,14 @@ fn read_entities(path: &Path) -> Result<Vec<EntityRec>, String> {
                 .name
                 .or(e.original_name)
                 .unwrap_or_else(|| e.entity_id.clone());
+            let area = e.area_id.or_else(|| {
+                e.device_id.as_ref().and_then(|id| device_areas.get(id).cloned())
+            });
             EntityRec {
                 entity_id: e.entity_id,
                 name,
                 domain,
-                area: e.area_id,
+                area,
                 aliases: e.aliases,
                 tags: e.labels,
             }
@@ -356,22 +412,14 @@ fn merge_area_aliases(area_id: &str, name: &str, existing: Vec<String>) -> Vec<S
 fn extra_area_aliases(id: &str) -> Vec<String> {
     match id {
         "entryway" => vec!["foyer".into(), "entrance".into(), "eingang".into(), "diele".into()],
-        "living" | "wohnzimmer" => {
-            vec!["lounge".into(), "wohnzimmer".into(), "wohnraum".into(), "living".into(), "livingroom".into()]
-        }
+        "living" | "wohnzimmer" => vec!["lounge".into(), "wohnzimmer".into(), "wohnraum".into(), "living".into(), "livingroom".into()],
         "family_room" => vec!["den".into(), "familienzimmer".into(), "family".into()],
         "powder_room" => vec!["powder".into(), "gaestewc".into(), "guestwc".into()],
         "laundry" => vec!["laundryroom".into(), "waschkueche".into()],
-        "master_bedroom" | "schlafzimmer" => {
-            vec!["elternschlafzimmer".into(), "master".into(), "bedroom".into(), "schlafzimmer".into()]
-        }
-        "main_bath" | "badezimmer" => {
-            vec!["bathroom".into(), "badezimmer".into(), "bad".into(), "bath".into()]
-        }
+        "master_bedroom" | "schlafzimmer" => vec!["elternschlafzimmer".into(), "master".into(), "bedroom".into(), "schlafzimmer".into()],
+        "main_bath" | "badezimmer" => vec!["bathroom".into(), "badezimmer".into(), "bad".into(), "bath".into()],
         "hallway" | "flur" => vec!["hall".into(), "corridor".into(), "flur".into(), "hallway".into(), "diele".into()],
-        "wohnung" => {
-            vec!["ueberall".into(), "everywhere".into(), "all".into(), "home".into(), "house".into(), "apartment".into()]
-        }
+        "wohnung" => vec!["ueberall".into(), "everywhere".into(), "all".into(), "home".into(), "house".into(), "apartment".into()],
         "arbeitszimmer" => vec!["office".into(), "study".into(), "buero".into(), "arbeitszimmer".into()],
         "esszimmer" => vec!["dining".into(), "diningroom".into(), "esszimmer".into()],
         "kuche" | "kueche" => vec!["kitchen".into(), "kuche".into(), "kueche".into()],
@@ -416,53 +464,10 @@ fn extra_device_aliases(id: &str, name: &str, domain: &str) -> Vec<String> {
     extra
 }
 
-pub fn default_home() -> HomeGraph {
-    let areas = vec![
-        area("wohnzimmer", "Wohnzimmer", &["wohnraum", "wohn", "living", "livingroom", "lounge"]),
-        area("esszimmer", "Esszimmer", &["ess", "dining", "diningroom"]),
-        area("schlafzimmer", "Schlafzimmer", &["schlaf", "bedroom", "master"]),
-        area("kuche", "Küche", &["kueche", "kuche", "kitchen"]),
-        area("badezimmer", "Badezimmer", &["bad", "bathroom", "bath"]),
-        area("arbeitszimmer", "Arbeitszimmer", &["buero", "office", "study"]),
-        area("flur", "Flur", &["diele", "hallway", "hall", "corridor"]),
-        area("balkon", "Balkon", &["draussen", "aussen", "terrasse", "balcony", "terrace"]),
-        area("wohnung", "Wohnung", &["haus", "zuhause", "hier", "ueberall", "home", "house", "apartment", "everywhere"]),
-    ];
-    let entities = vec![
-        ent("light.wohnzimmer", "Wohnzimmer Licht", "light", "wohnzimmer", &["wohnzimmer"]),
-        ent("light.esszimmer", "Esszimmer Licht", "light", "esszimmer", &["esszimmer"]),
-        ent("light.arbeitszimmer", "Arbeitszimmer", "light", "arbeitszimmer", &["arbeitszimmer"]),
-        ent("light.kuche_kuche", "Küche Licht", "light", "kuche", &["kueche", "kuche", "kitchen"]),
-        ent("light.schlafzimmer_kugel", "Kugel", "light", "schlafzimmer", &["kugel"]),
-        ent("light.schlafzimmer_decke", "Deckenlampe", "light", "schlafzimmer", &["deckenlampe", "decke"]),
-        ent("light.schlafzimmer_licht", "Schlafzimmer Licht", "light", "schlafzimmer", &["schlafzimmer licht"]),
-        ent("light.alle_lichter", "Alle Lichter", "light", "wohnung", &["alle", "ueberall", "all", "everywhere"]),
-        ent("climate.better_thermostat_wohnzimmer", "Heizung Wohnzimmer", "climate", "wohnzimmer", &["heizung wohnzimmer"]),
-        ent("climate.better_thermostat_esszimmer", "Heizung Esszimmer", "climate", "esszimmer", &["heizung esszimmer"]),
-        ent("climate.better_thermostat_schlafzimmer", "Heizung Schlafzimmer", "climate", "schlafzimmer", &["heizung schlafzimmer"]),
-        ent("climate.better_thermostat_badezimmer", "Heizung Bad", "climate", "badezimmer", &["heizung bad"]),
-        ent("climate.schlafzimmer_ac", "Klimaanlage", "climate", "schlafzimmer", &["klima", "ac"]),
-        ent("vacuum.r2d2", "R2D2", "vacuum", "wohnzimmer", &["staubsauger", "sauger", "saugroboter"]),
-        ent("switch.pc_steckdose", "PC Steckdose", "switch", "arbeitszimmer", &["pc"]),
-        ent("switch.schlafzimmer_tv", "Schlafzimmer TV", "switch", "schlafzimmer", &["tv"]),
-        ent("switch.badezimmer_waschmaschine", "Waschmaschine", "switch", "badezimmer", &["waschmaschine"]),
-        ent("switch.kuche_trockner", "Trockner", "switch", "kuche", &["trockner"]),
-        ent("switch.kuche_spulmaschine", "Spülmaschine", "switch", "kuche", &["spuelmaschine"]),
-        ent("fan.arc_casual", "Lüfter", "fan", "arbeitszimmer", &["luefter", "fan"]),
-        ent("cover.wohnzimmer_rollo", "Rollo Wohnzimmer", "cover", "wohnzimmer", &["rollo wohnzimmer", "rollo"]),
-        ent("lock.wohnungstuer", "Wohnungstür", "lock", "flur", &["wohnungstuer", "tuer", "front door", "front"]),
-        ent("scene.filmabend", "Filmabend", "scene", "wohnzimmer", &["filmabend", "movie night"]),
-    ];
-    HomeGraph {
-        entities,
-        areas,
-        ..Default::default()
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::types::default_home;
 
     #[test]
     fn german_rooms_get_english_aliases() {
@@ -474,23 +479,12 @@ mod tests {
         let bed = merge_area_aliases("schlafzimmer", "Schlafzimmer", vec![]);
         assert!(bed.iter().any(|a| a == "bedroom"), "{bed:?}");
     }
-}
 
-fn area(id: &str, name: &str, aliases: &[&str]) -> AreaRec {
-    AreaRec {
-        area_id: id.to_string(),
-        name: name.to_string(),
-        aliases: aliases.iter().map(|s| s.to_string()).collect(),
-    }
-}
-
-fn ent(id: &str, name: &str, domain: &str, area: &str, aliases: &[&str]) -> EntityRec {
-    EntityRec {
-        entity_id: id.to_string(),
-        name: name.to_string(),
-        domain: domain.to_string(),
-        area: Some(area.to_string()),
-        aliases: aliases.iter().map(|s| s.to_string()).collect(),
-        tags: Vec::new(),
+    #[test]
+    fn hue_ids_inherit_room_from_entity_id() {
+        let areas = default_home().areas;
+        assert_eq!(infer_area("light.schlafzimmer", &areas).as_deref(), Some("schlafzimmer"));
+        assert_eq!(infer_area("light.schlafzimmer_ambilight", &areas).as_deref(), Some("schlafzimmer"));
+        assert_eq!(infer_area("light.hue_color_lamp_2", &areas), None);
     }
 }

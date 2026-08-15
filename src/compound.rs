@@ -62,9 +62,10 @@ pub fn apply_compound_light(
     if !resolved.areas.contains(&area) {
         resolved.areas.push(area.clone());
     }
-    let generic = resolved.entities.is_empty()
-        || resolved.entities.iter().any(|e| is_generic_room_light(e, home));
-    if !generic {
+    let named = tokens.iter().any(|t| {
+        catalog().named_device.contains(t.as_str()) && !is_light_noun(t)
+    });
+    if named {
         return;
     }
     if let Some(picked) = pick_compound_light(home, &area) {
@@ -283,18 +284,20 @@ fn generic_name(name: &str, room: &str) -> bool {
 }
 
 fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
+    let room = format!("light.{area}");
     let lights: Vec<&EntityRec> = home
         .entities
         .iter()
-        .filter(|e| e.domain == "light" && e.area.as_deref() == Some(area) && !is_infra_light(e))
+        .filter(|e| {
+            e.domain == "light"
+                && !is_infra_light(e)
+                && (e.area.as_deref() == Some(area) || e.entity_id == room)
+        })
         .collect();
     if let Some(hit) = lights.iter().find(|e| e.tags.iter().any(|t| t == "preferred")) {
         return Some((*hit).clone());
     }
-    if let Some(hit) = lights
-        .iter()
-        .find(|e| e.entity_id == format!("light.{area}"))
-    {
+    if let Some(hit) = lights.iter().find(|e| e.entity_id == room) {
         return Some((*hit).clone());
     }
     let lights: Vec<&EntityRec> = lights
