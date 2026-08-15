@@ -181,13 +181,16 @@ jobs:
           path: dist
           merge-multiple: true
       - name: Release notes
-        uses: orhun/git-cliff-action@v4
-        with:
-          config: cliff.toml
-          args: --latest --strip header
         env:
-          OUTPUT: CHANGES.md
-          GITHUB_REPO: ${{ github.repository }}
+          RAW_TAG: ${{ inputs.release_tag || github.ref_name }}
+        run: |
+          set -euo pipefail
+          tag="${RAW_TAG#refs/tags/}"
+          tag="${tag#v}"
+          # CHANGELOG.md is written at prepare time. `git-cliff --latest` is
+          # empty after a squash whose subject is `chore(release):` because
+          # cliff.toml skips those commits.
+          python3 scripts/release-notes.py "$tag" > CHANGES.md
       - name: Release identity
         id: rel
         env:
