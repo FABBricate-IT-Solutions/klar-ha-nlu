@@ -333,9 +333,8 @@ mod tests {
     #[test]
     fn climate_speech_does_not_repeat_heizung() {
         let home = crate::types::default_home();
-        let intent = Intent::new("HassClimateSetTemperature")
-            .with("entity_id", "climate.better_thermostat_wohnzimmer")
-            .with("temperature", "21");
+        let intent =
+            Intent::new("HassClimateSetTemperature").with("entity_id", "climate.better_thermostat_wohnzimmer").with("temperature", "21");
         let _de = bind(&["de".into()]);
         let de = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
         assert_eq!(de, "Heizung Wohnzimmer auf 21 Grad.");
