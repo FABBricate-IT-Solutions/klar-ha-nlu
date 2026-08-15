@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.1.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.3...v0.1.4) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- resolve live Wohnung lights, names, and English phrases (#14)([8fa3318](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8fa331880af731590b7ffae678adfc222d35a972))
+
 ## [0.1.3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.2...v0.1.3) - 2026-08-15
 
 
