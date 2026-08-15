@@ -56,7 +56,28 @@ jobs:
         run: python3 scripts/bump-version.py "${{ steps.ver.outputs.version }}"
 
       - name: Write CHANGELOG.md
-        run: git-cliff --tag "${{ steps.ver.outputs.tag }}" -o CHANGELOG.md
+        env:
+          TAG: ${{ steps.ver.outputs.tag }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import subprocess
+          from pathlib import Path
+
+          tag = os.environ["TAG"].lstrip("v")
+          generated = subprocess.check_output(["git-cliff", "--tag", tag], text=True)
+          start = generated.find(f"## [{tag}]")
+          if start < 0:
+              raise SystemExit(f"git-cliff produced no heading for {tag}")
+          nxt = generated.find("\n## [", start + 1)
+          section = generated[start : nxt if nxt >= 0 else None].rstrip() + "\n\n"
+          path = Path("CHANGELOG.md")
+          existing = path.read_text()
+          body_at = existing.find("## [")
+          if body_at < 0:
+              raise SystemExit("CHANGELOG.md has no version heading")
+          path.write_text(existing[:body_at] + section + existing[body_at:])
+          PY
 
       - name: Land release commit on main
         id: land
