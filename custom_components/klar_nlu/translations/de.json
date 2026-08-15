@@ -18,9 +18,11 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Wenn Klar keinen Hausbefehl erkennt, übernimmt der gewählte Agent den Smalltalk. Rückfragen von Klar bleiben bei Klar.",
+        "description": "Assist kann zwischen den gewählten Sprachen umschalten. Wenn Klar keinen Hausbefehl erkennt, übernimmt der gewählte Agent den Smalltalk.",
         "data": {
-          "fallback_agent": "Conversation-Agent für Smalltalk"
+          "languages": "Sprachen",
+          "fallback_agent": "Conversation-Agent für Smalltalk",
+          "url": "URL der Klar-API"
         }
       }
     }
@@ -30,6 +32,12 @@
       "options": {
         "local": "Mitgelieferte Engine starten (empfohlen)",
         "remote": "Bereits laufende Engine verwenden"
+      }
+    },
+    "languages": {
+      "options": {
+        "de": "Deutsch",
+        "en": "Englisch"
       }
     }
   }

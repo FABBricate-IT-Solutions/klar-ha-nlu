@@ -10,20 +10,30 @@ from homeassistant.helpers import selector
 
 from .const import (
     CONF_FALLBACK_AGENT,
+    CONF_LANGUAGES,
     CONF_MODE,
     CONF_URL,
-    DEFAULT_ADDON_URL,
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
     MODE_REMOTE,
+    SUPPORTED_LANGUAGES,
 )
 
 OPTIONS_SCHEMA = vol.Schema(
     {
+        vol.Optional(CONF_LANGUAGES, default=list(SUPPORTED_LANGUAGES)): selector.SelectSelector(
+            selector.SelectSelectorConfig(
+                options=list(SUPPORTED_LANGUAGES),
+                multiple=True,
+                mode=selector.SelectSelectorMode.LIST,
+                translation_key="languages",
+            )
+        ),
         vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
             selector.ConversationAgentSelectorConfig()
         ),
+        vol.Optional(CONF_URL): str,
     }
 )
 
@@ -60,8 +70,10 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(step_id="user", data_schema=USER_SCHEMA)
 
     async def async_step_hassio(self, discovery_info) -> FlowResult:
+        slug = getattr(discovery_info, "slug", None) or "klar-nlu"
+        host = str(slug).replace("_", "-")
         return await self.async_step_user(
-            {CONF_MODE: MODE_REMOTE, CONF_URL: DEFAULT_ADDON_URL}
+            {CONF_MODE: MODE_REMOTE, CONF_URL: f"http://{host}:10520"}
         )
 
     @staticmethod
@@ -77,13 +89,26 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         if user_input is not None:
+            langs = [
+                code
+                for code in (user_input.get(CONF_LANGUAGES) or [])
+                if code in SUPPORTED_LANGUAGES
+            ] or list(SUPPORTED_LANGUAGES)
+            data: dict[str, Any] = {CONF_LANGUAGES: langs}
             agent = user_input.get(CONF_FALLBACK_AGENT) or None
-            return self.async_create_entry(
-                data={CONF_FALLBACK_AGENT: agent} if agent else {}
-            )
+            if agent:
+                data[CONF_FALLBACK_AGENT] = agent
+            url = (user_input.get(CONF_URL) or "").strip()
+            if url:
+                data[CONF_URL] = url
+            return self.async_create_entry(data=data)
+        suggested = {
+            CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
+            **self.config_entry.options,
+        }
+        if CONF_URL not in suggested:
+            suggested[CONF_URL] = self.config_entry.data.get(CONF_URL, "")
         return self.async_show_form(
             step_id="init",
-            data_schema=self.add_suggested_values_to_schema(
-                OPTIONS_SCHEMA, self.config_entry.options
-            ),
+            data_schema=self.add_suggested_values_to_schema(OPTIONS_SCHEMA, suggested),
         )

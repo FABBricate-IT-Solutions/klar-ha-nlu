@@ -22,6 +22,8 @@ pub struct AppState {
 pub struct ParseIn {
     pub text: String,
     pub conversation_id: Option<String>,
+    /// BCP-47 tag from Assist (`de`, `en-US`, …). Pins the pack for this request.
+    pub language: Option<String>,
 }
 
 pub fn router(state: AppState) -> Router {
@@ -41,11 +43,29 @@ async fn index() -> Html<&'static str> {
 
 async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Json<ParseResult> {
     let home = state.home.lock().await.clone();
-    let settings = state.settings.lock().await.clone();
+    let settings = settings_for_parse(
+        state.settings.lock().await.clone(),
+        body.language.as_deref(),
+    );
     let custom = state.custom.lock().await.clone();
     let mut sessions = state.sessions.lock().await;
     let session = sessions.get_or_create(body.conversation_id.as_deref());
     Json(parse(&body.text, &home, session, &custom, &settings))
+}
+
+fn settings_for_parse(mut settings: Settings, language: Option<&str>) -> Settings {
+    let Some(raw) = language.filter(|s| !s.is_empty()) else {
+        return settings;
+    };
+    let code = raw
+        .split(['-', '_'])
+        .next()
+        .unwrap_or(raw)
+        .to_ascii_lowercase();
+    if code == "de" || code == "en" {
+        settings.languages = vec![code];
+    }
+    settings
 }
 
 async fn get_settings(State(state): State<AppState>) -> Json<Settings> {
@@ -97,4 +117,30 @@ async fn tag_entity(State(state): State<AppState>, Json(body): Json<TagIn>) -> J
         aliases: Vec::new(),
         tags: Vec::new(),
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn pins_assist_language_to_pack() {
+        let base = Settings::default();
+        assert_eq!(
+            settings_for_parse(base.clone(), Some("en-US")).languages,
+            vec!["en".to_string()]
+        );
+        assert_eq!(
+            settings_for_parse(base.clone(), Some("de-DE")).languages,
+            vec!["de".to_string()]
+        );
+        assert_eq!(
+            settings_for_parse(base.clone(), None).languages,
+            vec!["de".to_string(), "en".to_string()]
+        );
+        assert_eq!(
+            settings_for_parse(base, Some("fr")).languages,
+            vec!["de".to_string(), "en".to_string()]
+        );
+    }
 }
