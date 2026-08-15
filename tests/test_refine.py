@@ -65,6 +65,7 @@ class RefineTests(unittest.TestCase):
             prompt = refine.refine_prompt("de", name, None)
             self.assertIn(marker, prompt, name)
             self.assertNotIn("Hänge immer an", prompt, name)
+            self.assertRegex(prompt, r"→ .+\. .+", name)
             self.assertNotIn(prompt, seen)
             seen.add(prompt)
 
