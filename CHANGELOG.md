@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.19](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.18...2026.8.19) - 2026-08-15
+
+
+
+### Other
+
+- Merge pull request #66 from FABBricate-IT-Solutions/refactor/rust-structure-docs([bc89637](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bc89637f56649d8b93f0e4cdb9c100dc2026913d))
+
+- Merge branch 'main' into refactor/rust-structure-docs([13137cb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/13137cbed9640ee7fe9d345dbc9c45f61b9c1694))
+
 ## [2026.8.18](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.17...2026.8.18) - 2026-08-15
 
 
