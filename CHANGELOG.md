@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.18](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.17...2026.8.18) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- let personality refine sound natural instead of stamping a cue([c37156e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c37156e95706d672921fba0d655b95f22389af91))
+
 ## [2026.8.17](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.16...2026.8.17) - 2026-08-15
 
 
