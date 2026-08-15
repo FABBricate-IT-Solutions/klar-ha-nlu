@@ -100,7 +100,7 @@ Ausführlich: [docs/home-assistant.md](docs/home-assistant.md) · [English](docs
 
 Changelogs kommen von [git-cliff](https://git-cliff.org/) und [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, …). Siehe [CHANGELOG.md](CHANGELOG.md).
 
-**Actions → Release → Run workflow** erhöht die Version, schreibt das Changelog und taggt `vX.Y.Z`. Der Build-Workflow hängt danach linux-x86_64-, linux-aarch64- und linux-armv7-Tarballs an das GitHub Release. Ein manuelles `git tag v0.1.0 && git push origin v0.1.0` geht weiter.
+**Actions → Release → Run workflow** erhöht die [Home-Assistant-CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), schreibt das Changelog und taggt `v2026.8.0`. Der Build-Workflow hängt danach linux-x86_64-, linux-aarch64- und linux-armv7-Tarballs an das GitHub Release. Ein manuelles `git tag v2026.8.0 && git push origin v2026.8.0` geht weiter.
 
 Dependabot öffnet wöchentlich PRs für Crates und Actions; `cargo-audit` und `cargo-deny` laufen bei jeder Änderung.
 
