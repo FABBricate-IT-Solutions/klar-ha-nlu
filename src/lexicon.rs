@@ -25,6 +25,8 @@ pub enum Action {
     Unlock,
     TimerStart,
     TimerAdd,
+    TimerCancel,
+    TimerPause,
     ListAdd,
     ListComplete,
     ClarifyWrong,
@@ -87,7 +89,7 @@ pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
                 Action::On
             }),
             Some(VerbKind::Pause) => Some(if cat.any(tokens, &cat.timer_nouns) {
-                Action::TimerStart
+                Action::TimerPause
             } else {
                 Action::MediaPause
             }),
@@ -123,13 +125,7 @@ pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
             }),
             Some(VerbKind::Flick) => flick_action(tokens),
             Some(VerbKind::ClarifyWrong) => Some(Action::ClarifyWrong),
-            Some(VerbKind::Timer) => Some(if tokens.iter().any(|x| {
-                matches!(x.as_str(), "add" | "plus" | "mehr" | "increase" | "extend")
-            }) {
-                Action::TimerAdd
-            } else {
-                Action::TimerStart
-            }),
+            Some(VerbKind::Timer) => Some(timer_kind(tokens)),
             Some(VerbKind::List) => Some(if tokens.iter().any(|x| {
                 matches!(x.as_str(), "haken" | "erledigt" | "complete" | "check")
             }) {
@@ -295,9 +291,47 @@ fn auf_action(tokens: &[String]) -> Option<Action> {
     }
 }
 
+fn timer_kind(tokens: &[String]) -> Action {
+    if tokens.iter().any(|x| {
+        matches!(
+            x.as_str(),
+            "abbrechen"
+                | "abbreche"
+                | "abbruch"
+                | "cancel"
+                | "stop"
+                | "stopp"
+                | "stoppe"
+                | "stoppen"
+                | "loesche"
+                | "loeschen"
+                | "delete"
+                | "clear"
+                | "aus"
+                | "off"
+        )
+    }) {
+        Action::TimerCancel
+    } else if tokens.iter().any(|x| {
+        matches!(
+            x.as_str(),
+            "pause" | "pausieren" | "anhalten" | "halt" | "freeze"
+        )
+    }) {
+        Action::TimerPause
+    } else if tokens
+        .iter()
+        .any(|x| matches!(x.as_str(), "add" | "plus" | "mehr" | "increase" | "extend"))
+    {
+        Action::TimerAdd
+    } else {
+        Action::TimerStart
+    }
+}
+
 fn stop_action(tokens: &[String]) -> Option<Action> {
     if catalog().any(tokens, &catalog().timer_nouns) {
-        Some(Action::TimerStart)
+        Some(Action::TimerCancel)
     } else if has_media_noun(tokens) {
         Some(Action::MediaPause)
     } else {

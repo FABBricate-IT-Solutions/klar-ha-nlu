@@ -57,6 +57,14 @@ _ACTION = {
 
 _DE_ENGINE = ("Schalte", "Frage", "Setze", "Sag mir", "Meinst du")
 
+_TIMER_INTENTS = {
+    "HassStartTimer",
+    "HassIncreaseTimer",
+    "HassDecreaseTimer",
+    "HassCancelTimer",
+    "HassPauseTimer",
+}
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -167,15 +175,18 @@ def _is_query(handled: Any, name: str) -> bool:
 
 
 def _state_value(state: Any) -> tuple[str, str]:
-    unit = ""
     attrs = getattr(state, "attributes", None) or {}
-    if isinstance(attrs, dict):
-        unit = str(attrs.get("unit_of_measurement") or "")
-        name = str(attrs.get("friendly_name") or "")
-    else:
-        name = ""
+    if not isinstance(attrs, dict):
+        attrs = {}
+    unit = str(attrs.get("unit_of_measurement") or attrs.get("temperature_unit") or "")
+    name = str(attrs.get("friendly_name") or "")
     name = name or str(getattr(state, "name", None) or getattr(state, "entity_id", ""))
-    value = str(getattr(state, "state", "")).replace(".", ",")
+    raw = attrs.get("current_temperature")
+    if raw is None or raw == "":
+        raw = getattr(state, "state", "")
+    elif not unit:
+        unit = "°C"
+    value = str(raw).replace(".", ",")
     spoken = f"{value} {unit}".strip() if unit else value
     return name, spoken
 
@@ -374,24 +385,14 @@ class KlarConversationEntity(ConversationEntity):
                 "unreachable": True,
             }
 
-    async def _handle_intent(
-        self, user_input: ConversationInput, item: dict, pack: str
+    async def _invoke_intent(
+        self,
+        user_input: ConversationInput,
+        name: str,
+        slots: dict[str, Any],
+        pack: str,
+        item: dict,
     ) -> str | None:
-        name = item.get("name")
-        if not name:
-            return None
-        slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
-        if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
-            slots.pop("domain", None)
-        if name in {
-            "HassListAddItem",
-            "HassListCompleteItem",
-            "HassShoppingListAddItem",
-            "HassShoppingListCompleteItem",
-        }:
-            name, slots = _list_slots(self.hass, name, slots)
-        if name in {"HassStartTimer", "HassIncreaseTimer"}:
-            slots = _timer_slots(slots)
         try:
             handled = await intent.async_handle(
                 self.hass,
@@ -406,4 +407,35 @@ class KlarConversationEntity(ConversationEntity):
         except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
             _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
             return None
-        return _speech_from_handled(handled, pack, item)
+        return _speech_from_handled(handled, pack, {**item, "name": name})
+
+    async def _handle_intent(
+        self, user_input: ConversationInput, item: dict, pack: str
+    ) -> str | None:
+        name = item.get("name")
+        if not name:
+            return None
+        slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
+        if name in {
+            "HassListAddItem",
+            "HassListCompleteItem",
+            "HassShoppingListAddItem",
+            "HassShoppingListCompleteItem",
+        }:
+            name, slots = _list_slots(self.hass, name, slots)
+        if name in _TIMER_INTENTS:
+            slots = _timer_slots(slots)
+            if name == "HassStartTimer" and not any(
+                key in slots for key in ("hours", "minutes", "seconds")
+            ):
+                return None
+        if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
+            slots.pop("domain", None)
+            speech = await self._invoke_intent(user_input, name, slots, pack, item)
+            if speech:
+                return speech
+            climate = {key: val for key, val in slots.items() if key != "device_class"}
+            return await self._invoke_intent(
+                user_input, "HassClimateGetTemperature", climate, pack, item
+            )
+        return await self._invoke_intent(user_input, name, slots, pack, item)

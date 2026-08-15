@@ -143,10 +143,10 @@ fn is_same_command(a: Action, b: Action) -> bool {
             )
             | (Action::CoverOpen, Action::CoverClose)
             | (Action::CoverClose, Action::CoverOpen)
-            | (Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay, Action::TimerStart | Action::TimerAdd)
-            | (Action::TimerStart | Action::TimerAdd, Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay)
-            | (Action::GetState, Action::TimerStart | Action::TimerAdd)
-            | (Action::TimerStart | Action::TimerAdd, Action::GetState)
+            | (Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause)
+            | (Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause, Action::On | Action::Off | Action::SetLight | Action::MediaPause | Action::MediaPlay)
+            | (Action::GetState, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause)
+            | (Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause, Action::GetState)
             | (Action::GetState, Action::VacuumDock | Action::VacuumStart)
             | (Action::VacuumDock | Action::VacuumStart, Action::GetState)
             | (Action::ListAdd | Action::ListComplete, Action::On | Action::Off | Action::SetLight)
@@ -196,7 +196,7 @@ pub(crate) fn implied_domain(action: Action) -> Option<&'static str> {
         Action::VacuumStart | Action::VacuumDock => Some("vacuum"),
         Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute => Some("media_player"),
         Action::Scene => Some("scene"),
-        Action::TimerStart | Action::TimerAdd => Some("timer"),
+        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
         Action::ListAdd | Action::ListComplete => Some("todo"),
         _ => None,
     }

@@ -200,6 +200,8 @@ fn parse_clause(
                 | Action::VacuumDock
                 | Action::TimerStart
                 | Action::TimerAdd
+                | Action::TimerCancel
+                | Action::TimerPause
                 | Action::ListAdd
                 | Action::ListComplete
         )
@@ -235,7 +237,9 @@ fn parse_clause(
     let hinted = domain_hint(tokens);
     let implied = implied_domain(action);
     let domain = match action {
-        Action::TimerStart | Action::TimerAdd => Some("timer"),
+        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => {
+            Some("timer")
+        }
         Action::SetTemp => Some("climate"),
         Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
         Action::FanSpeed => Some("fan"),
