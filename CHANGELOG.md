@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.13](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.12...2026.8.13) - 2026-08-15
+
+
+
+### Features
+
+- refine NLU replies in each personality voice([1380e2e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1380e2e6306dddcda5306fdcdd3b5d6d19c7f5c6))
+
+
+### Other
+
+- Merge pull request #54 from FABBricate-IT-Solutions/fix/climate-speech-refine-voice([f98ee19](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f98ee19596636635e5dca16775f9320edf02ce1c))
+
+
+### Styling
+
+- rustfmt climate speech tests([8dec09b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8dec09b6ffcb29540bdbca78237be4f6a30d7663))
+
 ## [2026.8.12](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.11...2026.8.12) - 2026-08-15
 
 
