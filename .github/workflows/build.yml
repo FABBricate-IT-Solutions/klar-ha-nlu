@@ -90,6 +90,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push container
         if: github.event_name != 'pull_request'
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
           cp "target/${{ matrix.target }}/release/klar" docker/klar
           chmod +x docker/klar
@@ -99,7 +101,7 @@ jobs:
           if [[ "${{ steps.meta.outputs.edge }}" == "true" ]]; then
             tags+=(-t "$image:edge")
           fi
-          if [[ "${{ github.ref }}" == refs/tags/v* || "${{ github.ref }}" == refs/tags/20* || -n "${{ inputs.release_tag }}" ]]; then
+          if [[ "${{ github.ref }}" == refs/tags/v* || "${{ github.ref }}" == refs/tags/20* || -n "$RELEASE_TAG" ]]; then
             tags+=(-t "$image:latest")
           fi
           docker buildx build --platform "${{ matrix.platform }}" --push \
