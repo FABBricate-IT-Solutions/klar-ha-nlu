@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.4...2026.8.5) - 2026-08-15
+
+### Bug Fixes
+
+- Skip Adaptive Lighting switches when expanding Licht, so room follow-ups do not flip adapt or sleep modes
+- Take GitHub release notes from CHANGELOG.md instead of `git-cliff --latest` after a `chore(release):` squash
+
 ## [2026.8.4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.3...2026.8.4) - 2026-08-15
 
 ### Security

@@ -30,6 +30,13 @@ class ReleaseNotesTests(unittest.TestCase):
         self.assertIn("### Security", notes)
         self.assertIn("SHA-256", notes)
         self.assertNotIn("## [2026.8.3]", notes)
+        self.assertNotIn("## [2026.8.5]", notes)
+
+    def test_extracts_2026_8_5(self) -> None:
+        notes = mod.section((ROOT / "CHANGELOG.md").read_text(encoding="utf-8"), "2026.8.5")
+        self.assertIn("### Bug Fixes", notes)
+        self.assertIn("Adaptive Lighting", notes)
+        self.assertNotIn("## [2026.8.4]", notes)
 
     def test_synthetic_range(self) -> None:
         text = (
