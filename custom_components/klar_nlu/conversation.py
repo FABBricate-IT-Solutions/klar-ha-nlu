@@ -66,6 +66,32 @@ async def async_setup_entry(
     async_add_entities([KlarConversationEntity(hass, entry)])
 
 
+def _timer_slots(slots: dict[str, Any]) -> dict[str, Any]:
+    if "duration" in slots:
+        duration = slots.pop("duration")
+        if "minutes" not in slots and "hours" not in slots and "seconds" not in slots:
+            slots["minutes"] = duration
+    slots.pop("entity_id", None)
+    slots.pop("domain", None)
+    return slots
+
+
+def _list_slots(
+    hass: HomeAssistant, name: str, slots: dict[str, Any]
+) -> tuple[str, dict[str, Any]]:
+    if name.startswith("HassShoppingList"):
+        name = name.replace("HassShoppingList", "HassList")
+    entity = slots.pop("entity_id", None)
+    slots.pop("domain", None)
+    entity_id = str((entity or {}).get("value") or "")
+    if entity_id:
+        state = hass.states.get(entity_id)
+        if state is not None:
+            slots["name"] = {"value": state.name}
+    slots.setdefault("name", {"value": "shopping_list"})
+    return name, slots
+
+
 def _home_intents(intents: list[Any]) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for item in intents:
@@ -357,13 +383,15 @@ class KlarConversationEntity(ConversationEntity):
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
         if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
             slots.pop("domain", None)
-        if name in {"HassShoppingListAddItem", "HassShoppingListCompleteItem"}:
-            name = name.replace("HassShoppingList", "HassList")
-            slots.setdefault("name", {"value": "shopping_list"})
-        if name in {"HassStartTimer", "HassIncreaseTimer"} and "duration" in slots:
-            duration = slots.pop("duration")
-            if "minutes" not in slots and "hours" not in slots and "seconds" not in slots:
-                slots["minutes"] = duration
+        if name in {
+            "HassListAddItem",
+            "HassListCompleteItem",
+            "HassShoppingListAddItem",
+            "HassShoppingListCompleteItem",
+        }:
+            name, slots = _list_slots(self.hass, name, slots)
+        if name in {"HassStartTimer", "HassIncreaseTimer"}:
+            slots = _timer_slots(slots)
         try:
             handled = await intent.async_handle(
                 self.hass,

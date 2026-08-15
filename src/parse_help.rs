@@ -270,7 +270,9 @@ pub(crate) fn fill_intent(
         intent = intent.with("area", a);
     }
     if let Some(d) = domain {
-        intent = intent.with("domain", d);
+        if !matches!(action, Action::TimerStart | Action::TimerAdd) {
+            intent = intent.with("domain", d);
+        }
     }
     match action {
         Action::SetLight | Action::On => {
@@ -312,8 +314,9 @@ pub(crate) fn fill_intent(
             if let Some(item) = list_item(tokens) {
                 intent = intent.with("item", item);
             }
-            if catalog().any(tokens, &catalog().list_nouns)
-                || tokens.iter().any(|t| t.contains("einkauf") || t == "shopping")
+            if entity_id.is_none_or(|id| !id.starts_with("todo."))
+                && (catalog().any(tokens, &catalog().list_nouns)
+                    || tokens.iter().any(|t| t.contains("einkauf") || t == "shopping"))
             {
                 intent = intent.with("name", "shopping_list");
             }
@@ -420,6 +423,27 @@ pub(crate) fn pick_singular_lamp(
 pub(crate) enum ReadyClause {
     Intents(Vec<Intent>),
     Clarify(Vec<String>, Intent),
+}
+
+pub(crate) fn timer_clause(
+    tokens: &[String],
+    home: &HomeGraph,
+    action: Action,
+    number: Option<i32>,
+    domain: Option<&str>,
+) -> Option<ReadyClause> {
+    if domain != Some("timer") {
+        return None;
+    }
+    let mut intents: Vec<Intent> = crate::resolve::pick_timers(tokens, home)
+        .iter()
+        .map(|id| fill_intent(action, tokens, number, Some(id), None, Some("timer")))
+        .collect();
+    if intents.is_empty() && matches!(action, Action::TimerStart | Action::TimerAdd) {
+        intents.push(fill_intent(action, tokens, number, None, None, None));
+    }
+    intents.retain(|i| i.name != "Unknown");
+    (!intents.is_empty()).then_some(ReadyClause::Intents(intents))
 }
 
 pub(crate) fn laundry_switch_clause(

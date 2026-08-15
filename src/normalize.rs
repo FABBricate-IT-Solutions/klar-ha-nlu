@@ -54,6 +54,9 @@ pub fn strip_fillers(tokens: &[String]) -> Vec<String> {
             {
                 return false;
             }
+            if article_one(t) && tokens.get(i + 1).is_some_and(|n| is_time_unit(n)) {
+                return true;
+            }
             if cat.is_action_keep(t) {
                 return true;
             }
@@ -73,4 +76,25 @@ pub fn strip_fillers(tokens: &[String]) -> Vec<String> {
 
 pub fn join_tokens(tokens: &[String]) -> String {
     tokens.join(" ")
+}
+
+pub(crate) fn is_time_unit(token: &str) -> bool {
+    matches!(
+        token,
+        "minute"
+            | "minutes"
+            | "minuten"
+            | "hour"
+            | "hours"
+            | "stunde"
+            | "stunden"
+            | "second"
+            | "seconds"
+            | "sekunde"
+            | "sekunden"
+    )
+}
+
+pub(crate) fn article_one(token: &str) -> bool {
+    matches!(token, "eine" | "ein" | "einen" | "einer" | "a" | "an")
 }

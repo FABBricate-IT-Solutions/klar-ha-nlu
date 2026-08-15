@@ -1,5 +1,6 @@
 use crate::lang::catalog;
 use crate::lexicon::Action;
+use crate::normalize::{article_one, is_time_unit};
 
 /// Parse number words and digits from a token list using the active language packs.
 pub fn extract_numbers(tokens: &[String]) -> Vec<i32> {
@@ -8,6 +9,11 @@ pub fn extract_numbers(tokens: &[String]) -> Vec<i32> {
     let mut i = 0;
     while i < tokens.len() {
         let t = &tokens[i];
+        if article_one(t) && tokens.get(i + 1).is_some_and(|n| is_time_unit(n)) {
+            out.push(1);
+            i += 1;
+            continue;
+        }
         if let Ok(n) = t.parse::<i32>() {
             if is_room_index(tokens, i, n) {
                 i += 1;
