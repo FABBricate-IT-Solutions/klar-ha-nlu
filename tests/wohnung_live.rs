@@ -203,6 +203,12 @@ fn geraet_nicht_raum_oder_szene() {
         &["switch.lars_pc"],
     );
     assert_target(
+        "Schalte die PC Steckdose an",
+        "HassTurnOn",
+        &["switch.pc_steckdose"],
+        &["switch.lars_pc"],
+    );
+    assert_target(
         "Wie ist der Status von Schlafzimmer TV",
         "HassGetState",
         &["switch.schlafzimmer_tv"],
@@ -249,6 +255,34 @@ fn gruppen_ohne_bereichsslot() {
         "HassGetState",
         &["light.wohn_und_esszimmer"],
         &["light.esszimmer"],
+    );
+    let mut home = home();
+    for ent in &mut home.entities {
+        if ent.entity_id == "light.wohn_und_esszimmer" {
+            ent.name = "wohn_und_esszimmer".into();
+            ent.aliases.clear();
+        }
+    }
+    let mut session = Session::new();
+    let asked = parse(
+        "Ist Wohn und Esszimmer an?",
+        &home,
+        &mut session,
+        &[],
+        &Settings::default(),
+    );
+    assert_eq!(asked.intents.len(), 1, "{:?} {}", asked.intents, asked.speech);
+    assert_eq!(asked.intents[0].name, "HassGetState", "{:?}", asked.intents);
+    let id = asked.intents[0]
+        .slots
+        .iter()
+        .find(|s| s.name == "entity_id")
+        .map(|s| s.value.as_str());
+    assert_eq!(id, Some("light.wohn_und_esszimmer"), "{:?}", asked.intents);
+    assert!(
+        !asked.intents.iter().any(|intent| intent.name == "HassTurnOn"),
+        "{:?}",
+        asked.intents
     );
 }
 

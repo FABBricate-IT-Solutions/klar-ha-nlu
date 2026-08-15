@@ -210,6 +210,26 @@ pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
     .unwrap_or(0.0)
 }
 
+pub(crate) fn outlet_boost(tokens: &[String], entity: &EntityRec) -> f64 {
+    if !tokens
+        .iter()
+        .any(|t| matches!(t.as_str(), "steckdose" | "outlet"))
+    {
+        return 0.0;
+    }
+    let id = entity.entity_id.to_ascii_lowercase();
+    let name = compact(&entity.name);
+    if id.contains("steckdose")
+        || id.contains("outlet")
+        || name.contains("steckdose")
+        || name.contains("outlet")
+    {
+        0.97
+    } else {
+        0.0
+    }
+}
+
 pub(crate) fn short_name_token(entity: &EntityRec) -> Option<String> {
     let cat = catalog();
     entity.name.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).find(|part| {

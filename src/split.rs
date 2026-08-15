@@ -87,12 +87,14 @@ fn phrase_spans_conj(tokens: &[String], home: &HomeGraph) -> bool {
     home.entities.iter().any(|ent| {
         name_covers_conj(&ent.name, tokens, at)
             || ent.aliases.iter().any(|alias| name_covers_conj(alias, tokens, at))
+            || name_covers_conj(ent.entity_id.rsplit('.').next().unwrap_or(&ent.entity_id), tokens, at)
     })
 }
 
 fn name_covers_conj(name: &str, tokens: &[String], at: usize) -> bool {
     let parts: Vec<String> = fold_umlaut(name)
-        .split_whitespace()
+        .split(|c: char| !c.is_alphanumeric())
+        .filter(|part| !part.is_empty())
         .map(str::to_string)
         .collect();
     if parts.len() < 3 || !parts.iter().any(|p| is_conj(p)) {
