@@ -11,6 +11,7 @@ on:
     branches: [main]
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -19,6 +20,8 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     name: prepare
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.land.outputs.tag }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -55,6 +58,7 @@ jobs:
         run: git-cliff --tag "${{ steps.ver.outputs.tag }}" -o CHANGELOG.md
 
       - name: Land release commit on main
+        id: land
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.ver.outputs.tag }}
@@ -70,9 +74,8 @@ jobs:
           sha="$(git rev-parse HEAD)"
           git push origin "HEAD:refs/heads/${branch}"
 
-          # GITHUB_TOKEN cannot open PRs while the org forbids it. Prefer a PR
-          # when that setting is on; otherwise wait for required checks and
-          # fast-forward main to this already-tested SHA.
+          # GITHUB_TOKEN cannot open PRs while the org forbids it. A token push
+          # also does not start other workflows, so kick CI off ourselves.
           if gh pr create \
             --title "chore(release): prepare for ${TAG}" \
             --body "Prepares ${TAG}. Auto-merge waits for required checks, then the tag job publishes the GitHub Release."; then
@@ -80,6 +83,9 @@ jobs:
             exit 0
           fi
 
+          gh workflow run CI --ref "$branch"
+          gh workflow run Security --ref "$branch"
+          gh workflow run Validate --ref "$branch"
           echo "Actions cannot open PRs; waiting for required checks on ${sha}"
           required=(test cargo-audit cargo-deny hassfest hacs)
           deadline=$((SECONDS + 900))
@@ -107,7 +113,10 @@ jobs:
             fi
             if (( pending == 0 )); then
               git push origin "${sha}:refs/heads/main"
+              git tag -a "$TAG" -m "$TAG"
+              git push origin "refs/tags/${TAG}"
               git push origin --delete "$branch" || true
+              echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             sleep 15
@@ -147,11 +156,11 @@ jobs:
           git push origin "refs/tags/$tag"
 
   publish-release:
-    needs: publish-tag
-    if: needs.publish-tag.outputs.tag != ''
+    needs: [prepare, publish-tag]
+    if: always() && !cancelled() && (needs.prepare.outputs.tag != '' || needs.publish-tag.outputs.tag != '')
     uses: ./.github/workflows/build.yml
     with:
-      release_tag: ${{ needs.publish-tag.outputs.tag }}
+      release_tag: ${{ needs.prepare.outputs.tag || needs.publish-tag.outputs.tag }}
     secrets: inherit
     permissions:
       contents: write
