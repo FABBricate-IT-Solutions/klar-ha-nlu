@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.9...2026.8.10) - 2026-08-15
+
+
+
+### Features
+
+- route news questions through a briefing then the LLM([dec7875](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/dec78757648e80a6f1830e2786cc7603c7818576))
+
+
+### Other
+
+- Merge pull request #48 from FABBricate-IT-Solutions/feat/news-briefing([284689b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/284689b3d2f9686c6a897112c89c30a535457973))
+
 ## [2026.8.9](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.8...2026.8.9) - 2026-08-15
 
 
