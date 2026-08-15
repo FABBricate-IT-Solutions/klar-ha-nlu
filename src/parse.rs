@@ -1,23 +1,15 @@
 use crate::chat::wants_llm;
-use crate::compound::{apply_compound_light, area_slots, expand_compounds, named_scene_or_script, query_keeps_entity};
-use crate::gaps::assist_visible;
+use crate::clause::{last_visible, parse_clause};
+use crate::compound::expand_compounds;
 use crate::lang::catalog;
-use crate::lexicon::{detect_actions, Action};
 use crate::normalize::{strip_fillers, tokenize};
 use crate::numbers::first_number;
-use crate::parse_help::{
-    looks_like_correction, looks_like_named_device, looks_like_question, match_custom, pick_clarification, prefer_action, refine_action,
-    wants_light_clarify,
-};
-use crate::parse_slots::{
-    all_lights_clause, fill_intent, intent_from_action, intent_with_entity, laundry_switch_clause, pick_singular_lamp, timer_clause,
-    ReadyClause,
-};
-use crate::resolve::{climates_of_kind, domain_hint, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
+use crate::parse_help::{looks_like_correction, match_custom, pick_clarification};
+use crate::parse_slots::{intent_with_entity, ClauseOut};
 use crate::respond::{speak, speak_clarify, speak_correction, speak_need_target, speak_unknown};
 use crate::session::Session;
-use crate::split::{follow_fixture, implied_domain, split_clauses, wants_group_clarify};
-use crate::types::{CustomSentence, HomeGraph, Intent, Mode, ParseResult, Settings};
+use crate::split::split_clauses;
+use crate::types::{CustomSentence, HomeGraph, Intent, ParseResult, Settings};
 
 pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
     let _langs = crate::lang::bind(&settings.languages);
@@ -26,28 +18,12 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     let tokens = split.tokens;
 
     if wants_llm(&raw_tokens, home) || wants_llm(&tokens, home) {
-        return ParseResult {
-            text: text.to_string(),
-            intents: Vec::new(),
-            speech: String::new(),
-            clarify: false,
-            conversation_id: session.id.clone(),
-            chat: true,
-        };
+        return done(text, session, Vec::new(), String::new(), false, true);
     }
-
     if looks_like_correction(&tokens) {
         session.mark_wrong();
-        return ParseResult {
-            text: text.to_string(),
-            intents: Vec::new(),
-            speech: speak_correction(),
-            clarify: false,
-            conversation_id: session.id.clone(),
-            chat: false,
-        };
+        return done(text, session, Vec::new(), speak_correction(), false, false);
     }
-
     if session.pending_clarify.is_none() && tokens.iter().all(|t| catalog().is_affirm(t)) && !tokens.is_empty() {
         if let Some(id) = last_visible(session, home) {
             let name = session
@@ -58,17 +34,10 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
                 .unwrap_or_else(|| "HassTurnOn".into());
             let intent = Intent::new(name).with("entity_id", id);
             session.remember(&intent);
-            return ParseResult {
-                text: text.to_string(),
-                intents: vec![intent.clone()],
-                speech: speak(&[intent], settings.personality, false, Some(home)),
-                clarify: false,
-                conversation_id: session.id.clone(),
-                chat: false,
-            };
+            let speech = speak(std::slice::from_ref(&intent), settings.personality, false, Some(home));
+            return done(text, session, vec![intent], speech, false, false);
         }
     }
-
     if session.pending_clarify.is_some() {
         if let Some(chosen) = pick_clarification(&tokens, session) {
             let template =
@@ -81,28 +50,13 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
             session.clear_clarify();
             session.remember(&intent);
             let speech = speak(std::slice::from_ref(&intent), settings.personality, false, Some(home));
-            return ParseResult {
-                text: text.to_string(),
-                intents: vec![intent],
-                speech,
-                clarify: false,
-                conversation_id: session.id.clone(),
-                chat: false,
-            };
+            return done(text, session, vec![intent], speech, false, false);
         }
     }
-
     if let Some(hit) = match_custom(&tokens, text, custom) {
         session.remember(&hit);
         let speech = speak(std::slice::from_ref(&hit), settings.personality, false, Some(home));
-        return ParseResult {
-            text: text.to_string(),
-            intents: vec![hit],
-            speech,
-            clarify: false,
-            conversation_id: session.id.clone(),
-            chat: false,
-        };
+        return done(text, session, vec![hit], speech, false, false);
     }
 
     let clauses = split_clauses(&tokens, home);
@@ -124,19 +78,9 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
             }
         }
     }
-
     if !clarify_names.is_empty() {
-        let speech = speak_clarify(&clarify_names, Some(home));
-        return ParseResult {
-            text: text.to_string(),
-            intents: Vec::new(),
-            speech,
-            clarify: true,
-            conversation_id: session.id.clone(),
-            chat: false,
-        };
+        return done(text, session, Vec::new(), speak_clarify(&clarify_names, Some(home)), true, false);
     }
-
     if intents.is_empty() {
         if let Some(prev) = last_visible(session, home) {
             if let Some(n) = first_number(&tokens) {
@@ -153,323 +97,16 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
                 intents.push(Intent::new(name).with("entity_id", prev));
             }
         } else if catalog().any(&tokens, &catalog().on_words) || catalog().any(&tokens, &catalog().off_words) {
-            return ParseResult {
-                text: text.to_string(),
-                intents: Vec::new(),
-                speech: speak_need_target(catalog().any(&tokens, &catalog().off_words)),
-                clarify: true,
-                conversation_id: session.id.clone(),
-                chat: false,
-            };
+            return done(text, session, Vec::new(), speak_need_target(catalog().any(&tokens, &catalog().off_words)), true, false);
         }
     }
     for intent in &intents {
         session.remember(intent);
     }
     let speech = if intents.is_empty() { speak_unknown() } else { speak(&intents, settings.personality, false, Some(home)) };
-    ParseResult { text: text.to_string(), intents, speech, clarify: false, conversation_id: session.id.clone(), chat: false }
+    done(text, session, intents, speech, false, false)
 }
 
-enum ClauseOut {
-    Intents(Vec<Intent>),
-    Clarify(Vec<String>, Intent),
-}
-
-fn parse_clause(
-    tokens: &[String],
-    raw: &[String],
-    home: &HomeGraph,
-    session: &Session,
-    settings: &Settings,
-    light_areas: &[String],
-) -> ClauseOut {
-    let actions = detect_actions(tokens);
-    let question = looks_like_question(tokens);
-    let number = first_number(tokens);
-    let command = prefer_action(&actions);
-    let hard = matches!(
-        command,
-        Some(
-            Action::SetLight
-                | Action::SetTemp
-                | Action::CoverSet
-                | Action::FanSpeed
-                | Action::Scene
-                | Action::MediaPause
-                | Action::MediaPlay
-                | Action::MediaNext
-                | Action::MediaMute
-                | Action::VacuumStart
-                | Action::VacuumDock
-                | Action::TimerStart
-                | Action::TimerAdd
-                | Action::TimerCancel
-                | Action::TimerPause
-                | Action::ListAdd
-                | Action::ListComplete
-        )
-    ) || (matches!(command, Some(Action::On))
-        && tokens.iter().any(|t| catalog().scene_nouns.contains(t.as_str()) || catalog().script_words.contains(t.as_str())));
-    let action = if question && number.is_none() && !hard {
-        Action::GetState
-    } else {
-        command.or_else(|| actions.first().map(|(_, a)| *a)).unwrap_or_else(|| {
-            if number.is_some() {
-                crate::numbers::guess_numbered_action(
-                    tokens,
-                    session.last_entities.iter().any(|e| e.starts_with("climate."))
-                        || session.last_names.iter().any(|n| n.contains("Climate"))
-                        || session.last_domains.iter().any(|d| d == "climate"),
-                    session.last_entities.iter().any(|e| e.starts_with("cover.")) || session.last_domains.iter().any(|d| d == "cover"),
-                    session.last_entities.iter().any(|e| e.starts_with("fan.")) || session.last_domains.iter().any(|d| d == "fan"),
-                )
-            } else {
-                Action::GetState
-            }
-        })
-    };
-
-    let action = refine_action(action, tokens, number, question, session);
-
-    let hinted = domain_hint(tokens);
-    let implied = implied_domain(action);
-    let domain = match action {
-        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
-        Action::SetTemp => Some("climate"),
-        Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
-        Action::FanSpeed => Some("fan"),
-        Action::Lock | Action::Unlock => Some("lock"),
-        _ => hinted.or(implied),
-    };
-
-    let use_entities = settings.mode != Mode::ContextOnly;
-    if let Some(out) =
-        laundry_switch_clause(tokens, home, action, number, domain).or_else(|| timer_clause(tokens, home, action, number, domain))
-    {
-        return match out {
-            ReadyClause::Intents(list) => ClauseOut::Intents(list),
-            ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
-        };
-    }
-    let mut resolved = if use_entities {
-        let first = resolve(tokens, home, domain);
-        if domain.is_none() && matches!(action, Action::On | Action::Off | Action::Toggle) {
-            let skip_lights = catalog().any(tokens, &catalog().skip_light)
-                || (catalog().any(tokens, &catalog().laundry_area) && !catalog().any(tokens, &catalog().light_nouns));
-            if skip_lights {
-                first
-            } else {
-                let lights = resolve(tokens, home, Some("light"));
-                if lights.ambiguous.is_empty() && (!lights.entities.is_empty() || !lights.areas.is_empty()) {
-                    lights
-                } else {
-                    first
-                }
-            }
-        } else {
-            first
-        }
-    } else {
-        crate::resolve::Resolved { areas: crate::resolve::resolve(tokens, home, None).areas, entities: Vec::new(), ambiguous: Vec::new() }
-    };
-    apply_compound_light(home, tokens, light_areas, &mut resolved);
-
-    let mut intents = Vec::new();
-
-    if !question && matches!(action, Action::On | Action::Scene | Action::GetState) {
-        if let Some(id) = named_scene_or_script(tokens, home) {
-            intents.push(
-                Intent::new("HassTurnOn").with("entity_id", &id).with("domain", if id.starts_with("script.") { "script" } else { "scene" }),
-            );
-            return ClauseOut::Intents(intents);
-        }
-    }
-
-    if let Some(out) = all_lights_clause(tokens, home, action, number, &resolved.areas) {
-        return match out {
-            ReadyClause::Intents(list) => ClauseOut::Intents(list),
-            ReadyClause::Clarify(names, template) => ClauseOut::Clarify(names, template),
-        };
-    }
-
-    if looks_like_named_device(tokens) && resolved.areas.is_empty() {
-        if let Some(id) = follow_fixture(tokens, home, &session.last_areas) {
-            let act = if session.last_names.iter().any(|n| n == "HassTurnOff") { Action::Off } else { Action::On };
-            intents.push(fill_intent(act, tokens, number, Some(&id), session.last_areas.first().map(String::as_str), Some("light")));
-            intents.retain(|i| i.name != "Unknown");
-            return ClauseOut::Intents(intents);
-        }
-    }
-
-    if !resolved.areas.is_empty()
-        && !looks_like_named_device(tokens)
-        && resolved.entities.is_empty()
-        && matches!(
-            action,
-            Action::On
-                | Action::Off
-                | Action::Toggle
-                | Action::SetLight
-                | Action::SetTemp
-                | Action::CoverOpen
-                | Action::CoverClose
-                | Action::CoverSet
-                | Action::FanSpeed
-                | Action::Lock
-                | Action::Unlock
-                | Action::GetState
-        )
-    {
-        if let Some(lamp) = pick_singular_lamp(tokens, home, &resolved.areas) {
-            let force = !matches!(action, Action::On | Action::Off | Action::Toggle) || catalog().any(raw, &catalog().command_hedges);
-            if force {
-                intents.push(fill_intent(action, tokens, number, Some(&lamp), resolved.areas.first().map(String::as_str), Some("light")));
-                intents.retain(|i| i.name != "Unknown");
-                return ClauseOut::Intents(intents);
-            }
-        }
-        if resolved.areas.len() == 1
-            && matches!(action, Action::On | Action::Off | Action::Toggle)
-            && number.is_none()
-            && (wants_light_clarify(tokens, home, &resolved.areas) || wants_group_clarify(raw))
-        {
-            let lights: Vec<String> = home
-                .entities
-                .iter()
-                .filter(|e| assist_visible(e, home))
-                .filter(|e| {
-                    e.domain == "light"
-                        && !crate::compound::is_infra_light(e)
-                        && e.area.as_ref().is_some_and(|a| resolved.areas.contains(a))
-                })
-                .map(|e| e.entity_id.clone())
-                .collect();
-            if lights.len() > 1 {
-                let mut template = intent_from_action(action, tokens);
-                if let Some(area) = resolved.areas.first() {
-                    template = template.with("area", area).with("domain", "light");
-                }
-                return ClauseOut::Clarify(lights, template);
-            }
-        }
-        for area in &resolved.areas {
-            let (id, area_slot, dom) = area_slots(action, area, domain, home, tokens);
-            intents.push(fill_intent(action, tokens, number, id.as_deref(), area_slot.as_deref(), dom.as_deref()));
-        }
-        return finish_intents(intents, action, tokens, number, &resolved.areas, domain, home);
-    }
-
-    if matches!(action, Action::GetState) && !resolved.areas.is_empty() && !query_keeps_entity(tokens, home, &resolved) {
-        for area in &resolved.areas {
-            intents.push(fill_intent(action, tokens, number, None, Some(area), domain));
-        }
-        return finish_intents(intents, action, tokens, number, &resolved.areas, domain, home);
-    }
-
-    if matches!(action, Action::GetState)
-        && resolved.entities.is_empty()
-        && resolved.ambiguous.is_empty()
-        && !query_grounded(tokens, home, false, session)
-    {
-        return ClauseOut::Intents(Vec::new());
-    }
-
-    if resolved.areas.len() > 1 {
-        for area in &resolved.areas {
-            intents.push(fill_intent(action, tokens, number, None, Some(area), domain));
-        }
-    } else if !resolved.entities.is_empty() {
-        for ent in &resolved.entities {
-            intents.push(fill_intent(action, tokens, number, Some(&ent.entity_id), ent.area.as_deref(), Some(&ent.domain)));
-        }
-    } else if !resolved.ambiguous.is_empty() {
-        let names: Vec<String> = resolved.ambiguous.iter().map(|e| e.entity_id.clone()).collect();
-        let template = intent_from_action(action, tokens);
-        return ClauseOut::Clarify(names, template);
-    } else if !resolved.areas.is_empty() {
-        for area in &resolved.areas {
-            intents.push(fill_intent(action, tokens, number, None, Some(area), domain));
-        }
-    } else if session.last_areas.len() > 1 && matches!(domain, Some("climate") | Some("cover")) {
-        for area in &session.last_areas {
-            let id = domain.and_then(|d| unique_in_area(home, area, d, tokens));
-            intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(area), domain));
-        }
-    } else if let Some(prev) = last_visible(session, home).filter(|id| domain.is_none_or(|d| id.starts_with(&format!("{d}.")))) {
-        intents.push(fill_intent(action, tokens, number, Some(prev), None, domain));
-    } else if !session.last_areas.is_empty() {
-        for area in &session.last_areas {
-            let id =
-                domain.filter(|d| matches!(*d, "climate" | "media_player" | "fan")).and_then(|d| unique_in_area(home, area, d, tokens));
-            intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(area), domain));
-        }
-    } else if matches!(action, Action::On | Action::Off | Action::Toggle)
-        && (domain == Some("light") || crate::lexicon::has_light_noun(tokens))
-        && session.last_entities.is_empty()
-        && session.last_areas.is_empty()
-    {
-        let rooms = light_rooms_for_clarify(home);
-        if rooms.len() > 1 {
-            return ClauseOut::Clarify(rooms, intent_from_action(action, tokens).with("domain", "light"));
-        }
-        intents.push(fill_intent(action, tokens, number, None, None, domain));
-    } else if matches!(action, Action::SetTemp) {
-        let hits = climates_of_kind(home, tokens);
-        if hits.len() == 1 {
-            intents.push(fill_intent(action, tokens, number, Some(&hits[0]), None, Some("climate")));
-        } else if hits.len() > 1 {
-            return ClauseOut::Clarify(hits, intent_from_action(action, tokens).with("domain", "climate"));
-        } else {
-            let id = home.entities.iter().find(|e| e.entity_id == "climate.upper_thermostat").map(|e| e.entity_id.as_str());
-            intents.push(fill_intent(action, tokens, number, id, None, Some("climate")));
-        }
-    } else if matches!(action, Action::CoverClose | Action::CoverOpen)
-        && tokens.iter().any(|t| catalog().curtain_nouns.contains(t.as_str()))
-    {
-        intents.push(fill_intent(action, tokens, number, None, Some("master_bedroom"), Some("cover")));
-    } else if !matches!(action, Action::On | Action::Off | Action::Toggle) {
-        intents.push(fill_intent(action, tokens, number, None, None, domain));
-    }
-
-    finish_intents(intents, action, tokens, number, &resolved.areas, domain, home)
-}
-
-fn finish_intents(
-    mut intents: Vec<Intent>,
-    action: Action,
-    tokens: &[String],
-    number: Option<i32>,
-    areas: &[String],
-    domain: Option<&str>,
-    home: &HomeGraph,
-) -> ClauseOut {
-    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::GetState) {
-        let role_domain = domain.or_else(|| crate::lexicon::has_light_noun(tokens).then_some("light"));
-        if let Some(role_domain) = role_domain {
-            for area in areas {
-                for entity in crate::roles::role_siblings(home, area, role_domain) {
-                    if !intents.iter().any(|i| i.slot("entity_id") == Some(entity.entity_id.as_str())) {
-                        intents.push(fill_intent(
-                            action,
-                            tokens,
-                            number,
-                            Some(&entity.entity_id),
-                            entity.area.as_deref(),
-                            Some(&entity.domain),
-                        ));
-                    }
-                }
-            }
-        }
-    }
-    intents.retain(|i| i.name != "Unknown");
-    ClauseOut::Intents(intents)
-}
-
-fn last_visible<'a>(session: &'a Session, home: &'a HomeGraph) -> Option<&'a str> {
-    session
-        .last_entities
-        .iter()
-        .find(|id| home.entities.iter().any(|e| e.entity_id == **id && assist_visible(e, home) && !crate::compound::is_infra(e)))
-        .map(String::as_str)
+fn done(text: &str, session: &Session, intents: Vec<Intent>, speech: String, clarify: bool, chat: bool) -> ParseResult {
+    ParseResult { text: text.to_string(), intents, speech, clarify, conversation_id: session.id.clone(), chat }
 }

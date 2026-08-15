@@ -1,4 +1,5 @@
-use crate::compound::{is_generic_room_light, is_infra, GENERIC};
+use crate::compound::{is_generic_room_light, is_infra};
+use crate::lang::catalog;
 use crate::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
 
@@ -54,7 +55,7 @@ fn distinctive(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
         .filter(|part| {
             part.len() > 2
                 && !part.chars().all(|c| c.is_ascii_digit())
-                && !GENERIC.contains(&part.as_str())
+                && !catalog().generic.contains(&part.as_str())
                 && !WEAK.contains(&part.as_str())
                 && !rooms.contains(part)
         })

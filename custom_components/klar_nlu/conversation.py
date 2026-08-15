@@ -17,7 +17,7 @@ from homeassistant.components.homeassistant.exposed_entities import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import area_registry, intent
+from homeassistant.helpers import intent
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -38,6 +38,16 @@ from .const import (
     SUPPORTED_LANGUAGES,
 )
 from .fallback import agent_has_home_control, can_use_fallback_agent, chat_only_prompt
+from .intents import (
+    ENTITY_SERVICES,
+    LIST_INTENTS,
+    TIMER_INTENTS,
+    area_label,
+    home_intents,
+    item_slots,
+    list_slots,
+    timer_slots,
+)
 from .speech import from_handled, style
 
 _LOGGER = logging.getLogger(__name__)
@@ -49,22 +59,6 @@ _UNREACHABLE = {
 
 _DONE = {"de": "Erledigt.", "en": "Done."}
 
-_DE_ENGINE = ("Schalte", "Frage", "Setze", "Sag mir", "Meinst du", " ist an", " ist aus", "Prozent")
-
-_TIMER_INTENTS = {
-    "HassStartTimer",
-    "HassIncreaseTimer",
-    "HassDecreaseTimer",
-    "HassCancelTimer",
-    "HassPauseTimer",
-}
-
-_ENTITY_SERVICES = {
-    "HassTurnOn": "turn_on",
-    "HassTurnOff": "turn_off",
-    "HassToggle": "toggle",
-}
-
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -72,58 +66,6 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     async_add_entities([KlarConversationEntity(hass, entry)])
-
-
-def _timer_slots(slots: dict[str, Any]) -> dict[str, Any]:
-    if "duration" in slots:
-        duration = slots.pop("duration")
-        if "minutes" not in slots and "hours" not in slots and "seconds" not in slots:
-            slots["minutes"] = duration
-    slots.pop("entity_id", None)
-    slots.pop("domain", None)
-    return slots
-
-
-def _list_slots(
-    hass: HomeAssistant, name: str, slots: dict[str, Any]
-) -> tuple[str, dict[str, Any]]:
-    if name.startswith("HassShoppingList"):
-        name = name.replace("HassShoppingList", "HassList")
-    entity = slots.pop("entity_id", None)
-    slots.pop("domain", None)
-    entity_id = str((entity or {}).get("value") or "")
-    if entity_id:
-        state = hass.states.get(entity_id)
-        if state is not None:
-            slots["name"] = {"value": state.name}
-    slots.setdefault("name", {"value": "shopping_list"})
-    return name, slots
-
-
-def _home_intents(intents: list[Any]) -> list[dict[str, Any]]:
-    out: list[dict[str, Any]] = []
-    for item in intents:
-        if not isinstance(item, dict) or not item.get("name") or item["name"] == "Unknown":
-            continue
-        if item["name"] == "HassGetState" and not _get_state_has_target(item):
-            continue
-        out.append(item)
-    return out
-
-
-def _get_state_has_target(item: dict[str, Any]) -> bool:
-    return any(
-        isinstance(slot, dict)
-        and slot.get("name") in {"area", "entity_id", "name", "device_class", "domain"}
-        for slot in (item.get("slots") or [])
-    )
-
-
-def _area_label(hass: HomeAssistant, area_id: str) -> str:
-    if not area_id:
-        return ""
-    area = area_registry.async_get(hass).async_get_area(area_id)
-    return str(getattr(area, "name", None) or area_id)
 
 
 def _speech_from_result(result: ConversationResult) -> str:
@@ -155,14 +97,6 @@ def _advertise(packs: list[str]) -> list[str]:
     for pack in packs:
         out.extend(LANGUAGE_VARIANTS.get(pack, (pack,)))
     return out
-
-
-def _engine_ok(speech: str, pack: str) -> bool:
-    if not speech:
-        return False
-    if pack != "en":
-        return True
-    return not any(marker in speech for marker in _DE_ENGINE)
 
 
 class KlarConversationEntity(ConversationEntity):
@@ -248,8 +182,8 @@ class KlarConversationEntity(ConversationEntity):
             user_input.text, user_input.conversation_id, pack
         )
         engine_speech = str(payload.get("speech") or "")
-        speech = engine_speech if _engine_ok(engine_speech, pack) else _DONE[pack]
-        intents = _home_intents(payload.get("intents") or [])
+        speech = engine_speech or _DONE[pack]
+        intents = home_intents(payload.get("intents") or [])
         clarify = bool(payload.get("clarify"))
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
         personality = self._personality()
@@ -401,7 +335,7 @@ class KlarConversationEntity(ConversationEntity):
             if color := slots.get("color", {}).get("value"):
                 data["color_name"] = str(color)
         else:
-            service = _ENTITY_SERVICES.get(name)
+            service = ENTITY_SERVICES.get(name)
             if not service:
                 return None
         try:
@@ -424,11 +358,7 @@ class KlarConversationEntity(ConversationEntity):
         name = item.get("name")
         if not name:
             return None
-        slots = {
-            str(raw["name"]): {"value": raw.get("value")}
-            for raw in item.get("slots") or []
-            if isinstance(raw, dict) and raw.get("name")
-        }
+        slots = item_slots(item)
         if "entity_id" in slots:
             entity_id = str(slots["entity_id"].get("value") or "")
             spoken = await self._run_entity(name, entity_id, slots, pack, item)
@@ -440,15 +370,10 @@ class KlarConversationEntity(ConversationEntity):
             if "." in entity_id:
                 slots.setdefault("domain", {"value": entity_id.split(".", 1)[0]})
             slots.pop("area", None)
-        if name in {
-            "HassListAddItem",
-            "HassListCompleteItem",
-            "HassShoppingListAddItem",
-            "HassShoppingListCompleteItem",
-        }:
-            name, slots = _list_slots(self.hass, name, slots)
-        if name in _TIMER_INTENTS:
-            slots = _timer_slots(slots)
+        if name in LIST_INTENTS:
+            name, slots = list_slots(self.hass, name, slots)
+        if name in TIMER_INTENTS:
+            slots = timer_slots(slots)
             if name == "HassStartTimer" and not any(
                 key in slots for key in ("hours", "minutes", "seconds")
             ):
@@ -463,7 +388,7 @@ class KlarConversationEntity(ConversationEntity):
                 user_input, "HassClimateGetTemperature", climate, pack, item
             )
         if name == "HassGetState" and "area" in slots and "entity_id" not in slots:
-            label = _area_label(self.hass, str(slots["area"].get("value") or ""))
+            label = area_label(self.hass, str(slots["area"].get("value") or ""))
             if label:
                 item = {
                     **item,

@@ -18,7 +18,7 @@ pub(crate) fn all_lights_clause(
     action: Action,
     number: Option<i32>,
     areas: &[String],
-) -> Option<ReadyClause> {
+) -> Option<ClauseOut> {
     if !wants_all_lights(tokens) {
         return None;
     }
@@ -26,7 +26,7 @@ pub(crate) fn all_lights_clause(
     let rooms: Vec<&String> = areas.iter().filter(|a| home_wide.is_none_or(|e| e.area.as_deref() != Some(a.as_str()))).collect();
     if rooms.is_empty() {
         let e = home_wide?;
-        return Some(ReadyClause::Intents(vec![fill_intent(action, tokens, number, Some(&e.entity_id), e.area.as_deref(), Some("light"))]));
+        return Some(ClauseOut::Intents(vec![fill_intent(action, tokens, number, Some(&e.entity_id), e.area.as_deref(), Some("light"))]));
     }
     let intents: Vec<Intent> = rooms
         .into_iter()
@@ -36,7 +36,7 @@ pub(crate) fn all_lights_clause(
             (intent.name != "Unknown").then_some(intent)
         })
         .collect();
-    (!intents.is_empty()).then_some(ReadyClause::Intents(intents))
+    (!intents.is_empty()).then_some(ClauseOut::Intents(intents))
 }
 
 pub(crate) fn fill_intent(
@@ -108,7 +108,7 @@ pub(crate) fn fill_intent(
                 intent = intent.with("item", item);
             }
             if entity_id.is_none_or(|id| !id.starts_with("todo."))
-                && (catalog().any(tokens, &catalog().list_nouns) || tokens.iter().any(|t| t.contains("einkauf") || t == "shopping"))
+                && (catalog().any(tokens, &catalog().list_nouns) || catalog().any(tokens, &catalog().shopping_names))
             {
                 intent = intent.with("name", "shopping_list");
             }
@@ -119,9 +119,9 @@ pub(crate) fn fill_intent(
 }
 
 fn timer_unit(tokens: &[String]) -> &'static str {
-    if tokens.iter().any(|t| matches!(t.as_str(), "hour" | "hours" | "stunde" | "stunden")) {
+    if catalog().any(tokens, &catalog().hours) {
         "hours"
-    } else if tokens.iter().any(|t| matches!(t.as_str(), "second" | "seconds" | "sekunde" | "sekunden")) {
+    } else if catalog().any(tokens, &catalog().seconds) {
         "seconds"
     } else {
         "minutes"
@@ -129,34 +129,12 @@ fn timer_unit(tokens: &[String]) -> &'static str {
 }
 
 fn list_item(tokens: &[String]) -> Option<String> {
-    let skip = [
-        "add",
-        "put",
-        "place",
-        "setze",
-        "setz",
-        "fuege",
-        "fuegen",
-        "hinzu",
-        "auf",
-        "zur",
-        "zu",
-        "die",
-        "der",
-        "das",
-        "den",
-        "liste",
-        "list",
-        "einkauf",
-        "einkaufsliste",
-        "shopping",
-        "chores",
-        "aufgaben",
-        "my",
-        "the",
-        "a",
-    ];
-    let words: Vec<&str> = tokens.iter().map(String::as_str).filter(|t| !skip.contains(t) && !catalog().list_nouns.contains(t)).collect();
+    let cat = catalog();
+    let words: Vec<&str> = tokens
+        .iter()
+        .map(String::as_str)
+        .filter(|t| !cat.list_skip.contains(t) && !cat.list_nouns.contains(t) && !cat.shopping_names.contains(t))
+        .collect();
     if words.is_empty() {
         None
     } else {
@@ -226,7 +204,7 @@ pub(crate) fn pick_singular_lamp(tokens: &[String], home: &HomeGraph, areas: &[S
     (lamps.len() == 1).then(|| lamps[0].to_string())
 }
 
-pub(crate) enum ReadyClause {
+pub(crate) enum ClauseOut {
     Intents(Vec<Intent>),
     Clarify(Vec<String>, Intent),
 }
@@ -237,7 +215,7 @@ pub(crate) fn timer_clause(
     action: Action,
     number: Option<i32>,
     domain: Option<&str>,
-) -> Option<ReadyClause> {
+) -> Option<ClauseOut> {
     if domain != Some("timer") {
         return None;
     }
@@ -250,7 +228,7 @@ pub(crate) fn timer_clause(
         intents.push(fill_intent(action, tokens, number, None, None, None));
     }
     intents.retain(|i| i.name != "Unknown");
-    (!intents.is_empty()).then_some(ReadyClause::Intents(intents))
+    (!intents.is_empty()).then_some(ClauseOut::Intents(intents))
 }
 
 pub(crate) fn laundry_switch_clause(
@@ -259,7 +237,7 @@ pub(crate) fn laundry_switch_clause(
     action: Action,
     number: Option<i32>,
     domain: Option<&str>,
-) -> Option<ReadyClause> {
+) -> Option<ClauseOut> {
     if domain != Some("switch") || !matches!(action, Action::On | Action::Off | Action::Toggle) {
         return None;
     }
@@ -269,10 +247,12 @@ pub(crate) fn laundry_switch_clause(
     if catalog().any(tokens, &catalog().laundry_machines) {
         return None;
     }
+    let areas = crate::home_policy::laundry_areas(home);
+    let area = areas.first()?.as_str();
     let switches: Vec<String> = home
         .entities
         .iter()
-        .filter(|e| e.domain == "switch" && e.area.as_deref() == Some("laundry"))
+        .filter(|e| e.domain == "switch" && e.area.as_deref().is_some_and(|a| areas.iter().any(|id| id == a)))
         .map(|e| e.entity_id.clone())
         .collect();
     if switches.len() < 2 {
@@ -282,8 +262,8 @@ pub(crate) fn laundry_switch_clause(
     let start = catalog().any(tokens, &catalog().start_words);
     let one = (tokens.iter().any(|t| t == "switch") && !plural) || start;
     if !one && !plural {
-        return Some(ReadyClause::Clarify(switches, intent_from_action(action, tokens).with("area", "laundry").with("domain", "switch")));
+        return Some(ClauseOut::Clarify(switches, intent_from_action(action, tokens).with("area", area).with("domain", "switch")));
     }
-    let id = one.then(|| switches.iter().find(|id| id.contains("washing") || id.contains("wasch")).cloned()).flatten();
-    Some(ReadyClause::Intents(vec![fill_intent(action, tokens, number, id.as_deref(), Some("laundry"), Some("switch"))]))
+    let id = one.then(|| switches.iter().find(|id| catalog().laundry_machines.iter().any(|m| id.contains(m))).cloned()).flatten();
+    Some(ClauseOut::Intents(vec![fill_intent(action, tokens, number, id.as_deref(), Some(area), Some("switch"))]))
 }

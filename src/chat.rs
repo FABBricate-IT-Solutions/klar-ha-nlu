@@ -4,78 +4,6 @@ use crate::resolve::query_grounded;
 use crate::session::Session;
 use crate::types::HomeGraph;
 
-const GREET: &[&str] = &[
-    "hallo",
-    "hi",
-    "hey",
-    "moin",
-    "servus",
-    "guten",
-    "morgen",
-    "abend",
-    "tag",
-    "nacht",
-    "hello",
-    "good",
-    "morning",
-    "evening",
-    "afternoon",
-    "bye",
-    "tschuess",
-    "tschau",
-    "ciao",
-    "goodbye",
-];
-const THANKS: &[&str] = &["danke", "dankeschon", "thanks", "thank", "bitte"];
-const FEELING: &[&str] = &["geht", "gehts", "fuehlst", "fuehlt", "feeling", "mood", "laune", "langweilig", "bored", "unterhalte"];
-const IDENTITY: &[&str] = &["heisst", "name", "kannst", "faehig", "faehigkeiten", "who", "can"];
-const TELL: &[&str] = &["erzaehl", "erzaehle", "erzaehlen", "tell", "telling", "sing", "singe", "singt"];
-const YARN: &[&str] = &[
-    "geschichte",
-    "geschichten",
-    "witz",
-    "witze",
-    "maerchen",
-    "gedicht",
-    "gedichte",
-    "raetsel",
-    "lied",
-    "song",
-    "story",
-    "stories",
-    "joke",
-    "jokes",
-    "fairytale",
-    "riddle",
-    "poem",
-];
-const WORLD: &[&str] = &[
-    "hauptstadt",
-    "capital",
-    "wetter",
-    "weather",
-    "forecast",
-    "rezept",
-    "recipe",
-    "kochen",
-    "uebersetz",
-    "uebersetze",
-    "translate",
-    "bedeutet",
-    "mean",
-    "means",
-    "erklaer",
-    "erklaere",
-    "explain",
-    "rechne",
-    "rechnen",
-    "plus",
-    "minus",
-    "malnehmen",
-];
-const ADVICE: &[&str] = &["empfiehl", "empfehlen", "tipp", "rat", "idee", "idea", "soll", "should", "vorschlag"];
-const OPEN: &[&str] = &["wer", "wo", "warum", "wieso", "weshalb", "wozu", "wann", "who", "why", "when", "where", "how"];
-
 pub fn wants_llm(tokens: &[String], home: &HomeGraph) -> bool {
     if tokens.is_empty() || looks_like_home(tokens, home) {
         return false;
@@ -100,7 +28,7 @@ fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
         || cat.any(tokens, &cat.on_words)
         || cat.any(tokens, &cat.off_words)
         || cat.any(tokens, &cat.laundry_machines)
-        || tokens.iter().any(|t| matches!(t.as_str(), "status" | "zustand" | "state"))
+        || cat.any(tokens, &cat.status_words)
     {
         return true;
     }
@@ -120,23 +48,26 @@ fn mentions_area(tokens: &[String], home: &HomeGraph) -> bool {
 }
 
 fn is_casual(tokens: &[String]) -> bool {
-    has_any(tokens, GREET) || has_any(tokens, THANKS) || has_any(tokens, FEELING) || has_any(tokens, IDENTITY)
+    let cat = catalog();
+    cat.any(tokens, &cat.chat_greet)
+        || cat.any(tokens, &cat.chat_thanks)
+        || cat.any(tokens, &cat.chat_feeling)
+        || cat.any(tokens, &cat.chat_identity)
 }
 
 fn is_special(tokens: &[String]) -> bool {
-    (has_any(tokens, TELL) && (has_any(tokens, YARN) || tokens.iter().any(|t| t.contains("witz"))))
-        || has_any(tokens, YARN)
-        || has_any(tokens, WORLD)
-        || has_any(tokens, ADVICE)
+    let cat = catalog();
+    (cat.any(tokens, &cat.chat_tell)
+        && (cat.any(tokens, &cat.chat_yarn) || tokens.iter().any(|t| t.contains("witz") || t.contains("joke"))))
+        || cat.any(tokens, &cat.chat_yarn)
+        || cat.any(tokens, &cat.chat_world)
+        || cat.any(tokens, &cat.chat_advice)
 }
 
 fn is_open_question(tokens: &[String]) -> bool {
     let cat = catalog();
-    tokens.first().is_some_and(|t| cat.is_question_start(t)) || tokens.iter().any(|t| cat.is_question_word(t) || OPEN.contains(&t.as_str()))
-}
-
-fn has_any(tokens: &[String], words: &[&str]) -> bool {
-    tokens.iter().any(|t| words.contains(&t.as_str()))
+    tokens.first().is_some_and(|t| cat.is_question_start(t))
+        || tokens.iter().any(|t| cat.is_question_word(t) || cat.chat_open.contains(t.as_str()))
 }
 
 #[cfg(test)]

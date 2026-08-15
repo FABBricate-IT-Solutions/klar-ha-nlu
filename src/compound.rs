@@ -7,67 +7,6 @@ use std::collections::HashSet;
 
 pub use crate::overlay::{apply_overlay, load_overlay, overlay_path, save_overlay, Overlay};
 
-pub(crate) const GENERIC: &[&str] = &[
-    "licht",
-    "lichter",
-    "lampe",
-    "lampen",
-    "leuchte",
-    "heizung",
-    "thermostat",
-    "steckdose",
-    "schalter",
-    "szene",
-    "sensor",
-    "light",
-    "lights",
-    "lamp",
-    "lamps",
-    "heater",
-    "heating",
-    "switch",
-    "scene",
-    "ceiling",
-    "decke",
-    "blinds",
-    "rollo",
-    "curtain",
-    "curtains",
-    "fan",
-    "luefter",
-    "bedroom",
-    "bedrooms",
-    "kinderzimmer",
-    "bathroom",
-    "bath",
-    "door",
-    "tuer",
-    "window",
-    "windows",
-    "fenster",
-    "lock",
-    "locks",
-    "schloss",
-    "timer",
-    "kitchen",
-    "living",
-    "dining",
-    "garage",
-    "hallway",
-    "laundry",
-    "entryway",
-    "family",
-    "master",
-    "powder",
-    "wohnzimmer",
-    "schlafzimmer",
-    "kuche",
-    "kueche",
-    "badezimmer",
-    "flur",
-    "esszimmer",
-];
-
 pub struct CompoundSplit {
     pub tokens: Vec<String>,
     pub light_areas: Vec<String>,
@@ -164,7 +103,7 @@ fn is_device_noun(token: &str) -> bool {
         || cat.cover_nouns.contains(token)
         || cat.media_nouns.contains(token)
         || cat.named_device.contains(token)
-        || matches!(token, "steckdose" | "beleuchtung" | "lampe" | "leuchte")
+        || catalog().extra_device_nouns.contains(token)
 }
 
 fn is_light_noun(token: &str) -> bool {
@@ -172,45 +111,13 @@ fn is_light_noun(token: &str) -> bool {
     cat.light_nouns.contains(token) || cat.light_singular.contains(token) || token == "beleuchtung"
 }
 
+pub use crate::home_policy::{is_infra, is_infra_light};
+
 pub(crate) fn is_tv_switch(domain: &str, entity: &EntityRec) -> bool {
     domain == "media_player" && entity.domain == "switch" && {
         let blob = format!("{} {}", entity.entity_id, compact(&format!("{} {}", entity.name, entity.aliases.join(" "))));
-        blob.contains("tv") || blob.contains("fernseher")
+        catalog().tv_words.iter().any(|word| blob.contains(word))
     }
-}
-
-pub(crate) fn is_infra(entity: &EntityRec) -> bool {
-    is_infra_light(entity) || is_infra_switch(entity)
-}
-
-fn is_infra_switch(entity: &EntityRec) -> bool {
-    if entity.domain != "switch" {
-        return false;
-    }
-    let id = entity.entity_id.to_ascii_lowercase();
-    let name = compact(&entity.name);
-    id.contains("r2d2_")
-        || id.contains("adaptive_lighting")
-        || id.contains("adaptiv_")
-        || id.contains("cloud_alexa")
-        || id.contains("cloud_google")
-        || id.contains("adguard")
-        || id.contains("bitte_nicht_storen")
-        || id.contains("durchsagen")
-        || id.contains("kommunikation")
-        || id.contains("child_lock")
-        || id.contains("wake_sound")
-        || name.contains("klimaanlage")
-        || name.contains("adaptive")
-}
-
-pub(crate) fn is_infra_light(entity: &EntityRec) -> bool {
-    if entity.domain != "light" {
-        return false;
-    }
-    let id = entity.entity_id.to_ascii_lowercase();
-    let name = compact(&entity.name);
-    id.contains("led_ring") || id.contains("voice_led") || id.contains("u7_pro") || name.contains("ledring") || name.contains("u7pro")
 }
 
 pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
@@ -229,7 +136,7 @@ pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
     if tokens.iter().any(|t| {
         catalog().fixture_alias(t).iter().any(|alias| {
             let a = compact(alias);
-            a.len() >= 5 && !GENERIC.contains(&a.as_str()) && name.contains(&a)
+            a.len() >= 5 && !catalog().generic.contains(&a.as_str()) && name.contains(&a)
         })
     }) {
         0.94
@@ -239,12 +146,12 @@ pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
 }
 
 pub(crate) fn outlet_boost(tokens: &[String], entity: &EntityRec) -> f64 {
-    if !tokens.iter().any(|t| matches!(t.as_str(), "steckdose" | "outlet")) {
+    if !catalog().any(tokens, &catalog().outlet_words) {
         return 0.0;
     }
     let id = entity.entity_id.to_ascii_lowercase();
     let name = compact(&entity.name);
-    if id.contains("steckdose") || id.contains("outlet") || name.contains("steckdose") || name.contains("outlet") {
+    if catalog().outlet_words.iter().any(|word| id.contains(word) || name.contains(word)) {
         0.97
     } else {
         0.0
@@ -256,7 +163,7 @@ pub(crate) fn short_name_token(entity: &EntityRec) -> Option<String> {
     entity.name.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).find(|part| {
         part.len() >= 2
             && part.len() <= 3
-            && !GENERIC.contains(&part.as_str())
+            && !catalog().generic.contains(&part.as_str())
             && !cat.is_particle(part)
             && !cat.is_filler(part)
             && !matches!(part.as_str(), "von" | "vom" | "of" | "und" | "and")
@@ -289,7 +196,7 @@ fn stolen_label(label: &str, entity: &EntityRec, home: &HomeGraph) -> bool {
         return true;
     }
     let parts: Vec<String> = label.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).filter(|p| !p.is_empty()).collect();
-    !parts.is_empty() && parts.iter().all(|p| GENERIC.contains(&p.as_str())) && sibling_lights(home, entity) > 0
+    !parts.is_empty() && parts.iter().all(|p| catalog().generic.contains(&p.as_str())) && sibling_lights(home, entity) > 0
 }
 
 fn sibling_lights(home: &HomeGraph, entity: &EntityRec) -> usize {
@@ -327,10 +234,11 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
 }
 
 fn scene_token(token: &str) -> String {
-    match token {
-        "movie" => "filmabend".into(),
-        "cozy" => "gemuetlich".into(),
-        other => fold_umlaut(other),
+    let mapped = catalog().scene_token(token);
+    if mapped == token {
+        fold_umlaut(token)
+    } else {
+        mapped
     }
 }
 
@@ -348,7 +256,7 @@ fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
 }
 
 fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
-    if catalog().light_nouns.contains(part) || GENERIC.contains(&part) {
+    if catalog().light_nouns.contains(part) || catalog().generic.contains(&part) {
         return false;
     }
     let folded = compact(part);
@@ -370,7 +278,7 @@ pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: 
     if cat.any(tokens, &cat.climate_nouns) {
         return false;
     }
-    if cat.any(tokens, &cat.media_nouns) || tokens.iter().any(|t| matches!(t.as_str(), "steckdose" | "outlet")) {
+    if cat.any(tokens, &cat.media_nouns) || cat.any(tokens, &cat.outlet_words) {
         return true;
     }
     if room_status_only(tokens, home, resolved) {
@@ -388,7 +296,7 @@ pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: 
 }
 
 fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved) -> bool {
-    if resolved.areas.is_empty() || !tokens.iter().any(|t| matches!(t.as_str(), "status" | "zustand" | "state")) {
+    if resolved.areas.is_empty() || !catalog().any(tokens, &catalog().status_words) {
         return false;
     }
     let cat = catalog();
@@ -399,7 +307,8 @@ fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::resol
             || cat.is_query_hint(token)
             || cat.is_question_word(token)
             || cat.is_question_start(token)
-            || matches!(token.as_str(), "status" | "zustand" | "state" | "of" | "the")
+            || catalog().status_words.contains(token.as_str())
+            || matches!(token.as_str(), "of" | "the")
             || rooms.contains(token)
     })
 }
@@ -462,11 +371,8 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
             catalog().named_device.iter().any(|n| blob.contains(n))
         })
         .collect();
-    if let Some(hit) = named.iter().find(|e| compact(&e.name) == "kugel") {
-        return Some((*hit).clone());
-    }
-    if named.len() == 1 {
-        return Some(named[0].clone());
+    if let Some(hit) = crate::home_policy::preferred_named(&named) {
+        return Some(hit.clone());
     }
     (lights.len() == 1).then(|| lights[0].clone())
 }
