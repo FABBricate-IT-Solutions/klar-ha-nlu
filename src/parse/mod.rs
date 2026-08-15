@@ -104,7 +104,7 @@ fn session_followups(
         }
     }
     if session.pending_clarify.is_some() {
-        if let Some(chosen) = pick_clarification(&tokens, session) {
+        if let Some(chosen) = pick_clarification(tokens, session) {
             let template =
                 session.last_intent_template.clone().unwrap_or_else(|| Intent::new("HassTurnOn").with("entity_id", chosen.clone()));
             let intent = if home.areas.iter().any(|area| area.area_id == chosen) {
