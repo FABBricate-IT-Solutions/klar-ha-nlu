@@ -22,7 +22,6 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         .filter(|e| domain.is_none_or(|d| e.domain == d || is_tv_switch(d, e)))
         .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
         .collect();
-    candidates.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
     if !areas.is_empty() {
         let in_area: Vec<(f64, EntityRec)> = candidates
             .iter()
@@ -39,17 +38,21 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         if !in_area.is_empty() {
             candidates = in_area;
             candidates.extend(named);
-            candidates.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
         }
     }
+    sort_hits(&mut candidates, tokens, home);
 
     let mut entities = Vec::new();
     let mut ambiguous = Vec::new();
     if let Some((best, rec)) = candidates.first() {
+        let best_overlap = overlap(tokens, rec, home);
         let peers: Vec<EntityRec> = candidates
             .iter()
             .filter(|(s, e)| {
-                (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && e.name != rec.name
+                (*s - best).abs() < 0.08
+                    && e.entity_id != rec.entity_id
+                    && e.name != rec.name
+                    && overlap(tokens, e, home) >= best_overlap
             })
             .map(|(_, e)| e.clone())
             .collect();
@@ -122,34 +125,11 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                 .entities
                 .iter()
                 .filter(|e| e.domain == d && !is_infra(e))
-                .filter(|e| {
-                    areas.is_empty()
-                        || e.area.as_ref().is_some_and(|a| areas.contains(a))
-                })
+                .filter(|e| areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
                 .cloned()
                 .collect();
             if in_domain.len() == 1 {
                 entities.extend(in_domain);
-            }
-        }
-    }
-
-    if entities.is_empty() && ambiguous.is_empty() && !areas.is_empty() {
-        if let Some(d) = domain {
-            let in_area: Vec<EntityRec> = home
-                .entities
-                .iter()
-                .filter(|e| e.domain == d && !is_infra(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
-                .cloned()
-                .collect();
-            if in_area.len() == 1 {
-                entities.extend(in_area);
-            } else if in_area.len() > 1 && areas.iter().any(|a| a == "wohnung") {
-                // area-level command, no specific entity
-            } else if in_area.len() > 3 {
-                // too many — leave as area target
-            } else if in_area.len() > 1 && pick_fixture(tokens, home, &areas).is_none() {
-                // leave as area target
             }
         }
     }
@@ -165,10 +145,7 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
     let cat = catalog();
     let room_level = cat.any(tokens, &cat.light_plural)
         || tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light" | "alle"));
-    let named_fix = cat.any(tokens, &cat.sides) || cat.any(tokens, &cat.bedside);
-    let needle = if !named_fix && cat.any(tokens, &cat.brightness) {
-        Some("ceiling")
-    } else if cat.any(tokens, &cat.island) {
+    let needle = if cat.any(tokens, &cat.island) {
         Some("island")
     } else if cat.any(tokens, &cat.pendant) {
         Some("pendant")
@@ -320,6 +297,20 @@ fn number_word(token: &str) -> Option<&'static str> {
         "8" => Some("eight"),
         _ => None,
     }
+}
+
+fn sort_hits(hits: &mut [(f64, EntityRec)], tokens: &[String], home: &HomeGraph) {
+    hits.sort_by(|a, b| {
+        b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal).then_with(|| {
+            overlap(tokens, &b.1, home).cmp(&overlap(tokens, &a.1, home))
+        })
+    });
+}
+
+fn overlap(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> usize {
+    usable_labels(entity, home).into_iter().map(|label| {
+        fold_umlaut(&label).split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p))).count()
+    }).max().unwrap_or(0)
 }
 
 fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Option<f64> {

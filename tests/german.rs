@@ -353,5 +353,7 @@ fn follow_up_aus() {
     parse("Licht im Wohnzimmer an", &home, &mut session, &[], &settings);
     let second = parse("mach sie aus", &home, &mut session, &[], &settings);
     assert_eq!(second.intents[0].name, "HassTurnOff");
+    let third = parse("schalte es wieder an", &home, &mut session, &[], &settings);
+    assert_eq!(third.intents[0].name, "HassTurnOn", "{:?} {}", third.intents, third.speech);
 }
 

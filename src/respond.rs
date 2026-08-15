@@ -25,6 +25,20 @@ pub fn speak_unknown() -> String {
     }
 }
 
+pub fn speak_need_target(off: bool) -> String {
+    if speech_lang() == LangId::En {
+        if off {
+            "What should I turn off?".into()
+        } else {
+            "What should I turn on?".into()
+        }
+    } else if off {
+        "Was soll ich ausmachen?".into()
+    } else {
+        "Was soll ich einschalten?".into()
+    }
+}
+
 pub fn speak_correction() -> String {
     if speech_lang() == LangId::En {
         "Noted. I will treat the last sentence as a misread.".into()
@@ -142,10 +156,23 @@ fn describe_en(intent: &Intent, where_: &str, area: &str) -> String {
 }
 
 fn short_id(id: &str) -> String {
-    id.rsplit('.')
-        .next()
-        .unwrap_or(id)
-        .replace('_', " ")
+    pretty_device(&id.rsplit('.').next().unwrap_or(id).replace('_', " "))
+}
+
+fn pretty_device(raw: &str) -> String {
+    let parts: Vec<&str> = raw.split_whitespace().filter(|p| !p.is_empty()).collect();
+    let tail = parts.last().copied().unwrap_or("");
+    let light = matches!(tail, "licht" | "lichter" | "lampe" | "lampen" | "light" | "lights");
+    let all = parts.first().is_some_and(|p| matches!(*p, "alle" | "all" | "every"));
+    if light && !all && parts.len() >= 2 {
+        let head = parts[..parts.len() - 1].join("");
+        let mut out = format!("{head}{tail}");
+        if let Some(first) = out.chars().next() {
+            out.replace_range(..first.len_utf8(), &first.to_uppercase().to_string());
+        }
+        return out;
+    }
+    raw.to_string()
 }
 
 fn loc(area: &str, en: bool) -> String {
@@ -219,5 +246,14 @@ mod tests {
         let en = speak(&[intent], Personality::Default, false);
         assert!(en.contains("Turn on"), "{en}");
         assert!(!en.contains("Schalte"), "{en}");
+    }
+
+    #[test]
+    fn speech_compounds_room_light() {
+        let _de = bind(&["de".into()]);
+        let intent = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer_licht");
+        let de = speak(&[intent], Personality::Default, false);
+        assert_eq!(de, "Schalte Schlafzimmerlicht ein.");
+        assert!(!de.contains(','));
     }
 }

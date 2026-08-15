@@ -323,6 +323,8 @@ class KlarConversationEntity(ConversationEntity):
         if not name:
             return None
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
+        if "entity_id" in slots:
+            slots.pop("area", None)
         if name in {
             "HassListAddItem",
             "HassListCompleteItem",
