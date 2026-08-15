@@ -327,6 +327,8 @@ pub struct Overlay {
     pub aliases: HashMap<String, Vec<String>>,
     #[serde(default)]
     pub preferred: Vec<String>,
+    #[serde(default)]
+    pub areas: HashMap<String, String>,
 }
 
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {
@@ -356,5 +358,45 @@ pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {
         {
             ent.tags.push("preferred".into());
         }
+        if let Some(area) = overlay.areas.get(&ent.entity_id) {
+            ent.area = if area.is_empty() { None } else { Some(area.clone()) };
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::types::EntityRec;
+
+    #[test]
+    fn overlay_sets_and_clears_area() {
+        let mut home = HomeGraph {
+            entities: vec![EntityRec {
+                entity_id: "light.orphan".into(),
+                name: "Hue play 2".into(),
+                domain: "light".into(),
+                area: None,
+                aliases: Vec::new(),
+                tags: Vec::new(),
+            }],
+            ..Default::default()
+        };
+        apply_overlay(
+            &mut home,
+            &Overlay {
+                areas: [("light.orphan".into(), "wohnzimmer".into())].into(),
+                ..Default::default()
+            },
+        );
+        assert_eq!(home.entities[0].area.as_deref(), Some("wohnzimmer"));
+        apply_overlay(
+            &mut home,
+            &Overlay {
+                areas: [("light.orphan".into(), String::new())].into(),
+                ..Default::default()
+            },
+        );
+        assert_eq!(home.entities[0].area, None);
     }
 }

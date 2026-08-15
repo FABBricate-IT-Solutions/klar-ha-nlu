@@ -101,6 +101,7 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
     HomeGraph {
         entities,
         areas,
+        assist: crate::expose::load_assist(config_dir),
         ..fallback
     }
 }
@@ -350,6 +351,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
         entities,
         areas,
         scene_members,
+        assist: None,
     })
 }
 

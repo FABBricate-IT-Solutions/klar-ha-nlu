@@ -1,7 +1,8 @@
-use crate::compound::{apply_overlay, load_overlay, save_overlay};
+use crate::compound::{apply_overlay, load_overlay, save_overlay, Overlay};
+use crate::gaps::{assist_visible, leftover};
 use crate::parse::parse;
 use crate::session::Sessions;
-use crate::types::{CustomSentence, EntityRec, HomeGraph, ParseResult, Settings};
+use crate::types::{AreaRec, CustomSentence, EntityRec, HomeGraph, ParseResult, Settings};
 use std::path::PathBuf;
 use axum::extract::State;
 use axum::response::Html;
@@ -36,6 +37,7 @@ pub fn router(state: AppState) -> Router {
         .route("/api/settings", get(get_settings).post(set_settings))
         .route("/api/custom", get(get_custom).post(set_custom))
         .route("/api/entities", get(get_entities).post(tag_entity))
+        .route("/api/gaps", get(get_gaps))
         .layer(CorsLayer::permissive())
         .with_state(state)
 }
@@ -93,7 +95,30 @@ async fn set_custom(
 }
 
 async fn get_entities(State(state): State<AppState>) -> Json<Vec<EntityRec>> {
-    Json(state.home.lock().await.entities.clone())
+    let home = state.home.lock().await;
+    Json(
+        home.entities
+            .iter()
+            .filter(|e| assist_visible(e, &home))
+            .cloned()
+            .collect(),
+    )
+}
+
+#[derive(serde::Serialize)]
+struct GapsOut {
+    leftover: Vec<EntityRec>,
+    rooms: Vec<AreaRec>,
+    overlay: Overlay,
+}
+
+async fn get_gaps(State(state): State<AppState>) -> Json<GapsOut> {
+    let home = state.home.lock().await.clone();
+    Json(GapsOut {
+        leftover: leftover(&home),
+        rooms: home.areas,
+        overlay: load_overlay(&state.data_dir),
+    })
 }
 
 #[derive(Deserialize)]
@@ -105,11 +130,15 @@ struct TagIn {
     aliases: Vec<String>,
     #[serde(default)]
     preferred: bool,
+    pub area: Option<String>,
 }
 
 async fn tag_entity(State(state): State<AppState>, Json(body): Json<TagIn>) -> Json<EntityRec> {
     let mut overlay = load_overlay(&state.data_dir);
     overlay.aliases.insert(body.entity_id.clone(), body.aliases.clone());
+    if let Some(area) = &body.area {
+        overlay.areas.insert(body.entity_id.clone(), area.clone());
+    }
     overlay.preferred.retain(|id| id != &body.entity_id);
     if body.preferred {
         overlay.preferred.push(body.entity_id.clone());
