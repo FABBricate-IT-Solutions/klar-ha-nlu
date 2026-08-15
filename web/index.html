@@ -177,11 +177,24 @@
         <option value="full">Geräte + Kontext</option>
         <option value="context_only">Nur Kontext</option>
       </select>
+      <label>Write-Token (LAN)</label>
+      <input id="token" type="password" autocomplete="off" placeholder="aus Addon-Log oder /data/klar_token">
       <div class="row"><button class="act" id="saveSet">Speichern</button></div>
     </section>
   </main>
   <script>
     const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    }[c]));
+    const tokenHeaders = () => {
+      const token = ($("token") && $("token").value.trim()) || localStorage.getItem("klar_token") || new URLSearchParams(location.search).get("token") || "";
+      return token ? { "x-klar-token": token } : {};
+    };
+    const api = (path, opts = {}) => fetch(path, {
+      ...opts,
+      headers: { "content-type": "application/json", ...tokenHeaders(), ...(opts.headers || {}) },
+    });
     document.querySelectorAll("nav button").forEach((btn) => {
       btn.onclick = () => {
         document.querySelectorAll("nav button").forEach((b) => b.classList.remove("active"));
@@ -192,9 +205,8 @@
       };
     });
     $("send").onclick = async () => {
-      const res = await fetch("/api/parse", {
+      const res = await api("/api/parse", {
         method: "POST",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify({ text: $("text").value }),
       });
       const data = await res.json();
@@ -203,16 +215,13 @@
     };
     $("saveCustom").onclick = async () => {
       const body = JSON.parse($("customBox").value || "[]");
-      await fetch("/api/custom", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      await api("/api/custom", { method: "POST", body: JSON.stringify(body) });
     };
     $("saveSet").onclick = async () => {
-      await fetch("/api/settings", {
+      const token = $("token").value.trim();
+      if (token) localStorage.setItem("klar_token", token);
+      await api("/api/settings", {
         method: "POST",
-        headers: { "content-type": "application/json" },
         body: JSON.stringify({
           personality: $("personality").value,
           mode: $("mode").value,
@@ -220,15 +229,12 @@
       });
     };
     (async () => {
-      const ents = await (await fetch("/api/entities")).json();
+      const ents = await (await api("/api/entities")).json();
       $("ents").innerHTML = ents.map((e) =>
-        `<tr><td>${e.name}<br><span style="color:#9a9083">${e.entity_id}</span></td><td>${e.area || ""}</td><td>${(e.tags || []).join(", ")}</td></tr>`
+        `<tr><td>${esc(e.name)}<br><span style="color:#9a9083">${esc(e.entity_id)}</span></td><td>${esc(e.area || "")}</td><td>${esc((e.tags || []).join(", "))}</td></tr>`
       ).join("");
-      const gaps = await (await fetch("/api/gaps")).json();
+      const gaps = await (await api("/api/gaps")).json();
       const board = { leftover: gaps.leftover, rooms: gaps.rooms };
-      const esc = (s) => String(s || "").replace(/[&<>"']/g, (c) => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-      }[c]));
       const chip = (e) => {
         const pref = (e.tags || []).includes("preferred");
         const nick = (e.aliases || []).join(", ");
@@ -258,9 +264,8 @@
           .split(",").map((s) => s.trim()).filter(Boolean);
         const pin = el.querySelector("[data-pin]");
         const preferred = !!(pin && pin.classList.contains("on"));
-        await fetch("/api/entities", {
+        await api("/api/entities", {
           method: "POST",
-          headers: { "content-type": "application/json" },
           body: JSON.stringify({ entity_id: id, aliases, preferred, ...extra }),
         });
         const item = board.leftover.find((e) => e.entity_id === id);
@@ -302,7 +307,7 @@
             const el = document.querySelector(`.chip[data-id="${CSS.escape(id)}"]`);
             if (!el) return;
             await save(el, { area: well.dataset.area || "" });
-            const next = await (await fetch("/api/gaps")).json();
+            const next = await (await api("/api/gaps")).json();
             board.leftover = next.leftover;
             board.rooms = next.rooms;
             paint();
@@ -310,11 +315,13 @@
         });
       };
       paint();
-      const custom = await (await fetch("/api/custom")).json();
+      const custom = await (await api("/api/custom")).json();
       $("customBox").value = JSON.stringify(custom, null, 2);
-      const set = await (await fetch("/api/settings")).json();
+      const set = await (await api("/api/settings")).json();
       $("personality").value = set.personality;
       $("mode").value = set.mode;
+      const stored = localStorage.getItem("klar_token") || new URLSearchParams(location.search).get("token") || "";
+      if (stored) $("token").value = stored;
     })();
   </script>
 </body>

@@ -18,15 +18,15 @@ fn run(text: &str, lang: &str) -> (Vec<String>, String) {
 fn de_office_speech_stays_german() {
     let (names, speech) = run("Mach das Licht im Arbeitszimmer an", "de");
     assert_eq!(names, vec!["HassTurnOn"]);
-    assert!(speech.contains("Schalte"), "{speech}");
+    assert!(speech.contains("ist an") || speech.contains("Licht"), "{speech}");
 }
 
 #[test]
 fn en_office_light_uses_english_speech() {
     let (names, speech) = run("Turn on the light in the office", "en");
     assert_eq!(names, vec!["HassTurnOn"], "{speech}");
-    assert!(speech.contains("Turn on"), "{speech}");
-    assert!(!speech.contains("Schalte"), "{speech}");
+    assert!(speech.contains("is on") || speech.contains("light"), "{speech}");
+    assert!(!speech.contains("ist an"), "{speech}");
 }
 
 fn slots(text: &str, lang: &str) -> Vec<(String, Vec<(String, String)>)> {
@@ -77,4 +77,17 @@ fn en_bedroom_is_schlafzimmer_not_wohnung() {
 fn en_smalltalk_has_no_home_intent() {
     let (names, speech) = run("What is the capital of France", "en");
     assert!(names.is_empty(), "{names:?} {speech}");
+}
+
+#[test]
+fn en_smalltalk_after_device_has_no_home_intent() {
+    let home = default_home();
+    let mut session = Session::new();
+    let first = parse("Turn on the light in the office", &home, &mut session, &[], &settings("en"));
+    assert_eq!(first.intents[0].name, "HassTurnOn", "{}", first.speech);
+    for text in ["Tell me a story", "Tell me a joke", "What is the capital of France"] {
+        let result = parse(text, &home, &mut session, &[], &settings("en"));
+        assert!(!result.clarify, "{text}: {}", result.speech);
+        assert!(result.intents.is_empty(), "{text}: {:?} {}", result.intents, result.speech);
+    }
 }

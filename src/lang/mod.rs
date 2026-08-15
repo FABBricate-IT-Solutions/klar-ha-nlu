@@ -432,10 +432,11 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
     }
     let key = ids.iter().map(|l| l.code()).collect::<Vec<_>>().join(",");
     let mut map = cache().lock().expect("lang catalog cache");
-    *map.entry(key).or_insert_with(|| {
+    let catalog = *map.entry(key).or_insert_with(|| {
         let packs: Vec<&'static Pack> = ids.iter().map(|id| id.pack()).collect();
         Box::leak(Box::new(Catalog::merge(&packs)))
-    })
+    });
+    catalog
 }
 
 thread_local! {

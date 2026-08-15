@@ -6,9 +6,13 @@
         "description": "The bundled engine is downloaded from GitHub Releases and started by this integration. Pick a URL only if Klar already runs elsewhere.",
         "data": {
           "mode": "Engine",
-          "url": "Klar API URL"
+          "url": "Klar API URL",
+          "token": "Write token"
         }
       }
+    },
+    "error": {
+      "invalid_url": "URL must be http(s) without userinfo."
     },
     "abort": {
       "already_configured": "Klar NLU is already set up"
@@ -24,13 +28,18 @@
           "languages": "Languages",
           "fallback_agent": "Conversation agent for chit-chat",
           "url": "Klar API URL",
+          "token": "Write token",
           "assist_filter": "Only control entities exposed to Assist"
         },
         "data_description": {
           "personality": "Stored in this integration, not in the Klar app. Survives reinstalling the app.",
+          "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device."
         }
       }
+    },
+    "error": {
+      "invalid_url": "URL must be http(s) without userinfo."
     }
   },
   "selector": {

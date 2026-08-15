@@ -22,6 +22,8 @@ map:
   - type: homeassistant_config
     read_only: true
     path: /config
-options: {}
-schema: {}
+options:
+  token: ""
+schema:
+  token: str?
 image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}

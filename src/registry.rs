@@ -81,7 +81,8 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
     }
 
     let device_areas = read_device_areas(&config_dir.join(".storage/core.device_registry"));
-    let mut entities = match read_entities(&entity_path, &device_areas) {
+    let label_names = crate::roles::load_label_names(&config_dir.join(".storage/core.label_registry"));
+    let mut entities = match read_entities(&entity_path, &device_areas, &label_names) {
         Ok(v) => v,
         Err(err) => {
             tracing::warn!("Entity-Registry unlesbar: {err}");
@@ -115,16 +116,20 @@ fn infer_area(entity_id: &str, areas: &[AreaRec]) -> Option<String> {
     let slug = entity_id.split_once('.')?.1;
     let mut best: Option<&str> = None;
     for area in areas {
-        if slug == area.area_id || slug.starts_with(&format!("{}_", area.area_id)) {
-            if best.is_none_or(|cur| area.area_id.len() > cur.len()) {
-                best = Some(area.area_id.as_str());
-            }
+        if (slug == area.area_id || slug.starts_with(&format!("{}_", area.area_id)))
+            && best.is_none_or(|cur| area.area_id.len() > cur.len())
+        {
+            best = Some(area.area_id.as_str());
         }
     }
     best.map(str::to_string)
 }
 
-fn read_entities(path: &Path, device_areas: &HashMap<String, String>) -> Result<Vec<EntityRec>, String> {
+fn read_entities(
+    path: &Path,
+    device_areas: &HashMap<String, String>,
+    label_names: &HashMap<String, String>,
+) -> Result<Vec<EntityRec>, String> {
     let raw = fs::read_to_string(path).map_err(|e| e.to_string())?;
     let parsed: EntityStorage = serde_json::from_str(&raw).map_err(|e| e.to_string())?;
     Ok(parsed
@@ -137,7 +142,14 @@ fn read_entities(path: &Path, device_areas: &HashMap<String, String>) -> Result<
             let domain = e.entity_id.split('.').next().unwrap_or("").to_string();
             let name = e.name.or(e.original_name).unwrap_or_else(|| e.entity_id.clone());
             let area = e.area_id.or_else(|| e.device_id.as_ref().and_then(|id| device_areas.get(id).cloned()));
-            EntityRec { entity_id: e.entity_id, name, domain, area, aliases: e.aliases, tags: e.labels }
+            EntityRec {
+                entity_id: e.entity_id,
+                name,
+                domain,
+                area,
+                aliases: e.aliases,
+                tags: crate::roles::expand_entity_tags(e.labels, label_names),
+            }
         })
         .collect())
 }

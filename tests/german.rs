@@ -1,7 +1,7 @@
 use klar_nlu::lexicon::default_home;
 use klar_nlu::parse::parse;
 use klar_nlu::session::Session;
-use klar_nlu::types::{EntityRec, Settings};
+use klar_nlu::types::{AreaRec, EntityRec, Settings};
 
 fn run(text: &str) -> (Vec<String>, bool) {
     let home = default_home();
@@ -186,6 +186,24 @@ fn smalltalk_hat_keinen_home_intent() {
 }
 
 #[test]
+fn smalltalk_nach_geraet_geht_an_llm() {
+    let home = default_home();
+    let mut session = Session::new();
+    let settings = Settings::default();
+    let first = parse("Licht im Arbeitszimmer an", &home, &mut session, &[], &settings);
+    assert_eq!(first.intents[0].name, "HassTurnOn", "{}", first.speech);
+    for text in ["Erzähle mir eine Geschichte", "Erzähl einen Katzenwitz", "Was ist die Hauptstadt von Frankreich"] {
+        let result = parse(text, &home, &mut session, &[], &settings);
+        assert!(!result.clarify, "{text}: {}", result.speech);
+        assert!(result.intents.is_empty(), "{text}: {:?} {}", result.intents, result.speech);
+    }
+    let status = parse("wie ist der Status?", &home, &mut session, &[], &settings);
+    assert_eq!(status.intents[0].name, "HassGetState", "{} {:?}", status.speech, status.intents);
+    let off = parse("mach es aus", &home, &mut session, &[], &settings);
+    assert_eq!(off.intents[0].name, "HassTurnOff", "{}", off.speech);
+}
+
+#[test]
 fn schlafzimmerlicht_auf_prozent() {
     let found = slots("Schlafzimmerlicht auf 50%");
     assert_eq!(found[0].0, "HassLightSet", "{found:?}");
@@ -260,4 +278,85 @@ fn follow_up_aus() {
     assert_eq!(second.intents[0].name, "HassTurnOff");
     let third = parse("schalte es wieder an", &home, &mut session, &[], &settings);
     assert_eq!(third.intents[0].name, "HassTurnOn", "{:?} {}", third.intents, third.speech);
+}
+
+fn tagged(id: &str, name: &str, domain: &str, area: &str, tags: &[&str]) -> EntityRec {
+    EntityRec {
+        entity_id: id.into(),
+        name: name.into(),
+        domain: domain.into(),
+        area: Some(area.into()),
+        aliases: vec![name.to_ascii_lowercase()],
+        tags: tags.iter().map(|t| (*t).to_string()).collect(),
+    }
+}
+
+fn role_home() -> klar_nlu::types::HomeGraph {
+    let mut home = default_home();
+    home.areas.push(AreaRec { area_id: "abstellkammer".into(), name: "Abstellkammer".into(), aliases: vec!["abstell".into()] });
+    home.entities.push(tagged("switch.abstell_steckdose", "Abstellkammer", "switch", "abstellkammer", &["licht"]));
+    home.entities.push(tagged("switch.balkon_heizstab", "Heizstab", "switch", "balkon", &["heizung"]));
+    home.entities.push(tagged("switch.kuche_radio", "Küchenradio", "switch", "kuche", &["tv"]));
+    home.entities.push(tagged("switch.flur_wichtig", "Flur Kiste", "switch", "flur", &["wichtig"]));
+    home.entities.push(tagged("switch.esszimmer_box", "Lüfterbox", "switch", "esszimmer", &["lüfter"]));
+    home
+}
+
+fn role_slots(text: &str) -> Vec<(String, Vec<(String, String)>)> {
+    let home = role_home();
+    let mut session = Session::new();
+    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    result.intents.into_iter().map(|i| (i.name, i.slots.into_iter().map(|s| (s.name, s.value)).collect())).collect()
+}
+
+fn has_entity(found: &[(String, Vec<(String, String)>)], id: &str) -> bool {
+    found.iter().any(|(_, slots)| slots.iter().any(|(k, v)| k == "entity_id" && v == id))
+}
+
+#[test]
+fn licht_tag_macht_steckdose_zum_licht() {
+    let found = role_slots("Licht in der Abstellkammer an");
+    assert!(found.iter().any(|(n, _)| n == "HassTurnOn"), "{found:?}");
+    assert!(has_entity(&found, "switch.abstell_steckdose"), "{found:?}");
+}
+
+#[test]
+fn wichtig_tag_ist_kein_licht() {
+    let found = role_slots("Licht im Flur an");
+    assert!(!has_entity(&found, "switch.flur_wichtig"), "{found:?}");
+}
+
+#[test]
+fn licht_tag_ist_kein_geraetename() {
+    let found = role_slots("Licht an");
+    assert!(!has_entity(&found, "switch.abstell_steckdose"), "{found:?}");
+}
+
+#[test]
+fn tv_tag_macht_schalter_zum_fernseher() {
+    let found = role_slots("TV in der Küche an");
+    assert!(has_entity(&found, "switch.kuche_radio"), "{found:?}");
+}
+
+#[test]
+fn heizung_tag_macht_schalter_zur_heizung() {
+    let found = role_slots("Heizung auf dem Balkon an");
+    assert!(has_entity(&found, "switch.balkon_heizstab"), "{found:?}");
+}
+
+#[test]
+fn luefter_tag_macht_schalter_zum_luefter() {
+    let found = role_slots("Lüfter im Esszimmer an");
+    assert!(has_entity(&found, "switch.esszimmer_box"), "{found:?}");
+}
+
+#[test]
+fn steckdose_bleibt_schalter_trotz_licht_tag() {
+    let found = role_slots("Steckdose in der Abstellkammer an");
+    assert!(found.iter().any(|(n, _)| n == "HassTurnOn"), "{found:?}");
+    assert!(
+        has_entity(&found, "switch.abstell_steckdose")
+            || found.iter().any(|(_, slots)| slots.iter().any(|(k, v)| k == "domain" && v == "switch")),
+        "{found:?}"
+    );
 }

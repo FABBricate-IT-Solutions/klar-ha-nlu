@@ -1,10 +1,9 @@
 use crate::lang::catalog;
 use crate::lexicon::Action;
 use crate::normalize::{compact, fold_umlaut};
-use crate::types::{EntityRec, HomeGraph, Settings};
-use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
-use std::path::Path;
+use crate::types::{EntityRec, HomeGraph};
+
+pub use crate::overlay::{apply_overlay, load_overlay, overlay_path, save_overlay, Overlay};
 
 pub(crate) const GENERIC: &[&str] = &[
     "licht",
@@ -147,9 +146,7 @@ fn split_area_device(token: &str, prefixes: &[(String, String)]) -> Option<(Stri
 fn strip_fuge(rest: &str) -> &str {
     if rest.starts_with("en") && rest.len() > 4 {
         &rest[2..]
-    } else if rest.starts_with('n') && rest.len() > 3 && is_device_noun(&rest[1..]) {
-        &rest[1..]
-    } else if rest.starts_with('s') && rest.len() > 3 && is_device_noun(&rest[1..]) {
+    } else if rest.len() > 3 && matches!(rest.as_bytes().first(), Some(b'n' | b's')) && is_device_noun(&rest[1..]) {
         &rest[1..]
     } else {
         rest
@@ -215,25 +212,28 @@ pub(crate) fn is_infra_light(entity: &EntityRec) -> bool {
 }
 
 pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
-    if entity.domain != "light" {
+    if !crate::roles::is_light_like(entity) {
         return false;
     }
     let name = compact(&entity.name);
+    if matches!(name.as_str(), "licht" | "light" | "lampe" | "lamp" | "leuchte") {
+        return true;
+    }
     home.areas.iter().any(|area| generic_name(&name, &compact(&area.name)) || generic_name(&name, &compact(&area.area_id)))
 }
 
 pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
     let name = compact(&entity.name);
-    tokens
-        .iter()
-        .any(|t| {
-            catalog().fixture_alias(t).iter().any(|alias| {
-                let a = compact(alias);
-                a.len() >= 5 && !GENERIC.contains(&a.as_str()) && name.contains(&a)
-            })
+    if tokens.iter().any(|t| {
+        catalog().fixture_alias(t).iter().any(|alias| {
+            let a = compact(alias);
+            a.len() >= 5 && !GENERIC.contains(&a.as_str()) && name.contains(&a)
         })
-        .then_some(0.94)
-        .unwrap_or(0.0)
+    }) {
+        0.94
+    } else {
+        0.0
+    }
 }
 
 pub(crate) fn outlet_boost(tokens: &[String], entity: &EntityRec) -> f64 {
@@ -267,7 +267,7 @@ pub(crate) fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String>
     let generic = is_generic_room_light(entity, home);
     std::iter::once(entity.name.clone())
         .chain(entity.aliases.iter().cloned())
-        .chain(entity.tags.iter().cloned())
+        .chain(entity.tags.iter().filter(|tag| !crate::roles::is_role_tag(tag)).cloned())
         .filter(|label| !generic || !stolen_label(label, entity, home))
         .collect()
 }
@@ -300,7 +300,11 @@ fn sibling_lights(home: &HomeGraph, entity: &EntityRec) -> usize {
 }
 
 fn generic_name(name: &str, room: &str) -> bool {
-    !room.is_empty() && (name == format!("{room}licht") || name == format!("{room}light") || name == format!("{room}lampe"))
+    if room.is_empty() {
+        return false;
+    }
+    let light = name.ends_with("licht") || name.ends_with("light") || name.ends_with("lampe");
+    light && (name == format!("{room}licht") || name == format!("{room}light") || name == format!("{room}lampe") || name.starts_with(room))
 }
 
 pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
@@ -387,6 +391,9 @@ pub(crate) fn area_slots(
         if let Some(id) = room_light_id(home, area) {
             return (Some(id), None, None);
         }
+        if let Some(id) = crate::roles::unique_role_in_area(home, area, "light") {
+            return (Some(id), None, None);
+        }
         return (None, Some(area.to_string()), Some("light".into()));
     }
     let id =
@@ -423,72 +430,4 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
         return Some(named[0].clone());
     }
     (lights.len() == 1).then(|| lights[0].clone())
-}
-
-#[derive(Debug, Default, Serialize, Deserialize)]
-pub struct Overlay {
-    #[serde(default)]
-    pub aliases: HashMap<String, Vec<String>>,
-    #[serde(default)]
-    pub preferred: Vec<String>,
-    #[serde(default)]
-    pub areas: HashMap<String, String>,
-    #[serde(default)]
-    pub settings: Option<Settings>,
-}
-
-pub fn overlay_path(dir: &Path) -> std::path::PathBuf {
-    dir.join("klar_nlu.json")
-}
-
-pub fn load_overlay(dir: &Path) -> Overlay {
-    let raw = std::fs::read_to_string(overlay_path(dir)).unwrap_or_default();
-    serde_json::from_str(&raw).unwrap_or_default()
-}
-
-pub fn save_overlay(dir: &Path, overlay: &Overlay) -> std::io::Result<()> {
-    std::fs::write(overlay_path(dir), serde_json::to_vec_pretty(overlay).unwrap_or_default())
-}
-
-pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {
-    for ent in &mut home.entities {
-        if let Some(extra) = overlay.aliases.get(&ent.entity_id) {
-            for alias in extra {
-                if !ent.aliases.iter().any(|a| a == alias) {
-                    ent.aliases.push(alias.clone());
-                }
-            }
-        }
-        if overlay.preferred.iter().any(|id| id == &ent.entity_id) && !ent.tags.iter().any(|t| t == "preferred") {
-            ent.tags.push("preferred".into());
-        }
-        if let Some(area) = overlay.areas.get(&ent.entity_id) {
-            ent.area = if area.is_empty() { None } else { Some(area.clone()) };
-        }
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::types::EntityRec;
-
-    #[test]
-    fn overlay_sets_and_clears_area() {
-        let mut home = HomeGraph {
-            entities: vec![EntityRec {
-                entity_id: "light.orphan".into(),
-                name: "Hue play 2".into(),
-                domain: "light".into(),
-                area: None,
-                aliases: Vec::new(),
-                tags: Vec::new(),
-            }],
-            ..Default::default()
-        };
-        apply_overlay(&mut home, &Overlay { areas: [("light.orphan".into(), "wohnzimmer".into())].into(), ..Default::default() });
-        assert_eq!(home.entities[0].area.as_deref(), Some("wohnzimmer"));
-        apply_overlay(&mut home, &Overlay { areas: [("light.orphan".into(), String::new())].into(), ..Default::default() });
-        assert_eq!(home.entities[0].area, None);
-    }
 }

@@ -1,6 +1,10 @@
 use crate::types::Intent;
 use std::collections::HashMap;
+use std::time::{Duration, Instant};
 use uuid::Uuid;
+
+const MAX_SESSIONS: usize = 256;
+const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
 
 #[derive(Debug, Clone)]
 pub struct Session {
@@ -12,6 +16,13 @@ pub struct Session {
     pub last_intent_template: Option<Intent>,
     pub pending_clarify: Option<Vec<String>>,
     pub wrong_log: Vec<String>,
+    last_used: Instant,
+}
+
+impl Default for Session {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Session {
@@ -25,6 +36,7 @@ impl Session {
             last_intent_template: None,
             pending_clarify: None,
             wrong_log: Vec::new(),
+            last_used: Instant::now(),
         }
     }
 
@@ -73,20 +85,60 @@ pub struct Sessions {
 
 impl Sessions {
     pub fn get_or_create(&mut self, id: Option<&str>) -> &mut Session {
+        self.evict();
         match id {
-            Some(existing) if self.inner.contains_key(existing) => self.inner.get_mut(existing).expect("checked"),
-            Some(existing) => {
+            Some(existing) if existing.len() <= 128 && self.inner.contains_key(existing) => {
+                let session = self.inner.get_mut(existing).expect("checked");
+                session.last_used = Instant::now();
+                session
+            }
+            Some(existing) if existing.len() <= 128 => {
                 let mut s = Session::new();
                 s.id = existing.to_string();
                 self.inner.insert(existing.to_string(), s);
                 self.inner.get_mut(existing).expect("inserted")
             }
-            None => {
+            _ => {
                 let s = Session::new();
                 let key = s.id.clone();
                 self.inner.insert(key.clone(), s);
                 self.inner.get_mut(&key).expect("inserted")
             }
         }
+    }
+
+    fn evict(&mut self) {
+        let now = Instant::now();
+        self.inner.retain(|_, session| now.duration_since(session.last_used) < SESSION_TTL);
+        if self.inner.len() <= MAX_SESSIONS {
+            return;
+        }
+        let mut ids: Vec<(Instant, String)> = self.inner.iter().map(|(id, s)| (s.last_used, id.clone())).collect();
+        ids.sort_by_key(|(used, _)| *used);
+        let drop_n = self.inner.len() - MAX_SESSIONS;
+        for (_, id) in ids.into_iter().take(drop_n) {
+            self.inner.remove(&id);
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn rejects_oversized_conversation_id() {
+        let mut sessions = Sessions::default();
+        let huge = "x".repeat(200);
+        let session = sessions.get_or_create(Some(&huge));
+        assert_ne!(session.id, huge);
+        assert!(session.id.len() <= 128);
+    }
+
+    #[test]
+    fn reuses_same_id() {
+        let mut sessions = Sessions::default();
+        sessions.get_or_create(Some("assist-1")).last_entities.push("light.a".into());
+        assert_eq!(sessions.get_or_create(Some("assist-1")).last_entities, ["light.a"]);
     }
 }

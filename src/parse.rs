@@ -1,4 +1,5 @@
 use crate::compound::{apply_compound_light, area_slots, expand_compounds, named_scene_or_script, query_keeps_entity};
+use crate::gaps::assist_visible;
 use crate::lang::catalog;
 use crate::lexicon::{detect_actions, Action};
 use crate::normalize::{strip_fillers, tokenize};
@@ -44,7 +45,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
             return ParseResult {
                 text: text.to_string(),
                 intents: vec![intent.clone()],
-                speech: speak(&[intent], settings.personality, false),
+                speech: speak(&[intent], settings.personality, false, Some(home)),
                 clarify: false,
                 conversation_id: session.id.clone(),
             };
@@ -62,7 +63,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
             };
             session.clear_clarify();
             session.remember(&intent);
-            let speech = speak(&[intent.clone()], settings.personality, false);
+            let speech = speak(std::slice::from_ref(&intent), settings.personality, false, Some(home));
             return ParseResult {
                 text: text.to_string(),
                 intents: vec![intent],
@@ -75,7 +76,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
 
     if let Some(hit) = match_custom(&tokens, text, custom) {
         session.remember(&hit);
-        let speech = speak(&[hit.clone()], settings.personality, false);
+        let speech = speak(std::slice::from_ref(&hit), settings.personality, false, Some(home));
         return ParseResult { text: text.to_string(), intents: vec![hit], speech, clarify: false, conversation_id: session.id.clone() };
     }
 
@@ -132,7 +133,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     for intent in &intents {
         session.remember(intent);
     }
-    let speech = if intents.is_empty() { speak_unknown() } else { speak(&intents, settings.personality, false) };
+    let speech = if intents.is_empty() { speak_unknown() } else { speak(&intents, settings.personality, false, Some(home)) };
     ParseResult { text: text.to_string(), intents, speech, clarify: false, conversation_id: session.id.clone() }
 }
 
@@ -302,6 +303,7 @@ fn parse_clause(
             let lights: Vec<String> = home
                 .entities
                 .iter()
+                .filter(|e| assist_visible(e, home))
                 .filter(|e| {
                     e.domain == "light"
                         && !crate::compound::is_infra_light(e)
@@ -321,16 +323,14 @@ fn parse_clause(
             let (id, area_slot, dom) = area_slots(action, area, domain, home);
             intents.push(fill_intent(action, tokens, number, id.as_deref(), area_slot.as_deref(), dom.as_deref()));
         }
-        intents.retain(|i| i.name != "Unknown");
-        return ClauseOut::Intents(intents);
+        return finish_intents(intents, action, tokens, number, &resolved.areas, domain, home);
     }
 
     if matches!(action, Action::GetState) && !resolved.areas.is_empty() && !query_keeps_entity(tokens, home, &resolved) {
         for area in &resolved.areas {
             intents.push(fill_intent(action, tokens, number, None, Some(area), domain));
         }
-        intents.retain(|i| i.name != "Unknown");
-        return ClauseOut::Intents(intents);
+        return finish_intents(intents, action, tokens, number, &resolved.areas, domain, home);
     }
 
     if matches!(action, Action::GetState)
@@ -390,6 +390,37 @@ fn parse_clause(
         intents.push(fill_intent(action, tokens, number, None, None, domain));
     }
 
+    finish_intents(intents, action, tokens, number, &resolved.areas, domain, home)
+}
+
+fn finish_intents(
+    mut intents: Vec<Intent>,
+    action: Action,
+    tokens: &[String],
+    number: Option<i32>,
+    areas: &[String],
+    domain: Option<&str>,
+    home: &HomeGraph,
+) -> ClauseOut {
+    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::GetState) {
+        let role_domain = domain.or_else(|| crate::lexicon::has_light_noun(tokens).then_some("light"));
+        if let Some(role_domain) = role_domain {
+            for area in areas {
+                for entity in crate::roles::role_siblings(home, area, role_domain) {
+                    if !intents.iter().any(|i| i.slot("entity_id") == Some(entity.entity_id.as_str())) {
+                        intents.push(fill_intent(
+                            action,
+                            tokens,
+                            number,
+                            Some(&entity.entity_id),
+                            entity.area.as_deref(),
+                            Some(&entity.domain),
+                        ));
+                    }
+                }
+            }
+        }
+    }
     intents.retain(|i| i.name != "Unknown");
     ClauseOut::Intents(intents)
 }

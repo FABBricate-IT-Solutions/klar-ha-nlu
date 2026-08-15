@@ -3,17 +3,19 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import logging
 import platform
+import secrets
 import tarfile
 from io import BytesIO
 from pathlib import Path
 
-from aiohttp import ClientError, ClientTimeout
+from aiohttp import ClientError, ClientSession, ClientTimeout
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import DEFAULT_URL, GITHUB_REPO, PERSONALITIES
+from .const import DEFAULT_URL, ENGINE_VERSION, GITHUB_REPO, PERSONALITIES
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -26,8 +28,13 @@ _ASSETS = {
     "armv7": "klar-linux-armv7.tar.gz",
 }
 
-_RELEASES = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
 _READY_TRIES = 30
+
+
+def _release_urls(version: str) -> tuple[str, ...]:
+    tag = version.lstrip("v")
+    base = f"https://api.github.com/repos/{GITHUB_REPO}/releases/tags"
+    return (f"{base}/{tag}", f"{base}/v{tag}")
 
 
 class UnsupportedMachineError(RuntimeError):
@@ -40,6 +47,7 @@ class KlarEngine:
     def __init__(self, hass: HomeAssistant) -> None:
         self.hass = hass
         self._proc: asyncio.subprocess.Process | None = None
+        self.token: str | None = None
 
     @property
     def bindir(self) -> Path:
@@ -70,6 +78,9 @@ class KlarEngine:
             await proc.wait()
 
     async def _ensure_binary(self) -> None:
+        stamp = self.bindir / "version"
+        if stamp.is_file() and stamp.read_text(encoding="utf-8").strip() != ENGINE_VERSION:
+            self.binary.unlink(missing_ok=True)
         if self.binary.is_file():
             return
         machine = platform.machine().lower()
@@ -81,56 +92,95 @@ class KlarEngine:
         session = async_get_clientsession(self.hass)
         timeout = ClientTimeout(total=180)
         try:
-            async with session.get(_RELEASES, timeout=timeout) as resp:
-                if resp.status == 404:
-                    raise RuntimeError(
-                        "No GitHub release yet. Tag v2026.8.0 or start Klar yourself."
-                    )
-                resp.raise_for_status()
-                release = await resp.json()
-            url = next(
+            release = await self._fetch_release(session, timeout)
+            chosen = next(
                 (
-                    item["browser_download_url"]
+                    item
                     for item in release.get("assets") or []
                     if item.get("name") == asset
                 ),
                 None,
             )
-            if not url:
+            if not chosen:
                 raise RuntimeError(f"Release has no asset {asset}")
-            async with session.get(url, timeout=timeout) as resp:
+            async with session.get(chosen["browser_download_url"], timeout=timeout) as resp:
                 resp.raise_for_status()
                 blob = await resp.read()
         except ClientError as err:
             raise RuntimeError(f"Could not download Klar: {err}") from err
+        self._check_digest(chosen.get("digest"), blob)
         await self.hass.async_add_executor_job(self._extract, blob)
+
+    async def _fetch_release(
+        self, session: ClientSession, timeout: ClientTimeout
+    ) -> dict:
+        for url in _release_urls(ENGINE_VERSION):
+            async with session.get(url, timeout=timeout) as resp:
+                if resp.status == 404:
+                    continue
+                resp.raise_for_status()
+                data = await resp.json()
+                if isinstance(data, dict):
+                    return data
+        raise RuntimeError(
+            f"No GitHub release {ENGINE_VERSION.lstrip('v')}. Start Klar yourself."
+        )
+
+    def _check_digest(self, digest: object, blob: bytes) -> None:
+        if not isinstance(digest, str) or not digest.startswith("sha256:"):
+            return
+        got = hashlib.sha256(blob).hexdigest()
+        if got != digest.split(":", 1)[1]:
+            raise RuntimeError("Klar archive checksum mismatch")
 
     def _extract(self, blob: bytes) -> None:
         self.bindir.mkdir(parents=True, exist_ok=True)
         with tarfile.open(fileobj=BytesIO(blob), mode="r:gz") as tar:
+            tar.extraction_filter = getattr(tarfile, "data_filter", tarfile.tar_filter)
             member = next(
-                (item for item in tar.getmembers() if item.isfile()),
+                (
+                    item
+                    for item in tar.getmembers()
+                    if item.isfile()
+                    and Path(item.name).name == "klar"
+                    and ".." not in Path(item.name).parts
+                ),
                 None,
             )
             if member is None:
-                raise RuntimeError("Klar archive is empty")
+                raise RuntimeError("Klar archive has no klar binary")
             extracted = tar.extractfile(member)
             if extracted is None:
                 raise RuntimeError("Klar archive could not be read")
             self.binary.write_bytes(extracted.read())
         self.binary.chmod(0o755)
+        (self.bindir / "version").write_text(ENGINE_VERSION, encoding="utf-8")
+
+    def _ensure_token(self) -> str:
+        path = self.bindir / "token"
+        self.bindir.mkdir(parents=True, exist_ok=True)
+        if path.is_file():
+            token = path.read_text(encoding="utf-8").strip()
+            if token:
+                return token
+        token = secrets.token_hex(16)
+        path.write_text(token, encoding="utf-8")
+        return token
 
     async def _spawn(self) -> None:
+        self.token = self._ensure_token()
         self._proc = await asyncio.create_subprocess_exec(
             str(self.binary),
             "--config-dir",
             str(self.hass.config.config_dir),
+            "--data-dir",
+            str(self.bindir),
+            "--token",
+            self.token,
             "--http",
             "127.0.0.1:10520",
             "--wyoming",
             "127.0.0.1:10500",
-            stdout=asyncio.subprocess.DEVNULL,
-            stderr=asyncio.subprocess.DEVNULL,
         )
         _LOGGER.info("Started Klar engine pid=%s", self._proc.pid)
 
@@ -157,21 +207,26 @@ class KlarEngine:
             return False
 
 
-async def async_push_personality(hass: HomeAssistant, url: str, personality: str) -> None:
+async def async_push_personality(
+    hass: HomeAssistant, url: str, personality: str, token: str | None = None
+) -> None:
     """Write the HA personality onto the engine so the Klar UI matches Assist."""
     if personality not in PERSONALITIES:
         personality = "default"
     session = async_get_clientsession(hass)
     settings_url = f"{url.rstrip('/')}/api/settings"
+    headers = {"X-Klar-Token": token} if token else {}
     try:
-        async with session.get(settings_url, timeout=ClientTimeout(total=3)) as resp:
+        async with session.get(
+            settings_url, headers=headers, timeout=ClientTimeout(total=3)
+        ) as resp:
             resp.raise_for_status()
             data = await resp.json()
         if not isinstance(data, dict):
             return
         data["personality"] = personality
         async with session.post(
-            settings_url, json=data, timeout=ClientTimeout(total=3)
+            settings_url, json=data, headers=headers, timeout=ClientTimeout(total=3)
         ) as resp:
             resp.raise_for_status()
     except (ClientError, TimeoutError, OSError) as err:

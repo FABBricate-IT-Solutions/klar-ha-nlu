@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
+from urllib.parse import urlparse
 
 import voluptuous as vol
 from homeassistant import config_entries
@@ -14,6 +15,7 @@ from .const import (
     CONF_LANGUAGES,
     CONF_MODE,
     CONF_PERSONALITY,
+    CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_PERSONALITY,
@@ -47,6 +49,7 @@ def _options_schema(advanced: bool) -> vol.Schema:
             selector.ConversationAgentSelectorConfig()
         ),
         vol.Optional(CONF_URL): str,
+        vol.Optional(CONF_TOKEN): str,
     }
     if advanced:
         fields[vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER)] = (
@@ -64,8 +67,14 @@ USER_SCHEMA = vol.Schema(
             )
         ),
         vol.Optional(CONF_URL, default=DEFAULT_URL): str,
+        vol.Optional(CONF_TOKEN): str,
     }
 )
+
+
+def _valid_engine_url(url: str) -> bool:
+    parsed = urlparse(url)
+    return parsed.scheme in {"http", "https"} and bool(parsed.netloc) and not parsed.username
 
 
 class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -80,9 +89,19 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             url = DEFAULT_URL if mode == MODE_LOCAL else (
                 user_input.get(CONF_URL) or DEFAULT_URL
             )
+            if not _valid_engine_url(url):
+                return self.async_show_form(
+                    step_id="user",
+                    data_schema=USER_SCHEMA,
+                    errors={"base": "invalid_url"},
+                )
+            data = {CONF_MODE: mode, CONF_URL: url}
+            token = (user_input.get(CONF_TOKEN) or "").strip()
+            if token:
+                data[CONF_TOKEN] = token
             return self.async_create_entry(
                 title="Klar NLU",
-                data={CONF_MODE: mode, CONF_URL: url},
+                data=data,
             )
         return self.async_show_form(step_id="user", data_schema=USER_SCHEMA)
 
@@ -122,7 +141,18 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 data[CONF_FALLBACK_AGENT] = agent
             url = (user_input.get(CONF_URL) or "").strip()
             if url:
+                if not _valid_engine_url(url):
+                    return self.async_show_form(
+                        step_id="init",
+                        data_schema=self.add_suggested_values_to_schema(
+                            _options_schema(self.show_advanced_options), user_input
+                        ),
+                        errors={"base": "invalid_url"},
+                    )
                 data[CONF_URL] = url
+            token = (user_input.get(CONF_TOKEN) or "").strip()
+            if token:
+                data[CONF_TOKEN] = token
             if CONF_ASSIST_FILTER in user_input:
                 data[CONF_ASSIST_FILTER] = bool(user_input[CONF_ASSIST_FILTER])
             else:

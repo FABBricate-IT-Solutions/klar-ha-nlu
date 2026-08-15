@@ -1,7 +1,9 @@
-use crate::compound::{is_infra, is_tv_switch, short_name_token, usable_labels, GENERIC};
+use crate::compound::{is_infra, short_name_token, usable_labels, GENERIC};
+use crate::gaps::assist_visible;
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
 use crate::normalize::{compact, fold_umlaut};
+use crate::roles::{is_light_like, matches_domain};
 use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use strsim::normalized_levenshtein;
@@ -18,8 +20,9 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     let mut candidates: Vec<(f64, EntityRec)> = home
         .entities
         .iter()
+        .filter(|e| assist_visible(e, home))
         .filter(|e| !is_infra(e))
-        .filter(|e| domain.is_none_or(|d| e.domain == d || is_tv_switch(d, e)))
+        .filter(|e| domain.is_none_or(|d| matches_domain(e, d)))
         .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
         .collect();
     if !areas.is_empty() {
@@ -57,6 +60,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         let fixtures: Vec<EntityRec> = home
             .entities
             .iter()
+            .filter(|e| assist_visible(e, home))
             .filter(|e| {
                 e.domain == "light"
                     && (e.name.to_lowercase().contains("decke")
@@ -93,7 +97,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let in_domain: Vec<EntityRec> = home
                 .entities
                 .iter()
-                .filter(|e| e.domain == d && !is_infra(e))
+                .filter(|e| matches_domain(e, d) && !is_infra(e))
                 .filter(|e| areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
                 .cloned()
                 .collect();
@@ -163,7 +167,7 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         let mut best = 0usize;
         for n in &names {
             if token_hit(tokens, n) {
-                let parts = n.split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty()).count().max(1);
+                let parts = n.split([' ', '_']).filter(|p| !p.is_empty()).count().max(1);
                 best = best.max(parts);
             }
         }
@@ -196,10 +200,10 @@ fn token_hit(tokens: &[String], label: &str) -> bool {
     }
     if label.contains(' ') || label.contains('_') {
         let glued = compact(label);
-        if glued.len() > 6 && tokens.iter().any(|t| *t == glued) {
+        if glued.len() > 6 && tokens.contains(&glued) {
             return true;
         }
-        let parts: Vec<&str> = label.split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty()).collect();
+        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty()).collect();
         return parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p)));
     }
     tokens.iter().any(|t| token_eq(t, label))
@@ -251,12 +255,7 @@ fn sort_hits(hits: &mut [(f64, EntityRec)], tokens: &[String], home: &HomeGraph)
 fn overlap(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> usize {
     usable_labels(entity, home)
         .into_iter()
-        .map(|label| {
-            fold_umlaut(&label)
-                .split(|c: char| c == ' ' || c == '_')
-                .filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p)))
-                .count()
-        })
+        .map(|label| fold_umlaut(&label).split([' ', '_']).filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p))).count())
         .max()
         .unwrap_or(0)
 }
@@ -272,7 +271,7 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
             best = best.max(if label.contains(' ') || label.contains('_') { 1.0 } else { 0.94 });
             continue;
         }
-        let parts: Vec<&str> = label.split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty() && !GENERIC.contains(p)).collect();
+        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty() && !GENERIC.contains(p)).collect();
         if parts.len() > 1 && parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p))) {
             best = best.max(0.96);
             continue;
@@ -376,14 +375,14 @@ pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Opti
     let hits: Vec<&str> = home
         .entities
         .iter()
-        .filter(|e| e.domain == domain && !is_infra(e) && e.area.as_deref() == Some(area))
+        .filter(|e| matches_domain(e, domain) && !is_infra(e) && e.area.as_deref() == Some(area))
         .map(|e| e.entity_id.as_str())
         .collect();
     (hits.len() == 1).then(|| hits[0].to_string())
 }
 
-pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool, session: &Session) -> bool {
-    if has_target || !session.last_entities.is_empty() || !session.last_areas.is_empty() {
+pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool, _session: &Session) -> bool {
+    if has_target {
         return true;
     }
     let cat = catalog();
@@ -397,6 +396,9 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
         || cat.any(tokens, &cat.media_nouns)
         || cat.any(tokens, &cat.timer_nouns)
         || cat.any(tokens, &cat.list_nouns)
+        || tokens.iter().any(|t| matches!(t.as_str(), "status" | "zustand" | "state"))
+        || ((cat.any(tokens, &cat.on_words) || cat.any(tokens, &cat.off_words))
+            && (tokens.first().is_some_and(|t| cat.is_question_start(t)) || tokens.iter().any(|t| cat.is_question_word(t))))
     {
         return true;
     }
@@ -406,8 +408,7 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
             token.len() > 3
                 && !cat.is_question_start(token)
                 && !cat.is_question_word(token)
-                && (name.split(|c: char| c == ' ' || c == '_').any(|part| part == token)
-                    || entity.aliases.iter().any(|alias| alias == token))
+                && (name.split([' ', '_']).any(|part| part == token) || entity.aliases.iter().any(|alias| alias == token))
         })
     })
 }
@@ -416,7 +417,43 @@ pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
     home.areas
         .iter()
         .filter(|area| area.area_id != "wohnung")
-        .filter(|area| home.entities.iter().any(|entity| entity.domain == "light" && entity.area.as_deref() == Some(area.area_id.as_str())))
+        .filter(|area| {
+            home.entities.iter().any(|entity| {
+                assist_visible(entity, home) && is_light_like(entity) && entity.area.as_deref() == Some(area.area_id.as_str())
+            })
+        })
         .map(|area| area.area_id.clone())
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::types::{AreaRec, EntityRec, HomeGraph};
+
+    fn lamp(id: &str, name: &str, area: &str) -> EntityRec {
+        EntityRec {
+            entity_id: id.into(),
+            name: name.into(),
+            domain: "light".into(),
+            area: Some(area.into()),
+            aliases: vec![name.to_ascii_lowercase()],
+            tags: Vec::new(),
+        }
+    }
+
+    #[test]
+    fn resolve_skips_entities_not_exposed_to_assist() {
+        let mut home = HomeGraph {
+            areas: vec![AreaRec { area_id: "kuche".into(), name: "Küche".into(), aliases: vec!["kueche".into()] }],
+            entities: vec![lamp("light.hidden", "Geheimlampe", "kuche"), lamp("light.kuche_kuche", "Deckenlampe", "kuche")],
+            assist: Some(["light.kuche_kuche".into()].into()),
+            ..Default::default()
+        };
+        let hit = resolve(&["deckenlampe".into()], &home, Some("light"));
+        assert_eq!(hit.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["light.kuche_kuche"]);
+        home.assist = Some(["light.hidden".into()].into());
+        let hidden_only = resolve(&["geheimlampe".into()], &home, Some("light"));
+        assert_eq!(hidden_only.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["light.hidden"]);
+    }
 }

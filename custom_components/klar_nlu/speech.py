@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Any
 
 _ACTION = {
-    "HassTurnOn": {"de": "Schalte {where} ein.", "en": "Turn on {where}."},
-    "HassTurnOff": {"de": "Schalte {where} aus.", "en": "Turn off {where}."},
-    "HassToggle": {"de": "Schalte {where} um.", "en": "Toggle {where}."},
-    "HassLightSet": {"de": "Setze {where}.", "en": "Set {where}."},
+    "HassTurnOn": {"de": "{where} ist an.", "en": "{where} is on."},
+    "HassTurnOff": {"de": "{where} ist aus.", "en": "{where} is off."},
+    "HassToggle": {"de": "{where} ist umgeschaltet.", "en": "{where} is toggled."},
+    "HassLightSet": {"de": "{where} auf {level}.", "en": "{where} is at {level}."},
 }
 
 _DE_STATE = {
@@ -73,7 +73,7 @@ def from_handled(handled: Any, pack: str, item: dict) -> str | None:
     template = (_ACTION.get(name) or {}).get(pack)
     if template:
         where = _pretty_where(handled, item, pack)
-        return template.format(where=where)
+        return template.format(where=where, level=_level(item, pack))
     text = _plain_speech(handled)
     if text:
         if pack == "de":
@@ -194,30 +194,63 @@ def _drop_prefixes(names: list[str]) -> list[str]:
 
 
 def _pretty_where(handled: Any, item: dict, pack: str) -> str:
+    slots = _slots(item)
+    entity_id = str(slots.get("entity_id") or "")
     names = [
-        str(getattr(target, "name", None) or getattr(target, "id", "") or "")
+        _spoken_device(
+            str(getattr(target, "name", None) or ""),
+            str(getattr(target, "id", None) or entity_id),
+            pack,
+        )
         for target in getattr(handled, "success_results", None) or []
     ]
-    names = _drop_prefixes([_compound_light(name) for name in names if name])
+    names = _drop_prefixes([name for name in names if name])
     if names:
         return (" und " if pack == "de" else " and ").join(names)
-    raw = _where(handled, item)
+    raw = str(slots.get("name") or slots.get("area") or "")
+    if raw and "." not in raw:
+        return _spoken_device(raw, entity_id, pack)
+    if entity_id:
+        return _spoken_device("", entity_id, pack)
     if raw:
-        return _compound_light(raw.replace("_", " "))
-    return "home" if pack == "en" else "Zuhause"
+        return _spoken_device(_humanize(raw), entity_id, pack)
+    return "Zuhause" if pack == "de" else "home"
 
 
-def _where(handled: Any, item: dict) -> str:
-    names = [
-        str(getattr(target, "name", None) or getattr(target, "id", "") or "")
-        for target in getattr(handled, "success_results", None) or []
-    ]
-    names = [name for name in names if name]
-    if names:
-        return ", ".join(dict.fromkeys(names))
-    slots = {
-        slot["name"]: slot["value"]
+def _slots(item: dict) -> dict[str, str]:
+    return {
+        str(slot["name"]): str(slot.get("value") or "")
         for slot in item.get("slots") or []
         if isinstance(slot, dict) and slot.get("name")
     }
-    return str(slots.get("area") or slots.get("name") or slots.get("entity_id") or "")
+
+
+def _level(item: dict, pack: str) -> str:
+    slots = _slots(item)
+    bri = slots.get("brightness") or slots.get("percentage") or ""
+    if not bri:
+        return "die neue Stufe" if pack == "de" else "the new level"
+    return f"{bri} Prozent" if pack == "de" else f"{bri} percent"
+
+
+def _humanize(raw: str) -> str:
+    text = str(raw).strip()
+    if "." in text and " " not in text:
+        text = text.split(".", 1)[-1]
+    return text.replace("_", " ")
+
+
+def _spoken_device(name: str, entity_id: str, pack: str) -> str:
+    domain = entity_id.split(".", 1)[0] if "." in entity_id else ""
+    pretty = _compound_light((name or _humanize(entity_id)).strip())
+    if pretty == entity_id or pretty.startswith(f"{domain}."):
+        pretty = _compound_light(_humanize(entity_id))
+    folded = pretty.lower().replace(" ", "")
+    light_word = any(
+        token in folded for token in ("licht", "lampe", "leuchte", "light", "lamp", "kugel")
+    )
+    if domain == "light" and pretty and not light_word:
+        pretty = f"{pretty} light" if pack == "en" else f"{pretty}licht"
+    if pretty:
+        return pretty[:1].upper() + pretty[1:]
+    return pretty

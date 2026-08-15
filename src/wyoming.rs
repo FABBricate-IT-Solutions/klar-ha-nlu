@@ -62,7 +62,7 @@ async fn handle(
                             "languages": languages,
                             "attribution": {
                                 "name": "Klar NLU",
-                                "url": "https://github.com/klar-nlu/klar"
+                                "url": "https://github.com/FABBricate-IT-Solutions/klar-ha-nlu"
                             }
                         }]
                     }),
@@ -71,11 +71,16 @@ async fn handle(
             }
             "recognize" => {
                 let text = event.pointer("/data/text").and_then(|v| v.as_str()).unwrap_or("").to_string();
+                let conversation_id = event
+                    .pointer("/data/conversation_id")
+                    .or_else(|| event.pointer("/data/context/id"))
+                    .or_else(|| event.pointer("/data/context/conversation_id"))
+                    .and_then(|v| v.as_str());
                 let home = home.lock().await.clone();
                 let settings = settings.lock().await.clone();
                 let custom = custom.lock().await.clone();
                 let mut sessions = sessions.lock().await;
-                let session = sessions.get_or_create(None);
+                let session = sessions.get_or_create(conversation_id);
                 let result = parse(&text, &home, session, &custom, &settings);
                 if result.intents.is_empty() {
                     write_event(&mut writer, "not-recognized", json!({ "text": result.speech })).await?;

@@ -43,7 +43,8 @@ jobs:
             version="$(python3 scripts/bump-version.py next)"
           fi
           version="$(tr -d '[:space:]' <<<"$version")"
-          tag="v$version"
+          version="${version#v}"
+          tag="$version"
           if git rev-parse "refs/tags/$tag" >/dev/null 2>&1; then
             echo "Tag $tag already exists — nothing to release" >&2
             exit 1
@@ -74,15 +75,8 @@ jobs:
           sha="$(git rev-parse HEAD)"
           git push origin "HEAD:refs/heads/${branch}"
 
-          # GITHUB_TOKEN cannot open PRs while the org forbids it. A token push
-          # also does not start other workflows, so kick CI off ourselves.
-          if gh pr create \
-            --title "chore(release): prepare for ${TAG}" \
-            --body "Prepares ${TAG}. Auto-merge waits for required checks, then the tag job publishes the GitHub Release."; then
-            gh pr merge --squash --auto --delete-branch
-            exit 0
-          fi
-
+          # GITHUB_TOKEN PRs do not start required checks. Dispatch CI ourselves,
+          # fast-forward main, and tag in this job.
           gh workflow run CI --ref "$branch"
           gh workflow run Security --ref "$branch"
           gh workflow run Validate --ref "$branch"
@@ -140,7 +134,8 @@ jobs:
         env:
           MESSAGE: ${{ github.event.head_commit.message }}
         run: |
-          tag="$(sed -n 's/^chore(release): prepare for \(v[0-9][0-9.]*\).*/\1/p' <<<"$MESSAGE" | head -1)"
+          tag="$(sed -n 's/^chore(release): prepare for \(v\?[0-9][0-9.]*\).*/\1/p' <<<"$MESSAGE" | head -1)"
+          tag="${tag#v}"
           if [[ -z "$tag" ]]; then
             echo "Commit is not a versioned release prepare" >&2
             exit 0
