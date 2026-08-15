@@ -13,7 +13,7 @@ use crate::parse_slots::{
     all_lights_clause, fill_intent, intent_from_action, intent_with_entity, laundry_switch_clause, pick_singular_lamp, timer_clause,
     ReadyClause,
 };
-use crate::resolve::{domain_hint, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
+use crate::resolve::{climates_of_kind, domain_hint, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
 use crate::respond::{speak, speak_clarify, speak_correction, speak_need_target, speak_unknown};
 use crate::session::Session;
 use crate::split::{follow_fixture, implied_domain, split_clauses, wants_group_clarify};
@@ -414,8 +414,15 @@ fn parse_clause(
         }
         intents.push(fill_intent(action, tokens, number, None, None, domain));
     } else if matches!(action, Action::SetTemp) {
-        let id = home.entities.iter().find(|e| e.entity_id == "climate.upper_thermostat").map(|e| e.entity_id.as_str());
-        intents.push(fill_intent(action, tokens, number, id, None, Some("climate")));
+        let hits = climates_of_kind(home, tokens);
+        if hits.len() == 1 {
+            intents.push(fill_intent(action, tokens, number, Some(&hits[0]), None, Some("climate")));
+        } else if hits.len() > 1 {
+            return ClauseOut::Clarify(hits, intent_from_action(action, tokens).with("domain", "climate"));
+        } else {
+            let id = home.entities.iter().find(|e| e.entity_id == "climate.upper_thermostat").map(|e| e.entity_id.as_str());
+            intents.push(fill_intent(action, tokens, number, id, None, Some("climate")));
+        }
     } else if matches!(action, Action::CoverClose | Action::CoverOpen)
         && tokens.iter().any(|t| catalog().curtain_nouns.contains(t.as_str()))
     {
