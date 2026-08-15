@@ -46,6 +46,7 @@ class NewsTests(unittest.TestCase):
 
     def test_asked_for_more(self) -> None:
         self.assertTrue(news.asked_for_more("Möchtest du zu einer mehr erfahren?"))
+        self.assertTrue(news.asked_for_more("Möchten Sie mehr über eine dieser Meldungen erfahren?"))
         self.assertTrue(news.asked_for_more("Would you like to hear more?"))
         self.assertFalse(news.asked_for_more("Hier die drei wichtigsten Meldungen."))
 

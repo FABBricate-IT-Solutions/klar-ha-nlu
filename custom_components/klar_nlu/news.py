@@ -32,8 +32,13 @@ _NUDGE = {
 
 _ASKED = (
     "möchtest du",
+    "möchten sie",
+    "moechten sie",
     "willst du",
+    "wollen sie",
     "mehr erfahren",
+    "mehr über",
+    "mehr ueber",
     "mehr hören",
     "soll ich",
     "would you like",
