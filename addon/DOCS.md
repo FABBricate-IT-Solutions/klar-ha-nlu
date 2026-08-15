@@ -7,6 +7,7 @@ Starts the Klar engine next to Home Assistant. The conversation integration is i
 1. Install **Klar NLU** via HACS (category Integration).
 2. Add the integration and choose **Use an engine that is already running**.
 3. URL: `http://klar-nlu:10520`
+4. In the integration options: personality, optional chit-chat agent, optional **Let the LLM refine NLU replies**. Assist’s conversation engine must stay **Klar NLU**.
 
 UI: `http://<home-assistant-host>:10520`
 

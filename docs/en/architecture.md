@@ -17,6 +17,8 @@ Text
   → speak                   short confirmation
 ```
 
+In Home Assistant the spoken line can get a personality cue and, if enabled, an LLM rewrite (`custom_components/klar_nlu/refine.py`). The engine itself stays rule-based.
+
 `parse()` in `src/parse.rs` is the entry point. Before parsing, Klar binds the packs listed in `Settings.languages` (`de`, `en`, …).
 
 ## Layers
@@ -61,5 +63,5 @@ Slots: `entity_id`, `area`, `domain`, plus `brightness`, `temperature`, `positio
 ## Limits
 
 - No general world knowledge. “Tell me a joke” stays empty — in HA the fallback agent takes over.
-- No tools in the engine. Devices run only through recognized intents.
+- No tools in the engine. Devices run only through recognized intents. An optional LLM in HA may rewrite the finished confirmation; it does not get Assist tools for that step.
 - Files stay under 500 lines; a new language is a new pack, not a longer `match` list.

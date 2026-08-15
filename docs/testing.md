@@ -44,3 +44,15 @@ Das Skript übersetzt `family_home_en` nach `familienhaus_de` inklusive `home_co
 - `ein` ist kein Zahlenwert 1
 
 Eine Änderung an `src/lang/de.rs` oder `en.rs` ohne Suite-Lauf ist unvollständig. Die Listen sind die Tests.
+
+## Home-Assistant-Helfer
+
+Stdlib-Tests, ohne installiertes Home Assistant:
+
+```bash
+python3 tests/test_refine.py
+python3 tests/test_speech.py
+python3 tests/test_fallback.py
+```
+
+`test_refine.py` hält die Prompts pro Persönlichkeit, die Zahlen-/Faktenwachen und dass Sprechformel und Refine-Stimme zusammenpassen.

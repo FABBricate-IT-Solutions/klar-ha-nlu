@@ -9,7 +9,7 @@ Zwei Schnittstellen: HTTP auf Port **10520**, Wyoming auf **10500**.
 ### `POST /api/parse`
 
 ```json
-{ "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id", "language": "de" }
+{ "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id", "language": "de", "personality": "butler" }
 ```
 
 Antwort:
@@ -33,6 +33,8 @@ Antwort:
 ```
 
 `language` ist optional (`de`, `en` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket — Assist kann so zwischen Deutsch und Englisch umschalten. `speech` folgt dem gesetzten Paket.
+
+`personality` ist optional und setzt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung dieses Satzes liegt in der HA-Integration, nicht auf diesem Endpunkt.
 
 `clarify: true` bedeutet: keine Intents ausführen, die Frage in `speech` vorlesen, dieselbe `conversation_id` für die Antwort behalten.
 

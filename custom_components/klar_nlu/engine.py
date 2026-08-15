@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .archive import require_sha256
-from .const import DEFAULT_URL, ENGINE_VERSION, GITHUB_REPO, PERSONALITIES
+from .const import DEFAULT_URL, ENGINE_VERSION, GITHUB_REPO, resolve_personality
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -215,8 +215,7 @@ async def async_push_personality(
     hass: HomeAssistant, url: str, personality: str, token: str | None = None
 ) -> None:
     """Write the HA personality onto the engine so the Klar UI matches Assist."""
-    if personality not in PERSONALITIES:
-        personality = "default"
+    personality = resolve_personality(personality)
     session = async_get_clientsession(hass)
     settings_url = f"{url.rstrip('/')}/api/settings"
     headers = {"X-Klar-Token": token} if token else {}
