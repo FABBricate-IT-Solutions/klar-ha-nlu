@@ -46,7 +46,7 @@ async fn main() {
     let token =
         resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
     if token.is_none() {
-        tracing::warn!("Kein Token: HTTP-API nur von localhost");
+        tracing::warn!("Kein Token: HTTP-API nur von localhost und dem Supervisor-Netz");
     }
     let mut home = load_home(&args.config_dir, default_home());
     let config_overlay = load_overlay(&args.config_dir);

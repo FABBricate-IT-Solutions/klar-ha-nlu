@@ -9,7 +9,7 @@ use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
-use std::net::SocketAddr;
+use std::net::{IpAddr, SocketAddr};
 use std::path::PathBuf;
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -69,8 +69,30 @@ pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Opt
     request_token(headers) == Some(expected)
 }
 
+pub fn reads_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
+    writes_allowed(peer, headers, token) || peer.is_some_and(|addr| supervisor_peer(addr.ip()))
+}
+
+fn supervisor_peer(ip: IpAddr) -> bool {
+    match ip {
+        IpAddr::V4(v4) => {
+            let oct = v4.octets();
+            oct[0] == 172 && oct[1] == 30 && (oct[2] == 32 || oct[2] == 33)
+        }
+        IpAddr::V6(_) => false,
+    }
+}
+
 fn gate(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
     if writes_allowed(Some(peer), headers, token) {
+        Ok(())
+    } else {
+        Err(StatusCode::UNAUTHORIZED)
+    }
+}
+
+fn read_gate(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
+    if reads_allowed(Some(peer), headers, token) {
         Ok(())
     } else {
         Err(StatusCode::UNAUTHORIZED)
@@ -83,7 +105,7 @@ async fn api_parse(
     headers: HeaderMap,
     Json(body): Json<ParseIn>,
 ) -> Result<Json<ParseOut>, StatusCode> {
-    gate(peer, &headers, &state.token)?;
+    read_gate(peer, &headers, &state.token)?;
     if body.text.chars().count() > MAX_PARSE_CHARS {
         return Err(StatusCode::PAYLOAD_TOO_LARGE);
     }
@@ -122,7 +144,7 @@ async fn get_settings(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
 ) -> Result<Json<Settings>, StatusCode> {
-    gate(peer, &headers, &state.token)?;
+    read_gate(peer, &headers, &state.token)?;
     Ok(Json(state.settings.lock().await.clone()))
 }
 
@@ -145,7 +167,7 @@ async fn get_custom(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
 ) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
-    gate(peer, &headers, &state.token)?;
+    read_gate(peer, &headers, &state.token)?;
     Ok(Json(state.custom.lock().await.clone()))
 }
 
@@ -171,7 +193,7 @@ async fn get_entities(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
 ) -> Result<Json<Vec<EntityRec>>, StatusCode> {
-    gate(peer, &headers, &state.token)?;
+    read_gate(peer, &headers, &state.token)?;
     let home = state.home.lock().await;
     Ok(Json(home.entities.iter().filter(|e| assist_visible(e, &home)).cloned().collect()))
 }
@@ -188,7 +210,7 @@ async fn get_gaps(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
 ) -> Result<Json<GapsOut>, StatusCode> {
-    gate(peer, &headers, &state.token)?;
+    read_gate(peer, &headers, &state.token)?;
     let home = state.home.lock().await.clone();
     Ok(Json(GapsOut { leftover: leftover(&home), rooms: home.areas, overlay: load_overlay(&state.data_dir) }))
 }
@@ -288,10 +310,20 @@ mod tests {
     #[test]
     fn lan_parse_needs_token() {
         let peer = "10.0.0.8:9".parse().unwrap();
-        assert!(!writes_allowed(Some(peer), &HeaderMap::new(), &Some("secret".into())));
+        assert!(!reads_allowed(Some(peer), &HeaderMap::new(), &Some("secret".into())));
         let mut headers = HeaderMap::new();
         headers.insert("x-klar-token", "secret".parse().unwrap());
-        assert!(writes_allowed(Some(peer), &headers, &Some("secret".into())));
+        assert!(reads_allowed(Some(peer), &headers, &Some("secret".into())));
+    }
+
+    #[test]
+    fn supervisor_parse_without_token() {
+        let core = "172.30.32.1:9".parse().unwrap();
+        let addon = "172.30.33.4:9".parse().unwrap();
+        assert!(reads_allowed(Some(core), &HeaderMap::new(), &None));
+        assert!(reads_allowed(Some(addon), &HeaderMap::new(), &Some("secret".into())));
+        assert!(!writes_allowed(Some(core), &HeaderMap::new(), &None));
+        assert!(!reads_allowed(Some("10.0.0.8:9".parse().unwrap()), &HeaderMap::new(), &None));
     }
 
     #[test]
