@@ -1,0 +1,39 @@
+- name: dining_lamps_on
+  conditions:
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn on the dining room lamps'
+    - 'Dining room lights on'
+    - 'Please turn on the lights in the dining room'
+
+- name: office_lights_off
+  conditions:
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn off the office lights'
+    - 'Office lighting off'
+
+- name: kitchen_to_blue
+  conditions:
+    - type: action
+      area: kuche
+      domain: light
+      attributes:
+        color: blue
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - blau
+  speech_forbids:
+    - 'percent'
+    - '?'
+  sentences:
+    - 'Set the kitchen lights to blue'
+    - 'Kitchen lights to blue'

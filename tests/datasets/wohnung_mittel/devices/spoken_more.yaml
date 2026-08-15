@@ -1,0 +1,44 @@
+- name: kugel_casual
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.schlafzimmer_decke
+  sentences:
+    - 'Bitte die Kugel an'
+    - 'Kannst du die Kugel anmachen'
+    - 'Mach mal die Kugel an'
+
+- name: decke_aus_casual
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+  forbid:
+    - light.schlafzimmer_kugel
+    - light.alle_lichter
+  sentences:
+    - 'Mach mal die Decke aus'
+    - 'Bitte die Deckenlampe aus'
+    - 'Kannst du die Deckenlampe ausmachen'
+
+- name: spuelmaschine_an
+  conditions:
+    - {type: action, entity_id: switch.kuche_spulmaschine, state: 'on'}
+  sentences:
+    - 'Spülmaschine an'
+    - 'Mach die Spülmaschine an'
+    - 'Schalt die Spülmaschine ein'
+
+- name: waschmaschine_aus
+  conditions:
+    - {type: action, entity_id: switch.badezimmer_waschmaschine, state: 'off'}
+  sentences:
+    - 'Waschmaschine aus'
+    - 'Mach die Waschmaschine aus'
+
+- name: pc_aus
+  conditions:
+    - {type: action, entity_id: switch.pc_steckdose, state: 'off'}
+  sentences:
+    - 'PC aus'
+    - 'Mach den PC aus'
+    - 'Schalt den PC aus'

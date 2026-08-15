@@ -13,6 +13,7 @@
     - 'Turn off the living room lights'
     - 'Living room lights off'
     - 'Switch off the lights in the living room'
+    - 'Turn off the livingrom lights'
 
 - name: all_lights_off
   conditions:
@@ -20,3 +21,152 @@
   sentences:
     - 'Turn off all lights'
     - 'All lights off'
+    - 'Turn off every lamp'
+    - 'Turn off the entire lighting'
+
+- name: all_lights_on
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'on'}
+  sentences:
+    - 'Turn on all lights'
+    - 'Turn on every light'
+    - 'Turn on the whole lights'
+    - 'Switch on the entire lighting'
+
+- name: bedroom_to_red
+  conditions:
+    - type: action
+      area: schlafzimmer
+      domain: light
+      attributes:
+        color: red
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - rot
+  speech_forbids:
+    - 'percent'
+    - '?'
+  sentences:
+    - 'Set the bedroom lights to red'
+    - 'Bedroom lights to red'
+    - 'Bedrooms light to red'
+
+- name: bedroom_to_blue
+  conditions:
+    - type: action
+      area: schlafzimmer
+      domain: light
+      attributes:
+        color: blue
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - blau
+  speech_forbids:
+    - 'percent'
+    - '?'
+  sentences:
+    - 'Set the bedroom lights to blue'
+    - 'Bedroom lights to blue'
+
+- name: all_except_globe
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_licht, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Turn off all lights except the globe'
+    - 'All lights off except Kugel'
+    - 'Turn off all lights but not the globe'
+    - 'Turn off all lights except for the globe'
+    - 'Turn off every light except the globe'
+
+- name: all_except_bedroom
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn off all lights except the bedroom'
+    - 'All lights off except the bedroom'
+    - 'Turn off all lights but not the bedroom'
+    - 'Turn off all lights except for the bedroom'
+
+- name: all_on_except_globe
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'on'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'on'}
+    - {type: action, entity_id: light.schlafzimmer_licht, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Turn on all lights except the globe'
+    - 'All lights on but not the globe'
+
+- name: all_red_except_globe
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: kuche
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: arbeitszimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      entity_id: light.schlafzimmer_decke
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      entity_id: light.schlafzimmer_licht
+      domain: light
+      attributes:
+        color: red
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  speech_has:
+    - rot
+  speech_forbids:
+    - 'percent'
+    - '?'
+  sentences:
+    - 'Set all lights to red except the globe'
+    - 'All lights to red except the globe'

@@ -1,0 +1,14 @@
+- name: status_living_light
+  conditions:
+    - {type: query, area: wohnzimmer, domain: light}
+  sentences:
+    - 'Is the living room light on'
+    - "What's the status of the living room lights"
+    - 'Living room light status'
+
+- name: status_kitchen_light
+  conditions:
+    - {type: query, area: kuche, domain: light}
+  sentences:
+    - 'Is the kitchen light on'
+    - 'Kitchen light status'

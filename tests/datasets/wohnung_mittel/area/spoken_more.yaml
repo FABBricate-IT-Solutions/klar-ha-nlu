@@ -1,0 +1,115 @@
+- name: esszimmer_lichte_an
+  conditions:
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Esszimmer Lichte an'
+    - 'Dicht im Esszimmer an'
+    - 'Lampen im Esszimmer an'
+    - 'Mach bitte das Licht im Esszimmer an'
+
+- name: arbeitszimmer_lampen_aus
+  conditions:
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Arbeitszimmer Lampen aus'
+    - 'Dicht im Arbeitszimmer aus'
+    - 'Lichte im Büro aus'
+    - 'Bitte Licht im Arbeitszimmer aus'
+
+- name: wohnzimmer_gelb
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: yellow
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Wohnzimmer Licht auf Gelb'
+    - 'Licht im Wohnzimmer auf gelb'
+
+- name: kuche_blau
+  conditions:
+    - type: action
+      area: kuche
+      domain: light
+      attributes:
+        color: blue
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - blau
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Küche Licht auf Blau'
+    - 'Licht in der Küche auf blau'
+
+- name: esszimmer_30
+  conditions:
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        brightness: 30
+  sentences:
+    - 'Esszimmer Helligkeit 30'
+    - 'Licht im Esszimmer auf 30 Prozent'
+    - 'Dimme das Esszimmer auf 30'
+
+- name: kuche_80
+  conditions:
+    - type: action
+      area: kuche
+      domain: light
+      attributes:
+        brightness: 80
+  sentences:
+    - 'Küche auf 80 Prozent'
+    - 'Licht in der Küche auf 80'
+
+- name: alle_ausser_arbeitszimmer
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+  forbid:
+    - arbeitszimmer
+    - light.arbeitszimmer
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Alle Lichter außer Arbeitszimmer aus'
+    - 'Alle Lichte außer dem Arbeitszimmer aus'
+    - 'Alle Lampen aus außer dem Büro'
+
+- name: ueberall_ausser_schlaf_stt
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Überall die Lichter aus außer dem Schlafzimmer'
+    - 'Alle Lampen außer Schlafzimmer aus'
+    - 'Alle Dicht außer Schlafzimmer aus'

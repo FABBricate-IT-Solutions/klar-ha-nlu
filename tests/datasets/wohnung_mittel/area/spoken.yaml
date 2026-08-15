@@ -1,0 +1,146 @@
+- name: stt_licht_wohnzimmer_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Dicht im Wohnzimmer aus'
+    - 'Mach das Dicht im Wohnzimmer aus'
+    - 'Lichte im Wohnzimmer aus'
+    - 'Wohnzimmer Lichte aus'
+    - 'Wohnzimmer Lampen aus'
+    - 'Wohnzimmers Licht aus'
+    - 'Mach mal das Licht im Wohnzimmer aus'
+    - 'Bitte Licht Wohnzimmer aus'
+    - 'Beleuchtung im Wohnzimmer aus'
+    - 'Wohnzimer Licht aus'
+    - 'Licht im Wohnzimer aus'
+
+- name: stt_licht_wohnzimmer_an
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Dicht im Wohnzimmer an'
+    - 'Lichte Wohnzimmer an'
+    - 'Wohnzimmer Beleuchtung an'
+    - 'Mach bitte das Licht im Wohnzimmer an'
+    - 'Kannst du mal das Licht im Wohnzimmer anmachen'
+
+- name: stt_kuche_lichte
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Dicht in der Küche aus'
+    - 'Küche Lichte aus'
+    - 'Kuche Licht aus'
+    - 'Lampen in der Küche aus'
+
+- name: stt_schlafzimmer_dativ
+  conditions:
+    - {type: action, area: schlafzimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Lichte im Schlafzimmer aus'
+    - 'Dicht im Schlafzimmer aus'
+    - 'Schlafzimer Lichte aus'
+
+- name: alle_lampen_aus
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'off'}
+  sentences:
+    - 'Alle Lampen aus'
+    - 'Überall Lichte aus'
+    - 'Mach überall die Lichter aus'
+    - 'Alle Dicht aus'
+    - 'Überall Dicht aus'
+    - 'Alle Beleuchtung aus'
+    - 'Die ganzen Lichter aus'
+    - 'Sämtliche Lichte aus'
+    - 'Gesamte Beleuchtung aus'
+
+- name: alle_ganzen_an
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'on'}
+  sentences:
+    - 'Mach die ganzen Lichter an'
+    - 'Die ganzen Lampen an'
+    - 'Mach mal die ganzen Lichter an'
+    - 'Bitte sämtliche Lichter an'
+
+- name: alle_ausser_kugel_stt
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_licht, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Alle Lichte aus außer der Kugel'
+    - 'Alle Dicht aus außer der Kugel'
+    - 'Alle Lampen aus ohne die Kugel'
+
+- name: alle_ausser_schlaf_stt
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Alle Lichte außer Schlafzimmer aus'
+    - 'Alle Dicht außer Schlafzimmer aus'
+    - 'Alle Lampen außer dem Schlafzimmer aus'
+
+- name: wohnzimmer_gruen
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: green
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Wohnzimmer Licht auf Grün'
+    - 'Licht im Wohnzimmer auf grün'
+
+- name: esszimmer_weiss
+  conditions:
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        color: white
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Esszimmer Licht auf Weiß'
+    - 'Licht im Esszimmer auf weiss'

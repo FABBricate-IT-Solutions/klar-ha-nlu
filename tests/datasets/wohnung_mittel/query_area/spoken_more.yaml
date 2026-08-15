@@ -1,0 +1,21 @@
+- name: brennt_esszimmer
+  conditions:
+    - {type: query, area: esszimmer, domain: light}
+  sentences:
+    - 'Brennt das Licht im Esszimmer'
+    - 'Ist im Esszimmer Licht an'
+    - 'Esszimmer Licht Status'
+
+- name: brennt_arbeitszimmer
+  conditions:
+    - {type: query, area: arbeitszimmer, domain: light}
+  sentences:
+    - 'Brennt das Licht im Arbeitszimmer'
+    - 'Ist das Licht im Büro an'
+
+- name: status_licht_schlaf_casual
+  conditions:
+    - {type: query, area: schlafzimmer, domain: light}
+  sentences:
+    - 'Brennt das Licht im Schlafzimmer'
+    - 'Schlafzimmer Licht Status'

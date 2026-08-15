@@ -1,0 +1,46 @@
+- name: drei_raeume_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Licht Wohnzimmer Küche und Esszimmer aus'
+    - 'Wohnzimmer, Küche und Esszimmer Licht aus'
+    - 'Mach Wohnzimmer Esszimmer und Küche Licht aus'
+
+- name: drei_raeume_an
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+    - {type: action, area: kuche, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Licht Wohnzimmer Küche und Esszimmer an'
+    - 'Wohnzimmer, Küche und Esszimmer Licht an'
+
+- name: ess_und_wohn_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Ess und Wohnzimmer lichte aus'
+    - 'Esszimmer und Wohnzimmer Dicht aus'
+
+- name: kugel_und_decke_aus
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+  forbid:
+    - light.alle_lichter
+  sentences:
+    - 'Kugel und Deckenlampe aus'
+    - 'Mach Kugel und Decke aus'
+    - 'Schalt die Kugel und die Deckenlampe aus'

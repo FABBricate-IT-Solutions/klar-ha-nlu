@@ -1,4 +1,4 @@
-use klar_nlu::lexicon::default_home;
+use klar_nlu::home::default_home;
 use klar_nlu::parse::parse;
 use klar_nlu::session::Session;
 use klar_nlu::types::Settings;

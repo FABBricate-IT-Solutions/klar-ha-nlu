@@ -355,3 +355,122 @@ fn wohnzimmer_temperatur_ist_klima() {
     assert_eq!(slot(&found, "area"), Some("wohnzimmer"), "{found:?}");
     assert!(slot(&found, "entity_id").is_none_or(|id| id.starts_with("climate.")), "{found:?}");
 }
+
+fn parse_live(text: &str) -> klar_nlu::types::ParseResult {
+    parse(text, &home(), &mut Session::new(), &[], &Settings::default())
+}
+
+fn intent_targets(result: &klar_nlu::types::ParseResult) -> Vec<(String, Option<String>, Option<String>)> {
+    result
+        .intents
+        .iter()
+        .map(|intent| {
+            let entity = intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.clone());
+            let area = intent.slots.iter().find(|s| s.name == "area").map(|s| s.value.clone());
+            (intent.name.clone(), entity, area)
+        })
+        .collect()
+}
+
+#[test]
+fn wohn_und_esszimmer_lichte_aus_sind_beide_raeume() {
+    let text = "Wohn und Esszimmer lichte aus";
+    let result = parse_live(text);
+    assert!(!result.clarify, "{text}: {}", result.speech);
+    let targets = intent_targets(&result);
+    assert_eq!(targets.len(), 2, "{text}: {targets:?}");
+    assert!(targets.iter().all(|(name, _, _)| name == "HassTurnOff"), "{text}: {targets:?}");
+    let rooms: Vec<&str> = targets.iter().filter_map(|(_, entity, area)| entity.as_deref().or(area.as_deref())).collect();
+    assert!(rooms.contains(&"light.wohnzimmer") || rooms.contains(&"wohnzimmer"), "{text}: {targets:?}");
+    assert!(rooms.contains(&"light.esszimmer") || rooms.contains(&"esszimmer"), "{text}: {targets:?}");
+    assert!(!rooms.contains(&"light.wohn_und_esszimmer") && !rooms.contains(&"light.alle_lichter"), "{text}: {targets:?}");
+}
+
+#[test]
+fn alle_lichter_aus_ausser_der_kugel() {
+    let text = "Alle Lichter aus außer der Kugel";
+    let result = parse_live(text);
+    assert!(!result.clarify, "{text}: {}", result.speech);
+    let targets = intent_targets(&result);
+    assert!(targets.iter().all(|(name, _, _)| name == "HassTurnOff"), "{text}: {targets:?}");
+    let ids: Vec<&str> = targets.iter().filter_map(|(_, entity, _)| entity.as_deref()).collect();
+    let areas: Vec<&str> = targets.iter().filter_map(|(_, _, area)| area.as_deref()).collect();
+    assert!(!ids.contains(&"light.alle_lichter"), "{text}: {targets:?}");
+    assert!(!ids.contains(&"light.wohn_und_esszimmer"), "{text}: {targets:?}");
+    assert!(!ids.contains(&"light.schlafzimmer"), "{text}: {targets:?}");
+    assert!(!ids.contains(&"light.hue_color_lamp_2"), "{text}: {targets:?}");
+    assert!(ids.contains(&"light.wohnzimmer") || areas.contains(&"wohnzimmer"), "{text}: {targets:?}");
+    assert!(ids.contains(&"light.esszimmer") || areas.contains(&"esszimmer"), "{text}: {targets:?}");
+    assert!(ids.contains(&"light.schlafzimmer_licht") || ids.contains(&"light.schlafzimmer_ambilight"), "{text}: {targets:?}");
+}
+
+#[test]
+fn alle_lichter_ausser_schlafzimmer_aus() {
+    let text = "Alle Lichter außer Schlafzimmer ausschalten";
+    let result = parse_live(text);
+    assert!(!result.clarify, "{text}: {}", result.speech);
+    let targets = intent_targets(&result);
+    assert!(targets.iter().all(|(name, _, _)| name == "HassTurnOff"), "{text}: {targets:?}");
+    let ids: Vec<&str> = targets.iter().filter_map(|(_, entity, _)| entity.as_deref()).collect();
+    let areas: Vec<&str> = targets.iter().filter_map(|(_, _, area)| area.as_deref()).collect();
+    assert!(!ids.contains(&"light.alle_lichter"), "{text}: {targets:?}");
+    assert!(!areas.contains(&"schlafzimmer"), "{text}: {targets:?}");
+    assert!(!ids.iter().any(|id| id.contains("schlafzimmer") || *id == "light.hue_color_lamp_2"), "{text}: {targets:?}");
+    assert!(ids.contains(&"light.wohnzimmer") || areas.contains(&"wohnzimmer"), "{text}: {targets:?}");
+    assert!(ids.contains(&"light.esszimmer") || areas.contains(&"esszimmer"), "{text}: {targets:?}");
+}
+
+#[test]
+fn schlafzimmern_licht_auf_rot() {
+    let text = "Schlafzimmern Licht auf Rot";
+    let result = parse_live(text);
+    assert!(!result.clarify, "{text}: {}", result.speech);
+    let targets = intent_targets(&result);
+    assert_eq!(targets.len(), 1, "{text}: {targets:?}");
+    assert_eq!(targets[0].0, "HassLightSet", "{text}: {targets:?}");
+    let entity = targets[0].1.as_deref();
+    let area = targets[0].2.as_deref();
+    assert!(
+        area == Some("schlafzimmer") || entity == Some("light.schlafzimmer") || entity == Some("light.hue_color_lamp_2"),
+        "{text}: {targets:?}"
+    );
+    assert_ne!(entity, Some("light.alle_lichter"), "{text}: {targets:?}");
+    let color = result.intents[0].slots.iter().find(|s| s.name == "color").map(|s| s.value.as_str());
+    assert_eq!(color, Some("red"), "{text}: {:?}", result.intents);
+    assert!(result.speech.to_lowercase().contains("rot"), "{text}: {}", result.speech);
+    assert!(!result.speech.contains('?'), "{text}: {}", result.speech);
+    assert!(!result.speech.to_lowercase().contains("prozent"), "{text}: {}", result.speech);
+}
+
+#[test]
+fn licht_befehle_bleiben_treffsicher() {
+    let result = parse_live("Schlafzimmern Licht auf rot");
+    assert_eq!(result.intents[0].name, "HassLightSet", "{:?}", result.intents);
+    assert!(result.intents[0].slots.iter().any(|s| s.name == "color" && s.value == "red"), "{:?}", result.intents);
+
+    let rooms = parse_live("Wohn und Esszimmer auf Rot");
+    let targets = intent_targets(&rooms);
+    assert!(targets.iter().all(|(name, _, _)| name == "HassLightSet"), "{targets:?}");
+    assert_eq!(targets.len(), 2, "{targets:?}");
+    let rooms_hit: Vec<&str> = targets.iter().filter_map(|(_, entity, area)| entity.as_deref().or(area.as_deref())).collect();
+    assert!(rooms_hit.contains(&"light.wohnzimmer") || rooms_hit.contains(&"wohnzimmer"), "{targets:?}");
+    assert!(rooms_hit.contains(&"light.esszimmer") || rooms_hit.contains(&"esszimmer"), "{targets:?}");
+
+    for text in ["Alle Lichter ohne die Kugel aus", "Alle Lichter aus aber nicht die Kugel"] {
+        let excepted = parse_live(text);
+        let ids: Vec<&str> =
+            excepted.intents.iter().filter_map(|i| i.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str())).collect();
+        assert!(!ids.contains(&"light.alle_lichter"), "{text}: {ids:?}");
+        assert!(!ids.contains(&"light.schlafzimmer"), "{text}: {ids:?}");
+        assert!(!ids.contains(&"light.hue_color_lamp_2"), "{text}: {ids:?}");
+    }
+
+    let skip_room = parse_live("Alle Lichter außer Schlafzimmer und Küche aus");
+    let skip_ids: Vec<&str> =
+        skip_room.intents.iter().filter_map(|i| i.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str())).collect();
+    let skip_areas: Vec<&str> =
+        skip_room.intents.iter().filter_map(|i| i.slots.iter().find(|s| s.name == "area").map(|s| s.value.as_str())).collect();
+    assert!(!skip_areas.contains(&"schlafzimmer") && !skip_areas.contains(&"kuche"), "{:?}", skip_room.intents);
+    assert!(!skip_ids.iter().any(|id| id.contains("schlafzimmer") || *id == "light.kuche_kuche"), "{:?}", skip_room.intents);
+    assert!(skip_ids.contains(&"light.wohnzimmer") || skip_areas.contains(&"wohnzimmer"), "{:?}", skip_room.intents);
+}

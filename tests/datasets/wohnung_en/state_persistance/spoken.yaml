@@ -1,0 +1,33 @@
+- name: living_then_kitchen
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'on'}
+  sentences:
+    - - Turn on the living room lights
+      - and the kitchen too
+    - - Turn on the living room lights
+      - the kitchen as well
+- name: globe_then_off
+  conditions:
+    - {type: action, entity_id: light.schlafzimmer_kugel, state: 'off'}
+  sentences:
+    - - Turn on the globe
+      - turn it off
+    - - Globe on
+      - off
+- name: living_then_red
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: red
+  speech_has:
+    - rot
+  speech_forbids:
+    - percent
+    - '?'
+  sentences:
+    - - Turn on the living room lights
+      - to red
+    - - Turn on the living room lights
+      - make it red

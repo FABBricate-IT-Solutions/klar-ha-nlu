@@ -1,0 +1,35 @@
+- name: wz_und_arbeit_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Licht Wohnzimmer und Arbeitszimmer aus'
+    - 'Wohnzimmer und Büro Licht aus'
+    - 'Mach Wohnzimmer und Arbeitszimmer Licht aus'
+
+- name: kuche_und_ess_an
+  conditions:
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Licht Küche und Esszimmer an'
+    - 'Küche und Esszimmer Lichte an'
+    - 'Mach Küche und Esszimmer Licht an'
+
+- name: wz_ess_arbeit_aus
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Licht Wohnzimmer Esszimmer und Arbeitszimmer aus'
+    - 'Wohnzimmer, Esszimmer und Arbeitszimmer Licht aus'

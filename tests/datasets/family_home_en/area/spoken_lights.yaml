@@ -1,0 +1,75 @@
+- name: spoken_except_kitchen
+  conditions:
+    - {type: action, area: living, domain: light, state: 'off'}
+    - {type: action, area: dining, domain: light, state: 'off'}
+    - {type: action, area: family_room, domain: light, state: 'off'}
+    - {type: action, area: garage, domain: light, state: 'off'}
+    - {type: action, area: hallway, domain: light, state: 'off'}
+    - {type: action, area: master_bedroom, domain: light, state: 'off'}
+    - {type: action, area: bedroom_2, domain: light, state: 'off'}
+    - {type: action, area: entryway, domain: light, state: 'off'}
+  forbid:
+    - kitchen
+    - light.kitchen_ceiling
+    - light.kitchen_island
+  sentences:
+    - Turn off all lights except the kitchen
+    - All lights off except the kitchen
+    - Turn off all lights except for the kitchen
+    - Turn off all lights but not the kitchen
+    - Turn off every light except the kitchen
+    - Turn off the entire lighting except the kitchen
+    - Turn off the whole lights except the kitchen
+
+- name: spoken_except_island
+  conditions:
+    - {type: action, area: living, domain: light, state: 'off'}
+    - {type: action, area: dining, domain: light, state: 'off'}
+    - {type: action, area: family_room, domain: light, state: 'off'}
+    - {type: action, entity_id: light.kitchen_ceiling, state: 'off'}
+  forbid:
+    - light.kitchen_island
+    - kitchen
+  sentences:
+    - Turn off all lights except the island
+    - All lights off except the island
+    - Turn off all lights but not the island
+
+- name: spoken_bedroom_inflection
+  conditions:
+    - type: action
+      area: master_bedroom
+      domain: light
+      attributes:
+        color: red
+  sentences:
+    - Set the bedrooms lights to red
+    - Bedrooms lights to red
+    - Set the bedroom lights to red
+
+- name: spoken_stt_living_off
+  conditions:
+    - {type: action, area: living, domain: light, state: 'off'}
+  sentences:
+    - Turn off the living room lamps
+    - Living room lighting off
+    - Turn off the living room lights
+    - Turn off the livingrom lights
+
+- name: spoken_listing_living_dining_kitchen
+  conditions:
+    - {type: action, area: living, domain: light, state: 'off'}
+    - {type: action, area: dining, domain: light, state: 'off'}
+    - {type: action, area: kitchen, domain: light, state: 'off'}
+  sentences:
+    - Turn off the living room, dining room and kitchen lights
+    - Turn off living dining and kitchen lights
+    - Turn off the living, dining and kitchen lights
+
+- name: spoken_stt_kitchen_off
+  conditions:
+    - {type: action, area: kitchen, domain: light, state: 'off'}
+  sentences:
+    - Turn off the kitchen lamps
+    - Kitchen lighting off
+    - Turn off the kitchen lights

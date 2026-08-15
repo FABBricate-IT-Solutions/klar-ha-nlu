@@ -59,6 +59,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("lesen", VerbKind::Query),
     ("steht", VerbKind::Query),
     ("laeuft", VerbKind::Query),
+    ("brennt", VerbKind::Query),
     ("schalt", VerbKind::Switch),
     ("schalte", VerbKind::Switch),
     ("pausieren", VerbKind::Pause),

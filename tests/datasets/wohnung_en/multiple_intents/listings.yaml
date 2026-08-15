@@ -1,0 +1,11 @@
+- name: living_kitchen_dining_off
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Turn off the living room, kitchen and dining lights'
+    - 'Turn off living kitchen and dining lights'

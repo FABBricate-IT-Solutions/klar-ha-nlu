@@ -1,78 +1,138 @@
 - name: wohnzimmer_lichter_an
   conditions:
     - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht im Wohnzimmer an'
     - 'Licht Wohnzimmer an'
     - 'Schalt die Lichter im Wohnzimmer ein'
     - 'Kannst du das Licht im Wohnzimmer anmachen'
     - 'Wohnzimmer Licht an'
+    - 'Wohnzimmer Lichte an'
+    - 'Dicht im Wohnzimmer an'
+    - 'Lampen im Wohnzimmer an'
+    - 'Bitte Licht Wohnzimmer an'
 
 - name: wohnzimmer_lichter_aus
   conditions:
     - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht im Wohnzimmer aus'
     - 'Licht Wohnzimmer aus'
     - 'Schalt die Lichter im Wohnzimmer aus'
     - 'Wohnzimmer Licht aus'
+    - 'Wohnzimmer Lichte aus'
+    - 'Wohnzimmer Lichter aus'
+    - 'Dicht im Wohnzimmer aus'
+    - 'Lampen im Wohnzimmer aus'
+    - 'Beleuchtung im Wohnzimmer aus'
 
 - name: esszimmer_lichter_an
   conditions:
     - {type: action, area: esszimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht im Esszimmer an'
     - 'Licht Esszimmer an'
     - 'Schalt die Lichter im Esszimmer ein'
     - 'Kannst du das Licht im Esszimmer anmachen'
     - 'Esszimmer Licht an'
+    - 'Esszimmer Lichte an'
+    - 'Dicht im Esszimmer an'
+    - 'Lampen im Esszimmer an'
+    - 'Bitte Licht Esszimmer an'
 
 - name: esszimmer_lichter_aus
   conditions:
     - {type: action, area: esszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht im Esszimmer aus'
     - 'Licht Esszimmer aus'
     - 'Schalt die Lichter im Esszimmer aus'
     - 'Esszimmer Licht aus'
+    - 'Esszimmer Lichte aus'
+    - 'Esszimmer Lichter aus'
+    - 'Dicht im Esszimmer aus'
+    - 'Lampen im Esszimmer aus'
+    - 'Beleuchtung im Esszimmer aus'
 
 - name: kuche_lichter_an
   conditions:
     - {type: action, area: kuche, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht in der Küche an'
     - 'Licht Küche an'
     - 'Schalt die Lichter in der Küche ein'
     - 'Kannst du das Licht in der Küche anmachen'
     - 'Küche Licht an'
+    - 'Küche Lichte an'
+    - 'Dicht in der Küche an'
+    - 'Lampen in der Küche an'
+    - 'Bitte Licht Küche an'
 
 - name: kuche_lichter_aus
   conditions:
     - {type: action, area: kuche, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht in der Küche aus'
     - 'Licht Küche aus'
     - 'Schalt die Lichter in der Küche aus'
     - 'Küche Licht aus'
+    - 'Küche Lichte aus'
+    - 'Küche Lichter aus'
+    - 'Dicht in der Küche aus'
+    - 'Lampen in der Küche aus'
+    - 'Beleuchtung in der Küche aus'
 
 - name: arbeitszimmer_lichter_an
   conditions:
     - {type: action, area: arbeitszimmer, domain: light, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht im Arbeitszimmer an'
     - 'Licht Arbeitszimmer an'
     - 'Schalt die Lichter im Arbeitszimmer ein'
     - 'Kannst du das Licht im Arbeitszimmer anmachen'
     - 'Arbeitszimmer Licht an'
+    - 'Arbeitszimmer Lichte an'
+    - 'Dicht im Arbeitszimmer an'
+    - 'Lampen im Arbeitszimmer an'
+    - 'Bitte Licht Arbeitszimmer an'
 
 - name: arbeitszimmer_lichter_aus
   conditions:
     - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
   sentences:
     - 'Mach das Licht im Arbeitszimmer aus'
     - 'Licht Arbeitszimmer aus'
     - 'Schalt die Lichter im Arbeitszimmer aus'
     - 'Arbeitszimmer Licht aus'
+    - 'Arbeitszimmer Lichte aus'
+    - 'Arbeitszimmer Lichter aus'
+    - 'Dicht im Arbeitszimmer aus'
+    - 'Lampen im Arbeitszimmer aus'
+    - 'Beleuchtung im Arbeitszimmer aus'
 
 - name: alle_lichter_aus
   conditions:
@@ -80,8 +140,23 @@
   sentences:
     - 'Alle Lichter aus'
     - 'Mach überall das Licht aus'
-    - 'Wohnung Licht aus'
     - 'Schalt alle Lampen aus'
+    - 'Alle Lichte aus'
+    - 'Mach die ganzen Lichter aus'
+    - 'Sämtliche Lichter aus'
+    - 'Mach alles Licht aus'
+
+- name: alle_lichter_an
+  conditions:
+    - {type: action, entity_id: light.alle_lichter, state: 'on'}
+  sentences:
+    - 'Alle Lichter an'
+    - 'Mach die ganzen Lichter an'
+    - 'Mach überall das Licht an'
+    - 'Sämtliche Lampen an'
+    - 'Komplette Beleuchtung an'
+    - 'Schalt jedes Licht an'
+    - 'Mach das ganze Licht an'
 
 - name: wohnzimmer_helligkeit
   conditions:
@@ -95,3 +170,195 @@
     - 'Wohnzimmer Helligkeit 45'
     - 'Dimme das Wohnzimmer auf 45'
     - 'Licht Wohnzimmer 45 Prozent'
+
+- name: schlafzimmer_auf_rot
+  conditions:
+    - type: action
+      area: schlafzimmer
+      domain: light
+      attributes:
+        color: red
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - rot
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Schlafzimmern Licht auf Rot'
+    - 'Schlafzimmern auf Rot'
+    - 'Schlafzimmer Licht auf Rot'
+    - 'Licht im Schlafzimmer auf Rot'
+
+- name: schlafzimmer_auf_blau
+  conditions:
+    - type: action
+      area: schlafzimmer
+      domain: light
+      attributes:
+        color: blue
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  speech_has:
+    - blau
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Schlafzimmer Licht auf Blau'
+    - 'Licht im Schlafzimmer auf Blau'
+
+- name: alle_ausser_kugel
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'off'}
+    - {type: action, entity_id: light.schlafzimmer_licht, state: 'off'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Alle Lichter aus außer der Kugel'
+    - 'Alle lichter aus ausser der Kugel'
+    - 'Alle Lichter ohne die Kugel aus'
+    - 'Alle Lichter aus aber nicht die Kugel'
+    - 'Alle Lichter aus bis auf die Kugel'
+    - 'Die ganzen Lichter aus außer der Kugel'
+
+- name: alle_ausser_schlafzimmer
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'off'}
+    - {type: action, area: esszimmer, domain: light, state: 'off'}
+    - {type: action, area: kuche, domain: light, state: 'off'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'off'}
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Alle Lichter außer Schlafzimmer ausschalten'
+    - 'Alle Lichter ausser Schlafzimmer aus'
+    - 'Alle Lichter aus außer dem Schlafzimmer'
+    - 'Alle Lichter außer Schlafzimmern aus'
+    - 'Alle Lichter aus nicht im Schlafzimmer'
+    - 'Alle Lichter nicht in dem Schlafzimmer aus'
+
+- name: alle_an_ausser_kugel
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'on'}
+    - {type: action, entity_id: light.schlafzimmer_decke, state: 'on'}
+    - {type: action, entity_id: light.schlafzimmer_licht, state: 'on'}
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  sentences:
+    - 'Alle Lichter an außer der Kugel'
+    - 'Alle Lichter an ohne die Kugel'
+
+- name: alle_an_ausser_schlafzimmer
+  conditions:
+    - {type: action, area: wohnzimmer, domain: light, state: 'on'}
+    - {type: action, area: esszimmer, domain: light, state: 'on'}
+    - {type: action, area: kuche, domain: light, state: 'on'}
+    - {type: action, area: arbeitszimmer, domain: light, state: 'on'}
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Alle Lichter an außer Schlafzimmer'
+    - 'Alle Lichter an nicht im Schlafzimmer'
+
+- name: alle_auf_rot_ausser_kugel
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: kuche
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      area: arbeitszimmer
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      entity_id: light.schlafzimmer_decke
+      domain: light
+      attributes:
+        color: red
+    - type: action
+      entity_id: light.schlafzimmer_licht
+      domain: light
+      attributes:
+        color: red
+  forbid:
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+    - light.schlafzimmer_kugel
+  speech_has:
+    - rot
+  speech_forbids:
+    - 'prozent'
+    - '?'
+  sentences:
+    - 'Alle Lichter auf Rot außer der Kugel'
+    - 'Alle Lichter auf rot ausser der Kugel'
+
+- name: alle_auf_20_ausser_schlafzimmer
+  conditions:
+    - type: action
+      area: wohnzimmer
+      domain: light
+      attributes:
+        brightness: 20
+    - type: action
+      area: esszimmer
+      domain: light
+      attributes:
+        brightness: 20
+    - type: action
+      area: kuche
+      domain: light
+      attributes:
+        brightness: 20
+    - type: action
+      area: arbeitszimmer
+      domain: light
+      attributes:
+        brightness: 20
+  forbid:
+    - schlafzimmer
+    - light.schlafzimmer_kugel
+    - light.schlafzimmer_decke
+    - light.schlafzimmer_licht
+    - light.alle_lichter
+    - light.wohn_und_esszimmer
+  sentences:
+    - 'Alle Lichter auf 20 Prozent außer Schlafzimmer'
+    - 'Alle Lichter auf 20 außer dem Schlafzimmer'

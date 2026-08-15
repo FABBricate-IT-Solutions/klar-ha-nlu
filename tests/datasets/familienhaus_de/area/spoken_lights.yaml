@@ -1,0 +1,127 @@
+- name: spoken_except_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  forbid:
+  - kitchen
+  - light.kitchen_ceiling
+  - light.kitchen_island
+  sentences:
+  - Alle Lichter außer der Küche aus
+  - Alle Lichter ausser Küche aus
+  - Alle Lichter aus außer der Küche
+  - Alle Lichter ohne die Küche aus
+  - Alle Lichter aus bis auf die Küche
+  - Alle Lichter aus aber nicht die Küche
+  - Alle Lichte außer der Küche aus
+  - Alle Dicht außer der Küche aus
+  - Alle Lampen außer der Küche aus
+  - Die ganzen Lichter außer der Küche aus
+  - Sämtliche Lichter außer der Küche aus
+- name: spoken_except_island
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  forbid:
+  - light.kitchen_island
+  - kitchen
+  sentences:
+  - Alle Lichter außer der Insel aus
+  - Alle Lichter ausser Insel aus
+  - Alle Lichter ohne die Insel aus
+  - Alle Lichte außer der Insel aus
+  - Alle Dicht außer der Insel aus
+- name: spoken_bedroom_inflection
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    attributes:
+      color: red
+  sentences:
+  - Schlafzimmern Lichter auf Rot
+  - Setze die Lichter im Schlafzimmer auf rot
+  - Schlafzimmer Lichter auf Rot
+  - Schlafzimer Lichter auf Rot
+- name: spoken_stt_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - Dicht im Wohnzimmer aus
+  - Wohnzimmer Lichte aus
+  - Lampen im Wohnzimmer aus
+  - Wohnzimer Lichte aus
+- name: spoken_listing_living_dining_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - Licht Wohnzimmer Esszimmer und Küche aus
+  - Wohnzimmer, Esszimmer und Küche Licht aus
+  - Mach Wohnzimmer Esszimmer und Küche Licht aus
+- name: spoken_stt_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - Dicht in der Küche aus
+  - Küche Lichte aus
+  - Lampen in der Küche aus
