@@ -343,8 +343,6 @@ class KlarConversationEntity(ConversationEntity):
                 user_input.text,
                 user_input.context,
                 user_input.language or pack,
-                assistant="conversation",
-                device_id=getattr(user_input, "device_id", None),
             )
         except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
             _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
