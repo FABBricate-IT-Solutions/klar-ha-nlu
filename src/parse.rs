@@ -9,7 +9,7 @@ use crate::parse_help::{
     wants_all_lights, wants_light_clarify,
 };
 use crate::resolve::{domain_hint, pick_timers, resolve, unique_in_area};
-use crate::respond::speak;
+use crate::respond::{speak, speak_clarify, speak_correction, speak_unknown};
 use crate::session::Session;
 use crate::split::{follow_fixture, implied_domain, split_clauses, wants_group_clarify};
 use crate::types::{CustomSentence, HomeGraph, Intent, Mode, ParseResult, Settings};
@@ -30,7 +30,7 @@ pub fn parse(
         return ParseResult {
             text: text.to_string(),
             intents: Vec::new(),
-            speech: "Notiert. Den letzten Satz lege ich als Fehlinterpretation ab.".into(),
+            speech: speak_correction(),
             clarify: false,
             conversation_id: session.id.clone(),
         };
@@ -111,14 +111,7 @@ pub fn parse(
     }
 
     if !clarify_names.is_empty() {
-        let speech = format!(
-            "Meinst du {}?",
-            clarify_names
-                .iter()
-                .map(|id| id.rsplit('.').next().unwrap_or(id).replace('_', " "))
-                .collect::<Vec<_>>()
-                .join(" oder ")
-        );
+        let speech = speak_clarify(&clarify_names);
         return ParseResult {
             text: text.to_string(),
             intents: Vec::new(),
@@ -164,7 +157,7 @@ pub fn parse(
     }
 
     let speech = if intents.is_empty() {
-        "Das habe ich nicht zugeordnet. Sag zum Beispiel: Licht im Wohnzimmer an.".into()
+        speak_unknown()
     } else {
         speak(&intents, settings.personality, false)
     };

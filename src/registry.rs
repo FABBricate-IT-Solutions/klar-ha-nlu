@@ -119,9 +119,9 @@ fn read_areas(path: &Path) -> Result<Vec<AreaRec>, String> {
         .map(|a| {
             let area_id = a.id.or(a.area_id).unwrap_or_else(|| fold_umlaut(&a.name));
             AreaRec {
-                area_id,
-                name: a.name,
-                aliases: a.aliases,
+                area_id: area_id.clone(),
+                name: a.name.clone(),
+                aliases: merge_area_aliases(&area_id, &a.name, a.aliases),
             }
         })
         .collect())
@@ -209,19 +209,10 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
         .areas
         .into_iter()
         .map(|a| {
-            let mut aliases = a.aliases;
-            aliases.push(a.id.clone());
-            for part in a.name.split_whitespace() {
-                let p = fold_umlaut(part);
-                if p.len() > 3 && !GENERIC_NAME.contains(&p.as_str()) {
-                    aliases.push(p);
-                }
-            }
-            aliases.extend(extra_area_aliases(&a.id));
             AreaRec {
-                area_id: a.id,
-                name: a.name,
-                aliases,
+                area_id: a.id.clone(),
+                name: a.name.clone(),
+                aliases: merge_area_aliases(&a.id, &a.name, a.aliases),
             }
         })
         .collect();
@@ -346,17 +337,45 @@ const GENERIC_NAME: &[&str] = &[
     "laundry", "hallway", "entryway", "powder", "ground", "upper",
 ];
 
+fn merge_area_aliases(area_id: &str, name: &str, existing: Vec<String>) -> Vec<String> {
+    let mut aliases = existing;
+    aliases.push(area_id.to_string());
+    aliases.push(fold_umlaut(name));
+    for part in name.split_whitespace() {
+        let p = fold_umlaut(part);
+        if p.len() > 3 && !GENERIC_NAME.contains(&p.as_str()) {
+            aliases.push(p);
+        }
+    }
+    aliases.extend(extra_area_aliases(area_id));
+    aliases.sort();
+    aliases.dedup();
+    aliases
+}
+
 fn extra_area_aliases(id: &str) -> Vec<String> {
     match id {
         "entryway" => vec!["foyer".into(), "entrance".into(), "eingang".into(), "diele".into()],
-        "living" => vec!["lounge".into(), "wohnzimmer".into(), "wohnraum".into()],
+        "living" | "wohnzimmer" => {
+            vec!["lounge".into(), "wohnzimmer".into(), "wohnraum".into(), "living".into(), "livingroom".into()]
+        }
         "family_room" => vec!["den".into(), "familienzimmer".into(), "family".into()],
         "powder_room" => vec!["powder".into(), "gaestewc".into(), "guestwc".into()],
         "laundry" => vec!["laundryroom".into(), "waschkueche".into()],
-        "master_bedroom" => vec!["elternschlafzimmer".into(), "master".into()],
-        "main_bath" => vec!["bathroom".into(), "badezimmer".into(), "bad".into()],
-        "hallway" => vec!["hall".into(), "corridor".into(), "flur".into()],
-        "wohnung" => vec!["ueberall".into(), "everywhere".into(), "all".into()],
+        "master_bedroom" | "schlafzimmer" => {
+            vec!["elternschlafzimmer".into(), "master".into(), "bedroom".into(), "schlafzimmer".into()]
+        }
+        "main_bath" | "badezimmer" => {
+            vec!["bathroom".into(), "badezimmer".into(), "bad".into(), "bath".into()]
+        }
+        "hallway" | "flur" => vec!["hall".into(), "corridor".into(), "flur".into(), "hallway".into(), "diele".into()],
+        "wohnung" => {
+            vec!["ueberall".into(), "everywhere".into(), "all".into(), "home".into(), "house".into(), "apartment".into()]
+        }
+        "arbeitszimmer" => vec!["office".into(), "study".into(), "buero".into(), "arbeitszimmer".into()],
+        "esszimmer" => vec!["dining".into(), "diningroom".into(), "esszimmer".into()],
+        "kuche" | "kueche" => vec!["kitchen".into(), "kuche".into(), "kueche".into()],
+        "balkon" => vec!["balcony".into(), "terrace".into(), "balkon".into(), "terrasse".into()],
         _ => Vec::new(),
     }
 }
@@ -438,6 +457,22 @@ pub fn default_home() -> HomeGraph {
         entities,
         areas,
         ..Default::default()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn german_rooms_get_english_aliases() {
+        let office = merge_area_aliases("arbeitszimmer", "Arbeitszimmer", vec![]);
+        assert!(office.iter().any(|a| a == "office"), "{office:?}");
+        assert!(office.iter().any(|a| a == "study"), "{office:?}");
+        let living = merge_area_aliases("wohnzimmer", "Wohnzimmer", vec![]);
+        assert!(living.iter().any(|a| a == "living"), "{living:?}");
+        let bed = merge_area_aliases("schlafzimmer", "Schlafzimmer", vec![]);
+        assert!(bed.iter().any(|a| a == "bedroom"), "{bed:?}");
     }
 }
 

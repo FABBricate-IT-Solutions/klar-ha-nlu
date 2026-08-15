@@ -69,12 +69,13 @@ def _speech_from_result(result: ConversationResult) -> str:
     return str(plain.get("speech") or "")
 
 
-def _pack(language: str | None) -> str:
-    if not language:
-        return "de"
-    code = language.replace("_", "-").split("-", 1)[0].lower()
-    if code in SUPPORTED_LANGUAGES:
-        return code
+def _pack(language: str | None, enabled: list[str] | None = None) -> str:
+    if language:
+        code = language.replace("_", "-").split("-", 1)[0].lower()
+        if code in SUPPORTED_LANGUAGES:
+            return code
+    if enabled:
+        return enabled[0]
     return "de"
 
 
@@ -125,9 +126,9 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
-        pack = _pack(user_input.language)
+        pack = _pack(user_input.language, _enabled_packs(self._entry))
         payload = await self._parse(
-            user_input.text, user_input.conversation_id, user_input.language
+            user_input.text, user_input.conversation_id, pack
         )
         speech = payload.get("speech") or _DONE[pack]
         intents = _home_intents(payload.get("intents") or [])
@@ -139,8 +140,13 @@ class KlarConversationEntity(ConversationEntity):
             if fallback is not None:
                 return fallback
 
+        spoken: list[str] = []
         for item in intents:
-            await self._handle_intent(user_input, item)
+            ha_speech = await self._handle_intent(user_input, item, pack)
+            if ha_speech:
+                spoken.append(ha_speech)
+        if spoken:
+            speech = " ".join(spoken)
 
         chat_log.async_add_assistant_content_without_tools(
             AssistantContent(agent_id=user_input.agent_id, content=speech)
@@ -193,10 +199,12 @@ class KlarConversationEntity(ConversationEntity):
         self, text: str, conversation_id: str | None, language: str | None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/parse"
-        body: dict[str, Any] = {"text": text, "conversation_id": conversation_id}
-        pack = _pack(language)
-        if language:
-            body["language"] = pack
+        pack = _pack(language, _enabled_packs(self._entry))
+        body: dict[str, Any] = {
+            "text": text,
+            "conversation_id": conversation_id,
+            "language": pack,
+        }
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(
@@ -214,20 +222,27 @@ class KlarConversationEntity(ConversationEntity):
                 "unreachable": True,
             }
 
-    async def _handle_intent(self, user_input: ConversationInput, item: dict) -> None:
+    async def _handle_intent(
+        self, user_input: ConversationInput, item: dict, pack: str
+    ) -> str | None:
         name = item.get("name")
         if not name:
-            return
+            return None
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
         try:
-            await intent.async_handle(
+            handled = await intent.async_handle(
                 self.hass,
                 "klar_nlu",
                 name,
                 slots,
                 user_input.text,
                 user_input.context,
-                user_input.language or "de",
+                user_input.language or pack,
             )
-        except intent.IntentHandleError as err:
+        except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
             _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
+            return None
+        speech = getattr(handled, "speech", None) or {}
+        plain = speech.get("plain") or {}
+        text = str(plain.get("speech") or "").strip()
+        return text or None
