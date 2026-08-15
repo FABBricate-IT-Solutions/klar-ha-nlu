@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.1...v2026.8.2) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- start release checks from the prepare job([94433cf](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/94433cf14971c61a5dfe0492643242ab725792c6))
+
+- land release commits without an Actions pull request([4de314a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4de314a631984ce1a41c3a99c8cece92c81084ae))
+
 ## [2026.8.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v2026.8.0...v2026.8.1) - 2026-08-15
 
 
