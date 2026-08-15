@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.10...2026.8.11) - 2026-08-15
+
+
+
+### Features
+
+- refine NLU replies through the fallback LLM([5ec1b89](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5ec1b89c5665426234b0c25d6ebf28ec5e8737f3))
+
+
+### Other
+
+- Merge pull request #50 from FABBricate-IT-Solutions/feat/llm-speech-refine([22f1232](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/22f12325e470862f13b20acc2299e9083683d99b))
+
 ## [2026.8.10](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.9...2026.8.10) - 2026-08-15
 
 
