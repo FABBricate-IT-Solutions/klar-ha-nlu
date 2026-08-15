@@ -124,11 +124,12 @@ where
                 let home = home.lock().await.clone();
                 let settings = settings.lock().await.clone();
                 let custom = custom.lock().await.clone();
-                let result = {
-                    let mut sessions = sessions.lock().await;
-                    let session = sessions.get_or_create(conversation_id);
-                    parse(text, &home, session, &custom, &settings)
+                let mut session = {
+                    let mut guard = sessions.lock().await;
+                    guard.take(conversation_id)
                 };
+                let result = parse(text, &home, &mut session, &custom, &settings);
+                sessions.lock().await.put(session);
                 if result.intents.is_empty() {
                     write_event(&mut writer, "not-recognized", json!({ "text": result.speech })).await?;
                 } else if result.intents.len() == 1 {

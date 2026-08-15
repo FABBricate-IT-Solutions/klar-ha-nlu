@@ -117,7 +117,7 @@ fn expected_intent_names(cond: &Condition) -> Vec<&'static str> {
         return vec!["HassMediaPlayerMute", "HassMediaUnpause", "HassTurnOn"];
     }
     if cond.kind == "query" {
-        return vec!["HassGetState"];
+        return vec!["HassGetState", "HassClimateGetTemperature"];
     }
     if cond.kind == "shopping_list" || cond.kind == "todo_list" || cond.item.is_some() {
         return vec!["HassListAddItem", "HassListCompleteItem", "HassShoppingListAddItem", "HassShoppingListCompleteItem"];

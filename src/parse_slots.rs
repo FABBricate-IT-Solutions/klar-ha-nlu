@@ -138,7 +138,7 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::SetTemp => Intent::new("HassClimateSetTemperature"),
         Action::GetState => {
             if catalog().any(tokens, &catalog().temp_query) {
-                Intent::new("HassGetState").with("device_class", "temperature")
+                Intent::new("HassClimateGetTemperature")
             } else {
                 Intent::new("HassGetState")
             }

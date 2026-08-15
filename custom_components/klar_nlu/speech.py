@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 _ACTION = {
@@ -88,6 +89,7 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
     states = list(getattr(handled, "matched_states", None) or [])
     if not states:
         states = list(getattr(handled, "unmatched_states", None) or [])
+    states = [state for state in states if not _infra_state(state)]
     rows = [_state_value(state, pack) for state in states[:12]]
     rows = [row for row in rows if row[0] and row[1]]
     area = _room_label(item)
@@ -229,6 +231,31 @@ def _is_query(handled: Any, name: str) -> bool:
 
 _LIGHT_TAIL = {"licht", "lichter", "lampe", "lampen", "light", "lights"}
 _ALL_HEAD = {"alle", "all", "every", "überall", "ueberall"}
+
+
+def _infra_needles() -> tuple[str, ...]:
+    path = Path(__file__).with_name("infra_needles.txt")
+    return tuple(
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.startswith("#")
+    )
+
+
+_INFRA = _infra_needles()
+
+
+def _infra_state(state: Any) -> bool:
+    entity_id = str(getattr(state, "entity_id", "") or "").lower()
+    name = str(getattr(state, "name", "") or "").lower()
+    attrs = getattr(state, "attributes", None) or {}
+    if isinstance(attrs, dict):
+        name = str(attrs.get("friendly_name") or name).lower()
+        tags = attrs.get("tags") or []
+        if isinstance(tags, list) and any(str(tag).lower() == "infra" for tag in tags):
+            return True
+    blob = f"{entity_id} {name}"
+    return any(needle in blob for needle in _INFRA)
 
 
 def _compound_light(name: str) -> str:
