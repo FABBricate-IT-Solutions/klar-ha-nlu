@@ -1,6 +1,7 @@
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
-use crate::normalize::fold_umlaut;
+use crate::compound::{is_infra, is_tv_switch, short_name_token, usable_labels, GENERIC};
+use crate::normalize::{compact, fold_umlaut};
 use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use strsim::normalized_levenshtein;
@@ -17,8 +18,9 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     let mut candidates: Vec<(f64, EntityRec)> = home
         .entities
         .iter()
-        .filter(|e| domain.is_none_or(|d| e.domain == d))
-        .filter_map(|e| score_entity(tokens, e).map(|s| (s, e.clone())))
+        .filter(|e| !is_infra(e))
+        .filter(|e| domain.is_none_or(|d| e.domain == d || is_tv_switch(d, e)))
+        .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
         .collect();
     candidates.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
     if !areas.is_empty() {
@@ -46,7 +48,9 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     if let Some((best, rec)) = candidates.first() {
         let peers: Vec<EntityRec> = candidates
             .iter()
-            .filter(|(s, e)| (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id)
+            .filter(|(s, e)| {
+                (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && e.name != rec.name
+            })
             .map(|(_, e)| e.clone())
             .collect();
         if *best >= 0.86 && peers.is_empty() {
@@ -117,7 +121,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let in_domain: Vec<EntityRec> = home
                 .entities
                 .iter()
-                .filter(|e| e.domain == d)
+                .filter(|e| e.domain == d && !is_infra(e))
                 .filter(|e| {
                     areas.is_empty()
                         || e.area.as_ref().is_some_and(|a| areas.contains(a))
@@ -135,7 +139,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             let in_area: Vec<EntityRec> = home
                 .entities
                 .iter()
-                .filter(|e| e.domain == d && e.area.as_ref().is_some_and(|a| areas.contains(a)))
+                .filter(|e| e.domain == d && !is_infra(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
                 .cloned()
                 .collect();
             if in_area.len() == 1 {
@@ -217,18 +221,6 @@ fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     }
 }
 
-const GENERIC: &[&str] = &[
-    "licht", "lichter", "lampe", "lampen", "leuchte", "heizung", "thermostat",
-    "steckdose", "schalter", "szene", "sensor",
-    "light", "lights", "lamp", "lamps", "heater", "heating", "switch", "scene",
-    "ceiling", "decke", "blinds", "rollo", "curtain", "curtains", "fan", "luefter",
-    "bedroom", "bedrooms", "kinderzimmer", "bathroom", "bath", "door", "tuer",
-    "window", "windows", "fenster", "lock", "locks", "schloss", "timer",
-    "kitchen", "living", "dining", "garage", "hallway", "laundry", "entryway",
-    "family", "master", "powder", "wohnzimmer", "schlafzimmer", "kuche", "kueche",
-    "badezimmer", "flur", "esszimmer",
-];
-
 fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
     let mut scored: Vec<(usize, String)> = Vec::new();
     for area in areas {
@@ -276,12 +268,15 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
     }
     ids
 }
-
 fn token_hit(tokens: &[String], label: &str) -> bool {
     if label.is_empty() {
         return false;
     }
     if label.contains(' ') || label.contains('_') {
+        let glued = compact(label);
+        if glued.len() > 6 && tokens.iter().any(|t| *t == glued) {
+            return true;
+        }
         let parts: Vec<&str> = label
             .split(|c: char| c == ' ' || c == '_')
             .filter(|p| !p.is_empty())
@@ -301,7 +296,7 @@ fn token_eq(token: &str, label: &str) -> bool {
     matches!(
         (token, label),
         ("left" | "links", "left" | "links")
-            | ("right" | "rechts", "right" | "rechts")
+            | ("right" | "rechts", "right" | "rechts") | ("globe" | "kugel", "globe" | "kugel")
     )
 }
 
@@ -327,10 +322,11 @@ fn number_word(token: &str) -> Option<&'static str> {
     }
 }
 
-fn score_entity(tokens: &[String], entity: &EntityRec) -> Option<f64> {
-    let mut labels = vec![fold_umlaut(&entity.name)];
-    labels.extend(entity.aliases.iter().map(|a| fold_umlaut(a)));
-    labels.extend(entity.tags.iter().map(|a| fold_umlaut(a)));
+fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Option<f64> {
+    let labels: Vec<String> = usable_labels(entity, home)
+        .into_iter()
+        .map(|label| fold_umlaut(&label))
+        .collect();
     let mut best = 0.0_f64;
     for label in labels {
         if label.is_empty() {
@@ -367,6 +363,12 @@ fn score_entity(tokens: &[String], entity: &EntityRec) -> Option<f64> {
             }
         }
     }
+    if best < 0.86 {
+        if let Some(short) = short_name_token(entity) {
+            if tokens.iter().any(|t| t == &short) { best = 0.92; }
+        }
+        best = best.max(crate::compound::fixture_boost(tokens, entity));
+    }
     (best >= 0.86).then_some(best)
 }
 
@@ -376,6 +378,9 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
         return Some("timer");
     }
     for t in tokens {
+        if *t == "hue" {
+            return Some("light");
+        }
         if matches!(t.as_str(), "tuer" | "door") {
             if tokens.iter().any(|x| x == "sensor") {
                 return Some("binary_sensor");
@@ -410,7 +415,7 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
                 && (has_light_noun(tokens)
                     || crate::numbers::first_number(tokens).is_some()
                     || is_query_token(tokens)
-                    || color_mentioned(tokens));
+                    || tokens.iter().any(|x| catalog().color(x).is_some()));
             let skip_bare_machine = matches!(t.as_str(), "machine" | "appliance" | "geraet")
                 && !tokens.iter().any(|x| {
                     matches!(x.as_str(), "laundry" | "washing" | "washer" | "waesche")
@@ -422,10 +427,6 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
         return Some(domain);
     }
     None
-}
-
-fn color_mentioned(tokens: &[String]) -> bool {
-    tokens.iter().any(|t| catalog().color(t).is_some())
 }
 
 pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
@@ -445,7 +446,7 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option<String> {
     let hits: Vec<&str> = home.entities.iter()
-        .filter(|e| e.domain == domain && e.area.as_deref() == Some(area))
+        .filter(|e| e.domain == domain && !is_infra(e) && e.area.as_deref() == Some(area))
         .map(|e| e.entity_id.as_str()).collect();
     (hits.len() == 1).then(|| hits[0].to_string())
 }

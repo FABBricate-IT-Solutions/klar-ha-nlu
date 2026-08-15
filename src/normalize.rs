@@ -78,6 +78,13 @@ pub fn join_tokens(tokens: &[String]) -> String {
     tokens.join(" ")
 }
 
+pub fn compact(s: &str) -> String {
+    fold_latin(s)
+        .chars()
+        .filter(|c| c.is_ascii_alphanumeric())
+        .collect()
+}
+
 pub(crate) fn is_time_unit(token: &str) -> bool {
     matches!(
         token,

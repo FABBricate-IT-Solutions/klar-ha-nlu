@@ -355,7 +355,10 @@ fn vacuum_noun_action(tokens: &[String]) -> Option<Action> {
         Some(Action::GetState)
     } else if tokens
         .iter()
-        .any(|x| matches!(x.as_str(), "an" | "on" | "start" | "starten"))
+        .any(|x| {
+            matches!(x.as_str(), "an" | "on" | "start" | "starten" | "starte")
+                || catalog().start_words.contains(x.as_str())
+        })
     {
         Some(Action::VacuumStart)
     } else {

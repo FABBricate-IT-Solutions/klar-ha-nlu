@@ -1,3 +1,4 @@
+pub mod compound;
 pub mod lang;
 pub mod lexicon;
 pub mod normalize;

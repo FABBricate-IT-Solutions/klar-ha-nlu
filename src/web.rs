@@ -1,6 +1,8 @@
+use crate::compound::{apply_overlay, load_overlay, save_overlay};
 use crate::parse::parse;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, EntityRec, HomeGraph, ParseResult, Settings};
+use std::path::PathBuf;
 use axum::extract::State;
 use axum::response::Html;
 use axum::routing::{get, post};
@@ -16,6 +18,7 @@ pub struct AppState {
     pub sessions: Arc<Mutex<Sessions>>,
     pub settings: Arc<Mutex<Settings>>,
     pub custom: Arc<Mutex<Vec<CustomSentence>>>,
+    pub data_dir: PathBuf,
 }
 
 #[derive(Deserialize)]
@@ -96,17 +99,34 @@ async fn get_entities(State(state): State<AppState>) -> Json<Vec<EntityRec>> {
 #[derive(Deserialize)]
 struct TagIn {
     entity_id: String,
+    #[serde(default)]
     tags: Vec<String>,
+    #[serde(default)]
+    aliases: Vec<String>,
+    #[serde(default)]
+    preferred: bool,
 }
 
 async fn tag_entity(State(state): State<AppState>, Json(body): Json<TagIn>) -> Json<EntityRec> {
+    let mut overlay = load_overlay(&state.data_dir);
+    overlay.aliases.insert(body.entity_id.clone(), body.aliases.clone());
+    overlay.preferred.retain(|id| id != &body.entity_id);
+    if body.preferred {
+        overlay.preferred.push(body.entity_id.clone());
+    }
+    let _ = save_overlay(&state.data_dir, &overlay);
     let mut home = state.home.lock().await;
-    if let Some(ent) = home
-        .entities
-        .iter_mut()
-        .find(|e| e.entity_id == body.entity_id)
-    {
-        ent.tags = body.tags;
+    apply_overlay(&mut home, &overlay);
+    if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == body.entity_id) {
+        if !body.aliases.is_empty() {
+            ent.aliases = body.aliases;
+        }
+        let mut tags = ent.tags.clone();
+        tags.retain(|t| t != "preferred");
+        if body.preferred || body.tags.iter().any(|t| t == "preferred") {
+            tags.push("preferred".into());
+        }
+        ent.tags = tags;
         return Json(ent.clone());
     }
     Json(EntityRec {
