@@ -1,4 +1,4 @@
-use crate::compound::is_tv_switch;
+use crate::compound::{is_infra, is_tv_switch};
 use crate::expose::assist_visible;
 use crate::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
@@ -37,7 +37,7 @@ pub fn unique_role_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option
         .entities
         .iter()
         .filter(|e| assist_visible(e, home))
-        .filter(|e| e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain)
+        .filter(|e| e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain && !is_infra(e))
         .map(|e| e.entity_id.as_str())
         .collect();
     (hits.len() == 1).then(|| hits[0].to_string())
@@ -46,7 +46,7 @@ pub fn unique_role_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option
 pub fn role_siblings<'a>(home: &'a HomeGraph, area: &str, domain: &str) -> Vec<&'a EntityRec> {
     home.entities
         .iter()
-        .filter(|e| assist_visible(e, home) && e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain)
+        .filter(|e| assist_visible(e, home) && e.area.as_deref() == Some(area) && has_role(e, domain) && e.domain != domain && !is_infra(e))
         .collect()
 }
 

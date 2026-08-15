@@ -321,6 +321,35 @@ fn licht_tag_macht_steckdose_zum_licht() {
 }
 
 #[test]
+fn adaptive_lighting_ist_kein_licht() {
+    let mut home = default_home();
+    home.entities.push(tagged(
+        "switch.adaptive_lighting_adaptiv_wohnzimmer_adaptive_lighting_sleep_mode_adaptiv_wohnzimmer",
+        "Adaptive Lighting Sleep Mode: Adaptiv Wohnzimmer",
+        "switch",
+        "wohnzimmer",
+        &["licht"],
+    ));
+    home.entities.push(tagged(
+        "switch.adaptiv_wohnzimmer_adaptive_lighting_adaptiv_wohnzimmer",
+        "Adaptive Lighting: Adaptiv Wohnzimmer",
+        "switch",
+        "wohnzimmer",
+        &["licht"],
+    ));
+    let mut session = Session::new();
+    let first = parse("Licht im Wohnzimmer an", &home, &mut session, &[], &Settings::default());
+    assert!(first.intents.iter().any(|i| i.slot("entity_id") == Some("light.wohnzimmer")), "{:?}", first.intents);
+    assert!(
+        first.intents.iter().all(|i| i.slot("entity_id").is_none_or(|id| !id.contains("adaptive") && !id.contains("adaptiv_"))),
+        "{:?}",
+        first.intents
+    );
+    let second = parse("mach sie aus", &home, &mut session, &[], &Settings::default());
+    assert_eq!(second.intents[0].slot("entity_id"), Some("light.wohnzimmer"), "{:?}", second.intents);
+}
+
+#[test]
 fn wichtig_tag_ist_kein_licht() {
     let found = role_slots("Licht im Flur an");
     assert!(!has_entity(&found, "switch.flur_wichtig"), "{found:?}");
