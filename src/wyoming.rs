@@ -70,11 +70,7 @@ async fn handle(
                 .await?;
             }
             "recognize" => {
-                let text = event
-                    .pointer("/data/text")
-                    .and_then(|v| v.as_str())
-                    .unwrap_or("")
-                    .to_string();
+                let text = event.pointer("/data/text").and_then(|v| v.as_str()).unwrap_or("").to_string();
                 let home = home.lock().await.clone();
                 let settings = settings.lock().await.clone();
                 let custom = custom.lock().await.clone();
@@ -82,23 +78,14 @@ async fn handle(
                 let session = sessions.get_or_create(None);
                 let result = parse(&text, &home, session, &custom, &settings);
                 if result.intents.is_empty() {
-                    write_event(
-                        &mut writer,
-                        "not-recognized",
-                        json!({ "text": result.speech }),
-                    )
-                    .await?;
+                    write_event(&mut writer, "not-recognized", json!({ "text": result.speech })).await?;
                 } else if result.intents.len() == 1 {
                     let intent = &result.intents[0];
                     write_event(&mut writer, "intent", intent_json(intent, &result.speech)).await?;
                 } else {
                     write_event(&mut writer, "intents-start", json!({})).await?;
                     for (i, intent) in result.intents.iter().enumerate() {
-                        let speech = if i + 1 == result.intents.len() {
-                            result.speech.as_str()
-                        } else {
-                            ""
-                        };
+                        let speech = if i + 1 == result.intents.len() { result.speech.as_str() } else { "" };
                         write_event(&mut writer, "intent", intent_json(intent, speech)).await?;
                     }
                     write_event(&mut writer, "intents-stop", json!({})).await?;
@@ -111,11 +98,7 @@ async fn handle(
 }
 
 fn intent_json(intent: &crate::types::Intent, speech: &str) -> Value {
-    let entities: Vec<Value> = intent
-        .slots
-        .iter()
-        .map(|s| json!({"name": s.name, "value": s.value}))
-        .collect();
+    let entities: Vec<Value> = intent.slots.iter().map(|s| json!({"name": s.name, "value": s.value})).collect();
     json!({
         "name": intent.name,
         "entities": entities,
@@ -123,11 +106,7 @@ fn intent_json(intent: &crate::types::Intent, speech: &str) -> Value {
     })
 }
 
-async fn write_event<W: AsyncWriteExt + Unpin>(
-    writer: &mut W,
-    typ: &str,
-    data: Value,
-) -> std::io::Result<()> {
+async fn write_event<W: AsyncWriteExt + Unpin>(writer: &mut W, typ: &str, data: Value) -> std::io::Result<()> {
     let event = json!({"type": typ, "data": data});
     writer.write_all(event.to_string().as_bytes()).await?;
     writer.write_all(b"\n").await?;

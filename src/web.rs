@@ -3,12 +3,12 @@ use crate::gaps::{assist_visible, leftover};
 use crate::parse::parse;
 use crate::session::Sessions;
 use crate::types::{AreaRec, CustomSentence, EntityRec, HomeGraph, Settings};
-use std::path::PathBuf;
 use axum::extract::State;
 use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
+use std::path::PathBuf;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use tower_http::cors::CorsLayer;
@@ -50,19 +50,12 @@ async fn index() -> Html<&'static str> {
 
 async fn api_parse(State(state): State<AppState>, Json(body): Json<ParseIn>) -> Json<ParseOut> {
     let home = state.home.lock().await.clone();
-    let settings = settings_for_parse(
-        state.settings.lock().await.clone(),
-        body.language.as_deref(),
-        body.personality,
-    );
+    let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality);
     let custom = state.custom.lock().await.clone();
     let mut sessions = state.sessions.lock().await;
     let session = sessions.get_or_create(body.conversation_id.as_deref());
     let result = parse(&body.text, &home, session, &custom, &settings);
-    Json(ParseOut {
-        personality: settings.personality,
-        result,
-    })
+    Json(ParseOut { personality: settings.personality, result })
 }
 
 #[derive(serde::Serialize)]
@@ -72,22 +65,14 @@ struct ParseOut {
     personality: crate::types::Personality,
 }
 
-fn settings_for_parse(
-    mut settings: Settings,
-    language: Option<&str>,
-    personality: Option<crate::types::Personality>,
-) -> Settings {
+fn settings_for_parse(mut settings: Settings, language: Option<&str>, personality: Option<crate::types::Personality>) -> Settings {
     if let Some(personality) = personality {
         settings.personality = personality;
     }
     let Some(raw) = language.filter(|s| !s.is_empty()) else {
         return settings;
     };
-    let code = raw
-        .split(['-', '_'])
-        .next()
-        .unwrap_or(raw)
-        .to_ascii_lowercase();
+    let code = raw.split(['-', '_']).next().unwrap_or(raw).to_ascii_lowercase();
     if code == "de" || code == "en" {
         settings.languages = vec![code];
     }
@@ -110,23 +95,14 @@ async fn get_custom(State(state): State<AppState>) -> Json<Vec<CustomSentence>> 
     Json(state.custom.lock().await.clone())
 }
 
-async fn set_custom(
-    State(state): State<AppState>,
-    Json(body): Json<Vec<CustomSentence>>,
-) -> Json<Vec<CustomSentence>> {
+async fn set_custom(State(state): State<AppState>, Json(body): Json<Vec<CustomSentence>>) -> Json<Vec<CustomSentence>> {
     *state.custom.lock().await = body.clone();
     Json(body)
 }
 
 async fn get_entities(State(state): State<AppState>) -> Json<Vec<EntityRec>> {
     let home = state.home.lock().await;
-    Json(
-        home.entities
-            .iter()
-            .filter(|e| assist_visible(e, &home))
-            .cloned()
-            .collect(),
-    )
+    Json(home.entities.iter().filter(|e| assist_visible(e, &home)).cloned().collect())
 }
 
 #[derive(serde::Serialize)]
@@ -138,11 +114,7 @@ struct GapsOut {
 
 async fn get_gaps(State(state): State<AppState>) -> Json<GapsOut> {
     let home = state.home.lock().await.clone();
-    Json(GapsOut {
-        leftover: leftover(&home),
-        rooms: home.areas,
-        overlay: load_overlay(&state.data_dir),
-    })
+    Json(GapsOut { leftover: leftover(&home), rooms: home.areas, overlay: load_overlay(&state.data_dir) })
 }
 
 #[derive(Deserialize)]
@@ -199,22 +171,10 @@ mod tests {
     #[test]
     fn pins_assist_language_to_pack() {
         let base = Settings::default();
-        assert_eq!(
-            settings_for_parse(base.clone(), Some("en-US"), None).languages,
-            vec!["en".to_string()]
-        );
-        assert_eq!(
-            settings_for_parse(base.clone(), Some("de-DE"), None).languages,
-            vec!["de".to_string()]
-        );
-        assert_eq!(
-            settings_for_parse(base.clone(), None, None).languages,
-            vec!["de".to_string(), "en".to_string()]
-        );
-        assert_eq!(
-            settings_for_parse(base, Some("fr"), None).languages,
-            vec!["de".to_string(), "en".to_string()]
-        );
+        assert_eq!(settings_for_parse(base.clone(), Some("en-US"), None).languages, vec!["en".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), Some("de-DE"), None).languages, vec!["de".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), None, None).languages, vec!["de".to_string(), "en".to_string()]);
+        assert_eq!(settings_for_parse(base, Some("fr"), None).languages, vec!["de".to_string(), "en".to_string()]);
     }
 
     #[test]

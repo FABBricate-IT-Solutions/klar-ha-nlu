@@ -4,11 +4,7 @@ use crate::types::{Intent, Personality};
 pub fn speak(intents: &[Intent], personality: Personality, clarify: bool) -> String {
     let en = speech_lang() == LangId::En;
     if clarify {
-        return if en {
-            "Tell me which device you mean.".into()
-        } else {
-            "Sag mir welches Gerät du meinst.".into()
-        };
+        return if en { "Tell me which device you mean.".into() } else { "Sag mir welches Gerät du meinst.".into() };
     }
     if intents.is_empty() {
         return speak_unknown();
@@ -48,10 +44,7 @@ pub fn speak_correction() -> String {
 }
 
 pub fn speak_clarify(names: &[String]) -> String {
-    let labels: Vec<String> = names
-        .iter()
-        .map(|id| id.rsplit('.').next().unwrap_or(id).replace('_', " "))
-        .collect();
+    let labels: Vec<String> = names.iter().map(|id| id.rsplit('.').next().unwrap_or(id).replace('_', " ")).collect();
     if speech_lang() == LangId::En {
         format!("Do you mean {}?", labels.join(" or "))
     } else {
@@ -61,10 +54,7 @@ pub fn speak_clarify(names: &[String]) -> String {
 
 fn describe(intent: &Intent) -> String {
     let area = intent.slot("area").unwrap_or("");
-    let entity = intent
-        .slot("entity_id")
-        .map(short_id)
-        .unwrap_or_default();
+    let entity = intent.slot("entity_id").map(short_id).unwrap_or_default();
     let where_ = if !entity.is_empty() {
         entity
     } else if !area.is_empty() {
@@ -271,9 +261,6 @@ mod tests {
         assert_eq!(de, "Schalte Schlafzimmerlicht ein.");
         assert!(!de.contains(','));
         let kugel = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer");
-        assert_eq!(
-            speak(&[kugel], Personality::Default, false),
-            "Schalte Schlafzimmer ein."
-        );
+        assert_eq!(speak(&[kugel], Personality::Default, false), "Schalte Schlafzimmer ein.");
     }
 }

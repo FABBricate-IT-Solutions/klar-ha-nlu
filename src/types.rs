@@ -15,25 +15,16 @@ pub struct Intent {
 
 impl Intent {
     pub fn new(name: impl Into<String>) -> Self {
-        Self {
-            name: name.into(),
-            slots: Vec::new(),
-        }
+        Self { name: name.into(), slots: Vec::new() }
     }
 
     pub fn with(mut self, name: impl Into<String>, value: impl Into<String>) -> Self {
-        self.slots.push(Slot {
-            name: name.into(),
-            value: value.into(),
-        });
+        self.slots.push(Slot { name: name.into(), value: value.into() });
         self
     }
 
     pub fn slot(&self, name: &str) -> Option<&str> {
-        self.slots
-            .iter()
-            .find(|s| s.name == name)
-            .map(|s| s.value.as_str())
+        self.slots.iter().find(|s| s.name == name).map(|s| s.value.as_str())
     }
 }
 
@@ -120,11 +111,7 @@ pub struct Settings {
 
 impl Default for Settings {
     fn default() -> Self {
-        Self {
-            personality: Personality::Default,
-            mode: Mode::Full,
-            languages: default_languages(),
-        }
+        Self { personality: Personality::Default, mode: Mode::Full, languages: default_languages() }
     }
 }
 
@@ -169,11 +156,7 @@ pub fn default_home() -> HomeGraph {
 }
 
 fn area(id: &str, name: &str, aliases: &[&str]) -> AreaRec {
-    AreaRec {
-        area_id: id.to_string(),
-        name: name.to_string(),
-        aliases: aliases.iter().map(|s| s.to_string()).collect(),
-    }
+    AreaRec { area_id: id.to_string(), name: name.to_string(), aliases: aliases.iter().map(|s| s.to_string()).collect() }
 }
 
 fn ent(id: &str, name: &str, domain: &str, area: &str, aliases: &[&str]) -> EntityRec {

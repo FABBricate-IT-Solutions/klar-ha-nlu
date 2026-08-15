@@ -68,11 +68,7 @@ fn parse_german_compound(token: &str) -> Option<i32> {
     if parts.len() != 2 {
         return None;
     }
-    let ones = if parts[0] == "ein" {
-        1
-    } else {
-        cat.number(parts[0])?
-    };
+    let ones = if parts[0] == "ein" { 1 } else { cat.number(parts[0])? };
     let tens = cat.number(parts[1])?;
     if tens < 20 {
         return None;
@@ -84,21 +80,14 @@ fn is_room_index(tokens: &[String], i: usize, n: i32) -> bool {
     if n < 1 || n > 8 {
         return false;
     }
-    tokens
-        .get(i.saturating_sub(1))
-        .is_some_and(|prev| catalog().room_index_nouns.contains(prev.as_str()))
+    tokens.get(i.saturating_sub(1)).is_some_and(|prev| catalog().room_index_nouns.contains(prev.as_str()))
 }
 
 pub fn first_number(tokens: &[String]) -> Option<i32> {
     extract_numbers(tokens).into_iter().next()
 }
 
-pub fn guess_numbered_action(
-    tokens: &[String],
-    last_climate: bool,
-    last_cover: bool,
-    last_fan: bool,
-) -> Action {
+pub fn guess_numbered_action(tokens: &[String], last_climate: bool, last_cover: bool, last_fan: bool) -> Action {
     let cat = catalog();
     if last_climate || cat.any(tokens, &cat.climate_nouns) {
         return Action::SetTemp;

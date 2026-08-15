@@ -30,18 +30,11 @@ struct Args {
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt()
-        .with_env_filter(
-            tracing_subscriber::EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| "klar=info,klar_nlu=info".into()),
-        )
+        .with_env_filter(tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| "klar=info,klar_nlu=info".into()))
         .init();
 
     let args = Args::parse();
-    let data_dir = if args.data_dir.is_dir() {
-        args.data_dir.clone()
-    } else {
-        args.config_dir.clone()
-    };
+    let data_dir = if args.data_dir.is_dir() { args.data_dir.clone() } else { args.config_dir.clone() };
     let mut home = load_home(&args.config_dir, default_home());
     let config_overlay = load_overlay(&args.config_dir);
     apply_overlay(&mut home, &config_overlay);
@@ -71,14 +64,8 @@ async fn main() {
 
     let wyoming_bind = args.wyoming.clone();
     let wy = tokio::spawn(async move {
-        klar_nlu::wyoming::serve(
-            &wyoming_bind,
-            state.home.clone(),
-            state.sessions.clone(),
-            state.settings.clone(),
-            state.custom.clone(),
-        )
-        .await
+        klar_nlu::wyoming::serve(&wyoming_bind, state.home.clone(), state.sessions.clone(), state.settings.clone(), state.custom.clone())
+            .await
     });
 
     let _ = tokio::join!(http, wy);

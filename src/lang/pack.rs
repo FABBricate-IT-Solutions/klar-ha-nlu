@@ -22,15 +22,8 @@ impl GroupClarify {
         if self.trigger.is_empty() || !raw.iter().any(|t| self.trigger.contains(&t.as_str())) {
             return false;
         }
-        raw.windows(2).any(|w| {
-            self.pairs
-                .iter()
-                .any(|p| w[0] == p[0] && w[1] == p[1])
-        }) || raw.windows(3).any(|w| {
-            self.triples
-                .iter()
-                .any(|p| w[0] == p[0] && w[1] == p[1] && w[2] == p[2])
-        })
+        raw.windows(2).any(|w| self.pairs.iter().any(|p| w[0] == p[0] && w[1] == p[1]))
+            || raw.windows(3).any(|w| self.triples.iter().any(|p| w[0] == p[0] && w[1] == p[1] && w[2] == p[2]))
     }
 }
 

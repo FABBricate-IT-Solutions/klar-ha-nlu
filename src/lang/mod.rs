@@ -226,11 +226,7 @@ impl Catalog {
                 c.fixture_aliases.insert(w, aliases);
             }
             if let Some(g) = &p.group_clarify {
-                c.group_clarify.push(GroupClarify {
-                    trigger: g.trigger,
-                    pairs: g.pairs,
-                    triples: g.triples,
-                });
+                c.group_clarify.push(GroupClarify { trigger: g.trigger, pairs: g.pairs, triples: g.triples });
             }
             extend_set!(c.singular_lamp, p.singular_lamp);
             extend_set!(c.singular_lamp_block, p.singular_lamp_block);

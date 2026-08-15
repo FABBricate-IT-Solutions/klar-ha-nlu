@@ -1,6 +1,6 @@
+use crate::compound::{is_infra, is_tv_switch, short_name_token, usable_labels, GENERIC};
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
-use crate::compound::{is_infra, is_tv_switch, short_name_token, usable_labels, GENERIC};
 use crate::normalize::{compact, fold_umlaut};
 use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
@@ -23,18 +23,10 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
         .collect();
     if !areas.is_empty() {
-        let in_area: Vec<(f64, EntityRec)> = candidates
-            .iter()
-            .filter(|(_, e)| e.area.as_ref().is_some_and(|a| areas.contains(a)))
-            .cloned()
-            .collect();
-        let named: Vec<(f64, EntityRec)> = candidates
-            .iter()
-            .filter(|(s, e)| {
-                *s >= 0.96 && !e.area.as_ref().is_some_and(|a| areas.contains(a))
-            })
-            .cloned()
-            .collect();
+        let in_area: Vec<(f64, EntityRec)> =
+            candidates.iter().filter(|(_, e)| e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
+        let named: Vec<(f64, EntityRec)> =
+            candidates.iter().filter(|(s, e)| *s >= 0.96 && !e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
         if !in_area.is_empty() {
             candidates = in_area;
             candidates.extend(named);
@@ -49,10 +41,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         let peers: Vec<EntityRec> = candidates
             .iter()
             .filter(|(s, e)| {
-                (*s - best).abs() < 0.08
-                    && e.entity_id != rec.entity_id
-                    && e.name != rec.name
-                    && overlap(tokens, e, home) >= best_overlap
+                (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && e.name != rec.name && overlap(tokens, e, home) >= best_overlap
             })
             .map(|(_, e)| e.clone())
             .collect();
@@ -64,9 +53,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
 
-    if domain.is_none_or(|d| d == "light")
-        && tokens.iter().any(|t| matches!(t.as_str(), "decke" | "deckenlampe"))
-    {
+    if domain.is_none_or(|d| d == "light") && tokens.iter().any(|t| matches!(t.as_str(), "decke" | "deckenlampe")) {
         let fixtures: Vec<EntityRec> = home
             .entities
             .iter()
@@ -80,23 +67,13 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .cloned()
             .collect();
         if fixtures.len() == 1 {
-            return Resolved {
-                areas,
-                entities: fixtures,
-                ambiguous: Vec::new(),
-            };
+            return Resolved { areas, entities: fixtures, ambiguous: Vec::new() };
         }
     }
 
-    if domain.is_none_or(|d| d == "light")
-        && !catalog().any(tokens, &catalog().timer_nouns)
-    {
+    if domain.is_none_or(|d| d == "light") && !catalog().any(tokens, &catalog().timer_nouns) {
         if let Some(picked) = pick_fixture(tokens, home, &areas) {
-            return Resolved {
-                areas,
-                entities: picked,
-                ambiguous: Vec::new(),
-            };
+            return Resolved { areas, entities: picked, ambiguous: Vec::new() };
         }
     }
     if !areas.is_empty()
@@ -104,18 +81,10 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         && !catalog().any(tokens, &catalog().light_plural)
         && !tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light"))
     {
-        let lights: Vec<EntityRec> = home
-            .entities
-            .iter()
-            .filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| areas.contains(a)))
-            .cloned()
-            .collect();
+        let lights: Vec<EntityRec> =
+            home.entities.iter().filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
         if lights.len() > 1 {
-            return Resolved {
-                areas,
-                entities: Vec::new(),
-                ambiguous: lights,
-            };
+            return Resolved { areas, entities: Vec::new(), ambiguous: lights };
         }
     }
 
@@ -134,17 +103,12 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
 
-    Resolved {
-        areas,
-        entities,
-        ambiguous,
-    }
+    Resolved { areas, entities, ambiguous }
 }
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
     let cat = catalog();
-    let room_level = cat.any(tokens, &cat.light_plural)
-        || tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light" | "alle"));
+    let room_level = cat.any(tokens, &cat.light_plural) || tokens.iter().any(|t| matches!(t.as_str(), "licht" | "light" | "alle"));
     let needle = if cat.any(tokens, &cat.island) {
         Some("island")
     } else if cat.any(tokens, &cat.pendant) {
@@ -176,23 +140,14 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
 }
 
 fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
-    let blob = format!(
-        "{} {} {}",
-        entity.entity_id,
-        fold_umlaut(&entity.name),
-        entity.aliases.join(" ")
-    );
+    let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
     match needle {
         "island" => blob.contains("island") || blob.contains("insel"),
         "pendant" => blob.contains("pendant") || blob.contains("pendel"),
         "right" => blob.contains("right") || blob.contains("rechts"),
         "left" => blob.contains("left") || blob.contains("links"),
         "bedside" => blob.contains("bedside") || blob.contains("nachttisch"),
-        "lamp" => {
-            (blob.contains("lamp") || blob.contains("lampe"))
-                && !blob.contains("ceiling")
-                && !blob.contains("decke")
-        }
+        "lamp" => (blob.contains("lamp") || blob.contains("lampe")) && !blob.contains("ceiling") && !blob.contains("decke"),
         "ceiling" => blob.contains("ceiling") || blob.contains("decke"),
         _ => false,
     }
@@ -208,11 +163,7 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         let mut best = 0usize;
         for n in &names {
             if token_hit(tokens, n) {
-                let parts = n
-                    .split(|c: char| c == ' ' || c == '_')
-                    .filter(|p| !p.is_empty())
-                    .count()
-                    .max(1);
+                let parts = n.split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty()).count().max(1);
                 best = best.max(parts);
             }
         }
@@ -221,20 +172,14 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         }
     }
     let max = scored.iter().map(|(s, _)| *s).max().unwrap_or(0);
-    let strong: Vec<String> = scored
-        .iter()
-        .filter(|(s, _)| *s == max)
-        .map(|(_, id)| id.clone())
-        .collect();
+    let strong: Vec<String> = scored.iter().filter(|(s, _)| *s == max).map(|(_, id)| id.clone()).collect();
     let mut ids: Vec<String> = scored
         .into_iter()
-        .filter(|(s, id)| {
-            *s == max
-                || !strong.iter().any(|other| other.split('_').next() == id.split('_').next())
-        })
+        .filter(|(s, id)| *s == max || !strong.iter().any(|other| other.split('_').next() == id.split('_').next()))
         .map(|(_, id)| id)
         .collect();
-    if ids.is_empty() && tokens.iter().any(|t| t == "bedroom" || t == "bedrooms")
+    if ids.is_empty()
+        && tokens.iter().any(|t| t == "bedroom" || t == "bedrooms")
         && !tokens.iter().any(|t| matches!(t.as_str(), "2" | "3" | "4" | "two" | "three"))
         && areas.iter().any(|a| a.area_id == "master_bedroom")
     {
@@ -254,10 +199,7 @@ fn token_hit(tokens: &[String], label: &str) -> bool {
         if glued.len() > 6 && tokens.iter().any(|t| *t == glued) {
             return true;
         }
-        let parts: Vec<&str> = label
-            .split(|c: char| c == ' ' || c == '_')
-            .filter(|p| !p.is_empty())
-            .collect();
+        let parts: Vec<&str> = label.split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty()).collect();
         return parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p)));
     }
     tokens.iter().any(|t| token_eq(t, label))
@@ -272,8 +214,7 @@ fn token_eq(token: &str, label: &str) -> bool {
     }
     matches!(
         (token, label),
-        ("left" | "links", "left" | "links")
-            | ("right" | "rechts", "right" | "rechts") | ("globe" | "kugel", "globe" | "kugel")
+        ("left" | "links", "left" | "links") | ("right" | "rechts", "right" | "rechts") | ("globe" | "kugel", "globe" | "kugel")
     )
 }
 
@@ -301,40 +242,37 @@ fn number_word(token: &str) -> Option<&'static str> {
 
 fn sort_hits(hits: &mut [(f64, EntityRec)], tokens: &[String], home: &HomeGraph) {
     hits.sort_by(|a, b| {
-        b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal).then_with(|| {
-            overlap(tokens, &b.1, home).cmp(&overlap(tokens, &a.1, home))
-        })
+        b.0.partial_cmp(&a.0)
+            .unwrap_or(std::cmp::Ordering::Equal)
+            .then_with(|| overlap(tokens, &b.1, home).cmp(&overlap(tokens, &a.1, home)))
     });
 }
 
 fn overlap(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> usize {
-    usable_labels(entity, home).into_iter().map(|label| {
-        fold_umlaut(&label).split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p))).count()
-    }).max().unwrap_or(0)
+    usable_labels(entity, home)
+        .into_iter()
+        .map(|label| {
+            fold_umlaut(&label)
+                .split(|c: char| c == ' ' || c == '_')
+                .filter(|p| !p.is_empty() && tokens.iter().any(|t| token_eq(t, p)))
+                .count()
+        })
+        .max()
+        .unwrap_or(0)
 }
 
 fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Option<f64> {
-    let labels: Vec<String> = usable_labels(entity, home)
-        .into_iter()
-        .map(|label| fold_umlaut(&label))
-        .collect();
+    let labels: Vec<String> = usable_labels(entity, home).into_iter().map(|label| fold_umlaut(&label)).collect();
     let mut best = 0.0_f64;
     for label in labels {
         if label.is_empty() {
             continue;
         }
         if token_hit(tokens, &label) && !GENERIC.contains(&label.as_str()) {
-            best = best.max(if label.contains(' ') || label.contains('_') {
-                1.0
-            } else {
-                0.94
-            });
+            best = best.max(if label.contains(' ') || label.contains('_') { 1.0 } else { 0.94 });
             continue;
         }
-        let parts: Vec<&str> = label
-            .split(|c: char| c == ' ' || c == '_')
-            .filter(|p| !p.is_empty() && !GENERIC.contains(p))
-            .collect();
+        let parts: Vec<&str> = label.split(|c: char| c == ' ' || c == '_').filter(|p| !p.is_empty() && !GENERIC.contains(p)).collect();
         if parts.len() > 1 && parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p))) {
             best = best.max(0.96);
             continue;
@@ -356,7 +294,9 @@ fn score_entity(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> Opti
     }
     if best < 0.86 {
         if let Some(short) = short_name_token(entity) {
-            if tokens.iter().any(|t| t == &short) { best = 0.92; }
+            if tokens.iter().any(|t| t == &short) {
+                best = 0.92;
+            }
         }
         best = best.max(crate::compound::fixture_boost(tokens, entity));
     }
@@ -386,9 +326,7 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
             if is_garage_cover(tokens) {
                 return Some("cover");
             }
-            if tokens.iter().any(|x| {
-                matches!(x.as_str(), "open" | "close" | "oeffne" | "oeffnen" | "auf" | "zu")
-            }) {
+            if tokens.iter().any(|x| matches!(x.as_str(), "open" | "close" | "oeffne" | "oeffnen" | "auf" | "zu")) {
                 return Some("lock");
             }
             return Some("binary_sensor");
@@ -409,9 +347,7 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
                     || is_query_token(tokens)
                     || tokens.iter().any(|x| catalog().color(x).is_some()));
             let skip_bare_machine = matches!(t.as_str(), "machine" | "appliance" | "geraet")
-                && !tokens.iter().any(|x| {
-                    matches!(x.as_str(), "laundry" | "washing" | "washer" | "waesche")
-                });
+                && !tokens.iter().any(|x| matches!(x.as_str(), "laundry" | "washing" | "washer" | "waesche"));
             if skip_laundry || skip_bare_machine {
                 continue;
             }
@@ -427,28 +363,26 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
     if tokens.iter().any(|t| catalog().is_all(t)) {
         return ids.into_iter().filter(|id| !id.contains("abstract")).collect();
     }
-    if catalog().any(tokens, &catalog().oven) { return want("oven"); }
-    if catalog().any(tokens, &catalog().laundry_timer)
-        || crate::numbers::first_number(tokens) == Some(90)
-    {
+    if catalog().any(tokens, &catalog().oven) {
+        return want("oven");
+    }
+    if catalog().any(tokens, &catalog().laundry_timer) || crate::numbers::first_number(tokens) == Some(90) {
         return want("laundry");
     }
     ids.iter().find(|id| id.contains("abstract")).cloned().into_iter().collect()
 }
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str) -> Option<String> {
-    let hits: Vec<&str> = home.entities.iter()
+    let hits: Vec<&str> = home
+        .entities
+        .iter()
         .filter(|e| e.domain == domain && !is_infra(e) && e.area.as_deref() == Some(area))
-        .map(|e| e.entity_id.as_str()).collect();
+        .map(|e| e.entity_id.as_str())
+        .collect();
     (hits.len() == 1).then(|| hits[0].to_string())
 }
 
-pub(crate) fn query_grounded(
-    tokens: &[String],
-    home: &HomeGraph,
-    has_target: bool,
-    session: &Session,
-) -> bool {
+pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool, session: &Session) -> bool {
     if has_target || !session.last_entities.is_empty() || !session.last_areas.is_empty() {
         return true;
     }
@@ -482,11 +416,7 @@ pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
     home.areas
         .iter()
         .filter(|area| area.area_id != "wohnung")
-        .filter(|area| {
-            home.entities.iter().any(|entity| {
-                entity.domain == "light" && entity.area.as_deref() == Some(area.area_id.as_str())
-            })
-        })
+        .filter(|area| home.entities.iter().any(|entity| entity.domain == "light" && entity.area.as_deref() == Some(area.area_id.as_str())))
         .map(|area| area.area_id.clone())
         .collect()
 }

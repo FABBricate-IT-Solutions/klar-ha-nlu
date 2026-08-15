@@ -3,23 +3,33 @@ use crate::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
 
 const WEAK: &[&str] = &[
-    "hue", "color", "lamp", "spot", "play", "group", "helper", "entity",
-    "device", "switch", "light", "licht", "led", "ring", "voice", "home",
-    "assistant", "satellite", "pro",
+    "hue",
+    "color",
+    "lamp",
+    "spot",
+    "play",
+    "group",
+    "helper",
+    "entity",
+    "device",
+    "switch",
+    "light",
+    "licht",
+    "led",
+    "ring",
+    "voice",
+    "home",
+    "assistant",
+    "satellite",
+    "pro",
 ];
 
 pub fn leftover(home: &HomeGraph) -> Vec<EntityRec> {
-    home.entities
-        .iter()
-        .filter(|e| assist_visible(e, home) && needs_mapping(e, home))
-        .cloned()
-        .collect()
+    home.entities.iter().filter(|e| assist_visible(e, home) && needs_mapping(e, home)).cloned().collect()
 }
 
 pub fn assist_visible(entity: &EntityRec, home: &HomeGraph) -> bool {
-    home.assist
-        .as_ref()
-        .is_none_or(|ids| ids.contains(&entity.entity_id))
+    home.assist.as_ref().is_none_or(|ids| ids.contains(&entity.entity_id))
 }
 
 pub fn needs_mapping(entity: &EntityRec, home: &HomeGraph) -> bool {
@@ -32,11 +42,7 @@ pub fn needs_mapping(entity: &EntityRec, home: &HomeGraph) -> bool {
     if is_generic_room_light(entity, home) {
         return false;
     }
-    if entity
-        .area
-        .as_ref()
-        .is_some_and(|area| entity.entity_id == format!("light.{area}"))
-    {
+    if entity.area.as_ref().is_some_and(|area| entity.entity_id == format!("light.{area}")) {
         return false;
     }
     distinctive(entity, home).is_empty()
@@ -46,13 +52,7 @@ fn distinctive(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
     let rooms = room_words(home);
     std::iter::once(entity.name.as_str())
         .chain(entity.aliases.iter().map(String::as_str))
-        .flat_map(|label| {
-            label
-                .split(|c: char| !c.is_ascii_alphanumeric())
-                .filter(|p| !p.is_empty())
-                .map(compact)
-                .collect::<Vec<_>>()
-        })
+        .flat_map(|label| label.split(|c: char| !c.is_ascii_alphanumeric()).filter(|p| !p.is_empty()).map(compact).collect::<Vec<_>>())
         .filter(|part| {
             part.len() > 2
                 && !part.chars().all(|c| c.is_ascii_digit())
@@ -71,12 +71,7 @@ fn room_words(home: &HomeGraph) -> Vec<String> {
                 .chain(std::iter::once(compact(&area.area_id)))
                 .chain(area.aliases.iter().map(|a| compact(a)))
         })
-        .chain(
-            home.entities
-                .iter()
-                .filter_map(|e| e.area.as_ref())
-                .map(|a| compact(a)),
-        )
+        .chain(home.entities.iter().filter_map(|e| e.area.as_ref()).map(|a| compact(a)))
         .filter(|w| w.len() > 2)
         .collect()
 }
@@ -88,11 +83,7 @@ mod tests {
 
     fn home() -> HomeGraph {
         HomeGraph {
-            areas: vec![AreaRec {
-                area_id: "schlafzimmer".into(),
-                name: "Schlafzimmer".into(),
-                aliases: vec!["bedroom".into()],
-            }],
+            areas: vec![AreaRec { area_id: "schlafzimmer".into(), name: "Schlafzimmer".into(), aliases: vec!["bedroom".into()] }],
             entities: vec![
                 ent("light.schlafzimmer", "Kugel", Some("schlafzimmer")),
                 ent("light.schlafzimmer_licht", "Schlafzimmer Licht", Some("schlafzimmer")),
@@ -130,10 +121,7 @@ mod tests {
         assert!(needs_mapping(&home.entities[4], &home));
         let leftover = leftover(&home);
         let ids: Vec<_> = leftover.iter().map(|e| e.entity_id.as_str()).collect();
-        assert_eq!(
-            ids,
-            ["light.hue_play_1", "light.hue_color_lamp_1", "light.orphan"]
-        );
+        assert_eq!(ids, ["light.hue_play_1", "light.hue_color_lamp_1", "light.orphan"]);
     }
 
     #[test]

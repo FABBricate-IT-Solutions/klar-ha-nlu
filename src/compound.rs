@@ -7,14 +7,64 @@ use std::collections::HashMap;
 use std::path::Path;
 
 pub(crate) const GENERIC: &[&str] = &[
-    "licht", "lichter", "lampe", "lampen", "leuchte", "heizung", "thermostat",
-    "steckdose", "schalter", "szene", "sensor", "light", "lights", "lamp", "lamps",
-    "heater", "heating", "switch", "scene", "ceiling", "decke", "blinds", "rollo",
-    "curtain", "curtains", "fan", "luefter", "bedroom", "bedrooms", "kinderzimmer",
-    "bathroom", "bath", "door", "tuer", "window", "windows", "fenster", "lock",
-    "locks", "schloss", "timer", "kitchen", "living", "dining", "garage", "hallway",
-    "laundry", "entryway", "family", "master", "powder", "wohnzimmer", "schlafzimmer",
-    "kuche", "kueche", "badezimmer", "flur", "esszimmer",
+    "licht",
+    "lichter",
+    "lampe",
+    "lampen",
+    "leuchte",
+    "heizung",
+    "thermostat",
+    "steckdose",
+    "schalter",
+    "szene",
+    "sensor",
+    "light",
+    "lights",
+    "lamp",
+    "lamps",
+    "heater",
+    "heating",
+    "switch",
+    "scene",
+    "ceiling",
+    "decke",
+    "blinds",
+    "rollo",
+    "curtain",
+    "curtains",
+    "fan",
+    "luefter",
+    "bedroom",
+    "bedrooms",
+    "kinderzimmer",
+    "bathroom",
+    "bath",
+    "door",
+    "tuer",
+    "window",
+    "windows",
+    "fenster",
+    "lock",
+    "locks",
+    "schloss",
+    "timer",
+    "kitchen",
+    "living",
+    "dining",
+    "garage",
+    "hallway",
+    "laundry",
+    "entryway",
+    "family",
+    "master",
+    "powder",
+    "wohnzimmer",
+    "schlafzimmer",
+    "kuche",
+    "kueche",
+    "badezimmer",
+    "flur",
+    "esszimmer",
 ];
 
 pub struct CompoundSplit {
@@ -41,31 +91,17 @@ pub fn expand_compounds(tokens: &[String], home: &HomeGraph) -> CompoundSplit {
             out.push(token.clone());
         }
     }
-    CompoundSplit {
-        tokens: out,
-        light_areas,
-    }
+    CompoundSplit { tokens: out, light_areas }
 }
 
-pub fn apply_compound_light(
-    home: &HomeGraph,
-    tokens: &[String],
-    light_areas: &[String],
-    resolved: &mut crate::resolve::Resolved,
-) {
-    let Some(area) = light_areas
-        .iter()
-        .find(|a| resolved.areas.contains(a) || tokens.iter().any(|t| t == *a))
-        .cloned()
-    else {
+pub fn apply_compound_light(home: &HomeGraph, tokens: &[String], light_areas: &[String], resolved: &mut crate::resolve::Resolved) {
+    let Some(area) = light_areas.iter().find(|a| resolved.areas.contains(a) || tokens.iter().any(|t| t == *a)).cloned() else {
         return;
     };
     if !resolved.areas.contains(&area) {
         resolved.areas.push(area.clone());
     }
-    let named = tokens.iter().any(|t| {
-        catalog().named_device.contains(t.as_str()) && !is_light_noun(t)
-    });
+    let named = tokens.iter().any(|t| catalog().named_device.contains(t.as_str()) && !is_light_noun(t));
     if named {
         return;
     }
@@ -138,16 +174,10 @@ fn is_light_noun(token: &str) -> bool {
 }
 
 pub(crate) fn is_tv_switch(domain: &str, entity: &EntityRec) -> bool {
-    domain == "media_player"
-        && entity.domain == "switch"
-        && {
-            let blob = format!(
-                "{} {}",
-                entity.entity_id,
-                compact(&format!("{} {}", entity.name, entity.aliases.join(" ")))
-            );
-            blob.contains("tv") || blob.contains("fernseher")
-        }
+    domain == "media_player" && entity.domain == "switch" && {
+        let blob = format!("{} {}", entity.entity_id, compact(&format!("{} {}", entity.name, entity.aliases.join(" "))));
+        blob.contains("tv") || blob.contains("fernseher")
+    }
 }
 
 pub(crate) fn is_infra(entity: &EntityRec) -> bool {
@@ -181,11 +211,7 @@ pub(crate) fn is_infra_light(entity: &EntityRec) -> bool {
     }
     let id = entity.entity_id.to_ascii_lowercase();
     let name = compact(&entity.name);
-    id.contains("led_ring")
-        || id.contains("voice_led")
-        || id.contains("u7_pro")
-        || name.contains("ledring")
-        || name.contains("u7pro")
+    id.contains("led_ring") || id.contains("voice_led") || id.contains("u7_pro") || name.contains("ledring") || name.contains("u7pro")
 }
 
 pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> bool {
@@ -193,37 +219,30 @@ pub(crate) fn is_generic_room_light(entity: &EntityRec, home: &HomeGraph) -> boo
         return false;
     }
     let name = compact(&entity.name);
-    home.areas.iter().any(|area| {
-        generic_name(&name, &compact(&area.name)) || generic_name(&name, &compact(&area.area_id))
-    })
+    home.areas.iter().any(|area| generic_name(&name, &compact(&area.name)) || generic_name(&name, &compact(&area.area_id)))
 }
 
 pub(crate) fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
     let name = compact(&entity.name);
-    tokens.iter().any(|t| {
-        catalog().fixture_alias(t).iter().any(|alias| {
-            let a = compact(alias);
-            a.len() >= 5 && !GENERIC.contains(&a.as_str()) && name.contains(&a)
+    tokens
+        .iter()
+        .any(|t| {
+            catalog().fixture_alias(t).iter().any(|alias| {
+                let a = compact(alias);
+                a.len() >= 5 && !GENERIC.contains(&a.as_str()) && name.contains(&a)
+            })
         })
-    })
-    .then_some(0.94)
-    .unwrap_or(0.0)
+        .then_some(0.94)
+        .unwrap_or(0.0)
 }
 
 pub(crate) fn outlet_boost(tokens: &[String], entity: &EntityRec) -> f64 {
-    if !tokens
-        .iter()
-        .any(|t| matches!(t.as_str(), "steckdose" | "outlet"))
-    {
+    if !tokens.iter().any(|t| matches!(t.as_str(), "steckdose" | "outlet")) {
         return 0.0;
     }
     let id = entity.entity_id.to_ascii_lowercase();
     let name = compact(&entity.name);
-    if id.contains("steckdose")
-        || id.contains("outlet")
-        || name.contains("steckdose")
-        || name.contains("outlet")
-    {
+    if id.contains("steckdose") || id.contains("outlet") || name.contains("steckdose") || name.contains("outlet") {
         0.97
     } else {
         0.0
@@ -261,45 +280,27 @@ fn stolen_label(label: &str, entity: &EntityRec, home: &HomeGraph) -> bool {
     if catalog().named_device.iter().any(|n| compact(n) == folded) {
         return true;
     }
-    if home
-        .areas
-        .iter()
-        .any(|area| compact(&area.name) == folded || compact(&area.area_id) == folded)
-    {
+    if home.areas.iter().any(|area| compact(&area.name) == folded || compact(&area.area_id) == folded) {
         return true;
     }
-    if home.entities.iter().any(|other| {
-        other.entity_id != entity.entity_id && compact(&other.name) == folded
-    }) {
+    if home.entities.iter().any(|other| other.entity_id != entity.entity_id && compact(&other.name) == folded) {
         return true;
     }
-    let parts: Vec<String> = label
-        .split(|c: char| !c.is_ascii_alphanumeric())
-        .map(compact)
-        .filter(|p| !p.is_empty())
-        .collect();
-    !parts.is_empty()
-        && parts.iter().all(|p| GENERIC.contains(&p.as_str()))
-        && sibling_lights(home, entity) > 0
+    let parts: Vec<String> = label.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).filter(|p| !p.is_empty()).collect();
+    !parts.is_empty() && parts.iter().all(|p| GENERIC.contains(&p.as_str())) && sibling_lights(home, entity) > 0
 }
 
 fn sibling_lights(home: &HomeGraph, entity: &EntityRec) -> usize {
     home.entities
         .iter()
         .filter(|other| {
-            other.entity_id != entity.entity_id
-                && other.domain == "light"
-                && !is_infra_light(other)
-                && other.area == entity.area
+            other.entity_id != entity.entity_id && other.domain == "light" && !is_infra_light(other) && other.area == entity.area
         })
         .count()
 }
 
 fn generic_name(name: &str, room: &str) -> bool {
-    !room.is_empty()
-        && (name == format!("{room}licht")
-            || name == format!("{room}light")
-            || name == format!("{room}lampe"))
+    !room.is_empty() && (name == format!("{room}licht") || name == format!("{room}light") || name == format!("{room}lampe"))
 }
 
 pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
@@ -307,28 +308,42 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
     if !mentioned && catalog().any(tokens, &catalog().light_nouns) {
         return None;
     }
-    let mut hits: Vec<String> = home.entities.iter().filter(|e| matches!(e.domain.as_str(), "scene" | "script")).filter(|e| {
-        scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home))
-    }).map(|e| e.entity_id.clone()).collect();
+    let mut hits: Vec<String> = home
+        .entities
+        .iter()
+        .filter(|e| matches!(e.domain.as_str(), "scene" | "script"))
+        .filter(|e| scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home)))
+        .map(|e| e.entity_id.clone())
+        .collect();
     let named = mentioned || catalog().any(tokens, &catalog().scene_named);
     (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
 }
 
 fn scene_token(token: &str) -> String {
-    match token { "movie" => "filmabend".into(), "cozy" => "gemuetlich".into(), other => fold_umlaut(other) }
+    match token {
+        "movie" => "filmabend".into(),
+        "cozy" => "gemuetlich".into(),
+        other => fold_umlaut(other),
+    }
 }
 
 fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
-    let parts: Vec<String> = fold_umlaut(name).split_whitespace().map(scene_token)
-        .filter(|p| p.len() > 3 && !catalog().weak_scene.contains(p.as_str()) && scene_distinctive(p, home)).collect();
-    if parts.is_empty() { return false; }
+    let parts: Vec<String> = fold_umlaut(name)
+        .split_whitespace()
+        .map(scene_token)
+        .filter(|p| p.len() > 3 && !catalog().weak_scene.contains(p.as_str()) && scene_distinctive(p, home))
+        .collect();
+    if parts.is_empty() {
+        return false;
+    }
     let mapped: Vec<String> = tokens.iter().map(|t| scene_token(t)).collect();
-    parts.iter().all(|p| mapped.iter().any(|t| t == p))
-        || (parts.len() == 1 && parts[0].len() > 5 && mapped.iter().any(|t| t == &parts[0]))
+    parts.iter().all(|p| mapped.iter().any(|t| t == p)) || (parts.len() == 1 && parts[0].len() > 5 && mapped.iter().any(|t| t == &parts[0]))
 }
 
 fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
-    if catalog().light_nouns.contains(part) || GENERIC.contains(&part) { return false; }
+    if catalog().light_nouns.contains(part) || GENERIC.contains(&part) {
+        return false;
+    }
     let folded = compact(part);
     !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
 }
@@ -338,15 +353,24 @@ pub(crate) fn room_light_id(home: &HomeGraph, area: &str) -> Option<String> {
 }
 
 pub(crate) fn query_keeps_entity(tokens: &[String], home: &HomeGraph, resolved: &crate::resolve::Resolved) -> bool {
-    if resolved.entities.is_empty() || resolved.areas.len() > 1 { return false; }
+    if resolved.entities.is_empty() || resolved.areas.len() > 1 {
+        return false;
+    }
     let cat = catalog();
-    if cat.any(tokens, &cat.named_device) { return true; }
-    if cat.any(tokens, &cat.climate_nouns) { return false; }
+    if cat.any(tokens, &cat.named_device) {
+        return true;
+    }
+    if cat.any(tokens, &cat.climate_nouns) {
+        return false;
+    }
     if cat.any(tokens, &cat.media_nouns) || tokens.iter().any(|t| matches!(t.as_str(), "steckdose" | "outlet")) {
         return true;
     }
-    if !resolved.areas.is_empty() && cat.any(tokens, &cat.light_nouns)
-        && !cat.any(tokens, &cat.ceiling) && !cat.any(tokens, &cat.lamp_fixture) && !cat.any(tokens, &cat.island)
+    if !resolved.areas.is_empty()
+        && cat.any(tokens, &cat.light_nouns)
+        && !cat.any(tokens, &cat.ceiling)
+        && !cat.any(tokens, &cat.lamp_fixture)
+        && !cat.any(tokens, &cat.island)
     {
         return false;
     }
@@ -359,17 +383,14 @@ pub(crate) fn area_slots(
     domain: Option<&str>,
     home: &HomeGraph,
 ) -> (Option<String>, Option<String>, Option<String>) {
-    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight)
-        && domain.is_none_or(|d| d == "light")
-    {
+    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
         if let Some(id) = room_light_id(home, area) {
             return (Some(id), None, None);
         }
         return (None, Some(area.to_string()), Some("light".into()));
     }
-    let id = domain
-        .filter(|d| matches!(*d, "climate" | "media_player" | "fan"))
-        .and_then(|d| crate::resolve::unique_in_area(home, area, d));
+    let id =
+        domain.filter(|d| matches!(*d, "climate" | "media_player" | "fan")).and_then(|d| crate::resolve::unique_in_area(home, area, d));
     (id, Some(area.to_string()), domain.map(str::to_string))
 }
 
@@ -378,11 +399,7 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     let lights: Vec<&EntityRec> = home
         .entities
         .iter()
-        .filter(|e| {
-            e.domain == "light"
-                && !is_infra_light(e)
-                && (e.area.as_deref() == Some(area) || e.entity_id == room)
-        })
+        .filter(|e| e.domain == "light" && !is_infra_light(e) && (e.area.as_deref() == Some(area) || e.entity_id == room))
         .collect();
     if let Some(hit) = lights.iter().find(|e| e.tags.iter().any(|t| t == "preferred")) {
         return Some((*hit).clone());
@@ -390,10 +407,7 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     if let Some(hit) = lights.iter().find(|e| e.entity_id == room) {
         return Some((*hit).clone());
     }
-    let lights: Vec<&EntityRec> = lights
-        .into_iter()
-        .filter(|e| !is_generic_room_light(e, home))
-        .collect();
+    let lights: Vec<&EntityRec> = lights.into_iter().filter(|e| !is_generic_room_light(e, home)).collect();
     let named: Vec<&EntityRec> = lights
         .iter()
         .copied()
@@ -445,9 +459,7 @@ pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {
                 }
             }
         }
-        if overlay.preferred.iter().any(|id| id == &ent.entity_id)
-            && !ent.tags.iter().any(|t| t == "preferred")
-        {
+        if overlay.preferred.iter().any(|id| id == &ent.entity_id) && !ent.tags.iter().any(|t| t == "preferred") {
             ent.tags.push("preferred".into());
         }
         if let Some(area) = overlay.areas.get(&ent.entity_id) {
@@ -474,21 +486,9 @@ mod tests {
             }],
             ..Default::default()
         };
-        apply_overlay(
-            &mut home,
-            &Overlay {
-                areas: [("light.orphan".into(), "wohnzimmer".into())].into(),
-                ..Default::default()
-            },
-        );
+        apply_overlay(&mut home, &Overlay { areas: [("light.orphan".into(), "wohnzimmer".into())].into(), ..Default::default() });
         assert_eq!(home.entities[0].area.as_deref(), Some("wohnzimmer"));
-        apply_overlay(
-            &mut home,
-            &Overlay {
-                areas: [("light.orphan".into(), String::new())].into(),
-                ..Default::default()
-            },
-        );
+        apply_overlay(&mut home, &Overlay { areas: [("light.orphan".into(), String::new())].into(), ..Default::default() });
         assert_eq!(home.entities[0].area, None);
     }
 }
