@@ -12,7 +12,7 @@ use crate::split::split_clauses;
 use crate::types::{CustomSentence, HomeGraph, Intent, ParseResult, Settings};
 
 pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
-    let _langs = crate::lang::bind(&settings.languages);
+    let _guard = crate::lang::bind(&settings.languages);
     let raw_tokens = tokenize(text);
     let split = expand_compounds(&strip_fillers(&raw_tokens), home);
     let tokens = split.tokens;
@@ -48,12 +48,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     }
     if session.pending_clarify.is_none() && tokens.iter().all(|t| catalog().is_affirm(t)) && !tokens.is_empty() {
         if let Some(id) = last_visible(session, home) {
-            let name = session
-                .last_names
-                .iter()
-                .find(|n| n.starts_with("Hass") && *n != "HassGetState")
-                .cloned()
-                .unwrap_or_else(|| "HassTurnOn".into());
+            let name = session.last_names().find(|n| n.starts_with("Hass") && *n != "HassGetState").unwrap_or("HassTurnOn").to_string();
             let intent = Intent::new(name).with("entity_id", id);
             session.remember(&intent);
             let speech = speak(std::slice::from_ref(&intent), settings.personality, false, Some(home));
@@ -121,9 +116,6 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
         } else if catalog().any(&tokens, &catalog().on_words) || catalog().any(&tokens, &catalog().off_words) {
             return done(text, session, Vec::new(), speak_need_target(catalog().any(&tokens, &catalog().off_words)), true, false);
         }
-    }
-    for intent in &intents {
-        session.remember(intent);
     }
     let speech = if intents.is_empty() { speak_unknown() } else { speak(&intents, settings.personality, false, Some(home)) };
     done(text, session, intents, speech, false, false)

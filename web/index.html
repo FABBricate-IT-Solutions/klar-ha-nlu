@@ -188,7 +188,7 @@
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
     }[c]));
     const tokenHeaders = () => {
-      const token = ($("token") && $("token").value.trim()) || localStorage.getItem("klar_token") || new URLSearchParams(location.search).get("token") || "";
+      const token = ($("token") && $("token").value.trim()) || localStorage.getItem("klar_token") || "";
       return token ? { "x-klar-token": token } : {};
     };
     const api = (path, opts = {}) => fetch(path, {
@@ -320,7 +320,7 @@
       const set = await (await api("/api/settings")).json();
       $("personality").value = set.personality;
       $("mode").value = set.mode;
-      const stored = localStorage.getItem("klar_token") || new URLSearchParams(location.search).get("token") || "";
+      const stored = localStorage.getItem("klar_token") || "";
       if (stored) $("token").value = stored;
     })();
   </script>

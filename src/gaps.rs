@@ -25,7 +25,7 @@ const WEAK: &[&str] = &[
     "pro",
 ];
 
-pub use crate::expose::assist_visible;
+use crate::expose::assist_visible;
 
 pub fn leftover(home: &HomeGraph) -> Vec<EntityRec> {
     home.entities.iter().filter(|e| assist_visible(e, home) && needs_mapping(e, home)).cloned().collect()

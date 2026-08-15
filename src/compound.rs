@@ -5,8 +5,6 @@ use crate::normalize::{compact, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph};
 use std::collections::HashSet;
 
-pub use crate::overlay::{apply_overlay, load_overlay, overlay_path, save_overlay, Overlay};
-
 pub struct CompoundSplit {
     pub tokens: Vec<String>,
     pub light_areas: Vec<String>,

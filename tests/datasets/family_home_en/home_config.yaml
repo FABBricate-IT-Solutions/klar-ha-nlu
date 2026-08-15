@@ -1,5 +1,9 @@
 name: Family Home Medium Two Storey
 difficulty: medium
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
 floors:
   - id: ground
     name: Ground Floor

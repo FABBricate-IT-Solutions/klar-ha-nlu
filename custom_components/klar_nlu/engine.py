@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 import platform
 import secrets
 import tarfile
@@ -162,20 +163,21 @@ class KlarEngine:
 
     async def _spawn(self) -> None:
         self.token = self._ensure_token()
+        env = os.environ.copy()
+        env["KLAR_TOKEN"] = self.token
         self._proc = await asyncio.create_subprocess_exec(
             str(self.binary),
             "--config-dir",
             str(self.hass.config.config_dir),
             "--data-dir",
             str(self.bindir),
-            "--token",
-            self.token,
             "--http",
             "127.0.0.1:10520",
             "--wyoming",
             "127.0.0.1:10500",
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
+            env=env,
         )
         asyncio.create_task(self._pipe_log(self._proc.stdout, logging.DEBUG))
         asyncio.create_task(self._pipe_log(self._proc.stderr, logging.WARNING))

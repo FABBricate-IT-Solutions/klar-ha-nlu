@@ -1,6 +1,6 @@
 use clap::Parser;
-use klar_nlu::compound::{apply_overlay, load_overlay};
 use klar_nlu::lexicon::default_home;
+use klar_nlu::overlay::{apply_overlay, load_overlay};
 use klar_nlu::registry::load_home;
 use klar_nlu::session::Sessions;
 use klar_nlu::types::{CustomSentence, HomeGraph};
@@ -64,7 +64,7 @@ async fn main() {
         }
     }
     let state = AppState {
-        home: Arc::new(Mutex::new(home)),
+        home: Arc::new(Mutex::new(Arc::new(home))),
         sessions: Arc::new(Mutex::new(Sessions::default())),
         settings: Arc::new(Mutex::new(settings)),
         custom: Arc::new(Mutex::new(custom)),
@@ -156,7 +156,7 @@ async fn reload_home(state: AppState, config_dir: PathBuf, data_dir: PathBuf) {
         stamp = next;
         let (home, custom) = load_graph(&config_dir, &data_dir);
         let n = home.entities.len();
-        *state.home.lock().await = home;
+        *state.home.lock().await = Arc::new(home);
         *state.custom.lock().await = custom;
         tracing::info!("Home-Graph neu geladen ({n} Entitäten)");
     }

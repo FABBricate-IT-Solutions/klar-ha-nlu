@@ -1,5 +1,6 @@
-use crate::compound::{is_infra, is_tv_switch};
+use crate::compound::is_tv_switch;
 use crate::expose::assist_visible;
+use crate::home_policy::is_infra;
 use crate::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
 use serde::Deserialize;

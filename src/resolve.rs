@@ -1,10 +1,10 @@
-use crate::compound::{is_infra, short_name_token, usable_labels};
-use crate::gaps::assist_visible;
+use crate::compound::{short_name_token, usable_labels};
+use crate::expose::assist_visible;
+use crate::home_policy::is_infra;
 use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, is_garage_cover, is_query_token};
 use crate::normalize::{compact, fold_umlaut};
 use crate::roles::{is_light_like, matches_domain};
-use crate::session::Session;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use strsim::normalized_levenshtein;
 
@@ -355,7 +355,7 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
         return want("oven");
     }
     if catalog().any(tokens, &catalog().laundry_timer)
-        || crate::home_policy::timer_hint(crate::numbers::first_number(tokens)) == Some("laundry")
+        || crate::home_policy::timer_hint(home, crate::numbers::first_number(tokens)) == Some("laundry")
     {
         return want("laundry");
     }
@@ -386,10 +386,11 @@ pub(crate) fn climates_of_kind(home: &HomeGraph, tokens: &[String]) -> Vec<Strin
         .collect()
 }
 
-pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool, _session: &Session) -> bool {
-    if has_target {
-        return true;
-    }
+pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool) -> bool {
+    has_target || mentions_home(tokens, home)
+}
+
+pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
     let cat = catalog();
     if cat.any(tokens, &cat.temp_query)
         || cat.any(tokens, &cat.light_nouns)
@@ -401,10 +402,21 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
         || cat.any(tokens, &cat.media_nouns)
         || cat.any(tokens, &cat.timer_nouns)
         || cat.any(tokens, &cat.list_nouns)
+        || cat.any(tokens, &cat.scene_nouns)
+        || cat.any(tokens, &cat.named_device)
+        || cat.any(tokens, &cat.on_words)
+        || cat.any(tokens, &cat.off_words)
+        || cat.any(tokens, &cat.laundry_machines)
         || cat.any(tokens, &cat.status_words)
-        || ((cat.any(tokens, &cat.on_words) || cat.any(tokens, &cat.off_words))
-            && (tokens.first().is_some_and(|t| cat.is_question_start(t)) || tokens.iter().any(|t| cat.is_question_word(t))))
     {
+        return true;
+    }
+    if home.areas.iter().any(|area| {
+        std::iter::once(compact(&area.area_id))
+            .chain(std::iter::once(compact(&area.name)))
+            .chain(area.aliases.iter().map(|alias| compact(alias)))
+            .any(|name| !name.is_empty() && tokens.iter().any(|token| token == &name))
+    }) {
         return true;
     }
     home.entities.iter().filter(|entity| assist_visible(entity, home)).any(|entity| {

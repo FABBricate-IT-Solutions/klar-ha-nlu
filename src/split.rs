@@ -204,19 +204,3 @@ pub(crate) fn follow_fixture(tokens: &[String], home: &crate::types::HomeGraph, 
     }
     None
 }
-
-pub(crate) fn implied_domain(action: Action) -> Option<&'static str> {
-    match action {
-        Action::SetLight => Some("light"),
-        Action::SetTemp => Some("climate"),
-        Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
-        Action::Lock | Action::Unlock => Some("lock"),
-        Action::FanSpeed => Some("fan"),
-        Action::VacuumStart | Action::VacuumDock => Some("vacuum"),
-        Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute => Some("media_player"),
-        Action::Scene => Some("scene"),
-        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
-        Action::ListAdd | Action::ListComplete => Some("todo"),
-        _ => None,
-    }
-}

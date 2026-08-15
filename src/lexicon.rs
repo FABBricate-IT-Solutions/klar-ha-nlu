@@ -32,6 +32,37 @@ pub enum Action {
     ClarifyWrong,
 }
 
+pub fn domain_for(action: Action, tokens: &[String]) -> Option<&'static str> {
+    forced_domain(action).or_else(|| crate::resolve::domain_hint(tokens)).or_else(|| implied_domain(action))
+}
+
+fn forced_domain(action: Action) -> Option<&'static str> {
+    match action {
+        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
+        Action::SetTemp => Some("climate"),
+        Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
+        Action::FanSpeed => Some("fan"),
+        Action::Lock | Action::Unlock => Some("lock"),
+        _ => None,
+    }
+}
+
+fn implied_domain(action: Action) -> Option<&'static str> {
+    match action {
+        Action::SetLight => Some("light"),
+        Action::SetTemp => Some("climate"),
+        Action::CoverOpen | Action::CoverClose | Action::CoverSet => Some("cover"),
+        Action::Lock | Action::Unlock => Some("lock"),
+        Action::FanSpeed => Some("fan"),
+        Action::VacuumStart | Action::VacuumDock => Some("vacuum"),
+        Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute => Some("media_player"),
+        Action::Scene => Some("scene"),
+        Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause => Some("timer"),
+        Action::ListAdd | Action::ListComplete => Some("todo"),
+        _ => None,
+    }
+}
+
 pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
     let cat = catalog();
     let mut found = Vec::new();

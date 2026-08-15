@@ -5,14 +5,20 @@ use uuid::Uuid;
 
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
+const LAST_KEEP: usize = 8;
+
+#[derive(Debug, Clone)]
+pub struct LastTurn {
+    pub entity: Option<String>,
+    pub area: Option<String>,
+    pub name: String,
+    pub domain: Option<String>,
+}
 
 #[derive(Debug, Clone)]
 pub struct Session {
     pub id: String,
-    pub last_entities: Vec<String>,
-    pub last_areas: Vec<String>,
-    pub last_names: Vec<String>,
-    pub last_domains: Vec<String>,
+    pub last: Vec<LastTurn>,
     pub last_intent_template: Option<Intent>,
     pub pending_clarify: Option<Vec<String>>,
     pub wrong_log: Vec<String>,
@@ -30,10 +36,7 @@ impl Session {
     pub fn new() -> Self {
         Self {
             id: Uuid::new_v4().to_string(),
-            last_entities: Vec::new(),
-            last_areas: Vec::new(),
-            last_names: Vec::new(),
-            last_domains: Vec::new(),
+            last: Vec::new(),
             last_intent_template: None,
             pending_clarify: None,
             wrong_log: Vec::new(),
@@ -42,32 +45,36 @@ impl Session {
         }
     }
 
+    pub fn last_entities(&self) -> impl Iterator<Item = &str> {
+        self.last.iter().filter_map(|turn| turn.entity.as_deref())
+    }
+
+    pub fn last_areas(&self) -> impl Iterator<Item = &str> {
+        self.last.iter().filter_map(|turn| turn.area.as_deref())
+    }
+
+    pub fn last_names(&self) -> impl Iterator<Item = &str> {
+        self.last.iter().map(|turn| turn.name.as_str())
+    }
+
+    pub fn last_domains(&self) -> impl Iterator<Item = &str> {
+        self.last.iter().filter_map(|turn| turn.domain.as_deref())
+    }
+
+    pub fn remember_entity(&mut self, entity_id: impl Into<String>) {
+        self.remember(&Intent::new("HassTurnOn").with("entity_id", entity_id.into()));
+    }
+
     pub fn remember(&mut self, intent: &Intent) {
-        if let Some(id) = intent.slot("entity_id") {
-            self.last_entities.retain(|e| e != id);
-            self.last_entities.insert(0, id.to_string());
-            self.last_entities.truncate(8);
+        let entity = intent.slot("entity_id").map(str::to_string);
+        let area = intent.slot("area").map(str::to_string);
+        let domain =
+            intent.slot("domain").map(str::to_string).or_else(|| entity.as_deref().and_then(|id| id.split('.').next()).map(str::to_string));
+        if let Some(id) = &entity {
+            self.last.retain(|turn| turn.entity.as_deref() != Some(id.as_str()));
         }
-        if let Some(area) = intent.slot("area") {
-            self.last_areas.retain(|a| a != area);
-            self.last_areas.insert(0, area.to_string());
-            self.last_areas.truncate(8);
-        }
-        self.last_names.retain(|n| n != &intent.name);
-        self.last_names.insert(0, intent.name.clone());
-        self.last_names.truncate(8);
-        if let Some(d) = intent.slot("domain") {
-            self.last_domains.retain(|x| x != d);
-            self.last_domains.insert(0, d.to_string());
-            self.last_domains.truncate(8);
-        } else if let Some(id) = intent.slot("entity_id") {
-            if let Some(d) = id.split('.').next() {
-                let d = d.to_string();
-                self.last_domains.retain(|x| x != &d);
-                self.last_domains.insert(0, d);
-                self.last_domains.truncate(8);
-            }
-        }
+        self.last.insert(0, LastTurn { entity, area, name: intent.name.clone(), domain });
+        self.last.truncate(LAST_KEEP);
     }
 
     pub fn clear_clarify(&mut self) {
@@ -149,8 +156,8 @@ mod tests {
     #[test]
     fn reuses_same_id() {
         let mut sessions = Sessions::default();
-        sessions.get_or_create(Some("assist-1")).last_entities.push("light.a".into());
-        assert_eq!(sessions.get_or_create(Some("assist-1")).last_entities, ["light.a"]);
+        sessions.get_or_create(Some("assist-1")).remember_entity("light.a");
+        assert_eq!(sessions.get_or_create(Some("assist-1")).last_entities().collect::<Vec<_>>(), ["light.a"]);
     }
 
     #[test]

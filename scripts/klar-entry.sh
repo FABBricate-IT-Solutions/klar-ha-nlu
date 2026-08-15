@@ -21,7 +21,7 @@ has_flag --wyoming "$@" || prefix="$prefix --wyoming 0.0.0.0:10500"
 has_flag --config-dir "$@" || prefix="$prefix --config-dir /config"
 has_flag --data-dir "$@" || prefix="$prefix --data-dir /data"
 if [ -n "$token" ] && ! has_flag --token "$@"; then
-  prefix="$prefix --token $token"
+  export KLAR_TOKEN="$token"
 fi
 
 # prefix is only our flags; values have no spaces

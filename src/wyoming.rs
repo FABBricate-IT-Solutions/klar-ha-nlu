@@ -1,38 +1,60 @@
+use crate::auth::wyoming_allowed;
 use crate::parse::parse;
 use crate::session::Sessions;
 use crate::types::{HomeGraph, Settings};
+use crate::web::MAX_PARSE_CHARS;
 use serde_json::{json, Value};
+use std::io::{Error, ErrorKind};
+use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
+use std::time::Duration;
 use tokio::io::{AsyncBufRead, AsyncBufReadExt, AsyncWriteExt, BufReader};
 use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::Mutex;
+use tokio::time::timeout;
+
+const MAX_LINE: usize = 8192;
+const MAX_CONNS: usize = 32;
+const IDLE: Duration = Duration::from_secs(30);
+
+type Home = Arc<Mutex<Arc<HomeGraph>>>;
 
 pub async fn serve(
     bind: &str,
-    home: Arc<Mutex<HomeGraph>>,
+    home: Home,
     sessions: Arc<Mutex<Sessions>>,
     settings: Arc<Mutex<Settings>>,
     custom: Arc<Mutex<Vec<crate::types::CustomSentence>>>,
 ) -> std::io::Result<()> {
     let listener = TcpListener::bind(bind).await?;
+    let inflight = Arc::new(AtomicUsize::new(0));
     tracing::info!("Wyoming lauscht auf {bind}");
     loop {
-        let (stream, _) = listener.accept().await?;
+        let (stream, peer) = listener.accept().await?;
+        if !wyoming_allowed(peer) {
+            continue;
+        }
+        if inflight.load(Ordering::Relaxed) >= MAX_CONNS {
+            continue;
+        }
+        inflight.fetch_add(1, Ordering::Relaxed);
         let home = home.clone();
         let sessions = sessions.clone();
         let settings = settings.clone();
         let custom = custom.clone();
+        let inflight = inflight.clone();
         tokio::spawn(async move {
             if let Err(err) = handle(stream, home, sessions, settings, custom).await {
                 tracing::debug!("Wyoming-Verbindung: {err}");
             }
+            inflight.fetch_sub(1, Ordering::Relaxed);
         });
     }
 }
 
 async fn handle(
     stream: TcpStream,
-    home: Arc<Mutex<HomeGraph>>,
+    home: Home,
     sessions: Arc<Mutex<Sessions>>,
     settings: Arc<Mutex<Settings>>,
     custom: Arc<Mutex<Vec<crate::types::CustomSentence>>>,
@@ -42,9 +64,9 @@ async fn handle(
 }
 
 async fn handle_io<R, W>(
-    reader: R,
+    mut reader: R,
     mut writer: W,
-    home: Arc<Mutex<HomeGraph>>,
+    home: Home,
     sessions: Arc<Mutex<Sessions>>,
     settings: Arc<Mutex<Settings>>,
     custom: Arc<Mutex<Vec<crate::types::CustomSentence>>>,
@@ -53,8 +75,13 @@ where
     R: AsyncBufRead + Unpin,
     W: AsyncWriteExt + Unpin,
 {
-    let mut lines = reader.lines();
-    while let Some(line) = lines.next_line().await? {
+    loop {
+        let line = match timeout(IDLE, read_capped_line(&mut reader)).await {
+            Ok(Ok(Some(line))) => line,
+            Ok(Ok(None)) => break,
+            Ok(Err(err)) => return Err(err),
+            Err(_) => return Err(Error::new(ErrorKind::TimedOut, "wyoming idle")),
+        };
         if line.trim().is_empty() {
             continue;
         }
@@ -85,7 +112,10 @@ where
                 .await?;
             }
             "recognize" => {
-                let text = event.pointer("/data/text").and_then(|v| v.as_str()).unwrap_or("").to_string();
+                let text = event.pointer("/data/text").and_then(|v| v.as_str()).unwrap_or("");
+                if text.chars().count() > MAX_PARSE_CHARS {
+                    continue;
+                }
                 let conversation_id = event
                     .pointer("/data/conversation_id")
                     .or_else(|| event.pointer("/data/context/id"))
@@ -97,7 +127,7 @@ where
                 let result = {
                     let mut sessions = sessions.lock().await;
                     let session = sessions.get_or_create(conversation_id);
-                    parse(&text, &home, session, &custom, &settings)
+                    parse(text, &home, session, &custom, &settings)
                 };
                 if result.intents.is_empty() {
                     write_event(&mut writer, "not-recognized", json!({ "text": result.speech })).await?;
@@ -117,6 +147,34 @@ where
         }
     }
     Ok(())
+}
+
+async fn read_capped_line<R: AsyncBufRead + Unpin>(reader: &mut R) -> std::io::Result<Option<String>> {
+    let mut buf = Vec::new();
+    loop {
+        let data = reader.fill_buf().await?;
+        if data.is_empty() {
+            return if buf.is_empty() { Ok(None) } else { Ok(Some(String::from_utf8_lossy(&buf).into_owned())) };
+        }
+        if let Some(pos) = data.iter().position(|&b| b == b'\n') {
+            buf.extend_from_slice(&data[..=pos]);
+            reader.consume(pos + 1);
+            break;
+        }
+        let n = data.len();
+        buf.extend_from_slice(data);
+        reader.consume(n);
+        if buf.len() > MAX_LINE {
+            return Err(Error::new(ErrorKind::InvalidData, "wyoming line too long"));
+        }
+    }
+    if buf.len() > MAX_LINE {
+        return Err(Error::new(ErrorKind::InvalidData, "wyoming line too long"));
+    }
+    while matches!(buf.last(), Some(b'\n' | b'\r')) {
+        buf.pop();
+    }
+    Ok(Some(String::from_utf8_lossy(&buf).into_owned()))
 }
 
 fn intent_json(intent: &crate::types::Intent, speech: &str) -> Value {
@@ -141,7 +199,6 @@ mod tests {
     use crate::lexicon::default_home;
     use crate::types::CustomSentence;
     use tokio::io::AsyncWriteExt;
-    use tokio::time::{timeout, Duration};
 
     async fn read_line(lines: &mut tokio::io::Lines<BufReader<tokio::net::tcp::OwnedReadHalf>>) -> String {
         timeout(Duration::from_secs(2), lines.next_line()).await.expect("wyoming reply").unwrap().expect("eof")
@@ -151,7 +208,7 @@ mod tests {
     async fn describe_and_recognize_reuse_conversation() {
         let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
         let addr = listener.local_addr().unwrap();
-        let home = Arc::new(Mutex::new(default_home()));
+        let home = Arc::new(Mutex::new(Arc::new(default_home())));
         let sessions = Arc::new(Mutex::new(Sessions::default()));
         let settings = Arc::new(Mutex::new(Settings::default()));
         let custom = Arc::new(Mutex::new(Vec::<CustomSentence>::new()));
@@ -190,7 +247,7 @@ mod tests {
 
         drop(writer);
         timeout(Duration::from_secs(2), task).await.expect("server exit").unwrap();
-        let last = sessions.lock().await.get_or_create(Some("c1")).last_entities.clone();
+        let last: Vec<String> = sessions.lock().await.get_or_create(Some("c1")).last_entities().map(str::to_string).collect();
         assert!(last.iter().any(|id| id.starts_with("light.")), "{last:?}");
     }
 }

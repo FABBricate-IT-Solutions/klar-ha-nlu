@@ -433,7 +433,7 @@ fn replay_skips_entity_not_exposed_to_assist() {
     let mut home = default_home();
     home.assist = Some(std::collections::HashSet::new());
     let mut session = Session::new();
-    session.last_entities.push("light.wohnzimmer".into());
+    session.remember_entity("light.wohnzimmer");
     let result = parse("aus", &home, &mut session, &[], &Settings::default());
     assert!(result.intents.iter().all(|i| i.slot("entity_id") != Some("light.wohnzimmer")), "{:?}", result.intents);
 }
@@ -481,4 +481,21 @@ fn news_briefing_then_followup_not_device_replay() {
     let replay = parse("ja", &home, &mut session, &[], &settings);
     assert!(!replay.chat, "{:?}", replay.intents);
     assert!(replay.intents.iter().any(|i| i.name.starts_with("Hass")), "{:?}", replay.intents);
+}
+
+#[test]
+fn cover_followup_mach_sie_auf() {
+    let home = klar_nlu::registry::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let settings = Settings::default();
+    let first = parse("Status Rollo Garage", &home, &mut session, &[], &settings);
+    assert!(first.intents.iter().any(|i| i.name == "HassGetState"), "{:?}", first.intents);
+    let second = parse("mach sie auf", &home, &mut session, &[], &settings);
+    assert!(
+        second.intents.iter().any(|i| i.name == "HassTurnOn" && i.slot("entity_id") == Some("cover.garage_door")),
+        "first={:?} second={:?} last={:?}",
+        first.intents,
+        second.intents,
+        session.last
+    );
 }

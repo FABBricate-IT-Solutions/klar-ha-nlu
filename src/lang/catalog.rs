@@ -4,6 +4,7 @@ use super::LangId;
 use std::collections::{HashMap, HashSet};
 
 pub struct Catalog {
+    packs: Vec<&'static Pack>,
     pub langs: Vec<LangId>,
     verbs: HashMap<&'static str, VerbKind>,
     pub domain_map: HashMap<&'static str, &'static str>,
@@ -146,6 +147,7 @@ macro_rules! extend_sets {
 impl Catalog {
     pub(super) fn merge(packs: &[&'static Pack]) -> Self {
         let mut c = Self::empty();
+        c.packs = packs.to_vec();
         for p in packs {
             c.langs.push(p.id);
             c.speech.push(&p.speech);
@@ -199,6 +201,7 @@ impl Catalog {
 
     fn empty() -> Self {
         Self {
+            packs: Vec::new(),
             langs: Vec::new(),
             verbs: HashMap::new(),
             domain_map: HashMap::new(),
@@ -371,6 +374,15 @@ impl Catalog {
         tokens.iter().any(|t| set.contains(t.as_str()))
     }
 
+    /// Query language packs directly. New word lists belong on `LanguagePack`; the HashSets are a cache.
+    pub fn pack_has(&self, token: &str, pick: fn(&Pack) -> &[&str]) -> bool {
+        self.packs.iter().any(|pack| pick(pack).contains(&token))
+    }
+
+    pub fn pack_any(&self, tokens: &[String], pick: fn(&Pack) -> &[&str]) -> bool {
+        tokens.iter().any(|token| self.pack_has(token, pick))
+    }
+
     pub fn color(&self, t: &str) -> Option<&'static str> {
         self.colors.get(t).copied()
     }
@@ -433,5 +445,19 @@ impl Catalog {
 
     pub fn scene_token(&self, token: &str) -> String {
         self.scene_synonyms.iter().find(|(from, _)| *from == token).map(|(_, to)| (*to).to_string()).unwrap_or_else(|| token.to_string())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::lang::catalog;
+
+    #[test]
+    fn pack_query_matches_flattened_cache() {
+        let cat = catalog();
+        let licht = vec!["licht".into()];
+        assert!(cat.pack_any(&licht, |p| p.nouns.light_nouns));
+        assert_eq!(cat.pack_any(&licht, |p| p.nouns.light_nouns), cat.any(&licht, &cat.light_nouns));
+        assert!(!cat.pack_has("licht", |p| p.nouns.cover_nouns));
     }
 }
