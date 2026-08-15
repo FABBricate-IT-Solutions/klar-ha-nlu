@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.5...2026.8.6) - 2026-08-15
+
+### Bug Fixes
+
+- Start the GHCR add-on image through `klar-entry.sh` so HTTP and Wyoming bind `0.0.0.0` and Home Assistant can reach the engine
+
 ## [2026.8.5](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.4...2026.8.5) - 2026-08-15
 
 ### Bug Fixes
