@@ -162,6 +162,11 @@ pub struct Chat {
     pub world: &'static [&'static str],
     pub advice: &'static [&'static str],
     pub open: &'static [&'static str],
+    pub news: &'static [&'static str],
+    pub news_dismiss: &'static [&'static str],
+    pub news_intro: &'static str,
+    pub news_nudge: &'static str,
+    pub news_done: &'static str,
 }
 
 /// Static word lists for one language. Add a new file (`fr.rs`) and register it on `LangId`.

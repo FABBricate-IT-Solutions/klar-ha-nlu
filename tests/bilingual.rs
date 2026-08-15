@@ -104,3 +104,20 @@ fn en_casual_and_special_are_chat() {
     let home_cmd = parse("Turn on the light in the office", &home, &mut Session::new(), &[], &settings("en"));
     assert!(!home_cmd.chat, "{:?}", home_cmd.intents);
 }
+
+#[test]
+fn en_news_briefing_keeps_yes_on_llm() {
+    let home = default_home();
+    let mut session = Session::new();
+    let light = parse("Turn on the light in the office", &home, &mut session, &[], &settings("en"));
+    assert!(!light.intents.is_empty(), "{:?}", light.intents);
+    let news = parse("What is the latest news", &home, &mut session, &[], &settings("en"));
+    assert!(news.chat && news.briefing, "{}", news.speech);
+    assert!(news.speech.contains("news") || news.speech.contains("News"), "{}", news.speech);
+    let yes = parse("yes", &home, &mut session, &[], &settings("en"));
+    assert!(yes.chat, "yes after news must not replay a device: {:?}", yes.intents);
+    assert!(yes.intents.is_empty(), "{:?}", yes.intents);
+    let stop = parse("no thanks", &home, &mut session, &[], &settings("en"));
+    assert!(!stop.chat, "{}", stop.speech);
+    assert!(stop.briefing);
+}

@@ -418,6 +418,11 @@ pub const PACK: LanguagePack = LanguagePack {
         ],
         advice: &["empfiehl", "empfehlen", "tipp", "rat", "idee", "soll", "vorschlag"],
         open: &["wer", "wo", "warum", "wieso", "weshalb", "wozu", "wann"],
+        news: &["nachrichten", "nachricht", "news", "meldungen", "meldung", "schlagzeilen", "headlines"],
+        news_dismiss: &["reicht", "genug", "stopp", "stop", "egal", "spaeter", "fertig", "schluss", "nein"],
+        news_intro: "Klar, lass mich kurz die aktuellen Nachrichten suchen und dir einen Überblick geben.",
+        news_nudge: "Möchtest du zu einer der Meldungen mehr erfahren?",
+        news_done: "Alles klar.",
     },
     speech: SPEECH,
 };

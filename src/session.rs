@@ -16,6 +16,7 @@ pub struct Session {
     pub last_intent_template: Option<Intent>,
     pub pending_clarify: Option<Vec<String>>,
     pub wrong_log: Vec<String>,
+    pub briefing: bool,
     last_used: Instant,
 }
 
@@ -36,6 +37,7 @@ impl Session {
             last_intent_template: None,
             pending_clarify: None,
             wrong_log: Vec::new(),
+            briefing: false,
             last_used: Instant::now(),
         }
     }

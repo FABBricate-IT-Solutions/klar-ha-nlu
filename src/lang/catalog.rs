@@ -128,6 +128,11 @@ pub struct Catalog {
     pub chat_world: HashSet<&'static str>,
     pub chat_advice: HashSet<&'static str>,
     pub chat_open: HashSet<&'static str>,
+    pub chat_news: HashSet<&'static str>,
+    pub chat_news_dismiss: HashSet<&'static str>,
+    pub news_intro: &'static str,
+    pub news_nudge: &'static str,
+    pub news_done: &'static str,
 }
 
 use super::verbs::VerbKind;
@@ -181,6 +186,13 @@ impl Catalog {
             c.chat_world.extend(p.chat.world.iter().copied());
             c.chat_advice.extend(p.chat.advice.iter().copied());
             c.chat_open.extend(p.chat.open.iter().copied());
+            c.chat_news.extend(p.chat.news.iter().copied());
+            c.chat_news_dismiss.extend(p.chat.news_dismiss.iter().copied());
+            if c.news_intro.is_empty() {
+                c.news_intro = p.chat.news_intro;
+                c.news_nudge = p.chat.news_nudge;
+                c.news_done = p.chat.news_done;
+            }
         }
         c
     }
@@ -311,6 +323,11 @@ impl Catalog {
             chat_world: HashSet::new(),
             chat_advice: HashSet::new(),
             chat_open: HashSet::new(),
+            chat_news: HashSet::new(),
+            chat_news_dismiss: HashSet::new(),
+            news_intro: "",
+            news_nudge: "",
+            news_done: "",
         }
     }
 

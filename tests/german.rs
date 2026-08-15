@@ -429,3 +429,48 @@ fn replay_skips_entity_not_exposed_to_assist() {
     let result = parse("aus", &home, &mut session, &[], &Settings::default());
     assert!(result.intents.iter().all(|i| i.slot("entity_id") != Some("light.wohnzimmer")), "{:?}", result.intents);
 }
+
+#[test]
+fn news_briefing_then_followup_not_device_replay() {
+    let home = default_home();
+    let settings = Settings::default();
+    let mut session = Session::new();
+    let light = parse("Licht im Wohnzimmer an", &home, &mut session, &[], &settings);
+    assert_eq!(light.intents[0].name, "HassTurnOn", "{}", light.speech);
+
+    let news = parse("Was sind die aktuellen Nachrichten", &home, &mut session, &[], &settings);
+    assert!(news.chat, "{}", news.speech);
+    assert!(news.briefing, "{}", news.speech);
+    assert!(news.intents.is_empty(), "{:?}", news.intents);
+    assert!(news.speech.contains("Nachrichten"), "{}", news.speech);
+
+    let yes = parse("ja", &home, &mut session, &[], &settings);
+    assert!(yes.chat, "ja nach News darf kein Gerät schalten: {:?}", yes.intents);
+    assert!(yes.briefing);
+    assert!(yes.intents.is_empty(), "{:?}", yes.intents);
+
+    let more = parse("erzähl mehr zur ersten", &home, &mut session, &[], &settings);
+    assert!(more.chat, "{:?}", more.intents);
+    assert!(more.intents.is_empty(), "{:?}", more.intents);
+
+    let wetter = parse("Wie ist das Wetter", &home, &mut Session::new(), &[], &settings);
+    assert!(wetter.chat);
+    assert!(!wetter.briefing, "{}", wetter.speech);
+
+    let off = parse("Licht im Wohnzimmer aus", &home, &mut session, &[], &settings);
+    assert!(!off.chat, "{:?}", off.intents);
+    assert!(!session.briefing);
+    assert_eq!(off.intents[0].name, "HassTurnOff", "{}", off.speech);
+
+    let again = parse("aktuelle News", &home, &mut session, &[], &settings);
+    assert!(again.briefing);
+    let stop = parse("nein danke", &home, &mut session, &[], &settings);
+    assert!(!stop.chat, "{}", stop.speech);
+    assert!(stop.briefing);
+    assert!(!session.briefing);
+    assert!(stop.speech.contains("klar") || stop.speech.contains("Klar"), "{}", stop.speech);
+
+    let replay = parse("ja", &home, &mut session, &[], &settings);
+    assert!(!replay.chat, "{:?}", replay.intents);
+    assert!(replay.intents.iter().any(|i| i.name.starts_with("Hass")), "{:?}", replay.intents);
+}
