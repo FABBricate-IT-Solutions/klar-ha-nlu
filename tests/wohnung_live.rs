@@ -85,6 +85,12 @@ fn raumlicht_ohne_diebstahl() {
         &["light.satellite1_db12c8_led_ring", "light.home_assistant_voice_0a8d98_led_ring", "light.u7_pro_led"],
     );
     assert_target(
+        "schalte das Wohnzimmerlicht an",
+        "HassTurnOn",
+        &["wohnzimmer", "light.wohnzimmer"],
+        &["light.satellite1_db12c8_led_ring", "light.home_assistant_voice_0a8d98_led_ring", "light.u7_pro_led"],
+    );
+    assert_target(
         "Mach das Licht im Wohnzimmer an",
         "HassTurnOn",
         &["wohnzimmer", "light.wohnzimmer"],
