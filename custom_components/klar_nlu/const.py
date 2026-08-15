@@ -7,10 +7,14 @@ CONF_FALLBACK_AGENT = "fallback_agent"
 CONF_LANGUAGES = "languages"
 CONF_ASSIST_FILTER = "assist_filter"
 CONF_PERSONALITY = "personality"
+CONF_REFINE_PROMPT = "refine_prompt"
+CONF_REFINE_SPEECH = "refine_speech"
 CONF_TOKEN = "token"
 ENGINE_VERSION = "2026.8.10"
 DEFAULT_ASSIST_FILTER = True
 DEFAULT_PERSONALITY = "default"
+DEFAULT_REFINE_PROMPT = ""
+DEFAULT_REFINE_SPEECH = False
 PERSONALITIES = (
     "default",
     "butler",

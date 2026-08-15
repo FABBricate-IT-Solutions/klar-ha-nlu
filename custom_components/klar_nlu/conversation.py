@@ -27,6 +27,8 @@ from .const import (
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_PERSONALITY,
+    CONF_REFINE_PROMPT,
+    CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
@@ -55,6 +57,7 @@ from .intents import (
     timer_slots,
 )
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
+from .refine import async_refine_speech, should_refine
 from .speech import from_handled, style
 
 _LOGGER = logging.getLogger(__name__)
@@ -224,7 +227,29 @@ class KlarConversationEntity(ConversationEntity):
                 spoken.append(ha_speech)
         if spoken:
             speech = " ".join(spoken)
-        if not clarify:
+        agent_id = self._fallback_agent_id()
+        refined = None
+        if should_refine(
+            bool(self._entry.options.get(CONF_REFINE_SPEECH)),
+            agent_id,
+            speech,
+            bool(payload.get("chat")),
+            bool(payload.get("briefing")),
+        ):
+            refined = await async_refine_speech(
+                self.hass,
+                str(agent_id),
+                self._agent_controls_home(str(agent_id)),
+                speech,
+                user_input.context,
+                user_input.language,
+                pack,
+                personality,
+                str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+            )
+        if refined:
+            speech = refined
+        elif not clarify:
             speech = style(speech, personality, pack)
 
         return self._spoken(user_input, chat_log, pack, speech, conversation_id, clarify)
