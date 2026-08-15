@@ -335,8 +335,6 @@ class KlarConversationEntity(ConversationEntity):
             return None
         slots = {s["name"]: {"value": s["value"]} for s in item.get("slots") or []}
         if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
-            name = "HassClimateGetTemperature"
-            slots.pop("device_class", None)
             slots.pop("domain", None)
         try:
             handled = await intent.async_handle(
