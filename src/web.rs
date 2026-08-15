@@ -1,15 +1,17 @@
-use crate::compound::{apply_overlay, load_overlay, save_overlay, Overlay};
-use crate::gaps::{assist_visible, leftover};
+use crate::auth::{reads_allowed, writes_allowed};
+use crate::expose::assist_visible;
+use crate::gaps::leftover;
+use crate::overlay::{apply_overlay, load_overlay, save_overlay, Overlay};
 use crate::parse::parse;
 use crate::session::Sessions;
-use crate::types::{AreaRec, CustomSentence, EntityRec, HomeGraph, Settings};
-use axum::extract::{ConnectInfo, State};
+use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, HomeGraph, Settings};
+use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::response::Html;
 use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
-use std::net::{IpAddr, SocketAddr};
+use std::net::SocketAddr;
 use std::path::PathBuf;
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -18,7 +20,7 @@ pub const MAX_PARSE_CHARS: usize = 4096;
 
 #[derive(Clone)]
 pub struct AppState {
-    pub home: Arc<Mutex<HomeGraph>>,
+    pub home: Arc<Mutex<Arc<HomeGraph>>>,
     pub sessions: Arc<Mutex<Sessions>>,
     pub settings: Arc<Mutex<Settings>>,
     pub custom: Arc<Mutex<Vec<CustomSentence>>>,
@@ -44,43 +46,12 @@ pub fn router(state: AppState) -> Router {
         .route("/api/custom", get(get_custom).post(set_custom))
         .route("/api/entities", get(get_entities).post(tag_entity))
         .route("/api/gaps", get(get_gaps))
+        .layer(DefaultBodyLimit::max(16 * 1024))
         .with_state(state)
 }
 
 async fn index() -> Html<&'static str> {
     Html(include_str!("../web/index.html"))
-}
-
-fn request_token(headers: &HeaderMap) -> Option<&str> {
-    headers
-        .get("x-klar-token")
-        .and_then(|v| v.to_str().ok())
-        .filter(|s| !s.is_empty())
-        .or_else(|| headers.get(axum::http::header::AUTHORIZATION).and_then(|v| v.to_str().ok()).and_then(|s| s.strip_prefix("Bearer ")))
-}
-
-pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
-    if peer.is_some_and(|addr| addr.ip().is_loopback()) {
-        return true;
-    }
-    let Some(expected) = token.as_deref().filter(|s| !s.is_empty()) else {
-        return false;
-    };
-    request_token(headers) == Some(expected)
-}
-
-pub fn reads_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
-    writes_allowed(peer, headers, token) || peer.is_some_and(|addr| supervisor_peer(addr.ip()))
-}
-
-fn supervisor_peer(ip: IpAddr) -> bool {
-    match ip {
-        IpAddr::V4(v4) => {
-            let oct = v4.octets();
-            oct[0] == 172 && oct[1] == 30 && (oct[2] == 32 || oct[2] == 33)
-        }
-        IpAddr::V6(_) => false,
-    }
 }
 
 fn gate(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
@@ -178,7 +149,9 @@ async fn set_custom(
     Json(body): Json<Vec<CustomSentence>>,
 ) -> Result<Json<Vec<CustomSentence>>, StatusCode> {
     gate(peer, &headers, &state.token)?;
-    if body.len() > 64 || body.iter().any(|row| row.phrase.len() > 200 || row.intent.len() > 64) {
+    if body.len() > 64
+        || body.iter().any(|row| row.phrase.len() > 200 || row.phrase.trim().chars().count() < 4 || !known_intent(&row.intent))
+    {
         return Err(StatusCode::BAD_REQUEST);
     }
     *state.custom.lock().await = body.clone();
@@ -212,7 +185,7 @@ async fn get_gaps(
 ) -> Result<Json<GapsOut>, StatusCode> {
     read_gate(peer, &headers, &state.token)?;
     let home = state.home.lock().await.clone();
-    Ok(Json(GapsOut { leftover: leftover(&home), rooms: home.areas, overlay: load_overlay(&state.data_dir) }))
+    Ok(Json(GapsOut { leftover: leftover(&home), rooms: home.areas.clone(), overlay: load_overlay(&state.data_dir) }))
 }
 
 #[derive(Deserialize)]
@@ -242,6 +215,10 @@ async fn tag_entity(
     if !valid_entity_id(&body.entity_id) {
         return Err(StatusCode::BAD_REQUEST);
     }
+    let mut home = state.home.lock().await;
+    if !home.entities.iter().any(|e| e.entity_id == body.entity_id) {
+        return Err(StatusCode::NOT_FOUND);
+    }
     let mut overlay = load_overlay(&state.data_dir);
     overlay.aliases.insert(body.entity_id.clone(), body.aliases.clone());
     if let Some(area) = &body.area {
@@ -252,12 +229,9 @@ async fn tag_entity(
         overlay.preferred.push(body.entity_id.clone());
     }
     let _ = save_overlay(&state.data_dir, &overlay);
-    let mut home = state.home.lock().await;
-    if !home.entities.iter().any(|e| e.entity_id == body.entity_id) {
-        return Err(StatusCode::NOT_FOUND);
-    }
-    apply_overlay(&mut home, &overlay);
-    if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == body.entity_id) {
+    let mut next = (**home).clone();
+    apply_overlay(&mut next, &overlay);
+    if let Some(ent) = next.entities.iter_mut().find(|e| e.entity_id == body.entity_id) {
         if !body.aliases.is_empty() {
             ent.aliases = body.aliases;
         }
@@ -267,7 +241,9 @@ async fn tag_entity(
             tags.push("preferred".into());
         }
         ent.tags = tags;
-        return Ok(Json(ent.clone()));
+        let out = ent.clone();
+        *home = Arc::new(next);
+        return Ok(Json(out));
     }
     Err(StatusCode::NOT_FOUND)
 }

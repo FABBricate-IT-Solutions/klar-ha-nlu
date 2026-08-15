@@ -1,6 +1,5 @@
 use crate::lang::catalog;
-use crate::normalize::compact;
-use crate::resolve::query_grounded;
+use crate::resolve::mentions_home;
 use crate::session::Session;
 use crate::types::HomeGraph;
 
@@ -44,39 +43,7 @@ pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session)
 }
 
 pub(crate) fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
-    let cat = catalog();
-    if cat.any(tokens, &cat.light_nouns)
-        || cat.any(tokens, &cat.climate_nouns)
-        || cat.any(tokens, &cat.cover_nouns)
-        || cat.any(tokens, &cat.fan_nouns)
-        || cat.any(tokens, &cat.lock_nouns)
-        || cat.any(tokens, &cat.vacuum_nouns)
-        || cat.any(tokens, &cat.media_nouns)
-        || cat.any(tokens, &cat.timer_nouns)
-        || cat.any(tokens, &cat.list_nouns)
-        || cat.any(tokens, &cat.scene_nouns)
-        || cat.any(tokens, &cat.named_device)
-        || cat.any(tokens, &cat.temp_query)
-        || cat.any(tokens, &cat.on_words)
-        || cat.any(tokens, &cat.off_words)
-        || cat.any(tokens, &cat.laundry_machines)
-        || cat.any(tokens, &cat.status_words)
-    {
-        return true;
-    }
-    if mentions_area(tokens, home) {
-        return true;
-    }
-    query_grounded(tokens, home, false, &Session::new())
-}
-
-fn mentions_area(tokens: &[String], home: &HomeGraph) -> bool {
-    home.areas.iter().any(|area| {
-        let mut names = std::iter::once(compact(&area.area_id))
-            .chain(std::iter::once(compact(&area.name)))
-            .chain(area.aliases.iter().map(|alias| compact(alias)));
-        names.any(|name| !name.is_empty() && tokens.iter().any(|t| t == &name))
-    })
+    mentions_home(tokens, home)
 }
 
 fn is_casual(tokens: &[String]) -> bool {

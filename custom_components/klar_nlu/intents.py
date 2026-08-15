@@ -28,6 +28,20 @@ LIST_INTENTS = {
     "HassShoppingListCompleteItem",
 }
 
+ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
+    "HassLightSet",
+    "HassClimateSetTemperature",
+    "HassClimateGetTemperature",
+    "HassGetState",
+    "HassMediaPause",
+    "HassMediaNext",
+    "HassMediaPlayerMute",
+    "HassFanSetSpeed",
+    "HassVacuumStart",
+    "HassVacuumReturnToBase",
+    "HassSetPosition",
+}
+
 
 def timer_slots(slots: dict[str, Any]) -> dict[str, Any]:
     if "duration" in slots:
@@ -58,7 +72,7 @@ def list_slots(
 def home_intents(intents: list[Any]) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for item in intents:
-        if not isinstance(item, dict) or not item.get("name") or item["name"] == "Unknown":
+        if not isinstance(item, dict) or item.get("name") not in ALLOWED_INTENTS:
             continue
         if item["name"] == "HassGetState" and not get_state_has_target(item):
             continue

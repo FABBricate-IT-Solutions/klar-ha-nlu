@@ -31,7 +31,7 @@
     {"entity_id": "light.hue_play_2", "name": "Hue play 2", "domain": "light", "area": "wohnzimmer", "aliases": [], "tags": []},
     {"entity_id": "light.satellite1_db12c8_led_ring", "name": "Satellite1 db12c8 LED Ring", "domain": "light", "area": "wohnzimmer", "aliases": [], "tags": []},
     {"entity_id": "light.home_assistant_voice_0a8d98_led_ring", "name": "Home Assistant Voice 0a8d98 LED Ring", "domain": "light", "area": "wohnzimmer", "aliases": [], "tags": []},
-    {"entity_id": "light.u7_pro_led", "name": "U7 Pro LED", "domain": "light", "area": "flur", "aliases": [], "tags": []},
+    {"entity_id": "light.u7_pro_led", "name": "U7 Pro LED", "domain": "light", "area": "flur", "aliases": [], "tags": ["infra"]},
     {"entity_id": "climate.better_thermostat_schlafzimmer", "name": "Better Thermostat Schlafzimmer", "domain": "climate", "area": "schlafzimmer", "aliases": ["Heizung Schlafzimmer", "Schlafzimmer Heizung"], "tags": ["Heizung"]},
     {"entity_id": "climate.heizung_schlafzimmer", "name": "Heizung Schlafzimmer", "domain": "climate", "area": "schlafzimmer", "aliases": [], "tags": ["Heizung"]},
     {"entity_id": "climate.schlafzimmer_ac", "name": "Schlafzimmer AC", "domain": "climate", "area": "schlafzimmer", "aliases": ["Klima", "Klima Schlafzimmer", "Klimaanlage", "Schlafzimmer AC"], "tags": ["Klima"]},
@@ -56,7 +56,7 @@
     {"entity_id": "scene.alles_aus", "name": "Alles aus", "domain": "scene", "area": "wohnung", "aliases": [], "tags": []},
     {"entity_id": "media_player.wohnzimmer_tv", "name": "Wohnzimmer TV", "domain": "media_player", "area": "wohnzimmer", "aliases": [], "tags": []},
     {"entity_id": "script.llm_script_for_music_assistant_voice_requests_3", "name": "musik", "domain": "script", "area": "wohnzimmer", "aliases": ["Music Assistant", "Musik", "Musik spielen", "Radio"], "tags": []},
-    {"entity_id": "switch.r2d2_fill_light", "name": "R2D2 Fill Light", "domain": "switch", "area": "wohnzimmer", "aliases": [], "tags": []},
+    {"entity_id": "switch.r2d2_fill_light", "name": "R2D2 Fill Light", "domain": "switch", "area": "wohnzimmer", "aliases": [], "tags": ["infra"]},
     {"entity_id": "switch.r2d2_child_lock", "name": "R2D2 Child Lock", "domain": "switch", "area": "wohnzimmer", "aliases": [], "tags": []},
     {"entity_id": "switch.adaptiv_wohnzimmer_adaptive_lighting_adaptiv_wohnzimmer", "name": "Adaptiv Wohnzimmer Adaptive Lighting", "domain": "switch", "area": "wohnzimmer", "aliases": [], "tags": []},
     {"entity_id": "switch.153931629583704_power", "name": "Split-Typ Klimaanlage Strom", "domain": "switch", "area": "schlafzimmer", "aliases": [], "tags": []}

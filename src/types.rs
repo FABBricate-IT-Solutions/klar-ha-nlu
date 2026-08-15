@@ -13,6 +13,36 @@ pub struct Intent {
     pub slots: Vec<Slot>,
 }
 
+pub const KNOWN_INTENTS: &[&str] = &[
+    "HassTurnOn",
+    "HassTurnOff",
+    "HassToggle",
+    "HassLightSet",
+    "HassClimateSetTemperature",
+    "HassClimateGetTemperature",
+    "HassGetState",
+    "HassMediaPause",
+    "HassMediaNext",
+    "HassMediaPlayerMute",
+    "HassFanSetSpeed",
+    "HassVacuumStart",
+    "HassVacuumReturnToBase",
+    "HassSetPosition",
+    "HassStartTimer",
+    "HassIncreaseTimer",
+    "HassDecreaseTimer",
+    "HassCancelTimer",
+    "HassPauseTimer",
+    "HassListAddItem",
+    "HassListCompleteItem",
+    "HassShoppingListAddItem",
+    "HassShoppingListCompleteItem",
+];
+
+pub fn known_intent(name: &str) -> bool {
+    KNOWN_INTENTS.contains(&name)
+}
+
 impl Intent {
     pub fn new(name: impl Into<String>) -> Self {
         Self { name: name.into(), slots: Vec::new() }
@@ -59,6 +89,18 @@ pub struct AreaRec {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
+pub struct HomePolicy {
+    #[serde(default)]
+    pub infra_id: Vec<String>,
+    #[serde(default)]
+    pub infra_name: Vec<String>,
+    #[serde(default)]
+    pub timer_hints: HashMap<i32, String>,
+    #[serde(default)]
+    pub preferred_climate: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct HomeGraph {
     pub entities: Vec<EntityRec>,
     pub areas: Vec<AreaRec>,
@@ -67,6 +109,8 @@ pub struct HomeGraph {
     /// `None` = keine Assist-Liste (Tests/Fixtures). `Some` = nur diese IDs sind freigegeben.
     #[serde(default)]
     pub assist: Option<HashSet<String>>,
+    #[serde(default)]
+    pub policy: HomePolicy,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

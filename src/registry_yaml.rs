@@ -1,5 +1,5 @@
 use crate::normalize::fold_umlaut;
-use crate::types::{AreaRec, EntityRec, HomeGraph};
+use crate::types::{AreaRec, EntityRec, HomeGraph, HomePolicy};
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
@@ -19,6 +19,8 @@ struct HomeFile {
     timers: Vec<YamlNamed>,
     #[serde(default)]
     lists: Vec<YamlNamed>,
+    #[serde(default)]
+    policy: HomePolicy,
 }
 
 #[derive(Deserialize)]
@@ -125,7 +127,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             });
         }
     }
-    Ok(HomeGraph { entities, areas, scene_members, assist: None })
+    Ok(HomeGraph { entities, areas, scene_members, assist: None, policy: file.policy })
 }
 
 fn yaml_entity_ids(value: &serde_yaml::Value) -> Vec<String> {

@@ -1,8 +1,8 @@
 use crate::compound::area_slots;
-use crate::gaps::assist_visible;
+use crate::expose::assist_visible;
 use crate::lang::catalog;
 use crate::lexicon::Action;
-use crate::parse_help::{color_word, wants_all_lights};
+use crate::parse_help::{bind_domain, color_word, wants_all_lights};
 use crate::types::{HomeGraph, Intent};
 
 fn whole_home_lights(home: &HomeGraph) -> Option<&crate::types::EntityRec> {
@@ -47,6 +47,8 @@ pub(crate) fn fill_intent(
     area: Option<&str>,
     domain: Option<&str>,
 ) -> Intent {
+    let target = domain.or_else(|| entity_id.and_then(|id| id.split('.').next()));
+    let action = bind_domain(action, tokens, number, target);
     let mut intent = intent_from_action(action, tokens);
     if let Some(id) = entity_id {
         intent = intent.with("entity_id", id);
@@ -61,26 +63,11 @@ pub(crate) fn fill_intent(
         }
     }
     match action {
-        Action::SetLight | Action::On => {
-            if entity_id.is_some_and(|id| id.starts_with("switch.")) && matches!(action, Action::SetLight) {
-                intent.name = "HassTurnOn".into();
-            } else if domain == Some("climate") || entity_id.is_some_and(|id| id.starts_with("climate.")) {
-                if let Some(n) = number {
-                    intent.name = "HassClimateSetTemperature".into();
-                    intent = intent.with("temperature", n.to_string());
-                }
-            } else if let Some(c) = color_word(tokens) {
-                intent.name = "HassLightSet".into();
+        Action::SetLight => {
+            if let Some(c) = color_word(tokens) {
                 intent = intent.with("color", c);
             } else if let Some(n) = number {
-                if matches!(action, Action::SetLight)
-                    || domain == Some("light")
-                    || catalog().any(tokens, &catalog().light_nouns)
-                    || catalog().any(tokens, &catalog().ceiling)
-                {
-                    intent.name = "HassLightSet".into();
-                    intent = intent.with("brightness", n.to_string());
-                }
+                intent = intent.with("brightness", n.to_string());
             }
         }
         Action::SetTemp => {

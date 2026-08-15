@@ -2,14 +2,29 @@ use crate::lang::catalog;
 use crate::lexicon::{has_light_noun, Action};
 use crate::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
-use crate::types::{CustomSentence, HomeGraph, Intent};
+use crate::types::{known_intent, CustomSentence, HomeGraph, Intent};
 use strsim::normalized_levenshtein;
 
 fn last_domain(session: &Session, prefix: &str) -> bool {
-    session.last_domains.iter().any(|d| d == prefix) || session.last_entities.iter().any(|e| e.starts_with(&format!("{prefix}.")))
+    session.last_domains().any(|d| d == prefix) || session.last_entities().any(|e| e.starts_with(&format!("{prefix}.")))
 }
 
-pub(crate) fn refine_action(action: Action, tokens: &[String], number: Option<i32>, question: bool, session: &Session) -> Action {
+/// Token-only tweaks, then bind the verb to a target/session domain.
+pub(crate) fn infer_action(
+    action: Action,
+    tokens: &[String],
+    number: Option<i32>,
+    question: bool,
+    session: &Session,
+    target_domain: Option<&str>,
+) -> Action {
+    let action = refine_tokens(action, tokens, number, question);
+    let session_d = session_domain(session, tokens);
+    let domain = target_domain.or(session_d);
+    bind_domain_with(action, tokens, number, domain, target_domain.is_none() && session_d.is_some())
+}
+
+fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, question: bool) -> Action {
     if question && matches!(action, Action::VacuumDock | Action::VacuumStart) {
         return Action::GetState;
     }
@@ -30,30 +45,53 @@ pub(crate) fn refine_action(action: Action, tokens: &[String], number: Option<i3
     if matches!(action, Action::SetLight) && number.is_none() && color_word(tokens).is_none() && question {
         return Action::GetState;
     }
-    if matches!(action, Action::SetLight) && !has_light_noun(tokens) {
-        if last_domain(session, "climate") {
-            return Action::SetTemp;
-        }
-        if last_domain(session, "cover") {
-            return Action::CoverSet;
-        }
-        if last_domain(session, "fan") && !catalog().any(tokens, &catalog().kitchen) {
-            return Action::FanSpeed;
+    action
+}
+
+fn session_domain(session: &Session, tokens: &[String]) -> Option<&'static str> {
+    if has_light_noun(tokens) {
+        return None;
+    }
+    ["climate", "cover", "fan", "lock", "media_player"].into_iter().find(|prefix| last_domain(session, prefix))
+}
+
+/// Bind a verb to the domain of the chosen target. Slot filling stays in `fill_intent`.
+pub(crate) fn bind_domain(action: Action, tokens: &[String], number: Option<i32>, domain: Option<&str>) -> Action {
+    bind_domain_with(action, tokens, number, domain, false)
+}
+
+fn bind_domain_with(action: Action, tokens: &[String], number: Option<i32>, domain: Option<&str>, session_follow: bool) -> Action {
+    let cat = catalog();
+    let light_noun = has_light_noun(tokens);
+    if matches!(action, Action::SetLight | Action::On) && number.is_some() && !light_noun && domain == Some("climate") {
+        return Action::SetTemp;
+    }
+    if matches!(action, Action::SetLight) && !light_noun {
+        match domain {
+            Some("switch") => return Action::On,
+            Some("cover") => return Action::CoverSet,
+            Some("fan") if !cat.any(tokens, &cat.kitchen) => return Action::FanSpeed,
+            Some("media_player") => return Action::On,
+            _ => {}
         }
     }
-    if matches!(action, Action::On | Action::Off) && last_domain(session, "lock") && catalog().any(tokens, &catalog().unlock_follow) {
+    if matches!(action, Action::On | Action::Off) && domain == Some("lock") && cat.any(tokens, &cat.unlock_follow) {
         return Action::Unlock;
     }
-    if last_domain(session, "cover") && !has_light_noun(tokens) && number.is_none() {
-        if catalog().any(tokens, &catalog().cover_open_follow) {
+    let cover_follow = matches!(action, Action::On | Action::Off) || (session_follow && matches!(action, Action::GetState));
+    if cover_follow && domain == Some("cover") && !light_noun && number.is_none() {
+        if cat.any(tokens, &cat.cover_open_follow) {
             return Action::CoverOpen;
         }
-        if catalog().any(tokens, &catalog().close_words) {
+        if cat.any(tokens, &cat.close_words) {
             return Action::CoverClose;
         }
     }
-    if matches!(action, Action::SetLight) && last_domain(session, "media_player") && !has_light_noun(tokens) {
-        return Action::On;
+    if matches!(action, Action::On)
+        && (color_word(tokens).is_some() || number.is_some())
+        && (domain == Some("light") || light_noun || cat.any(tokens, &cat.ceiling))
+    {
+        return Action::SetLight;
     }
     action
 }
@@ -102,7 +140,7 @@ pub(crate) fn wants_light_clarify(tokens: &[String], home: &HomeGraph, areas: &[
     }
     home.entities
         .iter()
-        .filter(|e| e.domain == "light" && !crate::compound::is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
+        .filter(|e| e.domain == "light" && !crate::home_policy::is_infra_light(e) && e.area.as_ref().is_some_and(|a| areas.contains(a)))
         .count()
         > 1
 }
@@ -170,12 +208,25 @@ pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSenten
     let folded = fold_umlaut(text);
     let mut best: Option<(f64, &CustomSentence)> = None;
     for c in custom {
+        if !known_intent(&c.intent) {
+            continue;
+        }
         let phrase = fold_umlaut(&c.phrase);
-        if folded.contains(&phrase) || blob == phrase {
+        if phrase.chars().count() < 4 {
+            continue;
+        }
+        if blob == phrase || folded == phrase {
             return Some(custom_to_intent(c));
         }
+        let words: Vec<&str> = phrase.split_whitespace().filter(|w| !w.is_empty()).collect();
+        if words.len() >= 2 && words.iter().all(|word| tokens.iter().any(|token| token == word)) {
+            return Some(custom_to_intent(c));
+        }
+        if phrase.chars().count() < 8 {
+            continue;
+        }
         let score = normalized_levenshtein(&blob, &phrase);
-        if score > 0.88 && best.as_ref().is_none_or(|(s, _)| score > *s) {
+        if score > 0.92 && best.as_ref().is_none_or(|(s, _)| score > *s) {
             best = Some((score, c));
         }
     }
@@ -188,4 +239,47 @@ fn custom_to_intent(c: &CustomSentence) -> Intent {
         intent = intent.with(k, v);
     }
     intent
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::collections::HashMap;
+
+    fn row(phrase: &str, intent: &str) -> CustomSentence {
+        CustomSentence { phrase: phrase.into(), intent: intent.into(), slots: HashMap::new() }
+    }
+
+    #[test]
+    fn custom_rejects_unknown_intent_and_short_phrase() {
+        let tokens = vec!["filmabend".into()];
+        assert!(match_custom(&tokens, "filmabend", &[row("an", "HassTurnOn")]).is_none());
+        assert!(match_custom(&tokens, "filmabend", &[row("filmabend", "NotAnIntent")]).is_none());
+    }
+
+    #[test]
+    fn custom_matches_exact_known_intent() {
+        let tokens = vec!["filmabend".into()];
+        let hit = match_custom(&tokens, "filmabend", &[row("filmabend", "HassTurnOn")]).expect("hit");
+        assert_eq!(hit.name, "HassTurnOn");
+    }
+
+    #[test]
+    fn bind_pairs_action_with_target_domain() {
+        assert_eq!(bind_domain(Action::SetLight, &[], None, Some("switch")), Action::On);
+        assert_eq!(bind_domain(Action::On, &[], Some(21), Some("climate")), Action::SetTemp);
+        assert_eq!(bind_domain(Action::SetLight, &[], Some(40), Some("cover")), Action::CoverSet);
+        let licht = vec!["licht".into()];
+        assert_eq!(bind_domain(Action::SetLight, &licht, Some(21), Some("climate")), Action::SetLight);
+        assert_eq!(bind_domain(Action::On, &licht, Some(50), Some("light")), Action::SetLight);
+    }
+
+    #[test]
+    fn session_cover_follow_opens_without_verb() {
+        let mut session = Session::new();
+        session.remember(&Intent::new("HassGetState").with("entity_id", "cover.garage_door"));
+        let tokens = vec!["mach".into(), "auf".into()];
+        assert_eq!(infer_action(Action::GetState, &tokens, None, false, &session, None), Action::CoverOpen);
+        assert_eq!(infer_action(Action::GetState, &tokens, None, true, &session, Some("cover")), Action::GetState);
+    }
 }

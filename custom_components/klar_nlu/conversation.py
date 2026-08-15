@@ -178,7 +178,7 @@ class KlarConversationEntity(ConversationEntity):
         try:
             return bool(async_should_expose(self.hass, "conversation", entity_id))
         except Exception:  # noqa: BLE001 — expose store is a system boundary
-            return True
+            return False
 
     async def _async_handle_message(
         self,

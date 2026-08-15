@@ -1,3 +1,4 @@
+mod auth;
 mod chat;
 mod clause;
 pub mod compound;

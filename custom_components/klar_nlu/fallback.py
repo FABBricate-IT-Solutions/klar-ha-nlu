@@ -73,5 +73,6 @@ def _join_extra(extra: str | None, body: str) -> str:
     return f"{extra}\n{body}" if extra else body
 
 
-def can_use_fallback_agent(controls_home: bool, chat: bool) -> bool:
-    return (not controls_home) or chat
+def can_use_fallback_agent(controls_home: bool, chat: bool = False) -> bool:
+    del chat
+    return not controls_home

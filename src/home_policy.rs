@@ -3,23 +3,12 @@ use crate::lang::catalog;
 use crate::normalize::compact;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 
-const INFRA_SWITCH_ID: &[&str] = &[
-    "r2d2_",
-    "adaptive_lighting",
-    "adaptiv_",
-    "cloud_alexa",
-    "cloud_google",
-    "adguard",
-    "bitte_nicht_storen",
-    "durchsagen",
-    "kommunikation",
-    "child_lock",
-    "wake_sound",
-];
-const INFRA_SWITCH_NAME: &[&str] = &["klimaanlage", "adaptive"];
-const INFRA_LIGHT_ID: &[&str] = &["led_ring", "voice_led", "u7_pro"];
-const INFRA_LIGHT_NAME: &[&str] = &["ledring", "u7pro"];
-const DURATION_TIMER: &[(i32, &str)] = &[(90, "laundry")];
+/// Platform helpers (Adaptive Lighting, Voice LEDs, cloud). Apartment IDs live on the overlay.
+const PLATFORM_SWITCH_ID: &[&str] =
+    &["adaptive_lighting", "adaptiv_", "cloud_alexa", "cloud_google", "adguard", "child_lock", "wake_sound"];
+const PLATFORM_SWITCH_NAME: &[&str] = &["klimaanlage", "adaptive"];
+const PLATFORM_LIGHT_ID: &[&str] = &["led_ring", "voice_led"];
+const PLATFORM_LIGHT_NAME: &[&str] = &["ledring"];
 const BEDROOM_HINTS: &[&str] = &["bedroom", "bedrooms", "schlafzimmer", "master_bedroom", "master"];
 const WHOLE_HOME: &[&str] = &["wohnung", "everywhere", "ueberall", "zuhause", "home", "house", "apartment"];
 
@@ -61,13 +50,14 @@ pub fn laundry_areas(home: &HomeGraph) -> Vec<String> {
 }
 
 pub fn fallback_climate(home: &HomeGraph) -> Option<&str> {
+    if let Some(id) = home.policy.preferred_climate.as_deref() {
+        if home.entities.iter().any(|entity| entity.entity_id == id && assist_visible(entity, home) && !is_infra(entity)) {
+            return Some(id);
+        }
+    }
     let climates: Vec<&EntityRec> =
         home.entities.iter().filter(|entity| assist_visible(entity, home) && entity.domain == "climate" && !is_infra(entity)).collect();
-    climates
-        .iter()
-        .find(|entity| entity.entity_id.contains("upper") || compact(&entity.name).contains("upper"))
-        .or_else(|| (climates.len() == 1).then(|| &climates[0]))
-        .map(|entity| entity.entity_id.as_str())
+    (climates.len() == 1).then(|| climates[0].entity_id.as_str())
 }
 
 pub fn fallback_cover_area(home: &HomeGraph) -> Option<String> {
@@ -75,20 +65,24 @@ pub fn fallback_cover_area(home: &HomeGraph) -> Option<String> {
     home.entities.iter().any(|entity| entity.domain == "cover" && entity.area.as_deref() == Some(area.as_str())).then_some(area)
 }
 
-pub fn timer_hint(number: Option<i32>) -> Option<&'static str> {
-    number.and_then(|n| DURATION_TIMER.iter().find(|(mins, _)| *mins == n).map(|(_, name)| *name))
+pub fn timer_hint(home: &HomeGraph, number: Option<i32>) -> Option<&str> {
+    number.and_then(|n| home.policy.timer_hints.get(&n).map(String::as_str))
 }
 
 pub fn is_infra(entity: &EntityRec) -> bool {
-    is_infra_light(entity) || is_infra_switch(entity)
+    tagged_infra(entity) || is_infra_light(entity) || is_infra_switch(entity)
 }
 
 pub fn is_infra_light(entity: &EntityRec) -> bool {
-    entity.domain == "light" && infra_hit(entity, INFRA_LIGHT_ID, INFRA_LIGHT_NAME)
+    entity.domain == "light" && (tagged_infra(entity) || infra_hit(entity, PLATFORM_LIGHT_ID, PLATFORM_LIGHT_NAME))
 }
 
 fn is_infra_switch(entity: &EntityRec) -> bool {
-    entity.domain == "switch" && infra_hit(entity, INFRA_SWITCH_ID, INFRA_SWITCH_NAME)
+    entity.domain == "switch" && (tagged_infra(entity) || infra_hit(entity, PLATFORM_SWITCH_ID, PLATFORM_SWITCH_NAME))
+}
+
+fn tagged_infra(entity: &EntityRec) -> bool {
+    entity.tags.iter().any(|tag| tag.eq_ignore_ascii_case("infra"))
 }
 
 fn infra_hit(entity: &EntityRec, ids: &[&str], names: &[&str]) -> bool {
@@ -105,4 +99,37 @@ pub fn preferred_named<'a>(named: &[&'a EntityRec]) -> Option<&'a EntityRec> {
         .filter(|entity| cat.named_device.contains(compact(&entity.name).as_str()))
         .min_by_key(|entity| compact(&entity.name).len())
         .or_else(|| (named.len() == 1).then(|| named[0]))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::types::HomePolicy;
+
+    fn light(id: &str, name: &str, tags: &[&str]) -> EntityRec {
+        EntityRec {
+            entity_id: id.into(),
+            name: name.into(),
+            domain: "light".into(),
+            area: Some("flur".into()),
+            aliases: Vec::new(),
+            tags: tags.iter().map(|t| (*t).to_string()).collect(),
+        }
+    }
+
+    #[test]
+    fn apartment_needles_are_tags_not_compiled_ids() {
+        assert!(!is_infra(&light("light.u7_pro_led", "U7 Pro LED", &[])));
+        assert!(is_infra(&light("light.u7_pro_led", "U7 Pro LED", &["infra"])));
+        assert!(is_infra_light(&light("light.satellite_led_ring", "LED Ring", &[])));
+    }
+
+    #[test]
+    fn timer_hint_reads_home_policy() {
+        let home =
+            HomeGraph { policy: HomePolicy { timer_hints: [(90, "laundry".into())].into(), ..Default::default() }, ..Default::default() };
+        assert_eq!(timer_hint(&home, Some(90)), Some("laundry"));
+        assert_eq!(timer_hint(&home, Some(5)), None);
+        assert_eq!(timer_hint(&HomeGraph::default(), Some(90)), None);
+    }
 }
