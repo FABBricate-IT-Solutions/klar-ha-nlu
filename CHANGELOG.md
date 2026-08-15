@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [0.1.8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.7...v0.1.8) - 2026-08-15
+
+
+
+### Bug Fixes
+
+- keep one target and replay pronoun follow-ups (#22)([50a2ca2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/50a2ca2))
+
 ## [0.1.7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/v0.1.6...v0.1.7) - 2026-08-15
 
 
