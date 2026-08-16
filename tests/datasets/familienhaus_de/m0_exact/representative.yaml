@@ -1,0 +1,93 @@
+# M0 exact oracle frozen from verified engine output on 2026-08-16.
+# Positive sentences are selected from the checked-in family-home datasets.
+- name: exact_multi_intent
+  sentences:
+    - Mach die Lichter in Kinderzimmer 3 an und Mach die Lichter am Eingang aus
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.bedroom3_ceiling}
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: exact_timer
+  world_expect:
+    - {entity_id: timer.oven, minutes: 2}
+  sentences:
+    - Starte den Timer Ofen-Timer für 2 Minuten
+  nlu_expect:
+    intents:
+      - intent: HassStartTimer
+        slots: {entity_id: timer.oven, minutes: 2}
+
+- name: exact_timer_resume_preserves_duration
+  setup:
+    - {entity_id: timer.oven, state: paused, minutes: 20}
+  world_expect:
+    - {entity_id: timer.oven, state: active, minutes: 20}
+  sentences:
+    - Setze den Ofen-Timer fort
+  nlu_expect:
+    intents:
+      - intent: HassStartTimer
+        slots: {entity_id: timer.oven}
+
+- name: exact_todo_list
+  world_expect:
+    - {list_name: todo.chores, todo_item: apples}
+  sentences:
+    - Füge apples zur Aufgabenliste hinzu
+  nlu_expect:
+    intents:
+      - intent: HassListAddItem
+        slots: {entity_id: todo.chores, item: apples}
+
+- name: exact_shopping_list
+  world_expect:
+    - {shopping_list_item: milk}
+  sentences:
+    - Setze milk auf die Einkaufsliste
+  nlu_expect:
+    intents:
+      - intent: HassListAddItem
+        slots: {item: milk, name: shopping_list}
+
+- name: exact_list_complete_from_setup
+  setup:
+    - {list_name: todo.chores, todo_item: bread}
+  world_expect:
+    - {list_name: todo.chores, todo_completed_item: bread}
+  sentences:
+    - Setze bread auf die Aufgabenliste als erledigt
+  nlu_expect:
+    intents:
+      - intent: HassListCompleteItem
+        slots: {entity_id: todo.chores, item: bread}
+
+- name: exact_clarify
+  sentences:
+    - Mach Licht Wohnzimmer an
+  nlu_expect:
+    intents: []
+    clarify: true
+
+- name: exact_reject
+  sentences:
+    - Was ist die Hauptstadt von Frankreich
+  nlu_expect:
+    intents: []
+    reject: true
+    clarify: false
+
+- name: exact_state_persistence
+  setup:
+    - {entity_id: light.entryway_light, brightness: 60}
+  world_expect:
+    - {entity_id: light.entryway_light, brightness: 12}
+  sentences:
+    - - Status Lichter Eingang
+      - auf 12
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {area: entryway, domain: light, brightness: 12}

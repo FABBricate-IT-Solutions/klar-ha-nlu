@@ -1,0 +1,109 @@
+- name: ood_429
+  split: ood
+  language: en
+  sentences:
+    - 'What is the atomic number of hydrogen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_430
+  split: ood
+  language: en
+  sentences:
+    - 'What continent contains the Amazon basin'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_431
+  split: ood
+  language: en
+  sentences:
+    - 'What continent is the smallest by land area'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_432
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Kyoto'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_433
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Marrakesh'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_434
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Vancouver'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_435
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Cape Town'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_436
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Buenos Aires'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_437
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Istanbul'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_438
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Seoul'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_439
+  split: ood
+  language: en
+  sentences:
+    - 'What country has the city of Nairobi'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

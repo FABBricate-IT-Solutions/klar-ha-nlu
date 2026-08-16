@@ -26,9 +26,6 @@ fn casual_und_sonderfaelle_gehen_an_llm() {
         "Wie geht es dir",
         "Guten Morgen",
         "Danke",
-        "Was ist die Hauptstadt von Frankreich",
-        "Wie ist das Wetter",
-        "Was soll ich kochen",
         "Wer bist du",
         "Unterhalte mich",
     ] {
@@ -37,6 +34,13 @@ fn casual_und_sonderfaelle_gehen_an_llm() {
         assert!(!result.clarify, "{text}: {}", result.speech);
         assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
         assert!(result.chat, "{text}: chat fehlt");
+    }
+    for text in ["Was ist die Hauptstadt von Frankreich", "Wie ist das Wetter", "Was soll ich kochen"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &settings);
+        assert!(!result.clarify, "{text}: {}", result.speech);
+        assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
+        assert!(!result.chat, "{text}: OOD darf nicht chat sein");
     }
     for text in ["Licht im Wohnzimmer an", "Wie ist der Status der Küche", "Wie warm ist es im Schlafzimmer", "asdfghjkl qwerty"] {
         let mut session = Session::new();
@@ -77,7 +81,12 @@ fn tagged(id: &str, name: &str, domain: &str, area: &str, tags: &[&str]) -> Enti
 
 fn role_home() -> klar_nlu::types::HomeGraph {
     let mut home = default_home();
-    home.areas.push(AreaRec { area_id: "abstellkammer".into(), name: "Abstellkammer".into(), aliases: vec!["abstell".into()] });
+    home.areas.push(AreaRec {
+        area_id: "abstellkammer".into(),
+        name: "Abstellkammer".into(),
+        aliases: vec!["abstell".into()],
+        floor_id: None,
+    });
     home.entities.push(tagged("switch.abstell_steckdose", "Abstellkammer", "switch", "abstellkammer", &["licht"]));
     home.entities.push(tagged("switch.balkon_heizstab", "Heizstab", "switch", "balkon", &["heizung"]));
     home.entities.push(tagged("switch.kuche_radio", "Küchenradio", "switch", "kuche", &["tv"]));
@@ -208,7 +217,8 @@ fn news_briefing_then_followup_not_device_replay() {
     assert!(more.intents.is_empty(), "{:?}", more.intents);
 
     let wetter = parse("Wie ist das Wetter", &home, &mut Session::new(), &[], &settings);
-    assert!(wetter.chat);
+    assert!(!wetter.chat, "weather outside briefing is OOD");
+    assert!(wetter.intents.is_empty(), "{:?}", wetter.intents);
     assert!(!wetter.briefing, "{}", wetter.speech);
 
     let off = parse("Licht im Wohnzimmer aus", &home, &mut session, &[], &settings);

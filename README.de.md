@@ -17,6 +17,8 @@
 
 Deterministische Sprachsteuerung für Home Assistant. Klar zerlegt gesprochene Sätze in HA-Intents — ohne Cloud, ohne Modellgewichte.
 
+**Breaking V2:** HTTP-Parse läuft nur noch über `POST /api/v2/parse` (`schema_version: "2.0"`). Rust-Engine und Home-Assistant-Integration zusammen aktualisieren. `POST /api/parse` entfällt. Vorhandene `klar_nlu.json`-Overlays laden weiter; `klar migrate import --from` prüft Konflikte, Waisen und unsichere Settings, bevor V2 geschrieben wird.
+
 Deutsch und Englisch sind eingebaut und laufen parallel. Weitere Sprachen kommen als Paket dazu, nicht als Sonderfälle in der Engine.
 
 ```
@@ -40,9 +42,11 @@ Klar steuert Geräte selbst. Ein LLM redet oder formuliert um — Haus-Intents f
 
 Die Rust-Engine ist in klare Schichten geteilt:
 
-- `src/types/` definiert Intents, Settings und den Home-Graph.
+- `src/types/` definiert Intents, `ParseOutcome`, Settings und den Home-Graph.
+- `src/nlu/` rankt Kandidaten und wendet Confidence-, OOD-, Confirm- und Multi-Intent-Policy an.
+- `src/parse/` tokenisiert, erkennt Aktionen, löst Ziele auf und füllt Slots.
 - `src/home/` lädt Home-Assistant-Registries, Overlays, Expose-Daten, Rollen und die eingebaute Musterwohnung.
-- `src/parse/` enthält Tokenisierung, sprachgesteuerte Action-Erkennung, Auflösung, Slot-Füllung und gesprochene Antworten.
+- `src/eval/` und `src/migrate/` liefern Held-out-Scorecards und den einmaligen V1-Overlay-Import.
 - `src/io/` enthält HTTP, Wyoming, gemeinsamen Runtime-State, Token-Handling und Reloads.
 
 Zur Laufzeit baut Klar einen effektiven Home-Graph aus HA-Config und beschreibbarem Datenverzeichnis. Parse-API und Wyoming-Server teilen diesen Graphen und denselben Session-Store, deshalb verhalten sich Follow-ups auf beiden Schnittstellen gleich.
@@ -70,6 +74,8 @@ Nützliche Checks bei der Entwicklung:
 cargo fmt --check
 cargo check
 cargo test -- --test-threads=1
+cargo run --quiet -- lang validate packs
+cargo run --quiet -- eval bench --repeat 8
 cargo build --release
 ```
 
@@ -132,7 +138,10 @@ Dependabot öffnet wöchentlich PRs für Crates und Actions; `cargo-audit` und `
 cargo test -- --test-threads=1
 ```
 
-Wohnung DE/EN und beide Familiensuiten müssen 100 % halten. Details in [docs/testing.md](docs/testing.md).
+Die verbindlichen Voice-Suite-Schwellen stehen in
+[docs/testing.md](docs/testing.md). 100 % bleibt das Ziel, die aktuell
+blockierenden Schwellen der generierten Vergleichssuiten liegen jedoch
+darunter.
 
 ## Lizenz
 

@@ -1,0 +1,399 @@
+- name: ood_389
+  split: ood
+  language: en
+  sentences:
+    - 'Name the author of Pride and Prejudice'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_390
+  split: ood
+  language: en
+  sentences:
+    - 'Name the author of the Odyssey from ancient Greece'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_391
+  split: ood
+  language: en
+  sentences:
+    - 'Name the researcher credited with penicillin'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_392
+  split: ood
+  language: en
+  sentences:
+    - 'Name the scientist behind general relativity'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_393
+  split: ood
+  language: en
+  sentences:
+    - 'What sport uses a shuttlecock and a net'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_394
+  split: ood
+  language: en
+  sentences:
+    - 'What sport is played at Wimbledon each summer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_395
+  split: ood
+  language: en
+  sentences:
+    - 'What winter sport uses a puck'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_396
+  split: ood
+  language: en
+  sentences:
+    - 'What chess piece moves in an L shape'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_397
+  split: ood
+  language: en
+  sentences:
+    - 'What card game uses a deck of fifty two cards'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_398
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency used in Japan'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_399
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency used in Switzerland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_400
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency used in India'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_401
+  split: ood
+  language: en
+  sentences:
+    - 'What language is primarily spoken in Brazil'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_402
+  split: ood
+  language: en
+  sentences:
+    - 'What language is primarily spoken in Egypt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_403
+  split: ood
+  language: en
+  sentences:
+    - 'What planet is known as the red planet'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_404
+  split: ood
+  language: en
+  sentences:
+    - 'What planet is closest to the sun'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_405
+  split: ood
+  language: en
+  sentences:
+    - 'What planet has the most moons in our solar system'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_406
+  split: ood
+  language: en
+  sentences:
+    - 'What is the name of Earth''s natural satellite'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_407
+  split: ood
+  language: en
+  sentences:
+    - 'What cloud type is thin and wispy at high altitude'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_408
+  split: ood
+  language: en
+  sentences:
+    - 'What scale measures earthquake magnitude'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_409
+  split: ood
+  language: en
+  sentences:
+    - 'What instrument measures atmospheric pressure'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_410
+  split: ood
+  language: en
+  sentences:
+    - 'What instrument measures wind speed outdoors'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_411
+  split: ood
+  language: en
+  sentences:
+    - 'What layer of the atmosphere contains the ozone'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_412
+  split: ood
+  language: en
+  sentences:
+    - 'What vitamin is produced when skin meets sunlight'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_413
+  split: ood
+  language: en
+  sentences:
+    - 'What organ pumps blood through the human body'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_414
+  split: ood
+  language: en
+  sentences:
+    - 'What organ filters waste from human blood'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_415
+  split: ood
+  language: en
+  sentences:
+    - 'What bone is the longest in the human body'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_416
+  split: ood
+  language: en
+  sentences:
+    - 'What is the hardest naturally occurring mineral'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_417
+  split: ood
+  language: en
+  sentences:
+    - 'What rock type forms from cooled magma'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_418
+  split: ood
+  language: en
+  sentences:
+    - 'What process turns water vapor into liquid droplets'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_419
+  split: ood
+  language: en
+  sentences:
+    - 'What process do plants use to make sugar from light'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_420
+  split: ood
+  language: en
+  sentences:
+    - 'What is the chemical formula for table salt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_421
+  split: ood
+  language: en
+  sentences:
+    - 'What is the chemical formula for carbon dioxide'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_422
+  split: ood
+  language: en
+  sentences:
+    - 'What unit measures frequency of a wave'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_423
+  split: ood
+  language: en
+  sentences:
+    - 'What unit measures energy in food labels'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_424
+  split: ood
+  language: en
+  sentences:
+    - 'What is the speed of sound in dry air roughly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_425
+  split: ood
+  language: en
+  sentences:
+    - 'What Celsius value marks absolute zero'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_426
+  split: ood
+  language: en
+  sentences:
+    - 'What is the freezing point of pure water in Celsius'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_427
+  split: ood
+  language: en
+  sentences:
+    - 'What is the atomic number of carbon'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_428
+  split: ood
+  language: en
+  sentences:
+    - 'What is the atomic number of oxygen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

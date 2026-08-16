@@ -156,13 +156,19 @@ fn split_area_device(token: &str, prefixes: &[(String, String)]) -> Option<(Stri
 }
 
 fn strip_fuge(rest: &str) -> &str {
-    if rest.starts_with("en") && rest.len() > 4 {
-        &rest[2..]
-    } else if rest.len() > 3 && matches!(rest.as_bytes().first(), Some(b'n' | b's')) && is_device_noun(&rest[1..]) {
-        &rest[1..]
-    } else {
-        rest
+    for link in catalog().morphology.effective_linking() {
+        if rest.len() < link.min_rest_len || !rest.starts_with(link.morpheme) {
+            continue;
+        }
+        let stripped = &rest[link.morpheme.len()..];
+        if stripped.is_empty() {
+            continue;
+        }
+        if !link.require_noun || is_device_noun(stripped) {
+            return stripped;
+        }
     }
+    rest
 }
 
 fn is_device_noun(token: &str) -> bool {
@@ -384,12 +390,9 @@ pub(crate) fn area_slots(
             LightAim::OccupiedId | LightAim::AreaLights | LightAim::Clarify => (None, Some(area.to_string()), Some("light".into())),
         };
     }
-    let id = if domain == Some("media_player") {
-        let players = crate::parse::media::media_target_ids(home, area);
-        (players.len() == 1).then(|| players[0].clone())
-    } else {
-        domain.filter(|d| matches!(*d, "climate" | "fan")).and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens))
-    };
+    let id = domain
+        .filter(|d| matches!(*d, "climate" | "fan" | "media_player"))
+        .and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens));
     (id, Some(area.to_string()), domain.map(str::to_string))
 }
 

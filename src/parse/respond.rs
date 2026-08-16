@@ -6,7 +6,7 @@ fn speech() -> &'static crate::lang::Speech {
     catalog().speech()
 }
 
-/// Speech for `/api/parse` and Wyoming. Assist overwrites this with
+/// Speech for `/api/v2/parse` and Wyoming. Assist overwrites this with
 /// `speech.py` after the Home Assistant intent so the spoken line matches
 /// what actually ran. Keep Butler style and infra filtering aligned there.
 pub fn speak(intents: &[Intent], personality: Personality, clarify: bool, home: Option<&HomeGraph>) -> String {
@@ -130,6 +130,12 @@ fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
     }
     if let Some(area) = intent.slot("area") {
         return area_label(area, intent.slot("domain").unwrap_or(""), &intent.name);
+    }
+    if let Some(floor) = intent.slot("floor") {
+        if let Some(record) = home.and_then(|graph| graph.floor(floor)) {
+            return record.name.clone();
+        }
+        return title_word(&floor.replace('_', " "));
     }
     String::new()
 }

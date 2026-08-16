@@ -1,0 +1,399 @@
+- name: ood_280
+  split: ood
+  language: en
+  sentences:
+    - 'What is a nebula in astronomy'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_281
+  split: ood
+  language: en
+  sentences:
+    - 'What is a black hole in astronomy'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_282
+  split: ood
+  language: en
+  sentences:
+    - 'What is a pulsar in astronomy'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_283
+  split: ood
+  language: en
+  sentences:
+    - 'What is an exoplanet'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_284
+  split: ood
+  language: en
+  sentences:
+    - 'What is the asteroid belt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_285
+  split: ood
+  language: en
+  sentences:
+    - 'Which acid is in citrus fruit'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_286
+  split: ood
+  language: en
+  sentences:
+    - 'Which alkali metal is in table salt''s partner'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_287
+  split: ood
+  language: en
+  sentences:
+    - 'Which noble gas is used in bright signs'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_288
+  split: ood
+  language: en
+  sentences:
+    - 'Which element has atomic number six'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_289
+  split: ood
+  language: en
+  sentences:
+    - 'Which element is diamond made of'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_290
+  split: ood
+  language: en
+  sentences:
+    - 'What do you call a baby kangaroo'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_291
+  split: ood
+  language: en
+  sentences:
+    - 'What do you call a baby swan'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_292
+  split: ood
+  language: en
+  sentences:
+    - 'What do you call a group of lions'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_293
+  split: ood
+  language: en
+  sentences:
+    - 'What do you call a group of crows'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_294
+  split: ood
+  language: en
+  sentences:
+    - 'What do you call a group of wolves'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_295
+  split: ood
+  language: en
+  sentences:
+    - 'Which country is shaped like a boot'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_296
+  split: ood
+  language: en
+  sentences:
+    - 'Which country spans the most longitudes'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_297
+  split: ood
+  language: en
+  sentences:
+    - 'Which country is also its own continent'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_298
+  split: ood
+  language: en
+  sentences:
+    - 'Which country contains the ganges delta mostly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_299
+  split: ood
+  language: en
+  sentences:
+    - 'Which country contains the andes along its west'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_300
+  split: ood
+  language: en
+  sentences:
+    - 'What is the opposite of arid'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_301
+  split: ood
+  language: en
+  sentences:
+    - 'What is the opposite of nocturnal'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_302
+  split: ood
+  language: en
+  sentences:
+    - 'What is the opposite of terrestrial in zoology'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_303
+  split: ood
+  language: en
+  sentences:
+    - 'What is a fjord'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_304
+  split: ood
+  language: en
+  sentences:
+    - 'What is an archipelago'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_305
+  split: ood
+  language: en
+  sentences:
+    - 'Which mathematician is linked to the fibonacci sequence'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_306
+  split: ood
+  language: en
+  sentences:
+    - 'Which physicist is linked to general relativity'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_307
+  split: ood
+  language: en
+  sentences:
+    - 'Which chemist organized the periodic table'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_308
+  split: ood
+  language: en
+  sentences:
+    - 'Which biologist is linked to natural selection'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_309
+  split: ood
+  language: en
+  sentences:
+    - 'Which astronomer supported a heliocentric model'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_310
+  split: ood
+  language: en
+  sentences:
+    - 'What is the function of roots in a tree'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_311
+  split: ood
+  language: en
+  sentences:
+    - 'What is the function of chlorophyll'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_312
+  split: ood
+  language: en
+  sentences:
+    - 'What is the function of hemoglobin'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_313
+  split: ood
+  language: en
+  sentences:
+    - 'What is the function of the ozone layer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_314
+  split: ood
+  language: en
+  sentences:
+    - 'What is the function of white blood cells'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_315
+  split: ood
+  language: en
+  sentences:
+    - 'Which festival marks the new year in china'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_316
+  split: ood
+  language: en
+  sentences:
+    - 'Which festival uses a menorah'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_317
+  split: ood
+  language: en
+  sentences:
+    - 'Which festival is associated with diwali lamps in india'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_318
+  split: ood
+  language: en
+  sentences:
+    - 'Which holiday uses carved pumpkins in the us'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_319
+  split: ood
+  language: en
+  sentences:
+    - 'Which holiday falls in late December for many countries'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

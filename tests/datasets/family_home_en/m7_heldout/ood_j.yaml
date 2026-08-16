@@ -1,0 +1,399 @@
+- name: ood_349
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Portugal'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_350
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Norway'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_351
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Finland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_352
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Denmark'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_353
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Ireland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_354
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Poland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_355
+  split: ood
+  language: en
+  sentences:
+    - 'Name the ocean between Asia and the Americas'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_356
+  split: ood
+  language: en
+  sentences:
+    - 'Which desert covers most of northern Africa'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_357
+  split: ood
+  language: en
+  sentences:
+    - 'Which mountain range separates Europe from Asia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_358
+  split: ood
+  language: en
+  sentences:
+    - 'Which sea lies between Italy and the Balkans'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_359
+  split: ood
+  language: en
+  sentences:
+    - 'Which canal connects the Atlantic and Pacific'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_360
+  split: ood
+  language: en
+  sentences:
+    - 'Which strait separates Spain from Morocco'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_361
+  split: ood
+  language: en
+  sentences:
+    - 'Which lake is the deepest in the world'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_362
+  split: ood
+  language: en
+  sentences:
+    - 'Which river is the longest in South America'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_363
+  split: ood
+  language: en
+  sentences:
+    - 'Name the largest Mediterranean landmass'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_364
+  split: ood
+  language: en
+  sentences:
+    - 'Which peninsula contains Spain and Portugal'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_365
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol Fe'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_366
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol Au'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_367
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol Ag'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_368
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol Na'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_369
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol K'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_370
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol He'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_371
+  split: ood
+  language: en
+  sentences:
+    - 'What element has the chemical symbol Ne'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_372
+  split: ood
+  language: en
+  sentences:
+    - 'What gas do humans exhale after breathing'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_373
+  split: ood
+  language: en
+  sentences:
+    - 'What force keeps planets in orbit around the sun'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_374
+  split: ood
+  language: en
+  sentences:
+    - 'What particle has a negative electric charge'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_375
+  split: ood
+  language: en
+  sentences:
+    - 'What is the square of twelve'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_376
+  split: ood
+  language: en
+  sentences:
+    - 'What is fifteen minus eight'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_377
+  split: ood
+  language: en
+  sentences:
+    - 'What is eighty divided by four'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_378
+  split: ood
+  language: en
+  sentences:
+    - 'What is the square root of eighty one'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_379
+  split: ood
+  language: en
+  sentences:
+    - 'What is one hundred plus thirty seven'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_380
+  split: ood
+  language: en
+  sentences:
+    - 'What is seven factorial as a number'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_381
+  split: ood
+  language: en
+  sentences:
+    - 'What is the remainder of seventeen divided by five'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_382
+  split: ood
+  language: en
+  sentences:
+    - 'What is the average of ten and twenty'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_383
+  split: ood
+  language: en
+  sentences:
+    - 'What is half of ninety six'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_384
+  split: ood
+  language: en
+  sentences:
+    - 'In which year did the first moon landing happen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_385
+  split: ood
+  language: en
+  sentences:
+    - 'In which year did World War Two end in Europe'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_386
+  split: ood
+  language: en
+  sentences:
+    - 'Name the first president of the United States'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_387
+  split: ood
+  language: en
+  sentences:
+    - 'Name the composer of the Four Seasons concertos'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_388
+  split: ood
+  language: en
+  sentences:
+    - 'Name the artist of the Sistine frescoes'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

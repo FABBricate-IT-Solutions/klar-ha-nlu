@@ -228,7 +228,7 @@ pub const PACK: LanguagePack = LanguagePack {
         hours: &["hour", "hours"],
         minutes: &["minute", "minutes"],
         seconds: &["second", "seconds"],
-        list_skip: &["add", "put", "place", "my", "the", "a"],
+        list_skip: &["add", "put", "place", "check", "complete", "mark", "my", "the", "a", "as", "done", "on", "off"],
         shopping_names: &["shopping"],
         status_words: &["status", "state"],
         window_words: &["window", "windows"],

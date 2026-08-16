@@ -52,6 +52,14 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
             <input type="checkbox" checked={settings.support_bundle} onChange={(ev) => save({ ...settings, support_bundle: ev.target.checked })} style={{ width: "auto" }} />
             {t.recordProtocol}
           </label>
+          <label className="row">
+            <input type="checkbox" checked={settings.support_bundle_raw_text} onChange={(ev) => save({ ...settings, support_bundle_raw_text: ev.target.checked })} style={{ width: "auto" }} />
+            {t.includeRawText}
+          </label>
+          <label className="row">
+            <input type="checkbox" checked={settings.semantic_adapters} onChange={(ev) => save({ ...settings, semantic_adapters: ev.target.checked })} style={{ width: "auto" }} />
+            {t.semanticAdapters}
+          </label>
           <p className="muted">{bundle ? `${bundle.count} ${t.recordings}` : "..."}</p>
           <div className="row">
             <button className="secondary" onClick={() => download("/api/bundle/dataset", "klar-assist-dataset.yaml")}>{t.downloadDataset}</button>

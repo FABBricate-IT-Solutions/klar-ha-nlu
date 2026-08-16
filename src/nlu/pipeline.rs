@@ -1,0 +1,232 @@
+use crate::parse::compound::expand_compounds;
+use crate::parse::normalize::{strip_fillers, tokenize};
+use crate::parse::respond::{speak_clarify, speak_unknown};
+use crate::parse::split::split_clauses;
+use crate::session::Session;
+use crate::types::{Evidence, Intent, IntentCandidate, ParseDecision, ParseOutcome, ParseTrace, RejectReason, StageTrace};
+use std::collections::BTreeSet;
+use std::time::Instant;
+
+use super::binding::{build_analyses, MAX_CLAUSES};
+use super::context::ParseContext;
+use super::draft::{reject, replay_or_decide, route_pending, route_special, safety_decision, Draft, SessionCommit};
+use super::legacy;
+use super::ranking::rank_candidates;
+use super::semantic;
+
+const MAX_NORMALIZED_TOKENS: usize = 256;
+
+pub(super) struct PipelineResult {
+    pub outcome: ParseOutcome,
+    commit: SessionCommit,
+}
+
+pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
+    let mut trace = ParseTrace::default();
+    let started = Instant::now();
+    let (raw_tokens, split) = legacy::with_catalog(context.catalog, || {
+        let raw_tokens = tokenize(context.text);
+        let split = expand_compounds(&strip_fillers(&raw_tokens), context.home);
+        (raw_tokens, split)
+    });
+    trace.tokens = split.tokens.iter().take(MAX_NORMALIZED_TOKENS).cloned().collect();
+    trace.normalized = trace.tokens.join(" ");
+    record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));
+    if split.tokens.len() > MAX_NORMALIZED_TOKENS {
+        let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
+        return finish(context.text, &context.session.id, draft, Vec::new(), Vec::new(), trace);
+    }
+
+    let started = Instant::now();
+    let clauses = legacy::with_catalog(context.catalog, || split_clauses(&split.tokens, context.home));
+    record_stage(&mut trace, "features", started, format!("{} clauses", clauses.len()));
+
+    if let Some(draft) = legacy::with_catalog(context.catalog, || route_special(&context, &raw_tokens, &split)) {
+        record_stage(&mut trace, "safety_decision", Instant::now(), decision_name(&draft.decision).into());
+        let candidates = draft.output_candidate.clone().into_iter().collect();
+        return finish(context.text, &context.session.id, draft, candidates, Vec::new(), trace);
+    }
+    if let Some(draft) = legacy::with_catalog(context.catalog, || route_pending(&context, &split.tokens)) {
+        let started = Instant::now();
+        let draft = safety_decision(draft, &context);
+        record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
+        let candidates = draft.output_candidate.clone().into_iter().collect();
+        return finish(context.text, &context.session.id, draft, candidates, Vec::new(), trace);
+    }
+
+    if clauses.len() > MAX_CLAUSES {
+        let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
+        return finish(context.text, &context.session.id, draft, Vec::new(), Vec::new(), trace);
+    }
+    let analyses = match build_analyses(&context, clauses, &raw_tokens, &split, &mut trace) {
+        Ok(analyses) => analyses,
+        Err(_) => {
+            let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
+            return finish(context.text, &context.session.id, draft, Vec::new(), Vec::new(), trace);
+        }
+    };
+
+    let started = Instant::now();
+    let ranking = rank_candidates(&analyses, context.home, &mut trace);
+    record_stage(&mut trace, "ranking", started, format!("{} ranked candidates", ranking.candidates.len()));
+    let clarify = ranking.clarification.clone();
+    let mut intents = ranking.selected.as_ref().map_or_else(Vec::new, |candidate| candidate.plan.intents());
+    dedup_intents(&mut intents);
+    let selected_plan = ranking.selected.as_ref().map(|candidate| candidate.plan.clone());
+    let draft = if let Some((options, template)) = clarify {
+        let prompt = legacy::with_catalog(context.catalog, || speak_clarify(&options, Some(context.home)));
+        Draft {
+            decision: ParseDecision::Clarify { prompt: prompt.clone(), options: options.clone() },
+            plan: None,
+            speech: prompt,
+            confidence: ranking.confidence,
+            margin: ranking.margin,
+            selected_candidate_id: None,
+            output_candidate: None,
+            safety_confirmed: false,
+            response_briefing: false,
+            competing: ranking.competing,
+            commit: SessionCommit { clarify: Some((options, template)), briefing: Some(false), ..SessionCommit::default() },
+        }
+    } else {
+        replay_or_decide(&context, &split.tokens, intents, selected_plan, &ranking)
+    };
+    let started = Instant::now();
+    let mut draft = safety_decision(draft, &context);
+    record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
+    if let Some(adapted) = legacy::with_catalog(context.catalog, || semantic::consider(&context, &split.tokens, &draft)) {
+        let started = Instant::now();
+        draft = safety_decision(adapted, &context);
+        record_stage(&mut trace, "semantic_adapter", started, decision_name(&draft.decision).into());
+    }
+    let mut candidates = ranking.candidates;
+    if let Some(updated) = draft.output_candidate.clone() {
+        if let Some(existing) = candidates.iter_mut().find(|candidate| candidate.id == updated.id) {
+            *existing = updated;
+        } else {
+            candidates.push(updated);
+        }
+    }
+    let mut evidence = ranking.evidence;
+    if let Some(plan) = draft.plan.as_ref() {
+        for item in &plan.evidence {
+            if item.kind == "semantic_adapter" && !evidence.iter().any(|existing| existing == item) {
+                evidence.push(item.clone());
+            }
+        }
+    }
+    finish(context.text, &context.session.id, draft, candidates, evidence, trace)
+}
+
+impl PipelineResult {
+    pub(super) fn commit(self, session: &mut Session) -> ParseOutcome {
+        if self.commit.clear_pending {
+            session.clear_pending();
+        }
+        if let Some((options, template)) = self.commit.clarify {
+            session.set_clarify(options, template);
+        }
+        if let Some((candidate_id, plan, prompt)) = self.commit.confirm {
+            session.set_confirm(candidate_id, plan, prompt);
+        }
+        for intent in &self.commit.remember {
+            session.remember(intent);
+        }
+        if let Some(briefing) = self.commit.briefing {
+            session.briefing = briefing;
+        }
+        if self.commit.mark_wrong {
+            session.mark_wrong();
+        }
+        self.outcome
+    }
+}
+
+fn finish(
+    text: &str,
+    conversation_id: &str,
+    mut draft: Draft,
+    mut candidates: Vec<IntentCandidate>,
+    evidence: Vec<Evidence>,
+    mut trace: ParseTrace,
+) -> PipelineResult {
+    let started = Instant::now();
+    let executable_plan = matches!(draft.decision, ParseDecision::Execute).then(|| draft.plan.clone()).flatten();
+    let execute = matches!(draft.decision, ParseDecision::Execute);
+    if !execute {
+        candidates.clear();
+    }
+    let selected_candidate_id = execute.then(|| draft.selected_candidate_id.clone()).flatten();
+    record_stage(
+        &mut trace,
+        "planning",
+        started,
+        format!("{} executable plan steps", executable_plan.as_ref().map_or(0, |value| value.steps.len())),
+    );
+    let mut outcome = ParseOutcome {
+        schema_version: ParseOutcome::schema_version(),
+        text: text.to_string(),
+        conversation_id: conversation_id.to_string(),
+        decision: draft.decision,
+        speech: draft.speech,
+        confidence: draft.confidence,
+        margin: draft.margin,
+        selected_candidate_id,
+        candidates,
+        plan: executable_plan,
+        evidence,
+        trace,
+        briefing: draft.response_briefing,
+    };
+    if matches!(outcome.decision, ParseDecision::Execute) {
+        let selected_matches = outcome.selected_candidate_id.as_ref().is_some_and(|selected_id| {
+            !selected_id.is_empty()
+                && selected_id.chars().count() <= 128
+                && outcome
+                    .plan
+                    .as_ref()
+                    .is_some_and(|plan| outcome.candidates.iter().any(|candidate| candidate.id == *selected_id && candidate.plan == *plan))
+        });
+        if !selected_matches {
+            outcome.decision =
+                ParseDecision::Error { code: "invalid_selection".into(), message: "Planner selection was not representable".into() };
+            outcome.plan = None;
+            outcome.selected_candidate_id = None;
+            outcome.candidates.clear();
+            draft.commit.remember.clear();
+            draft.commit.clear_pending = false;
+        }
+    }
+    outcome.enforce_output_caps();
+    PipelineResult { outcome, commit: draft.commit }
+}
+
+fn dedup_intents(intents: &mut Vec<Intent>) {
+    let mut seen = BTreeSet::new();
+    intents.retain(|intent| {
+        let entity_domain = intent.slot("entity_id").and_then(|entity_id| entity_id.split_once('.').map(|(domain, _)| domain));
+        let mut slots = intent
+            .slots
+            .iter()
+            .filter(|slot| slot.name != "domain" || entity_domain != Some(slot.value.as_str()))
+            .map(|slot| format!("{}={}", slot.name, slot.value))
+            .collect::<Vec<_>>();
+        slots.sort();
+        seen.insert(format!("{}|{}", intent.name, slots.join("|")))
+    });
+}
+
+fn record_stage(trace: &mut ParseTrace, stage: &str, started: Instant, detail: String) {
+    trace.stages.push(StageTrace { stage: stage.into(), duration_us: started.elapsed().as_micros() as u64, detail });
+}
+
+fn decision_name(decision: &ParseDecision) -> &'static str {
+    match decision {
+        ParseDecision::Execute => "execute",
+        ParseDecision::Clarify { .. } => "clarify",
+        ParseDecision::Confirm { .. } => "confirm",
+        ParseDecision::Reject { .. } => "reject",
+        ParseDecision::Chat => "chat",
+        ParseDecision::Error { .. } => "error",
+    }
+}

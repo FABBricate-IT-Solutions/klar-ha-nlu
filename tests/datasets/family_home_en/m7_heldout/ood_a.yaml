@@ -1,0 +1,399 @@
+- name: ood_0
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of France'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_1
+  split: ood
+  language: en
+  sentences:
+    - 'Which river runs through Cairo'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_2
+  split: ood
+  language: en
+  sentences:
+    - 'How far is the moon from earth'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_3
+  split: ood
+  language: en
+  sentences:
+    - 'Why is the sky blue during the day'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_4
+  split: ood
+  language: en
+  sentences:
+    - 'What is two plus two'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_5
+  split: ood
+  language: en
+  sentences:
+    - 'What is nine times seven'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_6
+  split: ood
+  language: en
+  sentences:
+    - 'What is photosynthesis in plants'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_7
+  split: ood
+  language: en
+  sentences:
+    - 'What is the boiling point of water'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_8
+  split: ood
+  language: en
+  sentences:
+    - 'What is the speed of light in vacuum'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_9
+  split: ood
+  language: en
+  sentences:
+    - 'What is gravity in simple terms'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_10
+  split: ood
+  language: en
+  sentences:
+    - 'What galaxy contains the solar system'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_11
+  split: ood
+  language: en
+  sentences:
+    - 'How old is planet earth roughly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_12
+  split: ood
+  language: en
+  sentences:
+    - 'How large is the sun compared to earth'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_13
+  split: ood
+  language: en
+  sentences:
+    - 'Where is mount kilimanjaro located'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_14
+  split: ood
+  language: en
+  sentences:
+    - 'Where does the nile empty'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_15
+  split: ood
+  language: en
+  sentences:
+    - 'Where is iceland relative to europe'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_16
+  split: ood
+  language: en
+  sentences:
+    - 'Name the southernmost continent'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_17
+  split: ood
+  language: en
+  sentences:
+    - 'Where is the sahara desert'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_18
+  split: ood
+  language: en
+  sentences:
+    - 'What currency does japan use'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_19
+  split: ood
+  language: en
+  sentences:
+    - 'What currency does sweden use'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_20
+  split: ood
+  language: en
+  sentences:
+    - 'Which planet sits closest to the sun'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_21
+  split: ood
+  language: en
+  sentences:
+    - 'Which planet sits farthest from the sun'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_22
+  split: ood
+  language: en
+  sentences:
+    - 'What color is chlorophyll typically'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_23
+  split: ood
+  language: en
+  sentences:
+    - 'What is h2o commonly called'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_24
+  split: ood
+  language: en
+  sentences:
+    - 'Name the chemical element with atomic number one'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_25
+  split: ood
+  language: en
+  sentences:
+    - 'What is the chemical symbol for gold'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_26
+  split: ood
+  language: en
+  sentences:
+    - 'What is the smallest prime number'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_27
+  split: ood
+  language: en
+  sentences:
+    - 'Name the highest mountain peak'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_28
+  split: ood
+  language: en
+  sentences:
+    - 'Name the longest African river'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_29
+  split: ood
+  language: en
+  sentences:
+    - 'Name the widest ocean'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_30
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Berlin today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_31
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Tokyo today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_32
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Oslo today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_33
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Lisbon today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_34
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Vienna today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_35
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Prague today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_36
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Madrid today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_37
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Rome today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_38
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Paris today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_39
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Dublin today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

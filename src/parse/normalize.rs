@@ -75,7 +75,8 @@ pub fn compact(s: &str) -> String {
 
 /// "Schlafzimmern" / "Wohnzimmers" / "bedrooms" match the room stem.
 pub fn inflected_eq(token: &str, label: &str) -> bool {
-    label.len() >= 6 && ["en", "n", "s"].iter().any(|suffix| token.strip_suffix(suffix).is_some_and(|stem| stem == label))
+    label.len() >= 6
+        && catalog().morphology.effective_room_suffixes().iter().any(|suffix| token.strip_suffix(suffix).is_some_and(|stem| stem == label))
 }
 
 pub(crate) fn is_time_unit(token: &str) -> bool {

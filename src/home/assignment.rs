@@ -337,8 +337,8 @@ mod tests {
     fn home() -> HomeGraph {
         HomeGraph {
             areas: vec![
-                AreaRec { area_id: "schlafzimmer".into(), name: "Schlafzimmer".into(), aliases: vec!["bedroom".into()] },
-                AreaRec { area_id: "wohnzimmer".into(), name: "Wohnzimmer".into(), aliases: vec!["living".into()] },
+                AreaRec { area_id: "schlafzimmer".into(), name: "Schlafzimmer".into(), aliases: vec!["bedroom".into()], floor_id: None },
+                AreaRec { area_id: "wohnzimmer".into(), name: "Wohnzimmer".into(), aliases: vec!["living".into()], floor_id: None },
             ],
             entities: vec![
                 ent("light.schlafzimmer_kugel", "Kugel", None),

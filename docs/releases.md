@@ -60,8 +60,13 @@ git cliff --unreleased
 cargo fmt --check
 cargo check
 cargo test -- --test-threads=1
+python3 -m unittest discover -s tests -p 'test_*.py'
+cargo run --quiet -- lang validate packs
+cargo run --quiet -- eval bench --repeat 8
 cargo build --release
 rg 'src/(parse\.rs|web\.rs|wyoming\.rs|lexicon\.rs|numbers\.rs)|parse_help|home_policy' docs README.md README.de.md
 ```
+
+V2-Cuts müssen Rust-Engine und `custom_components/klar_nlu` zusammen ausliefern. `POST /api/parse` entfällt.
 
 Der `rg`-Check hält Dokumentation und Modulbaum synchron. Treffer sind nicht automatisch Fehler, müssen aber bewusst aktuell sein.

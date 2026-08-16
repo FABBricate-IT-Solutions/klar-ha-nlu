@@ -205,46 +205,47 @@ fn clean_media_words(words: &[String], home: &HomeGraph, resolved: &Resolved) ->
     words.iter().filter(|word| !skip_media_word(word, home, resolved)).cloned().collect()
 }
 
+const SKIP_MEDIA: &[&str] = &[
+    "das",
+    "die",
+    "der",
+    "den",
+    "dem",
+    "the",
+    "a",
+    "an",
+    "in",
+    "im",
+    "on",
+    "using",
+    "with",
+    "mit",
+    "auf",
+    "ueber",
+    "von",
+    "by",
+    "to",
+    "als",
+    "naechstes",
+    "next",
+    "queue",
+    "warteschlange",
+    "radiomodus",
+    "mode",
+    "modus",
+    "room",
+    "zimmer",
+    "tv",
+    "television",
+    "playback",
+    "media",
+    "music",
+    "musik",
+];
+
 fn skip_media_word(word: &str, home: &HomeGraph, resolved: &Resolved) -> bool {
     is_play_word(word)
-        || matches!(
-            word,
-            "das"
-                | "die"
-                | "der"
-                | "den"
-                | "dem"
-                | "the"
-                | "a"
-                | "an"
-                | "in"
-                | "im"
-                | "on"
-                | "using"
-                | "with"
-                | "mit"
-                | "auf"
-                | "ueber"
-                | "von"
-                | "by"
-                | "to"
-                | "als"
-                | "naechstes"
-                | "next"
-                | "queue"
-                | "warteschlange"
-                | "radiomodus"
-                | "mode"
-                | "modus"
-                | "room"
-                | "zimmer"
-                | "tv"
-                | "television"
-                | "playback"
-                | "media"
-                | "music"
-                | "musik"
-        )
+        || SKIP_MEDIA.contains(&word)
         || media_type_word(word).is_some()
         || resolved.areas.iter().any(|area| area_word(word, area, home))
         || resolved.entities.iter().any(|entity| entity_word(word, entity))
@@ -276,7 +277,7 @@ fn target_player<'a>(
     allow_session_media: bool,
     mass_only: bool,
 ) -> Option<&'a EntityRec> {
-    let players = if mass_only { mass_players(home) } else { music_players(home) };
+    let players = player_pool(home, tokens, mass_only);
     let resolved_ids: Vec<&str> = resolved
         .entities
         .iter()
@@ -310,6 +311,21 @@ fn target_player<'a>(
         }
     }
     select_player(&players, session)
+}
+
+fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> Vec<&'a EntityRec> {
+    if mass_only {
+        return mass_players(home);
+    }
+    let music = music_players(home);
+    if any(tokens, &["tv", "television", "fernseher", "soundbar"])
+        || (tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke"))
+            && !music_context(tokens)
+            && music.is_empty())
+    {
+        return home.entities.iter().filter(|entity| eligible_media_player(entity, home)).collect();
+    }
+    music
 }
 
 fn music_players(home: &HomeGraph) -> Vec<&EntityRec> {
@@ -394,7 +410,7 @@ fn select_player<'a>(players: &[&'a EntityRec], session: &Session) -> Option<&'a
 }
 
 fn has_volume_word(tokens: &[String]) -> bool {
-    any(tokens, &["lautstaerke", "volume"]) || media_context(tokens)
+    tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke")) || media_context(tokens)
 }
 
 fn queue_status(tokens: &[String]) -> bool {
@@ -403,7 +419,7 @@ fn queue_status(tokens: &[String]) -> bool {
 }
 
 fn volume_status(tokens: &[String]) -> bool {
-    is_question(tokens) && any(tokens, &["laut", "lautstaerke", "volume"])
+    is_question(tokens) && tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke"))
 }
 
 fn mute_status(tokens: &[String]) -> bool {
@@ -437,15 +453,16 @@ fn music_resume(tokens: &[String]) -> bool {
 }
 
 fn has_search_tail(tokens: &[String]) -> bool {
-    !clean_media_words(tokens, &HomeGraph::default(), &Resolved { areas: Vec::new(), entities: Vec::new(), ambiguous: Vec::new() })
-        .is_empty()
+    !clean_media_words(
+        tokens,
+        &HomeGraph::default(),
+        &Resolved { areas: Vec::new(), floors: Vec::new(), entities: Vec::new(), ambiguous: Vec::new() },
+    )
+    .is_empty()
 }
 
 fn is_play_word(word: &str) -> bool {
-    matches!(
-        word,
-        "spiel" | "spiele" | "hoere" | "hoer" | "abspielen" | "weiter" | "fortsetzen" | "play" | "listen" | "put" | "resume" | "unpause"
-    )
+    ["spiel", "spiele", "hoere", "hoer", "abspielen", "weiter", "fortsetzen", "play", "listen", "put", "resume", "unpause"].contains(&word)
 }
 
 fn any(tokens: &[String], words: &[&str]) -> bool {
@@ -457,7 +474,7 @@ fn has_phrase(tokens: &[String], phrase: &[&str]) -> bool {
 }
 
 fn is_question(tokens: &[String]) -> bool {
-    tokens.iter().any(|token| matches!(token.as_str(), "was" | "wie" | "ist" | "sind" | "what" | "whats" | "is" | "are" | "how"))
+    any(tokens, &["was", "wie", "ist", "sind", "what", "whats", "is", "are", "how"])
 }
 
 fn area_word(word: &str, area_id: &str, home: &HomeGraph) -> bool {
@@ -476,8 +493,4 @@ fn entity_word(word: &str, entity: &EntityRec) -> bool {
 fn label_has_word(label: &str, word: &str) -> bool {
     let folded = fold_umlaut(label);
     folded.split(|c: char| !c.is_alphanumeric()).any(|part| part == word)
-}
-
-pub(crate) fn media_target_ids(home: &HomeGraph, area: &str) -> Vec<String> {
-    music_players(home).into_iter().filter(|e| e.area.as_deref() == Some(area)).map(|e| e.entity_id.clone()).collect()
 }

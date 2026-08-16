@@ -9,6 +9,7 @@ pub mod registry;
 pub(crate) mod registry_yaml;
 pub mod roles;
 pub mod sample;
+pub mod snapshot;
 pub mod store;
 
 pub use load::{load_merged, registry_stamp, LoadedHome};

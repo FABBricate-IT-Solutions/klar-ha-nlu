@@ -4,9 +4,11 @@
 
 Zwei Schnittstellen: HTTP auf Port **10520**, Wyoming auf **10500**.
 
+**Breaking:** `POST /api/parse` entfällt. Clients und die Home-Assistant-Integration müssen `POST /api/v2/parse` und `schema_version: "2.0"` sprechen. Engine und Integration zusammen aktualisieren.
+
 ## HTTP
 
-### `POST /api/parse`
+### `POST /api/v2/parse`
 
 ```json
 { "text": "Licht im Wohnzimmer an", "conversation_id": "optional-id", "language": "de", "personality": "butler" }
@@ -16,22 +18,35 @@ Antwort:
 
 ```json
 {
+  "schema_version": "2.0",
   "text": "Licht im Wohnzimmer an",
-  "intents": [
-    {
-      "name": "HassTurnOn",
-      "slots": [
-        { "name": "area", "value": "wohnzimmer" },
-        { "name": "domain", "value": "light" }
-      ]
-    }
-  ],
-  "speech": "Sehr wohl. Wohnzimmerlicht ist an.",
-  "clarify": false,
   "conversation_id": "optional-id",
-  "chat": false,
-  "briefing": false,
-  "personality": "butler"
+  "decision": { "type": "execute" },
+  "speech": "Sehr wohl. Wohnzimmerlicht ist an.",
+  "confidence": 0.96,
+  "margin": 0.18,
+  "selected_candidate_id": "selected-000",
+  "plan": {
+    "confidence": 0.96,
+    "margin": 0.18,
+    "evidence": [],
+    "steps": [{
+      "index": 0,
+      "intent": {
+        "name": "HassTurnOn",
+        "slots": [
+          { "name": "area", "value": "wohnzimmer" },
+          { "name": "domain", "value": "light" }
+        ]
+      },
+      "confidence": 0.96,
+      "evidence": []
+    }]
+  },
+  "candidates": [],
+  "evidence": [],
+  "trace": { "stages": [], "discarded": [] },
+  "briefing": false
 }
 ```
 
@@ -41,11 +56,11 @@ Antwort:
 
 `personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung in der HA-Integration formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
 
-`clarify: true` bedeutet: keine Intents ausführen, die Frage in `speech` vorlesen, dieselbe `conversation_id` für die Antwort behalten.
+`decision.type` ist einer von `execute`, `clarify`, `confirm`, `reject`, `chat` oder `error`. Nur `execute` enthält `plan`, vollständige `candidates` und `selected_candidate_id`; Clients dürfen Intents ausschließlich in diesem Fall ausführen. Bei allen anderen Entscheidungen ist `candidates` leer und es werden nirgends Intent- oder Slot-Daten serialisiert. `confirm` enthält nur Prompt und eine opake Kandidaten-ID. Der vorgeschlagene Plan bleibt ausschließlich in der Session, bis dieselbe `conversation_id` bejaht wird.
 
-Leere `intents` = kein Hausbefehl. Die HA-Integration leitet das an den Fallback-Agenten weiter, falls einer gesetzt ist.
+Confidence ist evidenzbasiert und zwischen Intents vergleichbar. Feste Bänder: execute bei Confidence ≥ 0.80 und Margin ≥ 0.05, wenn kein konkurrierender vollständiger Plan näher als 0.05 liegt; confirm für riskante Schloss-/Cover-zu-Aktionen oder große Pläne ab 0.62; clarify bei konkurrierenden vollständigen Plänen unter 0.05 Margin oder Confidence zwischen 0.70 und dem Execute-Band; reject unter 0.70 (unter 0.62 wenn riskant), bei Out-of-Domain (Wetter, Trivia, leere Füllwörter) oder wenn kein geerdeter Schritt übrig bleibt. Fuzzy-, Session- und Inferenz-Evidenz darf exakte Lexikon+Resolver-Evidenz nicht überholen; inferierte Aktionen bekommen nie 1.0. Mehrsatz-Pläne behalten nur unabhängig gültige Schritte. Nach `nein` fällt ein Confirm weg; nach `ja` wird der gespeicherte Plan gegen den aktuellen Home-Graph neu geprüft. `chat` bleibt auf News, Briefing-Follow-ups und explizites LLM-Opt-in beschränkt.
 
-`chat: true` bedeutet: Klar hat bewusst keinen Haus-Intent ausgegeben und der Satz darf an den Fallback-Agenten. `briefing: true` markiert News-/Briefing-Dialoge, damit Follow-ups nicht versehentlich Geräte steuern.
+`candidates`, `evidence` und `trace` erklären Ranking und verworfene Alternativen. Alle Listen und Detailtexte sind serverseitig begrenzt.
 
 ### Auth und Fehler
 
@@ -72,7 +87,10 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
   "personality": "default",
   "mode": "full",
   "languages": ["de", "en"],
-  "support_bundle": false
+  "support_bundle": false,
+  "support_bundle_raw_text": false,
+  "confirm_risky_actions": true,
+  "semantic_adapters": false
 }
 ```
 
@@ -82,6 +100,9 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 | `mode` | `full` (Geräte auflösen) oder `context_only` (nur Räume) |
 | `languages` | Paket-Codes. Unbekannte Codes werden ignoriert. Leer fällt auf `de`+`en` zurück. |
 | `support_bundle` | `true` speichert Parse-Verkehr unter `/data/support_bundle.jsonl` (max. 2000 Einträge). Überlebt Neustarts. Erststart auch über `KLAR_SUPPORT_BUNDLE=1`. |
+| `support_bundle_raw_text` | `true` erlaubt Rohtext und Sprachausgabe im Download. Standard aus. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
+| `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
+| `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
 
 ### `GET` / `POST /api/custom`
 
@@ -163,7 +184,7 @@ Download als Voice-Suite-YAML (`klar-assist-dataset.yaml`).
 
 ### `GET /api/bundle/protocol`
 
-Rohprotokoll als JSONL (`klar-support-bundle.jsonl`). Jede Zeile: Zeitstempel, Quelle (`http`/`wyoming`), Sprache, Anfrage, Intents, Sprachausgabe.
+Redigiertes JSONL (`klar-support-bundle.jsonl`). Conversation-IDs sind gehasht, Entity-/Area-Namen pseudonymisiert. Ohne `support_bundle_raw_text` steht statt Rohtext die Token-Replay-Kette; Speech ist leer.
 
 ### `POST /api/bundle/clear` / `DELETE /api/bundle`
 

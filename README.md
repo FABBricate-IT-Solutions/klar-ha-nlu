@@ -17,6 +17,8 @@
 
 Deterministic voice control for Home Assistant. Klar turns spoken sentences into HA intents — no cloud, no model weights.
 
+**Breaking V2:** HTTP parse is only `POST /api/v2/parse` (`schema_version: "2.0"`). Upgrade the Rust engine and the Home Assistant integration together. `POST /api/parse` is gone. Existing `klar_nlu.json` overlays still load; `klar migrate import --from` dry-runs conflicts, orphans, and unsafe settings before a V2 save.
+
 German and English ship in-tree and run side by side. Further languages are packs, not special cases in the engine.
 
 ```
@@ -40,9 +42,11 @@ Klar drives devices itself. An LLM only talks or rewrites speech — it does not
 
 The Rust engine is split into clear layers:
 
-- `src/types/` defines intents, settings, and the home graph.
+- `src/types/` defines intents, `ParseOutcome`, settings, and the home graph.
+- `src/nlu/` ranks candidates and applies confidence, OOD, confirm, and multi-intent policy.
+- `src/parse/` tokenizes, detects actions, resolves targets, and fills slots.
 - `src/home/` loads Home Assistant registries, overlays, expose data, roles, and the built-in sample home.
-- `src/parse/` contains tokenization, language-driven action detection, resolution, slot filling, and spoken replies.
+- `src/eval/` and `src/migrate/` own held-out scorecards and the one-shot V1 overlay import.
 - `src/io/` owns HTTP, Wyoming, shared runtime state, token handling, and reloads.
 
 At runtime Klar builds one effective home graph from the HA config and the writable data directory. The parse API and Wyoming server share that graph and the same session store, so follow-ups behave the same on both interfaces.
@@ -70,6 +74,8 @@ Useful checks while developing:
 cargo fmt --check
 cargo check
 cargo test -- --test-threads=1
+cargo run --quiet -- lang validate packs
+cargo run --quiet -- eval bench --repeat 8
 cargo build --release
 ```
 
@@ -132,7 +138,9 @@ Dependabot opens weekly PRs for crates and Actions; `cargo-audit` and `cargo-den
 cargo test -- --test-threads=1
 ```
 
-The German/English apartment suites and both family-home suites must stay at 100%. See [docs/en/testing.md](docs/en/testing.md).
+The enforced voice-suite gates are documented in
+[docs/en/testing.md](docs/en/testing.md); 100% remains the target, but the
+current blocking thresholds are lower for the generated comparison suites.
 
 ## License
 

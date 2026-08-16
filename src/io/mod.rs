@@ -2,11 +2,16 @@ pub(crate) mod auth;
 pub mod bootstrap;
 pub(crate) mod bundle;
 pub(crate) mod dashboard;
+pub(crate) mod home_sync;
+pub(crate) mod lang_api;
 pub mod limits;
 pub(crate) mod metrics;
+pub(crate) mod privacy;
 pub mod state;
 pub mod web;
 pub mod wyoming;
 
 pub use bootstrap::{run, RuntimeArgs};
+pub use bundle::{BundleEntry, BundleRequest, BundleResponse};
+pub use privacy::{hash_conversation_id, redact_entries, replay_tokens, NameMap};
 pub use state::AppState;

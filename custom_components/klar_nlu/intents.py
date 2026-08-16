@@ -97,7 +97,7 @@ def home_intents(intents: list[Any]) -> list[dict[str, Any]]:
 def get_state_has_target(item: dict[str, Any]) -> bool:
     return any(
         isinstance(slot, dict)
-        and slot.get("name") in {"area", "entity_id", "name", "device_class", "domain"}
+        and slot.get("name") in {"area", "floor", "entity_id", "name", "device_class", "domain"}
         for slot in (item.get("slots") or [])
     )
 

@@ -1,0 +1,71 @@
+- name: asr_eingang
+  split: asr
+  language: de
+  sentences:
+    - 'Mach Eingangslich an'
+    - 'Mach das Einganslicht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: asr_garage
+  split: asr
+  language: de
+  sentences:
+    - 'Mach Garagenlich an'
+    - 'Schalte Garagenligt ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: asr_trockner
+  split: asr
+  language: de
+  sentences:
+    - 'Mach Trocknr aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: asr_spuel
+  split: asr
+  language: de
+  sentences:
+    - 'Mach Spulmaschine an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: asr_wasch
+  split: asr
+  language: de
+  sentences:
+    - 'Mach Waschmaschiene aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: asr_insel
+  split: asr
+  language: de
+  sentences:
+    - 'Schalte Insel Ligt ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: asr_dunst
+  split: asr
+  language: de
+  sentences:
+    - 'Schalte Dunstabzug ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}

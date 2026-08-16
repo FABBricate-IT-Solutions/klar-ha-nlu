@@ -1,0 +1,15 @@
+klar_lang_pack: "2.0"
+id: de-AT
+bcp47:
+  - de-AT
+extends: de
+sets:
+  talk.fillers:
+    - leiwand
+  nouns.light_nouns:
+    - leuchte
+intents:
+  - phrase: filmabend starten
+    intent: HassTurnOn
+    slots:
+      entity_id: scene.filmabend

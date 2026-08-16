@@ -1,0 +1,47 @@
+- name: multi_garage_entry
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Garagenlicht an und mach Eingangslicht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: multi_entry_powder
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Eingangslicht an und mach Gäste-WC Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: multi_laundry_garage
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Waschküche Licht an und mach Garagenlicht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: multi_spuel_trockner
+  split: multi
+  language: de
+  sentences:
+    - 'Mach Spülmaschine an und mach Trockner aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}

@@ -113,13 +113,19 @@ fn zwei_raeume_und_nachsatz() {
     let mut session = Session::new();
     let settings = Settings::default();
     let first = parse("Mach das Licht im Wohnzimmer und in der Küche an", &home, &mut session, &[], &settings);
-    let areas: Vec<_> = first
+    let rooms: Vec<_> = first
         .intents
         .iter()
-        .filter(|i| i.name == "HassTurnOn")
-        .flat_map(|i| i.slots.iter().filter(|s| s.name == "area").map(|s| s.value.as_str()))
+        .filter(|intent| intent.name == "HassTurnOn")
+        .flat_map(|intent| [intent.slot("area"), intent.slot("entity_id")])
+        .flatten()
         .collect();
-    assert!(areas.contains(&"wohnzimmer") && areas.contains(&"kuche"), "{:?}", first.intents);
+    assert!(
+        rooms.iter().any(|value| *value == "wohnzimmer" || value.contains("wohnzimmer"))
+            && rooms.iter().any(|value| *value == "kuche" || value.contains("kuche")),
+        "{:?}",
+        first.intents
+    );
     let second = parse("Schlafzimmerlicht an", &home, &mut session, &[], &settings);
     let eid = second.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
     assert!(eid == Some("light.schlafzimmer") || eid == Some("light.hue_color_lamp_2"), "{:?}", second.intents);

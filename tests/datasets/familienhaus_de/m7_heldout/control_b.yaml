@@ -1,0 +1,199 @@
+- name: ctrl_20
+  split: control
+  language: de
+  sentences:
+    - 'Mach das Flur Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: ctrl_21
+  split: control
+  language: de
+  sentences:
+    - 'Schalte die Wohnzimmer Lampe aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: ctrl_22
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Dunstabzug an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: ctrl_23
+  split: control
+  language: de
+  sentences:
+    - 'Mach die Spülmaschine aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: ctrl_24
+  split: control
+  language: de
+  sentences:
+    - 'Schalte die Waschmaschine ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: ctrl_25
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Trockner aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: ctrl_26
+  split: control
+  language: de
+  sentences:
+    - 'Mach das Eingangslicht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}
+
+- name: ctrl_27
+  split: control
+  language: de
+  sentences:
+    - 'Schalte die Esszimmer Pendelleuchte ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}
+
+- name: ctrl_28
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Insel Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+
+- name: ctrl_29
+  split: control
+  language: de
+  sentences:
+    - 'Mach das Waschküche Licht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: ctrl_30
+  split: control
+  language: de
+  sentences:
+    - 'Schalte das Gäste-WC Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: ctrl_31
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Garagenlicht an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: ctrl_32
+  split: control
+  language: de
+  sentences:
+    - 'Mach das Ankleide Licht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: ctrl_33
+  split: control
+  language: de
+  sentences:
+    - 'Schalte das Flur Licht ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: ctrl_34
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Wohnzimmer Lampe an'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.living_lamp}
+
+- name: ctrl_35
+  split: control
+  language: de
+  sentences:
+    - 'Mach den Dunstabzug aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.rangehood}
+
+- name: ctrl_36
+  split: control
+  language: de
+  sentences:
+    - 'Schalte die Spülmaschine ein'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.dishwasher}
+
+- name: ctrl_37
+  split: control
+  language: de
+  sentences:
+    - 'Bitte Waschmaschine aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.washing_machine}
+
+- name: ctrl_38
+  split: control
+  language: de
+  sentences:
+    - 'Mach den Trockner aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: ctrl_39
+  split: control
+  language: de
+  sentences:
+    - 'Schalte das Eingangslicht aus'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.entryway_light}

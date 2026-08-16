@@ -18,6 +18,7 @@ from .const import (
     resolve_personality,
 )
 from .engine import KlarEngine, async_push_personality
+from .sync import HomeGraphSync, engine_url
 
 PLATFORMS = [Platform.CONVERSATION, Platform.SELECT]
 
@@ -40,12 +41,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     token = (engine.token if engine is not None else None) or entry.options.get(
         CONF_TOKEN
     ) or entry.data.get(CONF_TOKEN)
+    sync = HomeGraphSync(hass, entry, engine_url(entry), token)
     hass.data[DOMAIN][entry.entry_id] = {
         "engine": engine,
         "token": token,
+        "sync": sync,
         "applied_options": dict(entry.options),
     }
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    await sync.async_start()
     await _async_sync_personality(hass, entry)
     entry.async_on_unload(entry.add_update_listener(_async_on_update))
     return True
@@ -82,6 +86,9 @@ async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     stored = hass.data[DOMAIN].pop(entry.entry_id, None) or {}
+    sync = stored.get("sync")
+    if sync is not None:
+        await sync.async_stop()
     engine = stored.get("engine")
     if engine is not None:
         await engine.async_stop()

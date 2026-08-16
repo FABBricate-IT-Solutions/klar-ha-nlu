@@ -13,7 +13,15 @@ import type { Assignment, Dashboard, Locale, Settings, Tab, UiState } from "./ty
 
 const tabs: Tab[] = ["dashboard", "graph", "parse", "calibrate", "entities", "custom", "settings"];
 const defaultUi: UiState = { tab: "dashboard", locale: "de", dismissed: [], last_apply: [], graph: {} };
-const defaultSettings: Settings = { personality: "default", mode: "full", languages: ["de", "en"], support_bundle: false };
+const defaultSettings: Settings = {
+  personality: "default",
+  mode: "full",
+  languages: ["de", "en"],
+  support_bundle: false,
+  support_bundle_raw_text: false,
+  confirm_risky_actions: true,
+  semantic_adapters: false,
+};
 
 export function App() {
   const [ui, setUi] = useState<UiState>(defaultUi);
@@ -110,7 +118,7 @@ export function App() {
       {ui.tab === "parse" && <ParsePage t={t} locale={ui.locale} replayText={replayText} />}
       {dashboard && ui.tab === "calibrate" && <CalibratePage data={dashboard} ui={ui} t={t} onUi={setUi} onRefresh={refresh} onInspect={setInspecting} onApply={() => setConfirmApply(true)} />}
       {dashboard && ui.tab === "entities" && <EntitiesPage data={dashboard} t={t} onInspect={setInspecting} />}
-      {ui.tab === "custom" && <CustomPage t={t} />}
+      {ui.tab === "custom" && <CustomPage t={t} locale={ui.locale} />}
       {ui.tab === "settings" && <SettingsPage t={t} settings={settings} onSettings={setSettings} />}
 
       {inspecting && (

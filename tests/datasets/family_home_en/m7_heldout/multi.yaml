@@ -1,0 +1,47 @@
+- name: multi_powder_laundry
+  split: multi
+  language: en
+  sentences:
+    - 'Turn off the Powder Room Light and turn on the Laundry Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: multi_garage_entry
+  split: multi
+  language: en
+  sentences:
+    - 'Turn on the Garage Light and turn on the Entryway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: multi_entry_powder
+  split: multi
+  language: en
+  sentences:
+    - 'Turn on the Entryway Light and turn off the Powder Room Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: multi_laundry_garage
+  split: multi
+  language: en
+  sentences:
+    - 'Turn on the Laundry Light and turn on the Garage Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}

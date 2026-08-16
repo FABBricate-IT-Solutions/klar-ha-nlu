@@ -7,6 +7,9 @@ export type Settings = {
   mode: "full" | "context_only";
   languages: string[];
   support_bundle: boolean;
+  support_bundle_raw_text: boolean;
+  confirm_risky_actions: boolean;
+  semantic_adapters: boolean;
 };
 
 export type Entity = {
@@ -22,20 +25,59 @@ export type Area = {
   area_id: string;
   name: string;
   aliases: string[];
+  floor_id?: string | null;
+};
+
+export type Floor = {
+  floor_id: string;
+  name: string;
+  aliases: string[];
+  level?: number | null;
 };
 
 export type Slot = { name: string; value: string };
 export type Intent = { name: string; slots: Slot[] };
+export type Evidence = { kind: string; source: string; value: string; score: number; exact: boolean };
+export type PlanStep = { index: number; intent: Intent; confidence: number; evidence: Evidence[] };
+export type IntentPlan = { confidence: number; margin: number; evidence: Evidence[]; steps: PlanStep[] };
+export type IntentCandidate = {
+  id: string;
+  plan: IntentPlan;
+  score: number;
+  margin: number;
+  policy: string;
+  precedence: number;
+  evidence: Evidence[];
+};
+export type ParseTrace = {
+  stages: { stage: string; duration_us: number; detail: string }[];
+  discarded: { candidate_id: string; policy: string; score: number; reason: string }[];
+  tokens?: string[];
+  normalized?: string;
+};
+
+export type ParseDecision =
+  | { type: "execute" }
+  | { type: "clarify"; prompt: string; options: string[] }
+  | { type: "confirm"; prompt: string; candidate_id: string }
+  | { type: "reject"; reason: string }
+  | { type: "chat" }
+  | { type: "error"; code: string; message: string };
 
 export type ParseResult = {
+  schema_version: string;
   text: string;
-  intents: Intent[];
   speech: string;
-  clarify: boolean;
   conversation_id: string;
-  chat: boolean;
+  decision: ParseDecision;
+  plan?: IntentPlan;
+  selected_candidate_id?: string;
   briefing: boolean;
-  personality: string;
+  confidence: number;
+  margin: number;
+  candidates: IntentCandidate[];
+  evidence: Evidence[];
+  trace: ParseTrace;
 };
 
 export type Suggestion = {

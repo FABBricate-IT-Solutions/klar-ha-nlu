@@ -1,0 +1,399 @@
+- name: ood_80
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Egypt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_81
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Greece'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_82
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Mexico'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_83
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of India'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_84
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Australia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_85
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Argentina'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_86
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Chile'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_87
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Finland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_88
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Ireland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_89
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Denmark'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_90
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Hungary'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_91
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Romania'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_92
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Bulgaria'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_93
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Serbia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_94
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Croatia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_95
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Slovakia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_96
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Ukraine'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_97
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Morocco'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_98
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Kenya'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_99
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Peru'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_100
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Colombia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_101
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Vietnam'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_102
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Thailand'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_103
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Malaysia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_104
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Indonesia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_105
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Iceland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_106
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Estonia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_107
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Latvia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_108
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Lithuania'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_109
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Malta'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_110
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Cyprus'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_111
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Luxembourg'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_112
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Slovenia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_113
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Albania'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_114
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Georgia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_115
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Tunisia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_116
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Ghana'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_117
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Uganda'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_118
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Tanzania'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_119
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Jordan'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

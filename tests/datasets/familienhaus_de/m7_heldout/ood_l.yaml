@@ -1,0 +1,199 @@
+- name: ood_421
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Slowenien'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_422
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von der Slowakei'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_423
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Estland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_424
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Lettland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_425
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Litauen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_426
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Element hat das Symbol Cu'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_427
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Element hat das Symbol Zn'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_428
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Element hat das Symbol Pb'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_429
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Element hat das Symbol Sn'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_430
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Element hat das Symbol Si'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_431
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Lissabon'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_432
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Helsinki'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_433
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Oslo'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_434
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Dublin'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_435
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Warschau'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_436
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst elektrische Spannung'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_437
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst elektrische Stromstärke'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_438
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst magnetische Flussdichte'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_439
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst radioaktive Aktivität'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_440
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst Lichtstrom'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

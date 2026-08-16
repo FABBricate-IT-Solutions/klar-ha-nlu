@@ -154,7 +154,10 @@ pub(crate) fn fill_intent(
     }
     if entity_id.is_none() {
         if let Some(d) = domain {
-            if !matches!(action, Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause) {
+            if !matches!(
+                action,
+                Action::TimerStart | Action::TimerAdd | Action::TimerCancel | Action::TimerPause | Action::ListAdd | Action::ListComplete
+            ) {
                 intent = intent.with("domain", d);
             }
         }
@@ -188,16 +191,27 @@ pub(crate) fn fill_intent(
             }
         }
         Action::ListAdd | Action::ListComplete => {
-            if let Some(item) = list_item(tokens) {
+            if let Some(item) = list_item(tokens, None) {
                 intent = intent.with("item", item);
             }
-            if entity_id.is_none_or(|id| !id.starts_with("todo."))
-                && (catalog().any(tokens, &catalog().list_nouns) || catalog().any(tokens, &catalog().shopping_names))
-            {
+            if entity_id.is_none() {
                 intent = intent.with("name", "shopping_list");
             }
         }
         _ => {}
+    }
+    intent
+}
+
+pub(crate) fn fill_list_intent(action: Action, tokens: &[String], target: Option<&EntityRec>) -> Intent {
+    let mut intent = intent_from_action(action, tokens);
+    if let Some(entity) = target {
+        intent = intent.with("entity_id", &entity.entity_id);
+    } else {
+        intent = intent.with("name", "shopping_list");
+    }
+    if let Some(item) = list_item(tokens, target) {
+        intent = intent.with("item", item);
     }
     intent
 }
@@ -212,18 +226,33 @@ fn timer_unit(tokens: &[String]) -> &'static str {
     }
 }
 
-fn list_item(tokens: &[String]) -> Option<String> {
+fn list_item(tokens: &[String], target: Option<&EntityRec>) -> Option<String> {
     let cat = catalog();
     let words: Vec<&str> = tokens
         .iter()
         .map(String::as_str)
-        .filter(|t| !cat.list_skip.contains(t) && !cat.list_nouns.contains(t) && !cat.shopping_names.contains(t))
+        .filter(|token| {
+            !cat.list_skip.contains(token)
+                && !cat.list_nouns.contains(token)
+                && !cat.shopping_names.contains(token)
+                && !target.is_some_and(|entity| target_label_token(token, entity))
+        })
         .collect();
     if words.is_empty() {
         None
     } else {
         Some(words.join(" "))
     }
+}
+
+fn target_label_token(token: &str, entity: &EntityRec) -> bool {
+    let token = compact(token);
+    std::iter::once(&entity.name)
+        .chain(entity.aliases.iter())
+        .chain(entity.tags.iter())
+        .flat_map(|label| std::iter::once(compact(label)).chain(label.split(|character: char| !character.is_alphanumeric()).map(compact)))
+        .filter(|label| !label.is_empty())
+        .any(|label| token == label || catalog().list_nouns.iter().any(|suffix| token == format!("{label}{}", compact(suffix))))
 }
 
 pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
@@ -288,6 +317,7 @@ pub(crate) fn pick_singular_lamp(tokens: &[String], home: &HomeGraph, areas: &[S
     (lamps.len() == 1).then(|| lamps[0].to_string())
 }
 
+#[derive(Debug, Clone)]
 pub(crate) enum ClauseOut {
     Intents(Vec<Intent>),
     Clarify(Vec<String>, Intent),
@@ -355,6 +385,10 @@ pub(crate) fn laundry_switch_clause(
 #[cfg(test)]
 mod tests {
     use super::name_has_group_conj;
+    use crate::parse::parse;
+    use crate::session::Session;
+    use crate::types::{EntityRec, HomeGraph, Settings};
+    use std::collections::HashSet;
 
     #[test]
     fn group_conj_is_a_word_not_a_substring() {
@@ -363,5 +397,62 @@ mod tests {
         assert!(!name_has_group_conj("Island Lights"));
         assert!(!name_has_group_conj("Insel Licht"));
         assert!(!name_has_group_conj("Standleuchte"));
+    }
+
+    #[test]
+    fn configured_todo_names_aliases_and_labels_route_without_object_id_evidence() {
+        for (sentence, entity) in [
+            ("Füge Milch zur Aufgabenliste hinzu", todo("todo.internal_de", "Aufgaben", &[], &[])),
+            ("Add milk to the House Tasks list", todo("todo.internal_en", "House Tasks", &[], &[])),
+            ("Add milk to the Errands list", todo("todo.internal_alias", "Internal", &["Errands"], &[])),
+            ("Add milk to the Weekend list", todo("todo.internal_label", "Internal", &[], &["Weekend"])),
+        ] {
+            let result = parse_with_home(sentence, HomeGraph { entities: vec![entity.clone()], ..HomeGraph::default() });
+            assert!(!result.clarify, "{sentence}: {result:?}");
+            assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
+            assert_eq!(result.intents[0].slot("entity_id"), Some(entity.entity_id.as_str()), "{sentence}: {result:?}");
+            assert_eq!(result.intents[0].slot("item"), Some("milch").filter(|_| sentence.starts_with("Füge")).or(Some("milk")));
+        }
+    }
+
+    #[test]
+    fn generic_shopping_does_not_guess_todo_and_hidden_or_ambiguous_names_do_not_execute() {
+        let first = todo("todo.first", "Errands", &[], &[]);
+        let second = todo("todo.second", "Errands", &[], &[]);
+        let generic = parse_with_home(
+            "Add milk to the shopping list",
+            HomeGraph { entities: vec![first.clone(), second.clone()], ..HomeGraph::default() },
+        );
+        assert_eq!(generic.intents.len(), 1, "{generic:?}");
+        assert_eq!(generic.intents[0].slot("name"), Some("shopping_list"));
+        assert_eq!(generic.intents[0].slot("entity_id"), None);
+
+        let ambiguous =
+            parse_with_home("Add milk to the Errands list", HomeGraph { entities: vec![first.clone(), second], ..HomeGraph::default() });
+        assert!(ambiguous.clarify, "{ambiguous:?}");
+        assert!(ambiguous.intents.is_empty(), "{ambiguous:?}");
+
+        let hidden = parse_with_home(
+            "Add milk to the Errands list",
+            HomeGraph { entities: vec![first], assist: Some(HashSet::new()), ..HomeGraph::default() },
+        );
+        assert!(!hidden.clarify, "{hidden:?}");
+        assert!(hidden.intents.is_empty(), "{hidden:?}");
+    }
+
+    fn parse_with_home(sentence: &str, home: HomeGraph) -> crate::types::ParseResult {
+        parse(sentence, &home, &mut Session::new(), &[], &Settings::default())
+    }
+
+    fn todo(id: &str, name: &str, aliases: &[&str], tags: &[&str]) -> EntityRec {
+        EntityRec {
+            entity_id: id.into(),
+            name: name.into(),
+            domain: "todo".into(),
+            platform: None,
+            area: None,
+            aliases: aliases.iter().map(|value| (*value).into()).collect(),
+            tags: tags.iter().map(|value| (*value).into()).collect(),
+        }
     }
 }

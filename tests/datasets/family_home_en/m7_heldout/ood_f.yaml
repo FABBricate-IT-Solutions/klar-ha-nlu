@@ -1,0 +1,399 @@
+- name: ood_200
+  split: ood
+  language: en
+  sentences:
+    - 'What do pandas mainly eat'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_201
+  split: ood
+  language: en
+  sentences:
+    - 'What do camels store in their humps'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_202
+  split: ood
+  language: en
+  sentences:
+    - 'What do volcanoes emit during an eruption'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_203
+  split: ood
+  language: en
+  sentences:
+    - 'What do magnets attract most strongly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_204
+  split: ood
+  language: en
+  sentences:
+    - 'Which instrument has 88 keys'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_205
+  split: ood
+  language: en
+  sentences:
+    - 'Which instrument has six strings typically'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_206
+  split: ood
+  language: en
+  sentences:
+    - 'Which sport uses a shuttlecock'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_207
+  split: ood
+  language: en
+  sentences:
+    - 'Which sport is played at wimbledon'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_208
+  split: ood
+  language: en
+  sentences:
+    - 'Which board game uses knights and bishops'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_209
+  split: ood
+  language: en
+  sentences:
+    - 'What shape has six equal sides'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_210
+  split: ood
+  language: en
+  sentences:
+    - 'What shape is a stop sign usually'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_211
+  split: ood
+  language: en
+  sentences:
+    - 'What unit measures electrical resistance'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_212
+  split: ood
+  language: en
+  sentences:
+    - 'What unit measures frequency'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_213
+  split: ood
+  language: en
+  sentences:
+    - 'What unit measures luminous intensity'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_214
+  split: ood
+  language: en
+  sentences:
+    - 'Which vitamin is produced in skin from sunlight'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_215
+  split: ood
+  language: en
+  sentences:
+    - 'Which blood type is the universal donor'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_216
+  split: ood
+  language: en
+  sentences:
+    - 'Which part of the eye focuses light'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_217
+  split: ood
+  language: en
+  sentences:
+    - 'Which part of a plant absorbs water'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_218
+  split: ood
+  language: en
+  sentences:
+    - 'Which layer of earth is liquid metal'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_219
+  split: ood
+  language: en
+  sentences:
+    - 'What is the opposite of opaque'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_220
+  split: ood
+  language: en
+  sentences:
+    - 'What is the opposite of convex'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_221
+  split: ood
+  language: en
+  sentences:
+    - 'What is the opposite of integer in casual speech'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_222
+  split: ood
+  language: en
+  sentences:
+    - 'What is a haiku''s usual syllable pattern'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_223
+  split: ood
+  language: en
+  sentences:
+    - 'What is a sonnet''s usual line count'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_224
+  split: ood
+  language: en
+  sentences:
+    - 'Name the language primarily spoken in Helsinki'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_225
+  split: ood
+  language: en
+  sentences:
+    - 'Name the language primarily spoken in Dar es Salaam'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_226
+  split: ood
+  language: en
+  sentences:
+    - 'Which script is used to write arabic'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_227
+  split: ood
+  language: en
+  sentences:
+    - 'Which script is used to write greek'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_228
+  split: ood
+  language: en
+  sentences:
+    - 'Which direction does the sun rise'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_229
+  split: ood
+  language: en
+  sentences:
+    - 'Which direction does the sun set'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_230
+  split: ood
+  language: en
+  sentences:
+    - 'What force from the moon moves ocean water'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_231
+  split: ood
+  language: en
+  sentences:
+    - 'What tilt of the planet creates seasons'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_232
+  split: ood
+  language: en
+  sentences:
+    - 'What causes thunder after lightning'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_233
+  split: ood
+  language: en
+  sentences:
+    - 'What chemical process oxidizes iron'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_234
+  split: ood
+  language: en
+  sentences:
+    - 'What causes bread dough to rise'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_235
+  split: ood
+  language: en
+  sentences:
+    - 'Which bird cannot fly and lives in antarctica'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_236
+  split: ood
+  language: en
+  sentences:
+    - 'Which mammal lays eggs'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_237
+  split: ood
+  language: en
+  sentences:
+    - 'Which fish is known for migrating up rivers'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_238
+  split: ood
+  language: en
+  sentences:
+    - 'Which insect makes honey'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_239
+  split: ood
+  language: en
+  sentences:
+    - 'Which tree produces acorns'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
