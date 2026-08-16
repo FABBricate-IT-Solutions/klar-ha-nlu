@@ -3,7 +3,54 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;
 
-#[derive(Debug, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct UiPoint {
+    pub x: f32,
+    pub y: f32,
+}
+
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct UiApplyRow {
+    pub entity_id: String,
+    pub before: Option<String>,
+    pub after: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UiState {
+    #[serde(default = "default_tab")]
+    pub tab: String,
+    #[serde(default = "default_locale")]
+    pub locale: String,
+    #[serde(default)]
+    pub dismissed: Vec<String>,
+    #[serde(default)]
+    pub last_apply: Vec<UiApplyRow>,
+    #[serde(default)]
+    pub graph: HashMap<String, UiPoint>,
+}
+
+impl Default for UiState {
+    fn default() -> Self {
+        Self {
+            tab: default_tab(),
+            locale: default_locale(),
+            dismissed: Vec::new(),
+            last_apply: Vec::new(),
+            graph: HashMap::new(),
+        }
+    }
+}
+
+fn default_tab() -> String {
+    "dashboard".into()
+}
+
+fn default_locale() -> String {
+    "de".into()
+}
+
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Overlay {
     #[serde(default)]
     pub aliases: HashMap<String, Vec<String>>,
@@ -23,6 +70,8 @@ pub struct Overlay {
     pub timer_hints: HashMap<i32, String>,
     #[serde(default)]
     pub preferred_climate: Option<String>,
+    #[serde(default)]
+    pub ui: UiState,
 }
 
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {
@@ -109,6 +158,48 @@ mod tests {
         assert_eq!(home.entities[0].area.as_deref(), Some("wohnzimmer"));
         apply_overlay(&mut home, &Overlay { areas: [("light.orphan".into(), String::new())].into(), ..Default::default() });
         assert_eq!(home.entities[0].area, None);
+    }
+
+    #[test]
+    fn settings_survive_roundtrip() {
+        let dir = std::env::temp_dir().join(format!("klar-overlay-set-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        let overlay = Overlay {
+            settings: Some(Settings { support_bundle: true, ..Settings::default() }),
+            ..Default::default()
+        };
+        save_overlay(&dir, &overlay).unwrap();
+        let loaded = load_overlay(&dir);
+        assert!(loaded.settings.unwrap().support_bundle);
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn ui_survives_roundtrip() {
+        let dir = std::env::temp_dir().join(format!("klar-overlay-ui-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        let overlay = Overlay {
+            ui: UiState {
+                tab: "graph".into(),
+                locale: "en".into(),
+                dismissed: vec!["light.hue_play_1".into()],
+                last_apply: vec![UiApplyRow {
+                    entity_id: "light.hue_play_1".into(),
+                    before: Some("wohnzimmer".into()),
+                    after: "schlafzimmer".into(),
+                }],
+                graph: [("light.schlafzimmer".into(), UiPoint { x: 120.0, y: 40.0 })].into(),
+            },
+            ..Default::default()
+        };
+        save_overlay(&dir, &overlay).unwrap();
+        let loaded = load_overlay(&dir);
+        assert_eq!(loaded.ui.tab, "graph");
+        assert_eq!(loaded.ui.locale, "en");
+        assert_eq!(loaded.ui.dismissed, vec!["light.hue_play_1"]);
+        assert_eq!(loaded.ui.last_apply[0].before.as_deref(), Some("wohnzimmer"));
+        assert_eq!(loaded.ui.graph["light.schlafzimmer"].x, 120.0);
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]

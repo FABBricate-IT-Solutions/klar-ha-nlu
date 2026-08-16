@@ -1,6 +1,6 @@
 [package]
 name = "klar-nlu"
-version = "2026.8.19"
+version = "2026.8.20"
 edition = "2021"
 description = "Deterministische deutsche NLU für Home Assistant"
 license = "MIT"
@@ -22,6 +22,7 @@ thiserror = "2"
 strsim = "0.11"
 uuid = { version = "1", features = ["v4"] }
 serde_yaml = "0.9"
+tower-http = { version = "0.7.0", features = ["fs"] }
 
 [profile.release]
 lto = true

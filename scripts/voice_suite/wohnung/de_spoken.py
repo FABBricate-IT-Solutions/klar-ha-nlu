@@ -209,7 +209,7 @@ def _device_queries() -> list[str]:
         case(
             "status_kugel",
             query_entity("light.schlafzimmer_kugel"),
-            ["Ist die Kugel an", "Status Kugel", "Wie ist der Status der Kugel"],
+            ["Ist die Kugel an", "Status Kugel", "Wie ist der Status der Kugel", "Wie ist der Status von der Kugel"],
             forbid=["light.alle_lichter", "schlafzimmer"],
         ),
         case(

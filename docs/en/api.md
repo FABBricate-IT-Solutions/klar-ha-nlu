@@ -71,7 +71,8 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 {
   "personality": "default",
   "mode": "full",
-  "languages": ["de", "en"]
+  "languages": ["de", "en"],
+  "support_bundle": false
 }
 ```
 
@@ -80,6 +81,7 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 | `personality` | `default`, `butler`, `locker`, `fuersorglich`, `party`, `grantig`, `sarkastisch`, `pirat`, `hippie`, `gollum` |
 | `mode` | `full` (resolve devices) or `context_only` (areas only) |
 | `languages` | Pack codes. Unknown codes are ignored. Empty falls back to `de`+`en`. |
+| `support_bundle` | `true` writes parse traffic to `/data/support_bundle.jsonl` (max 2000 entries). Survives restarts. First boot also via `KLAR_SUPPORT_BUNDLE=1`. |
 
 ### `GET` / `POST /api/custom`
 
@@ -108,6 +110,64 @@ Tags help resolution when the display name is too generic.
 ### `GET /api/gaps`
 
 Calibration view for entities with weak names, missing areas, or no helpful aliases/tags. The response contains `leftover`, `rooms`, and the current overlay.
+
+### `GET /api/dashboard`
+
+Operator dashboard for the React UI:
+
+- `counts`: full graph, Assist-visible devices, rooms, open mappings, `high`/`medium`/`low`, bundle entries
+- `coverage`: funnel `all` → `assist` → `high` plus `leftover`
+- `rooms`: room readiness with open items per room
+- `assignment`: devices with `confidence`, `suggested_area`, and reasons
+- `traffic`: bundle aggregates, daily trend, recent sentences for replay
+
+### `GET` / `POST /api/ui`
+
+Persistent UI state under `/data/klar_nlu.json`:
+
+```json
+{
+  "tab": "dashboard",
+  "locale": "en",
+  "dismissed": ["light.hue_play_1"],
+  "last_apply": [],
+  "graph": { "light.schlafzimmer": { "x": 120.0, "y": 40.0 } }
+}
+```
+
+`POST` requires the write token like other write endpoints, except from loopback.
+
+### `POST /api/assignment/apply`
+
+Applies all non-dismissed room suggestions with score ≥ 3. The last batch is stored in `ui.last_apply`.
+
+### `POST /api/assignment/undo`
+
+Reverts the last auto-apply batch and clears `ui.last_apply`.
+
+### `GET /api/bundle`
+
+Support-bundle status: `enabled`, `count`, `bytes`.
+
+### `GET /api/bundle/entries`
+
+Stored recordings (newest first, max 400). Fields: `id`, `ts_ms`, `source`, `text`, `speech`, `intents`.
+
+### `POST /api/bundle/entries`
+
+Delete selected rows: `{ "ids": ["…"] }`. Response matches `GET /api/bundle/entries`.
+
+### `GET /api/bundle/dataset`
+
+Download as voice-suite YAML (`klar-assist-dataset.yaml`).
+
+### `GET /api/bundle/protocol`
+
+Raw protocol as JSONL (`klar-support-bundle.jsonl`). Each line: timestamp, source (`http`/`wyoming`), language, request, intents, speech.
+
+### `POST /api/bundle/clear` / `DELETE /api/bundle`
+
+Clear the protocol.
 
 ### `GET /`
 

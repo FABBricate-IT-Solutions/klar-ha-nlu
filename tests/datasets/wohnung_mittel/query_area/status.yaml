@@ -59,6 +59,22 @@
     - 'Temperatur Wohnzimmer'
     - 'Wie kalt ist es im Wohnzimmer'
 
+- name: status_alle_lichter
+  conditions:
+    - {type: query, entity_id: light.alle_lichter}
+  forbid:
+    - wohnzimmer
+    - esszimmer
+    - kuche
+    - light.wohnzimmer
+    - light.esszimmer
+    - light.wohn_und_esszimmer
+    - wohnung
+  sentences:
+    - 'Wie ist der Status von Alle Lichter'
+    - 'Wie ist der Status der Leuchten'
+    - 'Wie ist der Status von allen Lichtern'
+
 - name: status_wohn_und_esszimmer
   conditions:
     - {type: query, entity_id: light.wohn_und_esszimmer}

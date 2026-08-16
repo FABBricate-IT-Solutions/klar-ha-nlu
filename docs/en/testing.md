@@ -16,7 +16,8 @@ cargo build --release
 | Test | Dataset | Threshold |
 |------|---------|-----------|
 | `tests/german.rs` / `german_except.rs` / `german_tags.rs` | fixed single sentences | all green |
-| `suite_deutsch` | `tests/datasets/wohnung_mittel` | ≥ 95%, target 100% |
+| `suite_deutsch` | `tests/datasets/wohnung_mittel` including `assist/` | ≥ 95%, target 100% |
+| `suite_wohnung_live_assist` | `tests/datasets/wohnung_live/assist` against `wohnung_live.json` | all green |
 | `suite_english_smoke` | `tests/datasets/wohnung_en` | target 100% |
 | `suite_deutsch_familienhaus` | `tests/datasets/familienhaus_de` | ≥ 99.5%, target 100% |
 | `suite_english_family_home` | `tests/datasets/family_home_en` | ≥ 99.5%, target 100% |
@@ -36,7 +37,7 @@ python3 scripts/gen_voice_suite.py      # wohnung_mittel + wohnung_en
 python3 scripts/voice_suite/gen_family_de.py  # familienhaus_de from family_home_en
 ```
 
-`scripts/gen_voice_suite.py` calls the apartment generators under `scripts/voice_suite/wohnung/`. `scripts/voice_suite/gen_family_de.py` translates `family_home_en` into `familienhaus_de`, including `home_config.yaml`. Regenerating overwrites the affected fixture files.
+`scripts/gen_voice_suite.py` calls the apartment generators under `scripts/voice_suite/wohnung/`. `de_assist.py` writes sentences checked via Assist (`conversation.process` on `conversation.klar_nlu`) to `wohnung_mittel/assist` and `wohnung_live/assist`. `scripts/voice_suite/gen_family_de.py` translates `family_home_en` into `familienhaus_de`, including `home_config.yaml`. Regenerating overwrites the affected fixture files.
 
 ## What the suites watch
 

@@ -132,7 +132,11 @@ pub(crate) fn prefer_action(actions: &[(usize, Action)]) -> Option<Action> {
     actions.iter().find(|(_, a)| !matches!(a, Action::GetState)).map(|(_, a)| *a)
 }
 pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
-    tokens.iter().any(|t| catalog().is_all(t)) && catalog().any(tokens, &catalog().light_nouns)
+    let cat = catalog();
+    if !cat.any(tokens, &cat.light_nouns) && !cat.any(tokens, &cat.light_plural) {
+        return false;
+    }
+    tokens.iter().any(|t| cat.is_all(t)) || (cat.any(tokens, &cat.status_words) && cat.any(tokens, &cat.light_plural))
 }
 
 pub(crate) fn except_tail(tokens: &[String]) -> Option<&[String]> {

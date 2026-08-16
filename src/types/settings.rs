@@ -35,10 +35,26 @@ pub struct Settings {
     /// BCP-47-ish codes of enabled packs (`de`, `en`, later `fr`, ...).
     #[serde(default = "default_languages")]
     pub languages: Vec<String>,
+    /// Persist Assist/API traffic under the data dir for a downloadable dataset.
+    #[serde(default)]
+    pub support_bundle: bool,
 }
 
 impl Default for Settings {
     fn default() -> Self {
-        Self { personality: Personality::Default, mode: Mode::Full, languages: default_languages() }
+        Self { personality: Personality::Default, mode: Mode::Full, languages: default_languages(), support_bundle: false }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn missing_support_bundle_defaults_off() {
+        let raw = r#"{"personality":"default","mode":"full","languages":["de"]}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert!(!set.support_bundle);
+        assert_eq!(set.languages, vec!["de"]);
     }
 }

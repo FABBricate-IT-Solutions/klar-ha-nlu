@@ -1,5 +1,7 @@
 pub(crate) mod auth;
+pub(crate) mod bundle;
 pub mod bootstrap;
+pub(crate) mod dashboard;
 pub mod limits;
 pub mod state;
 pub mod web;
