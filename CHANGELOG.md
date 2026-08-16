@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.27](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.26...2026.8.27) - 2026-08-16
+
+
+
+### Bug Fixes
+
+- accept V2 parse trace tokens from the engine([51126f4](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/51126f4ad85c6c2f5a15ca67b385a489ebb73ee1))
+
+
+### Other
+
+- Merge pull request #79 from FABBricate-IT-Solutions/fix/accept-trace-tokens([0457662](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/045766211c711907793908d788794cf4a58924e9))
+
 ## [2026.8.26](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.25...2026.8.26) - 2026-08-16
 
 
