@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.23](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.22...2026.8.23) - 2026-08-16
+
+
+
+### Bug Fixes
+
+- satisfy clippy for media parsing([f38048d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f38048d75331b4e52b539214bbec0024985dcb47))
+
+- format Music Assistant voice control changes([240e577](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/240e577aba55a4418ced07d3527e8ed0866552f7))
+
+
+### Features
+
+- add Music Assistant voice control([70a943b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/70a943b0670fbea0475012c7c0ae834f6ea54df5))
+
+
+### Other
+
+- Merge pull request #71 from FABBricate-IT-Solutions/feat/music-assistant-voice-control([9ef246e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9ef246e6b4a65720561850442915bf7b2e104494))
+
 ## [2026.8.22](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.21...2026.8.22) - 2026-08-16
 
 ### Bug Fixes
