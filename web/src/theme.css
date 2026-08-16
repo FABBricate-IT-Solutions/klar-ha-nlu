@@ -143,7 +143,7 @@ th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--lin
   padding: 14px;
   background: #17130f;
 }
-.graph-canvas { width: 100%; min-height: 560px; overflow: hidden; }
+.graph-canvas { width: 100%; min-height: 620px; overflow: auto; }
 .node { cursor: grab; }
 .node:active { cursor: grabbing; }
 .chip { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 4px 9px; color: var(--muted); }

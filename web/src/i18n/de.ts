@@ -27,6 +27,7 @@ export const de = {
   otherRoom: "Anderer Raum",
   dismiss: "Verwerfen",
   noGaps: "Keine offenen Zuordnungen.",
+  unmapped: "Ohne Raum",
   parseHint: "Sag es so, wie du es in Assist sagen würdest.",
   command: "Befehl",
   analyze: "Zerlegen",

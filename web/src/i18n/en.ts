@@ -27,6 +27,7 @@ export const en = {
   otherRoom: "Other room",
   dismiss: "Dismiss",
   noGaps: "No open mappings.",
+  unmapped: "No room",
   parseHint: "Say it like you would say it to Assist.",
   command: "Command",
   analyze: "Analyze",

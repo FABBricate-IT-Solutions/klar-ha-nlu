@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.22](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.21...2026.8.22) - 2026-08-16
+
+### Bug Fixes
+
+- keep graph nodes inside a scrollable room-based layout
+
 ## [2026.8.21](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.20...2026.8.21) - 2026-08-16
 
 ### Bug Fixes
