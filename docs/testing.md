@@ -16,7 +16,8 @@ cargo build --release
 | Test | Datensatz | Schwelle |
 |------|-----------|----------|
 | `tests/german.rs` / `german_except.rs` / `german_tags.rs` | feste Einzelsätze | alle grün |
-| `suite_deutsch` | `tests/datasets/wohnung_mittel` | ≥ 95 %, Ziel 100 % |
+| `suite_deutsch` | `tests/datasets/wohnung_mittel` inkl. `assist/` | ≥ 95 %, Ziel 100 % |
+| `suite_wohnung_live_assist` | `tests/datasets/wohnung_live/assist` gegen `wohnung_live.json` | alle grün |
 | `suite_english_smoke` | `tests/datasets/wohnung_en` | Ziel 100 % |
 | `suite_deutsch_familienhaus` | `tests/datasets/familienhaus_de` | ≥ 99,5 %, Ziel 100 % |
 | `suite_english_family_home` | `tests/datasets/family_home_en` | ≥ 99,5 %, Ziel 100 % |
@@ -36,7 +37,7 @@ python3 scripts/gen_voice_suite.py      # wohnung_mittel + wohnung_en
 python3 scripts/voice_suite/gen_family_de.py  # familienhaus_de aus family_home_en
 ```
 
-`scripts/gen_voice_suite.py` ruft die Wohnungsgeneratoren unter `scripts/voice_suite/wohnung/` auf. `scripts/voice_suite/gen_family_de.py` übersetzt `family_home_en` nach `familienhaus_de` inklusive `home_config.yaml`. Neu erzeugen überschreibt die jeweiligen Fixture-Dateien.
+`scripts/gen_voice_suite.py` ruft die Wohnungsgeneratoren unter `scripts/voice_suite/wohnung/` auf. `de_assist.py` schreibt die per Assist (`conversation.process` auf `conversation.klar_nlu`) geprüften Sätze nach `wohnung_mittel/assist` und `wohnung_live/assist`. `scripts/voice_suite/gen_family_de.py` übersetzt `family_home_en` nach `familienhaus_de` inklusive `home_config.yaml`. Neu erzeugen überschreibt die jeweiligen Fixture-Dateien.
 
 ## Worauf die Suiten achten
 

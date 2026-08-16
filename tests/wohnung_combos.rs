@@ -170,6 +170,30 @@ fn parse_mittel(text: &str, session: &mut Session) -> klar_nlu::types::ParseResu
     parse(text, &mittel(), session, &[], &Settings::default())
 }
 
+#[test]
+fn status_von_kueche_leuchten_kugel() {
+    for text in ["Wie ist der Status von Küche", "Wie ist der Status der Küche"] {
+        let kitchen = parse_mittel(text, &mut Session::new());
+        assert!(!kitchen.clarify && !kitchen.chat, "{text}: {:?}", kitchen.intents);
+        assert_eq!(kitchen.intents[0].name, "HassGetState", "{text}: {:?}", kitchen.intents);
+        assert_eq!(kitchen.intents[0].slot("area"), Some("kuche"), "{text}: {:?}", kitchen.intents);
+        assert!(kitchen.intents[0].slot("entity_id").is_none(), "{text}: {:?}", kitchen.intents);
+    }
+
+    for text in ["Wie ist der Status der Leuchten", "Wie ist der Status von allen Lichtern"] {
+        let result = parse_mittel(text, &mut Session::new());
+        assert!(!result.clarify && !result.chat, "{text}: {:?}", result.intents);
+        assert_eq!(result.intents[0].name, "HassGetState", "{text}: {:?}", result.intents);
+        assert_eq!(result.intents[0].slot("entity_id"), Some("light.alle_lichter"), "{text}: {:?}", result.intents);
+        assert!(result.intents[0].slot("area").is_none(), "{text}: {:?}", result.intents);
+    }
+
+    let kugel = parse_mittel("Wie ist der Status von der Kugel", &mut Session::new());
+    assert!(!kugel.clarify && !kugel.chat, "{:?}", kugel.intents);
+    assert_eq!(kugel.intents[0].name, "HassGetState", "{:?}", kugel.intents);
+    assert_eq!(kugel.intents[0].slot("entity_id"), Some("light.schlafzimmer_kugel"), "{:?}", kugel.intents);
+}
+
 fn intent_ids(result: &klar_nlu::types::ParseResult) -> Vec<&str> {
     result.intents.iter().filter_map(|intent| intent.slot("entity_id")).collect()
 }

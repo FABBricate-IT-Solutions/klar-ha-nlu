@@ -13,6 +13,8 @@ use axum::routing::{get, post};
 use axum::{Json, Router};
 use serde::Deserialize;
 use std::net::SocketAddr;
+use std::path::PathBuf;
+use tower_http::services::ServeDir;
 
 #[derive(Deserialize)]
 pub struct ParseIn {
@@ -32,12 +34,31 @@ pub fn router(state: AppState) -> Router {
         .route("/api/custom", get(get_custom).post(set_custom))
         .route("/api/entities", get(get_entities).post(tag_entity))
         .route("/api/gaps", get(get_gaps))
+        .merge(crate::io::bundle::routes())
+        .merge(crate::io::dashboard::routes())
         .layer(DefaultBodyLimit::max(16 * 1024))
+        .fallback_service(ServeDir::new(ui_dir()))
         .with_state(state)
 }
 
-async fn index() -> Html<&'static str> {
-    Html(include_str!("../../web/index.html"))
+async fn index() -> Html<String> {
+    Html(std::fs::read_to_string(ui_dir().join("index.html")).unwrap_or_else(|_| {
+        r#"<!doctype html><html><body style="background:#100e0c;color:#f3eee4;font:16px sans-serif;padding:32px">
+        <h1>Klar UI nicht gebaut</h1><p>Bitte im web-Verzeichnis <code>npm run build</code> ausführen.</p>
+        </body></html>"#
+            .into()
+    }))
+}
+
+fn ui_dir() -> PathBuf {
+    std::env::var("KLAR_UI_DIR").map(PathBuf::from).unwrap_or_else(|_| {
+        let packaged = PathBuf::from("/usr/share/klar/ui");
+        if packaged.is_dir() {
+            packaged
+        } else {
+            PathBuf::from("web/dist")
+        }
+    })
 }
 
 fn gate(peer: SocketAddr, headers: &HeaderMap, token: &Option<String>) -> Result<(), StatusCode> {
@@ -75,6 +96,7 @@ async fn api_parse(
     };
     let result = parse(&body.text, &home, &mut session, &custom, &settings);
     state.sessions.lock().await.put(session);
+    state.record_parse("http", body.language.as_deref(), &result).await;
     Ok(Json(ParseOut { personality: settings.personality, result }))
 }
 

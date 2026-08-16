@@ -1,0 +1,54 @@
+import type { ApplyRow, BundleList, Dashboard, Entity, Gaps, ParseResult, Settings, UiState } from "./types";
+
+const jsonHeaders = () => {
+  const token = localStorage.getItem("klar_token") || "";
+  return {
+    "content-type": "application/json",
+    ...(token ? { "x-klar-token": token } : {}),
+  };
+};
+
+const appPath = (path: string) => path.replace(/^\//, "");
+
+async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  const res = await fetch(appPath(path), { ...init, headers: { ...jsonHeaders(), ...(init.headers || {}) } });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  return res.json() as Promise<T>;
+}
+
+export const api = {
+  dashboard: () => request<Dashboard>("/api/dashboard"),
+  ui: () => request<UiState>("/api/ui"),
+  saveUi: (body: UiState) => request<UiState>("/api/ui", { method: "POST", body: JSON.stringify(body) }),
+  settings: () => request<Settings>("/api/settings"),
+  saveSettings: (body: Settings) => request<Settings>("/api/settings", { method: "POST", body: JSON.stringify(body) }),
+  entities: () => request<Entity[]>("/api/entities"),
+  gaps: () => request<Gaps>("/api/gaps"),
+  custom: () => request<unknown[]>("/api/custom"),
+  saveCustom: (body: unknown[]) => request<unknown[]>("/api/custom", { method: "POST", body: JSON.stringify(body) }),
+  parse: (text: string, language: string, conversation_id?: string) =>
+    request<ParseResult>("/api/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id }) }),
+  tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; area?: string }) =>
+    request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),
+  bundle: () => request<BundleList>("/api/bundle/entries"),
+  deleteBundle: (ids: string[]) => request<BundleList>("/api/bundle/entries", { method: "POST", body: JSON.stringify({ ids }) }),
+  clearBundle: () => request<{ enabled: boolean; count: number; bytes: number }>("/api/bundle/clear", { method: "POST" }),
+  applySuggestions: () => request<{ applied: number; rows: ApplyRow[] }>("/api/assignment/apply", { method: "POST" }),
+  undoApply: () => request<{ applied: number; rows: ApplyRow[] }>("/api/assignment/undo", { method: "POST" }),
+};
+
+export function setToken(token: string) {
+  if (token.trim()) localStorage.setItem("klar_token", token.trim());
+}
+
+export async function download(path: string, fallback: string) {
+  const res = await fetch(appPath(path), { headers: jsonHeaders() });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  const blob = await res.blob();
+  const match = (res.headers.get("content-disposition") || "").match(/filename="([^"]+)"/);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = (match && match[1]) || fallback;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}

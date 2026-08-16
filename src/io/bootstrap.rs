@@ -1,3 +1,4 @@
+use crate::home::overlay::{load_overlay, save_overlay};
 use crate::home::{load_merged, registry_stamp};
 use crate::io::state::AppState;
 use crate::io::{web, wyoming};
@@ -16,6 +17,7 @@ pub struct RuntimeArgs {
 }
 
 pub async fn run(args: RuntimeArgs) {
+    let _ = std::fs::create_dir_all(&args.data_dir);
     let data_dir = if args.data_dir.is_dir() { args.data_dir.clone() } else { args.config_dir.clone() };
     let token =
         resolve_token(args.token.or_else(|| std::env::var("KLAR_TOKEN").ok().filter(|s| !s.is_empty())), args.token_file.as_deref());
@@ -25,6 +27,7 @@ pub async fn run(args: RuntimeArgs) {
 
     let loaded = load_merged(&args.config_dir, &data_dir);
     let state = AppState::new(loaded, data_dir.clone(), token);
+    enable_bundle_from_env(&state).await;
 
     let reload_state = state.clone();
     let config_dir = args.config_dir.clone();
@@ -42,6 +45,28 @@ pub async fn run(args: RuntimeArgs) {
     let wy = tokio::spawn(async move { wyoming::serve(&wyoming_bind, state).await });
 
     let _ = tokio::join!(http, wy);
+}
+
+fn env_on(name: &str) -> bool {
+    matches!(std::env::var(name).ok().as_deref().map(str::trim), Some("1" | "true" | "TRUE" | "yes" | "on"))
+}
+
+async fn enable_bundle_from_env(state: &AppState) {
+    if !env_on("KLAR_SUPPORT_BUNDLE") {
+        return;
+    }
+    if load_overlay(&state.data_dir).settings.is_some() {
+        return;
+    }
+    let mut settings = state.settings.lock().await;
+    if settings.support_bundle {
+        return;
+    }
+    settings.support_bundle = true;
+    let mut overlay = load_overlay(&state.data_dir);
+    overlay.settings = Some(settings.clone());
+    let _ = save_overlay(&state.data_dir, &overlay);
+    tracing::info!("Support-Bundle an (KLAR_SUPPORT_BUNDLE)");
 }
 
 fn resolve_token(explicit: Option<String>, file: Option<&Path>) -> Option<String> {

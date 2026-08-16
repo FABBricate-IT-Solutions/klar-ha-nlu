@@ -11,8 +11,10 @@ has_flag() {
 }
 
 token=""
+bundle=""
 if [ -f /data/options.json ]; then
   token=$(sed -n 's/.*"token"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' /data/options.json | head -1)
+  bundle=$(sed -n 's/.*"support_bundle"[[:space:]]*:[[:space:]]*\(true\|false\).*/\1/p' /data/options.json | head -1)
 fi
 
 prefix=""
@@ -22,6 +24,9 @@ has_flag --config-dir "$@" || prefix="$prefix --config-dir /config"
 has_flag --data-dir "$@" || prefix="$prefix --data-dir /data"
 if [ -n "$token" ] && ! has_flag --token "$@"; then
   export KLAR_TOKEN="$token"
+fi
+if [ "$bundle" = "true" ]; then
+  export KLAR_SUPPORT_BUNDLE=1
 fi
 
 # prefix is only our flags; values have no spaces

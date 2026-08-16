@@ -301,23 +301,22 @@ fn suite_home(name: &str) -> HomeGraph {
 }
 
 fn run_suite(name: &str, clarify_dir: bool) -> RunStats {
-    let home = suite_home(name);
+    let mut groups = vec!["area", "devices", "query_area", "query_devices", "multiple_intents", "assist"];
+    if clarify_dir {
+        groups.extend(["clarifications", "state_persistance", "timers", "lists"]);
+    }
+    run_groups(name, &groups, suite_home(name))
+}
+
+fn run_groups(name: &str, groups: &[&str], home: HomeGraph) -> RunStats {
     let settings = Settings::default();
     let root = datasets_root().join(name);
     let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
 
-    let mut groups = vec!["area", "devices", "query_area", "query_devices", "multiple_intents"];
-    if clarify_dir {
-        groups.push("clarifications");
-        groups.push("state_persistance");
-        groups.push("timers");
-        groups.push("lists");
-    }
-
     for group in groups {
         let cases = load_cases(&root.join(group));
         for (label, case) in cases {
-            let is_clarify = group == "clarifications";
+            let is_clarify = *group == "clarifications";
             for turn_list in turns_of(&case.sentences) {
                 let mut session = Session::new();
                 let mut last = None;
@@ -420,6 +419,15 @@ fn print_stats(title: &str, stats: &RunStats) {
         .join(format!("suite_fails_{}.txt", title.split('(').nth(1).unwrap_or("x").trim_end_matches(')').replace([' ', '·'], "_")));
     let _ = std::fs::create_dir_all(dump.parent().unwrap());
     let _ = std::fs::write(&dump, stats.fails.join("\n"));
+}
+
+#[test]
+fn suite_wohnung_live_assist() {
+    let home: HomeGraph = serde_json::from_str(include_str!("fixtures/wohnung_live.json")).expect("wohnung_live.json");
+    let stats = run_groups("wohnung_live", &["assist"], home);
+    print_stats("Klar NLU · Assist live (Home Assistant)", &stats);
+    assert!(stats.ok + stats.fail > 0, "keine Assist-Testdateien — scripts/gen_voice_suite.py");
+    assert_eq!(stats.fail, 0, "Assist-Sätze gegen den Live-Graphen fehl:\n{}", stats.fails.join("\n"));
 }
 
 #[test]

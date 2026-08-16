@@ -152,6 +152,26 @@ def _area_queries() -> list[str]:
     )
     out.append(
         case(
+            "status_alle_lichter",
+            query_entity("light.alle_lichter"),
+            [
+                "Wie ist der Status von Alle Lichter",
+                "Wie ist der Status der Leuchten",
+                "Wie ist der Status von allen Lichtern",
+            ],
+            forbid=[
+                "wohnzimmer",
+                "esszimmer",
+                "kuche",
+                "light.wohnzimmer",
+                "light.esszimmer",
+                "light.wohn_und_esszimmer",
+                "wohnung",
+            ],
+        )
+    )
+    out.append(
+        case(
             "status_wohn_und_esszimmer",
             query_entity("light.wohn_und_esszimmer"),
             [

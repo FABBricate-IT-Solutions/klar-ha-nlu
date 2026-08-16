@@ -176,6 +176,7 @@ fn geraet_nicht_raum_oder_szene() {
     assert_target("wie ist der status von der Küche?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
     assert_target("Wie ist der Status von der Küche", "HassGetState", &["kuche"], &["light.kuche_kuche"]);
     assert_target("Wie ist der Status der Küche?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
+    assert_target("Wie ist der Status der Küche", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
     assert_target("What's the status of the kitchen?", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
     let (_, kitchen, _) = slots("Wie ist der Status der Küche?");
     assert_eq!(slot(&kitchen, "area"), Some("kuche"), "{kitchen:?}");
@@ -188,6 +189,13 @@ fn geraet_nicht_raum_oder_szene() {
     assert!(chat.chat, "Smalltalk muss zum LLM");
     let status = parse("Wie ist der Status der Küche?", &home, &mut session, &[], &Settings::default());
     assert!(!status.chat, "{:?}", status.intents);
+    assert_target("Wie ist der Status von Küche", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
+    assert_target(
+        "Wie ist der Status von der Kugel",
+        "HassGetState",
+        &["light.schlafzimmer", "light.hue_color_lamp_2"],
+        &["light.schlafzimmer_licht", "light.alle_lichter"],
+    );
 }
 
 #[test]
@@ -210,8 +218,13 @@ fn alle_lichter_im_raum_nicht_ueberall() {
 #[test]
 fn gruppen_ohne_bereichsslot() {
     assert_target("Wie ist der Status von Alle Lichter", "HassGetState", &["light.alle_lichter"], &["light.wohn_und_esszimmer"]);
+    assert_target("Wie ist der Status der Leuchten", "HassGetState", &["light.alle_lichter"], &["light.wohn_und_esszimmer", "kuche"]);
+    assert_target("Wie ist der Status von allen Lichtern", "HassGetState", &["light.alle_lichter"], &["light.wohn_und_esszimmer", "kuche"]);
     let (_, found, _) = slots("Wie ist der Status von Alle Lichter");
     assert!(slot(&found, "area").is_none(), "{found:?}");
+    let (_, leuchten, _) = slots("Wie ist der Status der Leuchten");
+    assert!(slot(&leuchten, "area").is_none(), "{leuchten:?}");
+    assert_eq!(slot(&leuchten, "entity_id"), Some("light.alle_lichter"), "{leuchten:?}");
     assert_target(
         "Wie ist der Status von Alle Lichter in der Wohnung",
         "HassGetState",

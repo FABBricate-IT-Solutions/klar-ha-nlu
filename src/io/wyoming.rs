@@ -104,6 +104,7 @@ where
                 };
                 let result = parse(text, &home, &mut session, &custom, &settings);
                 state.sessions.lock().await.put(session);
+                state.record_parse("wyoming", None, &result).await;
                 if result.intents.is_empty() {
                     write_event(&mut writer, "not-recognized", json!({ "text": result.speech })).await?;
                 } else if result.intents.len() == 1 {
@@ -171,11 +172,9 @@ async fn write_event<W: AsyncWriteExt + Unpin>(writer: &mut W, typ: &str, data: 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::home::{default_home, HomeStore};
-    use crate::session::Sessions;
-    use crate::types::{CustomSentence, Settings};
+    use crate::home::{default_home, LoadedHome};
+    use crate::types::Settings;
     use tokio::io::AsyncWriteExt;
-    use tokio::sync::Mutex;
 
     async fn read_line(lines: &mut tokio::io::Lines<BufReader<tokio::net::tcp::OwnedReadHalf>>) -> String {
         timeout(Duration::from_secs(2), lines.next_line()).await.expect("wyoming reply").unwrap().expect("eof")
@@ -185,14 +184,9 @@ mod tests {
     async fn describe_and_recognize_reuse_conversation() {
         let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
         let addr = listener.local_addr().unwrap();
-        let state = AppState {
-            home: HomeStore::new(default_home()),
-            sessions: Arc::new(Mutex::new(Sessions::default())),
-            settings: Arc::new(Mutex::new(Settings::default())),
-            custom: Arc::new(Mutex::new(Vec::<CustomSentence>::new())),
-            data_dir: std::env::temp_dir(),
-            token: None,
-        };
+        let dir = std::env::temp_dir().join(format!("klar-wy-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        let state = AppState::new(LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new() }, dir, None);
         let task = tokio::spawn({
             let state = state.clone();
             async move {

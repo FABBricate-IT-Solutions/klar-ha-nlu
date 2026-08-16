@@ -1,5 +1,5 @@
 name: Klar NLU
-version: "2026.8.19"
+version: "2026.8.20"
 slug: klar_nlu
 description: Deterministische deutsche NLU für Assist. Wyoming-Server plus UI.
 url: https://github.com/FABBricate-IT-Solutions/klar-ha-nlu
@@ -12,6 +12,10 @@ startup: services
 boot: auto
 hostname: klar-nlu
 host_network: false
+ingress: true
+ingress_port: 10520
+panel_icon: mdi:brain
+panel_title: Klar NLU
 ports:
   10520/tcp: null
   10500/tcp: null
@@ -24,6 +28,8 @@ map:
     path: /config
 options:
   token: ""
+  support_bundle: false
 schema:
   token: str?
+  support_bundle: bool?
 image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}
