@@ -2,6 +2,7 @@ pub mod action;
 pub(crate) mod chat;
 pub(crate) mod clause;
 pub mod compound;
+pub(crate) mod fuzzy;
 pub(crate) mod infer;
 pub(crate) mod media;
 pub mod normalize;

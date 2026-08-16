@@ -5,7 +5,8 @@ use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit};
 use crate::types::{AreaRec, EntityRec, HomeGraph};
-use score::{overlap, score_entity, sort_hits};
+use score::{fuzzy_tokens, overlap, score_entity, sort_hits};
+pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 
 mod score;
 
@@ -18,13 +19,14 @@ pub struct Resolved {
 
 pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Resolved {
     let areas = match_areas(tokens, &home.areas);
+    let fuzzy_tokens = fuzzy_tokens(tokens, home);
     let mut candidates: Vec<(f64, EntityRec)> = home
         .entities
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| !is_infra(e))
         .filter(|e| domain.is_none_or(|d| matches_domain(e, d)))
-        .filter_map(|e| score_entity(tokens, e, home).map(|s| (s, e.clone())))
+        .filter_map(|e| score_entity(tokens, &fuzzy_tokens, e, home).map(|s| (s, e.clone())))
         .collect();
     if domain == Some("climate") {
         if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens) {
@@ -55,9 +57,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         let best_overlap = overlap(tokens, rec, home);
         let peers: Vec<EntityRec> = candidates
             .iter()
-            .filter(|(s, e)| {
-                (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && e.name != rec.name && overlap(tokens, e, home) >= best_overlap
-            })
+            .filter(|(s, e)| (*s - best).abs() < 0.08 && e.entity_id != rec.entity_id && overlap(tokens, e, home) >= best_overlap)
             .map(|(_, e)| e.clone())
             .collect();
         if *best >= 0.86 && peers.is_empty() {
@@ -297,7 +297,7 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
         }
         return Some(domain);
     }
-    None
+    cat.fuzzy_domain(tokens)
 }
 
 pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {

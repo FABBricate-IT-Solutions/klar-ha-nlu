@@ -1,43 +1,49 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::lang::catalog;
-use crate::parse::normalize::fold_umlaut;
+use crate::parse::fuzzy::{select_unique, Evidence, Profile};
+use crate::parse::normalize::{compact, fold_umlaut};
 use crate::parse::resolve::{fixture_matches, token_eq, token_hit};
 use crate::types::{AreaRec, EntityRec, HomeGraph};
-use strsim::normalized_levenshtein;
 
 pub(crate) fn fuzzy_areas(tokens: &[String], areas: &[AreaRec]) -> Option<Vec<String>> {
-    let mut best = 0.0_f64;
-    let mut winner: Option<String> = None;
-    let mut second = 0.0_f64;
-    for area in areas {
-        let names: Vec<String> = std::iter::once(fold_umlaut(&area.name))
-            .chain(std::iter::once(area.area_id.clone()))
-            .chain(area.aliases.iter().map(|alias| fold_umlaut(alias)))
-            .collect();
-        for name in names {
-            if name.len() < 6 {
+    if !tokens.iter().any(|token| catalog().verb(token).is_some()) {
+        return None;
+    }
+    let labels: Vec<(String, String)> = areas
+        .iter()
+        .flat_map(|area| {
+            std::iter::once(compact(&area.name))
+                .chain(std::iter::once(compact(&area.area_id)))
+                .chain(area.aliases.iter().map(|alias| compact(alias)))
+                .map(|label| (area.area_id.clone(), label))
+        })
+        .filter(|(_, label)| label.len() >= 6)
+        .collect();
+    let mut hits: Vec<(String, Evidence)> = Vec::new();
+    let max_width = tokens.len().min(3);
+    for width in 1..=max_width {
+        for window in tokens.windows(width) {
+            if window.iter().all(|token| catalog().generic.contains(&token.as_str())) {
                 continue;
             }
-            for token in tokens {
-                if catalog().generic.contains(&token.as_str()) || token.len() < 6 {
-                    continue;
+            let observed = window.join("");
+            let Some(hit) = select_unique(&observed, labels.iter().map(|(id, label)| (id.as_str(), label.as_str())), Profile::Target)
+            else {
+                continue;
+            };
+            if let Some(existing) = hits.iter_mut().find(|(id, _)| id == hit.key) {
+                if hit.evidence.score > existing.1.score {
+                    existing.1 = hit.evidence;
                 }
-                let score = normalized_levenshtein(token, &name);
-                if score <= 0.88 {
-                    continue;
-                }
-                if score > best {
-                    second = best;
-                    best = score;
-                    winner = Some(area.area_id.clone());
-                } else if score > second && winner.as_deref() != Some(area.area_id.as_str()) {
-                    second = score;
-                }
+            } else {
+                hits.push((hit.key.to_string(), hit.evidence));
             }
         }
     }
-    (best - second > 0.04).then_some(winner).flatten().map(|id| vec![id])
+    hits.sort_by(|left, right| right.1.score.partial_cmp(&left.1.score).unwrap_or(std::cmp::Ordering::Equal));
+    let winner = hits.first()?;
+    (hits.len() == 1).then(|| vec![winner.0.clone()])
 }
 
 pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Option<Vec<EntityRec>> {

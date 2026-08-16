@@ -57,6 +57,8 @@ def _area() -> list[str]:
                 "Wohnzimmer Beleuchtung an",
                 "Mach bitte das Licht im Wohnzimmer an",
                 "Kannst du mal das Licht im Wohnzimmer anmachen",
+                "Licht im Wohnzim an",
+                "Wohnzimerlicht an",
             ],
             forbid=GROUP_FORBID,
         ),

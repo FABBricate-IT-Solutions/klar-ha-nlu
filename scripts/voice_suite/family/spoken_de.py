@@ -26,12 +26,14 @@ SPOKEN_DE = {
         "Setze die Lichter im Schlafzimmer auf rot",
         "Schlafzimmer Lichter auf Rot",
         "Schlafzimer Lichter auf Rot",
+        "Schlafzim Lichter auf Rot",
     ],
     "spoken_stt_living_off": [
         "Dicht im Wohnzimmer aus",
         "Wohnzimmer Lichte aus",
         "Lampen im Wohnzimmer aus",
         "Wohnzimer Lichte aus",
+        "Wohnzim Licht aus",
     ],
     "spoken_listing_living_dining_kitchen": [
         "Licht Wohnzimmer Esszimmer und Küche aus",

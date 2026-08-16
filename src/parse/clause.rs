@@ -6,7 +6,9 @@ use crate::parse::compound::{apply_compound_light, area_slots, named_scene_or_sc
 use crate::parse::infer::{infer_action, looks_like_named_device, looks_like_question, prefer_action};
 use crate::parse::media::media_clause;
 use crate::parse::numbers::first_number;
-use crate::parse::resolve::{climates_of_kind, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
+use crate::parse::resolve::{
+    climates_of_kind, has_fuzzy_target_token, known_target_token, light_rooms_for_clarify, query_grounded, resolve, unique_in_area,
+};
 use crate::parse::slots::{
     all_lights_clause, fill_intent, intent_from_action, laundry_switch_clause, pick_singular_lamp, timer_clause, ClauseOut,
 };
@@ -35,7 +37,16 @@ pub(crate) fn parse_clause(
     settings: &Settings,
     light_areas: &[String],
 ) -> ClauseOut {
+    let cat = catalog();
+    let free_text_payload = cat.any(tokens, &cat.list_nouns) || cat.any(tokens, &cat.media_nouns);
+    if !free_text_payload && tokens.iter().any(|token| cat.is_protected_typo(token) && !known_target_token(token, home)) {
+        return ClauseOut::Intents(Vec::new());
+    }
     let actions = detect_actions(tokens);
+    let fuzzy_action = !tokens.iter().any(|token| cat.verb(token).is_some()) && !actions.is_empty();
+    if !free_text_payload && fuzzy_action && has_fuzzy_target_token(tokens, home) {
+        return ClauseOut::Intents(Vec::new());
+    }
     let question = looks_like_question(tokens);
     let number = first_number(tokens);
     let command = prefer_action(&actions);
