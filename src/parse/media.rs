@@ -83,9 +83,7 @@ fn transport_intent(tokens: &[String], home: &HomeGraph, session: &Session, acti
         "HassMediaPrevious"
     } else if matches!(action, Action::MediaNext) {
         "HassMediaNext"
-    } else if matches!(action, Action::MediaPlay) && !has_search_tail(tokens) {
-        "HassMediaUnpause"
-    } else if matches!(action, Action::On) && music_resume(tokens) {
+    } else if (matches!(action, Action::MediaPlay) && !has_search_tail(tokens)) || (matches!(action, Action::On) && music_resume(tokens)) {
         "HassMediaUnpause"
     } else {
         return None;
@@ -134,8 +132,8 @@ fn play_intent(
 }
 
 fn favorite_intent(tokens: &[String], home: &HomeGraph, session: &Session, resolved: &Resolved) -> Option<Intent> {
-    if !any(tokens, &["favorisiere", "favorisieren", "favorite", "gefällt", "gefaellt"])
-        && !(any(tokens, &["like"]) && media_context(tokens))
+    if !(any(tokens, &["favorisiere", "favorisieren", "favorite", "gefällt", "gefaellt"])
+        || any(tokens, &["like"]) && media_context(tokens))
     {
         return None;
     }
