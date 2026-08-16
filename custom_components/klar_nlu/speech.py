@@ -12,6 +12,18 @@ _ACTION = {
     "HassLightSet": {"de": "{where} auf {level}.", "en": "{where} is at {level}."},
 }
 
+_MEDIA_ACTION = {
+    "HassMediaPause": ("{where} ist pausiert.", "{where} is paused."),
+    "HassMediaUnpause": ("{where} spielt weiter.", "{where} resumed playback."),
+    "HassMediaNext": ("Auf {where} läuft der nächste Titel.", "The next track is playing on {where}."),
+    "HassMediaPrevious": ("Auf {where} läuft der vorherige Titel.", "The previous track is playing on {where}."),
+    "HassMediaPlayerMute": ("{where} ist stumm.", "{where} is muted."),
+    "HassMediaPlayerUnmute": ("Der Ton von {where} ist an.", "{where} is unmuted."),
+    "MassFavorite": ("Als Favorit markiert.", "Marked as a favorite."),
+    "MassPlayMedia": ("Die Wiedergabe wurde gestartet.", "Playback started."),
+    "MassTransferQueue": ("Die Warteschlange wurde übertragen.", "The queue was transferred."),
+}
+
 _DE_STATE = {
     "on": "an",
     "off": "aus",
@@ -57,13 +69,11 @@ _STYLE = {
     ("gollum", "en"): "Yes, my precious. ",
 }
 
-
 def style(speech: str, personality: str, pack: str) -> str:
     prefix = _STYLE.get((personality, pack), "")
     if not prefix or speech.startswith(prefix.strip()):
         return speech
     return f"{prefix}{speech}"
-
 
 def from_handled(handled: Any, pack: str, item: dict) -> str | None:
     name = str(item.get("name") or "")
@@ -71,6 +81,9 @@ def from_handled(handled: Any, pack: str, item: dict) -> str | None:
         query = query_speech(handled, pack, item)
         if query:
             return query
+    media_action = _media_action_speech(name, pack, item, handled)
+    if media_action:
+        return media_action
     template = (_ACTION.get(name) or {}).get(pack)
     if template:
         where = _pretty_where(handled, item, pack)
@@ -84,7 +97,6 @@ def from_handled(handled: Any, pack: str, item: dict) -> str | None:
         return text
     return query_speech(handled, pack, item) or None
 
-
 def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
     states = list(getattr(handled, "matched_states", None) or [])
     if not states:
@@ -95,6 +107,7 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
         for state in states:
             if str(getattr(state, "entity_id", "")).startswith("media_player."):
                 return media_state_speech(state, status, pack)
+        return ""
     rows = [_state_value(state, pack) for state in states[:12]]
     rows = [row for row in rows if row[0] and row[1]]
     area = _room_label(item)
@@ -127,28 +140,26 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
             parts.append(f"{name} ist {spoken}.")
     return " ".join(parts)
 
-
 def queue_speech(response: Any, state: Any, pack: str) -> str:
     current = _media_title(state)
     upcoming = [title for title in _queue_titles(response) if title and title != current][:3]
     if pack == "en":
-        bits = []
-        if current:
-            bits.append(f"Now playing {current}.")
-        if upcoming:
-            bits.append(f"Next is {upcoming[0]}.")
-            if len(upcoming) > 1:
-                bits.append("Then " + ", ".join(upcoming[1:]) + ".")
-        return " ".join(bits) or media_state_speech(state, "now_playing", pack)
-    bits = []
-    if current:
-        bits.append(f"Gerade läuft {current}.")
-    if upcoming:
-        bits.append(f"Als Nächstes kommt {upcoming[0]}.")
+        bits = [f"Now playing {current}."] if current else []
+        if not upcoming:
+            empty = "The queue is empty." if not current else "There is nothing else in the queue."
+            return " ".join([*bits, empty])
+        bits.append(f"Next is {upcoming[0]}.")
         if len(upcoming) > 1:
-            bits.append("Danach " + ", ".join(upcoming[1:]) + ".")
-    return " ".join(bits) or media_state_speech(state, "now_playing", pack)
-
+            bits.append("Then " + ", ".join(upcoming[1:]) + ".")
+        return " ".join(bits)
+    bits = [f"Gerade läuft {current}."] if current else []
+    if not upcoming:
+        empty = "Die Warteschlange ist leer." if not current else "Danach ist die Warteschlange leer."
+        return " ".join([*bits, empty])
+    bits.append(f"Als Nächstes kommt {upcoming[0]}.")
+    if len(upcoming) > 1:
+        bits.append("Danach " + ", ".join(upcoming[1:]) + ".")
+    return " ".join(bits)
 
 def media_state_speech(state: Any, status: str, pack: str) -> str:
     attrs = getattr(state, "attributes", None) or {}
@@ -183,6 +194,22 @@ def media_state_speech(state: Any, status: str, pack: str) -> str:
         return f"Der Player ist {spoken_state}."
     return ""
 
+def _media_action_speech(name: str, pack: str, item: dict, handled: Any) -> str:
+    where = _pretty_where(handled, item, pack)
+    if name == "HassSetVolume":
+        if pack == "en":
+            return f"{where} volume is set to {_level(item, pack)}."
+        return f"Die Lautstärke von {where} ist auf {_level(item, pack)}."
+    if name == "HassSetVolumeRelative":
+        down = _slots(item).get("volume_step") == "down"
+        if pack == "en":
+            return f"{where} volume was {'lowered' if down else 'raised'}."
+        action = "verringert" if down else "erhöht"
+        return f"Die Lautstärke von {where} wurde {action}."
+    templates = _MEDIA_ACTION.get(name)
+    if not templates:
+        return ""
+    return templates[1 if pack == "en" else 0].format(where=where)
 
 def _room_label(item: dict | None) -> str:
     if not item:
@@ -191,7 +218,6 @@ def _room_label(item: dict | None) -> str:
     if slots.get("entity_id"):
         return ""
     return str(slots.get("area_name") or slots.get("area") or "").strip()
-
 
 def _in_area(area: str, pack: str) -> str:
     pretty = _humanize(area)
@@ -203,7 +229,6 @@ def _in_area(area: str, pack: str) -> str:
     if folded.endswith("e") or folded in {"wohnung"}:
         return f"in der {pretty}"
     return f"im {pretty}"
-
 
 def _room_status(rows: list[tuple[str, str, str]], area: str, pack: str) -> str:
     where = _in_area(area, pack)
@@ -241,13 +266,11 @@ def _room_status(rows: list[tuple[str, str, str]], area: str, pack: str) -> str:
         return f"{where[:1].upper()}{where[1:]} ist in Ordnung." if pack == "de" else f"{where[:1].upper()}{where[1:]} looks fine."
     return f"{where[:1].upper()}{where[1:]}: {body}."
 
-
 def _speak_state(raw: str, pack: str) -> str:
     key = str(raw).strip().lower()
     if pack == "de":
         return _DE_STATE.get(key, str(raw).replace(".", ","))
     return str(raw)
-
 
 def _state_value(state: Any, pack: str) -> tuple[str, str, str]:
     attrs = getattr(state, "attributes", None) or {}
@@ -265,7 +288,6 @@ def _state_value(state: Any, pack: str) -> tuple[str, str, str]:
         spoken = f"{str(raw).replace('.', ',')} {unit or '°C'}".strip()
     return name, spoken, domain
 
-
 def _media_title(state: Any) -> str:
     attrs = getattr(state, "attributes", None) or {}
     if not isinstance(attrs, dict):
@@ -279,7 +301,6 @@ def _media_title(state: Any) -> str:
         return f"{title} ({album})"
     return title
 
-
 def _volume_percent(value: Any) -> str:
     try:
         raw = float(value)
@@ -289,11 +310,9 @@ def _volume_percent(value: Any) -> str:
         raw *= 100
     return str(round(raw))
 
-
 def _queue_titles(response: Any) -> list[str]:
     items = _queue_items(response)
     return [_title_from_item(item) for item in items]
-
 
 def _queue_items(value: Any) -> list[Any]:
     if isinstance(value, list):
@@ -313,7 +332,6 @@ def _queue_items(value: Any) -> list[Any]:
                 return found
     return []
 
-
 def _title_from_item(item: Any) -> str:
     if isinstance(item, str):
         return item
@@ -325,7 +343,6 @@ def _title_from_item(item: Any) -> str:
     if title and artist:
         return f"{title} by {artist}"
     return title
-
 
 def _plain_speech(handled: Any) -> str:
     speech = getattr(handled, "speech", None) or {}
@@ -341,7 +358,6 @@ def _plain_speech(handled: Any) -> str:
         return str(nested.get("speech") or "").strip()
     return ""
 
-
 def _is_query(handled: Any, name: str) -> bool:
     rtype = getattr(handled, "response_type", None)
     value = getattr(rtype, "value", rtype)
@@ -350,10 +366,8 @@ def _is_query(handled: Any, name: str) -> bool:
         "HassClimateGetTemperature",
     }
 
-
 _LIGHT_TAIL = {"licht", "lichter", "lampe", "lampen", "light", "lights"}
 _ALL_HEAD = {"alle", "all", "every", "überall", "ueberall"}
-
 
 def _infra_needles() -> tuple[str, ...]:
     path = Path(__file__).with_name("infra_needles.txt")
@@ -363,9 +377,7 @@ def _infra_needles() -> tuple[str, ...]:
         if line.strip() and not line.startswith("#")
     )
 
-
 _INFRA = _infra_needles()
-
 
 def _infra_state(state: Any) -> bool:
     entity_id = str(getattr(state, "entity_id", "") or "").lower()
@@ -379,7 +391,6 @@ def _infra_state(state: Any) -> bool:
     blob = f"{entity_id} {name}"
     return any(needle in blob for needle in _INFRA)
 
-
 def _compound_light(name: str) -> str:
     parts = [part for part in str(name).split() if part]
     if (
@@ -391,7 +402,6 @@ def _compound_light(name: str) -> str:
         return f"{head[:1].upper()}{head[1:]}{parts[-1].lower()}"
     return name
 
-
 def _drop_prefixes(names: list[str]) -> list[str]:
     keys = [(name, name.lower().replace(" ", "")) for name in names]
     out: list[str] = []
@@ -401,7 +411,6 @@ def _drop_prefixes(names: list[str]) -> list[str]:
         if name not in out:
             out.append(name)
     return out
-
 
 def _pretty_where(handled: Any, item: dict, pack: str) -> str:
     slots = _slots(item)
@@ -426,14 +435,12 @@ def _pretty_where(handled: Any, item: dict, pack: str) -> str:
         return _spoken_device("", entity_id, pack)
     return "Zuhause" if pack == "de" else "home"
 
-
 def _slots(item: dict) -> dict[str, str]:
     return {
         str(slot["name"]): str(slot.get("value") or "")
         for slot in item.get("slots") or []
         if isinstance(slot, dict) and slot.get("name")
     }
-
 
 _COLORS = {
     "red": {"de": "rot", "en": "red"},
@@ -447,14 +454,13 @@ _COLORS = {
     "purple": {"de": "lila", "en": "purple"},
 }
 
-
 def _level(item: dict, pack: str) -> str:
     slots = _slots(item)
     color = slots.get("color") or ""
     spoken = ""
     if color:
         spoken = (_COLORS.get(color) or {}).get(pack) or color
-    bri = slots.get("brightness") or slots.get("percentage") or ""
+    bri = slots.get("brightness") or slots.get("percentage") or slots.get("volume_level") or ""
     if spoken and bri:
         unit = "Prozent" if pack == "de" else "percent"
         return f"{spoken}, {bri} {unit}"
@@ -464,13 +470,11 @@ def _level(item: dict, pack: str) -> str:
         return "die neue Stufe" if pack == "de" else "the new level"
     return f"{bri} Prozent" if pack == "de" else f"{bri} percent"
 
-
 def _humanize(raw: str) -> str:
     text = str(raw).strip()
     if "." in text and " " not in text:
         text = text.split(".", 1)[-1]
     return text.replace("_", " ")
-
 
 def _spoken_device(name: str, entity_id: str, pack: str) -> str:
     domain = entity_id.split(".", 1)[0] if "." in entity_id else ""

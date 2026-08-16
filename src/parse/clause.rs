@@ -4,7 +4,7 @@ use crate::lang::catalog;
 use crate::parse::action::{detect_actions, domain_for, Action};
 use crate::parse::compound::{apply_compound_light, area_slots, named_scene_or_script, query_keeps_entity, wants_light_clarify};
 use crate::parse::infer::{infer_action, looks_like_named_device, looks_like_question, prefer_action};
-use crate::parse::media::media_clause;
+use crate::parse::media::{media_clause, media_transport_form};
 use crate::parse::numbers::first_number;
 use crate::parse::resolve::{
     climates_of_kind, has_fuzzy_target_token, known_target_token, light_rooms_for_clarify, query_grounded, resolve, unique_in_area,
@@ -187,7 +187,8 @@ fn resolve_targets(
 }
 
 fn named_scene(ctx: &Clause) -> Option<ClauseOut> {
-    if ctx.question || !matches!(ctx.action, Action::On | Action::Scene | Action::GetState) {
+    if ctx.question || media_transport_form(ctx.tokens, ctx.action) || !matches!(ctx.action, Action::On | Action::Scene | Action::GetState)
+    {
         return None;
     }
     let id = named_scene_or_script(ctx.tokens, ctx.home)?;

@@ -33,7 +33,7 @@ from .const import (
 )
 
 
-def _options_schema(advanced: bool) -> vol.Schema:
+def _options_schema() -> vol.Schema:
     fields: dict[Any, Any] = {
         vol.Optional(CONF_PERSONALITY, default=DEFAULT_PERSONALITY): selector.SelectSelector(
             selector.SelectSelectorConfig(
@@ -65,11 +65,10 @@ def _options_schema(advanced: bool) -> vol.Schema:
         ),
         vol.Optional(CONF_URL): str,
         vol.Optional(CONF_TOKEN): str,
-    }
-    if advanced:
-        fields[vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER)] = (
+        vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER): (
             selector.BooleanSelector()
-        )
+        ),
+    }
     return vol.Schema(fields)
 
 USER_SCHEMA = vol.Schema(
@@ -163,7 +162,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                     return self.async_show_form(
                         step_id="init",
                         data_schema=self.add_suggested_values_to_schema(
-                            _options_schema(self.show_advanced_options), user_input
+                            _options_schema(), user_input
                         ),
                         errors={"base": "invalid_url"},
                     )
@@ -193,6 +192,6 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         return self.async_show_form(
             step_id="init",
             data_schema=self.add_suggested_values_to_schema(
-                _options_schema(self.show_advanced_options), suggested
+                _options_schema(), suggested
             ),
         )

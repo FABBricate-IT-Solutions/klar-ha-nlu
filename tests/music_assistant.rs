@@ -1,5 +1,6 @@
 use klar_nlu::home::default_home;
 use klar_nlu::parse::parse;
+use klar_nlu::parse::split::split_clauses;
 use klar_nlu::session::Session;
 use klar_nlu::types::{EntityRec, HomeGraph, Intent, Settings};
 
@@ -81,6 +82,14 @@ fn one_with_area(text: &str, lang: &str, preferred_area: &str, home: HomeGraph) 
     result.intents.into_iter().next().unwrap()
 }
 
+fn intents(text: &str, lang: &str, home: &HomeGraph, session: &mut Session) -> Vec<Intent> {
+    parse(text, home, session, &[], &settings(lang)).intents
+}
+
+fn add_living_room_player(home: &mut HomeGraph, id: &str, tags: &[&str]) {
+    home.entities.push(entity(id, "Wohnzimmer Box", "media_player", Some("music_assistant"), Some("wohnzimmer"), &["zweite box"], tags));
+}
+
 fn slot<'a>(intent: &'a Intent, name: &str) -> Option<&'a str> {
     intent.slot(name)
 }
@@ -152,9 +161,15 @@ fn queue_transfer_and_favorite_are_mass_intents() {
     assert_eq!(slot(&queue, "media_id"), Some("bohemian rhapsody"));
     assert_eq!(slot(&queue, "enqueue"), Some("add"));
 
-    let transfer = one("Move music to the living room", "en");
+    let home = home_with_kitchen_player();
+    let mut session = Session::new();
+    session.remember_entity("media_player.kuche_2");
+    let mut parsed = intents("Move music to the living room", "en", &home, &mut session);
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    let transfer = parsed.remove(0);
     assert_eq!(transfer.name, "MassTransferQueue");
     assert_eq!(slot(&transfer, "entity_id"), Some("media_player.wohnzimmer_2"));
+    assert_eq!(slot(&transfer, "source_player"), Some("media_player.kuche_2"));
 
     let favorite = one("Favorisiere den Titel", "de");
     assert_eq!(favorite.name, "MassFavorite");
@@ -214,4 +229,203 @@ fn explicit_music_area_overrides_assist_area() {
     let intent = one_with_area("Spiel Queen im Wohnzimmer", "de", "kuche", home_with_kitchen_player());
     assert_eq!(intent.name, "HassMediaSearchAndPlay");
     assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+}
+
+#[test]
+fn media_commands_without_exposed_music_player_are_suppressed() {
+    let mut home = home();
+    home.entities.retain(|entity| entity.entity_id != "media_player.wohnzimmer_2");
+    for text in [
+        "Was läuft im Wohnzimmer",
+        "Was kommt als nächstes Lied im Wohnzimmer",
+        "Wie laut ist die Musik im Wohnzimmer",
+        "Pausiere die Musik im Wohnzimmer",
+        "Favorisiere den Titel im Wohnzimmer",
+        "Spiel Queen im Wohnzimmer",
+    ] {
+        let parsed = intents(text, "de", &home, &mut Session::new());
+        assert!(parsed.is_empty(), "{text}: {parsed:?}");
+    }
+}
+
+#[test]
+fn ambiguous_area_player_is_suppressed_without_tie_break() {
+    let mut home = home();
+    add_living_room_player(&mut home, "media_player.wohnzimmer_box", &["Musik"]);
+    let parsed = intents("Spiel Queen im Wohnzimmer", "de", &home, &mut Session::new());
+    assert!(parsed.is_empty(), "{parsed:?}");
+}
+
+#[test]
+fn multiple_media_areas_are_suppressed() {
+    let home = home_with_kitchen_player();
+    let parsed = intents("Spiel Queen im Wohnzimmer und Küche", "de", &home, &mut Session::new());
+    assert!(parsed.is_empty(), "{parsed:?}");
+}
+
+#[test]
+fn unique_preferred_tag_breaks_area_tie() {
+    let mut home = home();
+    add_living_room_player(&mut home, "media_player.wohnzimmer_box", &["Musik", "preferred"]);
+    let parsed = intents("Spiel Queen im Wohnzimmer", "de", &home, &mut Session::new());
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.wohnzimmer_box"));
+}
+
+#[test]
+fn session_last_player_breaks_area_tie_after_preferred_check() {
+    let mut home = home();
+    add_living_room_player(&mut home, "media_player.wohnzimmer_box", &["Musik"]);
+    let mut session = Session::new();
+    session.remember_entity("media_player.wohnzimmer_box");
+    let parsed = intents("Pause im Wohnzimmer", "de", &home, &mut session);
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    assert_eq!(parsed[0].name, "HassMediaPause");
+    assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.wohnzimmer_box"));
+}
+
+#[test]
+fn unexposed_preferred_player_never_wins() {
+    let mut home = home();
+    add_living_room_player(&mut home, "media_player.hidden_preferred", &["Musik", "preferred"]);
+    home.assist = Some(["media_player.wohnzimmer_2".to_string()].into_iter().collect());
+    let parsed = intents("Spiel Queen im Wohnzimmer", "de", &home, &mut Session::new());
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.wohnzimmer_2"));
+}
+
+#[test]
+fn explicit_player_beats_preferred_area() {
+    let intent = one_with_area("Spiel Queen auf der Soundbar", "de", "kuche", home_with_kitchen_player());
+    assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+    assert_eq!(slot(&intent, "search_query"), Some("queen"));
+}
+
+#[test]
+fn resolved_player_alias_is_removed_from_search_tail() {
+    let mut home = home_with_kitchen_player();
+    let kitchen = home.entities.iter_mut().find(|entity| entity.entity_id == "media_player.kuche_2").unwrap();
+    kitchen.aliases.push("Küchenbereich".into());
+    let parsed = intents("Spiel Queen auf Küchenbereich", "de", &home, &mut Session::new());
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.kuche_2"));
+    assert_eq!(slot(&parsed[0], "search_query"), Some("queen"));
+}
+
+#[test]
+fn german_transport_imperatives_are_recognized() {
+    for (text, expected) in [
+        ("Pausiere die Musik", "HassMediaPause"),
+        ("Pause die Musik", "HassMediaPause"),
+        ("Nächster Titel", "HassMediaNext"),
+        ("Nächste Musik", "HassMediaNext"),
+    ] {
+        let intent = one(text, "de");
+        assert_eq!(intent.name, expected, "{text}: {intent:?}");
+        assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+    }
+}
+
+#[test]
+fn kitchen_status_phrases_emit_exactly_one_targeted_intent() {
+    let mut home = home_with_kitchen_player();
+    let kitchen = home.areas.iter_mut().find(|area| area.area_id == "kuche").unwrap();
+    kitchen.aliases.push("Küchenbereich".into());
+    for (text, expected) in
+        [("Was kommt als nächstes Lied im Küchenbereich", "MassGetQueue"), ("Wie laut ist die Musik im Küchenbereich", "HassGetState")]
+    {
+        let parsed = intents(text, "de", &home, &mut Session::new());
+        assert_eq!(parsed.len(), 1, "{text}: {parsed:?}");
+        assert_eq!(parsed[0].name, expected);
+        assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.kuche_2"));
+        assert_eq!(slot(&parsed[0], "area"), None);
+    }
+}
+
+#[test]
+fn media_transport_does_not_fall_through_to_script() {
+    let mut home = home();
+    home.entities.retain(|entity| entity.domain != "media_player");
+    home.entities.push(entity("script.pause", "Pause Musik", "script", None, None, &["pausiere musik"], &[]));
+    let parsed = intents("Pausiere Musik", "de", &home, &mut Session::new());
+    assert!(parsed.is_empty(), "{parsed:?}");
+}
+
+#[test]
+fn mass_intents_never_target_plain_media_players() {
+    let home = home();
+    let parsed = intents("Queue Bohemian Rhapsody on the TV", "en", &home, &mut Session::new());
+    assert!(parsed.is_empty(), "{parsed:?}");
+}
+
+#[test]
+fn transfer_requires_a_distinct_explicit_destination() {
+    let home = home();
+    let mut session = Session::new();
+    session.remember_entity("media_player.wohnzimmer_2");
+
+    let missing = intents("Verschiebe die Musik", "de", &home, &mut session);
+    assert!(missing.is_empty(), "{missing:?}");
+
+    let source_only = intents("Move music from the living room", "en", &home, &mut session);
+    assert!(source_only.is_empty(), "{source_only:?}");
+
+    let source_with_followup = intents("Move music from the living room and turn on the light in the kitchen", "en", &home, &mut session);
+    assert!(source_with_followup.iter().all(|intent| intent.name != "MassTransferQueue"), "{source_with_followup:?}");
+    assert!(source_with_followup.iter().any(|intent| intent.name == "HassTurnOn"), "{source_with_followup:?}");
+
+    let same = intents("Verschiebe die Musik ins Wohnzimmer", "de", &home, &mut session);
+    assert!(same.is_empty(), "{same:?}");
+}
+
+#[test]
+fn protected_media_question_keeps_followup_clause() {
+    let home = home();
+    let parsed = intents("Wie laut ist die Musik und schalte das Licht im Wohnzimmer aus", "de", &home, &mut Session::new());
+    assert_eq!(parsed.len(), 2, "{parsed:?}");
+    assert!(parsed.iter().any(|intent| intent.name == "HassGetState"));
+    assert!(parsed.iter().any(|intent| intent.name == "HassTurnOff"));
+}
+
+#[test]
+fn protected_media_followup_skips_conjunction_inside_target_name() {
+    let mut home = home();
+    home.entities.push(entity(
+        "light.wohn_und_esszimmer",
+        "Wohn und Esszimmer Licht",
+        "light",
+        None,
+        Some("wohnung"),
+        &["wohn und esszimmer"],
+        &[],
+    ));
+    let tokens: Vec<String> =
+        "wie laut ist die musik im wohn und esszimmer und schalte das licht aus".split_whitespace().map(str::to_string).collect();
+    let clauses = split_clauses(&tokens, &home);
+    assert_eq!(clauses.len(), 2, "{clauses:?}");
+    assert_eq!(clauses[0].join(" "), "wie laut ist die musik im wohn und esszimmer");
+    assert_eq!(clauses[1].first().map(String::as_str), Some("schalte"));
+}
+
+#[test]
+fn protected_media_followup_recursively_splits_remaining_actions() {
+    let home = home();
+    let tokens: Vec<String> =
+        "wie laut ist die musik und schalte das licht aus und oeffne das rollo".split_whitespace().map(str::to_string).collect();
+    let clauses = split_clauses(&tokens, &home);
+    assert_eq!(clauses.len(), 3, "{clauses:?}");
+    assert_eq!(clauses[0].join(" "), "wie laut ist die musik");
+    assert_eq!(clauses[1].first().map(String::as_str), Some("schalte"));
+    assert_eq!(clauses[2].first().map(String::as_str), Some("oeffne"));
+}
+
+#[test]
+fn protected_media_followup_splits_explicit_query() {
+    let home = home();
+    let tokens: Vec<String> =
+        "wie laut ist die musik und was ist die temperatur im wohnzimmer".split_whitespace().map(str::to_string).collect();
+    let clauses = split_clauses(&tokens, &home);
+    assert_eq!(clauses.len(), 2, "{clauses:?}");
+    assert_eq!(clauses[0].join(" "), "wie laut ist die musik");
+    assert_eq!(clauses[1].first().map(String::as_str), Some("was"));
 }

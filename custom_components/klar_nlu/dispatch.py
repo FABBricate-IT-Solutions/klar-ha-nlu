@@ -20,7 +20,7 @@ from .intents import (
     list_slots,
     timer_slots,
 )
-from .speech import from_handled, queue_speech
+from .speech import from_handled, media_state_speech, queue_speech
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -38,9 +38,24 @@ async def handle_intent(
         return None
     slots = item_slots(item)
     if name in MASS_INTENTS:
-        return await run_mass(hass, name, slots, pack, item)
+        return await run_mass(hass, name, slots, pack, item, exposed)
+    media_status = str(slots.get("media_status", {}).get("value") or "")
+    entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    if name == "HassGetState" and media_status:
+        state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
+        if (
+            state is None
+            or not exposed(entity_id)
+            or str(getattr(state, "state", "")).lower()
+            in {"unavailable", "unknown"}
+        ):
+            return None
+        return media_state_speech(state, media_status, pack) or None
+    if name in MEDIA_SERVICES:
+        if not entity_id:
+            return None
+        return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
     if "entity_id" in slots:
-        entity_id = str(slots["entity_id"].get("value") or "")
         spoken = await run_entity(hass, name, entity_id, slots, pack, item, exposed)
         if spoken:
             return spoken
@@ -108,11 +123,18 @@ async def run_entity(
     item: dict,
     exposed: Callable[[str], bool],
 ) -> str | None:
-    if "." not in entity_id or hass.states.get(entity_id) is None:
+    state = hass.states.get(entity_id)
+    if "." not in entity_id or state is None:
         return None
     if not exposed(entity_id):
         return None
     domain = entity_id.split(".", 1)[0]
+    if (
+        domain == "media_player"
+        and name in MEDIA_SERVICES
+        and str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+    ):
+        return None
     data: dict[str, Any] = {"entity_id": entity_id}
     if name == "HassLightSet" and domain == "light":
         service = "turn_on"
@@ -172,8 +194,16 @@ async def run_mass(
     slots: dict[str, Any],
     pack: str,
     item: dict,
+    exposed: Callable[[str], bool],
 ) -> str | None:
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
+    if (
+        state is None
+        or not exposed(entity_id)
+        or str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+    ):
+        return None
     if name == "MassFavorite":
         button = favorite_button(hass, entity_id)
         if not button:
@@ -184,14 +214,26 @@ async def run_mass(
             _LOGGER.debug("Favorit für %s nicht gesetzt: %s", entity_id, err)
             return None
         return from_handled(None, pack, {**item, "name": name})
-    if not entity_id:
-        return None
     try:
         if name == "MassGetQueue":
             response = await call_with_response(hass, "music_assistant", "get_queue", {}, {"entity_id": entity_id})
-            return queue_speech(response, hass.states.get(entity_id), pack)
+            return queue_speech(response, state, pack)
         if name == "MassTransferQueue":
             data = clean_service_data(slots, ["source_player", "auto_play"])
+            source_player = str(data.get("source_player") or "")
+            source_state = (
+                hass.states.get(source_player)
+                if source_player.startswith("media_player.")
+                else None
+            )
+            if (
+                source_state is None
+                or source_player == entity_id
+                or not exposed(source_player)
+                or str(getattr(source_state, "state", "")).lower()
+                in {"unavailable", "unknown"}
+            ):
+                return None
             await hass.services.async_call("music_assistant", "transfer_queue", data, blocking=True, target={"entity_id": entity_id})
         elif name == "MassPlayMedia":
             data = clean_service_data(slots, ["media_id", "media_type", "artist", "album", "enqueue", "radio_mode", "username"])
