@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.26](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.25...2026.8.26) - 2026-08-16
+
+
+
+### Bug Fixes
+
+- match rustfmt 1.97 line wrapping([b616d1d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b616d1da3bd990f7949e818d0eacdab3a8ced9d0))
+
+- satisfy clippy 1.97 some_filter([bfd8b3a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bfd8b3ad81743290d3e8ae9e709e2245ba43678a))
+
+
+### Features
+
+- [**breaking**] replace the parse contract with V2 ParseOutcome([5f45302](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5f45302e4ae0d864d04d5c4fff36c6e1b04e2cc9))
+
+
+### Other
+
+- Merge pull request #77 from FABBricate-IT-Solutions/feat/v2-nlu-platform([24bcb17](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/24bcb17ed76c326971db80b9002c1a63eae47759))
+
 ## [2026.8.25](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.24...2026.8.25) - 2026-08-16
 
 ### Bug Fixes
