@@ -55,6 +55,10 @@ pub fn reads_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Opti
     writes_allowed(peer, headers, token) || peer.is_some_and(|addr| supervisor_peer(addr.ip()))
 }
 
+pub fn home_writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
+    reads_allowed(peer, headers, token)
+}
+
 pub fn wyoming_allowed(peer: SocketAddr) -> bool {
     trusted_peer(peer.ip())
 }
@@ -82,5 +86,6 @@ mod tests {
     fn plain_supervisor_write_still_needs_token() {
         let peer = "172.30.32.2:9".parse().unwrap();
         assert!(!writes_allowed(Some(peer), &HeaderMap::new(), &None));
+        assert!(home_writes_allowed(Some(peer), &HeaderMap::new(), &None));
     }
 }

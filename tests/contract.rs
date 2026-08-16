@@ -195,6 +195,23 @@ fn clarify_state_mutates_memory_only_after_execution() {
 }
 
 #[test]
+fn clarify_room_followup_executes_area_light_once() {
+    let home = default_home();
+    let settings = Settings::default();
+    let mut session = Session::new();
+    let clarification = nlu::parse("Mach das Licht an", &home, &mut session, &[], &settings);
+    assert!(matches!(clarification.decision, ParseDecision::Clarify { .. }), "{clarification:#?}");
+    let executed = nlu::parse("Wohnzimmer", &home, &mut session, &[], &settings);
+    assert!(matches!(executed.decision, ParseDecision::Execute), "{executed:#?}");
+    let intent = executed.plan.as_ref().and_then(|plan| plan.steps.first()).map(|step| &step.intent);
+    let intent = intent.expect("turn-on step");
+    assert_eq!(intent.name, "HassTurnOn");
+    assert_eq!(intent.slot("area"), Some("wohnzimmer"));
+    assert_eq!(intent.slots.iter().filter(|slot| slot.name == "domain").count(), 1);
+    assert_eq!(intent.slot("domain"), Some("light"));
+}
+
+#[test]
 fn confirm_state_exposes_plan_and_commits_only_after_affirmation() {
     let home = default_home();
     let settings = Settings::default();

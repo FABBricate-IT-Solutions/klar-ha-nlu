@@ -275,6 +275,78 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 self.assertFalse(spoken.ok)
                 hass.services.async_call.assert_not_awaited()
 
+    async def test_climate_get_strips_entity_id_for_ha(self) -> None:
+        climate = _State(
+            "climate.better_thermostat_wohnzimmer",
+            "off",
+            friendly_name="Heizung Wohnzimmer",
+            current_temperature=26.2,
+            temperature_unit="°C",
+        )
+        hass = _hass(climate)
+        dispatch.intent.async_handle.return_value = SimpleNamespace(
+            matched_states=[climate],
+            unmatched_states=[],
+            success_results=[],
+            response_type="query_answer",
+        )
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassClimateGetTemperature", entity_id=climate.entity_id, domain="climate"),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        slots = dispatch.intent.async_handle.await_args.args[3]
+        self.assertNotIn("entity_id", slots)
+        self.assertNotIn("domain", slots)
+        self.assertEqual(slots["name"]["value"], "Heizung Wohnzimmer")
+        self.assertIn("26", spoken.speech or "")
+
+    async def test_climate_get_reads_state_when_ha_intent_fails(self) -> None:
+        climate = _State(
+            "climate.better_thermostat_wohnzimmer",
+            "off",
+            friendly_name="Heizung Wohnzimmer",
+            current_temperature=26.2,
+            temperature_unit="°C",
+        )
+        hass = _hass(climate)
+        dispatch.intent.async_handle.side_effect = Exception("extra keys not allowed")
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassClimateGetTemperature", entity_id=climate.entity_id, domain="climate"),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        self.assertIn("26", spoken.speech or "")
+        self.assertIn("Wohnzimmer", spoken.speech or "")
+
+    async def test_area_turn_on_uses_ha_area_name(self) -> None:
+        hass = _hass()
+        dispatch.intent.async_handle.return_value = object()
+        with (
+            patch.object(dispatch, "area_label", return_value="Wohnzimmer"),
+            patch.object(dispatch, "from_handled", return_value="Licht im Wohnzimmer an."),
+        ):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item("HassTurnOn", area="wohnzimmer", domain="light"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        slots = dispatch.intent.async_handle.await_args.args[3]
+        self.assertEqual(slots["area"]["value"], "Wohnzimmer")
+        self.assertEqual(slots["domain"]["value"], "light")
+
 
 if __name__ == "__main__":
     unittest.main()
