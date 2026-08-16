@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.21](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.20...2026.8.21) - 2026-08-16
+
+### Bug Fixes
+
+- include the built React UI in release container images
+
 ## [2026.8.20](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.19...2026.8.20) - 2026-08-16
 
 ### Features

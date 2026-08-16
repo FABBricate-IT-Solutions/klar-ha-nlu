@@ -5,6 +5,7 @@ COPY klar /usr/local/bin/klar
 COPY klar-entry.sh /usr/local/bin/klar-entry.sh
 COPY LICENSE /usr/share/doc/klar/LICENSE
 COPY THIRD_PARTY /usr/share/doc/klar/THIRD_PARTY
+COPY ui /usr/share/klar/ui
 RUN chmod +x /usr/local/bin/klar /usr/local/bin/klar-entry.sh
 EXPOSE 10500 10520
 ENTRYPOINT ["/usr/local/bin/klar-entry.sh"]
