@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.25](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.24...2026.8.25) - 2026-08-16
+
+### Bug Fixes
+
+- harden Music Assistant targeting ([f995ccb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f995ccbcb7642f4e1e2b64b3d47bcf456ba33b83))
+
+### Other
+
+- Merge pull request #75 from FABBricate-IT-Solutions/fix/music-assistant-hardening ([4ff1deb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4ff1debc270605413e798a630acc6c9eb41c7ec3))
+
 ## [2026.8.24](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.23...2026.8.24) - 2026-08-16
 
 ### Features
