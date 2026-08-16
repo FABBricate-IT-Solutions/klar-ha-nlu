@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from dataclasses import dataclass
+from types import SimpleNamespace
 from typing import Any
 
 from homeassistant.components.conversation import ConversationInput
@@ -103,21 +104,65 @@ async def handle_intent(
         slots = timer_slots(slots)
         if name == "HassStartTimer" and not any(key in slots for key in ("hours", "minutes", "seconds")):
             return _fail("missing_timer_duration")
+    if name == "HassClimateGetTemperature":
+        return await climate_query(hass, user_input, item, slots, pack, assistant, exposed)
     if name == "HassGetState" and slots.get("device_class", {}).get("value") == "temperature":
         slots.pop("domain", None)
         first = await invoke_intent(hass, user_input, name, slots, pack, item, assistant)
         if first.ok:
             return first
-        climate = {key: val for key, val in slots.items() if key != "device_class"}
-        return await invoke_intent(hass, user_input, "HassClimateGetTemperature", climate, pack, item, assistant)
-    if name == "HassGetState" and "area" in slots and "entity_id" not in slots:
-        label = area_label(hass, str(slots["area"].get("value") or ""))
-        if label:
-            item = {
-                **item,
-                "slots": [*(item.get("slots") or []), {"name": "area_name", "value": label}],
-            }
+        return await climate_query(hass, user_input, item, slots, pack, assistant, exposed)
+    if "area" in slots and "entity_id" not in slots:
+        slots, item = bind_area_name(hass, slots, item)
     return await invoke_intent(hass, user_input, _HA_INTENT_ALIASES.get(name, name), slots, pack, item, assistant)
+
+
+def bind_area_name(hass: HomeAssistant, slots: dict[str, Any], item: dict) -> tuple[dict[str, Any], dict]:
+    area_id = str(slots.get("area", {}).get("value") or "")
+    if not area_id:
+        return slots, item
+    label = area_label(hass, area_id)
+    if not label:
+        return slots, item
+    slots = {**slots, "area": {"value": label}}
+    existing = item.get("slots") or []
+    if any(isinstance(slot, dict) and slot.get("name") == "area_name" for slot in existing):
+        return slots, item
+    return slots, {**item, "slots": [*existing, {"name": "area_name", "value": label}]}
+
+
+async def climate_query(
+    hass: HomeAssistant,
+    user_input: ConversationInput,
+    item: dict,
+    slots: dict[str, Any],
+    pack: str,
+    assistant: str | None,
+    exposed: Callable[[str], bool],
+) -> IntentStepResult:
+    entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    state = hass.states.get(entity_id) if entity_id else None
+    shaped = {key: val for key, val in slots.items() if key not in {"entity_id", "domain", "device_class"}}
+    if entity_id and state is not None:
+        shaped["name"] = {"value": state.name}
+    elif "area" in shaped:
+        shaped, item = bind_area_name(hass, shaped, item)
+    first = await invoke_intent(hass, user_input, "HassClimateGetTemperature", shaped, pack, item, assistant)
+    if first.ok:
+        return first
+    if state is None or not entity_id or not exposed(entity_id):
+        return first
+    spoken = from_handled(
+        SimpleNamespace(
+            matched_states=[state],
+            unmatched_states=[],
+            success_results=[],
+            response_type="query_answer",
+        ),
+        pack,
+        {**item, "name": "HassClimateGetTemperature"},
+    )
+    return _ok(spoken) if spoken else first
 
 
 async def invoke_intent(

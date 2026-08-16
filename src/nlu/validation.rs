@@ -254,6 +254,9 @@ fn conflicting_slots(intent: &Intent) -> bool {
 }
 
 fn risky_intent(intent: &Intent) -> bool {
+    if matches!(intent.name.as_str(), "HassGetState" | "HassClimateGetTemperature" | "HassTimerStatus" | "MassGetQueue") {
+        return false;
+    }
     let entity = intent.slot("entity_id").unwrap_or("");
     let domain = intent.slot("domain");
     if entity.starts_with("lock.") || domain == Some("lock") {
@@ -384,6 +387,10 @@ mod tests {
         assert!(requires_confirmation(&plan(Intent::new("HassTurnOff").with("entity_id", "cover.wohnzimmer_rollo"))));
         assert!(requires_confirmation(&plan(Intent::new("HassTurnOff").with("area", "wohnzimmer").with("domain", "switch"))));
         assert!(!requires_confirmation(&plan(Intent::new("HassTurnOn").with("entity_id", "cover.wohnzimmer_rollo"))));
+        assert!(!requires_confirmation(&plan(
+            Intent::new("HassClimateGetTemperature").with("area", "schlafzimmer").with("domain", "climate")
+        )));
+        assert!(!requires_confirmation(&plan(Intent::new("HassGetState").with("area", "wohnzimmer").with("domain", "climate"))));
     }
 
     #[test]

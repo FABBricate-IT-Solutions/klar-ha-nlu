@@ -1,6 +1,6 @@
 use crate::home::overlay::{apply_overlay, load_overlay};
 use crate::home::snapshot::{ingest, HomeSnapshot, SnapshotError};
-use crate::io::auth::writes_allowed;
+use crate::io::auth::home_writes_allowed;
 use crate::io::limits::MAX_HOME_SNAPSHOT_BYTES;
 use crate::io::state::AppState;
 use crate::types::HomeGraph;
@@ -29,7 +29,7 @@ async fn api_home(
     headers: HeaderMap,
     Json(body): Json<HomeSnapshot>,
 ) -> Result<Json<HomeAck>, StatusCode> {
-    if !writes_allowed(Some(peer), &headers, &state.token) {
+    if !home_writes_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
     let ingested = match ingest(body) {
@@ -108,5 +108,45 @@ mod tests {
         .expect("snapshot json");
         let err = api_home(State(state), ConnectInfo("127.0.0.1:9".parse().unwrap()), HeaderMap::new(), Json(body)).await.unwrap_err();
         assert_eq!(err, StatusCode::BAD_REQUEST);
+    }
+
+    #[tokio::test]
+    async fn supervisor_snapshot_without_token_is_accepted() {
+        let dir = std::env::temp_dir().join(format!("klar-home-sync-sup-{}", std::process::id()));
+        let state = AppState::new(
+            LoadedHome { graph: HomeGraph::default(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            dir,
+            None,
+        );
+        let body = serde_json::from_value::<HomeSnapshot>(json!({
+            "schema_version": HOME_SCHEMA_VERSION,
+            "entities": [{"entity_id": "light.living", "name": "Living", "area_id": "living"}],
+            "areas": [{"id": "living", "name": "Wohnzimmer"}],
+            "assist": ["light.living"]
+        }))
+        .expect("snapshot json");
+        let ack = api_home(State(state.clone()), ConnectInfo("172.30.32.1:9".parse().unwrap()), HeaderMap::new(), Json(body))
+            .await
+            .expect("accepted")
+            .0;
+        assert_eq!(ack.entities, 1);
+        assert!(state.live_sync.load(Ordering::Relaxed));
+    }
+
+    #[tokio::test]
+    async fn lan_snapshot_without_token_is_rejected() {
+        let dir = std::env::temp_dir().join(format!("klar-home-sync-lan-{}", std::process::id()));
+        let state = AppState::new(
+            LoadedHome { graph: HomeGraph::default(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            dir,
+            None,
+        );
+        let body = serde_json::from_value::<HomeSnapshot>(json!({
+            "schema_version": HOME_SCHEMA_VERSION,
+            "entities": [{"entity_id": "light.living", "name": "Living", "area_id": "living"}]
+        }))
+        .expect("snapshot json");
+        let err = api_home(State(state), ConnectInfo("10.0.0.8:9".parse().unwrap()), HeaderMap::new(), Json(body)).await.unwrap_err();
+        assert_eq!(err, StatusCode::UNAUTHORIZED);
     }
 }

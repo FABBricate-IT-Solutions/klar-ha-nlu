@@ -291,6 +291,20 @@ fn named_ceiling_does_not_expand_to_every_ceiling() {
 }
 
 #[test]
+fn area_climate_query_executes_without_confirm() {
+    let home = default_home();
+    let outcome = parse_de("Wie warm ist es im Schlafzimmer", &home, &mut Session::new());
+    assert!(matches!(outcome.decision, ParseDecision::Execute), "{outcome:#?}");
+    assert!(outcome.plan.as_ref().is_some_and(|plan| {
+        plan.steps.iter().any(|step| {
+            matches!(step.intent.name.as_str(), "HassClimateGetTemperature" | "HassGetState")
+                && (step.intent.slot("area") == Some("schlafzimmer")
+                    || step.intent.slot("entity_id").is_some_and(|id| id.starts_with("climate.")))
+        })
+    }));
+}
+
+#[test]
 fn garage_close_keeps_the_close_step() {
     let home = family_home();
     let outcome = nlu::parse(

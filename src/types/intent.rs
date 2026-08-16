@@ -62,6 +62,13 @@ impl Intent {
         self
     }
 
+    pub fn with_set(mut self, name: impl Into<String>, value: impl Into<String>) -> Self {
+        let name = name.into();
+        self.slots.retain(|slot| slot.name != name);
+        self.slots.push(Slot { name, value: value.into() });
+        self
+    }
+
     pub fn slot(&self, name: &str) -> Option<&str> {
         self.slots.iter().find(|s| s.name == name).map(|s| s.value.as_str())
     }
