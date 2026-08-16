@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.24](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.23...2026.8.24) - 2026-08-16
+
+### Features
+
+- harden voice matching for ASR errors ([e99b683](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e99b6830008468f6392db9a9e18844f94ac99e9b))
+
+### Other
+
+- Merge pull request #73 from FABBricate-IT-Solutions/feat/asr-fuzzy-matching ([f428df7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f428df71421e0ed4b8164abd3116a76018fa8be2))
+
 ## [2026.8.23](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.22...2026.8.23) - 2026-08-16
 
 
