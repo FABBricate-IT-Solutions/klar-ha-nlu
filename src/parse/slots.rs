@@ -411,7 +411,10 @@ mod tests {
             assert!(!result.clarify, "{sentence}: {result:?}");
             assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
             assert_eq!(result.intents[0].slot("entity_id"), Some(entity.entity_id.as_str()), "{sentence}: {result:?}");
-            assert_eq!(result.intents[0].slot("item"), Some("milch").filter(|_| sentence.starts_with("Füge")).or(Some("milk")));
+            assert_eq!(
+                result.intents[0].slot("item"),
+                sentence.starts_with("Füge").then_some("milch").or(Some("milk"))
+            );
         }
     }
 
