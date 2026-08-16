@@ -211,9 +211,15 @@ def _evidence(value: Any, path: str) -> None:
 
 def _trace(value: Any) -> None:
     trace = _mapping(value, "trace")
-    _keys(trace, {"stages", "discarded"}, "trace")
+    _keys(trace, {"stages", "discarded", "tokens", "normalized"}, "trace", optional={"tokens", "normalized"})
     _list(trace.get("stages"), "trace.stages", MAX_TRACE_STAGES, _stage)
     _list(trace.get("discarded"), "trace.discarded", MAX_TRACE_DISCARDED, _discarded)
+    tokens = trace.get("tokens")
+    if tokens is not None:
+        _list(tokens, "trace.tokens", MAX_TRACE_STAGES * 16, lambda item, path: _string(item, path, 64))
+    normalized = trace.get("normalized")
+    if normalized is not None:
+        _capped_string(normalized, "trace.normalized", MAX_DETAIL_CHARS)
 
 
 def _stage(value: Any, path: str) -> None:
