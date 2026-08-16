@@ -1,5 +1,6 @@
 use crate::home::{HomeStore, LoadedHome};
 use crate::io::bundle::{entry_from_parse, BundleStore};
+use crate::io::metrics::MetricsStore;
 use crate::session::Sessions;
 use crate::types::{CustomSentence, ParseResult, Settings};
 use std::path::PathBuf;
@@ -13,6 +14,7 @@ pub struct AppState {
     pub settings: Arc<Mutex<Settings>>,
     pub custom: Arc<Mutex<Vec<CustomSentence>>>,
     pub bundle: BundleStore,
+    pub metrics: Arc<MetricsStore>,
     pub data_dir: PathBuf,
     pub token: Option<String>,
 }
@@ -25,12 +27,14 @@ impl AppState {
             settings: Arc::new(Mutex::new(loaded.settings)),
             custom: Arc::new(Mutex::new(loaded.custom)),
             bundle: BundleStore::open(&data_dir),
+            metrics: Arc::new(MetricsStore::default()),
             data_dir,
             token,
         }
     }
 
     pub async fn record_parse(&self, source: &str, language: Option<&str>, result: &ParseResult) {
+        self.metrics.record(source, language, result);
         if !self.settings.lock().await.support_bundle {
             return;
         }

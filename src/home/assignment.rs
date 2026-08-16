@@ -85,7 +85,7 @@ pub struct TrafficRecent {
     pub chat: bool,
 }
 
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Default, Serialize)]
 pub struct Traffic {
     pub total: usize,
     pub by_source: BTreeMap<String, usize>,
@@ -113,7 +113,7 @@ pub struct Dashboard {
     pub traffic: Traffic,
 }
 
-pub fn build_dashboard(home: &HomeGraph, bundle: &[BundleEntry], dismissed: &[String]) -> Dashboard {
+pub fn build_dashboard(home: &HomeGraph, bundle: &[BundleEntry], dismissed: &[String], live_traffic: Traffic) -> Dashboard {
     let assignment: Vec<_> =
         home.entities.iter().filter(|entity| assist_visible(entity, home)).map(|entity| assignment_row(entity, home, dismissed)).collect();
     let high = assignment.iter().filter(|row| row.confidence == Confidence::High).count();
@@ -135,7 +135,7 @@ pub fn build_dashboard(home: &HomeGraph, bundle: &[BundleEntry], dismissed: &[St
         domains: domains(&assignment),
         rooms: rooms(home, &assignment),
         assignment,
-        traffic: traffic(bundle),
+        traffic: if live_traffic.total > 0 { live_traffic } else { traffic(bundle) },
     }
 }
 
@@ -366,7 +366,7 @@ mod tests {
     #[test]
     fn dashboard_counts_visible_entities() {
         let home = home();
-        let dash = build_dashboard(&home, &[], &[]);
+        let dash = build_dashboard(&home, &[], &[], Traffic::default());
         assert_eq!(dash.counts.assist, 3);
         assert_eq!(dash.counts.high + dash.counts.medium + dash.counts.low, dash.counts.assist);
         assert_eq!(dash.coverage.leftover, dash.counts.medium + dash.counts.low);

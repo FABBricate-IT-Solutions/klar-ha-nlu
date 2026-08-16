@@ -45,7 +45,7 @@ export function DashboardPage({
       <section className="grid three" style={{ marginBottom: 16 }}>
         <Kpi value={data.counts.assist} label={t.assistVisible} />
         <Kpi value={data.counts.high} label={t.certain} hot />
-        <Kpi value={data.counts.bundle} label={t.recordings} />
+        <Kpi value={data.traffic.total} label={t.processed} />
       </section>
 
       <section className="grid two">
