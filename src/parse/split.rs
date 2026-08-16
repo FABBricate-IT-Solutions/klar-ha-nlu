@@ -6,7 +6,12 @@ use crate::types::HomeGraph;
 /// Split a token stream into clauses. "Wohnzimmer und Küche" stays one clause
 /// unless a new action verb appears after the conjunction.
 pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
-    if phrase_spans_conj(tokens, home) {
+    if let Some(at) = protected_media_followup(tokens, home) {
+        let mut clauses = vec![tokens[..at].to_vec()];
+        clauses.extend(split_clauses(&tokens[at + 1..], home));
+        return clauses;
+    }
+    if protected_media_status(tokens) || phrase_spans_conj(tokens, home) {
         return vec![tokens.to_vec()];
     }
     if let Some(at) = split_two_targets(tokens) {
@@ -80,14 +85,52 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
     }
 }
 
+fn protected_media_followup(tokens: &[String], home: &HomeGraph) -> Option<usize> {
+    tokens.iter().enumerate().find_map(|(index, token)| {
+        if !is_conj(token) || conj_covered_by_name(tokens, home, index) || !protected_media_status(&tokens[..index]) {
+            return None;
+        }
+        let right = &tokens[index + 1..];
+        let actions = detect_actions(right);
+        let new_command =
+            actions.iter().any(|(_, action)| *action != Action::GetState) || (explicit_query_start(right) && !actions.is_empty());
+        new_command.then_some(index)
+    })
+}
+
+fn explicit_query_start(tokens: &[String]) -> bool {
+    tokens.first().is_some_and(|token| matches!(token.as_str(), "was" | "wie" | "ist" | "sind" | "what" | "whats" | "is" | "are" | "how"))
+}
+
+fn protected_media_status(tokens: &[String]) -> bool {
+    let question = tokens.iter().any(|token| matches!(token.as_str(), "was" | "wie" | "what" | "whats"));
+    let next = tokens.iter().any(|token| matches!(token.as_str(), "next" | "naechster" | "naechste" | "naechstes"));
+    let media = tokens
+        .iter()
+        .any(|token| matches!(token.as_str(), "queue" | "warteschlange" | "music" | "musik" | "song" | "track" | "lied" | "titel"));
+    has_phrase(tokens, &["kommt", "als", "naechstes"]) || has_phrase(tokens, &["wie", "laut"]) || (question && next && media)
+}
+
+fn has_phrase(tokens: &[String], phrase: &[&str]) -> bool {
+    tokens.windows(phrase.len()).any(|window| window.iter().map(String::as_str).eq(phrase.iter().copied()))
+}
+
 fn phrase_spans_conj(tokens: &[String], home: &HomeGraph) -> bool {
     let Some(at) = tokens.iter().position(|t| is_conj(t)) else {
         return false;
     };
+    conj_covered_by_name(tokens, home, at)
+}
+
+fn conj_covered_by_name(tokens: &[String], home: &HomeGraph, at: usize) -> bool {
     home.entities.iter().any(|ent| {
         name_covers_conj(&ent.name, tokens, at)
             || ent.aliases.iter().any(|alias| name_covers_conj(alias, tokens, at))
             || name_covers_conj(ent.entity_id.rsplit('.').next().unwrap_or(&ent.entity_id), tokens, at)
+    }) || home.areas.iter().any(|area| {
+        name_covers_conj(&area.name, tokens, at)
+            || name_covers_conj(&area.area_id, tokens, at)
+            || area.aliases.iter().any(|alias| name_covers_conj(alias, tokens, at))
     })
 }
 

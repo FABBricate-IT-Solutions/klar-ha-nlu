@@ -3,7 +3,7 @@ use crate::home::policy::is_infra;
 use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
 use crate::parse::action::Action;
-use crate::parse::normalize::compact;
+use crate::parse::normalize::{compact, fold_umlaut};
 use crate::parse::resolve::Resolved;
 use crate::parse::slots::ClauseOut;
 use crate::session::Session;
@@ -18,48 +18,48 @@ pub(crate) fn media_clause(
     number: Option<i32>,
     resolved: &Resolved,
 ) -> Option<ClauseOut> {
-    if let Some(intent) = status_intent(tokens, raw, home, session, resolved) {
-        return Some(ClauseOut::Intents(vec![intent]));
+    let intent = status_intent(tokens)
+        .or_else(|| volume_intent(tokens, session, number))
+        .or_else(|| transport_intent(tokens, action))
+        .or_else(|| favorite_intent(tokens))
+        .or_else(|| transfer_intent(tokens, home, session))
+        .or_else(|| play_intent(tokens, raw, home, action, resolved))?;
+    let mass_only = matches!(intent.name.as_str(), "MassPlayMedia" | "MassTransferQueue" | "MassFavorite" | "MassGetQueue");
+    let transfer = intent.name == "MassTransferQueue";
+    if transfer && (intent.slot("source_player").is_none() || !explicit_destination(raw, home, resolved)) {
+        return Some(ClauseOut::Intents(Vec::new()));
     }
-    if let Some(intent) = volume_intent(tokens, home, session, number, resolved) {
-        return Some(ClauseOut::Intents(vec![intent]));
+    let allow_session_media = !matches!(intent.name.as_str(), "HassMediaSearchAndPlay" | "MassPlayMedia" | "MassTransferQueue");
+    let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only) else {
+        return Some(ClauseOut::Intents(Vec::new()));
+    };
+    if transfer && intent.slot("source_player") == Some(target.entity_id.as_str()) {
+        return Some(ClauseOut::Intents(Vec::new()));
     }
-    if let Some(intent) = transport_intent(tokens, home, session, action, resolved) {
-        return Some(ClauseOut::Intents(vec![intent]));
-    }
-    if let Some(intent) = favorite_intent(tokens, home, session, resolved) {
-        return Some(ClauseOut::Intents(vec![intent]));
-    }
-    if let Some(intent) = transfer_intent(tokens, home, session, resolved) {
-        return Some(ClauseOut::Intents(vec![intent]));
-    }
-    play_intent(tokens, raw, home, session, action, resolved).map(|intent| ClauseOut::Intents(vec![intent]))
+    Some(ClauseOut::Intents(vec![intent.with("entity_id", &target.entity_id)]))
 }
 
-fn status_intent(tokens: &[String], raw: &[String], home: &HomeGraph, session: &Session, resolved: &Resolved) -> Option<Intent> {
-    let status = if queue_status(tokens) || queue_status(raw) {
+fn status_intent(tokens: &[String]) -> Option<Intent> {
+    let status = if queue_status(tokens) {
         "queue"
-    } else if volume_status(tokens) || volume_status(raw) {
+    } else if volume_status(tokens) {
         "volume"
-    } else if mute_status(tokens) || mute_status(raw) {
+    } else if mute_status(tokens) {
         "mute"
-    } else if now_playing_status(tokens) || now_playing_status(raw) {
+    } else if now_playing_status(tokens) {
         "now_playing"
-    } else if player_status(tokens) || player_status(raw) {
+    } else if player_status(tokens) {
         "player"
     } else {
         return None;
     };
-    let mut intent = if status == "queue" { Intent::new("MassGetQueue") } else { Intent::new("HassGetState") }.with("media_status", status);
-    add_target_strict(&mut intent, target_player(home, session, resolved, true), resolved, session);
-    Some(intent)
+    Some(if status == "queue" { Intent::new("MassGetQueue") } else { Intent::new("HassGetState") }.with("media_status", status))
 }
 
-fn volume_intent(tokens: &[String], home: &HomeGraph, session: &Session, number: Option<i32>, resolved: &Resolved) -> Option<Intent> {
-    let target = target_player(home, session, resolved, false);
+fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> Option<Intent> {
     let session_media =
         session.last_domains().any(|d| d == "media_player") || session.last_entities().any(|id| id.starts_with("media_player."));
-    let mut intent = if let Some(n) = number.filter(|_| has_volume_word(tokens) || session_media) {
+    let intent = if let Some(n) = number.filter(|_| has_volume_word(tokens) || session_media) {
         Intent::new("HassSetVolume").with("volume_level", n.clamp(0, 100).to_string())
     } else if any(tokens, &["lauter", "louder", "hoch"]) {
         Intent::new("HassSetVolumeRelative").with("volume_step", "up")
@@ -72,11 +72,10 @@ fn volume_intent(tokens: &[String], home: &HomeGraph, session: &Session, number:
     } else {
         return None;
     };
-    add_target(&mut intent, target, resolved);
     Some(intent)
 }
 
-fn transport_intent(tokens: &[String], home: &HomeGraph, session: &Session, action: Action, resolved: &Resolved) -> Option<Intent> {
+fn transport_intent(tokens: &[String], action: Action) -> Option<Intent> {
     let name = if matches!(action, Action::MediaPause) {
         "HassMediaPause"
     } else if any(tokens, &["vorheriges", "vorheriger", "previous", "zurueck"]) && media_context(tokens) {
@@ -88,27 +87,35 @@ fn transport_intent(tokens: &[String], home: &HomeGraph, session: &Session, acti
     } else {
         return None;
     };
-    let mut intent = Intent::new(name);
-    add_target(&mut intent, target_player(home, session, resolved, false), resolved);
-    Some(intent)
+    Some(Intent::new(name))
 }
 
-fn play_intent(
-    tokens: &[String],
-    raw: &[String],
-    home: &HomeGraph,
-    session: &Session,
-    action: Action,
-    resolved: &Resolved,
-) -> Option<Intent> {
+pub(crate) fn media_transport_form(tokens: &[String], action: Action) -> bool {
+    matches!(action, Action::MediaPause | Action::MediaPlay | Action::MediaNext | Action::MediaMute)
+        || (tokens.iter().any(|token| {
+            matches!(
+                token.as_str(),
+                "pause"
+                    | "pausiere"
+                    | "pausieren"
+                    | "naechster"
+                    | "naechste"
+                    | "naechstes"
+                    | "vorheriger"
+                    | "vorheriges"
+                    | "resume"
+                    | "unpause"
+            )
+        }) && catalog().any(tokens, &catalog().media_nouns))
+}
+
+fn play_intent(tokens: &[String], raw: &[String], home: &HomeGraph, action: Action, resolved: &Resolved) -> Option<Intent> {
     if !matches!(action, Action::MediaPlay) && !any(tokens, &["spiel", "spiele", "hoere", "hoer", "play", "listen", "queue"]) {
         return None;
     }
     let media = media_request(raw, home, resolved)?;
     if media.media_id.is_empty() {
-        let mut intent = Intent::new("HassMediaUnpause");
-        add_target_strict(&mut intent, target_player(home, session, resolved, true), resolved, session);
-        return Some(intent);
+        return Some(Intent::new("HassMediaUnpause"));
     }
     let mut intent = if media.needs_mass {
         Intent::new("MassPlayMedia").with("media_id", media.media_id)
@@ -127,30 +134,28 @@ fn play_intent(
     if media.radio_mode {
         intent = intent.with("radio_mode", "true");
     }
-    add_target_strict(&mut intent, target_player(home, session, resolved, true), resolved, session);
     Some(intent)
 }
 
-fn favorite_intent(tokens: &[String], home: &HomeGraph, session: &Session, resolved: &Resolved) -> Option<Intent> {
+fn favorite_intent(tokens: &[String]) -> Option<Intent> {
     if !(any(tokens, &["favorisiere", "favorisieren", "favorite", "gefällt", "gefaellt"])
         || any(tokens, &["like"]) && media_context(tokens))
     {
         return None;
     }
-    let mut intent = Intent::new("MassFavorite");
-    add_target(&mut intent, target_player(home, session, resolved, false), resolved);
-    Some(intent)
+    Some(Intent::new("MassFavorite"))
 }
 
-fn transfer_intent(tokens: &[String], home: &HomeGraph, session: &Session, resolved: &Resolved) -> Option<Intent> {
+fn transfer_intent(tokens: &[String], home: &HomeGraph, session: &Session) -> Option<Intent> {
     if !any(tokens, &["verschiebe", "move", "transfer"]) || !catalog().any(tokens, &catalog().media_nouns) {
         return None;
     }
     let mut intent = Intent::new("MassTransferQueue");
-    if let Some(src) = session.last_entities().find(|id| id.starts_with("media_player.")) {
+    if let Some(src) =
+        session.last_entities().find(|id| home.entities.iter().any(|entity| entity.entity_id == **id && eligible_mass_player(entity, home)))
+    {
         intent = intent.with("source_player", src);
     }
-    add_target(&mut intent, target_player(home, session, resolved, false), resolved);
     Some(intent)
 }
 
@@ -242,6 +247,8 @@ fn skip_media_word(word: &str, home: &HomeGraph, resolved: &Resolved) -> bool {
         )
         || media_type_word(word).is_some()
         || resolved.areas.iter().any(|area| area_word(word, area, home))
+        || resolved.entities.iter().any(|entity| entity_word(word, entity))
+        || resolved.ambiguous.iter().any(|entity| entity_word(word, entity))
 }
 
 fn media_type(words: &[String]) -> Option<&'static str> {
@@ -261,61 +268,129 @@ fn media_type_word(word: &str) -> Option<&'static str> {
     }
 }
 
-fn target_player<'a>(home: &'a HomeGraph, session: &'a Session, resolved: &'a Resolved, strict_area: bool) -> Option<&'a EntityRec> {
-    if let Some(entity) = resolved.entities.iter().find(|e| is_music_assistant_player(e)) {
-        return Some(entity);
+fn target_player<'a>(
+    tokens: &[String],
+    home: &'a HomeGraph,
+    session: &Session,
+    resolved: &Resolved,
+    allow_session_media: bool,
+    mass_only: bool,
+) -> Option<&'a EntityRec> {
+    let players = if mass_only { mass_players(home) } else { music_players(home) };
+    let resolved_ids: Vec<&str> = resolved
+        .entities
+        .iter()
+        .chain(&resolved.ambiguous)
+        .filter(|entity| eligible_media_player(entity, home) && explicitly_named(tokens, entity, home))
+        .map(|entity| entity.entity_id.as_str())
+        .collect();
+    if !resolved_ids.is_empty() {
+        let candidates: Vec<&EntityRec> = home
+            .entities
+            .iter()
+            .filter(|entity| resolved_ids.contains(&entity.entity_id.as_str()))
+            .filter(|entity| !mass_only || eligible_mass_player(entity, home))
+            .collect();
+        return select_player(&candidates, session);
     }
-    if let Some(entity) =
-        resolved.areas.first().and_then(|area| music_players(home).into_iter().find(|e| e.area.as_deref() == Some(area.as_str())))
-    {
-        return Some(entity);
+    match resolved.areas.as_slice() {
+        [area] => return select_area_player(&players, area, session),
+        [] => {}
+        _ => return None,
     }
-    if let Some(entity) =
-        session.preferred_area.as_deref().and_then(|area| music_players(home).into_iter().find(|e| e.area.as_deref() == Some(area)))
-    {
-        return Some(entity);
+    if let Some(area) = session.preferred_area.as_deref() {
+        return select_area_player(&players, area, session);
     }
-    if strict_area && (session.preferred_area.is_some() || !resolved.areas.is_empty()) {
-        return None;
+    if allow_session_media {
+        if let Some(entity) = session
+            .last_entities()
+            .find_map(|id| home.entities.iter().find(|entity| entity.entity_id == id && eligible_media_player(entity, home)))
+        {
+            return Some(entity);
+        }
     }
-    session
-        .last_entities()
-        .find_map(|id| home.entities.iter().find(|e| e.entity_id == id && is_music_player(e)))
-        .or_else(|| session.last_entities().find_map(|id| home.entities.iter().find(|e| e.entity_id == id && e.domain == "media_player")))
-        .or_else(|| resolved.entities.iter().find(|e| e.domain == "media_player"))
-        .or_else(|| home.entities.iter().find(|e| is_music_assistant_player(e) && e.tags.iter().any(|tag| compact(tag) == "preferred")))
-        .or_else(|| single_music_player(home))
-}
-
-fn add_target(intent: &mut Intent, target: Option<&EntityRec>, resolved: &Resolved) {
-    if let Some(entity) = target {
-        *intent = intent.clone().with("entity_id", &entity.entity_id);
-    } else if let Some(area) = resolved.areas.first() {
-        *intent = intent.clone().with("area", area);
-    }
-}
-
-fn add_target_strict(intent: &mut Intent, target: Option<&EntityRec>, resolved: &Resolved, session: &Session) {
-    if let Some(entity) = target {
-        *intent = intent.clone().with("entity_id", &entity.entity_id);
-    } else if let Some(area) = resolved.areas.first().or(session.preferred_area.as_ref()) {
-        *intent = intent.clone().with("area", area);
-    }
+    select_player(&players, session)
 }
 
 fn music_players(home: &HomeGraph) -> Vec<&EntityRec> {
-    let players: Vec<&EntityRec> =
-        home.entities.iter().filter(|e| assist_visible(e, home) && !is_infra(e) && is_music_assistant_player(e)).collect();
-    if players.is_empty() {
-        home.entities.iter().filter(|e| assist_visible(e, home) && !is_infra(e) && is_music_player(e)).collect()
-    } else {
-        players
-    }
+    home.entities.iter().filter(|entity| eligible_music_player(entity, home)).collect()
 }
 
-fn single_music_player(home: &HomeGraph) -> Option<&EntityRec> {
-    let players = music_players(home);
-    (players.len() == 1).then(|| players[0])
+fn mass_players(home: &HomeGraph) -> Vec<&EntityRec> {
+    home.entities.iter().filter(|entity| eligible_mass_player(entity, home)).collect()
+}
+
+fn eligible_music_player(entity: &EntityRec, home: &HomeGraph) -> bool {
+    assist_visible(entity, home) && !is_infra(entity) && (is_music_assistant_player(entity) || is_music_player(entity))
+}
+
+fn eligible_mass_player(entity: &EntityRec, home: &HomeGraph) -> bool {
+    assist_visible(entity, home) && !is_infra(entity) && is_music_assistant_player(entity)
+}
+
+fn eligible_media_player(entity: &EntityRec, home: &HomeGraph) -> bool {
+    entity.domain == "media_player" && assist_visible(entity, home) && !is_infra(entity)
+}
+
+fn explicitly_named(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    let media_player_phrase = has_phrase(tokens, &["media", "player"]);
+    media_player_phrase
+        || tokens.iter().any(|token| {
+            entity_word(token, entity)
+                && !matches!(
+                    token.as_str(),
+                    "music"
+                        | "musik"
+                        | "media"
+                        | "playback"
+                        | "song"
+                        | "track"
+                        | "titel"
+                        | "lied"
+                        | "radio"
+                        | "playlist"
+                        | "wiedergabeliste"
+                )
+                && !home.areas.iter().any(|area| area_word(token, &area.area_id, home))
+        })
+}
+
+fn explicit_destination(tokens: &[String], home: &HomeGraph, resolved: &Resolved) -> bool {
+    tokens.iter().enumerate().filter(|(_, token)| matches!(token.as_str(), "to" | "nach" | "in" | "ins" | "zum" | "zur")).any(
+        |(index, _)| {
+            let tail = &tokens[index + 1..];
+            let segment = tail.split(|token| catalog().is_conj(token)).next().unwrap_or(tail);
+            let area = resolved
+                .areas
+                .iter()
+                .filter(|_| resolved.areas.len() == 1)
+                .any(|area| segment.iter().any(|word| area_word(word, area, home)));
+            let entity = resolved
+                .entities
+                .iter()
+                .chain(&resolved.ambiguous)
+                .filter(|candidate| eligible_mass_player(candidate, home))
+                .any(|candidate| segment.iter().any(|word| entity_word(word, candidate)));
+            area || entity
+        },
+    )
+}
+
+fn select_area_player<'a>(players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {
+    let candidates: Vec<&EntityRec> = players.iter().copied().filter(|player| player.area.as_deref() == Some(area)).collect();
+    select_player(&candidates, session)
+}
+
+fn select_player<'a>(players: &[&'a EntityRec], session: &Session) -> Option<&'a EntityRec> {
+    if players.len() == 1 {
+        return players.first().copied();
+    }
+    let preferred: Vec<&EntityRec> =
+        players.iter().copied().filter(|player| player.tags.iter().any(|tag| compact(tag) == "preferred")).collect();
+    if preferred.len() == 1 {
+        return preferred.first().copied();
+    }
+    session.last_entities().find_map(|id| players.iter().copied().find(|player| player.entity_id == id))
 }
 
 fn has_volume_word(tokens: &[String]) -> bool {
@@ -387,8 +462,20 @@ fn is_question(tokens: &[String]) -> bool {
 
 fn area_word(word: &str, area_id: &str, home: &HomeGraph) -> bool {
     home.areas.iter().find(|area| area.area_id == area_id).is_some_and(|area| {
-        compact(&area.name) == compact(word) || area.area_id == word || area.aliases.iter().any(|alias| compact(alias) == compact(word))
+        label_has_word(&area.name, word)
+            || label_has_word(&area.area_id, word)
+            || area.aliases.iter().any(|alias| label_has_word(alias, word))
     })
+}
+
+fn entity_word(word: &str, entity: &EntityRec) -> bool {
+    let suffix = entity.entity_id.rsplit('.').next().unwrap_or(&entity.entity_id);
+    label_has_word(&entity.name, word) || label_has_word(suffix, word) || entity.aliases.iter().any(|alias| label_has_word(alias, word))
+}
+
+fn label_has_word(label: &str, word: &str) -> bool {
+    let folded = fold_umlaut(label);
+    folded.split(|c: char| !c.is_alphanumeric()).any(|part| part == word)
 }
 
 pub(crate) fn media_target_ids(home: &HomeGraph, area: &str) -> Vec<String> {

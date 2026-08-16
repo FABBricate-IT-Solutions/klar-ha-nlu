@@ -147,12 +147,82 @@ class SpeechTests(unittest.TestCase):
         self.assertIn("30 percent", spoken)
         self.assertIn("muted", spoken)
 
-    def test_queue_speech_uses_response_items(self) -> None:
+    def test_media_status_without_player_does_not_describe_room_light(self) -> None:
+        handled = _States([_State("light.wohnzimmer", "on", "Wohnzimmer Licht")])
+        item = {
+            "name": "HassGetState",
+            "slots": [
+                {"name": "area", "value": "wohnzimmer"},
+                {"name": "media_status", "value": "now_playing"},
+            ],
+        }
+        spoken = speech.from_handled(handled, "de", item)
+        self.assertIsNone(spoken)
+
+    def test_queue_speech_empty(self) -> None:
+        state = _State("media_player.wohnzimmer_2", "idle", "Living Room")
+        self.assertEqual(
+            speech.queue_speech({"items": []}, state, "en"),
+            "The queue is empty.",
+        )
+
+    def test_queue_speech_one_item(self) -> None:
+        state = _State("media_player.wohnzimmer_2", "idle", "Living Room")
+        spoken = speech.queue_speech({"items": [{"name": "B"}]}, state, "en")
+        self.assertEqual(spoken, "Next is B.")
+
+    def test_queue_speech_multiple_items(self) -> None:
         state = _State("media_player.wohnzimmer_2", "playing", "Living Room", media_title="A", media_artist="Artist")
         response = {"items": [{"name": "A", "artist": "Artist"}, {"name": "B"}, {"name": "C"}]}
         spoken = speech.queue_speech(response, state, "en")
         self.assertIn("Now playing A by Artist", spoken)
         self.assertIn("Next is B", spoken)
+        self.assertIn("Then C", spoken)
+        self.assertEqual(spoken.count("A by Artist"), 1)
+
+    def test_set_volume_speech_is_specific(self) -> None:
+        item = {
+            "name": "HassSetVolume",
+            "slots": [
+                {"name": "entity_id", "value": "media_player.wohnzimmer"},
+                {"name": "name", "value": "Wohnzimmer"},
+                {"name": "volume_level", "value": "35"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertEqual(spoken, "Die Lautstärke von Wohnzimmer ist auf 35 Prozent.")
+
+    def test_relative_volume_speech_names_direction(self) -> None:
+        item = {
+            "name": "HassSetVolumeRelative",
+            "slots": [
+                {"name": "entity_id", "value": "media_player.wohnzimmer"},
+                {"name": "name", "value": "Wohnzimmer"},
+                {"name": "volume_step", "value": "down"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertIn("verringert", spoken or "")
+        self.assertNotIn("HassSetVolumeRelative", spoken or "")
+
+    def test_transport_actions_have_clean_speech(self) -> None:
+        expected = {
+            "HassMediaPause": "pausiert",
+            "HassMediaNext": "nächste",
+            "HassMediaPrevious": "vorherige",
+        }
+        for name, phrase in expected.items():
+            with self.subTest(name=name):
+                item = {
+                    "name": name,
+                    "slots": [
+                        {"name": "entity_id", "value": "media_player.wohnzimmer"},
+                        {"name": "name", "value": "Wohnzimmer"},
+                    ],
+                }
+                spoken = speech.from_handled(None, "de", item)
+                self.assertIn(phrase, spoken or "")
+                self.assertNotIn(name, spoken or "")
 
 
 class _State:
