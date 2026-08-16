@@ -15,6 +15,7 @@ export const de = {
   certain: "sicher",
   needsWork: "braucht Arbeit",
   recordings: "Aufzeichnungen",
+  processed: "verarbeitet",
   coverage: "Coverage",
   confidence: "Treffsicherheit",
   domains: "Domains",

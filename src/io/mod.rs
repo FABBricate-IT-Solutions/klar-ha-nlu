@@ -3,6 +3,7 @@ pub mod bootstrap;
 pub(crate) mod bundle;
 pub(crate) mod dashboard;
 pub mod limits;
+pub(crate) mod metrics;
 pub mod state;
 pub mod web;
 pub mod wyoming;

@@ -15,6 +15,7 @@ export const en = {
   certain: "certain",
   needsWork: "needs work",
   recordings: "Recordings",
+  processed: "processed",
   coverage: "Coverage",
   confidence: "Confidence",
   domains: "Domains",

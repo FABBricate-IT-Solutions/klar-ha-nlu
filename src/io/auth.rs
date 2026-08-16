@@ -34,8 +34,15 @@ pub fn trusted_peer(ip: IpAddr) -> bool {
     ip.is_loopback() || supervisor_peer(ip)
 }
 
+fn ingress_request(headers: &HeaderMap) -> bool {
+    headers.contains_key("x-ingress-path") || headers.contains_key("x-hass-source") || headers.contains_key("x-supervisor-ingress")
+}
+
 pub fn writes_allowed(peer: Option<SocketAddr>, headers: &HeaderMap, token: &Option<String>) -> bool {
     if peer.is_some_and(|addr| addr.ip().is_loopback()) {
+        return true;
+    }
+    if peer.is_some_and(|addr| supervisor_peer(addr.ip())) && ingress_request(headers) {
         return true;
     }
     let Some(expected) = token.as_deref().filter(|s| !s.is_empty()) else {
@@ -61,5 +68,19 @@ mod tests {
         assert!(token_eq("secret", "secret"));
         assert!(!token_eq("secret", "secre"));
         assert!(!token_eq("secret", "secret!"));
+    }
+
+    #[test]
+    fn supervisor_ingress_can_write_without_klar_token() {
+        let peer = "172.30.32.2:9".parse().unwrap();
+        let mut headers = HeaderMap::new();
+        headers.insert("x-ingress-path", "/api/hassio_ingress/token".parse().unwrap());
+        assert!(writes_allowed(Some(peer), &headers, &None));
+    }
+
+    #[test]
+    fn plain_supervisor_write_still_needs_token() {
+        let peer = "172.30.32.2:9".parse().unwrap();
+        assert!(!writes_allowed(Some(peer), &HeaderMap::new(), &None));
     }
 }

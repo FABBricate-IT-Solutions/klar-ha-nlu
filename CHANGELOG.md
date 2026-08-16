@@ -11,6 +11,8 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 ### Bug Fixes
 
 - keep graph nodes inside a scrollable room-based layout
+- allow authenticated Home Assistant ingress to save UI settings
+- count live Klar NLU traffic even when support-bundle recording is off
 
 ## [2026.8.21](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.20...2026.8.21) - 2026-08-16
 
