@@ -125,6 +125,18 @@ class ContractTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             contracts.validate_execute_result(fake_success)
 
+    def test_accepts_privacy_trace_tokens(self) -> None:
+        payload = _payload({"type": "chat"})
+        payload["trace"] = {
+            "stages": [],
+            "discarded": [],
+            "tokens": ["ist", "die", "kugel", "an"],
+            "normalized": "ist die kugel an",
+        }
+        validated = contracts.validate_v2_payload(payload)
+        self.assertEqual(validated["trace"]["tokens"], ["ist", "die", "kugel", "an"])
+        self.assertEqual(validated["trace"]["normalized"], "ist die kugel an")
+
     def test_rejects_oversized_candidates(self) -> None:
         payload = _payload({"type": "chat"})
         payload["candidates"] = [{}] * 65
