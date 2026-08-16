@@ -60,6 +60,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("freeze", VerbKind::Pause),
     ("playback", VerbKind::Playback),
     ("play", VerbKind::Play),
+    ("listen", VerbKind::Play),
     ("resume", VerbKind::Play),
     ("unpause", VerbKind::Play),
     ("skip", VerbKind::Next),

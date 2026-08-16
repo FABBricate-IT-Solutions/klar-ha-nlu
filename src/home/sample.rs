@@ -49,6 +49,7 @@ fn ent(id: &str, name: &str, domain: &str, area: &str, aliases: &[&str]) -> Enti
         entity_id: id.to_string(),
         name: name.to_string(),
         domain: domain.to_string(),
+        platform: None,
         area: Some(area.to_string()),
         aliases: aliases.iter().map(|s| s.to_string()).collect(),
         tags: Vec::new(),

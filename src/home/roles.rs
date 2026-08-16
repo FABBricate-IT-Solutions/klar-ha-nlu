@@ -88,6 +88,16 @@ pub fn is_light_like(entity: &EntityRec) -> bool {
     entity.domain == "light" || has_role(entity, "light")
 }
 
+pub fn is_music_assistant_player(entity: &EntityRec) -> bool {
+    entity.domain == "media_player" && entity.platform.as_deref() == Some("music_assistant")
+}
+
+pub fn is_music_player(entity: &EntityRec) -> bool {
+    is_music_assistant_player(entity)
+        || (entity.domain == "media_player"
+            && entity.tags.iter().any(|tag| matches!(compact(tag).as_str(), "musik" | "music" | "medien" | "media")))
+}
+
 pub fn matches_domain(entity: &EntityRec, domain: &str) -> bool {
     entity.domain == domain || has_role(entity, domain) || is_tv_switch(domain, entity)
 }
@@ -178,6 +188,7 @@ mod tests {
             entity_id: "climate.schlafzimmer_ac".into(),
             name: "Schlafzimmer AC".into(),
             domain: "climate".into(),
+            platform: None,
             area: Some("schlafzimmer".into()),
             aliases: vec!["Klimaanlage".into()],
             tags: vec!["Klima".into()],
@@ -186,6 +197,7 @@ mod tests {
             entity_id: "climate.better_thermostat_schlafzimmer".into(),
             name: "Better Thermostat Schlafzimmer".into(),
             domain: "climate".into(),
+            platform: None,
             area: Some("schlafzimmer".into()),
             aliases: vec!["Heizung Schlafzimmer".into()],
             tags: vec!["Klima".into()],
@@ -204,7 +216,15 @@ mod tests {
         let tags = expand_entity_tags(vec!["lbl_1".into()], &names);
         assert!(tags.iter().any(|t| t == "Licht"), "{tags:?}");
         assert!(has_role(
-            &EntityRec { entity_id: "switch.x".into(), name: "X".into(), domain: "switch".into(), area: None, aliases: Vec::new(), tags },
+            &EntityRec {
+                entity_id: "switch.x".into(),
+                name: "X".into(),
+                domain: "switch".into(),
+                platform: None,
+                area: None,
+                aliases: Vec::new(),
+                tags,
+            },
             "light"
         ));
     }

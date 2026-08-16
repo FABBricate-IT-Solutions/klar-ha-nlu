@@ -61,6 +61,7 @@ fn timer_haengt_fremden_helper_nicht_an() {
         entity_id: "timer.5min_warten".into(),
         name: "5min warten".into(),
         domain: "timer".into(),
+        platform: None,
         area: None,
         aliases: vec!["5min".into()],
         tags: Vec::new(),

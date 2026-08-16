@@ -123,8 +123,14 @@ fn expected_intent_names(cond: &Condition) -> Vec<&'static str> {
     if cond_attr(cond, "position").is_some() {
         return vec!["HassSetPosition"];
     }
+    if cond_attr(cond, "search_query").is_some() || cond_attr(cond, "media_id").is_some() {
+        return vec!["HassMediaSearchAndPlay", "MassPlayMedia"];
+    }
+    if cond_attr(cond, "volume_level").is_some() || cond_attr(cond, "volume_step").is_some() {
+        return vec!["HassSetVolume", "HassSetVolumeRelative"];
+    }
     if cond_attr(cond, "is_volume_muted").is_some() {
-        return vec!["HassMediaPlayerMute", "HassMediaUnpause", "HassTurnOn"];
+        return vec!["HassMediaPlayerMute", "HassMediaPlayerUnmute", "HassMediaUnpause", "HassTurnOn"];
     }
     if cond.kind == "query" {
         return vec!["HassGetState", "HassClimateGetTemperature"];
@@ -148,6 +154,7 @@ fn expected_intent_names(cond: &Condition) -> Vec<&'static str> {
     }
     match cond.state.as_deref() {
         Some("paused") => vec!["HassMediaPause"],
+        Some("playing") => vec!["HassMediaUnpause", "HassTurnOn"],
         Some("off") | Some("closed") | Some("unlocked") => vec!["HassTurnOff"],
         Some("open") | Some("locked") => vec!["HassTurnOn"],
         _ => vec!["HassTurnOn"],
@@ -230,6 +237,12 @@ fn slot_attrs_ok(intent: &Intent, cond: &Condition) -> bool {
     if let Some(t) = cond_attr(cond, "position") {
         let want = yaml_num(t);
         return intent.slot("position") == Some(want.as_str());
+    }
+    for key in ["search_query", "media_id", "media_type", "media_class", "artist", "enqueue", "radio_mode", "volume_step"] {
+        if let Some(t) = cond_attr(cond, key) {
+            let want = yaml_num(t);
+            return intent.slot(key) == Some(want.as_str());
+        }
     }
     true
 }

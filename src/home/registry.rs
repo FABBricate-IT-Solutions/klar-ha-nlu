@@ -26,6 +26,8 @@ struct RawEntity {
     has_entity_name: bool,
     #[serde(default)]
     area_id: Option<String>,
+    #[serde(default)]
+    platform: Option<String>,
     #[serde(default, deserialize_with = "strings_skip_null")]
     aliases: Vec<String>,
     #[serde(default)]
@@ -220,6 +222,7 @@ fn read_entities(
                 entity_id: e.entity_id,
                 name,
                 domain,
+                platform: e.platform,
                 area,
                 aliases: e.aliases,
                 tags: crate::home::roles::expand_entity_tags(e.labels, label_names),
@@ -296,6 +299,7 @@ mod tests {
             original_name: None,
             has_entity_name: false,
             area_id: None,
+            platform: None,
             aliases: vec![],
             labels: vec![],
             disabled_by: None,

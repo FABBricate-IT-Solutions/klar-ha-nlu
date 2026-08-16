@@ -24,6 +24,8 @@ pub struct ParseIn {
     pub language: Option<String>,
     /// Home Assistant option. Wins over the addon overlay for this request.
     pub personality: Option<crate::types::Personality>,
+    /// Area of the Assist satellite that heard the request.
+    pub preferred_area: Option<String>,
 }
 
 pub fn router(state: AppState) -> Router {
@@ -94,6 +96,7 @@ async fn api_parse(
         let mut sessions = state.sessions.lock().await;
         sessions.take(body.conversation_id.as_deref())
     };
+    session.preferred_area = body.preferred_area.clone();
     let result = parse(&body.text, &home, &mut session, &custom, &settings);
     state.sessions.lock().await.put(session);
     state.record_parse("http", body.language.as_deref(), &result).await;

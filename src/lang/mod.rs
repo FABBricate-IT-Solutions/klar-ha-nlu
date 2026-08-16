@@ -6,6 +6,7 @@
 mod catalog;
 mod de;
 mod de_pack;
+mod de_speech;
 mod en;
 mod en_pack;
 mod groups;

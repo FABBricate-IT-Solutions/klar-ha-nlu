@@ -19,6 +19,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import intent
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers import device_registry
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -179,7 +180,7 @@ class KlarConversationEntity(ConversationEntity):
     ) -> ConversationResult:
         pack = _pack(user_input.language, _enabled_packs(self._entry))
         payload = await self._parse(
-            user_input.text, user_input.conversation_id, pack
+            user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
         speech = engine_speech or _DONE[pack]
@@ -341,8 +342,19 @@ class KlarConversationEntity(ConversationEntity):
                 )
         return result
 
+    def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
+        registry = device_registry.async_get(self.hass)
+        for candidate in (device_id, satellite_id):
+            if not candidate:
+                continue
+            device = registry.async_get(str(candidate))
+            area = str(getattr(device, "area_id", "") or "") if device is not None else ""
+            if area:
+                return area
+        return None
+
     async def _parse(
-        self, text: str, conversation_id: str | None, language: str | None
+        self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/parse"
         pack = _pack(language, _enabled_packs(self._entry))
@@ -352,6 +364,8 @@ class KlarConversationEntity(ConversationEntity):
             "language": pack,
             "personality": self._personality(),
         }
+        if area := self._preferred_area(device_id, satellite_id):
+            body["preferred_area"] = area
         try:
             session = async_get_clientsession(self.hass)
             async with session.post(

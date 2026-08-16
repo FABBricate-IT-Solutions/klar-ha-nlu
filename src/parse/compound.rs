@@ -348,9 +348,12 @@ pub(crate) fn area_slots(
             LightAim::OccupiedId | LightAim::AreaLights | LightAim::Clarify => (None, Some(area.to_string()), Some("light".into())),
         };
     }
-    let id = domain
-        .filter(|d| matches!(*d, "climate" | "media_player" | "fan"))
-        .and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens));
+    let id = if domain == Some("media_player") {
+        let players = crate::parse::media::media_target_ids(home, area);
+        (players.len() == 1).then(|| players[0].clone())
+    } else {
+        domain.filter(|d| matches!(*d, "climate" | "fan")).and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens))
+    };
     (id, Some(area.to_string()), domain.map(str::to_string))
 }
 
