@@ -9,6 +9,7 @@ mod de_pack;
 mod de_speech;
 mod en;
 mod en_pack;
+mod fuzzy;
 mod groups;
 mod pack;
 mod speech;

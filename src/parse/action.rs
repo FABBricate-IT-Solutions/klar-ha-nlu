@@ -63,9 +63,17 @@ fn implied_domain(action: Action) -> Option<&'static str> {
 
 pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
     let cat = catalog();
+    let fuzzy = if tokens.iter().any(|token| cat.verb(token).is_some()) || !has_structural_anchor(tokens) {
+        None
+    } else {
+        let hits: Vec<(usize, VerbKind)> =
+            tokens.iter().enumerate().filter_map(|(index, token)| cat.fuzzy_verb(token).map(|kind| (index, kind))).collect();
+        (hits.len() == 1).then(|| hits[0])
+    };
     let mut found = Vec::new();
     for (i, t) in tokens.iter().enumerate() {
-        let action = match cat.verb(t) {
+        let verb = cat.verb(t).or_else(|| fuzzy.and_then(|(index, kind)| (index == i).then_some(kind)));
+        let action = match verb {
             Some(VerbKind::On) => Some(Action::On),
             Some(VerbKind::OnParticle) => on_action(tokens, i),
             Some(VerbKind::Open) => open_action(tokens),
@@ -149,6 +157,22 @@ pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
         }
     }
     found
+}
+
+fn has_structural_anchor(tokens: &[String]) -> bool {
+    let cat = catalog();
+    crate::parse::numbers::first_number(tokens).is_some()
+        || cat.any(tokens, &cat.light_nouns)
+        || cat.any(tokens, &cat.cover_nouns)
+        || cat.any(tokens, &cat.fan_nouns)
+        || cat.any(tokens, &cat.climate_nouns)
+        || cat.any(tokens, &cat.media_nouns)
+        || cat.any(tokens, &cat.lock_nouns)
+        || cat.any(tokens, &cat.timer_nouns)
+        || cat.any(tokens, &cat.list_nouns)
+        || cat.any(tokens, &cat.vacuum_nouns)
+        || cat.any(tokens, &cat.scene_nouns)
+        || cat.any(tokens, &cat.script_words)
 }
 
 pub(crate) fn is_query_token(tokens: &[String]) -> bool {

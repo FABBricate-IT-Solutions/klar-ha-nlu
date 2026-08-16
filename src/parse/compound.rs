@@ -4,6 +4,7 @@ use crate::home::policy::is_infra_light;
 use crate::home::policy::is_whole_home;
 use crate::lang::catalog;
 use crate::parse::action::Action;
+use crate::parse::fuzzy::{evidence, select_unique, Profile};
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq};
 use crate::types::{EntityRec, HomeGraph};
 use std::collections::HashSet;
@@ -38,7 +39,8 @@ pub fn expand_compounds(tokens: &[String], home: &HomeGraph) -> CompoundSplit {
 /// "Wohn und Esszimmer lichte aus" — short room token next to "und".
 fn expand_room_shorts(tokens: &[String], home: &HomeGraph) -> Vec<String> {
     let light_cmd = tokens.iter().any(|token| is_light_noun(token) || catalog().color(token).is_some());
-    if !light_cmd || !tokens.iter().any(|token| catalog().is_conj(token)) {
+    let exact_action = tokens.iter().any(|token| catalog().verb(token).is_some());
+    if !light_cmd || !exact_action || !tokens.iter().any(|token| catalog().is_conj(token)) {
         return tokens.to_vec();
     }
     tokens
@@ -71,7 +73,24 @@ fn expand_room_short(token: &str, home: &HomeGraph) -> Option<String> {
         })
         .map(|area| area.area_id.clone())
         .collect();
-    (hits.len() == 1).then(|| hits.into_iter().next()).flatten()
+    if hits.len() == 1 {
+        return hits.into_iter().next();
+    }
+    if !hits.is_empty() || token.len() < 6 {
+        return None;
+    }
+    let labels: Vec<(String, String)> = home
+        .areas
+        .iter()
+        .filter(|area| !is_whole_home(area))
+        .flat_map(|area| {
+            std::iter::once(compact(&area.area_id))
+                .chain(std::iter::once(compact(&area.name)))
+                .chain(area.aliases.iter().map(|alias| compact(alias)))
+                .map(|label| (area.area_id.clone(), label))
+        })
+        .collect();
+    select_unique(token, labels.iter().map(|(id, label)| (id.as_str(), label.as_str())), Profile::Target).map(|hit| hit.key.to_string())
 }
 
 fn area_already_named(token: &str, home: &HomeGraph) -> bool {
@@ -199,7 +218,24 @@ fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
         return false;
     }
     let mapped: Vec<String> = tokens.iter().map(|t| scene_token(t)).collect();
-    parts.iter().all(|p| mapped.iter().any(|t| t == p)) || (parts.len() == 1 && parts[0].len() > 5 && mapped.iter().any(|t| t == &parts[0]))
+    let allow_fuzzy = tokens.iter().any(|token| catalog().verb(token).is_some());
+    let mut repairs = 0;
+    parts.iter().all(|part| {
+        if mapped.iter().any(|token| token == part) {
+            return true;
+        }
+        if !allow_fuzzy {
+            return false;
+        }
+        let fuzzy = mapped
+            .iter()
+            .filter_map(|token| evidence(token, part, Profile::Target))
+            .max_by(|left, right| left.score.partial_cmp(&right.score).unwrap_or(std::cmp::Ordering::Equal));
+        if fuzzy.is_some() {
+            repairs += 1;
+        }
+        fuzzy.is_some() && repairs <= 1
+    })
 }
 
 fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {

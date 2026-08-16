@@ -61,6 +61,7 @@ def _devices() -> list[str]:
                 action_entity("light.schlafzimmer_decke", "off"),
                 [
                     "Deckenlampe aus",
+                    "Decknlampe aus",
                     "Mach die Deckenlampe aus",
                     "Schalt die Decke aus",
                     "Kannst du die Decke ausmachen",

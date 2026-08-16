@@ -80,6 +80,15 @@ def _syn_area() -> list[str]:
             speech_forbids=["percent", "?"],
         ),
         case(
+            "living_asr_on",
+            action_area("wohnzimmer", "light", "on"),
+            [
+                "Activte the living room light",
+                "Turn on the livng room light",
+            ],
+            forbid=GROUP_FORBID,
+        ),
+        case(
             "dining_white",
             action_color("area", "esszimmer", "white"),
             [

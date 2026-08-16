@@ -1,9 +1,9 @@
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, Action};
+use crate::parse::fuzzy::{select_unique, Profile};
 use crate::parse::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
 use crate::types::{known_intent, CustomSentence, Intent};
-use strsim::normalized_levenshtein;
 
 fn last_domain(session: &Session, prefix: &str) -> bool {
     session.last_domains().any(|d| d == prefix) || session.last_entities().any(|e| e.starts_with(&format!("{prefix}.")))
@@ -229,7 +229,7 @@ fn fixture_aliases(token: &str) -> Vec<&str> {
 pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSentence]) -> Option<Intent> {
     let blob = join_tokens(tokens);
     let folded = fold_umlaut(text);
-    let mut best: Option<(f64, &CustomSentence)> = None;
+    let mut candidates: Vec<(&CustomSentence, String)> = Vec::new();
     for c in custom {
         if !known_intent(&c.intent) {
             continue;
@@ -241,6 +241,9 @@ pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSenten
         if blob == phrase || folded == phrase {
             return Some(custom_to_intent(c));
         }
+        if !c.slots.is_empty() {
+            continue;
+        }
         let words: Vec<&str> = phrase.split_whitespace().filter(|w| !w.is_empty()).collect();
         if words.len() >= 2 && words.iter().all(|word| tokens.iter().any(|token| token == word)) {
             return Some(custom_to_intent(c));
@@ -248,12 +251,25 @@ pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSenten
         if phrase.chars().count() < 8 {
             continue;
         }
-        let score = normalized_levenshtein(&blob, &phrase);
-        if score > 0.92 && best.as_ref().is_none_or(|(s, _)| score > *s) {
-            best = Some((score, c));
+        if !protected_tokens_match(tokens, &words) {
+            continue;
         }
+        candidates.push((c, phrase));
     }
-    best.map(|(_, c)| custom_to_intent(c))
+    let hit =
+        select_unique(&blob, candidates.iter().map(|(candidate, phrase)| (candidate.phrase.as_str(), phrase.as_str())), Profile::Phrase)?;
+    candidates.iter().find(|(candidate, _)| candidate.phrase == hit.key).map(|(candidate, _)| custom_to_intent(candidate))
+}
+
+fn protected_tokens_match(tokens: &[String], phrase: &[&str]) -> bool {
+    let protected = |token: &str| catalog().number(token).is_some() || token.parse::<i32>().is_ok() || catalog().color(token).is_some();
+    let mut spoken: Vec<&str> = tokens.iter().map(String::as_str).filter(|token| protected(token)).collect();
+    let mut configured: Vec<&str> = phrase.iter().copied().filter(|token| protected(token)).collect();
+    spoken.sort_unstable();
+    spoken.dedup();
+    configured.sort_unstable();
+    configured.dedup();
+    spoken == configured
 }
 
 fn custom_to_intent(c: &CustomSentence) -> Intent {
@@ -285,6 +301,27 @@ mod tests {
         let tokens = vec!["filmabend".into()];
         let hit = match_custom(&tokens, "filmabend", &[row("filmabend", "HassTurnOn")]).expect("hit");
         assert_eq!(hit.name, "HassTurnOn");
+    }
+
+    #[test]
+    fn custom_fuzzy_match_requires_unique_whole_phrase() {
+        let tokens = vec!["starte".into(), "den".into(), "filmabent".into()];
+        let hit = match_custom(&tokens, "starte den filmabent", &[row("starte den filmabend", "HassTurnOn")]).expect("unique fuzzy hit");
+        assert_eq!(hit.name, "HassTurnOn");
+
+        let ambiguous = [row("starte den filmabend", "HassTurnOn"), row("starte den filmabenz", "HassTurnOff")];
+        assert!(match_custom(&tokens, "starte den filmabent", &ambiguous).is_none());
+    }
+
+    #[test]
+    fn custom_fuzzy_match_never_changes_protected_payloads() {
+        let tokens = vec!["stelle".into(), "heizung".into(), "auf".into(), "22".into()];
+        let mut slotted = row("stelle heizung auf 21", "HassClimateSetTemperature");
+        slotted.slots.insert("temperature".into(), "21".into());
+        assert!(match_custom(&tokens, "stelle heizung auf 22", std::slice::from_ref(&slotted)).is_none());
+        let contradictory = vec!["stelle".into(), "heizung".into(), "auf".into(), "21".into(), "statt".into(), "22".into()];
+        assert!(match_custom(&contradictory, "stelle heizung auf 21 statt 22", &[slotted]).is_none());
+        assert!(match_custom(&tokens, "stelle heizung auf 22", &[row("stelle heizung auf 21", "HassTurnOn")]).is_none());
     }
 
     #[test]

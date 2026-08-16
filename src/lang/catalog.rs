@@ -6,10 +6,10 @@ use std::collections::{HashMap, HashSet};
 pub struct Catalog {
     packs: Vec<&'static Pack>,
     pub langs: Vec<LangId>,
-    verbs: HashMap<&'static str, VerbKind>,
+    pub(super) verbs: HashMap<&'static str, VerbKind>,
     pub domain_map: HashMap<&'static str, &'static str>,
-    colors: HashMap<&'static str, &'static str>,
-    numbers: HashMap<&'static str, i32>,
+    pub(super) colors: HashMap<&'static str, &'static str>,
+    pub(super) numbers: HashMap<&'static str, i32>,
     pub number_styles: Vec<NumberStyle>,
     fixture_aliases: HashMap<&'static str, &'static [&'static str]>,
     group_clarify: Vec<GroupClarify>,
