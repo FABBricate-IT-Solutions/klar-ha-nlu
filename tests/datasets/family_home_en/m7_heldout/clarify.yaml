@@ -1,0 +1,8 @@
+- name: clarify_living
+  split: clarify
+  language: en
+  sentences:
+    - 'turn on the living room light'
+  nlu_expect:
+    clarify: true
+    intents: []

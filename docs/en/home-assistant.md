@@ -4,6 +4,8 @@
 
 Klar attaches to Assist as a conversation entity. HACS cannot start the Rust engine. The integration can: it downloads the matching GitHub Release into `.storage/klar_nlu/` and runs it on `127.0.0.1:10520`.
 
+V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the same release; a mixed pair will fail.
+
 ## Integration
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
@@ -116,20 +118,54 @@ Integration URL: `http://127.0.0.1:10520`. From source: `docker build -t klar-nl
 cargo run --release -- --config-dir /config
 ```
 
-The engine reads `.storage/core.entity_registry`, `core.device_registry`, `core.area_registry`, and the Assist expose list. Keep aliases and areas in HA — Klar has no second device database.
+The engine can read `.storage/core.entity_registry`, `core.device_registry`, `core.area_registry`, `core.floor_registry`, `core.label_registry`, and the Assist expose list. That path is the fallback for Wyoming-only or when the integration does not push. Keep aliases, areas, floors, and Assist exposure in HA — Klar has no second device database.
+
+## Registry sync (HA is the source of truth)
+
+The integration is the official sync path. After setup and on registry/expose updates (`entity`, `device`, `area`, `floor`, `label`, `exposed_entities`) it posts a versioned snapshot to `POST /api/v2/home`.
+
+```json
+{
+  "schema_version": "1",
+  "entities": [
+    {
+      "entity_id": "light.living",
+      "name": "Living ceiling",
+      "original_name": "Ceiling",
+      "has_entity_name": true,
+      "area_id": "living",
+      "device_id": "dev1",
+      "platform": "hue",
+      "aliases": ["ceiling"],
+      "labels": ["Light"],
+      "disabled": false
+    }
+  ],
+  "devices": [{"id": "dev1", "name": "Hue", "name_by_user": null, "area_id": "living"}],
+  "areas": [{"id": "living", "name": "Living room", "aliases": ["living"], "floor_id": "upper"}],
+  "floors": [{"floor_id": "upper", "name": "Upper floor", "aliases": ["upstairs"], "level": 1}],
+  "labels": [{"label_id": "lbl_1", "name": "Light"}],
+  "assist": ["light.living"]
+}
+```
+
+`schema_version` must be `"1"`. The engine validates the snapshot at the API boundary: unknown fields and invalid JSON are rejected with `422`, empty IDs, control characters, and schema errors with `400`, and oversized bodies or collections with `413`. None of these crash the process. Caps: 4096 entities, 2048 devices, 256 areas, 64 floors, 256 labels, 4096 Assist IDs, 32 aliases per item. `assist: null` means no expose filter; an array limits visible IDs.
+
+After a valid push, HA is the live source. The `.storage` file watcher no longer overwrites that graph. Overlay calibration (aliases, manual areas, preferred, infra) is still applied on top.
 
 ## Registry, Overlay, and Reload
 
-Klar builds one effective home graph at startup:
+Klar builds one effective home graph:
 
-1. Read HA registries from `--config-dir`: entities, devices, areas, labels, and the expose list.
-2. If the registries are missing, use the built-in sample home.
-3. Apply the overlay from `--config-dir`.
-4. If `--data-dir` exists and differs from `--config-dir`, apply the overlay from `--data-dir` on top.
+1. Use the live snapshot from the integration (`POST /api/v2/home`) when present.
+2. Otherwise read HA registries from `--config-dir`: entities, devices, areas, floors, labels, and the expose list.
+3. If the registries are missing, use the built-in sample home.
+4. Apply the overlay from `--config-dir`.
+5. If `--data-dir` exists and differs from `--config-dir`, apply the overlay from `--data-dir` on top.
 
 The overlay contains Klar UI calibration: aliases, manual areas, preferred devices, infrastructure filters, timer hints, settings, and custom sentences. In the add-on, `/config` is meant to be read-only and `/data` writable; with Cargo/Docker both can point at the same directory.
 
-Klar watches the HA registry files and reloads the home graph when they change. Settings and custom sentences are re-read from the overlays during that reload. Changes from the Klar UI are saved immediately and applied to the running `HomeStore`.
+Without live sync, Klar watches the HA registry files and reloads the home graph when they change. Settings and custom sentences are re-read from the overlays during that reload. Changes from the Klar UI are saved immediately and applied to the running `HomeStore`.
 
 ## Access and Token
 
@@ -143,4 +179,4 @@ HTTP accepts the token as `x-klar-token` or `Authorization: Bearer ...`. Wyoming
 
 ## Intents
 
-The integration executes the intent names Klar returns. Built-in Assist intents must be available in HA (they are). Custom sentences in Klar (`/api/custom`) can point at the same names or your own; custom names need a handler in HA.
+The integration executes only `decision.type == execute`. Confirm, clarify, and reject never call services. An execute plan runs in plan order through `intent.async_handle`. Each step reports success or error; partial failure is a first-class outcome (speech plus structured errors), not silent total success. Direct service calls are used only where HA has no native intent (Music Assistant, relative volume, mute). Custom sentences in Klar (`/api/custom`) can point at the same names or your own; custom names need a handler in HA.

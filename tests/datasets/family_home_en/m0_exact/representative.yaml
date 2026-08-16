@@ -1,0 +1,95 @@
+# M0 exact oracle frozen from verified engine output on 2026-08-16.
+# Positive sentences are selected from the checked-in family-home datasets.
+- name: exact_multi_intent
+  sentences:
+    - Turn off the powder room light and start the good morning scene
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+      - intent: HassTurnOn
+        slots: {entity_id: scene.good_morning, domain: scene}
+
+- name: exact_timer_with_setup
+  setup:
+    - {entity_id: timer.oven, minutes: 30}
+  world_expect:
+    - {entity_id: timer.oven, minutes: 30, seconds: 30}
+  sentences:
+    - Add 30 seconds to the oven timer
+  nlu_expect:
+    intents:
+      - intent: HassIncreaseTimer
+        slots: {entity_id: timer.oven, seconds: 30}
+
+- name: exact_timer_resume_preserves_duration
+  setup:
+    - {entity_id: timer.oven, state: paused, minutes: 20}
+  world_expect:
+    - {entity_id: timer.oven, state: active, minutes: 20}
+  sentences:
+    - Resume the oven timer
+  nlu_expect:
+    intents:
+      - intent: HassStartTimer
+        slots: {entity_id: timer.oven}
+
+- name: exact_todo_list
+  world_expect:
+    - {list_name: todo.chores, todo_item: apples}
+  sentences:
+    - Add apples to the Chores list
+  nlu_expect:
+    intents:
+      - intent: HassListAddItem
+        slots: {entity_id: todo.chores, item: apples}
+
+- name: exact_shopping_list
+  world_expect:
+    - {shopping_list_item: milk}
+  sentences:
+    - Add milk to the shopping list
+  nlu_expect:
+    intents:
+      - intent: HassListAddItem
+        slots: {item: milk, name: shopping_list}
+
+- name: exact_list_complete_from_setup
+  setup:
+    - {list_name: todo.chores, todo_item: bread}
+  world_expect:
+    - {list_name: todo.chores, todo_completed_item: bread}
+  sentences:
+    - Check bread off the Chores list
+  nlu_expect:
+    intents:
+      - intent: HassListCompleteItem
+        slots: {entity_id: todo.chores, item: bread}
+
+- name: exact_clarify
+  sentences:
+    - turn on the living room light
+  nlu_expect:
+    intents: []
+    clarify: true
+
+- name: exact_reject
+  sentences:
+    - What is the capital of France
+  nlu_expect:
+    intents: []
+    reject: true
+    clarify: false
+
+- name: exact_state_persistence
+  setup:
+    - {entity_id: light.entryway_light, brightness: 60}
+  world_expect:
+    - {entity_id: light.entryway_light, brightness: 12}
+  sentences:
+    - - What's the brightness of the Entryway Light?
+      - Set it to 12.
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {area: entryway, domain: light, brightness: 12}

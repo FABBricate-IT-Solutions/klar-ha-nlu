@@ -1,8 +1,9 @@
 use super::groups::{GroupClarify, LanguagePack as Pack, NumberStyle};
+use super::morphology::Morphology;
 use super::speech::Speech;
 use super::LangId;
+use crate::types::CustomSentence;
 use std::collections::{HashMap, HashSet};
-
 pub struct Catalog {
     packs: Vec<&'static Pack>,
     pub langs: Vec<LangId>,
@@ -134,6 +135,8 @@ pub struct Catalog {
     pub news_intro: &'static str,
     pub news_nudge: &'static str,
     pub news_done: &'static str,
+    pub morphology: Morphology,
+    pub pack_intents: Vec<CustomSentence>,
 }
 
 use super::verbs::VerbKind;
@@ -331,6 +334,8 @@ impl Catalog {
             news_intro: "",
             news_nudge: "",
             news_done: "",
+            morphology: Morphology::default(),
+            pack_intents: Vec::new(),
         }
     }
 
@@ -389,7 +394,10 @@ impl Catalog {
 
     pub fn color(&self, t: &str) -> Option<&'static str> {
         self.colors.get(t).copied().or_else(|| {
-            ["en", "em", "er", "es", "e"].iter().find_map(|suffix| t.strip_suffix(suffix).and_then(|stem| self.colors.get(stem)).copied())
+            self.morphology
+                .effective_color_suffixes()
+                .iter()
+                .find_map(|suffix| t.strip_suffix(suffix).and_then(|stem| self.colors.get(stem)).copied())
         })
     }
 

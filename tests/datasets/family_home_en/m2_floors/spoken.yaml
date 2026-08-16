@@ -1,0 +1,7 @@
+- name: upstairs_lights
+  sentences:
+    - Turn on the upstairs lights
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {floor: upper, domain: light}

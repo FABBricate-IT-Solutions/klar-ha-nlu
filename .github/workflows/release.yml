@@ -103,7 +103,7 @@ jobs:
           gh workflow run Security --ref "$branch"
           gh workflow run Validate --ref "$branch"
           echo "Actions cannot open PRs; waiting for required checks on ${sha}"
-          required=(rustfmt clippy test cargo-audit cargo-deny hassfest hacs)
+          required=(rustfmt clippy test release-gates cargo-audit cargo-deny hassfest hacs)
           deadline=$((SECONDS + 900))
           while (( SECONDS < deadline )); do
             payload="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${sha}/check-runs?per_page=100")"

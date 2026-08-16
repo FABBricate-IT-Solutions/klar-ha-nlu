@@ -10,59 +10,47 @@ Klar is a rule-based NLU. A sentence is tokenized, checked against word lists, a
 Text
   → fold_latin / tokenize
   → strip fillers (bitte, please, the, …)
-  → detect_actions          verb classes from the language packs
-  → split_clauses           und / and / then when a new verb appears
-  → resolve                 rooms and devices from the home graph
-  → fill_intent             HassTurnOn, HassLightSet, …
-  → speak                   short confirmation
+  → detect_actions / resolve / fill slots
+  → rank complete IntentPlans
+  → safety policy          execute / confirm / clarify / reject / chat
+  → ParseOutcome           plan only on execute
 ```
 
-In Home Assistant the spoken line can get a personality cue and, if enabled, an LLM rewrite (`custom_components/klar_nlu/refine.py`). The engine itself stays rule-based.
+In Home Assistant the spoken line can get a personality cue and, if enabled, an LLM rewrite (`custom_components/klar_nlu/refine.py`). The engine itself stays rule-based. Optional local semantic adapters may propose a typed plan after a ranking reject; they never execute devices.
 
-`parse()` in `src/parse/mod.rs` is the entry point. Before parsing, Klar binds the packs listed in `Settings.languages` (`de`, `en`, …).
-
-The entry point stays intentionally narrow:
-
-1. `preprocess` tokenizes and expands compound room/device words.
-2. `route_non_home` detects news, chit-chat, correction, and LLM fallback.
-3. `session_followups` handles yes/no, open clarifications, and custom sentences.
-4. `parse_clauses` splits multi-command utterances and runs clause policies.
-5. `fill_replay_or_need_target` fills follow-up targets or asks for a target.
+`nlu::parse` in `src/nlu/` is the entry point and returns `ParseOutcome` (`schema_version: "2.0"`). Before parsing, Klar binds the packs listed in `Settings.languages` (`de`, `en`, …). Confirm, clarify, and reject never serialize `plan` or `candidates`.
 
 ## Layers
 
 | Module | Role |
 |--------|------|
-| `src/types/` | Intent, settings, and home graph data types |
-| `src/lang/` | Per-language word lists, merged in the catalog |
+| `src/types/` | Intent, `ParseOutcome`, settings, and home graph data types |
+| `src/nlu/` | Candidate ranking, confidence/OOD/confirm policy, semantic adapters |
+| `src/lang/` | Per-language word lists, external packs, user overlays |
 | `src/home/` | Home graph loading, overlay, expose filtering, roles, and policy |
-| `src/parse/action.rs` | Verb class → `Action` (On, CoverOpen, SetTemp, …) |
-| `src/parse/normalize.rs` | Tokens, accents, fillers |
-| `src/parse/numbers.rs` | Number words and digits |
-| `src/parse/split.rs` | Clauses, follow-up lights |
-| `src/parse/resolve/` | Entity and area matches, scoring |
-| `src/parse/mod.rs` / `src/parse/infer.rs` / `src/parse/slots.rs` | Orchestration, clarify, intents |
-| `src/parse/respond.rs` | Spoken confirmation |
-| `src/session.rs` | Last target, open clarification |
-| `src/io/web.rs` | HTTP |
-| `src/io/wyoming.rs` | Wyoming intent |
-| `src/io/bootstrap.rs` | Server startup, token, reload loop |
+| `src/parse/` | Tokenize, actions, resolve, slots, spoken replies |
+| `src/eval/` | Held-out metrics, Assist comparison, scorecard, benches |
+| `src/migrate/` | One-shot V1 overlay dry-run / V2 save |
+| `src/session.rs` | Last target, pending clarify/confirm |
+| `src/io/` | HTTP (`/api/v2/parse`), Wyoming, privacy-safe bundles, bootstrap |
 
 ## Module Tree
 
 ```text
 src/
-  types/             intent, settings, and HomeGraph types
-  home/              registry/YAML loading, overlay, policy, roles, sample home
-  lang/              language packs, catalog, speech templates
-  parse/             NLU pipeline, actions, resolve, slots, replies
-    resolve/         resolve facade plus scoring
-  session.rs         conversation memory and clarify state
-  io/                HTTP, Wyoming, runtime state, bootstrap
-  main.rs            CLI arguments and logging, then io::run
+  types/             intent, ParseOutcome, settings, HomeGraph
+  nlu/               ranking, policy, semantic adapters
+  home/              registry/YAML loading, overlay, policy, roles
+  lang/              packs, catalog, user overlays
+  parse/             tokenize, actions, resolve, slots, replies
+  eval/              held-out scorecard and benches
+  migrate.rs         V1 overlay import report
+  session.rs         conversation memory
+  io/                HTTP, Wyoming, runtime state, redacted bundles
+  main.rs            CLI (lang / eval / migrate) then io::run
 ```
 
-`lib.rs` exports only these layers. Internal parse helpers stay under `src/parse/`; Home Assistant loading and overlay logic stay under `src/home/`.
+`lib.rs` exports these layers. Internal parse helpers stay under `src/parse/`; Home Assistant loading and overlay logic stay under `src/home/`.
 
 ## Home graph
 
@@ -87,7 +75,7 @@ flowchart TB
   homeStore["HomeStore"]
   http["HTTP API"]
   wyoming["Wyoming"]
-  parse["parse::parse"]
+  parse["nlu::parse"]
   sessions["Sessions"]
 
   configDir --> loadMerged
@@ -107,7 +95,8 @@ The same `conversation_id` shares a `Session`:
 
 - last device / last area / last domain
 - open clarify list (`Do you mean the ceiling or the lamp?`)
-- `ja` / `yes` replays the last switch intent
+- pending confirm for risky lock/cover actions (plan stays in session until `yes`)
+- `ja` / `yes` revalidates the stored plan against the current graph
 
 ## Intents
 

@@ -1,0 +1,7 @@
+- name: obergeschoss_licht
+  sentences:
+    - Licht im Obergeschoss an
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {floor: upper, domain: light}

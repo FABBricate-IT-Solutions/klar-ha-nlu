@@ -8,6 +8,7 @@ export function ParsePage({ t, locale, replayText }: { t: Messages; locale: Loca
   const [result, setResult] = useState<ParseResult | null>(null);
   const [raw, setRaw] = useState(false);
   const [conversationId, setConversationId] = useState<string | undefined>();
+  const intents = result?.plan?.steps.map((step) => step.intent) ?? [];
   useEffect(() => {
     if (replayText) setText(replayText);
   }, [replayText]);
@@ -44,22 +45,23 @@ export function ParsePage({ t, locale, replayText }: { t: Messages; locale: Loca
             <h2>{t.speech}</h2>
             <p>{result.speech || "..."}</p>
             <div className="row">
-              {result.clarify && <span className="chip">clarify</span>}
-              {result.chat && <span className="chip">chat</span>}
+              {result.decision.type === "clarify" && <span className="chip">clarify</span>}
+              {result.decision.type === "confirm" && <span className="chip">confirm</span>}
+              {result.decision.type === "chat" && <span className="chip">chat</span>}
               {result.briefing && <span className="chip">briefing</span>}
             </div>
           </div>
           <div className="card">
             <h2>{t.intent}</h2>
-            {result.intents.map((intent) => (
-              <div key={intent.name} style={{ marginTop: 12 }}>
+            {intents.map((intent, index) => (
+              <div key={`${intent.name}-${index}`} style={{ marginTop: 12 }}>
                 <strong>{intent.name}</strong>
                 <div className="row">
                   {intent.slots.map((slot) => <span className="chip" key={`${slot.name}-${slot.value}`}>{slot.name}: {slot.value}</span>)}
                 </div>
               </div>
             ))}
-            {result.intents.length === 0 && <p className="muted">{t.noIntent}</p>}
+            {intents.length === 0 && <p className="muted">{t.noIntent}</p>}
           </div>
           <div className="card" style={{ gridColumn: "1 / -1" }}>
             <button className="ghost" onClick={() => setRaw(!raw)}>{t.raw}</button>

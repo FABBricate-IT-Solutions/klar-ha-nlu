@@ -39,7 +39,8 @@ from .const import (
     resolve_personality,
     SUPPORTED_LANGUAGES,
 )
-from .dispatch import handle_intent
+from .contracts import executable_intents, validate_v2_payload
+from .executor import execute_plan
 from .fallback import (
     agent_has_home_control,
     can_use_fallback_agent,
@@ -184,13 +185,16 @@ class KlarConversationEntity(ConversationEntity):
         )
         engine_speech = str(payload.get("speech") or "")
         speech = engine_speech or _DONE[pack]
-        intents = home_intents(payload.get("intents") or [])
-        clarify = bool(payload.get("clarify"))
+        decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
+        decision_type = str(decision.get("type") or "")
+        intents = home_intents(executable_intents(payload))
+        clarify = decision_type in {"clarify", "confirm"}
+        chat = decision_type == "chat"
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
         personality = self._personality()
 
         if payload.get("briefing"):
-            if payload.get("chat"):
+            if chat:
                 briefing = await self._briefing(
                     user_input, chat_log, pack, engine_speech, conversation_id
                 )
@@ -201,25 +205,27 @@ class KlarConversationEntity(ConversationEntity):
                     user_input, chat_log, pack, engine_speech or _DONE[pack], conversation_id, False
                 )
 
-        if not clarify and not intents and not payload.get("unreachable"):
+        if decision_type != "reject" and not clarify and not intents and not payload.get("unreachable"):
             fallback = await self._fallback(
-                user_input, chat_log, pack, bool(payload.get("chat"))
+                user_input, chat_log, pack, chat
             )
             if fallback is not None:
                 return fallback
 
-        names = {item.get("name") for item in intents}
-        spoken: list[str] = []
-        for item in intents:
-            if item.get("name") == "HassVacuumReturnToBase" and "HassGetState" in names:
-                continue
-            ha_speech = await handle_intent(
-                self.hass, user_input, item, pack, self._assistant(), self._exposed
+        if decision_type == "execute" and intents:
+            names = {item.get("name") for item in intents}
+            plan = [
+                item
+                for item in intents
+                if not (item.get("name") == "HassVacuumReturnToBase" and "HassGetState" in names)
+            ]
+            executed = await execute_plan(
+                self.hass, user_input, plan, pack, self._assistant(), self._exposed
             )
-            if ha_speech:
-                spoken.append(ha_speech)
-        if spoken:
-            speech = " ".join(spoken)
+            if executed.get("speech"):
+                speech = str(executed["speech"])
+        elif decision_type in {"confirm", "clarify", "reject"}:
+            intents = []
         agent_id = self._fallback_agent_id()
         home_turn = bool(intents) and not clarify
         if not clarify:
@@ -356,7 +362,7 @@ class KlarConversationEntity(ConversationEntity):
     async def _parse(
         self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
-        url = f"{self._url}/api/parse"
+        url = f"{self._url}/api/v2/parse"
         pack = _pack(language, _enabled_packs(self._entry))
         body: dict[str, Any] = {
             "text": text,
@@ -375,11 +381,14 @@ class KlarConversationEntity(ConversationEntity):
                 timeout=aiohttp.ClientTimeout(total=5),
             ) as resp:
                 resp.raise_for_status()
-                return await resp.json()
+                payload = await resp.json()
+                return validate_v2_payload(payload)
         except Exception as err:  # noqa: BLE001 — boundary to the local engine
             _LOGGER.warning("Klar nicht erreichbar: %s", err)
             return {
+                "schema_version": "2.0",
                 "speech": _UNREACHABLE[pack],
-                "intents": [],
+                "decision": {"type": "error", "code": "unreachable", "message": str(err)},
+                "plan": None,
                 "unreachable": True,
             }

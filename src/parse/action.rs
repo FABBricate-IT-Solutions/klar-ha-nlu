@@ -1,4 +1,5 @@
 use crate::lang::{catalog, VerbKind};
+use crate::session::Session;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Action {
@@ -62,12 +63,20 @@ fn implied_domain(action: Action) -> Option<&'static str> {
 }
 
 pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
+    detect_actions_bounded(tokens, usize::MAX)
+}
+
+pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(usize, Action)> {
     let cat = catalog();
     let fuzzy = if tokens.iter().any(|token| cat.verb(token).is_some()) || !has_structural_anchor(tokens) {
         None
     } else {
-        let hits: Vec<(usize, VerbKind)> =
-            tokens.iter().enumerate().filter_map(|(index, token)| cat.fuzzy_verb(token).map(|kind| (index, kind))).collect();
+        let hits: Vec<(usize, VerbKind)> = tokens
+            .iter()
+            .enumerate()
+            .filter_map(|(index, token)| cat.fuzzy_verb(token).map(|kind| (index, kind)))
+            .take(maximum.saturating_add(1))
+            .collect();
         (hits.len() == 1).then(|| hits[0])
     };
     let mut found = Vec::new();
@@ -154,9 +163,64 @@ pub fn detect_actions(tokens: &[String]) -> Vec<(usize, Action)> {
         };
         if let Some(a) = action {
             found.push((i, a));
+            if found.len() >= maximum {
+                break;
+            }
         }
     }
     found
+}
+
+pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> bool {
+    matches!(
+        command,
+        Some(
+            Action::SetLight
+                | Action::SetTemp
+                | Action::CoverSet
+                | Action::FanSpeed
+                | Action::Scene
+                | Action::MediaPause
+                | Action::MediaPlay
+                | Action::MediaNext
+                | Action::MediaMute
+                | Action::VacuumStart
+                | Action::VacuumDock
+                | Action::TimerStart
+                | Action::TimerAdd
+                | Action::TimerCancel
+                | Action::TimerPause
+                | Action::ListAdd
+                | Action::ListComplete
+        )
+    ) || (matches!(command, Some(Action::On))
+        && tokens.iter().any(|token| catalog().scene_nouns.contains(token.as_str()) || catalog().script_words.contains(token.as_str())))
+}
+
+pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<i32>) -> Action {
+    if number.is_some() {
+        return crate::parse::numbers::guess_numbered_action(
+            tokens,
+            session.last_entities().any(|entity| entity.starts_with("climate."))
+                || session.last_names().any(|name| name.contains("Climate"))
+                || session.last_domains().any(|domain| domain == "climate"),
+            session.last_entities().any(|entity| entity.starts_with("cover.")) || session.last_domains().any(|domain| domain == "cover"),
+            session.last_entities().any(|entity| entity.starts_with("fan.")) || session.last_domains().any(|domain| domain == "fan"),
+        );
+    }
+    if tokens.iter().any(|token| matches!(token.as_str(), "auch" | "too" | "also" | "well")) {
+        if session.last_names().any(|name| name == "HassTurnOff") {
+            Action::Off
+        } else if session.last_names().any(|name| name == "HassLightSet") {
+            Action::SetLight
+        } else if session.last_names().any(|name| name == "HassTurnOn") {
+            Action::On
+        } else {
+            Action::GetState
+        }
+    } else {
+        Action::GetState
+    }
 }
 
 fn has_structural_anchor(tokens: &[String]) -> bool {
@@ -383,9 +447,9 @@ fn flick_action(tokens: &[String]) -> Option<Action> {
     } else if cat.any(tokens, &cat.on_words) {
         Some(Action::On)
     } else if cat.any(tokens, &cat.open_words) {
-        Some(if has_cover_noun(tokens) { Action::CoverOpen } else { Action::On })
+        Some(if has_cover_noun(tokens) || is_garage_cover(tokens) { Action::CoverOpen } else { Action::On })
     } else if cat.any(tokens, &cat.close_words) {
-        Some(if has_cover_noun(tokens) { Action::CoverClose } else { Action::Off })
+        Some(if has_cover_noun(tokens) || is_garage_cover(tokens) { Action::CoverClose } else { Action::Off })
     } else if crate::parse::numbers::first_number(tokens).is_some() && (has_cover_noun(tokens) || is_garage_cover(tokens)) {
         Some(Action::CoverSet)
     } else {

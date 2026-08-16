@@ -41,7 +41,7 @@ pub fn default_home() -> HomeGraph {
 }
 
 fn area(id: &str, name: &str, aliases: &[&str]) -> AreaRec {
-    AreaRec { area_id: id.to_string(), name: name.to_string(), aliases: aliases.iter().map(|s| s.to_string()).collect() }
+    AreaRec { area_id: id.to_string(), name: name.to_string(), aliases: aliases.iter().map(|s| s.to_string()).collect(), floor_id: None }
 }
 
 fn ent(id: &str, name: &str, domain: &str, area: &str, aliases: &[&str]) -> EntityRec {

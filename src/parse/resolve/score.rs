@@ -12,6 +12,7 @@ pub(super) fn sort_hits(hits: &mut [(f64, EntityRec)], tokens: &[String], home: 
         b.0.partial_cmp(&a.0)
             .unwrap_or(std::cmp::Ordering::Equal)
             .then_with(|| overlap(tokens, &b.1, home).cmp(&overlap(tokens, &a.1, home)))
+            .then_with(|| a.1.entity_id.cmp(&b.1.entity_id))
     });
 }
 
@@ -36,6 +37,10 @@ pub(crate) fn has_fuzzy_target_token(tokens: &[String], home: &HomeGraph) -> boo
             fuzzy_label_token(token, &area.area_id)
                 || fuzzy_label_token(token, &area.name)
                 || area.aliases.iter().any(|alias| fuzzy_label_token(token, alias))
+        }) || home.floors.iter().any(|floor| {
+            fuzzy_label_token(token, &floor.floor_id)
+                || fuzzy_label_token(token, &floor.name)
+                || floor.aliases.iter().any(|alias| fuzzy_label_token(token, alias))
         }) || home.entities.iter().any(|entity| {
             fuzzy_label_token(token, &entity.name)
                 || entity.aliases.iter().any(|alias| fuzzy_label_token(token, alias))
@@ -96,6 +101,19 @@ pub(super) fn score_entity(tokens: &[String], fuzzy_tokens: &[&str], entity: &En
     (best >= 0.86).then_some(best)
 }
 
+pub(super) fn entity_name_evidence(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    score_entity(tokens, &fuzzy_tokens(tokens, home), entity, home).is_some()
+        || (entity.domain == "todo"
+            && usable_labels(entity, home).iter().any(|label| {
+                let label = compact(&fold_umlaut(label));
+                !label.is_empty()
+                    && tokens.iter().any(|token| {
+                        let token = compact(token);
+                        catalog().list_nouns.iter().any(|suffix| token == format!("{label}{}", compact(suffix)))
+                    })
+            }))
+}
+
 fn fuzzy_label_window(tokens: &[String], fuzzy_tokens: &[&str], label: &str) -> Option<Evidence> {
     let candidate = compact(label);
     if candidate.len() < 6 {
@@ -125,6 +143,10 @@ pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
         label_has_token(token, &area.area_id)
             || label_has_token(token, &area.name)
             || area.aliases.iter().any(|alias| label_has_token(token, alias))
+    }) || home.floors.iter().any(|floor| {
+        label_has_token(token, &floor.floor_id)
+            || label_has_token(token, &floor.name)
+            || floor.aliases.iter().any(|alias| label_has_token(token, alias))
     }) || home.entities.iter().any(|entity| {
         label_has_token(token, &entity.name)
             || entity.aliases.iter().any(|alias| label_has_token(token, alias))

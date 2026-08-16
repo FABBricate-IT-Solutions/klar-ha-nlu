@@ -4,6 +4,7 @@ use crate::io::state::AppState;
 use crate::io::{web, wyoming};
 use std::net::SocketAddr;
 use std::path::{Path, PathBuf};
+use std::sync::atomic::Ordering;
 use std::time::Duration;
 use uuid::Uuid;
 
@@ -14,6 +15,7 @@ pub struct RuntimeArgs {
     pub data_dir: PathBuf,
     pub token: Option<String>,
     pub token_file: Option<PathBuf>,
+    pub lang_dir: Option<PathBuf>,
 }
 
 pub async fn run(args: RuntimeArgs) {
@@ -25,8 +27,13 @@ pub async fn run(args: RuntimeArgs) {
         tracing::warn!("Kein Token: HTTP-API nur von localhost und dem Supervisor-Netz");
     }
 
+    load_language_packs(args.lang_dir.as_deref());
     let loaded = load_merged(&args.config_dir, &data_dir);
-    let state = AppState::new(loaded, data_dir.clone(), token);
+    if !loaded.language.sets.is_empty() {
+        crate::lang::install_user_overlay(Some(loaded.language.clone()));
+    }
+    let mut state = AppState::new(loaded, data_dir.clone(), token);
+    state.config_dir = args.config_dir.clone();
     enable_bundle_from_env(&state).await;
 
     let reload_state = state.clone();
@@ -97,7 +104,7 @@ async fn reload_home(state: AppState, config_dir: PathBuf, data_dir: PathBuf) {
     loop {
         tokio::time::sleep(Duration::from_secs(30)).await;
         let next = registry_stamp(&config_dir);
-        if next == stamp {
+        if next == stamp || state.live_sync.load(Ordering::Relaxed) {
             continue;
         }
         stamp = next;
@@ -106,6 +113,21 @@ async fn reload_home(state: AppState, config_dir: PathBuf, data_dir: PathBuf) {
         state.home.replace(loaded.graph).await;
         *state.custom.lock().await = loaded.custom;
         *state.settings.lock().await = loaded.settings;
+        crate::lang::install_user_overlay(if loaded.language.sets.is_empty() { None } else { Some(loaded.language) });
         tracing::info!("Home-Graph neu geladen ({n} Entitäten)");
+    }
+}
+
+fn load_language_packs(explicit: Option<&Path>) {
+    let dir = explicit
+        .map(PathBuf::from)
+        .or_else(|| std::env::var("KLAR_LANG_DIR").ok().map(PathBuf::from))
+        .or_else(|| ["/usr/share/klar/packs", "packs"].into_iter().map(PathBuf::from).find(|path| path.join("registry.yaml").is_file()));
+    let Some(dir) = dir else {
+        return;
+    };
+    match crate::lang::load_runtime_dir(&dir) {
+        Ok(count) => tracing::info!("Sprachpakete aus {} geladen ({count})", dir.display()),
+        Err(err) => tracing::warn!("Sprachpakete {}: {err}", dir.display()),
     }
 }

@@ -1,0 +1,399 @@
+- name: ood_160
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Algeria'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_161
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of New Zealand'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_162
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of South Africa'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_163
+  split: ood
+  language: en
+  sentences:
+    - 'Name the capital city of Nigeria'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_164
+  split: ood
+  language: en
+  sentences:
+    - 'Define kinetic energy for a student'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_165
+  split: ood
+  language: en
+  sentences:
+    - 'Define potential energy for a student'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_166
+  split: ood
+  language: en
+  sentences:
+    - 'Define an isotope in chemistry'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_167
+  split: ood
+  language: en
+  sentences:
+    - 'Define a mammal in biology'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_168
+  split: ood
+  language: en
+  sentences:
+    - 'Define a prime number in arithmetic'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_169
+  split: ood
+  language: en
+  sentences:
+    - 'Explain the water cycle briefly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_170
+  split: ood
+  language: en
+  sentences:
+    - 'Explain a solar eclipse briefly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_171
+  split: ood
+  language: en
+  sentences:
+    - 'Explain a lunar eclipse briefly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_172
+  split: ood
+  language: en
+  sentences:
+    - 'Explain tectonic plates briefly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_173
+  split: ood
+  language: en
+  sentences:
+    - 'Explain the greenhouse effect briefly'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_174
+  split: ood
+  language: en
+  sentences:
+    - 'Which metal is liquid at room temperature'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_175
+  split: ood
+  language: en
+  sentences:
+    - 'Which gas do plants take in for photosynthesis'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_176
+  split: ood
+  language: en
+  sentences:
+    - 'Which organ pumps blood in humans'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_177
+  split: ood
+  language: en
+  sentences:
+    - 'Which bone is the longest in the human body'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_178
+  split: ood
+  language: en
+  sentences:
+    - 'Which continent is the smallest by land'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_179
+  split: ood
+  language: en
+  sentences:
+    - 'Which ocean lies between africa and australia'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_180
+  split: ood
+  language: en
+  sentences:
+    - 'Which desert is the largest hot desert'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_181
+  split: ood
+  language: en
+  sentences:
+    - 'Which sea sits between europe and africa'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_182
+  split: ood
+  language: en
+  sentences:
+    - 'Which mountain range includes mont blanc'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_183
+  split: ood
+  language: en
+  sentences:
+    - 'Which canal joins the atlantic and pacific'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_184
+  split: ood
+  language: en
+  sentences:
+    - 'In which country is the city of kyoto'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_185
+  split: ood
+  language: en
+  sentences:
+    - 'In which country is the city of marrakesh'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_186
+  split: ood
+  language: en
+  sentences:
+    - 'In which country is the city of cusco'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_187
+  split: ood
+  language: en
+  sentences:
+    - 'In which country is the city of krakow'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_188
+  split: ood
+  language: en
+  sentences:
+    - 'In which country is the city of bergen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_189
+  split: ood
+  language: en
+  sentences:
+    - 'In which year did the berlin wall fall'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_190
+  split: ood
+  language: en
+  sentences:
+    - 'In which year was Apollo eleven launched'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_191
+  split: ood
+  language: en
+  sentences:
+    - 'In which year did the titanic sink'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_192
+  split: ood
+  language: en
+  sentences:
+    - 'In which century did the printing press spread'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_193
+  split: ood
+  language: en
+  sentences:
+    - 'In which century did the industrial revolution begin'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_194
+  split: ood
+  language: en
+  sentences:
+    - 'How is bread different from pastry'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_195
+  split: ood
+  language: en
+  sentences:
+    - 'How is a comet different from an asteroid'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_196
+  split: ood
+  language: en
+  sentences:
+    - 'How is a lake different from a sea'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_197
+  split: ood
+  language: en
+  sentences:
+    - 'Name a long fictional prose form'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_198
+  split: ood
+  language: en
+  sentences:
+    - 'How is jazz different from classical music'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_199
+  split: ood
+  language: en
+  sentences:
+    - 'What do bees collect from flowers'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

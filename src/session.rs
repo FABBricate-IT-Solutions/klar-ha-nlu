@@ -1,4 +1,4 @@
-use crate::types::Intent;
+use crate::types::{Intent, IntentPlan, MAX_CLARIFY_OPTIONS, MAX_DETAIL_CHARS, MAX_EVIDENCE_PER_ITEM, MAX_PLAN_STEPS};
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
 use uuid::Uuid;
@@ -6,6 +6,7 @@ use uuid::Uuid;
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
 const LAST_KEEP: usize = 8;
+const WRONG_LOG_KEEP: usize = 32;
 
 #[derive(Debug, Clone)]
 pub struct LastTurn {
@@ -16,11 +17,55 @@ pub struct LastTurn {
 }
 
 #[derive(Debug, Clone)]
+pub struct ClarifyState {
+    pub options: Vec<String>,
+    pub template: Intent,
+}
+
+#[derive(Debug, Clone)]
+pub struct ConfirmState {
+    pub candidate_id: String,
+    pub plan: IntentPlan,
+    pub prompt: String,
+}
+
+#[derive(Debug, Clone)]
+pub enum PendingInteraction {
+    Clarify(ClarifyState),
+    Confirm(ConfirmState),
+}
+
+#[cfg(debug_assertions)]
+#[derive(Debug, PartialEq)]
+pub(crate) struct SessionParity {
+    last: Vec<LastParity>,
+    pending: Option<PendingParity>,
+    wrong_log: Vec<String>,
+    briefing: bool,
+    preferred_area: Option<String>,
+}
+
+#[cfg(debug_assertions)]
+#[derive(Debug, PartialEq)]
+struct LastParity {
+    entity: Option<String>,
+    area: Option<String>,
+    name: String,
+    domain: Option<String>,
+}
+
+#[cfg(debug_assertions)]
+#[derive(Debug, PartialEq)]
+enum PendingParity {
+    Clarify(Vec<String>, Intent),
+    Confirm(String, IntentPlan, String),
+}
+
+#[derive(Debug, Clone)]
 pub struct Session {
     pub id: String,
     pub last: Vec<LastTurn>,
-    pub last_intent_template: Option<Intent>,
-    pub pending_clarify: Option<Vec<String>>,
+    pub pending: Option<PendingInteraction>,
     pub wrong_log: Vec<String>,
     pub briefing: bool,
     pub preferred_area: Option<String>,
@@ -38,8 +83,7 @@ impl Session {
         Self {
             id: Uuid::new_v4().to_string(),
             last: Vec::new(),
-            last_intent_template: None,
-            pending_clarify: None,
+            pending: None,
             wrong_log: Vec::new(),
             briefing: false,
             preferred_area: None,
@@ -79,13 +123,91 @@ impl Session {
         self.last.truncate(LAST_KEEP);
     }
 
-    pub fn clear_clarify(&mut self) {
-        self.pending_clarify = None;
-        self.last_intent_template = None;
+    pub fn pending_clarify(&self) -> Option<&ClarifyState> {
+        match self.pending.as_ref() {
+            Some(PendingInteraction::Clarify(state)) => Some(state),
+            Some(PendingInteraction::Confirm(_)) | None => None,
+        }
+    }
+
+    pub fn pending_confirm(&self) -> Option<&ConfirmState> {
+        match self.pending.as_ref() {
+            Some(PendingInteraction::Confirm(state)) => Some(state),
+            Some(PendingInteraction::Clarify(_)) | None => None,
+        }
+    }
+
+    pub fn set_clarify(&mut self, mut options: Vec<String>, template: Intent) {
+        options.truncate(MAX_CLARIFY_OPTIONS);
+        for option in &mut options {
+            truncate_chars(option, 128);
+        }
+        self.pending = Some(PendingInteraction::Clarify(ClarifyState { options, template }));
+    }
+
+    pub fn set_confirm(&mut self, candidate_id: String, mut plan: IntentPlan, mut prompt: String) -> bool {
+        if candidate_id.is_empty()
+            || candidate_id.chars().count() > 128
+            || candidate_id.chars().any(char::is_control)
+            || plan.steps.is_empty()
+            || plan.steps.len() > MAX_PLAN_STEPS
+        {
+            return false;
+        }
+        plan.evidence.truncate(MAX_EVIDENCE_PER_ITEM);
+        for step in &mut plan.steps {
+            step.evidence.truncate(MAX_EVIDENCE_PER_ITEM);
+        }
+        truncate_chars(&mut prompt, MAX_DETAIL_CHARS);
+        self.pending = Some(PendingInteraction::Confirm(ConfirmState { candidate_id, plan, prompt }));
+        true
+    }
+
+    pub fn clear_pending(&mut self) {
+        self.pending = None;
     }
 
     pub fn mark_wrong(&mut self) {
         self.wrong_log.push(self.id.clone());
+        if self.wrong_log.len() > WRONG_LOG_KEEP {
+            self.wrong_log.drain(..self.wrong_log.len() - WRONG_LOG_KEEP);
+        }
+    }
+
+    #[cfg(debug_assertions)]
+    pub(crate) fn parity_snapshot(&self) -> SessionParity {
+        let clarify_template = self.pending_clarify().map(|state| &state.template);
+        let last = self
+            .last
+            .iter()
+            .filter(|turn| {
+                clarify_template.is_none_or(|template| {
+                    turn.name != template.name
+                        || turn.entity.as_deref() != template.slot("entity_id")
+                        || turn.area.as_deref() != template.slot("area")
+                })
+            })
+            .map(|turn| LastParity {
+                entity: turn.entity.clone(),
+                area: turn.area.clone(),
+                name: turn.name.clone(),
+                domain: turn.domain.clone(),
+            })
+            .collect();
+        let pending = match self.pending.as_ref() {
+            Some(PendingInteraction::Clarify(state)) => Some(PendingParity::Clarify(state.options.clone(), state.template.clone())),
+            Some(PendingInteraction::Confirm(state)) => {
+                Some(PendingParity::Confirm(state.candidate_id.clone(), state.plan.clone(), state.prompt.clone()))
+            }
+            None => None,
+        };
+        SessionParity {
+            last,
+            pending,
+            wrong_log: self.wrong_log.clone(),
+            briefing: self.briefing,
+            preferred_area: self.preferred_area.clone(),
+        }
     }
 }
 
@@ -127,6 +249,9 @@ impl Sessions {
     pub fn put(&mut self, mut session: Session) {
         self.sweep_ttl();
         session.last_used = Instant::now();
+        if session.id.chars().count() > 128 || session.id.chars().any(char::is_control) {
+            session.id = Uuid::new_v4().to_string();
+        }
         self.inner.insert(session.id.clone(), session);
     }
 
@@ -149,6 +274,12 @@ impl Sessions {
                 break;
             }
         }
+    }
+}
+
+fn truncate_chars(value: &mut String, maximum: usize) {
+    if value.chars().count() > maximum {
+        *value = value.chars().take(maximum).collect();
     }
 }
 
@@ -179,5 +310,44 @@ mod tests {
             sessions.get_or_create(Some(&format!("id-{i}")));
         }
         assert!(sessions.len() <= MAX_SESSIONS, "{}", sessions.len());
+    }
+
+    #[test]
+    fn caps_wrong_log() {
+        let mut session = Session::new();
+        for _ in 0..100 {
+            session.mark_wrong();
+        }
+        assert_eq!(session.wrong_log.len(), WRONG_LOG_KEEP);
+    }
+
+    #[test]
+    fn caps_pending_interaction_storage() {
+        let mut session = Session::new();
+        session.set_clarify(vec!["x".repeat(200); MAX_CLARIFY_OPTIONS + 10], Intent::new("HassTurnOn"));
+        let clarify = session.pending_clarify().expect("clarification");
+        assert_eq!(clarify.options.len(), MAX_CLARIFY_OPTIONS);
+        assert!(clarify.options.iter().all(|option| option.chars().count() <= 128));
+
+        let evidence = crate::types::Evidence { kind: "test".into(), source: "test".into(), value: "test".into(), score: 1.0, exact: true };
+        let mut plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "lock.front")], 1.0, &[]);
+        plan.evidence = vec![evidence.clone(); MAX_EVIDENCE_PER_ITEM + 10];
+        plan.steps[0].evidence = vec![evidence; MAX_EVIDENCE_PER_ITEM + 10];
+        assert!(session.set_confirm("candidate".into(), plan, "p".repeat(MAX_DETAIL_CHARS + 10)));
+        let confirm = session.pending_confirm().expect("confirmation");
+        assert_eq!(confirm.plan.evidence.len(), MAX_EVIDENCE_PER_ITEM);
+        assert_eq!(confirm.plan.steps[0].evidence.len(), MAX_EVIDENCE_PER_ITEM);
+        assert_eq!(confirm.prompt.chars().count(), MAX_DETAIL_CHARS);
+    }
+
+    #[test]
+    fn rejects_invalid_pending_confirm_ids_and_steps() {
+        let mut session = Session::new();
+        let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "lock.front")], 1.0, &[]);
+        assert!(!session.set_confirm("x".repeat(129), plan.clone(), "confirm".into()));
+        assert!(session.pending_confirm().is_none());
+        let oversized = IntentPlan::from_intents(vec![Intent::new("HassTurnOn"); MAX_PLAN_STEPS + 1], 1.0, &[]);
+        assert!(!session.set_confirm("candidate".into(), oversized, "confirm".into()));
+        assert!(session.pending_confirm().is_none());
     }
 }

@@ -1,5 +1,5 @@
 use crate::parse::normalize::fold_umlaut;
-use crate::types::{AreaRec, EntityRec, HomeGraph, HomePolicy};
+use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph, HomePolicy};
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
@@ -7,6 +7,8 @@ use std::path::Path;
 
 #[derive(Deserialize)]
 struct HomeFile {
+    #[serde(default)]
+    floors: Vec<YamlFloor>,
     #[serde(default)]
     areas: Vec<YamlArea>,
     #[serde(default)]
@@ -24,11 +26,23 @@ struct HomeFile {
 }
 
 #[derive(Deserialize)]
+struct YamlFloor {
+    id: String,
+    name: String,
+    #[serde(default)]
+    aliases: Vec<String>,
+    #[serde(default)]
+    level: Option<i32>,
+}
+
+#[derive(Deserialize)]
 struct YamlArea {
     id: String,
     name: String,
     #[serde(default)]
     aliases: Vec<String>,
+    #[serde(default, alias = "floor")]
+    floor_id: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -67,10 +81,25 @@ struct YamlScript {
 pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
     let raw = fs::read_to_string(path).map_err(|e| e.to_string())?;
     let file: HomeFile = serde_yaml::from_str(&raw).map_err(|e| e.to_string())?;
+    let floors: Vec<FloorRec> = file
+        .floors
+        .into_iter()
+        .map(|floor| FloorRec {
+            floor_id: floor.id.clone(),
+            name: floor.name.clone(),
+            aliases: merge_floor_aliases(&floor.id, &floor.name, floor.level, floor.aliases),
+            level: floor.level,
+        })
+        .collect();
     let areas = file
         .areas
         .into_iter()
-        .map(|a| AreaRec { area_id: a.id.clone(), name: a.name.clone(), aliases: merge_area_aliases(&a.id, &a.name, a.aliases) })
+        .map(|a| AreaRec {
+            area_id: a.id.clone(),
+            name: a.name.clone(),
+            aliases: merge_area_aliases(&a.id, &a.name, a.aliases),
+            floor_id: a.floor_id.filter(|id| !id.is_empty()),
+        })
         .collect();
     let mut entities: Vec<EntityRec> = file
         .devices
@@ -130,7 +159,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             });
         }
     }
-    Ok(HomeGraph { entities, areas, scene_members, assist: None, policy: file.policy })
+    Ok(HomeGraph { entities, areas, floors, scene_members, assist: None, policy: file.policy })
 }
 
 fn yaml_entity_ids(value: &serde_yaml::Value) -> Vec<String> {
@@ -200,6 +229,37 @@ const GENERIC_NAME: &[&str] = &[
     "ground",
     "upper",
 ];
+
+pub(crate) fn merge_floor_aliases(floor_id: &str, name: &str, level: Option<i32>, existing: Vec<String>) -> Vec<String> {
+    let mut aliases = existing;
+    aliases.push(floor_id.to_string());
+    aliases.push(fold_umlaut(name));
+    aliases.extend(extra_floor_aliases(floor_id, name, level));
+    for part in name.split_whitespace() {
+        let p = fold_umlaut(part);
+        if p.len() > 3 && !GENERIC_NAME.contains(&p.as_str()) {
+            aliases.push(p);
+        }
+    }
+    aliases.sort();
+    aliases.dedup();
+    aliases
+}
+
+fn extra_floor_aliases(floor_id: &str, name: &str, level: Option<i32>) -> Vec<String> {
+    let blob = format!("{} {}", fold_umlaut(floor_id), fold_umlaut(name));
+    let mut extra = Vec::new();
+    if level == Some(0) || blob.contains("ground") || blob.contains("erdgeschoss") || blob.contains("eg") {
+        extra.extend(["erdgeschoss".into(), "downstairs".into(), "groundfloor".into(), "ground".into(), "eg".into()]);
+    }
+    if level == Some(1) || blob.contains("upper") || blob.contains("obergeschoss") || blob.contains("upstairs") || blob.contains("og") {
+        extra.extend(["obergeschoss".into(), "upstairs".into(), "upperfloor".into(), "upper".into(), "og".into()]);
+    }
+    if level.is_some_and(|value| value < 0) || blob.contains("keller") || blob.contains("basement") || blob.contains("untergeschoss") {
+        extra.extend(["keller".into(), "basement".into(), "untergeschoss".into()]);
+    }
+    extra
+}
 
 pub(crate) fn merge_area_aliases(area_id: &str, name: &str, existing: Vec<String>) -> Vec<String> {
     let mut aliases = existing;

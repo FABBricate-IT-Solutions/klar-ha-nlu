@@ -1,5 +1,5 @@
 use crate::parse::normalize::{compact, fold_umlaut};
-use crate::types::{AreaRec, EntityRec, HomeGraph};
+use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::fs;
@@ -83,6 +83,33 @@ struct RawArea {
     name: String,
     #[serde(default)]
     aliases: Vec<String>,
+    #[serde(default)]
+    floor_id: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct FloorStorage {
+    data: FloorData,
+}
+
+#[derive(Deserialize)]
+#[serde(untagged)]
+enum FloorData {
+    Wrapped { floors: Vec<RawFloor> },
+    Flat(Vec<RawFloor>),
+}
+
+#[derive(Deserialize)]
+struct RawFloor {
+    #[serde(default)]
+    floor_id: Option<String>,
+    #[serde(default)]
+    id: Option<String>,
+    name: String,
+    #[serde(default)]
+    aliases: Vec<String>,
+    #[serde(default)]
+    level: Option<i32>,
 }
 
 pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
@@ -103,6 +130,7 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
         }
     };
     let areas = read_areas(&area_path).unwrap_or_else(|_| fallback.areas.clone());
+    let floors = read_floors(&config_dir.join(".storage/core.floor_registry")).unwrap_or_else(|_| fallback.floors.clone());
     if entities.is_empty() {
         return fallback;
     }
@@ -111,8 +139,8 @@ pub fn load_home(config_dir: &Path, fallback: HomeGraph) -> HomeGraph {
             ent.area = infer_area(&ent.entity_id, &areas);
         }
     }
-    tracing::info!("{} Entitäten, {} Räume aus Home Assistant geladen", entities.len(), areas.len());
-    HomeGraph { entities, areas, assist: crate::home::expose::load_assist(config_dir), ..fallback }
+    tracing::info!("{} Entitäten, {} Räume, {} Etagen aus Home Assistant geladen", entities.len(), areas.len(), floors.len());
+    HomeGraph { entities, areas, floors, assist: crate::home::expose::load_assist(config_dir), ..fallback }
 }
 
 fn read_devices(path: &Path) -> HashMap<String, DeviceInfo> {
@@ -242,12 +270,38 @@ fn read_areas(path: &Path) -> Result<Vec<AreaRec>, String> {
         .into_iter()
         .map(|a| {
             let area_id = a.id.or(a.area_id).unwrap_or_else(|| fold_umlaut(&a.name));
-            AreaRec { area_id: area_id.clone(), name: a.name.clone(), aliases: merge_area_aliases(&area_id, &a.name, a.aliases) }
+            AreaRec {
+                area_id: area_id.clone(),
+                name: a.name.clone(),
+                aliases: merge_area_aliases(&area_id, &a.name, a.aliases),
+                floor_id: a.floor_id.filter(|id| !id.is_empty()),
+            }
         })
         .collect())
 }
 
-fn keep_domain(entity_id: &str) -> bool {
+fn read_floors(path: &Path) -> Result<Vec<FloorRec>, String> {
+    let raw = fs::read_to_string(path).map_err(|e| e.to_string())?;
+    let parsed: FloorStorage = serde_json::from_str(&raw).map_err(|e| e.to_string())?;
+    let floors = match parsed.data {
+        FloorData::Wrapped { floors } => floors,
+        FloorData::Flat(floors) => floors,
+    };
+    Ok(floors
+        .into_iter()
+        .filter_map(|floor| {
+            let floor_id = floor.floor_id.or(floor.id).filter(|id| !id.is_empty())?;
+            Some(FloorRec {
+                aliases: crate::home::registry_yaml::merge_floor_aliases(&floor_id, &floor.name, floor.level, floor.aliases),
+                floor_id,
+                name: floor.name,
+                level: floor.level,
+            })
+        })
+        .collect())
+}
+
+pub(crate) fn keep_domain(entity_id: &str) -> bool {
     matches!(
         entity_id.split('.').next(),
         Some("light")
@@ -349,5 +403,25 @@ mod tests {
         entity.aliases = vec!["Wohnzimmer Licht".into()];
         assert_eq!(entity_display_name(&entity, None), "Wohnzimmer Licht");
         assert_eq!(entity_display_name(&raw("climate.better_thermostat_wohnzimmer"), None), "better thermostat wohnzimmer");
+    }
+
+    #[test]
+    fn loads_floors_from_ha_storage() {
+        let dir = std::env::temp_dir().join(format!("klar-floor-reg-{}", std::process::id()));
+        let storage = dir.join(".storage");
+        let _ = std::fs::create_dir_all(&storage);
+        std::fs::write(
+            storage.join("core.entity_registry"),
+            r#"{"data":{"entities":[{"entity_id":"light.hallway","name":"Hall","area_id":"hallway"}]}}"#,
+        )
+        .unwrap();
+        std::fs::write(storage.join("core.area_registry"), r#"{"data":{"areas":[{"id":"hallway","name":"Hallway","floor_id":"upper"}]}}"#)
+            .unwrap();
+        std::fs::write(storage.join("core.floor_registry"), r#"{"data":{"floors":[{"floor_id":"upper","name":"Upper Floor","level":1}]}}"#)
+            .unwrap();
+        let home = load_home(&dir, default_home());
+        assert_eq!(home.floors.iter().map(|floor| floor.floor_id.as_str()).collect::<Vec<_>>(), ["upper"]);
+        assert_eq!(home.areas.iter().find(|area| area.area_id == "hallway").and_then(|area| area.floor_id.as_deref()), Some("upper"));
+        assert!(home.floors[0].aliases.iter().any(|alias| alias == "upstairs"));
     }
 }

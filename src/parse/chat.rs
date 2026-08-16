@@ -7,7 +7,28 @@ pub fn wants_llm(tokens: &[String], home: &HomeGraph) -> bool {
     if tokens.is_empty() || looks_like_home(tokens, home) {
         return false;
     }
-    is_casual(tokens) || is_special(tokens) || is_open_question(tokens)
+    is_casual(tokens) || is_special(tokens)
+}
+
+pub fn is_ood(tokens: &[String], home: &HomeGraph) -> bool {
+    if tokens.is_empty() || looks_like_home(tokens, home) || wants_llm(tokens, home) || is_news(tokens, home) || has_home_domain_cue(tokens)
+    {
+        return false;
+    }
+    is_world_or_advice(tokens) || is_open_question(tokens)
+}
+
+fn has_home_domain_cue(tokens: &[String]) -> bool {
+    let cat = catalog();
+    cat.any(tokens, &cat.media_nouns)
+        || cat.any(tokens, &cat.timer_nouns)
+        || cat.any(tokens, &cat.list_nouns)
+        || cat.any(tokens, &cat.light_nouns)
+        || cat.any(tokens, &cat.cover_nouns)
+        || cat.any(tokens, &cat.lock_nouns)
+        || cat.any(tokens, &cat.climate_nouns)
+        || cat.any(tokens, &cat.tv_words)
+        || tokens.iter().any(|token| matches!(token.as_str(), "queue" | "playing" | "volume" | "lautstarke" | "wiedergabe"))
 }
 
 pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {
@@ -52,6 +73,23 @@ fn is_casual(tokens: &[String]) -> bool {
         || cat.any(tokens, &cat.chat_thanks)
         || cat.any(tokens, &cat.chat_feeling)
         || cat.any(tokens, &cat.chat_identity)
+        || is_identity_question(tokens)
+        || is_wellbeing_question(tokens)
+}
+
+fn is_identity_question(tokens: &[String]) -> bool {
+    let who = tokens.iter().any(|token| matches!(token.as_str(), "wer" | "who"));
+    let self_ref = tokens.iter().any(|token| matches!(token.as_str(), "du" | "you" | "bist" | "are"));
+    who && self_ref
+}
+
+fn is_wellbeing_question(tokens: &[String]) -> bool {
+    if is_world_or_advice(tokens) {
+        return false;
+    }
+    let how = tokens.iter().any(|token| matches!(token.as_str(), "how" | "wie"));
+    let feeling = tokens.iter().any(|token| matches!(token.as_str(), "are" | "you" | "geht" | "gehts" | "feeling" | "mood"));
+    how && feeling
 }
 
 fn is_special(tokens: &[String]) -> bool {
@@ -59,8 +97,11 @@ fn is_special(tokens: &[String]) -> bool {
     (cat.any(tokens, &cat.chat_tell)
         && (cat.any(tokens, &cat.chat_yarn) || tokens.iter().any(|t| t.contains("witz") || t.contains("joke"))))
         || cat.any(tokens, &cat.chat_yarn)
-        || cat.any(tokens, &cat.chat_world)
-        || cat.any(tokens, &cat.chat_advice)
+}
+
+fn is_world_or_advice(tokens: &[String]) -> bool {
+    let cat = catalog();
+    cat.any(tokens, &cat.chat_world) || cat.any(tokens, &cat.chat_advice)
 }
 
 fn is_open_question(tokens: &[String]) -> bool {
@@ -87,15 +128,28 @@ mod tests {
             "Wie geht es dir",
             "Guten Morgen",
             "Danke",
-            "Was ist die Hauptstadt von Frankreich",
-            "Wie ist das Wetter",
-            "Was soll ich kochen",
             "Wer bist du",
             "Unterhalte mich",
             "Tell a joke",
             "How are you",
         ] {
             assert!(wants_llm(&toks(text), &home), "{text}");
+            assert!(!is_ood(&toks(text), &home), "{text}");
+        }
+    }
+
+    #[test]
+    fn ood_world_questions_are_not_llm() {
+        let home = default_home();
+        for text in [
+            "Wie ist das Wetter",
+            "Was ist die Hauptstadt von Frankreich",
+            "Was soll ich kochen",
+            "What's the weather",
+            "What is the capital of France",
+        ] {
+            assert!(!wants_llm(&toks(text), &home), "{text}");
+            assert!(is_ood(&toks(text), &home), "{text}");
         }
     }
 

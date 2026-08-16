@@ -1,0 +1,399 @@
+- name: ood_200
+  split: ood
+  language: de
+  sentences:
+    - 'Was fressen Pandas hauptsächlich'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_201
+  split: ood
+  language: de
+  sentences:
+    - 'Was speichern Kamele in ihren Höckern'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_202
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Metalle reagieren stark mit Magneten'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_203
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Instrument hat 88 Tasten'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_204
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Instrument hat typischerweise sechs Saiten'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_205
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Sportart benutzt einen Federball'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_206
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Sportart wird in Wimbledon gespielt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_207
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Brettspiel benutzt Springer und Läufer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_208
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Form hat sechs gleiche Seiten'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_209
+  split: ood
+  language: de
+  sentences:
+    - 'Welche geometrische Form hat das Stoppschild'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_210
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst elektrischen Widerstand'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_211
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst Frequenz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_212
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit misst Lichtstärke'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_213
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Vitamin entsteht in der Haut durch Sonnenlicht'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_214
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Blutgruppe ist der Universalspender'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_215
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Teil des Auges bündelt Licht'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_216
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Teil einer Pflanze nimmt Wasser auf'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_217
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Erdschicht ist flüssiges Metall'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_218
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist das Gegenteil von undurchsichtig'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_219
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist das Gegenteil von konvex'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_220
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne das Silbenmuster des Haiku'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_221
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Zeilenzahl des Sonetts'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_222
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Sprachfamilie enthält Finnisch'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_223
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Sprachfamilie enthält Swahili'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_224
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Schrift benutzt man für Arabisch'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_225
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Schrift benutzt man für Griechisch'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_226
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Himmelsrichtung des Sonnenaufgangs'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_227
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Himmelsrichtung des Sonnenuntergangs'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_228
+  split: ood
+  language: de
+  sentences:
+    - 'Was verursacht Gezeiten auf der Erde'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_229
+  split: ood
+  language: de
+  sentences:
+    - 'Was verursacht Jahreszeiten auf der Erde'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_230
+  split: ood
+  language: de
+  sentences:
+    - 'Was verursacht Donner nach einem Blitz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_231
+  split: ood
+  language: de
+  sentences:
+    - 'Was verursacht Rost auf Eisen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_232
+  split: ood
+  language: de
+  sentences:
+    - 'Was lässt Brotteig aufgehen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_233
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Vogel kann nicht fliegen und lebt in der Antarktis'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_234
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Säugetier legt Eier'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_235
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Fisch wandert flussaufwärts'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_236
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Insekt macht Honig'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_237
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Baum trägt Eicheln'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_238
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist acht zum Quadrat'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_239
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist drei hoch drei'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

@@ -4,8 +4,8 @@ use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, Overlay};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
-use crate::parse::parse;
-use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, Settings};
+use crate::nlu::{legacy_result, parse};
+use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{HeaderMap, StatusCode};
 use axum::response::Html;
@@ -17,6 +17,7 @@ use std::path::PathBuf;
 use tower_http::services::ServeDir;
 
 #[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct ParseIn {
     pub text: String,
     pub conversation_id: Option<String>,
@@ -31,13 +32,15 @@ pub struct ParseIn {
 pub fn router(state: AppState) -> Router {
     Router::new()
         .route("/", get(index))
-        .route("/api/parse", post(api_parse))
+        .route("/api/v2/parse", post(api_parse))
         .route("/api/settings", get(get_settings).post(set_settings))
         .route("/api/custom", get(get_custom).post(set_custom))
         .route("/api/entities", get(get_entities).post(tag_entity))
         .route("/api/gaps", get(get_gaps))
         .merge(crate::io::bundle::routes())
         .merge(crate::io::dashboard::routes())
+        .merge(crate::io::home_sync::routes())
+        .merge(crate::io::lang_api::routes())
         .layer(DefaultBodyLimit::max(16 * 1024))
         .fallback_service(ServeDir::new(ui_dir()))
         .with_state(state)
@@ -84,44 +87,53 @@ async fn api_parse(
     ConnectInfo(peer): ConnectInfo<SocketAddr>,
     headers: HeaderMap,
     Json(body): Json<ParseIn>,
-) -> Result<Json<ParseOut>, StatusCode> {
+) -> Result<Json<ParseOutcome>, StatusCode> {
     read_gate(peer, &headers, &state.token)?;
     if body.text.chars().count() > MAX_PARSE_CHARS {
         return Err(StatusCode::PAYLOAD_TOO_LARGE);
     }
+    if body.text.chars().any(|character| character.is_control() && !character.is_whitespace())
+        || body.language.as_ref().is_some_and(|language| language.len() > 35)
+        || body.conversation_id.as_ref().is_some_and(|conversation_id| conversation_id.len() > 128)
+    {
+        return Err(StatusCode::BAD_REQUEST);
+    }
     let home = state.home.snapshot().await;
-    let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality);
+    if body.preferred_area.as_ref().is_some_and(|area| area.len() > 128 || !home.areas.iter().any(|record| record.area_id == *area)) {
+        return Err(StatusCode::BAD_REQUEST);
+    }
+    let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality)?;
     let custom = state.custom.lock().await.clone();
     let mut session = {
         let mut sessions = state.sessions.lock().await;
         sessions.take(body.conversation_id.as_deref())
     };
     session.preferred_area = body.preferred_area.clone();
-    let result = parse(&body.text, &home, &mut session, &custom, &settings);
+    let outcome = parse(&body.text, &home, &mut session, &custom, &settings);
     state.sessions.lock().await.put(session);
-    state.record_parse("http", body.language.as_deref(), &result).await;
-    Ok(Json(ParseOut { personality: settings.personality, result }))
+    state.record_parse("http", body.language.as_deref(), &legacy_result(outcome.clone())).await;
+    Ok(Json(outcome))
 }
 
-#[derive(serde::Serialize)]
-struct ParseOut {
-    #[serde(flatten)]
-    result: crate::types::ParseResult,
-    personality: crate::types::Personality,
-}
-
-fn settings_for_parse(mut settings: Settings, language: Option<&str>, personality: Option<crate::types::Personality>) -> Settings {
+fn settings_for_parse(
+    mut settings: Settings,
+    language: Option<&str>,
+    personality: Option<crate::types::Personality>,
+) -> Result<Settings, StatusCode> {
     if let Some(personality) = personality {
         settings.personality = personality;
     }
     let Some(raw) = language.filter(|s| !s.is_empty()) else {
-        return settings;
+        return Ok(settings);
     };
-    let code = raw.split(['-', '_']).next().unwrap_or(raw).to_ascii_lowercase();
-    if code == "de" || code == "en" {
-        settings.languages = vec![code];
+    match crate::lang::pin_language(raw) {
+        Ok(tag) => {
+            settings.languages = vec![tag];
+            Ok(settings)
+        }
+        Err(crate::lang::LocaleError::Empty) => Ok(settings),
+        Err(crate::lang::LocaleError::Invalid(_) | crate::lang::LocaleError::Unknown(_)) => Err(StatusCode::UNPROCESSABLE_ENTITY),
     }
-    settings
 }
 
 async fn get_settings(
@@ -170,6 +182,7 @@ async fn set_custom(
     }
     *state.custom.lock().await = body.clone();
     let mut overlay = load_overlay(&state.data_dir);
+    crate::lang::push_revision(&mut overlay.language_history, overlay.custom.clone(), overlay.language.clone(), "custom".into());
     overlay.custom = body.clone();
     let _ = save_overlay(&state.data_dir, &overlay);
     Ok(Json(body))
@@ -266,19 +279,36 @@ async fn tag_entity(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::home::{default_home, LoadedHome};
+    use crate::types::ParseDecision;
+
+    fn assert_no_executable_shape(value: &serde_json::Value) {
+        match value {
+            serde_json::Value::Object(fields) => {
+                for forbidden in ["plan", "intent", "slots", "selected_candidate_id"] {
+                    assert!(!fields.contains_key(forbidden), "confirmation leaked {forbidden}: {value}");
+                }
+                for child in fields.values() {
+                    assert_no_executable_shape(child);
+                }
+            }
+            serde_json::Value::Array(values) => values.iter().for_each(assert_no_executable_shape),
+            serde_json::Value::Null | serde_json::Value::Bool(_) | serde_json::Value::Number(_) | serde_json::Value::String(_) => {}
+        }
+    }
 
     #[test]
     fn pins_assist_language_to_pack() {
         let base = Settings::default();
-        assert_eq!(settings_for_parse(base.clone(), Some("en-US"), None).languages, vec!["en".to_string()]);
-        assert_eq!(settings_for_parse(base.clone(), Some("de-DE"), None).languages, vec!["de".to_string()]);
-        assert_eq!(settings_for_parse(base.clone(), None, None).languages, vec!["de".to_string(), "en".to_string()]);
-        assert_eq!(settings_for_parse(base, Some("fr"), None).languages, vec!["de".to_string(), "en".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), Some("en-US"), None).unwrap().languages, vec!["en-US".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), Some("de-DE"), None).unwrap().languages, vec!["de-DE".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), None, None).unwrap().languages, vec!["de".to_string(), "en".to_string()]);
+        assert_eq!(settings_for_parse(base, Some("fr"), None).unwrap_err(), StatusCode::UNPROCESSABLE_ENTITY);
     }
 
     #[test]
     fn assist_personality_overrides_overlay() {
-        let out = settings_for_parse(Settings::default(), None, Some(crate::types::Personality::Butler));
+        let out = settings_for_parse(Settings::default(), None, Some(crate::types::Personality::Butler)).unwrap();
         assert_eq!(out.personality, crate::types::Personality::Butler);
     }
 
@@ -323,5 +353,53 @@ mod tests {
         assert!(!valid_entity_id("light"));
         assert!(!valid_entity_id("../etc/passwd"));
         assert!(!valid_entity_id("light.kuche.extra"));
+    }
+
+    #[tokio::test]
+    async fn confirmation_never_exposes_plan_before_affirmation() {
+        let dir = std::env::temp_dir().join(format!("klar-http-confirm-{}", std::process::id()));
+        let state = AppState::new(
+            LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            dir,
+            None,
+        );
+        let peer = ConnectInfo("127.0.0.1:9".parse().unwrap());
+        let first = api_parse(
+            State(state.clone()),
+            peer,
+            HeaderMap::new(),
+            Json(ParseIn {
+                text: "Wohnungstür abschließen".into(),
+                conversation_id: Some("confirm-http".into()),
+                language: Some("de".into()),
+                personality: None,
+                preferred_area: None,
+            }),
+        )
+        .await
+        .expect("confirmation response")
+        .0;
+        assert!(matches!(first.decision, ParseDecision::Confirm { .. }), "{first:#?}");
+        assert!(first.plan.is_none());
+        assert_no_executable_shape(&serde_json::to_value(&first).expect("serialize confirmation"));
+        assert!(state.sessions.lock().await.get_or_create(Some("confirm-http")).last.is_empty());
+
+        let second = api_parse(
+            State(state.clone()),
+            peer,
+            HeaderMap::new(),
+            Json(ParseIn {
+                text: "ja".into(),
+                conversation_id: Some("confirm-http".into()),
+                language: Some("de".into()),
+                personality: None,
+                preferred_area: None,
+            }),
+        )
+        .await
+        .expect("affirmed response")
+        .0;
+        assert!(matches!(second.decision, ParseDecision::Execute), "{second:#?}");
+        assert_eq!(second.plan.as_ref().map(|plan| plan.steps.len()), Some(1));
     }
 }

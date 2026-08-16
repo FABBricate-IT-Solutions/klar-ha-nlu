@@ -1,0 +1,399 @@
+- name: ood_40
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Helsinki today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_41
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Warsaw today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_42
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Budapest today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_43
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Athens today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_44
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Cairo today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_45
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Nairobi today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_46
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Lima today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_47
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Seoul today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_48
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Bangkok today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_49
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Jakarta today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_50
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Ottawa today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_51
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Canberra today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_52
+  split: ood
+  language: en
+  sentences:
+    - 'What''s the weather like in Wellington today'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_53
+  split: ood
+  language: en
+  sentences:
+    - 'Why do leaves change color in autumn'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_54
+  split: ood
+  language: en
+  sentences:
+    - 'Why is the ocean salty'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_55
+  split: ood
+  language: en
+  sentences:
+    - 'Why do stars appear to twinkle'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_56
+  split: ood
+  language: en
+  sentences:
+    - 'Why is snow usually white'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_57
+  split: ood
+  language: en
+  sentences:
+    - 'Why is grass usually green'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_58
+  split: ood
+  language: en
+  sentences:
+    - 'What is seven plus eight'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_59
+  split: ood
+  language: en
+  sentences:
+    - 'What is eleven minus four'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_60
+  split: ood
+  language: en
+  sentences:
+    - 'What is six times six'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_61
+  split: ood
+  language: en
+  sentences:
+    - 'What is fourteen plus six'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_62
+  split: ood
+  language: en
+  sentences:
+    - 'What is twenty minus nine'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_63
+  split: ood
+  language: en
+  sentences:
+    - 'What is eight times three'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_64
+  split: ood
+  language: en
+  sentences:
+    - 'What is twelve plus five'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_65
+  split: ood
+  language: en
+  sentences:
+    - 'What is fifteen plus ten'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_66
+  split: ood
+  language: en
+  sentences:
+    - 'What is sixteen plus four'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_67
+  split: ood
+  language: en
+  sentences:
+    - 'What is eighteen plus two'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_68
+  split: ood
+  language: en
+  sentences:
+    - 'What is thirteen plus seven'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_69
+  split: ood
+  language: en
+  sentences:
+    - 'What is nineteen minus five'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_70
+  split: ood
+  language: en
+  sentences:
+    - 'What is four times five'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_71
+  split: ood
+  language: en
+  sentences:
+    - 'What is three times nine'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_72
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Spain'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_73
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Italy'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_74
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Japan'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_75
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Canada'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_76
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Brazil'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_77
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Norway'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_78
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Portugal'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_79
+  split: ood
+  language: en
+  sentences:
+    - 'What is the capital of Poland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

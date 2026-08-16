@@ -42,6 +42,8 @@ pub struct BundleEntry {
     pub source: String,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub language: Option<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub tokens: Vec<String>,
     pub request: BundleRequest,
     pub response: BundleResponse,
 }
@@ -126,6 +128,7 @@ pub fn entry_from_parse(source: &str, language: Option<&str>, result: &ParseResu
         ts_ms,
         source: source.to_string(),
         language: language.filter(|s| !s.is_empty()).map(str::to_string),
+        tokens: crate::parse::normalize::tokenize(&result.text),
         request: BundleRequest {
             text: result.text.clone(),
             conversation_id: (!result.conversation_id.is_empty()).then(|| result.conversation_id.clone()),
@@ -380,7 +383,9 @@ async fn download_dataset(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    Ok(attachment("klar-assist-dataset.yaml", "application/yaml; charset=utf-8", state.bundle.dataset_yaml().into_bytes()))
+    let include_raw = state.settings.lock().await.support_bundle_raw_text;
+    let yaml = crate::io::privacy::redact_entries(&state.bundle.load(), include_raw);
+    Ok(attachment("klar-assist-dataset.yaml", "application/yaml; charset=utf-8", dataset_yaml(&yaml).into_bytes()))
 }
 
 async fn download_protocol(
@@ -391,7 +396,15 @@ async fn download_protocol(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    Ok(attachment("klar-support-bundle.jsonl", "application/x-ndjson; charset=utf-8", state.bundle.protocol_bytes()))
+    let include_raw = state.settings.lock().await.support_bundle_raw_text;
+    let mut body = String::new();
+    for entry in crate::io::privacy::redact_entries(&state.bundle.load(), include_raw) {
+        if let Ok(line) = serde_json::to_string(&entry) {
+            body.push_str(&line);
+            body.push('\n');
+        }
+    }
+    Ok(attachment("klar-support-bundle.jsonl", "application/x-ndjson; charset=utf-8", body.into_bytes()))
 }
 
 async fn clear_bundle(
@@ -427,6 +440,7 @@ mod tests {
             ts_ms: 1,
             source: "http".into(),
             language: Some("de".into()),
+            tokens: crate::parse::normalize::tokenize(text),
             request: BundleRequest { text: text.into(), conversation_id: Some("c1".into()) },
             response: BundleResponse { intents: vec![intent], speech: "ok".into(), clarify: false, chat: false, briefing: false },
         }

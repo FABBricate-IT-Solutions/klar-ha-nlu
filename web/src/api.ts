@@ -1,4 +1,9 @@
-import type { ApplyRow, BundleList, Dashboard, Entity, Gaps, ParseResult, Settings, UiState } from "./types";
+import type { ApplyRow, BundleList, Dashboard, Entity, Gaps, Settings, UiState } from "./types";
+
+export type CustomRule = { phrase: string; intent: string; slots: Record<string, string> };
+export type LangOverlay = { custom: CustomRule[]; language: unknown; history: Array<{ hash: string; label: string; saved_at: string }> };
+export type LangExplain = { language: string; decision: string; confidence: number; speech: string; stages: string[]; evidence: string[]; matched_custom?: string };
+import { parseV2Response } from "./parseContract";
 
 const jsonHeaders = () => {
   const token = localStorage.getItem("klar_token") || "";
@@ -26,8 +31,17 @@ export const api = {
   gaps: () => request<Gaps>("/api/gaps"),
   custom: () => request<unknown[]>("/api/custom"),
   saveCustom: (body: unknown[]) => request<unknown[]>("/api/custom", { method: "POST", body: JSON.stringify(body) }),
+  langOverlay: () => request<LangOverlay>("/api/lang/overlay"),
+  saveLangOverlay: (body: { custom: CustomRule[]; language?: unknown; label?: string }) =>
+    request<LangOverlay>("/api/lang/overlay", { method: "POST", body: JSON.stringify(body) }),
+  previewLang: (body: { text: string; language?: string; custom?: CustomRule[] }) =>
+    request<unknown>("/api/lang/preview", { method: "POST", body: JSON.stringify(body) }),
+  explainLang: (body: { text: string; language?: string; custom?: CustomRule[] }) =>
+    request<LangExplain>("/api/lang/explain", { method: "POST", body: JSON.stringify(body) }),
+  rollbackLang: (hash?: string) =>
+    request<LangOverlay>("/api/lang/rollback", { method: "POST", body: JSON.stringify({ hash }) }),
   parse: (text: string, language: string, conversation_id?: string) =>
-    request<ParseResult>("/api/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id }) }),
+    request<unknown>("/api/v2/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id }) }).then(parseV2Response),
   tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; area?: string }) =>
     request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),
   bundle: () => request<BundleList>("/api/bundle/entries"),

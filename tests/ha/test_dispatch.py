@@ -126,7 +126,8 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             None,
             lambda _entity_id: True,
         )
-        self.assertEqual(spoken, "Gerade läuft One by U2.")
+        self.assertTrue(spoken.ok)
+        self.assertEqual(spoken.speech, "Gerade läuft One by U2.")
         dispatch.intent.async_handle.assert_not_awaited()
 
     async def test_area_only_media_status_never_falls_back_to_lights(self) -> None:
@@ -139,7 +140,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             None,
             lambda _entity_id: True,
         )
-        self.assertIsNone(spoken)
+        self.assertFalse(spoken.ok)
         dispatch.intent.async_handle.assert_not_awaited()
 
     async def test_queue_requires_media_player_entity(self) -> None:
@@ -154,7 +155,8 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             None,
             lambda _entity_id: True,
         )
-        self.assertIn("Warteschlange", spoken or "")
+        self.assertTrue(spoken.ok)
+        self.assertIn("Warteschlange", spoken.speech or "")
         call = hass.services.async_call.await_args
         self.assertEqual(call.args[:2], ("music_assistant", "get_queue"))
         self.assertEqual(call.kwargs["target"], {"entity_id": player.entity_id})
@@ -168,7 +170,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             None,
             lambda _entity_id: True,
         )
-        self.assertIsNone(spoken)
+        self.assertFalse(spoken.ok)
         no_target.services.async_call.assert_not_awaited()
 
     async def test_unexposed_media_action_does_not_fall_back(self) -> None:
@@ -182,7 +184,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             None,
             lambda _entity_id: False,
         )
-        self.assertIsNone(spoken)
+        self.assertFalse(spoken.ok)
         hass.services.async_call.assert_not_awaited()
         dispatch.intent.async_handle.assert_not_awaited()
 
@@ -206,7 +208,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                     None,
                     lambda _entity_id: False,
                 )
-                self.assertIsNone(spoken)
+                self.assertFalse(spoken.ok)
                 hass.services.async_call.assert_not_awaited()
 
     async def test_unavailable_media_player_is_not_controlled(self) -> None:
@@ -224,32 +226,31 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             None,
             lambda _entity_id: True,
         )
-        self.assertIsNone(spoken)
+        self.assertFalse(spoken.ok)
         hass.services.async_call.assert_not_awaited()
 
-    async def test_volume_calls_media_player_service_and_speaks_result(self) -> None:
+    async def test_volume_uses_native_intent(self) -> None:
         player = _State("media_player.wohnzimmer", friendly_name="Wohnzimmer")
         hass = _hass(player)
-        spoken = await dispatch.handle_intent(
-            hass,
-            _input(),
-            _item(
-                "HassSetVolume",
-                entity_id=player.entity_id,
-                volume_level=35,
-            ),
-            "de",
-            None,
-            lambda _entity_id: True,
-        )
-        hass.services.async_call.assert_awaited_once_with(
-            "media_player",
-            "volume_set",
-            {"entity_id": player.entity_id, "volume_level": 0.35},
-            blocking=True,
-        )
-        self.assertIn("35 Prozent", spoken or "")
-        self.assertNotIn("HassSetVolume", spoken or "")
+        dispatch.intent.async_handle.return_value = object()
+        with patch.object(dispatch, "from_handled", return_value="Wohnzimmer auf 35 Prozent."):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item(
+                    "HassSetVolume",
+                    entity_id=player.entity_id,
+                    volume_level=35,
+                ),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        dispatch.intent.async_handle.assert_awaited()
+        self.assertEqual(dispatch.intent.async_handle.await_args.args[2], "HassSetVolume")
+        hass.services.async_call.assert_not_awaited()
+        self.assertTrue(spoken.ok)
+        self.assertIn("35 Prozent", spoken.speech or "")
 
     async def test_transfer_rejects_missing_or_identical_source(self) -> None:
         target = _State(
@@ -271,7 +272,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                     None,
                     lambda _entity_id: True,
                 )
-                self.assertIsNone(spoken)
+                self.assertFalse(spoken.ok)
                 hass.services.async_call.assert_not_awaited()
 
 

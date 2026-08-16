@@ -1,3 +1,4 @@
+use crate::lang::{LanguageOverlay, LanguageRevision};
 use crate::types::{CustomSentence, HomeGraph, Settings};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -66,6 +67,10 @@ pub struct Overlay {
     pub preferred_climate: Option<String>,
     #[serde(default)]
     pub ui: UiState,
+    #[serde(default)]
+    pub language: LanguageOverlay,
+    #[serde(default)]
+    pub language_history: Vec<LanguageRevision>,
 }
 
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {

@@ -196,7 +196,7 @@ pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
 }
 
 pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option<String> {
-    let pending = session.pending_clarify.as_ref()?;
+    let pending = &session.pending_clarify()?.options;
     if tokens.iter().any(|t| catalog().clarify_pick.contains(t.as_str())) {
         return pending.first().cloned();
     }

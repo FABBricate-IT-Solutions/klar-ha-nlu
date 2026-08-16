@@ -1,0 +1,15 @@
+klar_lang_pack: "2.0"
+id: fr
+bcp47:
+  - fr
+  - fr-FR
+extends: en
+verbs:
+  allume: On
+  eteins: Off
+sets:
+  talk.fillers:
+    - svp
+  nouns.light_nouns:
+    - lumiere
+    - lampe

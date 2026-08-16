@@ -1,0 +1,199 @@
+- name: ctrl_20
+  split: control
+  language: en
+  sentences:
+    - 'Turn on the Hallway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: ctrl_21
+  split: control
+  language: en
+  sentences:
+    - 'Switch off the Living Room Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: ctrl_22
+  split: control
+  language: en
+  sentences:
+    - 'Please turn on the Rangehood'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: ctrl_23
+  split: control
+  language: en
+  sentences:
+    - 'Turn off the Dishwasher'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: ctrl_24
+  split: control
+  language: en
+  sentences:
+    - 'Switch on the Washing Machine'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: ctrl_25
+  split: control
+  language: en
+  sentences:
+    - 'Please turn off the Dryer'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: ctrl_26
+  split: control
+  language: en
+  sentences:
+    - 'Could you switch on the Hallway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.hallway_light}
+
+- name: ctrl_27
+  split: control
+  language: en
+  sentences:
+    - 'Please turn off the Living Room Lamp'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.living_lamp}
+
+- name: ctrl_28
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn on the Rangehood'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: ctrl_29
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Dishwasher off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dishwasher}
+
+- name: ctrl_30
+  split: control
+  language: en
+  sentences:
+    - 'Please switch on the Washing Machine'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.washing_machine}
+
+- name: ctrl_31
+  split: control
+  language: en
+  sentences:
+    - 'Could you turn off the Dryer'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: switch.dryer}
+
+- name: ctrl_32
+  split: control
+  language: en
+  sentences:
+    - 'Turn on the Dining Pendant now'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}
+
+- name: ctrl_33
+  split: control
+  language: en
+  sentences:
+    - 'Switch off the Island Lights'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.kitchen_island}
+
+- name: ctrl_34
+  split: control
+  language: en
+  sentences:
+    - 'Please turn on the Laundry Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.laundry_light}
+
+- name: ctrl_35
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Powder Room Light off'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: ctrl_36
+  split: control
+  language: en
+  sentences:
+    - 'Could you switch on the Garage Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: ctrl_37
+  split: control
+  language: en
+  sentences:
+    - 'Please switch off the Master Ensuite Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.master_ensuite}
+
+- name: ctrl_38
+  split: control
+  language: en
+  sentences:
+    - 'Turn the Entryway Light on'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: ctrl_39
+  split: control
+  language: en
+  sentences:
+    - 'Can you turn off the Hallway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}

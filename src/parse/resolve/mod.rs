@@ -4,21 +4,40 @@ use crate::home::roles::{is_light_like, matches_domain};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit};
-use crate::types::{AreaRec, EntityRec, HomeGraph};
+use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
+pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
 use score::{fuzzy_tokens, overlap, score_entity, sort_hits};
 pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 
+mod report;
 mod score;
 
 #[derive(Debug, Clone)]
 pub struct Resolved {
     pub areas: Vec<String>,
+    pub floors: Vec<String>,
     pub entities: Vec<EntityRec>,
     pub ambiguous: Vec<EntityRec>,
 }
 
 pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Resolved {
-    let areas = match_areas(tokens, &home.areas);
+    let mut areas = match_areas(tokens, &home.areas);
+    let floors = match_floors(tokens, &home.floors);
+    if !floors.is_empty() && !areas.is_empty() {
+        let on_floor: Vec<String> = areas
+            .iter()
+            .filter(|area_id| {
+                home.areas.iter().any(|area| area.area_id == **area_id && area.floor_id.as_ref().is_some_and(|id| floors.contains(id)))
+            })
+            .cloned()
+            .collect();
+        if !on_floor.is_empty() {
+            areas = on_floor;
+        }
+    }
+    let floor_areas: Vec<String> =
+        floors.iter().flat_map(|floor_id| home.areas_on_floor(floor_id).map(|area| area.area_id.clone())).collect();
+    let scope = if areas.is_empty() { floor_areas.as_slice() } else { areas.as_slice() };
     let fuzzy_tokens = fuzzy_tokens(tokens, home);
     let mut candidates: Vec<(f64, EntityRec)> = home
         .entities
@@ -33,11 +52,11 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity) == Some(kind));
         }
     }
-    if !areas.is_empty() {
+    if !scope.is_empty() {
         let in_area: Vec<(f64, EntityRec)> =
-            candidates.iter().filter(|(_, e)| e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
+            candidates.iter().filter(|(_, e)| e.area.as_ref().is_some_and(|a| scope.contains(a))).cloned().collect();
         let named: Vec<(f64, EntityRec)> =
-            candidates.iter().filter(|(s, e)| *s >= 0.96 && !e.area.as_ref().is_some_and(|a| areas.contains(a))).cloned().collect();
+            candidates.iter().filter(|(s, e)| *s >= 0.96 && !e.area.as_ref().is_some_and(|a| scope.contains(a))).cloned().collect();
         if !in_area.is_empty() {
             candidates = in_area;
             candidates.extend(named);
@@ -47,7 +66,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
 
     if let Some(named) = crate::parse::resolve_named::collect_named_devices(tokens, home) {
         if named.len() > 1 {
-            return Resolved { areas, entities: named, ambiguous: Vec::new() };
+            return Resolved { areas, floors, entities: named, ambiguous: Vec::new() };
         }
     }
 
@@ -80,18 +99,18 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                             || e.entity_id.contains(needle)
                             || e.aliases.iter().any(|a| a.contains(needle))
                     })
-                    && (areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
+                    && (scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
             })
             .cloned()
             .collect();
         if fixtures.len() == 1 {
-            return Resolved { areas, entities: fixtures, ambiguous: Vec::new() };
+            return Resolved { areas, floors, entities: fixtures, ambiguous: Vec::new() };
         }
     }
 
     if domain.is_none_or(|d| d == "light") && !catalog().any(tokens, &catalog().timer_nouns) {
-        if let Some(picked) = pick_fixture(tokens, home, &areas) {
-            return Resolved { areas, entities: picked, ambiguous: Vec::new() };
+        if let Some(picked) = pick_fixture(tokens, home, scope) {
+            return Resolved { areas, floors, entities: picked, ambiguous: Vec::new() };
         }
     }
     if !areas.is_empty()
@@ -103,11 +122,11 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .entities
             .iter()
             .filter(|e| assist_visible(e, home))
-            .filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| areas.contains(a)))
+            .filter(|e| e.domain == "light" && e.area.as_ref().is_some_and(|a| scope.contains(a)))
             .cloned()
             .collect();
         if lights.len() > 1 {
-            return Resolved { areas, entities: Vec::new(), ambiguous: lights };
+            return Resolved { areas, floors, entities: Vec::new(), ambiguous: lights };
         }
     }
 
@@ -118,7 +137,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                 .iter()
                 .filter(|e| assist_visible(e, home))
                 .filter(|e| matches_domain(e, d) && !is_infra(e))
-                .filter(|e| areas.is_empty() || e.area.as_ref().is_some_and(|a| areas.contains(a)))
+                .filter(|e| scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
                 .cloned()
                 .collect();
             if in_domain.len() == 1 {
@@ -127,7 +146,15 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
 
-    Resolved { areas, entities, ambiguous }
+    Resolved { areas, floors, entities, ambiguous }
+}
+
+pub(crate) fn entity_has_name_evidence(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    assist_visible(entity, home) && !is_infra(entity) && entity_name_is_mentioned(tokens, entity, home)
+}
+
+pub(crate) fn entity_name_is_mentioned(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    score::entity_name_evidence(tokens, entity, home)
 }
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
@@ -215,6 +242,27 @@ fn match_areas(tokens: &[String], areas: &[AreaRec]) -> Vec<String> {
         ids.retain(|id| !areas.iter().any(|area| area.area_id == *id && crate::home::policy::is_whole_home(area)));
     }
     ids
+}
+
+fn match_floors(tokens: &[String], floors: &[FloorRec]) -> Vec<String> {
+    let mut scored: Vec<(usize, String)> = Vec::new();
+    for floor in floors {
+        let names: Vec<String> = std::iter::once(fold_umlaut(&floor.name))
+            .chain(std::iter::once(floor.floor_id.clone()))
+            .chain(floor.aliases.iter().map(|alias| fold_umlaut(alias)))
+            .collect();
+        let mut best = 0usize;
+        for name in &names {
+            if token_hit(tokens, name) {
+                best = best.max(name.split([' ', '_']).filter(|part| !part.is_empty()).count().max(1));
+            }
+        }
+        if best > 0 {
+            scored.push((best, floor.floor_id.clone()));
+        }
+    }
+    let max = scored.iter().map(|(score, _)| *score).max().unwrap_or(0);
+    scored.into_iter().filter(|(score, _)| *score == max && max > 0).map(|(_, id)| id).collect()
 }
 pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
     if label.is_empty() {
@@ -379,6 +427,11 @@ pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
             .chain(std::iter::once(compact(&area.name)))
             .chain(area.aliases.iter().map(|alias| compact(alias)))
             .any(|name| !name.is_empty() && tokens.iter().any(|token| token == &name))
+    }) || home.floors.iter().any(|floor| {
+        std::iter::once(compact(&floor.floor_id))
+            .chain(std::iter::once(compact(&floor.name)))
+            .chain(floor.aliases.iter().map(|alias| compact(alias)))
+            .any(|name| !name.is_empty() && tokens.iter().any(|token| token == &name || token_hit(tokens, &name)))
     }) {
         return true;
     }
@@ -426,7 +479,7 @@ mod tests {
     #[test]
     fn resolve_skips_entities_not_exposed_to_assist() {
         let mut home = HomeGraph {
-            areas: vec![AreaRec { area_id: "kuche".into(), name: "Küche".into(), aliases: vec!["kueche".into()] }],
+            areas: vec![AreaRec { area_id: "kuche".into(), name: "Küche".into(), aliases: vec!["kueche".into()], floor_id: None }],
             entities: vec![lamp("light.hidden", "Geheimlampe", "kuche"), lamp("light.kuche_kuche", "Deckenlampe", "kuche")],
             assist: Some(["light.kuche_kuche".into()].into()),
             ..Default::default()

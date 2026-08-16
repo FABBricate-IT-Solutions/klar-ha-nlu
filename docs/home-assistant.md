@@ -4,6 +4,8 @@
 
 Klar hängt als Conversation-Entity an Assist. HACS kann die Rust-Engine nicht starten. Die Integration schon: sie lädt das passende GitHub-Release nach `.storage/klar_nlu/` und startet es auf `127.0.0.1:10520`.
 
+V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release aktualisieren; ein gemischtes Paar schlägt fehl.
+
 ## Integration
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
@@ -116,20 +118,54 @@ Integrations-URL: `http://127.0.0.1:10520`. Aus dem Quellcode: `docker build -t 
 cargo run --release -- --config-dir /config
 ```
 
-Die Engine liest `.storage/core.entity_registry`, `core.device_registry`, `core.area_registry` und die Assist-Expose-Liste. Aliase und Areas in HA pflegen — Klar hat keine zweite Gerätedatenbank.
+Die Engine kann `.storage/core.entity_registry`, `core.device_registry`, `core.area_registry`, `core.floor_registry`, `core.label_registry` und die Assist-Expose-Liste lesen. Das ist der Fallback für Wyoming-only oder wenn die Integration die Engine nicht anstößt. Aliase, Areas, Etagen und Assist-Freigabe in HA pflegen — Klar hat keine zweite Gerätedatenbank.
+
+## Registry-Sync (HA ist Quelle)
+
+Die Integration ist der offizielle Sync-Pfad. Nach dem Setup und bei Registry-/Expose-Änderungen (`entity`, `device`, `area`, `floor`, `label`, `exposed_entities`) schickt sie einen versionierten Snapshot an `POST /api/v2/home`.
+
+```json
+{
+  "schema_version": "1",
+  "entities": [
+    {
+      "entity_id": "light.living",
+      "name": "Wohnzimmer Decke",
+      "original_name": "Ceiling",
+      "has_entity_name": true,
+      "area_id": "living",
+      "device_id": "dev1",
+      "platform": "hue",
+      "aliases": ["decke"],
+      "labels": ["Licht"],
+      "disabled": false
+    }
+  ],
+  "devices": [{"id": "dev1", "name": "Hue", "name_by_user": null, "area_id": "living"}],
+  "areas": [{"id": "living", "name": "Wohnzimmer", "aliases": ["wohnzimmer"], "floor_id": "upper"}],
+  "floors": [{"floor_id": "upper", "name": "Obergeschoss", "aliases": ["upstairs"], "level": 1}],
+  "labels": [{"label_id": "lbl_1", "name": "Licht"}],
+  "assist": ["light.living"]
+}
+```
+
+`schema_version` muss `"1"` sein. Die Engine prüft den Snapshot an der API-Grenze: unbekannte Felder und ungültiges JSON mit `422`, leere IDs, Steuerzeichen und Schemafehler mit `400`, zu große Bodies oder Listen mit `413`. Keiner dieser Fälle stürzt den Prozess ab. Caps: 4096 Entities, 2048 Devices, 256 Areas, 64 Etagen, 256 Labels, 4096 Assist-IDs, 32 Aliase je Eintrag. `assist: null` bedeutet keine Expose-Filterung; ein Array begrenzt die sichtbaren IDs.
+
+Nach einem gültigen Push ist HA die laufende Quelle. Die `.storage`-Dateiüberwachung überschreibt diesen Live-Graph nicht mehr. Overlay-Kalibrierung (Aliase, manuelle Areas, Preferred, Infra) wird weiterhin darübergelegt.
 
 ## Registry, Overlay und Reload
 
-Klar baut beim Start einen effektiven Home-Graph:
+Klar baut einen effektiven Home-Graph:
 
-1. HA-Registries aus `--config-dir` lesen: Entities, Devices, Areas, Labels und Expose-Liste.
-2. Fehlen die Registries, die eingebaute Musterwohnung nutzen.
-3. Overlay aus `--config-dir` anwenden.
-4. Wenn `--data-dir` existiert und von `--config-dir` abweicht, Overlay aus `--data-dir` darüber anwenden.
+1. Live-Snapshot von der Integration (`POST /api/v2/home`), sobald vorhanden.
+2. Sonst HA-Registries aus `--config-dir` lesen: Entities, Devices, Areas, Floors, Labels und Expose-Liste.
+3. Fehlen die Registries, die eingebaute Musterwohnung nutzen.
+4. Overlay aus `--config-dir` anwenden.
+5. Wenn `--data-dir` existiert und von `--config-dir` abweicht, Overlay aus `--data-dir` darüber anwenden.
 
 Das Overlay enthält Kalibrierung aus der Klar-UI: Aliase, manuelle Areas, bevorzugte Geräte, Infrastruktur-Filter, Timer-Hinweise, Settings und Custom Sentences. Im Add-on ist `/config` read-only gedacht und `/data` beschreibbar; bei Cargo/Docker kann beides auf dasselbe Verzeichnis zeigen.
 
-Klar beobachtet die HA-Registry-Dateien und lädt den Home-Graph bei Änderungen neu. Settings und Custom Sentences werden dabei aus den Overlays erneut übernommen. Änderungen über die Klar-UI werden sofort gespeichert und auf den laufenden `HomeStore` angewendet.
+Ohne Live-Sync beobachtet Klar die HA-Registry-Dateien und lädt den Home-Graph bei Änderungen neu. Settings und Custom Sentences werden dabei aus den Overlays erneut übernommen. Änderungen über die Klar-UI werden sofort gespeichert und auf den laufenden `HomeStore` angewendet.
 
 ## Zugriff und Token
 
@@ -143,4 +179,4 @@ HTTP akzeptiert den Token als `x-klar-token` oder `Authorization: Bearer ...`. W
 
 ## Intents
 
-Die Integration führt die von Klar gelieferten Intent-Namen aus. Dafür müssen die Standard-Assist-Intents in HA verfügbar sein (eingebaut). Custom Sentences in Klar (`/api/custom`) können auf dieselben oder eigene Intent-Namen zeigen; eigene Namen brauchen einen Handler in HA.
+Die Integration führt nur `decision.type == execute` aus. Confirm, Clarify und Reject lösen keine Services aus. Ein Execute-Plan läuft in Planreihenfolge über `intent.async_handle`. Jeder Schritt liefert success oder error; Teilfehler sind ein eigenes Ergebnis (Sprache plus strukturierte Fehler), kein stilles Gesamterfolg. Direkte Service-Calls gibt es nur, wo HA keinen nativen Intent hat (Music Assistant, Relativlautstärke, Mute). Custom Sentences in Klar (`/api/custom`) können auf dieselben oder eigene Intent-Namen zeigen; eigene Namen brauchen einen Handler in HA.

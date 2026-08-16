@@ -1,0 +1,76 @@
+- name: asr_entryway
+  split: asr
+  language: en
+  sentences:
+    - 'Turn on the Entryway Ligt'
+    - 'Turn on the Entrway Light'
+    - 'Turn on teh Entryway Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.entryway_light}
+
+- name: asr_powder
+  split: asr
+  language: en
+  sentences:
+    - 'Turn off the Powder Room Ligt'
+    - 'Turn off the Powdr Room Light'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.powder_room_light}
+
+- name: asr_garage
+  split: asr
+  language: en
+  sentences:
+    - 'Turn on the Garag Light'
+    - 'Switch on the Garage Ligt'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.garage_light}
+
+- name: asr_hallway
+  split: asr
+  language: en
+  sentences:
+    - 'Turn off the Hallwey Light'
+    - 'Turn off the Hallway Ligt'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff
+        slots: {entity_id: light.hallway_light}
+
+- name: asr_island
+  split: asr
+  language: en
+  sentences:
+    - 'Turn on the Island Ligts'
+    - 'Switch on the Iland Lights'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kitchen_island}
+
+- name: asr_rangehood
+  split: asr
+  language: en
+  sentences:
+    - 'Turn on the Rangehod'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: switch.rangehood}
+
+- name: asr_pendant
+  split: asr
+  language: en
+  sentences:
+    - 'Turn on the Dining Pendnt'
+    - 'Switch on the Dining Pendant'
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.dining_pendant}

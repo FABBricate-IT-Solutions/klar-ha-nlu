@@ -60,8 +60,13 @@ git cliff --unreleased
 cargo fmt --check
 cargo check
 cargo test -- --test-threads=1
+python3 -m unittest discover -s tests -p 'test_*.py'
+cargo run --quiet -- lang validate packs
+cargo run --quiet -- eval bench --repeat 8
 cargo build --release
 rg 'src/(parse\.rs|web\.rs|wyoming\.rs|lexicon\.rs|numbers\.rs)|parse_help|home_policy' docs README.md README.de.md
 ```
+
+V2 cuts must ship the Rust engine and `custom_components/klar_nlu` together. `POST /api/parse` is gone.
 
 The `rg` check keeps documentation and the module tree aligned. Matches are not automatically failures, but each one should be intentional and current.

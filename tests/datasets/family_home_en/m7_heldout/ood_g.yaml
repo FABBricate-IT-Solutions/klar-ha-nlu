@@ -1,0 +1,399 @@
+- name: ood_240
+  split: ood
+  language: en
+  sentences:
+    - 'What is the square of eight'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_241
+  split: ood
+  language: en
+  sentences:
+    - 'What is the cube of three'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_242
+  split: ood
+  language: en
+  sentences:
+    - 'What is half of ninety'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_243
+  split: ood
+  language: en
+  sentences:
+    - 'What is a quarter of forty'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_244
+  split: ood
+  language: en
+  sentences:
+    - 'What is ten to the power of three'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_245
+  split: ood
+  language: en
+  sentences:
+    - 'Which philosopher taught alexander'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_246
+  split: ood
+  language: en
+  sentences:
+    - 'Which city was byzantium later called'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_247
+  split: ood
+  language: en
+  sentences:
+    - 'Which empire built the colosseum'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_248
+  split: ood
+  language: en
+  sentences:
+    - 'Which civilization built machu picchu'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_249
+  split: ood
+  language: en
+  sentences:
+    - 'Which civilization built angkor wat'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_250
+  split: ood
+  language: en
+  sentences:
+    - 'What material is glass mostly made from'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_251
+  split: ood
+  language: en
+  sentences:
+    - 'What two metals make bronze'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_252
+  split: ood
+  language: en
+  sentences:
+    - 'What metal is steel mostly made from'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_253
+  split: ood
+  language: en
+  sentences:
+    - 'What is paper traditionally made from'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_254
+  split: ood
+  language: en
+  sentences:
+    - 'What is rubber originally harvested from'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_255
+  split: ood
+  language: en
+  sentences:
+    - 'Which month follows april'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_256
+  split: ood
+  language: en
+  sentences:
+    - 'Which month is the shortest in a common year'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_257
+  split: ood
+  language: en
+  sentences:
+    - 'Which day follows thursday'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_258
+  split: ood
+  language: en
+  sentences:
+    - 'Which season follows winter in the north'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_259
+  split: ood
+  language: en
+  sentences:
+    - 'Which season follows summer in the north'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_260
+  split: ood
+  language: en
+  sentences:
+    - 'What is the freezing point of water in celsius'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_261
+  split: ood
+  language: en
+  sentences:
+    - 'What is absolute zero in celsius'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_262
+  split: ood
+  language: en
+  sentences:
+    - 'What is a light year a measure of'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_263
+  split: ood
+  language: en
+  sentences:
+    - 'What is a parsec a measure of'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_264
+  split: ood
+  language: en
+  sentences:
+    - 'What is pi approximately'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_265
+  split: ood
+  language: en
+  sentences:
+    - 'Which ocean current warms western europe'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_266
+  split: ood
+  language: en
+  sentences:
+    - 'Which wind pattern is called a monsoon'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_267
+  split: ood
+  language: en
+  sentences:
+    - 'Which cloud type is tall and stormy'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_268
+  split: ood
+  language: en
+  sentences:
+    - 'Which scale measures earthquake magnitude'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_269
+  split: ood
+  language: en
+  sentences:
+    - 'Which scale measures wind force at sea'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_270
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency of switzerland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_271
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency of mexico'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_272
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency of india'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_273
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency of brazil'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_274
+  split: ood
+  language: en
+  sentences:
+    - 'What is the currency of south korea'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_275
+  split: ood
+  language: en
+  sentences:
+    - 'Which city hosts the united nations headquarters'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_276
+  split: ood
+  language: en
+  sentences:
+    - 'Which city is known as the eternal city'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_277
+  split: ood
+  language: en
+  sentences:
+    - 'Which city is known for the acropolis'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_278
+  split: ood
+  language: en
+  sentences:
+    - 'Which city is known for table mountain'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_279
+  split: ood
+  language: en
+  sentences:
+    - 'Which city is known for the charles bridge'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

@@ -1,0 +1,15 @@
+version: 1
+packs:
+  de:
+    builtin: true
+  en:
+    builtin: true
+  de-AT:
+    path: de-AT/overrides.yaml
+    extends: de
+  en-GB:
+    path: en-GB/overrides.yaml
+    extends: en
+  fr:
+    path: fr/pack.yaml
+    extends: en

@@ -1,0 +1,399 @@
+- name: ood_160
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Algerien'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_161
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Neuseeland'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_162
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Südafrika'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_163
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Hauptstadt von Nigeria'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_164
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre kinetische Energie für Schüler'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_165
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre potenzielle Energie für Schüler'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_166
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Bedeutung von Isotop in der Chemie'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_167
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne drei Merkmale von Säugetieren'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_168
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre eine Primzahl in der Arithmetik'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_169
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre den Wasserkreislauf kurz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_170
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre eine Sonnenfinsternis kurz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_171
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre eine Mondfinsternis kurz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_172
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre tektonische Platten kurz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_173
+  split: ood
+  language: de
+  sentences:
+    - 'Erkläre den Treibhauseffekt kurz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_174
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Metall ist bei Zimmertemperatur flüssig'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_175
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Gas nehmen Pflanzen für Photosynthese auf'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_176
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Organ pumpt Blut beim Menschen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_177
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Knochen ist der längste im menschlichen Körper'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_178
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Kontinent ist der kleinste nach Fläche'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_179
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Ozean liegt zwischen Afrika und Australien'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_180
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Wüste ist die größte heiße Wüste'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_181
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Meer liegt zwischen Europa und Afrika'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_182
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Gebirge enthält den Mont Blanc'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_183
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Kanal verbindet Atlantik und Pazifik'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_184
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Kyoto'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_185
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Marrakesch'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_186
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Cusco'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_187
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Krakau'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_188
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Land liegt die Stadt Bergen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_189
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Jahr fiel die Berliner Mauer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_190
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Jahr betraten Menschen den Mond'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_191
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Jahr sank die Titanic'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_192
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Jahrhundert verbreitete sich der Buchdruck'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_193
+  split: ood
+  language: de
+  sentences:
+    - 'In welchem Jahrhundert begann die industrielle Revolution'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_194
+  split: ood
+  language: de
+  sentences:
+    - 'Worin unterscheidet sich Brot von Gebäck'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_195
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne den Unterschied zwischen Komet und Asteroid'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_196
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne den Unterschied zwischen See und Meer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_197
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne den Unterschied zwischen Roman und Kurzgeschichte'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_198
+  split: ood
+  language: de
+  sentences:
+    - 'Worin unterscheidet sich Jazz von klassischer Musik'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_199
+  split: ood
+  language: de
+  sentences:
+    - 'Was sammeln Bienen von Blüten'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []

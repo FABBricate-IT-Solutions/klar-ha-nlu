@@ -18,9 +18,14 @@ cargo build --release
 | `tests/german.rs` / `german_except.rs` / `german_tags.rs` | feste Einzelsätze | alle grün |
 | `suite_deutsch` | `tests/datasets/wohnung_mittel` inkl. `assist/` | ≥ 95 %, Ziel 100 % |
 | `suite_wohnung_live_assist` | `tests/datasets/wohnung_live/assist` gegen `wohnung_live.json` | alle grün |
-| `suite_english_smoke` | `tests/datasets/wohnung_en` | Ziel 100 % |
+| `suite_english_smoke` | `tests/datasets/wohnung_en` | ≥ 99 %, Ziel 100 % |
 | `suite_deutsch_familienhaus` | `tests/datasets/familienhaus_de` | ≥ 99,5 %, Ziel 100 % |
 | `suite_english_family_home` | `tests/datasets/family_home_en` | ≥ 99,5 %, Ziel 100 % |
+| `suite_m0_exact_*` / `suite_m2_floors_*` | `m0_exact` / `m2_floors` | `fail == 0` |
+| `tests/contract.rs` | V2-`ParseOutcome` | alle grün |
+| `tests/policy.rs` | Confirm/OOD/Multi-Intent | alle grün |
+| `tests/eval.rs` held-out | `m7_heldout` EN/DE | Intent-F1 ≥ 0,98, Slot-F1 ≥ 0,99, Pairing ≥ 0,97, ASR ≥ 0,92, Clarify-P ≥ 0,95 |
+| `tests/privacy.rs` / `tests/migrate.rs` | Bundle-Redaktion, V1-Import | alle grün |
 
 Nur die Voice-Suite:
 
@@ -29,6 +34,66 @@ cargo test --test german --test german_except --test german_tags --test voice_su
 ```
 
 Fehlschläge landen unter `target/suite_fails_family_home_en.txt` und `target/suite_fails_familienhaus_de.txt`.
+
+## Vertrag für Voice-Fälle
+
+Bestehende generierte Fälle mit `conditions` bleiben unterstützt. Sie nutzen
+weiter den bisherigen semantischen Matcher, damit Generatoren nicht auf einmal
+umgestellt werden müssen. Jeder Fall muss genau einen nichtleeren Oracle-Modus
+wählen: Legacy-`conditions` oder den exakten Vertrag. Beides zusammen ist
+unzulässig. Neue Fälle für Dependency-Gates verwenden das NLU-spezifische Feld
+`nlu_expect`:
+
+```yaml
+- name: kitchen_then_dining
+  setup:
+    - {entity_id: light.kitchen, state: "off"}
+  world_expect:
+    - {entity_id: light.kitchen, state: "on"}
+  sentences:
+    - Turn on the kitchen and dining lights
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {area: kitchen, domain: light}
+      - intent: HassTurnOn
+        slots: {area: dining, domain: light}
+    reject: false
+    clarify: false
+```
+
+Die Intent-Liste wird in der angegebenen Reihenfolge verglichen. Jeder
+Intent-Name und seine vollständige Slot-Map müssen passen; zusätzliche,
+fehlende oder falsch zugeordnete Slots schlagen fehl. `reject` und `clarify`
+sind explizite Felder innerhalb von `nlu_expect`. Ablehnung bedeutet
+`ParseDecision::Reject` — keine Intents, keine Rückfrage und kein Chat. Die eingecheckten `m0_exact`-Datensätze frieren
+repräsentative DE/EN-Ergebnisse für Multi-Intent, Timer, Listen, Rückfragen,
+Ablehnung und Zustands-Follow-ups ein.
+
+`setup` beschreibt simulierten Home-Assistant-Zustand, nicht
+NLU-Konversationshistorie. Der Harness bewahrt unterstützte Entity-Attribute,
+Einkaufslisten- und Todo-Einträge in einer getrennten Testwelt auf, wendet
+ausgegebene Intents darauf an und prüft optionale `world_expect`-Endzustände.
+Die aktuelle Parser-API verarbeitet keinen HA-Zustand; deshalb wird Setup nie
+in `Session` eingefügt. Nur vorherige Sätze des Falls erzeugen NLU-Kontext.
+
+Die exakte Testwelt simuliert Entity-An/Aus/Toggle, Medien-Pause/Fortsetzen,
+Stumm/Laut, absolute Zustands-Slots, relative Lautstärkerichtung,
+Timer-Start/Fortsetzen/Pause/Abbruch/Daueränderungen sowie Hinzufügen/Erledigen
+für Todo-Listen, dedizierte Einkaufslisten-Intents und
+`name: shopping_list`. Timer-Fortsetzen ohne Dauer bewahrt die Setup-Dauer;
+relative Lautstärke zeichnet `volume_step` ausschließlich als `up` oder `down`
+auf; andere oder erfundene Zahlenwerte sind ungültig. Das Erledigen eines Listeneintrags setzt voraus, dass der Eintrag im
+Setup oder einem vorherigen Turn existiert. Benannte Todo-Listen binden nur
+über sichtbare, eindeutige HomeGraph-Namen, Aliase oder Labels; nicht
+zugeordnete generische Einkaufslisten-Sätze bleiben `name: shopping_list`.
+Query-Intents sind nur lesend. Das ist Assertion-Infrastruktur, kein
+Home-Assistant-Emulator: Ein vom Modell nicht unterstützter Übergang lässt
+jeden Fall mit `world_expect` fehlschlagen, statt still nichts zu tun.
+Unbekannte, ziellose, verschachtelte, Oracle-lose oder gemischte
+Legacy-/Exact-Setup-/Schema-Einträge scheitern beim Laden der Suite und können
+nicht von Prozent-Schwellen verdeckt werden. Dedizierte englische und deutsche
+`m0_exact`-Tests verlangen zusätzlich `stats.fail == 0`.
 
 ## Sätze erzeugen
 
@@ -75,3 +140,16 @@ python3 tests/ha/test_fallback.py
 ```
 
 `test_refine.py` hält die Prompts pro Persönlichkeit, die Zahlen-/Faktenwachen und dass Sprechformel und Refine-Stimme zusammenpassen.
+
+## Release-Gates
+
+```bash
+cargo test --test eval held_out -- --test-threads=1
+cargo test --test privacy --test migrate --test policy --test contract --test semantic -- --test-threads=1
+cargo run --quiet -- lang validate packs
+cargo run --quiet -- eval bench --repeat 8
+klar eval gate          # volle Scorecard, Exit 1 unter den Schwellen
+klar migrate import --from /data/klar_nlu.json
+```
+
+CI-Job `release-gates` und der Job `test` müssen für ein Release grün sein. Engine und `custom_components/klar_nlu` gehören in denselben Cut: die Integration spricht nur `POST /api/v2/parse`.

@@ -1,0 +1,399 @@
+- name: ood_240
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist die Hälfte von neunzig'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_241
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist vierzig geteilt durch vier'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_242
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist zehn hoch drei'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_243
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Philosoph unterrichtete Alexander'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_244
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Stadt hieß später Byzanz anders'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_245
+  split: ood
+  language: de
+  sentences:
+    - 'Welches Reich baute das Kolosseum'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_246
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Kultur baute Machu Picchu'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_247
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Kultur baute Angkor Wat'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_248
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist der Hauptbestandteil von Glas'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_249
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist der Hauptbestandteil von Bronze'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_250
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist der Hauptbestandteil von Stahl'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_251
+  split: ood
+  language: de
+  sentences:
+    - 'Woraus wird Papier traditionell gemacht'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_252
+  split: ood
+  language: de
+  sentences:
+    - 'Woraus wird Kautschuk ursprünglich gewonnen'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_253
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Monat folgt auf April'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_254
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Monat ist in einem Gemeinjahr der kürzeste'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_255
+  split: ood
+  language: de
+  sentences:
+    - 'Welcher Wochentag kommt nach Donnerstag'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_256
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Jahreszeit folgt im Norden auf den Winter'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_257
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Jahreszeit folgt im Norden auf den Sommer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_258
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist der Gefrierpunkt von Wasser in Celsius'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_259
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist der absolute Nullpunkt in Celsius'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_260
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Einheit entspricht etwa 9,5 Billionen Kilometer'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_261
+  split: ood
+  language: de
+  sentences:
+    - 'Welche astronomische Distanz heißt Parsec'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_262
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist Pi ungefähr'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_263
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Meeresströmung wärmt Westeuropa'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_264
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne das saisonale Windmuster in Südasien'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_265
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Wolkenart ist hoch und gewittrig'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_266
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Skala misst die Stärke von Erdbeben'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_267
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Skala misst Windstärke auf See'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_268
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist die Währung der Schweiz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_269
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist die Währung von Mexiko'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_270
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist die Währung von Indien'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_271
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist die Währung von Brasilien'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_272
+  split: ood
+  language: de
+  sentences:
+    - 'Was ist die Währung von Südkorea'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_273
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Stadt beherbergt den UN-Hauptsitz'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_274
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne den Beinamen der Stadt Rom'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_275
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Stadt ist für die Akropolis bekannt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_276
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Stadt ist für den Tafelberg bekannt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_277
+  split: ood
+  language: de
+  sentences:
+    - 'Welche Stadt ist für die Karlsbrücke bekannt'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_278
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Bedeutung von Nebel in der Astronomie'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
+
+- name: ood_279
+  split: ood
+  language: de
+  sentences:
+    - 'Nenne die Bedeutung von schwarzem Loch'
+  nlu_expect:
+    reject: true
+    clarify: false
+    intents: []
