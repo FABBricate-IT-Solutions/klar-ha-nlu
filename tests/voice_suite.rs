@@ -255,7 +255,6 @@ fn yaml_num(v: &serde_yaml::Value) -> String {
     }
 }
 
-
 fn cond_ok(cond: &Condition, intents: &[Intent], home: &HomeGraph) -> Result<(), String> {
     if scene_covers(cond, intents, home) {
         return Ok(());

@@ -352,9 +352,7 @@ pub(crate) fn area_slots(
         let players = crate::parse::media::media_target_ids(home, area);
         (players.len() == 1).then(|| players[0].clone())
     } else {
-        domain
-            .filter(|d| matches!(*d, "climate" | "fan"))
-            .and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens))
+        domain.filter(|d| matches!(*d, "climate" | "fan")).and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens))
     };
     (id, Some(area.to_string()), domain.map(str::to_string))
 }
