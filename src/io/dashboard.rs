@@ -27,12 +27,7 @@ async fn get_dashboard(
     }
     let home = state.home.snapshot().await;
     let overlay = load_overlay(&state.data_dir);
-    Ok(Json(build_dashboard(
-        &home,
-        &state.bundle.load(),
-        &overlay.ui.dismissed,
-        state.metrics.snapshot(),
-    )))
+    Ok(Json(build_dashboard(&home, &state.bundle.load(), &overlay.ui.dismissed, state.metrics.snapshot())))
 }
 
 async fn get_ui(
