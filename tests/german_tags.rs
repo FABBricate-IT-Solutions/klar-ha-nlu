@@ -68,6 +68,7 @@ fn tagged(id: &str, name: &str, domain: &str, area: &str, tags: &[&str]) -> Enti
         entity_id: id.into(),
         name: name.into(),
         domain: domain.into(),
+        platform: None,
         area: Some(area.into()),
         aliases: vec![name.to_ascii_lowercase()],
         tags: tags.iter().map(|t| (*t).to_string()).collect(),

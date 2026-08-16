@@ -90,6 +90,11 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
     if not states:
         states = list(getattr(handled, "unmatched_states", None) or [])
     states = [state for state in states if not _infra_state(state)]
+    status = _slots(item).get("media_status") if item else ""
+    if status:
+        for state in states:
+            if str(getattr(state, "entity_id", "")).startswith("media_player."):
+                return media_state_speech(state, status, pack)
     rows = [_state_value(state, pack) for state in states[:12]]
     rows = [row for row in rows if row[0] and row[1]]
     area = _room_label(item)
@@ -121,6 +126,62 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
         else:
             parts.append(f"{name} ist {spoken}.")
     return " ".join(parts)
+
+
+def queue_speech(response: Any, state: Any, pack: str) -> str:
+    current = _media_title(state)
+    upcoming = [title for title in _queue_titles(response) if title and title != current][:3]
+    if pack == "en":
+        bits = []
+        if current:
+            bits.append(f"Now playing {current}.")
+        if upcoming:
+            bits.append(f"Next is {upcoming[0]}.")
+            if len(upcoming) > 1:
+                bits.append("Then " + ", ".join(upcoming[1:]) + ".")
+        return " ".join(bits) or media_state_speech(state, "now_playing", pack)
+    bits = []
+    if current:
+        bits.append(f"Gerade läuft {current}.")
+    if upcoming:
+        bits.append(f"Als Nächstes kommt {upcoming[0]}.")
+        if len(upcoming) > 1:
+            bits.append("Danach " + ", ".join(upcoming[1:]) + ".")
+    return " ".join(bits) or media_state_speech(state, "now_playing", pack)
+
+
+def media_state_speech(state: Any, status: str, pack: str) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    if not isinstance(attrs, dict):
+        attrs = {}
+    title = _media_title(state)
+    raw_state = str(getattr(state, "state", "") or "")
+    spoken_state = _speak_state(raw_state, pack)
+    if status == "volume":
+        volume = attrs.get("volume_level")
+        muted = bool(attrs.get("is_volume_muted"))
+        pct = _volume_percent(volume)
+        if pack == "en":
+            body = f"Volume is {pct} percent." if pct else "I cannot read the volume."
+            return f"{body} It is muted." if muted else body
+        body = f"Lautstärke ist {pct} Prozent." if pct else "Ich kann die Lautstärke nicht lesen."
+        return f"{body} Der Ton ist stumm." if muted else body
+    if status == "mute":
+        muted = bool(attrs.get("is_volume_muted"))
+        if pack == "en":
+            return "It is muted." if muted else "It is not muted."
+        return "Der Ton ist stumm." if muted else "Der Ton ist an."
+    if status in {"now_playing", "player"}:
+        if title:
+            if pack == "en":
+                prefix = "Now playing" if raw_state == "playing" else "Selected"
+                return f"{prefix} {title}."
+            prefix = "Gerade läuft" if raw_state == "playing" else "Ausgewählt ist"
+            return f"{prefix} {title}."
+        if pack == "en":
+            return f"The player is {spoken_state}."
+        return f"Der Player ist {spoken_state}."
+    return ""
 
 
 def _room_label(item: dict | None) -> str:
@@ -203,6 +264,67 @@ def _state_value(state: Any, pack: str) -> tuple[str, str, str]:
     else:
         spoken = f"{str(raw).replace('.', ',')} {unit or '°C'}".strip()
     return name, spoken, domain
+
+
+def _media_title(state: Any) -> str:
+    attrs = getattr(state, "attributes", None) or {}
+    if not isinstance(attrs, dict):
+        attrs = {}
+    title = str(attrs.get("media_title") or attrs.get("title") or "").strip()
+    artist = str(attrs.get("media_artist") or attrs.get("artist") or "").strip()
+    album = str(attrs.get("media_album_name") or attrs.get("album") or "").strip()
+    if title and artist:
+        return f"{title} by {artist}"
+    if title and album:
+        return f"{title} ({album})"
+    return title
+
+
+def _volume_percent(value: Any) -> str:
+    try:
+        raw = float(value)
+    except (TypeError, ValueError):
+        return ""
+    if raw <= 1.0:
+        raw *= 100
+    return str(round(raw))
+
+
+def _queue_titles(response: Any) -> list[str]:
+    items = _queue_items(response)
+    return [_title_from_item(item) for item in items]
+
+
+def _queue_items(value: Any) -> list[Any]:
+    if isinstance(value, list):
+        return value
+    if isinstance(value, dict):
+        for key in ("items", "queue", "queue_items", "media_items"):
+            nested = value.get(key)
+            if isinstance(nested, list):
+                return nested
+            if isinstance(nested, dict):
+                found = _queue_items(nested)
+                if found:
+                    return found
+        for nested in value.values():
+            found = _queue_items(nested)
+            if found:
+                return found
+    return []
+
+
+def _title_from_item(item: Any) -> str:
+    if isinstance(item, str):
+        return item
+    if not isinstance(item, dict):
+        return ""
+    media = item.get("media_item") if isinstance(item.get("media_item"), dict) else item
+    title = str(media.get("name") or media.get("title") or media.get("media_title") or "").strip()
+    artist = str(media.get("artist") or media.get("media_artist") or "").strip()
+    if title and artist:
+        return f"{title} by {artist}"
+    return title
 
 
 def _plain_speech(handled: Any) -> str:

@@ -6,6 +6,8 @@ pub struct EntityRec {
     pub entity_id: String,
     pub name: String,
     pub domain: String,
+    #[serde(default)]
+    pub platform: Option<String>,
     pub area: Option<String>,
     pub aliases: Vec<String>,
     pub tags: Vec<String>,

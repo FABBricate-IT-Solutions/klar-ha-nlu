@@ -86,7 +86,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
                 }
             }
             aliases.extend(extra_device_aliases(&d.id, &d.name, &domain));
-            EntityRec { entity_id: d.id, name: d.name, domain, area: d.area_id, aliases, tags: Vec::new() }
+            EntityRec { entity_id: d.id, name: d.name, domain, platform: None, area: d.area_id, aliases, tags: Vec::new() }
         })
         .collect();
     let mut scene_members: HashMap<String, Vec<String>> = HashMap::new();
@@ -97,6 +97,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             entity_id: id,
             name: item.name.clone(),
             domain: "scene".into(),
+            platform: None,
             area: None,
             aliases: vec![fold_umlaut(&item.name)],
             tags: Vec::new(),
@@ -109,6 +110,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             entity_id: id,
             name: item.name.clone(),
             domain: "script".into(),
+            platform: None,
             area: None,
             aliases: vec![fold_umlaut(&item.name)],
             tags: Vec::new(),
@@ -121,6 +123,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
                 entity_id: id,
                 name: item.name.clone(),
                 domain: domain.to_string(),
+                platform: None,
                 area: None,
                 aliases: vec![fold_umlaut(&item.name)],
                 tags: Vec::new(),

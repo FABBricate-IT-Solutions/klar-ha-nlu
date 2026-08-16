@@ -28,14 +28,28 @@ LIST_INTENTS = {
     "HassShoppingListCompleteItem",
 }
 
+MASS_INTENTS = {
+    "MassPlayMedia",
+    "MassTransferQueue",
+    "MassFavorite",
+    "MassGetQueue",
+}
+
 ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
     "HassLightSet",
     "HassClimateSetTemperature",
     "HassClimateGetTemperature",
     "HassGetState",
     "HassMediaPause",
+    "HassMediaUnpause",
     "HassMediaNext",
+    "HassMediaPrevious",
     "HassMediaPlayerMute",
+    "HassMediaPlayerUnmute",
+    "HassSetVolume",
+    "HassSetVolumeRelative",
+    "HassMediaSearchAndPlay",
+    *MASS_INTENTS,
     "HassFanSetSpeed",
     "HassVacuumStart",
     "HassVacuumReturnToBase",

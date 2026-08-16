@@ -100,6 +100,7 @@ mod tests {
             entity_id: id.into(),
             name: name.into(),
             domain: "light".into(),
+            platform: None,
             area: area.map(str::to_string),
             aliases: Vec::new(),
             tags: Vec::new(),

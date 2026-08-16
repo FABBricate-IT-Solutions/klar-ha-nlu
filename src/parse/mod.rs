@@ -3,6 +3,7 @@ pub(crate) mod chat;
 pub(crate) mod clause;
 pub mod compound;
 pub(crate) mod infer;
+pub(crate) mod media;
 pub mod normalize;
 pub mod numbers;
 pub mod resolve;
@@ -37,6 +38,7 @@ pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[Cust
     }
 
     let (mut intents, clarify_names) = parse_clauses(&raw_tokens, &split, home, session, settings);
+    dedup_intents(&mut intents);
     if !clarify_names.is_empty() {
         return done(text, session, Vec::new(), speak_clarify(&clarify_names, Some(home)), true, false);
     }
@@ -153,6 +155,21 @@ fn parse_clauses(
         }
     }
     (intents, clarify_names)
+}
+
+fn dedup_intents(intents: &mut Vec<Intent>) {
+    let mut seen: Vec<String> = Vec::new();
+    intents.retain(|intent| {
+        let mut slots: Vec<String> = intent.slots.iter().map(|slot| format!("{}={}", slot.name, slot.value)).collect();
+        slots.sort();
+        let key = format!("{}|{}", intent.name, slots.join("|"));
+        if seen.iter().any(|item| item == &key) {
+            false
+        } else {
+            seen.push(key);
+            true
+        }
+    });
 }
 
 fn fill_replay_or_need_target(

@@ -176,7 +176,24 @@ fn condition_from_intent(intent: &Intent) -> BTreeMap<String, String> {
             cond.insert("state".into(), "on".into());
         }
     }
-    for key in ["entity_id", "area", "domain", "brightness", "temperature", "color", "percentage", "position"] {
+    for key in [
+        "entity_id",
+        "area",
+        "domain",
+        "brightness",
+        "temperature",
+        "color",
+        "percentage",
+        "position",
+        "search_query",
+        "media_id",
+        "media_type",
+        "artist",
+        "enqueue",
+        "radio_mode",
+        "volume_level",
+        "volume_step",
+    ] {
         if let Some(value) = intent.slot(key) {
             cond.insert(key.to_string(), value.to_string());
         }

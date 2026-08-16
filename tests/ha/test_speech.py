@@ -117,13 +117,50 @@ class SpeechTests(unittest.TestCase):
         self.assertIn("led_ring", needles)
         self.assertIn("cpu_temperature", needles)
 
+    def test_media_now_playing_speech_de(self) -> None:
+        handled = _States(
+            [
+                _State(
+                    "media_player.wohnzimmer_2",
+                    "playing",
+                    "Wohnzimmer Soundbar",
+                    media_title="Bohemian Rhapsody",
+                    media_artist="Queen",
+                ),
+            ]
+        )
+        item = {
+            "name": "HassGetState",
+            "slots": [
+                {"name": "entity_id", "value": "media_player.wohnzimmer_2"},
+                {"name": "media_status", "value": "now_playing"},
+            ],
+        }
+        spoken = speech.from_handled(handled, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("Bohemian Rhapsody", spoken)
+        self.assertIn("Queen", spoken)
+
+    def test_media_volume_speech_en(self) -> None:
+        state = _State("media_player.wohnzimmer_2", "playing", "Living Room", volume_level=0.3, is_volume_muted=True)
+        spoken = speech.media_state_speech(state, "volume", "en")
+        self.assertIn("30 percent", spoken)
+        self.assertIn("muted", spoken)
+
+    def test_queue_speech_uses_response_items(self) -> None:
+        state = _State("media_player.wohnzimmer_2", "playing", "Living Room", media_title="A", media_artist="Artist")
+        response = {"items": [{"name": "A", "artist": "Artist"}, {"name": "B"}, {"name": "C"}]}
+        spoken = speech.queue_speech(response, state, "en")
+        self.assertIn("Now playing A by Artist", spoken)
+        self.assertIn("Next is B", spoken)
+
 
 class _State:
-    def __init__(self, entity_id: str, state: str, name: str) -> None:
+    def __init__(self, entity_id: str, state: str, name: str, **attrs: object) -> None:
         self.entity_id = entity_id
         self.state = state
         self.name = name
-        self.attributes = {"friendly_name": name}
+        self.attributes = {"friendly_name": name, **attrs}
 
 
 class _States:

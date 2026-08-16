@@ -23,6 +23,7 @@ pub struct Session {
     pub pending_clarify: Option<Vec<String>>,
     pub wrong_log: Vec<String>,
     pub briefing: bool,
+    pub preferred_area: Option<String>,
     last_used: Instant,
 }
 
@@ -41,6 +42,7 @@ impl Session {
             pending_clarify: None,
             wrong_log: Vec::new(),
             briefing: false,
+            preferred_area: None,
             last_used: Instant::now(),
         }
     }

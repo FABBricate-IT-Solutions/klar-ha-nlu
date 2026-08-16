@@ -4,6 +4,7 @@ use crate::lang::catalog;
 use crate::parse::action::{detect_actions, domain_for, Action};
 use crate::parse::compound::{apply_compound_light, area_slots, named_scene_or_script, query_keeps_entity, wants_light_clarify};
 use crate::parse::infer::{infer_action, looks_like_named_device, looks_like_question, prefer_action};
+use crate::parse::media::media_clause;
 use crate::parse::numbers::first_number;
 use crate::parse::resolve::{climates_of_kind, light_rooms_for_clarify, query_grounded, resolve, unique_in_area};
 use crate::parse::slots::{
@@ -65,9 +66,11 @@ pub(crate) fn parse_clause(
     // First match wins. Later policies must not steal a more specific bind
     // (named scene/device, compound light, LightAim room group).
     for policy in [
+        media,
         named_scene,
         all_lights,
         follow_named,
+        preferred_area_command,
         area_command,
         query_area,
         query_ungrounded,
@@ -88,6 +91,10 @@ pub(crate) fn parse_clause(
         }
     }
     ClauseOut::Intents(Vec::new())
+}
+
+fn media(ctx: &Clause) -> Option<ClauseOut> {
+    media_clause(ctx.tokens, ctx.raw, ctx.home, ctx.session, ctx.action, ctx.number, &ctx.resolved)
 }
 
 fn is_hard_command(command: Option<Action>, tokens: &[String]) -> bool {
@@ -192,6 +199,38 @@ fn follow_named(ctx: &Clause) -> Option<ClauseOut> {
     let mut intents = vec![fill_intent(act, ctx.tokens, ctx.number, Some(&id), areas.first().map(String::as_str), Some("light"))];
     intents.retain(|i| i.name != "Unknown");
     Some(ClauseOut::Intents(intents))
+}
+
+fn preferred_area_command(ctx: &Clause) -> Option<ClauseOut> {
+    let area = ctx.session.preferred_area.as_deref()?;
+    if !ctx.resolved.areas.is_empty()
+        || !ctx.resolved.entities.is_empty()
+        || !ctx.resolved.ambiguous.is_empty()
+        || ctx.tokens.iter().any(|token| catalog().is_all(token))
+        || ctx.home.areas.iter().any(|rec| crate::home::policy::is_whole_home(rec) && rec.area_id == area)
+    {
+        return None;
+    }
+    let domain = preferred_area_domain(ctx)?;
+    let (id, area_slot, dom) = area_slots(ctx.action, area, Some(domain), ctx.home, ctx.tokens);
+    let intent = fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), area_slot.as_deref(), dom.as_deref());
+    (intent.name != "Unknown").then(|| ClauseOut::Intents(vec![intent]))
+}
+
+fn preferred_area_domain(ctx: &Clause) -> Option<&'static str> {
+    let cat = catalog();
+    if (ctx.domain == Some("light") || crate::parse::action::has_light_noun(ctx.tokens))
+        && matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::SetLight | Action::GetState)
+    {
+        return Some("light");
+    }
+    if ctx.domain == Some("fan") && matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::FanSpeed | Action::GetState) {
+        return Some("fan");
+    }
+    if ctx.domain == Some("media_player") && cat.any(ctx.tokens, &cat.media_nouns) {
+        return Some("media_player");
+    }
+    None
 }
 
 fn area_command(ctx: &Clause) -> Option<ClauseOut> {

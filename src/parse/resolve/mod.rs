@@ -367,6 +367,13 @@ pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
     {
         return true;
     }
+    if home.entities.iter().any(crate::home::roles::is_music_player)
+        && (tokens.windows(2).any(|w| matches!((w[0].as_str(), w[1].as_str()), ("was", "laeuft") | ("was", "spielt")))
+            || tokens.windows(3).any(|w| matches!((w[0].as_str(), w[1].as_str(), w[2].as_str()), ("what", "s", "playing")))
+            || tokens.iter().any(|t| matches!(t.as_str(), "queue" | "warteschlange")))
+    {
+        return true;
+    }
     if home.areas.iter().any(|area| {
         std::iter::once(compact(&area.area_id))
             .chain(std::iter::once(compact(&area.name)))
@@ -409,6 +416,7 @@ mod tests {
             entity_id: id.into(),
             name: name.into(),
             domain: "light".into(),
+            platform: None,
             area: Some(area.into()),
             aliases: vec![name.to_ascii_lowercase()],
             tags: Vec::new(),
