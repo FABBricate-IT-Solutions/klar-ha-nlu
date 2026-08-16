@@ -186,11 +186,7 @@ mod tests {
         let addr = listener.local_addr().unwrap();
         let dir = std::env::temp_dir().join(format!("klar-wy-{}", std::process::id()));
         let _ = std::fs::create_dir_all(&dir);
-        let state = AppState::new(
-            LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new() },
-            dir,
-            None,
-        );
+        let state = AppState::new(LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new() }, dir, None);
         let task = tokio::spawn({
             let state = state.clone();
             async move {

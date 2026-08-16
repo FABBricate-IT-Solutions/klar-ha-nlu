@@ -114,12 +114,8 @@ pub struct Dashboard {
 }
 
 pub fn build_dashboard(home: &HomeGraph, bundle: &[BundleEntry], dismissed: &[String]) -> Dashboard {
-    let assignment: Vec<_> = home
-        .entities
-        .iter()
-        .filter(|entity| assist_visible(entity, home))
-        .map(|entity| assignment_row(entity, home, dismissed))
-        .collect();
+    let assignment: Vec<_> =
+        home.entities.iter().filter(|entity| assist_visible(entity, home)).map(|entity| assignment_row(entity, home, dismissed)).collect();
     let high = assignment.iter().filter(|row| row.confidence == Confidence::High).count();
     let medium = assignment.iter().filter(|row| row.confidence == Confidence::Medium).count();
     let low = assignment.iter().filter(|row| row.confidence == Confidence::Low).count();
@@ -153,9 +149,7 @@ pub fn assignment_row(entity: &EntityRec, home: &HomeGraph, dismissed: &[String]
     } else {
         reasons.push("ready".into());
     }
-    let suggested_area = (!dismissed.iter().any(|id| id == &entity.entity_id))
-        .then(|| suggested_area(entity, home))
-        .flatten();
+    let suggested_area = (!dismissed.iter().any(|id| id == &entity.entity_id)).then(|| suggested_area(entity, home)).flatten();
     AssignmentRow {
         entity_id: entity.entity_id.clone(),
         name: entity.name.clone(),
@@ -216,9 +210,8 @@ fn split_words(raw: &str) -> Vec<String> {
 fn score_area(tokens: &[String], entity: &EntityRec, area: &AreaRec) -> (u32, Vec<String>) {
     let mut score = 0;
     let mut reasons = Vec::new();
-    let area_words = std::iter::once(area.area_id.as_str())
-        .chain(std::iter::once(area.name.as_str()))
-        .chain(area.aliases.iter().map(String::as_str));
+    let area_words =
+        std::iter::once(area.area_id.as_str()).chain(std::iter::once(area.name.as_str())).chain(area.aliases.iter().map(String::as_str));
     for raw in area_words {
         let word = compact(raw);
         if word.len() <= 2 {
@@ -254,7 +247,15 @@ fn rooms(home: &HomeGraph, rows: &[AssignmentRow]) -> Vec<RoomReadiness> {
             let high = here.iter().filter(|row| row.confidence == Confidence::High).count();
             let medium = here.iter().filter(|row| row.confidence == Confidence::Medium).count();
             let low = here.iter().filter(|row| row.confidence == Confidence::Low).count();
-            RoomReadiness { area_id: area.area_id.clone(), name: area.name.clone(), count: here.len(), high, medium, low, inbox: medium + low }
+            RoomReadiness {
+                area_id: area.area_id.clone(),
+                name: area.name.clone(),
+                count: here.len(),
+                high,
+                medium,
+                low,
+                inbox: medium + low,
+            }
         })
         .collect();
     out.sort_by(|a, b| b.inbox.cmp(&a.inbox).then_with(|| a.name.cmp(&b.name)));

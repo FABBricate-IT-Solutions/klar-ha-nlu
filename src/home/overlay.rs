@@ -32,13 +32,7 @@ pub struct UiState {
 
 impl Default for UiState {
     fn default() -> Self {
-        Self {
-            tab: default_tab(),
-            locale: default_locale(),
-            dismissed: Vec::new(),
-            last_apply: Vec::new(),
-            graph: HashMap::new(),
-        }
+        Self { tab: default_tab(), locale: default_locale(), dismissed: Vec::new(), last_apply: Vec::new(), graph: HashMap::new() }
     }
 }
 
@@ -164,10 +158,7 @@ mod tests {
     fn settings_survive_roundtrip() {
         let dir = std::env::temp_dir().join(format!("klar-overlay-set-{}", std::process::id()));
         let _ = std::fs::create_dir_all(&dir);
-        let overlay = Overlay {
-            settings: Some(Settings { support_bundle: true, ..Settings::default() }),
-            ..Default::default()
-        };
+        let overlay = Overlay { settings: Some(Settings { support_bundle: true, ..Settings::default() }), ..Default::default() };
         save_overlay(&dir, &overlay).unwrap();
         let loaded = load_overlay(&dir);
         assert!(loaded.settings.unwrap().support_bundle);
