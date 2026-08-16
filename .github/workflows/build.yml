@@ -96,6 +96,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v6
+        if: github.event_name != 'pull_request'
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build UI
+        if: github.event_name != 'pull_request'
+        working-directory: web
+        run: npm ci && npm run build
       - name: Push container
         if: github.event_name != 'pull_request'
         env:
@@ -106,6 +116,8 @@ jobs:
           cp THIRD_PARTY docker/THIRD_PARTY
           cp "target/${{ matrix.target }}/release/klar" docker/klar
           cp scripts/klar-entry.sh docker/klar-entry.sh
+          rm -rf docker/ui
+          cp -R web/dist docker/ui
           chmod +x docker/klar docker/klar-entry.sh
           image="${GHCR}-${{ matrix.ha_arch }}"
           version="${{ steps.meta.outputs.version }}"
