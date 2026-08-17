@@ -44,7 +44,7 @@ Build erzeugt linux-x86_64, linux-aarch64 und linux-armv7 und hängt die Tarball
 
 Ein Tag von deinem Rechner startet Build weiter selbst: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-`github-actions[bot]` (oder ein `RELEASE_TOKEN`) braucht Bypass für required pull requests auf `main`, sonst scheitert der Version-Commit.
+Der Cut nutzt nur den kurzlebigen `GITHUB_TOKEN` des Jobs. `main` verbietet Löschen und Force-Push; Required Checks gelten nicht für den Version-Commit (sonst bräuchte es ein dauerhaftes Admin-PAT). PR-CI bleibt der Qualitätsfilter vor dem Merge.
 
 ## Changelog lokal
 

@@ -44,7 +44,7 @@ Build compiles linux-x86_64, linux-aarch64, and linux-armv7 and attaches the tar
 
 A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-`github-actions[bot]` (or a `RELEASE_TOKEN`) needs a required-pull-request bypass on `main`, or the version commit fails.
+The cut uses only the job-scoped `GITHUB_TOKEN`. `main` still blocks deletion and force-push; required checks are not enforced on the version commit (that would need a long-lived admin PAT). PR CI remains the quality gate before merge.
 
 ## Local changelog
 
