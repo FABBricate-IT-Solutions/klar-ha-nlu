@@ -29,6 +29,20 @@ pub struct ParseOutcome {
     pub trace: ParseTrace,
     #[serde(default)]
     pub briefing: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub retrieval: Option<Retrieval>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub policy_trace: Option<PolicyTrace>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
+pub struct PolicyTrace {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub matched_rule: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub hit: Option<String>,
+    #[serde(default)]
+    pub compiled_risky: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -76,6 +90,29 @@ pub struct Evidence {
     pub value: String,
     pub score: f64,
     pub exact: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
+pub struct RetrievalHit {
+    pub entity_id: String,
+    pub name: String,
+    pub domain: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub area: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Default)]
+pub struct Retrieval {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub entities: Vec<RetrievalHit>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub areas: Vec<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub last: Vec<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub custom: Vec<String>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub tokens: Vec<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -152,6 +189,24 @@ impl ParseOutcome {
             self.plan = None;
             self.selected_candidate_id = None;
             self.candidates.clear();
+        }
+        if !matches!(self.decision, ParseDecision::Chat | ParseDecision::Reject { .. }) {
+            self.retrieval = None;
+        }
+        if let Some(retrieval) = &mut self.retrieval {
+            retrieval.entities.truncate(8);
+            retrieval.areas.truncate(8);
+            retrieval.last.truncate(8);
+            retrieval.custom.truncate(8);
+            retrieval.tokens.truncate(32);
+            for hit in &mut retrieval.entities {
+                truncate_chars(&mut hit.entity_id, 128);
+                truncate_chars(&mut hit.name, 128);
+                truncate_chars(&mut hit.domain, 32);
+                if let Some(area) = &mut hit.area {
+                    truncate_chars(area, 128);
+                }
+            }
         }
         self.candidates.truncate(MAX_CANDIDATES);
         self.trace.stages.truncate(MAX_TRACE_STAGES);

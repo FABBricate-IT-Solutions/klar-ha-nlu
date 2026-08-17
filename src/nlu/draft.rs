@@ -5,12 +5,13 @@ use crate::parse::infer::{looks_like_correction, match_custom, pick_clarificatio
 use crate::parse::numbers::first_number;
 use crate::parse::respond::{speak, speak_correction, speak_need_target, speak_unknown};
 use crate::parse::slots::intent_with_entity;
-use crate::types::{Intent, IntentCandidate, IntentPlan, ParseDecision, RejectReason};
+use crate::types::{allow_permitted, first_matching_rule, Intent, IntentCandidate, IntentPlan, ParseDecision, PolicyHit, RejectReason};
 
 use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
 use super::legacy;
 use super::ranking::RankingResult;
+use super::speech::{apply_rule_speech, confirmation_prompt};
 use super::validation::{filter_valid_steps, requires_confirmation, validate_plan, PlanInvalid};
 
 #[derive(Default)]
@@ -35,6 +36,7 @@ pub(super) struct Draft {
     pub response_briefing: bool,
     pub competing: bool,
     pub commit: SessionCommit,
+    pub policy_trace: Option<crate::types::PolicyTrace>,
 }
 
 pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &CompoundSplit) -> Option<Draft> {
@@ -101,6 +103,7 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
             response_briefing: false,
             competing: false,
             commit: SessionCommit::default(),
+            policy_trace: None,
         });
     }
     if context.session.pending_clarify().is_some() {
@@ -129,7 +132,7 @@ pub(super) fn route_pending(context: &ParseContext<'_>, tokens: &[String]) -> Op
             ));
         }
     }
-    match_custom(tokens, context.text, context.custom)
+    match_custom(tokens, context.text, context.custom, &context.home.registered_intents)
         .map(|intent| execute(context, vec![intent], "custom_sentence", 1.0, 1.0, false, false))
 }
 
@@ -172,6 +175,7 @@ pub(super) fn replay_or_decide(
                 response_briefing: false,
                 competing: false,
                 commit: SessionCommit { briefing: Some(false), ..SessionCommit::default() },
+                policy_trace: None,
             };
         }
     }
@@ -249,8 +253,29 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     if let Err(reason) = validate_plan(plan, context.home) {
         return invalid_plan(draft, reason, context.catalog);
     }
-    let risky = context.settings.confirm_risky_actions && requires_confirmation(plan);
-    match decide_band(draft.confidence, draft.margin, risky, draft.safety_confirmed, draft.competing) {
+    let compiled_risky = context.settings.confirm_risky_actions && requires_confirmation(plan);
+    let matched = first_matching_rule(context.policies, plan);
+    let policy_trace = Some(crate::types::PolicyTrace {
+        matched_rule: matched.map(|(rule, _)| rule.id.clone()),
+        hit: matched.map(|(_, hit)| hit.as_str().into()),
+        compiled_risky,
+    });
+    if matches!(matched.map(|(_, hit)| hit), Some(PolicyHit::Block)) {
+        let mut rejected = reject(RejectReason::Unsafe, legacy::with_catalog(context.catalog, speak_unknown));
+        rejected.confidence = draft.confidence;
+        rejected.margin = draft.margin;
+        rejected.plan = draft.plan.clone();
+        apply_rule_speech(&mut rejected, context, matched.map(|(rule, _)| rule));
+        rejected.plan = None;
+        rejected.policy_trace = policy_trace.clone();
+        return rejected;
+    }
+    let risky = match matched.map(|(_, hit)| hit) {
+        Some(PolicyHit::Confirm) if context.settings.confirm_risky_actions => true,
+        Some(PolicyHit::Allow) if allow_permitted(plan) => false,
+        _ => compiled_risky,
+    };
+    let mut decided = match decide_band(draft.confidence, draft.margin, risky, draft.safety_confirmed, draft.competing) {
         PolicyBand::Execute => draft,
         PolicyBand::Confirm => {
             let candidate_id = draft.selected_candidate_id.clone().unwrap_or_else(|| "selected-000".into());
@@ -278,7 +303,13 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
             rejected.margin = draft.margin;
             rejected
         }
+    };
+    apply_rule_speech(&mut decided, context, matched.map(|(rule, _)| rule));
+    if let (ParseDecision::Confirm { prompt, .. }, Some((_, _, stored))) = (&decided.decision, decided.commit.confirm.as_mut()) {
+        *stored = prompt.clone();
     }
+    decided.policy_trace = policy_trace;
+    decided
 }
 
 pub(super) fn reject(reason: RejectReason, speech: String) -> Draft {
@@ -294,6 +325,7 @@ pub(super) fn reject(reason: RejectReason, speech: String) -> Draft {
         response_briefing: false,
         competing: false,
         commit: SessionCommit::default(),
+        policy_trace: None,
     }
 }
 
@@ -308,13 +340,6 @@ fn invalid_plan(mut draft: Draft, reason: PlanInvalid, catalog: &'static crate::
     draft.commit.remember.clear();
     draft.commit.clear_pending = false;
     draft
-}
-
-fn confirmation_prompt(context: &ParseContext<'_>) -> String {
-    match context.catalog.langs.first().copied().unwrap_or(crate::lang::LangId::De) {
-        crate::lang::LangId::De => "Soll ich das wirklich ausführen?".into(),
-        crate::lang::LangId::En => "Should I really do that?".into(),
-    }
 }
 
 fn execute(
@@ -370,6 +395,7 @@ fn execute_plan(
         response_briefing: false,
         competing: false,
         commit: SessionCommit { remember: intents, clear_pending, briefing: Some(false), ..SessionCommit::default() },
+        policy_trace: None,
     }
 }
 
@@ -386,6 +412,7 @@ fn chat(speech: String, response_briefing: bool, next_briefing: bool) -> Draft {
         response_briefing,
         competing: false,
         commit: SessionCommit { briefing: Some(next_briefing), ..SessionCommit::default() },
+        policy_trace: None,
     }
 }
 
@@ -401,10 +428,11 @@ pub(super) fn decide_execute_plan(
     confidence: f64,
     margin: f64,
     competing: bool,
+    overlay: (&[crate::types::PolicyRule], &crate::types::SpeechBank),
 ) -> Draft {
     let session = crate::session::Session::new();
     let catalog = crate::lang::catalog_for(&settings.languages);
-    let context = ParseContext::new("test", home, &session, &[], settings, catalog);
+    let context = ParseContext::new("test", home, &session, &[], settings, catalog).with_policies(overlay.0, overlay.1);
     let mut draft = execute_plan(&context, plan, "test", None, None, false, false);
     draft.confidence = confidence;
     draft.margin = margin;

@@ -83,10 +83,11 @@ def list_slots(
     return name, slots
 
 
-def home_intents(intents: list[Any]) -> list[dict[str, Any]]:
+def home_intents(intents: list[Any], registered: set[str] | None = None) -> list[dict[str, Any]]:
+    allowed = ALLOWED_INTENTS | (registered or set())
     out: list[dict[str, Any]] = []
     for item in intents:
-        if not isinstance(item, dict) or item.get("name") not in ALLOWED_INTENTS:
+        if not isinstance(item, dict) or item.get("name") not in allowed:
             continue
         if item["name"] == "HassGetState" and not get_state_has_target(item):
             continue
@@ -107,6 +108,19 @@ def area_label(hass: HomeAssistant, area_id: str) -> str:
         return ""
     area = area_registry.async_get(hass).async_get_area(area_id)
     return str(getattr(area, "name", None) or area_id)
+
+
+def registered_intent_names(hass: HomeAssistant | None) -> set[str]:
+    if hass is None:
+        return set()
+    try:
+        from homeassistant.helpers import intent as ha_intent
+
+        manager = ha_intent.async_get(hass)
+    except Exception:  # noqa: BLE001 — intent manager is a system boundary
+        return set()
+    handlers = getattr(manager, "handlers", None) or getattr(manager, "_handlers", {}) or {}
+    return {name for name in handlers if isinstance(name, str) and name not in ALLOWED_INTENTS}
 
 
 def item_slots(item: dict) -> dict[str, Any]:

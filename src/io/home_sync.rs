@@ -70,7 +70,14 @@ mod tests {
         let dir = std::env::temp_dir().join(format!("klar-home-sync-{}", std::process::id()));
         let _ = std::fs::create_dir_all(&dir);
         let state = AppState::new(
-            LoadedHome { graph: HomeGraph::default(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: HomeGraph::default(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         );
@@ -97,7 +104,14 @@ mod tests {
     async fn malformed_snapshot_is_rejected() {
         let dir = std::env::temp_dir().join(format!("klar-home-sync-bad-{}", std::process::id()));
         let state = AppState::new(
-            LoadedHome { graph: HomeGraph::default(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: HomeGraph::default(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         );
@@ -114,7 +128,14 @@ mod tests {
     async fn supervisor_snapshot_without_token_is_accepted() {
         let dir = std::env::temp_dir().join(format!("klar-home-sync-sup-{}", std::process::id()));
         let state = AppState::new(
-            LoadedHome { graph: HomeGraph::default(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: HomeGraph::default(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         );
@@ -137,7 +158,14 @@ mod tests {
     async fn lan_snapshot_without_token_is_rejected() {
         let dir = std::env::temp_dir().join(format!("klar-home-sync-lan-{}", std::process::id()));
         let state = AppState::new(
-            LoadedHome { graph: HomeGraph::default(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: HomeGraph::default(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         );

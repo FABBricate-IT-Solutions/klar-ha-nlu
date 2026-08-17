@@ -1,5 +1,5 @@
 use crate::lang::{LanguageOverlay, LanguageRevision};
-use crate::types::{CustomSentence, HomeGraph, Settings};
+use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;
@@ -38,7 +38,7 @@ impl Default for UiState {
 }
 
 fn default_tab() -> String {
-    "dashboard".into()
+    "home".into()
 }
 
 fn default_locale() -> String {
@@ -71,6 +71,10 @@ pub struct Overlay {
     pub language: LanguageOverlay,
     #[serde(default)]
     pub language_history: Vec<LanguageRevision>,
+    #[serde(default)]
+    pub policies: Vec<PolicyRule>,
+    #[serde(default)]
+    pub speech_bank: SpeechBank,
 }
 
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {

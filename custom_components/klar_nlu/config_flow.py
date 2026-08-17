@@ -14,12 +14,14 @@ from .const import (
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
+    CONF_NLU_RAG,
     CONF_PERSONALITY,
     CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_NLU_RAG,
     DEFAULT_PERSONALITY,
     DEFAULT_REFINE_PROMPT,
     DEFAULT_REFINE_SPEECH,
@@ -68,6 +70,7 @@ def _options_schema() -> vol.Schema:
         vol.Optional(CONF_ASSIST_FILTER, default=DEFAULT_ASSIST_FILTER): (
             selector.BooleanSelector()
         ),
+        vol.Optional(CONF_NLU_RAG, default=DEFAULT_NLU_RAG): selector.BooleanSelector(),
     }
     return vol.Schema(fields)
 
@@ -178,6 +181,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                         CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER
                     )
                 )
+            data[CONF_NLU_RAG] = bool(user_input.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
             return self.async_create_entry(data=data)
         suggested = {
             CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
@@ -185,6 +189,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             CONF_PERSONALITY: DEFAULT_PERSONALITY,
             CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
             CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
+            CONF_NLU_RAG: DEFAULT_NLU_RAG,
             **self.config_entry.options,
         }
         if CONF_URL not in suggested:

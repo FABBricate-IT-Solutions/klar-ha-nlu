@@ -31,14 +31,16 @@
           "refine_prompt": "Verfeinerungs-Prompt",
           "url": "URL der Klar-API",
           "token": "Write-Token",
-          "assist_filter": "Nur für Assist freigegebene Entitäten steuern"
+          "assist_filter": "Nur für Assist freigegebene Entitäten steuern",
+          "nlu_rag": "NLU-RAG (optional)"
         },
         "data_description": {
           "personality": "Liegt in dieser Integration, nicht in der Klar-App. Assist und die LLM-Stimme wechseln mit dieser Auswahl. Mit Refine steckt die Stimme im Satz, nicht in einer festen Formel.",
           "refine_speech": "Wenn aktiv, steuert Klar NLU weiterhin die Geräte. Das Fallback-LLM formuliert die fertige NLU-Antwort als ein oder zwei gesprochene Sätze in der gewählten Persönlichkeit um. Klar schickt enable_thinking=false mit.",
           "refine_prompt": "Optionale Extra-Stil-Anweisung zur gewählten Persönlichkeit. Klar behält die Sicherheitsregeln bei: keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
-          "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät."
+          "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät.",
+          "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung."
         }
       }
     },

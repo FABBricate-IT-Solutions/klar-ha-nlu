@@ -4,7 +4,7 @@ use crate::home::overlay::{apply_overlay, load_overlay, save_overlay, Overlay};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
-use crate::nlu::{legacy_result, parse};
+use crate::nlu::{legacy_result, parse_with_policies};
 use crate::types::{known_intent, AreaRec, CustomSentence, EntityRec, ParseOutcome, Settings};
 use axum::extract::{ConnectInfo, DefaultBodyLimit, State};
 use axum::http::{HeaderMap, StatusCode};
@@ -27,6 +27,8 @@ pub struct ParseIn {
     pub personality: Option<crate::types::Personality>,
     /// Area of the Assist satellite that heard the request.
     pub preferred_area: Option<String>,
+    /// Opt-in NLU-as-RAG for this request. Overlay default stays off.
+    pub nlu_rag: Option<bool>,
 }
 
 pub fn router(state: AppState) -> Router {
@@ -41,6 +43,8 @@ pub fn router(state: AppState) -> Router {
         .merge(crate::io::dashboard::routes())
         .merge(crate::io::home_sync::routes())
         .merge(crate::io::lang_api::routes())
+        .merge(crate::io::conversations::routes())
+        .merge(crate::io::policies::routes())
         .layer(DefaultBodyLimit::max(16 * 1024))
         .fallback_service(ServeDir::new(ui_dir()))
         .with_state(state)
@@ -102,16 +106,20 @@ async fn api_parse(
     if body.preferred_area.as_ref().is_some_and(|area| area.len() > 128 || !home.areas.iter().any(|record| record.area_id == *area)) {
         return Err(StatusCode::BAD_REQUEST);
     }
-    let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality)?;
+    let settings = settings_for_parse(state.settings.lock().await.clone(), body.language.as_deref(), body.personality, body.nlu_rag)?;
     let custom = state.custom.lock().await.clone();
+    let policies = state.policies.lock().await.clone();
+    let speech_bank = state.speech_bank.lock().await.clone();
     let mut session = {
         let mut sessions = state.sessions.lock().await;
         sessions.take(body.conversation_id.as_deref())
     };
     session.preferred_area = body.preferred_area.clone();
-    let outcome = parse(&body.text, &home, &mut session, &custom, &settings);
+    let outcome = parse_with_policies(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank);
+    let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
     state.sessions.lock().await.put(session);
     state.record_parse("http", body.language.as_deref(), &legacy_result(outcome.clone())).await;
+    state.record_outcome(&outcome, last_names).await;
     Ok(Json(outcome))
 }
 
@@ -119,9 +127,13 @@ fn settings_for_parse(
     mut settings: Settings,
     language: Option<&str>,
     personality: Option<crate::types::Personality>,
+    nlu_rag: Option<bool>,
 ) -> Result<Settings, StatusCode> {
     if let Some(personality) = personality {
         settings.personality = personality;
+    }
+    if let Some(nlu_rag) = nlu_rag {
+        settings.nlu_rag = nlu_rag;
     }
     let Some(raw) = language.filter(|s| !s.is_empty()) else {
         return Ok(settings);
@@ -300,15 +312,15 @@ mod tests {
     #[test]
     fn pins_assist_language_to_pack() {
         let base = Settings::default();
-        assert_eq!(settings_for_parse(base.clone(), Some("en-US"), None).unwrap().languages, vec!["en-US".to_string()]);
-        assert_eq!(settings_for_parse(base.clone(), Some("de-DE"), None).unwrap().languages, vec!["de-DE".to_string()]);
-        assert_eq!(settings_for_parse(base.clone(), None, None).unwrap().languages, vec!["de".to_string(), "en".to_string()]);
-        assert_eq!(settings_for_parse(base, Some("fr"), None).unwrap_err(), StatusCode::UNPROCESSABLE_ENTITY);
+        assert_eq!(settings_for_parse(base.clone(), Some("en-US"), None, None).unwrap().languages, vec!["en-US".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), Some("de-DE"), None, None).unwrap().languages, vec!["de-DE".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), None, None, None).unwrap().languages, vec!["de".to_string(), "en".to_string()]);
+        assert_eq!(settings_for_parse(base, Some("fr"), None, None).unwrap_err(), StatusCode::UNPROCESSABLE_ENTITY);
     }
 
     #[test]
     fn assist_personality_overrides_overlay() {
-        let out = settings_for_parse(Settings::default(), None, Some(crate::types::Personality::Butler)).unwrap();
+        let out = settings_for_parse(Settings::default(), None, Some(crate::types::Personality::Butler), None).unwrap();
         assert_eq!(out.personality, crate::types::Personality::Butler);
     }
 
@@ -359,7 +371,14 @@ mod tests {
     async fn confirmation_never_exposes_plan_before_affirmation() {
         let dir = std::env::temp_dir().join(format!("klar-http-confirm-{}", std::process::id()));
         let state = AppState::new(
-            LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: default_home(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         );
@@ -374,6 +393,7 @@ mod tests {
                 language: Some("de".into()),
                 personality: None,
                 preferred_area: None,
+                nlu_rag: None,
             }),
         )
         .await
@@ -394,6 +414,7 @@ mod tests {
                 language: Some("de".into()),
                 personality: None,
                 preferred_area: None,
+                nlu_rag: None,
             }),
         )
         .await

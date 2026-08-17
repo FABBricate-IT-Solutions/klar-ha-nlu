@@ -1,11 +1,13 @@
 pub(crate) mod auth;
 pub mod bootstrap;
 pub(crate) mod bundle;
+pub(crate) mod conversations;
 pub(crate) mod dashboard;
 pub(crate) mod home_sync;
 pub(crate) mod lang_api;
 pub mod limits;
 pub(crate) mod metrics;
+pub(crate) mod policies;
 pub(crate) mod privacy;
 pub mod state;
 pub mod web;

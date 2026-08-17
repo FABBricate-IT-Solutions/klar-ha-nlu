@@ -159,7 +159,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
             });
         }
     }
-    Ok(HomeGraph { entities, areas, floors, scene_members, assist: None, policy: file.policy })
+    Ok(HomeGraph { entities, areas, floors, scene_members, assist: None, policy: file.policy, registered_intents: Vec::new() })
 }
 
 fn yaml_entity_ids(value: &serde_yaml::Value) -> Vec<String> {

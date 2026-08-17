@@ -61,7 +61,7 @@ fn sanitize_ui(mut ui: UiState) -> UiState {
         ui.locale = "de".into();
     }
     if ui.tab.is_empty() || ui.tab.len() > 32 {
-        ui.tab = "dashboard".into();
+        ui.tab = "home".into();
     }
     ui.dismissed.retain(|id| valid_entity_id(id));
     ui.dismissed.sort();
@@ -155,7 +155,7 @@ mod tests {
             dismissed: vec!["../x".into(), "light.ok".into()],
             ..Default::default()
         });
-        assert_eq!(ui.tab, "dashboard");
+        assert_eq!(ui.tab, "home");
         assert_eq!(ui.locale, "de");
         assert_eq!(ui.dismissed, vec!["light.ok"]);
     }

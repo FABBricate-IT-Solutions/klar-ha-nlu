@@ -29,8 +29,10 @@ export function parseV2Response(value: unknown): ParseResult {
       "evidence",
       "trace",
       "briefing",
+      "retrieval",
+      "policy_trace",
     ],
-    ["selected_candidate_id", "plan"],
+    ["selected_candidate_id", "plan", "retrieval", "policy_trace"],
   );
   if (payload.schema_version !== "2.0") throw new Error("Unsupported parse schema");
   string(payload.text, "text", 4096, true);
@@ -58,6 +60,11 @@ export function parseV2Response(value: unknown): ParseResult {
   }
   list(payload.evidence, "evidence", MAX_EVIDENCE, validateEvidence);
   validateTrace(payload.trace);
+  if (payload.retrieval !== undefined && payload.retrieval !== null) {
+    if (decision !== "chat" && decision !== "reject") {
+      throw new Error("retrieval only allowed on chat or reject");
+    }
+  }
   return payload as ParseResult;
 }
 

@@ -31,14 +31,16 @@
           "refine_prompt": "Refinement prompt",
           "url": "Klar API URL",
           "token": "Write token",
-          "assist_filter": "Only control entities exposed to Assist"
+          "assist_filter": "Only control entities exposed to Assist",
+          "nlu_rag": "NLU-RAG (opt-in)"
         },
         "data_description": {
           "personality": "Stored in this integration, not in the Klar app. Assist and the LLM refine voice switch with this choice. With refine on, the voice lives in the sentence, not in a fixed cue.",
           "refine_speech": "When on, device control still comes from Klar NLU, but the fallback LLM rewrites the finished NLU reply as one or two spoken sentences in the selected personality. Klar sends enable_thinking=false on that request.",
           "refine_prompt": "Optional extra style on top of the selected personality. Klar still keeps the safety rules: no device control, no new facts, same language.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
-          "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device."
+          "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
+          "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools."
         }
       }
     },

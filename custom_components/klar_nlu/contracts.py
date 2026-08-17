@@ -37,9 +37,11 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
             "evidence",
             "trace",
             "briefing",
+            "retrieval",
+            "policy_trace",
         },
         "response",
-        optional={"selected_candidate_id", "plan"},
+        optional={"selected_candidate_id", "plan", "retrieval", "policy_trace"},
     )
     if payload.get("schema_version") != "2.0":
         raise ValueError("unsupported Klar schema_version")
@@ -69,6 +71,13 @@ def validate_v2_payload(value: Any) -> dict[str, Any]:
         raise ValueError("non-execute response must not expose candidates or a selected candidate")
     _list(payload.get("evidence"), "evidence", MAX_EVIDENCE, _evidence)
     _trace(payload.get("trace"))
+    retrieval = payload.get("retrieval")
+    if retrieval is not None:
+        if decision not in {"chat", "reject"}:
+            raise ValueError("retrieval only allowed on chat or reject")
+        _retrieval(retrieval)
+    if payload.get("policy_trace") is not None:
+        _policy_trace(payload.get("policy_trace"))
     return payload
 
 
@@ -207,6 +216,52 @@ def _evidence(value: Any, path: str) -> None:
     _score(evidence.get("score"), f"{path}.score")
     if not isinstance(evidence.get("exact"), bool):
         raise ValueError(f"{path}.exact must be boolean")
+
+
+def _retrieval(value: Any) -> None:
+    pack = _mapping(value, "retrieval")
+    _keys(
+        pack,
+        {"entities", "areas", "last", "custom", "tokens"},
+        "retrieval",
+        optional={"entities", "areas", "last", "custom", "tokens"},
+    )
+    entities = pack.get("entities")
+    if entities is not None:
+        _list(entities, "retrieval.entities", 8, _retrieval_hit)
+    for key in ("areas", "last", "custom"):
+        items = pack.get(key)
+        if items is not None:
+            _list(items, f"retrieval.{key}", 8, lambda item, path: _string(item, path, 128))
+    tokens = pack.get("tokens")
+    if tokens is not None:
+        _list(tokens, "retrieval.tokens", 32, lambda item, path: _string(item, path, 64))
+
+
+def _retrieval_hit(value: Any, path: str) -> None:
+    hit = _mapping(value, path)
+    _keys(hit, {"entity_id", "name", "domain", "area"}, path, optional={"area"})
+    _string(hit.get("entity_id"), f"{path}.entity_id", 128)
+    _string(hit.get("name"), f"{path}.name", 128)
+    _string(hit.get("domain"), f"{path}.domain", 32)
+    if hit.get("area") is not None:
+        _string(hit.get("area"), f"{path}.area", 128)
+
+
+def _policy_trace(value: Any) -> None:
+    trace = _mapping(value, "policy_trace")
+    _keys(
+        trace,
+        {"matched_rule", "hit", "compiled_risky"},
+        "policy_trace",
+        optional={"matched_rule", "hit", "compiled_risky"},
+    )
+    if trace.get("matched_rule") is not None:
+        _string(trace.get("matched_rule"), "policy_trace.matched_rule", 64)
+    if trace.get("hit") is not None:
+        _string(trace.get("hit"), "policy_trace.hit", 32)
+    if "compiled_risky" in trace and not isinstance(trace.get("compiled_risky"), bool):
+        raise ValueError("policy_trace.compiled_risky must be boolean")
 
 
 def _trace(value: Any) -> None:

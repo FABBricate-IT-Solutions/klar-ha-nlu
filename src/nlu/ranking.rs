@@ -45,7 +45,12 @@ pub(super) fn provisional_selection(analysis: &Analysis) -> Option<usize> {
     ranked_clause(analysis).first().map(|row| row.0)
 }
 
-pub(super) fn rank_candidates(analyses: &[Analysis], home: &HomeGraph, trace: &mut ParseTrace) -> RankingResult {
+pub(super) fn rank_candidates(
+    analyses: &[Analysis],
+    home: &HomeGraph,
+    policies: &[crate::types::PolicyRule],
+    trace: &mut ParseTrace,
+) -> RankingResult {
     let clause_alternatives = analyses
         .iter()
         .map(|analysis| ranked_clause(analysis).into_iter().filter(|(_, fragment)| keep_fragment(fragment, home)).collect::<Vec<_>>())
@@ -84,6 +89,9 @@ pub(super) fn rank_candidates(analyses: &[Analysis], home: &HomeGraph, trace: &m
             }
             entry.candidate.plan = filtered;
         }
+        let entity = entry.candidate.plan.steps.first().and_then(|step| step.intent.slot("entity_id"));
+        let area = entry.candidate.plan.steps.first().and_then(|step| step.intent.slot("area"));
+        entry.candidate.score += super::retrieval::prefer_bonus(policies, entity, area);
     }
     beam.retain(|entry| {
         entry.choices.len() == applied_clauses

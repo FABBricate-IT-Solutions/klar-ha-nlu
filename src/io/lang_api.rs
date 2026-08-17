@@ -253,7 +253,14 @@ mod tests {
         let _ = std::fs::create_dir_all(&dir);
         let _ = std::fs::remove_file(dir.join("klar_nlu.json"));
         AppState::new(
-            LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: default_home(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         )

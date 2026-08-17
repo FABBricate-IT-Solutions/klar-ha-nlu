@@ -1,4 +1,16 @@
-import type { ApplyRow, BundleList, Dashboard, Entity, Gaps, Settings, UiState } from "./types";
+import type {
+  ApplyRow,
+  BundleList,
+  ConversationTurn,
+  Dashboard,
+  Entity,
+  EvaluateOut,
+  Gaps,
+  PolicyBundle,
+  PolicyRule,
+  Settings,
+  UiState,
+} from "./types";
 
 export type CustomRule = { phrase: string; intent: string; slots: Record<string, string> };
 export type LangOverlay = { custom: CustomRule[]; language: unknown; history: Array<{ hash: string; label: string; saved_at: string }> };
@@ -40,8 +52,14 @@ export const api = {
     request<LangExplain>("/api/lang/explain", { method: "POST", body: JSON.stringify(body) }),
   rollbackLang: (hash?: string) =>
     request<LangOverlay>("/api/lang/rollback", { method: "POST", body: JSON.stringify({ hash }) }),
-  parse: (text: string, language: string, conversation_id?: string) =>
-    request<unknown>("/api/v2/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id }) }).then(parseV2Response),
+  parse: (text: string, language: string, conversation_id?: string, nlu_rag?: boolean) =>
+    request<unknown>("/api/v2/parse", { method: "POST", body: JSON.stringify({ text, language, conversation_id, nlu_rag }) }).then(parseV2Response),
+  policies: () => request<PolicyBundle>("/api/v2/policies"),
+  savePolicies: (body: PolicyBundle) => request<PolicyBundle>("/api/v2/policies", { method: "POST", body: JSON.stringify(body) }),
+  evaluatePolicies: (body: { text: string; language?: string; policies?: PolicyRule[] }) =>
+    request<EvaluateOut>("/api/v2/policies/evaluate", { method: "POST", body: JSON.stringify(body) }),
+  conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
+  conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
   tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; area?: string }) =>
     request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),
   bundle: () => request<BundleList>("/api/bundle/entries"),

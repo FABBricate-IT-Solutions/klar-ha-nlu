@@ -125,6 +125,7 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(snapshot["entities"][0]["aliases"], ["decke"])
         self.assertEqual(snapshot["labels"][0]["name"], "Licht")
         self.assertEqual(snapshot["assist"], ["light.living"])
+        self.assertIn("registered_intents", snapshot)
 
     def test_hidden_entities_are_omitted_from_assist(self) -> None:
         hass = SimpleNamespace()

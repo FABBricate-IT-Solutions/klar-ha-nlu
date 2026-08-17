@@ -88,7 +88,7 @@ export function GraphPage({
         <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
           {areas.map((room) => (
             <g key={room.id}>
-              <rect x={roomColumn} y={roomY[room.id] - 34} width={188} height={68} rx={10} fill="#15110e" stroke="var(--line)" />
+              <rect x={roomColumn} y={roomY[room.id] - 34} width={188} height={68} fill="var(--surface)" stroke="var(--line)" />
               <text x={roomColumn + 20} y={roomY[room.id] - 6} fill="var(--text)" fontSize="16">{room.name}</text>
               <text x={roomColumn + 20} y={roomY[room.id] + 18} fill="var(--muted)" fontSize="12">{room.inbox} {t.open}</text>
             </g>
@@ -101,7 +101,7 @@ export function GraphPage({
           ))}
           {nodes.map(({ row, x, y }) => (
             <g className="node" key={row.entity_id} transform={`translate(${x} ${y})`} onPointerDown={(ev) => drag(row, ev)} onDoubleClick={() => onInspect(row)}>
-              <circle r={28} fill="#17130f" stroke={color(row.confidence)} strokeWidth={3} />
+              <circle r={22} fill="var(--surface-2)" stroke={color(row.confidence)} strokeWidth={2} />
               <text x={42} y="-4" fill="var(--text)" fontSize="14">{row.name}</text>
               <text x={42} y="16" fill="var(--muted)" fontSize="11">{row.entity_id}</text>
             </g>

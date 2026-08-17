@@ -51,6 +51,9 @@ pub struct Settings {
     /// Consult local semantic adapters after a ranking reject. Off by default.
     #[serde(default)]
     pub semantic_adapters: bool,
+    /// Opt-in NLU-as-RAG: matched-slice retrieval and Klar tools. Off by default.
+    #[serde(default)]
+    pub nlu_rag: bool,
 }
 
 impl Default for Settings {
@@ -63,6 +66,7 @@ impl Default for Settings {
             support_bundle_raw_text: false,
             confirm_risky_actions: true,
             semantic_adapters: false,
+            nlu_rag: false,
         }
     }
 }
@@ -79,6 +83,7 @@ mod tests {
         assert!(!set.support_bundle_raw_text);
         assert!(set.confirm_risky_actions);
         assert!(!set.semantic_adapters);
+        assert!(!set.nlu_rag);
         assert_eq!(set.languages, vec!["de"]);
     }
 }

@@ -1,7 +1,24 @@
-import { AreaTrend, Bars, Donut } from "../components/charts";
+import { useEffect, useMemo, useState } from "react";
+import { api } from "../api";
+import { AreaTrend, Bars, DecisionMix, Donut, type MixRow } from "../components/charts";
 import { Empty, Kpi } from "../components/common";
 import type { Messages } from "../i18n";
-import type { Dashboard as DashboardData } from "../types";
+import type { ConversationTurn, Dashboard as DashboardData } from "../types";
+
+function mixFrom(turns: ConversationTurn[]): MixRow[] {
+  const byDay = new Map<string, MixRow>();
+  for (const turn of turns) {
+    const day = new Date(turn.ts_ms).toISOString().slice(0, 10);
+    const row = byDay.get(day) || { day, execute: 0, confirm: 0, clarify: 0, reject: 0, chat: 0 };
+    if (turn.decision === "execute") row.execute += 1;
+    else if (turn.decision === "confirm") row.confirm += 1;
+    else if (turn.decision === "clarify") row.clarify += 1;
+    else if (turn.decision === "reject") row.reject += 1;
+    else row.chat += 1;
+    byDay.set(day, row);
+  }
+  return [...byDay.values()].sort((a, b) => a.day.localeCompare(b.day)).slice(-7);
+}
 
 export function DashboardPage({
   data,
@@ -18,12 +35,17 @@ export function DashboardPage({
   onOpenCalibrate: () => void;
   canApply: boolean;
 }) {
+  const [turns, setTurns] = useState<ConversationTurn[]>([]);
+  useEffect(() => {
+    api.conversations().then(setTurns).catch(() => undefined);
+  }, [data.traffic.total]);
+  const mix = useMemo(() => mixFrom(turns), [turns]);
   const inbox = data.assignment.filter((row) => row.confidence !== "high");
   return (
     <div className="page">
       <section className="hero">
         <div>
-          <p className="pill hot" style={{ display: "inline-block" }}>{t.engineReady}</p>
+          <p className="pill" style={{ display: "inline-block" }}>{t.engineReady}</p>
           <h1>{t.understandsHome}</h1>
           <p className="muted">{data.counts.assist} {t.assistVisible} · {data.counts.leftover} {t.open}</p>
         </div>
@@ -44,11 +66,16 @@ export function DashboardPage({
 
       <section className="grid three" style={{ marginBottom: 16 }}>
         <Kpi value={data.counts.assist} label={t.assistVisible} />
-        <Kpi value={data.counts.high} label={t.certain} hot />
-        <Kpi value={data.traffic.total} label={t.processed} />
+        <Kpi value={data.counts.high} label={t.certain} />
+        <Kpi value={turns.length || data.traffic.total} label={t.processed} />
       </section>
 
       <section className="grid two">
+        <div className="card">
+          <h2>{t.decisionMix}</h2>
+          <DecisionMix data={mix} unit={t.unitsTurns} />
+          <p className="caption">{t.mixCaption}</p>
+        </div>
         <div className="card">
           <h2>{t.coverage}</h2>
           <Bars data={[
@@ -56,7 +83,8 @@ export function DashboardPage({
             { label: "assist", value: data.coverage.assist },
             { label: "ready", value: data.coverage.high },
             { label: "open", value: data.coverage.leftover },
-          ]} />
+          ]} unit={t.unitsPercent} />
+          <p className="caption">{t.coverageCaption}</p>
         </div>
         <div className="card">
           <h2>{t.confidence}</h2>
@@ -67,16 +95,19 @@ export function DashboardPage({
           <Bars data={data.rooms.slice(0, 8).map((room) => ({ label: room.name, value: room.inbox }))} />
         </div>
         <div className="card">
-          <h2>{t.domains}</h2>
-          <Bars data={data.domains.map((d) => ({ label: d.domain, value: d.count }))} />
-        </div>
-        <div className="card">
           <h2>{t.recordings}</h2>
-          <AreaTrend data={data.traffic.by_day} />
+          <AreaTrend data={data.traffic.by_day} unit={t.unitsTurns} />
         </div>
         <div className="card">
           <h2>{t.recent}</h2>
-          {data.traffic.recent.length === 0 ? <Empty text={t.emptyBundle} /> : data.traffic.recent.slice(-6).reverse().map((row) => (
+          {turns.length === 0 && data.traffic.recent.length === 0 ? <Empty text={t.emptyBundle} /> : null}
+          {(turns.length ? turns.slice(-6).reverse() : []).map((row) => (
+            <div className="row" key={`${row.conversation_id}-${row.ts_ms}`} style={{ justifyContent: "space-between", borderBottom: "1px solid var(--line)", padding: "8px 0" }}>
+              <span>{row.text || row.speech || row.decision}</span>
+              <button className="ghost" onClick={() => onReplay(row.text || "")}>{t.replay}</button>
+            </div>
+          ))}
+          {turns.length === 0 && data.traffic.recent.slice(-6).reverse().map((row) => (
             <div className="row" key={row.id} style={{ justifyContent: "space-between", borderBottom: "1px solid var(--line)", padding: "8px 0" }}>
               <span>{row.text}</span>
               <button className="ghost" onClick={() => onReplay(row.text)}>{t.replay}</button>

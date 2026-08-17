@@ -12,6 +12,7 @@ use super::context::ParseContext;
 use super::draft::{reject, replay_or_decide, route_pending, route_special, safety_decision, Draft, SessionCommit};
 use super::legacy;
 use super::ranking::rank_candidates;
+use super::retrieval;
 use super::semantic;
 
 const MAX_NORMALIZED_TOKENS: usize = 256;
@@ -34,7 +35,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));
     if split.tokens.len() > MAX_NORMALIZED_TOKENS {
         let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
-        return finish(context.text, &context.session.id, draft, Vec::new(), Vec::new(), trace);
+        return finish(&context, draft, Vec::new(), Vec::new(), trace);
     }
 
     let started = Instant::now();
@@ -44,30 +45,30 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     if let Some(draft) = legacy::with_catalog(context.catalog, || route_special(&context, &raw_tokens, &split)) {
         record_stage(&mut trace, "safety_decision", Instant::now(), decision_name(&draft.decision).into());
         let candidates = draft.output_candidate.clone().into_iter().collect();
-        return finish(context.text, &context.session.id, draft, candidates, Vec::new(), trace);
+        return finish(&context, draft, candidates, Vec::new(), trace);
     }
     if let Some(draft) = legacy::with_catalog(context.catalog, || route_pending(&context, &split.tokens)) {
         let started = Instant::now();
         let draft = safety_decision(draft, &context);
         record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
         let candidates = draft.output_candidate.clone().into_iter().collect();
-        return finish(context.text, &context.session.id, draft, candidates, Vec::new(), trace);
+        return finish(&context, draft, candidates, Vec::new(), trace);
     }
 
     if clauses.len() > MAX_CLAUSES {
         let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
-        return finish(context.text, &context.session.id, draft, Vec::new(), Vec::new(), trace);
+        return finish(&context, draft, Vec::new(), Vec::new(), trace);
     }
     let analyses = match build_analyses(&context, clauses, &raw_tokens, &split, &mut trace) {
         Ok(analyses) => analyses,
         Err(_) => {
             let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
-            return finish(context.text, &context.session.id, draft, Vec::new(), Vec::new(), trace);
+            return finish(&context, draft, Vec::new(), Vec::new(), trace);
         }
     };
 
     let started = Instant::now();
-    let ranking = rank_candidates(&analyses, context.home, &mut trace);
+    let ranking = rank_candidates(&analyses, context.home, context.policies, &mut trace);
     record_stage(&mut trace, "ranking", started, format!("{} ranked candidates", ranking.candidates.len()));
     let clarify = ranking.clarification.clone();
     let mut intents = ranking.selected.as_ref().map_or_else(Vec::new, |candidate| candidate.plan.intents());
@@ -87,6 +88,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
             response_briefing: false,
             competing: ranking.competing,
             commit: SessionCommit { clarify: Some((options, template)), briefing: Some(false), ..SessionCommit::default() },
+            policy_trace: None,
         }
     } else {
         replay_or_decide(&context, &split.tokens, intents, selected_plan, &ranking)
@@ -115,7 +117,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
             }
         }
     }
-    finish(context.text, &context.session.id, draft, candidates, evidence, trace)
+    finish(&context, draft, candidates, evidence, trace)
 }
 
 impl PipelineResult {
@@ -143,8 +145,7 @@ impl PipelineResult {
 }
 
 fn finish(
-    text: &str,
-    conversation_id: &str,
+    context: &ParseContext<'_>,
     mut draft: Draft,
     mut candidates: Vec<IntentCandidate>,
     evidence: Vec<Evidence>,
@@ -165,8 +166,8 @@ fn finish(
     );
     let mut outcome = ParseOutcome {
         schema_version: ParseOutcome::schema_version(),
-        text: text.to_string(),
-        conversation_id: conversation_id.to_string(),
+        text: context.text.to_string(),
+        conversation_id: context.session.id.clone(),
         decision: draft.decision,
         speech: draft.speech,
         confidence: draft.confidence,
@@ -177,7 +178,14 @@ fn finish(
         evidence,
         trace,
         briefing: draft.response_briefing,
+        retrieval: None,
+        policy_trace: draft.policy_trace.clone(),
     };
+    let values: Vec<String> = outcome.evidence.iter().map(|item| item.value.clone()).collect();
+    outcome.retrieval = retrieval::build(context, &outcome.decision, &values);
+    if let Some(pack) = &mut outcome.retrieval {
+        pack.tokens = outcome.trace.tokens.clone();
+    }
     if matches!(outcome.decision, ParseDecision::Execute) {
         let selected_matches = outcome.selected_candidate_id.as_ref().is_some_and(|selected_id| {
             !selected_id.is_empty()

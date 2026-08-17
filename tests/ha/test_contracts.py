@@ -137,6 +137,21 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(validated["trace"]["tokens"], ["ist", "die", "kugel", "an"])
         self.assertEqual(validated["trace"]["normalized"], "ist die kugel an")
 
+    def test_rejects_retrieval_on_confirm(self) -> None:
+        payload = _payload({"type": "confirm", "prompt": "Confirm?", "candidate_id": "selected-000"})
+        payload["retrieval"] = {"entities": [{"entity_id": "light.x", "name": "X", "domain": "light"}]}
+        with self.assertRaises(ValueError):
+            contracts.validate_v2_payload(payload)
+
+    def test_accepts_retrieval_on_chat(self) -> None:
+        payload = _payload({"type": "chat"})
+        payload["retrieval"] = {
+            "entities": [{"entity_id": "light.x", "name": "X", "domain": "light"}],
+            "areas": ["wohnzimmer"],
+        }
+        validated = contracts.validate_v2_payload(payload)
+        self.assertEqual(validated["retrieval"]["areas"], ["wohnzimmer"])
+
     def test_rejects_oversized_candidates(self) -> None:
         payload = _payload({"type": "chat"})
         payload["candidates"] = [{}] * 65

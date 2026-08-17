@@ -108,6 +108,7 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         schema = config_flow._options_schema()
         keys = {marker.schema for marker in schema.schema}
         self.assertIn(config_flow.CONF_ASSIST_FILTER, keys)
+        self.assertIn(config_flow.CONF_NLU_RAG, keys)
 
     def test_options_schema_has_no_advanced_flag(self) -> None:
         with self.assertRaises(TypeError):
