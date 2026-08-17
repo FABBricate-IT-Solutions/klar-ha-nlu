@@ -246,6 +246,17 @@ mod tests {
     use crate::lang::{installed_user_overlay, reset_runtime_packs, SetDelta};
     use crate::types::CustomSentence;
     use std::collections::HashMap;
+    use std::sync::OnceLock;
+    use tokio::sync::{Mutex, MutexGuard};
+
+    fn overlay_lock() -> &'static Mutex<()> {
+        static LOCK: OnceLock<Mutex<()>> = OnceLock::new();
+        LOCK.get_or_init(|| Mutex::new(()))
+    }
+
+    async fn lock_overlay() -> MutexGuard<'static, ()> {
+        overlay_lock().lock().await
+    }
 
     fn state(tag: &str) -> AppState {
         reset_runtime_packs();
@@ -276,6 +287,7 @@ mod tests {
 
     #[tokio::test]
     async fn omitted_language_keeps_set_deltas() {
+        let _guard = lock_overlay().await;
         let state = state("keep");
         let language =
             LanguageOverlay { sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["kugelchen".into()], remove: vec![] })].into() };
@@ -310,6 +322,7 @@ mod tests {
 
     #[tokio::test]
     async fn default_rollback_restores_latest_history() {
+        let _guard = lock_overlay().await;
         let state = state("roll");
         let _ = set_overlay(
             State(state.clone()),
@@ -350,6 +363,7 @@ mod tests {
 
     #[tokio::test]
     async fn preview_does_not_install_live_overlay() {
+        let _guard = lock_overlay().await;
         let state = state("prev");
         let proposed =
             LanguageOverlay { sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["vorschauwort".into()], remove: vec![] })].into() };

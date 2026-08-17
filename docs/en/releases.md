@@ -30,20 +30,21 @@ chore(release): prepare for 2026.8.0
 
 ## Cut a release
 
-**Actions → Release → Run workflow.** Leave the field empty for the next `YYYY.M.PATCH`, or set e.g. `2026.8.0`.
+Every merge to `main` cuts the next `YYYY.M.PATCH` automatically. The Release workflow:
 
-That job:
-
-1. Computes the next CalVer (or uses the input)
+1. Computes the next CalVer
 2. Writes it into `Cargo.toml`, `config.yaml`, `addon/config.yaml`, and the HA manifest
 3. Regenerates `CHANGELOG.md`
-4. Commits `chore(release): prepare for YYYY.M.PATCH` on `release/YYYY.M.PATCH`
-5. Opens a PR when the org allows Actions to do that — otherwise it starts CI itself (a `GITHUB_TOKEN` push does not start workflows), waits for required checks, fast-forwards `main`, and tags in the same run
-6. Calls **Build** (`workflow_call`)
+4. Commits `chore(release): prepare for YYYY.M.PATCH` on `main` and tags
+5. Calls **Build** in the same run (`workflow_call`)
+
+**Actions → Release → Run workflow** remains for a manual override (empty = next version, or e.g. `2026.8.0`).
 
 Build compiles linux-x86_64, linux-aarch64, and linux-armv7 and attaches the tarballs to the GitHub Release. The release body is the latest git-cliff section.
 
 A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
+
+The cut uses only the job-scoped `GITHUB_TOKEN`. `main` still blocks deletion and force-push; required checks are not enforced on the version commit (that would need a long-lived admin PAT). PR CI remains the quality gate before merge.
 
 ## Local changelog
 
@@ -59,7 +60,7 @@ git cliff --unreleased
 ```bash
 cargo fmt --check
 cargo check
-cargo test -- --test-threads=1
+cargo nextest run
 python3 -m unittest discover -s tests -p 'test_*.py'
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
