@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.30](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.29...2026.8.30) - 2026-08-17
+
+
+
+### Features
+
+- policies, journal, NLU-RAG, and quieter UI (#88)([c651441](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c65144115799bc02ca34b26c0240581e35b87c04))
+
+
+### Miscellaneous
+
+- nextest, faster PR checks, auto-release on main (#90)([5b9c1fa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5b9c1fac3bdcb89787be5803e5540ec6e4ec26fc))
+
+- bump docker/setup-buildx-action from 3 to 4 (#87)([fa42574](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fa42574b82ac8871a32bb6c7e3cac2c4f68a23da))
+
+- bump actions/setup-node from 6 to 7 (#86)([77aa0bd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/77aa0bd91526c96524737acdfa38bfdd5f57a460))
+
+- bump docker/login-action from 3 to 4 (#85)([2256dd3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2256dd3c79e41f4faf443c6025bbf3b072183563))
+
 ## [2026.8.29](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.28...2026.8.29) - 2026-08-17
 
 
