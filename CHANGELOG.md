@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.31](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.30...2026.8.31) - 2026-08-17
+
+
+
+### Features
+
+- phrase rules, journal tab, fuzzy compounds (#91)([c226a9d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c226a9dccb21e29bddc1429a2b40e89f462f8641))
+
 ## [2026.8.30](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.29...2026.8.30) - 2026-08-17
 
 
