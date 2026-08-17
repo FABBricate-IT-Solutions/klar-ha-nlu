@@ -44,8 +44,11 @@ def _load_dispatch() -> types.ModuleType:
     intent.async_handle = AsyncMock()
     area_registry = types.ModuleType("homeassistant.helpers.area_registry")
     area_registry.async_get = Mock()
+    entity_registry = types.ModuleType("homeassistant.helpers.entity_registry")
+    entity_registry.async_get = Mock()
     helpers.intent = intent
     helpers.area_registry = area_registry
+    helpers.entity_registry = entity_registry
     package = _module(PACKAGE)
     modules = {
         "homeassistant": homeassistant,
@@ -55,6 +58,7 @@ def _load_dispatch() -> types.ModuleType:
         "homeassistant.helpers": helpers,
         "homeassistant.helpers.intent": intent,
         "homeassistant.helpers.area_registry": area_registry,
+        "homeassistant.helpers.entity_registry": entity_registry,
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
@@ -346,6 +350,32 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         slots = dispatch.intent.async_handle.await_args.args[3]
         self.assertEqual(slots["area"]["value"], "Wohnzimmer")
         self.assertEqual(slots["domain"]["value"], "light")
+
+    async def test_area_climate_get_reads_room_states_when_ha_fails(self) -> None:
+        climate = _State(
+            "climate.better_thermostat_schlafzimmer",
+            "off",
+            friendly_name="Heizung Schlafzimmer",
+            current_temperature=21.5,
+            temperature_unit="°C",
+        )
+        hass = _hass(climate)
+        dispatch.intent.async_handle.side_effect = Exception("no match")
+        with (
+            patch.object(dispatch, "area_label", return_value="Schlafzimmer"),
+            patch.object(dispatch, "climate_states_in_area", return_value=[climate]),
+        ):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item("HassClimateGetTemperature", area="schlafzimmer", domain="climate"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        self.assertIn("21", spoken.speech or "")
+        self.assertIn("Schlafzimmer", spoken.speech or "")
 
 
 if __name__ == "__main__":

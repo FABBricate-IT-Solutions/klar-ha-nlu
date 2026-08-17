@@ -10,7 +10,7 @@ from typing import Any
 
 from homeassistant.components.conversation import ConversationInput
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import intent
+from homeassistant.helpers import area_registry, entity_registry, intent
 
 from .intents import (
     ENTITY_SERVICES,
@@ -150,11 +150,17 @@ async def climate_query(
     first = await invoke_intent(hass, user_input, "HassClimateGetTemperature", shaped, pack, item, assistant)
     if first.ok:
         return first
-    if state is None or not entity_id or not exposed(entity_id):
+    states: list[Any] = []
+    if state is not None and entity_id and exposed(entity_id):
+        states = [state]
+    else:
+        area_key = str(slots.get("area", {}).get("value") or "")
+        states = [item_state for item_state in climate_states_in_area(hass, area_key) if exposed(item_state.entity_id)]
+    if not states:
         return first
     spoken = from_handled(
         SimpleNamespace(
-            matched_states=[state],
+            matched_states=states,
             unmatched_states=[],
             success_results=[],
             response_type="query_answer",
@@ -163,6 +169,25 @@ async def climate_query(
         {**item, "name": "HassClimateGetTemperature"},
     )
     return _ok(spoken) if spoken else first
+
+
+def climate_states_in_area(hass: HomeAssistant, area_key: str) -> list[Any]:
+    if not area_key:
+        return []
+    areas = area_registry.async_get(hass)
+    area = areas.async_get_area(area_key)
+    if area is None:
+        folded = area_key.casefold()
+        area = next((item for item in areas.async_list_areas() if str(item.name).casefold() == folded), None)
+    if area is None:
+        return []
+    registry = entity_registry.async_get(hass)
+    found: list[Any] = []
+    for state in hass.states.async_all("climate"):
+        entry = registry.async_get(state.entity_id)
+        if entry is not None and entry.area_id == area.id:
+            found.append(state)
+    return found
 
 
 async def invoke_intent(
