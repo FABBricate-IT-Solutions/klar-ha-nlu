@@ -218,7 +218,7 @@ fn session_followups(
             return Some(done(text, session, vec![intent], speech, false, false));
         }
     }
-    if let Some(hit) = match_custom(tokens, text, custom) {
+    if let Some(hit) = match_custom(tokens, text, custom, &home.registered_intents) {
         session.remember(&hit);
         let speech = speak(std::slice::from_ref(&hit), settings.personality, false, Some(home));
         return Some(done(text, session, vec![hit], speech, false, false));

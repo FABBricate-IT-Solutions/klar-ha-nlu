@@ -1,5 +1,5 @@
 use crate::home::expose::assist_visible;
-use crate::types::{known_intent, HomeGraph, Intent, IntentPlan, PlanStep, MAX_PLAN_STEPS};
+use crate::types::{HomeGraph, Intent, IntentPlan, PlanStep, MAX_PLAN_STEPS};
 use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -39,7 +39,7 @@ pub(super) fn requires_confirmation(plan: &IntentPlan) -> bool {
 }
 
 fn validate_intent(intent: &Intent, home: &HomeGraph) -> Result<(), PlanInvalid> {
-    if !known_intent(&intent.name) || conflicting_slots(intent) {
+    if !home.allows_intent(&intent.name) || conflicting_slots(intent) {
         return Err(PlanInvalid::Schema);
     }
     validate_slots(intent)?;

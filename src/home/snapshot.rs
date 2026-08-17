@@ -50,6 +50,8 @@ pub struct HomeSnapshot {
     pub labels: Vec<SnapshotLabel>,
     #[serde(default)]
     pub assist: Option<Vec<String>>,
+    #[serde(default)]
+    pub registered_intents: Vec<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -169,7 +171,8 @@ pub fn ingest(snapshot: HomeSnapshot) -> Result<HomeGraph, SnapshotError> {
         })
         .collect();
     let assist = snapshot.assist.map(|ids| ids.into_iter().filter(|id| id.contains('.')).collect());
-    Ok(HomeGraph { entities, areas, floors, assist, ..HomeGraph::default() })
+    let registered_intents = snapshot.registered_intents.into_iter().filter(|name| !name.is_empty() && name.len() <= 64).take(64).collect();
+    Ok(HomeGraph { entities, areas, floors, assist, registered_intents, ..HomeGraph::default() })
 }
 
 fn validate(snapshot: &HomeSnapshot) -> Result<(), SnapshotError> {
@@ -335,6 +338,7 @@ mod tests {
             floors: vec![SnapshotFloor { floor_id: "upper".into(), name: "Upper Floor".into(), aliases: Vec::new(), level: Some(1) }],
             labels: vec![SnapshotLabel { label_id: "lbl_1".into(), name: "Licht".into() }],
             assist: Some(vec!["light.living".into()]),
+            registered_intents: Vec::new(),
         }
     }
 

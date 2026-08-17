@@ -2,17 +2,30 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
 import { dictionaries, initialLocale } from "./i18n";
-import { CalibratePage } from "./pages/CalibratePage";
-import { CustomPage } from "./pages/CustomPage";
+import { ConversationsPage } from "./pages/ConversationsPage";
 import { DashboardPage } from "./pages/Dashboard";
-import { EntitiesPage } from "./pages/EntitiesPage";
-import { GraphPage } from "./pages/GraphPage";
+import { HousePage } from "./pages/HousePage";
 import { ParsePage } from "./pages/ParsePage";
+import { RulesPage } from "./pages/RulesPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import type { Assignment, Dashboard, Locale, Settings, Tab, UiState } from "./types";
 
-const tabs: Tab[] = ["dashboard", "graph", "parse", "calibrate", "entities", "custom", "settings"];
-const defaultUi: UiState = { tab: "dashboard", locale: "de", dismissed: [], last_apply: [], graph: {} };
+const tabs: Tab[] = ["home", "conversations", "rules", "house", "lab", "settings"];
+const legacyTab: Record<string, Tab> = {
+  dashboard: "home",
+  graph: "house",
+  parse: "lab",
+  calibrate: "house",
+  entities: "house",
+  custom: "rules",
+  settings: "settings",
+  home: "home",
+  conversations: "conversations",
+  rules: "rules",
+  house: "house",
+  lab: "lab",
+};
+const defaultUi: UiState = { tab: "home", locale: "de", dismissed: [], last_apply: [], graph: {} };
 const defaultSettings: Settings = {
   personality: "default",
   mode: "full",
@@ -21,7 +34,12 @@ const defaultSettings: Settings = {
   support_bundle_raw_text: false,
   confirm_risky_actions: true,
   semantic_adapters: false,
+  nlu_rag: false,
 };
+
+function asTab(value: string | undefined): Tab {
+  return legacyTab[value || ""] || "home";
+}
 
 export function App() {
   const [ui, setUi] = useState<UiState>(defaultUi);
@@ -37,7 +55,7 @@ export function App() {
   const refresh = async () => {
     try {
       const [nextSettings, nextDashboard] = await Promise.all([api.settings(), api.dashboard()]);
-      setSettings(nextSettings);
+      setSettings({ ...defaultSettings, ...nextSettings });
       setDashboard(nextDashboard);
       setError("");
     } catch (err) {
@@ -50,8 +68,8 @@ export function App() {
       try {
         const [nextSettings, nextUi, nextDashboard] = await Promise.all([api.settings(), api.ui(), api.dashboard()]);
         const locale = initialLocale(nextUi.locale, nextSettings.languages);
-        setSettings(nextSettings);
-        setUi({ ...defaultUi, ...nextUi, locale });
+        setSettings({ ...defaultSettings, ...nextSettings });
+        setUi({ ...defaultUi, ...nextUi, locale, tab: asTab(nextUi.tab) });
         setDashboard(nextDashboard);
         uiLoaded.current = true;
       } catch (err) {
@@ -75,7 +93,7 @@ export function App() {
   const setLocale = (locale: Locale) => setUi((prev) => ({ ...prev, locale }));
   const replay = (text: string) => {
     setReplayText(text);
-    setTab("parse");
+    setTab("lab");
   };
   const apply = async () => {
     const out = await api.applySuggestions();
@@ -108,17 +126,18 @@ export function App() {
         <div className="status">
           <button className="ghost" onClick={() => setLocale(ui.locale === "de" ? "en" : "de")}>{ui.locale.toUpperCase()}</button>
           <span className={`pill${dashboard?.counts.leftover ? " hot" : ""}`}>{dashboard?.counts.leftover ?? 0} {t.open}</span>
-          <span className={`pill${settings.support_bundle ? " hot" : ""}`}>{settings.support_bundle ? t.bundleOn : t.bundleOff}</span>
+          <span className={`pill${settings.nlu_rag ? " hot" : ""}`}>{settings.nlu_rag ? t.ragMode : t.chatMode}</span>
         </div>
       </header>
       {error && <div className="page"><div className="card danger">{error}</div></div>}
-      {!dashboard && !error && <div className="page"><div className="card hot">{t.loading}</div></div>}
-      {dashboard && ui.tab === "dashboard" && <DashboardPage data={dashboard} t={t} onReplay={replay} onApply={() => setConfirmApply(true)} onOpenCalibrate={() => setTab("calibrate")} canApply={applyCandidates.length > 0} />}
-      {dashboard && ui.tab === "graph" && <GraphPage data={dashboard} ui={ui} t={t} onUi={setUi} onInspect={setInspecting} />}
-      {ui.tab === "parse" && <ParsePage t={t} locale={ui.locale} replayText={replayText} />}
-      {dashboard && ui.tab === "calibrate" && <CalibratePage data={dashboard} ui={ui} t={t} onUi={setUi} onRefresh={refresh} onInspect={setInspecting} onApply={() => setConfirmApply(true)} />}
-      {dashboard && ui.tab === "entities" && <EntitiesPage data={dashboard} t={t} onInspect={setInspecting} />}
-      {ui.tab === "custom" && <CustomPage t={t} locale={ui.locale} />}
+      {!dashboard && !error && <div className="page"><div className="card">{t.loading}</div></div>}
+      {dashboard && ui.tab === "home" && <DashboardPage data={dashboard} t={t} onReplay={replay} onApply={() => setConfirmApply(true)} onOpenCalibrate={() => setTab("house")} canApply={applyCandidates.length > 0} />}
+      {ui.tab === "conversations" && <ConversationsPage t={t} onReplay={replay} />}
+      {ui.tab === "rules" && <RulesPage t={t} locale={ui.locale} personality={settings.personality} languages={settings.languages} />}
+      {dashboard && ui.tab === "house" && (
+        <HousePage data={dashboard} ui={ui} t={t} onUi={setUi} onInspect={setInspecting} onRefresh={refresh} onApply={() => setConfirmApply(true)} />
+      )}
+      {ui.tab === "lab" && <ParsePage t={t} locale={ui.locale} replayText={replayText} nluRag={settings.nlu_rag} />}
       {ui.tab === "settings" && <SettingsPage t={t} settings={settings} onSettings={setSettings} />}
 
       {inspecting && (

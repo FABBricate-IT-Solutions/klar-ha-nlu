@@ -108,6 +108,8 @@ fn metrics_are_not_vacuous_on_mismatched_gold() {
         evidence: Vec::new(),
         trace: Default::default(),
         briefing: false,
+        retrieval: None,
+        policy_trace: None,
     };
     let metrics = score_items(&[item], &[outcome]);
     assert!(metrics.intent_macro_f1 < 0.5, "{}", metrics.intent_macro_f1);

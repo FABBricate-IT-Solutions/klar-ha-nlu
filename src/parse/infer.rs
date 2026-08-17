@@ -226,12 +226,12 @@ fn fixture_aliases(token: &str) -> Vec<&str> {
     }
 }
 
-pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSentence]) -> Option<Intent> {
+pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSentence], allowed: &[String]) -> Option<Intent> {
     let blob = join_tokens(tokens);
     let folded = fold_umlaut(text);
     let mut candidates: Vec<(&CustomSentence, String)> = Vec::new();
     for c in custom {
-        if !known_intent(&c.intent) {
+        if !known_intent(&c.intent) && !allowed.iter().any(|name| name == &c.intent) {
             continue;
         }
         let phrase = fold_umlaut(&c.phrase);
@@ -292,25 +292,26 @@ mod tests {
     #[test]
     fn custom_rejects_unknown_intent_and_short_phrase() {
         let tokens = vec!["filmabend".into()];
-        assert!(match_custom(&tokens, "filmabend", &[row("an", "HassTurnOn")]).is_none());
-        assert!(match_custom(&tokens, "filmabend", &[row("filmabend", "NotAnIntent")]).is_none());
+        assert!(match_custom(&tokens, "filmabend", &[row("an", "HassTurnOn")], &[]).is_none());
+        assert!(match_custom(&tokens, "filmabend", &[row("filmabend", "NotAnIntent")], &[]).is_none());
     }
 
     #[test]
     fn custom_matches_exact_known_intent() {
         let tokens = vec!["filmabend".into()];
-        let hit = match_custom(&tokens, "filmabend", &[row("filmabend", "HassTurnOn")]).expect("hit");
+        let hit = match_custom(&tokens, "filmabend", &[row("filmabend", "HassTurnOn")], &[]).expect("hit");
         assert_eq!(hit.name, "HassTurnOn");
     }
 
     #[test]
     fn custom_fuzzy_match_requires_unique_whole_phrase() {
         let tokens = vec!["starte".into(), "den".into(), "filmabent".into()];
-        let hit = match_custom(&tokens, "starte den filmabent", &[row("starte den filmabend", "HassTurnOn")]).expect("unique fuzzy hit");
+        let hit =
+            match_custom(&tokens, "starte den filmabent", &[row("starte den filmabend", "HassTurnOn")], &[]).expect("unique fuzzy hit");
         assert_eq!(hit.name, "HassTurnOn");
 
         let ambiguous = [row("starte den filmabend", "HassTurnOn"), row("starte den filmabenz", "HassTurnOff")];
-        assert!(match_custom(&tokens, "starte den filmabent", &ambiguous).is_none());
+        assert!(match_custom(&tokens, "starte den filmabent", &ambiguous, &[]).is_none());
     }
 
     #[test]
@@ -318,10 +319,10 @@ mod tests {
         let tokens = vec!["stelle".into(), "heizung".into(), "auf".into(), "22".into()];
         let mut slotted = row("stelle heizung auf 21", "HassClimateSetTemperature");
         slotted.slots.insert("temperature".into(), "21".into());
-        assert!(match_custom(&tokens, "stelle heizung auf 22", std::slice::from_ref(&slotted)).is_none());
+        assert!(match_custom(&tokens, "stelle heizung auf 22", std::slice::from_ref(&slotted), &[]).is_none());
         let contradictory = vec!["stelle".into(), "heizung".into(), "auf".into(), "21".into(), "statt".into(), "22".into()];
-        assert!(match_custom(&contradictory, "stelle heizung auf 21 statt 22", &[slotted]).is_none());
-        assert!(match_custom(&tokens, "stelle heizung auf 22", &[row("stelle heizung auf 21", "HassTurnOn")]).is_none());
+        assert!(match_custom(&contradictory, "stelle heizung auf 21 statt 22", &[slotted], &[]).is_none());
+        assert!(match_custom(&tokens, "stelle heizung auf 22", &[row("stelle heizung auf 21", "HassTurnOn")], &[]).is_none());
     }
 
     #[test]

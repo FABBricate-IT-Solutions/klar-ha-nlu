@@ -27,12 +27,14 @@ from .const import (
     CONF_ASSIST_FILTER,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
+    CONF_NLU_RAG,
     CONF_PERSONALITY,
     CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_NLU_RAG,
     DEFAULT_URL,
     DOMAIN,
     LANGUAGE_VARIANTS,
@@ -48,7 +50,8 @@ from .fallback import (
     news_followup_prompt,
     news_prompt,
 )
-from .intents import home_intents
+from .intents import home_intents, registered_intent_names
+from .rag_tools import act_payload, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .refine import async_refine_speech, should_refine
 from .speech import style
@@ -180,6 +183,9 @@ class KlarConversationEntity(ConversationEntity):
         chat_log: ChatLog,
     ) -> ConversationResult:
         pack = _pack(user_input.language, _enabled_packs(self._entry))
+        triggered = await self._sentence_triggers(user_input, chat_log, pack)
+        if triggered is not None:
+            return triggered
         payload = await self._parse(
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
@@ -187,7 +193,7 @@ class KlarConversationEntity(ConversationEntity):
         speech = engine_speech or _DONE[pack]
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
-        intents = home_intents(executable_intents(payload))
+        intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
         clarify = decision_type in {"clarify", "confirm"}
         chat = decision_type == "chat"
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
@@ -205,12 +211,12 @@ class KlarConversationEntity(ConversationEntity):
                     user_input, chat_log, pack, engine_speech or _DONE[pack], conversation_id, False
                 )
 
-        if decision_type != "reject" and not clarify and not intents and not payload.get("unreachable"):
-            fallback = await self._fallback(
-                user_input, chat_log, pack, chat
-            )
+        retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
+        if not clarify and not intents and not payload.get("unreachable") and (decision_type != "reject" or self._nlu_rag()):
+            fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
             if fallback is not None:
-                return fallback
+                tooled = await self._klar_tool_turn(user_input, chat_log, pack, fallback)
+                return tooled if tooled is not None else fallback
 
         if decision_type == "execute" and intents:
             names = {item.get("name") for item in intents}
@@ -305,6 +311,74 @@ class KlarConversationEntity(ConversationEntity):
             True,
         )
 
+    def _nlu_rag(self) -> bool:
+        return bool(self._entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+
+    async def async_reload(self, language: str | None = None) -> None:
+        """Honor conversation.reload; registered intents are read live."""
+        del language
+        registered_intent_names(self.hass)
+
+    async def _sentence_triggers(
+        self,
+        user_input: ConversationInput,
+        chat_log: ChatLog,
+        pack: str,
+    ) -> ConversationResult | None:
+        handle = getattr(conversation, "async_handle_sentence_triggers", None)
+        if handle is None:
+            return None
+        try:
+            result = await handle(self.hass, user_input, chat_log)
+        except TypeError:
+            try:
+                result = await handle(self.hass, user_input)
+            except Exception:  # noqa: BLE001 — HA trigger API is a system boundary
+                return None
+        except Exception:  # noqa: BLE001 — HA trigger API is a system boundary
+            return None
+        if result is None:
+            return None
+        if isinstance(result, ConversationResult):
+            return result
+        speech = result if isinstance(result, str) else _speech_from_result(result)
+        if not speech:
+            return None
+        return self._spoken(user_input, chat_log, pack, speech, user_input.conversation_id, False)
+
+    async def _klar_tool_turn(
+        self,
+        user_input: ConversationInput,
+        chat_log: ChatLog,
+        pack: str,
+        fallback: ConversationResult,
+    ) -> ConversationResult | None:
+        if not self._nlu_rag():
+            return None
+        tool = parse_tool_reply(_speech_from_result(fallback))
+        if tool is None:
+            return None
+        if tool.get("tool") == "klar.parse" and tool.get("text"):
+            payload = await self._parse(
+                str(tool["text"]), user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
+            )
+            if str((payload.get("decision") or {}).get("type") or "") == "execute":
+                intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
+                if intents:
+                    executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
+                    speech = str(executed.get("speech") or payload.get("speech") or _DONE[pack])
+                    return self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
+            speech = str(payload.get("speech") or _DONE[pack])
+            return self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
+        if tool.get("tool") == "klar.act" and tool.get("intent"):
+            item = act_payload(str(tool["intent"]), tool.get("slots") or {})
+            intents = home_intents([item], registered_intent_names(self.hass))
+            if not intents:
+                return None
+            executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
+            return self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _DONE[pack]), user_input.conversation_id, False)
+        return None
+
     async def _fallback(
         self,
         user_input: ConversationInput,
@@ -313,6 +387,7 @@ class KlarConversationEntity(ConversationEntity):
         chat: bool = False,
         prompt: str | None = None,
         record: bool = True,
+        retrieval: dict[str, Any] | None = None,
     ) -> ConversationResult | None:
         agent_id = self._fallback_agent_id()
         if not agent_id:
@@ -321,7 +396,13 @@ class KlarConversationEntity(ConversationEntity):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
             return None
         extra = getattr(user_input, "extra_system_prompt", None)
-        system = prompt or chat_only_prompt(pack, extra if isinstance(extra, str) else None)
+        extra_s = extra if isinstance(extra, str) else None
+        if prompt:
+            system = prompt
+        elif self._nlu_rag():
+            system = rag_prompt(pack, retrieval, extra_s)
+        else:
+            system = chat_only_prompt(pack, extra_s)
         try:
             result = await conversation.async_converse(
                 self.hass,
@@ -372,6 +453,8 @@ class KlarConversationEntity(ConversationEntity):
         }
         if area := self._preferred_area(device_id, satellite_id):
             body["preferred_area"] = area
+        if self._nlu_rag():
+            body["nlu_rag"] = True
         try:
             session = async_get_clientsession(self.hass)
             async with session.post(

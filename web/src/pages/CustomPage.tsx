@@ -5,7 +5,7 @@ import type { Locale } from "../types";
 
 const intents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
-export function CustomPage({ t, locale }: { t: Messages; locale: Locale }) {
+export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Locale; embedded?: boolean }) {
   const [rules, setRules] = useState<CustomRule[]>([]);
   const [language, setLanguage] = useState<unknown>({});
   const [history, setHistory] = useState<LangOverlay["history"]>([]);
@@ -61,7 +61,8 @@ export function CustomPage({ t, locale }: { t: Messages; locale: Locale }) {
   };
 
   return (
-    <div className="page">
+    <div className={embedded ? "" : "page"}>
+      {!embedded && (
       <section className="hero">
         <div>
           <h1>{t.custom}</h1>
@@ -72,6 +73,13 @@ export function CustomPage({ t, locale }: { t: Messages; locale: Locale }) {
           <button className="primary" onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
         </div>
       </section>
+      )}
+      {embedded && (
+        <div className="row" style={{ marginBottom: 16 }}>
+          <button className="ghost" onClick={() => setJsonMode(!jsonMode)}>{t.advancedJson}</button>
+          <button className="primary" onClick={() => jsonMode ? saveJson() : add()}>{jsonMode ? t.save : t.addPhrase}</button>
+        </div>
+      )}
       {jsonMode ? (
         <textarea value={jsonBody} onChange={(ev) => setJsonBody(ev.target.value)} style={{ minHeight: 320 }} />
       ) : (

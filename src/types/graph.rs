@@ -56,6 +56,9 @@ pub struct HomeGraph {
     pub assist: Option<HashSet<String>>,
     #[serde(default)]
     pub policy: HomePolicy,
+    /// Extra HA-registered intent names (intent_script). Compiled plans stay on KNOWN_INTENTS.
+    #[serde(default)]
+    pub registered_intents: Vec<String>,
 }
 
 impl HomeGraph {
@@ -65,6 +68,10 @@ impl HomeGraph {
 
     pub fn floor(&self, floor_id: &str) -> Option<&FloorRec> {
         self.floors.iter().find(|floor| floor.floor_id == floor_id)
+    }
+
+    pub fn allows_intent(&self, name: &str) -> bool {
+        crate::types::known_intent(name) || self.registered_intents.iter().any(|item| item == name)
     }
 }
 

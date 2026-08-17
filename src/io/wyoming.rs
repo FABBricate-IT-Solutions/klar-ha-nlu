@@ -1,7 +1,7 @@
 use crate::io::auth::wyoming_allowed;
 use crate::io::limits::MAX_PARSE_CHARS;
 use crate::io::state::AppState;
-use crate::nlu::{legacy_result, parse};
+use crate::nlu::{legacy_result, parse_with_policies};
 use crate::types::{ParseDecision, ParseOutcome};
 use serde_json::{json, Value};
 use std::io::{Error, ErrorKind};
@@ -115,13 +115,17 @@ where
                     }
                 }
                 let custom = state.custom.lock().await.clone();
+                let policies = state.policies.lock().await.clone();
+                let speech_bank = state.speech_bank.lock().await.clone();
                 let mut session = {
                     let mut guard = state.sessions.lock().await;
                     guard.take(conversation_id)
                 };
-                let outcome = parse(text, &home, &mut session, &custom, &settings);
+                let outcome = parse_with_policies(text, &home, &mut session, &custom, &settings, &policies, &speech_bank);
+                let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
                 state.sessions.lock().await.put(session);
                 state.record_parse("wyoming", language, &legacy_result(outcome.clone())).await;
+                state.record_outcome(&outcome, last_names).await;
                 let intents = match &outcome.decision {
                     ParseDecision::Execute => outcome.plan.as_ref().map_or_else(Vec::new, |plan| plan.intents()),
                     ParseDecision::Clarify { .. }
@@ -239,7 +243,14 @@ mod tests {
         let dir = std::env::temp_dir().join(format!("klar-wy-{}", std::process::id()));
         let _ = std::fs::create_dir_all(&dir);
         let state = AppState::new(
-            LoadedHome { graph: default_home(), settings: Settings::default(), custom: Vec::new(), language: Default::default() },
+            LoadedHome {
+                graph: default_home(),
+                settings: Settings::default(),
+                custom: Vec::new(),
+                language: Default::default(),
+                policies: Vec::new(),
+                speech_bank: Default::default(),
+            },
             dir,
             None,
         );

@@ -108,7 +108,17 @@ class HomeGraphSync:
             "floors": floors,
             "labels": labels,
             "assist": assist,
+            "registered_intents": _registered_intents(self.hass),
         }
+
+
+def _registered_intents(hass: HomeAssistant) -> list[str]:
+    try:
+        from .intents import registered_intent_names
+
+        return sorted(registered_intent_names(hass))[:64]
+    except Exception:  # noqa: BLE001 — intent registry is a system boundary
+        return []
 
 
 def _exposed(hass: HomeAssistant, entity_id: str) -> bool:
