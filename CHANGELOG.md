@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.28](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.27...2026.8.28) - 2026-08-16
+
+
+
+### Bug Fixes
+
+- let HA sync homes and answer temperature queries([ce107ae](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ce107ae4a898325562fb419a89e657d6593a9b29))
+
+
+### Other
+
+- Merge pull request #81 from FABBricate-IT-Solutions/fix/live-query-sync([faf7cee](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/faf7ceeae83f57432d52d650eab64f5e4085b18d))
+
 ## [2026.8.27](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.26...2026.8.27) - 2026-08-16
 
 
