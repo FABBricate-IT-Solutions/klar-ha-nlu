@@ -43,8 +43,10 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
     intent = types.ModuleType("homeassistant.helpers.intent")
     intent.async_handle = AsyncMock()
     area_registry = types.ModuleType("homeassistant.helpers.area_registry")
+    entity_registry = types.ModuleType("homeassistant.helpers.entity_registry")
     helpers.intent = intent
     helpers.area_registry = area_registry
+    helpers.entity_registry = entity_registry
     package = _module(PACKAGE)
     modules = {
         "homeassistant": homeassistant,
@@ -54,6 +56,7 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
         "homeassistant.helpers": helpers,
         "homeassistant.helpers.intent": intent,
         "homeassistant.helpers.area_registry": area_registry,
+        "homeassistant.helpers.entity_registry": entity_registry,
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
