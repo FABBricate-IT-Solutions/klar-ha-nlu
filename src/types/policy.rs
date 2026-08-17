@@ -12,6 +12,10 @@ pub enum PolicyEffect {
     Allow,
     PreferEntity,
     PreferArea,
+    Reply,
+    Script,
+    Template,
+    Llm,
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq, Eq)]
@@ -28,6 +32,8 @@ pub struct PolicyMatch {
     pub floor: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub phrase: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -42,6 +48,8 @@ pub struct PolicyRule {
     pub effect: PolicyEffect,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub prefer: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub payload: Option<String>,
 }
 
 const fn default_enabled() -> bool {
@@ -75,6 +83,10 @@ pub enum PolicyHit {
     Allow,
     PreferEntity,
     PreferArea,
+    Reply,
+    Script,
+    Template,
+    Llm,
 }
 
 impl PolicyHit {
@@ -85,6 +97,10 @@ impl PolicyHit {
             PolicyEffect::Allow => Self::Allow,
             PolicyEffect::PreferEntity => Self::PreferEntity,
             PolicyEffect::PreferArea => Self::PreferArea,
+            PolicyEffect::Reply => Self::Reply,
+            PolicyEffect::Script => Self::Script,
+            PolicyEffect::Template => Self::Template,
+            PolicyEffect::Llm => Self::Llm,
         }
     }
 
@@ -95,7 +111,15 @@ impl PolicyHit {
             Self::Allow => "allow",
             Self::PreferEntity => "prefer_entity",
             Self::PreferArea => "prefer_area",
+            Self::Reply => "reply",
+            Self::Script => "script",
+            Self::Template => "template",
+            Self::Llm => "llm",
         }
+    }
+
+    pub fn is_action(self) -> bool {
+        matches!(self, Self::Reply | Self::Script | Self::Template | Self::Llm)
     }
 }
 
@@ -120,8 +144,41 @@ pub fn sanitize_rules(rules: Vec<PolicyRule>) -> Result<Vec<PolicyRule>, &'stati
         {
             return Err("prefer value required");
         }
+        if let Some(phrase) = rule.when.phrase.as_deref() {
+            if !(4..=200).contains(&phrase.chars().count()) {
+                return Err("policy phrase must be 4–200 characters");
+            }
+        }
+        match rule.effect {
+            PolicyEffect::Reply => require_payload(rule.payload.as_deref(), 1, 200)?,
+            PolicyEffect::Script => {
+                require_payload(rule.payload.as_deref(), 1, 128)?;
+                if script_entity_id(rule.payload.as_deref().unwrap_or("")).is_none() {
+                    return Err("invalid script id");
+                }
+            }
+            PolicyEffect::Template | PolicyEffect::Llm => require_payload(rule.payload.as_deref(), 1, 500)?,
+            PolicyEffect::Confirm | PolicyEffect::Block | PolicyEffect::Allow | PolicyEffect::PreferEntity | PolicyEffect::PreferArea => {}
+        }
     }
     Ok(rules)
+}
+
+fn require_payload(value: Option<&str>, min: usize, max: usize) -> Result<(), &'static str> {
+    match value.map(str::trim) {
+        Some(text) if (min..=max).contains(&text.chars().count()) => Ok(()),
+        _ => Err("policy payload required"),
+    }
+}
+
+pub fn script_entity_id(raw: &str) -> Option<String> {
+    let trimmed = raw.trim();
+    let id = if trimmed.contains('.') { trimmed.to_string() } else { format!("script.{trimmed}") };
+    let (domain, name) = id.split_once('.')?;
+    if domain != "script" || name.is_empty() || name.len() > 64 {
+        return None;
+    }
+    name.chars().all(|ch| ch.is_ascii_alphanumeric() || ch == '_').then_some(id)
 }
 
 pub fn sanitize_speech_bank(bank: SpeechBank) -> Result<SpeechBank, &'static str> {
@@ -148,6 +205,9 @@ pub fn first_matching_rule<'a>(rules: &'a [PolicyRule], plan: &IntentPlan) -> Op
 }
 
 pub fn matches_when(when: &PolicyMatch, intent: &Intent) -> bool {
+    if when.phrase.is_some() {
+        return false;
+    }
     field(when.intent.as_deref(), Some(intent.name.as_str()))
         && field(when.domain.as_deref(), intent.slot("domain").or_else(|| intent.slot("entity_id").and_then(domain_of)))
         && field(when.area.as_deref(), intent.slot("area"))
@@ -268,6 +328,7 @@ mod tests {
                 when: PolicyMatch { entity_id: Some("climate.schlafzimmer_ac".into()), ..PolicyMatch::default() },
                 effect: PolicyEffect::Block,
                 prefer: None,
+                payload: None,
             },
             PolicyRule {
                 id: "later".into(),
@@ -276,11 +337,34 @@ mod tests {
                 when: PolicyMatch { domain: Some("climate".into()), ..PolicyMatch::default() },
                 effect: PolicyEffect::Confirm,
                 prefer: None,
+                payload: None,
             },
         ];
         let ready = plan(Intent::new("HassTurnOff").with("entity_id", "climate.schlafzimmer_ac").with("domain", "climate"));
         let (rule, hit) = first_matching_rule(&rules, &ready).expect("match");
         assert_eq!(rule.id, "block-ac");
         assert_eq!(hit, PolicyHit::Block);
+    }
+
+    #[test]
+    fn script_id_normalizes_and_rejects_junk() {
+        assert_eq!(script_entity_id("leaving_home").as_deref(), Some("script.leaving_home"));
+        assert_eq!(script_entity_id("script.good_night").as_deref(), Some("script.good_night"));
+        assert!(script_entity_id("light.kugel").is_none());
+        assert!(script_entity_id("../etc").is_none());
+    }
+
+    #[test]
+    fn reply_without_payload_is_rejected() {
+        let rules = vec![PolicyRule {
+            id: "empty".into(),
+            enabled: true,
+            label: "x".into(),
+            when: PolicyMatch { phrase: Some("hallo dort".into()), ..PolicyMatch::default() },
+            effect: PolicyEffect::Reply,
+            prefer: None,
+            payload: None,
+        }];
+        assert!(sanitize_rules(rules).is_err());
     }
 }

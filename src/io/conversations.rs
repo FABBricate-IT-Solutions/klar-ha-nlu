@@ -24,9 +24,9 @@ pub struct ConversationTurn {
     pub speech: String,
     pub confidence: f64,
     pub briefing: bool,
-    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    #[serde(default)]
     pub evidence_kinds: Vec<String>,
-    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    #[serde(default)]
     pub last_names: Vec<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub confirm_prompt: Option<String>,
@@ -177,6 +177,9 @@ mod tests {
         assert!(turn.text.is_none());
         assert_eq!(turn.confirm_prompt.as_deref(), Some("Really?"));
         assert_eq!(turn.candidate_id.as_deref(), Some("sel"));
+        let json = serde_json::to_string(&turn).expect("turn json");
+        assert!(json.contains("\"last_names\":[]"), "{json}");
+        assert!(json.contains("\"evidence_kinds\":[]"), "{json}");
     }
 
     #[test]

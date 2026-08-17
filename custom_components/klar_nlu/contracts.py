@@ -252,14 +252,16 @@ def _policy_trace(value: Any) -> None:
     trace = _mapping(value, "policy_trace")
     _keys(
         trace,
-        {"matched_rule", "hit", "compiled_risky"},
+        {"matched_rule", "hit", "compiled_risky", "payload"},
         "policy_trace",
-        optional={"matched_rule", "hit", "compiled_risky"},
+        optional={"matched_rule", "hit", "compiled_risky", "payload"},
     )
     if trace.get("matched_rule") is not None:
         _string(trace.get("matched_rule"), "policy_trace.matched_rule", 64)
     if trace.get("hit") is not None:
         _string(trace.get("hit"), "policy_trace.hit", 32)
+    if trace.get("payload") is not None:
+        _string(trace.get("payload"), "policy_trace.payload", 500)
     if "compiled_risky" in trace and not isinstance(trace.get("compiled_risky"), bool):
         raise ValueError("policy_trace.compiled_risky must be boolean")
 

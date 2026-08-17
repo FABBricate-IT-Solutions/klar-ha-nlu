@@ -53,6 +53,7 @@ from .fallback import (
 from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
+from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
 from .refine import async_refine_speech, should_refine
 from .speech import style
 
@@ -212,7 +213,23 @@ class KlarConversationEntity(ConversationEntity):
                 )
 
         retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
-        if not clarify and not intents and not payload.get("unreachable") and (decision_type != "reject" or self._nlu_rag()):
+        hit, action = hit_and_payload(payload)
+        if hit == "template" and action:
+            rendered = await render_user_template(self.hass, action, user_input.text)
+            if rendered:
+                speech = rendered
+        if hit == "llm" and action and not clarify and not payload.get("unreachable"):
+            fallback = await self._fallback(user_input, chat_log, pack, True, chat_only_prompt(pack, action), retrieval=retrieval)
+            if fallback is not None:
+                tooled = await self._klar_tool_turn(user_input, chat_log, pack, fallback)
+                return tooled if tooled is not None else fallback
+        if (
+            not skips_llm_fallback(hit)
+            and not clarify
+            and not intents
+            and not payload.get("unreachable")
+            and (decision_type != "reject" or self._nlu_rag())
+        ):
             fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
             if fallback is not None:
                 tooled = await self._klar_tool_turn(user_input, chat_log, pack, fallback)

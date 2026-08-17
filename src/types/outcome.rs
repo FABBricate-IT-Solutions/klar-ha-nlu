@@ -43,6 +43,8 @@ pub struct PolicyTrace {
     pub hit: Option<String>,
     #[serde(default)]
     pub compiled_risky: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub payload: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]

@@ -11,6 +11,7 @@ fn block_ac() -> PolicyRule {
         when: PolicyMatch { entity_id: Some("climate.schlafzimmer_ac".into()), ..PolicyMatch::default() },
         effect: PolicyEffect::Block,
         prefer: None,
+        payload: None,
     }
 }
 
@@ -36,6 +37,7 @@ fn allow_cannot_skip_area_lock() {
         when: PolicyMatch { domain: Some("lock".into()), ..PolicyMatch::default() },
         effect: PolicyEffect::Allow,
         prefer: None,
+        payload: None,
     }];
     let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOff").with("area", "wohnzimmer").with("domain", "lock")], 0.9, &[]);
     let (decision, kept) = safety_decide_policies(&home, &settings, plan, 0.9, 1.0, false, (&rules, &SpeechBank::default()));
@@ -52,6 +54,46 @@ fn retrieval_absent_when_rag_off() {
     let outcome = parse_with_policies("danke", &home, &mut session, &[], &Settings::default(), &[], &SpeechBank::default());
     assert!(matches!(outcome.decision, ParseDecision::Chat | ParseDecision::Reject { .. }), "{:#?}", outcome.decision);
     assert!(outcome.retrieval.is_none());
+}
+
+#[test]
+fn phrase_reply_skips_intent() {
+    let home = default_home();
+    let mut session = Session::new();
+    let rules = vec![PolicyRule {
+        id: "night".into(),
+        enabled: true,
+        label: "Nacht".into(),
+        when: PolicyMatch { phrase: Some("gute nacht".into()), ..PolicyMatch::default() },
+        effect: PolicyEffect::Reply,
+        prefer: None,
+        payload: Some("Schlaf schön.".into()),
+    }];
+    let outcome = parse_with_policies("Gute Nacht", &home, &mut session, &[], &Settings::default(), &rules, &SpeechBank::default());
+    assert!(matches!(outcome.decision, ParseDecision::Chat), "{:#?}", outcome.decision);
+    assert_eq!(outcome.speech, "Schlaf schön.");
+    assert!(outcome.plan.is_none());
+    assert_eq!(outcome.policy_trace.as_ref().and_then(|trace| trace.hit.as_deref()), Some("reply"));
+}
+
+#[test]
+fn phrase_script_emits_turn_on() {
+    let home = default_home();
+    let mut session = Session::new();
+    let rules = vec![PolicyRule {
+        id: "leave".into(),
+        enabled: true,
+        label: "Gehen".into(),
+        when: PolicyMatch { phrase: Some("ich gehe".into()), ..PolicyMatch::default() },
+        effect: PolicyEffect::Script,
+        prefer: None,
+        payload: Some("leaving_home".into()),
+    }];
+    let outcome = parse_with_policies("Ich gehe", &home, &mut session, &[], &Settings::default(), &rules, &SpeechBank::default());
+    assert!(matches!(outcome.decision, ParseDecision::Execute), "{:#?}", outcome.decision);
+    let intent = &outcome.plan.as_ref().expect("plan").steps[0].intent;
+    assert_eq!(intent.name, "HassTurnOn");
+    assert_eq!(intent.slot("entity_id"), Some("script.leaving_home"));
 }
 
 #[test]

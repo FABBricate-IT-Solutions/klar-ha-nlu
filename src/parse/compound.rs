@@ -143,6 +143,10 @@ fn area_prefixes(home: &HomeGraph) -> Vec<(String, String)> {
 }
 
 fn split_area_device(token: &str, prefixes: &[(String, String)]) -> Option<(String, String)> {
+    split_exact_area_device(token, prefixes).or_else(|| split_fuzzy_area_device(token, prefixes))
+}
+
+fn split_exact_area_device(token: &str, prefixes: &[(String, String)]) -> Option<(String, String)> {
     for (prefix, area) in prefixes {
         if token.len() <= prefix.len() || !token.starts_with(prefix.as_str()) {
             continue;
@@ -153,6 +157,40 @@ fn split_area_device(token: &str, prefixes: &[(String, String)]) -> Option<(Stri
         }
     }
     None
+}
+
+fn split_fuzzy_area_device(token: &str, prefixes: &[(String, String)]) -> Option<(String, String)> {
+    if token.chars().count() < 10 {
+        return None;
+    }
+    for noun in compound_heads() {
+        let Some(stem) = token.strip_suffix(noun) else {
+            continue;
+        };
+        if stem.chars().count() < 5 {
+            continue;
+        }
+        let hit = select_unique(stem, prefixes.iter().map(|(prefix, area)| (area.as_str(), prefix.as_str())), Profile::Target)?;
+        return Some((hit.key.to_string(), noun.to_string()));
+    }
+    None
+}
+
+fn compound_heads() -> Vec<&'static str> {
+    let cat = catalog();
+    let mut nouns: Vec<&'static str> = cat
+        .light_nouns
+        .iter()
+        .chain(cat.light_singular.iter())
+        .chain(cat.climate_nouns.iter())
+        .chain(cat.fan_nouns.iter())
+        .chain(cat.cover_nouns.iter())
+        .copied()
+        .filter(|noun| noun.len() >= 4)
+        .collect();
+    nouns.sort_unstable_by_key(|noun| std::cmp::Reverse(noun.len()));
+    nouns.dedup();
+    nouns
 }
 
 fn strip_fuge(rest: &str) -> &str {
@@ -429,4 +467,27 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
         return Some(specific[0].clone());
     }
     (lights.len() == 1).then(|| lights[0].clone())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::home::default_home;
+
+    #[test]
+    fn fuzzy_split_transposes_room_before_licht() {
+        let home = default_home();
+        let split = expand_compounds(&["wonhzimmerlicht".into()], &home);
+        assert!(split.tokens.iter().any(|token| token == "wohnzimmer"), "{:?}", split.tokens);
+        assert!(split.tokens.iter().any(|token| token == "licht"), "{:?}", split.tokens);
+        assert_eq!(split.light_areas, ["wohnzimmer"]);
+    }
+
+    #[test]
+    fn fuzzy_split_rejects_unrelated_licht() {
+        let home = default_home();
+        let split = expand_compounds(&["fensterbanklicht".into()], &home);
+        assert_eq!(split.tokens, ["fensterbanklicht"]);
+        assert!(split.light_areas.is_empty());
+    }
 }
