@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.29](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.28...2026.8.29) - 2026-08-17
+
+
+
+### Bug Fixes
+
+- speak room climate from HA state when area get fails([142a7c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/142a7c8e1ae360c946623e6bffe627249ac31180))
+
+
+### Other
+
+- Merge pull request #83 from FABBricate-IT-Solutions/fix/area-climate-fallback([d28d7b3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d28d7b3092f7da85f1234168c76f542f464482b9))
+
+
+### Testing
+
+- mock entity_registry when loading dispatch([6342647](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6342647c26681b8e24628c03a40ab285e7d120a2))
+
 ## [2026.8.28](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.27...2026.8.28) - 2026-08-16
 
 
