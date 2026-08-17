@@ -96,9 +96,10 @@ export type PolicyTrace = {
   matched_rule?: string | null;
   hit?: string | null;
   compiled_risky?: boolean;
+  payload?: string | null;
 };
 
-export type PolicyEffect = "confirm" | "block" | "allow" | "prefer_entity" | "prefer_area";
+export type PolicyEffect = "confirm" | "block" | "allow" | "prefer_entity" | "prefer_area" | "reply" | "script" | "template" | "llm";
 export type PolicyMatch = {
   intent?: string;
   domain?: string;
@@ -106,6 +107,7 @@ export type PolicyMatch = {
   entity_id?: string;
   floor?: string;
   name?: string;
+  phrase?: string;
 };
 export type PolicyRule = {
   id: string;
@@ -114,6 +116,7 @@ export type PolicyRule = {
   when: PolicyMatch;
   effect: PolicyEffect;
   prefer?: string;
+  payload?: string;
 };
 export type SpeechVariant = { language: string; personality: string; text: string };
 export type SpeechBankEntry = { rule_id: string; variants: SpeechVariant[] };

@@ -5,6 +5,7 @@ mod draft;
 mod evidence;
 mod legacy;
 mod pipeline;
+mod policy_route;
 mod ranking;
 mod retrieval;
 pub mod semantic;

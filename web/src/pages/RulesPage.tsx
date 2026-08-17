@@ -5,7 +5,58 @@ import { bakeVariants } from "../speechBank";
 import type { EvaluateOut, Locale, PolicyEffect, PolicyRule, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 
-const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area"];
+const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"];
+const ACTION_EFFECTS: PolicyEffect[] = ["reply", "script", "template", "llm"];
+
+function effectLabel(t: Messages, effect: PolicyEffect): string {
+  switch (effect) {
+    case "confirm":
+      return t.effectConfirm;
+    case "block":
+      return t.effectBlock;
+    case "allow":
+      return t.effectAllow;
+    case "prefer_entity":
+      return t.effectPreferEntity;
+    case "prefer_area":
+      return t.effectPreferArea;
+    case "reply":
+      return t.effectReply;
+    case "script":
+      return t.effectScript;
+    case "template":
+      return t.effectTemplate;
+    case "llm":
+      return t.effectLlm;
+    default: {
+      const _never: never = effect;
+      return _never;
+    }
+  }
+}
+
+function payloadHint(t: Messages, effect: PolicyEffect): string {
+  switch (effect) {
+    case "reply":
+      return t.payloadReply;
+    case "script":
+      return t.payloadScript;
+    case "template":
+      return t.payloadTemplate;
+    case "llm":
+      return t.payloadLlm;
+    case "confirm":
+    case "block":
+    case "allow":
+    case "prefer_entity":
+    case "prefer_area":
+      return "";
+    default: {
+      const _never: never = effect;
+      return _never;
+    }
+  }
+}
 
 function newRule(): PolicyRule {
   return {
@@ -125,15 +176,19 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
                   {current.enabled ? "on" : "off"}
                 </label>
                 <label>{t.when}</label>
+                <input placeholder={t.whenPhrase} value={current.when.phrase || ""} onChange={(ev) => updateWhen("phrase", ev.target.value)} />
                 {(["intent", "domain", "area", "entity_id", "floor", "name"] as const).map((key) => (
                   <input key={key} placeholder={key} value={current.when[key] || ""} onChange={(ev) => updateWhen(key, ev.target.value)} />
                 ))}
                 <label>{t.then}</label>
                 <select value={current.effect} onChange={(ev) => update({ effect: ev.target.value as PolicyEffect })}>
-                  {EFFECTS.map((effect) => <option key={effect} value={effect}>{t[effect === "confirm" ? "effectConfirm" : effect === "block" ? "effectBlock" : effect === "allow" ? "effectAllow" : effect === "prefer_entity" ? "effectPreferEntity" : "effectPreferArea"]}</option>)}
+                  {EFFECTS.map((effect) => <option key={effect} value={effect}>{effectLabel(t, effect)}</option>)}
                 </select>
                 {(current.effect === "prefer_entity" || current.effect === "prefer_area") && (
                   <input placeholder="prefer" value={current.prefer || ""} onChange={(ev) => update({ prefer: ev.target.value })} />
+                )}
+                {ACTION_EFFECTS.includes(current.effect) && (
+                  <textarea placeholder={payloadHint(t, current.effect)} value={current.payload || ""} onChange={(ev) => update({ payload: ev.target.value })} />
                 )}
                 <div className="row" style={{ marginTop: 12 }}>
                   <button className="secondary" onClick={bake}>{t.bakeSpeech}</button>

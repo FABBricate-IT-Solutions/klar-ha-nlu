@@ -152,6 +152,17 @@ class ContractTests(unittest.TestCase):
         validated = contracts.validate_v2_payload(payload)
         self.assertEqual(validated["retrieval"]["areas"], ["wohnzimmer"])
 
+    def test_policy_trace_accepts_action_payload(self) -> None:
+        payload = _payload({"type": "chat"})
+        payload["policy_trace"] = {
+            "matched_rule": "night",
+            "hit": "reply",
+            "compiled_risky": False,
+            "payload": "Schlaf schön.",
+        }
+        validated = contracts.validate_v2_payload(payload)
+        self.assertEqual(validated["policy_trace"]["payload"], "Schlaf schön.")
+
     def test_rejects_oversized_candidates(self) -> None:
         payload = _payload({"type": "chat"})
         payload["candidates"] = [{}] * 65

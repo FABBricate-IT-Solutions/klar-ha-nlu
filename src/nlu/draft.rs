@@ -47,6 +47,9 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if context.text.chars().any(|character| character.is_control() && !character.is_whitespace()) {
         return Some(reject(RejectReason::InvalidInput, speak_unknown()));
     }
+    if let Some(draft) = super::policy_route::route_phrase(context) {
+        return Some(draft);
+    }
     if is_news(raw, context.home) || is_news(tokens, context.home) {
         return Some(chat(context.catalog.news_intro.to_string(), true, true));
     }
@@ -254,11 +257,15 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         return invalid_plan(draft, reason, context.catalog);
     }
     let compiled_risky = context.settings.confirm_risky_actions && requires_confirmation(plan);
+    if let Some(action) = super::policy_route::apply_matched_action(context, plan) {
+        return action;
+    }
     let matched = first_matching_rule(context.policies, plan);
     let policy_trace = Some(crate::types::PolicyTrace {
         matched_rule: matched.map(|(rule, _)| rule.id.clone()),
         hit: matched.map(|(_, hit)| hit.as_str().into()),
         compiled_risky,
+        payload: matched.and_then(|(rule, _)| rule.payload.clone()),
     });
     if matches!(matched.map(|(_, hit)| hit), Some(PolicyHit::Block)) {
         let mut rejected = reject(RejectReason::Unsafe, legacy::with_catalog(context.catalog, speak_unknown));
@@ -342,7 +349,7 @@ fn invalid_plan(mut draft: Draft, reason: PlanInvalid, catalog: &'static crate::
     draft
 }
 
-fn execute(
+pub(super) fn execute(
     context: &ParseContext<'_>,
     intents: Vec<Intent>,
     policy: &str,
@@ -399,7 +406,7 @@ fn execute_plan(
     }
 }
 
-fn chat(speech: String, response_briefing: bool, next_briefing: bool) -> Draft {
+pub(super) fn chat(speech: String, response_briefing: bool, next_briefing: bool) -> Draft {
     Draft {
         decision: ParseDecision::Chat,
         plan: None,

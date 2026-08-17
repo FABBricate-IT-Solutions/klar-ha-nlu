@@ -224,6 +224,17 @@ fn wohnzimer_trifft_wohnzimmer() {
 }
 
 #[test]
+fn wonhzimmerlicht_trifft_wohnzimmer() {
+    expect("Schalte Wonhzimmerlicht ein", "HassTurnOn", &["wohnzimmer", "light.wohnzimmer"], &["light.schlafzimmer", "light.esszimmer"]);
+    expect("Wohnzimerlicht aus", "HassTurnOff", &["wohnzimmer", "light.wohnzimmer"], &["light.esszimmer"]);
+    let mittel = parse_mittel("Schalte Wonhzimmerlicht ein", &mut Session::new());
+    assert!(!mittel.clarify, "{:?}", mittel.intents);
+    let entity = mittel.intents[0].slot("entity_id").unwrap_or("");
+    let area = mittel.intents[0].slot("area").unwrap_or("");
+    assert!(area == "wohnzimmer" || entity.contains("wohnzimmer"), "{:?}", mittel.intents);
+}
+
+#[test]
 fn schlafzimer_licht_aus_ist_raum() {
     let result = parse_mittel("Schlafzimer Lichte aus", &mut Session::new());
     assert!(!result.clarify, "{:?}", result.intents);
