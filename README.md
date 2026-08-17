@@ -73,7 +73,7 @@ Useful checks while developing:
 ```bash
 cargo fmt --check
 cargo check
-cargo test -- --test-threads=1
+cargo nextest run
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
 cargo build --release
@@ -128,14 +128,14 @@ Details: [docs/en/home-assistant.md](docs/en/home-assistant.md)
 
 Changelogs come from [git-cliff](https://git-cliff.org/) and [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, …). See [CHANGELOG.md](CHANGELOG.md).
 
-**Actions → Release → Run workflow** bumps the [Home Assistant CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), writes the changelog, and tags `2026.8.0`. The Build workflow then attaches linux-x86_64, linux-aarch64, and linux-armv7 tarballs to the GitHub Release. A manual `git tag 2026.8.0 && git push origin 2026.8.0` still works.
+Every merge to `main` bumps the [Home Assistant CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), writes the changelog, and tags. The Build workflow then attaches linux-x86_64, linux-aarch64, and linux-armv7 tarballs to the GitHub Release. **Actions → Release → Run workflow** remains for a manual override. A manual `git tag 2026.8.0 && git push origin 2026.8.0` still works.
 
 Dependabot opens weekly PRs for crates and Actions; `cargo-audit` and `cargo-deny` run on every change.
 
 ## Tests
 
 ```bash
-cargo test -- --test-threads=1
+cargo nextest run
 ```
 
 The enforced voice-suite gates are documented in

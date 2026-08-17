@@ -1,0 +1,9 @@
+[profile.default]
+test-threads = "num-cpus"
+
+[profile.ci]
+fail-fast = false
+test-threads = "num-cpus"
+slow-timeout = { period = "120s", terminate-after = 2 }
+status-level = "fail"
+final-status-level = "flaky"

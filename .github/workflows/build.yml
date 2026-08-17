@@ -2,9 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [main]
     tags: ["v*", "20*"]
-  pull_request:
   workflow_call:
     inputs:
       release_tag:

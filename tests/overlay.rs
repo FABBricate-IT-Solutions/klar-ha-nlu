@@ -7,6 +7,12 @@ use klar_nlu::nlu::parse;
 use klar_nlu::session::Session;
 use klar_nlu::types::{CustomSentence, ParseDecision, Settings};
 use std::collections::HashMap;
+use std::sync::{Mutex, MutexGuard};
+
+fn lock_overlay() -> MutexGuard<'static, ()> {
+    static LOCK: Mutex<()> = Mutex::new(());
+    LOCK.lock().unwrap_or_else(|err| err.into_inner())
+}
 
 fn phrase(phrase: &str, intent: &str) -> CustomSentence {
     CustomSentence { phrase: phrase.into(), intent: intent.into(), slots: HashMap::new() }
@@ -62,6 +68,7 @@ fn select_revision_defaults_to_latest_and_finds_hash() {
 
 #[test]
 fn user_set_delta_reaches_catalog_and_can_be_removed() {
+    let _guard = lock_overlay();
     reset_runtime_packs();
     install_user_overlay(Some(LanguageOverlay {
         sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["kugelchen".into()], remove: vec![] })].into(),
@@ -78,6 +85,7 @@ fn user_set_delta_reaches_catalog_and_can_be_removed() {
 
 #[test]
 fn preview_bind_does_not_change_installed_overlay() {
+    let _guard = lock_overlay();
     reset_runtime_packs();
     let proposed =
         LanguageOverlay { sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["vorschauwort".into()], remove: vec![] })].into() };

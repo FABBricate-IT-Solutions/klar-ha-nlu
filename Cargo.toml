@@ -24,6 +24,10 @@ uuid = { version = "1", features = ["v4"] }
 serde_yaml = "0.9"
 tower-http = { version = "0.7.0", features = ["fs"] }
 
+[profile.test]
+opt-level = 1
+debug = "line-tables-only"
+
 [profile.release]
 lto = true
 codegen-units = 1

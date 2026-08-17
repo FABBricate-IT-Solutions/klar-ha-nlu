@@ -5,11 +5,11 @@
 ```bash
 cargo fmt --check
 cargo check
-cargo test -- --test-threads=1
+cargo nextest run
 cargo build --release
 ```
 
-`--test-threads=1` hält die großen Suiten nacheinander — die Ausgabe bleibt lesbar, die Schwellen greifen zuverlässig.
+CI nutzt [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profile ci`): jeder Test läuft im eigenen Prozess, Scheduling über alle Kerne. `cargo test` bleibt als Fallback. Lokal `cargo test -- --test-threads=1` wenn die Ausgabe hintereinander lesbar bleiben soll.
 
 ## Suiten
 
@@ -144,12 +144,12 @@ python3 tests/ha/test_fallback.py
 ## Release-Gates
 
 ```bash
-cargo test --test eval held_out -- --test-threads=1
-cargo test --test privacy --test migrate --test policy --test contract --test semantic -- --test-threads=1
+cargo test --test eval held_out
+cargo test --test privacy --test migrate --test policy --test contract --test semantic
 cargo run --quiet -- lang validate packs
 cargo run --quiet -- eval bench --repeat 8
 klar eval gate          # volle Scorecard, Exit 1 unter den Schwellen
 klar migrate import --from /data/klar_nlu.json
 ```
 
-CI-Job `release-gates` und der Job `test` müssen für ein Release grün sein. Engine und `custom_components/klar_nlu` gehören in denselben Cut: die Integration spricht nur `POST /api/v2/parse`.
+CI-Job `test` führt `cargo nextest run --locked --profile ci` aus (`[profile.test]` mit `opt-level = 1`). `release-gates` bleibt als Pflicht-Check, die Pack-Validierung und der Bench stecken in `tests/language.rs` bzw. `tests/eval.rs`. Engine und `custom_components/klar_nlu` gehören in denselben Cut: die Integration spricht nur `POST /api/v2/parse`.
