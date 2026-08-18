@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.32](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.31...2026.8.32) - 2026-08-18
+
+
+
+### Features
+
+- add a Stable/Staging switch on main([bb4f8f1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bb4f8f13117b79d1477bc288cc85fadcd5fd9c19))
+
+
+### Other
+
+- Merge pull request #97 from FABBricate-IT-Solutions/feat/simple-channel-switch-main([b106172](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1061725570f205f4df3ff1b32baeff5faf5b089))
+
 ## [2026.8.31](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.30...2026.8.31) - 2026-08-17
 
 
