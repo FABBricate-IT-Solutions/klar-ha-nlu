@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.34](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.33...2026.8.34) - 2026-08-18
+
+
+
+### Documentation
+
+- bump rust from 1.85-bookworm to 1.97-bookworm (#104)([4d5bf80](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4d5bf804d2bc7685d84fcc815cb7fa6837237cc5))
+
+
+### Other
+
+- bump uuid from 1.24.0 to 1.24.1 in the rust-patch group (#105)([828d1cb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/828d1cb462e21644b63ab3779cc88a3fe41399c1))
+
 ## [2026.8.33](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.32...2026.8.33) - 2026-08-18
 
 
