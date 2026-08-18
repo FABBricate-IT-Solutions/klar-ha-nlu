@@ -50,7 +50,7 @@ Stabile Cuts bleiben **`main` + CalVer-Tags** wie unten.
 
 RC nach Produktion: PR **`staging` → `main`**. Dieser Merge schneidet die nächste CalVer wie bisher.
 
-Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) (mitgelieferter **Release-Kanal** oder Add-on **Klar NLU (Staging)**).
+Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) — Konfigurieren → **Release-Kanal** (GitHub-Download und Standard-App-URL).
 
 ## Release schneiden
 

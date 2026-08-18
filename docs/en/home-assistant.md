@@ -103,11 +103,11 @@ On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=fal
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
 
-Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, install **Klar NLU**, then point the integration at `http://klar-nlu:10520`.
+Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, then install **Klar NLU** or **Klar NLU (Staging)**.
 
-**Stable vs staging:** the repository has two add-ons. **Klar NLU** (`stage: stable`, image tag = CalVer / `latest`). **Klar NLU (Staging)** (`stage: experimental`, slug `klar_nlu_staging`, image tag `staging`). After a merge to `staging`, rebuild the staging add-on to pull the new RC. Integration URL: `http://klar-nlu-staging:10520`. Do not edit `.storage` to switch channels.
+**Stable vs staging:** one switch. Settings → Devices & services → Klar NLU → Configure → **Release channel**. Stable points at the Klar NLU app (`http://klar-nlu:10520`) or the CalVer GitHub release. Staging points at Klar NLU (Staging) (`http://klar-nlu-staging:10520`) or the latest prerelease. A custom URL is left alone. The integration reloads after the switch. Do not edit `.storage`.
 
-Without the add-on, Configure → **Release channel** switches the bundled GitHub download.
+The Supervisor reads the add-on repo from `main`. **Klar NLU (Staging)** shows in the store only after `addon-staging/` is on that branch. After a merge to `staging`, rebuild the staging app (version stays `staging`).
 
 **Docker:**
 

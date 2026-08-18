@@ -60,6 +60,67 @@ class EngineChannelTests(unittest.TestCase):
         self.assertIsNotNone(chosen)
         self.assertEqual(chosen["name"], "wanted")
 
+    def test_addon_url_follows_channel(self) -> None:
+        self.assertEqual(
+            const.addon_url_for_channel(const.CHANNEL_STABLE),
+            const.DEFAULT_ADDON_URL,
+        )
+        self.assertEqual(
+            const.addon_url_for_channel(const.CHANNEL_STAGING),
+            const.DEFAULT_STAGING_ADDON_URL,
+        )
+
+    def test_resolve_engine_url_rewrites_managed_hosts(self) -> None:
+        self.assertEqual(
+            const.resolve_engine_url(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STAGING,
+                url=const.DEFAULT_ADDON_URL,
+            ),
+            const.DEFAULT_STAGING_ADDON_URL,
+        )
+        self.assertEqual(
+            const.resolve_engine_url(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STABLE,
+                url=const.DEFAULT_STAGING_ADDON_URL,
+            ),
+            const.DEFAULT_ADDON_URL,
+        )
+        self.assertEqual(
+            const.resolve_engine_url(
+                mode=const.MODE_LOCAL,
+                channel=const.CHANNEL_STAGING,
+                url=const.DEFAULT_ADDON_URL,
+            ),
+            const.DEFAULT_URL,
+        )
+
+    def test_resolve_engine_url_keeps_custom_host(self) -> None:
+        custom = "http://192.168.1.40:10520"
+        self.assertEqual(
+            const.resolve_engine_url(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STAGING,
+                url=custom,
+            ),
+            custom,
+        )
+
+    def test_channel_for_addon_slug(self) -> None:
+        self.assertEqual(
+            const.channel_for_addon_slug("klar_nlu_staging"),
+            const.CHANNEL_STAGING,
+        )
+        self.assertEqual(
+            const.channel_for_addon_slug("klar-nlu-staging"),
+            const.CHANNEL_STAGING,
+        )
+        self.assertEqual(
+            const.channel_for_addon_slug("klar_nlu"),
+            const.CHANNEL_STABLE,
+        )
+
     def test_pick_staging_requires_prerelease_flag(self) -> None:
         self.assertIsNone(
             const.pick_staging_release(

@@ -50,7 +50,7 @@ You must create `staging` on GitHub once and protect it (Actions cannot always s
 
 Promote an RC by opening a PR **`staging` → `main`**. That merge cuts the next CalVer as today.
 
-Home Assistant switch: [home-assistant.md](home-assistant.md) (bundled **Release channel**, or add-on **Klar NLU (Staging)**).
+Home Assistant switch: [home-assistant.md](home-assistant.md) — Configure → **Release channel** (bundled GitHub download and default app URL).
 
 ## Cut a release
 
