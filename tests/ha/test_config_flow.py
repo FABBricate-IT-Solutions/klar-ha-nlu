@@ -133,6 +133,10 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         self.assertIn("fr", codes)
         self.assertNotIn("ru", codes)
         self.assertGreater(len(codes), 2)
+        for item in options:
+            self.assertIn("value", item)
+            self.assertIn("label", item)
+            self.assertTrue(str(item["label"]).strip())
         marker = next(item for item in schema.schema if item.schema == config_flow.CONF_LANGUAGES)
         self.assertEqual(marker.default, config_flow.LANGUAGE_SYSTEM)
 
