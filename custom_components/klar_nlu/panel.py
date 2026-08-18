@@ -11,6 +11,18 @@ _WWW = Path(__file__).parent / "www"
 _CARD = "/klar_nlu/klar-home-card.js"
 
 
+def _dashboard_config(url_path: str) -> dict[str, object]:
+    return {
+        "id": url_path,
+        "mode": "storage",
+        "icon": "mdi:waveform",
+        "title": "Klar",
+        "url_path": url_path,
+        "show_in_sidebar": True,
+        "require_admin": False,
+    }
+
+
 async def async_setup_panel(hass: HomeAssistant) -> None:
     if hass.data.get(DOMAIN, {}).get("panel"):
         return
@@ -41,14 +53,7 @@ async def _async_register_dashboard(hass: HomeAssistant) -> None:
     dashboards = getattr(data, "dashboards", None)
     if not isinstance(dashboards, dict) or url_path in dashboards:
         return
-    config = {
-        "mode": "storage",
-        "icon": "mdi:waveform",
-        "title": "Klar",
-        "url_path": url_path,
-        "show_in_sidebar": True,
-        "require_admin": False,
-    }
+    config = _dashboard_config(url_path)
     try:
         dash = LovelaceStorage(hass, config)
         await dash.async_load(False)
@@ -76,5 +81,5 @@ async def _async_register_dashboard(hass: HomeAssistant) -> None:
             config={"mode": "storage"},
             require_admin=False,
         )
-    except (AttributeError, TypeError, ValueError, RuntimeError):
+    except (AttributeError, KeyError, TypeError, ValueError, RuntimeError):
         return
