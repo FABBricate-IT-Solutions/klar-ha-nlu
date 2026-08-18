@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@1.85
+      - uses: dtolnay/rust-toolchain@1.100
       # 0.22.2+ needs rustc 1.88; MSRV is 1.85.
       - run: cargo install cargo-audit --version 0.22.1 --locked --force
       - run: cargo audit
