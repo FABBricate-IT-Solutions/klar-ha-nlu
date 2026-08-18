@@ -456,7 +456,8 @@ mod tests {
     }
 
     fn parse_with_home(sentence: &str, home: HomeGraph) -> crate::types::ParseResult {
-        parse(sentence, &home, &mut Session::new(), &[], &Settings::default())
+        let lang = if sentence.starts_with("Füge") { "de" } else { "en" };
+        parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned(lang))
     }
 
     fn todo(id: &str, name: &str, aliases: &[&str], tags: &[&str]) -> EntityRec {

@@ -56,8 +56,9 @@ pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Opti
         let ceiling = cat.ceiling.contains(token.as_str());
         let island = cat.island.contains(token.as_str());
         let bedside = cat.bedside.contains(token.as_str());
-        let lamp = token == "lamp" || cat.lamp_fixture.contains(token.as_str());
-        if !named && !ceiling && !island && !bedside && !lamp {
+        let floor = token == "floor" || cat.fixture_alias("floor").contains(&token.as_str());
+        let lamp = !floor && (token == "lamp" || cat.lamp_fixture.contains(token.as_str()));
+        if !named && !ceiling && !island && !bedside && !lamp && !floor {
             continue;
         }
         for entity in &home.entities {
@@ -76,6 +77,7 @@ pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Opti
                 || (ceiling && fixture_matches(entity, "ceiling"))
                 || (island && fixture_matches(entity, "island"))
                 || (bedside && fixture_matches(entity, token))
+                || (floor && fixture_matches(entity, "floor"))
                 || (lamp && fixture_matches(entity, "lamp"))
                 || (named && fixture_matches(entity, token))
             {

@@ -72,8 +72,13 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     }
 
     if let Some(named) = crate::parse::resolve_named::collect_named_devices(tokens, home) {
-        if named.len() > 1 {
-            return Resolved { areas, floors, entities: named, ambiguous: Vec::new() };
+        let scoped: Vec<EntityRec> = if scope.is_empty() {
+            named
+        } else {
+            named.into_iter().filter(|entity| entity.area.as_ref().is_some_and(|area| scope.contains(area))).collect()
+        };
+        if scoped.len() > 1 {
+            return Resolved { areas, floors, entities: scoped, ambiguous: Vec::new() };
         }
     }
 
@@ -179,6 +184,8 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
         } else {
             Some("bedside")
         }
+    } else if tokens.iter().any(|token| token == "floor" || cat.fixture_alias("floor").contains(&token.as_str())) {
+        Some("floor")
     } else if !room_level && cat.any(tokens, &cat.lamp_fixture) {
         Some("lamp")
     } else if cat.any(tokens, &cat.ceiling) {
