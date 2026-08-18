@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- bal timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- bal timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- bal timer abstract
+timers/timers::cancel_all_timers:
+- nibhau sabai timer
+timers/timers::timer_laundry_cancel:
+- bal timer laundry
+timers/timers::timer_laundry_decrease:
+- bal timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- bal timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- nibhau timer laundry
+timers/timers::timer_laundry_start:
+- bal timer laundry
+timers/timers::timer_laundry_status:
+- ke timer laundry
+timers/timers::timer_laundry_unpause:
+- bal timer laundry
+timers/timers::timer_oven_cancel:
+- bal timer oven
+timers/timers::timer_oven_decrease:
+- bal timer oven 44 min
+timers/timers::timer_oven_increase:
+- bal timer oven 30 min
+timers/timers::timer_oven_pause:
+- nibhau timer oven
+timers/timers::timer_oven_start:
+- bal timer oven 2 min
+timers/timers::timer_oven_status:
+- ke timer oven
+timers/timers::timer_oven_unpause:
+- bal timer oven

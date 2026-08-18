@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- metti riscaldamento bagnomaster 23
+area/heizung::heizung_esszimmer_23:
+- metti riscaldamento soggiornofamess 23
+area/heizung::heizung_schlafzimmer_23:
+- metti riscaldamento camera 23
+area/heizung::heizung_wohnzimmer_23:
+- metti riscaldamento soggiorno 23
+area/lichter::alle_an_ausser_kugel:
+- accendi tutti luce eccetto sfera
+area/lichter::alle_an_ausser_schlafzimmer:
+- accendi tutti luce eccetto camera
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- metti tutti luce eccetto camera 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- metti tutti luce eccetto sfera rosso
+area/lichter::alle_ausser_kugel:
+- spegni tutti luce eccetto sfera
+area/lichter::alle_ausser_schlafzimmer:
+- spegni tutti luce eccetto camera
+area/lichter::alle_lichter_an:
+- accendi tutti luce
+area/lichter::alle_lichter_aus:
+- spegni tutti luce
+area/lichter::arbeitszimmer_lichter_an:
+- accendi luce soggiorno
+area/lichter::arbeitszimmer_lichter_aus:
+- spegni luce soggiorno
+area/lichter::esszimmer_lichter_an:
+- accendi luce soggiornofamess
+area/lichter::esszimmer_lichter_aus:
+- spegni luce soggiornofamess
+area/lichter::kuche_lichter_an:
+- accendi luce cucina
+area/lichter::kuche_lichter_aus:
+- spegni luce cucina
+area/lichter::schlafzimmer_auf_blau:
+- metti luce camera blu
+area/lichter::schlafzimmer_auf_rot:
+- metti luce camera rosso
+area/lichter::wohnzimmer_helligkeit:
+- metti luce soggiorno 45
+area/lichter::wohnzimmer_lichter_an:
+- accendi luce soggiorno
+area/lichter::wohnzimmer_lichter_aus:
+- spegni luce soggiorno
+area/spoken::alle_ausser_kugel_stt:
+- spegni tutti luce eccetto sfera
+area/spoken::alle_ausser_schlaf_stt:
+- spegni tutti luce eccetto camera
+area/spoken::alle_ganzen_an:
+- accendi tutti luce
+area/spoken::alle_lampen_aus:
+- spegni tutti luce
+area/spoken::esszimmer_weiss:
+- metti luce soggiornofamess bianco
+area/spoken::stt_kuche_lichte:
+- spegni luce cucina
+area/spoken::stt_licht_wohnzimmer_an:
+- accendi luce soggiorno
+area/spoken::stt_licht_wohnzimmer_aus:
+- spegni luce soggiorno
+area/spoken::stt_schlafzimmer_dativ:
+- spegni luce camera
+area/spoken::wohnzimmer_gruen:
+- metti luce soggiorno verde
+area/spoken_more::alle_ausser_arbeitszimmer:
+- spegni tutti luce eccetto soggiorno
+area/spoken_more::arbeitszimmer_lampen_aus:
+- spegni luce soggiorno
+area/spoken_more::esszimmer_30:
+- metti luce soggiornofamess 30
+area/spoken_more::esszimmer_lichte_an:
+- accendi luce soggiornofamess
+area/spoken_more::kuche_80:
+- metti luce cucina 80
+area/spoken_more::kuche_blau:
+- metti luce cucina blu
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- spegni tutti luce eccetto camera
+area/spoken_more::wohnzimmer_gelb:
+- metti luce soggiorno giallo

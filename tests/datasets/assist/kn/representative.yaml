@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - hachchu belaku hallige
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - arisu belaku aduge
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

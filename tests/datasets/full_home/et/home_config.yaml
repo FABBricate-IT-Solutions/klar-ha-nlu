@@ -1,0 +1,504 @@
+name: Full Home et
+language: et
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: alumine
+  level: 0
+  aliases:
+  - alumine
+  - allkorrus
+- id: upper
+  name: korrus
+  level: 1
+  aliases:
+  - korrus
+  - uleval
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Esik
+  floor: ground
+  aliases:
+  - esik
+- id: living
+  name: Elutuba
+  floor: ground
+  aliases:
+  - elutuba
+- id: dining
+  name: Peredetubaess
+  floor: ground
+  aliases:
+  - peredetubaess
+- id: kitchen
+  name: Kook
+  floor: ground
+  aliases:
+  - kook
+- id: family_room
+  name: Peredetuba
+  floor: ground
+  aliases:
+  - peredetuba
+- id: laundry
+  name: Pesuruum
+  floor: ground
+  aliases:
+  - pesuruum
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Magamistuba
+  floor: upper
+  aliases:
+  - magamistuba
+- id: bedroom_2
+  name: Magamistuba2
+  floor: upper
+  aliases:
+  - magamistuba2
+- id: bedroom_3
+  name: Magamistuba3
+  floor: upper
+  aliases:
+  - magamistuba3
+- id: bedroom_4
+  name: Magamistuba4
+  floor: upper
+  aliases:
+  - magamistuba4
+- id: master_bath
+  name: Vannmaster
+  floor: upper
+  aliases:
+  - vannmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: esik vali
+  aliases:
+  - esik vali
+  - vali
+- id: light.living_ceiling
+  area_id: living
+  name: elutuba lagi
+  aliases:
+  - elutuba lagi
+  - lagi
+- id: light.living_lamp
+  area_id: living
+  name: elutuba vali
+  aliases:
+  - elutuba vali
+  - vali
+- id: light.dining_pendant
+  area_id: dining
+  name: peredetubaess vali
+  aliases:
+  - peredetubaess vali
+  - vali
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kook lagi
+  aliases:
+  - kook lagi
+  - lagi
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kook saar
+  aliases:
+  - kook saar
+  - saar
+- id: light.family_ceiling
+  area_id: family_room
+  name: peredetuba lagi
+  aliases:
+  - peredetuba lagi
+  - lagi
+- id: light.laundry_light
+  area_id: laundry
+  name: pesuruum vali
+  aliases:
+  - pesuruum vali
+  - vali
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc vali
+  aliases:
+  - wc vali
+  - vali
+- id: light.garage_light
+  area_id: garage
+  name: garage vali
+  aliases:
+  - garage vali
+  - vali
+- id: light.office_ceiling
+  area_id: office
+  name: office lagi
+  aliases:
+  - office lagi
+  - lagi
+- id: light.garden
+  area_id: garden
+  name: garden vali
+  aliases:
+  - garden vali
+  - vali
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: magamistuba lagi
+  aliases:
+  - magamistuba lagi
+  - lagi
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: magamistuba ensuite
+  aliases:
+  - magamistuba ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: magamistuba left ooekapp
+  aliases:
+  - magamistuba left ooekapp
+  - ooekapp
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: magamistuba right ooekapp
+  aliases:
+  - magamistuba right ooekapp
+  - ooekapp
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: magamistuba2 lagi
+  aliases:
+  - magamistuba2 lagi
+  - lagi
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: magamistuba3 lagi
+  aliases:
+  - magamistuba3 lagi
+  - lagi
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: magamistuba4 lagi
+  aliases:
+  - magamistuba4 lagi
+  - lagi
+- id: light.master_bath_light
+  area_id: master_bath
+  name: vannmaster vali
+  aliases:
+  - vannmaster vali
+  - vali
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath vali
+  aliases:
+  - main bath vali
+  - vali
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway vali
+  aliases:
+  - hallway vali
+  - vali
+- id: light.basement
+  area_id: basement
+  name: basement vali
+  aliases:
+  - basement vali
+  - vali
+- id: cover.living_blinds
+  area_id: living
+  name: elutuba kardin
+  aliases:
+  - elutuba kardin
+  - kardin
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: magamistuba kardin
+  aliases:
+  - magamistuba kardin
+  - kardin
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: magamistuba2 kardin
+  aliases:
+  - magamistuba2 kardin
+  - kardin
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: magamistuba3 kardin
+  aliases:
+  - magamistuba3 kardin
+  - kardin
+- id: cover.garage_door
+  area_id: garage
+  name: garage kardin
+  aliases:
+  - garage kardin
+  - kardin
+- id: climate.ground_thermostat
+  area_id: living
+  name: elutuba kyte
+  aliases:
+  - elutuba kyte
+  - kyte
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: magamistuba kyte
+  aliases:
+  - magamistuba kyte
+  - kyte
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: kyte magamistuba
+  aliases:
+  - kyte magamistuba
+  - kyte
+  - ac
+  tags:
+  - kyte
+- id: fan.family_fan
+  area_id: family_room
+  name: peredetuba ventilaator
+  aliases:
+  - peredetuba ventilaator
+  - ventilaator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: magamistuba ventilaator
+  aliases:
+  - magamistuba ventilaator
+  - ventilaator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: magamistuba2 ventilaator
+  aliases:
+  - magamistuba2 ventilaator
+  - ventilaator
+- id: lock.front_door
+  area_id: entryway
+  name: front uks
+  aliases:
+  - front uks
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage uks
+  aliases:
+  - garage uks
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kook noudepesu
+  aliases:
+  - kook noudepesu
+  - noudepesu
+- id: switch.rangehood
+  area_id: kitchen
+  name: kook rangehood
+  aliases:
+  - kook rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: pesuruum pesumasin
+  aliases:
+  - pesuruum pesumasin
+  - pesumasin
+  - washer
+  tags:
+  - washer
+  - pesumasin
+- id: switch.dryer
+  area_id: laundry
+  name: pesuruum dryer
+  aliases:
+  - pesuruum dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: vannmaster ventilaatorbad
+  aliases:
+  - vannmaster ventilaatorbad
+  - ventilaatorbad
+  tags:
+  - ventilaatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilaatorbad
+  aliases:
+  - main bath ventilaatorbad
+  - ventilaatorbad
+  tags:
+  - ventilaatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: elutuba tv
+  aliases:
+  - elutuba tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: peredetuba tv
+  aliases:
+  - peredetuba tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: elutuba teler
+  aliases:
+  - elutuba teler
+  - teler
+  platform: music_assistant
+  tags:
+  - teler
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kook teler
+  aliases:
+  - kook teler
+  - teler
+  platform: music_assistant
+  tags:
+  - teler
+- id: media_player.office_music
+  area_id: office
+  name: office teler
+  aliases:
+  - office teler
+  - teler
+  platform: music_assistant
+  tags:
+  - teler
+- id: vacuum.robot
+  area_id: living
+  name: elutuba tolmuimeja
+  aliases:
+  - elutuba tolmuimeja
+  - tolmuimeja
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: esik doorsensor
+  aliases:
+  - esik doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: elutuba windowsensor
+  aliases:
+  - elutuba windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kook motion
+  aliases:
+  - kook motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: elutuba tempsensor
+  aliases:
+  - elutuba tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: elutuba humidity
+  aliases:
+  - elutuba humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: oo
+- id: leaving_home
+  name: lahkumine
+timers:
+- id: oven
+  name: oven taimer
+- id: laundry
+  name: laundry taimer
+- id: abstract
+  name: abstract taimer
+lists:
+- id: shopping
+  name: nimekiri

@@ -19,7 +19,7 @@ fn block_ac() -> PolicyRule {
 fn user_rule_blocks_named_climate() {
     let home = default_home();
     let mut session = Session::new();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let outcome = parse_with_policies("Klimaanlage aus", &home, &mut session, &[], &settings, &[block_ac()], &SpeechBank::default());
     assert!(matches!(outcome.decision, ParseDecision::Reject { reason: RejectReason::Unsafe }), "{:#?}", outcome.decision);
     assert!(outcome.plan.is_none());
@@ -29,7 +29,7 @@ fn user_rule_blocks_named_climate() {
 #[test]
 fn allow_cannot_skip_area_lock() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let rules = vec![PolicyRule {
         id: "allow-locks".into(),
         enabled: true,
@@ -51,7 +51,7 @@ fn allow_cannot_skip_area_lock() {
 fn retrieval_absent_when_rag_off() {
     let home = default_home();
     let mut session = Session::new();
-    let outcome = parse_with_policies("danke", &home, &mut session, &[], &Settings::default(), &[], &SpeechBank::default());
+    let outcome = parse_with_policies("danke", &home, &mut session, &[], &Settings::pinned("de"), &[], &SpeechBank::default());
     assert!(matches!(outcome.decision, ParseDecision::Chat | ParseDecision::Reject { .. }), "{:#?}", outcome.decision);
     assert!(outcome.retrieval.is_none());
 }
@@ -69,7 +69,7 @@ fn phrase_reply_skips_intent() {
         prefer: None,
         payload: Some("Schlaf schön.".into()),
     }];
-    let outcome = parse_with_policies("Gute Nacht", &home, &mut session, &[], &Settings::default(), &rules, &SpeechBank::default());
+    let outcome = parse_with_policies("Gute Nacht", &home, &mut session, &[], &Settings::pinned("de"), &rules, &SpeechBank::default());
     assert!(matches!(outcome.decision, ParseDecision::Chat), "{:#?}", outcome.decision);
     assert_eq!(outcome.speech, "Schlaf schön.");
     assert!(outcome.plan.is_none());
@@ -89,7 +89,7 @@ fn phrase_script_emits_turn_on() {
         prefer: None,
         payload: Some("leaving_home".into()),
     }];
-    let outcome = parse_with_policies("Ich gehe", &home, &mut session, &[], &Settings::default(), &rules, &SpeechBank::default());
+    let outcome = parse_with_policies("Ich gehe", &home, &mut session, &[], &Settings::pinned("de"), &rules, &SpeechBank::default());
     assert!(matches!(outcome.decision, ParseDecision::Execute), "{:#?}", outcome.decision);
     let intent = &outcome.plan.as_ref().expect("plan").steps[0].intent;
     assert_eq!(intent.name, "HassTurnOn");
@@ -100,7 +100,7 @@ fn phrase_script_emits_turn_on() {
 fn retrieval_on_chat_when_rag_enabled() {
     let home = default_home();
     let mut session = Session::new();
-    let settings = Settings { nlu_rag: true, ..Settings::default() };
+    let settings = Settings { nlu_rag: true, languages: vec!["de".into()], ..Settings::default() };
     let outcome = parse_with_policies("danke", &home, &mut session, &[], &settings, &[], &SpeechBank::default());
     if matches!(outcome.decision, ParseDecision::Chat) {
         assert!(outcome.retrieval.is_some());

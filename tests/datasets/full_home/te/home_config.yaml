@@ -1,0 +1,504 @@
+name: Full Home te
+language: te
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: kinda
+  level: 0
+  aliases:
+  - kinda
+  - bhumi
+- id: upper
+  name: paina
+  level: 1
+  aliases:
+  - paina
+  - anta
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Pravesham
+  floor: ground
+  aliases:
+  - pravesham
+- id: living
+  name: Gadi
+  floor: ground
+  aliases:
+  - gadi
+- id: dining
+  name: Kutumbamess
+  floor: ground
+  aliases:
+  - kutumbamess
+- id: kitchen
+  name: Vantagadi
+  floor: ground
+  aliases:
+  - vantagadi
+- id: family_room
+  name: Kutumbam
+  floor: ground
+  aliases:
+  - kutumbam
+- id: laundry
+  name: Laundry
+  floor: ground
+  aliases:
+  - laundry
+- id: powder_room
+  name: Toilet
+  floor: ground
+  aliases:
+  - toilet
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Padakagadi
+  floor: upper
+  aliases:
+  - padakagadi
+- id: bedroom_2
+  name: Padakagadi2
+  floor: upper
+  aliases:
+  - padakagadi2
+- id: bedroom_3
+  name: Padakagadi3
+  floor: upper
+  aliases:
+  - padakagadi3
+- id: bedroom_4
+  name: Padakagadi4
+  floor: upper
+  aliases:
+  - padakagadi4
+- id: master_bath
+  name: Masterbath
+  floor: upper
+  aliases:
+  - masterbath
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: pravesham velugu
+  aliases:
+  - pravesham velugu
+  - velugu
+- id: light.living_ceiling
+  area_id: living
+  name: gadi kappu
+  aliases:
+  - gadi kappu
+  - kappu
+- id: light.living_lamp
+  area_id: living
+  name: gadi velugu
+  aliases:
+  - gadi velugu
+  - velugu
+- id: light.dining_pendant
+  area_id: dining
+  name: kutumbamess velugu
+  aliases:
+  - kutumbamess velugu
+  - velugu
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: vantagadi kappu
+  aliases:
+  - vantagadi kappu
+  - kappu
+- id: light.kitchen_island
+  area_id: kitchen
+  name: vantagadi dweepam
+  aliases:
+  - vantagadi dweepam
+  - dweepam
+- id: light.family_ceiling
+  area_id: family_room
+  name: kutumbam kappu
+  aliases:
+  - kutumbam kappu
+  - kappu
+- id: light.laundry_light
+  area_id: laundry
+  name: laundry velugu
+  aliases:
+  - laundry velugu
+  - velugu
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toilet velugu
+  aliases:
+  - toilet velugu
+  - velugu
+- id: light.garage_light
+  area_id: garage
+  name: garage velugu
+  aliases:
+  - garage velugu
+  - velugu
+- id: light.office_ceiling
+  area_id: office
+  name: office kappu
+  aliases:
+  - office kappu
+  - kappu
+- id: light.garden
+  area_id: garden
+  name: garden velugu
+  aliases:
+  - garden velugu
+  - velugu
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: padakagadi kappu
+  aliases:
+  - padakagadi kappu
+  - kappu
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: padakagadi ensuite
+  aliases:
+  - padakagadi ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: padakagadi left mancham
+  aliases:
+  - padakagadi left mancham
+  - mancham
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: padakagadi right mancham
+  aliases:
+  - padakagadi right mancham
+  - mancham
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: padakagadi2 kappu
+  aliases:
+  - padakagadi2 kappu
+  - kappu
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: padakagadi3 kappu
+  aliases:
+  - padakagadi3 kappu
+  - kappu
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: padakagadi4 kappu
+  aliases:
+  - padakagadi4 kappu
+  - kappu
+- id: light.master_bath_light
+  area_id: master_bath
+  name: masterbath velugu
+  aliases:
+  - masterbath velugu
+  - velugu
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath velugu
+  aliases:
+  - main bath velugu
+  - velugu
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway velugu
+  aliases:
+  - hallway velugu
+  - velugu
+- id: light.basement
+  area_id: basement
+  name: basement velugu
+  aliases:
+  - basement velugu
+  - velugu
+- id: cover.living_blinds
+  area_id: living
+  name: gadi thera
+  aliases:
+  - gadi thera
+  - thera
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: padakagadi thera
+  aliases:
+  - padakagadi thera
+  - thera
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: padakagadi2 thera
+  aliases:
+  - padakagadi2 thera
+  - thera
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: padakagadi3 thera
+  aliases:
+  - padakagadi3 thera
+  - thera
+- id: cover.garage_door
+  area_id: garage
+  name: garage thera
+  aliases:
+  - garage thera
+  - thera
+- id: climate.ground_thermostat
+  area_id: living
+  name: gadi vedi
+  aliases:
+  - gadi vedi
+  - vedi
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: padakagadi vedi
+  aliases:
+  - padakagadi vedi
+  - vedi
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: vedi padakagadi
+  aliases:
+  - vedi padakagadi
+  - vedi
+  - ac
+  tags:
+  - vedi
+- id: fan.family_fan
+  area_id: family_room
+  name: kutumbam fanu
+  aliases:
+  - kutumbam fanu
+  - fanu
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: padakagadi fanu
+  aliases:
+  - padakagadi fanu
+  - fanu
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: padakagadi2 fanu
+  aliases:
+  - padakagadi2 fanu
+  - fanu
+- id: lock.front_door
+  area_id: entryway
+  name: front talupu
+  aliases:
+  - front talupu
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage talupu
+  aliases:
+  - garage talupu
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: vantagadi ginjalu
+  aliases:
+  - vantagadi ginjalu
+  - ginjalu
+- id: switch.rangehood
+  area_id: kitchen
+  name: vantagadi rangehood
+  aliases:
+  - vantagadi rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: laundry washing
+  aliases:
+  - laundry washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: laundry dryer
+  aliases:
+  - laundry dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: masterbath fanubad
+  aliases:
+  - masterbath fanubad
+  - fanubad
+  tags:
+  - fanubad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath fanubad
+  aliases:
+  - main bath fanubad
+  - fanubad
+  tags:
+  - fanubad
+- id: media_player.living_tv
+  area_id: living
+  name: gadi tv
+  aliases:
+  - gadi tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: kutumbam tv
+  aliases:
+  - kutumbam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: gadi tivi
+  aliases:
+  - gadi tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: vantagadi tivi
+  aliases:
+  - vantagadi tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: gadi udchu
+  aliases:
+  - gadi udchu
+  - udchu
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: pravesham doorsensor
+  aliases:
+  - pravesham doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: gadi windowsensor
+  aliases:
+  - gadi windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: vantagadi motion
+  aliases:
+  - vantagadi motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: gadi tempsensor
+  aliases:
+  - gadi tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: gadi humidity
+  aliases:
+  - gadi humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: cinema
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: ratri
+- id: leaving_home
+  name: vellu
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: jabita

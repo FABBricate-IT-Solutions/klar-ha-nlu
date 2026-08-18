@@ -210,10 +210,10 @@ fn short_name_token(entity: &EntityRec) -> Option<String> {
 }
 
 fn usable_labels(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
-    let generic = is_generic_room_light(entity, home);
+    let generic = is_generic_room_light(entity, home, catalog());
     std::iter::once(entity.name.clone())
         .chain(entity.aliases.iter().cloned())
-        .chain(entity.tags.iter().filter(|tag| !crate::home::roles::is_role_tag(tag)).cloned())
+        .chain(entity.tags.iter().filter(|tag| !crate::home::roles::is_role_tag(tag, catalog())).cloned())
         .filter(|label| !generic || !stolen_label(label, entity, home))
         .collect()
 }

@@ -92,7 +92,7 @@ fn einkaufsliste_nutzt_todo_ohne_shopping_list_name() {
         tags: Vec::new(),
     });
     let mut session = Session::new();
-    let result = parse("Setze Milch auf die Einkaufsliste", &home, &mut session, &[], &Settings::default());
+    let result = parse("Setze Milch auf die Einkaufsliste", &home, &mut session, &[], &Settings::pinned("de"));
     let slots: Vec<_> = result.intents[0].slots.iter().map(|s| (s.name.as_str(), s.value.as_str())).collect();
     assert_eq!(result.intents[0].name, "HassListAddItem", "{slots:?}");
     assert!(slots.iter().any(|(k, v)| *k == "entity_id" && *v == "todo.einkaufsliste"), "{slots:?}");
@@ -174,7 +174,7 @@ fn schlafzimmerlicht_trifft_hue_kugel_nicht_gruppe() {
         tags: Vec::new(),
     });
     let mut session = Session::new();
-    let result = parse("Schlafzimmerlicht auf 50%", &home, &mut session, &[], &Settings::default());
+    let result = parse("Schlafzimmerlicht auf 50%", &home, &mut session, &[], &Settings::pinned("de"));
     let slots: Vec<_> = result.intents[0].slots.iter().map(|s| (s.name.as_str(), s.value.as_str())).collect();
     assert_eq!(result.intents[0].name, "HassLightSet", "{slots:?}");
     assert!(slots.contains(&("brightness", "50")), "{slots:?}");
@@ -186,7 +186,7 @@ fn schlafzimmerlicht_trifft_hue_kugel_nicht_gruppe() {
 fn follow_up_aus() {
     let home = default_home();
     let mut session = Session::new();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     parse("Licht im Wohnzimmer an", &home, &mut session, &[], &settings);
     let second = parse("mach sie aus", &home, &mut session, &[], &settings);
     assert_eq!(second.intents[0].name, "HassTurnOff");
@@ -198,7 +198,7 @@ fn follow_up_aus() {
 fn cover_followup_mach_sie_auf() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
     let mut session = Session::new();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let first = parse("Status Rollo Garage", &home, &mut session, &[], &settings);
     assert!(first.intents.iter().any(|i| i.name == "HassGetState"), "{:?}", first.intents);
     let second = parse("mach sie auf", &home, &mut session, &[], &settings);

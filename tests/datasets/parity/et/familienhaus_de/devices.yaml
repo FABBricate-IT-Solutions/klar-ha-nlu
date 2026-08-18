@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- sea kyte elutuba 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- sea kyte magamistuba 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- sea kardin magamistuba2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- sulge kardin magamistuba2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- ava kardin magamistuba2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- sea kardin magamistuba3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- sulge kardin magamistuba3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- ava kardin magamistuba3
+devices/cover_garage_door::cover_garage_door_change_position:
+- sea kardin garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- sulge kardin garage
+devices/cover_garage_door::cover_garage_door_open:
+- ava kardin garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- sea kardin elutuba 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- sulge kardin elutuba
+devices/cover_living_blinds::cover_living_blinds_open:
+- ava kardin elutuba
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- sea kardin magamistuba 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- sulge kardin magamistuba
+devices/cover_master_blinds::cover_master_blinds_open:
+- ava kardin magamistuba
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- sea ventilaator magamistuba2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- kustuta ventilaator magamistuba2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- lulita ventilaator magamistuba2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- sea ventilaator peredetuba 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- kustuta ventilaator peredetuba
+devices/fan_family_fan::fan_family_fan_turn_on:
+- lulita ventilaator peredetuba
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- sea ventilaator magamistuba 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- kustuta ventilaator magamistuba
+devices/fan_master_fan::fan_master_fan_turn_on:
+- lulita ventilaator magamistuba
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- kustuta ventilaator magamistuba ja kustuta vali kook
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- lulita ventilaator magamistuba ja lulita vali kook
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- sea lagi magamistuba2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- sea lagi magamistuba2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- kustuta lagi magamistuba2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- lulita lagi magamistuba2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- sea lagi magamistuba3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- sea lagi magamistuba3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- kustuta lagi magamistuba3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- lulita lagi magamistuba3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- sea lagi magamistuba4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- sea lagi magamistuba4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- kustuta lagi magamistuba4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- lulita lagi magamistuba4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- sea vali peredetubaess 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- sea vali peredetubaess blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- kustuta vali peredetubaess
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- lulita vali peredetubaess
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- sea vali esik 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- sea vali esik yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- kustuta vali esik
+devices/light_entryway_light::light_entryway_light_turn_on:
+- lulita vali esik
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- sea lagi peredetuba 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- sea lagi peredetuba purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- kustuta lagi peredetuba
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- lulita lagi peredetuba
+devices/light_garage_light::light_garage_light_change_brightness:
+- sea vali garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- sea vali garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- kustuta vali garage
+devices/light_garage_light::light_garage_light_turn_on:
+- lulita vali garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- sea vali esikgang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- sea vali esikgang white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- kustuta vali esikgang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- lulita vali esikgang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- sea lagi kook 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- sea lagi kook orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- kustuta lagi kook
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- lulita lagi kook
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- sea vali kook 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- sea vali kook green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- kustuta vali kook
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- lulita vali kook
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- sea vali pesuruum 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- sea vali pesuruum white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- kustuta vali pesuruum
+devices/light_laundry_light::light_laundry_light_turn_on:
+- lulita vali pesuruum
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- sea lagi elutuba 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- sea lagi elutuba black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- kustuta lagi elutuba
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- lulita lagi elutuba
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- sea vali elutuba 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- sea vali elutuba red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- kustuta vali elutuba
+devices/light_living_lamp::light_living_lamp_turn_on:
+- lulita vali elutuba
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- sea vali main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- sea vali main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- kustuta vali main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- lulita vali main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- sea vali vannmaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- sea vali vannmaster black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- kustuta vali vannmaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- lulita vali vannmaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- sea ooekapp magamistuba 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- sea ooekapp magamistuba red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- kustuta ooekapp magamistuba
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- lulita ooekapp magamistuba
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- sea lagi magamistuba 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- sea lagi magamistuba blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- kustuta lagi magamistuba
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- lulita lagi magamistuba
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- sea vali magamistuba 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- sea vali magamistuba black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- kustuta vali magamistuba
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- lulita vali magamistuba
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- sea vali wc 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- sea vali wc black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- kustuta vali wc
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- lulita vali wc
+devices/lock_front_door::lock_front_door_lock:
+- lukk lukk esik
+devices/lock_front_door::lock_front_door_unlock:
+- ava lukk esik
+devices/lock_garage_entry::lock_garage_entry_lock:
+- lukk lukk garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- ava lukk garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- lulita teler peredetuba
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause teler peredetuba
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- kustuta teler peredetuba
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- lulita teler peredetuba
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- lulita teler peredetuba
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- lulita teler peredetuba
+devices/media_player_living_tv::media_player_living_tv_mute:
+- lulita teler elutuba
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause teler elutuba
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- kustuta teler elutuba
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- lulita teler elutuba
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- lulita teler elutuba
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- lulita teler elutuba
+devices/scenes::dinner_time:
+- sea vali peredetubaess 90 ja lulita lagi kook ja sea vali kook 80
+devices/scenes::good_morning:
+- lulita lagi kook ja sea vali peredetubaess 100 ja ava kardin elutuba ja ava kardin
+  magamistuba
+devices/scenes::kids_bedtime:
+- kustuta lagi magamistuba2 ja kustuta lagi magamistuba3 ja kustuta lagi magamistuba4
+  ja sea vali esikgang 15
+devices/scenes::movie_night:
+- kustuta lagi elutuba ja sea vali elutuba 20 ja lulita teler elutuba ja sulge kardin
+  elutuba
+devices/scripts::good_night:
+- lulita stseen oo
+devices/scripts::leaving_home:
+- lulita stseen lahkumine
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- kustuta noudepesu
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- lulita noudepesu
+devices/switch_dryer::switch_dryer_turn_off:
+- kustuta pesumasin
+devices/switch_dryer::switch_dryer_turn_on:
+- lulita pesumasin
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- kustuta pesumasin
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- lulita pesumasin

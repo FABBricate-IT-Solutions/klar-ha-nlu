@@ -52,7 +52,7 @@ Antwort:
 
 `text` ist auf 4096 Zeichen begrenzt. Der HTTP-Body ist auf 16 KiB begrenzt.
 
-`language` ist optional (`de`, `en` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket — Assist kann so zwischen Deutsch und Englisch umschalten. `speech` folgt dem gesetzten Paket.
+`language` ist optional (`de`, `en`, `fr` oder ein BCP-47-Tag wie `en-US`). Ist es gesetzt, bindet Klar nur dieses Paket. `speech` folgt dem gesetzten Paket.
 
 `personality` ist optional und setzt auf diesem Endpunkt eine Formel vor `speech` (`Sehr wohl.`, `Aye.`, …). Home Assistant speichert die Auswahl in der Integration und schickt sie bei jedem Parse; die Engine-Settings sind nur für die Klar-UI. Die LLM-Verfeinerung in der HA-Integration formuliert den Satz danach in der Stimme um und klebt die Formel nicht wieder davor.
 
@@ -90,7 +90,8 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
   "support_bundle": false,
   "support_bundle_raw_text": false,
   "confirm_risky_actions": true,
-  "semantic_adapters": false
+  "semantic_adapters": false,
+  "nlu_rag": false
 }
 ```
 
@@ -98,11 +99,64 @@ Der Token kommt aus `--token`, `KLAR_TOKEN` oder `--token-file`.
 |------|--------|
 | `personality` | `default`, `butler`, `locker`, `fuersorglich`, `party`, `grantig`, `sarkastisch`, `pirat`, `hippie`, `gollum` |
 | `mode` | `full` (Geräte auflösen) oder `context_only` (nur Räume) |
-| `languages` | Paket-Codes. Unbekannte Codes werden ignoriert. Leer fällt auf `de`+`en` zurück. |
+| `languages` | Paket-Codes. Unbekannte Codes werden ignoriert. Leer heißt: jede kompilierte Locale ist aktiv; der Catalog bindet trotzdem pro Request. Nicht alle Lexika mergen — Token-Kollisionen zerlegen Assist. |
 | `support_bundle` | `true` speichert Parse-Verkehr unter `/data/support_bundle.jsonl` (max. 2000 Einträge). Überlebt Neustarts. Erststart auch über `KLAR_SUPPORT_BUNDLE=1`. |
 | `support_bundle_raw_text` | `true` erlaubt Rohtext und Sprachausgabe im Download. Standard aus. Conversation-IDs werden immer gehasht, Entity- und Area-Namen immer pseudonymisiert. |
 | `confirm_risky_actions` | `true` verlangt vor riskanten Aktionen wie Sperren/Entsperren und breiten sicherheitsrelevanten Steuerungen eine Bestätigung. |
 | `semantic_adapters` | `true` befragt lokale typisierte Adapter nach einem Ranking-Reject. Standard aus. Vorschläge werden revalidiert und überschreiben Execute/Confirm/Clarify/Chat nicht. |
+| `nlu_rag` | `true` hängt nur bei `chat` und `reject` einen gematchten Ausschnitt an. Standard aus. Nie Assist-Werkzeuge; der HA-Fallback darf einen Befehl nur über Klar-Werkzeuge nachziehen. `POST /api/v2/parse` kann `nlu_rag` pro Request setzen. |
+
+### `POST /api/v2/home`
+
+Live-Home-Graph von der Home-Assistant-Integration. `schema_version` muss `"1"` sein. Caps und Fehlercodes: [home-assistant.md](home-assistant.md#registry-sync-ha-ist-quelle). Nach einem gültigen Push ist HA die laufende Quelle; die `.storage`-Überwachung überschreibt diesen Graph nicht mehr.
+
+### `GET /api/v2/languages`
+
+Metadaten der kompilierten Packs (`code`, `native_name`, `script`, `variants`). Das ist die erstklassige Assist-Locale-Liste in der Binary.
+
+### `GET` / `POST /api/lang/overlay`
+
+Benutzer-Sprach-Overlay plus Custom Sentences, unter `/data/klar_nlu.json`.
+
+```json
+{
+  "custom": [{ "phrase": "filmabend", "intent": "HassTurnOn", "slots": { "entity_id": "scene.film" } }],
+  "language": { "sets": {} },
+  "label": "save"
+}
+```
+
+Antwort enthält `history` (`hash`, `label`, `saved_at`). Ohne `language` im POST bleiben gespeicherte Set-Deltas. Ungültiges Custom/Overlay → `422`. Write-Token außer Loopback.
+
+### `POST /api/lang/preview`
+
+Parse mit optional ungespeichertem `custom` und `language_overlay`. Installiert das Overlay nicht. Gleiche Textgrenze wie Parse (`413` wenn zu lang). Optionales `language` pinnt ein Pack (`422` wenn unbekannt).
+
+### `POST /api/lang/explain`
+
+Gleicher Body wie Preview. Liefert `decision`, `confidence`, `speech`, `stages`, `evidence` und `matched_custom` — ohne Live-Overlay.
+
+### `POST /api/lang/rollback`
+
+`{ "hash": "…" }` stellt diese History-Zeile wieder her. Ohne `hash` die letzte gespeicherte Revision. `404`, wenn nichts da ist.
+
+### `GET` / `POST /api/v2/policies`
+
+Policy-Bundle für den Tab **Regeln**: `{ "policies": […], "speech_bank": { "entries": […] } }`.
+
+Jede Regel: `id`, `enabled`, `label`, `when` (optional `intent` / `domain` / `area` / `entity_id` / `floor` / `name` / `phrase`), `effect`, optional `prefer` / `payload`. Effects: `confirm`, `block`, `allow`, `prefer_entity`, `prefer_area`, `reply`, `script`, `template`, `llm`. Höchstens 64 Regeln. Ungültiger Body → `400`. POST schreibt ins Overlay.
+
+### `POST /api/v2/policies/evaluate`
+
+Dry-Run-Parse mit optionalen `policies` (sonst der gespeicherte Satz). Body: `{ "text", "language?", "policies?" }`. Antwort: `outcome`, `compiled_risky`, `matched_rule`, `hit`, `speech_variant`.
+
+### `GET /api/v2/conversations`
+
+Gesprächsjournal: letzte **200** Turns, **24 Stunden**, Datei `/data/conversations.jsonl`. Felder: `conversation_id`, `ts_ms`, optionales `text`, `decision`, `speech`, `confidence`, `briefing`, `evidence_kinds`, `last_names`, optional `confirm_prompt` / `candidate_id`. Roh-`text` nur bei `support_bundle_raw_text`. Confirm/Clarify enthalten keinen Plan.
+
+### `GET /api/v2/conversations/{id}`
+
+Turns einer `conversation_id` (`400`, wenn die Id länger als 128 Zeichen ist).
 
 ### `GET` / `POST /api/custom`
 
@@ -192,7 +246,7 @@ Protokoll leeren.
 
 ### `GET /`
 
-Lokale Test-UI (`web/index.html`).
+React-Operator-UI aus `web/` (Home, Gespräche, Regeln, Haus / Zuordnung, Labor, Einstellungen). Im Image unter `/usr/share/klar/ui`, nach `npm run build` unter `web/dist`. `web/index.html` ist der Vite-Mount, keine eigenständige Testseite.
 
 ## Wyoming
 

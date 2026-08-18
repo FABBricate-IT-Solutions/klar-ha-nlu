@@ -1,0 +1,77 @@
+- name: list_add
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - anade milk lista
+  - milk anade lista
+- name: list_done
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - hecho milk
+  - milk hecho
+- name: list_done_milk
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - hecho milk
+  - milk hecho
+- name: list_add_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - anade bread lista
+  - bread anade lista
+- name: list_done_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - hecho bread
+  - bread hecho
+- name: list_add_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - anade eggs lista
+  - eggs anade lista
+- name: list_done_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - hecho eggs
+  - eggs hecho
+- name: list_add_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - anade apples lista
+  - apples anade lista
+- name: list_done_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - hecho apples
+  - apples hecho
+- name: list_add_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - anade coffee lista
+  - coffee anade lista
+- name: list_done_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - hecho coffee
+  - coffee hecho

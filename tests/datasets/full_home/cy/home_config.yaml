@@ -1,0 +1,504 @@
+name: Full Home cy
+language: cy
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: gwaelod
+  level: 0
+  aliases:
+  - gwaelod
+  - is
+- id: upper
+  name: llawr
+  level: 1
+  aliases:
+  - llawr
+  - uwch
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Cyntedd
+  floor: ground
+  aliases:
+  - cyntedd
+- id: living
+  name: Ystafell
+  floor: ground
+  aliases:
+  - ystafell
+- id: dining
+  name: Ystafellteuluess
+  floor: ground
+  aliases:
+  - ystafellteuluess
+- id: kitchen
+  name: Cegin
+  floor: ground
+  aliases:
+  - cegin
+- id: family_room
+  name: Ystafellteulu
+  floor: ground
+  aliases:
+  - ystafellteulu
+- id: laundry
+  name: Ystafellolchi
+  floor: ground
+  aliases:
+  - ystafellolchi
+- id: powder_room
+  name: Toiled
+  floor: ground
+  aliases:
+  - toiled
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Llofft
+  floor: upper
+  aliases:
+  - llofft
+- id: bedroom_2
+  name: Llofft2
+  floor: upper
+  aliases:
+  - llofft2
+- id: bedroom_3
+  name: Llofft3
+  floor: upper
+  aliases:
+  - llofft3
+- id: bedroom_4
+  name: Llofft4
+  floor: upper
+  aliases:
+  - llofft4
+- id: master_bath
+  name: Bathmaster
+  floor: upper
+  aliases:
+  - bathmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: cyntedd golau
+  aliases:
+  - cyntedd golau
+  - golau
+- id: light.living_ceiling
+  area_id: living
+  name: ystafell nenfwd
+  aliases:
+  - ystafell nenfwd
+  - nenfwd
+- id: light.living_lamp
+  area_id: living
+  name: ystafell golau
+  aliases:
+  - ystafell golau
+  - golau
+- id: light.dining_pendant
+  area_id: dining
+  name: ystafellteuluess golau
+  aliases:
+  - ystafellteuluess golau
+  - golau
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: cegin nenfwd
+  aliases:
+  - cegin nenfwd
+  - nenfwd
+- id: light.kitchen_island
+  area_id: kitchen
+  name: cegin ynys
+  aliases:
+  - cegin ynys
+  - ynys
+- id: light.family_ceiling
+  area_id: family_room
+  name: ystafellteulu nenfwd
+  aliases:
+  - ystafellteulu nenfwd
+  - nenfwd
+- id: light.laundry_light
+  area_id: laundry
+  name: ystafellolchi golau
+  aliases:
+  - ystafellolchi golau
+  - golau
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toiled golau
+  aliases:
+  - toiled golau
+  - golau
+- id: light.garage_light
+  area_id: garage
+  name: garage golau
+  aliases:
+  - garage golau
+  - golau
+- id: light.office_ceiling
+  area_id: office
+  name: office nenfwd
+  aliases:
+  - office nenfwd
+  - nenfwd
+- id: light.garden
+  area_id: garden
+  name: garden golau
+  aliases:
+  - garden golau
+  - golau
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: llofft nenfwd
+  aliases:
+  - llofft nenfwd
+  - nenfwd
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: llofft ensuite
+  aliases:
+  - llofft ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: llofft left gwely
+  aliases:
+  - llofft left gwely
+  - gwely
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: llofft right gwely
+  aliases:
+  - llofft right gwely
+  - gwely
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: llofft2 nenfwd
+  aliases:
+  - llofft2 nenfwd
+  - nenfwd
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: llofft3 nenfwd
+  aliases:
+  - llofft3 nenfwd
+  - nenfwd
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: llofft4 nenfwd
+  aliases:
+  - llofft4 nenfwd
+  - nenfwd
+- id: light.master_bath_light
+  area_id: master_bath
+  name: bathmaster golau
+  aliases:
+  - bathmaster golau
+  - golau
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath golau
+  aliases:
+  - main bath golau
+  - golau
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway golau
+  aliases:
+  - hallway golau
+  - golau
+- id: light.basement
+  area_id: basement
+  name: basement golau
+  aliases:
+  - basement golau
+  - golau
+- id: cover.living_blinds
+  area_id: living
+  name: ystafell llen
+  aliases:
+  - ystafell llen
+  - llen
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: llofft llen
+  aliases:
+  - llofft llen
+  - llen
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: llofft2 llen
+  aliases:
+  - llofft2 llen
+  - llen
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: llofft3 llen
+  aliases:
+  - llofft3 llen
+  - llen
+- id: cover.garage_door
+  area_id: garage
+  name: garage llen
+  aliases:
+  - garage llen
+  - llen
+- id: climate.ground_thermostat
+  area_id: living
+  name: ystafell gwres
+  aliases:
+  - ystafell gwres
+  - gwres
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: llofft gwres
+  aliases:
+  - llofft gwres
+  - gwres
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: gwres llofft
+  aliases:
+  - gwres llofft
+  - gwres
+  - ac
+  tags:
+  - gwres
+- id: fan.family_fan
+  area_id: family_room
+  name: ystafellteulu gwyntyll
+  aliases:
+  - ystafellteulu gwyntyll
+  - gwyntyll
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: llofft gwyntyll
+  aliases:
+  - llofft gwyntyll
+  - gwyntyll
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: llofft2 gwyntyll
+  aliases:
+  - llofft2 gwyntyll
+  - gwyntyll
+- id: lock.front_door
+  area_id: entryway
+  name: front drws
+  aliases:
+  - front drws
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage drws
+  aliases:
+  - garage drws
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: cegin llestri
+  aliases:
+  - cegin llestri
+  - llestri
+- id: switch.rangehood
+  area_id: kitchen
+  name: cegin rangehood
+  aliases:
+  - cegin rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: ystafellolchi peiriannolchi
+  aliases:
+  - ystafellolchi peiriannolchi
+  - peiriannolchi
+  - washer
+  tags:
+  - washer
+  - peiriannolchi
+- id: switch.dryer
+  area_id: laundry
+  name: ystafellolchi dryer
+  aliases:
+  - ystafellolchi dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: bathmaster gwyntyllbad
+  aliases:
+  - bathmaster gwyntyllbad
+  - gwyntyllbad
+  tags:
+  - gwyntyllbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath gwyntyllbad
+  aliases:
+  - main bath gwyntyllbad
+  - gwyntyllbad
+  tags:
+  - gwyntyllbad
+- id: media_player.living_tv
+  area_id: living
+  name: ystafell teledu
+  aliases:
+  - ystafell teledu
+  - teledu
+- id: media_player.family_tv
+  area_id: family_room
+  name: ystafellteulu teledu
+  aliases:
+  - ystafellteulu teledu
+  - teledu
+- id: media_player.living_music
+  area_id: living
+  name: ystafell teledu
+  aliases:
+  - ystafell teledu
+  - teledu
+  platform: music_assistant
+  tags:
+  - teledu
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: cegin teledu
+  aliases:
+  - cegin teledu
+  - teledu
+  platform: music_assistant
+  tags:
+  - teledu
+- id: media_player.office_music
+  area_id: office
+  name: office teledu
+  aliases:
+  - office teledu
+  - teledu
+  platform: music_assistant
+  tags:
+  - teledu
+- id: vacuum.robot
+  area_id: living
+  name: ystafell sugnwr
+  aliases:
+  - ystafell sugnwr
+  - sugnwr
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: cyntedd doorsensor
+  aliases:
+  - cyntedd doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: ystafell windowsensor
+  aliases:
+  - ystafell windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: cegin motion
+  aliases:
+  - cegin motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: ystafell tempsensor
+  aliases:
+  - ystafell tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: ystafell humidity
+  aliases:
+  - ystafell humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: ffilm
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nos
+- id: leaving_home
+  name: gadael
+timers:
+- id: oven
+  name: oven amserydd
+- id: laundry
+  name: laundry amserydd
+- id: abstract
+  name: abstract amserydd
+lists:
+- id: shopping
+  name: rhestr

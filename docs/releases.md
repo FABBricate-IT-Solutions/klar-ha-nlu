@@ -28,6 +28,30 @@ chore(release): prepare for 2026.8.0
 
 `chore(deps*)` und `chore(release)` fehlen im Changelog.
 
+## Staging (Release Candidates)
+
+Sprach- und Feature-Arbeit landet zuerst auf **`staging`**, nicht auf `main`. `staging` und `main` sind **geschützt**: per PR/MR mergen, nicht direkt pushen.
+
+Jeder Merge auf `staging` startet **Staging** (dieselben Quality- und Security-Jobs wie Release, nicht language-parity / full_home). Danach:
+
+1. Tag `{CalVer}-staging.{sha7}` aus `Cargo.toml` plus Merge-SHA (Beispiel: `2026.8.30-staging.a1b2c3d`)
+2. **Build** mit `prerelease: true`
+3. GitHub-**Prerelease** (`prerelease: true`, `make_latest: false`)
+4. Docker-Tags `{rc}` und **`staging`** — nie `latest`
+
+Stabile Cuts bleiben **`main` + CalVer-Tags** wie unten.
+
+`staging` einmal auf GitHub anlegen und schützen (Actions kann das oft nicht ohne Admin):
+
+- Pull Request vor dem Merge (kein Direkt-Push)
+- Kein Force-Push, kein Löschen
+- Dieselben Required Checks wie `main` (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`)
+- Optional: eine Approval
+
+RC nach Produktion: PR **`staging` → `main`**. Dieser Merge schneidet die nächste CalVer wie bisher.
+
+Home-Assistant-Wechsel: [home-assistant.md](home-assistant.md) (mitgelieferter **Release-Kanal** oder Add-on **Klar NLU (Staging)**).
+
 ## Release schneiden
 
 Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Release-Workflow:

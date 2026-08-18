@@ -63,12 +63,16 @@ pub(super) fn build_analyses(
     let mut analyses = Vec::new();
     for (index, (clause, hypotheses)) in clauses.into_iter().zip(action_rows).enumerate() {
         let question = super::legacy::with_catalog(context.catalog, || looks_like_question(&clause));
+        let cat = context.catalog;
         let question_context = question
             || clause
                 .first()
                 .is_some_and(|token| matches!(token.as_str(), "ist" | "sind" | "wie" | "was" | "are" | "is" | "how" | "what" | "whats"));
-        let explicit_list_completion = clause.iter().any(|token| matches!(token.as_str(), "list" | "liste"))
-            && clause.iter().any(|token| matches!(token.as_str(), "off" | "done" | "erledigt" | "abgehakt"));
+        let list_marker = clause.iter().any(|token| token == "list" || token == "liste");
+        let complete_marker = cat.any(&clause, &cat.list_complete)
+            || cat.any(&clause, &cat.off_words)
+            || clause.iter().any(|token| matches!(cat.verb(token), Some(crate::lang::VerbKind::ListComplete)));
+        let explicit_list_completion = list_marker && complete_marker;
         let mut bindings = Vec::new();
         let mut baseline = super::legacy::with_catalog(context.catalog, || {
             parse_clause_candidates_for_action(&clause, raw_tokens, context.home, &working, context.settings, &split.light_areas, None)

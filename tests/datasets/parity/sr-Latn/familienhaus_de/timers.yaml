@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- ukljuci tajmer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- ukljuci tajmer abstract 20 min
+timers/timers::abstract_start_seconds:
+- ukljuci tajmer abstract
+timers/timers::cancel_all_timers:
+- iskljuci sve tajmer
+timers/timers::timer_laundry_cancel:
+- ukljuci tajmer laundry
+timers/timers::timer_laundry_decrease:
+- ukljuci tajmer laundry 5 min
+timers/timers::timer_laundry_increase:
+- ukljuci tajmer laundry 16 min
+timers/timers::timer_laundry_pause:
+- iskljuci tajmer laundry
+timers/timers::timer_laundry_start:
+- ukljuci tajmer laundry
+timers/timers::timer_laundry_status:
+- sta tajmer laundry
+timers/timers::timer_laundry_unpause:
+- ukljuci tajmer laundry
+timers/timers::timer_oven_cancel:
+- ukljuci tajmer oven
+timers/timers::timer_oven_decrease:
+- ukljuci tajmer oven 44 min
+timers/timers::timer_oven_increase:
+- ukljuci tajmer oven 30 min
+timers/timers::timer_oven_pause:
+- iskljuci tajmer oven
+timers/timers::timer_oven_start:
+- ukljuci tajmer oven 2 min
+timers/timers::timer_oven_status:
+- sta tajmer oven
+timers/timers::timer_oven_unpause:
+- ukljuci tajmer oven

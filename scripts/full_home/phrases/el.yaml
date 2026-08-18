@@ -1,0 +1,455 @@
+on_area:
+- '{on} το {light} στο {room}'
+- '{light} στο {room} {on}'
+- '{on} στο {room} το {light}'
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+- '{on} {all} {light} {room}'
+off_area:
+- '{off} το {light} στο {room}'
+- '{light} στο {room} {off}'
+- '{off} στο {room} το {light}'
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+- '{off} {all} {light} {room}'
+on_fixture:
+- '{on} το {fixture} στο {room}'
+- '{fixture} στο {room} {on}'
+- '{on} στο {room} το {fixture}'
+- '{on} {fixture} {room}'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+off_fixture:
+- '{off} το {fixture} στο {room}'
+- '{fixture} στο {room} {off}'
+- '{off} {fixture} {room}'
+- '{fixture} {room} {off}'
+- '{off} {room} {fixture}'
+- '{room} {fixture} {off}'
+set_bright:
+- '{set} το {fixture} στο {room} στο {n}'
+- '{set} το {light} στο {room} στο {n}'
+- '{light} στο {room} στο {n}'
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+set_color:
+- '{set} το {fixture} στο {room} {color}'
+- '{light} στο {room} {color}'
+- '{set} το {light} {color} στο {room}'
+- '{set} {fixture} {room} {color}'
+- '{set} {light} {room} {color}'
+- '{light} {room} {color}'
+set_temp:
+- '{set} {climate} στο {room} στους {n}'
+- '{set} {climate} στους {n}'
+- '{climate} {room} {n}'
+- '{set} {climate} {room} {n}'
+- '{set} {climate} {n}'
+- '{room} {climate} {n}'
+get_temp:
+- ποια ειναι η {climate} στο {room}
+- '{query} {climate} στο {room}'
+- '{query} {climate}'
+- '{query} {climate} {room}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- '{open} την {cover} στο {room}'
+- '{cover} στο {room} {open}'
+- '{open} {cover} {room}'
+- '{cover} {room} {open}'
+- '{open} {room} {cover}'
+- '{room} {cover} {open}'
+close_cover:
+- '{close} την {cover} στο {room}'
+- '{cover} στο {room} {close}'
+- '{close} {cover} {room}'
+- '{cover} {room} {close}'
+- '{close} {room} {cover}'
+- '{room} {cover} {close}'
+set_pos:
+- '{set} το {cover} στο {room} στο {n}'
+- '{cover} στο {room} στο {n}'
+- '{set} {cover} {room} {n}'
+- '{cover} {room} {n}'
+- '{set} {cover} {n}'
+- '{room} {cover} {n}'
+lock:
+- κλειδωσε {door}
+- κλειδωσε {lock} στο {room}
+- '{lock_v} {door}'
+- '{lock_v} {lock} {room}'
+- '{lock} {room} {lock_v}'
+- '{room} {lock} {lock_v}'
+unlock:
+- ξεκλειδωσε {door}
+- ξεκλειδωσε {lock} στο {room}
+- '{unlock} {door}'
+- '{unlock} {lock} {room}'
+- '{lock} {room} {unlock}'
+- '{room} {lock} {unlock}'
+fan_on:
+- '{on} τον {fan} στο {room}'
+- '{fan} στο {room} {on}'
+- '{fan} {room} {on}'
+- '{on} {fan} {room}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+fan_off:
+- '{off} τον {fan} στο {room}'
+- '{fan} στο {room} {off}'
+- '{fan} {room} {off}'
+- '{off} {fan} {room}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+fan_speed:
+- '{set} το {fan} στο {room} στο {n}'
+- '{fan} στο {room} στο {n}'
+- '{set} {fan} {room} {n}'
+- '{fan} {room} {n}'
+- '{set} {fan} {n}'
+- '{room} {fan} {n}'
+switch_on:
+- '{on} {appliance}'
+- '{appliance} {on}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+- '{on} {appliance} {room}'
+- '{room} {appliance} {on}'
+switch_off:
+- '{off} {appliance}'
+- '{appliance} {off}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+- '{off} {appliance} {room}'
+- '{room} {appliance} {off}'
+vac_start:
+- ξεκινα {vacuum}
+- '{on} {vacuum}'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+- '{vacuum} {on} {room}'
+- '{on} {vacuum} {room}'
+vac_dock:
+- ξεκινα {vacuum}
+- '{off} {vacuum}'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+- '{vacuum} {off} {room}'
+- '{off} {vacuum} {room}'
+media_on:
+- '{on} την {tv} στο {room}'
+- '{tv} στο {room} {on}'
+- '{tv} {room} {on}'
+- '{on} {tv} {room}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+media_off:
+- '{off} την {tv} στο {room}'
+- '{tv} στο {room} {off}'
+- '{tv} {room} {off}'
+- '{off} {tv} {room}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+media_pause:
+- '{pause} την {tv} στο {room}'
+- '{tv} στο {room} {pause}'
+- '{tv} {room} {pause}'
+- '{pause} {tv} {room}'
+- '{pause} {room} {tv}'
+- '{room} {tv} {pause}'
+media_vol:
+- '{set} το {music} στο {room} στο {n}'
+- '{music} στο {room} στο {n}'
+- '{set} {music} {room} {n}'
+- '{music} {room} {n}'
+- '{set} {music} {n}'
+- '{set} {tv} {n}'
+media_next:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+media_prev:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+play_search:
+- '{play} {search} στο {room}'
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- παιξε {search}
+- βαλε {search}
+- '{play} {search}'
+play_album:
+- παιξε το {album} {search} απο {artist}
+- '{play} {album} {search} απο {artist}'
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+- '{play} {search} {by} {artist}'
+play_radio:
+- '{play} {search} {radio}'
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+- '{play} {search} {radio} {room}'
+- '{radio} {search} {room}'
+play_queue:
+- παιξε {search}
+- '{play} {search} στο {room}'
+- βαλε {search}
+- '{play} {search}'
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+now_playing:
+- τι παιζει
+- τι παιζει στο {room}
+- '{query} {music} στο {room}'
+- '{query} {music}'
+- '{query} {music} {room}'
+- '{music} {room}'
+scene:
+- '{on} {scene_name}'
+- ενεργοποιησε {scene_name}
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+- '{play} {scene_name}'
+script:
+- '{on} {scene_name}'
+- ενεργοποιησε {scene_name}
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+- '{play} {scene_name}'
+timer_start:
+- '{on} {timer} {n} λεπτα'
+- '{timer} {n} λεπτα'
+- '{on} {timer} {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+timer_cancel:
+- '{off} {timer} {n} λεπτα'
+- '{timer} {n} λεπτα'
+- '{off} {timer}'
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- προσθεσε {item} στη {list}
+- '{add} {item} {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+- '{add} {item} {to} {list}'
+list_done:
+- προσθεσε {item} στη {list}
+- '{done} {item} {list}'
+- '{item} {list}'
+- '{done} {item}'
+- '{list} {item}'
+- '{done} {item} {to} {list}'
+floor_on:
+- '{on} το {light} στο {floor}'
+- '{light} στο {floor} {on}'
+- '{on} στο {floor} το {light}'
+- '{on} {light} {floor}'
+- '{light} {floor} {on}'
+- '{on} {all} {light} {floor}'
+floor_off:
+- '{off} το {light} στο {floor}'
+- '{light} στο {floor} {off}'
+- '{off} στο {floor} το {light}'
+- '{off} {light} {floor}'
+- '{light} {floor} {off}'
+- '{off} {all} {light} {floor}'
+all_except:
+- '{off} ολα τα {light} εκτος {room}'
+- '{off} {all} {light} {except} {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+- '{off} {all} {except} {room}'
+all_except_on:
+- '{on} ολα τα {light} εκτος {room}'
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+- '{on} {all} {except} {room}'
+except_fixture:
+- '{off} ολα τα {light} εκτος {skip_fixture}'
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+- '{off} {all} {except} {skip_fixture}'
+query_entity:
+- τι κανει το {target} στο {room}
+- '{query} {target} στο {room}'
+- '{query} {target}'
+- '{query} {target} {room}'
+- '{target} {room}'
+- '{room} {target}'
+multi_and:
+- '{on} το {light} στο {room} {and} {room2}'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {light} {room} {and} {room2}'
+- '{on} {room} {and} {room2}'
+- '{room} {and} {room2} {on}'
+- '{on} {light} {room} {and} {light} {room2}'
+multi_off:
+- '{off} το {light} στο {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {room2}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {light} {room2}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+- '{on} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {off}'
+multi_three:
+- '{on} το {light} στο {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {on}'
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{on} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {on}'
+- '{on} {light} {room} {and} {light} {room2} {and} {room3}'
+multi_three_off:
+- '{off} το {light} στο {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {off}'
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{off} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {off}'
+- '{off} {light} {room} {and} {light} {room2} {and} {room3}'
+multi_off_lock:
+- '{off} το {light} στο {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {room2}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {light} {room2}'
+except_in_area:
+- '{off} ολα τα {light} εκτος {room}'
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+- '{off} {all} {except} {skip_fixture}'
+except_two:
+- '{off} ολα τα {light} εκτος {room} {and} {room2}'
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+- '{off} {all} {except} {room} {and} {room2}'
+except_fixture_on:
+- '{on} ολα τα {light} εκτος {skip_fixture}'
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+- '{on} {all} {except} {skip_fixture}'
+floor_except:
+- '{off} ολα τα {light} {floor} εκτος {room}'
+- '{off} {all} {light} {floor} {except} {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+- '{all} {off} {except} {room}'
+- '{off} {all} {except} {room}'
+multi_covers:
+- '{open} την {cover} στο {room} {and} {room2}'
+- '{cover} στο {room} {open} {and} {room2}'
+- '{open} {cover} {room} {and} {room2}'
+- '{cover} {room} {open} {and} {room2}'
+- '{open} {room} {cover} {and} {room2}'
+- '{room} {cover} {open} {and} {room2}'
+multi_covers_close:
+- '{close} την {cover} στο {room} {and} {room2}'
+- '{cover} στο {room} {close} {and} {room2}'
+- '{close} {cover} {room} {and} {room2}'
+- '{cover} {room} {close} {and} {room2}'
+- '{close} {room} {cover} {and} {room2}'
+- '{room} {cover} {close} {and} {room2}'
+multi_climate:
+- '{set} {climate} στο {room} {and} {room2} στους {n}'
+- '{set} {climate} στους {n}'
+- '{climate} {room} {and} {room2} {n}'
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{set} {climate} {n}'
+- '{room} {and} {room2} {climate} {n}'
+multi_bright:
+- '{set} το {fixture} στο {room} {and} {room2} στο {n}'
+- '{set} το {light} στο {room} {and} {room2} στο {n}'
+- '{light} στο {room} {and} {room2} στο {n}'
+- '{set} {fixture} {room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {room2} {n}'
+- '{fixture} {room} {and} {room2} {n}'
+multi_color:
+- '{set} το {fixture} στο {room} {and} {room2} {color}'
+- '{light} στο {room} {and} {room2} {color}'
+- '{set} το {light} {color} στο {room} {and} {room2}'
+- '{set} {fixture} {room} {and} {room2} {color}'
+- '{set} {light} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+query_two:
+- τι κανει το {target} στο {room} {and} {room2}
+- '{query} {target} στο {room} {and} {room2}'
+- '{query} {target}'
+- '{query} {target} {room} {and} {room2}'
+- '{target} {room} {and} {room2}'
+- '{room} {and} {room2} {target}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+- '{light} {room2} {off} {and} {climate} {room}'
+multi_locks:
+- κλειδωσε {door}
+- κλειδωσε {lock} στο {room} {and} {room2}
+- '{lock_v} {door}'
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{lock} {room} {and} {room2} {lock_v}'
+- '{room} {and} {room2} {lock} {lock_v}'
+scene_and_off:
+- '{on} {scene_name} {and} {off} {light} {room}'
+- ενεργοποιησε {scene_name} {and} {off} {light} {room}
+- '{scene_name} {on} {and} {off} {light} {room}'
+- '{on} the {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {and} {off} {light} {room}'
+- '{play} {scene_name} {and} {off} {light} {room}'
+clock:
+- τι ωρα ειναι
+- τι ωρα εχουμε
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+- '{query} {clock} {clock}'
+weather:
+- τι καιρο κανει
+- πως ειναι ο καιρος
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'
+- '{query} {weather} {weather}'

@@ -14,10 +14,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HEADING = re.compile(r"^## \[?v?(?P<version>[0-9][0-9.]*)\]?.*$", re.M)
+RC_SUFFIX = re.compile(r"-(?:rc|staging)\.[A-Za-z0-9]+$")
+
+
+def calver_base(version: str) -> str:
+    return RC_SUFFIX.sub("", version.lstrip("vV"))
 
 
 def section(text: str, version: str) -> str:
-    version = version.lstrip("vV")
+    version = calver_base(version)
     matches = list(HEADING.finditer(text))
     for i, match in enumerate(matches):
         if match.group("version") != version:

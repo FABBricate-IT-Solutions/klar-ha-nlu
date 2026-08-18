@@ -1,3 +1,5 @@
+#![forbid(unsafe_code)]
+
 use clap::{Parser, Subcommand};
 use klar_nlu::io::{run, RuntimeArgs};
 use std::path::PathBuf;

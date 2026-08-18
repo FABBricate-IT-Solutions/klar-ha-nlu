@@ -1,0 +1,504 @@
+name: Full Home it
+language: it
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: terra
+  level: 0
+  aliases:
+  - terra
+  - sotto
+- id: upper
+  name: piano
+  level: 1
+  aliases:
+  - piano
+  - sopra
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Ingresso
+  floor: ground
+  aliases:
+  - ingresso
+- id: living
+  name: Soggiorno
+  floor: ground
+  aliases:
+  - soggiorno
+- id: dining
+  name: Soggiornofamess
+  floor: ground
+  aliases:
+  - soggiornofamess
+- id: kitchen
+  name: Cucina
+  floor: ground
+  aliases:
+  - cucina
+- id: family_room
+  name: Soggiornofam
+  floor: ground
+  aliases:
+  - soggiornofam
+- id: laundry
+  name: Lavanderia
+  floor: ground
+  aliases:
+  - lavanderia
+- id: powder_room
+  name: Bagnetto
+  floor: ground
+  aliases:
+  - bagnetto
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Camera
+  floor: upper
+  aliases:
+  - camera
+- id: bedroom_2
+  name: Camera2
+  floor: upper
+  aliases:
+  - camera2
+- id: bedroom_3
+  name: Camera3
+  floor: upper
+  aliases:
+  - camera3
+- id: bedroom_4
+  name: Camera4
+  floor: upper
+  aliases:
+  - camera4
+- id: master_bath
+  name: Bagnomaster
+  floor: upper
+  aliases:
+  - bagnomaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Corridoio
+  floor: upper
+  aliases:
+  - corridoio
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: ingresso luce
+  aliases:
+  - ingresso luce
+  - luce
+- id: light.living_ceiling
+  area_id: living
+  name: soggiorno soffitto
+  aliases:
+  - soggiorno soffitto
+  - soffitto
+- id: light.living_lamp
+  area_id: living
+  name: soggiorno lampada
+  aliases:
+  - soggiorno lampada
+  - lampada
+- id: light.dining_pendant
+  area_id: dining
+  name: soggiornofamess luce
+  aliases:
+  - soggiornofamess luce
+  - luce
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: cucina soffitto
+  aliases:
+  - cucina soffitto
+  - soffitto
+- id: light.kitchen_island
+  area_id: kitchen
+  name: cucina isola
+  aliases:
+  - cucina isola
+  - isola
+- id: light.family_ceiling
+  area_id: family_room
+  name: soggiornofam soffitto
+  aliases:
+  - soggiornofam soffitto
+  - soffitto
+- id: light.laundry_light
+  area_id: laundry
+  name: lavanderia luce
+  aliases:
+  - lavanderia luce
+  - luce
+- id: light.powder_room_light
+  area_id: powder_room
+  name: bagnetto luce
+  aliases:
+  - bagnetto luce
+  - luce
+- id: light.garage_light
+  area_id: garage
+  name: garage luce
+  aliases:
+  - garage luce
+  - luce
+- id: light.office_ceiling
+  area_id: office
+  name: office soffitto
+  aliases:
+  - office soffitto
+  - soffitto
+- id: light.garden
+  area_id: garden
+  name: garden luce
+  aliases:
+  - garden luce
+  - luce
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: camera soffitto
+  aliases:
+  - camera soffitto
+  - soffitto
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: camera ensuite
+  aliases:
+  - camera ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: camera left comodino
+  aliases:
+  - camera left comodino
+  - comodino
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: camera right comodino
+  aliases:
+  - camera right comodino
+  - comodino
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: camera2 soffitto
+  aliases:
+  - camera2 soffitto
+  - soffitto
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: camera3 soffitto
+  aliases:
+  - camera3 soffitto
+  - soffitto
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: camera4 soffitto
+  aliases:
+  - camera4 soffitto
+  - soffitto
+- id: light.master_bath_light
+  area_id: master_bath
+  name: bagnomaster luce
+  aliases:
+  - bagnomaster luce
+  - luce
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath luce
+  aliases:
+  - main bath luce
+  - luce
+- id: light.hallway_light
+  area_id: hallway
+  name: corridoio luce
+  aliases:
+  - corridoio luce
+  - luce
+- id: light.basement
+  area_id: basement
+  name: basement luce
+  aliases:
+  - basement luce
+  - luce
+- id: cover.living_blinds
+  area_id: living
+  name: soggiorno tenda
+  aliases:
+  - soggiorno tenda
+  - tenda
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: camera tenda
+  aliases:
+  - camera tenda
+  - tenda
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: camera2 tenda
+  aliases:
+  - camera2 tenda
+  - tenda
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: camera3 tenda
+  aliases:
+  - camera3 tenda
+  - tenda
+- id: cover.garage_door
+  area_id: garage
+  name: garage tenda
+  aliases:
+  - garage tenda
+  - tenda
+- id: climate.ground_thermostat
+  area_id: living
+  name: soggiorno riscaldamento
+  aliases:
+  - soggiorno riscaldamento
+  - riscaldamento
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: camera riscaldamento
+  aliases:
+  - camera riscaldamento
+  - riscaldamento
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: clima camera
+  aliases:
+  - clima camera
+  - clima
+  - ac
+  tags:
+  - clima
+- id: fan.family_fan
+  area_id: family_room
+  name: soggiornofam ventola
+  aliases:
+  - soggiornofam ventola
+  - ventola
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: camera ventola
+  aliases:
+  - camera ventola
+  - ventola
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: camera2 ventola
+  aliases:
+  - camera2 ventola
+  - ventola
+- id: lock.front_door
+  area_id: entryway
+  name: front porta
+  aliases:
+  - front porta
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage porta
+  aliases:
+  - garage porta
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: cucina lavastoviglie
+  aliases:
+  - cucina lavastoviglie
+  - lavastoviglie
+- id: switch.rangehood
+  area_id: kitchen
+  name: cucina rangehood
+  aliases:
+  - cucina rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: lavanderia lavatrice
+  aliases:
+  - lavanderia lavatrice
+  - lavatrice
+  - washer
+  tags:
+  - washer
+  - lavatrice
+- id: switch.dryer
+  area_id: laundry
+  name: lavanderia dryer
+  aliases:
+  - lavanderia dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: bagnomaster ventolabad
+  aliases:
+  - bagnomaster ventolabad
+  - ventolabad
+  tags:
+  - ventolabad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventolabad
+  aliases:
+  - main bath ventolabad
+  - ventolabad
+  tags:
+  - ventolabad
+- id: media_player.living_tv
+  area_id: living
+  name: soggiorno tv
+  aliases:
+  - soggiorno tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: soggiornofam tv
+  aliases:
+  - soggiornofam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: soggiorno musica
+  aliases:
+  - soggiorno musica
+  - musica
+  platform: music_assistant
+  tags:
+  - musica
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: cucina musica
+  aliases:
+  - cucina musica
+  - musica
+  platform: music_assistant
+  tags:
+  - musica
+- id: media_player.office_music
+  area_id: office
+  name: office musica
+  aliases:
+  - office musica
+  - musica
+  platform: music_assistant
+  tags:
+  - musica
+- id: vacuum.robot
+  area_id: living
+  name: soggiorno aspirapolvere
+  aliases:
+  - soggiorno aspirapolvere
+  - aspirapolvere
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: ingresso doorsensor
+  aliases:
+  - ingresso doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: soggiorno windowsensor
+  aliases:
+  - soggiorno windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: cucina motion
+  aliases:
+  - cucina motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: soggiorno tempsensor
+  aliases:
+  - soggiorno tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: soggiorno humidity
+  aliases:
+  - soggiorno humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: notte
+- id: leaving_home
+  name: uscita
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: lista

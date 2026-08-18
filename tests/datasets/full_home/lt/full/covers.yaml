@@ -1,0 +1,321 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - atidaryk uzuolaida svetaine
+  - uzuolaida svetaine atidaryk
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - uzdaryk uzuolaida svetaine
+  - uzuolaida svetaine uzdaryk
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - nustatyk uzuolaida svetaine 0
+  - uzuolaida svetaine 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - nustatyk uzuolaida svetaine 25
+  - uzuolaida svetaine 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - nustatyk uzuolaida svetaine 40
+  - uzuolaida svetaine 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - nustatyk uzuolaida svetaine 75
+  - uzuolaida svetaine 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - nustatyk uzuolaida svetaine 100
+  - uzuolaida svetaine 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - atidaryk uzuolaida miegamasis
+  - uzuolaida miegamasis atidaryk
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - uzdaryk uzuolaida miegamasis
+  - uzuolaida miegamasis uzdaryk
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - nustatyk uzuolaida miegamasis 0
+  - uzuolaida miegamasis 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - nustatyk uzuolaida miegamasis 25
+  - uzuolaida miegamasis 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - nustatyk uzuolaida miegamasis 40
+  - uzuolaida miegamasis 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - nustatyk uzuolaida miegamasis 75
+  - uzuolaida miegamasis 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - nustatyk uzuolaida miegamasis 100
+  - uzuolaida miegamasis 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - atidaryk uzuolaida miegamasis2
+  - uzuolaida miegamasis2 atidaryk
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - uzdaryk uzuolaida miegamasis2
+  - uzuolaida miegamasis2 uzdaryk
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - nustatyk uzuolaida miegamasis2 0
+  - uzuolaida miegamasis2 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - nustatyk uzuolaida miegamasis2 25
+  - uzuolaida miegamasis2 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - nustatyk uzuolaida miegamasis2 40
+  - uzuolaida miegamasis2 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - nustatyk uzuolaida miegamasis2 75
+  - uzuolaida miegamasis2 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - nustatyk uzuolaida miegamasis2 100
+  - uzuolaida miegamasis2 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - atidaryk uzuolaida miegamasis3
+  - uzuolaida miegamasis3 atidaryk
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - uzdaryk uzuolaida miegamasis3
+  - uzuolaida miegamasis3 uzdaryk
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - nustatyk uzuolaida miegamasis3 0
+  - uzuolaida miegamasis3 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - nustatyk uzuolaida miegamasis3 25
+  - uzuolaida miegamasis3 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - nustatyk uzuolaida miegamasis3 40
+  - uzuolaida miegamasis3 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - nustatyk uzuolaida miegamasis3 75
+  - uzuolaida miegamasis3 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - nustatyk uzuolaida miegamasis3 100
+  - uzuolaida miegamasis3 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - atidaryk uzuolaida garage
+  - uzuolaida garage atidaryk
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - uzdaryk uzuolaida garage
+  - uzuolaida garage uzdaryk
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - nustatyk uzuolaida garage 0
+  - uzuolaida garage 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - nustatyk uzuolaida garage 25
+  - uzuolaida garage 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - nustatyk uzuolaida garage 40
+  - uzuolaida garage 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - nustatyk uzuolaida garage 75
+  - uzuolaida garage 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - nustatyk uzuolaida garage 100
+  - uzuolaida garage 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - atidaryk uzuolaida svetaine
+  - uzuolaida svetaine atidaryk
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - atidaryk uzuolaida miegamasis
+  - uzuolaida miegamasis atidaryk

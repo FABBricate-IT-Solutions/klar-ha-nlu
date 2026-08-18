@@ -6,6 +6,7 @@
         "description": "The bundled engine is downloaded from GitHub Releases and started by this integration. Pick a URL only if Klar already runs elsewhere.",
         "data": {
           "mode": "Engine",
+          "channel": "Release channel",
           "url": "Klar API URL",
           "token": "Write token"
         }
@@ -32,7 +33,8 @@
           "url": "Klar API URL",
           "token": "Write token",
           "assist_filter": "Only control entities exposed to Assist",
-          "nlu_rag": "NLU-RAG (opt-in)"
+          "nlu_rag": "NLU-RAG (opt-in)",
+          "channel": "Release channel"
         },
         "data_description": {
           "personality": "Stored in this integration, not in the Klar app. Assist and the LLM refine voice switch with this choice. With refine on, the voice lives in the sentence, not in a fixed cue.",
@@ -40,7 +42,9 @@
           "refine_prompt": "Optional extra style on top of the selected personality. Klar still keeps the safety rules: no device control, no new facts, same language.",
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
-          "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools."
+          "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
+          "languages": "Every compiled Assist locale. Empty or all selected means all are enabled. Assist still pins one pack per request so lexicons are not merged together.",
+          "channel": "Bundled engine only. Stable downloads the current CalVer GitHub Release. Staging downloads the latest staging prerelease. Reload Klar NLU after switching. Add-on users install Klar NLU (Staging) instead."
         }
       }
     },
@@ -55,10 +59,10 @@
         "remote": "Use an engine that is already running"
       }
     },
-    "languages": {
+    "release_channel": {
       "options": {
-        "de": "German",
-        "en": "English"
+        "stable": "Stable (production)",
+        "staging": "Staging (release candidate)"
       }
     },
     "personality": {
@@ -93,6 +97,18 @@
           "gollum": "Gollum"
         }
       }
+    },
+    "sensor": {
+      "last_heard": { "name": "Last heard" },
+      "last_decision": { "name": "Last decision" },
+      "last_speech": { "name": "Last reply" },
+      "last_area": { "name": "Heard in" }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar engine stopped",
+      "description": "The bundled Klar process is not running. Reload Klar NLU from Settings → Devices & Services."
     }
   }
 }

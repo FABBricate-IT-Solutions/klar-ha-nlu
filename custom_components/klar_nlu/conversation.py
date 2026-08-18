@@ -37,10 +37,9 @@ from .const import (
     DEFAULT_NLU_RAG,
     DEFAULT_URL,
     DOMAIN,
-    LANGUAGE_VARIANTS,
     resolve_personality,
-    SUPPORTED_LANGUAGES,
 )
+from .lang_select import advertise, enabled_packs, resolve_pack
 from .contracts import executable_intents, validate_v2_payload
 from .executor import execute_plan
 from .fallback import (
@@ -55,6 +54,7 @@ from .rag_tools import act_payload, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
 from .refine import async_refine_speech, should_refine
+from .sensor import remember_turn
 from .speech import style
 
 _LOGGER = logging.getLogger(__name__)
@@ -65,6 +65,10 @@ _UNREACHABLE = {
 }
 
 _DONE = {"de": "Erledigt.", "en": "Done."}
+
+
+def _cue(table: dict[str, str], pack: str, fallback: str) -> str:
+    return table.get(pack) or fallback
 
 
 async def async_setup_entry(
@@ -79,31 +83,6 @@ def _speech_from_result(result: ConversationResult) -> str:
     speech = result.response.speech or {}
     plain = speech.get("plain") or {}
     return str(plain.get("speech") or "")
-
-
-def _pack(language: str | None, enabled: list[str] | None = None) -> str:
-    if language:
-        code = language.replace("_", "-").split("-", 1)[0].lower()
-        if code in SUPPORTED_LANGUAGES:
-            return code
-    if enabled:
-        return enabled[0]
-    return "de"
-
-
-def _enabled_packs(entry: ConfigEntry) -> list[str]:
-    raw = entry.options.get(CONF_LANGUAGES)
-    if not isinstance(raw, list) or not raw:
-        return list(SUPPORTED_LANGUAGES)
-    packs = [code for code in raw if code in SUPPORTED_LANGUAGES]
-    return packs or list(SUPPORTED_LANGUAGES)
-
-
-def _advertise(packs: list[str]) -> list[str]:
-    out: list[str] = []
-    for pack in packs:
-        out.extend(LANGUAGE_VARIANTS.get(pack, (pack,)))
-    return out
 
 
 class KlarConversationEntity(ConversationEntity):
@@ -122,7 +101,7 @@ class KlarConversationEntity(ConversationEntity):
 
     @property
     def supported_languages(self) -> list[str]:
-        return _advertise(_enabled_packs(self._entry))
+        return advertise(enabled_packs(self._entry.options.get(CONF_LANGUAGES)))
 
     @property
     def _url(self) -> str:
@@ -183,7 +162,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
-        pack = _pack(user_input.language, _enabled_packs(self._entry))
+        pack = resolve_pack(user_input.language, enabled_packs(self._entry.options.get(CONF_LANGUAGES)))
         triggered = await self._sentence_triggers(user_input, chat_log, pack)
         if triggered is not None:
             return triggered
@@ -191,7 +170,7 @@ class KlarConversationEntity(ConversationEntity):
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
-        speech = engine_speech or _DONE[pack]
+        speech = engine_speech or _cue(_DONE, pack, "OK")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
         intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
@@ -209,7 +188,7 @@ class KlarConversationEntity(ConversationEntity):
                     return briefing
             else:
                 return self._spoken(
-                    user_input, chat_log, pack, engine_speech or _DONE[pack], conversation_id, False
+                    user_input, chat_log, pack, engine_speech or _cue(_DONE, pack, "OK"), conversation_id, False
                 )
 
         retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
@@ -273,6 +252,14 @@ class KlarConversationEntity(ConversationEntity):
             else:
                 speech = style(speech, personality, pack)
 
+        remember_turn(
+            self.hass,
+            self._entry.entry_id,
+            user_input.text,
+            speech,
+            decision_type,
+            self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
+        )
         return self._spoken(user_input, chat_log, pack, speech, conversation_id, clarify)
 
     def _spoken(
@@ -315,7 +302,7 @@ class KlarConversationEntity(ConversationEntity):
         result = await self._fallback(user_input, chat_log, pack, True, prompt, False)
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
-        spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _DONE[pack]
+        spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
         if result is None:
             return self._spoken(user_input, chat_log, pack, spoken, conversation_id, True)
         result.response.async_set_speech(spoken)
@@ -383,9 +370,9 @@ class KlarConversationEntity(ConversationEntity):
                 intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
                 if intents:
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
-                    speech = str(executed.get("speech") or payload.get("speech") or _DONE[pack])
+                    speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
                     return self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
-            speech = str(payload.get("speech") or _DONE[pack])
+            speech = str(payload.get("speech") or _cue(_DONE, pack, "OK"))
             return self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
         if tool.get("tool") == "klar.act" and tool.get("intent"):
             item = act_payload(str(tool["intent"]), tool.get("slots") or {})
@@ -393,7 +380,7 @@ class KlarConversationEntity(ConversationEntity):
             if not intents:
                 return None
             executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
-            return self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _DONE[pack]), user_input.conversation_id, False)
+            return self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _cue(_DONE, pack, "OK")), user_input.conversation_id, False)
         return None
 
     async def _fallback(
@@ -461,7 +448,7 @@ class KlarConversationEntity(ConversationEntity):
         self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/v2/parse"
-        pack = _pack(language, _enabled_packs(self._entry))
+        pack = resolve_pack(language, enabled_packs(self._entry.options.get(CONF_LANGUAGES)))
         body: dict[str, Any] = {
             "text": text,
             "conversation_id": conversation_id,
@@ -487,7 +474,7 @@ class KlarConversationEntity(ConversationEntity):
             _LOGGER.warning("Klar nicht erreichbar: %s", err)
             return {
                 "schema_version": "2.0",
-                "speech": _UNREACHABLE[pack],
+                "speech": _cue(_UNREACHABLE, pack, "Klar is not responding right now."),
                 "decision": {"type": "error", "code": "unreachable", "message": str(err)},
                 "plan": None,
                 "unreachable": True,

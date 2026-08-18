@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- fecha cortina quarto2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- abre cortina quarto2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- poe cortina quarto2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- poe ventoinha quarto2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- desliga ventoinha quarto2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- liga ventoinha quarto2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- poe luz quarto2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- poe luz quarto2 rosa
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- desliga luz quarto2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- liga luz quarto2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- fecha cortina quarto3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- abre cortina quarto3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- poe cortina quarto3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- poe luz quarto3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- poe luz quarto3 azul
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- desliga luz quarto3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- liga luz quarto3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- poe luz quarto4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- poe luz quarto4 verde
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- desliga luz quarto4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- liga luz quarto4
+area/dining_lights::dining_lights_change_brightness:
+- poe luz salaestaress 54
+area/dining_lights::dining_lights_change_color:
+- poe luz salaestaress azul
+area/dining_lights::dining_lights_turn_off:
+- desliga luz salaestaress
+area/dining_lights::dining_lights_turn_on:
+- liga luz salaestaress
+area/entryway_lights::entryway_lights_change_brightness:
+- poe luz entrada 72
+area/entryway_lights::entryway_lights_change_color:
+- poe luz entrada preto
+area/entryway_lights::entryway_lights_turn_off:
+- desliga luz entrada
+area/entryway_lights::entryway_lights_turn_on:
+- liga luz entrada
+area/entryway_locks::entryway_locks_lock:
+- tranca fechadura entrada
+area/entryway_locks::entryway_locks_unlock:
+- abre fechadura entrada
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- poe luz salaestar 39 e poe luz cozinha 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- poe luz salaestar roxo e poe luz cozinha roxo
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- desliga luz salaestar e desliga luz cozinha
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- liga luz salaestar e liga luz cozinha
+area/family_room_fans::family_room_fans_set_fan_speed:
+- poe ventoinha salaestar 32
+area/family_room_fans::family_room_fans_turn_off:
+- desliga ventoinha salaestar
+area/family_room_fans::family_room_fans_turn_on:
+- liga ventoinha salaestar
+area/family_room_lights::family_room_lights_change_brightness:
+- poe luz salaestar 44
+area/family_room_lights::family_room_lights_change_color:
+- poe luz salaestar verde
+area/family_room_lights::family_room_lights_turn_off:
+- desliga luz salaestar
+area/family_room_lights::family_room_lights_turn_on:
+- liga luz salaestar
+area/garage_covers::garage_covers_close:
+- fecha cortina garage
+area/garage_covers::garage_covers_open:
+- abre cortina garage
+area/garage_covers::garage_covers_set_position:
+- poe cortina garage 86
+area/garage_lights::garage_lights_change_brightness:
+- poe luz garage 16
+area/garage_lights::garage_lights_change_color:
+- poe luz garage azul
+area/garage_lights::garage_lights_turn_off:
+- desliga luz garage
+area/garage_lights::garage_lights_turn_on:
+- liga luz garage
+area/garage_locks::garage_locks_lock:
+- tranca fechadura garage
+area/garage_locks::garage_locks_unlock:
+- abre fechadura garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- poe luz entradagang 26 e poe luz wc 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- poe luz entradagang roxo e poe luz wc roxo
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- desliga luz entradagang e desliga luz wc
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- liga luz entradagang e liga luz wc
+area/hallway_lights::hallway_lights_change_brightness:
+- poe luz entradagang 61
+area/hallway_lights::hallway_lights_change_color:
+- poe luz entradagang laranja
+area/hallway_lights::hallway_lights_turn_off:
+- desliga luz entradagang
+area/hallway_lights::hallway_lights_turn_on:
+- liga luz entradagang
+area/kitchen_lights::kitchen_lights_change_brightness:
+- poe luz cozinha 45
+area/kitchen_lights::kitchen_lights_change_color:
+- poe luz cozinha rosa
+area/kitchen_lights::kitchen_lights_turn_off:
+- desliga luz cozinha
+area/kitchen_lights::kitchen_lights_turn_on:
+- liga luz cozinha
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- desliga aparelho cozinha
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- liga aparelho cozinha
+area/laundry_lights::laundry_lights_change_brightness:
+- poe luz lavandaria 62
+area/laundry_lights::laundry_lights_change_color:
+- poe luz lavandaria amarelo
+area/laundry_lights::laundry_lights_turn_off:
+- desliga luz lavandaria
+area/laundry_lights::laundry_lights_turn_on:
+- liga luz lavandaria
+area/laundry_switchs::laundry_switchs_turn_off:
+- desliga aparelho lavandaria
+area/laundry_switchs::laundry_switchs_turn_on:
+- liga aparelho lavandaria
+area/living_climates::living_climates_set_temperature:
+- poe aquecimento sala 20
+area/living_covers::living_covers_close:
+- fecha cortina sala
+area/living_covers::living_covers_open:
+- abre cortina sala
+area/living_covers::living_covers_set_position:
+- poe cortina sala 46
+area/living_lights::living_lights_change_brightness:
+- poe luz sala 84
+area/living_lights::living_lights_change_color:
+- poe luz sala azul
+area/living_lights::living_lights_turn_off:
+- desliga luz sala
+area/living_lights::living_lights_turn_on:
+- liga luz sala
+area/main_bath_lights::main_bath_lights_change_brightness:
+- poe luz main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- poe luz main bath rosa
+area/main_bath_lights::main_bath_lights_turn_off:
+- desliga luz main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- liga luz main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- desliga aparelho main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- liga aparelho main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- poe luz banhomaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- poe luz banhomaster preto
+area/master_bath_lights::master_bath_lights_turn_off:
+- desliga luz banhomaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- liga luz banhomaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- desliga aparelho banhomaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- liga aparelho banhomaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- poe aquecimento quarto 20 e poe aquecimento sala 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- fecha cortina quarto e fecha cortina sala
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- abre cortina quarto e abre cortina sala
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- poe cortina quarto 19 e poe cortina sala 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- poe luz quarto 25 e poe luz sala 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- poe luz quarto branco e poe luz sala branco
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- desliga luz quarto e desliga luz sala
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- liga luz quarto e liga luz sala
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- poe luz quarto 57 e poe luz main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- poe luz quarto rosa e poe luz main bath rosa
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- desliga luz quarto e desliga luz main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- liga luz quarto e liga luz main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- poe aquecimento quarto 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- fecha cortina quarto
+area/master_bedroom_covers::master_bedroom_covers_open:
+- abre cortina quarto
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- poe cortina quarto 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- poe ventoinha quarto 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- desliga ventoinha quarto
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- liga ventoinha quarto
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- poe luz quarto 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- poe luz quarto rosa
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- desliga luz quarto
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- liga luz quarto
+area/powder_room_lights::powder_room_lights_change_brightness:
+- poe luz wc 52
+area/powder_room_lights::powder_room_lights_change_color:
+- poe luz wc roxo
+area/powder_room_lights::powder_room_lights_turn_off:
+- desliga luz wc
+area/powder_room_lights::powder_room_lights_turn_on:
+- liga luz wc
+area/spoken_lights::spoken_bedroom_inflection:
+- poe luz quarto vermelho
+area/spoken_lights::spoken_except_island:
+- desliga tudo luz exceto ilha
+area/spoken_lights::spoken_except_kitchen:
+- desliga tudo luz exceto cozinha exceto ilha
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- desliga luz sala e desliga luz salaestaress e desliga luz cozinha
+area/spoken_lights::spoken_stt_kitchen_off:
+- desliga luz cozinha
+area/spoken_lights::spoken_stt_living_off:
+- desliga luz sala

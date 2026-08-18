@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- iestati apkure vannamaster 23
+area/heizung::heizung_esszimmer_23:
+- iestati apkure dzivojamafamess 23
+area/heizung::heizung_schlafzimmer_23:
+- iestati apkure gulamistaba 23
+area/heizung::heizung_wohnzimmer_23:
+- iestati apkure istaba 23
+area/lichter::alle_an_ausser_kugel:
+- iesledz viss gaisma iznemot lode
+area/lichter::alle_an_ausser_schlafzimmer:
+- iesledz viss gaisma iznemot gulamistaba
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- iestati viss gaisma iznemot gulamistaba 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- iestati viss gaisma iznemot lode red
+area/lichter::alle_ausser_kugel:
+- izsledz viss gaisma iznemot lode
+area/lichter::alle_ausser_schlafzimmer:
+- izsledz viss gaisma iznemot gulamistaba
+area/lichter::alle_lichter_an:
+- iesledz viss gaisma
+area/lichter::alle_lichter_aus:
+- izsledz viss gaisma
+area/lichter::arbeitszimmer_lichter_an:
+- iesledz gaisma istaba
+area/lichter::arbeitszimmer_lichter_aus:
+- izsledz gaisma istaba
+area/lichter::esszimmer_lichter_an:
+- iesledz gaisma dzivojamafamess
+area/lichter::esszimmer_lichter_aus:
+- izsledz gaisma dzivojamafamess
+area/lichter::kuche_lichter_an:
+- iesledz gaisma virtuve
+area/lichter::kuche_lichter_aus:
+- izsledz gaisma virtuve
+area/lichter::schlafzimmer_auf_blau:
+- iestati gaisma gulamistaba blue
+area/lichter::schlafzimmer_auf_rot:
+- iestati gaisma gulamistaba red
+area/lichter::wohnzimmer_helligkeit:
+- iestati gaisma istaba 45
+area/lichter::wohnzimmer_lichter_an:
+- iesledz gaisma istaba
+area/lichter::wohnzimmer_lichter_aus:
+- izsledz gaisma istaba
+area/spoken::alle_ausser_kugel_stt:
+- izsledz viss gaisma iznemot lode
+area/spoken::alle_ausser_schlaf_stt:
+- izsledz viss gaisma iznemot gulamistaba
+area/spoken::alle_ganzen_an:
+- iesledz viss gaisma
+area/spoken::alle_lampen_aus:
+- izsledz viss gaisma
+area/spoken::esszimmer_weiss:
+- iestati gaisma dzivojamafamess white
+area/spoken::stt_kuche_lichte:
+- izsledz gaisma virtuve
+area/spoken::stt_licht_wohnzimmer_an:
+- iesledz gaisma istaba
+area/spoken::stt_licht_wohnzimmer_aus:
+- izsledz gaisma istaba
+area/spoken::stt_schlafzimmer_dativ:
+- izsledz gaisma gulamistaba
+area/spoken::wohnzimmer_gruen:
+- iestati gaisma istaba green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- izsledz viss gaisma iznemot istaba
+area/spoken_more::arbeitszimmer_lampen_aus:
+- izsledz gaisma istaba
+area/spoken_more::esszimmer_30:
+- iestati gaisma dzivojamafamess 30
+area/spoken_more::esszimmer_lichte_an:
+- iesledz gaisma dzivojamafamess
+area/spoken_more::kuche_80:
+- iestati gaisma virtuve 80
+area/spoken_more::kuche_blau:
+- iestati gaisma virtuve blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- izsledz viss gaisma iznemot gulamistaba
+area/spoken_more::wohnzimmer_gelb:
+- iestati gaisma istaba yellow

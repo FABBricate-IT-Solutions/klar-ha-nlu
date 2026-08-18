@@ -1,0 +1,503 @@
+name: Full Home id
+language: id
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: bawah
+  level: 0
+  aliases:
+  - bawah
+  - dasar
+- id: upper
+  name: atas
+  level: 1
+  aliases:
+  - atas
+  - lantai
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Lorong
+  floor: ground
+  aliases:
+  - lorong
+- id: living
+  name: Ruang
+  floor: ground
+  aliases:
+  - ruang
+- id: dining
+  name: Ruangkeluargaess
+  floor: ground
+  aliases:
+  - ruangkeluargaess
+- id: kitchen
+  name: Dapur
+  floor: ground
+  aliases:
+  - dapur
+- id: family_room
+  name: Ruangkeluarga
+  floor: ground
+  aliases:
+  - ruangkeluarga
+- id: laundry
+  name: Binatu
+  floor: ground
+  aliases:
+  - binatu
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Kamar
+  floor: upper
+  aliases:
+  - kamar
+- id: bedroom_2
+  name: Kamar2
+  floor: upper
+  aliases:
+  - kamar2
+- id: bedroom_3
+  name: Kamar3
+  floor: upper
+  aliases:
+  - kamar3
+- id: bedroom_4
+  name: Kamar4
+  floor: upper
+  aliases:
+  - kamar4
+- id: master_bath
+  name: Kamarmandimaster
+  floor: upper
+  aliases:
+  - kamarmandimaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: lorong lampu
+  aliases:
+  - lorong lampu
+  - lampu
+- id: light.living_ceiling
+  area_id: living
+  name: ruang langit
+  aliases:
+  - ruang langit
+  - langit
+- id: light.living_lamp
+  area_id: living
+  name: ruang lampu
+  aliases:
+  - ruang lampu
+  - lampu
+- id: light.dining_pendant
+  area_id: dining
+  name: ruangkeluargaess lampu
+  aliases:
+  - ruangkeluargaess lampu
+  - lampu
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: dapur langit
+  aliases:
+  - dapur langit
+  - langit
+- id: light.kitchen_island
+  area_id: kitchen
+  name: dapur pulau
+  aliases:
+  - dapur pulau
+  - pulau
+- id: light.family_ceiling
+  area_id: family_room
+  name: ruangkeluarga langit
+  aliases:
+  - ruangkeluarga langit
+  - langit
+- id: light.laundry_light
+  area_id: laundry
+  name: binatu lampu
+  aliases:
+  - binatu lampu
+  - lampu
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc lampu
+  aliases:
+  - wc lampu
+  - lampu
+- id: light.garage_light
+  area_id: garage
+  name: garage lampu
+  aliases:
+  - garage lampu
+  - lampu
+- id: light.office_ceiling
+  area_id: office
+  name: office langit
+  aliases:
+  - office langit
+  - langit
+- id: light.garden
+  area_id: garden
+  name: garden lampu
+  aliases:
+  - garden lampu
+  - lampu
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: kamar langit
+  aliases:
+  - kamar langit
+  - langit
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: kamar ensuite
+  aliases:
+  - kamar ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: kamar left nakas
+  aliases:
+  - kamar left nakas
+  - nakas
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: kamar right nakas
+  aliases:
+  - kamar right nakas
+  - nakas
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: kamar2 langit
+  aliases:
+  - kamar2 langit
+  - langit
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: kamar3 langit
+  aliases:
+  - kamar3 langit
+  - langit
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: kamar4 langit
+  aliases:
+  - kamar4 langit
+  - langit
+- id: light.master_bath_light
+  area_id: master_bath
+  name: kamarmandimaster lampu
+  aliases:
+  - kamarmandimaster lampu
+  - lampu
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath lampu
+  aliases:
+  - main bath lampu
+  - lampu
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway lampu
+  aliases:
+  - hallway lampu
+  - lampu
+- id: light.basement
+  area_id: basement
+  name: basement lampu
+  aliases:
+  - basement lampu
+  - lampu
+- id: cover.living_blinds
+  area_id: living
+  name: ruang tirai
+  aliases:
+  - ruang tirai
+  - tirai
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: kamar tirai
+  aliases:
+  - kamar tirai
+  - tirai
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: kamar2 tirai
+  aliases:
+  - kamar2 tirai
+  - tirai
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: kamar3 tirai
+  aliases:
+  - kamar3 tirai
+  - tirai
+- id: cover.garage_door
+  area_id: garage
+  name: garage tirai
+  aliases:
+  - garage tirai
+  - tirai
+- id: climate.ground_thermostat
+  area_id: living
+  name: ruang ac
+  aliases:
+  - ruang ac
+  - ac
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: kamar ac
+  aliases:
+  - kamar ac
+  - ac
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: ac kamar
+  aliases:
+  - ac kamar
+  - ac
+  tags:
+  - ac
+- id: fan.family_fan
+  area_id: family_room
+  name: ruangkeluarga kipas
+  aliases:
+  - ruangkeluarga kipas
+  - kipas
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: kamar kipas
+  aliases:
+  - kamar kipas
+  - kipas
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: kamar2 kipas
+  aliases:
+  - kamar2 kipas
+  - kipas
+- id: lock.front_door
+  area_id: entryway
+  name: front pintu
+  aliases:
+  - front pintu
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage pintu
+  aliases:
+  - garage pintu
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: dapur piring
+  aliases:
+  - dapur piring
+  - piring
+- id: switch.rangehood
+  area_id: kitchen
+  name: dapur rangehood
+  aliases:
+  - dapur rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: binatu pencuci
+  aliases:
+  - binatu pencuci
+  - pencuci
+  - washer
+  tags:
+  - washer
+  - pencuci
+- id: switch.dryer
+  area_id: laundry
+  name: binatu dryer
+  aliases:
+  - binatu dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: kamarmandimaster kipasbad
+  aliases:
+  - kamarmandimaster kipasbad
+  - kipasbad
+  tags:
+  - kipasbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath kipasbad
+  aliases:
+  - main bath kipasbad
+  - kipasbad
+  tags:
+  - kipasbad
+- id: media_player.living_tv
+  area_id: living
+  name: ruang tv
+  aliases:
+  - ruang tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: ruangkeluarga tv
+  aliases:
+  - ruangkeluarga tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: ruang tv
+  aliases:
+  - ruang tv
+  - tv
+  platform: music_assistant
+  tags:
+  - tv
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: dapur tv
+  aliases:
+  - dapur tv
+  - tv
+  platform: music_assistant
+  tags:
+  - tv
+- id: media_player.office_music
+  area_id: office
+  name: office tv
+  aliases:
+  - office tv
+  - tv
+  platform: music_assistant
+  tags:
+  - tv
+- id: vacuum.robot
+  area_id: living
+  name: ruang vakum
+  aliases:
+  - ruang vakum
+  - vakum
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: lorong doorsensor
+  aliases:
+  - lorong doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: ruang windowsensor
+  aliases:
+  - ruang windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: dapur motion
+  aliases:
+  - dapur motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: ruang tempsensor
+  aliases:
+  - ruang tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: ruang humidity
+  aliases:
+  - ruang humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: malam
+- id: leaving_home
+  name: pergi
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: daftar

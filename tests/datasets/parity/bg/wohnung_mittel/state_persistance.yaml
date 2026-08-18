@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - включи парно хол
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - включи светлина хол
+  - изключи
+state_persistance/spoken::kugel_dann_aus:
+- - включи топка
+  - изключи
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - включи светлина хол
+  - включи светлина кухня
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - включи светлина хол
+  - red

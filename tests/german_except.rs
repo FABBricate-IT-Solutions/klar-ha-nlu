@@ -37,7 +37,7 @@ fn alle_lichter_ausser_insel() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/family_home_en/home_config.yaml")).expect("home");
     for text in ["Turn off all lights except the island", "All lights off except the island", "Turn off all lights but not the island"] {
         let mut session = Session::new();
-        let result = parse(text, &home, &mut session, &[], &Settings::default());
+        let result = parse(text, &home, &mut session, &[], &Settings::pinned("en"));
         let ids: Vec<&str> = result.intents.iter().filter_map(|i| i.slot("entity_id")).collect();
         let areas: Vec<&str> = result.intents.iter().filter_map(|i| i.slot("area")).collect();
         assert!(!result.clarify, "{text}: {}", result.speech);
@@ -52,7 +52,7 @@ fn alle_lichter_ausser_insel() {
 fn alle_lichter_ausser_insel_de() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
     let mut session = Session::new();
-    let result = parse("Alle Lichter außer der Insel aus", &home, &mut session, &[], &Settings::default());
+    let result = parse("Alle Lichter außer der Insel aus", &home, &mut session, &[], &Settings::pinned("de"));
     let ids: Vec<&str> = result.intents.iter().filter_map(|i| i.slot("entity_id")).collect();
     let areas: Vec<&str> = result.intents.iter().filter_map(|i| i.slot("area")).collect();
     assert!(!ids.contains(&"light.kitchen_island"), "{ids:?} {areas:?}");

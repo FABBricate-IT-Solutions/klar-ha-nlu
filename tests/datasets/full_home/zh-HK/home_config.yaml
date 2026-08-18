@@ -1,0 +1,504 @@
+name: Full Home zh-HK
+language: zh-HK
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: louxia
+  level: 0
+  aliases:
+  - louxia
+  - diceng
+- id: upper
+  name: loushang
+  level: 1
+  aliases:
+  - loushang
+  - shangceng
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Xuanguan
+  floor: ground
+  aliases:
+  - xuanguan
+- id: living
+  name: Keting
+  floor: ground
+  aliases:
+  - keting
+- id: dining
+  name: Jiatingfangess
+  floor: ground
+  aliases:
+  - jiatingfangess
+- id: kitchen
+  name: Chufang
+  floor: ground
+  aliases:
+  - chufang
+- id: family_room
+  name: Jiatingfang
+  floor: ground
+  aliases:
+  - jiatingfang
+- id: laundry
+  name: Xiyifang
+  floor: ground
+  aliases:
+  - xiyifang
+- id: powder_room
+  name: Kewei
+  floor: ground
+  aliases:
+  - kewei
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Woshi
+  floor: upper
+  aliases:
+  - woshi
+- id: bedroom_2
+  name: Woshi2
+  floor: upper
+  aliases:
+  - woshi2
+- id: bedroom_3
+  name: Woshi3
+  floor: upper
+  aliases:
+  - woshi3
+- id: bedroom_4
+  name: Woshi4
+  floor: upper
+  aliases:
+  - woshi4
+- id: master_bath
+  name: Zhuwei
+  floor: upper
+  aliases:
+  - zhuwei
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Zoulang
+  floor: upper
+  aliases:
+  - zoulang
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: xuanguan deng
+  aliases:
+  - xuanguan deng
+  - deng
+- id: light.living_ceiling
+  area_id: living
+  name: keting tianhuaban
+  aliases:
+  - keting tianhuaban
+  - tianhuaban
+- id: light.living_lamp
+  area_id: living
+  name: keting deng
+  aliases:
+  - keting deng
+  - deng
+- id: light.dining_pendant
+  area_id: dining
+  name: jiatingfangess deng
+  aliases:
+  - jiatingfangess deng
+  - deng
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: chufang tianhuaban
+  aliases:
+  - chufang tianhuaban
+  - tianhuaban
+- id: light.kitchen_island
+  area_id: kitchen
+  name: chufang daotai
+  aliases:
+  - chufang daotai
+  - daotai
+- id: light.family_ceiling
+  area_id: family_room
+  name: jiatingfang tianhuaban
+  aliases:
+  - jiatingfang tianhuaban
+  - tianhuaban
+- id: light.laundry_light
+  area_id: laundry
+  name: xiyifang deng
+  aliases:
+  - xiyifang deng
+  - deng
+- id: light.powder_room_light
+  area_id: powder_room
+  name: kewei deng
+  aliases:
+  - kewei deng
+  - deng
+- id: light.garage_light
+  area_id: garage
+  name: garage deng
+  aliases:
+  - garage deng
+  - deng
+- id: light.office_ceiling
+  area_id: office
+  name: office tianhuaban
+  aliases:
+  - office tianhuaban
+  - tianhuaban
+- id: light.garden
+  area_id: garden
+  name: garden deng
+  aliases:
+  - garden deng
+  - deng
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: woshi tianhuaban
+  aliases:
+  - woshi tianhuaban
+  - tianhuaban
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: woshi ensuite
+  aliases:
+  - woshi ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: woshi left chuangtoudeng
+  aliases:
+  - woshi left chuangtoudeng
+  - chuangtoudeng
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: woshi right chuangtoudeng
+  aliases:
+  - woshi right chuangtoudeng
+  - chuangtoudeng
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: woshi2 tianhuaban
+  aliases:
+  - woshi2 tianhuaban
+  - tianhuaban
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: woshi3 tianhuaban
+  aliases:
+  - woshi3 tianhuaban
+  - tianhuaban
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: woshi4 tianhuaban
+  aliases:
+  - woshi4 tianhuaban
+  - tianhuaban
+- id: light.master_bath_light
+  area_id: master_bath
+  name: zhuwei deng
+  aliases:
+  - zhuwei deng
+  - deng
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath deng
+  aliases:
+  - main bath deng
+  - deng
+- id: light.hallway_light
+  area_id: hallway
+  name: zoulang deng
+  aliases:
+  - zoulang deng
+  - deng
+- id: light.basement
+  area_id: basement
+  name: basement deng
+  aliases:
+  - basement deng
+  - deng
+- id: cover.living_blinds
+  area_id: living
+  name: keting lianzi
+  aliases:
+  - keting lianzi
+  - lianzi
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: woshi lianzi
+  aliases:
+  - woshi lianzi
+  - lianzi
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: woshi2 lianzi
+  aliases:
+  - woshi2 lianzi
+  - lianzi
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: woshi3 lianzi
+  aliases:
+  - woshi3 lianzi
+  - lianzi
+- id: cover.garage_door
+  area_id: garage
+  name: garage lianzi
+  aliases:
+  - garage lianzi
+  - lianzi
+- id: climate.ground_thermostat
+  area_id: living
+  name: keting kongtiao
+  aliases:
+  - keting kongtiao
+  - kongtiao
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: woshi kongtiao
+  aliases:
+  - woshi kongtiao
+  - kongtiao
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: kongtiao woshi
+  aliases:
+  - kongtiao woshi
+  - kongtiao
+  - ac
+  tags:
+  - kongtiao
+- id: fan.family_fan
+  area_id: family_room
+  name: jiatingfang fengshan
+  aliases:
+  - jiatingfang fengshan
+  - fengshan
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: woshi fengshan
+  aliases:
+  - woshi fengshan
+  - fengshan
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: woshi2 fengshan
+  aliases:
+  - woshi2 fengshan
+  - fengshan
+- id: lock.front_door
+  area_id: entryway
+  name: front men
+  aliases:
+  - front men
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage men
+  aliases:
+  - garage men
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: chufang xiwanji
+  aliases:
+  - chufang xiwanji
+  - xiwanji
+- id: switch.rangehood
+  area_id: kitchen
+  name: chufang rangehood
+  aliases:
+  - chufang rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: xiyifang xiyiji
+  aliases:
+  - xiyifang xiyiji
+  - xiyiji
+  - washer
+  tags:
+  - washer
+  - xiyiji
+- id: switch.dryer
+  area_id: laundry
+  name: xiyifang dryer
+  aliases:
+  - xiyifang dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: zhuwei fengshanbad
+  aliases:
+  - zhuwei fengshanbad
+  - fengshanbad
+  tags:
+  - fengshanbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath fengshanbad
+  aliases:
+  - main bath fengshanbad
+  - fengshanbad
+  tags:
+  - fengshanbad
+- id: media_player.living_tv
+  area_id: living
+  name: keting dianshi
+  aliases:
+  - keting dianshi
+  - dianshi
+- id: media_player.family_tv
+  area_id: family_room
+  name: jiatingfang dianshi
+  aliases:
+  - jiatingfang dianshi
+  - dianshi
+- id: media_player.living_music
+  area_id: living
+  name: keting yinyue
+  aliases:
+  - keting yinyue
+  - yinyue
+  platform: music_assistant
+  tags:
+  - yinyue
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: chufang yinyue
+  aliases:
+  - chufang yinyue
+  - yinyue
+  platform: music_assistant
+  tags:
+  - yinyue
+- id: media_player.office_music
+  area_id: office
+  name: office yinyue
+  aliases:
+  - office yinyue
+  - yinyue
+  platform: music_assistant
+  tags:
+  - yinyue
+- id: vacuum.robot
+  area_id: living
+  name: keting saodi
+  aliases:
+  - keting saodi
+  - saodi
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: xuanguan doorsensor
+  aliases:
+  - xuanguan doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: keting windowsensor
+  aliases:
+  - keting windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: chufang motion
+  aliases:
+  - chufang motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: keting tempsensor
+  aliases:
+  - keting tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: keting humidity
+  aliases:
+  - keting humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: dianying
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: wanshang
+- id: leaving_home
+  name: likai
+timers:
+- id: oven
+  name: oven dingshi
+- id: laundry
+  name: laundry dingshi
+- id: abstract
+  name: abstract dingshi
+lists:
+- id: shopping
+  name: qingdan

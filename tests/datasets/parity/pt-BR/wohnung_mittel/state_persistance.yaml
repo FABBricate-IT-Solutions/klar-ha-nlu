@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - liga ar sala
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - liga luz sala
+  - desliga
+state_persistance/spoken::kugel_dann_aus:
+- - liga globo
+  - desliga
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - liga luz sala
+  - liga luz cozinha
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - liga luz sala
+  - vermelho

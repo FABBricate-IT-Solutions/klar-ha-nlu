@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - αναψε θερμανση σαλονι
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - αναψε φως σαλονι
+  - σβησε
+state_persistance/spoken::kugel_dann_aus:
+- - αναψε σφαιρα
+  - σβησε
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - αναψε φως σαλονι
+  - αναψε φως κουζινα
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - αναψε φως σαλονι
+  - red

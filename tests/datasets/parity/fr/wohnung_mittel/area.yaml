@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- mets chauffage salledebain 23
+area/heizung::heizung_esszimmer_23:
+- mets chauffage salle 23
+area/heizung::heizung_schlafzimmer_23:
+- mets chauffage chambre 23
+area/heizung::heizung_wohnzimmer_23:
+- mets chauffage salon 23
+area/lichter::alle_an_ausser_kugel:
+- allume tout lumiere sauf globe
+area/lichter::alle_an_ausser_schlafzimmer:
+- allume tout lumiere sauf chambre
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- mets tout lumiere sauf chambre 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- mets tout lumiere sauf globe rouge
+area/lichter::alle_ausser_kugel:
+- eteins tout lumiere sauf globe
+area/lichter::alle_ausser_schlafzimmer:
+- eteins tout lumiere sauf chambre
+area/lichter::alle_lichter_an:
+- allume tout lumiere
+area/lichter::alle_lichter_aus:
+- eteins tout lumiere
+area/lichter::arbeitszimmer_lichter_an:
+- allume lumiere bureau
+area/lichter::arbeitszimmer_lichter_aus:
+- eteins lumiere bureau
+area/lichter::esszimmer_lichter_an:
+- allume lumiere salle
+area/lichter::esszimmer_lichter_aus:
+- eteins lumiere salle
+area/lichter::kuche_lichter_an:
+- allume lumiere cuisine
+area/lichter::kuche_lichter_aus:
+- eteins lumiere cuisine
+area/lichter::schlafzimmer_auf_blau:
+- mets lumiere chambre bleu
+area/lichter::schlafzimmer_auf_rot:
+- mets lumiere chambre rouge
+area/lichter::wohnzimmer_helligkeit:
+- mets lumiere salon 45
+area/lichter::wohnzimmer_lichter_an:
+- allume lumiere salon
+area/lichter::wohnzimmer_lichter_aus:
+- eteins lumiere salon
+area/spoken::alle_ausser_kugel_stt:
+- eteins tout lumiere sauf globe
+area/spoken::alle_ausser_schlaf_stt:
+- eteins tout lumiere sauf chambre
+area/spoken::alle_ganzen_an:
+- allume tout lumiere
+area/spoken::alle_lampen_aus:
+- eteins tout lumiere
+area/spoken::esszimmer_weiss:
+- mets lumiere salle blanc
+area/spoken::stt_kuche_lichte:
+- eteins lumiere cuisine
+area/spoken::stt_licht_wohnzimmer_an:
+- allume lumiere salon
+area/spoken::stt_licht_wohnzimmer_aus:
+- eteins lumiere salon
+area/spoken::stt_schlafzimmer_dativ:
+- eteins lumiere chambre
+area/spoken::wohnzimmer_gruen:
+- mets lumiere salon vert
+area/spoken_more::alle_ausser_arbeitszimmer:
+- eteins tout lumiere sauf bureau
+area/spoken_more::arbeitszimmer_lampen_aus:
+- eteins lumiere bureau
+area/spoken_more::esszimmer_30:
+- mets lumiere salle 30
+area/spoken_more::esszimmer_lichte_an:
+- allume lumiere salle
+area/spoken_more::kuche_80:
+- mets lumiere cuisine 80
+area/spoken_more::kuche_blau:
+- mets lumiere cuisine bleu
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- eteins tout lumiere sauf chambre
+area/spoken_more::wohnzimmer_gelb:
+- mets lumiere salon jaune

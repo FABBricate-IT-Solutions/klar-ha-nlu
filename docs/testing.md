@@ -22,6 +22,8 @@ CI nutzt [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profi
 | `suite_deutsch_familienhaus` | `tests/datasets/familienhaus_de` | ≥ 99,5 %, Ziel 100 % |
 | `suite_english_family_home` | `tests/datasets/family_home_en` | ≥ 99,5 %, Ziel 100 % |
 | `suite_m0_exact_*` / `suite_m2_floors_*` | `m0_exact` / `m2_floors` | `fail == 0` |
+| `compiled_assist_packs_execute_home_commands` | 2 Smokes je kompilierter Locale, inkl. de/en | alle grün (PR-CI) |
+| `parity_*` + `voice_suite` | Wohn+Familie+m0+m2 je Locale | **lokal** (`cargo nextest run`); PR-CI für geänderte Locales per Pfad (`scripts/ci_lang_tests.py`); volle Matrix: `language-parity.yml` |
 | `tests/contract.rs` | V2-`ParseOutcome` | alle grün |
 | `tests/policy.rs` | Confirm/OOD/Multi-Intent | alle grün |
 | `tests/eval.rs` held-out | `m7_heldout` EN/DE | Intent-F1 ≥ 0,98, Slot-F1 ≥ 0,99, Pairing ≥ 0,97, ASR ≥ 0,92, Clarify-P ≥ 0,95 |

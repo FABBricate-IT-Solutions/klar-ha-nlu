@@ -18,9 +18,26 @@ permissions:
   contents: write
   packages: write
 
+# Tag/publish only after fmt, clippy, nextest, pack freshness, web, audit, deny, and gitleaks.
 jobs:
+  quality:
+    name: quality
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+
+  security:
+    name: security
+    uses: ./.github/workflows/security.yml
+    secrets: inherit
+    permissions:
+      contents: read
+      issues: write
+      security-events: write
+
   cut:
     name: cut
+    needs: [quality, security]
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.cut.outputs.tag }}
@@ -114,3 +131,4 @@ jobs:
     permissions:
       contents: write
       packages: write
+      security-events: write

@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- set garmi masterbath 23
+area/heizung::heizung_esszimmer_23:
+- set garmi parivarakess 23
+area/heizung::heizung_schlafzimmer_23:
+- set garmi bedroom 23
+area/heizung::heizung_wohnzimmer_23:
+- set garmi vithak 23
+area/lichter::alle_an_ausser_kugel:
+- chalu sabh roshni ilava gola
+area/lichter::alle_an_ausser_schlafzimmer:
+- chalu sabh roshni ilava bedroom
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- set sabh roshni ilava bedroom 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- set sabh roshni ilava gola red
+area/lichter::alle_ausser_kugel:
+- band sabh roshni ilava gola
+area/lichter::alle_ausser_schlafzimmer:
+- band sabh roshni ilava bedroom
+area/lichter::alle_lichter_an:
+- chalu sabh roshni
+area/lichter::alle_lichter_aus:
+- band sabh roshni
+area/lichter::arbeitszimmer_lichter_an:
+- chalu roshni vithak
+area/lichter::arbeitszimmer_lichter_aus:
+- band roshni vithak
+area/lichter::esszimmer_lichter_an:
+- chalu roshni parivarakess
+area/lichter::esszimmer_lichter_aus:
+- band roshni parivarakess
+area/lichter::kuche_lichter_an:
+- chalu roshni rasoi
+area/lichter::kuche_lichter_aus:
+- band roshni rasoi
+area/lichter::schlafzimmer_auf_blau:
+- set roshni bedroom blue
+area/lichter::schlafzimmer_auf_rot:
+- set roshni bedroom red
+area/lichter::wohnzimmer_helligkeit:
+- set roshni vithak 45
+area/lichter::wohnzimmer_lichter_an:
+- chalu roshni vithak
+area/lichter::wohnzimmer_lichter_aus:
+- band roshni vithak
+area/spoken::alle_ausser_kugel_stt:
+- band sabh roshni ilava gola
+area/spoken::alle_ausser_schlaf_stt:
+- band sabh roshni ilava bedroom
+area/spoken::alle_ganzen_an:
+- chalu sabh roshni
+area/spoken::alle_lampen_aus:
+- band sabh roshni
+area/spoken::esszimmer_weiss:
+- set roshni parivarakess white
+area/spoken::stt_kuche_lichte:
+- band roshni rasoi
+area/spoken::stt_licht_wohnzimmer_an:
+- chalu roshni vithak
+area/spoken::stt_licht_wohnzimmer_aus:
+- band roshni vithak
+area/spoken::stt_schlafzimmer_dativ:
+- band roshni bedroom
+area/spoken::wohnzimmer_gruen:
+- set roshni vithak green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- band sabh roshni ilava vithak
+area/spoken_more::arbeitszimmer_lampen_aus:
+- band roshni vithak
+area/spoken_more::esszimmer_30:
+- set roshni parivarakess 30
+area/spoken_more::esszimmer_lichte_an:
+- chalu roshni parivarakess
+area/spoken_more::kuche_80:
+- set roshni rasoi 80
+area/spoken_more::kuche_blau:
+- set roshni rasoi blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- band sabh roshni ilava bedroom
+area/spoken_more::wohnzimmer_gelb:
+- set roshni vithak yellow

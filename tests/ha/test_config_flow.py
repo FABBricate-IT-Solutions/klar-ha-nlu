@@ -96,6 +96,7 @@ def _load_config_flow() -> types.ModuleType:
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
+        _load(f"{PACKAGE}.languages", "languages.py")
         _load(f"{PACKAGE}.const", "const.py")
         return _load(f"{PACKAGE}.config_flow", "config_flow.py")
 
@@ -109,10 +110,25 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         keys = {marker.schema for marker in schema.schema}
         self.assertIn(config_flow.CONF_ASSIST_FILTER, keys)
         self.assertIn(config_flow.CONF_NLU_RAG, keys)
+        self.assertIn(config_flow.CONF_CHANNEL, keys)
 
-    def test_options_schema_has_no_advanced_flag(self) -> None:
-        with self.assertRaises(TypeError):
-            config_flow._options_schema(False)
+    def test_user_schema_offers_release_channel(self) -> None:
+        keys = {marker.schema for marker in config_flow.USER_SCHEMA.schema}
+        self.assertIn(config_flow.CONF_CHANNEL, keys)
+        self.assertIn(config_flow.CONF_MODE, keys)
+
+    def test_options_schema_lists_every_compiled_locale(self) -> None:
+        schema = config_flow._options_schema()
+        keys = {marker.schema for marker in schema.schema}
+        self.assertIn(config_flow.CONF_LANGUAGES, keys)
+        self.assertNotIn("show_all_languages", keys)
+        options = config_flow._language_options()
+        codes = [item["value"] for item in options]
+        self.assertIn("de", codes)
+        self.assertIn("en", codes)
+        self.assertIn("fr", codes)
+        self.assertNotIn("ru", codes)
+        self.assertGreater(len(codes), 2)
 
 
 if __name__ == "__main__":

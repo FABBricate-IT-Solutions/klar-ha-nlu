@@ -36,7 +36,7 @@ fn v2_json_contract_has_versioned_shape_and_deterministic_ordering() {
     let mut first_session = Session::new();
     first_session.id = "contract-session".into();
     let mut second_session = first_session.clone();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let first = nlu::parse("Mach das Licht im Wohnzimmer an", &home, &mut first_session, &[], &settings);
     let second = nlu::parse("Mach das Licht im Wohnzimmer an", &home, &mut second_session, &[], &settings);
 
@@ -62,9 +62,9 @@ fn v2_json_contract_has_versioned_shape_and_deterministic_ordering() {
 fn v2_propagates_fuzzy_target_evidence_and_confidence() {
     let home = default_home();
     let mut session = Session::new();
-    let outcome = nlu::parse("Licht im Wohnzimer an", &home, &mut session, &[], &Settings::default());
+    let outcome = nlu::parse("Licht im Wohnzimer an", &home, &mut session, &[], &Settings::pinned("de"));
     let mut exact_session = Session::new();
-    let exact = nlu::parse("Licht im Wohnzimmer an", &home, &mut exact_session, &[], &Settings::default());
+    let exact = nlu::parse("Licht im Wohnzimmer an", &home, &mut exact_session, &[], &Settings::pinned("de"));
     assert!(matches!(outcome.decision, ParseDecision::Execute));
     assert!(outcome.confidence > 0.0);
     assert!(outcome.confidence < exact.confidence, "fuzzy={} exact={}", outcome.confidence, exact.confidence);
@@ -80,7 +80,7 @@ fn excessive_clause_complexity_rejects_before_candidate_generation() {
         .map(|index| if index % 2 == 0 { "Licht im Wohnzimmer an" } else { "Licht im Esszimmer aus" })
         .collect::<Vec<_>>()
         .join(" und ");
-    let outcome = nlu::parse(&text, &home, &mut session, &[], &Settings::default());
+    let outcome = nlu::parse(&text, &home, &mut session, &[], &Settings::pinned("de"));
     assert!(matches!(outcome.decision, ParseDecision::Reject { .. }), "{outcome:#?}");
     assert!(outcome.candidates.is_empty());
     assert!(session.last.is_empty());
@@ -91,7 +91,7 @@ fn selected_candidate_matches_plan_and_aggregates_confidence() {
     let home = default_home();
     let mut session = Session::new();
     let outcome =
-        nlu::parse("Mach das Licht im Wohnzimmer an und das Licht im Esszimmer aus", &home, &mut session, &[], &Settings::default());
+        nlu::parse("Mach das Licht im Wohnzimmer an und das Licht im Esszimmer aus", &home, &mut session, &[], &Settings::pinned("de"));
     assert!(matches!(outcome.decision, ParseDecision::Execute), "{outcome:#?}");
     let plan = outcome.plan.as_ref().expect("execute plan");
     let selected = outcome
@@ -114,7 +114,7 @@ fn whole_plan_ranking_does_not_replay_a_previous_target() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/family_home_en/home_config.yaml")).expect("home");
     let mut session = Session::new();
     let outcome =
-        nlu::parse("Turn off the dishwasher and then start the Movie Night scene.", &home, &mut session, &[], &Settings::default());
+        nlu::parse("Turn off the dishwasher and then start the Movie Night scene.", &home, &mut session, &[], &Settings::pinned("en"));
     assert!(matches!(outcome.decision, ParseDecision::Execute), "{outcome:#?}");
     let intents = outcome.plan.as_ref().expect("execute plan").steps.iter().map(|step| &step.intent).collect::<Vec<_>>();
     assert_eq!(intents.len(), 2, "{outcome:#?}");
@@ -173,7 +173,7 @@ fn dual_run_handles_scored_disambiguation_and_queries() {
         "What's the volume level of the Living Room TV?",
     ] {
         let mut session = Session::new();
-        let (_, parity_error) = klar_nlu::parse::parse_checked(text, &home, &mut session, &[], &Settings::default());
+        let (_, parity_error) = klar_nlu::parse::parse_checked(text, &home, &mut session, &[], &Settings::pinned("en"));
         assert!(parity_error.is_none(), "{text}: {}", parity_error.unwrap_or_default());
     }
 }
@@ -181,7 +181,7 @@ fn dual_run_handles_scored_disambiguation_and_queries() {
 #[test]
 fn clarify_state_mutates_memory_only_after_execution() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     let clarification = nlu::parse("Mach das Licht an", &home, &mut session, &[], &settings);
     assert!(matches!(clarification.decision, ParseDecision::Clarify { .. }));
@@ -197,7 +197,7 @@ fn clarify_state_mutates_memory_only_after_execution() {
 #[test]
 fn clarify_room_followup_executes_area_light_once() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     let clarification = nlu::parse("Mach das Licht an", &home, &mut session, &[], &settings);
     assert!(matches!(clarification.decision, ParseDecision::Clarify { .. }), "{clarification:#?}");
@@ -214,7 +214,7 @@ fn clarify_room_followup_executes_area_light_once() {
 #[test]
 fn confirm_state_exposes_plan_and_commits_only_after_affirmation() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "lock.wohnungstuer")], 0.9, &[]);
     session.set_confirm("confirm-lock".into(), plan, "Really lock it?".into());
@@ -234,7 +234,7 @@ fn confirm_state_exposes_plan_and_commits_only_after_affirmation() {
 #[test]
 fn risky_lock_is_automatically_confirmed_without_executable_plan() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     let confirmation = nlu::parse("Wohnungstür abschließen", &home, &mut session, &[], &settings);
     assert!(matches!(confirmation.decision, ParseDecision::Confirm { .. }), "{confirmation:#?}");
@@ -254,7 +254,7 @@ fn risky_lock_is_automatically_confirmed_without_executable_plan() {
 #[test]
 fn golden_dual_run_including_follow_up() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     for text in ["Licht im Wohnzimmer an", "mach sie aus", "Wie ist der Status vom Schlafzimmerlicht"] {
         let result = parse(text, &home, &mut session, &[], &settings);
@@ -265,7 +265,7 @@ fn golden_dual_run_including_follow_up() {
 #[test]
 fn golden_dual_run_clarification_follow_up() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     let first = parse("Mach Licht Schlafzimmer an", &home, &mut session, &[], &settings);
     assert!(first.clarify);

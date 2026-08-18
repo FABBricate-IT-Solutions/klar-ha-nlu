@@ -5,18 +5,32 @@ import { Pipeline } from "../components/pipeline";
 import type { Messages } from "../i18n";
 import type { Locale, ParseResult } from "../types";
 
-export function ParsePage({ t, locale, replayText, nluRag }: { t: Messages; locale: Locale; replayText: string; nluRag: boolean }) {
+export function ParsePage({
+  t,
+  locale,
+  replayText,
+  nluRag,
+  rooms,
+}: {
+  t: Messages;
+  locale: Locale;
+  replayText: string;
+  nluRag: boolean;
+  rooms: { area_id: string; name: string }[];
+}) {
   const [text, setText] = useState(locale === "en" ? "Turn on the living room light" : "Mach das Licht im Wohnzimmer an");
   const [result, setResult] = useState<ParseResult | null>(null);
   const [raw, setRaw] = useState(false);
   const [conversationId, setConversationId] = useState<string | undefined>();
+  const [area, setArea] = useState("");
   const intents = result?.plan?.steps.map((step) => step.intent) ?? [];
+  const heardIn = result?.evidence.find((item) => item.kind === "preferred_area")?.value || area;
   useEffect(() => {
     if (replayText) setText(replayText);
   }, [replayText]);
 
   const submit = async () => {
-    const data = await api.parse(text, locale, conversationId, nluRag || undefined);
+    const data = await api.parse(text, locale, conversationId, nluRag || undefined, area || undefined);
     setConversationId(data.conversation_id);
     setResult(data);
   };
@@ -42,6 +56,11 @@ export function ParsePage({ t, locale, replayText, nluRag }: { t: Messages; loca
         </div>
         <p className="caption">{t.triggerFirst}</p>
       </div>
+      <label>{t.heardIn}</label>
+      <select value={area} onChange={(ev) => setArea(ev.target.value)}>
+        <option value="">{t.anyRoom}</option>
+        {rooms.map((room) => <option key={room.area_id} value={room.area_id}>{room.name}</option>)}
+      </select>
       <label>{t.command}</label>
       <textarea
         value={text}
@@ -70,6 +89,7 @@ export function ParsePage({ t, locale, replayText, nluRag }: { t: Messages; loca
               <div className="row">
                 <span className="chip intent">{result.decision.type}</span>
                 {result.briefing && <span className="chip">briefing</span>}
+                {heardIn && <span className="chip">{t.heardIn}: {heardIn}</span>}
               </div>
             </div>
             <div className="card">

@@ -1,0 +1,26 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- desliga tudo luz exceto quarto exceto cozinha
+multiple_intents/multi::licht_und_heizung:
+- liga luz sala e poe ar sala 23
+multiple_intents/multi::wohn_und_ess_aus:
+- desliga luz sala e desliga luz salafamess
+multiple_intents/multi::wohn_und_ess_rot:
+- poe luz sala vermelho e poe luz salafamess vermelho
+multiple_intents/multi::wz_und_kuche_licht:
+- liga luz sala e liga luz cozinha
+multiple_intents/multi::zwei_raeume_und_heizung:
+- liga luz sala e liga luz cozinha e poe ar sala 23
+multiple_intents/spoken::drei_raeume_an:
+- liga luz sala e liga luz salafamess e liga luz cozinha
+multiple_intents/spoken::drei_raeume_aus:
+- desliga luz sala e desliga luz salafamess e desliga luz cozinha
+multiple_intents/spoken::ess_und_wohn_aus:
+- desliga luz sala e desliga luz salafamess
+multiple_intents/spoken::kugel_und_decke_aus:
+- desliga globo e desliga teto
+multiple_intents/spoken_more::kuche_und_ess_an:
+- liga luz cozinha e liga luz salafamess
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- desliga luz sala e desliga luz salafamess
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- desliga luz sala

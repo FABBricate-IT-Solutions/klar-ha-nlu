@@ -2,71 +2,93 @@
 
 [Deutsch](../languages.md) · [English](languages.md)
 
-Word lists live in `src/lang/`. The engine only knows verb classes and sets (`is_conj`, `has_light_noun`, …).
+Every compiled Assist locale is first-class. German and English are hand-written reference packs; generated packs use the same `LanguagePack` path and the same enablement UX. `GET /api/v2/languages` lists the compiled set.
 
-Current packs: **de** and **en**, both on by default (`Settings.languages`).
+YAML under `packs/` is for user overlays and `klar lang import-hassil`, not Assist coverage. Packs are never silently merged into one giant default catalog.
+
+Russian (`ru`, `ru-RU`) is not shipped: no pack, no registry row, `pin_language("ru")` stays unknown.
+
+Import HassIL into an overlay (not into a merged default catalog):
+
+```bash
+klar lang import-hassil --from path/to/hassil --into /data --language de --dry-run
+```
+
+## Layout
+
+- `src/lang/de_pack.rs` / `en_pack.rs` — hand-written reference packs
+- `src/lang/de.rs` / `en.rs` — verb tables used by those packs
+- `src/lang/packs/{code}/` — generated `verbs.rs`, `speech.rs`, `pack.rs`
+- `src/lang/registry.rs` — compiled ids, `from_code`, `pack()`, `GET /api/v2/languages`
+- `scripts/lang_packs/` — generator (HassIL harvest is bootstrap only). Do not run `generate.py` in pre-commit.
+
+A generated pack may enter the binary when those fields are filled and the representative suite executes.
+
+## Catalog model
+
+`Catalog` merges the **pinned** packs for that request. Assist and `POST /api/v2/parse` should send `language`. Empty `Settings.languages` means every compiled locale is enabled for Assist, not “merge de+en.” Merging every lexicon into one catalog collides tokens (for example German `an` vs other packs) and is refused.
+
+An explicit short list such as `["de", "en"]` still merges those packs for unpinned parse. That is a user choice, not a support tier.
+
+`parse()` binds `Settings.languages`; helpers read `catalog()`. New engine fields belong on `LanguagePack` and in the existing `extend_sets!` merge.
 
 ## Adding a pack
 
-French is the example — the language itself is not shipped yet.
+1. Add a compact lexicon in `scripts/lang_packs/` (not a stub, not English filler tokens).
+2. Run `python3 scripts/lang_packs/generate.py`.
+3. Review the Rust like hand-written code: `rustfmt`, unique folded tokens, no comment narration.
+4. Keep files under 500 lines. Do not add `match LangId` arms in `src/parse/`.
+5. Existing suites must stay green; add the same assist/parity smoke for the new locale.
 
-1. Copy `src/lang/en.rs` to `src/lang/fr.rs` and fill the verb table.
-2. Copy `src/lang/en_pack.rs` to `src/lang/fr_pack.rs` and fill fillers, nouns, numbers, colors, patterns (`group_clarify`, `strip_pairs`, …), and `Speech`.
-3. In `src/lang/mod.rs`:
-   - `mod fr;`
-   - `mod fr_pack;`
-   - `LangId::Fr`
-   - `from_code("fr")`, `code()`, `pack()`
-4. Put `"fr"` in `Settings.languages` (API or default).
-
-`LanguagePack` in `src/lang/groups.rs` is the checklist. Every field the engine reads must exist on the new pack — empty slices are fine, missing fields are not. `src/lang/pack.rs` is only a re-export shim.
-
-`Catalog` merges the active packs for each request. `parse()` binds the catalog from `Settings.languages`; helpers then read it through `catalog()`. New pack fields therefore need to appear in both the schema and the catalog merge.
+`LanguagePack` in `src/lang/groups.rs` is the checklist. Empty slices are allowed only when the language has no such concept.
 
 ## Verb classes
 
-`VerbKind` in `src/lang/verbs.rs` is the role of a word, not the HA action.
-
-| Class | Rough meaning |
-|-------|----------------|
-| `On` / `OnParticle` | turn on; `on` has extra logic before conjunctions |
-| `Open` / `OpenDoor` | open; German *öffnen* prefers door/lock |
-| `Close`, `Lock`, `Unlock` | close, lock, unlock |
-| `Query` | status question |
-| `Timer`, `List`, `Color` | their own domains |
-
-The same class in several languages is intentional. Collisions (same token, different classes) are last-wins in the catalog — do not merge packs blindly if a word is a filler in language A and a verb in B.
-
-The mapping from `VerbKind` to NLU actions lives in `src/parse/action.rs`. New verb classes need an explicit branch there.
+`VerbKind` is the role of a word, not the Home Assistant action. New classes need an explicit branch in `src/parse/action.rs` (no silent `_ =>`).
 
 ## Numbers
 
 `NumberStyle`:
 
-- `GermanUnd` — `einundzwanzig`, `eins und zwanzig`
+- `GermanUnd` — `einundzwanzig`
 - `EnglishTens` — `twenty one`
+- `ListedOnly` — listed words only (default for new packs)
 
-A language with its own grammar (`vingt-et-un`) needs a new variant and a branch in `src/parse/numbers.rs`.
-
-`ein` is deliberately not the number 1. It stays a power word.
+A new combinator is a new variant plus tests. Do not extend `De | En` matches.
 
 ## Tokens
 
-`fold_latin` maps `ä` → `ae`, `é` → `e`, `ç` → `c`. Packs list the folded form (`oeffnen`, `kueche`).
+`fold_latin` maps `ä` → `ae`, `é` → `e`, `ç` → `c`, `ı/ş/ğ`, `ș/ț`. Packs store the folded form. CJK/Thai splitting is script-gated; Latin `tokenize` stays space-split.
+
+## Home Assistant
+
+The integration reads `custom_components/klar_nlu/languages.py` (generated). Options list every compiled locale with its native name. Default enablement is the full compiled set. Assist still pins one pack per request. `pt-BR` and `de-CH` are not stripped to ISO-639-1.
 
 ## Tests
 
-After a new pack:
+- `tests/assist_langs.rs` — Execute smoke per compiled locale (including de/en)
+- `tests/parity_langs.rs` — same Wohn+Family+m0+m2 rubric per compiled locale
+- `tests/datasets/assist/{code}/representative.yaml` — representative gate
+- `tests/language.rs` — pin, isolation, overlays, household cues
+- DE/EN voice suites (`wohnung_mittel`, `wohnung_en`, `familienhaus_de`, `family_home_en`) are the **oracle** graphs; other locales overlay native sentences on those same graphs
 
-- existing suites must stay at 100%
-- a suite under `tests/datasets/` is the proof, not the word list alone
-- run variants in German and English against apartment and family-home data when shared parse rules are affected
+## Dataset generation (every locale, local)
 
-Generators:
+One command writes parity overlays for every generated locale (not Russian):
 
 ```bash
-python3 scripts/gen_voice_suite.py
-python3 scripts/voice_suite/gen_family_de.py
+python3 scripts/parity/generate.py
 ```
 
-`scripts/gen_voice_suite.py` builds the apartment suites. `scripts/voice_suite/gen_family_de.py` creates the German family-home suite from `family_home_en`.
+It reads the DE oracles (`wohnung_mittel`, `familienhaus_de`, `m0_exact`, `m2_floors`) and the locale lexicon, then writes `tests/datasets/parity/{code}/{suite}/`. Room aliases go to `tests/datasets/parity/rooms.yaml`.
+
+DE and EN are not overlays: they **are** the oracles. Regenerate those with `python3 scripts/gen_voice_suite.py` (and the family-home scripts in `docs/en/testing.md`). Then re-run `scripts/parity/generate.py` so every other locale stays in lockstep.
+
+CI checks that this generator is a no-op (freshness). It does not run the full 65-locale matrix. If a PR changes a pack or dataset path, CI runs that locale's suite (`scripts/ci_lang_tests.py`): de/en hard-gate, others report-only. Locally:
+
+```bash
+python3 scripts/lang_packs/generate.py   # packs + assist smokes
+python3 scripts/parity/generate.py       # per-locale datasets
+python3 scripts/check_lang_packs.py
+cargo nextest run --test assist_langs --test language --test parity_langs --test voice_suite
+```

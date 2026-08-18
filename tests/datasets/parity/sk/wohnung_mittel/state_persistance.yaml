@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - zapni kurenie obyvacka
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - zapni svetlo obyvacka
+  - vypni
+state_persistance/spoken::kugel_dann_aus:
+- - zapni gula
+  - vypni
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - zapni svetlo obyvacka
+  - zapni svetlo kuchyne
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - zapni svetlo obyvacka
+  - red

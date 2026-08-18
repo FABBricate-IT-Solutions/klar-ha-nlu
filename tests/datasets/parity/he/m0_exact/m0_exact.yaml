@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- הדלק אור סלון
+m0_exact/representative::exact_list_complete_from_setup:
+- done bread רשימה
+m0_exact/representative::exact_multi_intent:
+- הדלק תקרה חדרשינה3 ו כבה אור כניסה
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- add milk רשימה
+m0_exact/representative::exact_state_persistence:
+- - מה אור כניסה
+  - '12'
+m0_exact/representative::exact_timer:
+- הדלק טיימר oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- הדלק טיימר oven
+m0_exact/representative::exact_todo_list:
+- add apples רשימה

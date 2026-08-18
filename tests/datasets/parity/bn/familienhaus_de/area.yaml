@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- bondho porda shobarghor2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- khol porda shobarghor2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- set porda shobarghor2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- set pakha shobarghor2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- nibhao pakha shobarghor2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- jalao pakha shobarghor2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- set alo shobarghor2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- set alo shobarghor2 pink
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- nibhao alo shobarghor2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- jalao alo shobarghor2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- bondho porda shobarghor3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- khol porda shobarghor3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- set porda shobarghor3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- set alo shobarghor3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- set alo shobarghor3 blue
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- nibhao alo shobarghor3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- jalao alo shobarghor3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- set alo shobarghor4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- set alo shobarghor4 green
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- nibhao alo shobarghor4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- jalao alo shobarghor4
+area/dining_lights::dining_lights_change_brightness:
+- set alo paribarikess 54
+area/dining_lights::dining_lights_change_color:
+- set alo paribarikess blue
+area/dining_lights::dining_lights_turn_off:
+- nibhao alo paribarikess
+area/dining_lights::dining_lights_turn_on:
+- jalao alo paribarikess
+area/entryway_lights::entryway_lights_change_brightness:
+- set alo prabesh 72
+area/entryway_lights::entryway_lights_change_color:
+- set alo prabesh black
+area/entryway_lights::entryway_lights_turn_off:
+- nibhao alo prabesh
+area/entryway_lights::entryway_lights_turn_on:
+- jalao alo prabesh
+area/entryway_locks::entryway_locks_lock:
+- tala tala prabesh
+area/entryway_locks::entryway_locks_unlock:
+- khol tala prabesh
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- set alo paribarik 39 ebong set alo ranna 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- set alo paribarik purple ebong set alo ranna purple
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- nibhao alo paribarik ebong nibhao alo ranna
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- jalao alo paribarik ebong jalao alo ranna
+area/family_room_fans::family_room_fans_set_fan_speed:
+- set pakha paribarik 32
+area/family_room_fans::family_room_fans_turn_off:
+- nibhao pakha paribarik
+area/family_room_fans::family_room_fans_turn_on:
+- jalao pakha paribarik
+area/family_room_lights::family_room_lights_change_brightness:
+- set alo paribarik 44
+area/family_room_lights::family_room_lights_change_color:
+- set alo paribarik green
+area/family_room_lights::family_room_lights_turn_off:
+- nibhao alo paribarik
+area/family_room_lights::family_room_lights_turn_on:
+- jalao alo paribarik
+area/garage_covers::garage_covers_close:
+- bondho porda garage
+area/garage_covers::garage_covers_open:
+- khol porda garage
+area/garage_covers::garage_covers_set_position:
+- set porda garage 86
+area/garage_lights::garage_lights_change_brightness:
+- set alo garage 16
+area/garage_lights::garage_lights_change_color:
+- set alo garage blue
+area/garage_lights::garage_lights_turn_off:
+- nibhao alo garage
+area/garage_lights::garage_lights_turn_on:
+- jalao alo garage
+area/garage_locks::garage_locks_lock:
+- tala tala garage
+area/garage_locks::garage_locks_unlock:
+- khol tala garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- set alo prabeshgang 26 ebong set alo shauchagar 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- set alo prabeshgang purple ebong set alo shauchagar purple
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- nibhao alo prabeshgang ebong nibhao alo shauchagar
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- jalao alo prabeshgang ebong jalao alo shauchagar
+area/hallway_lights::hallway_lights_change_brightness:
+- set alo prabeshgang 61
+area/hallway_lights::hallway_lights_change_color:
+- set alo prabeshgang orange
+area/hallway_lights::hallway_lights_turn_off:
+- nibhao alo prabeshgang
+area/hallway_lights::hallway_lights_turn_on:
+- jalao alo prabeshgang
+area/kitchen_lights::kitchen_lights_change_brightness:
+- set alo ranna 45
+area/kitchen_lights::kitchen_lights_change_color:
+- set alo ranna pink
+area/kitchen_lights::kitchen_lights_turn_off:
+- nibhao alo ranna
+area/kitchen_lights::kitchen_lights_turn_on:
+- jalao alo ranna
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- nibhao jantro ranna
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- jalao jantro ranna
+area/laundry_lights::laundry_lights_change_brightness:
+- set alo dhoa 62
+area/laundry_lights::laundry_lights_change_color:
+- set alo dhoa yellow
+area/laundry_lights::laundry_lights_turn_off:
+- nibhao alo dhoa
+area/laundry_lights::laundry_lights_turn_on:
+- jalao alo dhoa
+area/laundry_switchs::laundry_switchs_turn_off:
+- nibhao jantro dhoa
+area/laundry_switchs::laundry_switchs_turn_on:
+- jalao jantro dhoa
+area/living_climates::living_climates_set_temperature:
+- set gorom bosar 20
+area/living_covers::living_covers_close:
+- bondho porda bosar
+area/living_covers::living_covers_open:
+- khol porda bosar
+area/living_covers::living_covers_set_position:
+- set porda bosar 46
+area/living_lights::living_lights_change_brightness:
+- set alo bosar 84
+area/living_lights::living_lights_change_color:
+- set alo bosar blue
+area/living_lights::living_lights_turn_off:
+- nibhao alo bosar
+area/living_lights::living_lights_turn_on:
+- jalao alo bosar
+area/main_bath_lights::main_bath_lights_change_brightness:
+- set alo main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- set alo main bath pink
+area/main_bath_lights::main_bath_lights_turn_off:
+- nibhao alo main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- jalao alo main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- nibhao jantro main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- jalao jantro main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- set alo masterbath 60
+area/master_bath_lights::master_bath_lights_change_color:
+- set alo masterbath black
+area/master_bath_lights::master_bath_lights_turn_off:
+- nibhao alo masterbath
+area/master_bath_lights::master_bath_lights_turn_on:
+- jalao alo masterbath
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- nibhao jantro masterbath
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- jalao jantro masterbath
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- set gorom shobarghor 20 ebong set gorom bosar 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- bondho porda shobarghor ebong bondho porda bosar
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- khol porda shobarghor ebong khol porda bosar
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- set porda shobarghor 19 ebong set porda bosar 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- set alo shobarghor 25 ebong set alo bosar 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- set alo shobarghor white ebong set alo bosar white
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- nibhao alo shobarghor ebong nibhao alo bosar
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- jalao alo shobarghor ebong jalao alo bosar
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- set alo shobarghor 57 ebong set alo main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- set alo shobarghor pink ebong set alo main bath pink
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- nibhao alo shobarghor ebong nibhao alo main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- jalao alo shobarghor ebong jalao alo main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- set gorom shobarghor 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- bondho porda shobarghor
+area/master_bedroom_covers::master_bedroom_covers_open:
+- khol porda shobarghor
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- set porda shobarghor 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- set pakha shobarghor 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- nibhao pakha shobarghor
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- jalao pakha shobarghor
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- set alo shobarghor 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- set alo shobarghor pink
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- nibhao alo shobarghor
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- jalao alo shobarghor
+area/powder_room_lights::powder_room_lights_change_brightness:
+- set alo shauchagar 52
+area/powder_room_lights::powder_room_lights_change_color:
+- set alo shauchagar purple
+area/powder_room_lights::powder_room_lights_turn_off:
+- nibhao alo shauchagar
+area/powder_room_lights::powder_room_lights_turn_on:
+- jalao alo shauchagar
+area/spoken_lights::spoken_bedroom_inflection:
+- set alo shobarghor red
+area/spoken_lights::spoken_except_island:
+- nibhao sob alo chara dip
+area/spoken_lights::spoken_except_kitchen:
+- nibhao sob alo chara ranna chara dip
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- nibhao alo bosar ebong nibhao alo paribarikess ebong nibhao alo ranna
+area/spoken_lights::spoken_stt_kitchen_off:
+- nibhao alo ranna
+area/spoken_lights::spoken_stt_living_off:
+- nibhao alo bosar

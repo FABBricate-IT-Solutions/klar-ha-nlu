@@ -1,0 +1,504 @@
+name: Full Home ne
+language: ne
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: tala
+  level: 0
+  aliases:
+  - tala
+  - bhumi
+- id: upper
+  name: mathi
+  level: 1
+  aliases:
+  - mathi
+  - talla
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Pravesh
+  floor: ground
+  aliases:
+  - pravesh
+- id: living
+  name: Baithak
+  floor: ground
+  aliases:
+  - baithak
+- id: dining
+  name: Parivarikess
+  floor: ground
+  aliases:
+  - parivarikess
+- id: kitchen
+  name: Bhansa
+  floor: ground
+  aliases:
+  - bhansa
+- id: family_room
+  name: Parivarik
+  floor: ground
+  aliases:
+  - parivarik
+- id: laundry
+  name: Dhune
+  floor: ground
+  aliases:
+  - dhune
+- id: powder_room
+  name: Shauchalay
+  floor: ground
+  aliases:
+  - shauchalay
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Sutnekotha
+  floor: upper
+  aliases:
+  - sutnekotha
+- id: bedroom_2
+  name: Sutnekotha2
+  floor: upper
+  aliases:
+  - sutnekotha2
+- id: bedroom_3
+  name: Sutnekotha3
+  floor: upper
+  aliases:
+  - sutnekotha3
+- id: bedroom_4
+  name: Sutnekotha4
+  floor: upper
+  aliases:
+  - sutnekotha4
+- id: master_bath
+  name: Mukhyasnan
+  floor: upper
+  aliases:
+  - mukhyasnan
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: pravesh batti
+  aliases:
+  - pravesh batti
+  - batti
+- id: light.living_ceiling
+  area_id: living
+  name: baithak chhana
+  aliases:
+  - baithak chhana
+  - chhana
+- id: light.living_lamp
+  area_id: living
+  name: baithak batti
+  aliases:
+  - baithak batti
+  - batti
+- id: light.dining_pendant
+  area_id: dining
+  name: parivarikess batti
+  aliases:
+  - parivarikess batti
+  - batti
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: bhansa chhana
+  aliases:
+  - bhansa chhana
+  - chhana
+- id: light.kitchen_island
+  area_id: kitchen
+  name: bhansa dweep
+  aliases:
+  - bhansa dweep
+  - dweep
+- id: light.family_ceiling
+  area_id: family_room
+  name: parivarik chhana
+  aliases:
+  - parivarik chhana
+  - chhana
+- id: light.laundry_light
+  area_id: laundry
+  name: dhune batti
+  aliases:
+  - dhune batti
+  - batti
+- id: light.powder_room_light
+  area_id: powder_room
+  name: shauchalay batti
+  aliases:
+  - shauchalay batti
+  - batti
+- id: light.garage_light
+  area_id: garage
+  name: garage batti
+  aliases:
+  - garage batti
+  - batti
+- id: light.office_ceiling
+  area_id: office
+  name: office chhana
+  aliases:
+  - office chhana
+  - chhana
+- id: light.garden
+  area_id: garden
+  name: garden batti
+  aliases:
+  - garden batti
+  - batti
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: sutnekotha chhana
+  aliases:
+  - sutnekotha chhana
+  - chhana
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: sutnekotha ensuite
+  aliases:
+  - sutnekotha ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: sutnekotha left khat
+  aliases:
+  - sutnekotha left khat
+  - khat
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: sutnekotha right khat
+  aliases:
+  - sutnekotha right khat
+  - khat
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: sutnekotha2 chhana
+  aliases:
+  - sutnekotha2 chhana
+  - chhana
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: sutnekotha3 chhana
+  aliases:
+  - sutnekotha3 chhana
+  - chhana
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: sutnekotha4 chhana
+  aliases:
+  - sutnekotha4 chhana
+  - chhana
+- id: light.master_bath_light
+  area_id: master_bath
+  name: mukhyasnan batti
+  aliases:
+  - mukhyasnan batti
+  - batti
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath batti
+  aliases:
+  - main bath batti
+  - batti
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway batti
+  aliases:
+  - hallway batti
+  - batti
+- id: light.basement
+  area_id: basement
+  name: basement batti
+  aliases:
+  - basement batti
+  - batti
+- id: cover.living_blinds
+  area_id: living
+  name: baithak parda
+  aliases:
+  - baithak parda
+  - parda
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: sutnekotha parda
+  aliases:
+  - sutnekotha parda
+  - parda
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: sutnekotha2 parda
+  aliases:
+  - sutnekotha2 parda
+  - parda
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: sutnekotha3 parda
+  aliases:
+  - sutnekotha3 parda
+  - parda
+- id: cover.garage_door
+  area_id: garage
+  name: garage parda
+  aliases:
+  - garage parda
+  - parda
+- id: climate.ground_thermostat
+  area_id: living
+  name: baithak tato
+  aliases:
+  - baithak tato
+  - tato
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: sutnekotha tato
+  aliases:
+  - sutnekotha tato
+  - tato
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: tato sutnekotha
+  aliases:
+  - tato sutnekotha
+  - tato
+  - ac
+  tags:
+  - tato
+- id: fan.family_fan
+  area_id: family_room
+  name: parivarik pankha
+  aliases:
+  - parivarik pankha
+  - pankha
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: sutnekotha pankha
+  aliases:
+  - sutnekotha pankha
+  - pankha
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: sutnekotha2 pankha
+  aliases:
+  - sutnekotha2 pankha
+  - pankha
+- id: lock.front_door
+  area_id: entryway
+  name: front dhoka
+  aliases:
+  - front dhoka
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage dhoka
+  aliases:
+  - garage dhoka
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: bhansa basna
+  aliases:
+  - bhansa basna
+  - basna
+- id: switch.rangehood
+  area_id: kitchen
+  name: bhansa rangehood
+  aliases:
+  - bhansa rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: dhune washing
+  aliases:
+  - dhune washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: dhune dryer
+  aliases:
+  - dhune dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: mukhyasnan pankhabad
+  aliases:
+  - mukhyasnan pankhabad
+  - pankhabad
+  tags:
+  - pankhabad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath pankhabad
+  aliases:
+  - main bath pankhabad
+  - pankhabad
+  tags:
+  - pankhabad
+- id: media_player.living_tv
+  area_id: living
+  name: baithak tv
+  aliases:
+  - baithak tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: parivarik tv
+  aliases:
+  - parivarik tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: baithak tivi
+  aliases:
+  - baithak tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: bhansa tivi
+  aliases:
+  - bhansa tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: baithak kucho
+  aliases:
+  - baithak kucho
+  - kucho
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: pravesh doorsensor
+  aliases:
+  - pravesh doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: baithak windowsensor
+  aliases:
+  - baithak windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: bhansa motion
+  aliases:
+  - bhansa motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: baithak tempsensor
+  aliases:
+  - baithak tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: baithak humidity
+  aliases:
+  - baithak humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: chalchitra
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: raat
+- id: leaving_home
+  name: jane
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: suchi

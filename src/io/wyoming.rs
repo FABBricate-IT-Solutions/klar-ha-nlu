@@ -121,7 +121,15 @@ where
                     let mut guard = state.sessions.lock().await;
                     guard.take(conversation_id)
                 };
+                if let Some(area) = event.pointer("/data/preferred_area").and_then(|value| value.as_str()) {
+                    if area.len() <= 128 && home.areas.iter().any(|record| record.area_id == area) {
+                        session.preferred_area = Some(area.to_string());
+                    }
+                }
                 let outcome = parse_with_policies(text, &home, &mut session, &custom, &settings, &policies, &speech_bank);
+                if let Some((entity_id, alias)) = session.pending_teach.take() {
+                    state.apply_teach(&entity_id, &alias).await;
+                }
                 let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
                 state.sessions.lock().await.put(session);
                 state.record_parse("wyoming", language, &legacy_result(outcome.clone())).await;
@@ -274,7 +282,10 @@ mod tests {
         assert!(info.contains("\"type\":\"info\""), "{info}");
         assert!(info.contains("\"contract_version\":\"2.0\""), "{info}");
 
-        writer.write_all(br#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","conversation_id":"c1"}}"#).await.unwrap();
+        writer
+            .write_all(br#"{"type":"recognize","data":{"text":"Licht im Wohnzimmer an","conversation_id":"c1","language":"de"}}"#)
+            .await
+            .unwrap();
         writer.write_all(b"\n").await.unwrap();
         writer.flush().await.unwrap();
         let first = read_line(&mut lines).await;
@@ -282,14 +293,17 @@ mod tests {
         assert!(first.contains("\"schema_version\":\"2.0\""), "{first}");
         assert!(first.contains("\"outcome\":"), "{first}");
 
-        writer.write_all(br#"{"type":"recognize","data":{"text":"aus","conversation_id":"c1"}}"#).await.unwrap();
+        writer.write_all(br#"{"type":"recognize","data":{"text":"aus","conversation_id":"c1","language":"de"}}"#).await.unwrap();
         writer.write_all(b"\n").await.unwrap();
         writer.flush().await.unwrap();
         let second = read_line(&mut lines).await;
         assert!(second.contains("HassTurnOff") || second.contains("intent"), "{second}");
 
         writer
-            .write_all(r#"{"type":"recognize","data":{"text":"Wohnungstür abschließen","conversation_id":"confirm-1"}}"#.as_bytes())
+            .write_all(
+                r#"{"type":"recognize","data":{"text":"Wohnungstür abschließen","conversation_id":"confirm-1","language":"de"}}"#
+                    .as_bytes(),
+            )
             .await
             .unwrap();
         writer.write_all(b"\n").await.unwrap();
@@ -302,7 +316,7 @@ mod tests {
             assert!(!confirmation.contains(forbidden), "confirmation leaked {forbidden}: {confirmation}");
         }
 
-        writer.write_all(br#"{"type":"recognize","data":{"text":"ja","conversation_id":"confirm-1"}}"#).await.unwrap();
+        writer.write_all(br#"{"type":"recognize","data":{"text":"ja","conversation_id":"confirm-1","language":"de"}}"#).await.unwrap();
         writer.write_all(b"\n").await.unwrap();
         writer.flush().await.unwrap();
         let affirmed = read_line(&mut lines).await;

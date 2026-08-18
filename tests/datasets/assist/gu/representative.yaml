@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - chalu prakash orado
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - bandh prakash rasodu
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

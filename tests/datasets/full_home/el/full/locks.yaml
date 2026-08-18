@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - κλειδωσε κλειδαρια εισοδος
+  - κλειδαρια εισοδος κλειδωσε
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - ξεκλειδωσε κλειδαρια εισοδος
+  - κλειδαρια εισοδος ξεκλειδωσε
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - κλειδωσε κλειδαρια garage
+  - κλειδαρια garage κλειδωσε
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - ξεκλειδωσε κλειδαρια garage
+  - κλειδαρια garage ξεκλειδωσε
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - κλειδωσε κλειδαρια εισοδος
+  - κλειδαρια εισοδος κλειδωσε
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - κλειδωσε κλειδαρια garage
+  - κλειδαρια garage κλειδωσε

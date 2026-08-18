@@ -28,3 +28,49 @@ updates:
     commit-message:
       prefix: ci
 
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      npm-patch:
+        update-types:
+          - patch
+      npm-minor:
+        update-types:
+          - minor
+    labels:
+      - dependencies
+    commit-message:
+      prefix: npm
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      docker-patch:
+        update-types:
+          - patch
+    labels:
+      - dependencies
+    commit-message:
+      prefix: docker
+
+  - package-ecosystem: docker
+    directory: /docker
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      docker-patch:
+        update-types:
+          - patch
+    labels:
+      - dependencies
+    commit-message:
+      prefix: docker
+

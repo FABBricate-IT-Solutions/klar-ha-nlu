@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- kveiktu timi abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- kveiktu timi abstract 20 min
+timers/timers::abstract_start_seconds:
+- kveiktu timi abstract
+timers/timers::cancel_all_timers:
+- slokktu allt timi
+timers/timers::timer_laundry_cancel:
+- kveiktu timi laundry
+timers/timers::timer_laundry_decrease:
+- kveiktu timi laundry 5 min
+timers/timers::timer_laundry_increase:
+- kveiktu timi laundry 16 min
+timers/timers::timer_laundry_pause:
+- slokktu timi laundry
+timers/timers::timer_laundry_start:
+- kveiktu timi laundry
+timers/timers::timer_laundry_status:
+- hvad timi laundry
+timers/timers::timer_laundry_unpause:
+- kveiktu timi laundry
+timers/timers::timer_oven_cancel:
+- kveiktu timi oven
+timers/timers::timer_oven_decrease:
+- kveiktu timi oven 44 min
+timers/timers::timer_oven_increase:
+- kveiktu timi oven 30 min
+timers/timers::timer_oven_pause:
+- slokktu timi oven
+timers/timers::timer_oven_start:
+- kveiktu timi oven 2 min
+timers/timers::timer_oven_status:
+- hvad timi oven
+timers/timers::timer_oven_unpause:
+- kveiktu timi oven

@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - укључи грејање дневна
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - укључи светло дневна
+  - искључи
+state_persistance/spoken::kugel_dann_aus:
+- - укључи кугла
+  - искључи
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - укључи светло дневна
+  - укључи светло кухиња
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - укључи светло дневна
+  - red

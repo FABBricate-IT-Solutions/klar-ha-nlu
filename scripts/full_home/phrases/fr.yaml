@@ -1,0 +1,149 @@
+on_area:
+- '{on} {light} {room}'
+- '{on} les {light} {room}'
+off_area:
+- '{off} {light} {room}'
+- '{off} les {light} {room}'
+on_fixture:
+- '{on} {fixture} {room}'
+- '{on} {room} {fixture}'
+off_fixture:
+- '{off} {fixture} {room}'
+- '{off} {room} {fixture}'
+set_bright:
+- '{set} {fixture} {room} {n}'
+set_color:
+- '{set} {fixture} {room} {color}'
+set_temp:
+- '{set} {climate} {room} {n}'
+get_temp:
+- '{climate} {room}'
+open_cover:
+- '{open} {cover} {room}'
+- '{open} le {cover} du {room}'
+close_cover:
+- '{close} {cover} {room}'
+- '{close} le {cover} du {room}'
+set_pos:
+- '{set} {cover} {room} {n}'
+lock:
+- '{lock_v} {lock} {room}'
+- '{lock_v} {door}'
+unlock:
+- '{unlock} {lock} {room}'
+- '{unlock} {door}'
+fan_on:
+- '{on} {fan} {room}'
+- '{fan} {room} {on}'
+fan_off:
+- '{off} {fan} {room}'
+- '{fan} {room} {off}'
+fan_speed:
+- '{set} {fan} {room} {n}'
+switch_on:
+- '{on} {appliance} {room}'
+- '{on} {appliance}'
+switch_off:
+- '{off} {appliance} {room}'
+- '{off} {appliance}'
+vac_start:
+- '{on} {vacuum}'
+vac_dock:
+- '{off} {vacuum}'
+media_on:
+- '{on} {tv} {room}'
+media_off:
+- '{off} {tv} {room}'
+media_pause:
+- '{pause} {tv} {room}'
+media_vol:
+- '{set} volume {n}'
+media_next:
+- next track
+media_prev:
+- previous track
+play_search:
+- play {search} {room}
+play_album:
+- play {album} {search} {by} {artist}
+play_radio:
+- play {search} radio mode
+play_queue:
+- play {search} queue
+now_playing:
+- '{query} {music} {room}'
+scene:
+- '{on} {scene_name}'
+script:
+- '{on} {scene_name}'
+timer_start:
+- '{on} {timer} {n} {minutes}'
+timer_cancel:
+- '{off} {timer}'
+list_add:
+- '{add} {item} {list}'
+list_done:
+- '{done} {item}'
+floor_on:
+- '{on} {all} {light} {floor}'
+floor_off:
+- '{off} {all} {light} {floor}'
+all_except:
+- '{off} {all} {light} {except} {room}'
+all_except_on:
+- '{on} {all} {light} {except} {room}'
+except_fixture:
+- '{off} {all} {light} {except} {skip_fixture}'
+query_entity:
+- '{query} {target} {room}'
+multi_and:
+- '{on} {light} {room} {and} {room2}'
+multi_off:
+- '{off} {light} {room} {and} {room2}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+multi_three:
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+multi_three_off:
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+multi_off_lock:
+- '{off} {light} {room} {and} {lock_v} {door}'
+except_in_area:
+- '{off} {all} {light} {room} {except} {skip_fixture}'
+- '{off} {light} {room} {except} {skip_fixture}'
+except_two:
+- '{off} {all} {light} {except} {room} {and} {room2}'
+except_fixture_on:
+- '{on} {all} {light} {except} {skip_fixture}'
+floor_except:
+- '{off} {all} {light} {floor} {except} {room}'
+multi_covers:
+- '{open} {cover} {room} {and} {room2}'
+multi_covers_close:
+- '{close} {cover} {room} {and} {room2}'
+multi_climate:
+- '{set} {climate} {room} {and} {room2} {n}'
+multi_bright:
+- '{set} {light} {room} {and} {room2} {n}'
+multi_color:
+- '{set} {light} {room} {and} {room2} {color}'
+query_two:
+- '{query} {target} {room} {and} {room2}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+multi_locks:
+- '{lock_v} {lock} {room} {and} {room2}'
+scene_and_off:
+- '{on} {scene_name} {and} {off} {light} {room}'
+clock:
+- what time is it
+- wie spaet ist es
+weather:
+- what's the weather
+- wie ist das wetter
+set_temp_ac:
+- '{set} {ac} {room} {n}'
+get_temp_ac:
+- '{ac} {room}'

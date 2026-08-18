@@ -1,4 +1,5 @@
-use super::groups::{Chat, Cues, Fixtures, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use super::groups::{Chat, Cues, Fixtures, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use super::morphology::PackMorphology;
 use super::LangId;
 
 use super::de::VERBS;
@@ -92,7 +93,7 @@ pub const PACK: LanguagePack = LanguagePack {
         query_hint: &["wie", "was", "ist", "sind", "status", "zustand"],
         question_starts: &["wie", "was", "welch", "welche", "welcher", "ist", "sind"],
         question_words: &["wie", "wiewarm", "status", "zustand", "uebrig"],
-        correction: &["falsch", "quatsch"],
+        correction: &["falsch", "quatsch", "nein"],
         correction_phrases: &["stimmt nicht"],
         clarify_pick: &["ja", "erste"],
     },
@@ -205,7 +206,7 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_cancel: &["abbrechen", "abbreche", "abbruch", "stopp", "stoppe", "stoppen", "loesche", "loeschen", "aus"],
         timer_pause: &["pause", "pausieren", "anhalten", "halt"],
         timer_add: &["plus", "mehr"],
-        list_complete: &["haken", "erledigt"],
+        list_complete: &["haken", "erledigt", "abgehakt"],
         playback_resume: &["weiter", "fortsetzen"],
         vacuum_start: &["starten", "starte"],
         hours: &["stunde", "stunden"],
@@ -441,5 +442,31 @@ pub const PACK: LanguagePack = LanguagePack {
         news_nudge: "Möchtest du zu einer der Meldungen mehr erfahren?",
         news_done: "Alles klar.",
     },
+    household: Household {
+        teach: &["nenn das ", "nenne das ", "nenns ", "das heisst ", "heisst jetzt ", "nimm "],
+        explain: &["was hast du gehoert", "was hast du verstanden", "warum hast du aufgehoert", "warum hast du gestoppt"],
+        undo: &["rueckgaengig", "nimm das zurueck", "mach das rueckgaengig"],
+        clock: &["wie spaet", "wie viel uhr", "wieviel uhr", "die uhrzeit"],
+        weather: &["wie ist das wetter", "wie wird das wetter", "wetterbericht", "wetter"],
+        clock_skip: &["timer", "wecker"],
+        heard_nothing: "Ich habe noch nichts gehört.",
+        heard: "Ich habe gehört: {text}.",
+        executed: " Ausgeführt: {names}.",
+        asked_risky: " Ich habe nachgefragt, weil die Aktion riskant ist.",
+        unclear_device: " Ich wusste nicht, welches Gerät du meinst.",
+        stopped: " Ich habe gestoppt ({reason})",
+        no_match: "kein Treffer",
+        was_chat: " Das war Gespräch, kein Gerät.",
+        decision: " Entscheidung: {decision}.",
+        in_area: " Im Raum {area}.",
+        nothing_undo: "Es gibt nichts rückgängig zu machen.",
+        teach_which: "Welches Gerät meinst du?",
+        teach_invalid: "Der Name ist ungültig.",
+        teach_ok: "Gut. Ich nenne das {alias}.",
+        clock_ok: "Es ist {time}.",
+        clock_missing: "Die Uhrzeit ist gerade nicht verfügbar.",
+        no_weather: "Ich sehe kein Wetter.",
+    },
     speech: super::de_speech::SPEECH,
+    morphology: PackMorphology::GERMAN,
 };

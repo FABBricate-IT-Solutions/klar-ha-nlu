@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- set chudu masterbath 23
+area/heizung::heizung_esszimmer_23:
+- set chudu kutumbamess 23
+area/heizung::heizung_schlafzimmer_23:
+- set chudu kitappumuri 23
+area/heizung::heizung_wohnzimmer_23:
+- set chudu muriyil 23
+area/lichter::alle_an_ausser_kugel:
+- theli ellam vilakku ozhike golam
+area/lichter::alle_an_ausser_schlafzimmer:
+- theli ellam vilakku ozhike kitappumuri
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- set ellam vilakku ozhike kitappumuri 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- set ellam vilakku ozhike golam red
+area/lichter::alle_ausser_kugel:
+- anaykku ellam vilakku ozhike golam
+area/lichter::alle_ausser_schlafzimmer:
+- anaykku ellam vilakku ozhike kitappumuri
+area/lichter::alle_lichter_an:
+- theli ellam vilakku
+area/lichter::alle_lichter_aus:
+- anaykku ellam vilakku
+area/lichter::arbeitszimmer_lichter_an:
+- theli vilakku muriyil
+area/lichter::arbeitszimmer_lichter_aus:
+- anaykku vilakku muriyil
+area/lichter::esszimmer_lichter_an:
+- theli vilakku kutumbamess
+area/lichter::esszimmer_lichter_aus:
+- anaykku vilakku kutumbamess
+area/lichter::kuche_lichter_an:
+- theli vilakku adukkala
+area/lichter::kuche_lichter_aus:
+- anaykku vilakku adukkala
+area/lichter::schlafzimmer_auf_blau:
+- set vilakku kitappumuri blue
+area/lichter::schlafzimmer_auf_rot:
+- set vilakku kitappumuri red
+area/lichter::wohnzimmer_helligkeit:
+- set vilakku muriyil 45
+area/lichter::wohnzimmer_lichter_an:
+- theli vilakku muriyil
+area/lichter::wohnzimmer_lichter_aus:
+- anaykku vilakku muriyil
+area/spoken::alle_ausser_kugel_stt:
+- anaykku ellam vilakku ozhike golam
+area/spoken::alle_ausser_schlaf_stt:
+- anaykku ellam vilakku ozhike kitappumuri
+area/spoken::alle_ganzen_an:
+- theli ellam vilakku
+area/spoken::alle_lampen_aus:
+- anaykku ellam vilakku
+area/spoken::esszimmer_weiss:
+- set vilakku kutumbamess white
+area/spoken::stt_kuche_lichte:
+- anaykku vilakku adukkala
+area/spoken::stt_licht_wohnzimmer_an:
+- theli vilakku muriyil
+area/spoken::stt_licht_wohnzimmer_aus:
+- anaykku vilakku muriyil
+area/spoken::stt_schlafzimmer_dativ:
+- anaykku vilakku kitappumuri
+area/spoken::wohnzimmer_gruen:
+- set vilakku muriyil green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- anaykku ellam vilakku ozhike muriyil
+area/spoken_more::arbeitszimmer_lampen_aus:
+- anaykku vilakku muriyil
+area/spoken_more::esszimmer_30:
+- set vilakku kutumbamess 30
+area/spoken_more::esszimmer_lichte_an:
+- theli vilakku kutumbamess
+area/spoken_more::kuche_80:
+- set vilakku adukkala 80
+area/spoken_more::kuche_blau:
+- set vilakku adukkala blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- anaykku ellam vilakku ozhike kitappumuri
+area/spoken_more::wohnzimmer_gelb:
+- set vilakku muriyil yellow

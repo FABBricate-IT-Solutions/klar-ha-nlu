@@ -1,0 +1,504 @@
+name: Full Home ml
+language: ml
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: thazhe
+  level: 0
+  aliases:
+  - thazhe
+  - bhumi
+- id: upper
+  name: mukalil
+  level: 1
+  aliases:
+  - mukalil
+  - nela
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Praveshanam
+  floor: ground
+  aliases:
+  - praveshanam
+- id: living
+  name: Muriyil
+  floor: ground
+  aliases:
+  - muriyil
+- id: dining
+  name: Kutumbamess
+  floor: ground
+  aliases:
+  - kutumbamess
+- id: kitchen
+  name: Adukkala
+  floor: ground
+  aliases:
+  - adukkala
+- id: family_room
+  name: Kutumbam
+  floor: ground
+  aliases:
+  - kutumbam
+- id: laundry
+  name: Alakku
+  floor: ground
+  aliases:
+  - alakku
+- id: powder_room
+  name: Toilet
+  floor: ground
+  aliases:
+  - toilet
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Kitappumuri
+  floor: upper
+  aliases:
+  - kitappumuri
+- id: bedroom_2
+  name: Kitappumuri2
+  floor: upper
+  aliases:
+  - kitappumuri2
+- id: bedroom_3
+  name: Kitappumuri3
+  floor: upper
+  aliases:
+  - kitappumuri3
+- id: bedroom_4
+  name: Kitappumuri4
+  floor: upper
+  aliases:
+  - kitappumuri4
+- id: master_bath
+  name: Masterbath
+  floor: upper
+  aliases:
+  - masterbath
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: praveshanam vilakku
+  aliases:
+  - praveshanam vilakku
+  - vilakku
+- id: light.living_ceiling
+  area_id: living
+  name: muriyil tosh
+  aliases:
+  - muriyil tosh
+  - tosh
+- id: light.living_lamp
+  area_id: living
+  name: muriyil vilakku
+  aliases:
+  - muriyil vilakku
+  - vilakku
+- id: light.dining_pendant
+  area_id: dining
+  name: kutumbamess vilakku
+  aliases:
+  - kutumbamess vilakku
+  - vilakku
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: adukkala tosh
+  aliases:
+  - adukkala tosh
+  - tosh
+- id: light.kitchen_island
+  area_id: kitchen
+  name: adukkala dweep
+  aliases:
+  - adukkala dweep
+  - dweep
+- id: light.family_ceiling
+  area_id: family_room
+  name: kutumbam tosh
+  aliases:
+  - kutumbam tosh
+  - tosh
+- id: light.laundry_light
+  area_id: laundry
+  name: alakku vilakku
+  aliases:
+  - alakku vilakku
+  - vilakku
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toilet vilakku
+  aliases:
+  - toilet vilakku
+  - vilakku
+- id: light.garage_light
+  area_id: garage
+  name: garage vilakku
+  aliases:
+  - garage vilakku
+  - vilakku
+- id: light.office_ceiling
+  area_id: office
+  name: office tosh
+  aliases:
+  - office tosh
+  - tosh
+- id: light.garden
+  area_id: garden
+  name: garden vilakku
+  aliases:
+  - garden vilakku
+  - vilakku
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: kitappumuri tosh
+  aliases:
+  - kitappumuri tosh
+  - tosh
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: kitappumuri ensuite
+  aliases:
+  - kitappumuri ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: kitappumuri left kattil
+  aliases:
+  - kitappumuri left kattil
+  - kattil
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: kitappumuri right kattil
+  aliases:
+  - kitappumuri right kattil
+  - kattil
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: kitappumuri2 tosh
+  aliases:
+  - kitappumuri2 tosh
+  - tosh
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: kitappumuri3 tosh
+  aliases:
+  - kitappumuri3 tosh
+  - tosh
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: kitappumuri4 tosh
+  aliases:
+  - kitappumuri4 tosh
+  - tosh
+- id: light.master_bath_light
+  area_id: master_bath
+  name: masterbath vilakku
+  aliases:
+  - masterbath vilakku
+  - vilakku
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath vilakku
+  aliases:
+  - main bath vilakku
+  - vilakku
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway vilakku
+  aliases:
+  - hallway vilakku
+  - vilakku
+- id: light.basement
+  area_id: basement
+  name: basement vilakku
+  aliases:
+  - basement vilakku
+  - vilakku
+- id: cover.living_blinds
+  area_id: living
+  name: muriyil jada
+  aliases:
+  - muriyil jada
+  - jada
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: kitappumuri jada
+  aliases:
+  - kitappumuri jada
+  - jada
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: kitappumuri2 jada
+  aliases:
+  - kitappumuri2 jada
+  - jada
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: kitappumuri3 jada
+  aliases:
+  - kitappumuri3 jada
+  - jada
+- id: cover.garage_door
+  area_id: garage
+  name: garage jada
+  aliases:
+  - garage jada
+  - jada
+- id: climate.ground_thermostat
+  area_id: living
+  name: muriyil chudu
+  aliases:
+  - muriyil chudu
+  - chudu
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: kitappumuri chudu
+  aliases:
+  - kitappumuri chudu
+  - chudu
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: chudu kitappumuri
+  aliases:
+  - chudu kitappumuri
+  - chudu
+  - ac
+  tags:
+  - chudu
+- id: fan.family_fan
+  area_id: family_room
+  name: kutumbam fan
+  aliases:
+  - kutumbam fan
+  - fan
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: kitappumuri fan
+  aliases:
+  - kitappumuri fan
+  - fan
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: kitappumuri2 fan
+  aliases:
+  - kitappumuri2 fan
+  - fan
+- id: lock.front_door
+  area_id: entryway
+  name: front vathil
+  aliases:
+  - front vathil
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage vathil
+  aliases:
+  - garage vathil
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: adukkala pathram
+  aliases:
+  - adukkala pathram
+  - pathram
+- id: switch.rangehood
+  area_id: kitchen
+  name: adukkala rangehood
+  aliases:
+  - adukkala rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: alakku washing
+  aliases:
+  - alakku washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: alakku dryer
+  aliases:
+  - alakku dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: masterbath fanbad
+  aliases:
+  - masterbath fanbad
+  - fanbad
+  tags:
+  - fanbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath fanbad
+  aliases:
+  - main bath fanbad
+  - fanbad
+  tags:
+  - fanbad
+- id: media_player.living_tv
+  area_id: living
+  name: muriyil tv
+  aliases:
+  - muriyil tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: kutumbam tv
+  aliases:
+  - kutumbam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: muriyil tivi
+  aliases:
+  - muriyil tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: adukkala tivi
+  aliases:
+  - adukkala tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: muriyil varal
+  aliases:
+  - muriyil varal
+  - varal
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: praveshanam doorsensor
+  aliases:
+  - praveshanam doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: muriyil windowsensor
+  aliases:
+  - muriyil windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: adukkala motion
+  aliases:
+  - adukkala motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: muriyil tempsensor
+  aliases:
+  - muriyil tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: muriyil humidity
+  aliases:
+  - muriyil humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: cinema
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: rathri
+- id: leaving_home
+  name: poku
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: pattika

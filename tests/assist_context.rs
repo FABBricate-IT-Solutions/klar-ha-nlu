@@ -7,7 +7,7 @@ fn one(text: &str, preferred_area: &str) -> Intent {
     let home = default_home();
     let mut session = Session::new();
     session.preferred_area = Some(preferred_area.into());
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(result.intents.len(), 1, "{text}: {:?}", result.intents);
     result.intents.into_iter().next().unwrap()
 }

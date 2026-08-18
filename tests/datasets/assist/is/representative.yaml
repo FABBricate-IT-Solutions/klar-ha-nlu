@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - kveiktu ljos stofa
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - slokktu ljos eldhus
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

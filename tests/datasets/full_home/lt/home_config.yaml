@@ -1,0 +1,504 @@
+name: Full Home lt
+language: lt
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: pirmas
+  level: 0
+  aliases:
+  - pirmas
+  - apacioje
+- id: upper
+  name: aukstas
+  level: 1
+  aliases:
+  - aukstas
+  - virsuj
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Prieskambaris
+  floor: ground
+  aliases:
+  - prieskambaris
+- id: living
+  name: Svetaine
+  floor: ground
+  aliases:
+  - svetaine
+- id: dining
+  name: Svetainefamess
+  floor: ground
+  aliases:
+  - svetainefamess
+- id: kitchen
+  name: Virtuve
+  floor: ground
+  aliases:
+  - virtuve
+- id: family_room
+  name: Svetainefam
+  floor: ground
+  aliases:
+  - svetainefam
+- id: laundry
+  name: Skalbykla
+  floor: ground
+  aliases:
+  - skalbykla
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Miegamasis
+  floor: upper
+  aliases:
+  - miegamasis
+- id: bedroom_2
+  name: Miegamasis2
+  floor: upper
+  aliases:
+  - miegamasis2
+- id: bedroom_3
+  name: Miegamasis3
+  floor: upper
+  aliases:
+  - miegamasis3
+- id: bedroom_4
+  name: Miegamasis4
+  floor: upper
+  aliases:
+  - miegamasis4
+- id: master_bath
+  name: Voniamaster
+  floor: upper
+  aliases:
+  - voniamaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: prieskambaris sviesa
+  aliases:
+  - prieskambaris sviesa
+  - sviesa
+- id: light.living_ceiling
+  area_id: living
+  name: svetaine lubos
+  aliases:
+  - svetaine lubos
+  - lubos
+- id: light.living_lamp
+  area_id: living
+  name: svetaine sviesa
+  aliases:
+  - svetaine sviesa
+  - sviesa
+- id: light.dining_pendant
+  area_id: dining
+  name: svetainefamess sviesa
+  aliases:
+  - svetainefamess sviesa
+  - sviesa
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: virtuve lubos
+  aliases:
+  - virtuve lubos
+  - lubos
+- id: light.kitchen_island
+  area_id: kitchen
+  name: virtuve sala
+  aliases:
+  - virtuve sala
+  - sala
+- id: light.family_ceiling
+  area_id: family_room
+  name: svetainefam lubos
+  aliases:
+  - svetainefam lubos
+  - lubos
+- id: light.laundry_light
+  area_id: laundry
+  name: skalbykla sviesa
+  aliases:
+  - skalbykla sviesa
+  - sviesa
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc sviesa
+  aliases:
+  - wc sviesa
+  - sviesa
+- id: light.garage_light
+  area_id: garage
+  name: garage sviesa
+  aliases:
+  - garage sviesa
+  - sviesa
+- id: light.office_ceiling
+  area_id: office
+  name: office lubos
+  aliases:
+  - office lubos
+  - lubos
+- id: light.garden
+  area_id: garden
+  name: garden sviesa
+  aliases:
+  - garden sviesa
+  - sviesa
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: miegamasis lubos
+  aliases:
+  - miegamasis lubos
+  - lubos
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: miegamasis ensuite
+  aliases:
+  - miegamasis ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: miegamasis left naktinis
+  aliases:
+  - miegamasis left naktinis
+  - naktinis
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: miegamasis right naktinis
+  aliases:
+  - miegamasis right naktinis
+  - naktinis
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: miegamasis2 lubos
+  aliases:
+  - miegamasis2 lubos
+  - lubos
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: miegamasis3 lubos
+  aliases:
+  - miegamasis3 lubos
+  - lubos
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: miegamasis4 lubos
+  aliases:
+  - miegamasis4 lubos
+  - lubos
+- id: light.master_bath_light
+  area_id: master_bath
+  name: voniamaster sviesa
+  aliases:
+  - voniamaster sviesa
+  - sviesa
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath sviesa
+  aliases:
+  - main bath sviesa
+  - sviesa
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway sviesa
+  aliases:
+  - hallway sviesa
+  - sviesa
+- id: light.basement
+  area_id: basement
+  name: basement sviesa
+  aliases:
+  - basement sviesa
+  - sviesa
+- id: cover.living_blinds
+  area_id: living
+  name: svetaine uzuolaida
+  aliases:
+  - svetaine uzuolaida
+  - uzuolaida
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: miegamasis uzuolaida
+  aliases:
+  - miegamasis uzuolaida
+  - uzuolaida
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: miegamasis2 uzuolaida
+  aliases:
+  - miegamasis2 uzuolaida
+  - uzuolaida
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: miegamasis3 uzuolaida
+  aliases:
+  - miegamasis3 uzuolaida
+  - uzuolaida
+- id: cover.garage_door
+  area_id: garage
+  name: garage uzuolaida
+  aliases:
+  - garage uzuolaida
+  - uzuolaida
+- id: climate.ground_thermostat
+  area_id: living
+  name: svetaine sildymas
+  aliases:
+  - svetaine sildymas
+  - sildymas
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: miegamasis sildymas
+  aliases:
+  - miegamasis sildymas
+  - sildymas
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: sildymas miegamasis
+  aliases:
+  - sildymas miegamasis
+  - sildymas
+  - ac
+  tags:
+  - sildymas
+- id: fan.family_fan
+  area_id: family_room
+  name: svetainefam ventiliatorius
+  aliases:
+  - svetainefam ventiliatorius
+  - ventiliatorius
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: miegamasis ventiliatorius
+  aliases:
+  - miegamasis ventiliatorius
+  - ventiliatorius
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: miegamasis2 ventiliatorius
+  aliases:
+  - miegamasis2 ventiliatorius
+  - ventiliatorius
+- id: lock.front_door
+  area_id: entryway
+  name: front durys
+  aliases:
+  - front durys
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage durys
+  aliases:
+  - garage durys
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: virtuve indaplove
+  aliases:
+  - virtuve indaplove
+  - indaplove
+- id: switch.rangehood
+  area_id: kitchen
+  name: virtuve rangehood
+  aliases:
+  - virtuve rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: skalbykla skalbimo
+  aliases:
+  - skalbykla skalbimo
+  - skalbimo
+  - washer
+  tags:
+  - washer
+  - skalbimo
+- id: switch.dryer
+  area_id: laundry
+  name: skalbykla dryer
+  aliases:
+  - skalbykla dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: voniamaster ventiliatoriusbad
+  aliases:
+  - voniamaster ventiliatoriusbad
+  - ventiliatoriusbad
+  tags:
+  - ventiliatoriusbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventiliatoriusbad
+  aliases:
+  - main bath ventiliatoriusbad
+  - ventiliatoriusbad
+  tags:
+  - ventiliatoriusbad
+- id: media_player.living_tv
+  area_id: living
+  name: svetaine tv
+  aliases:
+  - svetaine tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: svetainefam tv
+  aliases:
+  - svetainefam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: svetaine televizorius
+  aliases:
+  - svetaine televizorius
+  - televizorius
+  platform: music_assistant
+  tags:
+  - televizorius
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: virtuve televizorius
+  aliases:
+  - virtuve televizorius
+  - televizorius
+  platform: music_assistant
+  tags:
+  - televizorius
+- id: media_player.office_music
+  area_id: office
+  name: office televizorius
+  aliases:
+  - office televizorius
+  - televizorius
+  platform: music_assistant
+  tags:
+  - televizorius
+- id: vacuum.robot
+  area_id: living
+  name: svetaine siurblys
+  aliases:
+  - svetaine siurblys
+  - siurblys
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: prieskambaris doorsensor
+  aliases:
+  - prieskambaris doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: svetaine windowsensor
+  aliases:
+  - svetaine windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: virtuve motion
+  aliases:
+  - virtuve motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: svetaine tempsensor
+  aliases:
+  - svetaine tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: svetaine humidity
+  aliases:
+  - svetaine humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: filmas
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: naktis
+- id: leaving_home
+  name: isejimas
+timers:
+- id: oven
+  name: oven laikmatis
+- id: laundry
+  name: laundry laikmatis
+- id: abstract
+  name: abstract laikmatis
+lists:
+- id: shopping
+  name: sarasas

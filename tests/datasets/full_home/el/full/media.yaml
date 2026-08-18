@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - τηλεοραση σαλονι αναψε
+  - αναψε τηλεοραση σαλονι
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - σβησε τηλεοραση σαλονι
+  - τηλεοραση σαλονι σβησε
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause τηλεοραση σαλονι
+  - τηλεοραση σαλονι pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - τηλεοραση σαλονιfam αναψε
+  - αναψε τηλεοραση σαλονιfam
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - σβησε τηλεοραση σαλονιfam
+  - τηλεοραση σαλονιfam σβησε
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause τηλεοραση σαλονιfam
+  - τηλεοραση σαλονιfam pause

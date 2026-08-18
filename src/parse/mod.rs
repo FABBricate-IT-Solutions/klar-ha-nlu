@@ -1,6 +1,11 @@
+#![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic))]
+
 pub mod action;
 pub(crate) mod chat;
 pub(crate) mod clause;
+pub(crate) mod clause_area;
+pub(crate) mod clause_early;
+pub(crate) mod clause_session;
 pub(crate) mod clause_support;
 pub mod compound;
 pub(crate) mod fuzzy;
@@ -43,12 +48,12 @@ use crate::types::Intent;
 use crate::types::{CustomSentence, HomeGraph, ParseResult, Settings};
 
 pub fn parse(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
-    #[cfg(debug_assertions)]
+    #[cfg(all(debug_assertions, not(feature = "disable-v1-parity")))]
     {
         let (current, _) = parse_checked(text, home, session, custom, settings);
         current
     }
-    #[cfg(not(debug_assertions))]
+    #[cfg(not(all(debug_assertions, not(feature = "disable-v1-parity"))))]
     {
         let mut compatibility = settings.clone();
         compatibility.confirm_risky_actions = false;
@@ -90,6 +95,7 @@ pub fn parse_checked(
     (current, parity_error)
 }
 
+/// V1 is frozen. Do not add features to `parse_v1`; new work belongs on the V2 path.
 #[cfg(debug_assertions)]
 fn parse_v1(text: &str, home: &HomeGraph, session: &mut Session, custom: &[CustomSentence], settings: &Settings) -> ParseResult {
     let _guard = crate::lang::bind(&settings.languages);

@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- skru lys stue
+m0_exact/representative::exact_list_complete_from_setup:
+- done bread liste
+m0_exact/representative::exact_multi_intent:
+- skru tak soverom3 og slaa lys entree
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- add milk liste
+m0_exact/representative::exact_state_persistence:
+- - hva lys entree
+  - '12'
+m0_exact/representative::exact_timer:
+- skru timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- skru timer oven
+m0_exact/representative::exact_todo_list:
+- add apples liste

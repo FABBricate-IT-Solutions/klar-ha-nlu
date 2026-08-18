@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - روشن چراغ پذیرایی
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - خاموش چراغ آشپزخانه
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

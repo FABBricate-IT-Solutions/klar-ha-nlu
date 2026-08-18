@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - הדלק מדיח מטבח
+  - מדיח מטבח הדלק
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - כבה מדיח מטבח
+  - מדיח מטבח כבה
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - הדלק מכונתכביסה כביסה
+  - מכונתכביסה כביסה הדלק
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - כבה מכונתכביסה כביסה
+  - מכונתכביסה כביסה כבה
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - הדלק dryer כביסה
+  - dryer כביסה הדלק
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - כבה dryer כביסה
+  - dryer כביסה כבה
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - הדלק rangehood מטבח
+  - rangehood מטבח הדלק
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - כבה rangehood מטבח
+  - rangehood מטבח כבה
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - הדלק מאווררbad חדררחצהראשי
+  - מאווררbad חדררחצהראשי הדלק
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - כבה מאווררbad חדררחצהראשי
+  - מאווררbad חדררחצהראשי כבה
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - הדלק מאווררbad main bath
+  - מאווררbad main bath הדלק
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - כבה מאווררbad main bath
+  - מאווררbad main bath כבה

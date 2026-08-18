@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - увімкни посудомийка кухня
+  - посудомийка кухня увімкни
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - вимкни посудомийка кухня
+  - посудомийка кухня вимкни
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - увімкни пральна пральня
+  - пральна пральня увімкни
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - вимкни пральна пральня
+  - пральна пральня вимкни
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - увімкни dryer пральня
+  - dryer пральня увімкни
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - вимкни dryer пральня
+  - dryer пральня вимкни
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - увімкни rangehood кухня
+  - rangehood кухня увімкни
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - вимкни rangehood кухня
+  - rangehood кухня вимкни
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - увімкни вентиляторbad ваннаmaster
+  - вентиляторbad ваннаmaster увімкни
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - вимкни вентиляторbad ваннаmaster
+  - вентиляторbad ваннаmaster вимкни
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - увімкни вентиляторbad main bath
+  - вентиляторbad main bath увімкни
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - вимкни вентиляторbad main bath
+  - вентиляторbad main bath вимкни

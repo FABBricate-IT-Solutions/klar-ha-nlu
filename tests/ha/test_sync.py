@@ -59,6 +59,8 @@ def _load_sync() -> types.ModuleType:
         "homeassistant.helpers.entity_registry": entity_registry,
         "homeassistant.helpers.floor_registry": floor_registry,
         "homeassistant.helpers.label_registry": label_registry,
+        PACKAGE: _module(PACKAGE),
+        f"{PACKAGE}.languages": _load_languages(),
         f"{PACKAGE}.const": _load_const(),
     }
     path = ROOT / "custom_components" / "klar_nlu" / "sync.py"
@@ -71,7 +73,22 @@ def _load_sync() -> types.ModuleType:
     return module
 
 
+def _load_languages() -> types.ModuleType:
+    path = ROOT / "custom_components" / "klar_nlu" / "languages.py"
+    spec = importlib.util.spec_from_file_location(f"{PACKAGE}.languages", path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load {path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[f"{PACKAGE}.languages"] = module
+    spec.loader.exec_module(module)
+    return module
+
+
 def _load_const() -> types.ModuleType:
+    if PACKAGE not in sys.modules:
+        sys.modules[PACKAGE] = _module(PACKAGE)
+    if f"{PACKAGE}.languages" not in sys.modules:
+        _load_languages()
     path = ROOT / "custom_components" / "klar_nlu" / "const.py"
     spec = importlib.util.spec_from_file_location(f"{PACKAGE}.const", path)
     if spec is None or spec.loader is None:

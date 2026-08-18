@@ -2,8 +2,9 @@ use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::lang::catalog;
 use crate::parse::fuzzy::{select_unique, Evidence, Profile};
+use crate::parse::infer::fixture_matches;
 use crate::parse::normalize::{compact, fold_umlaut};
-use crate::parse::resolve::{fixture_matches, token_eq, token_hit};
+use crate::parse::resolve::{token_eq, token_hit};
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 
 pub(crate) fn fuzzy_areas(tokens: &[String], areas: &[AreaRec]) -> Option<Vec<String>> {
@@ -50,10 +51,14 @@ pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Opti
     let cat = catalog();
     let mut found = Vec::new();
     for token in tokens {
-        let generic_lamp = matches!(token.as_str(), "lampe" | "lamp" | "leuchte");
+        let generic_lamp = cat.light_nouns.contains(token.as_str()) || cat.light_singular.contains(token.as_str());
         let named = cat.named_device.contains(token.as_str()) && !generic_lamp;
         let ceiling = cat.ceiling.contains(token.as_str());
-        if !named && !ceiling {
+        let island = cat.island.contains(token.as_str());
+        let bedside = cat.bedside.contains(token.as_str());
+        let floor = token == "floor" || cat.fixture_alias("floor").contains(&token.as_str());
+        let lamp = !floor && (token == "lamp" || cat.lamp_fixture.contains(token.as_str()));
+        if !named && !ceiling && !island && !bedside && !lamp && !floor {
             continue;
         }
         for entity in &home.entities {
@@ -70,6 +75,10 @@ pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Opti
             if token_hit(tokens, &fold_umlaut(&entity.name))
                 || alias_hit
                 || (ceiling && fixture_matches(entity, "ceiling"))
+                || (island && fixture_matches(entity, "island"))
+                || (bedside && fixture_matches(entity, token))
+                || (floor && fixture_matches(entity, "floor"))
+                || (lamp && fixture_matches(entity, "lamp"))
                 || (named && fixture_matches(entity, token))
             {
                 found.push(entity.clone());

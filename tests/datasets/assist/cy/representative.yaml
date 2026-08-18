@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - tro golau ystafell
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - diffodd golau cegin
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

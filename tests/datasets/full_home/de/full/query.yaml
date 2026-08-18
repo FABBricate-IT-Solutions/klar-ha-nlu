@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - status licht wohnzimmer
+  - wie ist licht wohnzimmer
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - status rollo wohnzimmer
+  - wie ist rollo wohnzimmer
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - status tuer eingang
+  - wie ist tuer eingang
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - status heizung wohnzimmer
+  - wie ist heizung wohnzimmer
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - status tv wohnzimmer
+  - wie ist tv wohnzimmer
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - status tursensor eingang
+  - wie ist tursensor eingang
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - status fenstersensor wohnzimmer
+  - wie ist fenstersensor wohnzimmer
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - status raumfuehler wohnzimmer
+  - wie ist raumfuehler wohnzimmer
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - status licht kuche
+  - wie ist licht kuche
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - status licht arbeitszimmer
+  - wie ist licht arbeitszimmer
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - status licht garten
+  - wie ist licht garten
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - status licht keller
+  - wie ist licht keller
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - status rollo schlafzimmer
+  - wie ist rollo schlafzimmer
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - status rollo garage
+  - wie ist rollo garage
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - status tuer garage
+  - wie ist tuer garage
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - status heizung schlafzimmer
+  - wie ist heizung schlafzimmer
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - status klima schlafzimmer
+  - wie ist klima schlafzimmer
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - status tv familienzimmer
+  - wie ist tv familienzimmer
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - status musik wohnzimmer
+  - wie ist musik wohnzimmer
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - status bewegung kuche
+  - wie ist bewegung kuche
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - status luftfeuchtigkeit wohnzimmer
+  - wie ist luftfeuchtigkeit wohnzimmer
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - status luefter schlafzimmer
+  - wie ist luefter schlafzimmer
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - status staubsauger wohnzimmer
+  - wie ist staubsauger wohnzimmer
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - status licht wohnzimmer
+  - wie ist licht wohnzimmer
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - status licht kuche
+  - wie ist licht kuche
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - status licht schlafzimmer
+  - wie ist licht schlafzimmer
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - status licht schlafzimmer
+  - wie ist licht schlafzimmer
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - status licht flur
+  - wie ist licht flur
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - status licht familienzimmer
+  - wie ist licht familienzimmer
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - status licht esszimmer
+  - wie ist licht esszimmer
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - status licht garage
+  - wie ist licht garage
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - status licht schlafzimmer2
+  - wie ist licht schlafzimmer2
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - status licht schlafzimmer3
+  - wie ist licht schlafzimmer3
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - status licht schlafzimmer4
+  - wie ist licht schlafzimmer4
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - status licht eingang
+  - wie ist licht eingang
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - status licht waschkueche
+  - wie ist licht waschkueche
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - status licht badezimmer
+  - wie ist licht badezimmer
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - status licht gaestewc
+  - wie ist licht gaestewc
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - status anschlusslicht schlafzimmer
+  - wie ist anschlusslicht schlafzimmer
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - status licht schlafzimmer
+  - wie ist licht schlafzimmer
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - status licht masterbad
+  - wie ist licht masterbad

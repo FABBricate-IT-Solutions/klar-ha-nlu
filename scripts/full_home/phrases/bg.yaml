@@ -1,0 +1,455 @@
+on_area:
+- '{on} {light} в {room}'
+- '{light} в {room} {on}'
+- '{on} в {room} {light}'
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+- '{on} {all} {light} {room}'
+off_area:
+- '{off} {light} в {room}'
+- '{light} в {room} {off}'
+- '{off} в {room} {light}'
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+- '{off} {all} {light} {room}'
+on_fixture:
+- '{on} {fixture} в {room}'
+- '{fixture} в {room} {on}'
+- '{on} в {room} {fixture}'
+- '{on} {fixture} {room}'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+off_fixture:
+- '{off} {fixture} в {room}'
+- '{fixture} в {room} {off}'
+- '{off} {fixture} {room}'
+- '{fixture} {room} {off}'
+- '{off} {room} {fixture}'
+- '{room} {fixture} {off}'
+set_bright:
+- '{set} {fixture} в {room} на {n}'
+- '{set} {light} в {room} на {n}'
+- '{light} в {room} на {n}'
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+set_color:
+- '{set} {fixture} в {room} на {color}'
+- '{light} в {room} {color}'
+- '{set} {light} в {room} {color}'
+- '{set} {fixture} {room} {color}'
+- '{set} {light} {room} {color}'
+- '{light} {room} {color}'
+set_temp:
+- '{set} {climate} в {room} на {n}'
+- '{set} {climate} на {n}'
+- '{climate} в {room} {n}'
+- '{set} {climate} {room} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {n}'
+get_temp:
+- каква е {climate} в {room}
+- '{query} {climate} в {room}'
+- '{query} {climate}'
+- '{query} {climate} {room}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- '{open} {cover} в {room}'
+- '{cover} в {room} {open}'
+- '{open} {cover} {room}'
+- '{cover} {room} {open}'
+- '{open} {room} {cover}'
+- '{room} {cover} {open}'
+close_cover:
+- '{close} {cover} в {room}'
+- '{cover} в {room} {close}'
+- '{close} {cover} {room}'
+- '{cover} {room} {close}'
+- '{close} {room} {cover}'
+- '{room} {cover} {close}'
+set_pos:
+- '{set} {cover} в {room} на {n}'
+- '{cover} в {room} на {n}'
+- '{set} {cover} {room} {n}'
+- '{cover} {room} {n}'
+- '{set} {cover} {n}'
+- '{room} {cover} {n}'
+lock:
+- заключи {door}
+- заключи {lock} в {room}
+- '{lock_v} {door}'
+- '{lock_v} {lock} {room}'
+- '{lock} {room} {lock_v}'
+- '{room} {lock} {lock_v}'
+unlock:
+- отключи {door}
+- отключи {lock} в {room}
+- '{unlock} {door}'
+- '{unlock} {lock} {room}'
+- '{lock} {room} {unlock}'
+- '{room} {lock} {unlock}'
+fan_on:
+- '{on} {fan} в {room}'
+- '{fan} в {room} {on}'
+- '{fan} {room} {on}'
+- '{on} {fan} {room}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+fan_off:
+- '{off} {fan} в {room}'
+- '{fan} в {room} {off}'
+- '{fan} {room} {off}'
+- '{off} {fan} {room}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+fan_speed:
+- '{set} {fan} в {room} на {n}'
+- '{fan} в {room} на {n}'
+- '{set} {fan} {room} {n}'
+- '{fan} {room} {n}'
+- '{set} {fan} {n}'
+- '{room} {fan} {n}'
+switch_on:
+- '{on} {appliance}'
+- '{appliance} {on}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+- '{on} {appliance} {room}'
+- '{room} {appliance} {on}'
+switch_off:
+- '{off} {appliance}'
+- '{appliance} {off}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+- '{off} {appliance} {room}'
+- '{room} {appliance} {off}'
+vac_start:
+- пусни {vacuum}
+- '{on} {vacuum}'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+- '{vacuum} {on} {room}'
+- '{on} {vacuum} {room}'
+vac_dock:
+- пусни {vacuum}
+- '{off} {vacuum}'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+- '{vacuum} {off} {room}'
+- '{off} {vacuum} {room}'
+media_on:
+- '{on} {tv} в {room}'
+- '{tv} в {room} {on}'
+- '{tv} {room} {on}'
+- '{on} {tv} {room}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+media_off:
+- '{off} {tv} в {room}'
+- '{tv} в {room} {off}'
+- '{tv} {room} {off}'
+- '{off} {tv} {room}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+media_pause:
+- '{pause} {tv} в {room}'
+- '{tv} в {room} {pause}'
+- '{tv} {room} {pause}'
+- '{pause} {tv} {room}'
+- '{pause} {room} {tv}'
+- '{room} {tv} {pause}'
+media_vol:
+- '{set} {music} в {room} на {n}'
+- '{music} в {room} на {n}'
+- '{set} {music} {room} {n}'
+- '{music} {room} {n}'
+- '{set} {music} {n}'
+- '{set} {tv} {n}'
+media_next:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+media_prev:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+play_search:
+- '{play} {search} в {room}'
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- пусни {search}
+- свири {search}
+- '{play} {search}'
+play_album:
+- пусни {album} {search} от {artist}
+- '{play} {album} {search} от {artist}'
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+- '{play} {search} {by} {artist}'
+play_radio:
+- '{play} {search} {radio}'
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+- '{play} {search} {radio} {room}'
+- '{radio} {search} {room}'
+play_queue:
+- пусни {search}
+- '{play} {search} в {room}'
+- свири {search}
+- '{play} {search}'
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+now_playing:
+- какво свири
+- какво свири в {room}
+- '{query} {music} в {room}'
+- '{query} {music}'
+- '{query} {music} {room}'
+- '{music} {room}'
+scene:
+- '{on} {scene_name}'
+- активирай {scene_name}
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+- '{play} {scene_name}'
+script:
+- '{on} {scene_name}'
+- активирай {scene_name}
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+- '{play} {scene_name}'
+timer_start:
+- '{on} {timer} за {n} минути'
+- '{timer} за {n} минути'
+- '{on} {timer} {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+timer_cancel:
+- '{off} {timer} за {n} минути'
+- '{timer} за {n} минути'
+- '{off} {timer}'
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- добави {item} в {list}
+- '{add} {item} {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+- '{add} {item} {to} {list}'
+list_done:
+- добави {item} в {list}
+- '{done} {item} {list}'
+- '{item} {list}'
+- '{done} {item}'
+- '{list} {item}'
+- '{done} {item} {to} {list}'
+floor_on:
+- '{on} {light} в {floor}'
+- '{light} в {floor} {on}'
+- '{on} в {floor} {light}'
+- '{on} {light} {floor}'
+- '{light} {floor} {on}'
+- '{on} {all} {light} {floor}'
+floor_off:
+- '{off} {light} в {floor}'
+- '{light} в {floor} {off}'
+- '{off} в {floor} {light}'
+- '{off} {light} {floor}'
+- '{light} {floor} {off}'
+- '{off} {all} {light} {floor}'
+all_except:
+- '{off} всички {light} освен {room}'
+- '{off} {all} {light} {except} {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+- '{off} {all} {except} {room}'
+all_except_on:
+- '{on} всички {light} освен {room}'
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+- '{on} {all} {except} {room}'
+except_fixture:
+- '{off} всички {light} освен {skip_fixture}'
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+- '{off} {all} {except} {skip_fixture}'
+query_entity:
+- какъв е {target} в {room}
+- '{query} {target} в {room}'
+- '{query} {target}'
+- '{query} {target} {room}'
+- '{target} {room}'
+- '{room} {target}'
+multi_and:
+- '{on} {light} в {room} {and} {room2}'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {light} {room} {and} {room2}'
+- '{on} {room} {and} {room2}'
+- '{room} {and} {room2} {on}'
+- '{on} {light} {room} {and} {light} {room2}'
+multi_off:
+- '{off} {light} в {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {room2}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {light} {room2}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+- '{on} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {off}'
+multi_three:
+- '{on} {light} в {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {on}'
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{on} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {on}'
+- '{on} {light} {room} {and} {light} {room2} {and} {room3}'
+multi_three_off:
+- '{off} {light} в {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {off}'
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{off} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {off}'
+- '{off} {light} {room} {and} {light} {room2} {and} {room3}'
+multi_off_lock:
+- '{off} {light} в {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {room2}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {light} {room2}'
+except_in_area:
+- '{off} всички {light} освен {room}'
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+- '{off} {all} {except} {skip_fixture}'
+except_two:
+- '{off} всички {light} освен {room} {and} {room2}'
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+- '{off} {all} {except} {room} {and} {room2}'
+except_fixture_on:
+- '{on} всички {light} освен {skip_fixture}'
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+- '{on} {all} {except} {skip_fixture}'
+floor_except:
+- '{off} всички {light} {floor} освен {room}'
+- '{off} {all} {light} {floor} {except} {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+- '{all} {off} {except} {room}'
+- '{off} {all} {except} {room}'
+multi_covers:
+- '{open} {cover} в {room} {and} {room2}'
+- '{cover} в {room} {open} {and} {room2}'
+- '{open} {cover} {room} {and} {room2}'
+- '{cover} {room} {open} {and} {room2}'
+- '{open} {room} {cover} {and} {room2}'
+- '{room} {cover} {open} {and} {room2}'
+multi_covers_close:
+- '{close} {cover} в {room} {and} {room2}'
+- '{cover} в {room} {close} {and} {room2}'
+- '{close} {cover} {room} {and} {room2}'
+- '{cover} {room} {close} {and} {room2}'
+- '{close} {room} {cover} {and} {room2}'
+- '{room} {cover} {close} {and} {room2}'
+multi_climate:
+- '{set} {climate} в {room} {and} {room2} на {n}'
+- '{set} {climate} на {n}'
+- '{climate} в {room} {and} {room2} {n}'
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {and} {room2} {n}'
+multi_bright:
+- '{set} {fixture} в {room} {and} {room2} на {n}'
+- '{set} {light} в {room} {and} {room2} на {n}'
+- '{light} в {room} {and} {room2} на {n}'
+- '{set} {fixture} {room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {room2} {n}'
+- '{fixture} {room} {and} {room2} {n}'
+multi_color:
+- '{set} {fixture} в {room} {and} {room2} на {color}'
+- '{light} в {room} {and} {room2} {color}'
+- '{set} {light} в {room} {and} {room2} {color}'
+- '{set} {fixture} {room} {and} {room2} {color}'
+- '{set} {light} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+query_two:
+- какъв е {target} в {room} {and} {room2}
+- '{query} {target} в {room} {and} {room2}'
+- '{query} {target}'
+- '{query} {target} {room} {and} {room2}'
+- '{target} {room} {and} {room2}'
+- '{room} {and} {room2} {target}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+- '{light} {room2} {off} {and} {climate} {room}'
+multi_locks:
+- заключи {door}
+- заключи {lock} в {room} {and} {room2}
+- '{lock_v} {door}'
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{lock} {room} {and} {room2} {lock_v}'
+- '{room} {and} {room2} {lock} {lock_v}'
+scene_and_off:
+- '{on} {scene_name} {and} {off} {light} {room}'
+- активирай {scene_name} {and} {off} {light} {room}
+- '{scene_name} {on} {and} {off} {light} {room}'
+- '{on} the {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {and} {off} {light} {room}'
+- '{play} {scene_name} {and} {off} {light} {room}'
+clock:
+- колко е часът
+- колко е часът сега
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+- '{query} {clock} {clock}'
+weather:
+- какво е времето
+- каква е прогнозата
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'
+- '{query} {weather} {weather}'

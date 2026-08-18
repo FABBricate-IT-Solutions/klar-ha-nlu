@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- allume lampe salon
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread courses
+m0_exact/representative::exact_multi_intent:
+- allume plafond chambre3 puis eteins lumiere entree
+m0_exact/representative::exact_reject:
+- capitale france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk liste
+m0_exact/representative::exact_state_persistence:
+- - quel lumiere entree
+  - '12'
+m0_exact/representative::exact_timer:
+- allume minuteur oven 2 minute
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- allume minuteur oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples courses

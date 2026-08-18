@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- veliginchu timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- veliginchu timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- veliginchu timer abstract
+timers/timers::cancel_all_timers:
+- arpu anni timer
+timers/timers::timer_laundry_cancel:
+- veliginchu timer laundry
+timers/timers::timer_laundry_decrease:
+- veliginchu timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- veliginchu timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- arpu timer laundry
+timers/timers::timer_laundry_start:
+- veliginchu timer laundry
+timers/timers::timer_laundry_status:
+- emi timer laundry
+timers/timers::timer_laundry_unpause:
+- veliginchu timer laundry
+timers/timers::timer_oven_cancel:
+- veliginchu timer oven
+timers/timers::timer_oven_decrease:
+- veliginchu timer oven 44 min
+timers/timers::timer_oven_increase:
+- veliginchu timer oven 30 min
+timers/timers::timer_oven_pause:
+- arpu timer oven
+timers/timers::timer_oven_start:
+- veliginchu timer oven 2 min
+timers/timers::timer_oven_status:
+- emi timer oven
+timers/timers::timer_oven_unpause:
+- veliginchu timer oven

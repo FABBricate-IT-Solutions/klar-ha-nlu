@@ -30,7 +30,7 @@ In Home Assistant kann der gesprochene Satz eine Persönlichkeitsformel bekommen
 | `src/home/` | Home-Graph laden, Overlay, Expose-Filter, Rollen und Policy |
 | `src/parse/` | Token, Actions, Resolve, Slots, gesprochene Antworten |
 | `src/eval/` | Held-out-Metriken, Assist-Vergleich, Scorecard, Benches |
-| `src/migrate/` | Einmaliger V1-Overlay-Dry-Run / V2-Save |
+| `src/migrate.rs` | Einmaliger V1-Overlay-Dry-Run / V2-Save |
 | `src/session.rs` | letztes Ziel, offenes Clarify/Confirm |
 | `src/io/` | HTTP (`/api/v2/parse`), Wyoming, redigierte Bundles, Bootstrap |
 

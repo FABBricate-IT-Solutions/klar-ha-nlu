@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- mets chauffage salon 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- mets chauffage chambre 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- mets store chambre2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- ferme store chambre2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- ouvre store chambre2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- mets store chambre3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- ferme store chambre3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- ouvre store chambre3
+devices/cover_garage_door::cover_garage_door_change_position:
+- mets store garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- ferme store garage
+devices/cover_garage_door::cover_garage_door_open:
+- ouvre store garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- mets store salon 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- ferme store salon
+devices/cover_living_blinds::cover_living_blinds_open:
+- ouvre store salon
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- mets store chambre 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- ferme store chambre
+devices/cover_master_blinds::cover_master_blinds_open:
+- ouvre store chambre
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- mets ventilateur chambre2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- eteins ventilateur chambre2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- allume ventilateur chambre2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- mets ventilateur famille 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- eteins ventilateur famille
+devices/fan_family_fan::fan_family_fan_turn_on:
+- allume ventilateur famille
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- mets ventilateur chambre 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- eteins ventilateur chambre
+devices/fan_master_fan::fan_master_fan_turn_on:
+- allume ventilateur chambre
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- eteins ventilateur chambre puis eteins lumiere cuisine
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- allume ventilateur chambre puis allume lumiere cuisine
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- mets plafond chambre2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- mets plafond chambre2 rose
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- eteins plafond chambre2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- allume plafond chambre2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- mets plafond chambre3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- mets plafond chambre3 jaune
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- eteins plafond chambre3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- allume plafond chambre3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- mets plafond chambre4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- mets plafond chambre4 rouge
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- eteins plafond chambre4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- allume plafond chambre4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- mets lumiere salle 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- mets lumiere salle bleu
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- eteins lumiere salle
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- allume lumiere salle
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- mets lumiere entree 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- mets lumiere entree jaune
+devices/light_entryway_light::light_entryway_light_turn_off:
+- eteins lumiere entree
+devices/light_entryway_light::light_entryway_light_turn_on:
+- allume lumiere entree
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- mets plafond famille 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- mets plafond famille violet
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- eteins plafond famille
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- allume plafond famille
+devices/light_garage_light::light_garage_light_change_brightness:
+- mets lumiere garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- mets lumiere garage vert
+devices/light_garage_light::light_garage_light_turn_off:
+- eteins lumiere garage
+devices/light_garage_light::light_garage_light_turn_on:
+- allume lumiere garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- mets lumiere couloir 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- mets lumiere couloir blanc
+devices/light_hallway_light::light_hallway_light_turn_off:
+- eteins lumiere couloir
+devices/light_hallway_light::light_hallway_light_turn_on:
+- allume lumiere couloir
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- mets plafond cuisine 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- mets plafond cuisine orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- eteins plafond cuisine
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- allume plafond cuisine
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- mets lumiere cuisine 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- mets lumiere cuisine vert
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- eteins lumiere cuisine
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- allume lumiere cuisine
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- mets lumiere buanderie 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- mets lumiere buanderie blanc
+devices/light_laundry_light::light_laundry_light_turn_off:
+- eteins lumiere buanderie
+devices/light_laundry_light::light_laundry_light_turn_on:
+- allume lumiere buanderie
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- mets plafond salon 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- mets plafond salon noir
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- eteins plafond salon
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- allume plafond salon
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- mets lumiere salon 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- mets lumiere salon rouge
+devices/light_living_lamp::light_living_lamp_turn_off:
+- eteins lumiere salon
+devices/light_living_lamp::light_living_lamp_turn_on:
+- allume lumiere salon
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- mets lumiere salledebain 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- mets lumiere salledebain bleu
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- eteins lumiere salledebain
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- allume lumiere salledebain
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- mets lumiere bainmaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- mets lumiere bainmaster noir
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- eteins lumiere bainmaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- allume lumiere bainmaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- mets chevet chambre 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- mets chevet chambre rouge
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- eteins chevet chambre
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- allume chevet chambre
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- mets plafond chambre 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- mets plafond chambre bleu
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- eteins plafond chambre
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- allume plafond chambre
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- mets lumiere chambre 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- mets lumiere chambre noir
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- eteins lumiere chambre
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- allume lumiere chambre
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- mets lumiere toilettes 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- mets lumiere toilettes noir
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- eteins lumiere toilettes
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- allume lumiere toilettes
+devices/lock_front_door::lock_front_door_lock:
+- verrouille serrure entree
+devices/lock_front_door::lock_front_door_unlock:
+- deverrouille serrure entree
+devices/lock_garage_entry::lock_garage_entry_lock:
+- verrouille serrure garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- deverrouille serrure garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- allume tv famille
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause tv famille
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- eteins tv famille
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- allume tv famille
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- allume tv famille
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- allume tv famille
+devices/media_player_living_tv::media_player_living_tv_mute:
+- allume tv salon
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause tv salon
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- eteins tv salon
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- allume tv salon
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- allume tv salon
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- allume tv salon
+devices/scenes::dinner_time:
+- mets lumiere salle 90 puis allume plafond cuisine puis mets lumiere cuisine 80
+devices/scenes::good_morning:
+- allume plafond cuisine puis mets lumiere salle 100 puis ouvre store salon puis ouvre
+  store chambre
+devices/scenes::kids_bedtime:
+- eteins plafond chambre2 puis eteins plafond chambre3 puis eteins plafond chambre4
+  puis mets lumiere couloir 15
+devices/scenes::movie_night:
+- eteins plafond salon puis mets lumiere salon 20 puis allume tv salon puis ferme
+  store salon
+devices/scripts::good_night:
+- allume scene nuit
+devices/scripts::leaving_home:
+- allume scene partir
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- eteins lavevaisselle
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- allume lavevaisselle
+devices/switch_dryer::switch_dryer_turn_off:
+- eteins lave
+devices/switch_dryer::switch_dryer_turn_on:
+- allume lave
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- eteins lave
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- allume lave

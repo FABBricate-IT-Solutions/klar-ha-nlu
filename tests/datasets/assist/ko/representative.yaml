@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - kyeo bul geosil
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - kkaeo bul bueok
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - چالو برتن باورچی
+  - برتن باورچی چالو
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - بند برتن باورچی
+  - برتن باورچی بند
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - چالو واشنگ لانڈری
+  - واشنگ لانڈری چالو
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - بند واشنگ لانڈری
+  - واشنگ لانڈری بند
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - چالو dryer لانڈری
+  - dryer لانڈری چالو
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - بند dryer لانڈری
+  - dryer لانڈری بند
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - چالو rangehood باورچی
+  - rangehood باورچی چالو
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - بند rangehood باورچی
+  - rangehood باورچی بند
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - چالو پنکھاbad ماسٹرباتھ
+  - پنکھاbad ماسٹرباتھ چالو
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - بند پنکھاbad ماسٹرباتھ
+  - پنکھاbad ماسٹرباتھ بند
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - چالو پنکھاbad main bath
+  - پنکھاbad main bath چالو
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - بند پنکھاbad main bath
+  - پنکھاbad main bath بند

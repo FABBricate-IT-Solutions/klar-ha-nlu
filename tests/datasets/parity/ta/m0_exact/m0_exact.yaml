@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- eru vilakku arai
+m0_exact/representative::exact_list_complete_from_setup:
+- done bread pattiyal
+m0_exact/representative::exact_multi_intent:
+- eru meetai padukkaiyarai3 matrum anai vilakku nuzhaivu
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- add milk pattiyal
+m0_exact/representative::exact_state_persistence:
+- - enna vilakku nuzhaivu
+  - '12'
+m0_exact/representative::exact_timer:
+- eru timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- eru timer oven
+m0_exact/representative::exact_todo_list:
+- add apples pattiyal

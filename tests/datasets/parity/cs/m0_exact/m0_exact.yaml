@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- zapni svetlo obyvak
+m0_exact/representative::exact_list_complete_from_setup:
+- hotovo bread seznam
+m0_exact/representative::exact_multi_intent:
+- zapni strop loznice3 a vypni svetlo predsin
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- pridej milk seznam
+m0_exact/representative::exact_state_persistence:
+- - co svetlo predsin
+  - '12'
+m0_exact/representative::exact_timer:
+- zapni casovac oven 2 minut
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- zapni casovac oven
+m0_exact/representative::exact_todo_list:
+- pridej apples seznam

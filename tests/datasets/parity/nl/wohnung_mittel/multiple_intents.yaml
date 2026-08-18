@@ -1,0 +1,27 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- uitzetten alle licht behalve slaapkamer behalve keuken
+multiple_intents/multi::licht_und_heizung:
+- aanzetten licht woonkamer en stel verwarming woonkamer 23
+multiple_intents/multi::wohn_und_ess_aus:
+- uitzetten licht woonkamer en uitzetten licht huiskameress
+multiple_intents/multi::wohn_und_ess_rot:
+- stel licht woonkamer rood en stel licht huiskameress rood
+multiple_intents/multi::wz_und_kuche_licht:
+- aanzetten licht woonkamer en aanzetten licht keuken
+multiple_intents/multi::zwei_raeume_und_heizung:
+- aanzetten licht woonkamer en aanzetten licht keuken en stel verwarming woonkamer
+  23
+multiple_intents/spoken::drei_raeume_an:
+- aanzetten licht woonkamer en aanzetten licht huiskameress en aanzetten licht keuken
+multiple_intents/spoken::drei_raeume_aus:
+- uitzetten licht woonkamer en uitzetten licht huiskameress en uitzetten licht keuken
+multiple_intents/spoken::ess_und_wohn_aus:
+- uitzetten licht woonkamer en uitzetten licht huiskameress
+multiple_intents/spoken::kugel_und_decke_aus:
+- uitzetten bol en uitzetten plafond
+multiple_intents/spoken_more::kuche_und_ess_an:
+- aanzetten licht keuken en aanzetten licht huiskameress
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- uitzetten licht woonkamer en uitzetten licht huiskameress en uitzetten licht kantoor
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- uitzetten licht woonkamer en uitzetten licht kantoor

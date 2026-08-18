@@ -1,0 +1,504 @@
+name: Full Home ar
+language: ar
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: ارض
+  level: 0
+  aliases:
+  - ارض
+  - تحت
+- id: upper
+  name: فوق
+  level: 1
+  aliases:
+  - فوق
+  - طابق
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: مدخل
+  floor: ground
+  aliases:
+  - مدخل
+- id: living
+  name: صالون
+  floor: ground
+  aliases:
+  - صالون
+- id: dining
+  name: عائليess
+  floor: ground
+  aliases:
+  - عائليess
+- id: kitchen
+  name: مطبخ
+  floor: ground
+  aliases:
+  - مطبخ
+- id: family_room
+  name: عائلي
+  floor: ground
+  aliases:
+  - عائلي
+- id: laundry
+  name: غسيل
+  floor: ground
+  aliases:
+  - غسيل
+- id: powder_room
+  name: حمامضيف
+  floor: ground
+  aliases:
+  - حمامضيف
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: غرفة
+  floor: upper
+  aliases:
+  - غرفة
+- id: bedroom_2
+  name: غرفة2
+  floor: upper
+  aliases:
+  - غرفة2
+- id: bedroom_3
+  name: غرفة3
+  floor: upper
+  aliases:
+  - غرفة3
+- id: bedroom_4
+  name: غرفة4
+  floor: upper
+  aliases:
+  - غرفة4
+- id: master_bath
+  name: حمامرئيسي
+  floor: upper
+  aliases:
+  - حمامرئيسي
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: ممر
+  floor: upper
+  aliases:
+  - ممر
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: مدخل ضوء
+  aliases:
+  - مدخل ضوء
+  - ضوء
+- id: light.living_ceiling
+  area_id: living
+  name: صالون سقف
+  aliases:
+  - صالون سقف
+  - سقف
+- id: light.living_lamp
+  area_id: living
+  name: صالون ضوء
+  aliases:
+  - صالون ضوء
+  - ضوء
+- id: light.dining_pendant
+  area_id: dining
+  name: عائليess ضوء
+  aliases:
+  - عائليess ضوء
+  - ضوء
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: مطبخ سقف
+  aliases:
+  - مطبخ سقف
+  - سقف
+- id: light.kitchen_island
+  area_id: kitchen
+  name: مطبخ جزيرة
+  aliases:
+  - مطبخ جزيرة
+  - جزيرة
+- id: light.family_ceiling
+  area_id: family_room
+  name: عائلي سقف
+  aliases:
+  - عائلي سقف
+  - سقف
+- id: light.laundry_light
+  area_id: laundry
+  name: غسيل ضوء
+  aliases:
+  - غسيل ضوء
+  - ضوء
+- id: light.powder_room_light
+  area_id: powder_room
+  name: حمامضيف ضوء
+  aliases:
+  - حمامضيف ضوء
+  - ضوء
+- id: light.garage_light
+  area_id: garage
+  name: garage ضوء
+  aliases:
+  - garage ضوء
+  - ضوء
+- id: light.office_ceiling
+  area_id: office
+  name: office سقف
+  aliases:
+  - office سقف
+  - سقف
+- id: light.garden
+  area_id: garden
+  name: garden ضوء
+  aliases:
+  - garden ضوء
+  - ضوء
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: غرفة سقف
+  aliases:
+  - غرفة سقف
+  - سقف
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: غرفة ensuite
+  aliases:
+  - غرفة ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: غرفة left جانبسرير
+  aliases:
+  - غرفة left جانبسرير
+  - جانبسرير
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: غرفة right جانبسرير
+  aliases:
+  - غرفة right جانبسرير
+  - جانبسرير
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: غرفة2 سقف
+  aliases:
+  - غرفة2 سقف
+  - سقف
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: غرفة3 سقف
+  aliases:
+  - غرفة3 سقف
+  - سقف
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: غرفة4 سقف
+  aliases:
+  - غرفة4 سقف
+  - سقف
+- id: light.master_bath_light
+  area_id: master_bath
+  name: حمامرئيسي ضوء
+  aliases:
+  - حمامرئيسي ضوء
+  - ضوء
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath ضوء
+  aliases:
+  - main bath ضوء
+  - ضوء
+- id: light.hallway_light
+  area_id: hallway
+  name: ممر ضوء
+  aliases:
+  - ممر ضوء
+  - ضوء
+- id: light.basement
+  area_id: basement
+  name: basement ضوء
+  aliases:
+  - basement ضوء
+  - ضوء
+- id: cover.living_blinds
+  area_id: living
+  name: صالون ستارة
+  aliases:
+  - صالون ستارة
+  - ستارة
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: غرفة ستارة
+  aliases:
+  - غرفة ستارة
+  - ستارة
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: غرفة2 ستارة
+  aliases:
+  - غرفة2 ستارة
+  - ستارة
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: غرفة3 ستارة
+  aliases:
+  - غرفة3 ستارة
+  - ستارة
+- id: cover.garage_door
+  area_id: garage
+  name: garage ستارة
+  aliases:
+  - garage ستارة
+  - ستارة
+- id: climate.ground_thermostat
+  area_id: living
+  name: صالون تكييف
+  aliases:
+  - صالون تكييف
+  - تكييف
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: غرفة تكييف
+  aliases:
+  - غرفة تكييف
+  - تكييف
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: حرارة غرفة
+  aliases:
+  - حرارة غرفة
+  - حرارة
+  - ac
+  tags:
+  - حرارة
+- id: fan.family_fan
+  area_id: family_room
+  name: عائلي مروحة
+  aliases:
+  - عائلي مروحة
+  - مروحة
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: غرفة مروحة
+  aliases:
+  - غرفة مروحة
+  - مروحة
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: غرفة2 مروحة
+  aliases:
+  - غرفة2 مروحة
+  - مروحة
+- id: lock.front_door
+  area_id: entryway
+  name: front باب
+  aliases:
+  - front باب
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage باب
+  aliases:
+  - garage باب
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: مطبخ جلاية
+  aliases:
+  - مطبخ جلاية
+  - جلاية
+- id: switch.rangehood
+  area_id: kitchen
+  name: مطبخ rangehood
+  aliases:
+  - مطبخ rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: غسيل غسالة
+  aliases:
+  - غسيل غسالة
+  - غسالة
+  - washer
+  tags:
+  - washer
+  - غسالة
+- id: switch.dryer
+  area_id: laundry
+  name: غسيل dryer
+  aliases:
+  - غسيل dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: حمامرئيسي مروحةbad
+  aliases:
+  - حمامرئيسي مروحةbad
+  - مروحةbad
+  tags:
+  - مروحةbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath مروحةbad
+  aliases:
+  - main bath مروحةbad
+  - مروحةbad
+  tags:
+  - مروحةbad
+- id: media_player.living_tv
+  area_id: living
+  name: صالون تلفاز
+  aliases:
+  - صالون تلفاز
+  - تلفاز
+- id: media_player.family_tv
+  area_id: family_room
+  name: عائلي تلفاز
+  aliases:
+  - عائلي تلفاز
+  - تلفاز
+- id: media_player.living_music
+  area_id: living
+  name: صالون تلفاز
+  aliases:
+  - صالون تلفاز
+  - تلفاز
+  platform: music_assistant
+  tags:
+  - تلفاز
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: مطبخ تلفاز
+  aliases:
+  - مطبخ تلفاز
+  - تلفاز
+  platform: music_assistant
+  tags:
+  - تلفاز
+- id: media_player.office_music
+  area_id: office
+  name: office تلفاز
+  aliases:
+  - office تلفاز
+  - تلفاز
+  platform: music_assistant
+  tags:
+  - تلفاز
+- id: vacuum.robot
+  area_id: living
+  name: صالون مكنسة
+  aliases:
+  - صالون مكنسة
+  - مكنسة
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: مدخل doorsensor
+  aliases:
+  - مدخل doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: صالون windowsensor
+  aliases:
+  - صالون windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: مطبخ motion
+  aliases:
+  - مطبخ motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: صالون tempsensor
+  aliases:
+  - صالون tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: صالون humidity
+  aliases:
+  - صالون humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: فيلم
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: ليل
+- id: leaving_home
+  name: خروج
+timers:
+- id: oven
+  name: oven مؤقت
+- id: laundry
+  name: laundry مؤقت
+- id: abstract
+  name: abstract مؤقت
+lists:
+- id: shopping
+  name: قائمة

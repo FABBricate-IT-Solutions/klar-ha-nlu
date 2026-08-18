@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- chiudi tenda camera2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- apri tenda camera2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- metti tenda camera2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- metti ventola camera2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- spegni ventola camera2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- accendi ventola camera2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- metti luce camera2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- metti luce camera2 rosa
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- spegni luce camera2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- accendi luce camera2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- chiudi tenda camera3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- apri tenda camera3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- metti tenda camera3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- metti luce camera3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- metti luce camera3 blu
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- spegni luce camera3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- accendi luce camera3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- metti luce camera4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- metti luce camera4 verde
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- spegni luce camera4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- accendi luce camera4
+area/dining_lights::dining_lights_change_brightness:
+- metti luce soggiornofamess 54
+area/dining_lights::dining_lights_change_color:
+- metti luce soggiornofamess blu
+area/dining_lights::dining_lights_turn_off:
+- spegni luce soggiornofamess
+area/dining_lights::dining_lights_turn_on:
+- accendi luce soggiornofamess
+area/entryway_lights::entryway_lights_change_brightness:
+- metti luce ingresso 72
+area/entryway_lights::entryway_lights_change_color:
+- metti luce ingresso nero
+area/entryway_lights::entryway_lights_turn_off:
+- spegni luce ingresso
+area/entryway_lights::entryway_lights_turn_on:
+- accendi luce ingresso
+area/entryway_locks::entryway_locks_lock:
+- blocca serratura ingresso
+area/entryway_locks::entryway_locks_unlock:
+- apri serratura ingresso
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- metti luce soggiornofam 39 e metti luce cucina 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- metti luce soggiornofam viola e metti luce cucina viola
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- spegni luce soggiornofam e spegni luce cucina
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- accendi luce soggiornofam e accendi luce cucina
+area/family_room_fans::family_room_fans_set_fan_speed:
+- metti ventola soggiornofam 32
+area/family_room_fans::family_room_fans_turn_off:
+- spegni ventola soggiornofam
+area/family_room_fans::family_room_fans_turn_on:
+- accendi ventola soggiornofam
+area/family_room_lights::family_room_lights_change_brightness:
+- metti luce soggiornofam 44
+area/family_room_lights::family_room_lights_change_color:
+- metti luce soggiornofam verde
+area/family_room_lights::family_room_lights_turn_off:
+- spegni luce soggiornofam
+area/family_room_lights::family_room_lights_turn_on:
+- accendi luce soggiornofam
+area/garage_covers::garage_covers_close:
+- chiudi tenda garage
+area/garage_covers::garage_covers_open:
+- apri tenda garage
+area/garage_covers::garage_covers_set_position:
+- metti tenda garage 86
+area/garage_lights::garage_lights_change_brightness:
+- metti luce garage 16
+area/garage_lights::garage_lights_change_color:
+- metti luce garage blu
+area/garage_lights::garage_lights_turn_off:
+- spegni luce garage
+area/garage_lights::garage_lights_turn_on:
+- accendi luce garage
+area/garage_locks::garage_locks_lock:
+- blocca serratura garage
+area/garage_locks::garage_locks_unlock:
+- apri serratura garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- metti luce ingressogang 26 e metti luce bagnetto 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- metti luce ingressogang viola e metti luce bagnetto viola
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- spegni luce ingressogang e spegni luce bagnetto
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- accendi luce ingressogang e accendi luce bagnetto
+area/hallway_lights::hallway_lights_change_brightness:
+- metti luce ingressogang 61
+area/hallway_lights::hallway_lights_change_color:
+- metti luce ingressogang arancione
+area/hallway_lights::hallway_lights_turn_off:
+- spegni luce ingressogang
+area/hallway_lights::hallway_lights_turn_on:
+- accendi luce ingressogang
+area/kitchen_lights::kitchen_lights_change_brightness:
+- metti luce cucina 45
+area/kitchen_lights::kitchen_lights_change_color:
+- metti luce cucina rosa
+area/kitchen_lights::kitchen_lights_turn_off:
+- spegni luce cucina
+area/kitchen_lights::kitchen_lights_turn_on:
+- accendi luce cucina
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- spegni apparecchio cucina
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- accendi apparecchio cucina
+area/laundry_lights::laundry_lights_change_brightness:
+- metti luce lavanderia 62
+area/laundry_lights::laundry_lights_change_color:
+- metti luce lavanderia giallo
+area/laundry_lights::laundry_lights_turn_off:
+- spegni luce lavanderia
+area/laundry_lights::laundry_lights_turn_on:
+- accendi luce lavanderia
+area/laundry_switchs::laundry_switchs_turn_off:
+- spegni apparecchio lavanderia
+area/laundry_switchs::laundry_switchs_turn_on:
+- accendi apparecchio lavanderia
+area/living_climates::living_climates_set_temperature:
+- metti riscaldamento soggiorno 20
+area/living_covers::living_covers_close:
+- chiudi tenda soggiorno
+area/living_covers::living_covers_open:
+- apri tenda soggiorno
+area/living_covers::living_covers_set_position:
+- metti tenda soggiorno 46
+area/living_lights::living_lights_change_brightness:
+- metti luce soggiorno 84
+area/living_lights::living_lights_change_color:
+- metti luce soggiorno blu
+area/living_lights::living_lights_turn_off:
+- spegni luce soggiorno
+area/living_lights::living_lights_turn_on:
+- accendi luce soggiorno
+area/main_bath_lights::main_bath_lights_change_brightness:
+- metti luce main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- metti luce main bath rosa
+area/main_bath_lights::main_bath_lights_turn_off:
+- spegni luce main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- accendi luce main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- spegni apparecchio main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- accendi apparecchio main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- metti luce bagnomaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- metti luce bagnomaster nero
+area/master_bath_lights::master_bath_lights_turn_off:
+- spegni luce bagnomaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- accendi luce bagnomaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- spegni apparecchio bagnomaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- accendi apparecchio bagnomaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- metti riscaldamento camera 20 e metti riscaldamento soggiorno 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- chiudi tenda camera e chiudi tenda soggiorno
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- apri tenda camera e apri tenda soggiorno
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- metti tenda camera 19 e metti tenda soggiorno 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- metti luce camera 25 e metti luce soggiorno 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- metti luce camera bianco e metti luce soggiorno bianco
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- spegni luce camera e spegni luce soggiorno
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- accendi luce camera e accendi luce soggiorno
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- metti luce camera 57 e metti luce main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- metti luce camera rosa e metti luce main bath rosa
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- spegni luce camera e spegni luce main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- accendi luce camera e accendi luce main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- metti riscaldamento camera 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- chiudi tenda camera
+area/master_bedroom_covers::master_bedroom_covers_open:
+- apri tenda camera
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- metti tenda camera 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- metti ventola camera 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- spegni ventola camera
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- accendi ventola camera
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- metti luce camera 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- metti luce camera rosa
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- spegni luce camera
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- accendi luce camera
+area/powder_room_lights::powder_room_lights_change_brightness:
+- metti luce bagnetto 52
+area/powder_room_lights::powder_room_lights_change_color:
+- metti luce bagnetto viola
+area/powder_room_lights::powder_room_lights_turn_off:
+- spegni luce bagnetto
+area/powder_room_lights::powder_room_lights_turn_on:
+- accendi luce bagnetto
+area/spoken_lights::spoken_bedroom_inflection:
+- metti luce camera rosso
+area/spoken_lights::spoken_except_island:
+- spegni tutti luce eccetto isola
+area/spoken_lights::spoken_except_kitchen:
+- spegni tutti luce eccetto cucina eccetto isola
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- spegni luce soggiorno e spegni luce soggiornofamess e spegni luce cucina
+area/spoken_lights::spoken_stt_kitchen_off:
+- spegni luce cucina
+area/spoken_lights::spoken_stt_living_off:
+- spegni luce soggiorno

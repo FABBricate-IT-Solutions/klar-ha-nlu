@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- yak isik salon
+m0_exact/representative::exact_list_complete_from_setup:
+- done bread liste
+m0_exact/representative::exact_multi_intent:
+- yak tavan yatakodasi3 ve sondur isik giris
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- add milk liste
+m0_exact/representative::exact_state_persistence:
+- - ne isik giris
+  - '12'
+m0_exact/representative::exact_timer:
+- yak zamanlayici oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- yak zamanlayici oven
+m0_exact/representative::exact_todo_list:
+- add apples liste

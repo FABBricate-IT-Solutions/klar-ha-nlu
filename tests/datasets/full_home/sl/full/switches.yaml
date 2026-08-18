@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - prizgi pomivalni kuhinja
+  - pomivalni kuhinja prizgi
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - ugasni pomivalni kuhinja
+  - pomivalni kuhinja ugasni
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - prizgi pralni pralnica
+  - pralni pralnica prizgi
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - ugasni pralni pralnica
+  - pralni pralnica ugasni
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - prizgi dryer pralnica
+  - dryer pralnica prizgi
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - ugasni dryer pralnica
+  - dryer pralnica ugasni
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - prizgi rangehood kuhinja
+  - rangehood kuhinja prizgi
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - ugasni rangehood kuhinja
+  - rangehood kuhinja ugasni
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - prizgi ventilatorbad kopalmaster
+  - ventilatorbad kopalmaster prizgi
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - ugasni ventilatorbad kopalmaster
+  - ventilatorbad kopalmaster ugasni
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - prizgi ventilatorbad main bath
+  - ventilatorbad main bath prizgi
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - ugasni ventilatorbad main bath
+  - ventilatorbad main bath ugasni

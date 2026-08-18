@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - prizgi luc dnevna
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - ugasni luc kuhinja
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

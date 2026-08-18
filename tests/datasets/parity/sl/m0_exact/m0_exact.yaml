@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- prizgi luc dnevna
+m0_exact/representative::exact_list_complete_from_setup:
+- done bread seznam
+m0_exact/representative::exact_multi_intent:
+- prizgi strop spalnica3 in ugasni luc predsoba
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- add milk seznam
+m0_exact/representative::exact_state_persistence:
+- - kaj luc predsoba
+  - '12'
+m0_exact/representative::exact_timer:
+- prizgi casovnik oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- prizgi casovnik oven
+m0_exact/representative::exact_todo_list:
+- add apples seznam

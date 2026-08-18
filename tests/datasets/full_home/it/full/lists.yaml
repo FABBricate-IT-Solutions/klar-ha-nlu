@@ -1,0 +1,77 @@
+- name: list_add
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - aggiungi milk lista
+  - milk aggiungi lista
+- name: list_done
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - fatto milk
+  - milk fatto
+- name: list_done_milk
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - fatto milk
+  - milk fatto
+- name: list_add_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - aggiungi bread lista
+  - bread aggiungi lista
+- name: list_done_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - fatto bread
+  - bread fatto
+- name: list_add_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - aggiungi eggs lista
+  - eggs aggiungi lista
+- name: list_done_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - fatto eggs
+  - eggs fatto
+- name: list_add_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - aggiungi apples lista
+  - apples aggiungi lista
+- name: list_done_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - fatto apples
+  - apples fatto
+- name: list_add_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - aggiungi coffee lista
+  - coffee aggiungi lista
+- name: list_done_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - fatto coffee
+  - coffee fatto

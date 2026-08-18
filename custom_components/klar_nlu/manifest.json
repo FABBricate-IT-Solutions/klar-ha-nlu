@@ -1,9 +1,10 @@
 {
   "domain": "klar_nlu",
   "name": "Klar NLU",
+  "after_dependencies": ["lovelace"],
   "codeowners": ["@lbentivegni"],
   "config_flow": true,
-  "dependencies": ["conversation"],
+  "dependencies": ["conversation", "frontend", "http"],
   "documentation": "https://github.com/FABBricate-IT-Solutions/klar-ha-nlu",
   "integration_type": "service",
   "iot_class": "local_push",

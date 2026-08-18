@@ -60,4 +60,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("hippie", "Alles easy. "),
         ("gollum", "Ja, mein Schatz. "),
     ],
+    confirm: "Soll ich das wirklich ausführen?",
 };

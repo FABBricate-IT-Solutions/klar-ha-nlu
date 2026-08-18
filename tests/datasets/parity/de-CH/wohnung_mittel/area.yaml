@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- stell heizig badmastermain 23
+area/heizung::heizung_esszimmer_23:
+- stell heizig stubeess 23
+area/heizung::heizung_schlafzimmer_23:
+- stell heizig schlafzimmer 23
+area/heizung::heizung_wohnzimmer_23:
+- stell heizig wohnzimmer 23
+area/lichter::alle_an_ausser_kugel:
+- mach alli liecht ausser kugel
+area/lichter::alle_an_ausser_schlafzimmer:
+- mach alli liecht ausser schlafzimmer
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- stell alli liecht ausser schlafzimmer 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- stell alli liecht ausser kugel rot
+area/lichter::alle_ausser_kugel:
+- loesch alli liecht ausser kugel
+area/lichter::alle_ausser_schlafzimmer:
+- loesch alli liecht ausser schlafzimmer
+area/lichter::alle_lichter_an:
+- mach alli liecht
+area/lichter::alle_lichter_aus:
+- loesch alli liecht
+area/lichter::arbeitszimmer_lichter_an:
+- mach liecht wohnzimmer
+area/lichter::arbeitszimmer_lichter_aus:
+- loesch liecht wohnzimmer
+area/lichter::esszimmer_lichter_an:
+- mach liecht stubeess
+area/lichter::esszimmer_lichter_aus:
+- loesch liecht stubeess
+area/lichter::kuche_lichter_an:
+- mach liecht chuchi
+area/lichter::kuche_lichter_aus:
+- loesch liecht chuchi
+area/lichter::schlafzimmer_auf_blau:
+- stell liecht schlafzimmer blau
+area/lichter::schlafzimmer_auf_rot:
+- stell liecht schlafzimmer rot
+area/lichter::wohnzimmer_helligkeit:
+- stell liecht wohnzimmer 45
+area/lichter::wohnzimmer_lichter_an:
+- mach liecht wohnzimmer
+area/lichter::wohnzimmer_lichter_aus:
+- loesch liecht wohnzimmer
+area/spoken::alle_ausser_kugel_stt:
+- loesch alli liecht ausser kugel
+area/spoken::alle_ausser_schlaf_stt:
+- loesch alli liecht ausser schlafzimmer
+area/spoken::alle_ganzen_an:
+- mach alli liecht
+area/spoken::alle_lampen_aus:
+- loesch alli liecht
+area/spoken::esszimmer_weiss:
+- stell liecht stubeess weiss
+area/spoken::stt_kuche_lichte:
+- loesch liecht chuchi
+area/spoken::stt_licht_wohnzimmer_an:
+- mach liecht wohnzimmer
+area/spoken::stt_licht_wohnzimmer_aus:
+- loesch liecht wohnzimmer
+area/spoken::stt_schlafzimmer_dativ:
+- loesch liecht schlafzimmer
+area/spoken::wohnzimmer_gruen:
+- stell liecht wohnzimmer gruen
+area/spoken_more::alle_ausser_arbeitszimmer:
+- loesch alli liecht ausser wohnzimmer
+area/spoken_more::arbeitszimmer_lampen_aus:
+- loesch liecht wohnzimmer
+area/spoken_more::esszimmer_30:
+- stell liecht stubeess 30
+area/spoken_more::esszimmer_lichte_an:
+- mach liecht stubeess
+area/spoken_more::kuche_80:
+- stell liecht chuchi 80
+area/spoken_more::kuche_blau:
+- stell liecht chuchi blau
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- loesch alli liecht ausser schlafzimmer
+area/spoken_more::wohnzimmer_gelb:
+- stell liecht wohnzimmer gelb

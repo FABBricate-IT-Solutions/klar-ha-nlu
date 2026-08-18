@@ -1,0 +1,506 @@
+name: Full Home cs
+language: cs
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: prizemi
+  level: 0
+  aliases:
+  - prizemi
+  - dole
+- id: upper
+  name: patro
+  level: 1
+  aliases:
+  - patro
+  - nahore
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Predsin
+  floor: ground
+  aliases:
+  - predsin
+- id: living
+  name: Obyvak
+  floor: ground
+  aliases:
+  - obyvak
+- id: dining
+  name: Obyvakfamess
+  floor: ground
+  aliases:
+  - obyvakfamess
+- id: kitchen
+  name: Kuchyne
+  floor: ground
+  aliases:
+  - kuchyne
+- id: family_room
+  name: Obyvakfam
+  floor: ground
+  aliases:
+  - obyvakfam
+- id: laundry
+  name: Pradelna
+  floor: ground
+  aliases:
+  - pradelna
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Loznice
+  floor: upper
+  aliases:
+  - loznice
+- id: bedroom_2
+  name: Loznice2
+  floor: upper
+  aliases:
+  - loznice2
+- id: bedroom_3
+  name: Loznice3
+  floor: upper
+  aliases:
+  - loznice3
+- id: bedroom_4
+  name: Loznice4
+  floor: upper
+  aliases:
+  - loznice4
+- id: master_bath
+  name: Koupelmaster
+  floor: upper
+  aliases:
+  - koupelmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Chodba
+  floor: upper
+  aliases:
+  - chodba
+- id: basement
+  name: Sklep
+  floor: basement
+  aliases:
+  - sklep
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: predsin svetlo
+  aliases:
+  - predsin svetlo
+  - svetlo
+- id: light.living_ceiling
+  area_id: living
+  name: obyvak strop
+  aliases:
+  - obyvak strop
+  - strop
+- id: light.living_lamp
+  area_id: living
+  name: obyvak svetlo
+  aliases:
+  - obyvak svetlo
+  - svetlo
+- id: light.dining_pendant
+  area_id: dining
+  name: obyvakfamess svetlo
+  aliases:
+  - obyvakfamess svetlo
+  - svetlo
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kuchyne strop
+  aliases:
+  - kuchyne strop
+  - strop
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kuchyne ostrov
+  aliases:
+  - kuchyne ostrov
+  - ostrov
+- id: light.family_ceiling
+  area_id: family_room
+  name: obyvakfam strop
+  aliases:
+  - obyvakfam strop
+  - strop
+- id: light.laundry_light
+  area_id: laundry
+  name: pradelna svetlo
+  aliases:
+  - pradelna svetlo
+  - svetlo
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc svetlo
+  aliases:
+  - wc svetlo
+  - svetlo
+- id: light.garage_light
+  area_id: garage
+  name: garage svetlo
+  aliases:
+  - garage svetlo
+  - svetlo
+- id: light.office_ceiling
+  area_id: office
+  name: office strop
+  aliases:
+  - office strop
+  - strop
+- id: light.garden
+  area_id: garden
+  name: garden svetlo
+  aliases:
+  - garden svetlo
+  - svetlo
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: loznice strop
+  aliases:
+  - loznice strop
+  - strop
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: loznice ensuite
+  aliases:
+  - loznice ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: loznice left nocnik
+  aliases:
+  - loznice left nocnik
+  - nocnik
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: loznice right nocnik
+  aliases:
+  - loznice right nocnik
+  - nocnik
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: loznice2 strop
+  aliases:
+  - loznice2 strop
+  - strop
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: loznice3 strop
+  aliases:
+  - loznice3 strop
+  - strop
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: loznice4 strop
+  aliases:
+  - loznice4 strop
+  - strop
+- id: light.master_bath_light
+  area_id: master_bath
+  name: koupelmaster svetlo
+  aliases:
+  - koupelmaster svetlo
+  - svetlo
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath svetlo
+  aliases:
+  - main bath svetlo
+  - svetlo
+- id: light.hallway_light
+  area_id: hallway
+  name: chodba svetlo
+  aliases:
+  - chodba svetlo
+  - svetlo
+- id: light.basement
+  area_id: basement
+  name: sklep svetlo
+  aliases:
+  - sklep svetlo
+  - svetlo
+- id: cover.living_blinds
+  area_id: living
+  name: obyvak zaves
+  aliases:
+  - obyvak zaves
+  - zaves
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: loznice zaves
+  aliases:
+  - loznice zaves
+  - zaves
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: loznice2 zaves
+  aliases:
+  - loznice2 zaves
+  - zaves
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: loznice3 zaves
+  aliases:
+  - loznice3 zaves
+  - zaves
+- id: cover.garage_door
+  area_id: garage
+  name: garage zaves
+  aliases:
+  - garage zaves
+  - zaves
+- id: climate.ground_thermostat
+  area_id: living
+  name: obyvak topeni
+  aliases:
+  - obyvak topeni
+  - topeni
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: loznice topeni
+  aliases:
+  - loznice topeni
+  - topeni
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: klima loznice
+  aliases:
+  - klima loznice
+  - klima
+  - ac
+  tags:
+  - klima
+- id: fan.family_fan
+  area_id: family_room
+  name: obyvakfam ventilator
+  aliases:
+  - obyvakfam ventilator
+  - ventilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: loznice ventilator
+  aliases:
+  - loznice ventilator
+  - ventilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: loznice2 ventilator
+  aliases:
+  - loznice2 ventilator
+  - ventilator
+- id: lock.front_door
+  area_id: entryway
+  name: front dvere
+  aliases:
+  - front dvere
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage dvere
+  aliases:
+  - garage dvere
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kuchyne mycka
+  aliases:
+  - kuchyne mycka
+  - mycka
+- id: switch.rangehood
+  area_id: kitchen
+  name: kuchyne digestor
+  aliases:
+  - kuchyne digestor
+  - digestor
+  tags:
+  - digestor
+- id: switch.washing_machine
+  area_id: laundry
+  name: pradelna pracka
+  aliases:
+  - pradelna pracka
+  - pracka
+  - washer
+  tags:
+  - washer
+  - pracka
+- id: switch.dryer
+  area_id: laundry
+  name: pradelna susicka
+  aliases:
+  - pradelna susicka
+  - susicka
+  - dryer
+  tags:
+  - dryer
+  - susicka
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: koupelmaster koupelventilator
+  aliases:
+  - koupelmaster koupelventilator
+  - koupelventilator
+  tags:
+  - koupelventilator
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath koupelventilator
+  aliases:
+  - main bath koupelventilator
+  - koupelventilator
+  tags:
+  - koupelventilator
+- id: media_player.living_tv
+  area_id: living
+  name: obyvak televize
+  aliases:
+  - obyvak televize
+  - televize
+- id: media_player.family_tv
+  area_id: family_room
+  name: obyvakfam televize
+  aliases:
+  - obyvakfam televize
+  - televize
+- id: media_player.living_music
+  area_id: living
+  name: obyvak hudba
+  aliases:
+  - obyvak hudba
+  - hudba
+  platform: music_assistant
+  tags:
+  - hudba
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kuchyne hudba
+  aliases:
+  - kuchyne hudba
+  - hudba
+  platform: music_assistant
+  tags:
+  - hudba
+- id: media_player.office_music
+  area_id: office
+  name: office hudba
+  aliases:
+  - office hudba
+  - hudba
+  platform: music_assistant
+  tags:
+  - hudba
+- id: vacuum.robot
+  area_id: living
+  name: obyvak vysavac
+  aliases:
+  - obyvak vysavac
+  - vysavac
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: predsin dveresenzor
+  aliases:
+  - predsin dveresenzor
+  - dveresenzor
+  tags:
+  - dveresenzor
+- id: binary_sensor.living_window
+  area_id: living
+  name: obyvak oknosenzor
+  aliases:
+  - obyvak oknosenzor
+  - oknosenzor
+  tags:
+  - oknosenzor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kuchyne pohyb
+  aliases:
+  - kuchyne pohyb
+  - pohyb
+  tags:
+  - pohyb
+- id: sensor.living_temperature
+  area_id: living
+  name: obyvak cidlo
+  aliases:
+  - obyvak cidlo
+  - cidlo
+  tags:
+  - cidlo
+- id: sensor.living_humidity
+  area_id: living
+  name: obyvak vlhkost
+  aliases:
+  - obyvak vlhkost
+  - vlhkost
+  tags:
+  - vlhkost
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: vecere
+- id: kids_bedtime
+  name: deti
+- id: good_morning
+  name: rano
+scripts:
+- id: good_night
+  name: vecer
+- id: leaving_home
+  name: odchod
+timers:
+- id: oven
+  name: oven casovac
+- id: laundry
+  name: laundry casovac
+- id: abstract
+  name: abstract casovac
+lists:
+- id: shopping
+  name: seznam

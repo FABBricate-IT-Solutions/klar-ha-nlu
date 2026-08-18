@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- aseta lampo kylpymaster 23
+area/heizung::heizung_esszimmer_23:
+- aseta lampo olohuonefamess 23
+area/heizung::heizung_schlafzimmer_23:
+- aseta lampo makuuhuone 23
+area/heizung::heizung_wohnzimmer_23:
+- aseta lampo olohuone 23
+area/lichter::alle_an_ausser_kugel:
+- sytyta kaikki valo paitsi pallo
+area/lichter::alle_an_ausser_schlafzimmer:
+- sytyta kaikki valo paitsi makuuhuone
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- aseta kaikki valo paitsi makuuhuone 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- aseta kaikki valo paitsi pallo punainen
+area/lichter::alle_ausser_kugel:
+- sammuta kaikki valo paitsi pallo
+area/lichter::alle_ausser_schlafzimmer:
+- sammuta kaikki valo paitsi makuuhuone
+area/lichter::alle_lichter_an:
+- sytyta kaikki valo
+area/lichter::alle_lichter_aus:
+- sammuta kaikki valo
+area/lichter::arbeitszimmer_lichter_an:
+- sytyta valo olohuone
+area/lichter::arbeitszimmer_lichter_aus:
+- sammuta valo olohuone
+area/lichter::esszimmer_lichter_an:
+- sytyta valo olohuonefamess
+area/lichter::esszimmer_lichter_aus:
+- sammuta valo olohuonefamess
+area/lichter::kuche_lichter_an:
+- sytyta valo keittio
+area/lichter::kuche_lichter_aus:
+- sammuta valo keittio
+area/lichter::schlafzimmer_auf_blau:
+- aseta valo makuuhuone sininen
+area/lichter::schlafzimmer_auf_rot:
+- aseta valo makuuhuone punainen
+area/lichter::wohnzimmer_helligkeit:
+- aseta valo olohuone 45
+area/lichter::wohnzimmer_lichter_an:
+- sytyta valo olohuone
+area/lichter::wohnzimmer_lichter_aus:
+- sammuta valo olohuone
+area/spoken::alle_ausser_kugel_stt:
+- sammuta kaikki valo paitsi pallo
+area/spoken::alle_ausser_schlaf_stt:
+- sammuta kaikki valo paitsi makuuhuone
+area/spoken::alle_ganzen_an:
+- sytyta kaikki valo
+area/spoken::alle_lampen_aus:
+- sammuta kaikki valo
+area/spoken::esszimmer_weiss:
+- aseta valo olohuonefamess valkoinen
+area/spoken::stt_kuche_lichte:
+- sammuta valo keittio
+area/spoken::stt_licht_wohnzimmer_an:
+- sytyta valo olohuone
+area/spoken::stt_licht_wohnzimmer_aus:
+- sammuta valo olohuone
+area/spoken::stt_schlafzimmer_dativ:
+- sammuta valo makuuhuone
+area/spoken::wohnzimmer_gruen:
+- aseta valo olohuone vihrea
+area/spoken_more::alle_ausser_arbeitszimmer:
+- sammuta kaikki valo paitsi olohuone
+area/spoken_more::arbeitszimmer_lampen_aus:
+- sammuta valo olohuone
+area/spoken_more::esszimmer_30:
+- aseta valo olohuonefamess 30
+area/spoken_more::esszimmer_lichte_an:
+- sytyta valo olohuonefamess
+area/spoken_more::kuche_80:
+- aseta valo keittio 80
+area/spoken_more::kuche_blau:
+- aseta valo keittio sininen
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- sammuta kaikki valo paitsi makuuhuone
+area/spoken_more::wohnzimmer_gelb:
+- aseta valo olohuone keltainen

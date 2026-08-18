@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- theli timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- theli timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- theli timer abstract
+timers/timers::cancel_all_timers:
+- anaykku ellam timer
+timers/timers::timer_laundry_cancel:
+- theli timer laundry
+timers/timers::timer_laundry_decrease:
+- theli timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- theli timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- anaykku timer laundry
+timers/timers::timer_laundry_start:
+- theli timer laundry
+timers/timers::timer_laundry_status:
+- enth timer laundry
+timers/timers::timer_laundry_unpause:
+- theli timer laundry
+timers/timers::timer_oven_cancel:
+- theli timer oven
+timers/timers::timer_oven_decrease:
+- theli timer oven 44 min
+timers/timers::timer_oven_increase:
+- theli timer oven 30 min
+timers/timers::timer_oven_pause:
+- anaykku timer oven
+timers/timers::timer_oven_start:
+- theli timer oven 2 min
+timers/timers::timer_oven_status:
+- enth timer oven
+timers/timers::timer_oven_unpause:
+- theli timer oven

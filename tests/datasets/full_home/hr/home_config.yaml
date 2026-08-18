@@ -1,0 +1,504 @@
+name: Full Home hr
+language: hr
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: prizemlje
+  level: 0
+  aliases:
+  - prizemlje
+  - dolje
+- id: upper
+  name: kat
+  level: 1
+  aliases:
+  - kat
+  - gore
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Hodnik
+  floor: ground
+  aliases:
+  - hodnik
+- id: living
+  name: Dnevni
+  floor: ground
+  aliases:
+  - dnevni
+- id: dining
+  name: Dnevnifamess
+  floor: ground
+  aliases:
+  - dnevnifamess
+- id: kitchen
+  name: Kuhinja
+  floor: ground
+  aliases:
+  - kuhinja
+- id: family_room
+  name: Dnevnifam
+  floor: ground
+  aliases:
+  - dnevnifam
+- id: laundry
+  name: Perionica
+  floor: ground
+  aliases:
+  - perionica
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Spavaca
+  floor: upper
+  aliases:
+  - spavaca
+- id: bedroom_2
+  name: Spavaca2
+  floor: upper
+  aliases:
+  - spavaca2
+- id: bedroom_3
+  name: Spavaca3
+  floor: upper
+  aliases:
+  - spavaca3
+- id: bedroom_4
+  name: Spavaca4
+  floor: upper
+  aliases:
+  - spavaca4
+- id: master_bath
+  name: Kupaonicamaster
+  floor: upper
+  aliases:
+  - kupaonicamaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: hodnik svjetlo
+  aliases:
+  - hodnik svjetlo
+  - svjetlo
+- id: light.living_ceiling
+  area_id: living
+  name: dnevni strop
+  aliases:
+  - dnevni strop
+  - strop
+- id: light.living_lamp
+  area_id: living
+  name: dnevni svjetlo
+  aliases:
+  - dnevni svjetlo
+  - svjetlo
+- id: light.dining_pendant
+  area_id: dining
+  name: dnevnifamess svjetlo
+  aliases:
+  - dnevnifamess svjetlo
+  - svjetlo
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kuhinja strop
+  aliases:
+  - kuhinja strop
+  - strop
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kuhinja otok
+  aliases:
+  - kuhinja otok
+  - otok
+- id: light.family_ceiling
+  area_id: family_room
+  name: dnevnifam strop
+  aliases:
+  - dnevnifam strop
+  - strop
+- id: light.laundry_light
+  area_id: laundry
+  name: perionica svjetlo
+  aliases:
+  - perionica svjetlo
+  - svjetlo
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc svjetlo
+  aliases:
+  - wc svjetlo
+  - svjetlo
+- id: light.garage_light
+  area_id: garage
+  name: garage svjetlo
+  aliases:
+  - garage svjetlo
+  - svjetlo
+- id: light.office_ceiling
+  area_id: office
+  name: office strop
+  aliases:
+  - office strop
+  - strop
+- id: light.garden
+  area_id: garden
+  name: garden svjetlo
+  aliases:
+  - garden svjetlo
+  - svjetlo
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: spavaca strop
+  aliases:
+  - spavaca strop
+  - strop
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: spavaca ensuite
+  aliases:
+  - spavaca ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: spavaca left nocni
+  aliases:
+  - spavaca left nocni
+  - nocni
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: spavaca right nocni
+  aliases:
+  - spavaca right nocni
+  - nocni
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: spavaca2 strop
+  aliases:
+  - spavaca2 strop
+  - strop
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: spavaca3 strop
+  aliases:
+  - spavaca3 strop
+  - strop
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: spavaca4 strop
+  aliases:
+  - spavaca4 strop
+  - strop
+- id: light.master_bath_light
+  area_id: master_bath
+  name: kupaonicamaster svjetlo
+  aliases:
+  - kupaonicamaster svjetlo
+  - svjetlo
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath svjetlo
+  aliases:
+  - main bath svjetlo
+  - svjetlo
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway svjetlo
+  aliases:
+  - hallway svjetlo
+  - svjetlo
+- id: light.basement
+  area_id: basement
+  name: basement svjetlo
+  aliases:
+  - basement svjetlo
+  - svjetlo
+- id: cover.living_blinds
+  area_id: living
+  name: dnevni zavjesa
+  aliases:
+  - dnevni zavjesa
+  - zavjesa
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: spavaca zavjesa
+  aliases:
+  - spavaca zavjesa
+  - zavjesa
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: spavaca2 zavjesa
+  aliases:
+  - spavaca2 zavjesa
+  - zavjesa
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: spavaca3 zavjesa
+  aliases:
+  - spavaca3 zavjesa
+  - zavjesa
+- id: cover.garage_door
+  area_id: garage
+  name: garage zavjesa
+  aliases:
+  - garage zavjesa
+  - zavjesa
+- id: climate.ground_thermostat
+  area_id: living
+  name: dnevni grijanje
+  aliases:
+  - dnevni grijanje
+  - grijanje
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: spavaca grijanje
+  aliases:
+  - spavaca grijanje
+  - grijanje
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: temperatura spavaca
+  aliases:
+  - temperatura spavaca
+  - temperatura
+  - ac
+  tags:
+  - temperatura
+- id: fan.family_fan
+  area_id: family_room
+  name: dnevnifam ventilator
+  aliases:
+  - dnevnifam ventilator
+  - ventilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: spavaca ventilator
+  aliases:
+  - spavaca ventilator
+  - ventilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: spavaca2 ventilator
+  aliases:
+  - spavaca2 ventilator
+  - ventilator
+- id: lock.front_door
+  area_id: entryway
+  name: front vrata
+  aliases:
+  - front vrata
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage vrata
+  aliases:
+  - garage vrata
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kuhinja posuda
+  aliases:
+  - kuhinja posuda
+  - posuda
+- id: switch.rangehood
+  area_id: kitchen
+  name: kuhinja rangehood
+  aliases:
+  - kuhinja rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: perionica perilica
+  aliases:
+  - perionica perilica
+  - perilica
+  - washer
+  tags:
+  - washer
+  - perilica
+- id: switch.dryer
+  area_id: laundry
+  name: perionica dryer
+  aliases:
+  - perionica dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: kupaonicamaster ventilatorbad
+  aliases:
+  - kupaonicamaster ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatorbad
+  aliases:
+  - main bath ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: dnevni tv
+  aliases:
+  - dnevni tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: dnevnifam tv
+  aliases:
+  - dnevnifam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: dnevni televizor
+  aliases:
+  - dnevni televizor
+  - televizor
+  platform: music_assistant
+  tags:
+  - televizor
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kuhinja televizor
+  aliases:
+  - kuhinja televizor
+  - televizor
+  platform: music_assistant
+  tags:
+  - televizor
+- id: media_player.office_music
+  area_id: office
+  name: office televizor
+  aliases:
+  - office televizor
+  - televizor
+  platform: music_assistant
+  tags:
+  - televizor
+- id: vacuum.robot
+  area_id: living
+  name: dnevni usisivac
+  aliases:
+  - dnevni usisivac
+  - usisivac
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: hodnik doorsensor
+  aliases:
+  - hodnik doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: dnevni windowsensor
+  aliases:
+  - dnevni windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kuhinja motion
+  aliases:
+  - kuhinja motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: dnevni tempsensor
+  aliases:
+  - dnevni tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: dnevni humidity
+  aliases:
+  - dnevni humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: noc
+- id: leaving_home
+  name: odlazak
+timers:
+- id: oven
+  name: oven tajmer
+- id: laundry
+  name: laundry tajmer
+- id: abstract
+  name: abstract tajmer
+lists:
+- id: shopping
+  name: lista

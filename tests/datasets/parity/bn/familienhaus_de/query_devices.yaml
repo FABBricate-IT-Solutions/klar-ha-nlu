@@ -1,0 +1,132 @@
+query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
+- ki alo prabesh
+query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
+- ki gorom bosar
+query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
+- ki gorom shobarghor
+query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
+- ki porda shobarghor2
+query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
+- ki porda shobarghor2
+query_devices/cover_bedroom3_blinds::cover_bedroom3_blinds_get_position:
+- ki porda shobarghor3
+query_devices/cover_bedroom3_blinds::cover_bedroom3_blinds_get_status:
+- ki porda shobarghor3
+query_devices/cover_garage_door::cover_garage_door_get_position:
+- ki porda garage
+query_devices/cover_garage_door::cover_garage_door_get_status:
+- ki porda garage
+query_devices/cover_living_blinds::cover_living_blinds_get_position:
+- ki porda bosar
+query_devices/cover_living_blinds::cover_living_blinds_get_status:
+- ki porda bosar
+query_devices/cover_master_blinds::cover_master_blinds_get_position:
+- ki porda shobarghor
+query_devices/cover_master_blinds::cover_master_blinds_get_status:
+- ki porda shobarghor
+query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
+- ki pakha shobarghor2
+query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
+- ki pakha shobarghor2
+query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
+- ki pakha paribarik
+query_devices/fan_family_fan::fan_family_fan_get_status:
+- ki pakha paribarik
+query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
+- ki pakha shobarghor
+query_devices/fan_master_fan::fan_master_fan_get_status:
+- ki pakha shobarghor
+query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
+- ki chhad shobarghor2
+query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
+- ki chhad shobarghor2
+query_devices/light_bedroom3_ceiling::light_bedroom3_ceiling_get_brightness:
+- ki chhad shobarghor3
+query_devices/light_bedroom3_ceiling::light_bedroom3_ceiling_get_status:
+- ki chhad shobarghor3
+query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_brightness:
+- ki chhad shobarghor4
+query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_status:
+- ki chhad shobarghor4
+query_devices/light_dining_pendant::light_dining_pendant_get_brightness:
+- ki alo paribarikess
+query_devices/light_dining_pendant::light_dining_pendant_get_status:
+- ki alo paribarikess
+query_devices/light_entryway_light::light_entryway_light_get_brightness:
+- ki alo prabesh
+query_devices/light_entryway_light::light_entryway_light_get_status:
+- ki alo prabesh
+query_devices/light_family_ceiling::light_family_ceiling_get_brightness:
+- ki chhad paribarik
+query_devices/light_family_ceiling::light_family_ceiling_get_status:
+- ki chhad paribarik
+query_devices/light_garage_light::light_garage_light_get_brightness:
+- ki alo garage
+query_devices/light_garage_light::light_garage_light_get_status:
+- ki alo garage
+query_devices/light_hallway_light::light_hallway_light_get_brightness:
+- ki alo prabeshgang
+query_devices/light_hallway_light::light_hallway_light_get_status:
+- ki alo prabeshgang
+query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
+- ki chhad ranna
+query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
+- ki chhad ranna
+query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
+- ki alo ranna
+query_devices/light_kitchen_island::light_kitchen_island_get_status:
+- ki alo ranna
+query_devices/light_laundry_light::light_laundry_light_get_brightness:
+- ki alo dhoa
+query_devices/light_laundry_light::light_laundry_light_get_status:
+- ki alo dhoa
+query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
+- ki chhad bosar
+query_devices/light_living_ceiling::light_living_ceiling_get_status:
+- ki chhad bosar
+query_devices/light_living_lamp::light_living_lamp_get_brightness:
+- ki alo bosar
+query_devices/light_living_lamp::light_living_lamp_get_status:
+- ki alo bosar
+query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
+- ki alo main bath
+query_devices/light_main_bath_light::light_main_bath_light_get_status:
+- ki alo main bath
+query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
+- ki alo masterbath
+query_devices/light_master_bath_light::light_master_bath_light_get_status:
+- ki alo masterbath
+query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
+- ki bichana shobarghor
+query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
+- ki bichana shobarghor
+query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
+- ki bichana shobarghor
+query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
+- ki bichana shobarghor
+query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
+- ki chhad shobarghor
+query_devices/light_master_ceiling::light_master_ceiling_get_status:
+- ki chhad shobarghor
+query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
+- ki alo shobarghor
+query_devices/light_master_ensuite::light_master_ensuite_get_status:
+- ki alo shobarghor
+query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
+- ki alo shauchagar
+query_devices/light_powder_room_light::light_powder_room_light_get_status:
+- ki alo shauchagar
+query_devices/lock_front_door::lock_front_door_get_status:
+- ki tala prabesh
+query_devices/lock_garage_entry::lock_garage_entry_get_status:
+- ki tala garage
+query_devices/media_player_family_tv::media_player_family_tv_get_status:
+- ki tivi paribarik
+query_devices/media_player_living_tv::media_player_living_tv_get_status:
+- ki tivi bosar
+query_devices/switch_dishwasher::switch_dishwasher_get_status:
+- ki basan
+query_devices/switch_dryer::switch_dryer_get_status:
+- ki washing
+query_devices/switch_washing_machine::switch_washing_machine_get_status:
+- ki washing

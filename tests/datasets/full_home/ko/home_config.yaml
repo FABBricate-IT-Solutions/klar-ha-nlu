@@ -1,0 +1,504 @@
+name: Full Home ko
+language: ko
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: araecheung
+  level: 0
+  aliases:
+  - araecheung
+  - arae
+- id: upper
+  name: wicheung
+  level: 1
+  aliases:
+  - wicheung
+  - wi
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Hyeongwan
+  floor: ground
+  aliases:
+  - hyeongwan
+- id: living
+  name: Geosil
+  floor: ground
+  aliases:
+  - geosil
+- id: dining
+  name: Gajoksiless
+  floor: ground
+  aliases:
+  - gajoksiless
+- id: kitchen
+  name: Bueok
+  floor: ground
+  aliases:
+  - bueok
+- id: family_room
+  name: Gajoksil
+  floor: ground
+  aliases:
+  - gajoksil
+- id: laundry
+  name: Setaksil
+  floor: ground
+  aliases:
+  - setaksil
+- id: powder_room
+  name: Hwajangsil
+  floor: ground
+  aliases:
+  - hwajangsil
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Chimsil
+  floor: upper
+  aliases:
+  - chimsil
+- id: bedroom_2
+  name: Chimsil2
+  floor: upper
+  aliases:
+  - chimsil2
+- id: bedroom_3
+  name: Chimsil3
+  floor: upper
+  aliases:
+  - chimsil3
+- id: bedroom_4
+  name: Chimsil4
+  floor: upper
+  aliases:
+  - chimsil4
+- id: master_bath
+  name: Anbangyoksil
+  floor: upper
+  aliases:
+  - anbangyoksil
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Bokdo
+  floor: upper
+  aliases:
+  - bokdo
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: hyeongwan bul
+  aliases:
+  - hyeongwan bul
+  - bul
+- id: light.living_ceiling
+  area_id: living
+  name: geosil cheonjang
+  aliases:
+  - geosil cheonjang
+  - cheonjang
+- id: light.living_lamp
+  area_id: living
+  name: geosil bul
+  aliases:
+  - geosil bul
+  - bul
+- id: light.dining_pendant
+  area_id: dining
+  name: gajoksiless bul
+  aliases:
+  - gajoksiless bul
+  - bul
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: bueok cheonjang
+  aliases:
+  - bueok cheonjang
+  - cheonjang
+- id: light.kitchen_island
+  area_id: kitchen
+  name: bueok seom
+  aliases:
+  - bueok seom
+  - seom
+- id: light.family_ceiling
+  area_id: family_room
+  name: gajoksil cheonjang
+  aliases:
+  - gajoksil cheonjang
+  - cheonjang
+- id: light.laundry_light
+  area_id: laundry
+  name: setaksil bul
+  aliases:
+  - setaksil bul
+  - bul
+- id: light.powder_room_light
+  area_id: powder_room
+  name: hwajangsil bul
+  aliases:
+  - hwajangsil bul
+  - bul
+- id: light.garage_light
+  area_id: garage
+  name: garage bul
+  aliases:
+  - garage bul
+  - bul
+- id: light.office_ceiling
+  area_id: office
+  name: office cheonjang
+  aliases:
+  - office cheonjang
+  - cheonjang
+- id: light.garden
+  area_id: garden
+  name: garden bul
+  aliases:
+  - garden bul
+  - bul
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: chimsil cheonjang
+  aliases:
+  - chimsil cheonjang
+  - cheonjang
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: chimsil ensuite
+  aliases:
+  - chimsil ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: chimsil left chimdae
+  aliases:
+  - chimsil left chimdae
+  - chimdae
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: chimsil right chimdae
+  aliases:
+  - chimsil right chimdae
+  - chimdae
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: chimsil2 cheonjang
+  aliases:
+  - chimsil2 cheonjang
+  - cheonjang
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: chimsil3 cheonjang
+  aliases:
+  - chimsil3 cheonjang
+  - cheonjang
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: chimsil4 cheonjang
+  aliases:
+  - chimsil4 cheonjang
+  - cheonjang
+- id: light.master_bath_light
+  area_id: master_bath
+  name: anbangyoksil bul
+  aliases:
+  - anbangyoksil bul
+  - bul
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath bul
+  aliases:
+  - main bath bul
+  - bul
+- id: light.hallway_light
+  area_id: hallway
+  name: bokdo bul
+  aliases:
+  - bokdo bul
+  - bul
+- id: light.basement
+  area_id: basement
+  name: basement bul
+  aliases:
+  - basement bul
+  - bul
+- id: cover.living_blinds
+  area_id: living
+  name: geosil keoteun
+  aliases:
+  - geosil keoteun
+  - keoteun
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: chimsil keoteun
+  aliases:
+  - chimsil keoteun
+  - keoteun
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: chimsil2 keoteun
+  aliases:
+  - chimsil2 keoteun
+  - keoteun
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: chimsil3 keoteun
+  aliases:
+  - chimsil3 keoteun
+  - keoteun
+- id: cover.garage_door
+  area_id: garage
+  name: garage keoteun
+  aliases:
+  - garage keoteun
+  - keoteun
+- id: climate.ground_thermostat
+  area_id: living
+  name: geosil nanbang
+  aliases:
+  - geosil nanbang
+  - nanbang
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: chimsil nanbang
+  aliases:
+  - chimsil nanbang
+  - nanbang
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: nanbang chimsil
+  aliases:
+  - nanbang chimsil
+  - nanbang
+  - ac
+  tags:
+  - nanbang
+- id: fan.family_fan
+  area_id: family_room
+  name: gajoksil seonpunggi
+  aliases:
+  - gajoksil seonpunggi
+  - seonpunggi
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: chimsil seonpunggi
+  aliases:
+  - chimsil seonpunggi
+  - seonpunggi
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: chimsil2 seonpunggi
+  aliases:
+  - chimsil2 seonpunggi
+  - seonpunggi
+- id: lock.front_door
+  area_id: entryway
+  name: front mun
+  aliases:
+  - front mun
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage mun
+  aliases:
+  - garage mun
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: bueok sikgi
+  aliases:
+  - bueok sikgi
+  - sikgi
+- id: switch.rangehood
+  area_id: kitchen
+  name: bueok rangehood
+  aliases:
+  - bueok rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: setaksil setakgi
+  aliases:
+  - setaksil setakgi
+  - setakgi
+  - washer
+  tags:
+  - washer
+  - setakgi
+- id: switch.dryer
+  area_id: laundry
+  name: setaksil dryer
+  aliases:
+  - setaksil dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: anbangyoksil seonpunggibad
+  aliases:
+  - anbangyoksil seonpunggibad
+  - seonpunggibad
+  tags:
+  - seonpunggibad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath seonpunggibad
+  aliases:
+  - main bath seonpunggibad
+  - seonpunggibad
+  tags:
+  - seonpunggibad
+- id: media_player.living_tv
+  area_id: living
+  name: geosil tv
+  aliases:
+  - geosil tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: gajoksil tv
+  aliases:
+  - gajoksil tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: geosil eumak
+  aliases:
+  - geosil eumak
+  - eumak
+  platform: music_assistant
+  tags:
+  - eumak
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: bueok eumak
+  aliases:
+  - bueok eumak
+  - eumak
+  platform: music_assistant
+  tags:
+  - eumak
+- id: media_player.office_music
+  area_id: office
+  name: office eumak
+  aliases:
+  - office eumak
+  - eumak
+  platform: music_assistant
+  tags:
+  - eumak
+- id: vacuum.robot
+  area_id: living
+  name: geosil cheongsogi
+  aliases:
+  - geosil cheongsogi
+  - cheongsogi
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: hyeongwan doorsensor
+  aliases:
+  - hyeongwan doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: geosil windowsensor
+  aliases:
+  - geosil windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: bueok motion
+  aliases:
+  - bueok motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: geosil tempsensor
+  aliases:
+  - geosil tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: geosil humidity
+  aliases:
+  - geosil humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: yeonghwa
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: bam
+- id: leaving_home
+  name: chulbal
+timers:
+- id: oven
+  name: oven taimeo
+- id: laundry
+  name: laundry taimeo
+- id: abstract
+  name: abstract taimeo
+lists:
+- id: shopping
+  name: mongnok

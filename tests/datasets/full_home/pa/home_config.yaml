@@ -1,0 +1,504 @@
+name: Full Home pa
+language: pa
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: hethan
+  level: 0
+  aliases:
+  - hethan
+  - zamin
+- id: upper
+  name: uppar
+  level: 1
+  aliases:
+  - uppar
+  - manzil
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Dakhla
+  floor: ground
+  aliases:
+  - dakhla
+- id: living
+  name: Vithak
+  floor: ground
+  aliases:
+  - vithak
+- id: dining
+  name: Parivarakess
+  floor: ground
+  aliases:
+  - parivarakess
+- id: kitchen
+  name: Rasoi
+  floor: ground
+  aliases:
+  - rasoi
+- id: family_room
+  name: Parivarak
+  floor: ground
+  aliases:
+  - parivarak
+- id: laundry
+  name: Dhon
+  floor: ground
+  aliases:
+  - dhon
+- id: powder_room
+  name: Toilet
+  floor: ground
+  aliases:
+  - toilet
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Bedroom
+  floor: upper
+  aliases:
+  - bedroom
+- id: bedroom_2
+  name: Bedroom2
+  floor: upper
+  aliases:
+  - bedroom2
+- id: bedroom_3
+  name: Bedroom3
+  floor: upper
+  aliases:
+  - bedroom3
+- id: bedroom_4
+  name: Bedroom4
+  floor: upper
+  aliases:
+  - bedroom4
+- id: master_bath
+  name: Masterbath
+  floor: upper
+  aliases:
+  - masterbath
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: dakhla roshni
+  aliases:
+  - dakhla roshni
+  - roshni
+- id: light.living_ceiling
+  area_id: living
+  name: vithak chhat
+  aliases:
+  - vithak chhat
+  - chhat
+- id: light.living_lamp
+  area_id: living
+  name: vithak roshni
+  aliases:
+  - vithak roshni
+  - roshni
+- id: light.dining_pendant
+  area_id: dining
+  name: parivarakess roshni
+  aliases:
+  - parivarakess roshni
+  - roshni
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: rasoi chhat
+  aliases:
+  - rasoi chhat
+  - chhat
+- id: light.kitchen_island
+  area_id: kitchen
+  name: rasoi tapu
+  aliases:
+  - rasoi tapu
+  - tapu
+- id: light.family_ceiling
+  area_id: family_room
+  name: parivarak chhat
+  aliases:
+  - parivarak chhat
+  - chhat
+- id: light.laundry_light
+  area_id: laundry
+  name: dhon roshni
+  aliases:
+  - dhon roshni
+  - roshni
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toilet roshni
+  aliases:
+  - toilet roshni
+  - roshni
+- id: light.garage_light
+  area_id: garage
+  name: garage roshni
+  aliases:
+  - garage roshni
+  - roshni
+- id: light.office_ceiling
+  area_id: office
+  name: office chhat
+  aliases:
+  - office chhat
+  - chhat
+- id: light.garden
+  area_id: garden
+  name: garden roshni
+  aliases:
+  - garden roshni
+  - roshni
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: bedroom chhat
+  aliases:
+  - bedroom chhat
+  - chhat
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: bedroom ensuite
+  aliases:
+  - bedroom ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: bedroom left palang
+  aliases:
+  - bedroom left palang
+  - palang
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: bedroom right palang
+  aliases:
+  - bedroom right palang
+  - palang
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: bedroom2 chhat
+  aliases:
+  - bedroom2 chhat
+  - chhat
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: bedroom3 chhat
+  aliases:
+  - bedroom3 chhat
+  - chhat
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: bedroom4 chhat
+  aliases:
+  - bedroom4 chhat
+  - chhat
+- id: light.master_bath_light
+  area_id: master_bath
+  name: masterbath roshni
+  aliases:
+  - masterbath roshni
+  - roshni
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath roshni
+  aliases:
+  - main bath roshni
+  - roshni
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway roshni
+  aliases:
+  - hallway roshni
+  - roshni
+- id: light.basement
+  area_id: basement
+  name: basement roshni
+  aliases:
+  - basement roshni
+  - roshni
+- id: cover.living_blinds
+  area_id: living
+  name: vithak parda
+  aliases:
+  - vithak parda
+  - parda
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: bedroom parda
+  aliases:
+  - bedroom parda
+  - parda
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: bedroom2 parda
+  aliases:
+  - bedroom2 parda
+  - parda
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: bedroom3 parda
+  aliases:
+  - bedroom3 parda
+  - parda
+- id: cover.garage_door
+  area_id: garage
+  name: garage parda
+  aliases:
+  - garage parda
+  - parda
+- id: climate.ground_thermostat
+  area_id: living
+  name: vithak garmi
+  aliases:
+  - vithak garmi
+  - garmi
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: bedroom garmi
+  aliases:
+  - bedroom garmi
+  - garmi
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: garmi bedroom
+  aliases:
+  - garmi bedroom
+  - garmi
+  - ac
+  tags:
+  - garmi
+- id: fan.family_fan
+  area_id: family_room
+  name: parivarak pakha
+  aliases:
+  - parivarak pakha
+  - pakha
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: bedroom pakha
+  aliases:
+  - bedroom pakha
+  - pakha
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: bedroom2 pakha
+  aliases:
+  - bedroom2 pakha
+  - pakha
+- id: lock.front_door
+  area_id: entryway
+  name: front darwaza
+  aliases:
+  - front darwaza
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage darwaza
+  aliases:
+  - garage darwaza
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: rasoi bartan
+  aliases:
+  - rasoi bartan
+  - bartan
+- id: switch.rangehood
+  area_id: kitchen
+  name: rasoi rangehood
+  aliases:
+  - rasoi rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: dhon washing
+  aliases:
+  - dhon washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: dhon dryer
+  aliases:
+  - dhon dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: masterbath pakhabad
+  aliases:
+  - masterbath pakhabad
+  - pakhabad
+  tags:
+  - pakhabad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath pakhabad
+  aliases:
+  - main bath pakhabad
+  - pakhabad
+  tags:
+  - pakhabad
+- id: media_player.living_tv
+  area_id: living
+  name: vithak tv
+  aliases:
+  - vithak tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: parivarak tv
+  aliases:
+  - parivarak tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: vithak tivi
+  aliases:
+  - vithak tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: rasoi tivi
+  aliases:
+  - rasoi tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: vithak jharu
+  aliases:
+  - vithak jharu
+  - jharu
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: dakhla doorsensor
+  aliases:
+  - dakhla doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: vithak windowsensor
+  aliases:
+  - vithak windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: rasoi motion
+  aliases:
+  - rasoi motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: vithak tempsensor
+  aliases:
+  - vithak tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: vithak humidity
+  aliases:
+  - vithak humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: raat
+- id: leaving_home
+  name: jana
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: suchi

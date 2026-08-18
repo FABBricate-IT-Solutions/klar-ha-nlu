@@ -1,0 +1,504 @@
+name: Full Home eu
+language: eu
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: behe
+  level: 0
+  aliases:
+  - behe
+  - behean
+- id: upper
+  name: solairu
+  level: 1
+  aliases:
+  - solairu
+  - goian
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Sarrera
+  floor: ground
+  aliases:
+  - sarrera
+- id: living
+  name: Egongela
+  floor: ground
+  aliases:
+  - egongela
+- id: dining
+  name: Familiagelaess
+  floor: ground
+  aliases:
+  - familiagelaess
+- id: kitchen
+  name: Sukaldea
+  floor: ground
+  aliases:
+  - sukaldea
+- id: family_room
+  name: Familiagela
+  floor: ground
+  aliases:
+  - familiagela
+- id: laundry
+  name: Garbiketa
+  floor: ground
+  aliases:
+  - garbiketa
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Logela
+  floor: upper
+  aliases:
+  - logela
+- id: bedroom_2
+  name: Logela2
+  floor: upper
+  aliases:
+  - logela2
+- id: bedroom_3
+  name: Logela3
+  floor: upper
+  aliases:
+  - logela3
+- id: bedroom_4
+  name: Logela4
+  floor: upper
+  aliases:
+  - logela4
+- id: master_bath
+  name: Bainumaster
+  floor: upper
+  aliases:
+  - bainumaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: sarrera argia
+  aliases:
+  - sarrera argia
+  - argia
+- id: light.living_ceiling
+  area_id: living
+  name: egongela sabai
+  aliases:
+  - egongela sabai
+  - sabai
+- id: light.living_lamp
+  area_id: living
+  name: egongela argia
+  aliases:
+  - egongela argia
+  - argia
+- id: light.dining_pendant
+  area_id: dining
+  name: familiagelaess argia
+  aliases:
+  - familiagelaess argia
+  - argia
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: sukaldea sabai
+  aliases:
+  - sukaldea sabai
+  - sabai
+- id: light.kitchen_island
+  area_id: kitchen
+  name: sukaldea uharte
+  aliases:
+  - sukaldea uharte
+  - uharte
+- id: light.family_ceiling
+  area_id: family_room
+  name: familiagela sabai
+  aliases:
+  - familiagela sabai
+  - sabai
+- id: light.laundry_light
+  area_id: laundry
+  name: garbiketa argia
+  aliases:
+  - garbiketa argia
+  - argia
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc argia
+  aliases:
+  - wc argia
+  - argia
+- id: light.garage_light
+  area_id: garage
+  name: garage argia
+  aliases:
+  - garage argia
+  - argia
+- id: light.office_ceiling
+  area_id: office
+  name: office sabai
+  aliases:
+  - office sabai
+  - sabai
+- id: light.garden
+  area_id: garden
+  name: garden argia
+  aliases:
+  - garden argia
+  - argia
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: logela sabai
+  aliases:
+  - logela sabai
+  - sabai
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: logela ensuite
+  aliases:
+  - logela ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: logela left gaua
+  aliases:
+  - logela left gaua
+  - gaua
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: logela right gaua
+  aliases:
+  - logela right gaua
+  - gaua
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: logela2 sabai
+  aliases:
+  - logela2 sabai
+  - sabai
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: logela3 sabai
+  aliases:
+  - logela3 sabai
+  - sabai
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: logela4 sabai
+  aliases:
+  - logela4 sabai
+  - sabai
+- id: light.master_bath_light
+  area_id: master_bath
+  name: bainumaster argia
+  aliases:
+  - bainumaster argia
+  - argia
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath argia
+  aliases:
+  - main bath argia
+  - argia
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway argia
+  aliases:
+  - hallway argia
+  - argia
+- id: light.basement
+  area_id: basement
+  name: basement argia
+  aliases:
+  - basement argia
+  - argia
+- id: cover.living_blinds
+  area_id: living
+  name: egongela gortina
+  aliases:
+  - egongela gortina
+  - gortina
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: logela gortina
+  aliases:
+  - logela gortina
+  - gortina
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: logela2 gortina
+  aliases:
+  - logela2 gortina
+  - gortina
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: logela3 gortina
+  aliases:
+  - logela3 gortina
+  - gortina
+- id: cover.garage_door
+  area_id: garage
+  name: garage gortina
+  aliases:
+  - garage gortina
+  - gortina
+- id: climate.ground_thermostat
+  area_id: living
+  name: egongela berogailu
+  aliases:
+  - egongela berogailu
+  - berogailu
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: logela berogailu
+  aliases:
+  - logela berogailu
+  - berogailu
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: berogailu logela
+  aliases:
+  - berogailu logela
+  - berogailu
+  - ac
+  tags:
+  - berogailu
+- id: fan.family_fan
+  area_id: family_room
+  name: familiagela haizagailua
+  aliases:
+  - familiagela haizagailua
+  - haizagailua
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: logela haizagailua
+  aliases:
+  - logela haizagailua
+  - haizagailua
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: logela2 haizagailua
+  aliases:
+  - logela2 haizagailua
+  - haizagailua
+- id: lock.front_door
+  area_id: entryway
+  name: front atea
+  aliases:
+  - front atea
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage atea
+  aliases:
+  - garage atea
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: sukaldea ontzigailu
+  aliases:
+  - sukaldea ontzigailu
+  - ontzigailu
+- id: switch.rangehood
+  area_id: kitchen
+  name: sukaldea rangehood
+  aliases:
+  - sukaldea rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: garbiketa garbigailu
+  aliases:
+  - garbiketa garbigailu
+  - garbigailu
+  - washer
+  tags:
+  - washer
+  - garbigailu
+- id: switch.dryer
+  area_id: laundry
+  name: garbiketa dryer
+  aliases:
+  - garbiketa dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: bainumaster haizagailuabad
+  aliases:
+  - bainumaster haizagailuabad
+  - haizagailuabad
+  tags:
+  - haizagailuabad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath haizagailuabad
+  aliases:
+  - main bath haizagailuabad
+  - haizagailuabad
+  tags:
+  - haizagailuabad
+- id: media_player.living_tv
+  area_id: living
+  name: egongela tb
+  aliases:
+  - egongela tb
+  - tb
+- id: media_player.family_tv
+  area_id: family_room
+  name: familiagela tb
+  aliases:
+  - familiagela tb
+  - tb
+- id: media_player.living_music
+  area_id: living
+  name: egongela telebista
+  aliases:
+  - egongela telebista
+  - telebista
+  platform: music_assistant
+  tags:
+  - telebista
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: sukaldea telebista
+  aliases:
+  - sukaldea telebista
+  - telebista
+  platform: music_assistant
+  tags:
+  - telebista
+- id: media_player.office_music
+  area_id: office
+  name: office telebista
+  aliases:
+  - office telebista
+  - telebista
+  platform: music_assistant
+  tags:
+  - telebista
+- id: vacuum.robot
+  area_id: living
+  name: egongela xurgagailua
+  aliases:
+  - egongela xurgagailua
+  - xurgagailua
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: sarrera doorsensor
+  aliases:
+  - sarrera doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: egongela windowsensor
+  aliases:
+  - egongela windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: sukaldea motion
+  aliases:
+  - sukaldea motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: egongela tempsensor
+  aliases:
+  - egongela tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: egongela humidity
+  aliases:
+  - egongela humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: filma
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: gau
+- id: leaving_home
+  name: irteera
+timers:
+- id: oven
+  name: oven tenporizadorea
+- id: laundry
+  name: laundry tenporizadorea
+- id: abstract
+  name: abstract tenporizadorea
+lists:
+- id: shopping
+  name: zerrenda

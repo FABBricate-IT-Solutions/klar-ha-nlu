@@ -6,6 +6,7 @@
         "description": "Die mitgelieferte Engine kommt von GitHub Releases und wird von der Integration gestartet. Eine URL nur angeben, wenn Klar schon woanders läuft.",
         "data": {
           "mode": "Engine",
+          "channel": "Release-Kanal",
           "url": "URL der Klar-API",
           "token": "Write-Token"
         }
@@ -32,7 +33,8 @@
           "url": "URL der Klar-API",
           "token": "Write-Token",
           "assist_filter": "Nur für Assist freigegebene Entitäten steuern",
-          "nlu_rag": "NLU-RAG (optional)"
+          "nlu_rag": "NLU-RAG (optional)",
+          "channel": "Release-Kanal"
         },
         "data_description": {
           "personality": "Liegt in dieser Integration, nicht in der Klar-App. Assist und die LLM-Stimme wechseln mit dieser Auswahl. Mit Refine steckt die Stimme im Satz, nicht in einer festen Formel.",
@@ -40,7 +42,9 @@
           "refine_prompt": "Optionale Extra-Stil-Anweisung zur gewählten Persönlichkeit. Klar behält die Sicherheitsregeln bei: keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät.",
-          "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung."
+          "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung.",
+          "languages": "Jede kompilierte Assist-Locale. Leer oder alle gewählt heißt alle aktiv. Assist pinnt pro Request ein Pack, damit Lexika nicht zusammengeführt werden.",
+          "channel": "Nur die mitgelieferte Engine. Stable lädt das aktuelle CalVer-GitHub-Release. Staging lädt das neueste Staging-Prerelease. Nach dem Wechsel Klar NLU neu laden. Add-on: stattdessen Klar NLU (Staging) installieren."
         }
       }
     },
@@ -55,10 +59,10 @@
         "remote": "Bereits laufende Engine verwenden"
       }
     },
-    "languages": {
+    "release_channel": {
       "options": {
-        "de": "Deutsch",
-        "en": "Englisch"
+        "stable": "Stable (Produktion)",
+        "staging": "Staging (Release Candidate)"
       }
     },
     "personality": {
@@ -93,6 +97,18 @@
           "gollum": "Gollum"
         }
       }
+    },
+    "sensor": {
+      "last_heard": { "name": "Zuletzt gehört" },
+      "last_decision": { "name": "Letzte Entscheidung" },
+      "last_speech": { "name": "Letzte Antwort" },
+      "last_area": { "name": "Gehört in" }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-Engine gestoppt",
+      "description": "Der mitgelieferte Klar-Prozess läuft nicht. Lade Klar NLU unter Einstellungen → Geräte und Dienste neu."
     }
   }
 }

@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- pon calefaccion banomaster 23
+area/heizung::heizung_esszimmer_23:
+- pon calefaccion salafamess 23
+area/heizung::heizung_schlafzimmer_23:
+- pon calefaccion cuarto 23
+area/heizung::heizung_wohnzimmer_23:
+- pon calefaccion salon 23
+area/lichter::alle_an_ausser_kugel:
+- acende todo luz excepto bola
+area/lichter::alle_an_ausser_schlafzimmer:
+- acende todo luz excepto cuarto
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- pon todo luz excepto cuarto 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- pon todo luz excepto bola red
+area/lichter::alle_ausser_kugel:
+- apaga todo luz excepto bola
+area/lichter::alle_ausser_schlafzimmer:
+- apaga todo luz excepto cuarto
+area/lichter::alle_lichter_an:
+- acende todo luz
+area/lichter::alle_lichter_aus:
+- apaga todo luz
+area/lichter::arbeitszimmer_lichter_an:
+- acende luz salon
+area/lichter::arbeitszimmer_lichter_aus:
+- apaga luz salon
+area/lichter::esszimmer_lichter_an:
+- acende luz salafamess
+area/lichter::esszimmer_lichter_aus:
+- apaga luz salafamess
+area/lichter::kuche_lichter_an:
+- acende luz cociña
+area/lichter::kuche_lichter_aus:
+- apaga luz cociña
+area/lichter::schlafzimmer_auf_blau:
+- pon luz cuarto blue
+area/lichter::schlafzimmer_auf_rot:
+- pon luz cuarto red
+area/lichter::wohnzimmer_helligkeit:
+- pon luz salon 45
+area/lichter::wohnzimmer_lichter_an:
+- acende luz salon
+area/lichter::wohnzimmer_lichter_aus:
+- apaga luz salon
+area/spoken::alle_ausser_kugel_stt:
+- apaga todo luz excepto bola
+area/spoken::alle_ausser_schlaf_stt:
+- apaga todo luz excepto cuarto
+area/spoken::alle_ganzen_an:
+- acende todo luz
+area/spoken::alle_lampen_aus:
+- apaga todo luz
+area/spoken::esszimmer_weiss:
+- pon luz salafamess white
+area/spoken::stt_kuche_lichte:
+- apaga luz cociña
+area/spoken::stt_licht_wohnzimmer_an:
+- acende luz salon
+area/spoken::stt_licht_wohnzimmer_aus:
+- apaga luz salon
+area/spoken::stt_schlafzimmer_dativ:
+- apaga luz cuarto
+area/spoken::wohnzimmer_gruen:
+- pon luz salon green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- apaga todo luz excepto salon
+area/spoken_more::arbeitszimmer_lampen_aus:
+- apaga luz salon
+area/spoken_more::esszimmer_30:
+- pon luz salafamess 30
+area/spoken_more::esszimmer_lichte_an:
+- acende luz salafamess
+area/spoken_more::kuche_80:
+- pon luz cociña 80
+area/spoken_more::kuche_blau:
+- pon luz cociña blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- apaga todo luz excepto cuarto
+area/spoken_more::wohnzimmer_gelb:
+- pon luz salon yellow

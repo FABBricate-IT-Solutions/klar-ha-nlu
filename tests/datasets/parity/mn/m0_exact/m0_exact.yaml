@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- asaa gerel zochny
+m0_exact/representative::exact_list_complete_from_setup:
+- done bread jagsaalt
+m0_exact/representative::exact_multi_intent:
+- asaa taaz untlagiin3 ba untraa gerel orol
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- add milk jagsaalt
+m0_exact/representative::exact_state_persistence:
+- - yuu gerel orol
+  - '12'
+m0_exact/representative::exact_timer:
+- asaa timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- asaa timer oven
+m0_exact/representative::exact_todo_list:
+- add apples jagsaalt

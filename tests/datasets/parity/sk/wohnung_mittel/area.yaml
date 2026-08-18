@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- nastav kurenie kupelmaster 23
+area/heizung::heizung_esszimmer_23:
+- nastav kurenie obyvackafamess 23
+area/heizung::heizung_schlafzimmer_23:
+- nastav kurenie spalna 23
+area/heizung::heizung_wohnzimmer_23:
+- nastav kurenie obyvacka 23
+area/lichter::alle_an_ausser_kugel:
+- zapni vsetko svetlo okrem gula
+area/lichter::alle_an_ausser_schlafzimmer:
+- zapni vsetko svetlo okrem spalna
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- nastav vsetko svetlo okrem spalna 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- nastav vsetko svetlo okrem gula red
+area/lichter::alle_ausser_kugel:
+- vypni vsetko svetlo okrem gula
+area/lichter::alle_ausser_schlafzimmer:
+- vypni vsetko svetlo okrem spalna
+area/lichter::alle_lichter_an:
+- zapni vsetko svetlo
+area/lichter::alle_lichter_aus:
+- vypni vsetko svetlo
+area/lichter::arbeitszimmer_lichter_an:
+- zapni svetlo obyvacka
+area/lichter::arbeitszimmer_lichter_aus:
+- vypni svetlo obyvacka
+area/lichter::esszimmer_lichter_an:
+- zapni svetlo obyvackafamess
+area/lichter::esszimmer_lichter_aus:
+- vypni svetlo obyvackafamess
+area/lichter::kuche_lichter_an:
+- zapni svetlo kuchyne
+area/lichter::kuche_lichter_aus:
+- vypni svetlo kuchyne
+area/lichter::schlafzimmer_auf_blau:
+- nastav svetlo spalna blue
+area/lichter::schlafzimmer_auf_rot:
+- nastav svetlo spalna red
+area/lichter::wohnzimmer_helligkeit:
+- nastav svetlo obyvacka 45
+area/lichter::wohnzimmer_lichter_an:
+- zapni svetlo obyvacka
+area/lichter::wohnzimmer_lichter_aus:
+- vypni svetlo obyvacka
+area/spoken::alle_ausser_kugel_stt:
+- vypni vsetko svetlo okrem gula
+area/spoken::alle_ausser_schlaf_stt:
+- vypni vsetko svetlo okrem spalna
+area/spoken::alle_ganzen_an:
+- zapni vsetko svetlo
+area/spoken::alle_lampen_aus:
+- vypni vsetko svetlo
+area/spoken::esszimmer_weiss:
+- nastav svetlo obyvackafamess white
+area/spoken::stt_kuche_lichte:
+- vypni svetlo kuchyne
+area/spoken::stt_licht_wohnzimmer_an:
+- zapni svetlo obyvacka
+area/spoken::stt_licht_wohnzimmer_aus:
+- vypni svetlo obyvacka
+area/spoken::stt_schlafzimmer_dativ:
+- vypni svetlo spalna
+area/spoken::wohnzimmer_gruen:
+- nastav svetlo obyvacka green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- vypni vsetko svetlo okrem obyvacka
+area/spoken_more::arbeitszimmer_lampen_aus:
+- vypni svetlo obyvacka
+area/spoken_more::esszimmer_30:
+- nastav svetlo obyvackafamess 30
+area/spoken_more::esszimmer_lichte_an:
+- zapni svetlo obyvackafamess
+area/spoken_more::kuche_80:
+- nastav svetlo kuchyne 80
+area/spoken_more::kuche_blau:
+- nastav svetlo kuchyne blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- vypni vsetko svetlo okrem spalna
+area/spoken_more::wohnzimmer_gelb:
+- nastav svetlo obyvacka yellow

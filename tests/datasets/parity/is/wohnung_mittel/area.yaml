@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- settu hiti badmaster 23
+area/heizung::heizung_esszimmer_23:
+- settu hiti stofafamess 23
+area/heizung::heizung_schlafzimmer_23:
+- settu hiti svefnherbergi 23
+area/heizung::heizung_wohnzimmer_23:
+- settu hiti stofa 23
+area/lichter::alle_an_ausser_kugel:
+- kveiktu allt ljos nema kula
+area/lichter::alle_an_ausser_schlafzimmer:
+- kveiktu allt ljos nema svefnherbergi
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- settu allt ljos nema svefnherbergi 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- settu allt ljos nema kula red
+area/lichter::alle_ausser_kugel:
+- slokktu allt ljos nema kula
+area/lichter::alle_ausser_schlafzimmer:
+- slokktu allt ljos nema svefnherbergi
+area/lichter::alle_lichter_an:
+- kveiktu allt ljos
+area/lichter::alle_lichter_aus:
+- slokktu allt ljos
+area/lichter::arbeitszimmer_lichter_an:
+- kveiktu ljos stofa
+area/lichter::arbeitszimmer_lichter_aus:
+- slokktu ljos stofa
+area/lichter::esszimmer_lichter_an:
+- kveiktu ljos stofafamess
+area/lichter::esszimmer_lichter_aus:
+- slokktu ljos stofafamess
+area/lichter::kuche_lichter_an:
+- kveiktu ljos eldhus
+area/lichter::kuche_lichter_aus:
+- slokktu ljos eldhus
+area/lichter::schlafzimmer_auf_blau:
+- settu ljos svefnherbergi blue
+area/lichter::schlafzimmer_auf_rot:
+- settu ljos svefnherbergi red
+area/lichter::wohnzimmer_helligkeit:
+- settu ljos stofa 45
+area/lichter::wohnzimmer_lichter_an:
+- kveiktu ljos stofa
+area/lichter::wohnzimmer_lichter_aus:
+- slokktu ljos stofa
+area/spoken::alle_ausser_kugel_stt:
+- slokktu allt ljos nema kula
+area/spoken::alle_ausser_schlaf_stt:
+- slokktu allt ljos nema svefnherbergi
+area/spoken::alle_ganzen_an:
+- kveiktu allt ljos
+area/spoken::alle_lampen_aus:
+- slokktu allt ljos
+area/spoken::esszimmer_weiss:
+- settu ljos stofafamess white
+area/spoken::stt_kuche_lichte:
+- slokktu ljos eldhus
+area/spoken::stt_licht_wohnzimmer_an:
+- kveiktu ljos stofa
+area/spoken::stt_licht_wohnzimmer_aus:
+- slokktu ljos stofa
+area/spoken::stt_schlafzimmer_dativ:
+- slokktu ljos svefnherbergi
+area/spoken::wohnzimmer_gruen:
+- settu ljos stofa green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- slokktu allt ljos nema stofa
+area/spoken_more::arbeitszimmer_lampen_aus:
+- slokktu ljos stofa
+area/spoken_more::esszimmer_30:
+- settu ljos stofafamess 30
+area/spoken_more::esszimmer_lichte_an:
+- kveiktu ljos stofafamess
+area/spoken_more::kuche_80:
+- settu ljos eldhus 80
+area/spoken_more::kuche_blau:
+- settu ljos eldhus blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- slokktu allt ljos nema svefnherbergi
+area/spoken_more::wohnzimmer_gelb:
+- settu ljos stofa yellow

@@ -4,4 +4,4 @@
 
 ## Test plan
 
-- [ ] CI is green (`test`, `cargo-audit`, `cargo-deny`, `hassfest`, `hacs`)
+- [ ] CI is green (`test`, `web`, `gitleaks`, `cargo-audit`, `cargo-deny`, `hassfest`, `hacs`)

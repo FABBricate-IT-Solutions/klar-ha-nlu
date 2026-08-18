@@ -1,0 +1,455 @@
+on_area:
+- '{on} a {room} {light}'
+- '{room} {light} {on}'
+- '{on} fel a {light} {room}'
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+- '{on} {all} {light} {room}'
+off_area:
+- '{off} a {room} {light}'
+- '{room} {light} {off}'
+- '{off} a {light} {room}'
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+- '{off} {all} {light} {room}'
+on_fixture:
+- '{on} a {room} {fixture}'
+- '{room} {fixture} {on}'
+- '{on} fel a {fixture} {room}'
+- '{on} {fixture} {room}'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+off_fixture:
+- '{off} a {room} {fixture}'
+- '{room} {fixture} {off}'
+- '{off} {fixture} {room}'
+- '{fixture} {room} {off}'
+- '{off} {room} {fixture}'
+- '{off} {fixture}'
+set_bright:
+- '{set} a {room} {fixture} {n}'
+- '{set} a {room} {light} {n}'
+- '{room} {light} {n}'
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+set_color:
+- '{set} a {room} {fixture} {color}'
+- '{room} {light} {color}'
+- '{set} a {light} {color} {room}'
+- '{set} {fixture} {room} {color}'
+- '{set} {light} {room} {color}'
+- '{light} {room} {color}'
+set_temp:
+- '{set} a {room} {climate} {n}'
+- '{set} a {climate} {n}'
+- '{room} {climate} {n}'
+- '{set} {climate} {room} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {n}'
+get_temp:
+- mennyi a {climate} {room}
+- '{query} a {climate} {room}'
+- '{query} {climate}'
+- '{query} {climate} {room}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- '{open} a {room} {cover}'
+- '{room} {cover} {open}'
+- '{open} {cover} {room}'
+- '{cover} {room} {open}'
+- '{open} {room} {cover}'
+- '{open} {cover}'
+close_cover:
+- '{close} a {room} {cover}'
+- '{room} {cover} {close}'
+- '{close} {cover} {room}'
+- '{cover} {room} {close}'
+- '{close} {room} {cover}'
+- '{close} {cover}'
+set_pos:
+- '{set} a {room} {cover} {n}'
+- '{room} {cover} {n}'
+- '{set} {cover} {room} {n}'
+- '{cover} {room} {n}'
+- '{set} {cover} {n}'
+- '{set} {room} {cover} {n}'
+lock:
+- zarj be {door}
+- zarj {lock} {room}
+- '{lock_v} {door}'
+- '{lock_v} {lock} {room}'
+- '{lock} {room} {lock_v}'
+- '{room} {lock} {lock_v}'
+unlock:
+- nyisd {door}
+- nyisd {lock} {room}
+- '{unlock} {door}'
+- '{unlock} {lock} {room}'
+- '{lock} {room} {unlock}'
+- '{room} {lock} {unlock}'
+fan_on:
+- '{on} a {room} {fan}'
+- '{fan} {room} {on}'
+- '{on} {fan} {room}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+- '{fan} {on}'
+fan_off:
+- '{off} a {room} {fan}'
+- '{fan} {room} {off}'
+- '{off} {fan} {room}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+- '{fan} {off}'
+fan_speed:
+- '{set} a {room} {fan} {n}'
+- '{room} {fan} {n}'
+- '{set} {fan} {room} {n}'
+- '{fan} {room} {n}'
+- '{set} {fan} {n}'
+- '{set} {room} {fan} {n}'
+switch_on:
+- '{on} a {appliance}'
+- '{appliance} {on}'
+- '{on} {appliance}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+- '{on} {appliance} {room}'
+switch_off:
+- '{off} a {appliance}'
+- '{appliance} {off}'
+- '{off} {appliance}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+- '{off} {appliance} {room}'
+vac_start:
+- inditsd {vacuum}
+- '{on} {vacuum}'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+- '{vacuum} {on} {room}'
+- '{on} {vacuum} {room}'
+vac_dock:
+- inditsd {vacuum}
+- '{off} {vacuum}'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+- '{vacuum} {off} {room}'
+- '{off} {vacuum} {room}'
+media_on:
+- '{on} a {room} {tv}'
+- '{tv} {room} {on}'
+- '{on} {tv} {room}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+- '{tv} {on}'
+media_off:
+- '{off} a {room} {tv}'
+- '{tv} {room} {off}'
+- '{off} {tv} {room}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+- '{tv} {off}'
+media_pause:
+- '{pause} a {room} {tv}'
+- '{tv} {room} {pause}'
+- '{pause} {tv} {room}'
+- '{pause} {room} {tv}'
+- '{room} {tv} {pause}'
+- '{tv} {pause}'
+media_vol:
+- '{set} a {room} {music} {n}'
+- '{room} {music} {n}'
+- '{set} {music} {room} {n}'
+- '{music} {room} {n}'
+- '{set} {music} {n}'
+- '{set} {tv} {n}'
+media_next:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+media_prev:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+play_search:
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- jatszd {search}
+- inditsd {search}
+- '{play} {search}'
+- '{play} {search} {music}'
+play_album:
+- jatszd {album} {search} {artist}
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+- '{play} {search} {by} {artist}'
+- '{on} {album} {search}'
+play_radio:
+- '{play} {search} {radio}'
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+- '{play} {search} {radio} {room}'
+- '{radio} {search} {room}'
+play_queue:
+- jatszd {search}
+- '{play} {search} {room}'
+- inditsd {search}
+- '{play} {search}'
+- '{on} {search} {room}'
+- '{play} {search} {music}'
+now_playing:
+- mi megy
+- mi megy {room}
+- '{query} {music} {room}'
+- '{query} {music}'
+- '{music} {room}'
+- '{query} {tv} {room}'
+scene:
+- '{on} {scene_name}'
+- inditsd {scene_name}
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+- '{play} {scene_name}'
+script:
+- '{on} {scene_name}'
+- inditsd {scene_name}
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+- '{play} {scene_name}'
+timer_start:
+- '{on} {timer} {n} perc'
+- '{timer} {n} perc'
+- '{on} {timer} {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+timer_cancel:
+- '{off} {timer} {n} perc'
+- '{timer} {n} perc'
+- '{off} {timer}'
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- ird fel {item} a {list}
+- '{add} {item} {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+- '{add} {item} {to} {list}'
+list_done:
+- ird fel {item} a {list}
+- '{done} {item} {list}'
+- '{item} {list}'
+- '{done} {item}'
+- '{list} {item}'
+- '{done} {item} {to} {list}'
+floor_on:
+- '{on} a {floor} {light}'
+- '{floor} {light} {on}'
+- '{on} fel a {light} {floor}'
+- '{on} {light} {floor}'
+- '{light} {floor} {on}'
+- '{on} {all} {light} {floor}'
+floor_off:
+- '{off} a {floor} {light}'
+- '{floor} {light} {off}'
+- '{off} fel a {light} {floor}'
+- '{off} {light} {floor}'
+- '{light} {floor} {off}'
+- '{off} {all} {light} {floor}'
+all_except:
+- '{off} minden {light} kiveve {room}'
+- '{off} {all} {light} {except} {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+- '{off} {all} {except} {room}'
+all_except_on:
+- '{on} minden {light} kiveve {room}'
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+- '{on} {all} {except} {room}'
+except_fixture:
+- '{off} minden {light} kiveve {skip_fixture}'
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+- '{off} {all} {except} {skip_fixture}'
+query_entity:
+- mi a {target} {room}
+- '{query} {target} {room}'
+- '{query} {target}'
+- '{target} {room}'
+- '{room} {target}'
+- '{query} {room} {target}'
+multi_and:
+- '{on} a {light} {room} {and} {room2}'
+- '{room} {and} {room2} {light} {on}'
+- '{on} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {room} {and} {room2}'
+- '{room} {and} {room2} {on}'
+multi_off:
+- '{off} a {light} {room} {and} {room2}'
+- '{room} {and} {room2} {light} {off}'
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+- '{on} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {off}'
+multi_three:
+- '{on} a {light} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {light} {on}'
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {on}'
+- '{on} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {on}'
+multi_three_off:
+- '{off} a {light} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {light} {off}'
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {off}'
+- '{off} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {off}'
+multi_off_lock:
+- '{off} a {light} {room} {and} {room2}'
+- '{room} {and} {room2} {light} {off}'
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+except_in_area:
+- '{off} minden {light} kiveve {room}'
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+- '{off} {all} {except} {skip_fixture}'
+except_two:
+- '{off} minden {light} kiveve {room} {and} {room2}'
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+- '{off} {all} {except} {room} {and} {room2}'
+except_fixture_on:
+- '{on} minden {light} kiveve {skip_fixture}'
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+- '{on} {all} {except} {skip_fixture}'
+floor_except:
+- '{off} minden {light} {floor} kiveve {room}'
+- '{off} {all} {light} {floor} {except} {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+- '{all} {off} {except} {room}'
+- '{off} {all} {except} {room}'
+multi_covers:
+- '{open} a {room} {cover} {and} {room2}'
+- '{room} {cover} {open} {and} {room2}'
+- '{open} {cover} {room} {and} {room2}'
+- '{cover} {room} {open} {and} {room2}'
+- '{open} {room} {cover} {and} {room2}'
+- '{open} {cover} {and} {room2}'
+multi_covers_close:
+- '{close} a {room} {cover} {and} {room2}'
+- '{room} {cover} {close} {and} {room2}'
+- '{close} {cover} {room} {and} {room2}'
+- '{cover} {room} {close} {and} {room2}'
+- '{close} {room} {cover} {and} {room2}'
+- '{close} {cover} {and} {room2}'
+multi_climate:
+- '{set} a {room} {and} {room2} {climate} {n}'
+- '{set} a {climate} {n}'
+- '{room} {and} {room2} {climate} {n}'
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {and} {room2} {n}'
+multi_bright:
+- '{set} a {room} {and} {room2} {fixture} {n}'
+- '{set} a {room} {and} {room2} {light} {n}'
+- '{room} {and} {room2} {light} {n}'
+- '{set} {fixture} {room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {room2} {n}'
+- '{fixture} {room} {and} {room2} {n}'
+multi_color:
+- '{set} a {room} {and} {room2} {fixture} {color}'
+- '{room} {and} {room2} {light} {color}'
+- '{set} a {light} {color} {room} {and} {room2}'
+- '{set} {fixture} {room} {and} {room2} {color}'
+- '{set} {light} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+query_two:
+- mi a {target} {room} {and} {room2}
+- '{query} {target} {room} {and} {room2}'
+- '{query} {target}'
+- '{target} {room} {and} {room2}'
+- '{room} {and} {room2} {target}'
+- '{query} {room} {and} {room2} {target}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+- '{light} {room2} {off} {and} {climate} {room}'
+multi_locks:
+- zarj be {door}
+- zarj {lock} {room} {and} {room2}
+- '{lock_v} {door}'
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{lock} {room} {and} {room2} {lock_v}'
+- '{room} {and} {room2} {lock} {lock_v}'
+scene_and_off:
+- '{on} {scene_name} {and} {off} {light} {room}'
+- inditsd {scene_name} {and} {off} {light} {room}
+- '{scene_name} {on} {and} {off} {light} {room}'
+- '{on} the {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {and} {off} {light} {room}'
+- '{play} {scene_name} {and} {off} {light} {room}'
+clock:
+- hany ora van
+- mennyi az ido
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+- '{query} {clock} {clock}'
+weather:
+- milyen az ido
+- milyen lesz az ido
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'
+- '{query} {weather} {weather}'

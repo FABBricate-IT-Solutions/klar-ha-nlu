@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - ventiliatorius svetainefam ijunk
+  - ijunk ventiliatorius svetainefam
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - isjunk ventiliatorius svetainefam
+  - ventiliatorius svetainefam isjunk
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - nustatyk ventiliatorius svetainefam 40
+  - ventiliatorius svetainefam 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - ventiliatorius miegamasis ijunk
+  - ijunk ventiliatorius miegamasis
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - isjunk ventiliatorius miegamasis
+  - ventiliatorius miegamasis isjunk
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - nustatyk ventiliatorius miegamasis 40
+  - ventiliatorius miegamasis 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - ventiliatorius miegamasis2 ijunk
+  - ijunk ventiliatorius miegamasis2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - isjunk ventiliatorius miegamasis2
+  - ventiliatorius miegamasis2 isjunk
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - nustatyk ventiliatorius miegamasis2 40
+  - ventiliatorius miegamasis2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - nustatyk ventiliatorius svetainefam 20
+  - ventiliatorius svetainefam 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - nustatyk ventiliatorius svetainefam 60
+  - ventiliatorius svetainefam 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - nustatyk ventiliatorius svetainefam 80
+  - ventiliatorius svetainefam 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - nustatyk ventiliatorius miegamasis 20
+  - ventiliatorius miegamasis 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - nustatyk ventiliatorius miegamasis 60
+  - ventiliatorius miegamasis 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - nustatyk ventiliatorius miegamasis 80
+  - ventiliatorius miegamasis 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - nustatyk ventiliatorius miegamasis2 20
+  - ventiliatorius miegamasis2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - nustatyk ventiliatorius miegamasis2 60
+  - ventiliatorius miegamasis2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - nustatyk ventiliatorius miegamasis2 80
+  - ventiliatorius miegamasis2 80

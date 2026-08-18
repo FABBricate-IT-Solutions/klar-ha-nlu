@@ -1,0 +1,52 @@
+devices/geraete::deckenlampe_aus:
+- extinguish ceiling bedroom
+devices/geraete::device_arbeitszimmer_an:
+- enable light lounge
+devices/geraete::device_esszimmer_an:
+- enable light loungefamess
+devices/geraete::device_kuche_kuche_an:
+- enable light kitchen
+devices/geraete::device_wohnzimmer_an:
+- enable light lounge
+devices/geraete::filmabend:
+- enable Filmabend
+devices/geraete::kugel_an:
+- enable globe bedroom
+devices/geraete::luefter_50:
+- set fan lounge 50
+devices/geraete::pc_an:
+- enable device
+devices/geraete::r2d2_saugen:
+- enable hoover lounge
+devices/geraete::rollo_zu:
+- close curtain lounge
+devices/geraete::spuelmaschine_aus:
+- extinguish dishwasher
+devices/geraete::tuer_abschliessen:
+- lock lock porchgang
+devices/geraete::waschmaschine_an:
+- enable washer
+devices/klima::klima_schlaf_21:
+- set heating bedroom 21
+devices/spoken::deckenlampe_an:
+- enable ceiling bedroom
+devices/spoken::kugel_aus:
+- extinguish globe bedroom
+devices/spoken::luefter_aus:
+- extinguish fan lounge
+devices/spoken::rollo_auf:
+- open curtain lounge
+devices/spoken::trockner_an:
+- enable washer
+devices/spoken::tv_aus:
+- extinguish telly
+devices/spoken_more::decke_aus_casual:
+- extinguish ceiling bedroom
+devices/spoken_more::kugel_casual:
+- enable globe bedroom
+devices/spoken_more::pc_aus:
+- extinguish device
+devices/spoken_more::spuelmaschine_an:
+- enable dishwasher
+devices/spoken_more::waschmaschine_aus:
+- extinguish washer
