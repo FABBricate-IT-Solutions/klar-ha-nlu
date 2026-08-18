@@ -12,9 +12,14 @@ concurrency:
   group: staging-prerelease
   cancel-in-progress: false
 
+# Must cover every permission callee jobs declare (including skipped ones).
+# Otherwise GitHub rejects the run as startup_failure before any job starts.
 permissions:
+  actions: read
   contents: write
+  issues: write
   packages: write
+  security-events: write
 
 jobs:
   quality:
@@ -28,8 +33,10 @@ jobs:
     uses: ./.github/workflows/security.yml
     secrets: inherit
     permissions:
+      actions: read
       contents: read
       issues: write
+      packages: read
       security-events: write
 
   tag:

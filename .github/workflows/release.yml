@@ -14,9 +14,14 @@ concurrency:
   group: release-main
   cancel-in-progress: false
 
+# Must cover every permission callee jobs declare (including skipped ones).
+# Otherwise GitHub rejects the run as startup_failure before any job starts.
 permissions:
+  actions: read
   contents: write
+  issues: write
   packages: write
+  security-events: write
 
 # Tag/publish only after fmt, clippy, nextest, pack freshness, web, audit, deny, and gitleaks.
 jobs:
@@ -31,8 +36,10 @@ jobs:
     uses: ./.github/workflows/security.yml
     secrets: inherit
     permissions:
+      actions: read
       contents: read
       issues: write
+      packages: read
       security-events: write
 
   cut:
