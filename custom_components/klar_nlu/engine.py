@@ -16,7 +16,15 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .archive import require_sha256
-from .const import DEFAULT_URL, ENGINE_VERSION, GITHUB_REPO, resolve_personality
+from .const import (
+    CHANNEL_STAGING,
+    DEFAULT_URL,
+    ENGINE_VERSION,
+    GITHUB_REPO,
+    pick_staging_release,
+    resolve_channel,
+    resolve_personality,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -45,8 +53,9 @@ class UnsupportedMachineError(RuntimeError):
 class KlarEngine:
     """Klar child process started by the integration."""
 
-    def __init__(self, hass: HomeAssistant) -> None:
+    def __init__(self, hass: HomeAssistant, channel: str = "stable") -> None:
         self.hass = hass
+        self.channel = resolve_channel(channel)
         self._proc: asyncio.subprocess.Process | None = None
         self.token: str | None = None
 
@@ -78,22 +87,30 @@ class KlarEngine:
             proc.kill()
             await proc.wait()
 
+    def _stamp_for(self, version: str) -> str:
+        return f"{self.channel}:{version.lstrip('v')}"
+
     async def _ensure_binary(self) -> None:
         stamp = self.bindir / "version"
-        if stamp.is_file() and stamp.read_text(encoding="utf-8").strip() != ENGINE_VERSION:
-            self.binary.unlink(missing_ok=True)
-        if self.binary.is_file():
-            return
-        machine = platform.machine().lower()
-        asset = _ASSETS.get(machine)
-        if asset is None:
-            raise UnsupportedMachineError(
-                f"No Klar build for {machine}. Run the engine yourself and pick the URL."
-            )
+        current = stamp.read_text(encoding="utf-8").strip() if stamp.is_file() else ""
         session = async_get_clientsession(self.hass)
         timeout = ClientTimeout(total=180)
+        if self.channel != CHANNEL_STAGING:
+            wanted = self._stamp_for(ENGINE_VERSION)
+            if self.binary.is_file() and current in {wanted, ENGINE_VERSION}:
+                return
         try:
             release = await self._fetch_release(session, timeout)
+            version = str(release.get("tag_name") or ENGINE_VERSION).lstrip("v")
+            wanted = self._stamp_for(version)
+            if self.binary.is_file() and current == wanted:
+                return
+            machine = platform.machine().lower()
+            asset = _ASSETS.get(machine)
+            if asset is None:
+                raise UnsupportedMachineError(
+                    f"No Klar build for {machine}. Run the engine yourself and pick the URL."
+                )
             chosen = next(
                 (
                     item
@@ -110,11 +127,22 @@ class KlarEngine:
         except ClientError as err:
             raise RuntimeError(f"Could not download Klar: {err}") from err
         require_sha256(chosen.get("digest"), blob)
-        await self.hass.async_add_executor_job(self._extract, blob)
+        await self.hass.async_add_executor_job(self._extract, blob, wanted)
 
     async def _fetch_release(
         self, session: ClientSession, timeout: ClientTimeout
     ) -> dict:
+        if self.channel == CHANNEL_STAGING:
+            url = f"https://api.github.com/repos/{GITHUB_REPO}/releases?per_page=30"
+            async with session.get(url, timeout=timeout) as resp:
+                resp.raise_for_status()
+                data = await resp.json()
+            chosen = pick_staging_release(data)
+            if chosen is not None:
+                return chosen
+            raise RuntimeError(
+                "No staging prerelease on GitHub. Stay on stable or wait for a staging merge."
+            )
         for url in _release_urls(ENGINE_VERSION):
             async with session.get(url, timeout=timeout) as resp:
                 if resp.status == 404:
@@ -127,7 +155,7 @@ class KlarEngine:
             f"No GitHub release {ENGINE_VERSION.lstrip('v')}. Start Klar yourself."
         )
 
-    def _extract(self, blob: bytes) -> None:
+    def _extract(self, blob: bytes, stamp: str) -> None:
         self.bindir.mkdir(parents=True, exist_ok=True)
         with tarfile.open(fileobj=BytesIO(blob), mode="r:gz") as tar:
             tar.extraction_filter = getattr(tarfile, "data_filter", tarfile.tar_filter)
@@ -148,7 +176,7 @@ class KlarEngine:
                 raise RuntimeError("Klar archive could not be read")
             self.binary.write_bytes(extracted.read())
         self.binary.chmod(0o755)
-        (self.bindir / "version").write_text(ENGINE_VERSION, encoding="utf-8")
+        (self.bindir / "version").write_text(stamp, encoding="utf-8")
 
     def _ensure_token(self) -> str:
         path = self.bindir / "token"

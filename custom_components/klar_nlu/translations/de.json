@@ -3,9 +3,10 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Die mitgelieferte Engine kommt von GitHub Releases und wird von der Integration gestartet. Eine URL nur angeben, wenn Klar schon woanders läuft.",
+        "description": "Der Release-Kanal wählt die Engine. Mitgeliefert: GitHub-CalVer oder neuestes Staging-Prerelease. Bereits laufend: Klar NLU oder Klar NLU (Staging). Eine eigene URL bleibt unverändert.",
         "data": {
           "mode": "Engine",
+          "channel": "Release-Kanal",
           "url": "URL der Klar-API",
           "token": "Write-Token"
         }
@@ -32,7 +33,8 @@
           "url": "URL der Klar-API",
           "token": "Write-Token",
           "assist_filter": "Nur für Assist freigegebene Entitäten steuern",
-          "nlu_rag": "NLU-RAG (optional)"
+          "nlu_rag": "NLU-RAG (optional)",
+          "channel": "Release-Kanal"
         },
         "data_description": {
           "personality": "Liegt in dieser Integration, nicht in der Klar-App. Assist und die LLM-Stimme wechseln mit dieser Auswahl. Mit Refine steckt die Stimme im Satz, nicht in einer festen Formel.",
@@ -40,7 +42,8 @@
           "refine_prompt": "Optionale Extra-Stil-Anweisung zur gewählten Persönlichkeit. Klar behält die Sicherheitsregeln bei: keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät.",
-          "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung."
+          "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung.",
+          "channel": "Stable: CalVer-GitHub-Release und die Klar-NLU-App (`http://klar-nlu:10520`). Staging: neuestes Prerelease und Klar NLU (Staging) (`http://klar-nlu-staging:10520`). Eine eigene URL bleibt unverändert. Nach dem Wechsel neu laden. Nicht in `.storage` umbiegen."
         }
       }
     },
@@ -53,6 +56,12 @@
       "options": {
         "local": "Mitgelieferte Engine starten (empfohlen)",
         "remote": "Bereits laufende Engine verwenden"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (Produktion)",
+        "staging": "Staging (Release Candidate)"
       }
     },
     "languages": {

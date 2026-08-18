@@ -10,7 +10,10 @@ from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import selector
 
 from .const import (
+    CHANNEL_STABLE,
+    CHANNEL_STAGING,
     CONF_ASSIST_FILTER,
+    CONF_CHANNEL,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
@@ -21,6 +24,7 @@ from .const import (
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_CHANNEL,
     DEFAULT_NLU_RAG,
     DEFAULT_PERSONALITY,
     DEFAULT_REFINE_PROMPT,
@@ -31,6 +35,10 @@ from .const import (
     MODE_REMOTE,
     PERSONALITIES,
     SUPPORTED_LANGUAGES,
+    channel_for_addon_slug,
+    is_managed_engine_url,
+    resolve_channel,
+    resolve_engine_url,
     resolve_personality,
 )
 
@@ -71,6 +79,13 @@ def _options_schema() -> vol.Schema:
             selector.BooleanSelector()
         ),
         vol.Optional(CONF_NLU_RAG, default=DEFAULT_NLU_RAG): selector.BooleanSelector(),
+        vol.Optional(CONF_CHANNEL, default=DEFAULT_CHANNEL): selector.SelectSelector(
+            selector.SelectSelectorConfig(
+                options=[CHANNEL_STABLE, CHANNEL_STAGING],
+                translation_key="release_channel",
+                mode=selector.SelectSelectorMode.LIST,
+            )
+        ),
     }
     return vol.Schema(fields)
 
@@ -80,6 +95,13 @@ USER_SCHEMA = vol.Schema(
             selector.SelectSelectorConfig(
                 options=[MODE_LOCAL, MODE_REMOTE],
                 translation_key="engine_mode",
+                mode=selector.SelectSelectorMode.LIST,
+            )
+        ),
+        vol.Optional(CONF_CHANNEL, default=DEFAULT_CHANNEL): selector.SelectSelector(
+            selector.SelectSelectorConfig(
+                options=[CHANNEL_STABLE, CHANNEL_STAGING],
+                translation_key="release_channel",
                 mode=selector.SelectSelectorMode.LIST,
             )
         ),
@@ -103,8 +125,9 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             await self.async_set_unique_id(DOMAIN)
             mode = user_input.get(CONF_MODE, MODE_LOCAL)
-            url = DEFAULT_URL if mode == MODE_LOCAL else (
-                user_input.get(CONF_URL) or DEFAULT_URL
+            channel = resolve_channel(user_input.get(CONF_CHANNEL))
+            url = resolve_engine_url(
+                mode=mode, channel=channel, url=user_input.get(CONF_URL)
             )
             if not _valid_engine_url(url):
                 return self.async_show_form(
@@ -112,7 +135,7 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     data_schema=USER_SCHEMA,
                     errors={"base": "invalid_url"},
                 )
-            data = {CONF_MODE: mode, CONF_URL: url}
+            data = {CONF_MODE: mode, CONF_URL: url, CONF_CHANNEL: channel}
             token = (user_input.get(CONF_TOKEN) or "").strip()
             if token:
                 data[CONF_TOKEN] = token
@@ -126,7 +149,11 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         slug = getattr(discovery_info, "slug", None) or "klar-nlu"
         host = str(slug).replace("_", "-")
         return await self.async_step_user(
-            {CONF_MODE: MODE_REMOTE, CONF_URL: f"http://{host}:10520"}
+            {
+                CONF_MODE: MODE_REMOTE,
+                CONF_URL: f"http://{host}:10520",
+                CONF_CHANNEL: channel_for_addon_slug(slug),
+            }
         )
 
     @staticmethod
@@ -159,7 +186,15 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             refine_prompt = (user_input.get(CONF_REFINE_PROMPT) or "").strip()
             if refine_prompt:
                 data[CONF_REFINE_PROMPT] = refine_prompt
-            url = (user_input.get(CONF_URL) or "").strip()
+            channel = resolve_channel(user_input.get(CONF_CHANNEL))
+            url = resolve_engine_url(
+                mode=self.config_entry.data.get(CONF_MODE, MODE_LOCAL),
+                channel=channel,
+                url=(user_input.get(CONF_URL) or "").strip()
+                or self.config_entry.options.get(CONF_URL)
+                or self.config_entry.data.get(CONF_URL)
+                or "",
+            )
             if url:
                 if not _valid_engine_url(url):
                     return self.async_show_form(
@@ -182,6 +217,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                     )
                 )
             data[CONF_NLU_RAG] = bool(user_input.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+            data[CONF_CHANNEL] = channel
             return self.async_create_entry(data=data)
         suggested = {
             CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
@@ -190,10 +226,24 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
             CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
             CONF_NLU_RAG: DEFAULT_NLU_RAG,
+            CONF_CHANNEL: resolve_channel(
+                self.config_entry.options.get(
+                    CONF_CHANNEL, self.config_entry.data.get(CONF_CHANNEL)
+                )
+            ),
             **self.config_entry.options,
         }
         if CONF_URL not in suggested:
             suggested[CONF_URL] = self.config_entry.data.get(CONF_URL, "")
+        suggested[CONF_CHANNEL] = resolve_channel(
+            suggested.get(CONF_CHANNEL, self.config_entry.data.get(CONF_CHANNEL))
+        )
+        if is_managed_engine_url(suggested.get(CONF_URL)):
+            suggested[CONF_URL] = resolve_engine_url(
+                mode=self.config_entry.data.get(CONF_MODE, MODE_LOCAL),
+                channel=suggested[CONF_CHANNEL],
+                url=suggested.get(CONF_URL),
+            )
         return self.async_show_form(
             step_id="init",
             data_schema=self.add_suggested_values_to_schema(

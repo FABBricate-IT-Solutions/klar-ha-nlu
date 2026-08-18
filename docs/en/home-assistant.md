@@ -15,6 +15,7 @@ V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
    or Settings → Devices & services → Add integration → **Klar NLU**.
 4. Keep **Start the bundled engine** (needs a GitHub Release with linux tarballs). Or pick **Use an engine that is already running** and set the URL.
+5. **Release channel** = Stable (CalVer) or Staging (latest GitHub prerelease / Klar NLU Staging app). You can change this later under Configure.
 
 Without HACS, copy `custom_components/klar_nlu` to `<config>/custom_components/klar_nlu` and restart.
 
@@ -100,7 +101,9 @@ On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=fal
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
 
-Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, install **Klar NLU**, then point the integration at `http://klar-nlu:10520`.
+Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, then install **Klar NLU** or **Klar NLU (Staging)**.
+
+**Stable vs staging:** one switch. Settings → Devices & services → Klar NLU → Configure → **Release channel**. Stable points at the Klar NLU app (`http://klar-nlu:10520`) or the CalVer GitHub release. Staging points at Klar NLU (Staging) (`http://klar-nlu-staging:10520`) or the latest prerelease. A custom URL is left alone. The integration reloads after the switch. Do not edit `.storage`.
 
 **Docker:**
 

@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryNotReady
 
 from .const import (
     CONF_ASSIST_FILTER,
+    CONF_CHANNEL,
     CONF_LANGUAGES,
     CONF_MODE,
     CONF_PERSONALITY,
@@ -15,6 +16,7 @@ from .const import (
     DEFAULT_URL,
     DOMAIN,
     MODE_LOCAL,
+    resolve_channel,
     resolve_personality,
 )
 from .engine import KlarEngine, async_push_personality
@@ -27,7 +29,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     engine: KlarEngine | None = None
     if entry.data.get(CONF_MODE) == MODE_LOCAL:
-        engine = KlarEngine(hass)
+        engine = KlarEngine(
+            hass,
+            channel=resolve_channel(
+                entry.options.get(CONF_CHANNEL, entry.data.get(CONF_CHANNEL))
+            ),
+        )
         try:
             await engine.async_start()
         except Exception as err:
@@ -78,7 +85,13 @@ async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
     if stored is not None:
         stored["applied_options"] = current
     await _async_sync_personality(hass, entry)
-    reload_keys = (CONF_URL, CONF_TOKEN, CONF_LANGUAGES, CONF_ASSIST_FILTER)
+    reload_keys = (
+        CONF_URL,
+        CONF_TOKEN,
+        CONF_LANGUAGES,
+        CONF_ASSIST_FILTER,
+        CONF_CHANNEL,
+    )
     if any(previous.get(key) != current.get(key) for key in reload_keys):
         await hass.config_entries.async_reload(entry.entry_id)
 
