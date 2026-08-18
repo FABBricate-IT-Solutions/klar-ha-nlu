@@ -18,9 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: rustsec/audit-check@v2.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: dtolnay/rust-toolchain@1.85
+      # 0.22.2+ needs rustc 1.88; MSRV is 1.85.
+      - run: cargo install cargo-audit --version 0.22.1 --locked --force
+      - run: cargo audit
 
   deny:
     name: cargo-deny
@@ -39,9 +40,13 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # The GitHub Action requires an org license; the CLI does not.
+      - name: Gitleaks
+        run: |
+          set -euo pipefail
+          version=8.28.0
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${version}/gitleaks_${version}_linux_x64.tar.gz" | tar -xz gitleaks
+          ./gitleaks detect --source . --verbose --redact --exit-code 1
 
   semgrep:
     name: semgrep
