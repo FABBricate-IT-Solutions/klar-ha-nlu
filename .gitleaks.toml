@@ -4,11 +4,12 @@ title = "klar-nlu"
 useDefault = true
 
 # HA long-lived tokens are JWTs; default jwt/generic rules already catch them.
-# Flag assigned KLAR_TOKEN / x-klar-token values that are not the fixture word.
+# Flag assigned KLAR_TOKEN / x-klar-token values. RE2 (gitleaks CLI) has no
+# lookaheads; the 16-char floor already excludes the `secret` test fixture.
 [[rules]]
 id = "klar-hardcoded-token"
 description = "Hardcoded KLAR_TOKEN or x-klar-token that is not the test fixture"
-regex = '''(?i)(?:KLAR_TOKEN|x-klar-token)["'\s:=]+(?!secret\b)[A-Za-z0-9_\-+/=]{16,}'''
+regex = '''(?i)(?:KLAR_TOKEN|x-klar-token)["'\s:=]+[A-Za-z0-9_\-+/=]{16,}'''
 keywords = ["klar_token", "x-klar-token"]
 
 # Fixture word `secret` in auth/privacy tests and API docs is not a live credential.
