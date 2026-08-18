@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "The bundled engine is downloaded from GitHub Releases and started by this integration. Pick a URL only if Klar already runs elsewhere.",
+        "description": "Release channel picks the engine. Bundled: GitHub CalVer vs latest staging prerelease. Already running: Klar NLU vs Klar NLU (Staging). A custom URL is left alone.",
         "data": {
           "mode": "Engine",
           "channel": "Release channel",
@@ -44,7 +44,7 @@
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
           "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
           "languages": "Every compiled Assist locale. Empty or all selected means all are enabled. Assist still pins one pack per request so lexicons are not merged together.",
-          "channel": "Bundled engine only. Stable downloads the current CalVer GitHub Release. Staging downloads the latest staging prerelease. Reload Klar NLU after switching. Add-on users install Klar NLU (Staging) instead."
+          "channel": "Stable: CalVer GitHub release and the Klar NLU app (`http://klar-nlu:10520`). Staging: latest prerelease and Klar NLU (Staging) (`http://klar-nlu-staging:10520`). A custom URL is left alone. Reload after switching. Do not edit `.storage`."
         }
       }
     },

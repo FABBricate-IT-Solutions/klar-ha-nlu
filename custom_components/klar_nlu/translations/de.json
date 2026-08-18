@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Die mitgelieferte Engine kommt von GitHub Releases und wird von der Integration gestartet. Eine URL nur angeben, wenn Klar schon woanders läuft.",
+        "description": "Der Release-Kanal wählt die Engine. Mitgeliefert: GitHub-CalVer oder neuestes Staging-Prerelease. Bereits laufend: Klar NLU oder Klar NLU (Staging). Eine eigene URL bleibt unverändert.",
         "data": {
           "mode": "Engine",
           "channel": "Release-Kanal",
@@ -44,7 +44,7 @@
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät.",
           "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung.",
           "languages": "Jede kompilierte Assist-Locale. Leer oder alle gewählt heißt alle aktiv. Assist pinnt pro Request ein Pack, damit Lexika nicht zusammengeführt werden.",
-          "channel": "Nur die mitgelieferte Engine. Stable lädt das aktuelle CalVer-GitHub-Release. Staging lädt das neueste Staging-Prerelease. Nach dem Wechsel Klar NLU neu laden. Add-on: stattdessen Klar NLU (Staging) installieren."
+          "channel": "Stable: CalVer-GitHub-Release und die Klar-NLU-App (`http://klar-nlu:10520`). Staging: neuestes Prerelease und Klar NLU (Staging) (`http://klar-nlu-staging:10520`). Eine eigene URL bleibt unverändert. Nach dem Wechsel neu laden. Nicht in `.storage` umbiegen."
         }
       }
     },

@@ -64,9 +64,9 @@ Step-by-step with example phrases: [docs/en/getting-started.md](docs/en/getting-
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
 
-Settings → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → install **Klar NLU**. Then add the integration with URL `http://klar-nlu:10520`.
+Settings → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → install **Klar NLU** or **Klar NLU (Staging)**.
 
-Release candidates: install **Klar NLU (Staging)** from the same repository and use `http://klar-nlu-staging:10520`. Bundled engine: Configure → **Release channel** → Staging. See [releases](docs/en/releases.md).
+Release candidates: Configure → **Release channel** → Staging. That points at `http://klar-nlu-staging:10520` or the latest GitHub prerelease. Stable goes back to `http://klar-nlu:10520`. See [releases](docs/en/releases.md).
 
 ### Docker
 
