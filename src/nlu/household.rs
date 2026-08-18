@@ -333,6 +333,7 @@ mod tests {
         assert!(route(&context, &["quel".into(), "clim".into(), "salon".into()]).is_none());
     }
 
+    #[test]
     fn weather_binds_weather_entity() {
         let mut home = default_home();
         home.entities.push(EntityRec {

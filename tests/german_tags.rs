@@ -42,7 +42,8 @@ fn casual_und_sonderfaelle_gehen_an_llm() {
         assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
         assert!(!result.chat, "{text}: OOD darf nicht chat sein");
     }
-    for text in ["Wie ist das Wetter"] {
+    {
+        let text = "Wie ist das Wetter";
         let mut session = Session::new();
         let result = parse(text, &home, &mut session, &[], &settings);
         assert!(!result.clarify, "{text}: {}", result.speech);

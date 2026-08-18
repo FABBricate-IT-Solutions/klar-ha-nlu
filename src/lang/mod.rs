@@ -111,7 +111,7 @@ fn insert_cached(map: &mut HashMap<String, &'static Catalog>, key: String, catal
     if map.len() >= MAX_CACHED_CATALOGS {
         map.clear();
     }
-    *map.entry(key).or_insert_with(|| Box::leak(Box::new(catalog)))
+    map.entry(key).or_insert_with(|| Box::leak(Box::new(catalog)))
 }
 
 pub(super) fn clear_catalog_cache() {
@@ -145,7 +145,7 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
     let key = format!("{}+{}+u{}", ids.iter().map(|lang| lang.code()).collect::<Vec<_>>().join(","), applied.join(","), user_key);
     let mut map = cache().lock().expect("lang catalog cache");
     if let Some(catalog) = map.get(&key) {
-        return *catalog;
+        return catalog;
     }
     let packs: Vec<&'static Pack> = ids.iter().map(|id| id.pack()).collect();
     let mut catalog = Catalog::merge(&packs);
@@ -163,7 +163,7 @@ pub fn catalog_for(codes: &[String]) -> &'static Catalog {
 fn cached_builtins(ids: &[LangId], key: &str) -> &'static Catalog {
     let mut map = cache().lock().expect("lang catalog cache");
     if let Some(catalog) = map.get(key) {
-        return *catalog;
+        return catalog;
     }
     let packs: Vec<&'static Pack> = ids.iter().map(|id| id.pack()).collect();
     insert_cached(&mut map, key.to_string(), Catalog::merge(&packs))

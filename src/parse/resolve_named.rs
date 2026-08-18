@@ -47,27 +47,6 @@ pub(crate) fn fuzzy_areas(tokens: &[String], areas: &[AreaRec]) -> Option<Vec<St
     (hits.len() == 1).then(|| vec![winner.0.clone()])
 }
 
-pub(crate) fn collect_named_in_areas(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
-    let named = collect_named_devices(tokens, home)?;
-    if areas.is_empty() {
-        return Some(named);
-    }
-    let scoped: Vec<EntityRec> = named.into_iter().filter(|entity| entity.area.as_ref().is_some_and(|area| areas.contains(area))).collect();
-    (!scoped.is_empty()).then_some(scoped)
-}
-
-pub(crate) fn room_level_multi(tokens: &[String]) -> bool {
-    let cat = catalog();
-    cat.any(tokens, &cat.light_nouns)
-        && !cat.any(tokens, &cat.ceiling)
-        && !cat.any(tokens, &cat.island)
-        && !crate::parse::infer::mentions_lamp_fixture(tokens)
-        && !cat.any(tokens, &cat.bedside)
-        && !cat.any(tokens, &cat.pendant)
-        && !cat.any(tokens, &cat.named_device)
-        && !cat.any(tokens, &cat.cover_nouns)
-}
-
 pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Option<Vec<EntityRec>> {
     let cat = catalog();
     let mut found = Vec::new();

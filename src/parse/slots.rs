@@ -101,9 +101,8 @@ fn excepted_light_ids(tokens: &[String], home: &HomeGraph) -> HashSet<String> {
         return HashSet::new();
     };
     let resolved = resolve(&focus, home, Some("light"));
-    let in_except = |entity: &EntityRec| {
-        resolved.areas.is_empty() || entity.area.as_ref().is_some_and(|area| resolved.areas.contains(area))
-    };
+    let in_except =
+        |entity: &EntityRec| resolved.areas.is_empty() || entity.area.as_ref().is_some_and(|area| resolved.areas.contains(area));
     let seed = resolved
         .entities
         .iter()
