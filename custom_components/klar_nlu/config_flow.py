@@ -52,7 +52,11 @@ def _language_options() -> list[dict[str, str]]:
         {"value": code, "label": f"{LANGUAGE_NAMES.get(code, code)} ({code})"}
         for code in SUPPORTED_LANGUAGES
     ]
-    return [{"value": LANGUAGE_SYSTEM}, {"value": LANGUAGE_ALL}, *packs]
+    return [
+        {"value": LANGUAGE_SYSTEM, "label": "System language"},
+        {"value": LANGUAGE_ALL, "label": "All languages"},
+        *packs,
+    ]
 
 
 def _on_supervisor(hass: Any) -> bool:
