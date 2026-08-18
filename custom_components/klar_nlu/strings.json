@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Release channel picks the engine. Bundled: GitHub CalVer vs latest staging prerelease. Already running: Klar NLU vs Klar NLU (Staging). A custom URL is left alone.",
+        "description": "Release channel picks the engine and can be changed later. On Home Assistant OS, Staging uses Klar NLU (Staging) even if you started with the bundled engine. A custom URL is left alone.",
         "data": {
           "mode": "Engine",
           "channel": "Release channel",
@@ -25,6 +25,7 @@
         "title": "Klar NLU",
         "description": "The personality is stored here, so it survives reinstalling the Klar app. Assist and the LLM refine voice follow it on every reply.",
         "data": {
+          "mode": "Engine",
           "personality": "Personality",
           "languages": "Languages",
           "fallback_agent": "Conversation agent for chit-chat",
@@ -43,8 +44,8 @@
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
           "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
-          "languages": "Every compiled Assist locale. Empty or all selected means all are enabled. Assist still pins one pack per request so lexicons are not merged together.",
-          "channel": "Stable: CalVer GitHub release and the Klar NLU app (`http://klar-nlu:10520`). Staging: latest prerelease and Klar NLU (Staging) (`http://klar-nlu-staging:10520`). A custom URL is left alone. Reload after switching. Do not edit `.storage`."
+          "languages": "Default follows the Home Assistant system language. All languages keeps every compiled Assist locale enabled. Assist still pins one pack per request.",
+          "channel": "Works anytime. On Home Assistant OS, Staging points at Klar NLU (Staging) even if setup started the bundled engine. Stable goes back to the Klar NLU app or the bundled engine. A custom URL is left alone. Do not edit `.storage`."
         }
       }
     },
@@ -63,6 +64,12 @@
       "options": {
         "stable": "Stable (production)",
         "staging": "Staging (release candidate)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "System language",
+        "all": "All languages"
       }
     },
     "personality": {

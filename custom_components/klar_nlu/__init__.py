@@ -30,7 +30,7 @@ PLATFORMS = [Platform.CONVERSATION, Platform.SELECT, Platform.SENSOR]
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     engine: KlarEngine | None = None
-    if entry.data.get(CONF_MODE) == MODE_LOCAL:
+    if entry.options.get(CONF_MODE, entry.data.get(CONF_MODE)) == MODE_LOCAL:
         engine = KlarEngine(
             hass,
             channel=resolve_channel(
@@ -95,6 +95,7 @@ async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
         CONF_LANGUAGES,
         CONF_ASSIST_FILTER,
         CONF_CHANNEL,
+        CONF_MODE,
     )
     if any(previous.get(key) != current.get(key) for key in reload_keys):
         await hass.config_entries.async_reload(entry.entry_id)

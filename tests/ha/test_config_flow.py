@@ -98,6 +98,7 @@ def _load_config_flow() -> types.ModuleType:
     with patch.dict(sys.modules, modules):
         _load(f"{PACKAGE}.languages", "languages.py")
         _load(f"{PACKAGE}.const", "const.py")
+        _load(f"{PACKAGE}.lang_select", "lang_select.py")
         return _load(f"{PACKAGE}.config_flow", "config_flow.py")
 
 
@@ -111,6 +112,7 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         self.assertIn(config_flow.CONF_ASSIST_FILTER, keys)
         self.assertIn(config_flow.CONF_NLU_RAG, keys)
         self.assertIn(config_flow.CONF_CHANNEL, keys)
+        self.assertIn(config_flow.CONF_MODE, keys)
 
     def test_user_schema_offers_release_channel(self) -> None:
         keys = {marker.schema for marker in config_flow.USER_SCHEMA.schema}
@@ -124,11 +126,15 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         self.assertNotIn("show_all_languages", keys)
         options = config_flow._language_options()
         codes = [item["value"] for item in options]
+        self.assertEqual(codes[0], config_flow.LANGUAGE_SYSTEM)
+        self.assertEqual(codes[1], config_flow.LANGUAGE_ALL)
         self.assertIn("de", codes)
         self.assertIn("en", codes)
         self.assertIn("fr", codes)
         self.assertNotIn("ru", codes)
         self.assertGreater(len(codes), 2)
+        marker = next(item for item in schema.schema if item.schema == config_flow.CONF_LANGUAGES)
+        self.assertEqual(marker.default, config_flow.LANGUAGE_SYSTEM)
 
 
 if __name__ == "__main__":

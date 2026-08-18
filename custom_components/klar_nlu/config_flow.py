@@ -31,6 +31,8 @@ from .const import (
     DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
     DOMAIN,
+    LANGUAGE_ALL,
+    LANGUAGE_SYSTEM,
     MODE_LOCAL,
     MODE_REMOTE,
     PERSONALITIES,
@@ -38,18 +40,35 @@ from .const import (
     channel_for_addon_slug,
     is_managed_engine_url,
     resolve_channel,
-    resolve_engine_url,
+    resolve_engine_target,
     resolve_personality,
 )
+from .lang_select import normalize_language_choice
 from .languages import LANGUAGE_NAMES
 
 
 def _language_options() -> list[dict[str, str]]:
-    return [{"value": code, "label": LANGUAGE_NAMES.get(code, code)} for code in SUPPORTED_LANGUAGES]
+    packs = [
+        {"value": code, "label": f"{LANGUAGE_NAMES.get(code, code)} ({code})"}
+        for code in SUPPORTED_LANGUAGES
+    ]
+    return [{"value": LANGUAGE_SYSTEM}, {"value": LANGUAGE_ALL}, *packs]
+
+
+def _on_supervisor(hass: Any) -> bool:
+    components = getattr(getattr(hass, "config", None), "components", None) or []
+    return "hassio" in components
 
 
 def _options_schema() -> vol.Schema:
     fields: dict[Any, Any] = {
+        vol.Optional(CONF_MODE, default=MODE_LOCAL): selector.SelectSelector(
+            selector.SelectSelectorConfig(
+                options=[MODE_LOCAL, MODE_REMOTE],
+                translation_key="engine_mode",
+                mode=selector.SelectSelectorMode.LIST,
+            )
+        ),
         vol.Optional(CONF_PERSONALITY, default=DEFAULT_PERSONALITY): selector.SelectSelector(
             selector.SelectSelectorConfig(
                 options=list(PERSONALITIES),
@@ -57,11 +76,11 @@ def _options_schema() -> vol.Schema:
                 translation_key="personality",
             )
         ),
-        vol.Optional(CONF_LANGUAGES, default=list(SUPPORTED_LANGUAGES)): selector.SelectSelector(
+        vol.Optional(CONF_LANGUAGES, default=LANGUAGE_SYSTEM): selector.SelectSelector(
             selector.SelectSelectorConfig(
                 options=_language_options(),
-                multiple=True,
-                mode=selector.SelectSelectorMode.LIST,
+                mode=selector.SelectSelectorMode.DROPDOWN,
+                translation_key="nlu_language",
             )
         ),
         vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
@@ -128,11 +147,13 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_abort(reason="already_configured")
         if user_input is not None:
             await self.async_set_unique_id(DOMAIN)
-            mode = user_input.get(CONF_MODE, MODE_LOCAL)
-            channel = resolve_channel(user_input.get(CONF_CHANNEL))
-            url = resolve_engine_url(
-                mode=mode, channel=channel, url=user_input.get(CONF_URL)
+            mode, url = resolve_engine_target(
+                mode=user_input.get(CONF_MODE, MODE_LOCAL),
+                channel=resolve_channel(user_input.get(CONF_CHANNEL)),
+                url=user_input.get(CONF_URL),
+                supervisor=_on_supervisor(self.hass),
             )
+            channel = resolve_channel(user_input.get(CONF_CHANNEL))
             if not _valid_engine_url(url):
                 return self.async_show_form(
                     step_id="user",
@@ -177,14 +198,12 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
         if user_input is not None:
-            langs = [
-                code
-                for code in (user_input.get(CONF_LANGUAGES) or [])
-                if code in SUPPORTED_LANGUAGES
-            ] or list(SUPPORTED_LANGUAGES)
+            language = normalize_language_choice(
+                user_input.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
+            )
             personality = resolve_personality(user_input.get(CONF_PERSONALITY))
             data: dict[str, Any] = {
-                CONF_LANGUAGES: langs,
+                CONF_LANGUAGES: language,
                 CONF_PERSONALITY: personality,
             }
             agent = user_input.get(CONF_FALLBACK_AGENT) or None
@@ -195,14 +214,22 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             if refine_prompt:
                 data[CONF_REFINE_PROMPT] = refine_prompt
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
-            url = resolve_engine_url(
-                mode=self.config_entry.data.get(CONF_MODE, MODE_LOCAL),
+            mode, url = resolve_engine_target(
+                mode=user_input.get(
+                    CONF_MODE,
+                    self.config_entry.options.get(
+                        CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)
+                    ),
+                ),
                 channel=channel,
                 url=(user_input.get(CONF_URL) or "").strip()
                 or self.config_entry.options.get(CONF_URL)
                 or self.config_entry.data.get(CONF_URL)
                 or "",
+                supervisor=_on_supervisor(self.hass),
             )
+            data[CONF_MODE] = mode
+            data[CONF_CHANNEL] = channel
             if url:
                 if not _valid_engine_url(url):
                     return self.async_show_form(
@@ -213,6 +240,15 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                         errors={"base": "invalid_url"},
                     )
                 data[CONF_URL] = url
+            self.hass.config_entries.async_update_entry(
+                self.config_entry,
+                data={
+                    **dict(self.config_entry.data),
+                    CONF_MODE: mode,
+                    CONF_URL: url,
+                    CONF_CHANNEL: channel,
+                },
+            )
             token = (user_input.get(CONF_TOKEN) or "").strip()
             if token:
                 data[CONF_TOKEN] = token
@@ -225,15 +261,17 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                     )
                 )
             data[CONF_NLU_RAG] = bool(user_input.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
-            data[CONF_CHANNEL] = channel
             return self.async_create_entry(data=data)
         suggested = {
-            CONF_LANGUAGES: list(SUPPORTED_LANGUAGES),
+            CONF_LANGUAGES: LANGUAGE_SYSTEM,
             CONF_ASSIST_FILTER: DEFAULT_ASSIST_FILTER,
             CONF_PERSONALITY: DEFAULT_PERSONALITY,
             CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
             CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
             CONF_NLU_RAG: DEFAULT_NLU_RAG,
+            CONF_MODE: self.config_entry.options.get(
+                CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)
+            ),
             CONF_CHANNEL: resolve_channel(
                 self.config_entry.options.get(
                     CONF_CHANNEL, self.config_entry.data.get(CONF_CHANNEL)
@@ -246,11 +284,18 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         suggested[CONF_CHANNEL] = resolve_channel(
             suggested.get(CONF_CHANNEL, self.config_entry.data.get(CONF_CHANNEL))
         )
+        suggested[CONF_MODE] = suggested.get(
+            CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)
+        )
+        suggested[CONF_LANGUAGES] = normalize_language_choice(
+            suggested.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
+        )
         if is_managed_engine_url(suggested.get(CONF_URL)):
-            suggested[CONF_URL] = resolve_engine_url(
-                mode=self.config_entry.data.get(CONF_MODE, MODE_LOCAL),
+            suggested[CONF_MODE], suggested[CONF_URL] = resolve_engine_target(
+                mode=suggested[CONF_MODE],
                 channel=suggested[CONF_CHANNEL],
                 url=suggested.get(CONF_URL),
+                supervisor=_on_supervisor(self.hass),
             )
         return self.async_show_form(
             step_id="init",

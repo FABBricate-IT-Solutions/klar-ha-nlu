@@ -99,9 +99,15 @@ class KlarConversationEntity(ConversationEntity):
             manufacturer="FABBricate IT Solutions",
         )
 
+    def _packs(self) -> list[str]:
+        return enabled_packs(
+            self._entry.options.get(CONF_LANGUAGES),
+            getattr(self.hass.config, "language", None),
+        )
+
     @property
     def supported_languages(self) -> list[str]:
-        return advertise(enabled_packs(self._entry.options.get(CONF_LANGUAGES)))
+        return advertise(self._packs())
 
     @property
     def _url(self) -> str:
@@ -162,7 +168,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
-        pack = resolve_pack(user_input.language, enabled_packs(self._entry.options.get(CONF_LANGUAGES)))
+        pack = resolve_pack(user_input.language, self._packs())
         triggered = await self._sentence_triggers(user_input, chat_log, pack)
         if triggered is not None:
             return triggered
@@ -448,7 +454,7 @@ class KlarConversationEntity(ConversationEntity):
         self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/v2/parse"
-        pack = resolve_pack(language, enabled_packs(self._entry.options.get(CONF_LANGUAGES)))
+        pack = resolve_pack(language, self._packs())
         body: dict[str, Any] = {
             "text": text,
             "conversation_id": conversation_id,

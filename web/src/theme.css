@@ -150,6 +150,37 @@ th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--lin
   color: var(--muted);
 }
 .chip.intent, .slot-chip { color: var(--cyan); border-color: #2a5558; }
+button.chip { background: transparent; }
+.chip.on { color: var(--text); border-color: var(--cyan); }
+.lang-picker { display: flex; flex-direction: column; gap: 8px; }
+.lang-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.lang-combo { position: relative; }
+.lang-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 8;
+  max-height: 240px;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.lang-option {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+.lang-option.active, .lang-option:hover { background: var(--surface-2); }
+.lang-option.on { color: var(--cyan); }
 .caption { color: var(--muted); font-size: 12px; margin-top: 8px; }
 .timeline { display: flex; flex-direction: column; gap: 0; }
 .timeline-item {
