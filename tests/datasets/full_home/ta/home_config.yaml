@@ -1,0 +1,504 @@
+name: Full Home ta
+language: ta
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: kizh
+  level: 0
+  aliases:
+  - kizh
+  - nilam
+- id: upper
+  name: mel
+  level: 1
+  aliases:
+  - mel
+  - thattu
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Nuzhaivu
+  floor: ground
+  aliases:
+  - nuzhaivu
+- id: living
+  name: Arai
+  floor: ground
+  aliases:
+  - arai
+- id: dining
+  name: Kutumbamess
+  floor: ground
+  aliases:
+  - kutumbamess
+- id: kitchen
+  name: Samaiyal
+  floor: ground
+  aliases:
+  - samaiyal
+- id: family_room
+  name: Kutumbam
+  floor: ground
+  aliases:
+  - kutumbam
+- id: laundry
+  name: Salavai
+  floor: ground
+  aliases:
+  - salavai
+- id: powder_room
+  name: Kazhivarai
+  floor: ground
+  aliases:
+  - kazhivarai
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Padukkaiyarai
+  floor: upper
+  aliases:
+  - padukkaiyarai
+- id: bedroom_2
+  name: Padukkaiyarai2
+  floor: upper
+  aliases:
+  - padukkaiyarai2
+- id: bedroom_3
+  name: Padukkaiyarai3
+  floor: upper
+  aliases:
+  - padukkaiyarai3
+- id: bedroom_4
+  name: Padukkaiyarai4
+  floor: upper
+  aliases:
+  - padukkaiyarai4
+- id: master_bath
+  name: Muthanmaikuliyal
+  floor: upper
+  aliases:
+  - muthanmaikuliyal
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: nuzhaivu vilakku
+  aliases:
+  - nuzhaivu vilakku
+  - vilakku
+- id: light.living_ceiling
+  area_id: living
+  name: arai meetai
+  aliases:
+  - arai meetai
+  - meetai
+- id: light.living_lamp
+  area_id: living
+  name: arai vilakku
+  aliases:
+  - arai vilakku
+  - vilakku
+- id: light.dining_pendant
+  area_id: dining
+  name: kutumbamess vilakku
+  aliases:
+  - kutumbamess vilakku
+  - vilakku
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: samaiyal meetai
+  aliases:
+  - samaiyal meetai
+  - meetai
+- id: light.kitchen_island
+  area_id: kitchen
+  name: samaiyal theevu
+  aliases:
+  - samaiyal theevu
+  - theevu
+- id: light.family_ceiling
+  area_id: family_room
+  name: kutumbam meetai
+  aliases:
+  - kutumbam meetai
+  - meetai
+- id: light.laundry_light
+  area_id: laundry
+  name: salavai vilakku
+  aliases:
+  - salavai vilakku
+  - vilakku
+- id: light.powder_room_light
+  area_id: powder_room
+  name: kazhivarai vilakku
+  aliases:
+  - kazhivarai vilakku
+  - vilakku
+- id: light.garage_light
+  area_id: garage
+  name: garage vilakku
+  aliases:
+  - garage vilakku
+  - vilakku
+- id: light.office_ceiling
+  area_id: office
+  name: office meetai
+  aliases:
+  - office meetai
+  - meetai
+- id: light.garden
+  area_id: garden
+  name: garden vilakku
+  aliases:
+  - garden vilakku
+  - vilakku
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: padukkaiyarai meetai
+  aliases:
+  - padukkaiyarai meetai
+  - meetai
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: padukkaiyarai ensuite
+  aliases:
+  - padukkaiyarai ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: padukkaiyarai left kattil
+  aliases:
+  - padukkaiyarai left kattil
+  - kattil
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: padukkaiyarai right kattil
+  aliases:
+  - padukkaiyarai right kattil
+  - kattil
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: padukkaiyarai2 meetai
+  aliases:
+  - padukkaiyarai2 meetai
+  - meetai
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: padukkaiyarai3 meetai
+  aliases:
+  - padukkaiyarai3 meetai
+  - meetai
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: padukkaiyarai4 meetai
+  aliases:
+  - padukkaiyarai4 meetai
+  - meetai
+- id: light.master_bath_light
+  area_id: master_bath
+  name: muthanmaikuliyal vilakku
+  aliases:
+  - muthanmaikuliyal vilakku
+  - vilakku
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath vilakku
+  aliases:
+  - main bath vilakku
+  - vilakku
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway vilakku
+  aliases:
+  - hallway vilakku
+  - vilakku
+- id: light.basement
+  area_id: basement
+  name: basement vilakku
+  aliases:
+  - basement vilakku
+  - vilakku
+- id: cover.living_blinds
+  area_id: living
+  name: arai thirai
+  aliases:
+  - arai thirai
+  - thirai
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: padukkaiyarai thirai
+  aliases:
+  - padukkaiyarai thirai
+  - thirai
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: padukkaiyarai2 thirai
+  aliases:
+  - padukkaiyarai2 thirai
+  - thirai
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: padukkaiyarai3 thirai
+  aliases:
+  - padukkaiyarai3 thirai
+  - thirai
+- id: cover.garage_door
+  area_id: garage
+  name: garage thirai
+  aliases:
+  - garage thirai
+  - thirai
+- id: climate.ground_thermostat
+  area_id: living
+  name: arai veppam
+  aliases:
+  - arai veppam
+  - veppam
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: padukkaiyarai veppam
+  aliases:
+  - padukkaiyarai veppam
+  - veppam
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: veppam padukkaiyarai
+  aliases:
+  - veppam padukkaiyarai
+  - veppam
+  - ac
+  tags:
+  - veppam
+- id: fan.family_fan
+  area_id: family_room
+  name: kutumbam visiri
+  aliases:
+  - kutumbam visiri
+  - visiri
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: padukkaiyarai visiri
+  aliases:
+  - padukkaiyarai visiri
+  - visiri
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: padukkaiyarai2 visiri
+  aliases:
+  - padukkaiyarai2 visiri
+  - visiri
+- id: lock.front_door
+  area_id: entryway
+  name: front kathavu
+  aliases:
+  - front kathavu
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage kathavu
+  aliases:
+  - garage kathavu
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: samaiyal pattiram
+  aliases:
+  - samaiyal pattiram
+  - pattiram
+- id: switch.rangehood
+  area_id: kitchen
+  name: samaiyal rangehood
+  aliases:
+  - samaiyal rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: salavai washing
+  aliases:
+  - salavai washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: salavai dryer
+  aliases:
+  - salavai dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: muthanmaikuliyal visiribad
+  aliases:
+  - muthanmaikuliyal visiribad
+  - visiribad
+  tags:
+  - visiribad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath visiribad
+  aliases:
+  - main bath visiribad
+  - visiribad
+  tags:
+  - visiribad
+- id: media_player.living_tv
+  area_id: living
+  name: arai tv
+  aliases:
+  - arai tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: kutumbam tv
+  aliases:
+  - kutumbam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: arai tivi
+  aliases:
+  - arai tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: samaiyal tivi
+  aliases:
+  - samaiyal tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: arai thudaippu
+  aliases:
+  - arai thudaippu
+  - thudaippu
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: nuzhaivu doorsensor
+  aliases:
+  - nuzhaivu doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: arai windowsensor
+  aliases:
+  - arai windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: samaiyal motion
+  aliases:
+  - samaiyal motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: arai tempsensor
+  aliases:
+  - arai tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: arai humidity
+  aliases:
+  - arai humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: padam
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: iravu
+- id: leaving_home
+  name: veli
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: pattiyal

@@ -1,0 +1,52 @@
+devices/geraete::deckenlampe_aus:
+- apaga techo dormitorio
+devices/geraete::device_arbeitszimmer_an:
+- enciende luz salon
+devices/geraete::device_esszimmer_an:
+- enciende luz salon
+devices/geraete::device_kuche_kuche_an:
+- enciende luz cocina
+devices/geraete::device_wohnzimmer_an:
+- enciende luz salon
+devices/geraete::filmabend:
+- enciende Filmabend
+devices/geraete::kugel_an:
+- enciende bola dormitorio
+devices/geraete::luefter_50:
+- pon ventilador salon 50
+devices/geraete::pc_an:
+- enciende aparato
+devices/geraete::r2d2_saugen:
+- enciende aspiradora salon
+devices/geraete::rollo_zu:
+- cierra cortina salon
+devices/geraete::spuelmaschine_aus:
+- apaga lavavajillas
+devices/geraete::tuer_abschliessen:
+- bloquea cerradura entrada
+devices/geraete::waschmaschine_an:
+- enciende lavadora
+devices/klima::klima_schlaf_21:
+- pon calefaccion dormitorio 21
+devices/spoken::deckenlampe_an:
+- enciende techo dormitorio
+devices/spoken::kugel_aus:
+- apaga bola dormitorio
+devices/spoken::luefter_aus:
+- apaga ventilador salon
+devices/spoken::rollo_auf:
+- abre cortina salon
+devices/spoken::trockner_an:
+- enciende lavadora
+devices/spoken::tv_aus:
+- apaga tele
+devices/spoken_more::decke_aus_casual:
+- apaga techo dormitorio
+devices/spoken_more::kugel_casual:
+- enciende bola dormitorio
+devices/spoken_more::pc_aus:
+- apaga aparato
+devices/spoken_more::spuelmaschine_an:
+- enciende lavavajillas
+devices/spoken_more::waschmaschine_aus:
+- apaga lavadora

@@ -1,0 +1,504 @@
+name: Full Home ro
+language: ro
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: parter
+  level: 0
+  aliases:
+  - parter
+  - jos
+- id: upper
+  name: etaj
+  level: 1
+  aliases:
+  - etaj
+  - sus
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Hol
+  floor: ground
+  aliases:
+  - hol
+- id: living
+  name: Sufragerie
+  floor: ground
+  aliases:
+  - sufragerie
+- id: dining
+  name: Sufrageriefamess
+  floor: ground
+  aliases:
+  - sufrageriefamess
+- id: kitchen
+  name: Bucatarie
+  floor: ground
+  aliases:
+  - bucatarie
+- id: family_room
+  name: Sufrageriefam
+  floor: ground
+  aliases:
+  - sufrageriefam
+- id: laundry
+  name: Spalatorie
+  floor: ground
+  aliases:
+  - spalatorie
+- id: powder_room
+  name: Toaleta
+  floor: ground
+  aliases:
+  - toaleta
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Dormitor
+  floor: upper
+  aliases:
+  - dormitor
+- id: bedroom_2
+  name: Dormitor2
+  floor: upper
+  aliases:
+  - dormitor2
+- id: bedroom_3
+  name: Dormitor3
+  floor: upper
+  aliases:
+  - dormitor3
+- id: bedroom_4
+  name: Dormitor4
+  floor: upper
+  aliases:
+  - dormitor4
+- id: master_bath
+  name: Baiemaster
+  floor: upper
+  aliases:
+  - baiemaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: hol lumina
+  aliases:
+  - hol lumina
+  - lumina
+- id: light.living_ceiling
+  area_id: living
+  name: sufragerie tavan
+  aliases:
+  - sufragerie tavan
+  - tavan
+- id: light.living_lamp
+  area_id: living
+  name: sufragerie lampa
+  aliases:
+  - sufragerie lampa
+  - lampa
+- id: light.dining_pendant
+  area_id: dining
+  name: sufrageriefamess lumina
+  aliases:
+  - sufrageriefamess lumina
+  - lumina
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: bucatarie tavan
+  aliases:
+  - bucatarie tavan
+  - tavan
+- id: light.kitchen_island
+  area_id: kitchen
+  name: bucatarie insula
+  aliases:
+  - bucatarie insula
+  - insula
+- id: light.family_ceiling
+  area_id: family_room
+  name: sufrageriefam tavan
+  aliases:
+  - sufrageriefam tavan
+  - tavan
+- id: light.laundry_light
+  area_id: laundry
+  name: spalatorie lumina
+  aliases:
+  - spalatorie lumina
+  - lumina
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toaleta lumina
+  aliases:
+  - toaleta lumina
+  - lumina
+- id: light.garage_light
+  area_id: garage
+  name: garage lumina
+  aliases:
+  - garage lumina
+  - lumina
+- id: light.office_ceiling
+  area_id: office
+  name: office tavan
+  aliases:
+  - office tavan
+  - tavan
+- id: light.garden
+  area_id: garden
+  name: garden lumina
+  aliases:
+  - garden lumina
+  - lumina
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: dormitor tavan
+  aliases:
+  - dormitor tavan
+  - tavan
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: dormitor ensuite
+  aliases:
+  - dormitor ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: dormitor left noptiera
+  aliases:
+  - dormitor left noptiera
+  - noptiera
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: dormitor right noptiera
+  aliases:
+  - dormitor right noptiera
+  - noptiera
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: dormitor2 tavan
+  aliases:
+  - dormitor2 tavan
+  - tavan
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: dormitor3 tavan
+  aliases:
+  - dormitor3 tavan
+  - tavan
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: dormitor4 tavan
+  aliases:
+  - dormitor4 tavan
+  - tavan
+- id: light.master_bath_light
+  area_id: master_bath
+  name: baiemaster lumina
+  aliases:
+  - baiemaster lumina
+  - lumina
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath lumina
+  aliases:
+  - main bath lumina
+  - lumina
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway lumina
+  aliases:
+  - hallway lumina
+  - lumina
+- id: light.basement
+  area_id: basement
+  name: basement lumina
+  aliases:
+  - basement lumina
+  - lumina
+- id: cover.living_blinds
+  area_id: living
+  name: sufragerie perdea
+  aliases:
+  - sufragerie perdea
+  - perdea
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: dormitor perdea
+  aliases:
+  - dormitor perdea
+  - perdea
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: dormitor2 perdea
+  aliases:
+  - dormitor2 perdea
+  - perdea
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: dormitor3 perdea
+  aliases:
+  - dormitor3 perdea
+  - perdea
+- id: cover.garage_door
+  area_id: garage
+  name: garage perdea
+  aliases:
+  - garage perdea
+  - perdea
+- id: climate.ground_thermostat
+  area_id: living
+  name: sufragerie incalzire
+  aliases:
+  - sufragerie incalzire
+  - incalzire
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: dormitor incalzire
+  aliases:
+  - dormitor incalzire
+  - incalzire
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: aer dormitor
+  aliases:
+  - aer dormitor
+  - aer
+  - ac
+  tags:
+  - aer
+- id: fan.family_fan
+  area_id: family_room
+  name: sufrageriefam ventilator
+  aliases:
+  - sufrageriefam ventilator
+  - ventilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: dormitor ventilator
+  aliases:
+  - dormitor ventilator
+  - ventilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: dormitor2 ventilator
+  aliases:
+  - dormitor2 ventilator
+  - ventilator
+- id: lock.front_door
+  area_id: entryway
+  name: front usa
+  aliases:
+  - front usa
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage usa
+  aliases:
+  - garage usa
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: bucatarie vase
+  aliases:
+  - bucatarie vase
+  - vase
+- id: switch.rangehood
+  area_id: kitchen
+  name: bucatarie rangehood
+  aliases:
+  - bucatarie rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: spalatorie masina
+  aliases:
+  - spalatorie masina
+  - masina
+  - washer
+  tags:
+  - washer
+  - masina
+- id: switch.dryer
+  area_id: laundry
+  name: spalatorie dryer
+  aliases:
+  - spalatorie dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: baiemaster ventilatorbad
+  aliases:
+  - baiemaster ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatorbad
+  aliases:
+  - main bath ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: sufragerie tv
+  aliases:
+  - sufragerie tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: sufrageriefam tv
+  aliases:
+  - sufrageriefam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: sufragerie muzica
+  aliases:
+  - sufragerie muzica
+  - muzica
+  platform: music_assistant
+  tags:
+  - muzica
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: bucatarie muzica
+  aliases:
+  - bucatarie muzica
+  - muzica
+  platform: music_assistant
+  tags:
+  - muzica
+- id: media_player.office_music
+  area_id: office
+  name: office muzica
+  aliases:
+  - office muzica
+  - muzica
+  platform: music_assistant
+  tags:
+  - muzica
+- id: vacuum.robot
+  area_id: living
+  name: sufragerie aspirator
+  aliases:
+  - sufragerie aspirator
+  - aspirator
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: hol doorsensor
+  aliases:
+  - hol doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: sufragerie windowsensor
+  aliases:
+  - sufragerie windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: bucatarie motion
+  aliases:
+  - bucatarie motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: sufragerie tempsensor
+  aliases:
+  - sufragerie tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: sufragerie humidity
+  aliases:
+  - sufragerie humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: noapte
+- id: leaving_home
+  name: plecare
+timers:
+- id: oven
+  name: oven cronometru
+- id: laundry
+  name: laundry cronometru
+- id: abstract
+  name: abstract cronometru
+lists:
+- id: shopping
+  name: lista

@@ -1,0 +1,504 @@
+name: Full Home bn
+language: bn
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: nich
+  level: 0
+  aliases:
+  - nich
+  - nich
+- id: upper
+  name: upor
+  level: 1
+  aliases:
+  - upor
+  - tala
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Prabesh
+  floor: ground
+  aliases:
+  - prabesh
+- id: living
+  name: Bosar
+  floor: ground
+  aliases:
+  - bosar
+- id: dining
+  name: Paribarikess
+  floor: ground
+  aliases:
+  - paribarikess
+- id: kitchen
+  name: Ranna
+  floor: ground
+  aliases:
+  - ranna
+- id: family_room
+  name: Paribarik
+  floor: ground
+  aliases:
+  - paribarik
+- id: laundry
+  name: Dhoa
+  floor: ground
+  aliases:
+  - dhoa
+- id: powder_room
+  name: Shauchagar
+  floor: ground
+  aliases:
+  - shauchagar
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Shobarghor
+  floor: upper
+  aliases:
+  - shobarghor
+- id: bedroom_2
+  name: Shobarghor2
+  floor: upper
+  aliases:
+  - shobarghor2
+- id: bedroom_3
+  name: Shobarghor3
+  floor: upper
+  aliases:
+  - shobarghor3
+- id: bedroom_4
+  name: Shobarghor4
+  floor: upper
+  aliases:
+  - shobarghor4
+- id: master_bath
+  name: Masterbath
+  floor: upper
+  aliases:
+  - masterbath
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: prabesh alo
+  aliases:
+  - prabesh alo
+  - alo
+- id: light.living_ceiling
+  area_id: living
+  name: bosar chhad
+  aliases:
+  - bosar chhad
+  - chhad
+- id: light.living_lamp
+  area_id: living
+  name: bosar alo
+  aliases:
+  - bosar alo
+  - alo
+- id: light.dining_pendant
+  area_id: dining
+  name: paribarikess alo
+  aliases:
+  - paribarikess alo
+  - alo
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: ranna chhad
+  aliases:
+  - ranna chhad
+  - chhad
+- id: light.kitchen_island
+  area_id: kitchen
+  name: ranna dip
+  aliases:
+  - ranna dip
+  - dip
+- id: light.family_ceiling
+  area_id: family_room
+  name: paribarik chhad
+  aliases:
+  - paribarik chhad
+  - chhad
+- id: light.laundry_light
+  area_id: laundry
+  name: dhoa alo
+  aliases:
+  - dhoa alo
+  - alo
+- id: light.powder_room_light
+  area_id: powder_room
+  name: shauchagar alo
+  aliases:
+  - shauchagar alo
+  - alo
+- id: light.garage_light
+  area_id: garage
+  name: garage alo
+  aliases:
+  - garage alo
+  - alo
+- id: light.office_ceiling
+  area_id: office
+  name: office chhad
+  aliases:
+  - office chhad
+  - chhad
+- id: light.garden
+  area_id: garden
+  name: garden alo
+  aliases:
+  - garden alo
+  - alo
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: shobarghor chhad
+  aliases:
+  - shobarghor chhad
+  - chhad
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: shobarghor ensuite
+  aliases:
+  - shobarghor ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: shobarghor left bichana
+  aliases:
+  - shobarghor left bichana
+  - bichana
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: shobarghor right bichana
+  aliases:
+  - shobarghor right bichana
+  - bichana
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: shobarghor2 chhad
+  aliases:
+  - shobarghor2 chhad
+  - chhad
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: shobarghor3 chhad
+  aliases:
+  - shobarghor3 chhad
+  - chhad
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: shobarghor4 chhad
+  aliases:
+  - shobarghor4 chhad
+  - chhad
+- id: light.master_bath_light
+  area_id: master_bath
+  name: masterbath alo
+  aliases:
+  - masterbath alo
+  - alo
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath alo
+  aliases:
+  - main bath alo
+  - alo
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway alo
+  aliases:
+  - hallway alo
+  - alo
+- id: light.basement
+  area_id: basement
+  name: basement alo
+  aliases:
+  - basement alo
+  - alo
+- id: cover.living_blinds
+  area_id: living
+  name: bosar porda
+  aliases:
+  - bosar porda
+  - porda
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: shobarghor porda
+  aliases:
+  - shobarghor porda
+  - porda
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: shobarghor2 porda
+  aliases:
+  - shobarghor2 porda
+  - porda
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: shobarghor3 porda
+  aliases:
+  - shobarghor3 porda
+  - porda
+- id: cover.garage_door
+  area_id: garage
+  name: garage porda
+  aliases:
+  - garage porda
+  - porda
+- id: climate.ground_thermostat
+  area_id: living
+  name: bosar gorom
+  aliases:
+  - bosar gorom
+  - gorom
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: shobarghor gorom
+  aliases:
+  - shobarghor gorom
+  - gorom
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: gorom shobarghor
+  aliases:
+  - gorom shobarghor
+  - gorom
+  - ac
+  tags:
+  - gorom
+- id: fan.family_fan
+  area_id: family_room
+  name: paribarik pakha
+  aliases:
+  - paribarik pakha
+  - pakha
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: shobarghor pakha
+  aliases:
+  - shobarghor pakha
+  - pakha
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: shobarghor2 pakha
+  aliases:
+  - shobarghor2 pakha
+  - pakha
+- id: lock.front_door
+  area_id: entryway
+  name: front dorja
+  aliases:
+  - front dorja
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage dorja
+  aliases:
+  - garage dorja
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: ranna basan
+  aliases:
+  - ranna basan
+  - basan
+- id: switch.rangehood
+  area_id: kitchen
+  name: ranna rangehood
+  aliases:
+  - ranna rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: dhoa washing
+  aliases:
+  - dhoa washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: dhoa dryer
+  aliases:
+  - dhoa dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: masterbath pakhabad
+  aliases:
+  - masterbath pakhabad
+  - pakhabad
+  tags:
+  - pakhabad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath pakhabad
+  aliases:
+  - main bath pakhabad
+  - pakhabad
+  tags:
+  - pakhabad
+- id: media_player.living_tv
+  area_id: living
+  name: bosar tv
+  aliases:
+  - bosar tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: paribarik tv
+  aliases:
+  - paribarik tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: bosar tivi
+  aliases:
+  - bosar tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: ranna tivi
+  aliases:
+  - ranna tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: bosar jharu
+  aliases:
+  - bosar jharu
+  - jharu
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: prabesh doorsensor
+  aliases:
+  - prabesh doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: bosar windowsensor
+  aliases:
+  - bosar windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: ranna motion
+  aliases:
+  - ranna motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: bosar tempsensor
+  aliases:
+  - bosar tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: bosar humidity
+  aliases:
+  - bosar humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: chobi
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: rat
+- id: leaving_home
+  name: ber
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: talika

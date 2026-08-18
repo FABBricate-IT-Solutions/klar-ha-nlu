@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - ανεμιστηρας σαλονιfam αναψε
+  - αναψε ανεμιστηρας σαλονιfam
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - σβησε ανεμιστηρας σαλονιfam
+  - ανεμιστηρας σαλονιfam σβησε
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - βαλε ανεμιστηρας σαλονιfam 40
+  - ανεμιστηρας σαλονιfam 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - ανεμιστηρας υπνοδωματο αναψε
+  - αναψε ανεμιστηρας υπνοδωματο
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - σβησε ανεμιστηρας υπνοδωματο
+  - ανεμιστηρας υπνοδωματο σβησε
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο 40
+  - ανεμιστηρας υπνοδωματο 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - ανεμιστηρας υπνοδωματο2 αναψε
+  - αναψε ανεμιστηρας υπνοδωματο2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - σβησε ανεμιστηρας υπνοδωματο2
+  - ανεμιστηρας υπνοδωματο2 σβησε
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο2 40
+  - ανεμιστηρας υπνοδωματο2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - βαλε ανεμιστηρας σαλονιfam 20
+  - ανεμιστηρας σαλονιfam 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - βαλε ανεμιστηρας σαλονιfam 60
+  - ανεμιστηρας σαλονιfam 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - βαλε ανεμιστηρας σαλονιfam 80
+  - ανεμιστηρας σαλονιfam 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο 20
+  - ανεμιστηρας υπνοδωματο 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο 60
+  - ανεμιστηρας υπνοδωματο 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο 80
+  - ανεμιστηρας υπνοδωματο 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο2 20
+  - ανεμιστηρας υπνοδωματο2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο2 60
+  - ανεμιστηρας υπνοδωματο2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - βαλε ανεμιστηρας υπνοδωματο2 80
+  - ανεμιστηρας υπνοδωματο2 80

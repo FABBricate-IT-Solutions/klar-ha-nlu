@@ -1,0 +1,66 @@
+- name: list_add
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - add milk to the list
+- name: list_done
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - milk done
+- name: list_done_milk
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - milk done
+- name: list_add_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - add bread to the list
+- name: list_done_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - bread done
+- name: list_add_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - add eggs to the list
+- name: list_done_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - eggs done
+- name: list_add_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - add apples to the list
+- name: list_done_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - apples done
+- name: list_add_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - add coffee to the list
+- name: list_done_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - coffee done

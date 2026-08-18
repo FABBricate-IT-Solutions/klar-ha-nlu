@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- jalao timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- jalao timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- jalao timer abstract
+timers/timers::cancel_all_timers:
+- nibhao sob timer
+timers/timers::timer_laundry_cancel:
+- jalao timer laundry
+timers/timers::timer_laundry_decrease:
+- jalao timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- jalao timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- nibhao timer laundry
+timers/timers::timer_laundry_start:
+- jalao timer laundry
+timers/timers::timer_laundry_status:
+- ki timer laundry
+timers/timers::timer_laundry_unpause:
+- jalao timer laundry
+timers/timers::timer_oven_cancel:
+- jalao timer oven
+timers/timers::timer_oven_decrease:
+- jalao timer oven 44 min
+timers/timers::timer_oven_increase:
+- jalao timer oven 30 min
+timers/timers::timer_oven_pause:
+- nibhao timer oven
+timers/timers::timer_oven_start:
+- jalao timer oven 2 min
+timers/timers::timer_oven_status:
+- ki timer oven
+timers/timers::timer_oven_unpause:
+- jalao timer oven

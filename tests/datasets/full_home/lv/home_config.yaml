@@ -1,0 +1,504 @@
+name: Full Home lv
+language: lv
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: pirmais
+  level: 0
+  aliases:
+  - pirmais
+  - apaks
+- id: upper
+  name: stavs
+  level: 1
+  aliases:
+  - stavs
+  - augsa
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Prieksnams
+  floor: ground
+  aliases:
+  - prieksnams
+- id: living
+  name: Istaba
+  floor: ground
+  aliases:
+  - istaba
+- id: dining
+  name: Dzivojamafamess
+  floor: ground
+  aliases:
+  - dzivojamafamess
+- id: kitchen
+  name: Virtuve
+  floor: ground
+  aliases:
+  - virtuve
+- id: family_room
+  name: Dzivojamafam
+  floor: ground
+  aliases:
+  - dzivojamafam
+- id: laundry
+  name: Velas
+  floor: ground
+  aliases:
+  - velas
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Gulamistaba
+  floor: upper
+  aliases:
+  - gulamistaba
+- id: bedroom_2
+  name: Gulamistaba2
+  floor: upper
+  aliases:
+  - gulamistaba2
+- id: bedroom_3
+  name: Gulamistaba3
+  floor: upper
+  aliases:
+  - gulamistaba3
+- id: bedroom_4
+  name: Gulamistaba4
+  floor: upper
+  aliases:
+  - gulamistaba4
+- id: master_bath
+  name: Vannamaster
+  floor: upper
+  aliases:
+  - vannamaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: prieksnams gaisma
+  aliases:
+  - prieksnams gaisma
+  - gaisma
+- id: light.living_ceiling
+  area_id: living
+  name: istaba griesti
+  aliases:
+  - istaba griesti
+  - griesti
+- id: light.living_lamp
+  area_id: living
+  name: istaba gaisma
+  aliases:
+  - istaba gaisma
+  - gaisma
+- id: light.dining_pendant
+  area_id: dining
+  name: dzivojamafamess gaisma
+  aliases:
+  - dzivojamafamess gaisma
+  - gaisma
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: virtuve griesti
+  aliases:
+  - virtuve griesti
+  - griesti
+- id: light.kitchen_island
+  area_id: kitchen
+  name: virtuve sala
+  aliases:
+  - virtuve sala
+  - sala
+- id: light.family_ceiling
+  area_id: family_room
+  name: dzivojamafam griesti
+  aliases:
+  - dzivojamafam griesti
+  - griesti
+- id: light.laundry_light
+  area_id: laundry
+  name: velas gaisma
+  aliases:
+  - velas gaisma
+  - gaisma
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc gaisma
+  aliases:
+  - wc gaisma
+  - gaisma
+- id: light.garage_light
+  area_id: garage
+  name: garage gaisma
+  aliases:
+  - garage gaisma
+  - gaisma
+- id: light.office_ceiling
+  area_id: office
+  name: office griesti
+  aliases:
+  - office griesti
+  - griesti
+- id: light.garden
+  area_id: garden
+  name: garden gaisma
+  aliases:
+  - garden gaisma
+  - gaisma
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: gulamistaba griesti
+  aliases:
+  - gulamistaba griesti
+  - griesti
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: gulamistaba ensuite
+  aliases:
+  - gulamistaba ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: gulamistaba left bedside
+  aliases:
+  - gulamistaba left bedside
+  - bedside
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: gulamistaba right bedside
+  aliases:
+  - gulamistaba right bedside
+  - bedside
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: gulamistaba2 griesti
+  aliases:
+  - gulamistaba2 griesti
+  - griesti
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: gulamistaba3 griesti
+  aliases:
+  - gulamistaba3 griesti
+  - griesti
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: gulamistaba4 griesti
+  aliases:
+  - gulamistaba4 griesti
+  - griesti
+- id: light.master_bath_light
+  area_id: master_bath
+  name: vannamaster gaisma
+  aliases:
+  - vannamaster gaisma
+  - gaisma
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath gaisma
+  aliases:
+  - main bath gaisma
+  - gaisma
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway gaisma
+  aliases:
+  - hallway gaisma
+  - gaisma
+- id: light.basement
+  area_id: basement
+  name: basement gaisma
+  aliases:
+  - basement gaisma
+  - gaisma
+- id: cover.living_blinds
+  area_id: living
+  name: istaba aizkars
+  aliases:
+  - istaba aizkars
+  - aizkars
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: gulamistaba aizkars
+  aliases:
+  - gulamistaba aizkars
+  - aizkars
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: gulamistaba2 aizkars
+  aliases:
+  - gulamistaba2 aizkars
+  - aizkars
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: gulamistaba3 aizkars
+  aliases:
+  - gulamistaba3 aizkars
+  - aizkars
+- id: cover.garage_door
+  area_id: garage
+  name: garage aizkars
+  aliases:
+  - garage aizkars
+  - aizkars
+- id: climate.ground_thermostat
+  area_id: living
+  name: istaba apkure
+  aliases:
+  - istaba apkure
+  - apkure
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: gulamistaba apkure
+  aliases:
+  - gulamistaba apkure
+  - apkure
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: apkure gulamistaba
+  aliases:
+  - apkure gulamistaba
+  - apkure
+  - ac
+  tags:
+  - apkure
+- id: fan.family_fan
+  area_id: family_room
+  name: dzivojamafam ventilators
+  aliases:
+  - dzivojamafam ventilators
+  - ventilators
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: gulamistaba ventilators
+  aliases:
+  - gulamistaba ventilators
+  - ventilators
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: gulamistaba2 ventilators
+  aliases:
+  - gulamistaba2 ventilators
+  - ventilators
+- id: lock.front_door
+  area_id: entryway
+  name: front durvis
+  aliases:
+  - front durvis
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage durvis
+  aliases:
+  - garage durvis
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: virtuve trauku
+  aliases:
+  - virtuve trauku
+  - trauku
+- id: switch.rangehood
+  area_id: kitchen
+  name: virtuve rangehood
+  aliases:
+  - virtuve rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: velas veļasmašīna
+  aliases:
+  - velas veļasmašīna
+  - veļasmašīna
+  - washer
+  tags:
+  - washer
+  - veļasmašīna
+- id: switch.dryer
+  area_id: laundry
+  name: velas dryer
+  aliases:
+  - velas dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: vannamaster ventilatorsbad
+  aliases:
+  - vannamaster ventilatorsbad
+  - ventilatorsbad
+  tags:
+  - ventilatorsbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatorsbad
+  aliases:
+  - main bath ventilatorsbad
+  - ventilatorsbad
+  tags:
+  - ventilatorsbad
+- id: media_player.living_tv
+  area_id: living
+  name: istaba tv
+  aliases:
+  - istaba tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: dzivojamafam tv
+  aliases:
+  - dzivojamafam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: istaba televizors
+  aliases:
+  - istaba televizors
+  - televizors
+  platform: music_assistant
+  tags:
+  - televizors
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: virtuve televizors
+  aliases:
+  - virtuve televizors
+  - televizors
+  platform: music_assistant
+  tags:
+  - televizors
+- id: media_player.office_music
+  area_id: office
+  name: office televizors
+  aliases:
+  - office televizors
+  - televizors
+  platform: music_assistant
+  tags:
+  - televizors
+- id: vacuum.robot
+  area_id: living
+  name: istaba puteklusucejs
+  aliases:
+  - istaba puteklusucejs
+  - puteklusucejs
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: prieksnams doorsensor
+  aliases:
+  - prieksnams doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: istaba windowsensor
+  aliases:
+  - istaba windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: virtuve motion
+  aliases:
+  - virtuve motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: istaba tempsensor
+  aliases:
+  - istaba tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: istaba humidity
+  aliases:
+  - istaba humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: filma
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nakts
+- id: leaving_home
+  name: izeja
+timers:
+- id: oven
+  name: oven taimeris
+- id: laundry
+  name: laundry taimeris
+- id: abstract
+  name: abstract taimeris
+lists:
+- id: shopping
+  name: saraksts

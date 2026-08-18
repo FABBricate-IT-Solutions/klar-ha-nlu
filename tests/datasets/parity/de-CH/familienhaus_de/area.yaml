@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- zue store schlafzimmer2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- ufmache store schlafzimmer2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- stell store schlafzimmer2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- stell ventilator schlafzimmer2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- loesch ventilator schlafzimmer2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- mach ventilator schlafzimmer2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- stell liecht schlafzimmer2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- stell liecht schlafzimmer2 rosa
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- loesch liecht schlafzimmer2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- mach liecht schlafzimmer2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- zue store schlafzimmer3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- ufmache store schlafzimmer3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- stell store schlafzimmer3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- stell liecht schlafzimmer3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- stell liecht schlafzimmer3 blau
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- loesch liecht schlafzimmer3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- mach liecht schlafzimmer3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- stell liecht schlafzimmer4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- stell liecht schlafzimmer4 gruen
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- loesch liecht schlafzimmer4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- mach liecht schlafzimmer4
+area/dining_lights::dining_lights_change_brightness:
+- stell liecht stubeess 54
+area/dining_lights::dining_lights_change_color:
+- stell liecht stubeess blau
+area/dining_lights::dining_lights_turn_off:
+- loesch liecht stubeess
+area/dining_lights::dining_lights_turn_on:
+- mach liecht stubeess
+area/entryway_lights::entryway_lights_change_brightness:
+- stell liecht eingang 72
+area/entryway_lights::entryway_lights_change_color:
+- stell liecht eingang schwarz
+area/entryway_lights::entryway_lights_turn_off:
+- loesch liecht eingang
+area/entryway_lights::entryway_lights_turn_on:
+- mach liecht eingang
+area/entryway_locks::entryway_locks_lock:
+- schloss schloss eingang
+area/entryway_locks::entryway_locks_unlock:
+- ufmache schloss eingang
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- stell liecht stube 39 und stell liecht chuchi 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- stell liecht stube violett und stell liecht chuchi violett
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- loesch liecht stube und loesch liecht chuchi
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- mach liecht stube und mach liecht chuchi
+area/family_room_fans::family_room_fans_set_fan_speed:
+- stell ventilator stube 32
+area/family_room_fans::family_room_fans_turn_off:
+- loesch ventilator stube
+area/family_room_fans::family_room_fans_turn_on:
+- mach ventilator stube
+area/family_room_lights::family_room_lights_change_brightness:
+- stell liecht stube 44
+area/family_room_lights::family_room_lights_change_color:
+- stell liecht stube gruen
+area/family_room_lights::family_room_lights_turn_off:
+- loesch liecht stube
+area/family_room_lights::family_room_lights_turn_on:
+- mach liecht stube
+area/garage_covers::garage_covers_close:
+- zue store garage
+area/garage_covers::garage_covers_open:
+- ufmache store garage
+area/garage_covers::garage_covers_set_position:
+- stell store garage 86
+area/garage_lights::garage_lights_change_brightness:
+- stell liecht garage 16
+area/garage_lights::garage_lights_change_color:
+- stell liecht garage blau
+area/garage_lights::garage_lights_turn_off:
+- loesch liecht garage
+area/garage_lights::garage_lights_turn_on:
+- mach liecht garage
+area/garage_locks::garage_locks_lock:
+- schloss schloss garage
+area/garage_locks::garage_locks_unlock:
+- ufmache schloss garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- stell liecht einganggang 26 und stell liecht toilette 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- stell liecht einganggang violett und stell liecht toilette violett
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- loesch liecht einganggang und loesch liecht toilette
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- mach liecht einganggang und mach liecht toilette
+area/hallway_lights::hallway_lights_change_brightness:
+- stell liecht einganggang 61
+area/hallway_lights::hallway_lights_change_color:
+- stell liecht einganggang orange
+area/hallway_lights::hallway_lights_turn_off:
+- loesch liecht einganggang
+area/hallway_lights::hallway_lights_turn_on:
+- mach liecht einganggang
+area/kitchen_lights::kitchen_lights_change_brightness:
+- stell liecht chuchi 45
+area/kitchen_lights::kitchen_lights_change_color:
+- stell liecht chuchi rosa
+area/kitchen_lights::kitchen_lights_turn_off:
+- loesch liecht chuchi
+area/kitchen_lights::kitchen_lights_turn_on:
+- mach liecht chuchi
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- loesch geraet chuchi
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- mach geraet chuchi
+area/laundry_lights::laundry_lights_change_brightness:
+- stell liecht waschruum 62
+area/laundry_lights::laundry_lights_change_color:
+- stell liecht waschruum gelb
+area/laundry_lights::laundry_lights_turn_off:
+- loesch liecht waschruum
+area/laundry_lights::laundry_lights_turn_on:
+- mach liecht waschruum
+area/laundry_switchs::laundry_switchs_turn_off:
+- loesch geraet waschruum
+area/laundry_switchs::laundry_switchs_turn_on:
+- mach geraet waschruum
+area/living_climates::living_climates_set_temperature:
+- stell heizig wohnzimmer 20
+area/living_covers::living_covers_close:
+- zue store wohnzimmer
+area/living_covers::living_covers_open:
+- ufmache store wohnzimmer
+area/living_covers::living_covers_set_position:
+- stell store wohnzimmer 46
+area/living_lights::living_lights_change_brightness:
+- stell liecht wohnzimmer 84
+area/living_lights::living_lights_change_color:
+- stell liecht wohnzimmer blau
+area/living_lights::living_lights_turn_off:
+- loesch liecht wohnzimmer
+area/living_lights::living_lights_turn_on:
+- mach liecht wohnzimmer
+area/main_bath_lights::main_bath_lights_change_brightness:
+- stell liecht badmastermain 73
+area/main_bath_lights::main_bath_lights_change_color:
+- stell liecht badmastermain rosa
+area/main_bath_lights::main_bath_lights_turn_off:
+- loesch liecht badmastermain
+area/main_bath_lights::main_bath_lights_turn_on:
+- mach liecht badmastermain
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- loesch geraet badmastermain
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- mach geraet badmastermain
+area/master_bath_lights::master_bath_lights_change_brightness:
+- stell liecht badmaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- stell liecht badmaster schwarz
+area/master_bath_lights::master_bath_lights_turn_off:
+- loesch liecht badmaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- mach liecht badmaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- loesch geraet badmaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- mach geraet badmaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- stell heizig schlafzimmer 20 und stell heizig wohnzimmer 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- zue store schlafzimmer und zue store wohnzimmer
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- ufmache store schlafzimmer und ufmache store wohnzimmer
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- stell store schlafzimmer 19 und stell store wohnzimmer 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- stell liecht schlafzimmer 25 und stell liecht wohnzimmer 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- stell liecht schlafzimmer weiss und stell liecht wohnzimmer weiss
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- loesch liecht schlafzimmer und loesch liecht wohnzimmer
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- mach liecht schlafzimmer und mach liecht wohnzimmer
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- stell liecht schlafzimmer 57 und stell liecht badmastermain 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- stell liecht schlafzimmer rosa und stell liecht badmastermain rosa
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- loesch liecht schlafzimmer und loesch liecht badmastermain
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- mach liecht schlafzimmer und mach liecht badmastermain
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- stell heizig schlafzimmer 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- zue store schlafzimmer
+area/master_bedroom_covers::master_bedroom_covers_open:
+- ufmache store schlafzimmer
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- stell store schlafzimmer 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- stell ventilator schlafzimmer 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- loesch ventilator schlafzimmer
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- mach ventilator schlafzimmer
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- stell liecht schlafzimmer 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- stell liecht schlafzimmer rosa
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- loesch liecht schlafzimmer
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- mach liecht schlafzimmer
+area/powder_room_lights::powder_room_lights_change_brightness:
+- stell liecht toilette 52
+area/powder_room_lights::powder_room_lights_change_color:
+- stell liecht toilette violett
+area/powder_room_lights::powder_room_lights_turn_off:
+- loesch liecht toilette
+area/powder_room_lights::powder_room_lights_turn_on:
+- mach liecht toilette
+area/spoken_lights::spoken_bedroom_inflection:
+- stell liecht schlafzimmer rot
+area/spoken_lights::spoken_except_island:
+- loesch alli liecht ausser insel
+area/spoken_lights::spoken_except_kitchen:
+- loesch alli liecht ausser chuchi ausser insel
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- loesch liecht wohnzimmer und loesch liecht stubeess und loesch liecht chuchi
+area/spoken_lights::spoken_stt_kitchen_off:
+- loesch liecht chuchi
+area/spoken_lights::spoken_stt_living_off:
+- loesch liecht wohnzimmer

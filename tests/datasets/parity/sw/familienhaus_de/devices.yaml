@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- weka joto sebuleni 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- weka joto chumbakulala 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- weka pazia chumbakulala2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- funga pazia chumbakulala2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- fungua pazia chumbakulala2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- weka pazia chumbakulala3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- funga pazia chumbakulala3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- fungua pazia chumbakulala3
+devices/cover_garage_door::cover_garage_door_change_position:
+- weka pazia garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- funga pazia garage
+devices/cover_garage_door::cover_garage_door_open:
+- fungua pazia garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- weka pazia sebuleni 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- funga pazia sebuleni
+devices/cover_living_blinds::cover_living_blinds_open:
+- fungua pazia sebuleni
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- weka pazia chumbakulala 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- funga pazia chumbakulala
+devices/cover_master_blinds::cover_master_blinds_open:
+- fungua pazia chumbakulala
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- weka feni chumbakulala2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- zima feni chumbakulala2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- washa feni chumbakulala2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- weka feni sefula 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- zima feni sefula
+devices/fan_family_fan::fan_family_fan_turn_on:
+- washa feni sefula
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- weka feni chumbakulala 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- zima feni chumbakulala
+devices/fan_master_fan::fan_master_fan_turn_on:
+- washa feni chumbakulala
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- zima feni chumbakulala na zima taa jikonini
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- washa feni chumbakulala na washa taa jikonini
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- weka dari chumbakulala2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- weka dari chumbakulala2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- zima dari chumbakulala2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- washa dari chumbakulala2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- weka dari chumbakulala3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- weka dari chumbakulala3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- zima dari chumbakulala3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- washa dari chumbakulala3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- weka dari chumbakulala4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- weka dari chumbakulala4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- zima dari chumbakulala4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- washa dari chumbakulala4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- weka taa sebuleni 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- weka taa sebuleni blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- zima taa sebuleni
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- washa taa sebuleni
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- weka taa kiingilio 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- weka taa kiingilio yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- zima taa kiingilio
+devices/light_entryway_light::light_entryway_light_turn_on:
+- washa taa kiingilio
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- weka dari sefula 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- weka dari sefula purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- zima dari sefula
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- washa dari sefula
+devices/light_garage_light::light_garage_light_change_brightness:
+- weka taa garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- weka taa garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- zima taa garage
+devices/light_garage_light::light_garage_light_turn_on:
+- washa taa garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- weka taa kiingilio 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- weka taa kiingilio white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- zima taa kiingilio
+devices/light_hallway_light::light_hallway_light_turn_on:
+- washa taa kiingilio
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- weka dari jikonini 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- weka dari jikonini orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- zima dari jikonini
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- washa dari jikonini
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- weka taa jikonini 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- weka taa jikonini green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- zima taa jikonini
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- washa taa jikonini
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- weka taa chumbayaosha 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- weka taa chumbayaosha white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- zima taa chumbayaosha
+devices/light_laundry_light::light_laundry_light_turn_on:
+- washa taa chumbayaosha
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- weka dari sebuleni 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- weka dari sebuleni black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- zima dari sebuleni
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- washa dari sebuleni
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- weka taa sebuleni 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- weka taa sebuleni red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- zima taa sebuleni
+devices/light_living_lamp::light_living_lamp_turn_on:
+- washa taa sebuleni
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- weka taa main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- weka taa main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- zima taa main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- washa taa main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- weka taa bafumaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- weka taa bafumaster black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- zima taa bafumaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- washa taa bafumaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- weka kitanda chumbakulala 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- weka kitanda chumbakulala red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- zima kitanda chumbakulala
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- washa kitanda chumbakulala
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- weka dari chumbakulala 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- weka dari chumbakulala blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- zima dari chumbakulala
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- washa dari chumbakulala
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- weka taa chumbakulala 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- weka taa chumbakulala black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- zima taa chumbakulala
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- washa taa chumbakulala
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- weka taa choo 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- weka taa choo black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- zima taa choo
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- washa taa choo
+devices/lock_front_door::lock_front_door_lock:
+- kufuli kufuli kiingilio
+devices/lock_front_door::lock_front_door_unlock:
+- fungua kufuli kiingilio
+devices/lock_garage_entry::lock_garage_entry_lock:
+- kufuli kufuli garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- fungua kufuli garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- washa runinga sefula
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause runinga sefula
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- zima runinga sefula
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- washa runinga sefula
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- washa runinga sefula
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- washa runinga sefula
+devices/media_player_living_tv::media_player_living_tv_mute:
+- washa runinga sebuleni
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause runinga sebuleni
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- zima runinga sebuleni
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- washa runinga sebuleni
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- washa runinga sebuleni
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- washa runinga sebuleni
+devices/scenes::dinner_time:
+- weka taa sebuleni 90 na washa dari jikonini na weka taa jikonini 80
+devices/scenes::good_morning:
+- washa dari jikonini na weka taa sebuleni 100 na fungua pazia sebuleni na fungua
+  pazia chumbakulala
+devices/scenes::kids_bedtime:
+- zima dari chumbakulala2 na zima dari chumbakulala3 na zima dari chumbakulala4 na
+  weka taa kiingilio 15
+devices/scenes::movie_night:
+- zima dari sebuleni na weka taa sebuleni 20 na washa runinga sebuleni na funga pazia
+  sebuleni
+devices/scripts::good_night:
+- washa tukio usiku
+devices/scripts::leaving_home:
+- washa tukio ondoka
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- zima vyombo
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- washa vyombo
+devices/switch_dryer::switch_dryer_turn_off:
+- zima mashine
+devices/switch_dryer::switch_dryer_turn_on:
+- washa mashine
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- zima mashine
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- washa mashine

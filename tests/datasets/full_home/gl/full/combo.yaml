@@ -1,0 +1,1632 @@
+- name: and_light.living_ceiling_light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - acende salon teito e salon lamp
+  - salon teito e salon lamp acende
+- name: and_light.living_ceiling_light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - apaga salon teito e salon lamp
+  - salon teito e salon lamp apaga
+- name: and_light.kitchen_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - acende cociña teito e cociña illa
+  - cociña teito e cociña illa acende
+- name: and_light.kitchen_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - apaga cociña teito e cociña illa
+  - cociña teito e cociña illa apaga
+- name: and_light.living_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - acende salon teito e cociña illa
+  - salon teito e cociña illa acende
+- name: and_light.living_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - apaga salon teito e cociña illa
+  - salon teito e cociña illa apaga
+- name: and_light.office_ceiling_light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - acende office teito e hallway luz
+  - office teito e hallway luz acende
+- name: and_light.office_ceiling_light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - apaga office teito e hallway luz
+  - office teito e hallway luz apaga
+- name: and_light.garden_light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - acende garden luz e garage luz
+  - garden luz e garage luz acende
+- name: and_light.garden_light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - apaga garden luz e garage luz
+  - garden luz e garage luz apaga
+- name: and_light.master_ceiling_light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - acende cuarto teito e cuarto mesilla
+  - cuarto teito e cuarto mesilla acende
+- name: and_light.master_ceiling_light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - apaga cuarto teito e cuarto mesilla
+  - cuarto teito e cuarto mesilla apaga
+- name: and_light.family_ceiling_light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - acende salafam teito e salafamess luz
+  - salafam teito e salafamess luz acende
+- name: and_light.family_ceiling_light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - apaga salafam teito e salafamess luz
+  - salafam teito e salafamess luz apaga
+- name: and_light.basement_light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - acende basement luz e lavandaria luz
+  - basement luz e lavandaria luz acende
+- name: and_light.basement_light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - apaga basement luz e lavandaria luz
+  - basement luz e lavandaria luz apaga
+- name: and_fan.master_fan_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - acende cuarto ventilador e cociña illa
+  - cuarto ventilador e cociña illa acende
+- name: and_cover.living_blinds_light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: 'on'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - acende salon cortina e salon teito
+  - salon cortina e salon teito acende
+- name: and_switch.washing_machine_switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - acende lavandaria lavadora e lavandaria dryer
+  - lavandaria lavadora e lavandaria dryer acende
+- name: off_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz salon e cociña
+  - luz salon e cociña apaga
+- name: off_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz office e hallway
+  - luz office e hallway apaga
+- name: off_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz garage e garden
+  - luz garage e garden apaga
+- name: off_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz cuarto e main bath
+  - luz cuarto e main bath apaga
+- name: off_family_room_dining
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz salafam e salafamess
+  - luz salafam e salafamess apaga
+- name: off_living_dining_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz salon e salafamess e cociña
+  - luz salon salafamess e cociña apaga
+- name: on_office_hallway_garage
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - acende luz office e hallway e garage
+  - luz office hallway e garage acende
+- name: off_garden_basement_laundry
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga luz garden e basement e lavandaria
+  - luz garden basement e lavandaria apaga
+- name: except_light.kitchen_island
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto illa cociña
+  - todo luz apaga excepto illa cociña
+  forbid:
+  - light.kitchen_island
+  - kitchen
+- name: except_light.living_lamp
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto lamp salon
+  - todo luz apaga excepto lamp salon
+  forbid:
+  - light.living_lamp
+  - living
+- name: except_light.garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto garden
+  - todo luz apaga excepto garden
+  forbid:
+  - light.garden
+  - garden
+- name: except_light.office_ceiling
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto teito office
+  - todo luz apaga excepto teito office
+  forbid:
+  - light.office_ceiling
+  - office
+- name: except_light.basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto basement
+  - todo luz apaga excepto basement
+  forbid:
+  - light.basement
+  - basement
+- name: all_on_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - acende todo luz excepto cociña
+  - todo luz acende excepto cociña
+  forbid:
+  - kitchen
+- name: all_on_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - acende todo luz excepto office
+  - todo luz acende excepto office
+  forbid:
+  - office
+- name: all_on_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - acende todo luz excepto garden
+  - todo luz acende excepto garden
+  forbid:
+  - garden
+- name: all_on_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - acende todo luz excepto salon
+  - todo luz acende excepto salon
+  forbid:
+  - living
+- name: all_on_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - acende todo luz excepto garage
+  - todo luz acende excepto garage
+  forbid:
+  - garage
+- name: except_in_kitchen_island
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - apaga todo luz cociña excepto illa
+  - todo luz cociña apaga excepto illa
+  forbid:
+  - light.kitchen_island
+- name: except_in_living_lamp
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - apaga todo luz salon excepto lamp
+  - todo luz salon apaga excepto lamp
+  forbid:
+  - light.living_lamp
+- name: except_island_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - acende todo luz excepto illa cociña
+  - todo luz acende excepto illa cociña
+  forbid:
+  - light.kitchen_island
+- name: except_kitchen_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto cociña e office
+  - todo luz apaga excepto cociña e office
+  forbid:
+  - kitchen
+  - office
+- name: except_living_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto salon e cuarto
+  - todo luz apaga excepto salon e cuarto
+  forbid:
+  - living
+  - master_bedroom
+- name: except_garage_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz excepto garage e garden
+  - todo luz apaga excepto garage e garden
+  forbid:
+  - garage
+  - garden
+- name: floor_ground_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz baixo excepto cociña
+  - todo luz baixo apaga excepto cociña
+  forbid:
+  - kitchen
+- name: floor_upper_except_master_bedroom
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz andar excepto cuarto
+  - todo luz andar apaga excepto cuarto
+  forbid:
+  - master_bedroom
+- name: floor_ground_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - apaga todo luz baixo excepto office
+  - todo luz baixo apaga excepto office
+  forbid:
+  - office
+- name: covers_living_master_open
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  sentences:
+  - abre cortina salon e cuarto
+  - cortina salon e cuarto abre
+- name: covers_living_master_close
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  sentences:
+  - pecha cortina salon e cuarto
+  - cortina salon e cuarto pecha
+- name: climate_living_master_21
+  conditions:
+  - type: action
+    area: living
+    domain: climate
+    attributes:
+      temperature: 21
+  - type: action
+    area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 21
+  sentences:
+  - pon calefaccion salon e cuarto 21
+  - calefaccion salon e cuarto 21
+- name: bright_living_kitchen_50
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      brightness: 50
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      brightness: 50
+  sentences:
+  - pon luz salon e cociña 50
+  - luz salon e cociña 50
+- name: color_living_kitchen_red
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      color: red
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      color: red
+  sentences:
+  - pon luz salon e cociña red
+  - luz salon e cociña red
+- name: query_living_kitchen_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - que luz salon e cociña
+  - luz salon e cociña
+- name: temp_living_and_light_kitchen_off
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - que calefaccion salon e apaga luz cociña
+  - apaga luz cociña e que calefaccion salon
+- name: locks_front_and_garage
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - pechadura front porta e garage porta
+  - pechadura pechadura entrada e garage
+- name: scene_and_powder_off
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - acende filme e apaga luz aseo
+  - apaga luz aseo e acende filme

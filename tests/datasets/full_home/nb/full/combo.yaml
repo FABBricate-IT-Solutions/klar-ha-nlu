@@ -1,0 +1,1632 @@
+- name: and_light.living_ceiling_light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - skru stue tak og stue lamp
+  - stue tak og stue lamp skru
+- name: and_light.living_ceiling_light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - slaa stue tak og stue lamp
+  - stue tak og stue lamp slaa
+- name: and_light.kitchen_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - skru kjokken tak og kjokken oy
+  - kjokken tak og kjokken oy skru
+- name: and_light.kitchen_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - slaa kjokken tak og kjokken oy
+  - kjokken tak og kjokken oy slaa
+- name: and_light.living_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - skru stue tak og kjokken oy
+  - stue tak og kjokken oy skru
+- name: and_light.living_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - slaa stue tak og kjokken oy
+  - stue tak og kjokken oy slaa
+- name: and_light.office_ceiling_light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - skru office tak og hallway lys
+  - office tak og hallway lys skru
+- name: and_light.office_ceiling_light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - slaa office tak og hallway lys
+  - office tak og hallway lys slaa
+- name: and_light.garden_light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - skru garden lys og garage lys
+  - garden lys og garage lys skru
+- name: and_light.garden_light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - slaa garden lys og garage lys
+  - garden lys og garage lys slaa
+- name: and_light.master_ceiling_light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - skru soverom tak og soverom nattbord
+  - soverom tak og soverom nattbord skru
+- name: and_light.master_ceiling_light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - slaa soverom tak og soverom nattbord
+  - soverom tak og soverom nattbord slaa
+- name: and_light.family_ceiling_light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - skru stuefam tak og stuefamess lys
+  - stuefam tak og stuefamess lys skru
+- name: and_light.family_ceiling_light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - slaa stuefam tak og stuefamess lys
+  - stuefam tak og stuefamess lys slaa
+- name: and_light.basement_light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - skru basement lys og vaskerom lys
+  - basement lys og vaskerom lys skru
+- name: and_light.basement_light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - slaa basement lys og vaskerom lys
+  - basement lys og vaskerom lys slaa
+- name: and_fan.master_fan_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - skru soverom vifte og kjokken oy
+  - soverom vifte og kjokken oy skru
+- name: and_cover.living_blinds_light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: 'on'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - skru stue gardin og stue tak
+  - stue gardin og stue tak skru
+- name: and_switch.washing_machine_switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - skru vaskerom vaskemaskin og vaskerom dryer
+  - vaskerom vaskemaskin og vaskerom dryer skru
+- name: off_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys stue og kjokken
+  - lys stue og kjokken slaa
+- name: off_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys office og hallway
+  - lys office og hallway slaa
+- name: off_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys garage og garden
+  - lys garage og garden slaa
+- name: off_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys soverom og main bath
+  - lys soverom og main bath slaa
+- name: off_family_room_dining
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys stuefam og stuefamess
+  - lys stuefam og stuefamess slaa
+- name: off_living_dining_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys stue og stuefamess og kjokken
+  - lys stue stuefamess og kjokken slaa
+- name: on_office_hallway_garage
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - skru lys office og hallway og garage
+  - lys office hallway og garage skru
+- name: off_garden_basement_laundry
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa lys garden og basement og vaskerom
+  - lys garden basement og vaskerom slaa
+- name: except_light.kitchen_island
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt oy kjokken
+  - alle lys slaa unntatt oy kjokken
+  forbid:
+  - light.kitchen_island
+  - kitchen
+- name: except_light.living_lamp
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt lamp stue
+  - alle lys slaa unntatt lamp stue
+  forbid:
+  - light.living_lamp
+  - living
+- name: except_light.garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt garden
+  - alle lys slaa unntatt garden
+  forbid:
+  - light.garden
+  - garden
+- name: except_light.office_ceiling
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt tak office
+  - alle lys slaa unntatt tak office
+  forbid:
+  - light.office_ceiling
+  - office
+- name: except_light.basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt basement
+  - alle lys slaa unntatt basement
+  forbid:
+  - light.basement
+  - basement
+- name: all_on_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - skru alle lys unntatt kjokken
+  - alle lys skru unntatt kjokken
+  forbid:
+  - kitchen
+- name: all_on_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - skru alle lys unntatt office
+  - alle lys skru unntatt office
+  forbid:
+  - office
+- name: all_on_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - skru alle lys unntatt garden
+  - alle lys skru unntatt garden
+  forbid:
+  - garden
+- name: all_on_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - skru alle lys unntatt stue
+  - alle lys skru unntatt stue
+  forbid:
+  - living
+- name: all_on_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - skru alle lys unntatt garage
+  - alle lys skru unntatt garage
+  forbid:
+  - garage
+- name: except_in_kitchen_island
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - slaa alle lys kjokken unntatt oy
+  - alle lys kjokken slaa unntatt oy
+  forbid:
+  - light.kitchen_island
+- name: except_in_living_lamp
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - slaa alle lys stue unntatt lamp
+  - alle lys stue slaa unntatt lamp
+  forbid:
+  - light.living_lamp
+- name: except_island_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - skru alle lys unntatt oy kjokken
+  - alle lys skru unntatt oy kjokken
+  forbid:
+  - light.kitchen_island
+- name: except_kitchen_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt kjokken og office
+  - alle lys slaa unntatt kjokken og office
+  forbid:
+  - kitchen
+  - office
+- name: except_living_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt stue og soverom
+  - alle lys slaa unntatt stue og soverom
+  forbid:
+  - living
+  - master_bedroom
+- name: except_garage_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys unntatt garage og garden
+  - alle lys slaa unntatt garage og garden
+  forbid:
+  - garage
+  - garden
+- name: floor_ground_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys forste unntatt kjokken
+  - alle lys forste slaa unntatt kjokken
+  forbid:
+  - kitchen
+- name: floor_upper_except_master_bedroom
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys overetasje unntatt soverom
+  - alle lys overetasje slaa unntatt soverom
+  forbid:
+  - master_bedroom
+- name: floor_ground_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - slaa alle lys forste unntatt office
+  - alle lys forste slaa unntatt office
+  forbid:
+  - office
+- name: covers_living_master_open
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  sentences:
+  - apne gardin stue og soverom
+  - gardin stue og soverom apne
+- name: covers_living_master_close
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  sentences:
+  - lukk gardin stue og soverom
+  - gardin stue og soverom lukk
+- name: climate_living_master_21
+  conditions:
+  - type: action
+    area: living
+    domain: climate
+    attributes:
+      temperature: 21
+  - type: action
+    area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 21
+  sentences:
+  - sett varme stue og soverom 21
+  - varme stue og soverom 21
+- name: bright_living_kitchen_50
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      brightness: 50
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      brightness: 50
+  sentences:
+  - sett lys stue og kjokken 50
+  - lys stue og kjokken 50
+- name: color_living_kitchen_red
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      color: red
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      color: red
+  sentences:
+  - sett lys stue og kjokken rod
+  - lys stue og kjokken rod
+- name: query_living_kitchen_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - hva lys stue og kjokken
+  - lys stue og kjokken
+- name: temp_living_and_light_kitchen_off
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - hva varme stue og slaa lys kjokken
+  - slaa lys kjokken og hva varme stue
+- name: locks_front_and_garage
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - laas front dor og garage dor
+  - laas laas entree og garage
+- name: scene_and_powder_off
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - skru film og slaa lys toalett
+  - slaa lys toalett og skru film

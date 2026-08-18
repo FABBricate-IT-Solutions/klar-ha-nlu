@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- aprinde cronometru abstract 45 minut
+timers/timers::abstract_start_hours_minutes:
+- aprinde cronometru abstract 20 minut
+timers/timers::abstract_start_seconds:
+- aprinde cronometru abstract
+timers/timers::cancel_all_timers:
+- stinge tot cronometru
+timers/timers::timer_laundry_cancel:
+- aprinde cronometru laundry
+timers/timers::timer_laundry_decrease:
+- aprinde cronometru laundry 5 minut
+timers/timers::timer_laundry_increase:
+- aprinde cronometru laundry 16 minut
+timers/timers::timer_laundry_pause:
+- stinge cronometru laundry
+timers/timers::timer_laundry_start:
+- aprinde cronometru laundry
+timers/timers::timer_laundry_status:
+- ce cronometru laundry
+timers/timers::timer_laundry_unpause:
+- aprinde cronometru laundry
+timers/timers::timer_oven_cancel:
+- aprinde cronometru oven
+timers/timers::timer_oven_decrease:
+- aprinde cronometru oven 44 minut
+timers/timers::timer_oven_increase:
+- aprinde cronometru oven 30 minut
+timers/timers::timer_oven_pause:
+- stinge cronometru oven
+timers/timers::timer_oven_start:
+- aprinde cronometru oven 2 minut
+timers/timers::timer_oven_status:
+- ce cronometru oven
+timers/timers::timer_oven_unpause:
+- aprinde cronometru oven

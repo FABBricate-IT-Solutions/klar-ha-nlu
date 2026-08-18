@@ -1,0 +1,321 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - ανοιξε κουρτινα σαλονι
+  - κουρτινα σαλονι ανοιξε
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - κλεισε κουρτινα σαλονι
+  - κουρτινα σαλονι κλεισε
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - βαλε κουρτινα σαλονι 0
+  - κουρτινα σαλονι 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - βαλε κουρτινα σαλονι 25
+  - κουρτινα σαλονι 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - βαλε κουρτινα σαλονι 40
+  - κουρτινα σαλονι 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - βαλε κουρτινα σαλονι 75
+  - κουρτινα σαλονι 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - βαλε κουρτινα σαλονι 100
+  - κουρτινα σαλονι 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - ανοιξε κουρτινα υπνοδωματο
+  - κουρτινα υπνοδωματο ανοιξε
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - κλεισε κουρτινα υπνοδωματο
+  - κουρτινα υπνοδωματο κλεισε
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - βαλε κουρτινα υπνοδωματο 0
+  - κουρτινα υπνοδωματο 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - βαλε κουρτινα υπνοδωματο 25
+  - κουρτινα υπνοδωματο 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - βαλε κουρτινα υπνοδωματο 40
+  - κουρτινα υπνοδωματο 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - βαλε κουρτινα υπνοδωματο 75
+  - κουρτινα υπνοδωματο 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - βαλε κουρτινα υπνοδωματο 100
+  - κουρτινα υπνοδωματο 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - ανοιξε κουρτινα υπνοδωματο2
+  - κουρτινα υπνοδωματο2 ανοιξε
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - κλεισε κουρτινα υπνοδωματο2
+  - κουρτινα υπνοδωματο2 κλεισε
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - βαλε κουρτινα υπνοδωματο2 0
+  - κουρτινα υπνοδωματο2 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - βαλε κουρτινα υπνοδωματο2 25
+  - κουρτινα υπνοδωματο2 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - βαλε κουρτινα υπνοδωματο2 40
+  - κουρτινα υπνοδωματο2 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - βαλε κουρτινα υπνοδωματο2 75
+  - κουρτινα υπνοδωματο2 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - βαλε κουρτινα υπνοδωματο2 100
+  - κουρτινα υπνοδωματο2 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - ανοιξε κουρτινα υπνοδωματο3
+  - κουρτινα υπνοδωματο3 ανοιξε
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - κλεισε κουρτινα υπνοδωματο3
+  - κουρτινα υπνοδωματο3 κλεισε
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - βαλε κουρτινα υπνοδωματο3 0
+  - κουρτινα υπνοδωματο3 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - βαλε κουρτινα υπνοδωματο3 25
+  - κουρτινα υπνοδωματο3 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - βαλε κουρτινα υπνοδωματο3 40
+  - κουρτινα υπνοδωματο3 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - βαλε κουρτινα υπνοδωματο3 75
+  - κουρτινα υπνοδωματο3 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - βαλε κουρτινα υπνοδωματο3 100
+  - κουρτινα υπνοδωματο3 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - ανοιξε κουρτινα garage
+  - κουρτινα garage ανοιξε
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - κλεισε κουρτινα garage
+  - κουρτινα garage κλεισε
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - βαλε κουρτινα garage 0
+  - κουρτινα garage 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - βαλε κουρτινα garage 25
+  - κουρτινα garage 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - βαλε κουρτινα garage 40
+  - κουρτινα garage 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - βαλε κουρτινα garage 75
+  - κουρτινα garage 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - βαλε κουρτινα garage 100
+  - κουρτινα garage 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - ανοιξε κουρτινα σαλονι
+  - κουρτινα σαλονι ανοιξε
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - ανοιξε κουρτινα υπνοδωματο
+  - κουρτινα υπνοδωματο ανοιξε

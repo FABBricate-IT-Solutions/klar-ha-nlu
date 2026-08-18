@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- cosa tenda camera2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- cosa tenda camera2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- cosa tenda camera2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- cosa tenda camera2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- cosa ventola camera2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- cosa ventola camera2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- cosa ventola camera2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- cosa ventola camera2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- cosa luce camera2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- cosa luce camera2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- cosa luce camera2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- cosa luce camera2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- cosa tenda camera3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- cosa tenda camera3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- cosa tenda camera3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- cosa tenda camera3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- cosa luce camera3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- cosa luce camera3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- cosa luce camera3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- cosa luce camera3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- cosa luce camera4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- cosa luce camera4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- cosa luce camera4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- cosa luce camera4
+query_area/dining_lights::dining_lights_get_brightness:
+- cosa luce soggiorno
+query_area/dining_lights::dining_lights_get_state:
+- cosa luce soggiorno
+query_area/dining_lights::dining_lights_list_off_lights:
+- cosa luce soggiorno
+query_area/dining_lights::dining_lights_list_on_lights:
+- cosa luce soggiorno
+query_area/entryway_lights::entryway_lights_get_brightness:
+- cosa luce ingresso
+query_area/entryway_lights::entryway_lights_get_state:
+- cosa luce ingresso
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- cosa luce ingresso
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- cosa luce ingresso
+query_area/entryway_locks::entryway_locks_get_state:
+- cosa serratura ingresso
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- cosa serratura ingresso
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- cosa serratura ingresso
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- cosa luce soggiornofam e cosa luce cucina
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- cosa luce soggiornofam e cosa luce cucina
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- cosa luce soggiornofam e cosa luce cucina
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- cosa luce soggiornofam e cosa luce cucina
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- cosa ventola soggiornofam
+query_area/family_room_fans::family_room_fans_get_state:
+- cosa ventola soggiornofam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- cosa ventola soggiornofam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- cosa ventola soggiornofam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- cosa luce soggiornofam
+query_area/family_room_lights::family_room_lights_get_state:
+- cosa luce soggiornofam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- cosa luce soggiornofam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- cosa luce soggiornofam
+query_area/garage_covers::garage_covers_get_position:
+- cosa tenda garage
+query_area/garage_covers::garage_covers_get_state:
+- cosa tenda garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- cosa tenda garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- cosa tenda garage
+query_area/garage_lights::garage_lights_get_brightness:
+- cosa luce garage
+query_area/garage_lights::garage_lights_get_state:
+- cosa luce garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- cosa luce garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- cosa luce garage
+query_area/garage_locks::garage_locks_get_state:
+- cosa serratura garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- cosa serratura garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- cosa serratura garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- cosa luce ingresso e cosa luce bagnetto
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- cosa luce ingresso e cosa luce bagnetto
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- cosa luce ingresso e cosa luce bagnetto
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- cosa luce ingresso e cosa luce bagnetto
+query_area/hallway_lights::hallway_lights_get_brightness:
+- cosa luce ingresso
+query_area/hallway_lights::hallway_lights_get_state:
+- cosa luce ingresso
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- cosa luce ingresso
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- cosa luce ingresso
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- cosa luce cucina
+query_area/kitchen_lights::kitchen_lights_get_state:
+- cosa luce cucina
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- cosa luce cucina
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- cosa luce cucina
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- cosa apparecchio cucina
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- cosa apparecchio cucina
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- cosa apparecchio cucina
+query_area/laundry_lights::laundry_lights_get_brightness:
+- cosa luce lavanderia
+query_area/laundry_lights::laundry_lights_get_state:
+- cosa luce lavanderia
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- cosa luce lavanderia
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- cosa luce lavanderia
+query_area/laundry_switchs::laundry_switchs_get_state:
+- cosa apparecchio lavanderia
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- cosa apparecchio lavanderia
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- cosa apparecchio lavanderia
+query_area/living_climates::living_climates_get_temperature:
+- cosa riscaldamento soggiorno
+query_area/living_covers::living_covers_get_position:
+- cosa tenda soggiorno
+query_area/living_covers::living_covers_get_state:
+- cosa tenda soggiorno
+query_area/living_covers::living_covers_list_closed_covers:
+- cosa tenda soggiorno
+query_area/living_covers::living_covers_list_open_covers:
+- cosa tenda soggiorno
+query_area/living_lights::living_lights_get_brightness:
+- cosa luce soggiorno
+query_area/living_lights::living_lights_get_state:
+- cosa luce soggiorno
+query_area/living_lights::living_lights_list_off_lights:
+- cosa luce soggiorno
+query_area/living_lights::living_lights_list_on_lights:
+- cosa luce soggiorno
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- cosa luce main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- cosa luce main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- cosa luce main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- cosa luce main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- cosa apparecchio main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- cosa apparecchio main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- cosa apparecchio main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- cosa luce bagnomaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- cosa luce bagnomaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- cosa luce bagnomaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- cosa luce bagnomaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- cosa apparecchio bagnomaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- cosa apparecchio bagnomaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- cosa apparecchio bagnomaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- cosa tenda camera e cosa tenda soggiorno
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- cosa tenda camera e cosa tenda soggiorno
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- cosa tenda camera e cosa tenda soggiorno
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- cosa tenda camera e cosa tenda soggiorno
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- cosa riscaldamento camera
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- cosa tenda camera
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- cosa tenda camera
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- cosa tenda camera
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- cosa tenda camera
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- cosa ventola camera
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- cosa ventola camera
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- cosa ventola camera
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- cosa ventola camera
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- cosa luce camera
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- cosa luce camera
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- cosa luce camera
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- cosa luce camera
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- cosa luce bagnetto
+query_area/powder_room_lights::powder_room_lights_get_state:
+- cosa luce bagnetto
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- cosa luce bagnetto
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- cosa luce bagnetto

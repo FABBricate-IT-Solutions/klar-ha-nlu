@@ -1,0 +1,16 @@
+undo:
+  name: Undo last action
+  description: Speak undo to Klar so the last executed command is inverted.
+teach_alias:
+  name: Teach a name
+  description: Add a spoken alias for a device. Omit entity to name the last device Klar heard.
+  fields:
+    alias:
+      required: true
+      example: Leselampe
+      selector:
+        text:
+    entity_id:
+      required: false
+      selector:
+        entity:

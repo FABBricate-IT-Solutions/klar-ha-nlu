@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- tro amserydd abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- tro amserydd abstract 20 min
+timers/timers::abstract_start_seconds:
+- tro amserydd abstract
+timers/timers::cancel_all_timers:
+- diffodd pob amserydd
+timers/timers::timer_laundry_cancel:
+- tro amserydd laundry
+timers/timers::timer_laundry_decrease:
+- tro amserydd laundry 5 min
+timers/timers::timer_laundry_increase:
+- tro amserydd laundry 16 min
+timers/timers::timer_laundry_pause:
+- diffodd amserydd laundry
+timers/timers::timer_laundry_start:
+- tro amserydd laundry
+timers/timers::timer_laundry_status:
+- beth amserydd laundry
+timers/timers::timer_laundry_unpause:
+- tro amserydd laundry
+timers/timers::timer_oven_cancel:
+- tro amserydd oven
+timers/timers::timer_oven_decrease:
+- tro amserydd oven 44 min
+timers/timers::timer_oven_increase:
+- tro amserydd oven 30 min
+timers/timers::timer_oven_pause:
+- diffodd amserydd oven
+timers/timers::timer_oven_start:
+- tro amserydd oven 2 min
+timers/timers::timer_oven_status:
+- beth amserydd oven
+timers/timers::timer_oven_unpause:
+- tro amserydd oven

@@ -1,0 +1,455 @@
+on_area:
+- '{on} {light} toas {room} sisse'
+- '{on} {room} {light} sisse'
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+- '{on} {all} {light} {room}'
+- '{all} {light} {room} {on}'
+off_area:
+- '{off} {light} toas {room}'
+- '{on} {light} toas {room} valja'
+- '{off} {room} {light}'
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+- '{off} {all} {light} {room}'
+on_fixture:
+- '{on} {fixture} toas {room} sisse'
+- '{on} {room} {fixture} sisse'
+- '{on} {fixture} {room}'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+- '{room} {fixture} {on}'
+off_fixture:
+- '{off} {fixture} toas {room}'
+- '{on} {fixture} toas {room} valja'
+- '{off} {room} {fixture}'
+- '{off} {fixture} {room}'
+- '{fixture} {room} {off}'
+- '{room} {fixture} {off}'
+set_bright:
+- '{set} {fixture} toas {room} {n} peale'
+- '{set} {light} toas {room} {n}'
+- '{set} {room} {light} {n}'
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+set_color:
+- '{set} {fixture} toas {room} {color} peale'
+- '{set} {light} toas {room} {color}'
+- '{light} toas {room} {color}'
+- '{set} {fixture} {room} {color}'
+- '{set} {light} {room} {color}'
+- '{light} {room} {color}'
+set_temp:
+- '{set} {climate} toas {room} {n} peale'
+- '{set} {climate} {n} kraadi peale'
+- '{climate} {room} {n}'
+- '{set} {climate} {room} {n}'
+- '{set} {climate} {n}'
+- '{room} {climate} {n}'
+get_temp:
+- '{query} on {climate} toas {room}'
+- kui soe on toas {room}
+- '{query} {climate} {room}'
+- '{query} {climate}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- '{open} {cover} toas {room}'
+- '{open} {room} {cover}'
+- '{cover} {room} {open}'
+- '{open} {cover} {room}'
+- '{room} {cover} {open}'
+- '{open} {cover}'
+close_cover:
+- '{close} {cover} toas {room}'
+- '{close} {room} {cover}'
+- '{cover} {room} {close}'
+- '{close} {cover} {room}'
+- '{room} {cover} {close}'
+- '{close} {cover}'
+set_pos:
+- '{set} {cover} toas {room} {n} peale'
+- '{set} {cover} {room} {n}'
+- '{cover} {room} {n}'
+- '{set} {cover} {n}'
+- '{room} {cover} {n}'
+- '{set} {room} {cover} {n}'
+lock:
+- lukusta {door}
+- '{lock_v} {lock} toas {room}'
+- lukusta {lock} {room}
+- '{lock_v} {lock} {room}'
+- '{lock_v} {door}'
+- '{lock} {room} {lock_v}'
+unlock:
+- '{open} {lock}'
+- '{unlock} {door}'
+- ava {door}
+- '{unlock} {lock} {room}'
+- '{lock} {room} {unlock}'
+- '{room} {lock} {unlock}'
+fan_on:
+- '{on} {fan} toas {room} sisse'
+- '{on} {room} {fan} sisse'
+- '{on} {fan} {room}'
+- '{fan} {room} {on}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+fan_off:
+- '{off} {fan} toas {room} sisse'
+- '{off} {room} {fan} sisse'
+- '{off} {fan} {room}'
+- '{fan} {room} {off}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+fan_speed:
+- '{set} {fan} toas {room} {n} peale'
+- '{set} {fan} {room} {n}'
+- '{fan} {room} {n}'
+- '{set} {fan} {n}'
+- '{room} {fan} {n}'
+- '{set} {room} {fan} {n}'
+switch_on:
+- '{on} {appliance} sisse'
+- '{on} {appliance}'
+- '{appliance} sisse'
+- '{appliance} {on}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+switch_off:
+- '{off} {appliance} sisse'
+- '{off} {appliance}'
+- '{appliance} sisse'
+- '{appliance} {off}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+vac_start:
+- kaivita {vacuum}
+- '{on} {vacuum} sisse'
+- '{vacuum} toole'
+- '{on} {vacuum}'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+vac_dock:
+- kaivita {vacuum}
+- '{off} {vacuum} sisse'
+- '{vacuum} toole'
+- '{off} {vacuum}'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+media_on:
+- '{on} {tv} toas {room} sisse'
+- '{on} {room} {tv} sisse'
+- '{on} {tv} {room}'
+- '{tv} {room} {on}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+media_off:
+- '{off} {tv} toas {room} sisse'
+- '{off} {room} {tv} sisse'
+- '{off} {tv} {room}'
+- '{tv} {room} {off}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+media_pause:
+- '{pause} {tv} toas {room}'
+- pane {tv} {pause}
+- '{pause} {tv}'
+- '{pause} {tv} {room}'
+- '{tv} {room} {pause}'
+- '{pause} {music} {room}'
+media_vol:
+- '{set} {music} toas {room} {n} peale'
+- '{set} {music} toas {room} {n}'
+- '{set} {room} {music} {n}'
+- '{set} {music} {room} {n}'
+- '{music} {room} {n}'
+- '{set} {music} {n}'
+media_next:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+media_prev:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+play_search:
+- manga {search} toas {room}
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- manga {search}
+- '{play} {search}'
+- '{play} {search} {music}'
+play_album:
+- manga {album} {search} {by} {artist}
+- manga {album} {search} artistilt {artist}
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+- '{play} {search} {by} {artist}'
+play_radio:
+- manga {search} {radio}
+- '{play} {search} {radio}'
+- pane {radio} {search}
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+play_queue:
+- manga {search}
+- manga {search} toas {room}
+- '{play} {search}'
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- '{play} {search} {music}'
+now_playing:
+- '{query} mangib'
+- '{query} mangib toas {room}'
+- '{query} {music} {room}'
+- '{query} {music}'
+- '{music} {room}'
+- '{query} {tv} {room}'
+scene:
+- '{on} {scene_name} sisse'
+- kaivita {scene_name}
+- '{scene_name} {on}'
+- '{on} {scene_name}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+script:
+- '{on} {scene_name} sisse'
+- kaivita {scene_name}
+- '{scene_name} {on}'
+- '{on} {scene_name}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+timer_start:
+- '{set} {timer} {n} {minutes} peale'
+- kaivita {timer} {n} {minutes}
+- '{on} {timer} {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+timer_cancel:
+- '{set} {timer} {n} {minutes} peale'
+- kaivita {timer} {n} {minutes}
+- '{off} {timer}'
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- lisa {item} nimekirja {list}
+- '{add} {item} {list}'
+- '{set} {item} nimekirja {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+list_done:
+- lisa {item} nimekirja {list}
+- '{done} {item} {list}'
+- '{set} {item} nimekirja {list}'
+- '{item} {list}'
+- '{done} {item}'
+- '{list} {item}'
+floor_on:
+- '{on} {light} toas {floor} sisse'
+- '{on} {floor} {light} sisse'
+- '{on} {light} {floor}'
+- '{light} {floor} {on}'
+- '{on} {all} {light} {floor}'
+- '{all} {light} {floor} {on}'
+floor_off:
+- '{off} {light} toas {floor} sisse'
+- '{off} {floor} {light} sisse'
+- '{off} {light} {floor}'
+- '{light} {floor} {off}'
+- '{off} {all} {light} {floor}'
+- '{all} {light} {floor} {off}'
+all_except:
+- '{off} {all} {light} {except} {room}'
+- '{on} {all} {light} valja {except} {room}'
+- '{all} {light} valja {except} tuba {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+all_except_on:
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} valja {except} tuba {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+- '{on} {all} {except} {room}'
+except_fixture:
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{on} {all} {light} valja {except} {skip_fixture}'
+- '{all} {light} valja {except} tuba {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+query_entity:
+- '{query} on {target} toas {room}'
+- '{query} olek {target}'
+- '{query} {target} {room}'
+- '{query} {target}'
+- '{target} {room}'
+- '{room} {target}'
+multi_and:
+- '{on} {light} toas {room} {and} {room2} sisse'
+- '{on} {light} {room} {and} {room2} sisse'
+- '{on} {room} {and} {room2} {light}'
+- '{on} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {room} {and} {room2}'
+multi_off:
+- '{off} {light} toas {room} {and} {room2} sisse'
+- '{off} {light} {room} {and} {room2} sisse'
+- '{off} {room} {and} {room2} {light}'
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+- '{on} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {off}'
+multi_three:
+- '{on} {light} toas {room} {and} {room2} {and} {room3} sisse'
+- '{on} {light} {room} {and} {room2} {and} {room3} sisse'
+- '{on} {room} {and} {room2} {and} {room3} {light}'
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {on}'
+- '{on} {room} {and} {room2} {and} {room3}'
+multi_three_off:
+- '{off} {light} toas {room} {and} {room2} {and} {room3} sisse'
+- '{off} {light} {room} {and} {room2} {and} {room3} sisse'
+- '{off} {room} {and} {room2} {and} {room3} {light}'
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {off}'
+- '{off} {room} {and} {room2} {and} {room3}'
+multi_off_lock:
+- '{off} {light} toas {room} {and} {room2} sisse'
+- '{off} {light} {room} {and} {room2} sisse'
+- '{off} {room} {and} {room2} {light}'
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+except_in_area:
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{on} {all} {light} valja {except} {skip_fixture}'
+- '{all} {light} valja {except} tuba {room}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+except_two:
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{on} {all} {light} valja {except} {room} {and} {room2}'
+- '{all} {light} valja {except} tuba {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+except_fixture_on:
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} valja {except} tuba {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+- '{on} {all} {except} {skip_fixture}'
+floor_except:
+- '{off} {all} {light} {floor} {except} {room}'
+- '{on} {all} {light} {floor} valja {except} {room}'
+- '{all} {light} {floor} valja {except} tuba {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+- '{all} {off} {except} {room}'
+multi_covers:
+- '{open} {cover} toas {room} {and} {room2}'
+- '{open} {room} {cover} {and} {room2}'
+- '{cover} {room} {open} {and} {room2}'
+- '{open} {cover} {room} {and} {room2}'
+- '{room} {cover} {open} {and} {room2}'
+- '{open} {cover} {and} {room2}'
+multi_covers_close:
+- '{close} {cover} toas {room} {and} {room2}'
+- '{close} {room} {cover} {and} {room2}'
+- '{cover} {room} {close} {and} {room2}'
+- '{close} {cover} {room} {and} {room2}'
+- '{room} {cover} {close} {and} {room2}'
+- '{close} {cover} {and} {room2}'
+multi_climate:
+- '{set} {climate} toas {room} {and} {room2} {n} peale'
+- '{set} {climate} {n} kraadi peale'
+- '{climate} {room} {and} {room2} {n}'
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{set} {climate} {n}'
+- '{room} {and} {room2} {climate} {n}'
+multi_bright:
+- '{set} {fixture} toas {room} {and} {room2} {n} peale'
+- '{set} {light} toas {room} {and} {room2} {n}'
+- '{set} {room} {and} {room2} {light} {n}'
+- '{set} {fixture} {room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {room2} {n}'
+- '{fixture} {room} {and} {room2} {n}'
+multi_color:
+- '{set} {fixture} toas {room} {and} {room2} {color} peale'
+- '{set} {light} toas {room} {and} {room2} {color}'
+- '{light} toas {room} {and} {room2} {color}'
+- '{set} {fixture} {room} {and} {room2} {color}'
+- '{set} {light} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+query_two:
+- '{query} on {target} toas {room} {and} {room2}'
+- '{query} olek {target}'
+- '{query} {target} {room} {and} {room2}'
+- '{query} {target}'
+- '{target} {room} {and} {room2}'
+- '{room} {and} {room2} {target}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+- '{light} {room2} {off} {and} {climate} {room}'
+multi_locks:
+- lukusta {door}
+- '{lock_v} {lock} toas {room} {and} {room2}'
+- lukusta {lock} {room} {and} {room2}
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{lock_v} {door}'
+- '{lock} {room} {and} {room2} {lock_v}'
+scene_and_off:
+- '{on} {scene_name} sisse {and} {off} {light} {room}'
+- kaivita {scene_name} {and} {off} {light} {room}
+- '{scene_name} {on} {and} {off} {light} {room}'
+- '{on} {scene_name} {and} {off} {light} {room}'
+- '{on} the {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {and} {off} {light} {room}'
+clock:
+- mis kell on
+- '{query} kell on'
+- mis kell praegu on
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+weather:
+- missugune ilm on
+- '{query} ilm on'
+- kuidas ilm on
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'

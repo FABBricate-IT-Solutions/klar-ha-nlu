@@ -1,0 +1,455 @@
+on_area:
+- skakel die {light} in die {room} aan
+- sit die {room} {light} aan
+- '{light} {room} aan'
+- '{on} die {light} {room}'
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+off_area:
+- doof die {light} in die {room}
+- skakel die {room} {light} af
+- '{light} {room} af'
+- '{off} die {light} {room}'
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+on_fixture:
+- skakel die {fixture} in die {room} aan
+- sit {fixture} {room} aan
+- '{on} {fixture} {room}'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+- '{room} {fixture} {on}'
+off_fixture:
+- doof die {fixture} in die {room}
+- skakel {fixture} {room} af
+- '{off} {fixture} {room}'
+- '{fixture} {room} {off}'
+- '{off} {room} {fixture}'
+- '{room} {fixture} {off}'
+set_bright:
+- stel die {fixture} in die {room} op {n}
+- dim die {room} {light} tot {n}
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+- '{room} {fixture} {n}'
+set_color:
+- stel die {fixture} in die {room} {color}
+- maak die {room} {light} {color}
+- '{set} {light} {room} {color}'
+- '{set} {fixture} {room} {color}'
+- '{light} {room} {color}'
+- '{fixture} {room} {color}'
+set_temp:
+- stel die {climate} in die {room} op {n}
+- sit verwarming {room} op {n}
+- '{set} {climate} {n}'
+- '{set} {climate} {room} {n}'
+- '{climate} {room} {n}'
+- '{room} {climate} {n}'
+get_temp:
+- hoe warm is dit in die {room}
+- wat is die temperatuur in die {room}
+- '{query} {climate} {room}'
+- '{query} {climate}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- maak die {cover} in die {room} oop
+- gordyn {room} oop
+- '{open} {cover} {room}'
+- '{cover} {room} {open}'
+- '{open} {room} {cover}'
+- '{room} {cover} {open}'
+close_cover:
+- maak die {cover} in die {room} toe
+- gordyn {room} toe
+- '{close} {cover} {room}'
+- '{cover} {room} {close}'
+- '{close} {room} {cover}'
+- '{room} {cover} {close}'
+set_pos:
+- stel die {cover} in die {room} op {n}
+- dim die {room} {cover} tot {n}
+- '{set} {cover} {room} {n}'
+- '{cover} {room} {n}'
+- '{room} {cover} {n}'
+- '{set} {cover} {n}'
+lock:
+- sluit die {door}
+- '{lock_v} die {door}'
+- '{lock_v} {lock} {room}'
+- '{lock_v} {door}'
+- '{lock} {room} {lock_v}'
+- '{room} {lock} {lock_v}'
+unlock:
+- maak die {door} oop
+- '{unlock} die {door}'
+- '{unlock} {lock} {room}'
+- '{unlock} {door}'
+- '{lock} {room} {unlock}'
+- '{room} {lock} {unlock}'
+fan_on:
+- skakel die {fan} in die {room} aan
+- '{fan} {room} aan'
+- '{on} {fan} {room}'
+- '{fan} {room} {on}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+fan_off:
+- skakel die {fan} in die {room} aan
+- '{fan} {room} aan'
+- '{off} {fan} {room}'
+- '{fan} {room} {off}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+fan_speed:
+- stel die {fan} in die {room} op {n}
+- dim die {room} {fan} tot {n}
+- '{set} {fan} {room} {n}'
+- '{fan} {room} {n}'
+- '{room} {fan} {n}'
+- '{set} {fan} {n}'
+switch_on:
+- skakel die {appliance} aan
+- '{appliance} aan'
+- '{on} {appliance}'
+- '{appliance} {on}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+switch_off:
+- skakel die {appliance} aan
+- '{appliance} aan'
+- '{off} {appliance}'
+- '{appliance} {off}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+vac_start:
+- begin die {vacuum}
+- '{vacuum} aan'
+- '{on} {vacuum}'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+- '{vacuum} {on} {room}'
+vac_dock:
+- begin die {vacuum}
+- '{vacuum} aan'
+- '{off} {vacuum}'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+- '{vacuum} {off} {room}'
+media_on:
+- skakel die {tv} in die {room} aan
+- tv {room} aan
+- '{on} {tv} {room}'
+- '{tv} {room} {on}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+media_off:
+- skakel die {tv} in die {room} aan
+- tv {room} aan
+- '{off} {tv} {room}'
+- '{tv} {room} {off}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+media_pause:
+- '{pause} die {tv}'
+- pouseer die {tv} in die {room}
+- '{pause} {music}'
+- '{pause} {tv} {room}'
+- '{pause} {tv}'
+- '{tv} {room} {pause}'
+media_vol:
+- stel die {music} in die {room} op {n}
+- dim die {room} {music} tot {n}
+- '{set} {music} {room} {n}'
+- '{music} {room} {n}'
+- '{room} {music} {n}'
+- '{set} {music} {n}'
+media_next:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+media_prev:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+play_search:
+- speel {search} in die {room}
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- speel {search}
+- '{play} {search}'
+- '{play} {search} {music}'
+play_album:
+- speel die {album} {search} deur {artist}
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+- '{play} {search} {by} {artist}'
+- '{on} {album} {search}'
+play_radio:
+- speel {search} op die {radio}
+- '{play} {search} {radio}'
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+- '{play} {search} {radio} {room}'
+play_queue:
+- speel {search}
+- speel {search} in die {room}
+- '{play} {search}'
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- '{play} {search} {music}'
+now_playing:
+- wat speel nou
+- wat speel in die {room}
+- '{query} {music}'
+- '{query} {music} {room}'
+- '{music} {room}'
+- '{query} {tv} {room}'
+scene:
+- aktiveer {scene_name}
+- '{scene_name} aan'
+- '{on} {scene_name}'
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+script:
+- aktiveer {scene_name}
+- '{scene_name} aan'
+- '{on} {scene_name}'
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+timer_start:
+- stel {timer} vir {n} {minutes}
+- '{on} {timer} {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+- '{set} {timer} {n}'
+timer_cancel:
+- stel {timer} vir {n} {minutes}
+- '{off} {timer} {n} {minutes}'
+- '{off} {timer}'
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- '{add} {item} by die {list}'
+- sit {item} op die {list}
+- '{add} {item} {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+list_done:
+- '{done} {item} by die {list}'
+- sit {item} op die {list}
+- '{done} {item} {list}'
+- '{item} {list}'
+- '{done} {item}'
+- '{list} {item}'
+floor_on:
+- skakel die {light} in die {floor} aan
+- sit die {floor} {light} aan
+- '{light} {floor} aan'
+- '{on} die {light} {floor}'
+- '{on} {light} {floor}'
+- '{light} {floor} {on}'
+floor_off:
+- skakel die {light} in die {floor} aan
+- sit die {floor} {light} aan
+- '{light} {floor} aan'
+- '{off} die {light} {floor}'
+- '{off} {light} {floor}'
+- '{light} {floor} {off}'
+all_except:
+- doof al die ligte {except} die {room}
+- al die {light} af {except} {room}
+- '{off} {all} {light} {except} {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+all_except_on:
+- doof al die ligte {except} die {room}
+- al die {light} af {except} {room}
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+except_fixture:
+- doof al die ligte {except} die {skip_fixture}
+- al die {light} af {except} {skip_fixture}
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+query_entity:
+- '{query} is die {target} in die {room}'
+- status {target} {room}
+- '{query} {target}'
+- '{query} {target} {room}'
+- '{target} {room}'
+- '{room} {target}'
+multi_and:
+- skakel die {light} in die {room} {and} {room2} aan
+- '{light} {room} {and} {room2} aan'
+- '{on} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {room} {and} {room2}'
+- '{room} {and} {room2} {on}'
+multi_off:
+- skakel die {light} in die {room} {and} {room2} aan
+- '{light} {room} {and} {room2} aan'
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+- '{on} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {off}'
+multi_three:
+- skakel die {light} in die {room} {and} {room2} {and} {room3} aan
+- '{light} {room} {and} {room2} {and} {room3} aan'
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {on}'
+- '{on} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {on}'
+multi_three_off:
+- skakel die {light} in die {room} {and} {room2} {and} {room3} aan
+- '{light} {room} {and} {room2} {and} {room3} aan'
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} {off}'
+- '{off} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {off}'
+multi_off_lock:
+- skakel die {light} in die {room} {and} {room2} aan
+- '{light} {room} {and} {room2} aan'
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+except_in_area:
+- doof al die ligte {except} die {room}
+- al die {light} af {except} {skip_fixture}
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+except_two:
+- doof al die ligte {except} die {room} {and} {room2}
+- al die {light} af {except} {room} {and} {room2}
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+except_fixture_on:
+- doof al die ligte {except} die {skip_fixture}
+- al die {light} af {except} {skip_fixture}
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+floor_except:
+- doof al die ligte {except} die {room}
+- al die {light} {floor} af {except} {room}
+- '{off} {all} {light} {floor} {except} {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+- '{all} {off} {except} {room}'
+multi_covers:
+- maak die {cover} in die {room} oop {and} {room2}
+- gordyn {room} oop {and} {room2}
+- '{open} {cover} {room} {and} {room2}'
+- '{cover} {room} {open} {and} {room2}'
+- '{open} {room} {cover} {and} {room2}'
+- '{room} {cover} {open} {and} {room2}'
+multi_covers_close:
+- maak die {cover} in die {room} toe {and} {room2}
+- gordyn {room} toe {and} {room2}
+- '{close} {cover} {room} {and} {room2}'
+- '{cover} {room} {close} {and} {room2}'
+- '{close} {room} {cover} {and} {room2}'
+- '{room} {cover} {close} {and} {room2}'
+multi_climate:
+- stel die {climate} in die {room} {and} {room2} op {n}
+- sit verwarming {room} {and} {room2} op {n}
+- '{set} {climate} {n}'
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{climate} {room} {and} {room2} {n}'
+- '{room} {and} {room2} {climate} {n}'
+multi_bright:
+- stel die {fixture} in die {room} {and} {room2} op {n}
+- dim die {room} {and} {room2} {light} tot {n}
+- '{set} {fixture} {room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {room2} {n}'
+- '{fixture} {room} {and} {room2} {n}'
+- '{room} {and} {room2} {fixture} {n}'
+multi_color:
+- stel die {fixture} in die {room} {and} {room2} {color}
+- maak die {room} {and} {room2} {light} {color}
+- '{set} {light} {room} {and} {room2} {color}'
+- '{set} {fixture} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+- '{fixture} {room} {and} {room2} {color}'
+query_two:
+- '{query} is die {target} in die {room} {and} {room2}'
+- status {target} {room} {and} {room2}
+- '{query} {target}'
+- '{query} {target} {room} {and} {room2}'
+- '{target} {room} {and} {room2}'
+- '{room} {and} {room2} {target}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+- '{light} {room2} {off} {and} {climate} {room}'
+multi_locks:
+- sluit die {door}
+- '{lock_v} die {door}'
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{lock_v} {door}'
+- '{lock} {room} {and} {room2} {lock_v}'
+- '{room} {and} {room2} {lock} {lock_v}'
+scene_and_off:
+- aktiveer {scene_name} {and} {off} {light} {room}
+- '{scene_name} aan {and} {off} {light} {room}'
+- '{on} {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {on} {and} {off} {light} {room}'
+- '{on} the {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {and} {off} {light} {room}'
+clock:
+- hoe laat is dit
+- wat is die tyd
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+- '{query} {clock} {clock}'
+weather:
+- hoe is die weer
+- weerberig
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'
+- '{query} {weather} {weather}'

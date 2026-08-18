@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- stel verwarming badkamer 23
+area/heizung::heizung_esszimmer_23:
+- stel verwarming woonkamer 23
+area/heizung::heizung_schlafzimmer_23:
+- stel verwarming slaapkamer 23
+area/heizung::heizung_wohnzimmer_23:
+- stel verwarming woonkamer 23
+area/lichter::alle_an_ausser_kugel:
+- aanzetten alle licht behalve bol
+area/lichter::alle_an_ausser_schlafzimmer:
+- aanzetten alle licht behalve slaapkamer
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- stel alle licht behalve slaapkamer 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- stel alle licht behalve bol rood
+area/lichter::alle_ausser_kugel:
+- uitzetten alle licht behalve bol
+area/lichter::alle_ausser_schlafzimmer:
+- uitzetten alle licht behalve slaapkamer
+area/lichter::alle_lichter_an:
+- aanzetten alle licht
+area/lichter::alle_lichter_aus:
+- uitzetten alle licht
+area/lichter::arbeitszimmer_lichter_an:
+- aanzetten licht kantoor
+area/lichter::arbeitszimmer_lichter_aus:
+- uitzetten licht kantoor
+area/lichter::esszimmer_lichter_an:
+- aanzetten licht woonkamer
+area/lichter::esszimmer_lichter_aus:
+- uitzetten licht woonkamer
+area/lichter::kuche_lichter_an:
+- aanzetten licht keuken
+area/lichter::kuche_lichter_aus:
+- uitzetten licht keuken
+area/lichter::schlafzimmer_auf_blau:
+- stel licht slaapkamer blauw
+area/lichter::schlafzimmer_auf_rot:
+- stel licht slaapkamer rood
+area/lichter::wohnzimmer_helligkeit:
+- stel licht woonkamer 45
+area/lichter::wohnzimmer_lichter_an:
+- aanzetten licht woonkamer
+area/lichter::wohnzimmer_lichter_aus:
+- uitzetten licht woonkamer
+area/spoken::alle_ausser_kugel_stt:
+- uitzetten alle licht behalve bol
+area/spoken::alle_ausser_schlaf_stt:
+- uitzetten alle licht behalve slaapkamer
+area/spoken::alle_ganzen_an:
+- aanzetten alle licht
+area/spoken::alle_lampen_aus:
+- uitzetten alle licht
+area/spoken::esszimmer_weiss:
+- stel licht woonkamer wit
+area/spoken::stt_kuche_lichte:
+- uitzetten licht keuken
+area/spoken::stt_licht_wohnzimmer_an:
+- aanzetten licht woonkamer
+area/spoken::stt_licht_wohnzimmer_aus:
+- uitzetten licht woonkamer
+area/spoken::stt_schlafzimmer_dativ:
+- uitzetten licht slaapkamer
+area/spoken::wohnzimmer_gruen:
+- stel licht woonkamer groen
+area/spoken_more::alle_ausser_arbeitszimmer:
+- uitzetten alle licht behalve kantoor
+area/spoken_more::arbeitszimmer_lampen_aus:
+- uitzetten licht kantoor
+area/spoken_more::esszimmer_30:
+- stel licht woonkamer 30
+area/spoken_more::esszimmer_lichte_an:
+- aanzetten licht woonkamer
+area/spoken_more::kuche_80:
+- stel licht keuken 80
+area/spoken_more::kuche_blau:
+- stel licht keuken blauw
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- uitzetten alle licht behalve slaapkamer
+area/spoken_more::wohnzimmer_gelb:
+- stel licht woonkamer geel

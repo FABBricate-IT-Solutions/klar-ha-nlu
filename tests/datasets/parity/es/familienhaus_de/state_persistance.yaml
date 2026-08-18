@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - que cortina dormitorio2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - que techo dormitorio2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - que cortina dormitorio3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - que techo dormitorio3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - que techo dormitorio4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - que luz salon
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - que luz entrada
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - que techo estancia
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - que cortina garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - que luz garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - que luz entrada y que luz aseo
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - que luz entrada
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - que luz cocina
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - que luz lavadero
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - que calefaccion salon
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - que cortina salon
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - que luz salon
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - que luz main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - que luz banomaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - que calefaccion dormitorio y que calefaccion salon
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - que cortina dormitorio y que cortina salon
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - que calefaccion dormitorio
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - que cortina dormitorio
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - que luz aseo
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - que cortina garage
+  - cierra
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - que cortina garage
+  - abre
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - que cortina garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - que cortina salon
+  - cierra
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - que cortina salon
+  - abre
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - que cortina salon
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - que ventilador estancia
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - que ventilador estancia
+  - apaga
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - que ventilador estancia
+  - enciende
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - que luz entrada
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - que luz entrada
+  - apaga
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - que luz entrada
+  - enciende
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - que cerradura entrada
+  - bloquea
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - que cerradura entrada
+  - abre
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - que cerradura garage
+  - bloquea
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - que cerradura garage
+  - abre
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - que tv estancia
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - que tv estancia
+  - apaga
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - que tv estancia
+  - enciende
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - que tv salon
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - que tv salon
+  - apaga
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - que tv salon
+  - enciende

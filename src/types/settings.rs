@@ -25,7 +25,7 @@ pub enum Mode {
 }
 
 fn default_languages() -> Vec<String> {
-    vec!["de".into(), "en".into()]
+    Vec::new()
 }
 
 const fn default_confirm_risky_actions() -> bool {
@@ -36,7 +36,8 @@ const fn default_confirm_risky_actions() -> bool {
 pub struct Settings {
     pub personality: Personality,
     pub mode: Mode,
-    /// BCP-47-ish codes of enabled packs (`de`, `en`, later `fr`, ...).
+    /// Enabled pack codes. Empty means every compiled locale is enabled;
+    /// the catalog still binds per request (do not merge all lexicons).
     #[serde(default = "default_languages")]
     pub languages: Vec<String>,
     /// Persist Assist/API traffic under the data dir for a downloadable dataset.
@@ -71,6 +72,12 @@ impl Default for Settings {
     }
 }
 
+impl Settings {
+    pub fn pinned(code: impl Into<String>) -> Self {
+        Self { languages: vec![code.into()], ..Self::default() }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -85,5 +92,13 @@ mod tests {
         assert!(!set.semantic_adapters);
         assert!(!set.nlu_rag);
         assert_eq!(set.languages, vec!["de"]);
+    }
+
+    #[test]
+    fn omitted_languages_are_empty_not_de_en() {
+        let raw = r#"{"personality":"default","mode":"full"}"#;
+        let set: Settings = serde_json::from_str(raw).unwrap();
+        assert!(set.languages.is_empty());
+        assert!(Settings::default().languages.is_empty());
     }
 }

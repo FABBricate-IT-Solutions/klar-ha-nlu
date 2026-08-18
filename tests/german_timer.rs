@@ -6,7 +6,7 @@ use klar_nlu::types::{EntityRec, Settings};
 fn slots(text: &str) -> Vec<(String, Vec<(String, String)>)> {
     let home = default_home();
     let mut session = Session::new();
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     result.intents.into_iter().map(|i| (i.name, i.slots.into_iter().map(|s| (s.name, s.value)).collect())).collect()
 }
 
@@ -37,8 +37,11 @@ fn timer_aus_bricht_ab() {
 
 #[test]
 fn cancel_the_timer() {
-    let found = slots("Cancel the timer");
-    assert_eq!(found[0].0, "HassCancelTimer", "{found:?}");
+    let home = default_home();
+    let mut session = Session::new();
+    let result = parse("Cancel the timer", &home, &mut session, &[], &Settings::pinned("en"));
+    let found: Vec<_> = result.intents.into_iter().map(|i| i.name).collect();
+    assert_eq!(found.first().map(String::as_str), Some("HassCancelTimer"), "{found:?}");
 }
 
 #[test]
@@ -67,7 +70,7 @@ fn timer_haengt_fremden_helper_nicht_an() {
         tags: Vec::new(),
     });
     let mut session = Session::new();
-    let result = parse("Stell einen Timer auf 5 Minuten", &home, &mut session, &[], &Settings::default());
+    let result = parse("Stell einen Timer auf 5 Minuten", &home, &mut session, &[], &Settings::pinned("de"));
     let slots: Vec<_> = result.intents[0].slots.iter().map(|s| (s.name.as_str(), s.value.as_str())).collect();
     assert_eq!(result.intents[0].name, "HassStartTimer", "{slots:?}");
     assert!(slots.iter().any(|(k, v)| *k == "minutes" && *v == "5"), "{slots:?}");

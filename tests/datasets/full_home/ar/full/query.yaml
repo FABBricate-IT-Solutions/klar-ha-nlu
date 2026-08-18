@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - ايش ضوء صالون
+  - ايش صالون ضوء
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - ايش ستارة صالون
+  - ايش صالون ستارة
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - ايش قفل مدخل
+  - ايش مدخل قفل
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - ايش تكييف صالون
+  - ايش صالون تكييف
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - ايش تلفاز صالون
+  - ايش صالون تلفاز
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - ايش doorsensor مدخل
+  - ايش مدخل doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - ايش windowsensor صالون
+  - ايش صالون windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - ايش tempsensor صالون
+  - ايش صالون tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - ايش ضوء مطبخ
+  - ايش مطبخ ضوء
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - ايش ضوء office
+  - ايش office ضوء
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - ايش ضوء garden
+  - ايش garden ضوء
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - ايش ضوء basement
+  - ايش basement ضوء
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - ايش ستارة غرفة
+  - ايش غرفة ستارة
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - ايش ستارة garage
+  - ايش garage ستارة
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - ايش قفل garage
+  - ايش garage قفل
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - ايش تكييف غرفة
+  - ايش غرفة تكييف
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - ايش حرارة غرفة
+  - ايش غرفة حرارة
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - ايش تلفاز عائلي
+  - ايش عائلي تلفاز
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - ايش تلفاز صالون
+  - ايش صالون تلفاز
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - ايش motion مطبخ
+  - ايش مطبخ motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - ايش humidity صالون
+  - ايش صالون humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - ايش مروحة غرفة
+  - ايش غرفة مروحة
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - ايش مكنسة صالون
+  - ايش صالون مكنسة
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - ايش ضوء صالون
+  - ايش صالون ضوء
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - ايش ضوء مطبخ
+  - ايش مطبخ ضوء
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - ايش ضوء غرفة
+  - ايش غرفة ضوء
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - ايش ضوء غرفة
+  - ايش غرفة ضوء
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - ايش ضوء ممر
+  - ايش ممر ضوء
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - ايش ضوء عائلي
+  - ايش عائلي ضوء
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - ايش ضوء عائليess
+  - ايش عائليess ضوء
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - ايش ضوء garage
+  - ايش garage ضوء
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - ايش ضوء غرفة2
+  - ايش غرفة2 ضوء
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - ايش ضوء غرفة3
+  - ايش غرفة3 ضوء
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - ايش ضوء غرفة4
+  - ايش غرفة4 ضوء
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - ايش ضوء مدخل
+  - ايش مدخل ضوء
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - ايش ضوء غسيل
+  - ايش غسيل ضوء
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - ايش ضوء main bath
+  - ايش main bath ضوء
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - ايش ضوء حمامضيف
+  - ايش حمامضيف ضوء
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - ايش ensuite غرفة
+  - ايش غرفة ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - ايش ضوء غرفة
+  - ايش غرفة ضوء
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - ايش ضوء حمامرئيسي
+  - ايش حمامرئيسي ضوء

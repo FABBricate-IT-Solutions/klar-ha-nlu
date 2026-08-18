@@ -1,0 +1,268 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- hondisu bisi hallige 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- hondisu bisi shayanakone 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- hondisu parade shayanakone2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- muchchu parade shayanakone2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- tere parade shayanakone2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- hondisu parade shayanakone3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- muchchu parade shayanakone3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- tere parade shayanakone3
+devices/cover_garage_door::cover_garage_door_change_position:
+- hondisu parade garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- muchchu parade garage
+devices/cover_garage_door::cover_garage_door_open:
+- tere parade garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- hondisu parade hallige 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- muchchu parade hallige
+devices/cover_living_blinds::cover_living_blinds_open:
+- tere parade hallige
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- hondisu parade shayanakone 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- muchchu parade shayanakone
+devices/cover_master_blinds::cover_master_blinds_open:
+- tere parade shayanakone
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- hondisu fanu shayanakone2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- arisu fanu shayanakone2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- hachchu fanu shayanakone2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- hondisu fanu kutumba 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- arisu fanu kutumba
+devices/fan_family_fan::fan_family_fan_turn_on:
+- hachchu fanu kutumba
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- hondisu fanu shayanakone 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- arisu fanu shayanakone
+devices/fan_master_fan::fan_master_fan_turn_on:
+- hachchu fanu shayanakone
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- arisu fanu shayanakone mattu arisu belaku aduge
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- hachchu fanu shayanakone mattu hachchu belaku aduge
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- hondisu chavani shayanakone2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- hondisu chavani shayanakone2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- arisu chavani shayanakone2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- hachchu chavani shayanakone2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- hondisu chavani shayanakone3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- hondisu chavani shayanakone3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- arisu chavani shayanakone3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- hachchu chavani shayanakone3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- hondisu chavani shayanakone4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- hondisu chavani shayanakone4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- arisu chavani shayanakone4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- hachchu chavani shayanakone4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- hondisu belaku hallige 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- hondisu belaku hallige blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- arisu belaku hallige
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- hachchu belaku hallige
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- hondisu belaku pravesha 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- hondisu belaku pravesha yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- arisu belaku pravesha
+devices/light_entryway_light::light_entryway_light_turn_on:
+- hachchu belaku pravesha
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- hondisu chavani kutumba 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- hondisu chavani kutumba purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- arisu chavani kutumba
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- hachchu chavani kutumba
+devices/light_garage_light::light_garage_light_change_brightness:
+- hondisu belaku garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- hondisu belaku garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- arisu belaku garage
+devices/light_garage_light::light_garage_light_turn_on:
+- hachchu belaku garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- hondisu belaku pravesha 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- hondisu belaku pravesha white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- arisu belaku pravesha
+devices/light_hallway_light::light_hallway_light_turn_on:
+- hachchu belaku pravesha
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- hondisu chavani aduge 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- hondisu chavani aduge orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- arisu chavani aduge
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- hachchu chavani aduge
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- hondisu belaku aduge 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- hondisu belaku aduge green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- arisu belaku aduge
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- hachchu belaku aduge
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- hondisu belaku ogeyuva 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- hondisu belaku ogeyuva white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- arisu belaku ogeyuva
+devices/light_laundry_light::light_laundry_light_turn_on:
+- hachchu belaku ogeyuva
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- hondisu chavani hallige 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- hondisu chavani hallige black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- arisu chavani hallige
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- hachchu chavani hallige
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- hondisu belaku hallige 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- hondisu belaku hallige red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- arisu belaku hallige
+devices/light_living_lamp::light_living_lamp_turn_on:
+- hachchu belaku hallige
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- hondisu belaku main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- hondisu belaku main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- arisu belaku main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- hachchu belaku main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- hondisu belaku mukhyasnana 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- hondisu belaku mukhyasnana black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- arisu belaku mukhyasnana
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- hachchu belaku mukhyasnana
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- hondisu mancha shayanakone 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- hondisu mancha shayanakone red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- arisu mancha shayanakone
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- hachchu mancha shayanakone
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- hondisu chavani shayanakone 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- hondisu chavani shayanakone blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- arisu chavani shayanakone
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- hachchu chavani shayanakone
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- hondisu belaku shayanakone 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- hondisu belaku shayanakone black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- arisu belaku shayanakone
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- hachchu belaku shayanakone
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- hondisu belaku shauchalaya 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- hondisu belaku shauchalaya black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- arisu belaku shauchalaya
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- hachchu belaku shauchalaya
+devices/lock_front_door::lock_front_door_lock:
+- biga biga pravesha
+devices/lock_front_door::lock_front_door_unlock:
+- tere biga pravesha
+devices/lock_garage_entry::lock_garage_entry_lock:
+- biga biga garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- tere biga garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- hachchu tivi kutumba
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause tivi kutumba
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- arisu tivi kutumba
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- hachchu tivi kutumba
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- hachchu tivi kutumba
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- hachchu tivi kutumba
+devices/media_player_living_tv::media_player_living_tv_mute:
+- hachchu tivi hallige
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause tivi hallige
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- arisu tivi hallige
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- hachchu tivi hallige
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- hachchu tivi hallige
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- hachchu tivi hallige
+devices/scenes::dinner_time:
+- hondisu belaku hallige 90 mattu hachchu chavani aduge mattu hondisu belaku aduge
+  80
+devices/scenes::good_morning:
+- hachchu chavani aduge mattu hondisu belaku hallige 100 mattu tere parade hallige
+  mattu tere parade shayanakone
+devices/scenes::kids_bedtime:
+- arisu chavani shayanakone2 mattu arisu chavani shayanakone3 mattu arisu chavani
+  shayanakone4 mattu hondisu belaku pravesha 15
+devices/scenes::movie_night:
+- arisu chavani hallige mattu hondisu belaku hallige 20 mattu hachchu tivi hallige
+  mattu muchchu parade hallige
+devices/scripts::good_night:
+- hachchu drishya ratri
+devices/scripts::leaving_home:
+- hachchu drishya horatu
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- arisu patre
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- hachchu patre
+devices/switch_dryer::switch_dryer_turn_off:
+- arisu washing
+devices/switch_dryer::switch_dryer_turn_on:
+- hachchu washing
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- arisu washing
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- hachchu washing

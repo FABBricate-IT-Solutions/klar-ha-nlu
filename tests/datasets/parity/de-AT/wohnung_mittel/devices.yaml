@@ -1,0 +1,52 @@
+devices/geraete::deckenlampe_aus:
+- schalt decke schlafzimmer
+devices/geraete::device_arbeitszimmer_an:
+- mach licht wohnzimmer
+devices/geraete::device_esszimmer_an:
+- mach licht wohnstubeess
+devices/geraete::device_kuche_kuche_an:
+- mach licht kuche
+devices/geraete::device_wohnzimmer_an:
+- mach licht wohnzimmer
+devices/geraete::filmabend:
+- mach Filmabend
+devices/geraete::kugel_an:
+- mach kugel schlafzimmer
+devices/geraete::luefter_50:
+- stell ventilator wohnzimmer 50
+devices/geraete::pc_an:
+- mach geraet
+devices/geraete::r2d2_saugen:
+- mach staubsauger wohnzimmer
+devices/geraete::rollo_zu:
+- schliesse vorhang wohnzimmer
+devices/geraete::spuelmaschine_aus:
+- schalt spuelmaschine
+devices/geraete::tuer_abschliessen:
+- schloss schloss vorzimmergang
+devices/geraete::waschmaschine_an:
+- mach waschmaschine
+devices/klima::klima_schlaf_21:
+- stell heizung schlafzimmer 21
+devices/spoken::deckenlampe_an:
+- mach decke schlafzimmer
+devices/spoken::kugel_aus:
+- schalt kugel schlafzimmer
+devices/spoken::luefter_aus:
+- schalt ventilator wohnzimmer
+devices/spoken::rollo_auf:
+- oeffne vorhang wohnzimmer
+devices/spoken::trockner_an:
+- mach waschmaschine
+devices/spoken::tv_aus:
+- schalt tv
+devices/spoken_more::decke_aus_casual:
+- schalt decke schlafzimmer
+devices/spoken_more::kugel_casual:
+- mach kugel schlafzimmer
+devices/spoken_more::pc_aus:
+- schalt geraet
+devices/spoken_more::spuelmaschine_an:
+- mach spuelmaschine
+devices/spoken_more::waschmaschine_aus:
+- schalt waschmaschine

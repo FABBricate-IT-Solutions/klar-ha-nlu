@@ -1,5 +1,5 @@
 use crate::home::classify::is_generic_room_light;
-use crate::lang::catalog;
+use crate::lang::Catalog;
 use crate::parse::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
 
@@ -28,27 +28,27 @@ const WEAK: &[&str] = &[
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 
-pub fn leftover(home: &HomeGraph) -> Vec<EntityRec> {
-    home.entities.iter().filter(|e| assist_visible(e, home) && needs_mapping(e, home)).cloned().collect()
+pub fn leftover(home: &HomeGraph, cat: &Catalog) -> Vec<EntityRec> {
+    home.entities.iter().filter(|e| assist_visible(e, home) && needs_mapping(e, home, cat)).cloned().collect()
 }
 
-pub fn needs_mapping(entity: &EntityRec, home: &HomeGraph) -> bool {
+pub fn needs_mapping(entity: &EntityRec, home: &HomeGraph, cat: &Catalog) -> bool {
     if is_infra(entity) {
         return false;
     }
     if entity.area.is_none() {
         return true;
     }
-    if is_generic_room_light(entity, home) {
+    if is_generic_room_light(entity, home, cat) {
         return false;
     }
     if entity.area.as_ref().is_some_and(|area| entity.entity_id == format!("light.{area}")) {
         return false;
     }
-    distinctive(entity, home).is_empty()
+    distinctive(entity, home, cat).is_empty()
 }
 
-fn distinctive(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
+fn distinctive(entity: &EntityRec, home: &HomeGraph, cat: &Catalog) -> Vec<String> {
     let rooms = room_words(home);
     std::iter::once(entity.name.as_str())
         .chain(entity.aliases.iter().map(String::as_str))
@@ -56,7 +56,7 @@ fn distinctive(entity: &EntityRec, home: &HomeGraph) -> Vec<String> {
         .filter(|part| {
             part.len() > 2
                 && !part.chars().all(|c| c.is_ascii_digit())
-                && !catalog().generic.contains(&part.as_str())
+                && !cat.generic.contains(&part.as_str())
                 && !WEAK.contains(&part.as_str())
                 && !rooms.contains(part)
         })
@@ -115,17 +115,19 @@ mod tests {
     #[test]
     fn kugel_and_room_group_are_automatic() {
         let home = home();
-        assert!(!needs_mapping(&home.entities[0], &home));
-        assert!(!needs_mapping(&home.entities[1], &home));
+        let cat = crate::lang::catalog();
+        assert!(!needs_mapping(&home.entities[0], &home, cat));
+        assert!(!needs_mapping(&home.entities[1], &home, cat));
     }
 
     #[test]
     fn hue_play_and_room_named_lamp_need_a_human() {
         let home = home();
-        assert!(needs_mapping(&home.entities[2], &home));
-        assert!(needs_mapping(&home.entities[3], &home));
-        assert!(needs_mapping(&home.entities[4], &home));
-        let leftover = leftover(&home);
+        let cat = crate::lang::catalog();
+        assert!(needs_mapping(&home.entities[2], &home, cat));
+        assert!(needs_mapping(&home.entities[3], &home, cat));
+        assert!(needs_mapping(&home.entities[4], &home, cat));
+        let leftover = leftover(&home, cat);
         let ids: Vec<_> = leftover.iter().map(|e| e.entity_id.as_str()).collect();
         assert_eq!(ids, ["light.hue_play_1", "light.hue_color_lamp_1", "light.orphan"]);
     }
@@ -134,7 +136,7 @@ mod tests {
     fn assist_hides_entities_voice_cannot_see() {
         let mut home = home();
         home.assist = Some(["light.hue_play_1".into()].into());
-        let leftover = leftover(&home);
+        let leftover = leftover(&home, crate::lang::catalog());
         let ids: Vec<_> = leftover.iter().map(|e| e.entity_id.as_str()).collect();
         assert_eq!(ids, ["light.hue_play_1"]);
     }

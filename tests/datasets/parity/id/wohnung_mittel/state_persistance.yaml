@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - nyalakan ac ruang
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - nyalakan lampu ruang
+  - matikan
+state_persistance/spoken::kugel_dann_aus:
+- - nyalakan bola
+  - matikan
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - nyalakan lampu ruang
+  - nyalakan lampu dapur
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - nyalakan lampu ruang
+  - red

@@ -2,9 +2,11 @@
 
 [Deutsch](home-assistant.md) · [English](en/home-assistant.md)
 
-Klar hängt als Conversation-Entity an Assist. HACS kann die Rust-Engine nicht starten. Die Integration schon: sie lädt das passende GitHub-Release nach `.storage/klar_nlu/` und startet es auf `127.0.0.1:10520`.
+Haushaltsweg: [Einstieg](getting-started.md). Fehltreffer, Token, Bundle: [Fehlerbehebung](troubleshooting.md).
 
-V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release aktualisieren; ein gemischtes Paar schlägt fehl.
+Klar NLU hängt als Conversation-Entity an Assist. HACS kann die Rust-Engine nicht starten. Die Integration schon: sie lädt das passende GitHub-Release nach `.storage/klar_nlu/` und startet es auf `127.0.0.1:10520`.
+
+V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release aktualisieren; ein gemischtes Paar schlägt fehl. Jede kompilierte Assist-Locale ist erstklassig; Assist pinnt pro Request ein Pack.
 
 ## Integration
 
@@ -15,6 +17,7 @@ V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release ak
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
    oder Einstellungen → Geräte & Dienste → Integration hinzufügen → **Klar NLU**.
 4. **Mitgelieferte Engine starten** behalten (braucht ein GitHub Release mit Linux-Tarballs). Oder **Bereits laufende Engine verwenden** und die URL setzen.
+5. Mitgelieferte Engine: **Release-Kanal** = Stable (CalVer) oder Staging (neuestes GitHub-Prerelease). Später unter Konfigurieren änderbar.
 
 Ohne HACS `custom_components/klar_nlu` nach `<config>/custom_components/klar_nlu` kopieren und neu starten.
 
@@ -102,13 +105,19 @@ Bei OpenAI-kompatiblen Agenten schickt Klar `chat_template_kwargs.enable_thinkin
 
 `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als Add-on-Repository hinzufügen, **Klar NLU** installieren, Integration auf `http://klar-nlu:10520` zeigen.
 
+**Stable vs Staging:** dasselbe Repository, zwei Add-ons. **Klar NLU** (`stage: stable`, Image-Tag = CalVer / `latest`). **Klar NLU (Staging)** (`stage: experimental`, Slug `klar_nlu_staging`, Image-Tag `staging`). Nach einem Merge auf `staging` das Staging-Add-on neu bauen, damit der neue RC gezogen wird. Integrations-URL: `http://klar-nlu-staging:10520`. Nicht in `.storage` den Kanal wechseln.
+
+Ohne Add-on: Konfigurieren → **Release-Kanal** wechselt den GitHub-Download der mitgelieferten Engine.
+
 **Docker:**
 
 ```bash
 docker run --rm --network host \
   -v /pfad/zur/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
 ```
+
+CalVer der Engine verwenden (`Cargo.toml` / GitHub-Release), kein altes `0.1.x`-Tag. Für einen Release Candidate: `ghcr.io/fabbricate-it-solutions/klar-nlu:staging`.
 
 Integrations-URL: `http://127.0.0.1:10520`. Aus dem Quellcode: `docker build -t klar-nlu .` (Root-Dockerfile).
 
@@ -179,4 +188,17 @@ HTTP akzeptiert den Token als `x-klar-token` oder `Authorization: Bearer ...`. W
 
 ## Intents
 
-Die Integration führt nur `decision.type == execute` aus. Confirm, Clarify und Reject lösen keine Services aus. Ein Execute-Plan läuft in Planreihenfolge über `intent.async_handle`. Jeder Schritt liefert success oder error; Teilfehler sind ein eigenes Ergebnis (Sprache plus strukturierte Fehler), kein stilles Gesamterfolg. Direkte Service-Calls gibt es nur, wo HA keinen nativen Intent hat (Music Assistant, Relativlautstärke, Mute). Custom Sentences in Klar (`/api/custom`) können auf dieselben oder eigene Intent-Namen zeigen; eigene Namen brauchen einen Handler in HA.
+Die Integration führt nur `decision.type == execute` aus. Confirm, Clarify und Reject lösen keine Services aus. Ein Execute-Plan läuft in Planreihenfolge über `intent.async_handle`. Jeder Schritt liefert success oder error; Teilfehler sind ein eigenes Ergebnis (Sprache plus strukturierte Fehler), kein stilles Gesamterfolg. Direkte Service-Calls gibt es nur, wo HA keinen nativen Intent hat (Music Assistant, Relativlautstärke, Mute). Custom Sentences in Klar NLU (`/api/custom`) können auf dieselben oder eigene Intent-Namen zeigen; eigene Namen brauchen einen Handler in HA.
+
+## Medien und Music Assistant
+
+Pause, weiter, zurück, stumm und Lautstärke nutzen den genannten `media_player` oder den im Raum. Den Player freigeben.
+
+| Satz | Hinweis |
+|------|---------|
+| Wohnzimmer Fernseher pausieren | Native Media-Pause |
+| Spiel Queen | Suche auf einem Music-Assistant-Player |
+| Play the playlist Chill in the living room | Playlist-Klasse und Raum bleiben |
+| Musik an | Setzt den MA-Player fort, nicht ein Script-Alias „musik“ |
+
+Klar NLU erfindet keine Bibliothek. Nicht erreichbare Player werden übersprungen. Siehe [Einstieg](getting-started.md) und [Fehlerbehebung](troubleshooting.md).

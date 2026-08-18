@@ -3,7 +3,27 @@ import { api } from "../api";
 import { AreaTrend, Bars, DecisionMix, Donut, type MixRow } from "../components/charts";
 import { Empty, Kpi } from "../components/common";
 import type { Messages } from "../i18n";
-import type { ConversationTurn, Dashboard as DashboardData } from "../types";
+import type { ConversationTurn, Dashboard as DashboardData, Locale } from "../types";
+
+function trySentences(rooms: DashboardData["rooms"], locale: Locale): string[] {
+  const room = rooms[0]?.name || (locale === "en" ? "the kitchen" : "der Küche");
+  if (locale === "en") {
+    return [
+      `Turn on the light in ${room}`,
+      "Is the door locked?",
+      "What time is it?",
+      "Good night",
+      "Undo that",
+    ];
+  }
+  return [
+    `Licht in ${room} an`,
+    "Ist die Tür abgeschlossen?",
+    "Wie spät ist es?",
+    "Gute Nacht",
+    "Rückgängig",
+  ];
+}
 
 function mixFrom(turns: ConversationTurn[]): MixRow[] {
   const byDay = new Map<string, MixRow>();
@@ -23,6 +43,7 @@ function mixFrom(turns: ConversationTurn[]): MixRow[] {
 export function DashboardPage({
   data,
   t,
+  locale,
   onReplay,
   onApply,
   onOpenCalibrate,
@@ -30,17 +51,31 @@ export function DashboardPage({
 }: {
   data: DashboardData;
   t: Messages;
+  locale: Locale;
   onReplay: (text: string) => void;
   onApply: () => void;
   onOpenCalibrate: () => void;
   canApply: boolean;
 }) {
   const [turns, setTurns] = useState<ConversationTurn[]>([]);
+  const [busy, setBusy] = useState(false);
   useEffect(() => {
     api.conversations().then(setTurns).catch(() => undefined);
   }, [data.traffic.total]);
   const mix = useMemo(() => mixFrom(turns), [turns]);
   const inbox = data.assignment.filter((row) => row.confidence !== "high");
+  const last = turns.at(-1);
+  const samples = trySentences(data.rooms, locale);
+  const undoLast = async () => {
+    setBusy(true);
+    try {
+      await api.parse(locale === "en" ? "undo that" : "rückgängig", locale);
+      const next = await api.conversations();
+      setTurns(next);
+    } finally {
+      setBusy(false);
+    }
+  };
   return (
     <div className="page">
       <section className="hero">
@@ -50,6 +85,30 @@ export function DashboardPage({
           <p className="muted">{data.counts.assist} {t.assistVisible} · {data.counts.leftover} {t.open}</p>
         </div>
         {canApply && <button className="primary" onClick={onApply}>{t.applyAll}</button>}
+      </section>
+
+      {last && (
+        <section className="card" style={{ marginBottom: 16 }}>
+          <div className="row" style={{ justifyContent: "space-between" }}>
+            <div>
+              <h2>{t.lastTurn}</h2>
+              <p>{last.text || last.speech || last.decision}</p>
+              <p className="muted">{last.speech}</p>
+              {last.preferred_area && <p className="caption">{t.heardIn}: {last.preferred_area}</p>}
+            </div>
+            <button className="secondary" onClick={undoLast} disabled={busy}>{t.undo}</button>
+          </div>
+        </section>
+      )}
+
+      <section className="card" style={{ marginBottom: 16 }}>
+        <h2>{t.tryThese}</h2>
+        <p className="muted">{t.tryTheseHint}</p>
+        <div className="row" style={{ flexWrap: "wrap", marginTop: 8 }}>
+          {samples.map((sentence) => (
+            <button key={sentence} className="ghost" onClick={() => onReplay(sentence)}>{sentence}</button>
+          ))}
+        </div>
       </section>
 
       {inbox.length > 0 && (

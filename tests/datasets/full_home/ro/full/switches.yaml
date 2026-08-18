@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - aprinde vase bucatarie
+  - vase bucatarie aprinde
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - stinge vase bucatarie
+  - vase bucatarie stinge
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - aprinde masina spalatorie
+  - masina spalatorie aprinde
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - stinge masina spalatorie
+  - masina spalatorie stinge
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - aprinde dryer spalatorie
+  - dryer spalatorie aprinde
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - stinge dryer spalatorie
+  - dryer spalatorie stinge
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - aprinde rangehood bucatarie
+  - rangehood bucatarie aprinde
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - stinge rangehood bucatarie
+  - rangehood bucatarie stinge
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - aprinde ventilatorbad baiemaster
+  - ventilatorbad baiemaster aprinde
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - stinge ventilatorbad baiemaster
+  - ventilatorbad baiemaster stinge
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - aprinde ventilatorbad main bath
+  - ventilatorbad main bath aprinde
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - stinge ventilatorbad main bath
+  - ventilatorbad main bath stinge

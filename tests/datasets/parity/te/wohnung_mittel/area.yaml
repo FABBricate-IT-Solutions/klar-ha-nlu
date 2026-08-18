@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- set vedi masterbath 23
+area/heizung::heizung_esszimmer_23:
+- set vedi gadi 23
+area/heizung::heizung_schlafzimmer_23:
+- set vedi padakagadi 23
+area/heizung::heizung_wohnzimmer_23:
+- set vedi gadi 23
+area/lichter::alle_an_ausser_kugel:
+- veliginchu anni velugu tapp burra
+area/lichter::alle_an_ausser_schlafzimmer:
+- veliginchu anni velugu tapp padakagadi
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- set anni velugu tapp padakagadi 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- set anni velugu tapp burra red
+area/lichter::alle_ausser_kugel:
+- arpu anni velugu tapp burra
+area/lichter::alle_ausser_schlafzimmer:
+- arpu anni velugu tapp padakagadi
+area/lichter::alle_lichter_an:
+- veliginchu anni velugu
+area/lichter::alle_lichter_aus:
+- arpu anni velugu
+area/lichter::arbeitszimmer_lichter_an:
+- veliginchu velugu gadi
+area/lichter::arbeitszimmer_lichter_aus:
+- arpu velugu gadi
+area/lichter::esszimmer_lichter_an:
+- veliginchu velugu gadi
+area/lichter::esszimmer_lichter_aus:
+- arpu velugu gadi
+area/lichter::kuche_lichter_an:
+- veliginchu velugu vantagadi
+area/lichter::kuche_lichter_aus:
+- arpu velugu vantagadi
+area/lichter::schlafzimmer_auf_blau:
+- set velugu padakagadi blue
+area/lichter::schlafzimmer_auf_rot:
+- set velugu padakagadi red
+area/lichter::wohnzimmer_helligkeit:
+- set velugu gadi 45
+area/lichter::wohnzimmer_lichter_an:
+- veliginchu velugu gadi
+area/lichter::wohnzimmer_lichter_aus:
+- arpu velugu gadi
+area/spoken::alle_ausser_kugel_stt:
+- arpu anni velugu tapp burra
+area/spoken::alle_ausser_schlaf_stt:
+- arpu anni velugu tapp padakagadi
+area/spoken::alle_ganzen_an:
+- veliginchu anni velugu
+area/spoken::alle_lampen_aus:
+- arpu anni velugu
+area/spoken::esszimmer_weiss:
+- set velugu gadi white
+area/spoken::stt_kuche_lichte:
+- arpu velugu vantagadi
+area/spoken::stt_licht_wohnzimmer_an:
+- veliginchu velugu gadi
+area/spoken::stt_licht_wohnzimmer_aus:
+- arpu velugu gadi
+area/spoken::stt_schlafzimmer_dativ:
+- arpu velugu padakagadi
+area/spoken::wohnzimmer_gruen:
+- set velugu gadi green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- arpu anni velugu tapp gadi
+area/spoken_more::arbeitszimmer_lampen_aus:
+- arpu velugu gadi
+area/spoken_more::esszimmer_30:
+- set velugu gadi 30
+area/spoken_more::esszimmer_lichte_an:
+- veliginchu velugu gadi
+area/spoken_more::kuche_80:
+- set velugu vantagadi 80
+area/spoken_more::kuche_blau:
+- set velugu vantagadi blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- arpu anni velugu tapp padakagadi
+area/spoken_more::wohnzimmer_gelb:
+- set velugu gadi yellow

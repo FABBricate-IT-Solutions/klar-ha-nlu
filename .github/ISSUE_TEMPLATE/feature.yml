@@ -1,0 +1,26 @@
+name: Feature
+description: A household or engine change that is not a bug
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: ask
+    attributes:
+      label: What should Klar NLU do
+      placeholder: Phrase, domain (light / climate / media / …), why HA Assist is not enough
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - de
+        - en
+        - fr
+        - other compiled locale
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: Every compiled Assist locale is first-class. Pin the locale on the request; do not merge all lexicons into one catalog.

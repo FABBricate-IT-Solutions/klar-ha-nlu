@@ -1,0 +1,504 @@
+name: Full Home sw
+language: sw
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: chini
+  level: 0
+  aliases:
+  - chini
+  - chini
+- id: upper
+  name: juu
+  level: 1
+  aliases:
+  - juu
+  - orofa
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Kiingilio
+  floor: ground
+  aliases:
+  - kiingilio
+- id: living
+  name: Sebuleni
+  floor: ground
+  aliases:
+  - sebuleni
+- id: dining
+  name: Sefulaess
+  floor: ground
+  aliases:
+  - sefulaess
+- id: kitchen
+  name: Jikonini
+  floor: ground
+  aliases:
+  - jikonini
+- id: family_room
+  name: Sefula
+  floor: ground
+  aliases:
+  - sefula
+- id: laundry
+  name: Chumbayaosha
+  floor: ground
+  aliases:
+  - chumbayaosha
+- id: powder_room
+  name: Choo
+  floor: ground
+  aliases:
+  - choo
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Chumbakulala
+  floor: upper
+  aliases:
+  - chumbakulala
+- id: bedroom_2
+  name: Chumbakulala2
+  floor: upper
+  aliases:
+  - chumbakulala2
+- id: bedroom_3
+  name: Chumbakulala3
+  floor: upper
+  aliases:
+  - chumbakulala3
+- id: bedroom_4
+  name: Chumbakulala4
+  floor: upper
+  aliases:
+  - chumbakulala4
+- id: master_bath
+  name: Bafumaster
+  floor: upper
+  aliases:
+  - bafumaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: kiingilio taa
+  aliases:
+  - kiingilio taa
+  - taa
+- id: light.living_ceiling
+  area_id: living
+  name: sebuleni dari
+  aliases:
+  - sebuleni dari
+  - dari
+- id: light.living_lamp
+  area_id: living
+  name: sebuleni taa
+  aliases:
+  - sebuleni taa
+  - taa
+- id: light.dining_pendant
+  area_id: dining
+  name: sefulaess taa
+  aliases:
+  - sefulaess taa
+  - taa
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: jikonini dari
+  aliases:
+  - jikonini dari
+  - dari
+- id: light.kitchen_island
+  area_id: kitchen
+  name: jikonini kisiwa
+  aliases:
+  - jikonini kisiwa
+  - kisiwa
+- id: light.family_ceiling
+  area_id: family_room
+  name: sefula dari
+  aliases:
+  - sefula dari
+  - dari
+- id: light.laundry_light
+  area_id: laundry
+  name: chumbayaosha taa
+  aliases:
+  - chumbayaosha taa
+  - taa
+- id: light.powder_room_light
+  area_id: powder_room
+  name: choo taa
+  aliases:
+  - choo taa
+  - taa
+- id: light.garage_light
+  area_id: garage
+  name: garage taa
+  aliases:
+  - garage taa
+  - taa
+- id: light.office_ceiling
+  area_id: office
+  name: office dari
+  aliases:
+  - office dari
+  - dari
+- id: light.garden
+  area_id: garden
+  name: garden taa
+  aliases:
+  - garden taa
+  - taa
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: chumbakulala dari
+  aliases:
+  - chumbakulala dari
+  - dari
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: chumbakulala ensuite
+  aliases:
+  - chumbakulala ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: chumbakulala left kitanda
+  aliases:
+  - chumbakulala left kitanda
+  - kitanda
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: chumbakulala right kitanda
+  aliases:
+  - chumbakulala right kitanda
+  - kitanda
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: chumbakulala2 dari
+  aliases:
+  - chumbakulala2 dari
+  - dari
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: chumbakulala3 dari
+  aliases:
+  - chumbakulala3 dari
+  - dari
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: chumbakulala4 dari
+  aliases:
+  - chumbakulala4 dari
+  - dari
+- id: light.master_bath_light
+  area_id: master_bath
+  name: bafumaster taa
+  aliases:
+  - bafumaster taa
+  - taa
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath taa
+  aliases:
+  - main bath taa
+  - taa
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway taa
+  aliases:
+  - hallway taa
+  - taa
+- id: light.basement
+  area_id: basement
+  name: basement taa
+  aliases:
+  - basement taa
+  - taa
+- id: cover.living_blinds
+  area_id: living
+  name: sebuleni pazia
+  aliases:
+  - sebuleni pazia
+  - pazia
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: chumbakulala pazia
+  aliases:
+  - chumbakulala pazia
+  - pazia
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: chumbakulala2 pazia
+  aliases:
+  - chumbakulala2 pazia
+  - pazia
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: chumbakulala3 pazia
+  aliases:
+  - chumbakulala3 pazia
+  - pazia
+- id: cover.garage_door
+  area_id: garage
+  name: garage pazia
+  aliases:
+  - garage pazia
+  - pazia
+- id: climate.ground_thermostat
+  area_id: living
+  name: sebuleni joto
+  aliases:
+  - sebuleni joto
+  - joto
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: chumbakulala joto
+  aliases:
+  - chumbakulala joto
+  - joto
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: joto chumbakulala
+  aliases:
+  - joto chumbakulala
+  - joto
+  - ac
+  tags:
+  - joto
+- id: fan.family_fan
+  area_id: family_room
+  name: sefula feni
+  aliases:
+  - sefula feni
+  - feni
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: chumbakulala feni
+  aliases:
+  - chumbakulala feni
+  - feni
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: chumbakulala2 feni
+  aliases:
+  - chumbakulala2 feni
+  - feni
+- id: lock.front_door
+  area_id: entryway
+  name: front mlango
+  aliases:
+  - front mlango
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage mlango
+  aliases:
+  - garage mlango
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: jikonini vyombo
+  aliases:
+  - jikonini vyombo
+  - vyombo
+- id: switch.rangehood
+  area_id: kitchen
+  name: jikonini rangehood
+  aliases:
+  - jikonini rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: chumbayaosha mashine
+  aliases:
+  - chumbayaosha mashine
+  - mashine
+  - washer
+  tags:
+  - washer
+  - mashine
+- id: switch.dryer
+  area_id: laundry
+  name: chumbayaosha dryer
+  aliases:
+  - chumbayaosha dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: bafumaster fenibad
+  aliases:
+  - bafumaster fenibad
+  - fenibad
+  tags:
+  - fenibad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath fenibad
+  aliases:
+  - main bath fenibad
+  - fenibad
+  tags:
+  - fenibad
+- id: media_player.living_tv
+  area_id: living
+  name: sebuleni tv
+  aliases:
+  - sebuleni tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: sefula tv
+  aliases:
+  - sefula tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: sebuleni runinga
+  aliases:
+  - sebuleni runinga
+  - runinga
+  platform: music_assistant
+  tags:
+  - runinga
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: jikonini runinga
+  aliases:
+  - jikonini runinga
+  - runinga
+  platform: music_assistant
+  tags:
+  - runinga
+- id: media_player.office_music
+  area_id: office
+  name: office runinga
+  aliases:
+  - office runinga
+  - runinga
+  platform: music_assistant
+  tags:
+  - runinga
+- id: vacuum.robot
+  area_id: living
+  name: sebuleni kifagio
+  aliases:
+  - sebuleni kifagio
+  - kifagio
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: kiingilio doorsensor
+  aliases:
+  - kiingilio doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: sebuleni windowsensor
+  aliases:
+  - sebuleni windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: jikonini motion
+  aliases:
+  - jikonini motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: sebuleni tempsensor
+  aliases:
+  - sebuleni tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: sebuleni humidity
+  aliases:
+  - sebuleni humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: filamu
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: usiku
+- id: leaving_home
+  name: ondoka
+timers:
+- id: oven
+  name: oven kipima
+- id: laundry
+  name: laundry kipima
+- id: abstract
+  name: abstract kipima
+lists:
+- id: shopping
+  name: orodha

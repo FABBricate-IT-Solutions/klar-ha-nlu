@@ -18,7 +18,7 @@ fn smalltalk_hat_keinen_home_intent() {
 #[test]
 fn casual_und_sonderfaelle_gehen_an_llm() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     for text in [
         "Erzähle eine Geschichte",
         "Erzähle einen Witz",
@@ -35,12 +35,19 @@ fn casual_und_sonderfaelle_gehen_an_llm() {
         assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
         assert!(result.chat, "{text}: chat fehlt");
     }
-    for text in ["Was ist die Hauptstadt von Frankreich", "Wie ist das Wetter", "Was soll ich kochen"] {
+    for text in ["Was ist die Hauptstadt von Frankreich", "Was soll ich kochen"] {
         let mut session = Session::new();
         let result = parse(text, &home, &mut session, &[], &settings);
         assert!(!result.clarify, "{text}: {}", result.speech);
         assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
         assert!(!result.chat, "{text}: OOD darf nicht chat sein");
+    }
+    for text in ["Wie ist das Wetter"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &settings);
+        assert!(!result.clarify, "{text}: {}", result.speech);
+        assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
+        assert!(result.chat, "{text}: Wetter ohne Entity ist household chat");
     }
     for text in ["Licht im Wohnzimmer an", "Wie ist der Status der Küche", "Wie warm ist es im Schlafzimmer", "asdfghjkl qwerty"] {
         let mut session = Session::new();
@@ -53,7 +60,7 @@ fn casual_und_sonderfaelle_gehen_an_llm() {
 fn smalltalk_nach_geraet_geht_an_llm() {
     let home = default_home();
     let mut session = Session::new();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let first = parse("Licht im Arbeitszimmer an", &home, &mut session, &[], &settings);
     assert_eq!(first.intents[0].name, "HassTurnOn", "{}", first.speech);
     for text in ["Erzähle mir eine Geschichte", "Erzähl einen Katzenwitz", "Was ist die Hauptstadt von Frankreich"] {
@@ -98,7 +105,7 @@ fn role_home() -> klar_nlu::types::HomeGraph {
 fn role_slots(text: &str) -> Vec<(String, Vec<(String, String)>)> {
     let home = role_home();
     let mut session = Session::new();
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     result.intents.into_iter().map(|i| (i.name, i.slots.into_iter().map(|s| (s.name, s.value)).collect())).collect()
 }
 
@@ -131,14 +138,14 @@ fn adaptive_lighting_ist_kein_licht() {
         &["licht"],
     ));
     let mut session = Session::new();
-    let first = parse("Licht im Wohnzimmer an", &home, &mut session, &[], &Settings::default());
+    let first = parse("Licht im Wohnzimmer an", &home, &mut session, &[], &Settings::pinned("de"));
     assert!(first.intents.iter().any(|i| i.slot("entity_id") == Some("light.wohnzimmer")), "{:?}", first.intents);
     assert!(
         first.intents.iter().all(|i| i.slot("entity_id").is_none_or(|id| !id.contains("adaptive") && !id.contains("adaptiv_"))),
         "{:?}",
         first.intents
     );
-    let second = parse("mach sie aus", &home, &mut session, &[], &Settings::default());
+    let second = parse("mach sie aus", &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(second.intents[0].slot("entity_id"), Some("light.wohnzimmer"), "{:?}", second.intents);
 }
 
@@ -189,14 +196,14 @@ fn replay_skips_entity_not_exposed_to_assist() {
     home.assist = Some(std::collections::HashSet::new());
     let mut session = Session::new();
     session.remember_entity("light.wohnzimmer");
-    let result = parse("aus", &home, &mut session, &[], &Settings::default());
+    let result = parse("aus", &home, &mut session, &[], &Settings::pinned("de"));
     assert!(result.intents.iter().all(|i| i.slot("entity_id") != Some("light.wohnzimmer")), "{:?}", result.intents);
 }
 
 #[test]
 fn news_briefing_then_followup_not_device_replay() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let mut session = Session::new();
     let light = parse("Licht im Wohnzimmer an", &home, &mut session, &[], &settings);
     assert_eq!(light.intents[0].name, "HassTurnOn", "{}", light.speech);
@@ -217,7 +224,7 @@ fn news_briefing_then_followup_not_device_replay() {
     assert!(more.intents.is_empty(), "{:?}", more.intents);
 
     let wetter = parse("Wie ist das Wetter", &home, &mut Session::new(), &[], &settings);
-    assert!(!wetter.chat, "weather outside briefing is OOD");
+    assert!(wetter.chat, "weather without an entity is household chat: {}", wetter.speech);
     assert!(wetter.intents.is_empty(), "{:?}", wetter.intents);
     assert!(!wetter.briefing, "{}", wetter.speech);
 

@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - charte sinatle misagebi
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - gamorte sinatle samzareulo
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

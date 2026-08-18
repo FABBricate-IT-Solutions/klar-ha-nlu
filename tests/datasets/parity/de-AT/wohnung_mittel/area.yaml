@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- stell heizung badmastermain 23
+area/heizung::heizung_esszimmer_23:
+- stell heizung wohnstubeess 23
+area/heizung::heizung_schlafzimmer_23:
+- stell heizung schlafzimmer 23
+area/heizung::heizung_wohnzimmer_23:
+- stell heizung wohnzimmer 23
+area/lichter::alle_an_ausser_kugel:
+- mach alle licht ausser kugel
+area/lichter::alle_an_ausser_schlafzimmer:
+- mach alle licht ausser schlafzimmer
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- stell alle licht ausser schlafzimmer 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- stell alle licht ausser kugel rot
+area/lichter::alle_ausser_kugel:
+- schalt alle licht ausser kugel
+area/lichter::alle_ausser_schlafzimmer:
+- schalt alle licht ausser schlafzimmer
+area/lichter::alle_lichter_an:
+- mach alle licht
+area/lichter::alle_lichter_aus:
+- schalt alle licht
+area/lichter::arbeitszimmer_lichter_an:
+- mach licht wohnzimmer
+area/lichter::arbeitszimmer_lichter_aus:
+- schalt licht wohnzimmer
+area/lichter::esszimmer_lichter_an:
+- mach licht wohnstubeess
+area/lichter::esszimmer_lichter_aus:
+- schalt licht wohnstubeess
+area/lichter::kuche_lichter_an:
+- mach licht kuche
+area/lichter::kuche_lichter_aus:
+- schalt licht kuche
+area/lichter::schlafzimmer_auf_blau:
+- stell licht schlafzimmer blau
+area/lichter::schlafzimmer_auf_rot:
+- stell licht schlafzimmer rot
+area/lichter::wohnzimmer_helligkeit:
+- stell licht wohnzimmer 45
+area/lichter::wohnzimmer_lichter_an:
+- mach licht wohnzimmer
+area/lichter::wohnzimmer_lichter_aus:
+- schalt licht wohnzimmer
+area/spoken::alle_ausser_kugel_stt:
+- schalt alle licht ausser kugel
+area/spoken::alle_ausser_schlaf_stt:
+- schalt alle licht ausser schlafzimmer
+area/spoken::alle_ganzen_an:
+- mach alle licht
+area/spoken::alle_lampen_aus:
+- schalt alle licht
+area/spoken::esszimmer_weiss:
+- stell licht wohnstubeess weiss
+area/spoken::stt_kuche_lichte:
+- schalt licht kuche
+area/spoken::stt_licht_wohnzimmer_an:
+- mach licht wohnzimmer
+area/spoken::stt_licht_wohnzimmer_aus:
+- schalt licht wohnzimmer
+area/spoken::stt_schlafzimmer_dativ:
+- schalt licht schlafzimmer
+area/spoken::wohnzimmer_gruen:
+- stell licht wohnzimmer gruen
+area/spoken_more::alle_ausser_arbeitszimmer:
+- schalt alle licht ausser wohnzimmer
+area/spoken_more::arbeitszimmer_lampen_aus:
+- schalt licht wohnzimmer
+area/spoken_more::esszimmer_30:
+- stell licht wohnstubeess 30
+area/spoken_more::esszimmer_lichte_an:
+- mach licht wohnstubeess
+area/spoken_more::kuche_80:
+- stell licht kuche 80
+area/spoken_more::kuche_blau:
+- stell licht kuche blau
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- schalt alle licht ausser schlafzimmer
+area/spoken_more::wohnzimmer_gelb:
+- stell licht wohnzimmer gelb

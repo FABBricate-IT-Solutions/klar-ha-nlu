@@ -1,0 +1,504 @@
+name: Full Home fi
+language: fi
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: ala
+  level: 0
+  aliases:
+  - ala
+  - pohja
+- id: upper
+  name: yla
+  level: 1
+  aliases:
+  - yla
+  - kerros
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Eteinen
+  floor: ground
+  aliases:
+  - eteinen
+- id: living
+  name: Olohuone
+  floor: ground
+  aliases:
+  - olohuone
+- id: dining
+  name: Olohuonefamess
+  floor: ground
+  aliases:
+  - olohuonefamess
+- id: kitchen
+  name: Keittio
+  floor: ground
+  aliases:
+  - keittio
+- id: family_room
+  name: Olohuonefam
+  floor: ground
+  aliases:
+  - olohuonefam
+- id: laundry
+  name: Kodinhoito
+  floor: ground
+  aliases:
+  - kodinhoito
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Makuuhuone
+  floor: upper
+  aliases:
+  - makuuhuone
+- id: bedroom_2
+  name: Makuuhuone2
+  floor: upper
+  aliases:
+  - makuuhuone2
+- id: bedroom_3
+  name: Makuuhuone3
+  floor: upper
+  aliases:
+  - makuuhuone3
+- id: bedroom_4
+  name: Makuuhuone4
+  floor: upper
+  aliases:
+  - makuuhuone4
+- id: master_bath
+  name: Kylpymaster
+  floor: upper
+  aliases:
+  - kylpymaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Kaytava
+  floor: upper
+  aliases:
+  - kaytava
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: eteinen valo
+  aliases:
+  - eteinen valo
+  - valo
+- id: light.living_ceiling
+  area_id: living
+  name: olohuone katto
+  aliases:
+  - olohuone katto
+  - katto
+- id: light.living_lamp
+  area_id: living
+  name: olohuone valo
+  aliases:
+  - olohuone valo
+  - valo
+- id: light.dining_pendant
+  area_id: dining
+  name: olohuonefamess valo
+  aliases:
+  - olohuonefamess valo
+  - valo
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: keittio katto
+  aliases:
+  - keittio katto
+  - katto
+- id: light.kitchen_island
+  area_id: kitchen
+  name: keittio saareke
+  aliases:
+  - keittio saareke
+  - saareke
+- id: light.family_ceiling
+  area_id: family_room
+  name: olohuonefam katto
+  aliases:
+  - olohuonefam katto
+  - katto
+- id: light.laundry_light
+  area_id: laundry
+  name: kodinhoito valo
+  aliases:
+  - kodinhoito valo
+  - valo
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc valo
+  aliases:
+  - wc valo
+  - valo
+- id: light.garage_light
+  area_id: garage
+  name: garage valo
+  aliases:
+  - garage valo
+  - valo
+- id: light.office_ceiling
+  area_id: office
+  name: office katto
+  aliases:
+  - office katto
+  - katto
+- id: light.garden
+  area_id: garden
+  name: garden valo
+  aliases:
+  - garden valo
+  - valo
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: makuuhuone katto
+  aliases:
+  - makuuhuone katto
+  - katto
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: makuuhuone ensuite
+  aliases:
+  - makuuhuone ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: makuuhuone left yopoyta
+  aliases:
+  - makuuhuone left yopoyta
+  - yopoyta
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: makuuhuone right yopoyta
+  aliases:
+  - makuuhuone right yopoyta
+  - yopoyta
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: makuuhuone2 katto
+  aliases:
+  - makuuhuone2 katto
+  - katto
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: makuuhuone3 katto
+  aliases:
+  - makuuhuone3 katto
+  - katto
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: makuuhuone4 katto
+  aliases:
+  - makuuhuone4 katto
+  - katto
+- id: light.master_bath_light
+  area_id: master_bath
+  name: kylpymaster valo
+  aliases:
+  - kylpymaster valo
+  - valo
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath valo
+  aliases:
+  - main bath valo
+  - valo
+- id: light.hallway_light
+  area_id: hallway
+  name: kaytava valo
+  aliases:
+  - kaytava valo
+  - valo
+- id: light.basement
+  area_id: basement
+  name: basement valo
+  aliases:
+  - basement valo
+  - valo
+- id: cover.living_blinds
+  area_id: living
+  name: olohuone verho
+  aliases:
+  - olohuone verho
+  - verho
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: makuuhuone verho
+  aliases:
+  - makuuhuone verho
+  - verho
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: makuuhuone2 verho
+  aliases:
+  - makuuhuone2 verho
+  - verho
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: makuuhuone3 verho
+  aliases:
+  - makuuhuone3 verho
+  - verho
+- id: cover.garage_door
+  area_id: garage
+  name: garage verho
+  aliases:
+  - garage verho
+  - verho
+- id: climate.ground_thermostat
+  area_id: living
+  name: olohuone lampo
+  aliases:
+  - olohuone lampo
+  - lampo
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: makuuhuone lampo
+  aliases:
+  - makuuhuone lampo
+  - lampo
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: lammitys makuuhuone
+  aliases:
+  - lammitys makuuhuone
+  - lammitys
+  - ac
+  tags:
+  - lammitys
+- id: fan.family_fan
+  area_id: family_room
+  name: olohuonefam tuuletin
+  aliases:
+  - olohuonefam tuuletin
+  - tuuletin
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: makuuhuone tuuletin
+  aliases:
+  - makuuhuone tuuletin
+  - tuuletin
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: makuuhuone2 tuuletin
+  aliases:
+  - makuuhuone2 tuuletin
+  - tuuletin
+- id: lock.front_door
+  area_id: entryway
+  name: front ovi
+  aliases:
+  - front ovi
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage ovi
+  aliases:
+  - garage ovi
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: keittio astianpesu
+  aliases:
+  - keittio astianpesu
+  - astianpesu
+- id: switch.rangehood
+  area_id: kitchen
+  name: keittio rangehood
+  aliases:
+  - keittio rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: kodinhoito pesukone
+  aliases:
+  - kodinhoito pesukone
+  - pesukone
+  - washer
+  tags:
+  - washer
+  - pesukone
+- id: switch.dryer
+  area_id: laundry
+  name: kodinhoito dryer
+  aliases:
+  - kodinhoito dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: kylpymaster tuuletinbad
+  aliases:
+  - kylpymaster tuuletinbad
+  - tuuletinbad
+  tags:
+  - tuuletinbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath tuuletinbad
+  aliases:
+  - main bath tuuletinbad
+  - tuuletinbad
+  tags:
+  - tuuletinbad
+- id: media_player.living_tv
+  area_id: living
+  name: olohuone tv
+  aliases:
+  - olohuone tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: olohuonefam tv
+  aliases:
+  - olohuonefam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: olohuone musiikki
+  aliases:
+  - olohuone musiikki
+  - musiikki
+  platform: music_assistant
+  tags:
+  - musiikki
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: keittio musiikki
+  aliases:
+  - keittio musiikki
+  - musiikki
+  platform: music_assistant
+  tags:
+  - musiikki
+- id: media_player.office_music
+  area_id: office
+  name: office musiikki
+  aliases:
+  - office musiikki
+  - musiikki
+  platform: music_assistant
+  tags:
+  - musiikki
+- id: vacuum.robot
+  area_id: living
+  name: olohuone imuri
+  aliases:
+  - olohuone imuri
+  - imuri
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: eteinen doorsensor
+  aliases:
+  - eteinen doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: olohuone windowsensor
+  aliases:
+  - olohuone windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: keittio motion
+  aliases:
+  - keittio motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: olohuone tempsensor
+  aliases:
+  - olohuone tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: olohuone humidity
+  aliases:
+  - olohuone humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: elokuva
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: yo
+- id: leaving_home
+  name: lahto
+timers:
+- id: oven
+  name: oven ajastin
+- id: laundry
+  name: laundry ajastin
+- id: abstract
+  name: abstract ajastin
+lists:
+- id: shopping
+  name: lista

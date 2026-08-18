@@ -9,6 +9,7 @@ pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
 use score::{fuzzy_tokens, overlap, score_entity, sort_hits};
 pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 
+mod prefer;
 mod report;
 mod score;
 
@@ -23,7 +24,7 @@ pub struct Resolved {
 pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Resolved {
     let mut areas = match_areas(tokens, &home.areas);
     let floors = match_floors(tokens, &home.floors);
-    if !floors.is_empty() && !areas.is_empty() {
+    if !floors.is_empty() && areas.len() == 1 {
         let on_floor: Vec<String> = areas
             .iter()
             .filter(|area_id| {
@@ -44,12 +45,12 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| !is_infra(e))
-        .filter(|e| domain.is_none_or(|d| matches_domain(e, d)))
+        .filter(|e| domain.is_none_or(|d| matches_domain(e, d, catalog())))
         .filter_map(|e| score_entity(tokens, &fuzzy_tokens, e, home).map(|s| (s, e.clone())))
         .collect();
     if domain == Some("climate") {
-        if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens) {
-            candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity) == Some(kind));
+        if let Some(kind) = crate::home::roles::wanted_climate_kind(tokens, catalog()) {
+            candidates.retain(|(_, entity)| crate::home::roles::climate_kind(entity, catalog()) == Some(kind));
         }
     }
     if !scope.is_empty() {
@@ -62,7 +63,11 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             candidates.extend(named);
         }
     }
+    prefer::prefer_entry_lock(tokens, home, &mut candidates);
     sort_hits(&mut candidates, tokens, home);
+    if let Some(locks) = prefer::mentioned_locks(tokens, &candidates) {
+        return Resolved { areas, floors, entities: locks, ambiguous: Vec::new() };
+    }
 
     if let Some(named) = crate::parse::resolve_named::collect_named_devices(tokens, home) {
         if named.len() > 1 {
@@ -136,7 +141,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                 .entities
                 .iter()
                 .filter(|e| assist_visible(e, home))
-                .filter(|e| matches_domain(e, d) && !is_infra(e))
+                .filter(|e| matches_domain(e, d, catalog()) && !is_infra(e))
                 .filter(|e| scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
                 .cloned()
                 .collect();
@@ -367,25 +372,25 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
 }
 
 pub(crate) fn unique_in_area(home: &HomeGraph, area: &str, domain: &str, tokens: &[String]) -> Option<String> {
-    let kind = (domain == "climate").then(|| crate::home::roles::wanted_climate_kind(tokens)).flatten();
+    let kind = (domain == "climate").then(|| crate::home::roles::wanted_climate_kind(tokens, catalog())).flatten();
     let hits: Vec<&str> = home
         .entities
         .iter()
         .filter(|e| assist_visible(e, home))
-        .filter(|e| matches_domain(e, domain) && !is_infra(e) && e.area.as_deref() == Some(area))
-        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e) == Some(want)))
+        .filter(|e| matches_domain(e, domain, catalog()) && !is_infra(e) && e.area.as_deref() == Some(area))
+        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
         .map(|e| e.entity_id.as_str())
         .collect();
     (hits.len() == 1).then(|| hits[0].to_string())
 }
 
 pub(crate) fn climates_of_kind(home: &HomeGraph, tokens: &[String]) -> Vec<String> {
-    let kind = crate::home::roles::wanted_climate_kind(tokens);
+    let kind = crate::home::roles::wanted_climate_kind(tokens, catalog());
     home.entities
         .iter()
         .filter(|e| assist_visible(e, home))
-        .filter(|e| matches_domain(e, "climate") && !is_infra(e))
-        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e) == Some(want)))
+        .filter(|e| matches_domain(e, "climate", catalog()) && !is_infra(e))
+        .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
         .map(|e| e.entity_id.clone())
         .collect()
 }
@@ -452,7 +457,7 @@ pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
         .filter(|area| !crate::home::policy::is_whole_home(area))
         .filter(|area| {
             home.entities.iter().any(|entity| {
-                assist_visible(entity, home) && is_light_like(entity) && entity.area.as_deref() == Some(area.area_id.as_str())
+                assist_visible(entity, home) && is_light_like(entity, catalog()) && entity.area.as_deref() == Some(area.area_id.as_str())
             })
         })
         .map(|area| area.area_id.clone())

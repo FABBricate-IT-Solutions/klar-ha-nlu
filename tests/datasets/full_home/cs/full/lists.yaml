@@ -1,0 +1,77 @@
+- name: list_add
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - pridej milk seznam
+  - milk pridej seznam
+- name: list_done
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - hotovo milk
+  - milk hotovo
+- name: list_done_milk
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - hotovo milk
+  - milk hotovo
+- name: list_add_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - pridej bread seznam
+  - bread pridej seznam
+- name: list_done_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - hotovo bread
+  - bread hotovo
+- name: list_add_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - pridej eggs seznam
+  - eggs pridej seznam
+- name: list_done_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - hotovo eggs
+  - eggs hotovo
+- name: list_add_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - pridej apples seznam
+  - apples pridej seznam
+- name: list_done_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - hotovo apples
+  - apples hotovo
+- name: list_add_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - pridej coffee seznam
+  - coffee pridej seznam
+- name: list_done_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - hotovo coffee
+  - coffee hotovo

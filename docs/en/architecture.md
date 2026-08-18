@@ -30,7 +30,7 @@ In Home Assistant the spoken line can get a personality cue and, if enabled, an 
 | `src/home/` | Home graph loading, overlay, expose filtering, roles, and policy |
 | `src/parse/` | Tokenize, actions, resolve, slots, spoken replies |
 | `src/eval/` | Held-out metrics, Assist comparison, scorecard, benches |
-| `src/migrate/` | One-shot V1 overlay dry-run / V2 save |
+| `src/migrate.rs` | One-shot V1 overlay dry-run / V2 save |
 | `src/session.rs` | Last target, pending clarify/confirm |
 | `src/io/` | HTTP (`/api/v2/parse`), Wyoming, privacy-safe bundles, bootstrap |
 

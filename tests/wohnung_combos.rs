@@ -11,7 +11,7 @@ fn home() -> HomeGraph {
 fn parse_one(text: &str) -> (String, Vec<(String, String)>, bool) {
     let home = home();
     let mut session = Session::new();
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     let intent = result.intents.first();
     (
         intent.map(|i| i.name.clone()).unwrap_or_default(),
@@ -32,7 +32,7 @@ fn klima_ohne_alias_trifft_ac() {
         }
     }
     let mut session = Session::new();
-    let result = parse("Klimaanlage auf 20 Grad", &graph, &mut session, &[], &Settings::default());
+    let result = parse("Klimaanlage auf 20 Grad", &graph, &mut session, &[], &Settings::pinned("de"));
     let found: Vec<(String, String)> =
         result.intents.first().map(|i| i.slots.iter().map(|s| (s.name.clone(), s.value.clone())).collect()).unwrap_or_default();
     assert!(!result.clarify, "Klimaanlage ohne Alias: nachgefragt {found:?}");
@@ -111,7 +111,7 @@ fn szene_tv_pc_r2d2_schalter() {
 fn zwei_raeume_und_nachsatz() {
     let home = home();
     let mut session = Session::new();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let first = parse("Mach das Licht im Wohnzimmer und in der Küche an", &home, &mut session, &[], &settings);
     let rooms: Vec<_> = first
         .intents
@@ -173,7 +173,7 @@ fn mittel() -> HomeGraph {
 }
 
 fn parse_mittel(text: &str, session: &mut Session) -> klar_nlu::types::ParseResult {
-    parse(text, &mittel(), session, &[], &Settings::default())
+    parse(text, &mittel(), session, &[], &Settings::pinned("de"))
 }
 
 #[test]
@@ -262,7 +262,7 @@ fn wohnzimmer_dann_kueche_auch() {
 fn schlafzimmern_licht_auf_rot() {
     let home = klar_nlu::home::default_home();
     let mut session = Session::new();
-    let result = parse("Schlafzimmern Licht auf Rot", &home, &mut session, &[], &Settings::default());
+    let result = parse("Schlafzimmern Licht auf Rot", &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(result.intents[0].name, "HassLightSet", "{:?}", result.intents);
     assert_eq!(result.intents[0].slot("color"), Some("red"));
     let entity = result.intents[0].slot("entity_id").unwrap_or("");
@@ -274,7 +274,7 @@ fn schlafzimmern_licht_auf_rot() {
 fn wohn_und_esszimmer_auf_rot() {
     let home = klar_nlu::home::default_home();
     let mut session = Session::new();
-    let result = parse("Wohn und Esszimmer auf Rot", &home, &mut session, &[], &Settings::default());
+    let result = parse("Wohn und Esszimmer auf Rot", &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(result.intents.len(), 2, "{:?}", result.intents);
     assert!(
         result.intents.iter().all(|intent| intent.name == "HassLightSet" && intent.slot("color") == Some("red")),

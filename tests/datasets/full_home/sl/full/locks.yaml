@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - kljucavnica kljucavnica predsoba
+  - kljucavnica predsoba kljucavnica
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - odpri kljucavnica predsoba
+  - kljucavnica predsoba odpri
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - kljucavnica kljucavnica garage
+  - kljucavnica garage kljucavnica
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - odpri kljucavnica garage
+  - kljucavnica garage odpri
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - kljucavnica kljucavnica predsoba
+  - kljucavnica predsoba kljucavnica
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - kljucavnica kljucavnica garage
+  - kljucavnica garage kljucavnica

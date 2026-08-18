@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- bat hen abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- bat hen abstract 20 min
+timers/timers::abstract_start_seconds:
+- bat hen abstract
+timers/timers::cancel_all_timers:
+- tat tatca hen
+timers/timers::timer_laundry_cancel:
+- bat hen laundry
+timers/timers::timer_laundry_decrease:
+- bat hen laundry 5 min
+timers/timers::timer_laundry_increase:
+- bat hen laundry 16 min
+timers/timers::timer_laundry_pause:
+- tat hen laundry
+timers/timers::timer_laundry_start:
+- bat hen laundry
+timers/timers::timer_laundry_status:
+- gi hen laundry
+timers/timers::timer_laundry_unpause:
+- bat hen laundry
+timers/timers::timer_oven_cancel:
+- bat hen oven
+timers/timers::timer_oven_decrease:
+- bat hen oven 44 min
+timers/timers::timer_oven_increase:
+- bat hen oven 30 min
+timers/timers::timer_oven_pause:
+- tat hen oven
+timers/timers::timer_oven_start:
+- bat hen oven 2 min
+timers/timers::timer_oven_status:
+- gi hen oven
+timers/timers::timer_oven_unpause:
+- bat hen oven

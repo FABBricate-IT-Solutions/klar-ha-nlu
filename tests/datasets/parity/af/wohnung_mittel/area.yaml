@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- stel verwarming badmaster 23
+area/heizung::heizung_esszimmer_23:
+- stel verwarming sitkamer 23
+area/heizung::heizung_schlafzimmer_23:
+- stel verwarming slaapkamer 23
+area/heizung::heizung_wohnzimmer_23:
+- stel verwarming sitkamer 23
+area/lichter::alle_an_ausser_kugel:
+- skakel almal lig behalwe bol
+area/lichter::alle_an_ausser_schlafzimmer:
+- skakel almal lig behalwe slaapkamer
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- stel almal lig behalwe slaapkamer 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- stel almal lig behalwe bol rooi
+area/lichter::alle_ausser_kugel:
+- doof almal lig behalwe bol
+area/lichter::alle_ausser_schlafzimmer:
+- doof almal lig behalwe slaapkamer
+area/lichter::alle_lichter_an:
+- skakel almal lig
+area/lichter::alle_lichter_aus:
+- doof almal lig
+area/lichter::arbeitszimmer_lichter_an:
+- skakel lig sitkamer
+area/lichter::arbeitszimmer_lichter_aus:
+- doof lig sitkamer
+area/lichter::esszimmer_lichter_an:
+- skakel lig sitkamer
+area/lichter::esszimmer_lichter_aus:
+- doof lig sitkamer
+area/lichter::kuche_lichter_an:
+- skakel lig kombuis
+area/lichter::kuche_lichter_aus:
+- doof lig kombuis
+area/lichter::schlafzimmer_auf_blau:
+- stel lig slaapkamer blou
+area/lichter::schlafzimmer_auf_rot:
+- stel lig slaapkamer rooi
+area/lichter::wohnzimmer_helligkeit:
+- stel lig sitkamer 45
+area/lichter::wohnzimmer_lichter_an:
+- skakel lig sitkamer
+area/lichter::wohnzimmer_lichter_aus:
+- doof lig sitkamer
+area/spoken::alle_ausser_kugel_stt:
+- doof almal lig behalwe bol
+area/spoken::alle_ausser_schlaf_stt:
+- doof almal lig behalwe slaapkamer
+area/spoken::alle_ganzen_an:
+- skakel almal lig
+area/spoken::alle_lampen_aus:
+- doof almal lig
+area/spoken::esszimmer_weiss:
+- stel lig sitkamer wit
+area/spoken::stt_kuche_lichte:
+- doof lig kombuis
+area/spoken::stt_licht_wohnzimmer_an:
+- skakel lig sitkamer
+area/spoken::stt_licht_wohnzimmer_aus:
+- doof lig sitkamer
+area/spoken::stt_schlafzimmer_dativ:
+- doof lig slaapkamer
+area/spoken::wohnzimmer_gruen:
+- stel lig sitkamer groen
+area/spoken_more::alle_ausser_arbeitszimmer:
+- doof almal lig behalwe sitkamer
+area/spoken_more::arbeitszimmer_lampen_aus:
+- doof lig sitkamer
+area/spoken_more::esszimmer_30:
+- stel lig sitkamer 30
+area/spoken_more::esszimmer_lichte_an:
+- skakel lig sitkamer
+area/spoken_more::kuche_80:
+- stel lig kombuis 80
+area/spoken_more::kuche_blau:
+- stel lig kombuis blou
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- doof almal lig behalwe slaapkamer
+area/spoken_more::wohnzimmer_gelb:
+- stel lig sitkamer geel

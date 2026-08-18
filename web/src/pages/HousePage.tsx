@@ -22,7 +22,7 @@ export function HousePage({
   onRefresh: () => void;
   onApply: () => void;
 }) {
-  const [view, setView] = useState<HouseView>("graph");
+  const [view, setView] = useState<HouseView>("calibrate");
   return (
     <div>
       <div className="page" style={{ paddingBottom: 0 }}>

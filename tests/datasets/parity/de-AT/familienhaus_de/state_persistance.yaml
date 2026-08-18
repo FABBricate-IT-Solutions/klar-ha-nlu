@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - was vorhang schlafzimmer2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - was decke schlafzimmer2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - was vorhang schlafzimmer3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - was decke schlafzimmer3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - was decke schlafzimmer4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - was licht wohnstubeess
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - was licht vorzimmer
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - was decke wohnstube
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - was vorhang garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - was licht garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - was licht vorzimmergang und was licht klosett
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - was licht vorzimmergang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - was licht kuche
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - was licht waschraum
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - was heizung wohnzimmer
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - was vorhang wohnzimmer
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - was licht wohnzimmer
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - was licht badmastermain
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - was licht badmaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - was heizung schlafzimmer und was heizung wohnzimmer
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - was vorhang schlafzimmer und was vorhang wohnzimmer
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - was heizung schlafzimmer
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - was vorhang schlafzimmer
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - was licht klosett
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - was vorhang garage
+  - schliesse
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - was vorhang garage
+  - oeffne
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - was vorhang garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - was vorhang wohnzimmer
+  - schliesse
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - was vorhang wohnzimmer
+  - oeffne
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - was vorhang wohnzimmer
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - was ventilator wohnstube
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - was ventilator wohnstube
+  - schalt
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - was ventilator wohnstube
+  - mach
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - was licht vorzimmer
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - was licht vorzimmer
+  - schalt
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - was licht vorzimmer
+  - mach
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - was schloss vorzimmer
+  - schloss
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - was schloss vorzimmer
+  - oeffne
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - was schloss garage
+  - schloss
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - was schloss garage
+  - oeffne
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - was fernseher wohnstube
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - was fernseher wohnstube
+  - schalt
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - was fernseher wohnstube
+  - mach
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - was fernseher wohnzimmer
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - was fernseher wohnzimmer
+  - schalt
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - was fernseher wohnzimmer
+  - mach

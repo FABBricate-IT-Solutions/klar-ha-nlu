@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- tand timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- tand timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- tand timer abstract
+timers/timers::cancel_all_timers:
+- slack alla timer
+timers/timers::timer_laundry_cancel:
+- tand timer laundry
+timers/timers::timer_laundry_decrease:
+- tand timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- tand timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- slack timer laundry
+timers/timers::timer_laundry_start:
+- tand timer laundry
+timers/timers::timer_laundry_status:
+- vad timer laundry
+timers/timers::timer_laundry_unpause:
+- tand timer laundry
+timers/timers::timer_oven_cancel:
+- tand timer oven
+timers/timers::timer_oven_decrease:
+- tand timer oven 44 min
+timers/timers::timer_oven_increase:
+- tand timer oven 30 min
+timers/timers::timer_oven_pause:
+- slack timer oven
+timers/timers::timer_oven_start:
+- tand timer oven 2 min
+timers/timers::timer_oven_status:
+- vad timer oven
+timers/timers::timer_oven_unpause:
+- tand timer oven

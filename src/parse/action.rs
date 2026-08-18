@@ -405,6 +405,11 @@ fn playback_action(tokens: &[String]) -> Option<Action> {
 fn vacuum_noun_action(tokens: &[String]) -> Option<Action> {
     if is_query_token(tokens) {
         Some(Action::GetState)
+    } else if tokens.iter().any(|token| {
+        matches!(catalog().verb(token), Some(VerbKind::Dock))
+            || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
+    }) {
+        Some(Action::VacuumDock)
     } else if catalog().any(tokens, &catalog().vacuum_start) || catalog().any(tokens, &catalog().start_words) {
         Some(Action::VacuumStart)
     } else {
@@ -459,8 +464,8 @@ fn flick_action(tokens: &[String]) -> Option<Action> {
 
 fn add_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.list_nouns) {
-        Some(Action::ListAdd)
+    if cat.any(tokens, &cat.list_nouns) || cat.any(tokens, &cat.chores) {
+        Some(if cat.any(tokens, &cat.list_complete) { Action::ListComplete } else { Action::ListAdd })
     } else if cat.any(tokens, &cat.timer_nouns) {
         Some(Action::TimerAdd)
     } else {

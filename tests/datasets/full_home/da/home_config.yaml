@@ -1,0 +1,504 @@
+name: Full Home da
+language: da
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: stuenetage
+  level: 0
+  aliases:
+  - stuenetage
+  - nede
+- id: upper
+  name: overetage
+  level: 1
+  aliases:
+  - overetage
+  - oppe
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Entree
+  floor: ground
+  aliases:
+  - entree
+- id: living
+  name: Stue
+  floor: ground
+  aliases:
+  - stue
+- id: dining
+  name: Alrumess
+  floor: ground
+  aliases:
+  - alrumess
+- id: kitchen
+  name: Kokken
+  floor: ground
+  aliases:
+  - kokken
+- id: family_room
+  name: Alrum
+  floor: ground
+  aliases:
+  - alrum
+- id: laundry
+  name: Vaskerum
+  floor: ground
+  aliases:
+  - vaskerum
+- id: powder_room
+  name: Toilet
+  floor: ground
+  aliases:
+  - toilet
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Sovevaerelse
+  floor: upper
+  aliases:
+  - sovevaerelse
+- id: bedroom_2
+  name: Sovevaerelse2
+  floor: upper
+  aliases:
+  - sovevaerelse2
+- id: bedroom_3
+  name: Sovevaerelse3
+  floor: upper
+  aliases:
+  - sovevaerelse3
+- id: bedroom_4
+  name: Sovevaerelse4
+  floor: upper
+  aliases:
+  - sovevaerelse4
+- id: master_bath
+  name: Badmaster
+  floor: upper
+  aliases:
+  - badmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: entree lys
+  aliases:
+  - entree lys
+  - lys
+- id: light.living_ceiling
+  area_id: living
+  name: stue loft
+  aliases:
+  - stue loft
+  - loft
+- id: light.living_lamp
+  area_id: living
+  name: stue lys
+  aliases:
+  - stue lys
+  - lys
+- id: light.dining_pendant
+  area_id: dining
+  name: alrumess lys
+  aliases:
+  - alrumess lys
+  - lys
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kokken loft
+  aliases:
+  - kokken loft
+  - loft
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kokken oe
+  aliases:
+  - kokken oe
+  - oe
+- id: light.family_ceiling
+  area_id: family_room
+  name: alrum loft
+  aliases:
+  - alrum loft
+  - loft
+- id: light.laundry_light
+  area_id: laundry
+  name: vaskerum lys
+  aliases:
+  - vaskerum lys
+  - lys
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toilet lys
+  aliases:
+  - toilet lys
+  - lys
+- id: light.garage_light
+  area_id: garage
+  name: garage lys
+  aliases:
+  - garage lys
+  - lys
+- id: light.office_ceiling
+  area_id: office
+  name: office loft
+  aliases:
+  - office loft
+  - loft
+- id: light.garden
+  area_id: garden
+  name: garden lys
+  aliases:
+  - garden lys
+  - lys
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: sovevaerelse loft
+  aliases:
+  - sovevaerelse loft
+  - loft
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: sovevaerelse ensuite
+  aliases:
+  - sovevaerelse ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: sovevaerelse left natbord
+  aliases:
+  - sovevaerelse left natbord
+  - natbord
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: sovevaerelse right natbord
+  aliases:
+  - sovevaerelse right natbord
+  - natbord
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: sovevaerelse2 loft
+  aliases:
+  - sovevaerelse2 loft
+  - loft
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: sovevaerelse3 loft
+  aliases:
+  - sovevaerelse3 loft
+  - loft
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: sovevaerelse4 loft
+  aliases:
+  - sovevaerelse4 loft
+  - loft
+- id: light.master_bath_light
+  area_id: master_bath
+  name: badmaster lys
+  aliases:
+  - badmaster lys
+  - lys
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath lys
+  aliases:
+  - main bath lys
+  - lys
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway lys
+  aliases:
+  - hallway lys
+  - lys
+- id: light.basement
+  area_id: basement
+  name: basement lys
+  aliases:
+  - basement lys
+  - lys
+- id: cover.living_blinds
+  area_id: living
+  name: stue gardin
+  aliases:
+  - stue gardin
+  - gardin
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: sovevaerelse gardin
+  aliases:
+  - sovevaerelse gardin
+  - gardin
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: sovevaerelse2 gardin
+  aliases:
+  - sovevaerelse2 gardin
+  - gardin
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: sovevaerelse3 gardin
+  aliases:
+  - sovevaerelse3 gardin
+  - gardin
+- id: cover.garage_door
+  area_id: garage
+  name: garage gardin
+  aliases:
+  - garage gardin
+  - gardin
+- id: climate.ground_thermostat
+  area_id: living
+  name: stue varme
+  aliases:
+  - stue varme
+  - varme
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: sovevaerelse varme
+  aliases:
+  - sovevaerelse varme
+  - varme
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: temperatur sovevaerelse
+  aliases:
+  - temperatur sovevaerelse
+  - temperatur
+  - ac
+  tags:
+  - temperatur
+- id: fan.family_fan
+  area_id: family_room
+  name: alrum ventilator
+  aliases:
+  - alrum ventilator
+  - ventilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: sovevaerelse ventilator
+  aliases:
+  - sovevaerelse ventilator
+  - ventilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: sovevaerelse2 ventilator
+  aliases:
+  - sovevaerelse2 ventilator
+  - ventilator
+- id: lock.front_door
+  area_id: entryway
+  name: front doer
+  aliases:
+  - front doer
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage doer
+  aliases:
+  - garage doer
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kokken opvask
+  aliases:
+  - kokken opvask
+  - opvask
+- id: switch.rangehood
+  area_id: kitchen
+  name: kokken rangehood
+  aliases:
+  - kokken rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: vaskerum vaskemaskine
+  aliases:
+  - vaskerum vaskemaskine
+  - vaskemaskine
+  - washer
+  tags:
+  - washer
+  - vaskemaskine
+- id: switch.dryer
+  area_id: laundry
+  name: vaskerum dryer
+  aliases:
+  - vaskerum dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: badmaster ventilatorbad
+  aliases:
+  - badmaster ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatorbad
+  aliases:
+  - main bath ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: stue tv
+  aliases:
+  - stue tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: alrum tv
+  aliases:
+  - alrum tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: stue musik
+  aliases:
+  - stue musik
+  - musik
+  platform: music_assistant
+  tags:
+  - musik
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kokken musik
+  aliases:
+  - kokken musik
+  - musik
+  platform: music_assistant
+  tags:
+  - musik
+- id: media_player.office_music
+  area_id: office
+  name: office musik
+  aliases:
+  - office musik
+  - musik
+  platform: music_assistant
+  tags:
+  - musik
+- id: vacuum.robot
+  area_id: living
+  name: stue stoevsuger
+  aliases:
+  - stue stoevsuger
+  - stoevsuger
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: entree doorsensor
+  aliases:
+  - entree doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: stue windowsensor
+  aliases:
+  - stue windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kokken motion
+  aliases:
+  - kokken motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: stue tempsensor
+  aliases:
+  - stue tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: stue humidity
+  aliases:
+  - stue humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nat
+- id: leaving_home
+  name: afgang
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: liste

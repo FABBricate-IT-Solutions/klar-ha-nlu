@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - maach spuelmaschinn kichen
+  - spuelmaschinn kichen maach
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - maachaus spuelmaschinn kichen
+  - spuelmaschinn kichen maachaus
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - maach waschmaschinn waschraum
+  - waschmaschinn waschraum maach
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - maachaus waschmaschinn waschraum
+  - waschmaschinn waschraum maachaus
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - maach dryer waschraum
+  - dryer waschraum maach
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - maachaus dryer waschraum
+  - dryer waschraum maachaus
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - maach rangehood kichen
+  - rangehood kichen maach
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - maachaus rangehood kichen
+  - rangehood kichen maachaus
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - maach ventilatorbad bademaster
+  - ventilatorbad bademaster maach
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - maachaus ventilatorbad bademaster
+  - ventilatorbad bademaster maachaus
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - maach ventilatorbad main bath
+  - ventilatorbad main bath maach
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - maachaus ventilatorbad main bath
+  - ventilatorbad main bath maachaus

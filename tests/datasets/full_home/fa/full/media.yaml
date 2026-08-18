@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - تلویزیون پذیرایی روشن
+  - روشن تلویزیون پذیرایی
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - خاموش تلویزیون پذیرایی
+  - تلویزیون پذیرایی خاموش
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause تلویزیون پذیرایی
+  - تلویزیون پذیرایی pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - تلویزیون خانواده روشن
+  - روشن تلویزیون خانواده
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - خاموش تلویزیون خانواده
+  - تلویزیون خانواده خاموش
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause تلویزیون خانواده
+  - تلویزیون خانواده pause

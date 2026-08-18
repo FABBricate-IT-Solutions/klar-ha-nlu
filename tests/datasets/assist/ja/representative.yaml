@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - tsukete raito ribingu
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - keshite raito kitchin
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

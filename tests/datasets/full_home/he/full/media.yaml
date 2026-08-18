@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - טלוויזיה סלון הדלק
+  - הדלק טלוויזיה סלון
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - כבה טלוויזיה סלון
+  - טלוויזיה סלון כבה
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause טלוויזיה סלון
+  - טלוויזיה סלון pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - טלוויזיה משפחה הדלק
+  - הדלק טלוויזיה משפחה
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - כבה טלוויזיה משפחה
+  - טלוויזיה משפחה כבה
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause טלוויזיה משפחה
+  - טלוויזיה משפחה pause

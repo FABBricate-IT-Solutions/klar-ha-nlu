@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - увімкни опалення вітальня
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - увімкни світло вітальня
+  - вимкни
+state_persistance/spoken::kugel_dann_aus:
+- - увімкни куля
+  - вимкни
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - увімкни світло вітальня
+  - увімкни світло кухня
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - увімкни світло вітальня
+  - red

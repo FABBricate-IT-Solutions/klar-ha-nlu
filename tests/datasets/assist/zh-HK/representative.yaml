@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - dakai deng keting
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - guanbi deng chufang
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

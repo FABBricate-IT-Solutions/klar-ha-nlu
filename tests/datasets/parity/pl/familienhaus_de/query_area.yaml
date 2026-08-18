@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- co zaslona sypialnia2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- co zaslona sypialnia2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- co zaslona sypialnia2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- co zaslona sypialnia2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- co wentylator sypialnia2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- co wentylator sypialnia2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- co wentylator sypialnia2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- co wentylator sypialnia2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- co swiatlo sypialnia2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- co swiatlo sypialnia2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- co swiatlo sypialnia2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- co swiatlo sypialnia2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- co zaslona sypialnia3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- co zaslona sypialnia3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- co zaslona sypialnia3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- co zaslona sypialnia3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- co swiatlo sypialnia3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- co swiatlo sypialnia3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- co swiatlo sypialnia3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- co swiatlo sypialnia3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- co swiatlo sypialnia4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- co swiatlo sypialnia4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- co swiatlo sypialnia4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- co swiatlo sypialnia4
+query_area/dining_lights::dining_lights_get_brightness:
+- co swiatlo salon
+query_area/dining_lights::dining_lights_get_state:
+- co swiatlo salon
+query_area/dining_lights::dining_lights_list_off_lights:
+- co swiatlo salon
+query_area/dining_lights::dining_lights_list_on_lights:
+- co swiatlo salon
+query_area/entryway_lights::entryway_lights_get_brightness:
+- co swiatlo przedpokoj
+query_area/entryway_lights::entryway_lights_get_state:
+- co swiatlo przedpokoj
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- co swiatlo przedpokoj
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- co swiatlo przedpokoj
+query_area/entryway_locks::entryway_locks_get_state:
+- co zamek przedpokoj
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- co zamek przedpokoj
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- co zamek przedpokoj
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- co swiatlo salonfam i co swiatlo kuchnia
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- co swiatlo salonfam i co swiatlo kuchnia
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- co swiatlo salonfam i co swiatlo kuchnia
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- co swiatlo salonfam i co swiatlo kuchnia
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- co wentylator salonfam
+query_area/family_room_fans::family_room_fans_get_state:
+- co wentylator salonfam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- co wentylator salonfam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- co wentylator salonfam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- co swiatlo salonfam
+query_area/family_room_lights::family_room_lights_get_state:
+- co swiatlo salonfam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- co swiatlo salonfam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- co swiatlo salonfam
+query_area/garage_covers::garage_covers_get_position:
+- co zaslona garage
+query_area/garage_covers::garage_covers_get_state:
+- co zaslona garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- co zaslona garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- co zaslona garage
+query_area/garage_lights::garage_lights_get_brightness:
+- co swiatlo garage
+query_area/garage_lights::garage_lights_get_state:
+- co swiatlo garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- co swiatlo garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- co swiatlo garage
+query_area/garage_locks::garage_locks_get_state:
+- co zamek garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- co zamek garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- co zamek garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- co swiatlo przedpokoj i co swiatlo toaleta
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- co swiatlo przedpokoj i co swiatlo toaleta
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- co swiatlo przedpokoj i co swiatlo toaleta
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- co swiatlo przedpokoj i co swiatlo toaleta
+query_area/hallway_lights::hallway_lights_get_brightness:
+- co swiatlo przedpokoj
+query_area/hallway_lights::hallway_lights_get_state:
+- co swiatlo przedpokoj
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- co swiatlo przedpokoj
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- co swiatlo przedpokoj
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- co swiatlo kuchnia
+query_area/kitchen_lights::kitchen_lights_get_state:
+- co swiatlo kuchnia
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- co swiatlo kuchnia
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- co swiatlo kuchnia
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- co urzadzenie kuchnia
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- co urzadzenie kuchnia
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- co urzadzenie kuchnia
+query_area/laundry_lights::laundry_lights_get_brightness:
+- co swiatlo pralnia
+query_area/laundry_lights::laundry_lights_get_state:
+- co swiatlo pralnia
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- co swiatlo pralnia
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- co swiatlo pralnia
+query_area/laundry_switchs::laundry_switchs_get_state:
+- co urzadzenie pralnia
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- co urzadzenie pralnia
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- co urzadzenie pralnia
+query_area/living_climates::living_climates_get_temperature:
+- co ogrzewanie salon
+query_area/living_covers::living_covers_get_position:
+- co zaslona salon
+query_area/living_covers::living_covers_get_state:
+- co zaslona salon
+query_area/living_covers::living_covers_list_closed_covers:
+- co zaslona salon
+query_area/living_covers::living_covers_list_open_covers:
+- co zaslona salon
+query_area/living_lights::living_lights_get_brightness:
+- co swiatlo salon
+query_area/living_lights::living_lights_get_state:
+- co swiatlo salon
+query_area/living_lights::living_lights_list_off_lights:
+- co swiatlo salon
+query_area/living_lights::living_lights_list_on_lights:
+- co swiatlo salon
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- co swiatlo main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- co swiatlo main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- co swiatlo main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- co swiatlo main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- co urzadzenie main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- co urzadzenie main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- co urzadzenie main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- co swiatlo lazmaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- co swiatlo lazmaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- co swiatlo lazmaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- co swiatlo lazmaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- co urzadzenie lazmaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- co urzadzenie lazmaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- co urzadzenie lazmaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- co zaslona sypialnia i co zaslona salon
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- co zaslona sypialnia i co zaslona salon
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- co zaslona sypialnia i co zaslona salon
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- co zaslona sypialnia i co zaslona salon
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- co ogrzewanie sypialnia
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- co zaslona sypialnia
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- co zaslona sypialnia
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- co zaslona sypialnia
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- co zaslona sypialnia
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- co wentylator sypialnia
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- co wentylator sypialnia
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- co wentylator sypialnia
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- co wentylator sypialnia
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- co swiatlo sypialnia
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- co swiatlo sypialnia
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- co swiatlo sypialnia
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- co swiatlo sypialnia
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- co swiatlo toaleta
+query_area/powder_room_lights::powder_room_lights_get_state:
+- co swiatlo toaleta
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- co swiatlo toaleta
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- co swiatlo toaleta

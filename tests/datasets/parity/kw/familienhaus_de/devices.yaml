@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- settya tomder stafell 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- settya tomder chambour 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- settya curtayn chambour2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- degea curtayn chambour2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- igeri curtayn chambour2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- settya curtayn chambour3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- degea curtayn chambour3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- igeri curtayn chambour3
+devices/cover_garage_door::cover_garage_door_change_position:
+- settya curtayn garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- degea curtayn garage
+devices/cover_garage_door::cover_garage_door_open:
+- igeri curtayn garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- settya curtayn stafell 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- degea curtayn stafell
+devices/cover_living_blinds::cover_living_blinds_open:
+- igeri curtayn stafell
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- settya curtayn chambour 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- degea curtayn chambour
+devices/cover_master_blinds::cover_master_blinds_open:
+- igeri curtayn chambour
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- settya gwyns chambour2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- diffyg gwyns chambour2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- enow gwyns chambour2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- settya gwyns stevellteylu 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- diffyg gwyns stevellteylu
+devices/fan_family_fan::fan_family_fan_turn_on:
+- enow gwyns stevellteylu
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- settya gwyns chambour 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- diffyg gwyns chambour
+devices/fan_master_fan::fan_master_fan_turn_on:
+- enow gwyns chambour
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- diffyg gwyns chambour ha diffyg golow kegin
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- enow gwyns chambour ha enow golow kegin
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- settya nen chambour2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- settya nen chambour2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- diffyg nen chambour2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- enow nen chambour2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- settya nen chambour3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- settya nen chambour3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- diffyg nen chambour3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- enow nen chambour3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- settya nen chambour4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- settya nen chambour4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- diffyg nen chambour4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- enow nen chambour4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- settya golow stafell 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- settya golow stafell blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- diffyg golow stafell
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- enow golow stafell
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- settya golow porth 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- settya golow porth yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- diffyg golow porth
+devices/light_entryway_light::light_entryway_light_turn_on:
+- enow golow porth
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- settya nen stevellteylu 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- settya nen stevellteylu purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- diffyg nen stevellteylu
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- enow nen stevellteylu
+devices/light_garage_light::light_garage_light_change_brightness:
+- settya golow garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- settya golow garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- diffyg golow garage
+devices/light_garage_light::light_garage_light_turn_on:
+- enow golow garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- settya golow porth 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- settya golow porth white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- diffyg golow porth
+devices/light_hallway_light::light_hallway_light_turn_on:
+- enow golow porth
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- settya nen kegin 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- settya nen kegin orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- diffyg nen kegin
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- enow nen kegin
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- settya golow kegin 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- settya golow kegin green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- diffyg golow kegin
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- enow golow kegin
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- settya golow stevellgolhi 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- settya golow stevellgolhi white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- diffyg golow stevellgolhi
+devices/light_laundry_light::light_laundry_light_turn_on:
+- enow golow stevellgolhi
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- settya nen stafell 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- settya nen stafell black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- diffyg nen stafell
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- enow nen stafell
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- settya golow stafell 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- settya golow stafell red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- diffyg golow stafell
+devices/light_living_lamp::light_living_lamp_turn_on:
+- enow golow stafell
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- settya golow main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- settya golow main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- diffyg golow main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- enow golow main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- settya golow kewndhavas 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- settya golow kewndhavas black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- diffyg golow kewndhavas
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- enow golow kewndhavas
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- settya gweli chambour 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- settya gweli chambour red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- diffyg gweli chambour
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- enow gweli chambour
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- settya nen chambour 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- settya nen chambour blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- diffyg nen chambour
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- enow nen chambour
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- settya golow chambour 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- settya golow chambour black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- diffyg golow chambour
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- enow golow chambour
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- settya golow tybach 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- settya golow tybach black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- diffyg golow tybach
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- enow golow tybach
+devices/lock_front_door::lock_front_door_lock:
+- alhwedh alhwedh porth
+devices/lock_front_door::lock_front_door_unlock:
+- igeri alhwedh porth
+devices/lock_garage_entry::lock_garage_entry_lock:
+- alhwedh alhwedh garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- igeri alhwedh garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- enow pellwolok stevellteylu
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause pellwolok stevellteylu
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- diffyg pellwolok stevellteylu
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- enow pellwolok stevellteylu
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- enow pellwolok stevellteylu
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- enow pellwolok stevellteylu
+devices/media_player_living_tv::media_player_living_tv_mute:
+- enow pellwolok stafell
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause pellwolok stafell
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- diffyg pellwolok stafell
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- enow pellwolok stafell
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- enow pellwolok stafell
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- enow pellwolok stafell
+devices/scenes::dinner_time:
+- settya golow stafell 90 ha enow nen kegin ha settya golow kegin 80
+devices/scenes::good_morning:
+- enow nen kegin ha settya golow stafell 100 ha igeri curtayn stafell ha igeri curtayn
+  chambour
+devices/scenes::kids_bedtime:
+- diffyg nen chambour2 ha diffyg nen chambour3 ha diffyg nen chambour4 ha settya golow
+  porth 15
+devices/scenes::movie_night:
+- diffyg nen stafell ha settya golow stafell 20 ha enow pellwolok stafell ha degea
+  curtayn stafell
+devices/scripts::good_night:
+- enow gweles nos
+devices/scripts::leaving_home:
+- enow gweles mos
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- diffyg lestri
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- enow lestri
+devices/switch_dryer::switch_dryer_turn_off:
+- diffyg jynnwolhi
+devices/switch_dryer::switch_dryer_turn_on:
+- enow jynnwolhi
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- diffyg jynnwolhi
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- enow jynnwolhi

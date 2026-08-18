@@ -2,9 +2,11 @@
 
 [Deutsch](../home-assistant.md) · [English](home-assistant.md)
 
-Klar attaches to Assist as a conversation entity. HACS cannot start the Rust engine. The integration can: it downloads the matching GitHub Release into `.storage/klar_nlu/` and runs it on `127.0.0.1:10520`.
+Household zero-to-Assist: [getting started](getting-started.md). Misses, token, bundle: [troubleshooting](troubleshooting.md).
 
-V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the same release; a mixed pair will fail.
+Klar NLU attaches to Assist as a conversation entity. HACS cannot start the Rust engine. The integration can: it downloads the matching GitHub Release into `.storage/klar_nlu/` and runs it on `127.0.0.1:10520`.
+
+V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the same release; a mixed pair will fail. Every compiled Assist locale is first-class; Assist pins one pack per request.
 
 ## Integration
 
@@ -15,6 +17,7 @@ V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
    or Settings → Devices & services → Add integration → **Klar NLU**.
 4. Keep **Start the bundled engine** (needs a GitHub Release with linux tarballs). Or pick **Use an engine that is already running** and set the URL.
+5. Bundled engine: **Release channel** = Stable (CalVer) or Staging (latest GitHub prerelease). You can change this later under Configure.
 
 Without HACS, copy `custom_components/klar_nlu` to `<config>/custom_components/klar_nlu` and restart.
 
@@ -102,13 +105,19 @@ On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=fal
 
 Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, install **Klar NLU**, then point the integration at `http://klar-nlu:10520`.
 
+**Stable vs staging:** the repository has two add-ons. **Klar NLU** (`stage: stable`, image tag = CalVer / `latest`). **Klar NLU (Staging)** (`stage: experimental`, slug `klar_nlu_staging`, image tag `staging`). After a merge to `staging`, rebuild the staging add-on to pull the new RC. Integration URL: `http://klar-nlu-staging:10520`. Do not edit `.storage` to switch channels.
+
+Without the add-on, Configure → **Release channel** switches the bundled GitHub download.
+
 **Docker:**
 
 ```bash
 docker run --rm --network host \
   -v /path/to/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
 ```
+
+Use the CalVer that matches the engine (`Cargo.toml` / GitHub Release), not an old `0.1.x` tag. For a release candidate: `ghcr.io/fabbricate-it-solutions/klar-nlu:staging`.
 
 Integration URL: `http://127.0.0.1:10520`. From source: `docker build -t klar-nlu .` (root Dockerfile).
 
@@ -179,4 +188,17 @@ HTTP accepts the token as `x-klar-token` or `Authorization: Bearer ...`. Wyoming
 
 ## Intents
 
-The integration executes only `decision.type == execute`. Confirm, clarify, and reject never call services. An execute plan runs in plan order through `intent.async_handle`. Each step reports success or error; partial failure is a first-class outcome (speech plus structured errors), not silent total success. Direct service calls are used only where HA has no native intent (Music Assistant, relative volume, mute). Custom sentences in Klar (`/api/custom`) can point at the same names or your own; custom names need a handler in HA.
+The integration executes only `decision.type == execute`. Confirm, clarify, and reject never call services. An execute plan runs in plan order through `intent.async_handle`. Each step reports success or error; partial failure is a first-class outcome (speech plus structured errors), not silent total success. Direct service calls are used only where HA has no native intent (Music Assistant, relative volume, mute). Custom sentences in Klar NLU (`/api/custom`) can point at the same names or your own; custom names need a handler in HA.
+
+## Media and Music Assistant
+
+Pause, next, previous, mute, and volume use the named `media_player` or the one in that room. Expose the player.
+
+| Phrase | Notes |
+|--------|--------|
+| Pause the living room TV | Native media pause |
+| Play Queen | Search-and-play on a Music Assistant player |
+| Play the playlist Chill in the living room | Keeps playlist class and the area |
+| Spiel Queen / Musik an | Same path in German; `Musik an` resumes the MA player |
+
+Klar NLU does not invent a library. Unavailable players are skipped. See [getting started](getting-started.md) and [troubleshooting](troubleshooting.md).

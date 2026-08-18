@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - cosa tenda camera2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - cosa soffitto camera2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - cosa tenda camera3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - cosa soffitto camera3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - cosa soffitto camera4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - cosa luce soggiorno
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - cosa luce ingresso
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - cosa soffitto soggiornofam
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - cosa tenda garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - cosa luce garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - cosa luce ingresso e cosa luce bagnetto
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - cosa luce ingresso
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - cosa luce cucina
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - cosa luce lavanderia
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - cosa riscaldamento soggiorno
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - cosa tenda soggiorno
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - cosa luce soggiorno
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - cosa luce main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - cosa luce bagnomaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - cosa riscaldamento camera e cosa riscaldamento soggiorno
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - cosa tenda camera e cosa tenda soggiorno
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - cosa riscaldamento camera
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - cosa tenda camera
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - cosa luce bagnetto
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - cosa tenda garage
+  - chiudi
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - cosa tenda garage
+  - apri
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - cosa tenda garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - cosa tenda soggiorno
+  - chiudi
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - cosa tenda soggiorno
+  - apri
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - cosa tenda soggiorno
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - cosa ventola soggiornofam
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - cosa ventola soggiornofam
+  - spegni
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - cosa ventola soggiornofam
+  - accendi
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - cosa luce ingresso
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - cosa luce ingresso
+  - spegni
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - cosa luce ingresso
+  - accendi
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - cosa serratura ingresso
+  - blocca
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - cosa serratura ingresso
+  - apri
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - cosa serratura garage
+  - blocca
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - cosa serratura garage
+  - apri
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - cosa tv soggiornofam
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - cosa tv soggiornofam
+  - spegni
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - cosa tv soggiornofam
+  - accendi
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - cosa tv soggiorno
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - cosa tv soggiorno
+  - spegni
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - cosa tv soggiorno
+  - accendi

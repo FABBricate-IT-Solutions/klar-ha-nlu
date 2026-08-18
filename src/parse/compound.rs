@@ -316,7 +316,8 @@ pub(crate) fn room_light_standin(home: &HomeGraph, area: &str) -> Option<String>
     let entity = home.entities.iter().find(|entity| entity.entity_id == id)?;
     let name = compact(&entity.name);
     let room = compact(area);
-    (name == room || name == format!("{room}licht") || name == format!("{room}light") || is_generic_room_light(entity, home)).then_some(id)
+    (name == room || name == format!("{room}licht") || name == format!("{room}light") || is_generic_room_light(entity, home, catalog()))
+        .then_some(id)
 }
 
 pub(crate) fn light_aim(home: &HomeGraph, area: &str, tokens: &[String]) -> LightAim {
@@ -326,7 +327,7 @@ pub(crate) fn light_aim(home: &HomeGraph, area: &str, tokens: &[String]) -> Ligh
     if room_light_id(home, area).is_some() {
         return LightAim::OccupiedId;
     }
-    if let Some(id) = crate::home::roles::unique_role_in_area(home, area, "light") {
+    if let Some(id) = crate::home::roles::unique_role_in_area(home, area, "light", catalog()) {
         return LightAim::Unique(id);
     }
     let cat = catalog();
@@ -381,7 +382,7 @@ pub(crate) fn query_keeps_entity(
     {
         return false;
     }
-    resolved.entities.iter().any(|e| e.domain != "light" || !is_generic_room_light(e, home))
+    resolved.entities.iter().any(|e| e.domain != "light" || !is_generic_room_light(e, home, catalog()))
 }
 
 fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::parse::resolve::Resolved) -> bool {
@@ -429,7 +430,7 @@ pub(crate) fn area_slots(
         };
     }
     let id = domain
-        .filter(|d| matches!(*d, "climate" | "fan" | "media_player"))
+        .filter(|d| matches!(*d, "climate" | "fan" | "media_player" | "lock"))
         .and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens));
     (id, Some(area.to_string()), domain.map(str::to_string))
 }
@@ -453,16 +454,16 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
     let named: Vec<&EntityRec> = lights
         .iter()
         .copied()
-        .filter(|e| !is_generic_room_light(e, home))
+        .filter(|e| !is_generic_room_light(e, home, catalog()))
         .filter(|e| {
             let blob = compact(&format!("{} {}", e.name, e.aliases.join(" ")));
             catalog().named_device.iter().any(|n| blob.contains(n))
         })
         .collect();
-    if let Some(hit) = crate::home::policy::preferred_named(&named) {
+    if let Some(hit) = crate::home::policy::preferred_named(&named, catalog()) {
         return Some(hit.clone());
     }
-    let specific: Vec<&EntityRec> = lights.iter().copied().filter(|e| !is_generic_room_light(e, home)).collect();
+    let specific: Vec<&EntityRec> = lights.iter().copied().filter(|e| !is_generic_room_light(e, home, catalog())).collect();
     if specific.len() == 1 {
         return Some(specific[0].clone());
     }

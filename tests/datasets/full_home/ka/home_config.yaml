@@ -1,0 +1,504 @@
+name: Full Home ka
+language: ka
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: qveda
+  level: 0
+  aliases:
+  - qveda
+  - pirveli
+- id: upper
+  name: zeda
+  level: 1
+  aliases:
+  - zeda
+  - sartuli
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Shemosasvleli
+  floor: ground
+  aliases:
+  - shemosasvleli
+- id: living
+  name: Misagebi
+  floor: ground
+  aliases:
+  - misagebi
+- id: dining
+  name: Ojakhisotakhiess
+  floor: ground
+  aliases:
+  - ojakhisotakhiess
+- id: kitchen
+  name: Samzareulo
+  floor: ground
+  aliases:
+  - samzareulo
+- id: family_room
+  name: Ojakhisotakhi
+  floor: ground
+  aliases:
+  - ojakhisotakhi
+- id: laundry
+  name: Saretskhave
+  floor: ground
+  aliases:
+  - saretskhave
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Sadzinebeli
+  floor: upper
+  aliases:
+  - sadzinebeli
+- id: bedroom_2
+  name: Sadzinebeli2
+  floor: upper
+  aliases:
+  - sadzinebeli2
+- id: bedroom_3
+  name: Sadzinebeli3
+  floor: upper
+  aliases:
+  - sadzinebeli3
+- id: bedroom_4
+  name: Sadzinebeli4
+  floor: upper
+  aliases:
+  - sadzinebeli4
+- id: master_bath
+  name: Abazanamaster
+  floor: upper
+  aliases:
+  - abazanamaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: shemosasvleli sinatle
+  aliases:
+  - shemosasvleli sinatle
+  - sinatle
+- id: light.living_ceiling
+  area_id: living
+  name: misagebi potoloni
+  aliases:
+  - misagebi potoloni
+  - potoloni
+- id: light.living_lamp
+  area_id: living
+  name: misagebi sinatle
+  aliases:
+  - misagebi sinatle
+  - sinatle
+- id: light.dining_pendant
+  area_id: dining
+  name: ojakhisotakhiess sinatle
+  aliases:
+  - ojakhisotakhiess sinatle
+  - sinatle
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: samzareulo potoloni
+  aliases:
+  - samzareulo potoloni
+  - potoloni
+- id: light.kitchen_island
+  area_id: kitchen
+  name: samzareulo kuntkhuli
+  aliases:
+  - samzareulo kuntkhuli
+  - kuntkhuli
+- id: light.family_ceiling
+  area_id: family_room
+  name: ojakhisotakhi potoloni
+  aliases:
+  - ojakhisotakhi potoloni
+  - potoloni
+- id: light.laundry_light
+  area_id: laundry
+  name: saretskhave sinatle
+  aliases:
+  - saretskhave sinatle
+  - sinatle
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc sinatle
+  aliases:
+  - wc sinatle
+  - sinatle
+- id: light.garage_light
+  area_id: garage
+  name: garage sinatle
+  aliases:
+  - garage sinatle
+  - sinatle
+- id: light.office_ceiling
+  area_id: office
+  name: office potoloni
+  aliases:
+  - office potoloni
+  - potoloni
+- id: light.garden
+  area_id: garden
+  name: garden sinatle
+  aliases:
+  - garden sinatle
+  - sinatle
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: sadzinebeli potoloni
+  aliases:
+  - sadzinebeli potoloni
+  - potoloni
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: sadzinebeli ensuite
+  aliases:
+  - sadzinebeli ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: sadzinebeli left sagamise
+  aliases:
+  - sadzinebeli left sagamise
+  - sagamise
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: sadzinebeli right sagamise
+  aliases:
+  - sadzinebeli right sagamise
+  - sagamise
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: sadzinebeli2 potoloni
+  aliases:
+  - sadzinebeli2 potoloni
+  - potoloni
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: sadzinebeli3 potoloni
+  aliases:
+  - sadzinebeli3 potoloni
+  - potoloni
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: sadzinebeli4 potoloni
+  aliases:
+  - sadzinebeli4 potoloni
+  - potoloni
+- id: light.master_bath_light
+  area_id: master_bath
+  name: abazanamaster sinatle
+  aliases:
+  - abazanamaster sinatle
+  - sinatle
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath sinatle
+  aliases:
+  - main bath sinatle
+  - sinatle
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway sinatle
+  aliases:
+  - hallway sinatle
+  - sinatle
+- id: light.basement
+  area_id: basement
+  name: basement sinatle
+  aliases:
+  - basement sinatle
+  - sinatle
+- id: cover.living_blinds
+  area_id: living
+  name: misagebi parda
+  aliases:
+  - misagebi parda
+  - parda
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: sadzinebeli parda
+  aliases:
+  - sadzinebeli parda
+  - parda
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: sadzinebeli2 parda
+  aliases:
+  - sadzinebeli2 parda
+  - parda
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: sadzinebeli3 parda
+  aliases:
+  - sadzinebeli3 parda
+  - parda
+- id: cover.garage_door
+  area_id: garage
+  name: garage parda
+  aliases:
+  - garage parda
+  - parda
+- id: climate.ground_thermostat
+  area_id: living
+  name: misagebi gatboba
+  aliases:
+  - misagebi gatboba
+  - gatboba
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: sadzinebeli gatboba
+  aliases:
+  - sadzinebeli gatboba
+  - gatboba
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: gatboba sadzinebeli
+  aliases:
+  - gatboba sadzinebeli
+  - gatboba
+  - ac
+  tags:
+  - gatboba
+- id: fan.family_fan
+  area_id: family_room
+  name: ojakhisotakhi ventilatori
+  aliases:
+  - ojakhisotakhi ventilatori
+  - ventilatori
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: sadzinebeli ventilatori
+  aliases:
+  - sadzinebeli ventilatori
+  - ventilatori
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: sadzinebeli2 ventilatori
+  aliases:
+  - sadzinebeli2 ventilatori
+  - ventilatori
+- id: lock.front_door
+  area_id: entryway
+  name: front kari
+  aliases:
+  - front kari
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage kari
+  aliases:
+  - garage kari
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: samzareulo jamtchebi
+  aliases:
+  - samzareulo jamtchebi
+  - jamtchebi
+- id: switch.rangehood
+  area_id: kitchen
+  name: samzareulo rangehood
+  aliases:
+  - samzareulo rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: saretskhave saretskhave
+  aliases:
+  - saretskhave saretskhave
+  - saretskhave
+  - washer
+  tags:
+  - washer
+  - saretskhave
+- id: switch.dryer
+  area_id: laundry
+  name: saretskhave dryer
+  aliases:
+  - saretskhave dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: abazanamaster ventilatoribad
+  aliases:
+  - abazanamaster ventilatoribad
+  - ventilatoribad
+  tags:
+  - ventilatoribad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatoribad
+  aliases:
+  - main bath ventilatoribad
+  - ventilatoribad
+  tags:
+  - ventilatoribad
+- id: media_player.living_tv
+  area_id: living
+  name: misagebi tv
+  aliases:
+  - misagebi tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: ojakhisotakhi tv
+  aliases:
+  - ojakhisotakhi tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: misagebi televizori
+  aliases:
+  - misagebi televizori
+  - televizori
+  platform: music_assistant
+  tags:
+  - televizori
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: samzareulo televizori
+  aliases:
+  - samzareulo televizori
+  - televizori
+  platform: music_assistant
+  tags:
+  - televizori
+- id: media_player.office_music
+  area_id: office
+  name: office televizori
+  aliases:
+  - office televizori
+  - televizori
+  platform: music_assistant
+  tags:
+  - televizori
+- id: vacuum.robot
+  area_id: living
+  name: misagebi mtversasruti
+  aliases:
+  - misagebi mtversasruti
+  - mtversasruti
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: shemosasvleli doorsensor
+  aliases:
+  - shemosasvleli doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: misagebi windowsensor
+  aliases:
+  - misagebi windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: samzareulo motion
+  aliases:
+  - samzareulo motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: misagebi tempsensor
+  aliases:
+  - misagebi tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: misagebi humidity
+  aliases:
+  - misagebi humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: filmi
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: ghame
+- id: leaving_home
+  name: gasvla
+timers:
+- id: oven
+  name: oven taimeri
+- id: laundry
+  name: laundry taimeri
+- id: abstract
+  name: abstract taimeri
+lists:
+- id: shopping
+  name: sia

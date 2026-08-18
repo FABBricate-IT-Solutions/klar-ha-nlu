@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- encen lampada sala
+m0_exact/representative::exact_list_complete_from_setup:
+- fet bread llista
+m0_exact/representative::exact_multi_intent:
+- encen sostre habitacio3 i apaga llum entrada
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- afegeix milk llista
+m0_exact/representative::exact_state_persistence:
+- - que llum entrada
+  - '12'
+m0_exact/representative::exact_timer:
+- encen temporitzador oven 2 minut
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- encen temporitzador oven
+m0_exact/representative::exact_todo_list:
+- afegeix apples llista

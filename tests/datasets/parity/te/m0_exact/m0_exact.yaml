@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- veliginchu velugu gadi
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread jabita
+m0_exact/representative::exact_multi_intent:
+- veliginchu kappu padakagadi3 mariyu arpu velugu pravesham
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk jabita
+m0_exact/representative::exact_state_persistence:
+- - emi velugu pravesham
+  - '12'
+m0_exact/representative::exact_timer:
+- veliginchu timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- veliginchu timer oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples jabita

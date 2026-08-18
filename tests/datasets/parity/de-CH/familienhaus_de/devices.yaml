@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- stell heizig wohnzimmer 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- stell heizig schlafzimmer 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- stell store schlafzimmer2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- zue store schlafzimmer2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- ufmache store schlafzimmer2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- stell store schlafzimmer3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- zue store schlafzimmer3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- ufmache store schlafzimmer3
+devices/cover_garage_door::cover_garage_door_change_position:
+- stell store garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- zue store garage
+devices/cover_garage_door::cover_garage_door_open:
+- ufmache store garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- stell store wohnzimmer 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- zue store wohnzimmer
+devices/cover_living_blinds::cover_living_blinds_open:
+- ufmache store wohnzimmer
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- stell store schlafzimmer 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- zue store schlafzimmer
+devices/cover_master_blinds::cover_master_blinds_open:
+- ufmache store schlafzimmer
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- stell ventilator schlafzimmer2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- loesch ventilator schlafzimmer2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- mach ventilator schlafzimmer2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- stell ventilator stube 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- loesch ventilator stube
+devices/fan_family_fan::fan_family_fan_turn_on:
+- mach ventilator stube
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- stell ventilator schlafzimmer 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- loesch ventilator schlafzimmer
+devices/fan_master_fan::fan_master_fan_turn_on:
+- mach ventilator schlafzimmer
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- loesch ventilator schlafzimmer und loesch liecht chuchi
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- mach ventilator schlafzimmer und mach liecht chuchi
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- stell decke schlafzimmer2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- stell decke schlafzimmer2 rosa
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- loesch decke schlafzimmer2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- mach decke schlafzimmer2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- stell decke schlafzimmer3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- stell decke schlafzimmer3 gelb
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- loesch decke schlafzimmer3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- mach decke schlafzimmer3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- stell decke schlafzimmer4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- stell decke schlafzimmer4 rot
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- loesch decke schlafzimmer4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- mach decke schlafzimmer4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- stell liecht stubeess 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- stell liecht stubeess blau
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- loesch liecht stubeess
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- mach liecht stubeess
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- stell liecht eingang 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- stell liecht eingang gelb
+devices/light_entryway_light::light_entryway_light_turn_off:
+- loesch liecht eingang
+devices/light_entryway_light::light_entryway_light_turn_on:
+- mach liecht eingang
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- stell decke stube 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- stell decke stube violett
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- loesch decke stube
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- mach decke stube
+devices/light_garage_light::light_garage_light_change_brightness:
+- stell liecht garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- stell liecht garage gruen
+devices/light_garage_light::light_garage_light_turn_off:
+- loesch liecht garage
+devices/light_garage_light::light_garage_light_turn_on:
+- mach liecht garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- stell liecht einganggang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- stell liecht einganggang weiss
+devices/light_hallway_light::light_hallway_light_turn_off:
+- loesch liecht einganggang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- mach liecht einganggang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- stell decke chuchi 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- stell decke chuchi orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- loesch decke chuchi
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- mach decke chuchi
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- stell liecht chuchi 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- stell liecht chuchi gruen
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- loesch liecht chuchi
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- mach liecht chuchi
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- stell liecht waschruum 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- stell liecht waschruum weiss
+devices/light_laundry_light::light_laundry_light_turn_off:
+- loesch liecht waschruum
+devices/light_laundry_light::light_laundry_light_turn_on:
+- mach liecht waschruum
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- stell decke wohnzimmer 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- stell decke wohnzimmer schwarz
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- loesch decke wohnzimmer
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- mach decke wohnzimmer
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- stell liecht wohnzimmer 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- stell liecht wohnzimmer rot
+devices/light_living_lamp::light_living_lamp_turn_off:
+- loesch liecht wohnzimmer
+devices/light_living_lamp::light_living_lamp_turn_on:
+- mach liecht wohnzimmer
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- stell liecht badmastermain 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- stell liecht badmastermain blau
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- loesch liecht badmastermain
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- mach liecht badmastermain
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- stell liecht badmaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- stell liecht badmaster schwarz
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- loesch liecht badmaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- mach liecht badmaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- stell nachttisch schlafzimmer 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- stell nachttisch schlafzimmer rot
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- loesch nachttisch schlafzimmer
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- mach nachttisch schlafzimmer
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- stell decke schlafzimmer 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- stell decke schlafzimmer blau
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- loesch decke schlafzimmer
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- mach decke schlafzimmer
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- stell liecht schlafzimmer 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- stell liecht schlafzimmer schwarz
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- loesch liecht schlafzimmer
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- mach liecht schlafzimmer
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- stell liecht toilette 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- stell liecht toilette schwarz
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- loesch liecht toilette
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- mach liecht toilette
+devices/lock_front_door::lock_front_door_lock:
+- schloss schloss eingang
+devices/lock_front_door::lock_front_door_unlock:
+- ufmache schloss eingang
+devices/lock_garage_entry::lock_garage_entry_lock:
+- schloss schloss garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- ufmache schloss garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- mach fernseh stube
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause fernseh stube
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- loesch fernseh stube
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- mach fernseh stube
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- mach fernseh stube
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- mach fernseh stube
+devices/media_player_living_tv::media_player_living_tv_mute:
+- mach fernseh wohnzimmer
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause fernseh wohnzimmer
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- loesch fernseh wohnzimmer
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- mach fernseh wohnzimmer
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- mach fernseh wohnzimmer
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- mach fernseh wohnzimmer
+devices/scenes::dinner_time:
+- stell liecht stubeess 90 und mach decke chuchi und stell liecht chuchi 80
+devices/scenes::good_morning:
+- mach decke chuchi und stell liecht stubeess 100 und ufmache store wohnzimmer und
+  ufmache store schlafzimmer
+devices/scenes::kids_bedtime:
+- loesch decke schlafzimmer2 und loesch decke schlafzimmer3 und loesch decke schlafzimmer4
+  und stell liecht einganggang 15
+devices/scenes::movie_night:
+- loesch decke wohnzimmer und stell liecht wohnzimmer 20 und mach fernseh wohnzimmer
+  und zue store wohnzimmer
+devices/scripts::good_night:
+- mach szene nacht
+devices/scripts::leaving_home:
+- mach szene verlassen
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- loesch spuelmaschine
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- mach spuelmaschine
+devices/switch_dryer::switch_dryer_turn_off:
+- loesch waschmaschine
+devices/switch_dryer::switch_dryer_turn_on:
+- mach waschmaschine
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- loesch waschmaschine
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- mach waschmaschine

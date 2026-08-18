@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- sta zavesa spavaca2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- sta zavesa spavaca2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- sta zavesa spavaca2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- sta zavesa spavaca2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- sta ventilator spavaca2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- sta ventilator spavaca2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- sta ventilator spavaca2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- sta ventilator spavaca2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- sta svetlo spavaca2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- sta svetlo spavaca2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- sta svetlo spavaca2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- sta svetlo spavaca2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- sta zavesa spavaca3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- sta zavesa spavaca3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- sta zavesa spavaca3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- sta zavesa spavaca3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- sta svetlo spavaca3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- sta svetlo spavaca3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- sta svetlo spavaca3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- sta svetlo spavaca3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- sta svetlo spavaca4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- sta svetlo spavaca4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- sta svetlo spavaca4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- sta svetlo spavaca4
+query_area/dining_lights::dining_lights_get_brightness:
+- sta svetlo dnevna
+query_area/dining_lights::dining_lights_get_state:
+- sta svetlo dnevna
+query_area/dining_lights::dining_lights_list_off_lights:
+- sta svetlo dnevna
+query_area/dining_lights::dining_lights_list_on_lights:
+- sta svetlo dnevna
+query_area/entryway_lights::entryway_lights_get_brightness:
+- sta svetlo ulaz
+query_area/entryway_lights::entryway_lights_get_state:
+- sta svetlo ulaz
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- sta svetlo ulaz
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- sta svetlo ulaz
+query_area/entryway_locks::entryway_locks_get_state:
+- sta brava ulaz
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- sta brava ulaz
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- sta brava ulaz
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- sta svetlo dnevnafam i sta svetlo kuhinja
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- sta svetlo dnevnafam i sta svetlo kuhinja
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- sta svetlo dnevnafam i sta svetlo kuhinja
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- sta svetlo dnevnafam i sta svetlo kuhinja
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- sta ventilator dnevnafam
+query_area/family_room_fans::family_room_fans_get_state:
+- sta ventilator dnevnafam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- sta ventilator dnevnafam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- sta ventilator dnevnafam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- sta svetlo dnevnafam
+query_area/family_room_lights::family_room_lights_get_state:
+- sta svetlo dnevnafam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- sta svetlo dnevnafam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- sta svetlo dnevnafam
+query_area/garage_covers::garage_covers_get_position:
+- sta zavesa garage
+query_area/garage_covers::garage_covers_get_state:
+- sta zavesa garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- sta zavesa garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- sta zavesa garage
+query_area/garage_lights::garage_lights_get_brightness:
+- sta svetlo garage
+query_area/garage_lights::garage_lights_get_state:
+- sta svetlo garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- sta svetlo garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- sta svetlo garage
+query_area/garage_locks::garage_locks_get_state:
+- sta brava garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- sta brava garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- sta brava garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- sta svetlo ulaz i sta svetlo wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- sta svetlo ulaz i sta svetlo wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- sta svetlo ulaz i sta svetlo wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- sta svetlo ulaz i sta svetlo wc
+query_area/hallway_lights::hallway_lights_get_brightness:
+- sta svetlo ulaz
+query_area/hallway_lights::hallway_lights_get_state:
+- sta svetlo ulaz
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- sta svetlo ulaz
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- sta svetlo ulaz
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- sta svetlo kuhinja
+query_area/kitchen_lights::kitchen_lights_get_state:
+- sta svetlo kuhinja
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- sta svetlo kuhinja
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- sta svetlo kuhinja
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- sta uredjaj kuhinja
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- sta uredjaj kuhinja
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- sta uredjaj kuhinja
+query_area/laundry_lights::laundry_lights_get_brightness:
+- sta svetlo vesernica
+query_area/laundry_lights::laundry_lights_get_state:
+- sta svetlo vesernica
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- sta svetlo vesernica
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- sta svetlo vesernica
+query_area/laundry_switchs::laundry_switchs_get_state:
+- sta uredjaj vesernica
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- sta uredjaj vesernica
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- sta uredjaj vesernica
+query_area/living_climates::living_climates_get_temperature:
+- sta grejanje dnevna
+query_area/living_covers::living_covers_get_position:
+- sta zavesa dnevna
+query_area/living_covers::living_covers_get_state:
+- sta zavesa dnevna
+query_area/living_covers::living_covers_list_closed_covers:
+- sta zavesa dnevna
+query_area/living_covers::living_covers_list_open_covers:
+- sta zavesa dnevna
+query_area/living_lights::living_lights_get_brightness:
+- sta svetlo dnevna
+query_area/living_lights::living_lights_get_state:
+- sta svetlo dnevna
+query_area/living_lights::living_lights_list_off_lights:
+- sta svetlo dnevna
+query_area/living_lights::living_lights_list_on_lights:
+- sta svetlo dnevna
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- sta svetlo main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- sta svetlo main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- sta svetlo main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- sta svetlo main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- sta uredjaj main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- sta uredjaj main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- sta uredjaj main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- sta svetlo kupatilomaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- sta svetlo kupatilomaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- sta svetlo kupatilomaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- sta svetlo kupatilomaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- sta uredjaj kupatilomaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- sta uredjaj kupatilomaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- sta uredjaj kupatilomaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- sta zavesa spavaca i sta zavesa dnevna
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- sta zavesa spavaca i sta zavesa dnevna
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- sta zavesa spavaca i sta zavesa dnevna
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- sta zavesa spavaca i sta zavesa dnevna
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- sta grejanje spavaca
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- sta zavesa spavaca
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- sta zavesa spavaca
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- sta zavesa spavaca
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- sta zavesa spavaca
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- sta ventilator spavaca
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- sta ventilator spavaca
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- sta ventilator spavaca
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- sta ventilator spavaca
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- sta svetlo spavaca
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- sta svetlo spavaca
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- sta svetlo spavaca
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- sta svetlo spavaca
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- sta svetlo wc
+query_area/powder_room_lights::powder_room_lights_get_state:
+- sta svetlo wc
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- sta svetlo wc
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- sta svetlo wc

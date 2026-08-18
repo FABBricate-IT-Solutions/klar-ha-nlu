@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - شغل تكييف صالون
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - شغل ضوء صالون
+  - اطفئ
+state_persistance/spoken::kugel_dann_aus:
+- - شغل كرة
+  - اطفئ
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - شغل ضوء صالون
+  - شغل ضوء مطبخ
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - شغل ضوء صالون
+  - red

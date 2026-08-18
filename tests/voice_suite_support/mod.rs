@@ -1,16 +1,20 @@
+mod expect;
 mod legacy;
+pub(crate) mod parity;
+mod runner;
 mod schema;
 mod waivers;
 mod world;
 
-use self::schema::{Case, ExpectedIntent, NluExpectation, Sentences};
+use self::schema::Case;
 use self::world::TestWorld;
 use klar_nlu::home::{default_home, load_home_config};
-use klar_nlu::parse::parse_checked;
-use klar_nlu::session::Session;
-use klar_nlu::types::{HomeGraph, Intent, ParseResult, Settings};
-use std::collections::{BTreeMap, BTreeSet};
+use klar_nlu::types::HomeGraph;
+use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
+
+#[allow(unused_imports)]
+pub(crate) use runner::{print_stats, run_groups, run_groups_lang, run_suite};
 
 pub(crate) struct RunStats {
     pub(crate) ok: usize,
@@ -18,7 +22,19 @@ pub(crate) struct RunStats {
     pub(crate) waived: usize,
     pub(crate) fails: Vec<String>,
     pub(crate) waivers: Vec<String>,
-    used_waivers: BTreeSet<&'static str>,
+    pub(crate) used_waivers: BTreeSet<&'static str>,
+}
+
+impl RunStats {
+    #[allow(dead_code)]
+    pub(crate) fn absorb(&mut self, other: Self) {
+        self.ok += other.ok;
+        self.fail += other.fail;
+        self.waived += other.waived;
+        self.fails.extend(other.fails);
+        self.waivers.extend(other.waivers);
+        self.used_waivers.extend(other.used_waivers);
+    }
 }
 
 pub(crate) fn suite_home(name: &str) -> HomeGraph {
@@ -30,116 +46,11 @@ pub(crate) fn suite_home(name: &str) -> HomeGraph {
     }
 }
 
-pub(crate) fn run_suite(name: &str, extended: bool) -> RunStats {
-    let mut groups = vec!["area", "devices", "query_area", "query_devices", "multiple_intents", "assist"];
-    if extended {
-        groups.extend(["clarifications", "state_persistance", "timers", "lists"]);
-    }
-    run_groups(name, &groups, suite_home(name))
-}
-
-pub(crate) fn run_groups(name: &str, groups: &[&str], home: HomeGraph) -> RunStats {
-    let settings = Settings::default();
-    let root = datasets_root().join(name);
-    let mut stats = RunStats { ok: 0, fail: 0, waived: 0, fails: Vec::new(), waivers: Vec::new(), used_waivers: BTreeSet::new() };
-    for group in groups {
-        for (label, case) in load_cases(&root.join(group)) {
-            let legacy_clarify = *group == "clarifications";
-            for turns in turns_of(&case.sentences) {
-                run_case(name, group, &label, &case, &turns, legacy_clarify, &home, &settings, &mut stats);
-            }
-        }
-    }
-    for waiver in waivers::expected_for(name, groups) {
-        if !stats.used_waivers.contains(waiver.id) {
-            stats.fail += 1;
-            stats.fails.push(format!("stale waiver {} for {}/{}/{}", waiver.id, waiver.suite, waiver.group, waiver.label));
-        }
-    }
-    stats
-}
-
-#[allow(clippy::too_many_arguments)]
-fn run_case(
-    suite: &str,
-    group: &str,
-    label: &str,
-    case: &Case,
-    turns: &[String],
-    legacy_clarify: bool,
-    home: &HomeGraph,
-    settings: &Settings,
-    stats: &mut RunStats,
-) {
-    let mut world = TestWorld::from_setup(&case.setup).expect("setup validated at load");
-    let mut session = Session::new();
-    let mut last = None;
-    for (index, sentence) in turns.iter().enumerate() {
-        let (result, parity_error) = parse_checked(sentence, home, &mut session, &[], settings);
-        if let Some(error) = parity_error {
-            record_waiver_or_failure(stats, suite, group, label, turns, error);
-            return;
-        }
-        if let Err(error) = world.apply_intents(&result.intents, home, !case.world_expect.is_empty()) {
-            record_failure(stats, group, label, turns, error);
-            return;
-        }
-        last = Some(result.clone());
-        if legacy_clarify && index + 1 < turns.len() && !result.clarify {
-            record_failure(stats, group, label, turns, format!("first turn should clarify: {sentence:?} → {:?}", result.intents));
-            return;
-        }
-    }
-    let Some(result) = last else {
-        record_failure(stats, group, label, turns, "case has no turns".into());
-        return;
-    };
-    if result.clarify && !legacy_clarify && case.nlu_expect.as_ref().and_then(|expected| expected.clarify) != Some(true) {
-        record_failure(stats, group, label, turns, format!("unexpected clarify: {}", result.speech));
-        return;
-    }
-    let checked = match &case.nlu_expect {
-        Some(expected) => exact_result_ok(expected, &result),
-        None => legacy::result_ok(case, &result.intents, legacy_clarify, home),
-    }
-    .and_then(|()| world.assert_records(&case.world_expect))
-    .and_then(|()| legacy::forbid_ok(&result.intents, &case.forbid))
-    .and_then(|()| legacy::speech_ok(&result.speech, &case.speech_has, &case.speech_forbids));
-    match checked {
-        Ok(()) => stats.ok += 1,
-        Err(error) => record_waiver_or_failure(stats, suite, group, label, turns, error),
-    }
-}
-
-pub(crate) fn print_stats(title: &str, stats: &RunStats) {
-    let total = stats.ok + stats.fail;
-    let pct = if total == 0 { 0.0 } else { 100.0 * stats.ok as f64 / total as f64 };
-    println!("\n=== {title} ===");
-    println!("  {total} Sätze  {} ok  {} fehl  {pct:.1}%", stats.ok, stats.fail);
-    println!("  {} explizit freigegebene Legacy-Waiver", stats.waived);
-    println!("  V1/V2 output and session parity checked inline");
-    let mut kinds: BTreeMap<String, usize> = BTreeMap::new();
-    for line in &stats.fails {
-        *kinds.entry(failure_kind(line).into()).or_default() += 1;
-    }
-    println!("  fail-kinds {kinds:?}");
-    for line in stats.fails.iter().take(25) {
-        println!("  FAIL {line}");
-    }
-    for line in &stats.waivers {
-        println!("  WAIVER {line}");
-    }
-    if stats.fails.len() > 25 {
-        println!("  … {} weitere", stats.fails.len() - 25);
-    }
-    write_failures(title, stats);
-}
-
-fn datasets_root() -> PathBuf {
+pub(crate) fn datasets_root() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/datasets")
 }
 
-fn load_cases(dir: &Path) -> Vec<(String, Case)> {
+pub(crate) fn load_cases(dir: &Path) -> Vec<(String, Case)> {
     if !dir.is_dir() {
         return Vec::new();
     }
@@ -179,194 +90,14 @@ fn validate_case_or_panic(case: &Case, label: &str) {
     TestWorld::validate_expectations(&case.world_expect).unwrap_or_else(|error| panic!("{label}: invalid world expectation: {error}"));
 }
 
-fn turns_of(sentences: &Sentences) -> Vec<Vec<String>> {
-    match sentences {
-        Sentences::Turns(turns) => turns.clone(),
-        Sentences::Flat(sentences) => sentences.iter().map(|sentence| vec![sentence.clone()]).collect(),
-    }
-}
-
-fn exact_result_ok(expected: &NluExpectation, result: &ParseResult) -> Result<(), String> {
-    if let Some(intents) = &expected.intents {
-        exact_intents_ok(intents, &result.intents)?;
-    }
-    if let Some(reject) = expected.reject {
-        let actual_reject = result.intents.is_empty() && !result.clarify && !result.chat;
-        if actual_reject != reject {
-            return Err(format!(
-                "expected reject={reject}, got intents={:?} clarify={} chat={}",
-                result.intents, result.clarify, result.chat
-            ));
-        }
-    }
-    if let Some(clarify) = expected.clarify {
-        if result.clarify != clarify {
-            return Err(format!("expected clarify={clarify}, got clarify={} intents={:?}", result.clarify, result.intents));
-        }
-    }
-    Ok(())
-}
-
-fn exact_intents_ok(expected: &[ExpectedIntent], actual: &[Intent]) -> Result<(), String> {
-    if expected.len() != actual.len() {
-        return Err(format!("exact intents: expected {} in declared order, got {}: {actual:?}", expected.len(), actual.len()));
-    }
-    for (index, (wanted, got)) in expected.iter().zip(actual).enumerate() {
-        if wanted.intent != got.name {
-            return Err(format!("exact intent[{index}]: expected {}, got {}", wanted.intent, got.name));
-        }
-        exact_slots_ok(index, wanted, got)?;
-    }
-    Ok(())
-}
-
-fn exact_slots_ok(index: usize, expected: &ExpectedIntent, actual: &Intent) -> Result<(), String> {
-    let expected_slots = expected
-        .slots
-        .iter()
-        .map(|(name, value)| scalar(value).map(|value| (name.clone(), value)))
-        .collect::<Result<BTreeMap<_, _>, _>>()?;
-    let mut actual_slots = BTreeMap::new();
-    for slot in &actual.slots {
-        if actual_slots.insert(slot.name.clone(), slot.value.clone()).is_some() {
-            return Err(format!("exact intent[{index}] {} has duplicate slot {}", actual.name, slot.name));
-        }
-    }
-    if expected_slots != actual_slots {
-        return Err(format!("exact intent[{index}] {} slots: expected {expected_slots:?}, got {actual_slots:?}", actual.name));
-    }
-    Ok(())
-}
-
-fn scalar(value: &serde_yaml::Value) -> Result<String, String> {
-    match value {
-        serde_yaml::Value::Null => Ok("null".into()),
-        serde_yaml::Value::Bool(value) => Ok(value.to_string()),
-        serde_yaml::Value::Number(value) => Ok(value.to_string()),
-        serde_yaml::Value::String(value) => Ok(value.clone()),
-        _ => Err(format!("expected a scalar value, got {value:?}")),
-    }
-}
-
-fn write_failures(title: &str, stats: &RunStats) {
-    let file_name = title.split('(').nth(1).unwrap_or("x").trim_end_matches(')').replace([' ', '·'], "_");
-    let dump = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target").join(format!("suite_fails_{file_name}.txt"));
-    let _ = std::fs::create_dir_all(dump.parent().expect("target parent"));
-    let _ = std::fs::write(dump, stats.fails.join("\n"));
-}
-
-fn record_waiver_or_failure(stats: &mut RunStats, suite: &str, group: &str, label: &str, turns: &[String], error: String) {
-    let kind = mismatch_kind(&error);
-    let fingerprint = mismatch_fingerprint(&error);
-    match waivers::matching(suite, group, label, kind, fingerprint) {
-        Some(waiver) => {
-            stats.waived += 1;
-            stats.used_waivers.insert(waiver.id);
-            stats
-                .waivers
-                .push(format!("{} {group}/{label}: {turns:?} — kind={kind} fingerprint={fingerprint:016x} — {}", waiver.id, waiver.reason));
-        }
-        None => {
-            let expected = waivers::for_case(suite, group, label)
-                .map(|waiver| format!("{}={}:{:016x}", waiver.id, waiver.kind, waiver.fingerprint))
-                .collect::<Vec<_>>();
-            let detail = if expected.is_empty() { "no waiver".into() } else { format!("expected {}", expected.join(",")) };
-            record_failure(
-                stats,
-                group,
-                label,
-                turns,
-                format!("unwaived mismatch kind={kind} fingerprint={fingerprint:016x} ({detail}): {error}"),
-            );
-        }
-    }
-}
-
-fn mismatch_kind(error: &str) -> &'static str {
-    if error.starts_with("V1/V2 parity mismatch") {
-        "parity"
-    } else {
-        "oracle"
-    }
-}
-
-fn mismatch_fingerprint(error: &str) -> u64 {
-    let normalized = normalize_mismatch(error);
-    normalized.bytes().fold(0xcbf2_9ce4_8422_2325_u64, |hash, byte| (hash ^ u64::from(byte)).wrapping_mul(0x0000_0100_0000_01b3))
-}
-
-fn normalize_mismatch(error: &str) -> String {
-    if error.starts_with("V1/V2 parity mismatch") {
-        let legacy = parse_result_intents(error, "legacy=ParseResult").unwrap_or("missing");
-        let current = parse_result_intents(error, "current=ParseResult").unwrap_or("missing");
-        return format!("legacy={legacy}|current={current}");
-    }
-    let intent_names = error.split("Intent { name: \"").skip(1).filter_map(|tail| tail.split('"').next()).collect::<Vec<_>>().join(",");
-    if !intent_names.is_empty() {
-        return format!("oracle:{}:{intent_names}", failure_kind(error));
-    }
-    let mut normalized = String::with_capacity(error.len());
-    let mut index = 0;
-    let bytes = error.as_bytes();
-    while index < bytes.len() {
-        if error.get(index..index + 36).is_some_and(uuid_like) {
-            normalized.push_str("<conversation-id>");
-            index += 36;
-        } else {
-            let character = error[index..].chars().next().expect("valid string boundary");
-            if !character.is_whitespace() || !normalized.ends_with(' ') {
-                normalized.push(if character.is_whitespace() { ' ' } else { character });
-            }
-            index += character.len_utf8();
-        }
-    }
-    normalized
-}
-
-fn parse_result_intents<'a>(error: &'a str, marker: &str) -> Option<&'a str> {
-    let result = error.split_once(marker)?.1;
-    let intents = result.split_once("intents: [")?.1;
-    intents.split_once("], speech:").map(|(value, _)| value)
-}
-
-fn uuid_like(value: &str) -> bool {
-    value.char_indices().all(|(index, character)| {
-        matches!(index, 8 | 13 | 18 | 23) && character == '-' || !matches!(index, 8 | 13 | 18 | 23) && character.is_ascii_hexdigit()
-    })
-}
-
-fn record_failure(stats: &mut RunStats, group: &str, label: &str, turns: &[String], error: String) {
-    stats.fail += 1;
-    stats.fails.push(format!("{group}/{label}: {turns:?} → {error}"));
-}
-
-fn failure_kind(line: &str) -> &'static str {
-    for (needle, kind) in [
-        ("exact intent", "exact"),
-        ("world_expect", "world"),
-        ("reject=", "reject"),
-        ("clarify", "clarify"),
-        ("HassSetPosition", "position"),
-        ("HassFanSetSpeed", "fan"),
-        ("HassLightSet", "lightset"),
-        ("HassClimate", "climate"),
-        ("HassGetState", "query"),
-        ("HassTurnOff", "off"),
-        ("HassTurnOn", "on"),
-        ("Timer", "timer"),
-        ("Shopping", "list"),
-        ("todo", "list"),
-    ] {
-        if line.contains(needle) {
-            return kind;
-        }
-    }
-    "other"
-}
-
 #[cfg(test)]
 mod tests {
+    use super::expect::{exact_intents_ok, exact_result_ok};
+    use super::schema::{ExpectedIntent, NluExpectation};
+    use super::world::TestWorld;
     use super::*;
+    use klar_nlu::session::Session;
+    use klar_nlu::types::{Intent, ParseResult};
 
     #[test]
     fn setup_builds_world_without_inventing_conversation_history() {

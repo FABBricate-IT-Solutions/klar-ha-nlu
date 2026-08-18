@@ -1,5 +1,5 @@
 use crate::home::expose::assist_visible;
-use crate::lang::catalog;
+use crate::lang::Catalog;
 use crate::parse::normalize::compact;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use std::sync::OnceLock;
@@ -35,8 +35,7 @@ fn is_bedroom_area(area: &AreaRec) -> bool {
     std::iter::once(area.area_id.as_str()).chain(area.aliases.iter().map(String::as_str)).any(|name| BEDROOM_HINTS.contains(&name))
 }
 
-pub fn laundry_areas(home: &HomeGraph) -> Vec<String> {
-    let cat = catalog();
+pub fn laundry_areas(home: &HomeGraph, cat: &Catalog) -> Vec<String> {
     home.areas
         .iter()
         .filter(|area| {
@@ -98,8 +97,7 @@ fn infra_hit(entity: &EntityRec) -> bool {
     platform_needles().iter().any(|needle| id.contains(needle) || name.contains(needle))
 }
 
-pub fn preferred_named<'a>(named: &[&'a EntityRec]) -> Option<&'a EntityRec> {
-    let cat = catalog();
+pub fn preferred_named<'a>(named: &[&'a EntityRec], cat: &Catalog) -> Option<&'a EntityRec> {
     named
         .iter()
         .copied()

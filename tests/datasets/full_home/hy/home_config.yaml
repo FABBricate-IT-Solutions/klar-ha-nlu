@@ -1,0 +1,504 @@
+name: Full Home hy
+language: hy
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: nerqev
+  level: 0
+  aliases:
+  - nerqev
+  - getin
+- id: upper
+  name: verev
+  level: 1
+  aliases:
+  - verev
+  - hark
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Mutq
+  floor: ground
+  aliases:
+  - mutq
+- id: living
+  name: Hyurasenyak
+  floor: ground
+  aliases:
+  - hyurasenyak
+- id: dining
+  name: Yntaniqess
+  floor: ground
+  aliases:
+  - yntaniqess
+- id: kitchen
+  name: Khohanots
+  floor: ground
+  aliases:
+  - khohanots
+- id: family_room
+  name: Yntaniq
+  floor: ground
+  aliases:
+  - yntaniq
+- id: laundry
+  name: Lvacqaran
+  floor: ground
+  aliases:
+  - lvacqaran
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Qnakaran
+  floor: upper
+  aliases:
+  - qnakaran
+- id: bedroom_2
+  name: Qnakaran2
+  floor: upper
+  aliases:
+  - qnakaran2
+- id: bedroom_3
+  name: Qnakaran3
+  floor: upper
+  aliases:
+  - qnakaran3
+- id: bedroom_4
+  name: Qnakaran4
+  floor: upper
+  aliases:
+  - qnakaran4
+- id: master_bath
+  name: Lvacaranmaster
+  floor: upper
+  aliases:
+  - lvacaranmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: mutq luys
+  aliases:
+  - mutq luys
+  - luys
+- id: light.living_ceiling
+  area_id: living
+  name: hyurasenyak stalat
+  aliases:
+  - hyurasenyak stalat
+  - stalat
+- id: light.living_lamp
+  area_id: living
+  name: hyurasenyak luys
+  aliases:
+  - hyurasenyak luys
+  - luys
+- id: light.dining_pendant
+  area_id: dining
+  name: yntaniqess luys
+  aliases:
+  - yntaniqess luys
+  - luys
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: khohanots stalat
+  aliases:
+  - khohanots stalat
+  - stalat
+- id: light.kitchen_island
+  area_id: kitchen
+  name: khohanots kghzi
+  aliases:
+  - khohanots kghzi
+  - kghzi
+- id: light.family_ceiling
+  area_id: family_room
+  name: yntaniq stalat
+  aliases:
+  - yntaniq stalat
+  - stalat
+- id: light.laundry_light
+  area_id: laundry
+  name: lvacqaran luys
+  aliases:
+  - lvacqaran luys
+  - luys
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc luys
+  aliases:
+  - wc luys
+  - luys
+- id: light.garage_light
+  area_id: garage
+  name: garage luys
+  aliases:
+  - garage luys
+  - luys
+- id: light.office_ceiling
+  area_id: office
+  name: office stalat
+  aliases:
+  - office stalat
+  - stalat
+- id: light.garden
+  area_id: garden
+  name: garden luys
+  aliases:
+  - garden luys
+  - luys
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: qnakaran stalat
+  aliases:
+  - qnakaran stalat
+  - stalat
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: qnakaran ensuite
+  aliases:
+  - qnakaran ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: qnakaran left gisherayin
+  aliases:
+  - qnakaran left gisherayin
+  - gisherayin
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: qnakaran right gisherayin
+  aliases:
+  - qnakaran right gisherayin
+  - gisherayin
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: qnakaran2 stalat
+  aliases:
+  - qnakaran2 stalat
+  - stalat
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: qnakaran3 stalat
+  aliases:
+  - qnakaran3 stalat
+  - stalat
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: qnakaran4 stalat
+  aliases:
+  - qnakaran4 stalat
+  - stalat
+- id: light.master_bath_light
+  area_id: master_bath
+  name: lvacaranmaster luys
+  aliases:
+  - lvacaranmaster luys
+  - luys
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath luys
+  aliases:
+  - main bath luys
+  - luys
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway luys
+  aliases:
+  - hallway luys
+  - luys
+- id: light.basement
+  area_id: basement
+  name: basement luys
+  aliases:
+  - basement luys
+  - luys
+- id: cover.living_blinds
+  area_id: living
+  name: hyurasenyak varaguyr
+  aliases:
+  - hyurasenyak varaguyr
+  - varaguyr
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: qnakaran varaguyr
+  aliases:
+  - qnakaran varaguyr
+  - varaguyr
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: qnakaran2 varaguyr
+  aliases:
+  - qnakaran2 varaguyr
+  - varaguyr
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: qnakaran3 varaguyr
+  aliases:
+  - qnakaran3 varaguyr
+  - varaguyr
+- id: cover.garage_door
+  area_id: garage
+  name: garage varaguyr
+  aliases:
+  - garage varaguyr
+  - varaguyr
+- id: climate.ground_thermostat
+  area_id: living
+  name: hyurasenyak jerutsum
+  aliases:
+  - hyurasenyak jerutsum
+  - jerutsum
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: qnakaran jerutsum
+  aliases:
+  - qnakaran jerutsum
+  - jerutsum
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: jerutsum qnakaran
+  aliases:
+  - jerutsum qnakaran
+  - jerutsum
+  - ac
+  tags:
+  - jerutsum
+- id: fan.family_fan
+  area_id: family_room
+  name: yntaniq odapokhich
+  aliases:
+  - yntaniq odapokhich
+  - odapokhich
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: qnakaran odapokhich
+  aliases:
+  - qnakaran odapokhich
+  - odapokhich
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: qnakaran2 odapokhich
+  aliases:
+  - qnakaran2 odapokhich
+  - odapokhich
+- id: lock.front_door
+  area_id: entryway
+  name: front dur
+  aliases:
+  - front dur
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage dur
+  aliases:
+  - garage dur
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: khohanots aman
+  aliases:
+  - khohanots aman
+  - aman
+- id: switch.rangehood
+  area_id: kitchen
+  name: khohanots rangehood
+  aliases:
+  - khohanots rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: lvacqaran lvacqimekena
+  aliases:
+  - lvacqaran lvacqimekena
+  - lvacqimekena
+  - washer
+  tags:
+  - washer
+  - lvacqimekena
+- id: switch.dryer
+  area_id: laundry
+  name: lvacqaran dryer
+  aliases:
+  - lvacqaran dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: lvacaranmaster odapokhichbad
+  aliases:
+  - lvacaranmaster odapokhichbad
+  - odapokhichbad
+  tags:
+  - odapokhichbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath odapokhichbad
+  aliases:
+  - main bath odapokhichbad
+  - odapokhichbad
+  tags:
+  - odapokhichbad
+- id: media_player.living_tv
+  area_id: living
+  name: hyurasenyak tv
+  aliases:
+  - hyurasenyak tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: yntaniq tv
+  aliases:
+  - yntaniq tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: hyurasenyak herustatsuyts
+  aliases:
+  - hyurasenyak herustatsuyts
+  - herustatsuyts
+  platform: music_assistant
+  tags:
+  - herustatsuyts
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: khohanots herustatsuyts
+  aliases:
+  - khohanots herustatsuyts
+  - herustatsuyts
+  platform: music_assistant
+  tags:
+  - herustatsuyts
+- id: media_player.office_music
+  area_id: office
+  name: office herustatsuyts
+  aliases:
+  - office herustatsuyts
+  - herustatsuyts
+  platform: music_assistant
+  tags:
+  - herustatsuyts
+- id: vacuum.robot
+  area_id: living
+  name: hyurasenyak poshekul
+  aliases:
+  - hyurasenyak poshekul
+  - poshekul
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: mutq doorsensor
+  aliases:
+  - mutq doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: hyurasenyak windowsensor
+  aliases:
+  - hyurasenyak windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: khohanots motion
+  aliases:
+  - khohanots motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: hyurasenyak tempsensor
+  aliases:
+  - hyurasenyak tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: hyurasenyak humidity
+  aliases:
+  - hyurasenyak humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: gisher
+- id: leaving_home
+  name: elq
+timers:
+- id: oven
+  name: oven zhamachap
+- id: laundry
+  name: laundry zhamachap
+- id: abstract
+  name: abstract zhamachap
+lists:
+- id: shopping
+  name: tsutsak

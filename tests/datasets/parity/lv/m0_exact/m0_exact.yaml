@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- iesledz gaisma istaba
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread saraksts
+m0_exact/representative::exact_multi_intent:
+- iesledz griesti gulamistaba3 un izsledz gaisma prieksnams
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk saraksts
+m0_exact/representative::exact_state_persistence:
+- - kas gaisma prieksnams
+  - '12'
+m0_exact/representative::exact_timer:
+- iesledz taimeris oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- iesledz taimeris oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples saraksts

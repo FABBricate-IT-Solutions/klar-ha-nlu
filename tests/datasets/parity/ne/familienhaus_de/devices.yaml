@@ -1,0 +1,266 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- set tato baithak 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- set tato sutnekotha 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- set parda sutnekotha2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- banda parda sutnekotha2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- khol parda sutnekotha2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- set parda sutnekotha3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- banda parda sutnekotha3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- khol parda sutnekotha3
+devices/cover_garage_door::cover_garage_door_change_position:
+- set parda garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- banda parda garage
+devices/cover_garage_door::cover_garage_door_open:
+- khol parda garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- set parda baithak 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- banda parda baithak
+devices/cover_living_blinds::cover_living_blinds_open:
+- khol parda baithak
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- set parda sutnekotha 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- banda parda sutnekotha
+devices/cover_master_blinds::cover_master_blinds_open:
+- khol parda sutnekotha
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- set pankha sutnekotha2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- nibhau pankha sutnekotha2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- bal pankha sutnekotha2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- set pankha parivarik 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- nibhau pankha parivarik
+devices/fan_family_fan::fan_family_fan_turn_on:
+- bal pankha parivarik
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- set pankha sutnekotha 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- nibhau pankha sutnekotha
+devices/fan_master_fan::fan_master_fan_turn_on:
+- bal pankha sutnekotha
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- nibhau pankha sutnekotha ra nibhau batti bhansa
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- bal pankha sutnekotha ra bal batti bhansa
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- set chhana sutnekotha2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- set chhana sutnekotha2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- nibhau chhana sutnekotha2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- bal chhana sutnekotha2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- set chhana sutnekotha3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- set chhana sutnekotha3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- nibhau chhana sutnekotha3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- bal chhana sutnekotha3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- set chhana sutnekotha4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- set chhana sutnekotha4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- nibhau chhana sutnekotha4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- bal chhana sutnekotha4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- set batti baithak 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- set batti baithak blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- nibhau batti baithak
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- bal batti baithak
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- set batti pravesh 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- set batti pravesh yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- nibhau batti pravesh
+devices/light_entryway_light::light_entryway_light_turn_on:
+- bal batti pravesh
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- set chhana parivarik 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- set chhana parivarik purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- nibhau chhana parivarik
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- bal chhana parivarik
+devices/light_garage_light::light_garage_light_change_brightness:
+- set batti garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- set batti garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- nibhau batti garage
+devices/light_garage_light::light_garage_light_turn_on:
+- bal batti garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- set batti pravesh 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- set batti pravesh white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- nibhau batti pravesh
+devices/light_hallway_light::light_hallway_light_turn_on:
+- bal batti pravesh
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- set chhana bhansa 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- set chhana bhansa orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- nibhau chhana bhansa
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- bal chhana bhansa
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- set batti bhansa 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- set batti bhansa green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- nibhau batti bhansa
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- bal batti bhansa
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- set batti dhune 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- set batti dhune white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- nibhau batti dhune
+devices/light_laundry_light::light_laundry_light_turn_on:
+- bal batti dhune
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- set chhana baithak 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- set chhana baithak black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- nibhau chhana baithak
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- bal chhana baithak
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- set batti baithak 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- set batti baithak red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- nibhau batti baithak
+devices/light_living_lamp::light_living_lamp_turn_on:
+- bal batti baithak
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- set batti main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- set batti main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- nibhau batti main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- bal batti main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- set batti mukhyasnan 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- set batti mukhyasnan black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- nibhau batti mukhyasnan
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- bal batti mukhyasnan
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- set khat sutnekotha 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- set khat sutnekotha red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- nibhau khat sutnekotha
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- bal khat sutnekotha
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- set chhana sutnekotha 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- set chhana sutnekotha blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- nibhau chhana sutnekotha
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- bal chhana sutnekotha
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- set batti sutnekotha 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- set batti sutnekotha black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- nibhau batti sutnekotha
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- bal batti sutnekotha
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- set batti shauchalay 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- set batti shauchalay black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- nibhau batti shauchalay
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- bal batti shauchalay
+devices/lock_front_door::lock_front_door_lock:
+- tala tala pravesh
+devices/lock_front_door::lock_front_door_unlock:
+- khol tala pravesh
+devices/lock_garage_entry::lock_garage_entry_lock:
+- tala tala garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- khol tala garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- bal tivi parivarik
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause tivi parivarik
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- nibhau tivi parivarik
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- bal tivi parivarik
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- bal tivi parivarik
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- bal tivi parivarik
+devices/media_player_living_tv::media_player_living_tv_mute:
+- bal tivi baithak
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause tivi baithak
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- nibhau tivi baithak
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- bal tivi baithak
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- bal tivi baithak
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- bal tivi baithak
+devices/scenes::dinner_time:
+- set batti baithak 90 ra bal chhana bhansa ra set batti bhansa 80
+devices/scenes::good_morning:
+- bal chhana bhansa ra set batti baithak 100 ra khol parda baithak ra khol parda sutnekotha
+devices/scenes::kids_bedtime:
+- nibhau chhana sutnekotha2 ra nibhau chhana sutnekotha3 ra nibhau chhana sutnekotha4
+  ra set batti pravesh 15
+devices/scenes::movie_night:
+- nibhau chhana baithak ra set batti baithak 20 ra bal tivi baithak ra banda parda
+  baithak
+devices/scripts::good_night:
+- bal drishya raat
+devices/scripts::leaving_home:
+- bal drishya jane
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- nibhau basna
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- bal basna
+devices/switch_dryer::switch_dryer_turn_off:
+- nibhau washing
+devices/switch_dryer::switch_dryer_turn_on:
+- bal washing
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- nibhau washing
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- bal washing

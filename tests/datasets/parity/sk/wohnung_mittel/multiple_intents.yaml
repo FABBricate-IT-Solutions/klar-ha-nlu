@@ -1,0 +1,26 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- vypni vsetko svetlo okrem spalna okrem kuchyne
+multiple_intents/multi::licht_und_heizung:
+- zapni svetlo obyvacka a nastav kurenie obyvacka 23
+multiple_intents/multi::wohn_und_ess_aus:
+- vypni svetlo obyvacka
+multiple_intents/multi::wohn_und_ess_rot:
+- nastav svetlo obyvacka red a nastav svetlo obyvacka red
+multiple_intents/multi::wz_und_kuche_licht:
+- zapni svetlo obyvacka a zapni svetlo kuchyne
+multiple_intents/multi::zwei_raeume_und_heizung:
+- zapni svetlo obyvacka a zapni svetlo kuchyne a nastav kurenie obyvacka 23
+multiple_intents/spoken::drei_raeume_an:
+- zapni svetlo obyvacka a zapni svetlo kuchyne
+multiple_intents/spoken::drei_raeume_aus:
+- vypni svetlo obyvacka a vypni svetlo kuchyne
+multiple_intents/spoken::ess_und_wohn_aus:
+- vypni svetlo obyvacka
+multiple_intents/spoken::kugel_und_decke_aus:
+- vypni gula a vypni strop
+multiple_intents/spoken_more::kuche_und_ess_an:
+- zapni svetlo kuchyne a zapni svetlo obyvacka
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- vypni svetlo obyvacka
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- vypni svetlo obyvacka

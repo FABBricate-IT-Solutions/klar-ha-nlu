@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - کیا روشنی لانج
+  - کیا لانج روشنی
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - کیا پردہ لانج
+  - کیا لانج پردہ
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - کیا تالا داخلہ
+  - کیا داخلہ تالا
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - کیا گرمی لانج
+  - کیا لانج گرمی
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - کیا ٹی وی لانج
+  - کیا لانج ٹی وی
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - کیا doorsensor داخلہ
+  - کیا داخلہ doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - کیا windowsensor لانج
+  - کیا لانج windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - کیا tempsensor لانج
+  - کیا لانج tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - کیا روشنی باورچی
+  - کیا باورچی روشنی
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - کیا روشنی office
+  - کیا office روشنی
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - کیا روشنی garden
+  - کیا garden روشنی
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - کیا روشنی basement
+  - کیا basement روشنی
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - کیا پردہ bedroom
+  - کیا bedroom پردہ
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - کیا پردہ garage
+  - کیا garage پردہ
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - کیا تالا garage
+  - کیا garage تالا
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - کیا گرمی bedroom
+  - کیا bedroom گرمی
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - کیا درجہ bedroom
+  - کیا bedroom درجہ
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - کیا ٹی وی خاندانی
+  - کیا خاندانی ٹی وی
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - کیا ٹی وی لانج
+  - کیا لانج ٹی وی
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - کیا motion باورچی
+  - کیا باورچی motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - کیا humidity لانج
+  - کیا لانج humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - کیا پنکھا bedroom
+  - کیا bedroom پنکھا
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - کیا جھاڑو لانج
+  - کیا لانج جھاڑو
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - کیا روشنی لانج
+  - کیا لانج روشنی
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - کیا روشنی باورچی
+  - کیا باورچی روشنی
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - کیا روشنی bedroom
+  - کیا bedroom روشنی
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - کیا روشنی bedroom
+  - کیا bedroom روشنی
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - کیا روشنی hallway
+  - کیا hallway روشنی
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - کیا روشنی خاندانی
+  - کیا خاندانی روشنی
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - کیا روشنی خاندانیess
+  - کیا خاندانیess روشنی
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - کیا روشنی garage
+  - کیا garage روشنی
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - کیا روشنی bedroom2
+  - کیا bedroom2 روشنی
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - کیا روشنی bedroom3
+  - کیا bedroom3 روشنی
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - کیا روشنی bedroom4
+  - کیا bedroom4 روشنی
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - کیا روشنی داخلہ
+  - کیا داخلہ روشنی
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - کیا روشنی لانڈری
+  - کیا لانڈری روشنی
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - کیا روشنی main bath
+  - کیا main bath روشنی
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - کیا روشنی غسلخانہ
+  - کیا غسلخانہ روشنی
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - کیا ensuite bedroom
+  - کیا bedroom ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - کیا روشنی bedroom
+  - کیا bedroom روشنی
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - کیا روشنی ماسٹرباتھ
+  - کیا ماسٹرباتھ روشنی

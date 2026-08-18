@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - wat gordyn slaapkamer2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - wat plafon slaapkamer2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - wat gordyn slaapkamer3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - wat plafon slaapkamer3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - wat plafon slaapkamer4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - wat lig sitkamer
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - wat lig ingang
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - wat plafon sitkamerfam
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - wat gordyn garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - wat lig garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - wat lig ingang en wat lig toilet
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - wat lig ingang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - wat lig kombuis
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - wat lig waskamer
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - wat verwarming sitkamer
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - wat gordyn sitkamer
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - wat lig sitkamer
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - wat lig main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - wat lig badmaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - wat verwarming slaapkamer en wat verwarming sitkamer
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - wat gordyn slaapkamer en wat gordyn sitkamer
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - wat verwarming slaapkamer
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - wat gordyn slaapkamer
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - wat lig toilet
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - wat gordyn garage
+  - toe
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - wat gordyn garage
+  - oop
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - wat gordyn garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - wat gordyn sitkamer
+  - toe
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - wat gordyn sitkamer
+  - oop
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - wat gordyn sitkamer
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - wat waaier sitkamerfam
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - wat waaier sitkamerfam
+  - doof
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - wat waaier sitkamerfam
+  - skakel
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - wat lig ingang
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - wat lig ingang
+  - doof
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - wat lig ingang
+  - skakel
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - wat slot ingang
+  - slot
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - wat slot ingang
+  - oop
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - wat slot garage
+  - slot
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - wat slot garage
+  - oop
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - wat tv sitkamerfam
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - wat tv sitkamerfam
+  - doof
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - wat tv sitkamerfam
+  - skakel
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - wat tv sitkamer
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - wat tv sitkamer
+  - doof
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - wat tv sitkamer
+  - skakel

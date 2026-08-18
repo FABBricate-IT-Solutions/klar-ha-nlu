@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - cas solas seomra
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - much solas cistin
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

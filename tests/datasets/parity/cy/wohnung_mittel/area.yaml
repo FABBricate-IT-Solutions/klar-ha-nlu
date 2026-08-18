@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- gosod gwres bathmaster 23
+area/heizung::heizung_esszimmer_23:
+- gosod gwres ystafell 23
+area/heizung::heizung_schlafzimmer_23:
+- gosod gwres llofft 23
+area/heizung::heizung_wohnzimmer_23:
+- gosod gwres ystafell 23
+area/lichter::alle_an_ausser_kugel:
+- tro pob golau heblaw pelen
+area/lichter::alle_an_ausser_schlafzimmer:
+- tro pob golau heblaw llofft
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- gosod pob golau heblaw llofft 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- gosod pob golau heblaw pelen red
+area/lichter::alle_ausser_kugel:
+- diffodd pob golau heblaw pelen
+area/lichter::alle_ausser_schlafzimmer:
+- diffodd pob golau heblaw llofft
+area/lichter::alle_lichter_an:
+- tro pob golau
+area/lichter::alle_lichter_aus:
+- diffodd pob golau
+area/lichter::arbeitszimmer_lichter_an:
+- tro golau ystafell
+area/lichter::arbeitszimmer_lichter_aus:
+- diffodd golau ystafell
+area/lichter::esszimmer_lichter_an:
+- tro golau ystafell
+area/lichter::esszimmer_lichter_aus:
+- diffodd golau ystafell
+area/lichter::kuche_lichter_an:
+- tro golau cegin
+area/lichter::kuche_lichter_aus:
+- diffodd golau cegin
+area/lichter::schlafzimmer_auf_blau:
+- gosod golau llofft blue
+area/lichter::schlafzimmer_auf_rot:
+- gosod golau llofft red
+area/lichter::wohnzimmer_helligkeit:
+- gosod golau ystafell 45
+area/lichter::wohnzimmer_lichter_an:
+- tro golau ystafell
+area/lichter::wohnzimmer_lichter_aus:
+- diffodd golau ystafell
+area/spoken::alle_ausser_kugel_stt:
+- diffodd pob golau heblaw pelen
+area/spoken::alle_ausser_schlaf_stt:
+- diffodd pob golau heblaw llofft
+area/spoken::alle_ganzen_an:
+- tro pob golau
+area/spoken::alle_lampen_aus:
+- diffodd pob golau
+area/spoken::esszimmer_weiss:
+- gosod golau ystafell white
+area/spoken::stt_kuche_lichte:
+- diffodd golau cegin
+area/spoken::stt_licht_wohnzimmer_an:
+- tro golau ystafell
+area/spoken::stt_licht_wohnzimmer_aus:
+- diffodd golau ystafell
+area/spoken::stt_schlafzimmer_dativ:
+- diffodd golau llofft
+area/spoken::wohnzimmer_gruen:
+- gosod golau ystafell green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- diffodd pob golau heblaw ystafell
+area/spoken_more::arbeitszimmer_lampen_aus:
+- diffodd golau ystafell
+area/spoken_more::esszimmer_30:
+- gosod golau ystafell 30
+area/spoken_more::esszimmer_lichte_an:
+- tro golau ystafell
+area/spoken_more::kuche_80:
+- gosod golau cegin 80
+area/spoken_more::kuche_blau:
+- gosod golau cegin blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- diffodd pob golau heblaw llofft
+area/spoken_more::wohnzimmer_gelb:
+- gosod golau ystafell yellow

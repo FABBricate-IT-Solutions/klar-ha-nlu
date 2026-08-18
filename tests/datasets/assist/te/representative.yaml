@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - veliginchu velugu gadi
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - arpu velugu vantagadi
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

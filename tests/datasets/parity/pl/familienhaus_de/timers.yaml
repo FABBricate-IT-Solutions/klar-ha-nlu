@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- wlacz minutnik abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- wlacz minutnik abstract 20 min
+timers/timers::abstract_start_seconds:
+- wlacz minutnik abstract
+timers/timers::cancel_all_timers:
+- wylacz wszystko minutnik
+timers/timers::timer_laundry_cancel:
+- wlacz minutnik laundry
+timers/timers::timer_laundry_decrease:
+- wlacz minutnik laundry 5 min
+timers/timers::timer_laundry_increase:
+- wlacz minutnik laundry 16 min
+timers/timers::timer_laundry_pause:
+- wylacz minutnik laundry
+timers/timers::timer_laundry_start:
+- wlacz minutnik laundry
+timers/timers::timer_laundry_status:
+- co minutnik laundry
+timers/timers::timer_laundry_unpause:
+- wlacz minutnik laundry
+timers/timers::timer_oven_cancel:
+- wlacz minutnik oven
+timers/timers::timer_oven_decrease:
+- wlacz minutnik oven 44 min
+timers/timers::timer_oven_increase:
+- wlacz minutnik oven 30 min
+timers/timers::timer_oven_pause:
+- wylacz minutnik oven
+timers/timers::timer_oven_start:
+- wlacz minutnik oven 2 min
+timers/timers::timer_oven_status:
+- co minutnik oven
+timers/timers::timer_oven_unpause:
+- wlacz minutnik oven

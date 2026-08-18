@@ -56,19 +56,21 @@ impl Catalog {
     }
 
     pub fn is_protected_typo(&self, token: &str) -> bool {
-        token.len() >= 6
+        token.chars().count() >= 6
             && self.number(token).is_none()
             && token.parse::<i32>().is_err()
             && self.color(token).is_none()
             && self.verb(token).is_none()
             && !self.domain_map.contains_key(token)
             && !self.generic.contains(token)
+            && !self.all_words.contains(token)
+            && !self.is_except(token)
             && (self
                 .colors
                 .keys()
                 .copied()
                 .chain(self.numbers.keys().copied())
-                .filter(|candidate| candidate.len() >= 6)
+                .filter(|candidate| candidate.chars().count() >= 6)
                 .any(|candidate| levenshtein(token, candidate) <= 2)
                 || self.has_german_compound_number_typo(token))
     }
@@ -113,12 +115,14 @@ impl Catalog {
     }
 
     fn safe_structural_token(&self, token: &str) -> bool {
-        token.len() >= 6
+        token.chars().count() >= 6
             && !self.is_filler(token)
             && !self.is_particle(token)
             && !self.generic.contains(token)
             && !self.on_words.contains(token)
             && !self.off_words.contains(token)
+            && !self.all_words.contains(token)
+            && !self.is_except(token)
             && self.number(token).is_none()
             && token.parse::<i32>().is_err()
             && self.color(token).is_none()

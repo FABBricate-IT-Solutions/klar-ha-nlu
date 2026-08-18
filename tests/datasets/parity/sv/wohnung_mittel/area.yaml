@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- satt varme badmaster 23
+area/heizung::heizung_esszimmer_23:
+- satt varme vardagsrum 23
+area/heizung::heizung_schlafzimmer_23:
+- satt varme sovrum 23
+area/heizung::heizung_wohnzimmer_23:
+- satt varme vardagsrum 23
+area/lichter::alle_an_ausser_kugel:
+- tand alla ljus utom kula
+area/lichter::alle_an_ausser_schlafzimmer:
+- tand alla ljus utom sovrum
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- satt alla ljus utom sovrum 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- satt alla ljus utom kula rod
+area/lichter::alle_ausser_kugel:
+- slack alla ljus utom kula
+area/lichter::alle_ausser_schlafzimmer:
+- slack alla ljus utom sovrum
+area/lichter::alle_lichter_an:
+- tand alla ljus
+area/lichter::alle_lichter_aus:
+- slack alla ljus
+area/lichter::arbeitszimmer_lichter_an:
+- tand ljus vardagsrum
+area/lichter::arbeitszimmer_lichter_aus:
+- slack ljus vardagsrum
+area/lichter::esszimmer_lichter_an:
+- tand ljus vardagsrum
+area/lichter::esszimmer_lichter_aus:
+- slack ljus vardagsrum
+area/lichter::kuche_lichter_an:
+- tand ljus kok
+area/lichter::kuche_lichter_aus:
+- slack ljus kok
+area/lichter::schlafzimmer_auf_blau:
+- satt ljus sovrum bla
+area/lichter::schlafzimmer_auf_rot:
+- satt ljus sovrum rod
+area/lichter::wohnzimmer_helligkeit:
+- satt ljus vardagsrum 45
+area/lichter::wohnzimmer_lichter_an:
+- tand ljus vardagsrum
+area/lichter::wohnzimmer_lichter_aus:
+- slack ljus vardagsrum
+area/spoken::alle_ausser_kugel_stt:
+- slack alla ljus utom kula
+area/spoken::alle_ausser_schlaf_stt:
+- slack alla ljus utom sovrum
+area/spoken::alle_ganzen_an:
+- tand alla ljus
+area/spoken::alle_lampen_aus:
+- slack alla ljus
+area/spoken::esszimmer_weiss:
+- satt ljus vardagsrum vit
+area/spoken::stt_kuche_lichte:
+- slack ljus kok
+area/spoken::stt_licht_wohnzimmer_an:
+- tand ljus vardagsrum
+area/spoken::stt_licht_wohnzimmer_aus:
+- slack ljus vardagsrum
+area/spoken::stt_schlafzimmer_dativ:
+- slack ljus sovrum
+area/spoken::wohnzimmer_gruen:
+- satt ljus vardagsrum gron
+area/spoken_more::alle_ausser_arbeitszimmer:
+- slack alla ljus utom vardagsrum
+area/spoken_more::arbeitszimmer_lampen_aus:
+- slack ljus vardagsrum
+area/spoken_more::esszimmer_30:
+- satt ljus vardagsrum 30
+area/spoken_more::esszimmer_lichte_an:
+- tand ljus vardagsrum
+area/spoken_more::kuche_80:
+- satt ljus kok 80
+area/spoken_more::kuche_blau:
+- satt ljus kok bla
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- slack alla ljus utom sovrum
+area/spoken_more::wohnzimmer_gelb:
+- satt ljus vardagsrum gul

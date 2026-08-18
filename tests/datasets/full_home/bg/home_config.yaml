@@ -1,0 +1,504 @@
+name: Full Home bg
+language: bg
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: партер
+  level: 0
+  aliases:
+  - партер
+  - долу
+- id: upper
+  name: етаж
+  level: 1
+  aliases:
+  - етаж
+  - горе
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: антре
+  floor: ground
+  aliases:
+  - антре
+- id: living
+  name: хол
+  floor: ground
+  aliases:
+  - хол
+- id: dining
+  name: дневнаfamess
+  floor: ground
+  aliases:
+  - дневнаfamess
+- id: kitchen
+  name: кухня
+  floor: ground
+  aliases:
+  - кухня
+- id: family_room
+  name: дневнаfam
+  floor: ground
+  aliases:
+  - дневнаfam
+- id: laundry
+  name: пералня
+  floor: ground
+  aliases:
+  - пералня
+- id: powder_room
+  name: тоалетна
+  floor: ground
+  aliases:
+  - тоалетна
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: спалня
+  floor: upper
+  aliases:
+  - спалня
+- id: bedroom_2
+  name: спалня2
+  floor: upper
+  aliases:
+  - спалня2
+- id: bedroom_3
+  name: спалня3
+  floor: upper
+  aliases:
+  - спалня3
+- id: bedroom_4
+  name: спалня4
+  floor: upper
+  aliases:
+  - спалня4
+- id: master_bath
+  name: баняmaster
+  floor: upper
+  aliases:
+  - баняmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: антре светлина
+  aliases:
+  - антре светлина
+  - светлина
+- id: light.living_ceiling
+  area_id: living
+  name: хол таван
+  aliases:
+  - хол таван
+  - таван
+- id: light.living_lamp
+  area_id: living
+  name: хол светлина
+  aliases:
+  - хол светлина
+  - светлина
+- id: light.dining_pendant
+  area_id: dining
+  name: дневнаfamess светлина
+  aliases:
+  - дневнаfamess светлина
+  - светлина
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: кухня таван
+  aliases:
+  - кухня таван
+  - таван
+- id: light.kitchen_island
+  area_id: kitchen
+  name: кухня остров
+  aliases:
+  - кухня остров
+  - остров
+- id: light.family_ceiling
+  area_id: family_room
+  name: дневнаfam таван
+  aliases:
+  - дневнаfam таван
+  - таван
+- id: light.laundry_light
+  area_id: laundry
+  name: пералня светлина
+  aliases:
+  - пералня светлина
+  - светлина
+- id: light.powder_room_light
+  area_id: powder_room
+  name: тоалетна светлина
+  aliases:
+  - тоалетна светлина
+  - светлина
+- id: light.garage_light
+  area_id: garage
+  name: garage светлина
+  aliases:
+  - garage светлина
+  - светлина
+- id: light.office_ceiling
+  area_id: office
+  name: office таван
+  aliases:
+  - office таван
+  - таван
+- id: light.garden
+  area_id: garden
+  name: garden светлина
+  aliases:
+  - garden светлина
+  - светлина
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: спалня таван
+  aliases:
+  - спалня таван
+  - таван
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: спалня ensuite
+  aliases:
+  - спалня ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: спалня left нощно
+  aliases:
+  - спалня left нощно
+  - нощно
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: спалня right нощно
+  aliases:
+  - спалня right нощно
+  - нощно
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: спалня2 таван
+  aliases:
+  - спалня2 таван
+  - таван
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: спалня3 таван
+  aliases:
+  - спалня3 таван
+  - таван
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: спалня4 таван
+  aliases:
+  - спалня4 таван
+  - таван
+- id: light.master_bath_light
+  area_id: master_bath
+  name: баняmaster светлина
+  aliases:
+  - баняmaster светлина
+  - светлина
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath светлина
+  aliases:
+  - main bath светлина
+  - светлина
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway светлина
+  aliases:
+  - hallway светлина
+  - светлина
+- id: light.basement
+  area_id: basement
+  name: basement светлина
+  aliases:
+  - basement светлина
+  - светлина
+- id: cover.living_blinds
+  area_id: living
+  name: хол завеса
+  aliases:
+  - хол завеса
+  - завеса
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: спалня завеса
+  aliases:
+  - спалня завеса
+  - завеса
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: спалня2 завеса
+  aliases:
+  - спалня2 завеса
+  - завеса
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: спалня3 завеса
+  aliases:
+  - спалня3 завеса
+  - завеса
+- id: cover.garage_door
+  area_id: garage
+  name: garage завеса
+  aliases:
+  - garage завеса
+  - завеса
+- id: climate.ground_thermostat
+  area_id: living
+  name: хол парно
+  aliases:
+  - хол парно
+  - парно
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: спалня парно
+  aliases:
+  - спалня парно
+  - парно
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: температура спалня
+  aliases:
+  - температура спалня
+  - температура
+  - ac
+  tags:
+  - температура
+- id: fan.family_fan
+  area_id: family_room
+  name: дневнаfam вентилатор
+  aliases:
+  - дневнаfam вентилатор
+  - вентилатор
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: спалня вентилатор
+  aliases:
+  - спалня вентилатор
+  - вентилатор
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: спалня2 вентилатор
+  aliases:
+  - спалня2 вентилатор
+  - вентилатор
+- id: lock.front_door
+  area_id: entryway
+  name: front врата
+  aliases:
+  - front врата
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage врата
+  aliases:
+  - garage врата
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: кухня съдомиялна
+  aliases:
+  - кухня съдомиялна
+  - съдомиялна
+- id: switch.rangehood
+  area_id: kitchen
+  name: кухня rangehood
+  aliases:
+  - кухня rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: пералня пералня
+  aliases:
+  - пералня пералня
+  - пералня
+  - washer
+  tags:
+  - washer
+  - пералня
+- id: switch.dryer
+  area_id: laundry
+  name: пералня dryer
+  aliases:
+  - пералня dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: баняmaster вентилаторbad
+  aliases:
+  - баняmaster вентилаторbad
+  - вентилаторbad
+  tags:
+  - вентилаторbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath вентилаторbad
+  aliases:
+  - main bath вентилаторbad
+  - вентилаторbad
+  tags:
+  - вентилаторbad
+- id: media_player.living_tv
+  area_id: living
+  name: хол тв
+  aliases:
+  - хол тв
+  - тв
+- id: media_player.family_tv
+  area_id: family_room
+  name: дневнаfam тв
+  aliases:
+  - дневнаfam тв
+  - тв
+- id: media_player.living_music
+  area_id: living
+  name: хол телевизор
+  aliases:
+  - хол телевизор
+  - телевизор
+  platform: music_assistant
+  tags:
+  - телевизор
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: кухня телевизор
+  aliases:
+  - кухня телевизор
+  - телевизор
+  platform: music_assistant
+  tags:
+  - телевизор
+- id: media_player.office_music
+  area_id: office
+  name: office телевизор
+  aliases:
+  - office телевизор
+  - телевизор
+  platform: music_assistant
+  tags:
+  - телевизор
+- id: vacuum.robot
+  area_id: living
+  name: хол прахосмукачка
+  aliases:
+  - хол прахосмукачка
+  - прахосмукачка
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: антре doorsensor
+  aliases:
+  - антре doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: хол windowsensor
+  aliases:
+  - хол windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: кухня motion
+  aliases:
+  - кухня motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: хол tempsensor
+  aliases:
+  - хол tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: хол humidity
+  aliases:
+  - хол humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: филм
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: нощ
+- id: leaving_home
+  name: изход
+timers:
+- id: oven
+  name: oven таймер
+- id: laundry
+  name: laundry таймер
+- id: abstract
+  name: abstract таймер
+lists:
+- id: shopping
+  name: списък

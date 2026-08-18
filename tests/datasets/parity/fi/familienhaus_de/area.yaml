@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- sulje verho makuuhuone2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- avaa verho makuuhuone2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- aseta verho makuuhuone2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- aseta tuuletin makuuhuone2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- sammuta tuuletin makuuhuone2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- sytyta tuuletin makuuhuone2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- aseta valo makuuhuone2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- aseta valo makuuhuone2 vaaleanpunainen
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- sammuta valo makuuhuone2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- sytyta valo makuuhuone2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- sulje verho makuuhuone3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- avaa verho makuuhuone3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- aseta verho makuuhuone3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- aseta valo makuuhuone3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- aseta valo makuuhuone3 sininen
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- sammuta valo makuuhuone3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- sytyta valo makuuhuone3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- aseta valo makuuhuone4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- aseta valo makuuhuone4 vihrea
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- sammuta valo makuuhuone4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- sytyta valo makuuhuone4
+area/dining_lights::dining_lights_change_brightness:
+- aseta valo olohuone 54
+area/dining_lights::dining_lights_change_color:
+- aseta valo olohuone sininen
+area/dining_lights::dining_lights_turn_off:
+- sammuta valo olohuone
+area/dining_lights::dining_lights_turn_on:
+- sytyta valo olohuone
+area/entryway_lights::entryway_lights_change_brightness:
+- aseta valo eteinen 72
+area/entryway_lights::entryway_lights_change_color:
+- aseta valo eteinen musta
+area/entryway_lights::entryway_lights_turn_off:
+- sammuta valo eteinen
+area/entryway_lights::entryway_lights_turn_on:
+- sytyta valo eteinen
+area/entryway_locks::entryway_locks_lock:
+- lukko lukko eteinen
+area/entryway_locks::entryway_locks_unlock:
+- avaa lukko eteinen
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- aseta valo olohuonefam 39 ja aseta valo keittio 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- aseta valo olohuonefam violetti ja aseta valo keittio violetti
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- sammuta valo olohuonefam ja sammuta valo keittio
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- sytyta valo olohuonefam ja sytyta valo keittio
+area/family_room_fans::family_room_fans_set_fan_speed:
+- aseta tuuletin olohuonefam 32
+area/family_room_fans::family_room_fans_turn_off:
+- sammuta tuuletin olohuonefam
+area/family_room_fans::family_room_fans_turn_on:
+- sytyta tuuletin olohuonefam
+area/family_room_lights::family_room_lights_change_brightness:
+- aseta valo olohuonefam 44
+area/family_room_lights::family_room_lights_change_color:
+- aseta valo olohuonefam vihrea
+area/family_room_lights::family_room_lights_turn_off:
+- sammuta valo olohuonefam
+area/family_room_lights::family_room_lights_turn_on:
+- sytyta valo olohuonefam
+area/garage_covers::garage_covers_close:
+- sulje verho garage
+area/garage_covers::garage_covers_open:
+- avaa verho garage
+area/garage_covers::garage_covers_set_position:
+- aseta verho garage 86
+area/garage_lights::garage_lights_change_brightness:
+- aseta valo garage 16
+area/garage_lights::garage_lights_change_color:
+- aseta valo garage sininen
+area/garage_lights::garage_lights_turn_off:
+- sammuta valo garage
+area/garage_lights::garage_lights_turn_on:
+- sytyta valo garage
+area/garage_locks::garage_locks_lock:
+- lukko lukko garage
+area/garage_locks::garage_locks_unlock:
+- avaa lukko garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- aseta valo eteinen 26 ja aseta valo wc 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- aseta valo eteinen violetti ja aseta valo wc violetti
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- sammuta valo eteinen ja sammuta valo wc
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- sytyta valo eteinen ja sytyta valo wc
+area/hallway_lights::hallway_lights_change_brightness:
+- aseta valo eteinen 61
+area/hallway_lights::hallway_lights_change_color:
+- aseta valo eteinen oranssi
+area/hallway_lights::hallway_lights_turn_off:
+- sammuta valo eteinen
+area/hallway_lights::hallway_lights_turn_on:
+- sytyta valo eteinen
+area/kitchen_lights::kitchen_lights_change_brightness:
+- aseta valo keittio 45
+area/kitchen_lights::kitchen_lights_change_color:
+- aseta valo keittio vaaleanpunainen
+area/kitchen_lights::kitchen_lights_turn_off:
+- sammuta valo keittio
+area/kitchen_lights::kitchen_lights_turn_on:
+- sytyta valo keittio
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- sammuta laite keittio
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- sytyta laite keittio
+area/laundry_lights::laundry_lights_change_brightness:
+- aseta valo kodinhoito 62
+area/laundry_lights::laundry_lights_change_color:
+- aseta valo kodinhoito keltainen
+area/laundry_lights::laundry_lights_turn_off:
+- sammuta valo kodinhoito
+area/laundry_lights::laundry_lights_turn_on:
+- sytyta valo kodinhoito
+area/laundry_switchs::laundry_switchs_turn_off:
+- sammuta laite kodinhoito
+area/laundry_switchs::laundry_switchs_turn_on:
+- sytyta laite kodinhoito
+area/living_climates::living_climates_set_temperature:
+- aseta lampo olohuone 20
+area/living_covers::living_covers_close:
+- sulje verho olohuone
+area/living_covers::living_covers_open:
+- avaa verho olohuone
+area/living_covers::living_covers_set_position:
+- aseta verho olohuone 46
+area/living_lights::living_lights_change_brightness:
+- aseta valo olohuone 84
+area/living_lights::living_lights_change_color:
+- aseta valo olohuone sininen
+area/living_lights::living_lights_turn_off:
+- sammuta valo olohuone
+area/living_lights::living_lights_turn_on:
+- sytyta valo olohuone
+area/main_bath_lights::main_bath_lights_change_brightness:
+- aseta valo main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- aseta valo main bath vaaleanpunainen
+area/main_bath_lights::main_bath_lights_turn_off:
+- sammuta valo main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- sytyta valo main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- sammuta laite main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- sytyta laite main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- aseta valo kylpymaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- aseta valo kylpymaster musta
+area/master_bath_lights::master_bath_lights_turn_off:
+- sammuta valo kylpymaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- sytyta valo kylpymaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- sammuta laite kylpymaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- sytyta laite kylpymaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- aseta lampo makuuhuone 20 ja aseta lampo olohuone 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- sulje verho makuuhuone ja sulje verho olohuone
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- avaa verho makuuhuone ja avaa verho olohuone
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- aseta verho makuuhuone 19 ja aseta verho olohuone 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- aseta valo makuuhuone 25 ja aseta valo olohuone 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- aseta valo makuuhuone valkoinen ja aseta valo olohuone valkoinen
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- sammuta valo makuuhuone ja sammuta valo olohuone
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- sytyta valo makuuhuone ja sytyta valo olohuone
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- aseta valo makuuhuone 57 ja aseta valo main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- aseta valo makuuhuone vaaleanpunainen ja aseta valo main bath vaaleanpunainen
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- sammuta valo makuuhuone ja sammuta valo main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- sytyta valo makuuhuone ja sytyta valo main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- aseta lampo makuuhuone 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- sulje verho makuuhuone
+area/master_bedroom_covers::master_bedroom_covers_open:
+- avaa verho makuuhuone
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- aseta verho makuuhuone 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- aseta tuuletin makuuhuone 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- sammuta tuuletin makuuhuone
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- sytyta tuuletin makuuhuone
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- aseta valo makuuhuone 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- aseta valo makuuhuone vaaleanpunainen
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- sammuta valo makuuhuone
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- sytyta valo makuuhuone
+area/powder_room_lights::powder_room_lights_change_brightness:
+- aseta valo wc 52
+area/powder_room_lights::powder_room_lights_change_color:
+- aseta valo wc violetti
+area/powder_room_lights::powder_room_lights_turn_off:
+- sammuta valo wc
+area/powder_room_lights::powder_room_lights_turn_on:
+- sytyta valo wc
+area/spoken_lights::spoken_bedroom_inflection:
+- aseta valo makuuhuone punainen
+area/spoken_lights::spoken_except_island:
+- sammuta kaikki valo paitsi saareke
+area/spoken_lights::spoken_except_kitchen:
+- sammuta kaikki valo paitsi keittio paitsi saareke
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- sammuta valo olohuone ja sammuta valo keittio
+area/spoken_lights::spoken_stt_kitchen_off:
+- sammuta valo keittio
+area/spoken_lights::spoken_stt_living_off:
+- sammuta valo olohuone

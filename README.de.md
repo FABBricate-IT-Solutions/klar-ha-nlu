@@ -4,6 +4,8 @@
 
 ![Klar](https://raw.githubusercontent.com/FABBricate-IT-Solutions/klar-ha-nlu/main/docs/klar-logo-sm.png)
 
+<img src="docs/social-preview.png" alt="Klar NLU" width="640">
+
 </div>
 
 [English](README.md) · [Deutsch](README.de.md)
@@ -15,20 +17,23 @@
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Deterministische Sprachsteuerung für Home Assistant. Klar zerlegt gesprochene Sätze in HA-Intents — ohne Cloud, ohne Modellgewichte.
+Deterministische Sprachsteuerung für Home Assistant. Klar NLU zerlegt gesprochene Sätze in HA-Intents — ohne Cloud, ohne Modellgewichte.
+
+**Haushaltsweg:** [Einstieg](docs/getting-started.md) — HACS → Entitäten freigeben → Assist-Pipeline → fünf Sätze → Zuordnung. Wenn etwas fehlt: [Fehlerbehebung](docs/troubleshooting.md).
 
 **Breaking V2:** HTTP-Parse läuft nur noch über `POST /api/v2/parse` (`schema_version: "2.0"`). Rust-Engine und Home-Assistant-Integration zusammen aktualisieren. `POST /api/parse` entfällt. Vorhandene `klar_nlu.json`-Overlays laden weiter; `klar migrate import --from` prüft Konflikte, Waisen und unsichere Settings, bevor V2 geschrieben wird.
 
-Deutsch und Englisch sind eingebaut und laufen parallel. Weitere Sprachen kommen als Paket dazu, nicht als Sonderfälle in der Engine.
+Jede kompilierte Assist-Locale ist erstklassig. Deutsch und Englisch sind handgeschriebene Referenzpacks und nützliche Beispiele; generierte Packs nutzen denselben Weg. Siehe [Sprachen](docs/languages.md).
 
 ```
 „Licht im Wohnzimmer an“     →  HassTurnOn   area=wohnzimmer  domain=light
 „Set the garage door to 40%“ →  HassSetPosition  cover.garage_door
+„Spiel Queen“ / „Play Queen“ →  Music-Assistant-Suche
 ```
 
-## Was Klar macht
+## Was Klar NLU macht
 
-- Hausbefehle: Licht, Klima, Cover, Schloss, Lüfter, Medien, Timer, Listen, Szenen
+- Hausbefehle: Licht, Klima, Cover, Schloss, Lüfter, Medien (inkl. Music Assistant), Timer, Listen, Szenen
 - Mehrere Klauseln (`Wohnzimmer und Küche`, `mach das Licht aus und die Heizung auf 21`)
 - Rückfragen, wenn ein Gerät nicht eindeutig ist
 - Sitzung: „mach sie aus“ bezieht sich auf das letzte Ziel
@@ -36,7 +41,62 @@ Deutsch und Englisch sind eingebaut und laufen parallel. Weitere Sprachen kommen
 - Optionaler LLM-Fallback in Home Assistant für Smalltalk, sobald Klar keinen Hausbefehl sieht
 - Optionale LLM-Verfeinerung fertiger NLU-Antworten (standardmäßig aus; Gerätesteuerung bleibt bei Klar)
 
-Klar steuert Geräte selbst. Ein LLM redet oder formuliert um — Haus-Intents führt es nicht aus.
+Klar NLU steuert Geräte selbst. Ein LLM redet oder formuliert um — Haus-Intents führt es nicht aus.
+
+## Home Assistant
+
+HACS installiert die Conversation-Integration. Beim Einrichten **Mitgelieferte Engine starten** wählen — die Integration lädt das passende GitHub-Release und startet Klar NLU neben Home Assistant. HACS selbst kann den Rust-Prozess nicht starten.
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
+
+1. Badge klicken, oder in HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als **Integration** hinzufügen
+2. **Klar NLU** herunterladen und Home Assistant neu starten
+3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten** behalten
+4. Geräte freigeben, mit denen ihr sprechen wollt (Einstellungen → Sprachassistenten → Freigeben)
+5. Assist-Pipeline: Conversation-Engine = **Klar NLU**
+6. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen. Dort auch: Persönlichkeit, und **NLU-Antworten vom LLM verfeinern**, wenn der Agent Bestätigungen umformulieren soll
+
+Läuft Klar NLU schon, **Bereits laufende Engine verwenden** wählen und die URL setzen.
+
+Schritt für Schritt mit Beispielsätzen: [docs/getting-started.md](docs/getting-started.md).
+
+### Add-on (Home Assistant OS)
+
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
+
+Einstellungen → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Klar NLU** installieren. Integration mit URL `http://klar-nlu:10520`.
+
+Release Candidates: **Klar NLU (Staging)** aus demselben Repository, URL `http://klar-nlu-staging:10520`. Mitgelieferte Engine: Konfigurieren → **Release-Kanal** → Staging. Siehe [Releases](docs/releases.md).
+
+### Docker
+
+Image-Tag auf die Engine-CalVer pinnen (wie `Cargo.toml` / das GitHub-Release). Aktueller Stand: **2026.8.30**.
+
+```bash
+docker run --rm --network host \
+  -v /pfad/zur/homeassistant/config:/config:ro \
+  ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
+```
+
+Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`, `klar-nlu-armv7`). RC-Images: Tag `staging`.
+
+Manuell: `custom_components/klar_nlu` nach `config/custom_components/klar_nlu` kopieren, dann neu starten.
+
+Ausführlich: [docs/home-assistant.md](docs/home-assistant.md) · [English](docs/en/home-assistant.md)
+
+## Dokumentation
+
+| Thema | English | Deutsch |
+|-------|---------|---------|
+| Einstieg | [docs/en/getting-started.md](docs/en/getting-started.md) | [docs/getting-started.md](docs/getting-started.md) |
+| Fehlerbehebung und Datenschutz | [docs/en/troubleshooting.md](docs/en/troubleshooting.md) | [docs/troubleshooting.md](docs/troubleshooting.md) |
+| Home Assistant | [docs/en/home-assistant.md](docs/en/home-assistant.md) | [docs/home-assistant.md](docs/home-assistant.md) |
+| HTTP- und Wyoming-API | [docs/en/api.md](docs/en/api.md) | [docs/api.md](docs/api.md) |
+| Sprachen | [docs/en/languages.md](docs/en/languages.md) | [docs/languages.md](docs/languages.md) |
+| Architektur | [docs/en/architecture.md](docs/en/architecture.md) | [docs/architecture.md](docs/architecture.md) |
+| Tests | [docs/en/testing.md](docs/en/testing.md) | [docs/testing.md](docs/testing.md) |
+| Releases | [docs/en/releases.md](docs/en/releases.md) | [docs/releases.md](docs/releases.md) |
+| Mitwirken | [CONTRIBUTING.md](CONTRIBUTING.md) | |
 
 ## Aufbau
 
@@ -46,12 +106,12 @@ Die Rust-Engine ist in klare Schichten geteilt:
 - `src/nlu/` rankt Kandidaten und wendet Confidence-, OOD-, Confirm- und Multi-Intent-Policy an.
 - `src/parse/` tokenisiert, erkennt Aktionen, löst Ziele auf und füllt Slots.
 - `src/home/` lädt Home-Assistant-Registries, Overlays, Expose-Daten, Rollen und die eingebaute Musterwohnung.
-- `src/eval/` und `src/migrate/` liefern Held-out-Scorecards und den einmaligen V1-Overlay-Import.
+- `src/eval/` und `src/migrate.rs` liefern Held-out-Scorecards und den einmaligen V1-Overlay-Import.
 - `src/io/` enthält HTTP, Wyoming, gemeinsamen Runtime-State, Token-Handling und Reloads.
 
-Zur Laufzeit baut Klar einen effektiven Home-Graph aus HA-Config und beschreibbarem Datenverzeichnis. Parse-API und Wyoming-Server teilen diesen Graphen und denselben Session-Store, deshalb verhalten sich Follow-ups auf beiden Schnittstellen gleich.
+Zur Laufzeit baut Klar NLU einen effektiven Home-Graph aus HA-Config und beschreibbarem Datenverzeichnis. Parse-API und Wyoming-Server teilen diesen Graphen und denselben Session-Store, deshalb verhalten sich Follow-ups auf beiden Schnittstellen gleich.
 
-## Schnellstart
+## Schnellstart (aus dem Quellcode)
 
 Rust 1.85+, dann:
 
@@ -59,14 +119,14 @@ Rust 1.85+, dann:
 cargo run --release -- --config-dir /pfad/zur/ha-config --http 0.0.0.0:10520 --wyoming 0.0.0.0:10500
 ```
 
-Ohne HA-Config nutzt Klar eine eingebaute Musterwohnung.
+Ohne HA-Config nutzt Klar NLU eine eingebaute Musterwohnung.
 
 | Port  | Dienst              |
 |-------|---------------------|
 | 10520 | Web-UI und Parse-API |
 | 10500 | Wyoming Intent      |
 
-UI: <http://127.0.0.1:10520>
+UI: <http://127.0.0.1:10520> — React-Operator-UI (Home, Gespräche, Regeln, Haus / Zuordnung, Labor, Einstellungen).
 
 Nützliche Checks bei der Entwicklung:
 
@@ -79,50 +139,7 @@ cargo run --quiet -- eval bench --repeat 8
 cargo build --release
 ```
 
-## Home Assistant
-
-HACS installiert die Conversation-Integration. Beim Einrichten **Mitgelieferte Engine starten** wählen — die Integration lädt das passende GitHub-Release und startet Klar neben Home Assistant. HACS selbst kann den Rust-Prozess nicht starten.
-
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
-
-1. Badge klicken, oder in HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als **Integration** hinzufügen
-2. **Klar NLU** herunterladen und Home Assistant neu starten
-3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten** behalten
-4. Assist-Pipeline: Conversation-Engine = **Klar NLU**
-5. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen. Dort auch: Persönlichkeit, und **NLU-Antworten vom LLM verfeinern**, wenn der Agent Bestätigungen umformulieren soll
-
-Läuft Klar schon, **Bereits laufende Engine verwenden** wählen und die URL setzen.
-
-### Add-on (Home Assistant OS)
-
-[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
-
-Einstellungen → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Klar NLU** installieren. Integration mit URL `http://klar-nlu:10520`.
-
-### Docker
-
-```bash
-docker run --rm --network host \
-  -v /pfad/zur/homeassistant/config:/config:ro \
-  ghcr.io/fabbricate-it-solutions/klar-nlu:0.1.0
-```
-
-Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`, `klar-nlu-armv7`).
-
-Manuell: `custom_components/klar_nlu` nach `config/custom_components/klar_nlu` kopieren, dann neu starten.
-
-Ausführlich: [docs/home-assistant.md](docs/home-assistant.md) · [English](docs/en/home-assistant.md)
-
-## Dokumentation
-
-| Thema | English | Deutsch |
-|-------|---------|---------|
-| Architektur | [docs/en/architecture.md](docs/en/architecture.md) | [docs/architecture.md](docs/architecture.md) |
-| HTTP- und Wyoming-API | [docs/en/api.md](docs/en/api.md) | [docs/api.md](docs/api.md) |
-| Home Assistant | [docs/en/home-assistant.md](docs/en/home-assistant.md) | [docs/home-assistant.md](docs/home-assistant.md) |
-| Sprachen erweitern | [docs/en/languages.md](docs/en/languages.md) | [docs/languages.md](docs/languages.md) |
-| Tests | [docs/en/testing.md](docs/en/testing.md) | [docs/testing.md](docs/testing.md) |
-| Releases | [docs/en/releases.md](docs/en/releases.md) | [docs/releases.md](docs/releases.md) |
+`scripts/lang_packs/generate.py` nicht im Pre-Commit ausführen. Siehe [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Releases
 

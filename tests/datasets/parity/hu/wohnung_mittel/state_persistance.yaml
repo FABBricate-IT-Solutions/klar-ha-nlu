@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - kapcsold futes nappali
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - kapcsold villany nappali
+  - oltsd
+state_persistance/spoken::kugel_dann_aus:
+- - kapcsold gomb
+  - oltsd
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - kapcsold villany nappali
+  - kapcsold villany konyha
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - kapcsold villany nappali
+  - red

@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- skru timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- skru timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- skru timer abstract
+timers/timers::cancel_all_timers:
+- slaa alle timer
+timers/timers::timer_laundry_cancel:
+- skru timer laundry
+timers/timers::timer_laundry_decrease:
+- skru timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- skru timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- slaa timer laundry
+timers/timers::timer_laundry_start:
+- skru timer laundry
+timers/timers::timer_laundry_status:
+- hva timer laundry
+timers/timers::timer_laundry_unpause:
+- skru timer laundry
+timers/timers::timer_oven_cancel:
+- skru timer oven
+timers/timers::timer_oven_decrease:
+- skru timer oven 44 min
+timers/timers::timer_oven_increase:
+- skru timer oven 30 min
+timers/timers::timer_oven_pause:
+- slaa timer oven
+timers/timers::timer_oven_start:
+- skru timer oven 2 min
+timers/timers::timer_oven_status:
+- hva timer oven
+timers/timers::timer_oven_unpause:
+- skru timer oven

@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- bandkar parda bedroom2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- kholh parda bedroom2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- set parda bedroom2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- set pakha bedroom2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- band pakha bedroom2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- chalu pakha bedroom2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- set roshni bedroom2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- set roshni bedroom2 pink
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- band roshni bedroom2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- chalu roshni bedroom2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- bandkar parda bedroom3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- kholh parda bedroom3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- set parda bedroom3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- set roshni bedroom3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- set roshni bedroom3 blue
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- band roshni bedroom3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- chalu roshni bedroom3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- set roshni bedroom4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- set roshni bedroom4 green
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- band roshni bedroom4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- chalu roshni bedroom4
+area/dining_lights::dining_lights_change_brightness:
+- set roshni vithak 54
+area/dining_lights::dining_lights_change_color:
+- set roshni vithak blue
+area/dining_lights::dining_lights_turn_off:
+- band roshni vithak
+area/dining_lights::dining_lights_turn_on:
+- chalu roshni vithak
+area/entryway_lights::entryway_lights_change_brightness:
+- set roshni dakhla 72
+area/entryway_lights::entryway_lights_change_color:
+- set roshni dakhla black
+area/entryway_lights::entryway_lights_turn_off:
+- band roshni dakhla
+area/entryway_lights::entryway_lights_turn_on:
+- chalu roshni dakhla
+area/entryway_locks::entryway_locks_lock:
+- tala tala dakhla
+area/entryway_locks::entryway_locks_unlock:
+- kholh tala dakhla
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- set roshni parivarak 39 ate set roshni rasoi 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- set roshni parivarak purple ate set roshni rasoi purple
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- band roshni parivarak ate band roshni rasoi
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- chalu roshni parivarak ate chalu roshni rasoi
+area/family_room_fans::family_room_fans_set_fan_speed:
+- set pakha parivarak 32
+area/family_room_fans::family_room_fans_turn_off:
+- band pakha parivarak
+area/family_room_fans::family_room_fans_turn_on:
+- chalu pakha parivarak
+area/family_room_lights::family_room_lights_change_brightness:
+- set roshni parivarak 44
+area/family_room_lights::family_room_lights_change_color:
+- set roshni parivarak green
+area/family_room_lights::family_room_lights_turn_off:
+- band roshni parivarak
+area/family_room_lights::family_room_lights_turn_on:
+- chalu roshni parivarak
+area/garage_covers::garage_covers_close:
+- bandkar parda garage
+area/garage_covers::garage_covers_open:
+- kholh parda garage
+area/garage_covers::garage_covers_set_position:
+- set parda garage 86
+area/garage_lights::garage_lights_change_brightness:
+- set roshni garage 16
+area/garage_lights::garage_lights_change_color:
+- set roshni garage blue
+area/garage_lights::garage_lights_turn_off:
+- band roshni garage
+area/garage_lights::garage_lights_turn_on:
+- chalu roshni garage
+area/garage_locks::garage_locks_lock:
+- tala tala garage
+area/garage_locks::garage_locks_unlock:
+- kholh tala garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- set roshni dakhla 26 ate set roshni toilet 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- set roshni dakhla purple ate set roshni toilet purple
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- band roshni dakhla ate band roshni toilet
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- chalu roshni dakhla ate chalu roshni toilet
+area/hallway_lights::hallway_lights_change_brightness:
+- set roshni dakhla 61
+area/hallway_lights::hallway_lights_change_color:
+- set roshni dakhla orange
+area/hallway_lights::hallway_lights_turn_off:
+- band roshni dakhla
+area/hallway_lights::hallway_lights_turn_on:
+- chalu roshni dakhla
+area/kitchen_lights::kitchen_lights_change_brightness:
+- set roshni rasoi 45
+area/kitchen_lights::kitchen_lights_change_color:
+- set roshni rasoi pink
+area/kitchen_lights::kitchen_lights_turn_off:
+- band roshni rasoi
+area/kitchen_lights::kitchen_lights_turn_on:
+- chalu roshni rasoi
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- band upkaran rasoi
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- chalu upkaran rasoi
+area/laundry_lights::laundry_lights_change_brightness:
+- set roshni dhon 62
+area/laundry_lights::laundry_lights_change_color:
+- set roshni dhon yellow
+area/laundry_lights::laundry_lights_turn_off:
+- band roshni dhon
+area/laundry_lights::laundry_lights_turn_on:
+- chalu roshni dhon
+area/laundry_switchs::laundry_switchs_turn_off:
+- band upkaran dhon
+area/laundry_switchs::laundry_switchs_turn_on:
+- chalu upkaran dhon
+area/living_climates::living_climates_set_temperature:
+- set garmi vithak 20
+area/living_covers::living_covers_close:
+- bandkar parda vithak
+area/living_covers::living_covers_open:
+- kholh parda vithak
+area/living_covers::living_covers_set_position:
+- set parda vithak 46
+area/living_lights::living_lights_change_brightness:
+- set roshni vithak 84
+area/living_lights::living_lights_change_color:
+- set roshni vithak blue
+area/living_lights::living_lights_turn_off:
+- band roshni vithak
+area/living_lights::living_lights_turn_on:
+- chalu roshni vithak
+area/main_bath_lights::main_bath_lights_change_brightness:
+- set roshni main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- set roshni main bath pink
+area/main_bath_lights::main_bath_lights_turn_off:
+- band roshni main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- chalu roshni main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- band upkaran main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- chalu upkaran main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- set roshni masterbath 60
+area/master_bath_lights::master_bath_lights_change_color:
+- set roshni masterbath black
+area/master_bath_lights::master_bath_lights_turn_off:
+- band roshni masterbath
+area/master_bath_lights::master_bath_lights_turn_on:
+- chalu roshni masterbath
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- band upkaran masterbath
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- chalu upkaran masterbath
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- set garmi bedroom 20 ate set garmi vithak 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- bandkar parda bedroom ate bandkar parda vithak
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- kholh parda bedroom ate kholh parda vithak
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- set parda bedroom 19 ate set parda vithak 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- set roshni bedroom 25 ate set roshni vithak 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- set roshni bedroom white ate set roshni vithak white
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- band roshni bedroom ate band roshni vithak
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- chalu roshni bedroom ate chalu roshni vithak
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- set roshni bedroom 57 ate set roshni main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- set roshni bedroom pink ate set roshni main bath pink
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- band roshni bedroom ate band roshni main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- chalu roshni bedroom ate chalu roshni main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- set garmi bedroom 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- bandkar parda bedroom
+area/master_bedroom_covers::master_bedroom_covers_open:
+- kholh parda bedroom
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- set parda bedroom 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- set pakha bedroom 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- band pakha bedroom
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- chalu pakha bedroom
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- set roshni bedroom 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- set roshni bedroom pink
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- band roshni bedroom
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- chalu roshni bedroom
+area/powder_room_lights::powder_room_lights_change_brightness:
+- set roshni toilet 52
+area/powder_room_lights::powder_room_lights_change_color:
+- set roshni toilet purple
+area/powder_room_lights::powder_room_lights_turn_off:
+- band roshni toilet
+area/powder_room_lights::powder_room_lights_turn_on:
+- chalu roshni toilet
+area/spoken_lights::spoken_bedroom_inflection:
+- set roshni bedroom red
+area/spoken_lights::spoken_except_island:
+- band sabh roshni ilava tapu
+area/spoken_lights::spoken_except_kitchen:
+- band sabh roshni ilava rasoi ilava tapu
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- band roshni vithak ate band roshni rasoi
+area/spoken_lights::spoken_stt_kitchen_off:
+- band roshni rasoi
+area/spoken_lights::spoken_stt_living_off:
+- band roshni vithak

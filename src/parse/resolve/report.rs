@@ -3,6 +3,7 @@ use super::{entity_name_is_mentioned, resolve, token_hit, Resolved};
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::home::roles::matches_domain;
+use crate::lang::catalog;
 use crate::types::HomeGraph;
 
 #[derive(Debug, Clone)]
@@ -27,7 +28,7 @@ pub(crate) fn resolve_scored(tokens: &[String], home: &HomeGraph, domain: Option
         .entities
         .iter()
         .filter(|entity| assist_visible(entity, home) && !is_infra(entity))
-        .filter(|entity| domain.is_none_or(|wanted| matches_domain(entity, wanted)))
+        .filter(|entity| domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog())))
         .filter_map(|entity| {
             score_entity(tokens, &fuzzy, entity, home).map(|score| ResolveEvidence {
                 target: entity.entity_id.clone(),

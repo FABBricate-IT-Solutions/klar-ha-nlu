@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - какво завеса спалня2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - какво таван спалня2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - какво завеса спалня3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - какво таван спалня3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - какво таван спалня4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - какво светлина хол
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - какво светлина антре
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - какво таван дневнаfam
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - какво завеса garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - какво светлина garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - какво светлина антре и какво светлина тоалетна
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - какво светлина антре
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - какво светлина кухня
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - какво светлина пералня
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - какво парно хол
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - какво завеса хол
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - какво светлина хол
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - какво светлина main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - какво светлина баняmaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - какво парно спалня и какво парно хол
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - какво завеса спалня и какво завеса хол
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - какво парно спалня
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - какво завеса спалня
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - какво светлина тоалетна
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - какво завеса garage
+  - затвори
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - какво завеса garage
+  - отвори
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - какво завеса garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - какво завеса хол
+  - затвори
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - какво завеса хол
+  - отвори
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - какво завеса хол
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - какво вентилатор дневнаfam
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - какво вентилатор дневнаfam
+  - изключи
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - какво вентилатор дневнаfam
+  - включи
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - какво светлина антре
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - какво светлина антре
+  - изключи
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - какво светлина антре
+  - включи
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - какво ключалка антре
+  - ключалка
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - какво ключалка антре
+  - отвори
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - какво ключалка garage
+  - ключалка
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - какво ключалка garage
+  - отвори
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - какво телевизор дневнаfam
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - какво телевизор дневнаfam
+  - изключи
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - какво телевизор дневнаfam
+  - включи
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - какво телевизор хол
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - какво телевизор хол
+  - изключи
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - какво телевизор хол
+  - включи

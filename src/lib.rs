@@ -1,3 +1,5 @@
+#![forbid(unsafe_code)]
+
 pub mod eval;
 pub mod home;
 pub mod io;

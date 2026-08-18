@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- tsukete taimaa abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- tsukete taimaa abstract 20 min
+timers/timers::abstract_start_seconds:
+- tsukete taimaa abstract
+timers/timers::cancel_all_timers:
+- keshite 全部 taimaa
+timers/timers::timer_laundry_cancel:
+- tsukete taimaa laundry
+timers/timers::timer_laundry_decrease:
+- tsukete taimaa laundry 5 min
+timers/timers::timer_laundry_increase:
+- tsukete taimaa laundry 16 min
+timers/timers::timer_laundry_pause:
+- keshite taimaa laundry
+timers/timers::timer_laundry_start:
+- tsukete taimaa laundry
+timers/timers::timer_laundry_status:
+- nani taimaa laundry
+timers/timers::timer_laundry_unpause:
+- tsukete taimaa laundry
+timers/timers::timer_oven_cancel:
+- tsukete taimaa oven
+timers/timers::timer_oven_decrease:
+- tsukete taimaa oven 44 min
+timers/timers::timer_oven_increase:
+- tsukete taimaa oven 30 min
+timers/timers::timer_oven_pause:
+- keshite taimaa oven
+timers/timers::timer_oven_start:
+- tsukete taimaa oven 2 min
+timers/timers::timer_oven_status:
+- nani taimaa oven
+timers/timers::timer_oven_unpause:
+- tsukete taimaa oven

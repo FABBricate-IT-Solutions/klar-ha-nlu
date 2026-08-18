@@ -1,0 +1,504 @@
+name: Full Home ur
+language: ur
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: نیچے
+  level: 0
+  aliases:
+  - نیچے
+  - زمین
+- id: upper
+  name: اوپر
+  level: 1
+  aliases:
+  - اوپر
+  - منزل
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: داخلہ
+  floor: ground
+  aliases:
+  - داخلہ
+- id: living
+  name: لانج
+  floor: ground
+  aliases:
+  - لانج
+- id: dining
+  name: خاندانیess
+  floor: ground
+  aliases:
+  - خاندانیess
+- id: kitchen
+  name: باورچی
+  floor: ground
+  aliases:
+  - باورچی
+- id: family_room
+  name: خاندانی
+  floor: ground
+  aliases:
+  - خاندانی
+- id: laundry
+  name: لانڈری
+  floor: ground
+  aliases:
+  - لانڈری
+- id: powder_room
+  name: غسلخانہ
+  floor: ground
+  aliases:
+  - غسلخانہ
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Bedroom
+  floor: upper
+  aliases:
+  - bedroom
+- id: bedroom_2
+  name: Bedroom2
+  floor: upper
+  aliases:
+  - bedroom2
+- id: bedroom_3
+  name: Bedroom3
+  floor: upper
+  aliases:
+  - bedroom3
+- id: bedroom_4
+  name: Bedroom4
+  floor: upper
+  aliases:
+  - bedroom4
+- id: master_bath
+  name: ماسٹرباتھ
+  floor: upper
+  aliases:
+  - ماسٹرباتھ
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: داخلہ روشنی
+  aliases:
+  - داخلہ روشنی
+  - روشنی
+- id: light.living_ceiling
+  area_id: living
+  name: لانج چھت
+  aliases:
+  - لانج چھت
+  - چھت
+- id: light.living_lamp
+  area_id: living
+  name: لانج روشنی
+  aliases:
+  - لانج روشنی
+  - روشنی
+- id: light.dining_pendant
+  area_id: dining
+  name: خاندانیess روشنی
+  aliases:
+  - خاندانیess روشنی
+  - روشنی
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: باورچی چھت
+  aliases:
+  - باورچی چھت
+  - چھت
+- id: light.kitchen_island
+  area_id: kitchen
+  name: باورچی جزیرہ
+  aliases:
+  - باورچی جزیرہ
+  - جزیرہ
+- id: light.family_ceiling
+  area_id: family_room
+  name: خاندانی چھت
+  aliases:
+  - خاندانی چھت
+  - چھت
+- id: light.laundry_light
+  area_id: laundry
+  name: لانڈری روشنی
+  aliases:
+  - لانڈری روشنی
+  - روشنی
+- id: light.powder_room_light
+  area_id: powder_room
+  name: غسلخانہ روشنی
+  aliases:
+  - غسلخانہ روشنی
+  - روشنی
+- id: light.garage_light
+  area_id: garage
+  name: garage روشنی
+  aliases:
+  - garage روشنی
+  - روشنی
+- id: light.office_ceiling
+  area_id: office
+  name: office چھت
+  aliases:
+  - office چھت
+  - چھت
+- id: light.garden
+  area_id: garden
+  name: garden روشنی
+  aliases:
+  - garden روشنی
+  - روشنی
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: bedroom چھت
+  aliases:
+  - bedroom چھت
+  - چھت
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: bedroom ensuite
+  aliases:
+  - bedroom ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: bedroom left بسترکنار
+  aliases:
+  - bedroom left بسترکنار
+  - بسترکنار
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: bedroom right بسترکنار
+  aliases:
+  - bedroom right بسترکنار
+  - بسترکنار
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: bedroom2 چھت
+  aliases:
+  - bedroom2 چھت
+  - چھت
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: bedroom3 چھت
+  aliases:
+  - bedroom3 چھت
+  - چھت
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: bedroom4 چھت
+  aliases:
+  - bedroom4 چھت
+  - چھت
+- id: light.master_bath_light
+  area_id: master_bath
+  name: ماسٹرباتھ روشنی
+  aliases:
+  - ماسٹرباتھ روشنی
+  - روشنی
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath روشنی
+  aliases:
+  - main bath روشنی
+  - روشنی
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway روشنی
+  aliases:
+  - hallway روشنی
+  - روشنی
+- id: light.basement
+  area_id: basement
+  name: basement روشنی
+  aliases:
+  - basement روشنی
+  - روشنی
+- id: cover.living_blinds
+  area_id: living
+  name: لانج پردہ
+  aliases:
+  - لانج پردہ
+  - پردہ
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: bedroom پردہ
+  aliases:
+  - bedroom پردہ
+  - پردہ
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: bedroom2 پردہ
+  aliases:
+  - bedroom2 پردہ
+  - پردہ
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: bedroom3 پردہ
+  aliases:
+  - bedroom3 پردہ
+  - پردہ
+- id: cover.garage_door
+  area_id: garage
+  name: garage پردہ
+  aliases:
+  - garage پردہ
+  - پردہ
+- id: climate.ground_thermostat
+  area_id: living
+  name: لانج گرمی
+  aliases:
+  - لانج گرمی
+  - گرمی
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: bedroom گرمی
+  aliases:
+  - bedroom گرمی
+  - گرمی
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: درجہ bedroom
+  aliases:
+  - درجہ bedroom
+  - درجہ
+  - ac
+  tags:
+  - درجہ
+- id: fan.family_fan
+  area_id: family_room
+  name: خاندانی پنکھا
+  aliases:
+  - خاندانی پنکھا
+  - پنکھا
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: bedroom پنکھا
+  aliases:
+  - bedroom پنکھا
+  - پنکھا
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: bedroom2 پنکھا
+  aliases:
+  - bedroom2 پنکھا
+  - پنکھا
+- id: lock.front_door
+  area_id: entryway
+  name: front دروازہ
+  aliases:
+  - front دروازہ
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage دروازہ
+  aliases:
+  - garage دروازہ
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: باورچی برتن
+  aliases:
+  - باورچی برتن
+  - برتن
+- id: switch.rangehood
+  area_id: kitchen
+  name: باورچی rangehood
+  aliases:
+  - باورچی rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: لانڈری واشنگ
+  aliases:
+  - لانڈری واشنگ
+  - واشنگ
+  - washer
+  tags:
+  - washer
+  - واشنگ
+- id: switch.dryer
+  area_id: laundry
+  name: لانڈری dryer
+  aliases:
+  - لانڈری dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: ماسٹرباتھ پنکھاbad
+  aliases:
+  - ماسٹرباتھ پنکھاbad
+  - پنکھاbad
+  tags:
+  - پنکھاbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath پنکھاbad
+  aliases:
+  - main bath پنکھاbad
+  - پنکھاbad
+  tags:
+  - پنکھاbad
+- id: media_player.living_tv
+  area_id: living
+  name: لانج ٹی وی
+  aliases:
+  - لانج ٹی وی
+  - ٹی وی
+- id: media_player.family_tv
+  area_id: family_room
+  name: خاندانی ٹی وی
+  aliases:
+  - خاندانی ٹی وی
+  - ٹی وی
+- id: media_player.living_music
+  area_id: living
+  name: لانج ٹی وی
+  aliases:
+  - لانج ٹی وی
+  - ٹی وی
+  platform: music_assistant
+  tags:
+  - ٹی وی
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: باورچی ٹی وی
+  aliases:
+  - باورچی ٹی وی
+  - ٹی وی
+  platform: music_assistant
+  tags:
+  - ٹی وی
+- id: media_player.office_music
+  area_id: office
+  name: office ٹی وی
+  aliases:
+  - office ٹی وی
+  - ٹی وی
+  platform: music_assistant
+  tags:
+  - ٹی وی
+- id: vacuum.robot
+  area_id: living
+  name: لانج جھاڑو
+  aliases:
+  - لانج جھاڑو
+  - جھاڑو
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: داخلہ doorsensor
+  aliases:
+  - داخلہ doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: لانج windowsensor
+  aliases:
+  - لانج windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: باورچی motion
+  aliases:
+  - باورچی motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: لانج tempsensor
+  aliases:
+  - لانج tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: لانج humidity
+  aliases:
+  - لانج humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: فلم
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: رات
+- id: leaving_home
+  name: خروج
+timers:
+- id: oven
+  name: oven ٹائمر
+- id: laundry
+  name: laundry ٹائمر
+- id: abstract
+  name: abstract ٹائمر
+lists:
+- id: shopping
+  name: فہرست

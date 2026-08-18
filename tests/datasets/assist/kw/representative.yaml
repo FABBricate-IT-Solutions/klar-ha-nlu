@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - enow golow stafell
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - diffyg golow kegin
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

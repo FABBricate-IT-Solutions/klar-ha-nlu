@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- was store schlafzimmer2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- was store schlafzimmer2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- was store schlafzimmer2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- was store schlafzimmer2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- was ventilator schlafzimmer2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- was ventilator schlafzimmer2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- was ventilator schlafzimmer2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- was ventilator schlafzimmer2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- was liecht schlafzimmer2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- was liecht schlafzimmer2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- was liecht schlafzimmer2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- was liecht schlafzimmer2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- was store schlafzimmer3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- was store schlafzimmer3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- was store schlafzimmer3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- was store schlafzimmer3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- was liecht schlafzimmer3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- was liecht schlafzimmer3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- was liecht schlafzimmer3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- was liecht schlafzimmer3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- was liecht schlafzimmer4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- was liecht schlafzimmer4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- was liecht schlafzimmer4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- was liecht schlafzimmer4
+query_area/dining_lights::dining_lights_get_brightness:
+- was liecht stubeess
+query_area/dining_lights::dining_lights_get_state:
+- was liecht stubeess
+query_area/dining_lights::dining_lights_list_off_lights:
+- was liecht stubeess
+query_area/dining_lights::dining_lights_list_on_lights:
+- was liecht stubeess
+query_area/entryway_lights::entryway_lights_get_brightness:
+- was liecht eingang
+query_area/entryway_lights::entryway_lights_get_state:
+- was liecht eingang
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- was liecht eingang
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- was liecht eingang
+query_area/entryway_locks::entryway_locks_get_state:
+- was schloss eingang
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- was schloss eingang
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- was schloss eingang
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- was liecht stube und was liecht chuchi
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- was liecht stube und was liecht chuchi
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- was liecht stube und was liecht chuchi
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- was liecht stube und was liecht chuchi
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- was ventilator stube
+query_area/family_room_fans::family_room_fans_get_state:
+- was ventilator stube
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- was ventilator stube
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- was ventilator stube
+query_area/family_room_lights::family_room_lights_get_brightness:
+- was liecht stube
+query_area/family_room_lights::family_room_lights_get_state:
+- was liecht stube
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- was liecht stube
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- was liecht stube
+query_area/garage_covers::garage_covers_get_position:
+- was store garage
+query_area/garage_covers::garage_covers_get_state:
+- was store garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- was store garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- was store garage
+query_area/garage_lights::garage_lights_get_brightness:
+- was liecht garage
+query_area/garage_lights::garage_lights_get_state:
+- was liecht garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- was liecht garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- was liecht garage
+query_area/garage_locks::garage_locks_get_state:
+- was schloss garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- was schloss garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- was schloss garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- was liecht einganggang und was liecht toilette
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- was liecht einganggang und was liecht toilette
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- was liecht einganggang und was liecht toilette
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- was liecht einganggang und was liecht toilette
+query_area/hallway_lights::hallway_lights_get_brightness:
+- was liecht einganggang
+query_area/hallway_lights::hallway_lights_get_state:
+- was liecht einganggang
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- was liecht einganggang
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- was liecht einganggang
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- was liecht chuchi
+query_area/kitchen_lights::kitchen_lights_get_state:
+- was liecht chuchi
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- was liecht chuchi
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- was liecht chuchi
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- was geraet chuchi
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- was geraet chuchi
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- was geraet chuchi
+query_area/laundry_lights::laundry_lights_get_brightness:
+- was liecht waschruum
+query_area/laundry_lights::laundry_lights_get_state:
+- was liecht waschruum
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- was liecht waschruum
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- was liecht waschruum
+query_area/laundry_switchs::laundry_switchs_get_state:
+- was geraet waschruum
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- was geraet waschruum
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- was geraet waschruum
+query_area/living_climates::living_climates_get_temperature:
+- was heizig wohnzimmer
+query_area/living_covers::living_covers_get_position:
+- was store wohnzimmer
+query_area/living_covers::living_covers_get_state:
+- was store wohnzimmer
+query_area/living_covers::living_covers_list_closed_covers:
+- was store wohnzimmer
+query_area/living_covers::living_covers_list_open_covers:
+- was store wohnzimmer
+query_area/living_lights::living_lights_get_brightness:
+- was liecht wohnzimmer
+query_area/living_lights::living_lights_get_state:
+- was liecht wohnzimmer
+query_area/living_lights::living_lights_list_off_lights:
+- was liecht wohnzimmer
+query_area/living_lights::living_lights_list_on_lights:
+- was liecht wohnzimmer
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- was liecht badmastermain
+query_area/main_bath_lights::main_bath_lights_get_state:
+- was liecht badmastermain
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- was liecht badmastermain
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- was liecht badmastermain
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- was geraet badmastermain
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- was geraet badmastermain
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- was geraet badmastermain
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- was liecht badmaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- was liecht badmaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- was liecht badmaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- was liecht badmaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- was geraet badmaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- was geraet badmaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- was geraet badmaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- was store schlafzimmer und was store wohnzimmer
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- was store schlafzimmer und was store wohnzimmer
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- was store schlafzimmer und was store wohnzimmer
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- was store schlafzimmer und was store wohnzimmer
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- was heizig schlafzimmer
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- was store schlafzimmer
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- was store schlafzimmer
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- was store schlafzimmer
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- was store schlafzimmer
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- was ventilator schlafzimmer
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- was ventilator schlafzimmer
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- was ventilator schlafzimmer
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- was ventilator schlafzimmer
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- was liecht schlafzimmer
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- was liecht schlafzimmer
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- was liecht schlafzimmer
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- was liecht schlafzimmer
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- was liecht toilette
+query_area/powder_room_lights::powder_room_lights_get_state:
+- was liecht toilette
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- was liecht toilette
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- was liecht toilette

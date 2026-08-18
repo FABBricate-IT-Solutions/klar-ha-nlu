@@ -1,0 +1,26 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- loesch alli liecht ausser schlafzimmer ausser chuchi
+multiple_intents/multi::licht_und_heizung:
+- mach liecht wohnzimmer und stell heizig wohnzimmer 23
+multiple_intents/multi::wohn_und_ess_aus:
+- loesch liecht wohnzimmer und loesch liecht stubeess
+multiple_intents/multi::wohn_und_ess_rot:
+- stell liecht wohnzimmer rot und stell liecht stubeess rot
+multiple_intents/multi::wz_und_kuche_licht:
+- mach liecht wohnzimmer und mach liecht chuchi
+multiple_intents/multi::zwei_raeume_und_heizung:
+- mach liecht wohnzimmer und mach liecht chuchi und stell heizig wohnzimmer 23
+multiple_intents/spoken::drei_raeume_an:
+- mach liecht wohnzimmer und mach liecht stubeess und mach liecht chuchi
+multiple_intents/spoken::drei_raeume_aus:
+- loesch liecht wohnzimmer und loesch liecht stubeess und loesch liecht chuchi
+multiple_intents/spoken::ess_und_wohn_aus:
+- loesch liecht wohnzimmer und loesch liecht stubeess
+multiple_intents/spoken::kugel_und_decke_aus:
+- loesch kugel und loesch decke
+multiple_intents/spoken_more::kuche_und_ess_an:
+- mach liecht chuchi und mach liecht stubeess
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- loesch liecht wohnzimmer und loesch liecht stubeess
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- loesch liecht wohnzimmer

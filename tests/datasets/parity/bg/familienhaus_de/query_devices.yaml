@@ -1,0 +1,132 @@
+query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
+- какво светлина антре
+query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
+- какво парно хол
+query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
+- какво парно спалня
+query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
+- какво завеса спалня2
+query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
+- какво завеса спалня2
+query_devices/cover_bedroom3_blinds::cover_bedroom3_blinds_get_position:
+- какво завеса спалня3
+query_devices/cover_bedroom3_blinds::cover_bedroom3_blinds_get_status:
+- какво завеса спалня3
+query_devices/cover_garage_door::cover_garage_door_get_position:
+- какво завеса garage
+query_devices/cover_garage_door::cover_garage_door_get_status:
+- какво завеса garage
+query_devices/cover_living_blinds::cover_living_blinds_get_position:
+- какво завеса хол
+query_devices/cover_living_blinds::cover_living_blinds_get_status:
+- какво завеса хол
+query_devices/cover_master_blinds::cover_master_blinds_get_position:
+- какво завеса спалня
+query_devices/cover_master_blinds::cover_master_blinds_get_status:
+- какво завеса спалня
+query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
+- какво вентилатор спалня2
+query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
+- какво вентилатор спалня2
+query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
+- какво вентилатор дневнаfam
+query_devices/fan_family_fan::fan_family_fan_get_status:
+- какво вентилатор дневнаfam
+query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
+- какво вентилатор спалня
+query_devices/fan_master_fan::fan_master_fan_get_status:
+- какво вентилатор спалня
+query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
+- какво таван спалня2
+query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
+- какво таван спалня2
+query_devices/light_bedroom3_ceiling::light_bedroom3_ceiling_get_brightness:
+- какво таван спалня3
+query_devices/light_bedroom3_ceiling::light_bedroom3_ceiling_get_status:
+- какво таван спалня3
+query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_brightness:
+- какво таван спалня4
+query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_status:
+- какво таван спалня4
+query_devices/light_dining_pendant::light_dining_pendant_get_brightness:
+- какво светлина хол
+query_devices/light_dining_pendant::light_dining_pendant_get_status:
+- какво светлина хол
+query_devices/light_entryway_light::light_entryway_light_get_brightness:
+- какво светлина антре
+query_devices/light_entryway_light::light_entryway_light_get_status:
+- какво светлина антре
+query_devices/light_family_ceiling::light_family_ceiling_get_brightness:
+- какво таван дневнаfam
+query_devices/light_family_ceiling::light_family_ceiling_get_status:
+- какво таван дневнаfam
+query_devices/light_garage_light::light_garage_light_get_brightness:
+- какво светлина garage
+query_devices/light_garage_light::light_garage_light_get_status:
+- какво светлина garage
+query_devices/light_hallway_light::light_hallway_light_get_brightness:
+- какво светлина антре
+query_devices/light_hallway_light::light_hallway_light_get_status:
+- какво светлина антре
+query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
+- какво таван кухня
+query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
+- какво таван кухня
+query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
+- какво светлина кухня
+query_devices/light_kitchen_island::light_kitchen_island_get_status:
+- какво светлина кухня
+query_devices/light_laundry_light::light_laundry_light_get_brightness:
+- какво светлина пералня
+query_devices/light_laundry_light::light_laundry_light_get_status:
+- какво светлина пералня
+query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
+- какво таван хол
+query_devices/light_living_ceiling::light_living_ceiling_get_status:
+- какво таван хол
+query_devices/light_living_lamp::light_living_lamp_get_brightness:
+- какво светлина хол
+query_devices/light_living_lamp::light_living_lamp_get_status:
+- какво светлина хол
+query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
+- какво светлина main bath
+query_devices/light_main_bath_light::light_main_bath_light_get_status:
+- какво светлина main bath
+query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
+- какво светлина баняmaster
+query_devices/light_master_bath_light::light_master_bath_light_get_status:
+- какво светлина баняmaster
+query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
+- какво нощно спалня
+query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
+- какво нощно спалня
+query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
+- какво нощно спалня
+query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
+- какво нощно спалня
+query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
+- какво таван спалня
+query_devices/light_master_ceiling::light_master_ceiling_get_status:
+- какво таван спалня
+query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
+- какво светлина спалня
+query_devices/light_master_ensuite::light_master_ensuite_get_status:
+- какво светлина спалня
+query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
+- какво светлина тоалетна
+query_devices/light_powder_room_light::light_powder_room_light_get_status:
+- какво светлина тоалетна
+query_devices/lock_front_door::lock_front_door_get_status:
+- какво ключалка антре
+query_devices/lock_garage_entry::lock_garage_entry_get_status:
+- какво ключалка garage
+query_devices/media_player_family_tv::media_player_family_tv_get_status:
+- какво телевизор дневнаfam
+query_devices/media_player_living_tv::media_player_living_tv_get_status:
+- какво телевизор хол
+query_devices/switch_dishwasher::switch_dishwasher_get_status:
+- какво съдомиялна
+query_devices/switch_dryer::switch_dryer_get_status:
+- какво пералня
+query_devices/switch_washing_machine::switch_washing_machine_get_status:
+- какво пералня

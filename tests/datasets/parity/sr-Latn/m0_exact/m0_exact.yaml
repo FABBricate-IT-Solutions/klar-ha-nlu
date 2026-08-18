@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- ukljuci svetlo dnevna
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread lista
+m0_exact/representative::exact_multi_intent:
+- ukljuci plafon spavaca3 i iskljuci svetlo ulaz
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk lista
+m0_exact/representative::exact_state_persistence:
+- - sta svetlo ulaz
+  - '12'
+m0_exact/representative::exact_timer:
+- ukljuci tajmer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- ukljuci tajmer oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples lista

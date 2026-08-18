@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - zet het licht woonkamer aan
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - zet het licht keuken uit
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

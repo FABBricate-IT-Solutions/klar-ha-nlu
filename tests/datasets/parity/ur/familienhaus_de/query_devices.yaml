@@ -1,0 +1,132 @@
+query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
+- کیا روشنی داخلہ
+query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
+- کیا گرمی لانج
+query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
+- کیا گرمی bedroom
+query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
+- کیا پردہ bedroom2
+query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
+- کیا پردہ bedroom2
+query_devices/cover_bedroom3_blinds::cover_bedroom3_blinds_get_position:
+- کیا پردہ bedroom3
+query_devices/cover_bedroom3_blinds::cover_bedroom3_blinds_get_status:
+- کیا پردہ bedroom3
+query_devices/cover_garage_door::cover_garage_door_get_position:
+- کیا پردہ garage
+query_devices/cover_garage_door::cover_garage_door_get_status:
+- کیا پردہ garage
+query_devices/cover_living_blinds::cover_living_blinds_get_position:
+- کیا پردہ لانج
+query_devices/cover_living_blinds::cover_living_blinds_get_status:
+- کیا پردہ لانج
+query_devices/cover_master_blinds::cover_master_blinds_get_position:
+- کیا پردہ bedroom
+query_devices/cover_master_blinds::cover_master_blinds_get_status:
+- کیا پردہ bedroom
+query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
+- کیا پنکھا bedroom2
+query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
+- کیا پنکھا bedroom2
+query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
+- کیا پنکھا خاندانی
+query_devices/fan_family_fan::fan_family_fan_get_status:
+- کیا پنکھا خاندانی
+query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
+- کیا پنکھا bedroom
+query_devices/fan_master_fan::fan_master_fan_get_status:
+- کیا پنکھا bedroom
+query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
+- کیا چھت bedroom2
+query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
+- کیا چھت bedroom2
+query_devices/light_bedroom3_ceiling::light_bedroom3_ceiling_get_brightness:
+- کیا چھت bedroom3
+query_devices/light_bedroom3_ceiling::light_bedroom3_ceiling_get_status:
+- کیا چھت bedroom3
+query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_brightness:
+- کیا چھت bedroom4
+query_devices/light_bedroom4_ceiling::light_bedroom4_ceiling_get_status:
+- کیا چھت bedroom4
+query_devices/light_dining_pendant::light_dining_pendant_get_brightness:
+- کیا روشنی لانج
+query_devices/light_dining_pendant::light_dining_pendant_get_status:
+- کیا روشنی لانج
+query_devices/light_entryway_light::light_entryway_light_get_brightness:
+- کیا روشنی داخلہ
+query_devices/light_entryway_light::light_entryway_light_get_status:
+- کیا روشنی داخلہ
+query_devices/light_family_ceiling::light_family_ceiling_get_brightness:
+- کیا چھت خاندانی
+query_devices/light_family_ceiling::light_family_ceiling_get_status:
+- کیا چھت خاندانی
+query_devices/light_garage_light::light_garage_light_get_brightness:
+- کیا روشنی garage
+query_devices/light_garage_light::light_garage_light_get_status:
+- کیا روشنی garage
+query_devices/light_hallway_light::light_hallway_light_get_brightness:
+- کیا روشنی داخلہ
+query_devices/light_hallway_light::light_hallway_light_get_status:
+- کیا روشنی داخلہ
+query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
+- کیا چھت باورچی
+query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
+- کیا چھت باورچی
+query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
+- کیا روشنی باورچی
+query_devices/light_kitchen_island::light_kitchen_island_get_status:
+- کیا روشنی باورچی
+query_devices/light_laundry_light::light_laundry_light_get_brightness:
+- کیا روشنی لانڈری
+query_devices/light_laundry_light::light_laundry_light_get_status:
+- کیا روشنی لانڈری
+query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
+- کیا چھت لانج
+query_devices/light_living_ceiling::light_living_ceiling_get_status:
+- کیا چھت لانج
+query_devices/light_living_lamp::light_living_lamp_get_brightness:
+- کیا روشنی لانج
+query_devices/light_living_lamp::light_living_lamp_get_status:
+- کیا روشنی لانج
+query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
+- کیا روشنی main bath
+query_devices/light_main_bath_light::light_main_bath_light_get_status:
+- کیا روشنی main bath
+query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
+- کیا روشنی ماسٹرباتھ
+query_devices/light_master_bath_light::light_master_bath_light_get_status:
+- کیا روشنی ماسٹرباتھ
+query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
+- کیا بسترکنار bedroom
+query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
+- کیا بسترکنار bedroom
+query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
+- کیا بسترکنار bedroom
+query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
+- کیا بسترکنار bedroom
+query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
+- کیا چھت bedroom
+query_devices/light_master_ceiling::light_master_ceiling_get_status:
+- کیا چھت bedroom
+query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
+- کیا روشنی bedroom
+query_devices/light_master_ensuite::light_master_ensuite_get_status:
+- کیا روشنی bedroom
+query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
+- کیا روشنی غسلخانہ
+query_devices/light_powder_room_light::light_powder_room_light_get_status:
+- کیا روشنی غسلخانہ
+query_devices/lock_front_door::lock_front_door_get_status:
+- کیا تالا داخلہ
+query_devices/lock_garage_entry::lock_garage_entry_get_status:
+- کیا تالا garage
+query_devices/media_player_family_tv::media_player_family_tv_get_status:
+- کیا ٹی وی خاندانی
+query_devices/media_player_living_tv::media_player_living_tv_get_status:
+- کیا ٹی وی لانج
+query_devices/switch_dishwasher::switch_dishwasher_get_status:
+- کیا برتن
+query_devices/switch_dryer::switch_dryer_get_status:
+- کیا واشنگ
+query_devices/switch_washing_machine::switch_washing_machine_get_status:
+- کیا واشنگ

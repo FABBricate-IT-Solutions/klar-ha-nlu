@@ -4,6 +4,7 @@ import type { Messages } from "../i18n";
 import { bakeVariants } from "../speechBank";
 import type { EvaluateOut, Locale, PolicyEffect, PolicyRule, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
+import { RoutinesPage } from "./RoutinesPage";
 
 const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"];
 const ACTION_EFFECTS: PolicyEffect[] = ["reply", "script", "template", "llm"];
@@ -69,7 +70,7 @@ function newRule(): PolicyRule {
 }
 
 export function RulesPage({ t, locale, personality, languages }: { t: Messages; locale: Locale; personality: string; languages: string[] }) {
-  const [view, setView] = useState<"policies" | "sentences">("policies");
+  const [view, setView] = useState<"routines" | "sentences" | "policies">("routines");
   const [rules, setRules] = useState<PolicyRule[]>([]);
   const [bank, setBank] = useState<SpeechBank>({ entries: [] });
   const [selected, setSelected] = useState(0);
@@ -138,9 +139,11 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
         </div>
       </section>
       <nav className="subnav">
-        <button className={view === "policies" ? "active" : ""} onClick={() => setView("policies")}>{t.policies}</button>
+        <button className={view === "routines" ? "active" : ""} onClick={() => setView("routines")}>{t.routines}</button>
         <button className={view === "sentences" ? "active" : ""} onClick={() => setView("sentences")}>{t.sentences}</button>
+        <button className={view === "policies" ? "active" : ""} onClick={() => setView("policies")}>{t.policies}</button>
       </nav>
+      {view === "routines" && <RoutinesPage t={t} />}
       {view === "sentences" && <CustomPage t={t} locale={locale} embedded />}
       {view === "policies" && (
         <section className="grid two">

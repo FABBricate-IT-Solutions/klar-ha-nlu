@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- stel verwarming sitkamer 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- stel verwarming slaapkamer 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- stel gordyn slaapkamer2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- toe gordyn slaapkamer2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- oop gordyn slaapkamer2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- stel gordyn slaapkamer3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- toe gordyn slaapkamer3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- oop gordyn slaapkamer3
+devices/cover_garage_door::cover_garage_door_change_position:
+- stel gordyn garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- toe gordyn garage
+devices/cover_garage_door::cover_garage_door_open:
+- oop gordyn garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- stel gordyn sitkamer 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- toe gordyn sitkamer
+devices/cover_living_blinds::cover_living_blinds_open:
+- oop gordyn sitkamer
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- stel gordyn slaapkamer 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- toe gordyn slaapkamer
+devices/cover_master_blinds::cover_master_blinds_open:
+- oop gordyn slaapkamer
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- stel waaier slaapkamer2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- doof waaier slaapkamer2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- skakel waaier slaapkamer2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- stel waaier sitkamerfam 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- doof waaier sitkamerfam
+devices/fan_family_fan::fan_family_fan_turn_on:
+- skakel waaier sitkamerfam
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- stel waaier slaapkamer 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- doof waaier slaapkamer
+devices/fan_master_fan::fan_master_fan_turn_on:
+- skakel waaier slaapkamer
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- doof waaier slaapkamer en doof lig kombuis
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- skakel waaier slaapkamer en skakel lig kombuis
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- stel plafon slaapkamer2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- stel plafon slaapkamer2 pienk
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- doof plafon slaapkamer2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- skakel plafon slaapkamer2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- stel plafon slaapkamer3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- stel plafon slaapkamer3 geel
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- doof plafon slaapkamer3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- skakel plafon slaapkamer3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- stel plafon slaapkamer4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- stel plafon slaapkamer4 rooi
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- doof plafon slaapkamer4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- skakel plafon slaapkamer4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- stel lig sitkamer 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- stel lig sitkamer blou
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- doof lig sitkamer
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- skakel lig sitkamer
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- stel lig ingang 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- stel lig ingang geel
+devices/light_entryway_light::light_entryway_light_turn_off:
+- doof lig ingang
+devices/light_entryway_light::light_entryway_light_turn_on:
+- skakel lig ingang
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- stel plafon sitkamerfam 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- stel plafon sitkamerfam pers
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- doof plafon sitkamerfam
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- skakel plafon sitkamerfam
+devices/light_garage_light::light_garage_light_change_brightness:
+- stel lig garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- stel lig garage groen
+devices/light_garage_light::light_garage_light_turn_off:
+- doof lig garage
+devices/light_garage_light::light_garage_light_turn_on:
+- skakel lig garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- stel lig ingang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- stel lig ingang wit
+devices/light_hallway_light::light_hallway_light_turn_off:
+- doof lig ingang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- skakel lig ingang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- stel plafon kombuis 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- stel plafon kombuis oranje
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- doof plafon kombuis
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- skakel plafon kombuis
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- stel lig kombuis 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- stel lig kombuis groen
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- doof lig kombuis
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- skakel lig kombuis
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- stel lig waskamer 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- stel lig waskamer wit
+devices/light_laundry_light::light_laundry_light_turn_off:
+- doof lig waskamer
+devices/light_laundry_light::light_laundry_light_turn_on:
+- skakel lig waskamer
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- stel plafon sitkamer 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- stel plafon sitkamer swart
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- doof plafon sitkamer
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- skakel plafon sitkamer
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- stel lig sitkamer 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- stel lig sitkamer rooi
+devices/light_living_lamp::light_living_lamp_turn_off:
+- doof lig sitkamer
+devices/light_living_lamp::light_living_lamp_turn_on:
+- skakel lig sitkamer
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- stel lig main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- stel lig main bath blou
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- doof lig main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- skakel lig main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- stel lig badmaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- stel lig badmaster swart
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- doof lig badmaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- skakel lig badmaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- stel nagus slaapkamer 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- stel nagus slaapkamer rooi
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- doof nagus slaapkamer
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- skakel nagus slaapkamer
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- stel plafon slaapkamer 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- stel plafon slaapkamer blou
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- doof plafon slaapkamer
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- skakel plafon slaapkamer
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- stel lig slaapkamer 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- stel lig slaapkamer swart
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- doof lig slaapkamer
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- skakel lig slaapkamer
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- stel lig toilet 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- stel lig toilet swart
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- doof lig toilet
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- skakel lig toilet
+devices/lock_front_door::lock_front_door_lock:
+- slot slot ingang
+devices/lock_front_door::lock_front_door_unlock:
+- oop slot ingang
+devices/lock_garage_entry::lock_garage_entry_lock:
+- slot slot garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- oop slot garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- skakel tv sitkamerfam
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause tv sitkamerfam
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- doof tv sitkamerfam
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- skakel tv sitkamerfam
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- skakel tv sitkamerfam
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- skakel tv sitkamerfam
+devices/media_player_living_tv::media_player_living_tv_mute:
+- skakel tv sitkamer
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause tv sitkamer
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- doof tv sitkamer
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- skakel tv sitkamer
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- skakel tv sitkamer
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- skakel tv sitkamer
+devices/scenes::dinner_time:
+- stel lig sitkamer 90 en skakel plafon kombuis en stel lig kombuis 80
+devices/scenes::good_morning:
+- skakel plafon kombuis en stel lig sitkamer 100 en oop gordyn sitkamer en oop gordyn
+  slaapkamer
+devices/scenes::kids_bedtime:
+- doof plafon slaapkamer2 en doof plafon slaapkamer3 en doof plafon slaapkamer4 en
+  stel lig ingang 15
+devices/scenes::movie_night:
+- doof plafon sitkamer en stel lig sitkamer 20 en skakel tv sitkamer en toe gordyn
+  sitkamer
+devices/scripts::good_night:
+- skakel toneel nag
+devices/scripts::leaving_home:
+- skakel toneel vertrek
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- doof skottelgoed
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- skakel skottelgoed
+devices/switch_dryer::switch_dryer_turn_off:
+- doof wasmasjien
+devices/switch_dryer::switch_dryer_turn_on:
+- skakel wasmasjien
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- doof wasmasjien
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- skakel wasmasjien

@@ -1,0 +1,25 @@
+title = "klar-nlu"
+
+[extend]
+useDefault = true
+
+# HA long-lived tokens are JWTs; default jwt/generic rules already catch them.
+# Flag assigned KLAR_TOKEN / x-klar-token values that are not the fixture word.
+[[rules]]
+id = "klar-hardcoded-token"
+description = "Hardcoded KLAR_TOKEN or x-klar-token that is not the test fixture"
+regex = '''(?i)(?:KLAR_TOKEN|x-klar-token)["'\s:=]+(?!secret\b)[A-Za-z0-9_\-+/=]{16,}'''
+keywords = ["klar_token", "x-klar-token"]
+
+# Fixture word `secret` in auth/privacy tests and API docs is not a live credential.
+[[allowlists]]
+description = "Test fixture token word, not a live HA or KLAR credential"
+paths = [
+    '''src/io/auth\.rs$''',
+    '''src/io/web\.rs$''',
+    '''tests/privacy\.rs$''',
+    '''docs/''',
+]
+regexes = [
+    '''(?i)\bsecret\b''',
+]

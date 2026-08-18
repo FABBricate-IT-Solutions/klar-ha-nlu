@@ -1,0 +1,268 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- daayene gatboba misagebi 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- daayene gatboba sadzinebeli 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- daayene parda sadzinebeli2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- dakhure parda sadzinebeli2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- gakhseni parda sadzinebeli2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- daayene parda sadzinebeli3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- dakhure parda sadzinebeli3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- gakhseni parda sadzinebeli3
+devices/cover_garage_door::cover_garage_door_change_position:
+- daayene parda garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- dakhure parda garage
+devices/cover_garage_door::cover_garage_door_open:
+- gakhseni parda garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- daayene parda misagebi 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- dakhure parda misagebi
+devices/cover_living_blinds::cover_living_blinds_open:
+- gakhseni parda misagebi
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- daayene parda sadzinebeli 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- dakhure parda sadzinebeli
+devices/cover_master_blinds::cover_master_blinds_open:
+- gakhseni parda sadzinebeli
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- daayene ventilatori sadzinebeli2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- gamorte ventilatori sadzinebeli2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- charte ventilatori sadzinebeli2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- daayene ventilatori ojakhisotakhi 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- gamorte ventilatori ojakhisotakhi
+devices/fan_family_fan::fan_family_fan_turn_on:
+- charte ventilatori ojakhisotakhi
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- daayene ventilatori sadzinebeli 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- gamorte ventilatori sadzinebeli
+devices/fan_master_fan::fan_master_fan_turn_on:
+- charte ventilatori sadzinebeli
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- gamorte ventilatori sadzinebeli da gamorte sinatle samzareulo
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- charte ventilatori sadzinebeli da charte sinatle samzareulo
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- daayene potoloni sadzinebeli2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- daayene potoloni sadzinebeli2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- gamorte potoloni sadzinebeli2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- charte potoloni sadzinebeli2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- daayene potoloni sadzinebeli3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- daayene potoloni sadzinebeli3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- gamorte potoloni sadzinebeli3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- charte potoloni sadzinebeli3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- daayene potoloni sadzinebeli4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- daayene potoloni sadzinebeli4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- gamorte potoloni sadzinebeli4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- charte potoloni sadzinebeli4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- daayene sinatle misagebi 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- daayene sinatle misagebi blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- gamorte sinatle misagebi
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- charte sinatle misagebi
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- daayene sinatle shemosasvleli 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- daayene sinatle shemosasvleli yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- gamorte sinatle shemosasvleli
+devices/light_entryway_light::light_entryway_light_turn_on:
+- charte sinatle shemosasvleli
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- daayene potoloni ojakhisotakhi 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- daayene potoloni ojakhisotakhi purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- gamorte potoloni ojakhisotakhi
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- charte potoloni ojakhisotakhi
+devices/light_garage_light::light_garage_light_change_brightness:
+- daayene sinatle garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- daayene sinatle garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- gamorte sinatle garage
+devices/light_garage_light::light_garage_light_turn_on:
+- charte sinatle garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- daayene sinatle shemosasvleli 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- daayene sinatle shemosasvleli white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- gamorte sinatle shemosasvleli
+devices/light_hallway_light::light_hallway_light_turn_on:
+- charte sinatle shemosasvleli
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- daayene potoloni samzareulo 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- daayene potoloni samzareulo orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- gamorte potoloni samzareulo
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- charte potoloni samzareulo
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- daayene sinatle samzareulo 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- daayene sinatle samzareulo green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- gamorte sinatle samzareulo
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- charte sinatle samzareulo
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- daayene sinatle saretskhave 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- daayene sinatle saretskhave white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- gamorte sinatle saretskhave
+devices/light_laundry_light::light_laundry_light_turn_on:
+- charte sinatle saretskhave
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- daayene potoloni misagebi 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- daayene potoloni misagebi black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- gamorte potoloni misagebi
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- charte potoloni misagebi
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- daayene sinatle misagebi 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- daayene sinatle misagebi red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- gamorte sinatle misagebi
+devices/light_living_lamp::light_living_lamp_turn_on:
+- charte sinatle misagebi
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- daayene sinatle main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- daayene sinatle main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- gamorte sinatle main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- charte sinatle main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- daayene sinatle abazanamaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- daayene sinatle abazanamaster black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- gamorte sinatle abazanamaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- charte sinatle abazanamaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- daayene sagamise sadzinebeli 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- daayene sagamise sadzinebeli red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- gamorte sagamise sadzinebeli
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- charte sagamise sadzinebeli
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- daayene potoloni sadzinebeli 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- daayene potoloni sadzinebeli blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- gamorte potoloni sadzinebeli
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- charte potoloni sadzinebeli
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- daayene sinatle sadzinebeli 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- daayene sinatle sadzinebeli black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- gamorte sinatle sadzinebeli
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- charte sinatle sadzinebeli
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- daayene sinatle wc 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- daayene sinatle wc black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- gamorte sinatle wc
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- charte sinatle wc
+devices/lock_front_door::lock_front_door_lock:
+- saketi saketi shemosasvleli
+devices/lock_front_door::lock_front_door_unlock:
+- gakhseni saketi shemosasvleli
+devices/lock_garage_entry::lock_garage_entry_lock:
+- saketi saketi garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- gakhseni saketi garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- charte televizori ojakhisotakhi
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause televizori ojakhisotakhi
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- gamorte televizori ojakhisotakhi
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- charte televizori ojakhisotakhi
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- charte televizori ojakhisotakhi
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- charte televizori ojakhisotakhi
+devices/media_player_living_tv::media_player_living_tv_mute:
+- charte televizori misagebi
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause televizori misagebi
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- gamorte televizori misagebi
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- charte televizori misagebi
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- charte televizori misagebi
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- charte televizori misagebi
+devices/scenes::dinner_time:
+- daayene sinatle misagebi 90 da charte potoloni samzareulo da daayene sinatle samzareulo
+  80
+devices/scenes::good_morning:
+- charte potoloni samzareulo da daayene sinatle misagebi 100 da gakhseni parda misagebi
+  da gakhseni parda sadzinebeli
+devices/scenes::kids_bedtime:
+- gamorte potoloni sadzinebeli2 da gamorte potoloni sadzinebeli3 da gamorte potoloni
+  sadzinebeli4 da daayene sinatle shemosasvleli 15
+devices/scenes::movie_night:
+- gamorte potoloni misagebi da daayene sinatle misagebi 20 da charte televizori misagebi
+  da dakhure parda misagebi
+devices/scripts::good_night:
+- charte stsena ghame
+devices/scripts::leaving_home:
+- charte stsena gasvla
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- gamorte jamtchebi
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- charte jamtchebi
+devices/switch_dryer::switch_dryer_turn_off:
+- gamorte saretskhave
+devices/switch_dryer::switch_dryer_turn_on:
+- charte saretskhave
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- gamorte saretskhave
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- charte saretskhave

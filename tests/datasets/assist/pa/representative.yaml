@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - chalu roshni vithak
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - band roshni rasoi
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

@@ -1,0 +1,26 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- schalt alle licht ausser schlafzimmer ausser kuche
+multiple_intents/multi::licht_und_heizung:
+- mach licht wohnzimmer und stell heizung wohnzimmer 23
+multiple_intents/multi::wohn_und_ess_aus:
+- schalt licht wohnzimmer und schalt licht wohnstubeess
+multiple_intents/multi::wohn_und_ess_rot:
+- stell licht wohnzimmer rot und stell licht wohnstubeess rot
+multiple_intents/multi::wz_und_kuche_licht:
+- mach licht wohnzimmer und mach licht kuche
+multiple_intents/multi::zwei_raeume_und_heizung:
+- mach licht wohnzimmer und mach licht kuche und stell heizung wohnzimmer 23
+multiple_intents/spoken::drei_raeume_an:
+- mach licht wohnzimmer und mach licht wohnstubeess und mach licht kuche
+multiple_intents/spoken::drei_raeume_aus:
+- schalt licht wohnzimmer und schalt licht wohnstubeess und schalt licht kuche
+multiple_intents/spoken::ess_und_wohn_aus:
+- schalt licht wohnzimmer und schalt licht wohnstubeess
+multiple_intents/spoken::kugel_und_decke_aus:
+- schalt kugel und schalt decke
+multiple_intents/spoken_more::kuche_und_ess_an:
+- mach licht kuche und mach licht wohnstubeess
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- schalt licht wohnzimmer und schalt licht wohnstubeess
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- schalt licht wohnzimmer

@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - enable heating lounge
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - enable light lounge
+  - extinguish
+state_persistance/spoken::kugel_dann_aus:
+- - enable globe
+  - extinguish
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - enable light lounge
+  - enable light kitchen
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - enable light lounge
+  - red

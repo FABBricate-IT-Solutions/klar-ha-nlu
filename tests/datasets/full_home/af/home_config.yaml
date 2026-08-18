@@ -1,0 +1,504 @@
+name: Full Home af
+language: af
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: onderste
+  level: 0
+  aliases:
+  - onderste
+  - onder
+- id: upper
+  name: boonste
+  level: 1
+  aliases:
+  - boonste
+  - bo
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Ingang
+  floor: ground
+  aliases:
+  - ingang
+- id: living
+  name: Sitkamer
+  floor: ground
+  aliases:
+  - sitkamer
+- id: dining
+  name: Sitkamerfamess
+  floor: ground
+  aliases:
+  - sitkamerfamess
+- id: kitchen
+  name: Kombuis
+  floor: ground
+  aliases:
+  - kombuis
+- id: family_room
+  name: Sitkamerfam
+  floor: ground
+  aliases:
+  - sitkamerfam
+- id: laundry
+  name: Waskamer
+  floor: ground
+  aliases:
+  - waskamer
+- id: powder_room
+  name: Toilet
+  floor: ground
+  aliases:
+  - toilet
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Slaapkamer
+  floor: upper
+  aliases:
+  - slaapkamer
+- id: bedroom_2
+  name: Slaapkamer2
+  floor: upper
+  aliases:
+  - slaapkamer2
+- id: bedroom_3
+  name: Slaapkamer3
+  floor: upper
+  aliases:
+  - slaapkamer3
+- id: bedroom_4
+  name: Slaapkamer4
+  floor: upper
+  aliases:
+  - slaapkamer4
+- id: master_bath
+  name: Badmaster
+  floor: upper
+  aliases:
+  - badmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: ingang lig
+  aliases:
+  - ingang lig
+  - lig
+- id: light.living_ceiling
+  area_id: living
+  name: sitkamer plafon
+  aliases:
+  - sitkamer plafon
+  - plafon
+- id: light.living_lamp
+  area_id: living
+  name: sitkamer lig
+  aliases:
+  - sitkamer lig
+  - lig
+- id: light.dining_pendant
+  area_id: dining
+  name: sitkamerfamess lig
+  aliases:
+  - sitkamerfamess lig
+  - lig
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kombuis plafon
+  aliases:
+  - kombuis plafon
+  - plafon
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kombuis eiland
+  aliases:
+  - kombuis eiland
+  - eiland
+- id: light.family_ceiling
+  area_id: family_room
+  name: sitkamerfam plafon
+  aliases:
+  - sitkamerfam plafon
+  - plafon
+- id: light.laundry_light
+  area_id: laundry
+  name: waskamer lig
+  aliases:
+  - waskamer lig
+  - lig
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toilet lig
+  aliases:
+  - toilet lig
+  - lig
+- id: light.garage_light
+  area_id: garage
+  name: garage lig
+  aliases:
+  - garage lig
+  - lig
+- id: light.office_ceiling
+  area_id: office
+  name: office plafon
+  aliases:
+  - office plafon
+  - plafon
+- id: light.garden
+  area_id: garden
+  name: garden lig
+  aliases:
+  - garden lig
+  - lig
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: slaapkamer plafon
+  aliases:
+  - slaapkamer plafon
+  - plafon
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: slaapkamer ensuite
+  aliases:
+  - slaapkamer ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: slaapkamer left nagus
+  aliases:
+  - slaapkamer left nagus
+  - nagus
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: slaapkamer right nagus
+  aliases:
+  - slaapkamer right nagus
+  - nagus
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: slaapkamer2 plafon
+  aliases:
+  - slaapkamer2 plafon
+  - plafon
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: slaapkamer3 plafon
+  aliases:
+  - slaapkamer3 plafon
+  - plafon
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: slaapkamer4 plafon
+  aliases:
+  - slaapkamer4 plafon
+  - plafon
+- id: light.master_bath_light
+  area_id: master_bath
+  name: badmaster lig
+  aliases:
+  - badmaster lig
+  - lig
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath lig
+  aliases:
+  - main bath lig
+  - lig
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway lig
+  aliases:
+  - hallway lig
+  - lig
+- id: light.basement
+  area_id: basement
+  name: basement lig
+  aliases:
+  - basement lig
+  - lig
+- id: cover.living_blinds
+  area_id: living
+  name: sitkamer gordyn
+  aliases:
+  - sitkamer gordyn
+  - gordyn
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: slaapkamer gordyn
+  aliases:
+  - slaapkamer gordyn
+  - gordyn
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: slaapkamer2 gordyn
+  aliases:
+  - slaapkamer2 gordyn
+  - gordyn
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: slaapkamer3 gordyn
+  aliases:
+  - slaapkamer3 gordyn
+  - gordyn
+- id: cover.garage_door
+  area_id: garage
+  name: garage gordyn
+  aliases:
+  - garage gordyn
+  - gordyn
+- id: climate.ground_thermostat
+  area_id: living
+  name: sitkamer verwarming
+  aliases:
+  - sitkamer verwarming
+  - verwarming
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: slaapkamer verwarming
+  aliases:
+  - slaapkamer verwarming
+  - verwarming
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: temperatuur slaapkamer
+  aliases:
+  - temperatuur slaapkamer
+  - temperatuur
+  - ac
+  tags:
+  - temperatuur
+- id: fan.family_fan
+  area_id: family_room
+  name: sitkamerfam waaier
+  aliases:
+  - sitkamerfam waaier
+  - waaier
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: slaapkamer waaier
+  aliases:
+  - slaapkamer waaier
+  - waaier
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: slaapkamer2 waaier
+  aliases:
+  - slaapkamer2 waaier
+  - waaier
+- id: lock.front_door
+  area_id: entryway
+  name: front deur
+  aliases:
+  - front deur
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage deur
+  aliases:
+  - garage deur
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kombuis skottelgoed
+  aliases:
+  - kombuis skottelgoed
+  - skottelgoed
+- id: switch.rangehood
+  area_id: kitchen
+  name: kombuis rangehood
+  aliases:
+  - kombuis rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: waskamer wasmasjien
+  aliases:
+  - waskamer wasmasjien
+  - wasmasjien
+  - washer
+  tags:
+  - washer
+  - wasmasjien
+- id: switch.dryer
+  area_id: laundry
+  name: waskamer dryer
+  aliases:
+  - waskamer dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: badmaster waaierbad
+  aliases:
+  - badmaster waaierbad
+  - waaierbad
+  tags:
+  - waaierbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath waaierbad
+  aliases:
+  - main bath waaierbad
+  - waaierbad
+  tags:
+  - waaierbad
+- id: media_player.living_tv
+  area_id: living
+  name: sitkamer tv
+  aliases:
+  - sitkamer tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: sitkamerfam tv
+  aliases:
+  - sitkamerfam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: sitkamer musiek
+  aliases:
+  - sitkamer musiek
+  - musiek
+  platform: music_assistant
+  tags:
+  - musiek
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kombuis musiek
+  aliases:
+  - kombuis musiek
+  - musiek
+  platform: music_assistant
+  tags:
+  - musiek
+- id: media_player.office_music
+  area_id: office
+  name: office musiek
+  aliases:
+  - office musiek
+  - musiek
+  platform: music_assistant
+  tags:
+  - musiek
+- id: vacuum.robot
+  area_id: living
+  name: sitkamer stofsuier
+  aliases:
+  - sitkamer stofsuier
+  - stofsuier
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: ingang doorsensor
+  aliases:
+  - ingang doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: sitkamer windowsensor
+  aliases:
+  - sitkamer windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kombuis motion
+  aliases:
+  - kombuis motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: sitkamer tempsensor
+  aliases:
+  - sitkamer tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: sitkamer humidity
+  aliases:
+  - sitkamer humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nag
+- id: leaving_home
+  name: vertrek
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: lys

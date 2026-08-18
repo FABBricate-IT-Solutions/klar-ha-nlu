@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- hidupkan lampu ruang
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread senarai
+m0_exact/representative::exact_multi_intent:
+- hidupkan siling bilik3 dan matikan lampu lorong
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk senarai
+m0_exact/representative::exact_state_persistence:
+- - apa lampu lorong
+  - '12'
+m0_exact/representative::exact_timer:
+- hidupkan pemasa oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- hidupkan pemasa oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples senarai

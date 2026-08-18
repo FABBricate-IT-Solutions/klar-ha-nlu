@@ -1,0 +1,11 @@
+# Default clippy only on 65 generated packs. Do not enable pedantic/nursery here.
+# Extra engine lints live on src/parse and src/nlu (unwrap/expect/panic) and in CI
+# as -D clippy::dbg_macro -D clippy::undocumented_unsafe_blocks -D clippy::todo.
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-dbg-in-tests = true
+cognitive-complexity-threshold = 50
+too-many-arguments-threshold = 12
+too-many-lines-threshold = 500
+type-complexity-threshold = 500
+enum-variant-size-threshold = 200

@@ -1,0 +1,454 @@
+on_area:
+- turn on the {room} lights
+- activate the {room} lights
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+- '{on} {all} {light} {room}'
+- '{all} {light} {room} {on}'
+off_area:
+- turn off the {room} lights
+- turn off the lights in the {room}
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+- '{off} {all} {light} {room}'
+- '{all} {light} {room} {off}'
+on_fixture:
+- turn on the {room} {fixture}
+- '{room} {fixture} on'
+- '{on} {fixture} {room}'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+- '{room} {fixture} {on}'
+off_fixture:
+- turn off the {room} {fixture}
+- '{room} {fixture} off'
+- '{off} {fixture} {room}'
+- '{fixture} {room} {off}'
+- '{off} {room} {fixture}'
+- '{room} {fixture} {off}'
+set_bright:
+- set the {room} {fixture} to {n}
+- '{room} brightness {n}'
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+- '{room} {fixture} {n}'
+set_color:
+- set the {room} {fixture} to {color}
+- '{room} lights {color}'
+- '{set} {fixture} {room} {color}'
+- '{set} {light} {room} {color}'
+- '{light} {room} {color}'
+- '{fixture} {room} {color}'
+set_temp:
+- set the {room} thermostat to {n}
+- '{room} temperature {n}'
+- '{set} {climate} {room} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {n}'
+- '{room} {climate} {n}'
+get_temp:
+- what's the temperature in the {room}
+- '{room} thermostat temperature'
+- '{query} {climate} {room}'
+- '{query} {climate}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- open the {room} blinds
+- '{room} blinds open'
+- '{open} {cover} {room}'
+- '{cover} {room} {open}'
+- '{open} {room} {cover}'
+- '{room} {cover} {open}'
+close_cover:
+- close the {room} blinds
+- '{room} blinds closed'
+- '{close} {cover} {room}'
+- '{cover} {room} {close}'
+- '{close} {room} {cover}'
+- '{room} {cover} {close}'
+set_pos:
+- set the {room} blinds to {n}
+- '{set} {cover} {room} {n}'
+- '{cover} {room} {n}'
+- '{set} {cover} {n}'
+- '{room} {cover} {n}'
+- '{set} {room} {cover} {n}'
+lock:
+- lock the {room} {lock}
+- lock the {room} door
+- lock the front door
+- '{lock_v} {lock} {room}'
+- '{lock_v} {door}'
+- '{lock} {room} {lock_v}'
+unlock:
+- unlock the {room} {lock}
+- unlock the {room} door
+- unlock the front door
+- '{unlock} {lock} {room}'
+- '{unlock} {door}'
+- '{lock} {room} {unlock}'
+fan_on:
+- turn on the {room} fan
+- '{room} fan on'
+- '{fan} {room} {on}'
+- '{on} {fan} {room}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+fan_off:
+- turn off the {room} fan
+- '{off} {fan} {room}'
+- '{fan} {room} {off}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+- '{off} {fan}'
+fan_speed:
+- set the {room} fan to {n}
+- '{set} {fan} {room} {n}'
+- '{fan} {room} {n}'
+- '{set} {fan} {n}'
+- '{room} {fan} {n}'
+- '{set} {room} {fan} {n}'
+switch_on:
+- turn on the {appliance}
+- '{on} {appliance}'
+- '{appliance} {on}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+- '{on} {appliance} {room}'
+switch_off:
+- turn off the {appliance}
+- '{off} {appliance}'
+- '{appliance} {off}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+- '{off} {appliance} {room}'
+vac_start:
+- start the vacuum
+- vacuum on
+- '{on} {vacuum}'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+- '{vacuum} {on} {room}'
+vac_dock:
+- dock the vacuum
+- send the vacuum home
+- '{off} {vacuum}'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+- '{vacuum} {off} {room}'
+media_on:
+- turn on the {room} tv
+- '{tv} {room} {on}'
+- '{on} {tv} {room}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+- '{tv} {on}'
+media_off:
+- turn off the {room} tv
+- '{off} {tv} {room}'
+- '{tv} {room} {off}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+- '{off} {tv}'
+media_pause:
+- pause the {room} tv
+- '{pause} {tv} {room}'
+- '{pause} {tv}'
+- '{tv} {room} {pause}'
+- '{pause} {music} {room}'
+- '{pause} {music}'
+media_vol:
+- set the music to {n}
+- '{set} {music} {n}'
+- '{set} {tv} {n}'
+- '{music} {n}'
+- '{tv} {n}'
+- '{set} {music} {room} {n}'
+media_next:
+- next track
+- '{on} {music}'
+- '{play} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+media_prev:
+- previous track
+- '{on} {music}'
+- '{play} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+play_search:
+- play {search} in the {room}
+- play {search} in {room}
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- '{search} {play} {room}'
+play_album:
+- play the album {search} by {artist}
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+- '{play} {search} {by} {artist}'
+- '{on} {album} {search}'
+play_radio:
+- play {search} using radio mode
+- '{play} {search} {radio}'
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+- '{play} {search} {radio} {room}'
+play_queue:
+- play {search} in the {room}
+- '{play} {search}'
+- '{play} {search} {room}'
+- '{on} {search}'
+- '{play} {music} {search}'
+- '{search} {play}'
+now_playing:
+- what's playing
+- what's playing in the {room}
+- '{query} {music}'
+- '{query} {music} {room}'
+- '{music} {room}'
+- '{query} {tv} {room}'
+scene:
+- turn on {scene_name}
+- activate {scene_name}
+- '{on} {scene_name}'
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+script:
+- run {scene_name}
+- activate {scene_name}
+- '{on} {scene_name}'
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+timer_start:
+- '{on} {timer} {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+- '{set} {timer} {n}'
+- '{timer} {n}'
+timer_cancel:
+- cancel the timer
+- stop the timer
+- '{off} {timer}'
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- add {item} to the list
+- '{add} {item} {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+- '{add} {item} {to} {list}'
+list_done:
+- '{item} done'
+- '{done} {item}'
+- '{item} {done}'
+- '{done} {item} {list}'
+- '{item} {list} {done}'
+- '{off} {item}'
+floor_on:
+- turn on the {floor} lights
+- '{on} {all} {light} {floor}'
+- '{light} {floor} {on}'
+- '{on} {light} {floor}'
+- '{floor} {light} {on}'
+- '{all} {light} {floor} {on}'
+floor_off:
+- turn off the {floor} lights
+- '{off} {all} {light} {floor}'
+- '{light} {floor} {off}'
+- '{off} {light} {floor}'
+- '{floor} {light} {off}'
+- '{all} {light} {floor} {off}'
+all_except:
+- turn off all lights except the {room}
+- all lights off except the {room}
+- '{off} {all} {light} {except} {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+all_except_on:
+- turn on all lights except the {room}
+- all lights on except the {room}
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+except_fixture:
+- turn off all lights except the {skip_fixture}
+- all lights off except the {skip_fixture}
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+query_entity:
+- what's the {target} in the {room}
+- '{room} {target} status'
+- '{query} {target} {room}'
+- '{query} {target}'
+- '{target} {room}'
+- '{room} {target}'
+multi_and:
+- turn on the {room} and {room2} lights
+- '{on} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {room} {and} {room2}'
+- '{room} {and} {room2} {on}'
+- '{on} {light} {room} {and} {light} {room2}'
+multi_off:
+- turn off the {room} and {room2} lights
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+- '{off} {light} {room} {and} {light} {room2}'
+multi_fixtures:
+- turn on the {room} {fixture} and the {room2} {fixture2}
+- turn on the {fixture} in the {room} and the {fixture2} in the {room2}
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- turn off the {room} {fixture} and the {room2} {fixture2}
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+multi_three:
+- turn on the {room} and {room2} and {room3} lights
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {room2} {and} {room3} {on}'
+- '{on} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {on}'
+- '{on} {light} {room} {room2} {room3}'
+multi_three_off:
+- turn off the {room}, {room2} and {room3} lights
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {room2} {and} {room3} {off}'
+- '{off} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {off}'
+- '{off} {light} {room} {room2} {room3}'
+multi_off_lock:
+- turn off the {room} lights and lock the front door
+- '{off} {light} {room} {and} {lock_v} {door}'
+- '{off} {room} {and} {lock_v} {door}'
+- '{light} {room} {off} {and} {lock_v} {lock}'
+- '{off} {light} {room} {and} {lock_v} {lock}'
+- '{room} {off} {and} {door} {lock_v}'
+except_in_area:
+- turn off all lights in the {room} except the {skip_fixture}
+- '{off} {light} {room} {except} {skip_fixture}'
+- '{off} {all} {light} {room} {except} {skip_fixture}'
+- '{light} {room} {off} {except} {skip_fixture}'
+- '{off} {room} {except} {skip_fixture}'
+- '{all} {light} {room} {off} {except} {skip_fixture}'
+except_two:
+- turn off all lights except the {room} and {room2}
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+- '{off} {all} {except} {room} {and} {room2}'
+except_fixture_on:
+- turn on all lights except the {skip_fixture}
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+- '{on} {all} {except} {skip_fixture}'
+floor_except:
+- all lights {floor} off except the {room}
+- '{off} {all} {light} {floor} {except} {room}'
+- '{light} {floor} {off} {except} {room}'
+- '{off} {floor} {except} {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+multi_covers:
+- open the {room} and {room2} blinds
+- '{open} {cover} {room} {and} {room2}'
+- '{cover} {room} {and} {room2} {open}'
+- '{open} {room} {and} {room2}'
+- '{room} {and} {room2} {cover} {open}'
+- '{open} {cover} {room} {and} {cover} {room2}'
+multi_covers_close:
+- close the {room} and {room2} blinds
+- '{close} {cover} {room} {and} {room2}'
+- '{cover} {room} {and} {room2} {close}'
+- '{close} {room} {and} {room2}'
+- '{room} {and} {room2} {cover} {close}'
+- '{close} {cover} {room} {and} {cover} {room2}'
+multi_climate:
+- set the {room} and {room2} thermostats to {n}
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{climate} {room} {and} {room2} {n}'
+- '{set} {room} {and} {room2} {n}'
+- '{room} {and} {room2} {climate} {n}'
+- '{set} {climate} {room} {and} {climate} {room2} {n}'
+multi_bright:
+- set the {room} and {room2} lights to {n}
+- '{set} {light} {room} {and} {room2} {n}'
+- '{light} {room} {and} {room2} {n}'
+- '{set} {room} {and} {room2} {n}'
+- '{room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {light} {room2} {n}'
+multi_color:
+- set the {room} and {room2} lights to {color}
+- '{set} {light} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+- '{room} {and} {room2} {color}'
+- '{set} {room} {and} {room2} {color}'
+- '{light} {room} {color} {and} {room2}'
+query_two:
+- what's the {room} and {room2} lights
+- '{query} {light} {room} {and} {room2}'
+- '{query} {target} {room} {and} {room2}'
+- '{light} {room} {and} {room2}'
+- '{query} {room} {and} {room2}'
+- '{status} {room} {and} {room2}'
+query_and_off:
+- what's the temperature in the {room} and turn off the {room2} lights
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+multi_locks:
+- lock the {room} and {room2} doors
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{lock_v} {door} {and} {lock} {room2}'
+- '{room} {and} {room2} {lock_v}'
+- '{lock_v} {room} {and} {room2}'
+- '{door} {room} {and} {room2} {lock_v}'
+scene_and_off:
+- turn on {scene_name} and turn off the {room} lights
+- '{on} {scene_name} {and} {off} {light} {room}'
+- '{off} {light} {room} {and} {on} {scene_name}'
+- '{scene_name} {and} {light} {room} {off}'
+- '{on} {scene_name} {and} {room} {off}'
+- '{scene_name} {on} {and} {off} {room}'
+clock:
+- what time is it
+- what's the time
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+- '{query} {clock} {clock}'
+weather:
+- what's the weather
+- weather forecast
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'
+- '{query} {weather} {weather}'

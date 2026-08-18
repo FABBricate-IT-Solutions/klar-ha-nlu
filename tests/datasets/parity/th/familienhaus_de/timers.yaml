@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- poetfai tangwela abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- poetfai tangwela abstract 20 min
+timers/timers::abstract_start_seconds:
+- poetfai tangwela abstract
+timers/timers::cancel_all_timers:
+- pitfai ทั้งหมด tangwela
+timers/timers::timer_laundry_cancel:
+- poetfai tangwela laundry
+timers/timers::timer_laundry_decrease:
+- poetfai tangwela laundry 5 min
+timers/timers::timer_laundry_increase:
+- poetfai tangwela laundry 16 min
+timers/timers::timer_laundry_pause:
+- pitfai tangwela laundry
+timers/timers::timer_laundry_start:
+- poetfai tangwela laundry
+timers/timers::timer_laundry_status:
+- arai tangwela laundry
+timers/timers::timer_laundry_unpause:
+- poetfai tangwela laundry
+timers/timers::timer_oven_cancel:
+- poetfai tangwela oven
+timers/timers::timer_oven_decrease:
+- poetfai tangwela oven 44 min
+timers/timers::timer_oven_increase:
+- poetfai tangwela oven 30 min
+timers/timers::timer_oven_pause:
+- pitfai tangwela oven
+timers/timers::timer_oven_start:
+- poetfai tangwela oven 2 min
+timers/timers::timer_oven_status:
+- arai tangwela oven
+timers/timers::timer_oven_unpause:
+- poetfai tangwela oven

@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - chalu diva baithak
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - band diva svayampak
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

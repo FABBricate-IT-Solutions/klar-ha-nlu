@@ -399,6 +399,7 @@ fn protected_media_followup_skips_conjunction_inside_target_name() {
         &["wohn und esszimmer"],
         &[],
     ));
+    let _lang = klar_nlu::lang::bind(&["de".into(), "en".into()]);
     let tokens: Vec<String> =
         "wie laut ist die musik im wohn und esszimmer und schalte das licht aus".split_whitespace().map(str::to_string).collect();
     let clauses = split_clauses(&tokens, &home);
@@ -410,6 +411,7 @@ fn protected_media_followup_skips_conjunction_inside_target_name() {
 #[test]
 fn protected_media_followup_recursively_splits_remaining_actions() {
     let home = home();
+    let _lang = klar_nlu::lang::bind(&["de".into(), "en".into()]);
     let tokens: Vec<String> =
         "wie laut ist die musik und schalte das licht aus und oeffne das rollo".split_whitespace().map(str::to_string).collect();
     let clauses = split_clauses(&tokens, &home);
@@ -422,6 +424,7 @@ fn protected_media_followup_recursively_splits_remaining_actions() {
 #[test]
 fn protected_media_followup_splits_explicit_query() {
     let home = home();
+    let _lang = klar_nlu::lang::bind(&["de".into(), "en".into()]);
     let tokens: Vec<String> =
         "wie laut ist die musik und was ist die temperatur im wohnzimmer".split_whitespace().map(str::to_string).collect();
     let clauses = split_clauses(&tokens, &home);

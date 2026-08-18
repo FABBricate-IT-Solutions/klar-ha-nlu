@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- setel ac kamarmandimaster 23
+area/heizung::heizung_esszimmer_23:
+- setel ac ruang 23
+area/heizung::heizung_schlafzimmer_23:
+- setel ac kamar 23
+area/heizung::heizung_wohnzimmer_23:
+- setel ac ruang 23
+area/lichter::alle_an_ausser_kugel:
+- nyalakan semua lampu kecuali bola
+area/lichter::alle_an_ausser_schlafzimmer:
+- nyalakan semua lampu kecuali kamar
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- setel semua lampu kecuali kamar 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- setel semua lampu kecuali bola red
+area/lichter::alle_ausser_kugel:
+- matikan semua lampu kecuali bola
+area/lichter::alle_ausser_schlafzimmer:
+- matikan semua lampu kecuali kamar
+area/lichter::alle_lichter_an:
+- nyalakan semua lampu
+area/lichter::alle_lichter_aus:
+- matikan semua lampu
+area/lichter::arbeitszimmer_lichter_an:
+- nyalakan lampu ruang
+area/lichter::arbeitszimmer_lichter_aus:
+- matikan lampu ruang
+area/lichter::esszimmer_lichter_an:
+- nyalakan lampu ruang
+area/lichter::esszimmer_lichter_aus:
+- matikan lampu ruang
+area/lichter::kuche_lichter_an:
+- nyalakan lampu dapur
+area/lichter::kuche_lichter_aus:
+- matikan lampu dapur
+area/lichter::schlafzimmer_auf_blau:
+- setel lampu kamar blue
+area/lichter::schlafzimmer_auf_rot:
+- setel lampu kamar red
+area/lichter::wohnzimmer_helligkeit:
+- setel lampu ruang 45
+area/lichter::wohnzimmer_lichter_an:
+- nyalakan lampu ruang
+area/lichter::wohnzimmer_lichter_aus:
+- matikan lampu ruang
+area/spoken::alle_ausser_kugel_stt:
+- matikan semua lampu kecuali bola
+area/spoken::alle_ausser_schlaf_stt:
+- matikan semua lampu kecuali kamar
+area/spoken::alle_ganzen_an:
+- nyalakan semua lampu
+area/spoken::alle_lampen_aus:
+- matikan semua lampu
+area/spoken::esszimmer_weiss:
+- setel lampu ruang white
+area/spoken::stt_kuche_lichte:
+- matikan lampu dapur
+area/spoken::stt_licht_wohnzimmer_an:
+- nyalakan lampu ruang
+area/spoken::stt_licht_wohnzimmer_aus:
+- matikan lampu ruang
+area/spoken::stt_schlafzimmer_dativ:
+- matikan lampu kamar
+area/spoken::wohnzimmer_gruen:
+- setel lampu ruang green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- matikan semua lampu kecuali ruang
+area/spoken_more::arbeitszimmer_lampen_aus:
+- matikan lampu ruang
+area/spoken_more::esszimmer_30:
+- setel lampu ruang 30
+area/spoken_more::esszimmer_lichte_an:
+- nyalakan lampu ruang
+area/spoken_more::kuche_80:
+- setel lampu dapur 80
+area/spoken_more::kuche_blau:
+- setel lampu dapur blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- matikan semua lampu kecuali kamar
+area/spoken_more::wohnzimmer_gelb:
+- setel lampu ruang yellow

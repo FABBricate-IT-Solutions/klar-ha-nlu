@@ -1,0 +1,26 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- iskljuci sve svetlo osim spavaca osim kuhinja
+multiple_intents/multi::licht_und_heizung:
+- ukljuci svetlo dnevna i stavi grejanje dnevna 23
+multiple_intents/multi::wohn_und_ess_aus:
+- iskljuci svetlo dnevna
+multiple_intents/multi::wohn_und_ess_rot:
+- stavi svetlo dnevna red i stavi svetlo dnevna red
+multiple_intents/multi::wz_und_kuche_licht:
+- ukljuci svetlo dnevna i ukljuci svetlo kuhinja
+multiple_intents/multi::zwei_raeume_und_heizung:
+- ukljuci svetlo dnevna i ukljuci svetlo kuhinja i stavi grejanje dnevna 23
+multiple_intents/spoken::drei_raeume_an:
+- ukljuci svetlo dnevna i ukljuci svetlo kuhinja
+multiple_intents/spoken::drei_raeume_aus:
+- iskljuci svetlo dnevna i iskljuci svetlo kuhinja
+multiple_intents/spoken::ess_und_wohn_aus:
+- iskljuci svetlo dnevna
+multiple_intents/spoken::kugel_und_decke_aus:
+- iskljuci kugla i iskljuci plafon
+multiple_intents/spoken_more::kuche_und_ess_an:
+- ukljuci svetlo kuhinja i ukljuci svetlo dnevna
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- iskljuci svetlo dnevna
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- iskljuci svetlo dnevna

@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- taend lys stue
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread liste
+m0_exact/representative::exact_multi_intent:
+- taend loft sovevaerelse3 og sluk lys entree
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk liste
+m0_exact/representative::exact_state_persistence:
+- - hvad lys entree
+  - '12'
+m0_exact/representative::exact_timer:
+- taend timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- taend timer oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples liste

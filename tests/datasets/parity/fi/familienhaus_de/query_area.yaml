@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- mika verho makuuhuone2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- mika verho makuuhuone2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- mika verho makuuhuone2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- mika verho makuuhuone2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- mika tuuletin makuuhuone2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- mika tuuletin makuuhuone2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- mika tuuletin makuuhuone2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- mika tuuletin makuuhuone2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- mika valo makuuhuone2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- mika valo makuuhuone2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- mika valo makuuhuone2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- mika valo makuuhuone2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- mika verho makuuhuone3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- mika verho makuuhuone3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- mika verho makuuhuone3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- mika verho makuuhuone3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- mika valo makuuhuone3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- mika valo makuuhuone3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- mika valo makuuhuone3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- mika valo makuuhuone3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- mika valo makuuhuone4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- mika valo makuuhuone4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- mika valo makuuhuone4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- mika valo makuuhuone4
+query_area/dining_lights::dining_lights_get_brightness:
+- mika valo olohuone
+query_area/dining_lights::dining_lights_get_state:
+- mika valo olohuone
+query_area/dining_lights::dining_lights_list_off_lights:
+- mika valo olohuone
+query_area/dining_lights::dining_lights_list_on_lights:
+- mika valo olohuone
+query_area/entryway_lights::entryway_lights_get_brightness:
+- mika valo eteinen
+query_area/entryway_lights::entryway_lights_get_state:
+- mika valo eteinen
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- mika valo eteinen
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- mika valo eteinen
+query_area/entryway_locks::entryway_locks_get_state:
+- mika lukko eteinen
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- mika lukko eteinen
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- mika lukko eteinen
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- mika valo olohuonefam ja mika valo keittio
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- mika valo olohuonefam ja mika valo keittio
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- mika valo olohuonefam ja mika valo keittio
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- mika valo olohuonefam ja mika valo keittio
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- mika tuuletin olohuonefam
+query_area/family_room_fans::family_room_fans_get_state:
+- mika tuuletin olohuonefam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- mika tuuletin olohuonefam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- mika tuuletin olohuonefam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- mika valo olohuonefam
+query_area/family_room_lights::family_room_lights_get_state:
+- mika valo olohuonefam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- mika valo olohuonefam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- mika valo olohuonefam
+query_area/garage_covers::garage_covers_get_position:
+- mika verho garage
+query_area/garage_covers::garage_covers_get_state:
+- mika verho garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- mika verho garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- mika verho garage
+query_area/garage_lights::garage_lights_get_brightness:
+- mika valo garage
+query_area/garage_lights::garage_lights_get_state:
+- mika valo garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- mika valo garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- mika valo garage
+query_area/garage_locks::garage_locks_get_state:
+- mika lukko garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- mika lukko garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- mika lukko garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- mika valo eteinen ja mika valo wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- mika valo eteinen ja mika valo wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- mika valo eteinen ja mika valo wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- mika valo eteinen ja mika valo wc
+query_area/hallway_lights::hallway_lights_get_brightness:
+- mika valo eteinen
+query_area/hallway_lights::hallway_lights_get_state:
+- mika valo eteinen
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- mika valo eteinen
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- mika valo eteinen
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- mika valo keittio
+query_area/kitchen_lights::kitchen_lights_get_state:
+- mika valo keittio
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- mika valo keittio
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- mika valo keittio
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- mika laite keittio
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- mika laite keittio
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- mika laite keittio
+query_area/laundry_lights::laundry_lights_get_brightness:
+- mika valo kodinhoito
+query_area/laundry_lights::laundry_lights_get_state:
+- mika valo kodinhoito
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- mika valo kodinhoito
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- mika valo kodinhoito
+query_area/laundry_switchs::laundry_switchs_get_state:
+- mika laite kodinhoito
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- mika laite kodinhoito
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- mika laite kodinhoito
+query_area/living_climates::living_climates_get_temperature:
+- mika lampo olohuone
+query_area/living_covers::living_covers_get_position:
+- mika verho olohuone
+query_area/living_covers::living_covers_get_state:
+- mika verho olohuone
+query_area/living_covers::living_covers_list_closed_covers:
+- mika verho olohuone
+query_area/living_covers::living_covers_list_open_covers:
+- mika verho olohuone
+query_area/living_lights::living_lights_get_brightness:
+- mika valo olohuone
+query_area/living_lights::living_lights_get_state:
+- mika valo olohuone
+query_area/living_lights::living_lights_list_off_lights:
+- mika valo olohuone
+query_area/living_lights::living_lights_list_on_lights:
+- mika valo olohuone
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- mika valo main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- mika valo main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- mika valo main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- mika valo main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- mika laite main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- mika laite main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- mika laite main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- mika valo kylpymaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- mika valo kylpymaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- mika valo kylpymaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- mika valo kylpymaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- mika laite kylpymaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- mika laite kylpymaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- mika laite kylpymaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- mika verho makuuhuone ja mika verho olohuone
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- mika verho makuuhuone ja mika verho olohuone
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- mika verho makuuhuone ja mika verho olohuone
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- mika verho makuuhuone ja mika verho olohuone
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- mika lampo makuuhuone
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- mika verho makuuhuone
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- mika verho makuuhuone
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- mika verho makuuhuone
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- mika verho makuuhuone
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- mika tuuletin makuuhuone
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- mika tuuletin makuuhuone
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- mika tuuletin makuuhuone
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- mika tuuletin makuuhuone
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- mika valo makuuhuone
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- mika valo makuuhuone
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- mika valo makuuhuone
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- mika valo makuuhuone
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- mika valo wc
+query_area/powder_room_lights::powder_room_lights_get_state:
+- mika valo wc
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- mika valo wc
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- mika valo wc

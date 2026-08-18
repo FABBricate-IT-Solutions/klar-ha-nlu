@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- jalao alo bosar
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread talika
+m0_exact/representative::exact_multi_intent:
+- jalao chhad shobarghor3 ebong nibhao alo prabesh
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk talika
+m0_exact/representative::exact_state_persistence:
+- - ki alo prabesh
+  - '12'
+m0_exact/representative::exact_timer:
+- jalao timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- jalao timer oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples talika

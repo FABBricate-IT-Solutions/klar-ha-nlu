@@ -1,6 +1,6 @@
-//! Pack-configurable inflection and compound hooks. Defaults match the historic hardcoded lists.
+//! Pack-configurable inflection and compound hooks. Empty lists mean no suffixes.
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct LinkingMorpheme {
     pub morpheme: &'static str,
     pub min_rest_len: usize,
@@ -14,39 +14,38 @@ pub struct Morphology {
     pub linking: Vec<LinkingMorpheme>,
 }
 
+/// Const morphology on a compiled pack. Merged into `Catalog.morphology`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct PackMorphology {
+    pub room_suffixes: &'static [&'static str],
+    pub color_suffixes: &'static [&'static str],
+    pub linking: &'static [LinkingMorpheme],
+}
+
+impl PackMorphology {
+    pub const EMPTY: Self = Self { room_suffixes: &[], color_suffixes: &[], linking: &[] };
+    pub const GERMAN: Self =
+        Self { room_suffixes: DEFAULT_ROOM_SUFFIXES, color_suffixes: DEFAULT_COLOR_SUFFIXES, linking: DEFAULT_LINKING };
+}
+
 pub const DEFAULT_ROOM_SUFFIXES: &[&str] = &["en", "n", "s"];
 pub const DEFAULT_COLOR_SUFFIXES: &[&str] = &["en", "em", "er", "es", "e"];
-
-pub fn default_linking() -> Vec<LinkingMorpheme> {
-    vec![
-        LinkingMorpheme { morpheme: "en", min_rest_len: 5, require_noun: false },
-        LinkingMorpheme { morpheme: "n", min_rest_len: 4, require_noun: true },
-        LinkingMorpheme { morpheme: "s", min_rest_len: 4, require_noun: true },
-    ]
-}
+pub const DEFAULT_LINKING: &[LinkingMorpheme] = &[
+    LinkingMorpheme { morpheme: "en", min_rest_len: 5, require_noun: false },
+    LinkingMorpheme { morpheme: "n", min_rest_len: 4, require_noun: true },
+    LinkingMorpheme { morpheme: "s", min_rest_len: 4, require_noun: true },
+];
 
 impl Morphology {
     pub fn effective_room_suffixes(&self) -> &[&str] {
-        if self.room_suffixes.is_empty() {
-            DEFAULT_ROOM_SUFFIXES
-        } else {
-            &self.room_suffixes
-        }
+        &self.room_suffixes
     }
 
     pub fn effective_color_suffixes(&self) -> &[&str] {
-        if self.color_suffixes.is_empty() {
-            DEFAULT_COLOR_SUFFIXES
-        } else {
-            &self.color_suffixes
-        }
+        &self.color_suffixes
     }
 
     pub fn effective_linking(&self) -> Vec<LinkingMorpheme> {
-        if self.linking.is_empty() {
-            default_linking()
-        } else {
-            self.linking.clone()
-        }
+        self.linking.clone()
     }
 }

@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- chalu diva baithak
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread yadi
+m0_exact/representative::exact_multi_intent:
+- chalu chhat shayankaksh3 ani band diva pravesh
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk yadi
+m0_exact/representative::exact_state_persistence:
+- - kay diva pravesh
+  - '12'
+m0_exact/representative::exact_timer:
+- chalu timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- chalu timer oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples yadi

@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - چالو روشنی لانج
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - بند روشنی باورچی
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

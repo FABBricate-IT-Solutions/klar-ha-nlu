@@ -41,6 +41,7 @@ fn yaml_family_homes_load_floors() {
 #[test]
 fn resolve_scopes_assist_visible_lights_to_the_named_floor() {
     let home = family_home("tests/datasets/family_home_en/home_config.yaml");
+    let _lang = klar_nlu::lang::bind(&["en".into()]);
     let hit = resolve(&["upstairs".into(), "lights".into()], &home, Some("light"));
     assert_eq!(hit.floors, ["upper"]);
     assert!(hit.areas.is_empty(), "{:?}", hit.areas);

@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - accendi riscaldamento soggiorno
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - accendi luce soggiorno
+  - spegni
+state_persistance/spoken::kugel_dann_aus:
+- - accendi sfera
+  - spegni
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - accendi luce soggiorno
+  - accendi luce cucina
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - accendi luce soggiorno
+  - rosso

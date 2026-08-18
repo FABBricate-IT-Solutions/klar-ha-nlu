@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- dat dieuhoa phongtamchinh 23
+area/heizung::heizung_esszimmer_23:
+- dat dieuhoa phongkhach 23
+area/heizung::heizung_schlafzimmer_23:
+- dat dieuhoa phongngu 23
+area/heizung::heizung_wohnzimmer_23:
+- dat dieuhoa phongkhach 23
+area/lichter::alle_an_ausser_kugel:
+- bat tatca bongden tru cau
+area/lichter::alle_an_ausser_schlafzimmer:
+- bat tatca bongden tru phongngu
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- dat tatca bongden tru phongngu 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- dat tatca bongden tru cau red
+area/lichter::alle_ausser_kugel:
+- tat tatca bongden tru cau
+area/lichter::alle_ausser_schlafzimmer:
+- tat tatca bongden tru phongngu
+area/lichter::alle_lichter_an:
+- bat tatca bongden
+area/lichter::alle_lichter_aus:
+- tat tatca bongden
+area/lichter::arbeitszimmer_lichter_an:
+- bat bongden phongkhach
+area/lichter::arbeitszimmer_lichter_aus:
+- tat bongden phongkhach
+area/lichter::esszimmer_lichter_an:
+- bat bongden phongkhach
+area/lichter::esszimmer_lichter_aus:
+- tat bongden phongkhach
+area/lichter::kuche_lichter_an:
+- bat bongden bep
+area/lichter::kuche_lichter_aus:
+- tat bongden bep
+area/lichter::schlafzimmer_auf_blau:
+- dat bongden phongngu blue
+area/lichter::schlafzimmer_auf_rot:
+- dat bongden phongngu red
+area/lichter::wohnzimmer_helligkeit:
+- dat bongden phongkhach 45
+area/lichter::wohnzimmer_lichter_an:
+- bat bongden phongkhach
+area/lichter::wohnzimmer_lichter_aus:
+- tat bongden phongkhach
+area/spoken::alle_ausser_kugel_stt:
+- tat tatca bongden tru cau
+area/spoken::alle_ausser_schlaf_stt:
+- tat tatca bongden tru phongngu
+area/spoken::alle_ganzen_an:
+- bat tatca bongden
+area/spoken::alle_lampen_aus:
+- tat tatca bongden
+area/spoken::esszimmer_weiss:
+- dat bongden phongkhach white
+area/spoken::stt_kuche_lichte:
+- tat bongden bep
+area/spoken::stt_licht_wohnzimmer_an:
+- bat bongden phongkhach
+area/spoken::stt_licht_wohnzimmer_aus:
+- tat bongden phongkhach
+area/spoken::stt_schlafzimmer_dativ:
+- tat bongden phongngu
+area/spoken::wohnzimmer_gruen:
+- dat bongden phongkhach green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- tat tatca bongden tru phongkhach
+area/spoken_more::arbeitszimmer_lampen_aus:
+- tat bongden phongkhach
+area/spoken_more::esszimmer_30:
+- dat bongden phongkhach 30
+area/spoken_more::esszimmer_lichte_an:
+- bat bongden phongkhach
+area/spoken_more::kuche_80:
+- dat bongden bep 80
+area/spoken_more::kuche_blau:
+- dat bongden bep blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- tat tatca bongden tru phongngu
+area/spoken_more::wohnzimmer_gelb:
+- dat bongden phongkhach yellow

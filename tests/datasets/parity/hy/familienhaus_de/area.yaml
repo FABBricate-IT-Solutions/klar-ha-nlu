@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- pakir varaguyr qnakaran2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- batsir varaguyr qnakaran2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- dir varaguyr qnakaran2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- dir odapokhich qnakaran2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- anjatir odapokhich qnakaran2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- miatsu odapokhich qnakaran2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- dir luys qnakaran2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- dir luys qnakaran2 pink
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- anjatir luys qnakaran2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- miatsu luys qnakaran2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- pakir varaguyr qnakaran3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- batsir varaguyr qnakaran3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- dir varaguyr qnakaran3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- dir luys qnakaran3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- dir luys qnakaran3 blue
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- anjatir luys qnakaran3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- miatsu luys qnakaran3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- dir luys qnakaran4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- dir luys qnakaran4 green
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- anjatir luys qnakaran4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- miatsu luys qnakaran4
+area/dining_lights::dining_lights_change_brightness:
+- dir luys hyurasenyak 54
+area/dining_lights::dining_lights_change_color:
+- dir luys hyurasenyak blue
+area/dining_lights::dining_lights_turn_off:
+- anjatir luys hyurasenyak
+area/dining_lights::dining_lights_turn_on:
+- miatsu luys hyurasenyak
+area/entryway_lights::entryway_lights_change_brightness:
+- dir luys mutq 72
+area/entryway_lights::entryway_lights_change_color:
+- dir luys mutq black
+area/entryway_lights::entryway_lights_turn_off:
+- anjatir luys mutq
+area/entryway_lights::entryway_lights_turn_on:
+- miatsu luys mutq
+area/entryway_locks::entryway_locks_lock:
+- kogpek kogpek mutq
+area/entryway_locks::entryway_locks_unlock:
+- batsir kogpek mutq
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- dir luys yntaniq 39 yev dir luys khohanots 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- dir luys yntaniq purple yev dir luys khohanots purple
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- anjatir luys yntaniq yev anjatir luys khohanots
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- miatsu luys yntaniq yev miatsu luys khohanots
+area/family_room_fans::family_room_fans_set_fan_speed:
+- dir odapokhich yntaniq 32
+area/family_room_fans::family_room_fans_turn_off:
+- anjatir odapokhich yntaniq
+area/family_room_fans::family_room_fans_turn_on:
+- miatsu odapokhich yntaniq
+area/family_room_lights::family_room_lights_change_brightness:
+- dir luys yntaniq 44
+area/family_room_lights::family_room_lights_change_color:
+- dir luys yntaniq green
+area/family_room_lights::family_room_lights_turn_off:
+- anjatir luys yntaniq
+area/family_room_lights::family_room_lights_turn_on:
+- miatsu luys yntaniq
+area/garage_covers::garage_covers_close:
+- pakir varaguyr garage
+area/garage_covers::garage_covers_open:
+- batsir varaguyr garage
+area/garage_covers::garage_covers_set_position:
+- dir varaguyr garage 86
+area/garage_lights::garage_lights_change_brightness:
+- dir luys garage 16
+area/garage_lights::garage_lights_change_color:
+- dir luys garage blue
+area/garage_lights::garage_lights_turn_off:
+- anjatir luys garage
+area/garage_lights::garage_lights_turn_on:
+- miatsu luys garage
+area/garage_locks::garage_locks_lock:
+- kogpek kogpek garage
+area/garage_locks::garage_locks_unlock:
+- batsir kogpek garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- dir luys mutq 26 yev dir luys wc 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- dir luys mutq purple yev dir luys wc purple
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- anjatir luys mutq yev anjatir luys wc
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- miatsu luys mutq yev miatsu luys wc
+area/hallway_lights::hallway_lights_change_brightness:
+- dir luys mutq 61
+area/hallway_lights::hallway_lights_change_color:
+- dir luys mutq orange
+area/hallway_lights::hallway_lights_turn_off:
+- anjatir luys mutq
+area/hallway_lights::hallway_lights_turn_on:
+- miatsu luys mutq
+area/kitchen_lights::kitchen_lights_change_brightness:
+- dir luys khohanots 45
+area/kitchen_lights::kitchen_lights_change_color:
+- dir luys khohanots pink
+area/kitchen_lights::kitchen_lights_turn_off:
+- anjatir luys khohanots
+area/kitchen_lights::kitchen_lights_turn_on:
+- miatsu luys khohanots
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- anjatir sark khohanots
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- miatsu sark khohanots
+area/laundry_lights::laundry_lights_change_brightness:
+- dir luys lvacqaran 62
+area/laundry_lights::laundry_lights_change_color:
+- dir luys lvacqaran yellow
+area/laundry_lights::laundry_lights_turn_off:
+- anjatir luys lvacqaran
+area/laundry_lights::laundry_lights_turn_on:
+- miatsu luys lvacqaran
+area/laundry_switchs::laundry_switchs_turn_off:
+- anjatir sark lvacqaran
+area/laundry_switchs::laundry_switchs_turn_on:
+- miatsu sark lvacqaran
+area/living_climates::living_climates_set_temperature:
+- dir jerutsum hyurasenyak 20
+area/living_covers::living_covers_close:
+- pakir varaguyr hyurasenyak
+area/living_covers::living_covers_open:
+- batsir varaguyr hyurasenyak
+area/living_covers::living_covers_set_position:
+- dir varaguyr hyurasenyak 46
+area/living_lights::living_lights_change_brightness:
+- dir luys hyurasenyak 84
+area/living_lights::living_lights_change_color:
+- dir luys hyurasenyak blue
+area/living_lights::living_lights_turn_off:
+- anjatir luys hyurasenyak
+area/living_lights::living_lights_turn_on:
+- miatsu luys hyurasenyak
+area/main_bath_lights::main_bath_lights_change_brightness:
+- dir luys main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- dir luys main bath pink
+area/main_bath_lights::main_bath_lights_turn_off:
+- anjatir luys main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- miatsu luys main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- anjatir sark main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- miatsu sark main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- dir luys lvacaranmaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- dir luys lvacaranmaster black
+area/master_bath_lights::master_bath_lights_turn_off:
+- anjatir luys lvacaranmaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- miatsu luys lvacaranmaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- anjatir sark lvacaranmaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- miatsu sark lvacaranmaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- dir jerutsum qnakaran 20 yev dir jerutsum hyurasenyak 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- pakir varaguyr qnakaran yev pakir varaguyr hyurasenyak
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- batsir varaguyr qnakaran yev batsir varaguyr hyurasenyak
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- dir varaguyr qnakaran 19 yev dir varaguyr hyurasenyak 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- dir luys qnakaran 25 yev dir luys hyurasenyak 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- dir luys qnakaran white yev dir luys hyurasenyak white
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- anjatir luys qnakaran yev anjatir luys hyurasenyak
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- miatsu luys qnakaran yev miatsu luys hyurasenyak
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- dir luys qnakaran 57 yev dir luys main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- dir luys qnakaran pink yev dir luys main bath pink
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- anjatir luys qnakaran yev anjatir luys main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- miatsu luys qnakaran yev miatsu luys main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- dir jerutsum qnakaran 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- pakir varaguyr qnakaran
+area/master_bedroom_covers::master_bedroom_covers_open:
+- batsir varaguyr qnakaran
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- dir varaguyr qnakaran 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- dir odapokhich qnakaran 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- anjatir odapokhich qnakaran
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- miatsu odapokhich qnakaran
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- dir luys qnakaran 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- dir luys qnakaran pink
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- anjatir luys qnakaran
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- miatsu luys qnakaran
+area/powder_room_lights::powder_room_lights_change_brightness:
+- dir luys wc 52
+area/powder_room_lights::powder_room_lights_change_color:
+- dir luys wc purple
+area/powder_room_lights::powder_room_lights_turn_off:
+- anjatir luys wc
+area/powder_room_lights::powder_room_lights_turn_on:
+- miatsu luys wc
+area/spoken_lights::spoken_bedroom_inflection:
+- dir luys qnakaran red
+area/spoken_lights::spoken_except_island:
+- anjatir bolor luys batsi kghzi
+area/spoken_lights::spoken_except_kitchen:
+- anjatir bolor luys batsi khohanots batsi kghzi
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- anjatir luys hyurasenyak yev anjatir luys khohanots
+area/spoken_lights::spoken_stt_kitchen_off:
+- anjatir luys khohanots
+area/spoken_lights::spoken_stt_living_off:
+- anjatir luys hyurasenyak

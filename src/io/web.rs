@@ -116,6 +116,9 @@ async fn api_parse(
     };
     session.preferred_area = body.preferred_area.clone();
     let outcome = parse_with_policies(&body.text, &home, &mut session, &custom, &settings, &policies, &speech_bank);
+    if let Some((entity_id, alias)) = session.pending_teach.take() {
+        state.apply_teach(&entity_id, &alias).await;
+    }
     let last_names = session.last.iter().map(|turn| turn.name.clone()).collect();
     state.sessions.lock().await.put(session);
     state.record_parse("http", body.language.as_deref(), &legacy_result(outcome.clone())).await;
@@ -224,7 +227,11 @@ async fn get_gaps(
 ) -> Result<Json<GapsOut>, StatusCode> {
     read_gate(peer, &headers, &state.token)?;
     let home = state.home.snapshot().await;
-    Ok(Json(GapsOut { leftover: leftover(&home), rooms: home.areas.clone(), overlay: load_overlay(&state.data_dir) }))
+    Ok(Json(GapsOut {
+        leftover: leftover(&home, crate::lang::catalog()),
+        rooms: home.areas.clone(),
+        overlay: load_overlay(&state.data_dir),
+    }))
 }
 
 #[derive(Deserialize)]
@@ -314,8 +321,10 @@ mod tests {
         let base = Settings::default();
         assert_eq!(settings_for_parse(base.clone(), Some("en-US"), None, None).unwrap().languages, vec!["en-US".to_string()]);
         assert_eq!(settings_for_parse(base.clone(), Some("de-DE"), None, None).unwrap().languages, vec!["de-DE".to_string()]);
-        assert_eq!(settings_for_parse(base.clone(), None, None, None).unwrap().languages, vec!["de".to_string(), "en".to_string()]);
-        assert_eq!(settings_for_parse(base, Some("fr"), None, None).unwrap_err(), StatusCode::UNPROCESSABLE_ENTITY);
+        assert!(settings_for_parse(base.clone(), None, None, None).unwrap().languages.is_empty());
+        assert_eq!(settings_for_parse(base.clone(), Some("fr"), None, None).unwrap().languages, vec!["fr".to_string()]);
+        assert_eq!(settings_for_parse(base.clone(), Some("pt-BR"), None, None).unwrap().languages, vec!["pt-BR".to_string()]);
+        assert_eq!(settings_for_parse(base, Some("ru"), None, None).unwrap_err(), StatusCode::UNPROCESSABLE_ENTITY);
     }
 
     #[test]

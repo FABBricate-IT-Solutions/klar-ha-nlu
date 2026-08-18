@@ -6,6 +6,7 @@ from __future__ import annotations
 import asyncio
 import importlib.util
 import sys
+import types
 import unittest
 from pathlib import Path
 
@@ -14,6 +15,10 @@ PKG = ROOT / "custom_components" / "klar_nlu"
 if str(PKG) not in sys.path:
     sys.path.insert(0, str(PKG))
 
+_pkg = types.ModuleType("klar_nlu")
+_pkg.__path__ = [str(PKG)]
+sys.modules.setdefault("klar_nlu", _pkg)
+
 
 def _load(name: str, rel: str):
     path = PKG / rel
@@ -21,11 +26,13 @@ def _load(name: str, rel: str):
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load {path}")
     mod = importlib.util.module_from_spec(spec)
+    sys.modules[name] = mod
     spec.loader.exec_module(mod)
     return mod
 
 
-const = _load("klar_const", "const.py")
+_load("klar_nlu.languages", "languages.py")
+const = _load("klar_nlu.const", "const.py")
 refine = _load("klar_refine", "refine.py")
 speech = _load("klar_speech", "speech.py")
 

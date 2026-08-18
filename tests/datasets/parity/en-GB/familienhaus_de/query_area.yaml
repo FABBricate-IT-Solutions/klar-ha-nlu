@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- what curtain bedroom2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- what curtain bedroom2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- what curtain bedroom2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- what curtain bedroom2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- what fan bedroom2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- what fan bedroom2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- what fan bedroom2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- what fan bedroom2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- what light bedroom2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- what light bedroom2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- what light bedroom2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- what light bedroom2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- what curtain bedroom3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- what curtain bedroom3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- what curtain bedroom3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- what curtain bedroom3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- what light bedroom3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- what light bedroom3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- what light bedroom3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- what light bedroom3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- what light bedroom4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- what light bedroom4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- what light bedroom4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- what light bedroom4
+query_area/dining_lights::dining_lights_get_brightness:
+- what light lounge
+query_area/dining_lights::dining_lights_get_state:
+- what light lounge
+query_area/dining_lights::dining_lights_list_off_lights:
+- what light lounge
+query_area/dining_lights::dining_lights_list_on_lights:
+- what light lounge
+query_area/entryway_lights::entryway_lights_get_brightness:
+- what light porch
+query_area/entryway_lights::entryway_lights_get_state:
+- what light porch
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- what light porch
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- what light porch
+query_area/entryway_locks::entryway_locks_get_state:
+- what lock porch
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- what lock porch
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- what lock porch
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- what light loungefam and what light kitchen
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- what light loungefam and what light kitchen
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- what light loungefam and what light kitchen
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- what light loungefam and what light kitchen
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- what fan loungefam
+query_area/family_room_fans::family_room_fans_get_state:
+- what fan loungefam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- what fan loungefam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- what fan loungefam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- what light loungefam
+query_area/family_room_lights::family_room_lights_get_state:
+- what light loungefam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- what light loungefam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- what light loungefam
+query_area/garage_covers::garage_covers_get_position:
+- what curtain garage
+query_area/garage_covers::garage_covers_get_state:
+- what curtain garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- what curtain garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- what curtain garage
+query_area/garage_lights::garage_lights_get_brightness:
+- what light garage
+query_area/garage_lights::garage_lights_get_state:
+- what light garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- what light garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- what light garage
+query_area/garage_locks::garage_locks_get_state:
+- what lock garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- what lock garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- what lock garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- what light porch and what light loo
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- what light porch and what light loo
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- what light porch and what light loo
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- what light porch and what light loo
+query_area/hallway_lights::hallway_lights_get_brightness:
+- what light porch
+query_area/hallway_lights::hallway_lights_get_state:
+- what light porch
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- what light porch
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- what light porch
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- what light kitchen
+query_area/kitchen_lights::kitchen_lights_get_state:
+- what light kitchen
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- what light kitchen
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- what light kitchen
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- what device kitchen
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- what device kitchen
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- what device kitchen
+query_area/laundry_lights::laundry_lights_get_brightness:
+- what light utility
+query_area/laundry_lights::laundry_lights_get_state:
+- what light utility
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- what light utility
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- what light utility
+query_area/laundry_switchs::laundry_switchs_get_state:
+- what device utility
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- what device utility
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- what device utility
+query_area/living_climates::living_climates_get_temperature:
+- what heating lounge
+query_area/living_covers::living_covers_get_position:
+- what curtain lounge
+query_area/living_covers::living_covers_get_state:
+- what curtain lounge
+query_area/living_covers::living_covers_list_closed_covers:
+- what curtain lounge
+query_area/living_covers::living_covers_list_open_covers:
+- what curtain lounge
+query_area/living_lights::living_lights_get_brightness:
+- what light lounge
+query_area/living_lights::living_lights_get_state:
+- what light lounge
+query_area/living_lights::living_lights_list_off_lights:
+- what light lounge
+query_area/living_lights::living_lights_list_on_lights:
+- what light lounge
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- what light main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- what light main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- what light main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- what light main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- what device main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- what device main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- what device main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- what light ensuite
+query_area/master_bath_lights::master_bath_lights_get_state:
+- what light ensuite
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- what light ensuite
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- what light ensuite
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- what device ensuite
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- what device ensuite
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- what device ensuite
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- what curtain bedroom and what curtain lounge
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- what curtain bedroom and what curtain lounge
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- what curtain bedroom and what curtain lounge
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- what curtain bedroom and what curtain lounge
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- what heating bedroom
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- what curtain bedroom
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- what curtain bedroom
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- what curtain bedroom
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- what curtain bedroom
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- what fan bedroom
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- what fan bedroom
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- what fan bedroom
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- what fan bedroom
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- what light bedroom
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- what light bedroom
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- what light bedroom
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- what light bedroom
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- what light loo
+query_area/powder_room_lights::powder_room_lights_get_state:
+- what light loo
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- what light loo
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- what light loo

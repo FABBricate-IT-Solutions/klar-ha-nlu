@@ -7,10 +7,7 @@ pub(super) fn apply_rule_speech(draft: &mut Draft, context: &ParseContext<'_>, r
     let Some(rule) = rule else {
         return;
     };
-    let language = match context.catalog.langs.first().copied().unwrap_or(crate::lang::LangId::De) {
-        crate::lang::LangId::De => "de",
-        crate::lang::LangId::En => "en",
-    };
+    let language = context.catalog.langs.first().map(|lang| lang.code()).unwrap_or("de");
     let Some(template) = pick_speech(
         context.speech_bank,
         &rule.id,
@@ -29,8 +26,5 @@ pub(super) fn apply_rule_speech(draft: &mut Draft, context: &ParseContext<'_>, r
 }
 
 pub(super) fn confirmation_prompt(context: &ParseContext<'_>) -> String {
-    match context.catalog.langs.first().copied().unwrap_or(crate::lang::LangId::De) {
-        crate::lang::LangId::De => "Soll ich das wirklich ausführen?".into(),
-        crate::lang::LangId::En => "Should I really do that?".into(),
-    }
+    context.catalog.speech().confirm.to_string()
 }

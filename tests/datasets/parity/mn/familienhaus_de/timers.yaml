@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- asaa timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- asaa timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- asaa timer abstract
+timers/timers::cancel_all_timers:
+- untraa bugd timer
+timers/timers::timer_laundry_cancel:
+- asaa timer laundry
+timers/timers::timer_laundry_decrease:
+- asaa timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- asaa timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- untraa timer laundry
+timers/timers::timer_laundry_start:
+- asaa timer laundry
+timers/timers::timer_laundry_status:
+- yuu timer laundry
+timers/timers::timer_laundry_unpause:
+- asaa timer laundry
+timers/timers::timer_oven_cancel:
+- asaa timer oven
+timers/timers::timer_oven_decrease:
+- asaa timer oven 44 min
+timers/timers::timer_oven_increase:
+- asaa timer oven 30 min
+timers/timers::timer_oven_pause:
+- untraa timer oven
+timers/timers::timer_oven_start:
+- asaa timer oven 2 min
+timers/timers::timer_oven_status:
+- yuu timer oven
+timers/timers::timer_oven_unpause:
+- asaa timer oven

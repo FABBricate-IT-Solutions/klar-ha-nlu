@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- lulita taimer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- lulita taimer abstract 20 min
+timers/timers::abstract_start_seconds:
+- lulita taimer abstract
+timers/timers::cancel_all_timers:
+- kustuta koik taimer
+timers/timers::timer_laundry_cancel:
+- lulita taimer laundry
+timers/timers::timer_laundry_decrease:
+- lulita taimer laundry 5 min
+timers/timers::timer_laundry_increase:
+- lulita taimer laundry 16 min
+timers/timers::timer_laundry_pause:
+- kustuta taimer laundry
+timers/timers::timer_laundry_start:
+- lulita taimer laundry
+timers/timers::timer_laundry_status:
+- mis taimer laundry
+timers/timers::timer_laundry_unpause:
+- lulita taimer laundry
+timers/timers::timer_oven_cancel:
+- lulita taimer oven
+timers/timers::timer_oven_decrease:
+- lulita taimer oven 44 min
+timers/timers::timer_oven_increase:
+- lulita taimer oven 30 min
+timers/timers::timer_oven_pause:
+- kustuta taimer oven
+timers/timers::timer_oven_start:
+- lulita taimer oven 2 min
+timers/timers::timer_oven_status:
+- mis taimer oven
+timers/timers::timer_oven_unpause:
+- lulita taimer oven

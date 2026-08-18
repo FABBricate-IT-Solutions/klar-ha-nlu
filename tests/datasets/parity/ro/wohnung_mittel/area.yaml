@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- pune incalzire baiemaster 23
+area/heizung::heizung_esszimmer_23:
+- pune incalzire sufragerie 23
+area/heizung::heizung_schlafzimmer_23:
+- pune incalzire dormitor 23
+area/heizung::heizung_wohnzimmer_23:
+- pune incalzire sufragerie 23
+area/lichter::alle_an_ausser_kugel:
+- aprinde tot lumina exceptand globe
+area/lichter::alle_an_ausser_schlafzimmer:
+- aprinde tot lumina exceptand dormitor
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- pune tot lumina exceptand dormitor 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- pune tot lumina exceptand globe rosu
+area/lichter::alle_ausser_kugel:
+- stinge tot lumina exceptand globe
+area/lichter::alle_ausser_schlafzimmer:
+- stinge tot lumina exceptand dormitor
+area/lichter::alle_lichter_an:
+- aprinde tot lumina
+area/lichter::alle_lichter_aus:
+- stinge tot lumina
+area/lichter::arbeitszimmer_lichter_an:
+- aprinde lumina sufragerie
+area/lichter::arbeitszimmer_lichter_aus:
+- stinge lumina sufragerie
+area/lichter::esszimmer_lichter_an:
+- aprinde lumina sufragerie
+area/lichter::esszimmer_lichter_aus:
+- stinge lumina sufragerie
+area/lichter::kuche_lichter_an:
+- aprinde lumina bucatarie
+area/lichter::kuche_lichter_aus:
+- stinge lumina bucatarie
+area/lichter::schlafzimmer_auf_blau:
+- pune lumina dormitor albastru
+area/lichter::schlafzimmer_auf_rot:
+- pune lumina dormitor rosu
+area/lichter::wohnzimmer_helligkeit:
+- pune lumina sufragerie 45
+area/lichter::wohnzimmer_lichter_an:
+- aprinde lumina sufragerie
+area/lichter::wohnzimmer_lichter_aus:
+- stinge lumina sufragerie
+area/spoken::alle_ausser_kugel_stt:
+- stinge tot lumina exceptand globe
+area/spoken::alle_ausser_schlaf_stt:
+- stinge tot lumina exceptand dormitor
+area/spoken::alle_ganzen_an:
+- aprinde tot lumina
+area/spoken::alle_lampen_aus:
+- stinge tot lumina
+area/spoken::esszimmer_weiss:
+- pune lumina sufragerie alb
+area/spoken::stt_kuche_lichte:
+- stinge lumina bucatarie
+area/spoken::stt_licht_wohnzimmer_an:
+- aprinde lumina sufragerie
+area/spoken::stt_licht_wohnzimmer_aus:
+- stinge lumina sufragerie
+area/spoken::stt_schlafzimmer_dativ:
+- stinge lumina dormitor
+area/spoken::wohnzimmer_gruen:
+- pune lumina sufragerie verde
+area/spoken_more::alle_ausser_arbeitszimmer:
+- stinge tot lumina exceptand sufragerie
+area/spoken_more::arbeitszimmer_lampen_aus:
+- stinge lumina sufragerie
+area/spoken_more::esszimmer_30:
+- pune lumina sufragerie 30
+area/spoken_more::esszimmer_lichte_an:
+- aprinde lumina sufragerie
+area/spoken_more::kuche_80:
+- pune lumina bucatarie 80
+area/spoken_more::kuche_blau:
+- pune lumina bucatarie albastru
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- stinge tot lumina exceptand dormitor
+area/spoken_more::wohnzimmer_gelb:
+- pune lumina sufragerie galben

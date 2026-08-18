@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- pyth curtayn chambour2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- pyth curtayn chambour2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- pyth curtayn chambour2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- pyth curtayn chambour2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- pyth gwyns chambour2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- pyth gwyns chambour2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- pyth gwyns chambour2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- pyth gwyns chambour2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- pyth golow chambour2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- pyth golow chambour2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- pyth golow chambour2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- pyth golow chambour2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- pyth curtayn chambour3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- pyth curtayn chambour3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- pyth curtayn chambour3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- pyth curtayn chambour3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- pyth golow chambour3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- pyth golow chambour3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- pyth golow chambour3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- pyth golow chambour3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- pyth golow chambour4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- pyth golow chambour4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- pyth golow chambour4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- pyth golow chambour4
+query_area/dining_lights::dining_lights_get_brightness:
+- pyth golow stafell
+query_area/dining_lights::dining_lights_get_state:
+- pyth golow stafell
+query_area/dining_lights::dining_lights_list_off_lights:
+- pyth golow stafell
+query_area/dining_lights::dining_lights_list_on_lights:
+- pyth golow stafell
+query_area/entryway_lights::entryway_lights_get_brightness:
+- pyth golow porth
+query_area/entryway_lights::entryway_lights_get_state:
+- pyth golow porth
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- pyth golow porth
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- pyth golow porth
+query_area/entryway_locks::entryway_locks_get_state:
+- pyth alhwedh porth
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- pyth alhwedh porth
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- pyth alhwedh porth
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- pyth golow stevellteylu ha pyth golow kegin
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- pyth golow stevellteylu ha pyth golow kegin
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- pyth golow stevellteylu ha pyth golow kegin
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- pyth golow stevellteylu ha pyth golow kegin
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- pyth gwyns stevellteylu
+query_area/family_room_fans::family_room_fans_get_state:
+- pyth gwyns stevellteylu
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- pyth gwyns stevellteylu
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- pyth gwyns stevellteylu
+query_area/family_room_lights::family_room_lights_get_brightness:
+- pyth golow stevellteylu
+query_area/family_room_lights::family_room_lights_get_state:
+- pyth golow stevellteylu
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- pyth golow stevellteylu
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- pyth golow stevellteylu
+query_area/garage_covers::garage_covers_get_position:
+- pyth curtayn garage
+query_area/garage_covers::garage_covers_get_state:
+- pyth curtayn garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- pyth curtayn garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- pyth curtayn garage
+query_area/garage_lights::garage_lights_get_brightness:
+- pyth golow garage
+query_area/garage_lights::garage_lights_get_state:
+- pyth golow garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- pyth golow garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- pyth golow garage
+query_area/garage_locks::garage_locks_get_state:
+- pyth alhwedh garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- pyth alhwedh garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- pyth alhwedh garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- pyth golow porth ha pyth golow tybach
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- pyth golow porth ha pyth golow tybach
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- pyth golow porth ha pyth golow tybach
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- pyth golow porth ha pyth golow tybach
+query_area/hallway_lights::hallway_lights_get_brightness:
+- pyth golow porth
+query_area/hallway_lights::hallway_lights_get_state:
+- pyth golow porth
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- pyth golow porth
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- pyth golow porth
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- pyth golow kegin
+query_area/kitchen_lights::kitchen_lights_get_state:
+- pyth golow kegin
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- pyth golow kegin
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- pyth golow kegin
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- pyth tol kegin
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- pyth tol kegin
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- pyth tol kegin
+query_area/laundry_lights::laundry_lights_get_brightness:
+- pyth golow stevellgolhi
+query_area/laundry_lights::laundry_lights_get_state:
+- pyth golow stevellgolhi
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- pyth golow stevellgolhi
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- pyth golow stevellgolhi
+query_area/laundry_switchs::laundry_switchs_get_state:
+- pyth tol stevellgolhi
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- pyth tol stevellgolhi
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- pyth tol stevellgolhi
+query_area/living_climates::living_climates_get_temperature:
+- pyth tomder stafell
+query_area/living_covers::living_covers_get_position:
+- pyth curtayn stafell
+query_area/living_covers::living_covers_get_state:
+- pyth curtayn stafell
+query_area/living_covers::living_covers_list_closed_covers:
+- pyth curtayn stafell
+query_area/living_covers::living_covers_list_open_covers:
+- pyth curtayn stafell
+query_area/living_lights::living_lights_get_brightness:
+- pyth golow stafell
+query_area/living_lights::living_lights_get_state:
+- pyth golow stafell
+query_area/living_lights::living_lights_list_off_lights:
+- pyth golow stafell
+query_area/living_lights::living_lights_list_on_lights:
+- pyth golow stafell
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- pyth golow main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- pyth golow main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- pyth golow main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- pyth golow main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- pyth tol main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- pyth tol main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- pyth tol main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- pyth golow kewndhavas
+query_area/master_bath_lights::master_bath_lights_get_state:
+- pyth golow kewndhavas
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- pyth golow kewndhavas
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- pyth golow kewndhavas
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- pyth tol kewndhavas
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- pyth tol kewndhavas
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- pyth tol kewndhavas
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- pyth curtayn chambour ha pyth curtayn stafell
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- pyth curtayn chambour ha pyth curtayn stafell
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- pyth curtayn chambour ha pyth curtayn stafell
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- pyth curtayn chambour ha pyth curtayn stafell
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- pyth tomder chambour
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- pyth curtayn chambour
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- pyth curtayn chambour
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- pyth curtayn chambour
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- pyth curtayn chambour
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- pyth gwyns chambour
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- pyth gwyns chambour
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- pyth gwyns chambour
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- pyth gwyns chambour
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- pyth golow chambour
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- pyth golow chambour
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- pyth golow chambour
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- pyth golow chambour
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- pyth golow tybach
+query_area/powder_room_lights::powder_room_lights_get_state:
+- pyth golow tybach
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- pyth golow tybach
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- pyth golow tybach

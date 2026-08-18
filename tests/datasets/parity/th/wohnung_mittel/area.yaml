@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- tang air hongnamlak 23
+area/heizung::heizung_esszimmer_23:
+- tang air hongnang 23
+area/heizung::heizung_schlafzimmer_23:
+- tang air hongnon 23
+area/heizung::heizung_wohnzimmer_23:
+- tang air hongnang 23
+area/lichter::alle_an_ausser_kugel:
+- poetfai ทั้งหมด fai ยกเว้น luk
+area/lichter::alle_an_ausser_schlafzimmer:
+- poetfai ทั้งหมด fai ยกเว้น hongnon
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- tang ทั้งหมด fai ยกเว้น hongnon 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- tang ทั้งหมด fai ยกเว้น luk red
+area/lichter::alle_ausser_kugel:
+- pitfai ทั้งหมด fai ยกเว้น luk
+area/lichter::alle_ausser_schlafzimmer:
+- pitfai ทั้งหมด fai ยกเว้น hongnon
+area/lichter::alle_lichter_an:
+- poetfai ทั้งหมด fai
+area/lichter::alle_lichter_aus:
+- pitfai ทั้งหมด fai
+area/lichter::arbeitszimmer_lichter_an:
+- poetfai fai hongnang
+area/lichter::arbeitszimmer_lichter_aus:
+- pitfai fai hongnang
+area/lichter::esszimmer_lichter_an:
+- poetfai fai hongnang
+area/lichter::esszimmer_lichter_aus:
+- pitfai fai hongnang
+area/lichter::kuche_lichter_an:
+- poetfai fai hongkrua
+area/lichter::kuche_lichter_aus:
+- pitfai fai hongkrua
+area/lichter::schlafzimmer_auf_blau:
+- tang fai hongnon blue
+area/lichter::schlafzimmer_auf_rot:
+- tang fai hongnon red
+area/lichter::wohnzimmer_helligkeit:
+- tang fai hongnang 45
+area/lichter::wohnzimmer_lichter_an:
+- poetfai fai hongnang
+area/lichter::wohnzimmer_lichter_aus:
+- pitfai fai hongnang
+area/spoken::alle_ausser_kugel_stt:
+- pitfai ทั้งหมด fai ยกเว้น luk
+area/spoken::alle_ausser_schlaf_stt:
+- pitfai ทั้งหมด fai ยกเว้น hongnon
+area/spoken::alle_ganzen_an:
+- poetfai ทั้งหมด fai
+area/spoken::alle_lampen_aus:
+- pitfai ทั้งหมด fai
+area/spoken::esszimmer_weiss:
+- tang fai hongnang white
+area/spoken::stt_kuche_lichte:
+- pitfai fai hongkrua
+area/spoken::stt_licht_wohnzimmer_an:
+- poetfai fai hongnang
+area/spoken::stt_licht_wohnzimmer_aus:
+- pitfai fai hongnang
+area/spoken::stt_schlafzimmer_dativ:
+- pitfai fai hongnon
+area/spoken::wohnzimmer_gruen:
+- tang fai hongnang green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- pitfai ทั้งหมด fai ยกเว้น hongnang
+area/spoken_more::arbeitszimmer_lampen_aus:
+- pitfai fai hongnang
+area/spoken_more::esszimmer_30:
+- tang fai hongnang 30
+area/spoken_more::esszimmer_lichte_an:
+- poetfai fai hongnang
+area/spoken_more::kuche_80:
+- tang fai hongkrua 80
+area/spoken_more::kuche_blau:
+- tang fai hongkrua blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- pitfai ทั้งหมด fai ยกเว้น hongnon
+area/spoken_more::wohnzimmer_gelb:
+- tang fai hongnang yellow

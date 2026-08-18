@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- βαλε θερμανση μπανιοmaster 23
+area/heizung::heizung_esszimmer_23:
+- βαλε θερμανση σαλονι 23
+area/heizung::heizung_schlafzimmer_23:
+- βαλε θερμανση υπνοδωματο 23
+area/heizung::heizung_wohnzimmer_23:
+- βαλε θερμανση σαλονι 23
+area/lichter::alle_an_ausser_kugel:
+- αναψε ολα φως εκτος σφαιρα
+area/lichter::alle_an_ausser_schlafzimmer:
+- αναψε ολα φως εκτος υπνοδωματο
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- βαλε ολα φως εκτος υπνοδωματο 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- βαλε ολα φως εκτος σφαιρα red
+area/lichter::alle_ausser_kugel:
+- σβησε ολα φως εκτος σφαιρα
+area/lichter::alle_ausser_schlafzimmer:
+- σβησε ολα φως εκτος υπνοδωματο
+area/lichter::alle_lichter_an:
+- αναψε ολα φως
+area/lichter::alle_lichter_aus:
+- σβησε ολα φως
+area/lichter::arbeitszimmer_lichter_an:
+- αναψε φως σαλονι
+area/lichter::arbeitszimmer_lichter_aus:
+- σβησε φως σαλονι
+area/lichter::esszimmer_lichter_an:
+- αναψε φως σαλονι
+area/lichter::esszimmer_lichter_aus:
+- σβησε φως σαλονι
+area/lichter::kuche_lichter_an:
+- αναψε φως κουζινα
+area/lichter::kuche_lichter_aus:
+- σβησε φως κουζινα
+area/lichter::schlafzimmer_auf_blau:
+- βαλε φως υπνοδωματο blue
+area/lichter::schlafzimmer_auf_rot:
+- βαλε φως υπνοδωματο red
+area/lichter::wohnzimmer_helligkeit:
+- βαλε φως σαλονι 45
+area/lichter::wohnzimmer_lichter_an:
+- αναψε φως σαλονι
+area/lichter::wohnzimmer_lichter_aus:
+- σβησε φως σαλονι
+area/spoken::alle_ausser_kugel_stt:
+- σβησε ολα φως εκτος σφαιρα
+area/spoken::alle_ausser_schlaf_stt:
+- σβησε ολα φως εκτος υπνοδωματο
+area/spoken::alle_ganzen_an:
+- αναψε ολα φως
+area/spoken::alle_lampen_aus:
+- σβησε ολα φως
+area/spoken::esszimmer_weiss:
+- βαλε φως σαλονι white
+area/spoken::stt_kuche_lichte:
+- σβησε φως κουζινα
+area/spoken::stt_licht_wohnzimmer_an:
+- αναψε φως σαλονι
+area/spoken::stt_licht_wohnzimmer_aus:
+- σβησε φως σαλονι
+area/spoken::stt_schlafzimmer_dativ:
+- σβησε φως υπνοδωματο
+area/spoken::wohnzimmer_gruen:
+- βαλε φως σαλονι green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- σβησε ολα φως εκτος σαλονι
+area/spoken_more::arbeitszimmer_lampen_aus:
+- σβησε φως σαλονι
+area/spoken_more::esszimmer_30:
+- βαλε φως σαλονι 30
+area/spoken_more::esszimmer_lichte_an:
+- αναψε φως σαλονι
+area/spoken_more::kuche_80:
+- βαλε φως κουζινα 80
+area/spoken_more::kuche_blau:
+- βαλε φως κουζινα blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- σβησε ολα φως εκτος υπνοδωματο
+area/spoken_more::wohnzimmer_gelb:
+- βαλε φως σαλονι yellow

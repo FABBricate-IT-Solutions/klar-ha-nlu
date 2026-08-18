@@ -52,7 +52,7 @@ Response:
 
 `text` is limited to 4096 characters. The HTTP body is limited to 16 KiB.
 
-`language` is optional (`de`, `en`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request so Assist can switch between German and English. `speech` follows the pinned pack.
+`language` is optional (`de`, `en`, `fr`, or a BCP-47 tag such as `en-US`). When set, Klar binds only that pack for the request. `speech` follows the pinned pack.
 
 `personality` is optional and prefixes `speech` on this endpoint (`Sehr wohl.`, `Aye.`, …). Home Assistant stores the choice in the integration and sends it on every parse; the engine settings copy is only for the Klar UI. LLM refine in the HA integration then rewrites that sentence in the selected voice and does not stamp the cue back on.
 
@@ -90,7 +90,8 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
   "support_bundle": false,
   "support_bundle_raw_text": false,
   "confirm_risky_actions": true,
-  "semantic_adapters": false
+  "semantic_adapters": false,
+  "nlu_rag": false
 }
 ```
 
@@ -98,11 +99,64 @@ The token comes from `--token`, `KLAR_TOKEN`, or `--token-file`.
 |-------|--------|
 | `personality` | `default`, `butler`, `locker`, `fuersorglich`, `party`, `grantig`, `sarkastisch`, `pirat`, `hippie`, `gollum` |
 | `mode` | `full` (resolve devices) or `context_only` (areas only) |
-| `languages` | Pack codes. Unknown codes are ignored. Empty falls back to `de`+`en`. |
+| `languages` | Pack codes. Unknown codes are ignored. Empty means every compiled locale is enabled; the catalog still binds per request. Do not merge all lexicons — token collisions break Assist. |
 | `support_bundle` | `true` writes parse traffic to `/data/support_bundle.jsonl` (max 2000 entries). Survives restarts. First boot also via `KLAR_SUPPORT_BUNDLE=1`. |
 | `support_bundle_raw_text` | `true` keeps raw text and speech in downloads. Off by default. Conversation IDs are always hashed; entity and area names are always pseudonymized. |
 | `confirm_risky_actions` | `true` requires confirmation before risky actions such as locking/unlocking and broad safety-relevant controls. |
 | `semantic_adapters` | `true` consults local typed adapters after a ranking reject. Off by default. Proposals are revalidated; they never override Execute/Confirm/Clarify/Chat. |
+| `nlu_rag` | `true` attaches a matched-slice retrieval on `chat` and `reject` only. Off by default. Never Assist tools; the HA fallback may recover a command only through Klar tools. `POST /api/v2/parse` can set `nlu_rag` per request. |
+
+### `POST /api/v2/home`
+
+Live home-graph snapshot from the Home Assistant integration. `schema_version` must be `"1"`. Caps and error codes: [home-assistant.md](home-assistant.md#registry-sync-ha-is-the-source-of-truth). After a valid push, HA is the live source; the `.storage` watcher no longer overwrites that graph.
+
+### `GET /api/v2/languages`
+
+Compiled pack metadata (`code`, `native_name`, `script`, `variants`). This is the first-class Assist locale list in the binary.
+
+### `GET` / `POST /api/lang/overlay`
+
+User language overlay plus custom sentences, persisted under `/data/klar_nlu.json`.
+
+```json
+{
+  "custom": [{ "phrase": "filmabend", "intent": "HassTurnOn", "slots": { "entity_id": "scene.film" } }],
+  "language": { "sets": {} },
+  "label": "save"
+}
+```
+
+Response includes `history` (`hash`, `label`, `saved_at`). Omitting `language` on POST keeps the stored set deltas. Invalid custom/overlay → `422`. Write token required off-loopback.
+
+### `POST /api/lang/preview`
+
+Parse with optional unsaved `custom` and `language_overlay`. Does not install the overlay. Same text limit as parse (`413` if too long). Optional `language` pins one pack (`422` if unknown).
+
+### `POST /api/lang/explain`
+
+Same body as preview. Returns `decision`, `confidence`, `speech`, `stages`, `evidence`, and `matched_custom` — no live overlay install.
+
+### `POST /api/lang/rollback`
+
+`{ "hash": "…" }` restores that history row. Omit `hash` to roll back to the latest stored revision. `404` if nothing to restore.
+
+### `GET` / `POST /api/v2/policies`
+
+Policy bundle for the **Rules** tab: `{ "policies": […], "speech_bank": { "entries": […] } }`.
+
+Each rule: `id`, `enabled`, `label`, `when` (optional `intent` / `domain` / `area` / `entity_id` / `floor` / `name` / `phrase`), `effect`, optional `prefer` / `payload`. Effects: `confirm`, `block`, `allow`, `prefer_entity`, `prefer_area`, `reply`, `script`, `template`, `llm`. At most 64 rules. Invalid body → `400`. POST persists into the overlay.
+
+### `POST /api/v2/policies/evaluate`
+
+Dry-run parse with optional `policies` (else the stored set). Body: `{ "text", "language?", "policies?" }`. Response: `outcome`, `compiled_risky`, `matched_rule`, `hit`, `speech_variant`.
+
+### `GET /api/v2/conversations`
+
+Conversation journal: last **200** turns, **24 hours**, file `/data/conversations.jsonl`. Fields: `conversation_id`, `ts_ms`, optional `text`, `decision`, `speech`, `confidence`, `briefing`, `evidence_kinds`, `last_names`, optional `confirm_prompt` / `candidate_id`. Raw `text` is stored only when `support_bundle_raw_text` is on. Confirm/clarify never include a plan.
+
+### `GET /api/v2/conversations/{id}`
+
+Turns for one `conversation_id` (`400` if the id is longer than 128 characters).
 
 ### `GET` / `POST /api/custom`
 
@@ -192,7 +246,7 @@ Clear the protocol.
 
 ### `GET /`
 
-Local test UI (`web/index.html`).
+React operator UI built from `web/` (Home, Conversations, Rules, House / Mapping, Lab, Settings). Served from `/usr/share/klar/ui` in the image or `web/dist` after `npm run build`. `web/index.html` is the Vite mount, not a standalone test page.
 
 ## Wyoming
 

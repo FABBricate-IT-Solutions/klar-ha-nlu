@@ -1,0 +1,504 @@
+name: Full Home hu
+language: hu
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: foldszint
+  level: 0
+  aliases:
+  - foldszint
+  - lent
+- id: upper
+  name: emelet
+  level: 1
+  aliases:
+  - emelet
+  - fent
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Eloter
+  floor: ground
+  aliases:
+  - eloter
+- id: living
+  name: Nappali
+  floor: ground
+  aliases:
+  - nappali
+- id: dining
+  name: Nappalifamess
+  floor: ground
+  aliases:
+  - nappalifamess
+- id: kitchen
+  name: Konyha
+  floor: ground
+  aliases:
+  - konyha
+- id: family_room
+  name: Nappalifam
+  floor: ground
+  aliases:
+  - nappalifam
+- id: laundry
+  name: Mosokonyha
+  floor: ground
+  aliases:
+  - mosokonyha
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Haloszoba
+  floor: upper
+  aliases:
+  - haloszoba
+- id: bedroom_2
+  name: Haloszoba2
+  floor: upper
+  aliases:
+  - haloszoba2
+- id: bedroom_3
+  name: Haloszoba3
+  floor: upper
+  aliases:
+  - haloszoba3
+- id: bedroom_4
+  name: Haloszoba4
+  floor: upper
+  aliases:
+  - haloszoba4
+- id: master_bath
+  name: Furdomaster
+  floor: upper
+  aliases:
+  - furdomaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: eloter villany
+  aliases:
+  - eloter villany
+  - villany
+- id: light.living_ceiling
+  area_id: living
+  name: nappali mennyezet
+  aliases:
+  - nappali mennyezet
+  - mennyezet
+- id: light.living_lamp
+  area_id: living
+  name: nappali villany
+  aliases:
+  - nappali villany
+  - villany
+- id: light.dining_pendant
+  area_id: dining
+  name: nappalifamess villany
+  aliases:
+  - nappalifamess villany
+  - villany
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: konyha mennyezet
+  aliases:
+  - konyha mennyezet
+  - mennyezet
+- id: light.kitchen_island
+  area_id: kitchen
+  name: konyha sziget
+  aliases:
+  - konyha sziget
+  - sziget
+- id: light.family_ceiling
+  area_id: family_room
+  name: nappalifam mennyezet
+  aliases:
+  - nappalifam mennyezet
+  - mennyezet
+- id: light.laundry_light
+  area_id: laundry
+  name: mosokonyha villany
+  aliases:
+  - mosokonyha villany
+  - villany
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc villany
+  aliases:
+  - wc villany
+  - villany
+- id: light.garage_light
+  area_id: garage
+  name: garage villany
+  aliases:
+  - garage villany
+  - villany
+- id: light.office_ceiling
+  area_id: office
+  name: office mennyezet
+  aliases:
+  - office mennyezet
+  - mennyezet
+- id: light.garden
+  area_id: garden
+  name: garden villany
+  aliases:
+  - garden villany
+  - villany
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: haloszoba mennyezet
+  aliases:
+  - haloszoba mennyezet
+  - mennyezet
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: haloszoba ensuite
+  aliases:
+  - haloszoba ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: haloszoba left ejjeliszekreny
+  aliases:
+  - haloszoba left ejjeliszekreny
+  - ejjeliszekreny
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: haloszoba right ejjeliszekreny
+  aliases:
+  - haloszoba right ejjeliszekreny
+  - ejjeliszekreny
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: haloszoba2 mennyezet
+  aliases:
+  - haloszoba2 mennyezet
+  - mennyezet
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: haloszoba3 mennyezet
+  aliases:
+  - haloszoba3 mennyezet
+  - mennyezet
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: haloszoba4 mennyezet
+  aliases:
+  - haloszoba4 mennyezet
+  - mennyezet
+- id: light.master_bath_light
+  area_id: master_bath
+  name: furdomaster villany
+  aliases:
+  - furdomaster villany
+  - villany
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath villany
+  aliases:
+  - main bath villany
+  - villany
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway villany
+  aliases:
+  - hallway villany
+  - villany
+- id: light.basement
+  area_id: basement
+  name: basement villany
+  aliases:
+  - basement villany
+  - villany
+- id: cover.living_blinds
+  area_id: living
+  name: nappali fuggony
+  aliases:
+  - nappali fuggony
+  - fuggony
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: haloszoba fuggony
+  aliases:
+  - haloszoba fuggony
+  - fuggony
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: haloszoba2 fuggony
+  aliases:
+  - haloszoba2 fuggony
+  - fuggony
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: haloszoba3 fuggony
+  aliases:
+  - haloszoba3 fuggony
+  - fuggony
+- id: cover.garage_door
+  area_id: garage
+  name: garage fuggony
+  aliases:
+  - garage fuggony
+  - fuggony
+- id: climate.ground_thermostat
+  area_id: living
+  name: nappali futes
+  aliases:
+  - nappali futes
+  - futes
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: haloszoba futes
+  aliases:
+  - haloszoba futes
+  - futes
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: homerseklet haloszoba
+  aliases:
+  - homerseklet haloszoba
+  - homerseklet
+  - ac
+  tags:
+  - homerseklet
+- id: fan.family_fan
+  area_id: family_room
+  name: nappalifam ventilator
+  aliases:
+  - nappalifam ventilator
+  - ventilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: haloszoba ventilator
+  aliases:
+  - haloszoba ventilator
+  - ventilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: haloszoba2 ventilator
+  aliases:
+  - haloszoba2 ventilator
+  - ventilator
+- id: lock.front_door
+  area_id: entryway
+  name: front ajto
+  aliases:
+  - front ajto
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage ajto
+  aliases:
+  - garage ajto
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: konyha mosogatogep
+  aliases:
+  - konyha mosogatogep
+  - mosogatogep
+- id: switch.rangehood
+  area_id: kitchen
+  name: konyha rangehood
+  aliases:
+  - konyha rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: mosokonyha mosogep
+  aliases:
+  - mosokonyha mosogep
+  - mosogep
+  - washer
+  tags:
+  - washer
+  - mosogep
+- id: switch.dryer
+  area_id: laundry
+  name: mosokonyha dryer
+  aliases:
+  - mosokonyha dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: furdomaster ventilatorbad
+  aliases:
+  - furdomaster ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatorbad
+  aliases:
+  - main bath ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: nappali tv
+  aliases:
+  - nappali tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: nappalifam tv
+  aliases:
+  - nappalifam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: nappali zene
+  aliases:
+  - nappali zene
+  - zene
+  platform: music_assistant
+  tags:
+  - zene
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: konyha zene
+  aliases:
+  - konyha zene
+  - zene
+  platform: music_assistant
+  tags:
+  - zene
+- id: media_player.office_music
+  area_id: office
+  name: office zene
+  aliases:
+  - office zene
+  - zene
+  platform: music_assistant
+  tags:
+  - zene
+- id: vacuum.robot
+  area_id: living
+  name: nappali porszivo
+  aliases:
+  - nappali porszivo
+  - porszivo
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: eloter doorsensor
+  aliases:
+  - eloter doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: nappali windowsensor
+  aliases:
+  - nappali windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: konyha motion
+  aliases:
+  - konyha motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: nappali tempsensor
+  aliases:
+  - nappali tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: nappali humidity
+  aliases:
+  - nappali humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: ejjel
+- id: leaving_home
+  name: tavozas
+timers:
+- id: oven
+  name: oven idomer
+- id: laundry
+  name: laundry idomer
+- id: abstract
+  name: abstract idomer
+lists:
+- id: shopping
+  name: lista

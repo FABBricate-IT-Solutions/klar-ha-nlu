@@ -1,0 +1,511 @@
+name: Full Home de
+language: de
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: unten
+  level: 0
+  aliases:
+  - unten
+  - erdgeschoss
+- id: upper
+  name: oben
+  level: 1
+  aliases:
+  - oben
+  - obergeschoss
+- id: basement
+  name: keller
+  level: -1
+  aliases:
+  - keller
+areas:
+- id: entryway
+  name: Eingang
+  floor: ground
+  aliases:
+  - eingang
+  - diele
+- id: living
+  name: Wohnzimmer
+  floor: ground
+  aliases:
+  - wohnzimmer
+  - wohnraum
+- id: dining
+  name: Esszimmer
+  floor: ground
+  aliases:
+  - esszimmer
+- id: kitchen
+  name: Kuche
+  floor: ground
+  aliases:
+  - kuche
+  - kueche
+- id: family_room
+  name: Familienzimmer
+  floor: ground
+  aliases:
+  - familienzimmer
+- id: laundry
+  name: Waschkueche
+  floor: ground
+  aliases:
+  - waschkueche
+- id: powder_room
+  name: Gaestewc
+  floor: ground
+  aliases:
+  - gaestewc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Arbeitszimmer
+  floor: ground
+  aliases:
+  - arbeitszimmer
+  - buero
+- id: garden
+  name: Garten
+  floor: ground
+  aliases:
+  - garten
+  - balkon
+- id: master_bedroom
+  name: Schlafzimmer
+  floor: upper
+  aliases:
+  - schlafzimmer
+- id: bedroom_2
+  name: Schlafzimmer2
+  floor: upper
+  aliases:
+  - schlafzimmer2
+- id: bedroom_3
+  name: Schlafzimmer3
+  floor: upper
+  aliases:
+  - schlafzimmer3
+- id: bedroom_4
+  name: Schlafzimmer4
+  floor: upper
+  aliases:
+  - schlafzimmer4
+- id: master_bath
+  name: Masterbad
+  floor: upper
+  aliases:
+  - masterbad
+- id: main_bath
+  name: Badezimmer
+  floor: upper
+  aliases:
+  - badezimmer
+  - bad
+- id: hallway
+  name: Flur
+  floor: upper
+  aliases:
+  - flur
+- id: basement
+  name: Keller
+  floor: basement
+  aliases:
+  - keller
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: eingang licht
+  aliases:
+  - eingang licht
+  - licht
+- id: light.living_ceiling
+  area_id: living
+  name: wohnzimmer decke
+  aliases:
+  - wohnzimmer decke
+  - decke
+- id: light.living_lamp
+  area_id: living
+  name: wohnzimmer lampe
+  aliases:
+  - wohnzimmer lampe
+  - lampe
+- id: light.dining_pendant
+  area_id: dining
+  name: esszimmer licht
+  aliases:
+  - esszimmer licht
+  - licht
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kuche decke
+  aliases:
+  - kuche decke
+  - decke
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kuche insel
+  aliases:
+  - kuche insel
+  - insel
+- id: light.family_ceiling
+  area_id: family_room
+  name: familienzimmer decke
+  aliases:
+  - familienzimmer decke
+  - decke
+- id: light.laundry_light
+  area_id: laundry
+  name: waschkueche licht
+  aliases:
+  - waschkueche licht
+  - licht
+- id: light.powder_room_light
+  area_id: powder_room
+  name: gaestewc licht
+  aliases:
+  - gaestewc licht
+  - licht
+- id: light.garage_light
+  area_id: garage
+  name: garage licht
+  aliases:
+  - garage licht
+  - licht
+- id: light.office_ceiling
+  area_id: office
+  name: arbeitszimmer decke
+  aliases:
+  - arbeitszimmer decke
+  - decke
+- id: light.garden
+  area_id: garden
+  name: garten licht
+  aliases:
+  - garten licht
+  - licht
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: schlafzimmer decke
+  aliases:
+  - schlafzimmer decke
+  - decke
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: schlafzimmer anschlusslicht
+  aliases:
+  - schlafzimmer anschlusslicht
+  - anschlusslicht
+  tags:
+  - anschlusslicht
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: schlafzimmer left nachttisch
+  aliases:
+  - schlafzimmer left nachttisch
+  - nachttisch
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: schlafzimmer right nachttisch
+  aliases:
+  - schlafzimmer right nachttisch
+  - nachttisch
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: schlafzimmer2 decke
+  aliases:
+  - schlafzimmer2 decke
+  - decke
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: schlafzimmer3 decke
+  aliases:
+  - schlafzimmer3 decke
+  - decke
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: schlafzimmer4 decke
+  aliases:
+  - schlafzimmer4 decke
+  - decke
+- id: light.master_bath_light
+  area_id: master_bath
+  name: masterbad licht
+  aliases:
+  - masterbad licht
+  - licht
+- id: light.main_bath_light
+  area_id: main_bath
+  name: badezimmer licht
+  aliases:
+  - badezimmer licht
+  - licht
+- id: light.hallway_light
+  area_id: hallway
+  name: flur licht
+  aliases:
+  - flur licht
+  - licht
+- id: light.basement
+  area_id: basement
+  name: keller licht
+  aliases:
+  - keller licht
+  - licht
+- id: cover.living_blinds
+  area_id: living
+  name: wohnzimmer rollo
+  aliases:
+  - wohnzimmer rollo
+  - rollo
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: schlafzimmer rollo
+  aliases:
+  - schlafzimmer rollo
+  - rollo
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: schlafzimmer2 rollo
+  aliases:
+  - schlafzimmer2 rollo
+  - rollo
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: schlafzimmer3 rollo
+  aliases:
+  - schlafzimmer3 rollo
+  - rollo
+- id: cover.garage_door
+  area_id: garage
+  name: garage rollo
+  aliases:
+  - garage rollo
+  - rollo
+- id: climate.ground_thermostat
+  area_id: living
+  name: wohnzimmer heizung
+  aliases:
+  - wohnzimmer heizung
+  - heizung
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: schlafzimmer heizung
+  aliases:
+  - schlafzimmer heizung
+  - heizung
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: klima schlafzimmer
+  aliases:
+  - klima schlafzimmer
+  - klima
+  - ac
+  tags:
+  - klima
+- id: fan.family_fan
+  area_id: family_room
+  name: familienzimmer luefter
+  aliases:
+  - familienzimmer luefter
+  - luefter
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: schlafzimmer luefter
+  aliases:
+  - schlafzimmer luefter
+  - luefter
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: schlafzimmer2 luefter
+  aliases:
+  - schlafzimmer2 luefter
+  - luefter
+- id: lock.front_door
+  area_id: entryway
+  name: Haustür
+  aliases:
+  - Haustür
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: Garagentor
+  aliases:
+  - Garagentor
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kuche spuelmaschine
+  aliases:
+  - kuche spuelmaschine
+  - spuelmaschine
+- id: switch.rangehood
+  area_id: kitchen
+  name: kuche dunstabzug
+  aliases:
+  - kuche dunstabzug
+  - dunstabzug
+  tags:
+  - dunstabzug
+- id: switch.washing_machine
+  area_id: laundry
+  name: waschkueche waschmaschine
+  aliases:
+  - waschkueche waschmaschine
+  - waschmaschine
+  - washer
+  tags:
+  - washer
+  - waschmaschine
+- id: switch.dryer
+  area_id: laundry
+  name: waschkueche trockner
+  aliases:
+  - waschkueche trockner
+  - trockner
+  - dryer
+  tags:
+  - dryer
+  - trockner
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: masterbad badluefter
+  aliases:
+  - masterbad badluefter
+  - badluefter
+  tags:
+  - badluefter
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: badezimmer badluefter
+  aliases:
+  - badezimmer badluefter
+  - badluefter
+  tags:
+  - badluefter
+- id: media_player.living_tv
+  area_id: living
+  name: wohnzimmer tv
+  aliases:
+  - wohnzimmer tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: familienzimmer tv
+  aliases:
+  - familienzimmer tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: wohnzimmer musik
+  aliases:
+  - wohnzimmer musik
+  - musik
+  platform: music_assistant
+  tags:
+  - musik
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kuche musik
+  aliases:
+  - kuche musik
+  - musik
+  platform: music_assistant
+  tags:
+  - musik
+- id: media_player.office_music
+  area_id: office
+  name: arbeitszimmer musik
+  aliases:
+  - arbeitszimmer musik
+  - musik
+  platform: music_assistant
+  tags:
+  - musik
+- id: vacuum.robot
+  area_id: living
+  name: wohnzimmer staubsauger
+  aliases:
+  - wohnzimmer staubsauger
+  - staubsauger
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: eingang tursensor
+  aliases:
+  - eingang tursensor
+  - tursensor
+  tags:
+  - tursensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: wohnzimmer fenstersensor
+  aliases:
+  - wohnzimmer fenstersensor
+  - fenstersensor
+  tags:
+  - fenstersensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kuche bewegung
+  aliases:
+  - kuche bewegung
+  - bewegung
+  tags:
+  - bewegung
+- id: sensor.living_temperature
+  area_id: living
+  name: wohnzimmer raumfuehler
+  aliases:
+  - wohnzimmer raumfuehler
+  - raumfuehler
+  tags:
+  - raumfuehler
+- id: sensor.living_humidity
+  area_id: living
+  name: wohnzimmer luftfeuchtigkeit
+  aliases:
+  - wohnzimmer luftfeuchtigkeit
+  - luftfeuchtigkeit
+  tags:
+  - luftfeuchtigkeit
+- id: weather.home
+  area_id: garden
+  name: garten wetter
+  aliases:
+  - garten wetter
+  - wetter
+scenes:
+- id: movie_night
+  name: filmabend
+- id: dinner_time
+  name: essen
+- id: kids_bedtime
+  name: kinder
+- id: good_morning
+  name: morgen
+scripts:
+- id: good_night
+  name: nacht
+- id: leaving_home
+  name: verlassen
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: liste

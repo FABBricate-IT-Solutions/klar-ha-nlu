@@ -1,0 +1,52 @@
+devices/geraete::deckenlampe_aus:
+- desliga teto quarto
+devices/geraete::device_arbeitszimmer_an:
+- liga luz sala
+devices/geraete::device_esszimmer_an:
+- liga luz sala
+devices/geraete::device_kuche_kuche_an:
+- liga luz cozinha
+devices/geraete::device_wohnzimmer_an:
+- liga luz sala
+devices/geraete::filmabend:
+- liga Filmabend
+devices/geraete::kugel_an:
+- liga globo quarto
+devices/geraete::luefter_50:
+- poe ventoinha sala 50
+devices/geraete::pc_an:
+- liga aparelho
+devices/geraete::r2d2_saugen:
+- liga aspirador sala
+devices/geraete::rollo_zu:
+- fecha cortina sala
+devices/geraete::spuelmaschine_aus:
+- desliga loiça
+devices/geraete::tuer_abschliessen:
+- tranca fechadura entrada
+devices/geraete::waschmaschine_an:
+- liga maquina
+devices/klima::klima_schlaf_21:
+- poe aquecimento quarto 21
+devices/spoken::deckenlampe_an:
+- liga teto quarto
+devices/spoken::kugel_aus:
+- desliga globo quarto
+devices/spoken::luefter_aus:
+- desliga ventoinha sala
+devices/spoken::rollo_auf:
+- abre cortina sala
+devices/spoken::trockner_an:
+- liga maquina
+devices/spoken::tv_aus:
+- desliga tv
+devices/spoken_more::decke_aus_casual:
+- desliga teto quarto
+devices/spoken_more::kugel_casual:
+- liga globo quarto
+devices/spoken_more::pc_aus:
+- desliga aparelho
+devices/spoken_more::spuelmaschine_an:
+- liga loiça
+devices/spoken_more::waschmaschine_aus:
+- desliga maquina

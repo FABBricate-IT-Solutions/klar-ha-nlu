@@ -1,0 +1,504 @@
+name: Full Home gl
+language: gl
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: baixo
+  level: 0
+  aliases:
+  - baixo
+  - terra
+- id: upper
+  name: andar
+  level: 1
+  aliases:
+  - andar
+  - arriba
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Entrada
+  floor: ground
+  aliases:
+  - entrada
+- id: living
+  name: Salon
+  floor: ground
+  aliases:
+  - salon
+- id: dining
+  name: Salafamess
+  floor: ground
+  aliases:
+  - salafamess
+- id: kitchen
+  name: cociña
+  floor: ground
+  aliases:
+  - cociña
+- id: family_room
+  name: Salafam
+  floor: ground
+  aliases:
+  - salafam
+- id: laundry
+  name: Lavandaria
+  floor: ground
+  aliases:
+  - lavandaria
+- id: powder_room
+  name: Aseo
+  floor: ground
+  aliases:
+  - aseo
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Cuarto
+  floor: upper
+  aliases:
+  - cuarto
+- id: bedroom_2
+  name: Cuarto2
+  floor: upper
+  aliases:
+  - cuarto2
+- id: bedroom_3
+  name: Cuarto3
+  floor: upper
+  aliases:
+  - cuarto3
+- id: bedroom_4
+  name: Cuarto4
+  floor: upper
+  aliases:
+  - cuarto4
+- id: master_bath
+  name: Banomaster
+  floor: upper
+  aliases:
+  - banomaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: entrada luz
+  aliases:
+  - entrada luz
+  - luz
+- id: light.living_ceiling
+  area_id: living
+  name: salon teito
+  aliases:
+  - salon teito
+  - teito
+- id: light.living_lamp
+  area_id: living
+  name: salon luz
+  aliases:
+  - salon luz
+  - luz
+- id: light.dining_pendant
+  area_id: dining
+  name: salafamess luz
+  aliases:
+  - salafamess luz
+  - luz
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: cociña teito
+  aliases:
+  - cociña teito
+  - teito
+- id: light.kitchen_island
+  area_id: kitchen
+  name: cociña illa
+  aliases:
+  - cociña illa
+  - illa
+- id: light.family_ceiling
+  area_id: family_room
+  name: salafam teito
+  aliases:
+  - salafam teito
+  - teito
+- id: light.laundry_light
+  area_id: laundry
+  name: lavandaria luz
+  aliases:
+  - lavandaria luz
+  - luz
+- id: light.powder_room_light
+  area_id: powder_room
+  name: aseo luz
+  aliases:
+  - aseo luz
+  - luz
+- id: light.garage_light
+  area_id: garage
+  name: garage luz
+  aliases:
+  - garage luz
+  - luz
+- id: light.office_ceiling
+  area_id: office
+  name: office teito
+  aliases:
+  - office teito
+  - teito
+- id: light.garden
+  area_id: garden
+  name: garden luz
+  aliases:
+  - garden luz
+  - luz
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: cuarto teito
+  aliases:
+  - cuarto teito
+  - teito
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: cuarto ensuite
+  aliases:
+  - cuarto ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: cuarto left mesilla
+  aliases:
+  - cuarto left mesilla
+  - mesilla
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: cuarto right mesilla
+  aliases:
+  - cuarto right mesilla
+  - mesilla
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: cuarto2 teito
+  aliases:
+  - cuarto2 teito
+  - teito
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: cuarto3 teito
+  aliases:
+  - cuarto3 teito
+  - teito
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: cuarto4 teito
+  aliases:
+  - cuarto4 teito
+  - teito
+- id: light.master_bath_light
+  area_id: master_bath
+  name: banomaster luz
+  aliases:
+  - banomaster luz
+  - luz
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath luz
+  aliases:
+  - main bath luz
+  - luz
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway luz
+  aliases:
+  - hallway luz
+  - luz
+- id: light.basement
+  area_id: basement
+  name: basement luz
+  aliases:
+  - basement luz
+  - luz
+- id: cover.living_blinds
+  area_id: living
+  name: salon cortina
+  aliases:
+  - salon cortina
+  - cortina
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: cuarto cortina
+  aliases:
+  - cuarto cortina
+  - cortina
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: cuarto2 cortina
+  aliases:
+  - cuarto2 cortina
+  - cortina
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: cuarto3 cortina
+  aliases:
+  - cuarto3 cortina
+  - cortina
+- id: cover.garage_door
+  area_id: garage
+  name: garage cortina
+  aliases:
+  - garage cortina
+  - cortina
+- id: climate.ground_thermostat
+  area_id: living
+  name: salon calefaccion
+  aliases:
+  - salon calefaccion
+  - calefaccion
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: cuarto calefaccion
+  aliases:
+  - cuarto calefaccion
+  - calefaccion
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: calefaccion cuarto
+  aliases:
+  - calefaccion cuarto
+  - calefaccion
+  - ac
+  tags:
+  - calefaccion
+- id: fan.family_fan
+  area_id: family_room
+  name: salafam ventilador
+  aliases:
+  - salafam ventilador
+  - ventilador
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: cuarto ventilador
+  aliases:
+  - cuarto ventilador
+  - ventilador
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: cuarto2 ventilador
+  aliases:
+  - cuarto2 ventilador
+  - ventilador
+- id: lock.front_door
+  area_id: entryway
+  name: front porta
+  aliases:
+  - front porta
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage porta
+  aliases:
+  - garage porta
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: cociña lavavajillas
+  aliases:
+  - cociña lavavajillas
+  - lavavajillas
+- id: switch.rangehood
+  area_id: kitchen
+  name: cociña rangehood
+  aliases:
+  - cociña rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: lavandaria lavadora
+  aliases:
+  - lavandaria lavadora
+  - lavadora
+  - washer
+  tags:
+  - washer
+  - lavadora
+- id: switch.dryer
+  area_id: laundry
+  name: lavandaria dryer
+  aliases:
+  - lavandaria dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: banomaster ventiladorbad
+  aliases:
+  - banomaster ventiladorbad
+  - ventiladorbad
+  tags:
+  - ventiladorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventiladorbad
+  aliases:
+  - main bath ventiladorbad
+  - ventiladorbad
+  tags:
+  - ventiladorbad
+- id: media_player.living_tv
+  area_id: living
+  name: salon tv
+  aliases:
+  - salon tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: salafam tv
+  aliases:
+  - salafam tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: salon tele
+  aliases:
+  - salon tele
+  - tele
+  platform: music_assistant
+  tags:
+  - tele
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: cociña tele
+  aliases:
+  - cociña tele
+  - tele
+  platform: music_assistant
+  tags:
+  - tele
+- id: media_player.office_music
+  area_id: office
+  name: office tele
+  aliases:
+  - office tele
+  - tele
+  platform: music_assistant
+  tags:
+  - tele
+- id: vacuum.robot
+  area_id: living
+  name: salon aspiradora
+  aliases:
+  - salon aspiradora
+  - aspiradora
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: entrada doorsensor
+  aliases:
+  - entrada doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: salon windowsensor
+  aliases:
+  - salon windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: cociña motion
+  aliases:
+  - cociña motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: salon tempsensor
+  aliases:
+  - salon tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: salon humidity
+  aliases:
+  - salon humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: filme
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: noite
+- id: leaving_home
+  name: saida
+timers:
+- id: oven
+  name: oven temporizador
+- id: laundry
+  name: laundry temporizador
+- id: abstract
+  name: abstract temporizador
+lists:
+- id: shopping
+  name: lista

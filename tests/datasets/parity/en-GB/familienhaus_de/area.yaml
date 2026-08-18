@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- close curtain bedroom2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- open curtain bedroom2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- set curtain bedroom2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- set fan bedroom2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- extinguish fan bedroom2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- enable fan bedroom2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- set light bedroom2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- set light bedroom2 pink
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- extinguish light bedroom2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- enable light bedroom2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- close curtain bedroom3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- open curtain bedroom3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- set curtain bedroom3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- set light bedroom3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- set light bedroom3 blue
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- extinguish light bedroom3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- enable light bedroom3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- set light bedroom4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- set light bedroom4 green
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- extinguish light bedroom4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- enable light bedroom4
+area/dining_lights::dining_lights_change_brightness:
+- set light lounge 54
+area/dining_lights::dining_lights_change_color:
+- set light lounge blue
+area/dining_lights::dining_lights_turn_off:
+- extinguish light lounge
+area/dining_lights::dining_lights_turn_on:
+- enable light lounge
+area/entryway_lights::entryway_lights_change_brightness:
+- set light porch 72
+area/entryway_lights::entryway_lights_change_color:
+- set light porch black
+area/entryway_lights::entryway_lights_turn_off:
+- extinguish light porch
+area/entryway_lights::entryway_lights_turn_on:
+- enable light porch
+area/entryway_locks::entryway_locks_lock:
+- lock lock porch
+area/entryway_locks::entryway_locks_unlock:
+- open lock porch
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- set light loungefam 39 and set light kitchen 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- set light loungefam purple and set light kitchen purple
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- extinguish light loungefam and extinguish light kitchen
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- enable light loungefam and enable light kitchen
+area/family_room_fans::family_room_fans_set_fan_speed:
+- set fan loungefam 32
+area/family_room_fans::family_room_fans_turn_off:
+- extinguish fan loungefam
+area/family_room_fans::family_room_fans_turn_on:
+- enable fan loungefam
+area/family_room_lights::family_room_lights_change_brightness:
+- set light loungefam 44
+area/family_room_lights::family_room_lights_change_color:
+- set light loungefam green
+area/family_room_lights::family_room_lights_turn_off:
+- extinguish light loungefam
+area/family_room_lights::family_room_lights_turn_on:
+- enable light loungefam
+area/garage_covers::garage_covers_close:
+- close curtain garage
+area/garage_covers::garage_covers_open:
+- open curtain garage
+area/garage_covers::garage_covers_set_position:
+- set curtain garage 86
+area/garage_lights::garage_lights_change_brightness:
+- set light garage 16
+area/garage_lights::garage_lights_change_color:
+- set light garage blue
+area/garage_lights::garage_lights_turn_off:
+- extinguish light garage
+area/garage_lights::garage_lights_turn_on:
+- enable light garage
+area/garage_locks::garage_locks_lock:
+- lock lock garage
+area/garage_locks::garage_locks_unlock:
+- open lock garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- set light porch 26 and set light loo 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- set light porch purple and set light loo purple
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- extinguish light porch and extinguish light loo
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- enable light porch and enable light loo
+area/hallway_lights::hallway_lights_change_brightness:
+- set light porch 61
+area/hallway_lights::hallway_lights_change_color:
+- set light porch orange
+area/hallway_lights::hallway_lights_turn_off:
+- extinguish light porch
+area/hallway_lights::hallway_lights_turn_on:
+- enable light porch
+area/kitchen_lights::kitchen_lights_change_brightness:
+- set light kitchen 45
+area/kitchen_lights::kitchen_lights_change_color:
+- set light kitchen pink
+area/kitchen_lights::kitchen_lights_turn_off:
+- extinguish light kitchen
+area/kitchen_lights::kitchen_lights_turn_on:
+- enable light kitchen
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- extinguish device kitchen
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- enable device kitchen
+area/laundry_lights::laundry_lights_change_brightness:
+- set light utility 62
+area/laundry_lights::laundry_lights_change_color:
+- set light utility yellow
+area/laundry_lights::laundry_lights_turn_off:
+- extinguish light utility
+area/laundry_lights::laundry_lights_turn_on:
+- enable light utility
+area/laundry_switchs::laundry_switchs_turn_off:
+- extinguish device utility
+area/laundry_switchs::laundry_switchs_turn_on:
+- enable device utility
+area/living_climates::living_climates_set_temperature:
+- set heating lounge 20
+area/living_covers::living_covers_close:
+- close curtain lounge
+area/living_covers::living_covers_open:
+- open curtain lounge
+area/living_covers::living_covers_set_position:
+- set curtain lounge 46
+area/living_lights::living_lights_change_brightness:
+- set light lounge 84
+area/living_lights::living_lights_change_color:
+- set light lounge blue
+area/living_lights::living_lights_turn_off:
+- extinguish light lounge
+area/living_lights::living_lights_turn_on:
+- enable light lounge
+area/main_bath_lights::main_bath_lights_change_brightness:
+- set light main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- set light main bath pink
+area/main_bath_lights::main_bath_lights_turn_off:
+- extinguish light main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- enable light main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- extinguish device main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- enable device main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- set light ensuite 60
+area/master_bath_lights::master_bath_lights_change_color:
+- set light ensuite black
+area/master_bath_lights::master_bath_lights_turn_off:
+- extinguish light ensuite
+area/master_bath_lights::master_bath_lights_turn_on:
+- enable light ensuite
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- extinguish device ensuite
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- enable device ensuite
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- set heating bedroom 20 and set heating lounge 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- close curtain bedroom and close curtain lounge
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- open curtain bedroom and open curtain lounge
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- set curtain bedroom 19 and set curtain lounge 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- set light bedroom 25 and set light lounge 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- set light bedroom white and set light lounge white
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- extinguish light bedroom and extinguish light lounge
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- enable light bedroom and enable light lounge
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- set light bedroom 57 and set light main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- set light bedroom pink and set light main bath pink
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- extinguish light bedroom and extinguish light main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- enable light bedroom and enable light main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- set heating bedroom 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- close curtain bedroom
+area/master_bedroom_covers::master_bedroom_covers_open:
+- open curtain bedroom
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- set curtain bedroom 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- set fan bedroom 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- extinguish fan bedroom
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- enable fan bedroom
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- set light bedroom 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- set light bedroom pink
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- extinguish light bedroom
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- enable light bedroom
+area/powder_room_lights::powder_room_lights_change_brightness:
+- set light loo 52
+area/powder_room_lights::powder_room_lights_change_color:
+- set light loo purple
+area/powder_room_lights::powder_room_lights_turn_off:
+- extinguish light loo
+area/powder_room_lights::powder_room_lights_turn_on:
+- enable light loo
+area/spoken_lights::spoken_bedroom_inflection:
+- set light bedroom red
+area/spoken_lights::spoken_except_island:
+- extinguish all light except island
+area/spoken_lights::spoken_except_kitchen:
+- extinguish all light except kitchen except island
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- extinguish light lounge and extinguish light kitchen
+area/spoken_lights::spoken_stt_kitchen_off:
+- extinguish light kitchen
+area/spoken_lights::spoken_stt_living_off:
+- extinguish light lounge

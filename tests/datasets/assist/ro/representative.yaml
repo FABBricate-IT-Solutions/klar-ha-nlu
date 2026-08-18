@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - aprinde lumina sufragerie
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - stinge lumina bucatarie
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - tro llestri cegin
+  - llestri cegin tro
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - diffodd llestri cegin
+  - llestri cegin diffodd
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - tro peiriannolchi ystafellolchi
+  - peiriannolchi ystafellolchi tro
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - diffodd peiriannolchi ystafellolchi
+  - peiriannolchi ystafellolchi diffodd
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - tro dryer ystafellolchi
+  - dryer ystafellolchi tro
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - diffodd dryer ystafellolchi
+  - dryer ystafellolchi diffodd
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - tro rangehood cegin
+  - rangehood cegin tro
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - diffodd rangehood cegin
+  - rangehood cegin diffodd
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - tro gwyntyllbad bathmaster
+  - gwyntyllbad bathmaster tro
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - diffodd gwyntyllbad bathmaster
+  - gwyntyllbad bathmaster diffodd
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - tro gwyntyllbad main bath
+  - gwyntyllbad main bath tro
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - diffodd gwyntyllbad main bath
+  - gwyntyllbad main bath diffodd

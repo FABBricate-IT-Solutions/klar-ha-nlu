@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- enow termyn abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- enow termyn abstract 20 min
+timers/timers::abstract_start_seconds:
+- enow termyn abstract
+timers/timers::cancel_all_timers:
+- diffyg oll termyn
+timers/timers::timer_laundry_cancel:
+- enow termyn laundry
+timers/timers::timer_laundry_decrease:
+- enow termyn laundry 5 min
+timers/timers::timer_laundry_increase:
+- enow termyn laundry 16 min
+timers/timers::timer_laundry_pause:
+- diffyg termyn laundry
+timers/timers::timer_laundry_start:
+- enow termyn laundry
+timers/timers::timer_laundry_status:
+- pyth termyn laundry
+timers/timers::timer_laundry_unpause:
+- enow termyn laundry
+timers/timers::timer_oven_cancel:
+- enow termyn oven
+timers/timers::timer_oven_decrease:
+- enow termyn oven 44 min
+timers/timers::timer_oven_increase:
+- enow termyn oven 30 min
+timers/timers::timer_oven_pause:
+- diffyg termyn oven
+timers/timers::timer_oven_start:
+- enow termyn oven 2 min
+timers/timers::timer_oven_status:
+- pyth termyn oven
+timers/timers::timer_oven_unpause:
+- enow termyn oven

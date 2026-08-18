@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- hva gardin soverom2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- hva gardin soverom2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- hva gardin soverom2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- hva gardin soverom2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- hva vifte soverom2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- hva vifte soverom2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- hva vifte soverom2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- hva vifte soverom2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- hva lys soverom2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- hva lys soverom2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- hva lys soverom2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- hva lys soverom2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- hva gardin soverom3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- hva gardin soverom3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- hva gardin soverom3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- hva gardin soverom3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- hva lys soverom3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- hva lys soverom3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- hva lys soverom3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- hva lys soverom3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- hva lys soverom4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- hva lys soverom4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- hva lys soverom4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- hva lys soverom4
+query_area/dining_lights::dining_lights_get_brightness:
+- hva lys stue
+query_area/dining_lights::dining_lights_get_state:
+- hva lys stue
+query_area/dining_lights::dining_lights_list_off_lights:
+- hva lys stue
+query_area/dining_lights::dining_lights_list_on_lights:
+- hva lys stue
+query_area/entryway_lights::entryway_lights_get_brightness:
+- hva lys entree
+query_area/entryway_lights::entryway_lights_get_state:
+- hva lys entree
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- hva lys entree
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- hva lys entree
+query_area/entryway_locks::entryway_locks_get_state:
+- hva laas entree
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- hva laas entree
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- hva laas entree
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- hva lys stuefam og hva lys kjokken
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- hva lys stuefam og hva lys kjokken
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- hva lys stuefam og hva lys kjokken
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- hva lys stuefam og hva lys kjokken
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- hva vifte stuefam
+query_area/family_room_fans::family_room_fans_get_state:
+- hva vifte stuefam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- hva vifte stuefam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- hva vifte stuefam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- hva lys stuefam
+query_area/family_room_lights::family_room_lights_get_state:
+- hva lys stuefam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- hva lys stuefam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- hva lys stuefam
+query_area/garage_covers::garage_covers_get_position:
+- hva gardin garage
+query_area/garage_covers::garage_covers_get_state:
+- hva gardin garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- hva gardin garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- hva gardin garage
+query_area/garage_lights::garage_lights_get_brightness:
+- hva lys garage
+query_area/garage_lights::garage_lights_get_state:
+- hva lys garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- hva lys garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- hva lys garage
+query_area/garage_locks::garage_locks_get_state:
+- hva laas garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- hva laas garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- hva laas garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- hva lys entree og hva lys toalett
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- hva lys entree og hva lys toalett
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- hva lys entree og hva lys toalett
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- hva lys entree og hva lys toalett
+query_area/hallway_lights::hallway_lights_get_brightness:
+- hva lys entree
+query_area/hallway_lights::hallway_lights_get_state:
+- hva lys entree
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- hva lys entree
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- hva lys entree
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- hva lys kjokken
+query_area/kitchen_lights::kitchen_lights_get_state:
+- hva lys kjokken
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- hva lys kjokken
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- hva lys kjokken
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- hva apparat kjokken
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- hva apparat kjokken
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- hva apparat kjokken
+query_area/laundry_lights::laundry_lights_get_brightness:
+- hva lys vaskerom
+query_area/laundry_lights::laundry_lights_get_state:
+- hva lys vaskerom
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- hva lys vaskerom
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- hva lys vaskerom
+query_area/laundry_switchs::laundry_switchs_get_state:
+- hva apparat vaskerom
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- hva apparat vaskerom
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- hva apparat vaskerom
+query_area/living_climates::living_climates_get_temperature:
+- hva varme stue
+query_area/living_covers::living_covers_get_position:
+- hva gardin stue
+query_area/living_covers::living_covers_get_state:
+- hva gardin stue
+query_area/living_covers::living_covers_list_closed_covers:
+- hva gardin stue
+query_area/living_covers::living_covers_list_open_covers:
+- hva gardin stue
+query_area/living_lights::living_lights_get_brightness:
+- hva lys stue
+query_area/living_lights::living_lights_get_state:
+- hva lys stue
+query_area/living_lights::living_lights_list_off_lights:
+- hva lys stue
+query_area/living_lights::living_lights_list_on_lights:
+- hva lys stue
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- hva lys main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- hva lys main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- hva lys main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- hva lys main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- hva apparat main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- hva apparat main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- hva apparat main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- hva lys badmaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- hva lys badmaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- hva lys badmaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- hva lys badmaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- hva apparat badmaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- hva apparat badmaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- hva apparat badmaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- hva gardin soverom og hva gardin stue
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- hva gardin soverom og hva gardin stue
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- hva gardin soverom og hva gardin stue
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- hva gardin soverom og hva gardin stue
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- hva varme soverom
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- hva gardin soverom
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- hva gardin soverom
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- hva gardin soverom
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- hva gardin soverom
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- hva vifte soverom
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- hva vifte soverom
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- hva vifte soverom
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- hva vifte soverom
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- hva lys soverom
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- hva lys soverom
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- hva lys soverom
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- hva lys soverom
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- hva lys toalett
+query_area/powder_room_lights::powder_room_lights_get_state:
+- hva lys toalett
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- hva lys toalett
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- hva lys toalett

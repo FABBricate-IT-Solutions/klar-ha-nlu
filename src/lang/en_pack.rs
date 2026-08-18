@@ -1,4 +1,5 @@
-use super::groups::{Chat, Cues, Fixtures, GroupClarify, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use super::groups::{Chat, Cues, Fixtures, GroupClarify, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use super::morphology::PackMorphology;
 use super::speech::Speech;
 use super::LangId;
 
@@ -64,6 +65,7 @@ const SPEECH: Speech = Speech {
         ("hippie", "All good. "),
         ("gollum", "Yes, my precious. "),
     ],
+    confirm: "Should I really do that?",
 };
 
 pub const PACK: LanguagePack = LanguagePack {
@@ -222,13 +224,30 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_cancel: &["cancel", "stop", "delete", "clear", "off"],
         timer_pause: &["pause", "freeze"],
         timer_add: &["add", "plus", "increase", "extend"],
-        list_complete: &["complete", "check"],
+        list_complete: &["complete", "completed", "check", "done", "finished"],
         playback_resume: &["resume", "unpause", "play"],
         vacuum_start: &["start"],
         hours: &["hour", "hours"],
         minutes: &["minute", "minutes"],
         seconds: &["second", "seconds"],
-        list_skip: &["add", "put", "place", "check", "complete", "mark", "my", "the", "a", "as", "done", "on", "off"],
+        list_skip: &[
+            "add",
+            "put",
+            "place",
+            "stick",
+            "check",
+            "complete",
+            "completed",
+            "mark",
+            "my",
+            "the",
+            "a",
+            "as",
+            "done",
+            "finished",
+            "on",
+            "off",
+        ],
         shopping_names: &["shopping"],
         status_words: &["status", "state"],
         window_words: &["window", "windows"],
@@ -432,5 +451,31 @@ pub const PACK: LanguagePack = LanguagePack {
         news_nudge: "Would you like to hear more about any of those stories?",
         news_done: "All right.",
     },
+    household: Household {
+        teach: &["call this ", "call it ", "call that ", "name this ", "name it "],
+        explain: &["what did you hear", "what did you understand", "why did you stop", "why did you reject"],
+        undo: &["undo that", "undo", "take that back"],
+        clock: &["what time", "whats the time", "the time is it"],
+        weather: &["whats the weather", "what is the weather", "weather forecast"],
+        clock_skip: &["timer", "alarm"],
+        heard_nothing: "I have not heard anything yet.",
+        heard: "I heard: {text}.",
+        executed: " Executed: {names}.",
+        asked_risky: " I asked first because the action is risky.",
+        unclear_device: " I did not know which device you meant.",
+        stopped: " I stopped ({reason})",
+        no_match: "no match",
+        was_chat: " That was talk, not a device command.",
+        decision: " Decision: {decision}.",
+        in_area: " In {area}.",
+        nothing_undo: "There is nothing to undo.",
+        teach_which: "Which device do you mean?",
+        teach_invalid: "That name is not valid.",
+        teach_ok: "Okay. I will call that {alias}.",
+        clock_ok: "It is {time}.",
+        clock_missing: "The time is not available right now.",
+        no_weather: "I do not see a weather entity.",
+    },
     speech: SPEECH,
+    morphology: PackMorphology::EMPTY,
 };

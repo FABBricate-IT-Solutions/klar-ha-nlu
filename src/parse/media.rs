@@ -2,6 +2,7 @@ use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
+use crate::lang::VerbKind;
 use crate::parse::action::Action;
 use crate::parse::normalize::{compact, fold_umlaut};
 use crate::parse::resolve::Resolved;
@@ -110,7 +111,11 @@ pub(crate) fn media_transport_form(tokens: &[String], action: Action) -> bool {
 }
 
 fn play_intent(tokens: &[String], raw: &[String], home: &HomeGraph, action: Action, resolved: &Resolved) -> Option<Intent> {
-    if !matches!(action, Action::MediaPlay) && !any(tokens, &["spiel", "spiele", "hoere", "hoer", "play", "listen", "queue"]) {
+    if now_playing_status(tokens)
+        || (!matches!(action, Action::MediaPlay)
+            && !any(tokens, &["spiel", "spiele", "hoere", "hoer", "play", "listen", "queue"])
+            && !tokens.iter().any(|token| matches!(catalog().verb(token), Some(VerbKind::Play))))
+    {
         return None;
     }
     let media = media_request(raw, home, resolved)?;
@@ -206,16 +211,6 @@ fn clean_media_words(words: &[String], home: &HomeGraph, resolved: &Resolved) ->
 }
 
 const SKIP_MEDIA: &[&str] = &[
-    "das",
-    "die",
-    "der",
-    "den",
-    "dem",
-    "the",
-    "a",
-    "an",
-    "in",
-    "im",
     "on",
     "using",
     "with",
@@ -245,6 +240,8 @@ const SKIP_MEDIA: &[&str] = &[
 
 fn skip_media_word(word: &str, home: &HomeGraph, resolved: &Resolved) -> bool {
     is_play_word(word)
+        || catalog().is_filler(word)
+        || catalog().is_conj(word)
         || SKIP_MEDIA.contains(&word)
         || media_type_word(word).is_some()
         || resolved.areas.iter().any(|area| area_word(word, area, home))
@@ -285,7 +282,7 @@ fn target_player<'a>(
         .filter(|entity| eligible_media_player(entity, home) && explicitly_named(tokens, entity, home))
         .map(|entity| entity.entity_id.as_str())
         .collect();
-    if !resolved_ids.is_empty() {
+    if !resolved_ids.is_empty() && !now_playing_status(tokens) {
         let candidates: Vec<&EntityRec> = home
             .entities
             .iter()
@@ -425,8 +422,7 @@ fn volume_status(tokens: &[String]) -> bool {
 fn mute_status(tokens: &[String]) -> bool {
     is_question(tokens) && any(tokens, &["stumm", "muted", "mute"]) && media_context(tokens)
 }
-
-fn now_playing_status(tokens: &[String]) -> bool {
+pub(crate) fn now_playing_status(tokens: &[String]) -> bool {
     has_phrase(tokens, &["was", "laeuft"])
         || has_phrase(tokens, &["was", "spielt"])
         || has_phrase(tokens, &["whats", "playing"])
@@ -434,6 +430,7 @@ fn now_playing_status(tokens: &[String]) -> bool {
         || has_phrase(tokens, &["what", "s", "playing"])
         || has_phrase(tokens, &["what", "is", "playing"])
         || (is_question(tokens) && any(tokens, &["titel", "track"]) && any(tokens, &["aktuell", "current", "now"]))
+        || (is_question(tokens) && !catalog().any(tokens, &catalog().tv_words) && music_context(tokens))
 }
 
 fn player_status(tokens: &[String]) -> bool {
@@ -463,6 +460,7 @@ fn has_search_tail(tokens: &[String]) -> bool {
 
 fn is_play_word(word: &str) -> bool {
     ["spiel", "spiele", "hoere", "hoer", "abspielen", "weiter", "fortsetzen", "play", "listen", "put", "resume", "unpause"].contains(&word)
+        || matches!(catalog().verb(word), Some(VerbKind::Play))
 }
 
 fn any(tokens: &[String], words: &[&str]) -> bool {
@@ -474,7 +472,11 @@ fn has_phrase(tokens: &[String], phrase: &[&str]) -> bool {
 }
 
 fn is_question(tokens: &[String]) -> bool {
+    let cat = catalog();
     any(tokens, &["was", "wie", "ist", "sind", "what", "whats", "is", "are", "how"])
+        || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Query)))
+        || cat.any(tokens, &cat.question_words)
+        || cat.any(tokens, &cat.query_hint)
 }
 
 fn area_word(word: &str, area_id: &str, home: &HomeGraph) -> bool {

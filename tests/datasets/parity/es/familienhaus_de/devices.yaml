@@ -1,0 +1,265 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- pon calefaccion salon 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- pon calefaccion dormitorio 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- pon cortina dormitorio2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- cierra cortina dormitorio2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- abre cortina dormitorio2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- pon cortina dormitorio3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- cierra cortina dormitorio3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- abre cortina dormitorio3
+devices/cover_garage_door::cover_garage_door_change_position:
+- pon cortina garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- cierra cortina garage
+devices/cover_garage_door::cover_garage_door_open:
+- abre cortina garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- pon cortina salon 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- cierra cortina salon
+devices/cover_living_blinds::cover_living_blinds_open:
+- abre cortina salon
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- pon cortina dormitorio 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- cierra cortina dormitorio
+devices/cover_master_blinds::cover_master_blinds_open:
+- abre cortina dormitorio
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- pon ventilador dormitorio2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- apaga ventilador dormitorio2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- enciende ventilador dormitorio2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- pon ventilador estancia 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- apaga ventilador estancia
+devices/fan_family_fan::fan_family_fan_turn_on:
+- enciende ventilador estancia
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- pon ventilador dormitorio 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- apaga ventilador dormitorio
+devices/fan_master_fan::fan_master_fan_turn_on:
+- enciende ventilador dormitorio
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- apaga ventilador dormitorio y apaga luz cocina
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- enciende ventilador dormitorio y enciende luz cocina
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- pon techo dormitorio2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- pon techo dormitorio2 rosa
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- apaga techo dormitorio2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- enciende techo dormitorio2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- pon techo dormitorio3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- pon techo dormitorio3 amarillo
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- apaga techo dormitorio3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- enciende techo dormitorio3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- pon techo dormitorio4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- pon techo dormitorio4 rojo
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- apaga techo dormitorio4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- enciende techo dormitorio4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- pon luz salon 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- pon luz salon azul
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- apaga luz salon
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- enciende luz salon
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- pon luz entrada 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- pon luz entrada amarillo
+devices/light_entryway_light::light_entryway_light_turn_off:
+- apaga luz entrada
+devices/light_entryway_light::light_entryway_light_turn_on:
+- enciende luz entrada
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- pon techo estancia 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- pon techo estancia morado
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- apaga techo estancia
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- enciende techo estancia
+devices/light_garage_light::light_garage_light_change_brightness:
+- pon luz garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- pon luz garage verde
+devices/light_garage_light::light_garage_light_turn_off:
+- apaga luz garage
+devices/light_garage_light::light_garage_light_turn_on:
+- enciende luz garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- pon luz entrada 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- pon luz entrada blanco
+devices/light_hallway_light::light_hallway_light_turn_off:
+- apaga luz entrada
+devices/light_hallway_light::light_hallway_light_turn_on:
+- enciende luz entrada
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- pon techo cocina 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- pon techo cocina naranja
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- apaga techo cocina
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- enciende techo cocina
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- pon luz cocina 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- pon luz cocina verde
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- apaga luz cocina
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- enciende luz cocina
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- pon luz lavadero 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- pon luz lavadero blanco
+devices/light_laundry_light::light_laundry_light_turn_off:
+- apaga luz lavadero
+devices/light_laundry_light::light_laundry_light_turn_on:
+- enciende luz lavadero
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- pon techo salon 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- pon techo salon negro
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- apaga techo salon
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- enciende techo salon
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- pon luz salon 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- pon luz salon rojo
+devices/light_living_lamp::light_living_lamp_turn_off:
+- apaga luz salon
+devices/light_living_lamp::light_living_lamp_turn_on:
+- enciende luz salon
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- pon luz main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- pon luz main bath azul
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- apaga luz main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- enciende luz main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- pon luz banomaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- pon luz banomaster negro
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- apaga luz banomaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- enciende luz banomaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- pon mesilla dormitorio 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- pon mesilla dormitorio rojo
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- apaga mesilla dormitorio
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- enciende mesilla dormitorio
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- pon techo dormitorio 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- pon techo dormitorio azul
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- apaga techo dormitorio
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- enciende techo dormitorio
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- pon luz dormitorio 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- pon luz dormitorio negro
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- apaga luz dormitorio
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- enciende luz dormitorio
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- pon luz aseo 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- pon luz aseo negro
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- apaga luz aseo
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- enciende luz aseo
+devices/lock_front_door::lock_front_door_lock:
+- bloquea cerradura entrada
+devices/lock_front_door::lock_front_door_unlock:
+- abre cerradura entrada
+devices/lock_garage_entry::lock_garage_entry_lock:
+- bloquea cerradura garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- abre cerradura garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- enciende tv estancia
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pausa tv estancia
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- apaga tv estancia
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- enciende tv estancia
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- enciende tv estancia
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- enciende tv estancia
+devices/media_player_living_tv::media_player_living_tv_mute:
+- enciende tv salon
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pausa tv salon
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- apaga tv salon
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- enciende tv salon
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- enciende tv salon
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- enciende tv salon
+devices/scenes::dinner_time:
+- pon luz salon 90 y enciende techo cocina y pon luz cocina 80
+devices/scenes::good_morning:
+- enciende techo cocina y pon luz salon 100 y abre cortina salon y abre cortina dormitorio
+devices/scenes::kids_bedtime:
+- apaga techo dormitorio2 y apaga techo dormitorio3 y apaga techo dormitorio4 y pon
+  luz entrada 15
+devices/scenes::movie_night:
+- apaga techo salon y pon luz salon 20 y enciende tv salon y cierra cortina salon
+devices/scripts::good_night:
+- enciende escena noche
+devices/scripts::leaving_home:
+- enciende escena salida
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- apaga lavavajillas
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- enciende lavavajillas
+devices/switch_dryer::switch_dryer_turn_off:
+- apaga lavadora
+devices/switch_dryer::switch_dryer_turn_on:
+- enciende lavadora
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- apaga lavadora
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- enciende lavadora

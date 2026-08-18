@@ -1,0 +1,19 @@
+m0_exact/representative::exact_clarify:
+- bal batti baithak
+m0_exact/representative::exact_list_complete_from_setup:
+- fait bread suchi
+m0_exact/representative::exact_multi_intent:
+- bal chhana sutnekotha3 ra nibhau batti pravesh
+m0_exact/representative::exact_reject:
+- weather france
+m0_exact/representative::exact_shopping_list:
+- ajoute milk suchi
+m0_exact/representative::exact_state_persistence:
+- - ke batti pravesh
+  - '12'
+m0_exact/representative::exact_timer:
+- bal timer oven 2 min
+m0_exact/representative::exact_timer_resume_preserves_duration:
+- bal timer oven
+m0_exact/representative::exact_todo_list:
+- ajoute apples suchi

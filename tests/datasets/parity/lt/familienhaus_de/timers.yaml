@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- ijunk laikmatis abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- ijunk laikmatis abstract 20 min
+timers/timers::abstract_start_seconds:
+- ijunk laikmatis abstract
+timers/timers::cancel_all_timers:
+- isjunk viskas laikmatis
+timers/timers::timer_laundry_cancel:
+- ijunk laikmatis laundry
+timers/timers::timer_laundry_decrease:
+- ijunk laikmatis laundry 5 min
+timers/timers::timer_laundry_increase:
+- ijunk laikmatis laundry 16 min
+timers/timers::timer_laundry_pause:
+- isjunk laikmatis laundry
+timers/timers::timer_laundry_start:
+- ijunk laikmatis laundry
+timers/timers::timer_laundry_status:
+- kas laikmatis laundry
+timers/timers::timer_laundry_unpause:
+- ijunk laikmatis laundry
+timers/timers::timer_oven_cancel:
+- ijunk laikmatis oven
+timers/timers::timer_oven_decrease:
+- ijunk laikmatis oven 44 min
+timers/timers::timer_oven_increase:
+- ijunk laikmatis oven 30 min
+timers/timers::timer_oven_pause:
+- isjunk laikmatis oven
+timers/timers::timer_oven_start:
+- ijunk laikmatis oven 2 min
+timers/timers::timer_oven_status:
+- kas laikmatis oven
+timers/timers::timer_oven_unpause:
+- ijunk laikmatis oven

@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - eru vilakku arai
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - anai vilakku samaiyal
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

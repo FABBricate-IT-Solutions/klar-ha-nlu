@@ -1,0 +1,142 @@
+- name: multi_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu gadi mariyu vantagadi
+  - velugu gadi mariyu vantagadi veliginchu
+- name: multi_off_lock
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - arpu velugu gadi mariyu talam talupu
+  - arpu gadi mariyu talam talupu
+- name: multi_kitchen_dining
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu vantagadi mariyu kutumbamess
+  - velugu vantagadi mariyu kutumbamess veliginchu
+- name: multi_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu office mariyu hallway
+  - velugu office mariyu hallway veliginchu
+- name: multi_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu garage mariyu garden
+  - velugu garage mariyu garden veliginchu
+- name: multi_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu padakagadi mariyu main bath
+  - velugu padakagadi mariyu main bath veliginchu
+- name: multi_family_room_living
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu kutumbam mariyu gadi
+  - velugu kutumbam mariyu gadi veliginchu
+- name: multi_basement_garden
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu basement mariyu garden
+  - velugu basement mariyu garden veliginchu
+- name: multi_hallway_office
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu hallway mariyu office
+  - velugu hallway mariyu office veliginchu
+- name: multi_dining_kitchen
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu kutumbamess mariyu vantagadi
+  - velugu kutumbamess mariyu vantagadi veliginchu
+- name: multi_bedroom_2_bedroom_3
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu padakagadi2 mariyu padakagadi3
+  - velugu padakagadi2 mariyu padakagadi3 veliginchu

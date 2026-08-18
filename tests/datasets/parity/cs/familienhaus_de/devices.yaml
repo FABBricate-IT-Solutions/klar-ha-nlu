@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- nastav topeni obyvak 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- nastav topeni loznice 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- nastav zaves loznice2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- zavri zaves loznice2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- otevri zaves loznice2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- nastav zaves loznice3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- zavri zaves loznice3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- otevri zaves loznice3
+devices/cover_garage_door::cover_garage_door_change_position:
+- nastav zaves garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- zavri zaves garage
+devices/cover_garage_door::cover_garage_door_open:
+- otevri zaves garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- nastav zaves obyvak 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- zavri zaves obyvak
+devices/cover_living_blinds::cover_living_blinds_open:
+- otevri zaves obyvak
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- nastav zaves loznice 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- zavri zaves loznice
+devices/cover_master_blinds::cover_master_blinds_open:
+- otevri zaves loznice
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- nastav ventilator loznice2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- vypni ventilator loznice2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- zapni ventilator loznice2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- nastav ventilator obyvakfam 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- vypni ventilator obyvakfam
+devices/fan_family_fan::fan_family_fan_turn_on:
+- zapni ventilator obyvakfam
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- nastav ventilator loznice 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- vypni ventilator loznice
+devices/fan_master_fan::fan_master_fan_turn_on:
+- zapni ventilator loznice
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- vypni ventilator loznice a vypni svetlo kuchyne
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- zapni ventilator loznice a zapni svetlo kuchyne
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- nastav strop loznice2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- nastav strop loznice2 ruzova
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- vypni strop loznice2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- zapni strop loznice2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- nastav strop loznice3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- nastav strop loznice3 zluta
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- vypni strop loznice3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- zapni strop loznice3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- nastav strop loznice4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- nastav strop loznice4 cervena
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- vypni strop loznice4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- zapni strop loznice4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- nastav svetlo obyvak 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- nastav svetlo obyvak modra
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- vypni svetlo obyvak
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- zapni svetlo obyvak
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- nastav svetlo predsin 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- nastav svetlo predsin zluta
+devices/light_entryway_light::light_entryway_light_turn_off:
+- vypni svetlo predsin
+devices/light_entryway_light::light_entryway_light_turn_on:
+- zapni svetlo predsin
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- nastav strop obyvakfam 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- nastav strop obyvakfam fialova
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- vypni strop obyvakfam
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- zapni strop obyvakfam
+devices/light_garage_light::light_garage_light_change_brightness:
+- nastav svetlo garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- nastav svetlo garage zelena
+devices/light_garage_light::light_garage_light_turn_off:
+- vypni svetlo garage
+devices/light_garage_light::light_garage_light_turn_on:
+- zapni svetlo garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- nastav svetlo predsin 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- nastav svetlo predsin bila
+devices/light_hallway_light::light_hallway_light_turn_off:
+- vypni svetlo predsin
+devices/light_hallway_light::light_hallway_light_turn_on:
+- zapni svetlo predsin
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- nastav strop kuchyne 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- nastav strop kuchyne oranzova
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- vypni strop kuchyne
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- zapni strop kuchyne
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- nastav svetlo kuchyne 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- nastav svetlo kuchyne zelena
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- vypni svetlo kuchyne
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- zapni svetlo kuchyne
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- nastav svetlo pradelna 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- nastav svetlo pradelna bila
+devices/light_laundry_light::light_laundry_light_turn_off:
+- vypni svetlo pradelna
+devices/light_laundry_light::light_laundry_light_turn_on:
+- zapni svetlo pradelna
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- nastav strop obyvak 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- nastav strop obyvak cerna
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- vypni strop obyvak
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- zapni strop obyvak
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- nastav svetlo obyvak 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- nastav svetlo obyvak cervena
+devices/light_living_lamp::light_living_lamp_turn_off:
+- vypni svetlo obyvak
+devices/light_living_lamp::light_living_lamp_turn_on:
+- zapni svetlo obyvak
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- nastav svetlo main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- nastav svetlo main bath modra
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- vypni svetlo main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- zapni svetlo main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- nastav svetlo koupelmaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- nastav svetlo koupelmaster cerna
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- vypni svetlo koupelmaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- zapni svetlo koupelmaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- nastav nocnik loznice 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- nastav nocnik loznice cervena
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- vypni nocnik loznice
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- zapni nocnik loznice
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- nastav strop loznice 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- nastav strop loznice modra
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- vypni strop loznice
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- zapni strop loznice
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- nastav svetlo loznice 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- nastav svetlo loznice cerna
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- vypni svetlo loznice
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- zapni svetlo loznice
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- nastav svetlo wc 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- nastav svetlo wc cerna
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- vypni svetlo wc
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- zapni svetlo wc
+devices/lock_front_door::lock_front_door_lock:
+- zamek zamek predsin
+devices/lock_front_door::lock_front_door_unlock:
+- otevri zamek predsin
+devices/lock_garage_entry::lock_garage_entry_lock:
+- zamek zamek garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- otevri zamek garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- zapni televize obyvakfam
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause televize obyvakfam
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- vypni televize obyvakfam
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- zapni televize obyvakfam
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- zapni televize obyvakfam
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- zapni televize obyvakfam
+devices/media_player_living_tv::media_player_living_tv_mute:
+- zapni televize obyvak
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause televize obyvak
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- vypni televize obyvak
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- zapni televize obyvak
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- zapni televize obyvak
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- zapni televize obyvak
+devices/scenes::dinner_time:
+- nastav svetlo obyvak 90 a zapni strop kuchyne a nastav svetlo kuchyne 80
+devices/scenes::good_morning:
+- zapni strop kuchyne a nastav svetlo obyvak 100 a otevri zaves obyvak a otevri zaves
+  loznice
+devices/scenes::kids_bedtime:
+- vypni strop loznice2 a vypni strop loznice3 a vypni strop loznice4 a nastav svetlo
+  predsin 15
+devices/scenes::movie_night:
+- vypni strop obyvak a nastav svetlo obyvak 20 a zapni televize obyvak a zavri zaves
+  obyvak
+devices/scripts::good_night:
+- zapni scena vecer
+devices/scripts::leaving_home:
+- zapni scena odchod
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- vypni mycka
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- zapni mycka
+devices/switch_dryer::switch_dryer_turn_off:
+- vypni pracka
+devices/switch_dryer::switch_dryer_turn_on:
+- zapni pracka
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- vypni pracka
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- zapni pracka

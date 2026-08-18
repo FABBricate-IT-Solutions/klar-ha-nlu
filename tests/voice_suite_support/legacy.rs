@@ -96,7 +96,10 @@ fn expected_intent_names(condition: &Condition) -> Vec<&'static str> {
     }
     let entity = condition.entity_id.as_deref().unwrap_or("");
     if entity.starts_with("vacuum.") {
-        return vec!["HassVacuumStart", "HassVacuumReturnToBase", "HassTurnOn"];
+        return match condition.state.as_deref() {
+            Some("off") => vec!["HassVacuumReturnToBase", "HassTurnOff"],
+            _ => vec!["HassVacuumStart", "HassVacuumReturnToBase", "HassTurnOn"],
+        };
     }
     if entity.starts_with("scene.") || entity.starts_with("script.") {
         return vec!["HassTurnOn"];
@@ -104,6 +107,8 @@ fn expected_intent_names(condition: &Condition) -> Vec<&'static str> {
     match condition.state.as_deref() {
         Some("paused") => vec!["HassMediaPause"],
         Some("playing") => vec!["HassMediaUnpause", "HassTurnOn"],
+        Some("next") => vec!["HassMediaNext"],
+        Some("previous") => vec!["HassMediaPrevious"],
         Some("off" | "closed" | "unlocked") => vec!["HassTurnOff"],
         Some("open" | "locked") => vec!["HassTurnOn"],
         _ => vec!["HassTurnOn"],

@@ -22,6 +22,7 @@ pub(super) struct SessionCommit {
     pub clear_pending: bool,
     pub briefing: Option<bool>,
     pub mark_wrong: bool,
+    pub teach: Option<(String, String)>,
 }
 
 pub(super) struct Draft {
@@ -47,6 +48,9 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if context.text.chars().any(|character| character.is_control() && !character.is_whitespace()) {
         return Some(reject(RejectReason::InvalidInput, speak_unknown()));
     }
+    if let Some(draft) = super::household::route(context, tokens) {
+        return Some(draft);
+    }
     if let Some(draft) = super::policy_route::route_phrase(context) {
         return Some(draft);
     }
@@ -68,7 +72,7 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
     if is_ood(raw, context.home) || is_ood(tokens, context.home) {
         return Some(reject(RejectReason::NoAction, speak_unknown()));
     }
-    if looks_like_correction(tokens) {
+    if looks_like_correction(tokens) && context.session.pending_confirm().is_none() {
         let mut draft = reject(RejectReason::Unsupported, speak_correction());
         draft.commit.mark_wrong = true;
         return Some(draft);
@@ -452,46 +456,5 @@ fn affirmative(tokens: &[String], catalog: &crate::lang::Catalog) -> bool {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::home::default_home;
-    use crate::lang::catalog_for;
-    use crate::session::Session;
-    use crate::types::{Intent, IntentPlan, Settings};
-
-    fn decide(confidence: f64, margin: f64, competing: bool, risky_lock: bool) -> Draft {
-        let home = default_home();
-        let session = Session::new();
-        let settings = Settings::default();
-        let catalog = catalog_for(&["de".into()]);
-        let context = ParseContext::new("test", &home, &session, &[], &settings, catalog);
-        let entity = if risky_lock { "lock.wohnungstuer" } else { "light.wohnzimmer" };
-        let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", entity)], confidence, &[]);
-        let mut draft = execute_plan(&context, plan, "test", None, None, false, false);
-        draft.confidence = confidence;
-        draft.margin = margin;
-        draft.competing = competing;
-        safety_decision(draft, &context)
-    }
-
-    #[test]
-    fn competing_low_margin_clarifies_instead_of_execute() {
-        let decided = decide(0.92, 0.02, true, false);
-        assert!(matches!(decided.decision, ParseDecision::Clarify { .. }), "{:#?}", decided.decision);
-        assert!(decided.plan.is_none());
-    }
-
-    #[test]
-    fn confidence_between_clarify_and_execute_does_not_emit_a_plan() {
-        let decided = decide(0.75, 1.0, false, false);
-        assert!(matches!(decided.decision, ParseDecision::Clarify { .. }), "{:#?}", decided.decision);
-        assert!(decided.plan.is_none());
-    }
-
-    #[test]
-    fn risky_plan_at_confirm_band_confirms() {
-        let decided = decide(0.65, 1.0, false, true);
-        assert!(matches!(decided.decision, ParseDecision::Confirm { .. }), "{:#?}", decided.decision);
-        assert!(decided.commit.confirm.is_some());
-    }
-}
+#[path = "draft_tests.rs"]
+mod tests;

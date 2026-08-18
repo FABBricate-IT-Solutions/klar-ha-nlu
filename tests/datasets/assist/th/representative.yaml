@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - poetfai fai hongnang
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - pitfai fai hongkrua
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

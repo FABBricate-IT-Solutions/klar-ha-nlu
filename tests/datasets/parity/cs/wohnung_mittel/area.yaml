@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- nastav topeni koupelmaster 23
+area/heizung::heizung_esszimmer_23:
+- nastav topeni obyvak 23
+area/heizung::heizung_schlafzimmer_23:
+- nastav topeni loznice 23
+area/heizung::heizung_wohnzimmer_23:
+- nastav topeni obyvak 23
+area/lichter::alle_an_ausser_kugel:
+- zapni vse svetlo krome koule
+area/lichter::alle_an_ausser_schlafzimmer:
+- zapni vse svetlo krome loznice
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- nastav vse svetlo krome loznice 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- nastav vse svetlo krome koule cervena
+area/lichter::alle_ausser_kugel:
+- vypni vse svetlo krome koule
+area/lichter::alle_ausser_schlafzimmer:
+- vypni vse svetlo krome loznice
+area/lichter::alle_lichter_an:
+- zapni vse svetlo
+area/lichter::alle_lichter_aus:
+- vypni vse svetlo
+area/lichter::arbeitszimmer_lichter_an:
+- zapni svetlo obyvak
+area/lichter::arbeitszimmer_lichter_aus:
+- vypni svetlo obyvak
+area/lichter::esszimmer_lichter_an:
+- zapni svetlo obyvak
+area/lichter::esszimmer_lichter_aus:
+- vypni svetlo obyvak
+area/lichter::kuche_lichter_an:
+- zapni svetlo kuchyne
+area/lichter::kuche_lichter_aus:
+- vypni svetlo kuchyne
+area/lichter::schlafzimmer_auf_blau:
+- nastav svetlo loznice modra
+area/lichter::schlafzimmer_auf_rot:
+- nastav svetlo loznice cervena
+area/lichter::wohnzimmer_helligkeit:
+- nastav svetlo obyvak 45
+area/lichter::wohnzimmer_lichter_an:
+- zapni svetlo obyvak
+area/lichter::wohnzimmer_lichter_aus:
+- vypni svetlo obyvak
+area/spoken::alle_ausser_kugel_stt:
+- vypni vse svetlo krome koule
+area/spoken::alle_ausser_schlaf_stt:
+- vypni vse svetlo krome loznice
+area/spoken::alle_ganzen_an:
+- zapni vse svetlo
+area/spoken::alle_lampen_aus:
+- vypni vse svetlo
+area/spoken::esszimmer_weiss:
+- nastav svetlo obyvak bila
+area/spoken::stt_kuche_lichte:
+- vypni svetlo kuchyne
+area/spoken::stt_licht_wohnzimmer_an:
+- zapni svetlo obyvak
+area/spoken::stt_licht_wohnzimmer_aus:
+- vypni svetlo obyvak
+area/spoken::stt_schlafzimmer_dativ:
+- vypni svetlo loznice
+area/spoken::wohnzimmer_gruen:
+- nastav svetlo obyvak zelena
+area/spoken_more::alle_ausser_arbeitszimmer:
+- vypni vse svetlo krome obyvak
+area/spoken_more::arbeitszimmer_lampen_aus:
+- vypni svetlo obyvak
+area/spoken_more::esszimmer_30:
+- nastav svetlo obyvak 30
+area/spoken_more::esszimmer_lichte_an:
+- zapni svetlo obyvak
+area/spoken_more::kuche_80:
+- nastav svetlo kuchyne 80
+area/spoken_more::kuche_blau:
+- nastav svetlo kuchyne modra
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- vypni vse svetlo krome loznice
+area/spoken_more::wohnzimmer_gelb:
+- nastav svetlo obyvak zluta

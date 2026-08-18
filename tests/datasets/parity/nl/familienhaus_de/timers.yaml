@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- aanzetten timer abstract 45 minuut
+timers/timers::abstract_start_hours_minutes:
+- aanzetten timer abstract 20 minuut
+timers/timers::abstract_start_seconds:
+- aanzetten timer abstract
+timers/timers::cancel_all_timers:
+- uitzetten alle timer
+timers/timers::timer_laundry_cancel:
+- aanzetten timer laundry
+timers/timers::timer_laundry_decrease:
+- aanzetten timer laundry 5 minuut
+timers/timers::timer_laundry_increase:
+- aanzetten timer laundry 16 minuut
+timers/timers::timer_laundry_pause:
+- uitzetten timer laundry
+timers/timers::timer_laundry_start:
+- aanzetten timer laundry
+timers/timers::timer_laundry_status:
+- wat timer laundry
+timers/timers::timer_laundry_unpause:
+- aanzetten timer laundry
+timers/timers::timer_oven_cancel:
+- aanzetten timer oven
+timers/timers::timer_oven_decrease:
+- aanzetten timer oven 44 minuut
+timers/timers::timer_oven_increase:
+- aanzetten timer oven 30 minuut
+timers/timers::timer_oven_pause:
+- uitzetten timer oven
+timers/timers::timer_oven_start:
+- aanzetten timer oven 2 minuut
+timers/timers::timer_oven_status:
+- wat timer oven
+timers/timers::timer_oven_unpause:
+- aanzetten timer oven

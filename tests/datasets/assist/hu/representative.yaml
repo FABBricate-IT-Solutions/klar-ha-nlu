@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - kapcsold villany nappali
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - oltsd villany konyha
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

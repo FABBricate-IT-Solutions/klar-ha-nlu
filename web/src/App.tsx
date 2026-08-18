@@ -29,7 +29,7 @@ const defaultUi: UiState = { tab: "home", locale: "de", dismissed: [], last_appl
 const defaultSettings: Settings = {
   personality: "default",
   mode: "full",
-  languages: ["de", "en"],
+  languages: [],
   support_bundle: false,
   support_bundle_raw_text: false,
   confirm_risky_actions: true,
@@ -46,6 +46,7 @@ export function App() {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [inspecting, setInspecting] = useState<Assignment | null>(null);
+  const [aliasDraft, setAliasDraft] = useState("");
   const [confirmApply, setConfirmApply] = useState(false);
   const [replayText, setReplayText] = useState("");
   const [error, setError] = useState("");
@@ -106,8 +107,25 @@ export function App() {
     setUi((prev) => ({ ...prev, last_apply: [] }));
     refresh();
   };
+  const openInspect = (row: Assignment) => {
+    setAliasDraft(row.aliases.join(", "));
+    setInspecting(row);
+  };
+  const saveAlias = async () => {
+    if (!inspecting) return;
+    const aliases = aliasDraft.split(",").map((item) => item.trim()).filter(Boolean);
+    await api.tagEntity({
+      entity_id: inspecting.entity_id,
+      aliases,
+      preferred: inspecting.tags.includes("preferred"),
+      area: inspecting.area || undefined,
+    });
+    setInspecting(null);
+    refresh();
+  };
   const accept = async (row: Assignment, area = row.suggested_area?.area_id || "") => {
-    await api.tagEntity({ entity_id: row.entity_id, aliases: row.aliases, preferred: row.tags.includes("preferred"), area });
+    const aliases = aliasDraft.split(",").map((item) => item.trim()).filter(Boolean);
+    await api.tagEntity({ entity_id: row.entity_id, aliases: aliases.length ? aliases : row.aliases, preferred: row.tags.includes("preferred"), area });
     setInspecting(null);
     refresh();
   };
@@ -131,13 +149,13 @@ export function App() {
       </header>
       {error && <div className="page"><div className="card danger">{error}</div></div>}
       {!dashboard && !error && <div className="page"><div className="card">{t.loading}</div></div>}
-      {dashboard && ui.tab === "home" && <DashboardPage data={dashboard} t={t} onReplay={replay} onApply={() => setConfirmApply(true)} onOpenCalibrate={() => setTab("house")} canApply={applyCandidates.length > 0} />}
+      {dashboard && ui.tab === "home" && <DashboardPage data={dashboard} t={t} locale={ui.locale} onReplay={replay} onApply={() => setConfirmApply(true)} onOpenCalibrate={() => setTab("house")} canApply={applyCandidates.length > 0} />}
       {ui.tab === "conversations" && <ConversationsPage t={t} onReplay={replay} />}
       {ui.tab === "rules" && <RulesPage t={t} locale={ui.locale} personality={settings.personality} languages={settings.languages} />}
       {dashboard && ui.tab === "house" && (
-        <HousePage data={dashboard} ui={ui} t={t} onUi={setUi} onInspect={setInspecting} onRefresh={refresh} onApply={() => setConfirmApply(true)} />
+        <HousePage data={dashboard} ui={ui} t={t} onUi={setUi} onInspect={openInspect} onRefresh={refresh} onApply={() => setConfirmApply(true)} />
       )}
-      {ui.tab === "lab" && <ParsePage t={t} locale={ui.locale} replayText={replayText} nluRag={settings.nlu_rag} />}
+      {ui.tab === "lab" && <ParsePage t={t} locale={ui.locale} replayText={replayText} nluRag={settings.nlu_rag} rooms={dashboard?.rooms || []} />}
       {ui.tab === "settings" && <SettingsPage t={t} settings={settings} onSettings={setSettings} />}
 
       {inspecting && (
@@ -145,7 +163,8 @@ export function App() {
           <p className="mono">{inspecting.entity_id}</p>
           <p className={`conf-${inspecting.confidence}`}>{t[inspecting.confidence]}</p>
           <label>{t.alias}</label>
-          <input value={inspecting.aliases.join(", ")} readOnly />
+          <input value={aliasDraft} onChange={(ev) => setAliasDraft(ev.target.value)} placeholder={t.searchDevice} />
+          <button className="secondary" onClick={saveAlias}>{t.save}</button>
           <label>{t.room}</label>
           <p>{inspecting.area || "..."}</p>
           {inspecting.suggested_area && <button className="primary" onClick={() => accept(inspecting)}>{t.accept}: {inspecting.suggested_area.name}</button>}

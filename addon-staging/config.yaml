@@ -1,0 +1,36 @@
+name: Klar NLU (Staging)
+version: "staging"
+slug: klar_nlu_staging
+description: Staging/RC build of Klar NLU. Not production. Same image family as stable, tag staging.
+url: https://github.com/FABBricate-IT-Solutions/klar-ha-nlu
+stage: experimental
+arch:
+  - amd64
+  - aarch64
+  - armv7
+init: false
+startup: services
+boot: auto
+hostname: klar-nlu-staging
+host_network: false
+ingress: true
+ingress_port: 10520
+panel_icon: mdi:brain
+panel_title: Klar NLU Staging
+ports:
+  10520/tcp: null
+  10500/tcp: null
+ports_description:
+  10520/tcp: Web-UI und Parse-API
+  10500/tcp: Wyoming Intent
+map:
+  - type: homeassistant_config
+    read_only: true
+    path: /config
+options:
+  token: ""
+  support_bundle: false
+schema:
+  token: str?
+  support_bundle: bool?
+image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}

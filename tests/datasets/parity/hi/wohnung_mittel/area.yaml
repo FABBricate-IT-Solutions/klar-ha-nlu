@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- set garmi mukhyasnan 23
+area/heizung::heizung_esszimmer_23:
+- set garmi baithak 23
+area/heizung::heizung_schlafzimmer_23:
+- set garmi shayankaksh 23
+area/heizung::heizung_wohnzimmer_23:
+- set garmi baithak 23
+area/lichter::alle_an_ausser_kugel:
+- jalao sab batti sivay gola
+area/lichter::alle_an_ausser_schlafzimmer:
+- jalao sab batti sivay shayankaksh
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- set sab batti sivay shayankaksh 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- set sab batti sivay gola red
+area/lichter::alle_ausser_kugel:
+- bujhao sab batti sivay gola
+area/lichter::alle_ausser_schlafzimmer:
+- bujhao sab batti sivay shayankaksh
+area/lichter::alle_lichter_an:
+- jalao sab batti
+area/lichter::alle_lichter_aus:
+- bujhao sab batti
+area/lichter::arbeitszimmer_lichter_an:
+- jalao batti baithak
+area/lichter::arbeitszimmer_lichter_aus:
+- bujhao batti baithak
+area/lichter::esszimmer_lichter_an:
+- jalao batti baithak
+area/lichter::esszimmer_lichter_aus:
+- bujhao batti baithak
+area/lichter::kuche_lichter_an:
+- jalao batti rasoi
+area/lichter::kuche_lichter_aus:
+- bujhao batti rasoi
+area/lichter::schlafzimmer_auf_blau:
+- set batti shayankaksh blue
+area/lichter::schlafzimmer_auf_rot:
+- set batti shayankaksh red
+area/lichter::wohnzimmer_helligkeit:
+- set batti baithak 45
+area/lichter::wohnzimmer_lichter_an:
+- jalao batti baithak
+area/lichter::wohnzimmer_lichter_aus:
+- bujhao batti baithak
+area/spoken::alle_ausser_kugel_stt:
+- bujhao sab batti sivay gola
+area/spoken::alle_ausser_schlaf_stt:
+- bujhao sab batti sivay shayankaksh
+area/spoken::alle_ganzen_an:
+- jalao sab batti
+area/spoken::alle_lampen_aus:
+- bujhao sab batti
+area/spoken::esszimmer_weiss:
+- set batti baithak white
+area/spoken::stt_kuche_lichte:
+- bujhao batti rasoi
+area/spoken::stt_licht_wohnzimmer_an:
+- jalao batti baithak
+area/spoken::stt_licht_wohnzimmer_aus:
+- bujhao batti baithak
+area/spoken::stt_schlafzimmer_dativ:
+- bujhao batti shayankaksh
+area/spoken::wohnzimmer_gruen:
+- set batti baithak green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- bujhao sab batti sivay baithak
+area/spoken_more::arbeitszimmer_lampen_aus:
+- bujhao batti baithak
+area/spoken_more::esszimmer_30:
+- set batti baithak 30
+area/spoken_more::esszimmer_lichte_an:
+- jalao batti baithak
+area/spoken_more::kuche_80:
+- set batti rasoi 80
+area/spoken_more::kuche_blau:
+- set batti rasoi blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- bujhao sab batti sivay shayankaksh
+area/spoken_more::wohnzimmer_gelb:
+- set batti baithak yellow

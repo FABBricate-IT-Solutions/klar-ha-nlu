@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- stavi grejanje kupatilomaster 23
+area/heizung::heizung_esszimmer_23:
+- stavi grejanje dnevna 23
+area/heizung::heizung_schlafzimmer_23:
+- stavi grejanje spavaca 23
+area/heizung::heizung_wohnzimmer_23:
+- stavi grejanje dnevna 23
+area/lichter::alle_an_ausser_kugel:
+- ukljuci sve svetlo osim kugla
+area/lichter::alle_an_ausser_schlafzimmer:
+- ukljuci sve svetlo osim spavaca
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- stavi sve svetlo osim spavaca 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- stavi sve svetlo osim kugla red
+area/lichter::alle_ausser_kugel:
+- iskljuci sve svetlo osim kugla
+area/lichter::alle_ausser_schlafzimmer:
+- iskljuci sve svetlo osim spavaca
+area/lichter::alle_lichter_an:
+- ukljuci sve svetlo
+area/lichter::alle_lichter_aus:
+- iskljuci sve svetlo
+area/lichter::arbeitszimmer_lichter_an:
+- ukljuci svetlo dnevna
+area/lichter::arbeitszimmer_lichter_aus:
+- iskljuci svetlo dnevna
+area/lichter::esszimmer_lichter_an:
+- ukljuci svetlo dnevna
+area/lichter::esszimmer_lichter_aus:
+- iskljuci svetlo dnevna
+area/lichter::kuche_lichter_an:
+- ukljuci svetlo kuhinja
+area/lichter::kuche_lichter_aus:
+- iskljuci svetlo kuhinja
+area/lichter::schlafzimmer_auf_blau:
+- stavi svetlo spavaca blue
+area/lichter::schlafzimmer_auf_rot:
+- stavi svetlo spavaca red
+area/lichter::wohnzimmer_helligkeit:
+- stavi svetlo dnevna 45
+area/lichter::wohnzimmer_lichter_an:
+- ukljuci svetlo dnevna
+area/lichter::wohnzimmer_lichter_aus:
+- iskljuci svetlo dnevna
+area/spoken::alle_ausser_kugel_stt:
+- iskljuci sve svetlo osim kugla
+area/spoken::alle_ausser_schlaf_stt:
+- iskljuci sve svetlo osim spavaca
+area/spoken::alle_ganzen_an:
+- ukljuci sve svetlo
+area/spoken::alle_lampen_aus:
+- iskljuci sve svetlo
+area/spoken::esszimmer_weiss:
+- stavi svetlo dnevna white
+area/spoken::stt_kuche_lichte:
+- iskljuci svetlo kuhinja
+area/spoken::stt_licht_wohnzimmer_an:
+- ukljuci svetlo dnevna
+area/spoken::stt_licht_wohnzimmer_aus:
+- iskljuci svetlo dnevna
+area/spoken::stt_schlafzimmer_dativ:
+- iskljuci svetlo spavaca
+area/spoken::wohnzimmer_gruen:
+- stavi svetlo dnevna green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- iskljuci sve svetlo osim dnevna
+area/spoken_more::arbeitszimmer_lampen_aus:
+- iskljuci svetlo dnevna
+area/spoken_more::esszimmer_30:
+- stavi svetlo dnevna 30
+area/spoken_more::esszimmer_lichte_an:
+- ukljuci svetlo dnevna
+area/spoken_more::kuche_80:
+- stavi svetlo kuhinja 80
+area/spoken_more::kuche_blau:
+- stavi svetlo kuhinja blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- iskljuci sve svetlo osim spavaca
+area/spoken_more::wohnzimmer_gelb:
+- stavi svetlo dnevna yellow

@@ -1,0 +1,36 @@
+name: Language parity
+
+# Full Wohn+Family+m0+m2 for every compiled locale. Not a PR/release gate —
+# that would multiply CI time by ~65. Run weekly or by hand.
+on:
+  schedule:
+    - cron: "27 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  parity:
+    name: parity-langs
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@1.85
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: nextest
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: ci-linux
+          cache-on-failure: true
+      - name: Per-locale parity
+        run: cargo nextest run --locked --test parity_langs
+      - name: Full-home quick (every locale)
+        env:
+          KLAR_FULL_HOME_REPORT: "1"
+        run: cargo nextest run --locked --test full_home -- full_home_quick

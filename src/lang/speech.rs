@@ -50,6 +50,7 @@ pub struct Speech {
     pub room_names: &'static [(&'static str, &'static str)],
     pub loc_der_rooms: &'static [&'static str],
     pub personality: &'static [(&'static str, &'static str)],
+    pub confirm: &'static str,
 }
 
 impl Speech {

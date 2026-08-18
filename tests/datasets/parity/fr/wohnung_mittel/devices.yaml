@@ -1,0 +1,52 @@
+devices/geraete::deckenlampe_aus:
+- eteins plafond chambre
+devices/geraete::device_arbeitszimmer_an:
+- allume lumiere bureau
+devices/geraete::device_esszimmer_an:
+- allume lumiere salle
+devices/geraete::device_kuche_kuche_an:
+- allume lumiere cuisine
+devices/geraete::device_wohnzimmer_an:
+- allume lumiere salon
+devices/geraete::filmabend:
+- allume Filmabend
+devices/geraete::kugel_an:
+- allume globe chambre
+devices/geraete::luefter_50:
+- mets ventilateur bureau 50
+devices/geraete::pc_an:
+- allume appareil
+devices/geraete::r2d2_saugen:
+- allume aspirateur salon
+devices/geraete::rollo_zu:
+- ferme store salon
+devices/geraete::spuelmaschine_aus:
+- eteins lavevaisselle
+devices/geraete::tuer_abschliessen:
+- verrouille serrure couloir
+devices/geraete::waschmaschine_an:
+- allume lave
+devices/klima::klima_schlaf_21:
+- mets chauffage chambre 21
+devices/spoken::deckenlampe_an:
+- allume plafond chambre
+devices/spoken::kugel_aus:
+- eteins globe chambre
+devices/spoken::luefter_aus:
+- eteins ventilateur bureau
+devices/spoken::rollo_auf:
+- ouvre store salon
+devices/spoken::trockner_an:
+- allume lave
+devices/spoken::tv_aus:
+- eteins tele
+devices/spoken_more::decke_aus_casual:
+- eteins plafond chambre
+devices/spoken_more::kugel_casual:
+- allume globe chambre
+devices/spoken_more::pc_aus:
+- eteins appareil
+devices/spoken_more::spuelmaschine_an:
+- allume lavevaisselle
+devices/spoken_more::waschmaschine_aus:
+- eteins lave
