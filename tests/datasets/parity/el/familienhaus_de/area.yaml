@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - αναψε φως υπνοδωματο4
 area/dining_lights::dining_lights_change_brightness:
-- βαλε φως σαλονι 54
+- βαλε φως σαλονιfamess 54
 area/dining_lights::dining_lights_change_color:
-- βαλε φως σαλονι blue
+- βαλε φως σαλονιfamess blue
 area/dining_lights::dining_lights_turn_off:
-- σβησε φως σαλονι
+- σβησε φως σαλονιfamess
 area/dining_lights::dining_lights_turn_on:
-- αναψε φως σαλονι
+- αναψε φως σαλονιfamess
 area/entryway_lights::entryway_lights_change_brightness:
 - βαλε φως εισοδος 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - ξεκλειδωσε κλειδαρια garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- βαλε φως εισοδος 26 και βαλε φως wc 26
+- βαλε φως εισοδοςgang 26 και βαλε φως wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- βαλε φως εισοδος purple και βαλε φως wc purple
+- βαλε φως εισοδοςgang purple και βαλε φως wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- σβησε φως εισοδος και σβησε φως wc
+- σβησε φως εισοδοςgang και σβησε φως wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- αναψε φως εισοδος και αναψε φως wc
+- αναψε φως εισοδοςgang και αναψε φως wc
 area/hallway_lights::hallway_lights_change_brightness:
-- βαλε φως εισοδος 61
+- βαλε φως εισοδοςgang 61
 area/hallway_lights::hallway_lights_change_color:
-- βαλε φως εισοδος orange
+- βαλε φως εισοδοςgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- σβησε φως εισοδος
+- σβησε φως εισοδοςgang
 area/hallway_lights::hallway_lights_turn_on:
-- αναψε φως εισοδος
+- αναψε φως εισοδοςgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - βαλε φως κουζινα 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - σβησε ολα φως εκτος κουζινα εκτος νησι
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- σβησε φως σαλονι και σβησε φως κουζινα
+- σβησε φως σαλονι και σβησε φως σαλονιfamess και σβησε φως κουζινα
 area/spoken_lights::spoken_stt_kitchen_off:
 - σβησε φως κουζινα
 area/spoken_lights::spoken_stt_living_off:

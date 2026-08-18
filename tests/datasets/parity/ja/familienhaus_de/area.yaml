@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - tsukete raito shinshitsu4
 area/dining_lights::dining_lights_change_brightness:
-- setto raito ribingu 54
+- setto raito famiriiess 54
 area/dining_lights::dining_lights_change_color:
-- setto raito ribingu blue
+- setto raito famiriiess blue
 area/dining_lights::dining_lights_turn_off:
-- keshite raito ribingu
+- keshite raito famiriiess
 area/dining_lights::dining_lights_turn_on:
-- tsukete raito ribingu
+- tsukete raito famiriiess
 area/entryway_lights::entryway_lights_change_brightness:
 - setto raito genkan 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - akete kagi garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- setto raito genkan 26 と setto raito toire 26
+- setto raito genkangang 26 と setto raito toire 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- setto raito genkan purple と setto raito toire purple
+- setto raito genkangang purple と setto raito toire purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- keshite raito genkan と keshite raito toire
+- keshite raito genkangang と keshite raito toire
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- tsukete raito genkan と tsukete raito toire
+- tsukete raito genkangang と tsukete raito toire
 area/hallway_lights::hallway_lights_change_brightness:
-- setto raito genkan 61
+- setto raito genkangang 61
 area/hallway_lights::hallway_lights_change_color:
-- setto raito genkan orange
+- setto raito genkangang orange
 area/hallway_lights::hallway_lights_turn_off:
-- keshite raito genkan
+- keshite raito genkangang
 area/hallway_lights::hallway_lights_turn_on:
-- tsukete raito genkan
+- tsukete raito genkangang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - setto raito kitchin 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - keshite 全部 raito 以外 kitchin 以外 shima
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- keshite raito ribingu と keshite raito kitchin
+- keshite raito ribingu と keshite raito famiriiess と keshite raito kitchin
 area/spoken_lights::spoken_stt_kitchen_off:
 - keshite raito kitchin
 area/spoken_lights::spoken_stt_living_off:

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - wlacz swiatlo sypialnia4
 area/dining_lights::dining_lights_change_brightness:
-- ustaw swiatlo salon 54
+- ustaw swiatlo salonfamess 54
 area/dining_lights::dining_lights_change_color:
-- ustaw swiatlo salon niebieski
+- ustaw swiatlo salonfamess niebieski
 area/dining_lights::dining_lights_turn_off:
-- wylacz swiatlo salon
+- wylacz swiatlo salonfamess
 area/dining_lights::dining_lights_turn_on:
-- wlacz swiatlo salon
+- wlacz swiatlo salonfamess
 area/entryway_lights::entryway_lights_change_brightness:
 - ustaw swiatlo przedpokoj 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - otworz zamek garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- ustaw swiatlo przedpokoj 26 i ustaw swiatlo toaleta 26
+- ustaw swiatlo przedpokojgang 26 i ustaw swiatlo toaleta 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- ustaw swiatlo przedpokoj fioletowy i ustaw swiatlo toaleta fioletowy
+- ustaw swiatlo przedpokojgang fioletowy i ustaw swiatlo toaleta fioletowy
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- wylacz swiatlo przedpokoj i wylacz swiatlo toaleta
+- wylacz swiatlo przedpokojgang i wylacz swiatlo toaleta
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- wlacz swiatlo przedpokoj i wlacz swiatlo toaleta
+- wlacz swiatlo przedpokojgang i wlacz swiatlo toaleta
 area/hallway_lights::hallway_lights_change_brightness:
-- ustaw swiatlo przedpokoj 61
+- ustaw swiatlo przedpokojgang 61
 area/hallway_lights::hallway_lights_change_color:
-- ustaw swiatlo przedpokoj pomaranczowy
+- ustaw swiatlo przedpokojgang pomaranczowy
 area/hallway_lights::hallway_lights_turn_off:
-- wylacz swiatlo przedpokoj
+- wylacz swiatlo przedpokojgang
 area/hallway_lights::hallway_lights_turn_on:
-- wlacz swiatlo przedpokoj
+- wlacz swiatlo przedpokojgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - ustaw swiatlo kuchnia 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - wylacz wszystko swiatlo oprocz kuchnia oprocz wyspa
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- wylacz swiatlo salon i wylacz swiatlo kuchnia
+- wylacz swiatlo salon i wylacz swiatlo salonfamess i wylacz swiatlo kuchnia
 area/spoken_lights::spoken_stt_kitchen_off:
 - wylacz swiatlo kuchnia
 area/spoken_lights::spoken_stt_living_off:

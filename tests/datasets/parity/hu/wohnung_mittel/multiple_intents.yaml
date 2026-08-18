@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - kapcsold villany nappali es allitsd futes nappali 23
 multiple_intents/multi::wohn_und_ess_aus:
-- oltsd villany nappali
+- oltsd villany nappali es oltsd villany nappalifamess
 multiple_intents/multi::wohn_und_ess_rot:
-- allitsd villany nappali red es allitsd villany nappali red
+- allitsd villany nappali red es allitsd villany nappalifamess red
 multiple_intents/multi::wz_und_kuche_licht:
 - kapcsold villany nappali es kapcsold villany konyha
 multiple_intents/multi::zwei_raeume_und_heizung:
 - kapcsold villany nappali es kapcsold villany konyha es allitsd futes nappali 23
 multiple_intents/spoken::drei_raeume_an:
-- kapcsold villany nappali es kapcsold villany konyha
+- kapcsold villany nappali es kapcsold villany nappalifamess es kapcsold villany konyha
 multiple_intents/spoken::drei_raeume_aus:
-- oltsd villany nappali es oltsd villany konyha
+- oltsd villany nappali es oltsd villany nappalifamess es oltsd villany konyha
 multiple_intents/spoken::ess_und_wohn_aus:
-- oltsd villany nappali
+- oltsd villany nappali es oltsd villany nappalifamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - oltsd gomb es oltsd mennyezet
 multiple_intents/spoken_more::kuche_und_ess_an:
-- kapcsold villany konyha es kapcsold villany nappali
+- kapcsold villany konyha es kapcsold villany nappalifamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- oltsd villany nappali
+- oltsd villany nappali es oltsd villany nappalifamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - oltsd villany nappali

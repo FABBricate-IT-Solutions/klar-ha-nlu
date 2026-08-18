@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - chalu diva shayankaksh4
 area/dining_lights::dining_lights_change_brightness:
-- set diva baithak 54
+- set diva kutumbess 54
 area/dining_lights::dining_lights_change_color:
-- set diva baithak blue
+- set diva kutumbess blue
 area/dining_lights::dining_lights_turn_off:
-- band diva baithak
+- band diva kutumbess
 area/dining_lights::dining_lights_turn_on:
-- chalu diva baithak
+- chalu diva kutumbess
 area/entryway_lights::entryway_lights_change_brightness:
 - set diva pravesh 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - ughad kulup garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set diva pravesh 26 ani set diva swachhata 26
+- set diva praveshgang 26 ani set diva swachhata 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set diva pravesh purple ani set diva swachhata purple
+- set diva praveshgang purple ani set diva swachhata purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- band diva pravesh ani band diva swachhata
+- band diva praveshgang ani band diva swachhata
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- chalu diva pravesh ani chalu diva swachhata
+- chalu diva praveshgang ani chalu diva swachhata
 area/hallway_lights::hallway_lights_change_brightness:
-- set diva pravesh 61
+- set diva praveshgang 61
 area/hallway_lights::hallway_lights_change_color:
-- set diva pravesh orange
+- set diva praveshgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- band diva pravesh
+- band diva praveshgang
 area/hallway_lights::hallway_lights_turn_on:
-- chalu diva pravesh
+- chalu diva praveshgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set diva svayampak 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - band sarva diva vagal svayampak vagal dweep
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- band diva baithak ani band diva svayampak
+- band diva baithak ani band diva kutumbess ani band diva svayampak
 area/spoken_lights::spoken_stt_kitchen_off:
 - band diva svayampak
 area/spoken_lights::spoken_stt_living_off:

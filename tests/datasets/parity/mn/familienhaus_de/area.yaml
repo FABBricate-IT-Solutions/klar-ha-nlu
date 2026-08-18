@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - asaa gerel untlagiin4
 area/dining_lights::dining_lights_change_brightness:
-- tokhiruul gerel zochny 54
+- tokhiruul gerel gerbuless 54
 area/dining_lights::dining_lights_change_color:
-- tokhiruul gerel zochny blue
+- tokhiruul gerel gerbuless blue
 area/dining_lights::dining_lights_turn_off:
-- untraa gerel zochny
+- untraa gerel gerbuless
 area/dining_lights::dining_lights_turn_on:
-- asaa gerel zochny
+- asaa gerel gerbuless
 area/entryway_lights::entryway_lights_change_brightness:
 - tokhiruul gerel orol 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - nee tugjee garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- tokhiruul gerel orol 26 ba tokhiruul gerel oroon 26
+- tokhiruul gerel orolgang 26 ba tokhiruul gerel oroon 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- tokhiruul gerel orol purple ba tokhiruul gerel oroon purple
+- tokhiruul gerel orolgang purple ba tokhiruul gerel oroon purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- untraa gerel orol ba untraa gerel oroon
+- untraa gerel orolgang ba untraa gerel oroon
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- asaa gerel orol ba asaa gerel oroon
+- asaa gerel orolgang ba asaa gerel oroon
 area/hallway_lights::hallway_lights_change_brightness:
-- tokhiruul gerel orol 61
+- tokhiruul gerel orolgang 61
 area/hallway_lights::hallway_lights_change_color:
-- tokhiruul gerel orol orange
+- tokhiruul gerel orolgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- untraa gerel orol
+- untraa gerel orolgang
 area/hallway_lights::hallway_lights_turn_on:
-- asaa gerel orol
+- asaa gerel orolgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - tokhiruul gerel galtogoo 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - untraa bugd gerel busad galtogoo busad aran
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- untraa gerel zochny ba untraa gerel galtogoo
+- untraa gerel zochny ba untraa gerel gerbuless ba untraa gerel galtogoo
 area/spoken_lights::spoken_stt_kitchen_off:
 - untraa gerel galtogoo
 area/spoken_lights::spoken_stt_living_off:

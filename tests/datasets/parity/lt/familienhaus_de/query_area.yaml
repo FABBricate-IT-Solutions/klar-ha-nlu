@@ -47,13 +47,13 @@ query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
 query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
 - kas sviesa miegamasis4
 query_area/dining_lights::dining_lights_get_brightness:
-- kas sviesa svetaine
+- kas sviesa svetainefamess
 query_area/dining_lights::dining_lights_get_state:
-- kas sviesa svetaine
+- kas sviesa svetainefamess
 query_area/dining_lights::dining_lights_list_off_lights:
-- kas sviesa svetaine
+- kas sviesa svetainefamess
 query_area/dining_lights::dining_lights_list_on_lights:
-- kas sviesa svetaine
+- kas sviesa svetainefamess
 query_area/entryway_lights::entryway_lights_get_brightness:
 - kas sviesa prieskambaris
 query_area/entryway_lights::entryway_lights_get_state:
@@ -115,21 +115,21 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - kas spyna garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- kas sviesa prieskambaris ir kas sviesa wc
+- kas sviesa prieskambarisgang ir kas sviesa wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- kas sviesa prieskambaris ir kas sviesa wc
+- kas sviesa prieskambarisgang ir kas sviesa wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- kas sviesa prieskambaris ir kas sviesa wc
+- kas sviesa prieskambarisgang ir kas sviesa wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- kas sviesa prieskambaris ir kas sviesa wc
+- kas sviesa prieskambarisgang ir kas sviesa wc
 query_area/hallway_lights::hallway_lights_get_brightness:
-- kas sviesa prieskambaris
+- kas sviesa prieskambarisgang
 query_area/hallway_lights::hallway_lights_get_state:
-- kas sviesa prieskambaris
+- kas sviesa prieskambarisgang
 query_area/hallway_lights::hallway_lights_list_off_lights:
-- kas sviesa prieskambaris
+- kas sviesa prieskambarisgang
 query_area/hallway_lights::hallway_lights_list_on_lights:
-- kas sviesa prieskambaris
+- kas sviesa prieskambarisgang
 query_area/kitchen_lights::kitchen_lights_get_brightness:
 - kas sviesa virtuve
 query_area/kitchen_lights::kitchen_lights_get_state:

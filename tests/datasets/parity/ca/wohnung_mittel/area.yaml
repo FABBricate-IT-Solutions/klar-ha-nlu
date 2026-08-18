@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - posa calefaccio banymaster 23
 area/heizung::heizung_esszimmer_23:
-- posa calefaccio sala 23
+- posa calefaccio salaestaress 23
 area/heizung::heizung_schlafzimmer_23:
 - posa calefaccio habitacio 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - apaga llum sala
 area/lichter::esszimmer_lichter_an:
-- encen llum sala
+- encen llum salaestaress
 area/lichter::esszimmer_lichter_aus:
-- apaga llum sala
+- apaga llum salaestaress
 area/lichter::kuche_lichter_an:
 - encen llum cuina
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - apaga tot llum
 area/spoken::esszimmer_weiss:
-- posa llum sala blanc
+- posa llum salaestaress blanc
 area/spoken::stt_kuche_lichte:
 - apaga llum cuina
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - apaga llum sala
 area/spoken_more::esszimmer_30:
-- posa llum sala 30
+- posa llum salaestaress 30
 area/spoken_more::esszimmer_lichte_an:
-- encen llum sala
+- encen llum salaestaress
 area/spoken_more::kuche_80:
 - posa llum cuina 80
 area/spoken_more::kuche_blau:

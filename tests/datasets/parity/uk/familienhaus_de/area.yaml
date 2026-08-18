@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - увімкни світло спальня4
 area/dining_lights::dining_lights_change_brightness:
-- постав світло вітальня 54
+- постав світло вітальняfamess 54
 area/dining_lights::dining_lights_change_color:
-- постав світло вітальня blue
+- постав світло вітальняfamess blue
 area/dining_lights::dining_lights_turn_off:
-- вимкни світло вітальня
+- вимкни світло вітальняfamess
 area/dining_lights::dining_lights_turn_on:
-- увімкни світло вітальня
+- увімкни світло вітальняfamess
 area/entryway_lights::entryway_lights_change_brightness:
 - постав світло передпокій 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - відкрий замок garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- постав світло передпокій 26 і постав світло туалет 26
+- постав світло передпокійgang 26 і постав світло туалет 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- постав світло передпокій purple і постав світло туалет purple
+- постав світло передпокійgang purple і постав світло туалет purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- вимкни світло передпокій і вимкни світло туалет
+- вимкни світло передпокійgang і вимкни світло туалет
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- увімкни світло передпокій і увімкни світло туалет
+- увімкни світло передпокійgang і увімкни світло туалет
 area/hallway_lights::hallway_lights_change_brightness:
-- постав світло передпокій 61
+- постав світло передпокійgang 61
 area/hallway_lights::hallway_lights_change_color:
-- постав світло передпокій orange
+- постав світло передпокійgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- вимкни світло передпокій
+- вимкни світло передпокійgang
 area/hallway_lights::hallway_lights_turn_on:
-- увімкни світло передпокій
+- увімкни світло передпокійgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - постав світло кухня 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - вимкни все світло крім кухня крім острів
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- вимкни світло вітальня і вимкни світло кухня
+- вимкни світло вітальня і вимкни світло вітальняfamess і вимкни світло кухня
 area/spoken_lights::spoken_stt_kitchen_off:
 - вимкни світло кухня
 area/spoken_lights::spoken_stt_living_off:

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - skakel lig slaapkamer4
 area/dining_lights::dining_lights_change_brightness:
-- stel lig sitkamer 54
+- stel lig sitkamerfamess 54
 area/dining_lights::dining_lights_change_color:
-- stel lig sitkamer blou
+- stel lig sitkamerfamess blou
 area/dining_lights::dining_lights_turn_off:
-- doof lig sitkamer
+- doof lig sitkamerfamess
 area/dining_lights::dining_lights_turn_on:
-- skakel lig sitkamer
+- skakel lig sitkamerfamess
 area/entryway_lights::entryway_lights_change_brightness:
 - stel lig ingang 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - oop slot garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stel lig ingang 26 en stel lig toilet 26
+- stel lig inganggang 26 en stel lig toilet 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stel lig ingang pers en stel lig toilet pers
+- stel lig inganggang pers en stel lig toilet pers
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- doof lig ingang en doof lig toilet
+- doof lig inganggang en doof lig toilet
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- skakel lig ingang en skakel lig toilet
+- skakel lig inganggang en skakel lig toilet
 area/hallway_lights::hallway_lights_change_brightness:
-- stel lig ingang 61
+- stel lig inganggang 61
 area/hallway_lights::hallway_lights_change_color:
-- stel lig ingang oranje
+- stel lig inganggang oranje
 area/hallway_lights::hallway_lights_turn_off:
-- doof lig ingang
+- doof lig inganggang
 area/hallway_lights::hallway_lights_turn_on:
-- skakel lig ingang
+- skakel lig inganggang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - stel lig kombuis 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - doof almal lig behalwe kombuis behalwe eiland
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- doof lig sitkamer en doof lig kombuis
+- doof lig sitkamer en doof lig sitkamerfamess en doof lig kombuis
 area/spoken_lights::spoken_stt_kitchen_off:
 - doof lig kombuis
 area/spoken_lights::spoken_stt_living_off:

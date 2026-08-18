@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - veliginchu velugu padakagadi4
 area/dining_lights::dining_lights_change_brightness:
-- set velugu gadi 54
+- set velugu kutumbamess 54
 area/dining_lights::dining_lights_change_color:
-- set velugu gadi blue
+- set velugu kutumbamess blue
 area/dining_lights::dining_lights_turn_off:
-- arpu velugu gadi
+- arpu velugu kutumbamess
 area/dining_lights::dining_lights_turn_on:
-- veliginchu velugu gadi
+- veliginchu velugu kutumbamess
 area/entryway_lights::entryway_lights_change_brightness:
 - set velugu pravesham 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - theruvu talam garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set velugu pravesham 26 mariyu set velugu toilet 26
+- set velugu praveshamgang 26 mariyu set velugu toilet 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set velugu pravesham purple mariyu set velugu toilet purple
+- set velugu praveshamgang purple mariyu set velugu toilet purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- arpu velugu pravesham mariyu arpu velugu toilet
+- arpu velugu praveshamgang mariyu arpu velugu toilet
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- veliginchu velugu pravesham mariyu veliginchu velugu toilet
+- veliginchu velugu praveshamgang mariyu veliginchu velugu toilet
 area/hallway_lights::hallway_lights_change_brightness:
-- set velugu pravesham 61
+- set velugu praveshamgang 61
 area/hallway_lights::hallway_lights_change_color:
-- set velugu pravesham orange
+- set velugu praveshamgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- arpu velugu pravesham
+- arpu velugu praveshamgang
 area/hallway_lights::hallway_lights_turn_on:
-- veliginchu velugu pravesham
+- veliginchu velugu praveshamgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set velugu vantagadi 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - arpu anni velugu tapp vantagadi tapp dweepam
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- arpu velugu gadi mariyu arpu velugu vantagadi
+- arpu velugu gadi mariyu arpu velugu kutumbamess mariyu arpu velugu vantagadi
 area/spoken_lights::spoken_stt_kitchen_off:
 - arpu velugu vantagadi
 area/spoken_lights::spoken_stt_living_off:

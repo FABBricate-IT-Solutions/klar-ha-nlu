@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - kveiktu ljos svefnherbergi4
 area/dining_lights::dining_lights_change_brightness:
-- settu ljos stofa 54
+- settu ljos stofafamess 54
 area/dining_lights::dining_lights_change_color:
-- settu ljos stofa blue
+- settu ljos stofafamess blue
 area/dining_lights::dining_lights_turn_off:
-- slokktu ljos stofa
+- slokktu ljos stofafamess
 area/dining_lights::dining_lights_turn_on:
-- kveiktu ljos stofa
+- kveiktu ljos stofafamess
 area/entryway_lights::entryway_lights_change_brightness:
 - settu ljos anddyri 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - opnadu las garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- settu ljos anddyri 26 og settu ljos klósett 26
+- settu ljos anddyrigang 26 og settu ljos klósett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- settu ljos anddyri purple og settu ljos klósett purple
+- settu ljos anddyrigang purple og settu ljos klósett purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- slokktu ljos anddyri og slokktu ljos klósett
+- slokktu ljos anddyrigang og slokktu ljos klósett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- kveiktu ljos anddyri og kveiktu ljos klósett
+- kveiktu ljos anddyrigang og kveiktu ljos klósett
 area/hallway_lights::hallway_lights_change_brightness:
-- settu ljos anddyri 61
+- settu ljos anddyrigang 61
 area/hallway_lights::hallway_lights_change_color:
-- settu ljos anddyri orange
+- settu ljos anddyrigang orange
 area/hallway_lights::hallway_lights_turn_off:
-- slokktu ljos anddyri
+- slokktu ljos anddyrigang
 area/hallway_lights::hallway_lights_turn_on:
-- kveiktu ljos anddyri
+- kveiktu ljos anddyrigang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - settu ljos eldhus 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - slokktu allt ljos nema eldhus nema eyja
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- slokktu ljos stofa og slokktu ljos eldhus
+- slokktu ljos stofa og slokktu ljos stofafamess og slokktu ljos eldhus
 area/spoken_lights::spoken_stt_kitchen_off:
 - slokktu ljos eldhus
 area/spoken_lights::spoken_stt_living_off:

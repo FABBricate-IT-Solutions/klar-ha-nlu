@@ -47,13 +47,13 @@ query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
 query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
 - co svetlo loznice4
 query_area/dining_lights::dining_lights_get_brightness:
-- co svetlo obyvak
+- co svetlo obyvakfamess
 query_area/dining_lights::dining_lights_get_state:
-- co svetlo obyvak
+- co svetlo obyvakfamess
 query_area/dining_lights::dining_lights_list_off_lights:
-- co svetlo obyvak
+- co svetlo obyvakfamess
 query_area/dining_lights::dining_lights_list_on_lights:
-- co svetlo obyvak
+- co svetlo obyvakfamess
 query_area/entryway_lights::entryway_lights_get_brightness:
 - co svetlo predsin
 query_area/entryway_lights::entryway_lights_get_state:
@@ -115,21 +115,21 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - co zamek garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- co svetlo predsin a co svetlo wc
+- co svetlo predsingang a co svetlo wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- co svetlo predsin a co svetlo wc
+- co svetlo predsingang a co svetlo wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- co svetlo predsin a co svetlo wc
+- co svetlo predsingang a co svetlo wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- co svetlo predsin a co svetlo wc
+- co svetlo predsingang a co svetlo wc
 query_area/hallway_lights::hallway_lights_get_brightness:
-- co svetlo predsin
+- co svetlo predsingang
 query_area/hallway_lights::hallway_lights_get_state:
-- co svetlo predsin
+- co svetlo predsingang
 query_area/hallway_lights::hallway_lights_list_off_lights:
-- co svetlo predsin
+- co svetlo predsingang
 query_area/hallway_lights::hallway_lights_list_on_lights:
-- co svetlo predsin
+- co svetlo predsingang
 query_area/kitchen_lights::kitchen_lights_get_brightness:
 - co svetlo kuchyne
 query_area/kitchen_lights::kitchen_lights_get_state:

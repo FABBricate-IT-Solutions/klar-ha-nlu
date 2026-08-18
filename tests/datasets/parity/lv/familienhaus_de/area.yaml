@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - iesledz gaisma gulamistaba4
 area/dining_lights::dining_lights_change_brightness:
-- iestati gaisma istaba 54
+- iestati gaisma dzivojamafamess 54
 area/dining_lights::dining_lights_change_color:
-- iestati gaisma istaba blue
+- iestati gaisma dzivojamafamess blue
 area/dining_lights::dining_lights_turn_off:
-- izsledz gaisma istaba
+- izsledz gaisma dzivojamafamess
 area/dining_lights::dining_lights_turn_on:
-- iesledz gaisma istaba
+- iesledz gaisma dzivojamafamess
 area/entryway_lights::entryway_lights_change_brightness:
 - iestati gaisma prieksnams 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - atver sledzene garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- iestati gaisma prieksnams 26 un iestati gaisma wc 26
+- iestati gaisma prieksnamsgang 26 un iestati gaisma wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- iestati gaisma prieksnams purple un iestati gaisma wc purple
+- iestati gaisma prieksnamsgang purple un iestati gaisma wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- izsledz gaisma prieksnams un izsledz gaisma wc
+- izsledz gaisma prieksnamsgang un izsledz gaisma wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- iesledz gaisma prieksnams un iesledz gaisma wc
+- iesledz gaisma prieksnamsgang un iesledz gaisma wc
 area/hallway_lights::hallway_lights_change_brightness:
-- iestati gaisma prieksnams 61
+- iestati gaisma prieksnamsgang 61
 area/hallway_lights::hallway_lights_change_color:
-- iestati gaisma prieksnams orange
+- iestati gaisma prieksnamsgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- izsledz gaisma prieksnams
+- izsledz gaisma prieksnamsgang
 area/hallway_lights::hallway_lights_turn_on:
-- iesledz gaisma prieksnams
+- iesledz gaisma prieksnamsgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - iestati gaisma virtuve 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - izsledz viss gaisma iznemot virtuve iznemot sala
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- izsledz gaisma istaba un izsledz gaisma virtuve
+- izsledz gaisma istaba un izsledz gaisma dzivojamafamess un izsledz gaisma virtuve
 area/spoken_lights::spoken_stt_kitchen_off:
 - izsledz gaisma virtuve
 area/spoken_lights::spoken_stt_living_off:

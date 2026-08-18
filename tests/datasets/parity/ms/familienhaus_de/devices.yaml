@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - hidupkan siling bilik4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- tetapkan lampu ruang 21
+- tetapkan lampu ruankeluargaess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- tetapkan lampu ruang blue
+- tetapkan lampu ruankeluargaess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- matikan lampu ruang
+- matikan lampu ruankeluargaess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- hidupkan lampu ruang
+- hidupkan lampu ruankeluargaess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - tetapkan lampu lorong 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - hidupkan lampu garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- tetapkan lampu lorong 11
+- tetapkan lampu loronggang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- tetapkan lampu lorong white
+- tetapkan lampu loronggang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- matikan lampu lorong
+- matikan lampu loronggang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- hidupkan lampu lorong
+- hidupkan lampu loronggang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - tetapkan siling dapur 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,14 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - hidupkan tv ruang
 devices/scenes::dinner_time:
-- tetapkan lampu ruang 90 dan hidupkan siling dapur dan tetapkan lampu dapur 80
+- tetapkan lampu ruankeluargaess 90 dan hidupkan siling dapur dan tetapkan lampu dapur
+  80
 devices/scenes::good_morning:
-- hidupkan siling dapur dan tetapkan lampu ruang 100 dan buka langsir ruang dan buka
-  langsir bilik
+- hidupkan siling dapur dan tetapkan lampu ruankeluargaess 100 dan buka langsir ruang
+  dan buka langsir bilik
 devices/scenes::kids_bedtime:
 - matikan siling bilik2 dan matikan siling bilik3 dan matikan siling bilik4 dan tetapkan
-  lampu lorong 15
+  lampu loronggang 15
 devices/scenes::movie_night:
 - matikan siling ruang dan tetapkan lampu ruang 20 dan hidupkan tv ruang dan tutup
   langsir ruang

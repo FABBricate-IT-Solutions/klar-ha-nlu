@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - aanzetten licht slaapkamer4
 area/dining_lights::dining_lights_change_brightness:
-- stel licht woonkamer 54
+- stel licht huiskameress 54
 area/dining_lights::dining_lights_change_color:
-- stel licht woonkamer blauw
+- stel licht huiskameress blauw
 area/dining_lights::dining_lights_turn_off:
-- uitzetten licht woonkamer
+- uitzetten licht huiskameress
 area/dining_lights::dining_lights_turn_on:
-- aanzetten licht woonkamer
+- aanzetten licht huiskameress
 area/entryway_lights::entryway_lights_change_brightness:
 - stel licht hal 72
 area/entryway_lights::entryway_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - uitzetten alle licht behalve keuken behalve eiland
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- uitzetten licht woonkamer en uitzetten licht keuken
+- uitzetten licht woonkamer en uitzetten licht huiskameress en uitzetten licht keuken
 area/spoken_lights::spoken_stt_kitchen_off:
 - uitzetten licht keuken
 area/spoken_lights::spoken_stt_living_off:

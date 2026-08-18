@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - piztu argia logela4
 area/dining_lights::dining_lights_change_brightness:
-- jarri argia egongela 54
+- jarri argia familiagelaess 54
 area/dining_lights::dining_lights_change_color:
-- jarri argia egongela blue
+- jarri argia familiagelaess blue
 area/dining_lights::dining_lights_turn_off:
-- itzali argia egongela
+- itzali argia familiagelaess
 area/dining_lights::dining_lights_turn_on:
-- piztu argia egongela
+- piztu argia familiagelaess
 area/entryway_lights::entryway_lights_change_brightness:
 - jarri argia sarrera 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - ireki sarraila garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- jarri argia sarrera 26 eta jarri argia wc 26
+- jarri argia sarreragang 26 eta jarri argia wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- jarri argia sarrera purple eta jarri argia wc purple
+- jarri argia sarreragang purple eta jarri argia wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- itzali argia sarrera eta itzali argia wc
+- itzali argia sarreragang eta itzali argia wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- piztu argia sarrera eta piztu argia wc
+- piztu argia sarreragang eta piztu argia wc
 area/hallway_lights::hallway_lights_change_brightness:
-- jarri argia sarrera 61
+- jarri argia sarreragang 61
 area/hallway_lights::hallway_lights_change_color:
-- jarri argia sarrera orange
+- jarri argia sarreragang orange
 area/hallway_lights::hallway_lights_turn_off:
-- itzali argia sarrera
+- itzali argia sarreragang
 area/hallway_lights::hallway_lights_turn_on:
-- piztu argia sarrera
+- piztu argia sarreragang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - jarri argia sukaldea 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - itzali denak argia izan sukaldea izan uharte
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- itzali argia egongela eta itzali argia sukaldea
+- itzali argia egongela eta itzali argia familiagelaess eta itzali argia sukaldea
 area/spoken_lights::spoken_stt_kitchen_off:
 - itzali argia sukaldea
 area/spoken_lights::spoken_stt_living_off:

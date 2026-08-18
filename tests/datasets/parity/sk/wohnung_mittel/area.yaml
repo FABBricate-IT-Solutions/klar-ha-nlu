@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - nastav kurenie kupelmaster 23
 area/heizung::heizung_esszimmer_23:
-- nastav kurenie obyvacka 23
+- nastav kurenie obyvackafamess 23
 area/heizung::heizung_schlafzimmer_23:
 - nastav kurenie spalna 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - vypni svetlo obyvacka
 area/lichter::esszimmer_lichter_an:
-- zapni svetlo obyvacka
+- zapni svetlo obyvackafamess
 area/lichter::esszimmer_lichter_aus:
-- vypni svetlo obyvacka
+- vypni svetlo obyvackafamess
 area/lichter::kuche_lichter_an:
 - zapni svetlo kuchyne
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - vypni vsetko svetlo
 area/spoken::esszimmer_weiss:
-- nastav svetlo obyvacka white
+- nastav svetlo obyvackafamess white
 area/spoken::stt_kuche_lichte:
 - vypni svetlo kuchyne
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - vypni svetlo obyvacka
 area/spoken_more::esszimmer_30:
-- nastav svetlo obyvacka 30
+- nastav svetlo obyvackafamess 30
 area/spoken_more::esszimmer_lichte_an:
-- zapni svetlo obyvacka
+- zapni svetlo obyvackafamess
 area/spoken_more::kuche_80:
 - nastav svetlo kuchyne 80
 area/spoken_more::kuche_blau:

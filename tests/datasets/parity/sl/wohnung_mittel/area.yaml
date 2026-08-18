@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - nastavi ogrevanje kopalmaster 23
 area/heizung::heizung_esszimmer_23:
-- nastavi ogrevanje dnevna 23
+- nastavi ogrevanje dnevnafamess 23
 area/heizung::heizung_schlafzimmer_23:
 - nastavi ogrevanje spalnica 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - ugasni luc dnevna
 area/lichter::esszimmer_lichter_an:
-- prizgi luc dnevna
+- prizgi luc dnevnafamess
 area/lichter::esszimmer_lichter_aus:
-- ugasni luc dnevna
+- ugasni luc dnevnafamess
 area/lichter::kuche_lichter_an:
 - prizgi luc kuhinja
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - ugasni vse luc
 area/spoken::esszimmer_weiss:
-- nastavi luc dnevna white
+- nastavi luc dnevnafamess white
 area/spoken::stt_kuche_lichte:
 - ugasni luc kuhinja
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - ugasni luc dnevna
 area/spoken_more::esszimmer_30:
-- nastavi luc dnevna 30
+- nastavi luc dnevnafamess 30
 area/spoken_more::esszimmer_lichte_an:
-- prizgi luc dnevna
+- prizgi luc dnevnafamess
 area/spoken_more::kuche_80:
 - nastavi luc kuhinja 80
 area/spoken_more::kuche_blau:

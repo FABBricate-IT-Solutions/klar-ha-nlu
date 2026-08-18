@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - maach luucht schlofzëmmer4
 area/dining_lights::dining_lights_change_brightness:
-- stell luucht wunnen 54
+- stell luucht wunnsalless 54
 area/dining_lights::dining_lights_change_color:
-- stell luucht wunnen blue
+- stell luucht wunnsalless blue
 area/dining_lights::dining_lights_turn_off:
-- maachaus luucht wunnen
+- maachaus luucht wunnsalless
 area/dining_lights::dining_lights_turn_on:
-- maach luucht wunnen
+- maach luucht wunnsalless
 area/entryway_lights::entryway_lights_change_brightness:
 - stell luucht entrada 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - opmaachen schlass garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stell luucht entrada 26 an stell luucht toilette 26
+- stell luucht entradagang 26 an stell luucht toilette 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stell luucht entrada purple an stell luucht toilette purple
+- stell luucht entradagang purple an stell luucht toilette purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- maachaus luucht entrada an maachaus luucht toilette
+- maachaus luucht entradagang an maachaus luucht toilette
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- maach luucht entrada an maach luucht toilette
+- maach luucht entradagang an maach luucht toilette
 area/hallway_lights::hallway_lights_change_brightness:
-- stell luucht entrada 61
+- stell luucht entradagang 61
 area/hallway_lights::hallway_lights_change_color:
-- stell luucht entrada orange
+- stell luucht entradagang orange
 area/hallway_lights::hallway_lights_turn_off:
-- maachaus luucht entrada
+- maachaus luucht entradagang
 area/hallway_lights::hallway_lights_turn_on:
-- maach luucht entrada
+- maach luucht entradagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - stell luucht kichen 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - maachaus all luucht ausser kichen ausser eiland
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- maachaus luucht wunnen an maachaus luucht kichen
+- maachaus luucht wunnen an maachaus luucht wunnsalless an maachaus luucht kichen
 area/spoken_lights::spoken_stt_kitchen_off:
 - maachaus luucht kichen
 area/spoken_lights::spoken_stt_living_off:

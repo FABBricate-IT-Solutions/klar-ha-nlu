@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - enciende luz dormitorio4
 area/dining_lights::dining_lights_change_brightness:
-- pon luz salon 54
+- pon luz estanciaess 54
 area/dining_lights::dining_lights_change_color:
-- pon luz salon azul
+- pon luz estanciaess azul
 area/dining_lights::dining_lights_turn_off:
-- apaga luz salon
+- apaga luz estanciaess
 area/dining_lights::dining_lights_turn_on:
-- enciende luz salon
+- enciende luz estanciaess
 area/entryway_lights::entryway_lights_change_brightness:
 - pon luz entrada 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - abre cerradura garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- pon luz entrada 26 y pon luz aseo 26
+- pon luz entradagang 26 y pon luz aseo 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- pon luz entrada morado y pon luz aseo morado
+- pon luz entradagang morado y pon luz aseo morado
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- apaga luz entrada y apaga luz aseo
+- apaga luz entradagang y apaga luz aseo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- enciende luz entrada y enciende luz aseo
+- enciende luz entradagang y enciende luz aseo
 area/hallway_lights::hallway_lights_change_brightness:
-- pon luz entrada 61
+- pon luz entradagang 61
 area/hallway_lights::hallway_lights_change_color:
-- pon luz entrada naranja
+- pon luz entradagang naranja
 area/hallway_lights::hallway_lights_turn_off:
-- apaga luz entrada
+- apaga luz entradagang
 area/hallway_lights::hallway_lights_turn_on:
-- enciende luz entrada
+- enciende luz entradagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - pon luz cocina 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - apaga todo luz excepto cocina excepto isla
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- apaga luz salon y apaga luz cocina
+- apaga luz salon y apaga luz estanciaess y apaga luz cocina
 area/spoken_lights::spoken_stt_kitchen_off:
 - apaga luz cocina
 area/spoken_lights::spoken_stt_living_off:

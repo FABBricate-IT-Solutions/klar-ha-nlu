@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - tand ljus sovrum4
 area/dining_lights::dining_lights_change_brightness:
-- satt ljus vardagsrum 54
+- satt ljus allrumess 54
 area/dining_lights::dining_lights_change_color:
-- satt ljus vardagsrum bla
+- satt ljus allrumess bla
 area/dining_lights::dining_lights_turn_off:
-- slack ljus vardagsrum
+- slack ljus allrumess
 area/dining_lights::dining_lights_turn_on:
-- tand ljus vardagsrum
+- tand ljus allrumess
 area/entryway_lights::entryway_lights_change_brightness:
 - satt ljus entre 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - oppna las garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- satt ljus entre 26 och satt ljus toalett 26
+- satt ljus entregang 26 och satt ljus toalett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- satt ljus entre lila och satt ljus toalett lila
+- satt ljus entregang lila och satt ljus toalett lila
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- slack ljus entre och slack ljus toalett
+- slack ljus entregang och slack ljus toalett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- tand ljus entre och tand ljus toalett
+- tand ljus entregang och tand ljus toalett
 area/hallway_lights::hallway_lights_change_brightness:
-- satt ljus entre 61
+- satt ljus entregang 61
 area/hallway_lights::hallway_lights_change_color:
-- satt ljus entre orange
+- satt ljus entregang orange
 area/hallway_lights::hallway_lights_turn_off:
-- slack ljus entre
+- slack ljus entregang
 area/hallway_lights::hallway_lights_turn_on:
-- tand ljus entre
+- tand ljus entregang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - satt ljus kok 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - slack alla ljus utom kok utom o
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- slack ljus vardagsrum och slack ljus kok
+- slack ljus vardagsrum och slack ljus allrumess och slack ljus kok
 area/spoken_lights::spoken_stt_kitchen_off:
 - slack ljus kok
 area/spoken_lights::spoken_stt_living_off:

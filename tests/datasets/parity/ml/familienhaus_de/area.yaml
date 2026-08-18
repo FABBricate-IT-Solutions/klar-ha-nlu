@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - theli vilakku kitappumuri4
 area/dining_lights::dining_lights_change_brightness:
-- set vilakku muriyil 54
+- set vilakku kutumbamess 54
 area/dining_lights::dining_lights_change_color:
-- set vilakku muriyil blue
+- set vilakku kutumbamess blue
 area/dining_lights::dining_lights_turn_off:
-- anaykku vilakku muriyil
+- anaykku vilakku kutumbamess
 area/dining_lights::dining_lights_turn_on:
-- theli vilakku muriyil
+- theli vilakku kutumbamess
 area/entryway_lights::entryway_lights_change_brightness:
 - set vilakku praveshanam 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - thurakku poott garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set vilakku praveshanam 26 um set vilakku toilet 26
+- set vilakku praveshanamgang 26 um set vilakku toilet 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set vilakku praveshanam purple um set vilakku toilet purple
+- set vilakku praveshanamgang purple um set vilakku toilet purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- anaykku vilakku praveshanam um anaykku vilakku toilet
+- anaykku vilakku praveshanamgang um anaykku vilakku toilet
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- theli vilakku praveshanam um theli vilakku toilet
+- theli vilakku praveshanamgang um theli vilakku toilet
 area/hallway_lights::hallway_lights_change_brightness:
-- set vilakku praveshanam 61
+- set vilakku praveshanamgang 61
 area/hallway_lights::hallway_lights_change_color:
-- set vilakku praveshanam orange
+- set vilakku praveshanamgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- anaykku vilakku praveshanam
+- anaykku vilakku praveshanamgang
 area/hallway_lights::hallway_lights_turn_on:
-- theli vilakku praveshanam
+- theli vilakku praveshanamgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set vilakku adukkala 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - anaykku ellam vilakku ozhike adukkala ozhike dweep
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- anaykku vilakku muriyil um anaykku vilakku adukkala
+- anaykku vilakku muriyil um anaykku vilakku kutumbamess um anaykku vilakku adukkala
 area/spoken_lights::spoken_stt_kitchen_off:
 - anaykku vilakku adukkala
 area/spoken_lights::spoken_stt_living_off:

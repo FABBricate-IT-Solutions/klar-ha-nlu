@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - satt varme badmaster 23
 area/heizung::heizung_esszimmer_23:
-- satt varme vardagsrum 23
+- satt varme allrumess 23
 area/heizung::heizung_schlafzimmer_23:
 - satt varme sovrum 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - slack ljus vardagsrum
 area/lichter::esszimmer_lichter_an:
-- tand ljus vardagsrum
+- tand ljus allrumess
 area/lichter::esszimmer_lichter_aus:
-- slack ljus vardagsrum
+- slack ljus allrumess
 area/lichter::kuche_lichter_an:
 - tand ljus kok
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - slack alla ljus
 area/spoken::esszimmer_weiss:
-- satt ljus vardagsrum vit
+- satt ljus allrumess vit
 area/spoken::stt_kuche_lichte:
 - slack ljus kok
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - slack ljus vardagsrum
 area/spoken_more::esszimmer_30:
-- satt ljus vardagsrum 30
+- satt ljus allrumess 30
 area/spoken_more::esszimmer_lichte_an:
-- tand ljus vardagsrum
+- tand ljus allrumess
 area/spoken_more::kuche_80:
 - satt ljus kok 80
 area/spoken_more::kuche_blau:

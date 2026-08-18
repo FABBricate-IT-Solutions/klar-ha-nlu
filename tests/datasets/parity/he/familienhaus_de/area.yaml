@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - הדלק אור חדרשינה4
 area/dining_lights::dining_lights_change_brightness:
-- שים אור סלון 54
+- שים אור משפחהess 54
 area/dining_lights::dining_lights_change_color:
-- שים אור סלון blue
+- שים אור משפחהess blue
 area/dining_lights::dining_lights_turn_off:
-- כבה אור סלון
+- כבה אור משפחהess
 area/dining_lights::dining_lights_turn_on:
-- הדלק אור סלון
+- הדלק אור משפחהess
 area/entryway_lights::entryway_lights_change_brightness:
 - שים אור כניסה 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - פתח מנעול garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- שים אור כניסה 26 ו שים אור שירותים 26
+- שים אור כניסהgang 26 ו שים אור שירותים 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- שים אור כניסה purple ו שים אור שירותים purple
+- שים אור כניסהgang purple ו שים אור שירותים purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- כבה אור כניסה ו כבה אור שירותים
+- כבה אור כניסהgang ו כבה אור שירותים
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- הדלק אור כניסה ו הדלק אור שירותים
+- הדלק אור כניסהgang ו הדלק אור שירותים
 area/hallway_lights::hallway_lights_change_brightness:
-- שים אור כניסה 61
+- שים אור כניסהgang 61
 area/hallway_lights::hallway_lights_change_color:
-- שים אור כניסה orange
+- שים אור כניסהgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- כבה אור כניסה
+- כבה אור כניסהgang
 area/hallway_lights::hallway_lights_turn_on:
-- הדלק אור כניסה
+- הדלק אור כניסהgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - שים אור מטבח 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - כבה הכל אור חוץ מטבח חוץ אי
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- כבה אור סלון ו כבה אור מטבח
+- כבה אור סלון ו כבה אור משפחהess ו כבה אור מטבח
 area/spoken_lights::spoken_stt_kitchen_off:
 - כבה אור מטבח
 area/spoken_lights::spoken_stt_living_off:

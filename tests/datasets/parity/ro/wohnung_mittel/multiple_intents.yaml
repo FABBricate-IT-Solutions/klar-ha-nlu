@@ -3,25 +3,25 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - aprinde lumina sufragerie si pune incalzire sufragerie 23
 multiple_intents/multi::wohn_und_ess_aus:
-- stinge lumina sufragerie
+- stinge lumina sufragerie si stinge lumina sufrageriefamess
 multiple_intents/multi::wohn_und_ess_rot:
-- pune lumina sufragerie rosu si pune lumina sufragerie rosu
+- pune lumina sufragerie rosu si pune lumina sufrageriefamess rosu
 multiple_intents/multi::wz_und_kuche_licht:
 - aprinde lumina sufragerie si aprinde lumina bucatarie
 multiple_intents/multi::zwei_raeume_und_heizung:
 - aprinde lumina sufragerie si aprinde lumina bucatarie si pune incalzire sufragerie
   23
 multiple_intents/spoken::drei_raeume_an:
-- aprinde lumina sufragerie si aprinde lumina bucatarie
+- aprinde lumina sufragerie si aprinde lumina sufrageriefamess si aprinde lumina bucatarie
 multiple_intents/spoken::drei_raeume_aus:
-- stinge lumina sufragerie si stinge lumina bucatarie
+- stinge lumina sufragerie si stinge lumina sufrageriefamess si stinge lumina bucatarie
 multiple_intents/spoken::ess_und_wohn_aus:
-- stinge lumina sufragerie
+- stinge lumina sufragerie si stinge lumina sufrageriefamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - stinge globe si stinge tavan
 multiple_intents/spoken_more::kuche_und_ess_an:
-- aprinde lumina bucatarie si aprinde lumina sufragerie
+- aprinde lumina bucatarie si aprinde lumina sufrageriefamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- stinge lumina sufragerie
+- stinge lumina sufragerie si stinge lumina sufrageriefamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - stinge lumina sufragerie

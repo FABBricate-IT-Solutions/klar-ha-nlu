@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - skru lys stue og sett varme stue 23
 multiple_intents/multi::wohn_und_ess_aus:
-- slaa lys stue
+- slaa lys stue og slaa lys stuefamess
 multiple_intents/multi::wohn_und_ess_rot:
-- sett lys stue rod og sett lys stue rod
+- sett lys stue rod og sett lys stuefamess rod
 multiple_intents/multi::wz_und_kuche_licht:
 - skru lys stue og skru lys kjokken
 multiple_intents/multi::zwei_raeume_und_heizung:
 - skru lys stue og skru lys kjokken og sett varme stue 23
 multiple_intents/spoken::drei_raeume_an:
-- skru lys stue og skru lys kjokken
+- skru lys stue og skru lys stuefamess og skru lys kjokken
 multiple_intents/spoken::drei_raeume_aus:
-- slaa lys stue og slaa lys kjokken
+- slaa lys stue og slaa lys stuefamess og slaa lys kjokken
 multiple_intents/spoken::ess_und_wohn_aus:
-- slaa lys stue
+- slaa lys stue og slaa lys stuefamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - slaa kule og slaa tak
 multiple_intents/spoken_more::kuche_und_ess_an:
-- skru lys kjokken og skru lys stue
+- skru lys kjokken og skru lys stuefamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- slaa lys stue
+- slaa lys stue og slaa lys stuefamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - slaa lys stue

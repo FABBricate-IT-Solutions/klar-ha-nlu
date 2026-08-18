@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - cas solas seomraleong4
 area/dining_lights::dining_lights_change_brightness:
-- socraigh solas seomra 54
+- socraigh solas seomrateaghlaighess 54
 area/dining_lights::dining_lights_change_color:
-- socraigh solas seomra blue
+- socraigh solas seomrateaghlaighess blue
 area/dining_lights::dining_lights_turn_off:
-- much solas seomra
+- much solas seomrateaghlaighess
 area/dining_lights::dining_lights_turn_on:
-- cas solas seomra
+- cas solas seomrateaghlaighess
 area/entryway_lights::entryway_lights_change_brightness:
 - socraigh solas halla 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - oscail glas garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- socraigh solas halla 26 agus socraigh solas leithreas 26
+- socraigh solas hallagang 26 agus socraigh solas leithreas 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- socraigh solas halla purple agus socraigh solas leithreas purple
+- socraigh solas hallagang purple agus socraigh solas leithreas purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- much solas halla agus much solas leithreas
+- much solas hallagang agus much solas leithreas
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- cas solas halla agus cas solas leithreas
+- cas solas hallagang agus cas solas leithreas
 area/hallway_lights::hallway_lights_change_brightness:
-- socraigh solas halla 61
+- socraigh solas hallagang 61
 area/hallway_lights::hallway_lights_change_color:
-- socraigh solas halla orange
+- socraigh solas hallagang orange
 area/hallway_lights::hallway_lights_turn_off:
-- much solas halla
+- much solas hallagang
 area/hallway_lights::hallway_lights_turn_on:
-- cas solas halla
+- cas solas hallagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - socraigh solas cistin 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - much uile solas ach cistin ach oilean
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- much solas seomra agus much solas cistin
+- much solas seomra agus much solas seomrateaghlaighess agus much solas cistin
 area/spoken_lights::spoken_stt_kitchen_off:
 - much solas cistin
 area/spoken_lights::spoken_stt_living_off:

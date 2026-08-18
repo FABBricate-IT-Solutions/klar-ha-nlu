@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - aanzetten plafond slaapkamer4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- stel licht woonkamer 21
+- stel licht huiskameress 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- stel licht woonkamer blauw
+- stel licht huiskameress blauw
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- uitzetten licht woonkamer
+- uitzetten licht huiskameress
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- aanzetten licht woonkamer
+- aanzetten licht huiskameress
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - stel licht hal 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -239,10 +239,10 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - aanzetten tv woonkamer
 devices/scenes::dinner_time:
-- stel licht woonkamer 90 en aanzetten plafond keuken en stel licht keuken 80
+- stel licht huiskameress 90 en aanzetten plafond keuken en stel licht keuken 80
 devices/scenes::good_morning:
-- aanzetten plafond keuken en stel licht woonkamer 100 en open gordijn woonkamer en
-  open gordijn slaapkamer
+- aanzetten plafond keuken en stel licht huiskameress 100 en open gordijn woonkamer
+  en open gordijn slaapkamer
 devices/scenes::kids_bedtime:
 - uitzetten plafond slaapkamer2 en uitzetten plafond slaapkamer3 en uitzetten plafond
   slaapkamer4 en stel licht gang 15

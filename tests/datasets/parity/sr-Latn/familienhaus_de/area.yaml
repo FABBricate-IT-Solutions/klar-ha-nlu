@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - ukljuci svetlo spavaca4
 area/dining_lights::dining_lights_change_brightness:
-- stavi svetlo dnevna 54
+- stavi svetlo dnevnafamess 54
 area/dining_lights::dining_lights_change_color:
-- stavi svetlo dnevna blue
+- stavi svetlo dnevnafamess blue
 area/dining_lights::dining_lights_turn_off:
-- iskljuci svetlo dnevna
+- iskljuci svetlo dnevnafamess
 area/dining_lights::dining_lights_turn_on:
-- ukljuci svetlo dnevna
+- ukljuci svetlo dnevnafamess
 area/entryway_lights::entryway_lights_change_brightness:
 - stavi svetlo ulaz 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - otvori brava garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stavi svetlo ulaz 26 i stavi svetlo wc 26
+- stavi svetlo ulazgang 26 i stavi svetlo wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stavi svetlo ulaz purple i stavi svetlo wc purple
+- stavi svetlo ulazgang purple i stavi svetlo wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- iskljuci svetlo ulaz i iskljuci svetlo wc
+- iskljuci svetlo ulazgang i iskljuci svetlo wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- ukljuci svetlo ulaz i ukljuci svetlo wc
+- ukljuci svetlo ulazgang i ukljuci svetlo wc
 area/hallway_lights::hallway_lights_change_brightness:
-- stavi svetlo ulaz 61
+- stavi svetlo ulazgang 61
 area/hallway_lights::hallway_lights_change_color:
-- stavi svetlo ulaz orange
+- stavi svetlo ulazgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- iskljuci svetlo ulaz
+- iskljuci svetlo ulazgang
 area/hallway_lights::hallway_lights_turn_on:
-- ukljuci svetlo ulaz
+- ukljuci svetlo ulazgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - stavi svetlo kuhinja 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - iskljuci sve svetlo osim kuhinja osim ostrvo
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- iskljuci svetlo dnevna i iskljuci svetlo kuhinja
+- iskljuci svetlo dnevna i iskljuci svetlo dnevnafamess i iskljuci svetlo kuhinja
 area/spoken_lights::spoken_stt_kitchen_off:
 - iskljuci svetlo kuhinja
 area/spoken_lights::spoken_stt_living_off:

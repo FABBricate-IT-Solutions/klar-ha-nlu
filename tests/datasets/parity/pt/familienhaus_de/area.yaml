@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - liga luz quarto4
 area/dining_lights::dining_lights_change_brightness:
-- poe luz sala 54
+- poe luz salaestaress 54
 area/dining_lights::dining_lights_change_color:
-- poe luz sala azul
+- poe luz salaestaress azul
 area/dining_lights::dining_lights_turn_off:
-- desliga luz sala
+- desliga luz salaestaress
 area/dining_lights::dining_lights_turn_on:
-- liga luz sala
+- liga luz salaestaress
 area/entryway_lights::entryway_lights_change_brightness:
 - poe luz entrada 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - abre fechadura garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- poe luz entrada 26 e poe luz wc 26
+- poe luz entradagang 26 e poe luz wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- poe luz entrada roxo e poe luz wc roxo
+- poe luz entradagang roxo e poe luz wc roxo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- desliga luz entrada e desliga luz wc
+- desliga luz entradagang e desliga luz wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- liga luz entrada e liga luz wc
+- liga luz entradagang e liga luz wc
 area/hallway_lights::hallway_lights_change_brightness:
-- poe luz entrada 61
+- poe luz entradagang 61
 area/hallway_lights::hallway_lights_change_color:
-- poe luz entrada laranja
+- poe luz entradagang laranja
 area/hallway_lights::hallway_lights_turn_off:
-- desliga luz entrada
+- desliga luz entradagang
 area/hallway_lights::hallway_lights_turn_on:
-- liga luz entrada
+- liga luz entradagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - poe luz cozinha 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - desliga tudo luz exceto cozinha exceto ilha
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- desliga luz sala e desliga luz cozinha
+- desliga luz sala e desliga luz salaestaress e desliga luz cozinha
 area/spoken_lights::spoken_stt_kitchen_off:
 - desliga luz cozinha
 area/spoken_lights::spoken_stt_living_off:

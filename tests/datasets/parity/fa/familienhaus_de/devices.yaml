@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - روشن سقف اتاقخواب4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- بگذار چراغ پذیرایی 21
+- بگذار چراغ خانوادهess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- بگذار چراغ پذیرایی blue
+- بگذار چراغ خانوادهess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- خاموش چراغ پذیرایی
+- خاموش چراغ خانوادهess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- روشن چراغ پذیرایی
+- روشن چراغ خانوادهess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - بگذار چراغ ورودی 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - روشن چراغ garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- بگذار چراغ ورودی 11
+- بگذار چراغ ورودیgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- بگذار چراغ ورودی white
+- بگذار چراغ ورودیgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- خاموش چراغ ورودی
+- خاموش چراغ ورودیgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- روشن چراغ ورودی
+- روشن چراغ ورودیgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - بگذار سقف آشپزخانه 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,11 +239,11 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - روشن تلویزیون پذیرایی
 devices/scenes::dinner_time:
-- بگذار چراغ پذیرایی 90 و روشن سقف آشپزخانه و بگذار چراغ آشپزخانه 80
+- بگذار چراغ خانوادهess 90 و روشن سقف آشپزخانه و بگذار چراغ آشپزخانه 80
 devices/scenes::good_morning:
-- روشن سقف آشپزخانه و بگذار چراغ پذیرایی 100 و باز پرده پذیرایی و باز پرده اتاقخواب
+- روشن سقف آشپزخانه و بگذار چراغ خانوادهess 100 و باز پرده پذیرایی و باز پرده اتاقخواب
 devices/scenes::kids_bedtime:
-- خاموش سقف اتاقخواب2 و خاموش سقف اتاقخواب3 و خاموش سقف اتاقخواب4 و بگذار چراغ ورودی
+- خاموش سقف اتاقخواب2 و خاموش سقف اتاقخواب3 و خاموش سقف اتاقخواب4 و بگذار چراغ ورودیgang
   15
 devices/scenes::movie_night:
 - خاموش سقف پذیرایی و بگذار چراغ پذیرایی 20 و روشن تلویزیون پذیرایی و بسته پرده پذیرایی

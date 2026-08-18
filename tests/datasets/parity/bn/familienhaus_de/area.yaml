@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - jalao alo shobarghor4
 area/dining_lights::dining_lights_change_brightness:
-- set alo bosar 54
+- set alo paribarikess 54
 area/dining_lights::dining_lights_change_color:
-- set alo bosar blue
+- set alo paribarikess blue
 area/dining_lights::dining_lights_turn_off:
-- nibhao alo bosar
+- nibhao alo paribarikess
 area/dining_lights::dining_lights_turn_on:
-- jalao alo bosar
+- jalao alo paribarikess
 area/entryway_lights::entryway_lights_change_brightness:
 - set alo prabesh 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - khol tala garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set alo prabesh 26 ebong set alo shauchagar 26
+- set alo prabeshgang 26 ebong set alo shauchagar 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set alo prabesh purple ebong set alo shauchagar purple
+- set alo prabeshgang purple ebong set alo shauchagar purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- nibhao alo prabesh ebong nibhao alo shauchagar
+- nibhao alo prabeshgang ebong nibhao alo shauchagar
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- jalao alo prabesh ebong jalao alo shauchagar
+- jalao alo prabeshgang ebong jalao alo shauchagar
 area/hallway_lights::hallway_lights_change_brightness:
-- set alo prabesh 61
+- set alo prabeshgang 61
 area/hallway_lights::hallway_lights_change_color:
-- set alo prabesh orange
+- set alo prabeshgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- nibhao alo prabesh
+- nibhao alo prabeshgang
 area/hallway_lights::hallway_lights_turn_on:
-- jalao alo prabesh
+- jalao alo prabeshgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set alo ranna 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - nibhao sob alo chara ranna chara dip
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- nibhao alo bosar ebong nibhao alo ranna
+- nibhao alo bosar ebong nibhao alo paribarikess ebong nibhao alo ranna
 area/spoken_lights::spoken_stt_kitchen_off:
 - nibhao alo ranna
 area/spoken_lights::spoken_stt_living_off:

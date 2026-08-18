@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - encen llum habitacio4
 area/dining_lights::dining_lights_change_brightness:
-- posa llum sala 54
+- posa llum salaestaress 54
 area/dining_lights::dining_lights_change_color:
-- posa llum sala blau
+- posa llum salaestaress blau
 area/dining_lights::dining_lights_turn_off:
-- apaga llum sala
+- apaga llum salaestaress
 area/dining_lights::dining_lights_turn_on:
-- encen llum sala
+- encen llum salaestaress
 area/entryway_lights::entryway_lights_change_brightness:
 - posa llum entrada 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - obri pany garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- posa llum entrada 26 i posa llum lavabo 26
+- posa llum entradagang 26 i posa llum lavabo 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- posa llum entrada lila i posa llum lavabo lila
+- posa llum entradagang lila i posa llum lavabo lila
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- apaga llum entrada i apaga llum lavabo
+- apaga llum entradagang i apaga llum lavabo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- encen llum entrada i encen llum lavabo
+- encen llum entradagang i encen llum lavabo
 area/hallway_lights::hallway_lights_change_brightness:
-- posa llum entrada 61
+- posa llum entradagang 61
 area/hallway_lights::hallway_lights_change_color:
-- posa llum entrada taronja
+- posa llum entradagang taronja
 area/hallway_lights::hallway_lights_turn_off:
-- apaga llum entrada
+- apaga llum entradagang
 area/hallway_lights::hallway_lights_turn_on:
-- encen llum entrada
+- encen llum entradagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - posa llum cuina 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - apaga tot llum excepte cuina excepte illa
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- apaga llum sala i apaga llum cuina
+- apaga llum sala i apaga llum salaestaress i apaga llum cuina
 area/spoken_lights::spoken_stt_kitchen_off:
 - apaga llum cuina
 area/spoken_lights::spoken_stt_living_off:

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - bat bongden phongngu4
 area/dining_lights::dining_lights_change_brightness:
-- dat bongden phongkhach 54
+- dat bongden phonggiadinhess 54
 area/dining_lights::dining_lights_change_color:
-- dat bongden phongkhach blue
+- dat bongden phonggiadinhess blue
 area/dining_lights::dining_lights_turn_off:
-- tat bongden phongkhach
+- tat bongden phonggiadinhess
 area/dining_lights::dining_lights_turn_on:
-- bat bongden phongkhach
+- bat bongden phonggiadinhess
 area/entryway_lights::entryway_lights_change_brightness:
 - dat bongden loivao 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - mo khoa garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- dat bongden loivao 26 va dat bongden wc 26
+- dat bongden loivaogang 26 va dat bongden wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- dat bongden loivao purple va dat bongden wc purple
+- dat bongden loivaogang purple va dat bongden wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- tat bongden loivao va tat bongden wc
+- tat bongden loivaogang va tat bongden wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- bat bongden loivao va bat bongden wc
+- bat bongden loivaogang va bat bongden wc
 area/hallway_lights::hallway_lights_change_brightness:
-- dat bongden loivao 61
+- dat bongden loivaogang 61
 area/hallway_lights::hallway_lights_change_color:
-- dat bongden loivao orange
+- dat bongden loivaogang orange
 area/hallway_lights::hallway_lights_turn_off:
-- tat bongden loivao
+- tat bongden loivaogang
 area/hallway_lights::hallway_lights_turn_on:
-- bat bongden loivao
+- bat bongden loivaogang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - dat bongden bep 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - tat tatca bongden tru bep tru dao
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- tat bongden phongkhach va tat bongden bep
+- tat bongden phongkhach va tat bongden phonggiadinhess va tat bongden bep
 area/spoken_lights::spoken_stt_kitchen_off:
 - tat bongden bep
 area/spoken_lights::spoken_stt_living_off:

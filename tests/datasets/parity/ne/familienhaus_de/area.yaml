@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - bal batti sutnekotha4
 area/dining_lights::dining_lights_change_brightness:
-- set batti baithak 54
+- set batti parivarikess 54
 area/dining_lights::dining_lights_change_color:
-- set batti baithak blue
+- set batti parivarikess blue
 area/dining_lights::dining_lights_turn_off:
-- nibhau batti baithak
+- nibhau batti parivarikess
 area/dining_lights::dining_lights_turn_on:
-- bal batti baithak
+- bal batti parivarikess
 area/entryway_lights::entryway_lights_change_brightness:
 - set batti pravesh 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - khol tala garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set batti pravesh 26 ra set batti shauchalay 26
+- set batti praveshgang 26 ra set batti shauchalay 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set batti pravesh purple ra set batti shauchalay purple
+- set batti praveshgang purple ra set batti shauchalay purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- nibhau batti pravesh ra nibhau batti shauchalay
+- nibhau batti praveshgang ra nibhau batti shauchalay
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- bal batti pravesh ra bal batti shauchalay
+- bal batti praveshgang ra bal batti shauchalay
 area/hallway_lights::hallway_lights_change_brightness:
-- set batti pravesh 61
+- set batti praveshgang 61
 area/hallway_lights::hallway_lights_change_color:
-- set batti pravesh orange
+- set batti praveshgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- nibhau batti pravesh
+- nibhau batti praveshgang
 area/hallway_lights::hallway_lights_turn_on:
-- bal batti pravesh
+- bal batti praveshgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set batti bhansa 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - nibhau sabai batti bahek bhansa bahek dweep
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- nibhau batti baithak ra nibhau batti bhansa
+- nibhau batti baithak ra nibhau batti parivarikess ra nibhau batti bhansa
 area/spoken_lights::spoken_stt_kitchen_off:
 - nibhau batti bhansa
 area/spoken_lights::spoken_stt_living_off:

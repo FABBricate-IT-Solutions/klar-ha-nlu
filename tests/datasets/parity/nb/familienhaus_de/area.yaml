@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - skru lys soverom4
 area/dining_lights::dining_lights_change_brightness:
-- sett lys stue 54
+- sett lys stuefamess 54
 area/dining_lights::dining_lights_change_color:
-- sett lys stue bla
+- sett lys stuefamess bla
 area/dining_lights::dining_lights_turn_off:
-- slaa lys stue
+- slaa lys stuefamess
 area/dining_lights::dining_lights_turn_on:
-- skru lys stue
+- skru lys stuefamess
 area/entryway_lights::entryway_lights_change_brightness:
 - sett lys entree 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - apne laas garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- sett lys entree 26 og sett lys toalett 26
+- sett lys entreegang 26 og sett lys toalett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- sett lys entree lilla og sett lys toalett lilla
+- sett lys entreegang lilla og sett lys toalett lilla
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- slaa lys entree og slaa lys toalett
+- slaa lys entreegang og slaa lys toalett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- skru lys entree og skru lys toalett
+- skru lys entreegang og skru lys toalett
 area/hallway_lights::hallway_lights_change_brightness:
-- sett lys entree 61
+- sett lys entreegang 61
 area/hallway_lights::hallway_lights_change_color:
-- sett lys entree oransje
+- sett lys entreegang oransje
 area/hallway_lights::hallway_lights_turn_off:
-- slaa lys entree
+- slaa lys entreegang
 area/hallway_lights::hallway_lights_turn_on:
-- skru lys entree
+- skru lys entreegang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - sett lys kjokken 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - slaa alle lys unntatt kjokken unntatt oy
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- slaa lys stue og slaa lys kjokken
+- slaa lys stue og slaa lys stuefamess og slaa lys kjokken
 area/spoken_lights::spoken_stt_kitchen_off:
 - slaa lys kjokken
 area/spoken_lights::spoken_stt_living_off:

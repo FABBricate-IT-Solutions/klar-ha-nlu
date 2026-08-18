@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - hidupkan lampu bilik4
 area/dining_lights::dining_lights_change_brightness:
-- tetapkan lampu ruang 54
+- tetapkan lampu ruankeluargaess 54
 area/dining_lights::dining_lights_change_color:
-- tetapkan lampu ruang blue
+- tetapkan lampu ruankeluargaess blue
 area/dining_lights::dining_lights_turn_off:
-- matikan lampu ruang
+- matikan lampu ruankeluargaess
 area/dining_lights::dining_lights_turn_on:
-- hidupkan lampu ruang
+- hidupkan lampu ruankeluargaess
 area/entryway_lights::entryway_lights_change_brightness:
 - tetapkan lampu lorong 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - buka kunci garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- tetapkan lampu lorong 26 dan tetapkan lampu wc 26
+- tetapkan lampu loronggang 26 dan tetapkan lampu wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- tetapkan lampu lorong purple dan tetapkan lampu wc purple
+- tetapkan lampu loronggang purple dan tetapkan lampu wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- matikan lampu lorong dan matikan lampu wc
+- matikan lampu loronggang dan matikan lampu wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- hidupkan lampu lorong dan hidupkan lampu wc
+- hidupkan lampu loronggang dan hidupkan lampu wc
 area/hallway_lights::hallway_lights_change_brightness:
-- tetapkan lampu lorong 61
+- tetapkan lampu loronggang 61
 area/hallway_lights::hallway_lights_change_color:
-- tetapkan lampu lorong orange
+- tetapkan lampu loronggang orange
 area/hallway_lights::hallway_lights_turn_off:
-- matikan lampu lorong
+- matikan lampu loronggang
 area/hallway_lights::hallway_lights_turn_on:
-- hidupkan lampu lorong
+- hidupkan lampu loronggang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - tetapkan lampu dapur 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - matikan semua lampu kecuali dapur kecuali pulau
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- matikan lampu ruang dan matikan lampu dapur
+- matikan lampu ruang dan matikan lampu ruankeluargaess dan matikan lampu dapur
 area/spoken_lights::spoken_stt_kitchen_off:
 - matikan lampu dapur
 area/spoken_lights::spoken_stt_living_off:

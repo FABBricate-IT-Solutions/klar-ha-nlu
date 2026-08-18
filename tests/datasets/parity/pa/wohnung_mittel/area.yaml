@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - set garmi masterbath 23
 area/heizung::heizung_esszimmer_23:
-- set garmi vithak 23
+- set garmi parivarakess 23
 area/heizung::heizung_schlafzimmer_23:
 - set garmi bedroom 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - band roshni vithak
 area/lichter::esszimmer_lichter_an:
-- chalu roshni vithak
+- chalu roshni parivarakess
 area/lichter::esszimmer_lichter_aus:
-- band roshni vithak
+- band roshni parivarakess
 area/lichter::kuche_lichter_an:
 - chalu roshni rasoi
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - band sabh roshni
 area/spoken::esszimmer_weiss:
-- set roshni vithak white
+- set roshni parivarakess white
 area/spoken::stt_kuche_lichte:
 - band roshni rasoi
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - band roshni vithak
 area/spoken_more::esszimmer_30:
-- set roshni vithak 30
+- set roshni parivarakess 30
 area/spoken_more::esszimmer_lichte_an:
-- chalu roshni vithak
+- chalu roshni parivarakess
 area/spoken_more::kuche_80:
 - set roshni rasoi 80
 area/spoken_more::kuche_blau:

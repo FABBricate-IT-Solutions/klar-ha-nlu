@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - prizgi luc spalnica4
 area/dining_lights::dining_lights_change_brightness:
-- nastavi luc dnevna 54
+- nastavi luc dnevnafamess 54
 area/dining_lights::dining_lights_change_color:
-- nastavi luc dnevna blue
+- nastavi luc dnevnafamess blue
 area/dining_lights::dining_lights_turn_off:
-- ugasni luc dnevna
+- ugasni luc dnevnafamess
 area/dining_lights::dining_lights_turn_on:
-- prizgi luc dnevna
+- prizgi luc dnevnafamess
 area/entryway_lights::entryway_lights_change_brightness:
 - nastavi luc predsoba 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - odpri kljucavnica garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- nastavi luc predsoba 26 in nastavi luc wc 26
+- nastavi luc predsobagang 26 in nastavi luc wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- nastavi luc predsoba purple in nastavi luc wc purple
+- nastavi luc predsobagang purple in nastavi luc wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- ugasni luc predsoba in ugasni luc wc
+- ugasni luc predsobagang in ugasni luc wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- prizgi luc predsoba in prizgi luc wc
+- prizgi luc predsobagang in prizgi luc wc
 area/hallway_lights::hallway_lights_change_brightness:
-- nastavi luc predsoba 61
+- nastavi luc predsobagang 61
 area/hallway_lights::hallway_lights_change_color:
-- nastavi luc predsoba orange
+- nastavi luc predsobagang orange
 area/hallway_lights::hallway_lights_turn_off:
-- ugasni luc predsoba
+- ugasni luc predsobagang
 area/hallway_lights::hallway_lights_turn_on:
-- prizgi luc predsoba
+- prizgi luc predsobagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - nastavi luc kuhinja 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - ugasni vse luc razen kuhinja razen otok
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- ugasni luc dnevna in ugasni luc kuhinja
+- ugasni luc dnevna in ugasni luc dnevnafamess in ugasni luc kuhinja
 area/spoken_lights::spoken_stt_kitchen_off:
 - ugasni luc kuhinja
 area/spoken_lights::spoken_stt_living_off:

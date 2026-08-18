@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - dakai deng woshi4
 area/dining_lights::dining_lights_change_brightness:
-- shezhi deng keting 54
+- shezhi deng jiatingfangess 54
 area/dining_lights::dining_lights_change_color:
-- shezhi deng keting blue
+- shezhi deng jiatingfangess blue
 area/dining_lights::dining_lights_turn_off:
-- guanbi deng keting
+- guanbi deng jiatingfangess
 area/dining_lights::dining_lights_turn_on:
-- dakai deng keting
+- dakai deng jiatingfangess
 area/entryway_lights::entryway_lights_change_brightness:
 - shezhi deng xuanguan 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - kaiqi suo garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- shezhi deng xuanguan 26 同 shezhi deng kewei 26
+- shezhi deng xuanguangang 26 同 shezhi deng kewei 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- shezhi deng xuanguan purple 同 shezhi deng kewei purple
+- shezhi deng xuanguangang purple 同 shezhi deng kewei purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- guanbi deng xuanguan 同 guanbi deng kewei
+- guanbi deng xuanguangang 同 guanbi deng kewei
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- dakai deng xuanguan 同 dakai deng kewei
+- dakai deng xuanguangang 同 dakai deng kewei
 area/hallway_lights::hallway_lights_change_brightness:
-- shezhi deng xuanguan 61
+- shezhi deng xuanguangang 61
 area/hallway_lights::hallway_lights_change_color:
-- shezhi deng xuanguan orange
+- shezhi deng xuanguangang orange
 area/hallway_lights::hallway_lights_turn_off:
-- guanbi deng xuanguan
+- guanbi deng xuanguangang
 area/hallway_lights::hallway_lights_turn_on:
-- dakai deng xuanguan
+- dakai deng xuanguangang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - shezhi deng chufang 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - guanbi 全部 deng 除咗 chufang 除咗 daotai
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- guanbi deng keting 同 guanbi deng chufang
+- guanbi deng keting 同 guanbi deng jiatingfangess 同 guanbi deng chufang
 area/spoken_lights::spoken_stt_kitchen_off:
 - guanbi deng chufang
 area/spoken_lights::spoken_stt_living_off:

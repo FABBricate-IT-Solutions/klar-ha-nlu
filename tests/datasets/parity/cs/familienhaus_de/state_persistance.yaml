@@ -14,7 +14,7 @@ state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
 - - co strop loznice4
   - ' 80'
 state_persistance/area_dining_lights::dining_lights_set_brightness:
-- - co svetlo obyvak
+- - co svetlo obyvakfamess
   - ' 68'
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
 - - co svetlo predsin
@@ -29,10 +29,10 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - co svetlo garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - co svetlo predsin a co svetlo wc
+- - co svetlo predsingang a co svetlo wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - co svetlo predsin
+- - co svetlo predsingang
   - ' 69'
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
 - - co svetlo kuchyne
@@ -108,16 +108,16 @@ state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
   - zapni
 state_persistance/device_lock_front_door::lock_front_door_lock:
 - - co zamek predsin
-  - zamek
+  - zamkni
 state_persistance/device_lock_front_door::lock_front_door_unlock:
 - - co zamek predsin
-  - otevri
+  - odemkni
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - co zamek garage
-  - zamek
+  - zamkni
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - co zamek garage
-  - otevri
+  - odemkni
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
 - - co televize obyvakfam
   - ' 21'

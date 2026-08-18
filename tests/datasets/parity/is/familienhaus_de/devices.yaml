@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - kveiktu loft svefnherbergi4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- settu ljos stofa 21
+- settu ljos stofafamess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- settu ljos stofa blue
+- settu ljos stofafamess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- slokktu ljos stofa
+- slokktu ljos stofafamess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- kveiktu ljos stofa
+- kveiktu ljos stofafamess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - settu ljos anddyri 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - kveiktu ljos garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- settu ljos anddyri 11
+- settu ljos anddyrigang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- settu ljos anddyri white
+- settu ljos anddyrigang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- slokktu ljos anddyri
+- slokktu ljos anddyrigang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- kveiktu ljos anddyri
+- kveiktu ljos anddyrigang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - settu loft eldhus 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,13 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - kveiktu sjonvarp stofa
 devices/scenes::dinner_time:
-- settu ljos stofa 90 og kveiktu loft eldhus og settu ljos eldhus 80
+- settu ljos stofafamess 90 og kveiktu loft eldhus og settu ljos eldhus 80
 devices/scenes::good_morning:
-- kveiktu loft eldhus og settu ljos stofa 100 og opnadu gardina stofa og opnadu gardina
-  svefnherbergi
+- kveiktu loft eldhus og settu ljos stofafamess 100 og opnadu gardina stofa og opnadu
+  gardina svefnherbergi
 devices/scenes::kids_bedtime:
 - slokktu loft svefnherbergi2 og slokktu loft svefnherbergi3 og slokktu loft svefnherbergi4
-  og settu ljos anddyri 15
+  og settu ljos anddyrigang 15
 devices/scenes::movie_night:
 - slokktu loft stofa og settu ljos stofa 20 og kveiktu sjonvarp stofa og lokadu gardina
   stofa

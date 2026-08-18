@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - sytyta valo olohuone ja aseta lampo olohuone 23
 multiple_intents/multi::wohn_und_ess_aus:
-- sammuta valo olohuone
+- sammuta valo olohuone ja sammuta valo olohuonefamess
 multiple_intents/multi::wohn_und_ess_rot:
-- aseta valo olohuone punainen ja aseta valo olohuone punainen
+- aseta valo olohuone punainen ja aseta valo olohuonefamess punainen
 multiple_intents/multi::wz_und_kuche_licht:
 - sytyta valo olohuone ja sytyta valo keittio
 multiple_intents/multi::zwei_raeume_und_heizung:
 - sytyta valo olohuone ja sytyta valo keittio ja aseta lampo olohuone 23
 multiple_intents/spoken::drei_raeume_an:
-- sytyta valo olohuone ja sytyta valo keittio
+- sytyta valo olohuone ja sytyta valo olohuonefamess ja sytyta valo keittio
 multiple_intents/spoken::drei_raeume_aus:
-- sammuta valo olohuone ja sammuta valo keittio
+- sammuta valo olohuone ja sammuta valo olohuonefamess ja sammuta valo keittio
 multiple_intents/spoken::ess_und_wohn_aus:
-- sammuta valo olohuone
+- sammuta valo olohuone ja sammuta valo olohuonefamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - sammuta pallo ja sammuta katto
 multiple_intents/spoken_more::kuche_und_ess_an:
-- sytyta valo keittio ja sytyta valo olohuone
+- sytyta valo keittio ja sytyta valo olohuonefamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- sammuta valo olohuone
+- sammuta valo olohuone ja sammuta valo olohuonefamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - sammuta valo olohuone

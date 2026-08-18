@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - upali strop spavaca4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- stavi svjetlo dnevni 21
+- stavi svjetlo dnevnifamess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- stavi svjetlo dnevni blue
+- stavi svjetlo dnevnifamess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- ugasi svjetlo dnevni
+- ugasi svjetlo dnevnifamess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- upali svjetlo dnevni
+- upali svjetlo dnevnifamess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - stavi svjetlo hodnik 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - upali svjetlo garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- stavi svjetlo hodnik 11
+- stavi svjetlo hodnikgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- stavi svjetlo hodnik white
+- stavi svjetlo hodnikgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- ugasi svjetlo hodnik
+- ugasi svjetlo hodnikgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- upali svjetlo hodnik
+- upali svjetlo hodnikgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - stavi strop kuhinja 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,13 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - upali televizor dnevni
 devices/scenes::dinner_time:
-- stavi svjetlo dnevni 90 i upali strop kuhinja i stavi svjetlo kuhinja 80
+- stavi svjetlo dnevnifamess 90 i upali strop kuhinja i stavi svjetlo kuhinja 80
 devices/scenes::good_morning:
-- upali strop kuhinja i stavi svjetlo dnevni 100 i otvori zavjesa dnevni i otvori
+- upali strop kuhinja i stavi svjetlo dnevnifamess 100 i otvori zavjesa dnevni i otvori
   zavjesa spavaca
 devices/scenes::kids_bedtime:
 - ugasi strop spavaca2 i ugasi strop spavaca3 i ugasi strop spavaca4 i stavi svjetlo
-  hodnik 15
+  hodnikgang 15
 devices/scenes::movie_night:
 - ugasi strop dnevni i stavi svjetlo dnevni 20 i upali televizor dnevni i zatvori
   zavjesa dnevni

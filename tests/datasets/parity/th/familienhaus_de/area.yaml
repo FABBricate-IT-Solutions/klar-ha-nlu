@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - poetfai fai hongnon4
 area/dining_lights::dining_lights_change_brightness:
-- tang fai hongnang 54
+- tang fai hongkhropkhruaess 54
 area/dining_lights::dining_lights_change_color:
-- tang fai hongnang blue
+- tang fai hongkhropkhruaess blue
 area/dining_lights::dining_lights_turn_off:
-- pitfai fai hongnang
+- pitfai fai hongkhropkhruaess
 area/dining_lights::dining_lights_turn_on:
-- poetfai fai hongnang
+- poetfai fai hongkhropkhruaess
 area/entryway_lights::entryway_lights_change_brightness:
 - tang fai thangkhau 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - poet kunjae garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- tang fai thangkhau 26 และ tang fai hongnamkhaek 26
+- tang fai thangkhaugang 26 และ tang fai hongnamkhaek 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- tang fai thangkhau purple และ tang fai hongnamkhaek purple
+- tang fai thangkhaugang purple และ tang fai hongnamkhaek purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- pitfai fai thangkhau และ pitfai fai hongnamkhaek
+- pitfai fai thangkhaugang และ pitfai fai hongnamkhaek
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- poetfai fai thangkhau และ poetfai fai hongnamkhaek
+- poetfai fai thangkhaugang และ poetfai fai hongnamkhaek
 area/hallway_lights::hallway_lights_change_brightness:
-- tang fai thangkhau 61
+- tang fai thangkhaugang 61
 area/hallway_lights::hallway_lights_change_color:
-- tang fai thangkhau orange
+- tang fai thangkhaugang orange
 area/hallway_lights::hallway_lights_turn_off:
-- pitfai fai thangkhau
+- pitfai fai thangkhaugang
 area/hallway_lights::hallway_lights_turn_on:
-- poetfai fai thangkhau
+- poetfai fai thangkhaugang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - tang fai hongkrua 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - pitfai ทั้งหมด fai ยกเว้น hongkrua ยกเว้น ko
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- pitfai fai hongnang และ pitfai fai hongkrua
+- pitfai fai hongnang และ pitfai fai hongkhropkhruaess และ pitfai fai hongkrua
 area/spoken_lights::spoken_stt_kitchen_off:
 - pitfai fai hongkrua
 area/spoken_lights::spoken_stt_living_off:

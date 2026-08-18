@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - poe aquecimento banhomaster 23
 area/heizung::heizung_esszimmer_23:
-- poe aquecimento sala 23
+- poe aquecimento salaestaress 23
 area/heizung::heizung_schlafzimmer_23:
 - poe aquecimento quarto 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - desliga luz sala
 area/lichter::esszimmer_lichter_an:
-- liga luz sala
+- liga luz salaestaress
 area/lichter::esszimmer_lichter_aus:
-- desliga luz sala
+- desliga luz salaestaress
 area/lichter::kuche_lichter_an:
 - liga luz cozinha
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - desliga tudo luz
 area/spoken::esszimmer_weiss:
-- poe luz sala branco
+- poe luz salaestaress branco
 area/spoken::stt_kuche_lichte:
 - desliga luz cozinha
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - desliga luz sala
 area/spoken_more::esszimmer_30:
-- poe luz sala 30
+- poe luz salaestaress 30
 area/spoken_more::esszimmer_lichte_an:
-- liga luz sala
+- liga luz salaestaress
 area/spoken_more::kuche_80:
 - poe luz cozinha 80
 area/spoken_more::kuche_blau:

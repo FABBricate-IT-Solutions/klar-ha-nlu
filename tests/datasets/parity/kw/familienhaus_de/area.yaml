@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - enow golow chambour4
 area/dining_lights::dining_lights_change_brightness:
-- settya golow stafell 54
+- settya golow stevellteyluess 54
 area/dining_lights::dining_lights_change_color:
-- settya golow stafell blue
+- settya golow stevellteyluess blue
 area/dining_lights::dining_lights_turn_off:
-- diffyg golow stafell
+- diffyg golow stevellteyluess
 area/dining_lights::dining_lights_turn_on:
-- enow golow stafell
+- enow golow stevellteyluess
 area/entryway_lights::entryway_lights_change_brightness:
 - settya golow porth 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - igeri alhwedh garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- settya golow porth 26 ha settya golow tybach 26
+- settya golow porthgang 26 ha settya golow tybach 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- settya golow porth purple ha settya golow tybach purple
+- settya golow porthgang purple ha settya golow tybach purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- diffyg golow porth ha diffyg golow tybach
+- diffyg golow porthgang ha diffyg golow tybach
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- enow golow porth ha enow golow tybach
+- enow golow porthgang ha enow golow tybach
 area/hallway_lights::hallway_lights_change_brightness:
-- settya golow porth 61
+- settya golow porthgang 61
 area/hallway_lights::hallway_lights_change_color:
-- settya golow porth orange
+- settya golow porthgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- diffyg golow porth
+- diffyg golow porthgang
 area/hallway_lights::hallway_lights_turn_on:
-- enow golow porth
+- enow golow porthgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - settya golow kegin 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - diffyg oll golow marnas kegin marnas enys
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- diffyg golow stafell ha diffyg golow kegin
+- diffyg golow stafell ha diffyg golow stevellteyluess ha diffyg golow kegin
 area/spoken_lights::spoken_stt_kitchen_off:
 - diffyg golow kegin
 area/spoken_lights::spoken_stt_living_off:

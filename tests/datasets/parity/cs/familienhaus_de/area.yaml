@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - zapni svetlo loznice4
 area/dining_lights::dining_lights_change_brightness:
-- nastav svetlo obyvak 54
+- nastav svetlo obyvakfamess 54
 area/dining_lights::dining_lights_change_color:
-- nastav svetlo obyvak modra
+- nastav svetlo obyvakfamess modra
 area/dining_lights::dining_lights_turn_off:
-- vypni svetlo obyvak
+- vypni svetlo obyvakfamess
 area/dining_lights::dining_lights_turn_on:
-- zapni svetlo obyvak
+- zapni svetlo obyvakfamess
 area/entryway_lights::entryway_lights_change_brightness:
 - nastav svetlo predsin 72
 area/entryway_lights::entryway_lights_change_color:
@@ -57,9 +57,9 @@ area/entryway_lights::entryway_lights_turn_off:
 area/entryway_lights::entryway_lights_turn_on:
 - zapni svetlo predsin
 area/entryway_locks::entryway_locks_lock:
-- zamek zamek predsin
+- zamkni zamek predsin
 area/entryway_locks::entryway_locks_unlock:
-- otevri zamek predsin
+- odemkni zamek predsin
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
 - nastav svetlo obyvakfam 39 a nastav svetlo kuchyne 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
@@ -97,25 +97,25 @@ area/garage_lights::garage_lights_turn_off:
 area/garage_lights::garage_lights_turn_on:
 - zapni svetlo garage
 area/garage_locks::garage_locks_lock:
-- zamek zamek garage
+- zamkni zamek garage
 area/garage_locks::garage_locks_unlock:
-- otevri zamek garage
+- odemkni zamek garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- nastav svetlo predsin 26 a nastav svetlo wc 26
+- nastav svetlo predsingang 26 a nastav svetlo wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- nastav svetlo predsin fialova a nastav svetlo wc fialova
+- nastav svetlo predsingang fialova a nastav svetlo wc fialova
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- vypni svetlo predsin a vypni svetlo wc
+- vypni svetlo predsingang a vypni svetlo wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- zapni svetlo predsin a zapni svetlo wc
+- zapni svetlo predsingang a zapni svetlo wc
 area/hallway_lights::hallway_lights_change_brightness:
-- nastav svetlo predsin 61
+- nastav svetlo predsingang 61
 area/hallway_lights::hallway_lights_change_color:
-- nastav svetlo predsin oranzova
+- nastav svetlo predsingang oranzova
 area/hallway_lights::hallway_lights_turn_off:
-- vypni svetlo predsin
+- vypni svetlo predsingang
 area/hallway_lights::hallway_lights_turn_on:
-- zapni svetlo predsin
+- zapni svetlo predsingang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - nastav svetlo kuchyne 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - vypni vse svetlo krome kuchyne krome ostrov
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- vypni svetlo obyvak a vypni svetlo kuchyne
+- vypni svetlo obyvak a vypni svetlo obyvakfamess a vypni svetlo kuchyne
 area/spoken_lights::spoken_stt_kitchen_off:
 - vypni svetlo kuchyne
 area/spoken_lights::spoken_stt_living_off:

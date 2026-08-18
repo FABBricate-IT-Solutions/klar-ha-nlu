@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - allitsd futes furdomaster 23
 area/heizung::heizung_esszimmer_23:
-- allitsd futes nappali 23
+- allitsd futes nappalifamess 23
 area/heizung::heizung_schlafzimmer_23:
 - allitsd futes haloszoba 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - oltsd villany nappali
 area/lichter::esszimmer_lichter_an:
-- kapcsold villany nappali
+- kapcsold villany nappalifamess
 area/lichter::esszimmer_lichter_aus:
-- oltsd villany nappali
+- oltsd villany nappalifamess
 area/lichter::kuche_lichter_an:
 - kapcsold villany konyha
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - oltsd mind villany
 area/spoken::esszimmer_weiss:
-- allitsd villany nappali white
+- allitsd villany nappalifamess white
 area/spoken::stt_kuche_lichte:
 - oltsd villany konyha
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - oltsd villany nappali
 area/spoken_more::esszimmer_30:
-- allitsd villany nappali 30
+- allitsd villany nappalifamess 30
 area/spoken_more::esszimmer_lichte_an:
-- kapcsold villany nappali
+- kapcsold villany nappalifamess
 area/spoken_more::kuche_80:
 - allitsd villany konyha 80
 area/spoken_more::kuche_blau:

@@ -1,13 +1,13 @@
 m0_exact/representative::exact_clarify:
 - bat bongden phongkhach
 m0_exact/representative::exact_list_complete_from_setup:
-- fait bread danhsach
+- done bread danhsach
 m0_exact/representative::exact_multi_intent:
 - bat tran phongngu3 va tat bongden loivao
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
-- ajoute milk danhsach
+- add milk danhsach
 m0_exact/representative::exact_state_persistence:
 - - gi bongden loivao
   - '12'
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - bat hen oven
 m0_exact/representative::exact_todo_list:
-- ajoute apples danhsach
+- add apples danhsach

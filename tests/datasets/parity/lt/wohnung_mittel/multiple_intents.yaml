@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - ijunk sviesa svetaine ir nustatyk sildymas svetaine 23
 multiple_intents/multi::wohn_und_ess_aus:
-- isjunk sviesa svetaine
+- isjunk sviesa svetaine ir isjunk sviesa svetainefamess
 multiple_intents/multi::wohn_und_ess_rot:
-- nustatyk sviesa svetaine red ir nustatyk sviesa svetaine red
+- nustatyk sviesa svetaine red ir nustatyk sviesa svetainefamess red
 multiple_intents/multi::wz_und_kuche_licht:
 - ijunk sviesa svetaine ir ijunk sviesa virtuve
 multiple_intents/multi::zwei_raeume_und_heizung:
 - ijunk sviesa svetaine ir ijunk sviesa virtuve ir nustatyk sildymas svetaine 23
 multiple_intents/spoken::drei_raeume_an:
-- ijunk sviesa svetaine ir ijunk sviesa virtuve
+- ijunk sviesa svetaine ir ijunk sviesa svetainefamess ir ijunk sviesa virtuve
 multiple_intents/spoken::drei_raeume_aus:
-- isjunk sviesa svetaine ir isjunk sviesa virtuve
+- isjunk sviesa svetaine ir isjunk sviesa svetainefamess ir isjunk sviesa virtuve
 multiple_intents/spoken::ess_und_wohn_aus:
-- isjunk sviesa svetaine
+- isjunk sviesa svetaine ir isjunk sviesa svetainefamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - isjunk rutulys ir isjunk lubos
 multiple_intents/spoken_more::kuche_und_ess_an:
-- ijunk sviesa virtuve ir ijunk sviesa svetaine
+- ijunk sviesa virtuve ir ijunk sviesa svetainefamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- isjunk sviesa svetaine
+- isjunk sviesa svetaine ir isjunk sviesa svetainefamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - isjunk sviesa svetaine

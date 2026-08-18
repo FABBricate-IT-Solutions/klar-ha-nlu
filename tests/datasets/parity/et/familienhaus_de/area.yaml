@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - lulita vali magamistuba4
 area/dining_lights::dining_lights_change_brightness:
-- sea vali elutuba 54
+- sea vali peredetubaess 54
 area/dining_lights::dining_lights_change_color:
-- sea vali elutuba blue
+- sea vali peredetubaess blue
 area/dining_lights::dining_lights_turn_off:
-- kustuta vali elutuba
+- kustuta vali peredetubaess
 area/dining_lights::dining_lights_turn_on:
-- lulita vali elutuba
+- lulita vali peredetubaess
 area/entryway_lights::entryway_lights_change_brightness:
 - sea vali esik 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - ava lukk garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- sea vali esik 26 ja sea vali wc 26
+- sea vali esikgang 26 ja sea vali wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- sea vali esik purple ja sea vali wc purple
+- sea vali esikgang purple ja sea vali wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- kustuta vali esik ja kustuta vali wc
+- kustuta vali esikgang ja kustuta vali wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- lulita vali esik ja lulita vali wc
+- lulita vali esikgang ja lulita vali wc
 area/hallway_lights::hallway_lights_change_brightness:
-- sea vali esik 61
+- sea vali esikgang 61
 area/hallway_lights::hallway_lights_change_color:
-- sea vali esik orange
+- sea vali esikgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- kustuta vali esik
+- kustuta vali esikgang
 area/hallway_lights::hallway_lights_turn_on:
-- lulita vali esik
+- lulita vali esikgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - sea vali kook 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - kustuta koik vali peale kook peale saar
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- kustuta vali elutuba ja kustuta vali kook
+- kustuta vali elutuba ja kustuta vali peredetubaess ja kustuta vali kook
 area/spoken_lights::spoken_stt_kitchen_off:
 - kustuta vali kook
 area/spoken_lights::spoken_stt_living_off:

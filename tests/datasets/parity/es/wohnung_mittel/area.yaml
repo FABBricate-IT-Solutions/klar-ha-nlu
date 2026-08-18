@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - pon calefaccion banomaster 23
 area/heizung::heizung_esszimmer_23:
-- pon calefaccion salon 23
+- pon calefaccion estanciaess 23
 area/heizung::heizung_schlafzimmer_23:
 - pon calefaccion dormitorio 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - apaga luz salon
 area/lichter::esszimmer_lichter_an:
-- enciende luz salon
+- enciende luz estanciaess
 area/lichter::esszimmer_lichter_aus:
-- apaga luz salon
+- apaga luz estanciaess
 area/lichter::kuche_lichter_an:
 - enciende luz cocina
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - apaga todo luz
 area/spoken::esszimmer_weiss:
-- pon luz salon blanco
+- pon luz estanciaess blanco
 area/spoken::stt_kuche_lichte:
 - apaga luz cocina
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - apaga luz salon
 area/spoken_more::esszimmer_30:
-- pon luz salon 30
+- pon luz estanciaess 30
 area/spoken_more::esszimmer_lichte_an:
-- enciende luz salon
+- enciende luz estanciaess
 area/spoken_more::kuche_80:
 - pon luz cocina 80
 area/spoken_more::kuche_blau:

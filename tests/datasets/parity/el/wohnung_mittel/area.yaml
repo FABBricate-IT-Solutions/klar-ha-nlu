@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - βαλε θερμανση μπανιοmaster 23
 area/heizung::heizung_esszimmer_23:
-- βαλε θερμανση σαλονι 23
+- βαλε θερμανση σαλονιfamess 23
 area/heizung::heizung_schlafzimmer_23:
 - βαλε θερμανση υπνοδωματο 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - σβησε φως σαλονι
 area/lichter::esszimmer_lichter_an:
-- αναψε φως σαλονι
+- αναψε φως σαλονιfamess
 area/lichter::esszimmer_lichter_aus:
-- σβησε φως σαλονι
+- σβησε φως σαλονιfamess
 area/lichter::kuche_lichter_an:
 - αναψε φως κουζινα
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - σβησε ολα φως
 area/spoken::esszimmer_weiss:
-- βαλε φως σαλονι white
+- βαλε φως σαλονιfamess white
 area/spoken::stt_kuche_lichte:
 - σβησε φως κουζινα
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - σβησε φως σαλονι
 area/spoken_more::esszimmer_30:
-- βαλε φως σαλονι 30
+- βαλε φως σαλονιfamess 30
 area/spoken_more::esszimmer_lichte_an:
-- αναψε φως σαλονι
+- αναψε φως σαλονιfamess
 area/spoken_more::kuche_80:
 - βαλε φως κουζινα 80
 area/spoken_more::kuche_blau:

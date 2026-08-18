@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - شغل ضوء غرفة4
 area/dining_lights::dining_lights_change_brightness:
-- حط ضوء صالون 54
+- حط ضوء عائليess 54
 area/dining_lights::dining_lights_change_color:
-- حط ضوء صالون blue
+- حط ضوء عائليess blue
 area/dining_lights::dining_lights_turn_off:
-- اطفئ ضوء صالون
+- اطفئ ضوء عائليess
 area/dining_lights::dining_lights_turn_on:
-- شغل ضوء صالون
+- شغل ضوء عائليess
 area/entryway_lights::entryway_lights_change_brightness:
 - حط ضوء مدخل 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - افتح قفل garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- حط ضوء مدخل 26 و حط ضوء حمامضيف 26
+- حط ضوء مدخلgang 26 و حط ضوء حمامضيف 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- حط ضوء مدخل purple و حط ضوء حمامضيف purple
+- حط ضوء مدخلgang purple و حط ضوء حمامضيف purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- اطفئ ضوء مدخل و اطفئ ضوء حمامضيف
+- اطفئ ضوء مدخلgang و اطفئ ضوء حمامضيف
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- شغل ضوء مدخل و شغل ضوء حمامضيف
+- شغل ضوء مدخلgang و شغل ضوء حمامضيف
 area/hallway_lights::hallway_lights_change_brightness:
-- حط ضوء مدخل 61
+- حط ضوء مدخلgang 61
 area/hallway_lights::hallway_lights_change_color:
-- حط ضوء مدخل orange
+- حط ضوء مدخلgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- اطفئ ضوء مدخل
+- اطفئ ضوء مدخلgang
 area/hallway_lights::hallway_lights_turn_on:
-- شغل ضوء مدخل
+- شغل ضوء مدخلgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - حط ضوء مطبخ 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - اطفئ كل ضوء إلا مطبخ إلا جزيرة
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- اطفئ ضوء صالون و اطفئ ضوء مطبخ
+- اطفئ ضوء صالون و اطفئ ضوء عائليess و اطفئ ضوء مطبخ
 area/spoken_lights::spoken_stt_kitchen_off:
 - اطفئ ضوء مطبخ
 area/spoken_lights::spoken_stt_living_off:

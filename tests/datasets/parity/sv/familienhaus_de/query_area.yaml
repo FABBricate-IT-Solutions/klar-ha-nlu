@@ -47,13 +47,13 @@ query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
 query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
 - vad ljus sovrum4
 query_area/dining_lights::dining_lights_get_brightness:
-- vad ljus vardagsrum
+- vad ljus allrumess
 query_area/dining_lights::dining_lights_get_state:
-- vad ljus vardagsrum
+- vad ljus allrumess
 query_area/dining_lights::dining_lights_list_off_lights:
-- vad ljus vardagsrum
+- vad ljus allrumess
 query_area/dining_lights::dining_lights_list_on_lights:
-- vad ljus vardagsrum
+- vad ljus allrumess
 query_area/entryway_lights::entryway_lights_get_brightness:
 - vad ljus entre
 query_area/entryway_lights::entryway_lights_get_state:
@@ -115,21 +115,21 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - vad las garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- vad ljus entre och vad ljus toalett
+- vad ljus entregang och vad ljus toalett
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- vad ljus entre och vad ljus toalett
+- vad ljus entregang och vad ljus toalett
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- vad ljus entre och vad ljus toalett
+- vad ljus entregang och vad ljus toalett
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- vad ljus entre och vad ljus toalett
+- vad ljus entregang och vad ljus toalett
 query_area/hallway_lights::hallway_lights_get_brightness:
-- vad ljus entre
+- vad ljus entregang
 query_area/hallway_lights::hallway_lights_get_state:
-- vad ljus entre
+- vad ljus entregang
 query_area/hallway_lights::hallway_lights_list_off_lights:
-- vad ljus entre
+- vad ljus entregang
 query_area/hallway_lights::hallway_lights_list_on_lights:
-- vad ljus entre
+- vad ljus entregang
 query_area/kitchen_lights::kitchen_lights_get_brightness:
 - vad ljus kok
 query_area/kitchen_lights::kitchen_lights_get_state:

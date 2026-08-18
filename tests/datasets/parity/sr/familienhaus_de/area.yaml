@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - укључи светло спавача4
 area/dining_lights::dining_lights_change_brightness:
-- стави светло дневна 54
+- стави светло дневнаfamess 54
 area/dining_lights::dining_lights_change_color:
-- стави светло дневна blue
+- стави светло дневнаfamess blue
 area/dining_lights::dining_lights_turn_off:
-- искључи светло дневна
+- искључи светло дневнаfamess
 area/dining_lights::dining_lights_turn_on:
-- укључи светло дневна
+- укључи светло дневнаfamess
 area/entryway_lights::entryway_lights_change_brightness:
 - стави светло улаз 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - отвори брава garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- стави светло улаз 26 и стави светло wc 26
+- стави светло улазgang 26 и стави светло wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- стави светло улаз purple и стави светло wc purple
+- стави светло улазgang purple и стави светло wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- искључи светло улаз и искључи светло wc
+- искључи светло улазgang и искључи светло wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- укључи светло улаз и укључи светло wc
+- укључи светло улазgang и укључи светло wc
 area/hallway_lights::hallway_lights_change_brightness:
-- стави светло улаз 61
+- стави светло улазgang 61
 area/hallway_lights::hallway_lights_change_color:
-- стави светло улаз orange
+- стави светло улазgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- искључи светло улаз
+- искључи светло улазgang
 area/hallway_lights::hallway_lights_turn_on:
-- укључи светло улаз
+- укључи светло улазgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - стави светло кухиња 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - искључи све светло осим кухиња осим острво
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- искључи светло дневна и искључи светло кухиња
+- искључи светло дневна и искључи светло дневнаfamess и искључи светло кухиња
 area/spoken_lights::spoken_stt_kitchen_off:
 - искључи светло кухиња
 area/spoken_lights::spoken_stt_living_off:

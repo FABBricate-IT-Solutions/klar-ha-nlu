@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - enow nen chambour4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- settya golow stafell 21
+- settya golow stevellteyluess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- settya golow stafell blue
+- settya golow stevellteyluess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- diffyg golow stafell
+- diffyg golow stevellteyluess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- enow golow stafell
+- enow golow stevellteyluess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - settya golow porth 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - enow golow garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- settya golow porth 11
+- settya golow porthgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- settya golow porth white
+- settya golow porthgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- diffyg golow porth
+- diffyg golow porthgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- enow golow porth
+- enow golow porthgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - settya nen kegin 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,13 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - enow pellwolok stafell
 devices/scenes::dinner_time:
-- settya golow stafell 90 ha enow nen kegin ha settya golow kegin 80
+- settya golow stevellteyluess 90 ha enow nen kegin ha settya golow kegin 80
 devices/scenes::good_morning:
-- enow nen kegin ha settya golow stafell 100 ha igeri curtayn stafell ha igeri curtayn
-  chambour
+- enow nen kegin ha settya golow stevellteyluess 100 ha igeri curtayn stafell ha igeri
+  curtayn chambour
 devices/scenes::kids_bedtime:
 - diffyg nen chambour2 ha diffyg nen chambour3 ha diffyg nen chambour4 ha settya golow
-  porth 15
+  porthgang 15
 devices/scenes::movie_night:
 - diffyg nen stafell ha settya golow stafell 20 ha enow pellwolok stafell ha degea
   curtayn stafell

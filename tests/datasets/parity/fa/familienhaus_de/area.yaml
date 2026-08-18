@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - روشن چراغ اتاقخواب4
 area/dining_lights::dining_lights_change_brightness:
-- بگذار چراغ پذیرایی 54
+- بگذار چراغ خانوادهess 54
 area/dining_lights::dining_lights_change_color:
-- بگذار چراغ پذیرایی blue
+- بگذار چراغ خانوادهess blue
 area/dining_lights::dining_lights_turn_off:
-- خاموش چراغ پذیرایی
+- خاموش چراغ خانوادهess
 area/dining_lights::dining_lights_turn_on:
-- روشن چراغ پذیرایی
+- روشن چراغ خانوادهess
 area/entryway_lights::entryway_lights_change_brightness:
 - بگذار چراغ ورودی 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - باز قفل garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- بگذار چراغ ورودی 26 و بگذار چراغ سرویس 26
+- بگذار چراغ ورودیgang 26 و بگذار چراغ سرویس 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- بگذار چراغ ورودی purple و بگذار چراغ سرویس purple
+- بگذار چراغ ورودیgang purple و بگذار چراغ سرویس purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- خاموش چراغ ورودی و خاموش چراغ سرویس
+- خاموش چراغ ورودیgang و خاموش چراغ سرویس
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- روشن چراغ ورودی و روشن چراغ سرویس
+- روشن چراغ ورودیgang و روشن چراغ سرویس
 area/hallway_lights::hallway_lights_change_brightness:
-- بگذار چراغ ورودی 61
+- بگذار چراغ ورودیgang 61
 area/hallway_lights::hallway_lights_change_color:
-- بگذار چراغ ورودی orange
+- بگذار چراغ ورودیgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- خاموش چراغ ورودی
+- خاموش چراغ ورودیgang
 area/hallway_lights::hallway_lights_turn_on:
-- روشن چراغ ورودی
+- روشن چراغ ورودیgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - بگذار چراغ آشپزخانه 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - خاموش همه چراغ جز آشپزخانه جز جزیره
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- خاموش چراغ پذیرایی و خاموش چراغ آشپزخانه
+- خاموش چراغ پذیرایی و خاموش چراغ خانوادهess و خاموش چراغ آشپزخانه
 area/spoken_lights::spoken_stt_kitchen_off:
 - خاموش چراغ آشپزخانه
 area/spoken_lights::spoken_stt_living_off:

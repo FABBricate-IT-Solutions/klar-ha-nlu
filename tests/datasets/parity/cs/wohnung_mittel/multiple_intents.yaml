@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - zapni svetlo obyvak a nastav topeni obyvak 23
 multiple_intents/multi::wohn_und_ess_aus:
-- vypni svetlo obyvak
+- vypni svetlo obyvak a vypni svetlo obyvakfamess
 multiple_intents/multi::wohn_und_ess_rot:
-- nastav svetlo obyvak cervena a nastav svetlo obyvak cervena
+- nastav svetlo obyvak cervena a nastav svetlo obyvakfamess cervena
 multiple_intents/multi::wz_und_kuche_licht:
 - zapni svetlo obyvak a zapni svetlo kuchyne
 multiple_intents/multi::zwei_raeume_und_heizung:
 - zapni svetlo obyvak a zapni svetlo kuchyne a nastav topeni obyvak 23
 multiple_intents/spoken::drei_raeume_an:
-- zapni svetlo obyvak a zapni svetlo kuchyne
+- zapni svetlo obyvak a zapni svetlo obyvakfamess a zapni svetlo kuchyne
 multiple_intents/spoken::drei_raeume_aus:
-- vypni svetlo obyvak a vypni svetlo kuchyne
+- vypni svetlo obyvak a vypni svetlo obyvakfamess a vypni svetlo kuchyne
 multiple_intents/spoken::ess_und_wohn_aus:
-- vypni svetlo obyvak
+- vypni svetlo obyvak a vypni svetlo obyvakfamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - vypni koule a vypni strop
 multiple_intents/spoken_more::kuche_und_ess_an:
-- zapni svetlo kuchyne a zapni svetlo obyvak
+- zapni svetlo kuchyne a zapni svetlo obyvakfamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- vypni svetlo obyvak
+- vypni svetlo obyvak a vypni svetlo obyvakfamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - vypni svetlo obyvak

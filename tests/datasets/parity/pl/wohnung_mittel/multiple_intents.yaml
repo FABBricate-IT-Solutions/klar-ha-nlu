@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - wlacz swiatlo salon i ustaw ogrzewanie salon 23
 multiple_intents/multi::wohn_und_ess_aus:
-- wylacz swiatlo salon
+- wylacz swiatlo salon i wylacz swiatlo salonfamess
 multiple_intents/multi::wohn_und_ess_rot:
-- ustaw swiatlo salon czerwony i ustaw swiatlo salon czerwony
+- ustaw swiatlo salon czerwony i ustaw swiatlo salonfamess czerwony
 multiple_intents/multi::wz_und_kuche_licht:
 - wlacz swiatlo salon i wlacz swiatlo kuchnia
 multiple_intents/multi::zwei_raeume_und_heizung:
 - wlacz swiatlo salon i wlacz swiatlo kuchnia i ustaw ogrzewanie salon 23
 multiple_intents/spoken::drei_raeume_an:
-- wlacz swiatlo salon i wlacz swiatlo kuchnia
+- wlacz swiatlo salon i wlacz swiatlo salonfamess i wlacz swiatlo kuchnia
 multiple_intents/spoken::drei_raeume_aus:
-- wylacz swiatlo salon i wylacz swiatlo kuchnia
+- wylacz swiatlo salon i wylacz swiatlo salonfamess i wylacz swiatlo kuchnia
 multiple_intents/spoken::ess_und_wohn_aus:
-- wylacz swiatlo salon
+- wylacz swiatlo salon i wylacz swiatlo salonfamess
 multiple_intents/spoken::kugel_und_decke_aus:
 - wylacz kula i wylacz sufit
 multiple_intents/spoken_more::kuche_und_ess_an:
-- wlacz swiatlo kuchnia i wlacz swiatlo salon
+- wlacz swiatlo kuchnia i wlacz swiatlo salonfamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- wylacz swiatlo salon
+- wylacz swiatlo salon i wylacz swiatlo salonfamess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - wylacz swiatlo salon

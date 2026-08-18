@@ -1,13 +1,13 @@
 m0_exact/representative::exact_clarify:
 - شغل ضوء صالون
 m0_exact/representative::exact_list_complete_from_setup:
-- fait bread قائمة
+- done bread قائمة
 m0_exact/representative::exact_multi_intent:
 - شغل سقف غرفة3 و اطفئ ضوء مدخل
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
-- ajoute milk قائمة
+- add milk قائمة
 m0_exact/representative::exact_state_persistence:
 - - ايش ضوء مدخل
   - '12'
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - شغل مؤقت oven
 m0_exact/representative::exact_todo_list:
-- ajoute apples قائمة
+- add apples قائمة

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - taend lys sovevaerelse4
 area/dining_lights::dining_lights_change_brightness:
-- saet lys stue 54
+- saet lys alrumess 54
 area/dining_lights::dining_lights_change_color:
-- saet lys stue bla
+- saet lys alrumess bla
 area/dining_lights::dining_lights_turn_off:
-- sluk lys stue
+- sluk lys alrumess
 area/dining_lights::dining_lights_turn_on:
-- taend lys stue
+- taend lys alrumess
 area/entryway_lights::entryway_lights_change_brightness:
 - saet lys entree 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - aabn laas garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- saet lys entree 26 og saet lys toilet 26
+- saet lys entreegang 26 og saet lys toilet 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- saet lys entree lilla og saet lys toilet lilla
+- saet lys entreegang lilla og saet lys toilet lilla
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- sluk lys entree og sluk lys toilet
+- sluk lys entreegang og sluk lys toilet
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- taend lys entree og taend lys toilet
+- taend lys entreegang og taend lys toilet
 area/hallway_lights::hallway_lights_change_brightness:
-- saet lys entree 61
+- saet lys entreegang 61
 area/hallway_lights::hallway_lights_change_color:
-- saet lys entree orange
+- saet lys entreegang orange
 area/hallway_lights::hallway_lights_turn_off:
-- sluk lys entree
+- sluk lys entreegang
 area/hallway_lights::hallway_lights_turn_on:
-- taend lys entree
+- taend lys entreegang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - saet lys kokken 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - sluk alle lys undtagen kokken undtagen oe
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- sluk lys stue og sluk lys kokken
+- sluk lys stue og sluk lys alrumess og sluk lys kokken
 area/spoken_lights::spoken_stt_kitchen_off:
 - sluk lys kokken
 area/spoken_lights::spoken_stt_living_off:

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - upali svjetlo spavaca4
 area/dining_lights::dining_lights_change_brightness:
-- stavi svjetlo dnevni 54
+- stavi svjetlo dnevnifamess 54
 area/dining_lights::dining_lights_change_color:
-- stavi svjetlo dnevni blue
+- stavi svjetlo dnevnifamess blue
 area/dining_lights::dining_lights_turn_off:
-- ugasi svjetlo dnevni
+- ugasi svjetlo dnevnifamess
 area/dining_lights::dining_lights_turn_on:
-- upali svjetlo dnevni
+- upali svjetlo dnevnifamess
 area/entryway_lights::entryway_lights_change_brightness:
 - stavi svjetlo hodnik 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - otvori brava garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stavi svjetlo hodnik 26 i stavi svjetlo wc 26
+- stavi svjetlo hodnikgang 26 i stavi svjetlo wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stavi svjetlo hodnik purple i stavi svjetlo wc purple
+- stavi svjetlo hodnikgang purple i stavi svjetlo wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- ugasi svjetlo hodnik i ugasi svjetlo wc
+- ugasi svjetlo hodnikgang i ugasi svjetlo wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- upali svjetlo hodnik i upali svjetlo wc
+- upali svjetlo hodnikgang i upali svjetlo wc
 area/hallway_lights::hallway_lights_change_brightness:
-- stavi svjetlo hodnik 61
+- stavi svjetlo hodnikgang 61
 area/hallway_lights::hallway_lights_change_color:
-- stavi svjetlo hodnik orange
+- stavi svjetlo hodnikgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- ugasi svjetlo hodnik
+- ugasi svjetlo hodnikgang
 area/hallway_lights::hallway_lights_turn_on:
-- upali svjetlo hodnik
+- upali svjetlo hodnikgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - stavi svjetlo kuhinja 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - ugasi sve svjetlo osim kuhinja osim otok
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- ugasi svjetlo dnevni i ugasi svjetlo kuhinja
+- ugasi svjetlo dnevni i ugasi svjetlo dnevnifamess i ugasi svjetlo kuhinja
 area/spoken_lights::spoken_stt_kitchen_off:
 - ugasi svjetlo kuhinja
 area/spoken_lights::spoken_stt_living_off:

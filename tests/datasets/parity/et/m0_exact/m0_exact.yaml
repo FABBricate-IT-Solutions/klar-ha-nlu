@@ -1,13 +1,13 @@
 m0_exact/representative::exact_clarify:
 - lulita vali elutuba
 m0_exact/representative::exact_list_complete_from_setup:
-- fait bread nimekiri
+- done bread nimekiri
 m0_exact/representative::exact_multi_intent:
 - lulita lagi magamistuba3 ja kustuta vali esik
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
-- ajoute milk nimekiri
+- add milk nimekiri
 m0_exact/representative::exact_state_persistence:
 - - mis vali esik
   - '12'
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - lulita taimer oven
 m0_exact/representative::exact_todo_list:
-- ajoute apples nimekiri
+- add apples nimekiri

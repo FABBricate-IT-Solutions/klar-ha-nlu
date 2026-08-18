@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - چالو روشنی bedroom4
 area/dining_lights::dining_lights_change_brightness:
-- رکھو روشنی لانج 54
+- رکھو روشنی خاندانیess 54
 area/dining_lights::dining_lights_change_color:
-- رکھو روشنی لانج blue
+- رکھو روشنی خاندانیess blue
 area/dining_lights::dining_lights_turn_off:
-- بند روشنی لانج
+- بند روشنی خاندانیess
 area/dining_lights::dining_lights_turn_on:
-- چالو روشنی لانج
+- چالو روشنی خاندانیess
 area/entryway_lights::entryway_lights_change_brightness:
 - رکھو روشنی داخلہ 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - کھولو تالا garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- رکھو روشنی داخلہ 26 اور رکھو روشنی غسلخانہ 26
+- رکھو روشنی داخلہgang 26 اور رکھو روشنی غسلخانہ 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- رکھو روشنی داخلہ purple اور رکھو روشنی غسلخانہ purple
+- رکھو روشنی داخلہgang purple اور رکھو روشنی غسلخانہ purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- بند روشنی داخلہ اور بند روشنی غسلخانہ
+- بند روشنی داخلہgang اور بند روشنی غسلخانہ
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- چالو روشنی داخلہ اور چالو روشنی غسلخانہ
+- چالو روشنی داخلہgang اور چالو روشنی غسلخانہ
 area/hallway_lights::hallway_lights_change_brightness:
-- رکھو روشنی داخلہ 61
+- رکھو روشنی داخلہgang 61
 area/hallway_lights::hallway_lights_change_color:
-- رکھو روشنی داخلہ orange
+- رکھو روشنی داخلہgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- بند روشنی داخلہ
+- بند روشنی داخلہgang
 area/hallway_lights::hallway_lights_turn_on:
-- چالو روشنی داخلہ
+- چالو روشنی داخلہgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - رکھو روشنی باورچی 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - بند سب روشنی سوا باورچی سوا جزیرہ
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- بند روشنی لانج اور بند روشنی باورچی
+- بند روشنی لانج اور بند روشنی خاندانیess اور بند روشنی باورچی
 area/spoken_lights::spoken_stt_kitchen_off:
 - بند روشنی باورچی
 area/spoken_lights::spoken_stt_living_off:

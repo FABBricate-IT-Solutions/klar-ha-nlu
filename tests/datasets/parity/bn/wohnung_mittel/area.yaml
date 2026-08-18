@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - set gorom masterbath 23
 area/heizung::heizung_esszimmer_23:
-- set gorom bosar 23
+- set gorom paribarikess 23
 area/heizung::heizung_schlafzimmer_23:
 - set gorom shobarghor 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - nibhao alo bosar
 area/lichter::esszimmer_lichter_an:
-- jalao alo bosar
+- jalao alo paribarikess
 area/lichter::esszimmer_lichter_aus:
-- nibhao alo bosar
+- nibhao alo paribarikess
 area/lichter::kuche_lichter_an:
 - jalao alo ranna
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - nibhao sob alo
 area/spoken::esszimmer_weiss:
-- set alo bosar white
+- set alo paribarikess white
 area/spoken::stt_kuche_lichte:
 - nibhao alo ranna
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - nibhao alo bosar
 area/spoken_more::esszimmer_30:
-- set alo bosar 30
+- set alo paribarikess 30
 area/spoken_more::esszimmer_lichte_an:
-- jalao alo bosar
+- jalao alo paribarikess
 area/spoken_more::kuche_80:
 - set alo ranna 80
 area/spoken_more::kuche_blau:

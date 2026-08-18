@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - eru vilakku padukkaiyarai4
 area/dining_lights::dining_lights_change_brightness:
-- amai vilakku arai 54
+- amai vilakku kutumbamess 54
 area/dining_lights::dining_lights_change_color:
-- amai vilakku arai blue
+- amai vilakku kutumbamess blue
 area/dining_lights::dining_lights_turn_off:
-- anai vilakku arai
+- anai vilakku kutumbamess
 area/dining_lights::dining_lights_turn_on:
-- eru vilakku arai
+- eru vilakku kutumbamess
 area/entryway_lights::entryway_lights_change_brightness:
 - amai vilakku nuzhaivu 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - thira poottu garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- amai vilakku nuzhaivu 26 matrum amai vilakku kazhivarai 26
+- amai vilakku nuzhaivugang 26 matrum amai vilakku kazhivarai 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- amai vilakku nuzhaivu purple matrum amai vilakku kazhivarai purple
+- amai vilakku nuzhaivugang purple matrum amai vilakku kazhivarai purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- anai vilakku nuzhaivu matrum anai vilakku kazhivarai
+- anai vilakku nuzhaivugang matrum anai vilakku kazhivarai
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- eru vilakku nuzhaivu matrum eru vilakku kazhivarai
+- eru vilakku nuzhaivugang matrum eru vilakku kazhivarai
 area/hallway_lights::hallway_lights_change_brightness:
-- amai vilakku nuzhaivu 61
+- amai vilakku nuzhaivugang 61
 area/hallway_lights::hallway_lights_change_color:
-- amai vilakku nuzhaivu orange
+- amai vilakku nuzhaivugang orange
 area/hallway_lights::hallway_lights_turn_off:
-- anai vilakku nuzhaivu
+- anai vilakku nuzhaivugang
 area/hallway_lights::hallway_lights_turn_on:
-- eru vilakku nuzhaivu
+- eru vilakku nuzhaivugang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - amai vilakku samaiyal 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - anai ellam vilakku thavira samaiyal thavira theevu
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- anai vilakku arai matrum anai vilakku samaiyal
+- anai vilakku arai matrum anai vilakku kutumbamess matrum anai vilakku samaiyal
 area/spoken_lights::spoken_stt_kitchen_off:
 - anai vilakku samaiyal
 area/spoken_lights::spoken_stt_living_off:

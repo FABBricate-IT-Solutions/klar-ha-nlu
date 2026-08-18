@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - saet varme badmaster 23
 area/heizung::heizung_esszimmer_23:
-- saet varme stue 23
+- saet varme alrumess 23
 area/heizung::heizung_schlafzimmer_23:
 - saet varme sovevaerelse 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - sluk lys stue
 area/lichter::esszimmer_lichter_an:
-- taend lys stue
+- taend lys alrumess
 area/lichter::esszimmer_lichter_aus:
-- sluk lys stue
+- sluk lys alrumess
 area/lichter::kuche_lichter_an:
 - taend lys kokken
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - sluk alle lys
 area/spoken::esszimmer_weiss:
-- saet lys stue hvid
+- saet lys alrumess hvid
 area/spoken::stt_kuche_lichte:
 - sluk lys kokken
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - sluk lys stue
 area/spoken_more::esszimmer_30:
-- saet lys stue 30
+- saet lys alrumess 30
 area/spoken_more::esszimmer_lichte_an:
-- taend lys stue
+- taend lys alrumess
 area/spoken_more::kuche_80:
 - saet lys kokken 80
 area/spoken_more::kuche_blau:

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - kapcsold villany haloszoba4
 area/dining_lights::dining_lights_change_brightness:
-- allitsd villany nappali 54
+- allitsd villany nappalifamess 54
 area/dining_lights::dining_lights_change_color:
-- allitsd villany nappali blue
+- allitsd villany nappalifamess blue
 area/dining_lights::dining_lights_turn_off:
-- oltsd villany nappali
+- oltsd villany nappalifamess
 area/dining_lights::dining_lights_turn_on:
-- kapcsold villany nappali
+- kapcsold villany nappalifamess
 area/entryway_lights::entryway_lights_change_brightness:
 - allitsd villany eloter 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - nyisd zar garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- allitsd villany eloter 26 es allitsd villany wc 26
+- allitsd villany elotergang 26 es allitsd villany wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- allitsd villany eloter purple es allitsd villany wc purple
+- allitsd villany elotergang purple es allitsd villany wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- oltsd villany eloter es oltsd villany wc
+- oltsd villany elotergang es oltsd villany wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- kapcsold villany eloter es kapcsold villany wc
+- kapcsold villany elotergang es kapcsold villany wc
 area/hallway_lights::hallway_lights_change_brightness:
-- allitsd villany eloter 61
+- allitsd villany elotergang 61
 area/hallway_lights::hallway_lights_change_color:
-- allitsd villany eloter orange
+- allitsd villany elotergang orange
 area/hallway_lights::hallway_lights_turn_off:
-- oltsd villany eloter
+- oltsd villany elotergang
 area/hallway_lights::hallway_lights_turn_on:
-- kapcsold villany eloter
+- kapcsold villany elotergang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - allitsd villany konyha 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - oltsd mind villany kiveve konyha kiveve sziget
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- oltsd villany nappali es oltsd villany konyha
+- oltsd villany nappali es oltsd villany nappalifamess es oltsd villany konyha
 area/spoken_lights::spoken_stt_kitchen_off:
 - oltsd villany konyha
 area/spoken_lights::spoken_stt_living_off:

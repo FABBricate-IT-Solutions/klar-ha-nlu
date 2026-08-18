@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - asaa taaz untlagiin4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- tokhiruul gerel zochny 21
+- tokhiruul gerel gerbuless 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- tokhiruul gerel zochny blue
+- tokhiruul gerel gerbuless blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- untraa gerel zochny
+- untraa gerel gerbuless
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- asaa gerel zochny
+- asaa gerel gerbuless
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - tokhiruul gerel orol 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - asaa gerel garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- tokhiruul gerel orol 11
+- tokhiruul gerel orolgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- tokhiruul gerel orol white
+- tokhiruul gerel orolgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- untraa gerel orol
+- untraa gerel orolgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- asaa gerel orol
+- asaa gerel orolgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - tokhiruul taaz galtogoo 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,13 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - asaa televiz zochny
 devices/scenes::dinner_time:
-- tokhiruul gerel zochny 90 ba asaa taaz galtogoo ba tokhiruul gerel galtogoo 80
+- tokhiruul gerel gerbuless 90 ba asaa taaz galtogoo ba tokhiruul gerel galtogoo 80
 devices/scenes::good_morning:
-- asaa taaz galtogoo ba tokhiruul gerel zochny 100 ba nee khoshig zochny ba nee khoshig
-  untlagiin
+- asaa taaz galtogoo ba tokhiruul gerel gerbuless 100 ba nee khoshig zochny ba nee
+  khoshig untlagiin
 devices/scenes::kids_bedtime:
 - untraa taaz untlagiin2 ba untraa taaz untlagiin3 ba untraa taaz untlagiin4 ba tokhiruul
-  gerel orol 15
+  gerel orolgang 15
 devices/scenes::movie_night:
 - untraa taaz zochny ba tokhiruul gerel zochny 20 ba asaa televiz zochny ba khaa khoshig
   zochny

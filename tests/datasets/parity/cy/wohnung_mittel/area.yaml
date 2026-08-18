@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - gosod gwres bathmaster 23
 area/heizung::heizung_esszimmer_23:
-- gosod gwres ystafell 23
+- gosod gwres ystafellteuluess 23
 area/heizung::heizung_schlafzimmer_23:
 - gosod gwres llofft 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - diffodd golau ystafell
 area/lichter::esszimmer_lichter_an:
-- tro golau ystafell
+- tro golau ystafellteuluess
 area/lichter::esszimmer_lichter_aus:
-- diffodd golau ystafell
+- diffodd golau ystafellteuluess
 area/lichter::kuche_lichter_an:
 - tro golau cegin
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - diffodd pob golau
 area/spoken::esszimmer_weiss:
-- gosod golau ystafell white
+- gosod golau ystafellteuluess white
 area/spoken::stt_kuche_lichte:
 - diffodd golau cegin
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - diffodd golau ystafell
 area/spoken_more::esszimmer_30:
-- gosod golau ystafell 30
+- gosod golau ystafellteuluess 30
 area/spoken_more::esszimmer_lichte_an:
-- tro golau ystafell
+- tro golau ystafellteuluess
 area/spoken_more::kuche_80:
 - gosod golau cegin 80
 area/spoken_more::kuche_blau:

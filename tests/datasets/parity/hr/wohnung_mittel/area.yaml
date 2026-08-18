@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - stavi grijanje kupaonicamaster 23
 area/heizung::heizung_esszimmer_23:
-- stavi grijanje dnevni 23
+- stavi grijanje dnevnifamess 23
 area/heizung::heizung_schlafzimmer_23:
 - stavi grijanje spavaca 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - ugasi svjetlo dnevni
 area/lichter::esszimmer_lichter_an:
-- upali svjetlo dnevni
+- upali svjetlo dnevnifamess
 area/lichter::esszimmer_lichter_aus:
-- ugasi svjetlo dnevni
+- ugasi svjetlo dnevnifamess
 area/lichter::kuche_lichter_an:
 - upali svjetlo kuhinja
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - ugasi sve svjetlo
 area/spoken::esszimmer_weiss:
-- stavi svjetlo dnevni white
+- stavi svjetlo dnevnifamess white
 area/spoken::stt_kuche_lichte:
 - ugasi svjetlo kuhinja
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - ugasi svjetlo dnevni
 area/spoken_more::esszimmer_30:
-- stavi svjetlo dnevni 30
+- stavi svjetlo dnevnifamess 30
 area/spoken_more::esszimmer_lichte_an:
-- upali svjetlo dnevni
+- upali svjetlo dnevnifamess
 area/spoken_more::kuche_80:
 - stavi svjetlo kuhinja 80
 area/spoken_more::kuche_blau:

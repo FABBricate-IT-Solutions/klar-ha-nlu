@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - chalu roshni bedroom4
 area/dining_lights::dining_lights_change_brightness:
-- set roshni vithak 54
+- set roshni parivarakess 54
 area/dining_lights::dining_lights_change_color:
-- set roshni vithak blue
+- set roshni parivarakess blue
 area/dining_lights::dining_lights_turn_off:
-- band roshni vithak
+- band roshni parivarakess
 area/dining_lights::dining_lights_turn_on:
-- chalu roshni vithak
+- chalu roshni parivarakess
 area/entryway_lights::entryway_lights_change_brightness:
 - set roshni dakhla 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - kholh tala garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set roshni dakhla 26 ate set roshni toilet 26
+- set roshni dakhlagang 26 ate set roshni toilet 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set roshni dakhla purple ate set roshni toilet purple
+- set roshni dakhlagang purple ate set roshni toilet purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- band roshni dakhla ate band roshni toilet
+- band roshni dakhlagang ate band roshni toilet
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- chalu roshni dakhla ate chalu roshni toilet
+- chalu roshni dakhlagang ate chalu roshni toilet
 area/hallway_lights::hallway_lights_change_brightness:
-- set roshni dakhla 61
+- set roshni dakhlagang 61
 area/hallway_lights::hallway_lights_change_color:
-- set roshni dakhla orange
+- set roshni dakhlagang orange
 area/hallway_lights::hallway_lights_turn_off:
-- band roshni dakhla
+- band roshni dakhlagang
 area/hallway_lights::hallway_lights_turn_on:
-- chalu roshni dakhla
+- chalu roshni dakhlagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set roshni rasoi 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - band sabh roshni ilava rasoi ilava tapu
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- band roshni vithak ate band roshni rasoi
+- band roshni vithak ate band roshni parivarakess ate band roshni rasoi
 area/spoken_lights::spoken_stt_kitchen_off:
 - band roshni rasoi
 area/spoken_lights::spoken_stt_living_off:

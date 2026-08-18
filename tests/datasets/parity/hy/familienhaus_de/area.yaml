@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - miatsu luys qnakaran4
 area/dining_lights::dining_lights_change_brightness:
-- dir luys hyurasenyak 54
+- dir luys yntaniqess 54
 area/dining_lights::dining_lights_change_color:
-- dir luys hyurasenyak blue
+- dir luys yntaniqess blue
 area/dining_lights::dining_lights_turn_off:
-- anjatir luys hyurasenyak
+- anjatir luys yntaniqess
 area/dining_lights::dining_lights_turn_on:
-- miatsu luys hyurasenyak
+- miatsu luys yntaniqess
 area/entryway_lights::entryway_lights_change_brightness:
 - dir luys mutq 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - batsir kogpek garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- dir luys mutq 26 yev dir luys wc 26
+- dir luys mutqgang 26 yev dir luys wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- dir luys mutq purple yev dir luys wc purple
+- dir luys mutqgang purple yev dir luys wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- anjatir luys mutq yev anjatir luys wc
+- anjatir luys mutqgang yev anjatir luys wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- miatsu luys mutq yev miatsu luys wc
+- miatsu luys mutqgang yev miatsu luys wc
 area/hallway_lights::hallway_lights_change_brightness:
-- dir luys mutq 61
+- dir luys mutqgang 61
 area/hallway_lights::hallway_lights_change_color:
-- dir luys mutq orange
+- dir luys mutqgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- anjatir luys mutq
+- anjatir luys mutqgang
 area/hallway_lights::hallway_lights_turn_on:
-- miatsu luys mutq
+- miatsu luys mutqgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - dir luys khohanots 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - anjatir bolor luys batsi khohanots batsi kghzi
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- anjatir luys hyurasenyak yev anjatir luys khohanots
+- anjatir luys hyurasenyak yev anjatir luys yntaniqess yev anjatir luys khohanots
 area/spoken_lights::spoken_stt_kitchen_off:
 - anjatir luys khohanots
 area/spoken_lights::spoken_stt_living_off:

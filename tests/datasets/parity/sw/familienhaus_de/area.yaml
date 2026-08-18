@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - washa taa chumbakulala4
 area/dining_lights::dining_lights_change_brightness:
-- weka taa sebuleni 54
+- weka taa sefulaess 54
 area/dining_lights::dining_lights_change_color:
-- weka taa sebuleni blue
+- weka taa sefulaess blue
 area/dining_lights::dining_lights_turn_off:
-- zima taa sebuleni
+- zima taa sefulaess
 area/dining_lights::dining_lights_turn_on:
-- washa taa sebuleni
+- washa taa sefulaess
 area/entryway_lights::entryway_lights_change_brightness:
 - weka taa kiingilio 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - fungua kufuli garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- weka taa kiingilio 26 na weka taa choo 26
+- weka taa kiingiliogang 26 na weka taa choo 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- weka taa kiingilio purple na weka taa choo purple
+- weka taa kiingiliogang purple na weka taa choo purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- zima taa kiingilio na zima taa choo
+- zima taa kiingiliogang na zima taa choo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- washa taa kiingilio na washa taa choo
+- washa taa kiingiliogang na washa taa choo
 area/hallway_lights::hallway_lights_change_brightness:
-- weka taa kiingilio 61
+- weka taa kiingiliogang 61
 area/hallway_lights::hallway_lights_change_color:
-- weka taa kiingilio orange
+- weka taa kiingiliogang orange
 area/hallway_lights::hallway_lights_turn_off:
-- zima taa kiingilio
+- zima taa kiingiliogang
 area/hallway_lights::hallway_lights_turn_on:
-- washa taa kiingilio
+- washa taa kiingiliogang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - weka taa jikonini 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - zima yote taa isipokuwa jikonini isipokuwa kisiwa
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- zima taa sebuleni na zima taa jikonini
+- zima taa sebuleni na zima taa sefulaess na zima taa jikonini
 area/spoken_lights::spoken_stt_kitchen_off:
 - zima taa jikonini
 area/spoken_lights::spoken_stt_living_off:

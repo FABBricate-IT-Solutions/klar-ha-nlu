@@ -3,24 +3,24 @@ multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 multiple_intents/multi::licht_und_heizung:
 - شغل ضوء صالون و حط تكييف صالون 23
 multiple_intents/multi::wohn_und_ess_aus:
-- اطفئ ضوء صالون
+- اطفئ ضوء صالون و اطفئ ضوء عائليess
 multiple_intents/multi::wohn_und_ess_rot:
-- حط ضوء صالون red و حط ضوء صالون red
+- حط ضوء صالون red و حط ضوء عائليess red
 multiple_intents/multi::wz_und_kuche_licht:
 - شغل ضوء صالون و شغل ضوء مطبخ
 multiple_intents/multi::zwei_raeume_und_heizung:
 - شغل ضوء صالون و شغل ضوء مطبخ و حط تكييف صالون 23
 multiple_intents/spoken::drei_raeume_an:
-- شغل ضوء صالون و شغل ضوء مطبخ
+- شغل ضوء صالون و شغل ضوء عائليess و شغل ضوء مطبخ
 multiple_intents/spoken::drei_raeume_aus:
-- اطفئ ضوء صالون و اطفئ ضوء مطبخ
+- اطفئ ضوء صالون و اطفئ ضوء عائليess و اطفئ ضوء مطبخ
 multiple_intents/spoken::ess_und_wohn_aus:
-- اطفئ ضوء صالون
+- اطفئ ضوء صالون و اطفئ ضوء عائليess
 multiple_intents/spoken::kugel_und_decke_aus:
 - اطفئ كرة و اطفئ سقف
 multiple_intents/spoken_more::kuche_und_ess_an:
-- شغل ضوء مطبخ و شغل ضوء صالون
+- شغل ضوء مطبخ و شغل ضوء عائليess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- اطفئ ضوء صالون
+- اطفئ ضوء صالون و اطفئ ضوء عائليess
 multiple_intents/spoken_more::wz_und_arbeit_aus:
 - اطفئ ضوء صالون

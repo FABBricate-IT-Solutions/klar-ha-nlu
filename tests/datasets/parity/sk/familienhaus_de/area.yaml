@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - zapni svetlo spalna4
 area/dining_lights::dining_lights_change_brightness:
-- nastav svetlo obyvacka 54
+- nastav svetlo obyvackafamess 54
 area/dining_lights::dining_lights_change_color:
-- nastav svetlo obyvacka blue
+- nastav svetlo obyvackafamess blue
 area/dining_lights::dining_lights_turn_off:
-- vypni svetlo obyvacka
+- vypni svetlo obyvackafamess
 area/dining_lights::dining_lights_turn_on:
-- zapni svetlo obyvacka
+- zapni svetlo obyvackafamess
 area/entryway_lights::entryway_lights_change_brightness:
 - nastav svetlo predsien 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - otvor zamok garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- nastav svetlo predsien 26 a nastav svetlo wc 26
+- nastav svetlo predsiengang 26 a nastav svetlo wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- nastav svetlo predsien purple a nastav svetlo wc purple
+- nastav svetlo predsiengang purple a nastav svetlo wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- vypni svetlo predsien a vypni svetlo wc
+- vypni svetlo predsiengang a vypni svetlo wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- zapni svetlo predsien a zapni svetlo wc
+- zapni svetlo predsiengang a zapni svetlo wc
 area/hallway_lights::hallway_lights_change_brightness:
-- nastav svetlo predsien 61
+- nastav svetlo predsiengang 61
 area/hallway_lights::hallway_lights_change_color:
-- nastav svetlo predsien orange
+- nastav svetlo predsiengang orange
 area/hallway_lights::hallway_lights_turn_off:
-- vypni svetlo predsien
+- vypni svetlo predsiengang
 area/hallway_lights::hallway_lights_turn_on:
-- zapni svetlo predsien
+- zapni svetlo predsiengang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - nastav svetlo kuchyne 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - vypni vsetko svetlo okrem kuchyne okrem ostrov
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- vypni svetlo obyvacka a vypni svetlo kuchyne
+- vypni svetlo obyvacka a vypni svetlo obyvackafamess a vypni svetlo kuchyne
 area/spoken_lights::spoken_stt_kitchen_off:
 - vypni svetlo kuchyne
 area/spoken_lights::spoken_stt_living_off:

@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - chalu prakash shayankhand4
 area/dining_lights::dining_lights_change_brightness:
-- set prakash orado 54
+- set prakash kutumbess 54
 area/dining_lights::dining_lights_change_color:
-- set prakash orado blue
+- set prakash kutumbess blue
 area/dining_lights::dining_lights_turn_off:
-- bandh prakash orado
+- bandh prakash kutumbess
 area/dining_lights::dining_lights_turn_on:
-- chalu prakash orado
+- chalu prakash kutumbess
 area/entryway_lights::entryway_lights_change_brightness:
 - set prakash pravesh 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - kholo talu garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- set prakash pravesh 26 ane set prakash shauchalay 26
+- set prakash praveshgang 26 ane set prakash shauchalay 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- set prakash pravesh purple ane set prakash shauchalay purple
+- set prakash praveshgang purple ane set prakash shauchalay purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- bandh prakash pravesh ane bandh prakash shauchalay
+- bandh prakash praveshgang ane bandh prakash shauchalay
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- chalu prakash pravesh ane chalu prakash shauchalay
+- chalu prakash praveshgang ane chalu prakash shauchalay
 area/hallway_lights::hallway_lights_change_brightness:
-- set prakash pravesh 61
+- set prakash praveshgang 61
 area/hallway_lights::hallway_lights_change_color:
-- set prakash pravesh orange
+- set prakash praveshgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- bandh prakash pravesh
+- bandh prakash praveshgang
 area/hallway_lights::hallway_lights_turn_on:
-- chalu prakash pravesh
+- chalu prakash praveshgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - set prakash rasodu 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - bandh badhu prakash sivay rasodu sivay tapu
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- bandh prakash orado ane bandh prakash rasodu
+- bandh prakash orado ane bandh prakash kutumbess ane bandh prakash rasodu
 area/spoken_lights::spoken_stt_kitchen_off:
 - bandh prakash rasodu
 area/spoken_lights::spoken_stt_living_off:

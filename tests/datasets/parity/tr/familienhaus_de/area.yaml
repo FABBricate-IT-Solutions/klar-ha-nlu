@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - yak isik yatakodasi4
 area/dining_lights::dining_lights_change_brightness:
-- ayarla isik salon 54
+- ayarla isik aileess 54
 area/dining_lights::dining_lights_change_color:
-- ayarla isik salon blue
+- ayarla isik aileess blue
 area/dining_lights::dining_lights_turn_off:
-- sondur isik salon
+- sondur isik aileess
 area/dining_lights::dining_lights_turn_on:
-- yak isik salon
+- yak isik aileess
 area/entryway_lights::entryway_lights_change_brightness:
 - ayarla isik giris 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - kilidiac kilit garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- ayarla isik giris 26 ve ayarla isik wc 26
+- ayarla isik girisgang 26 ve ayarla isik wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- ayarla isik giris purple ve ayarla isik wc purple
+- ayarla isik girisgang purple ve ayarla isik wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- sondur isik giris ve sondur isik wc
+- sondur isik girisgang ve sondur isik wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- yak isik giris ve yak isik wc
+- yak isik girisgang ve yak isik wc
 area/hallway_lights::hallway_lights_change_brightness:
-- ayarla isik giris 61
+- ayarla isik girisgang 61
 area/hallway_lights::hallway_lights_change_color:
-- ayarla isik giris orange
+- ayarla isik girisgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- sondur isik giris
+- sondur isik girisgang
 area/hallway_lights::hallway_lights_turn_on:
-- yak isik giris
+- yak isik girisgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - ayarla isik mutfak 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - sondur hepsi isik haric mutfak haric ada
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- sondur isik salon ve sondur isik mutfak
+- sondur isik salon ve sondur isik aileess ve sondur isik mutfak
 area/spoken_lights::spoken_stt_kitchen_off:
 - sondur isik mutfak
 area/spoken_lights::spoken_stt_living_off:

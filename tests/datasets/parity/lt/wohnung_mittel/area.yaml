@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - nustatyk sildymas voniamaster 23
 area/heizung::heizung_esszimmer_23:
-- nustatyk sildymas svetaine 23
+- nustatyk sildymas svetainefamess 23
 area/heizung::heizung_schlafzimmer_23:
 - nustatyk sildymas miegamasis 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - isjunk sviesa svetaine
 area/lichter::esszimmer_lichter_an:
-- ijunk sviesa svetaine
+- ijunk sviesa svetainefamess
 area/lichter::esszimmer_lichter_aus:
-- isjunk sviesa svetaine
+- isjunk sviesa svetainefamess
 area/lichter::kuche_lichter_an:
 - ijunk sviesa virtuve
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - isjunk viskas sviesa
 area/spoken::esszimmer_weiss:
-- nustatyk sviesa svetaine white
+- nustatyk sviesa svetainefamess white
 area/spoken::stt_kuche_lichte:
 - isjunk sviesa virtuve
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - isjunk sviesa svetaine
 area/spoken_more::esszimmer_30:
-- nustatyk sviesa svetaine 30
+- nustatyk sviesa svetainefamess 30
 area/spoken_more::esszimmer_lichte_an:
-- ijunk sviesa svetaine
+- ijunk sviesa svetainefamess
 area/spoken_more::kuche_80:
 - nustatyk sviesa virtuve 80
 area/spoken_more::kuche_blau:

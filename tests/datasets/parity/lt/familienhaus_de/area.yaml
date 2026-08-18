@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - ijunk sviesa miegamasis4
 area/dining_lights::dining_lights_change_brightness:
-- nustatyk sviesa svetaine 54
+- nustatyk sviesa svetainefamess 54
 area/dining_lights::dining_lights_change_color:
-- nustatyk sviesa svetaine blue
+- nustatyk sviesa svetainefamess blue
 area/dining_lights::dining_lights_turn_off:
-- isjunk sviesa svetaine
+- isjunk sviesa svetainefamess
 area/dining_lights::dining_lights_turn_on:
-- ijunk sviesa svetaine
+- ijunk sviesa svetainefamess
 area/entryway_lights::entryway_lights_change_brightness:
 - nustatyk sviesa prieskambaris 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - atidaryk spyna garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- nustatyk sviesa prieskambaris 26 ir nustatyk sviesa wc 26
+- nustatyk sviesa prieskambarisgang 26 ir nustatyk sviesa wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- nustatyk sviesa prieskambaris purple ir nustatyk sviesa wc purple
+- nustatyk sviesa prieskambarisgang purple ir nustatyk sviesa wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- isjunk sviesa prieskambaris ir isjunk sviesa wc
+- isjunk sviesa prieskambarisgang ir isjunk sviesa wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- ijunk sviesa prieskambaris ir ijunk sviesa wc
+- ijunk sviesa prieskambarisgang ir ijunk sviesa wc
 area/hallway_lights::hallway_lights_change_brightness:
-- nustatyk sviesa prieskambaris 61
+- nustatyk sviesa prieskambarisgang 61
 area/hallway_lights::hallway_lights_change_color:
-- nustatyk sviesa prieskambaris orange
+- nustatyk sviesa prieskambarisgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- isjunk sviesa prieskambaris
+- isjunk sviesa prieskambarisgang
 area/hallway_lights::hallway_lights_turn_on:
-- ijunk sviesa prieskambaris
+- ijunk sviesa prieskambarisgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - nustatyk sviesa virtuve 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - isjunk viskas sviesa iskyrus virtuve iskyrus sala
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- isjunk sviesa svetaine ir isjunk sviesa virtuve
+- isjunk sviesa svetaine ir isjunk sviesa svetainefamess ir isjunk sviesa virtuve
 area/spoken_lights::spoken_stt_kitchen_off:
 - isjunk sviesa virtuve
 area/spoken_lights::spoken_stt_living_off:

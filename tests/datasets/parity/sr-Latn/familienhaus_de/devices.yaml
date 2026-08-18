@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - ukljuci plafon spavaca4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- stavi svetlo dnevna 21
+- stavi svetlo dnevnafamess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- stavi svetlo dnevna blue
+- stavi svetlo dnevnafamess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- iskljuci svetlo dnevna
+- iskljuci svetlo dnevnafamess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- ukljuci svetlo dnevna
+- ukljuci svetlo dnevnafamess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - stavi svetlo ulaz 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - ukljuci svetlo garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- stavi svetlo ulaz 11
+- stavi svetlo ulazgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- stavi svetlo ulaz white
+- stavi svetlo ulazgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- iskljuci svetlo ulaz
+- iskljuci svetlo ulazgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- ukljuci svetlo ulaz
+- ukljuci svetlo ulazgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - stavi plafon kuhinja 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,13 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - ukljuci televizor dnevna
 devices/scenes::dinner_time:
-- stavi svetlo dnevna 90 i ukljuci plafon kuhinja i stavi svetlo kuhinja 80
+- stavi svetlo dnevnafamess 90 i ukljuci plafon kuhinja i stavi svetlo kuhinja 80
 devices/scenes::good_morning:
-- ukljuci plafon kuhinja i stavi svetlo dnevna 100 i otvori zavesa dnevna i otvori
-  zavesa spavaca
+- ukljuci plafon kuhinja i stavi svetlo dnevnafamess 100 i otvori zavesa dnevna i
+  otvori zavesa spavaca
 devices/scenes::kids_bedtime:
 - iskljuci plafon spavaca2 i iskljuci plafon spavaca3 i iskljuci plafon spavaca4 i
-  stavi svetlo ulaz 15
+  stavi svetlo ulazgang 15
 devices/scenes::movie_night:
 - iskljuci plafon dnevna i stavi svetlo dnevna 20 i ukljuci televizor dnevna i zatvori
   zavesa dnevna

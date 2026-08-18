@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - ustaw ogrzewanie lazmaster 23
 area/heizung::heizung_esszimmer_23:
-- ustaw ogrzewanie salon 23
+- ustaw ogrzewanie salonfamess 23
 area/heizung::heizung_schlafzimmer_23:
 - ustaw ogrzewanie sypialnia 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - wylacz swiatlo salon
 area/lichter::esszimmer_lichter_an:
-- wlacz swiatlo salon
+- wlacz swiatlo salonfamess
 area/lichter::esszimmer_lichter_aus:
-- wylacz swiatlo salon
+- wylacz swiatlo salonfamess
 area/lichter::kuche_lichter_an:
 - wlacz swiatlo kuchnia
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - wylacz wszystko swiatlo
 area/spoken::esszimmer_weiss:
-- ustaw swiatlo salon bialy
+- ustaw swiatlo salonfamess bialy
 area/spoken::stt_kuche_lichte:
 - wylacz swiatlo kuchnia
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - wylacz swiatlo salon
 area/spoken_more::esszimmer_30:
-- ustaw swiatlo salon 30
+- ustaw swiatlo salonfamess 30
 area/spoken_more::esszimmer_lichte_an:
-- wlacz swiatlo salon
+- wlacz swiatlo salonfamess
 area/spoken_more::kuche_80:
 - ustaw swiatlo kuchnia 80
 area/spoken_more::kuche_blau:

@@ -79,13 +79,13 @@ devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
 - jalao chhad shobarghor4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- set alo bosar 21
+- set alo paribarikess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- set alo bosar blue
+- set alo paribarikess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- nibhao alo bosar
+- nibhao alo paribarikess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- jalao alo bosar
+- jalao alo paribarikess
 devices/light_entryway_light::light_entryway_light_change_brightness:
 - set alo prabesh 88
 devices/light_entryway_light::light_entryway_light_change_color:
@@ -111,13 +111,13 @@ devices/light_garage_light::light_garage_light_turn_off:
 devices/light_garage_light::light_garage_light_turn_on:
 - jalao alo garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- set alo prabesh 11
+- set alo prabeshgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- set alo prabesh white
+- set alo prabeshgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- nibhao alo prabesh
+- nibhao alo prabeshgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- jalao alo prabesh
+- jalao alo prabeshgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
 - set chhad ranna 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
@@ -239,13 +239,13 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - jalao tivi bosar
 devices/scenes::dinner_time:
-- set alo bosar 90 ebong jalao chhad ranna ebong set alo ranna 80
+- set alo paribarikess 90 ebong jalao chhad ranna ebong set alo ranna 80
 devices/scenes::good_morning:
-- jalao chhad ranna ebong set alo bosar 100 ebong khol porda bosar ebong khol porda
-  shobarghor
+- jalao chhad ranna ebong set alo paribarikess 100 ebong khol porda bosar ebong khol
+  porda shobarghor
 devices/scenes::kids_bedtime:
 - nibhao chhad shobarghor2 ebong nibhao chhad shobarghor3 ebong nibhao chhad shobarghor4
-  ebong set alo prabesh 15
+  ebong set alo prabeshgang 15
 devices/scenes::movie_night:
 - nibhao chhad bosar ebong set alo bosar 20 ebong jalao tivi bosar ebong bondho porda
   bosar

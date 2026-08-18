@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - tro golau llofft4
 area/dining_lights::dining_lights_change_brightness:
-- gosod golau ystafell 54
+- gosod golau ystafellteuluess 54
 area/dining_lights::dining_lights_change_color:
-- gosod golau ystafell blue
+- gosod golau ystafellteuluess blue
 area/dining_lights::dining_lights_turn_off:
-- diffodd golau ystafell
+- diffodd golau ystafellteuluess
 area/dining_lights::dining_lights_turn_on:
-- tro golau ystafell
+- tro golau ystafellteuluess
 area/entryway_lights::entryway_lights_change_brightness:
 - gosod golau cyntedd 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - agor clo garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- gosod golau cyntedd 26 a gosod golau toiled 26
+- gosod golau cynteddgang 26 a gosod golau toiled 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- gosod golau cyntedd purple a gosod golau toiled purple
+- gosod golau cynteddgang purple a gosod golau toiled purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- diffodd golau cyntedd a diffodd golau toiled
+- diffodd golau cynteddgang a diffodd golau toiled
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- tro golau cyntedd a tro golau toiled
+- tro golau cynteddgang a tro golau toiled
 area/hallway_lights::hallway_lights_change_brightness:
-- gosod golau cyntedd 61
+- gosod golau cynteddgang 61
 area/hallway_lights::hallway_lights_change_color:
-- gosod golau cyntedd orange
+- gosod golau cynteddgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- diffodd golau cyntedd
+- diffodd golau cynteddgang
 area/hallway_lights::hallway_lights_turn_on:
-- tro golau cyntedd
+- tro golau cynteddgang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - gosod golau cegin 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - diffodd pob golau heblaw cegin heblaw ynys
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- diffodd golau ystafell a diffodd golau cegin
+- diffodd golau ystafell a diffodd golau ystafellteuluess a diffodd golau cegin
 area/spoken_lights::spoken_stt_kitchen_off:
 - diffodd golau cegin
 area/spoken_lights::spoken_stt_living_off:

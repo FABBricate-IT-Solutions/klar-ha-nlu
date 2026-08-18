@@ -5,7 +5,7 @@ query_area/spoken::status_licht_wohnzimmer_casual:
 query_area/spoken_more::brennt_arbeitszimmer:
 - kaj luc dnevna
 query_area/spoken_more::brennt_esszimmer:
-- kaj luc dnevna
+- kaj luc dnevnafamess
 query_area/spoken_more::status_licht_schlaf_casual:
 - kaj luc spalnica
 query_area/status::status_alle_lichter:
@@ -15,13 +15,13 @@ query_area/status::status_licht_arbeitszimmer:
 query_area/status::status_licht_badezimmer:
 - kaj luc kopalmaster
 query_area/status::status_licht_esszimmer:
-- kaj luc dnevna
+- kaj luc dnevnafamess
 query_area/status::status_licht_kuche:
 - kaj luc kuhinja
 query_area/status::status_licht_wohnzimmer:
 - kaj luc dnevna
 query_area/status::status_wohn_und_esszimmer:
-- kaj dnevna in dnevna
+- kaj dnevna in dnevnafamess
 query_area/status::temperatur_wohnung:
 - kaj ogrevanje wohnung
 query_area/status::temperatur_wohnzimmer:

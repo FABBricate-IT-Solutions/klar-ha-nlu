@@ -1,7 +1,7 @@
 area/heizung::heizung_badezimmer_23:
 - stavi grejanje kupatilomaster 23
 area/heizung::heizung_esszimmer_23:
-- stavi grejanje dnevna 23
+- stavi grejanje dnevnafamess 23
 area/heizung::heizung_schlafzimmer_23:
 - stavi grejanje spavaca 23
 area/heizung::heizung_wohnzimmer_23:
@@ -27,9 +27,9 @@ area/lichter::arbeitszimmer_lichter_an:
 area/lichter::arbeitszimmer_lichter_aus:
 - iskljuci svetlo dnevna
 area/lichter::esszimmer_lichter_an:
-- ukljuci svetlo dnevna
+- ukljuci svetlo dnevnafamess
 area/lichter::esszimmer_lichter_aus:
-- iskljuci svetlo dnevna
+- iskljuci svetlo dnevnafamess
 area/lichter::kuche_lichter_an:
 - ukljuci svetlo kuhinja
 area/lichter::kuche_lichter_aus:
@@ -53,7 +53,7 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - iskljuci sve svetlo
 area/spoken::esszimmer_weiss:
-- stavi svetlo dnevna white
+- stavi svetlo dnevnafamess white
 area/spoken::stt_kuche_lichte:
 - iskljuci svetlo kuhinja
 area/spoken::stt_licht_wohnzimmer_an:
@@ -69,9 +69,9 @@ area/spoken_more::alle_ausser_arbeitszimmer:
 area/spoken_more::arbeitszimmer_lampen_aus:
 - iskljuci svetlo dnevna
 area/spoken_more::esszimmer_30:
-- stavi svetlo dnevna 30
+- stavi svetlo dnevnafamess 30
 area/spoken_more::esszimmer_lichte_an:
-- ukljuci svetlo dnevna
+- ukljuci svetlo dnevnafamess
 area/spoken_more::kuche_80:
 - stavi svetlo kuhinja 80
 area/spoken_more::kuche_blau:

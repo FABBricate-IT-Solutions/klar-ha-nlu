@@ -41,13 +41,13 @@ area/bedroom_4_lights::bedroom_4_lights_turn_off:
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
 - sytyta valo makuuhuone4
 area/dining_lights::dining_lights_change_brightness:
-- aseta valo olohuone 54
+- aseta valo olohuonefamess 54
 area/dining_lights::dining_lights_change_color:
-- aseta valo olohuone sininen
+- aseta valo olohuonefamess sininen
 area/dining_lights::dining_lights_turn_off:
-- sammuta valo olohuone
+- sammuta valo olohuonefamess
 area/dining_lights::dining_lights_turn_on:
-- sytyta valo olohuone
+- sytyta valo olohuonefamess
 area/entryway_lights::entryway_lights_change_brightness:
 - aseta valo eteinen 72
 area/entryway_lights::entryway_lights_change_color:
@@ -101,21 +101,21 @@ area/garage_locks::garage_locks_lock:
 area/garage_locks::garage_locks_unlock:
 - avaa lukko garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- aseta valo eteinen 26 ja aseta valo wc 26
+- aseta valo eteinengang 26 ja aseta valo wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- aseta valo eteinen violetti ja aseta valo wc violetti
+- aseta valo eteinengang violetti ja aseta valo wc violetti
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- sammuta valo eteinen ja sammuta valo wc
+- sammuta valo eteinengang ja sammuta valo wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- sytyta valo eteinen ja sytyta valo wc
+- sytyta valo eteinengang ja sytyta valo wc
 area/hallway_lights::hallway_lights_change_brightness:
-- aseta valo eteinen 61
+- aseta valo eteinengang 61
 area/hallway_lights::hallway_lights_change_color:
-- aseta valo eteinen oranssi
+- aseta valo eteinengang oranssi
 area/hallway_lights::hallway_lights_turn_off:
-- sammuta valo eteinen
+- sammuta valo eteinengang
 area/hallway_lights::hallway_lights_turn_on:
-- sytyta valo eteinen
+- sytyta valo eteinengang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - aseta valo keittio 45
 area/kitchen_lights::kitchen_lights_change_color:
@@ -241,7 +241,7 @@ area/spoken_lights::spoken_except_island:
 area/spoken_lights::spoken_except_kitchen:
 - sammuta kaikki valo paitsi keittio paitsi saareke
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- sammuta valo olohuone ja sammuta valo keittio
+- sammuta valo olohuone ja sammuta valo olohuonefamess ja sammuta valo keittio
 area/spoken_lights::spoken_stt_kitchen_off:
 - sammuta valo keittio
 area/spoken_lights::spoken_stt_living_off:
