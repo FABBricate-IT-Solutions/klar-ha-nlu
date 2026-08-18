@@ -3,14 +3,12 @@ mod legacy;
 pub(crate) mod parity;
 mod runner;
 mod schema;
-mod waivers;
 mod world;
 
 use self::schema::Case;
 use self::world::TestWorld;
 use klar_nlu::home::{default_home, load_home_config};
 use klar_nlu::types::HomeGraph;
-use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
 
 #[allow(unused_imports)]
@@ -19,10 +17,7 @@ pub(crate) use runner::{print_stats, run_groups, run_groups_lang, run_suite};
 pub(crate) struct RunStats {
     pub(crate) ok: usize,
     pub(crate) fail: usize,
-    pub(crate) waived: usize,
     pub(crate) fails: Vec<String>,
-    pub(crate) waivers: Vec<String>,
-    pub(crate) used_waivers: BTreeSet<&'static str>,
 }
 
 impl RunStats {
@@ -30,10 +25,7 @@ impl RunStats {
     pub(crate) fn absorb(&mut self, other: Self) {
         self.ok += other.ok;
         self.fail += other.fail;
-        self.waived += other.waived;
         self.fails.extend(other.fails);
-        self.waivers.extend(other.waivers);
-        self.used_waivers.extend(other.used_waivers);
     }
 }
 

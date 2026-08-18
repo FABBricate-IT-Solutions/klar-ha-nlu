@@ -2,11 +2,6 @@
 
 mod catalog;
 mod cli;
-mod de;
-mod de_pack;
-mod de_speech;
-mod en;
-mod en_pack;
 mod external;
 mod fuzzy;
 mod groups;

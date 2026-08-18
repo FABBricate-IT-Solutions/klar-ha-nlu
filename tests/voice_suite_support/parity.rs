@@ -43,7 +43,7 @@ struct LocaleRooms {
 
 pub(crate) fn run_parity(lang: &str) -> RunStats {
     let rooms = load_rooms(lang);
-    let mut stats = RunStats { ok: 0, fail: 0, waived: 0, fails: Vec::new(), waivers: Vec::new(), used_waivers: Default::default() };
+    let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
     if lang == "en" {
         stats.absorb(run_groups("wohnung_en", WOHNUNG, suite_home("wohnung_en")));
         stats.absorb(run_groups("family_home_en", FAMILY, suite_home("family_home_en")));

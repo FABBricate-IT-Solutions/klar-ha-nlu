@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Generate compiled Assist language packs (not de/en)."""
+"""Generate compiled Assist language packs.
+
+de/en already live under src/lang/packs/ as hand-written reference packs.
+This script never overwrites them; it only registers their paths.
+"""
 
 from __future__ import annotations
 

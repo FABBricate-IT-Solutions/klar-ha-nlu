@@ -28,12 +28,6 @@ ORACLE_PREFIXES = (
     ("tests/datasets/wohnung_en", "en"),
     ("tests/datasets/family_home_en", "en"),
 )
-BUILTIN_FILES = {
-    "src/lang/de_pack.rs": "de",
-    "src/lang/de.rs": "de",
-    "src/lang/en_pack.rs": "en",
-    "src/lang/en.rs": "en",
-}
 VOICE_DE = (
     "suite_deutsch",
     "suite_deutsch_familienhaus",
@@ -71,9 +65,6 @@ def locales_from_paths(paths: list[str], known: dict[str, str] | None = None) ->
         path = raw.replace("\\", "/").strip()
         if not path or path.endswith("/"):
             path = path.rstrip("/")
-        if path in BUILTIN_FILES:
-            found.add(BUILTIN_FILES[path])
-            continue
         hit = False
         for prefix, tag in ORACLE_PREFIXES:
             if path == prefix or path.startswith(prefix + "/"):
@@ -177,8 +168,8 @@ def self_test() -> None:
     }
     assert locales_from_paths(["src/lang/packs/cs/pack.rs"], known) == {"cs"}
     assert locales_from_paths(["src/lang/packs/de_ch/speech.rs"], known) == {"de-CH"}
-    assert locales_from_paths(["src/lang/de_pack.rs", "src/lang/de.rs"], known) == {"de"}
-    assert locales_from_paths(["src/lang/en_pack.rs"], known) == {"en"}
+    assert locales_from_paths(["src/lang/packs/de/pack.rs", "src/lang/packs/de/verbs.rs"], known) == {"de"}
+    assert locales_from_paths(["src/lang/packs/en/speech.rs"], known) == {"en"}
     assert locales_from_paths(["tests/datasets/parity/zh-CN/wohnung_mittel/area.yaml"], known) == {"zh-CN"}
     assert locales_from_paths(["tests/datasets/assist/fr/representative.yaml"], known) == {"fr"}
     assert locales_from_paths(["tests/datasets/wohnung_mittel/area/x.yaml"], known) == {"de"}

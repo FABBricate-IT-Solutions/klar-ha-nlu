@@ -17,7 +17,7 @@ BUILTINS = [
         "native": "Deutsch",
         "script": "Latn",
         "variants": ["de", "de-DE"],
-        "path": "de::PACK",
+        "path": "packs::de::PACK",
     },
     {
         "code": "en",
@@ -25,7 +25,7 @@ BUILTINS = [
         "native": "English",
         "script": "Latn",
         "variants": ["en", "en-US"],
-        "path": "en::PACK",
+        "path": "packs::en::PACK",
     },
 ]
 

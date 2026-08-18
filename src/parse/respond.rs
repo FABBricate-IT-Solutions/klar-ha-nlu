@@ -154,9 +154,9 @@ fn device_label(name: &str, domain: &str) -> String {
     let pack = speech();
     let pretty = pretty_device(name);
     let folded = compact(&pretty);
-    let named = catalog().light_nouns.iter().any(|n| folded.contains(n))
-        || catalog().named_device.iter().any(|n| folded.contains(n))
-        || catalog().light_singular.iter().any(|n| folded.contains(n));
+    let named = catalog().light_nouns().iter().any(|n| folded.contains(n))
+        || catalog().named_device().iter().any(|n| folded.contains(n))
+        || catalog().light_singular().iter().any(|n| folded.contains(n));
     if domain == "light" && !named {
         format!("{pretty}{}", pack.light_suffix)
     } else {
@@ -194,7 +194,7 @@ fn domain_of(id: &str) -> &str {
 fn climate_noun(intent: &Intent) -> &'static str {
     let pack = speech();
     let id = intent.slot("entity_id").unwrap_or("");
-    let cool = catalog().climate_cool.iter().any(|w| id.contains(w)) && !id.contains("thermostat");
+    let cool = catalog().climate_cool().iter().any(|w| id.contains(w)) && !id.contains("thermostat");
     if cool {
         pack.cool_noun
     } else {
@@ -206,9 +206,9 @@ fn climate_named(target: &str, noun: &str) -> bool {
     let noun_folded = compact(noun);
     crate::parse::normalize::tokenize(target).into_iter().any(|folded| {
         folded == noun_folded
-            || catalog().climate_nouns.contains(folded.as_str())
-            || catalog().climate_cool.contains(folded.as_str())
-            || catalog().climate_heat.contains(folded.as_str())
+            || catalog().climate_nouns().contains(folded.as_str())
+            || catalog().climate_cool().contains(folded.as_str())
+            || catalog().climate_heat().contains(folded.as_str())
             || matches!(folded.as_str(), "heizung" | "heat" | "heater" | "thermostat" | "klima" | "klimaanlage" | "ac" | "aircon")
     })
 }
@@ -229,8 +229,8 @@ fn vacuum_name(where_: &str) -> String {
 fn pretty_device(raw: &str) -> String {
     let parts: Vec<&str> = raw.split_whitespace().filter(|p| !p.is_empty()).collect();
     let tail = parts.last().copied().unwrap_or("");
-    let light = catalog().light_nouns.contains(tail) || catalog().light_plural.contains(tail);
-    let all = parts.first().is_some_and(|p| catalog().all_words.contains(p));
+    let light = catalog().light_nouns().contains(tail) || catalog().light_plural().contains(tail);
+    let all = parts.first().is_some_and(|p| catalog().all_words().contains(p));
     if light && !all && parts.len() >= 2 {
         let head = parts[..parts.len() - 1].join("");
         return title_word(&format!("{head}{tail}"));

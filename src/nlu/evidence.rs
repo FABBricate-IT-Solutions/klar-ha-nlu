@@ -11,7 +11,7 @@ pub(super) struct ActionHypothesis {
 }
 
 pub(super) fn action_hypotheses(tokens: &[String], catalog: &'static Catalog) -> Vec<ActionHypothesis> {
-    let mut detected = super::legacy::with_catalog(catalog, || detect_actions_bounded(tokens, super::binding::MAX_ACTION_HYPOTHESES));
+    let mut detected = detect_actions_bounded(tokens, super::binding::MAX_ACTION_HYPOTHESES);
     let selected = prefer_action(&detected);
     detected.sort_by_key(|(index, action)| (u8::from(Some(*action) != selected), *index));
     let mut rows = detected

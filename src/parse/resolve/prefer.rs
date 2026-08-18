@@ -6,13 +6,13 @@ use crate::types::{EntityRec, HomeGraph};
 
 pub(super) fn prefer_entry_lock(tokens: &[String], home: &HomeGraph, candidates: &mut Vec<(f64, EntityRec)>) {
     let cat = catalog();
-    if crate::parse::action::is_garage_cover(tokens) && !cat.any(tokens, &cat.lock_verbs) {
+    if crate::parse::action::is_garage_cover(tokens) && !cat.any(tokens, cat.lock_verbs()) {
         return;
     }
-    if cat.any(tokens, &cat.sensor_words) {
+    if cat.any(tokens, cat.sensor_words()) {
         return;
     }
-    let lockish = cat.any(tokens, &cat.lock_verbs) || cat.any(tokens, &cat.lock_nouns) || cat.any(tokens, &cat.door_nouns);
+    let lockish = cat.any(tokens, cat.lock_verbs()) || cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns());
     if !lockish {
         return;
     }
@@ -55,16 +55,16 @@ pub(super) fn prefer_entry_lock(tokens: &[String], home: &HomeGraph, candidates:
 pub(super) fn lock_mentioned(tokens: &[String], entity: &EntityRec) -> bool {
     let cat = catalog();
     tokens.iter().any(|token| {
-        if token.len() <= 2 || cat.lock_nouns.contains(token.as_str()) {
+        if token.len() <= 2 || cat.lock_nouns().contains(token.as_str()) {
             return false;
         }
-        if cat.door_nouns.contains(token.as_str()) {
+        if cat.door_nouns().contains(token.as_str()) {
             return token.len() > 6 && exact_lock_label(entity, token);
         }
-        if cat.entry_words.contains(token.as_str()) {
+        if cat.entry_words().contains(token.as_str()) {
             return is_entry_lock(entity) && !garage_entry_phrase(tokens);
         }
-        if (cat.garage_words.contains(token.as_str()) || token == "garage") && entity.area.as_deref() == Some("garage") {
+        if (cat.garage_words().contains(token.as_str()) || token == "garage") && entity.area.as_deref() == Some("garage") {
             return true;
         }
         entity.area.as_deref().is_some_and(|area| area == token || fold_umlaut(area) == *token)
@@ -99,16 +99,16 @@ pub(super) fn mentioned_locks(tokens: &[String], candidates: &[(f64, EntityRec)]
 
 pub(super) fn two_lock_rooms(tokens: &[String]) -> bool {
     let cat = catalog();
-    let has_entry = cat.any(tokens, &cat.entry_words);
-    let has_garage = tokens.iter().any(|token| token == "garage" || cat.garage_words.contains(token.as_str()));
+    let has_entry = cat.any(tokens, cat.entry_words());
+    let has_garage = tokens.iter().any(|token| token == "garage" || cat.garage_words().contains(token.as_str()));
     has_entry && has_garage && !garage_entry_phrase(tokens)
 }
 
 fn garage_entry_phrase(tokens: &[String]) -> bool {
     let cat = catalog();
     tokens.windows(2).any(|window| {
-        (window[0] == "garage" || cat.garage_words.contains(window[0].as_str()))
-            && (window[1] == "entry" || cat.entry_words.contains(window[1].as_str()))
+        (window[0] == "garage" || cat.garage_words().contains(window[0].as_str()))
+            && (window[1] == "entry" || cat.entry_words().contains(window[1].as_str()))
     })
 }
 
@@ -117,20 +117,20 @@ fn should_seed_locks(tokens: &[String], has_lock: bool) -> bool {
         return true;
     }
     let cat = catalog();
-    if cat.any(tokens, &cat.lock_verbs) && cat.any(tokens, &cat.conjunctions) {
+    if cat.any(tokens, cat.lock_verbs()) && cat.any(tokens, cat.conjunctions()) {
         return true;
     }
     if has_lock {
         return false;
     }
-    let door = cat.any(tokens, &cat.door_nouns);
-    let lock_noun = cat.any(tokens, &cat.lock_nouns);
+    let door = cat.any(tokens, cat.door_nouns());
+    let lock_noun = cat.any(tokens, cat.lock_nouns());
     if !door && !lock_noun {
         return false;
     }
     let grounded = door
-        || cat.any(tokens, &cat.entry_words)
-        || tokens.iter().any(|token| token == "garage" || cat.garage_words.contains(token.as_str()));
+        || cat.any(tokens, cat.entry_words())
+        || tokens.iter().any(|token| token == "garage" || cat.garage_words().contains(token.as_str()));
     if pronoun_follow(tokens) && !grounded {
         return false;
     }
@@ -143,9 +143,9 @@ fn pronoun_follow(tokens: &[String]) -> bool {
 
 fn session_lock_follow(tokens: &[String]) -> bool {
     let cat = catalog();
-    !cat.any(tokens, &cat.door_nouns)
-        && !cat.any(tokens, &cat.entry_words)
-        && !tokens.iter().any(|token| token == "garage" || cat.garage_words.contains(token.as_str()))
+    !cat.any(tokens, cat.door_nouns())
+        && !cat.any(tokens, cat.entry_words())
+        && !tokens.iter().any(|token| token == "garage" || cat.garage_words().contains(token.as_str()))
 }
 
 fn is_entry_lock(entity: &EntityRec) -> bool {
@@ -156,7 +156,7 @@ fn is_entry_lock(entity: &EntityRec) -> bool {
     entity.entity_id.contains("front")
         || entity.area.as_deref().is_some_and(|area| area == "entryway" || area == "entry")
         || cat
-            .entry_words
+            .entry_words()
             .iter()
             .any(|word| fold_umlaut(&entity.name).contains(word) || entity.aliases.iter().any(|alias| fold_umlaut(alias).contains(word)))
 }

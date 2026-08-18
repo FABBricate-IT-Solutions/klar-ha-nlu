@@ -1,6 +1,7 @@
 use crate::home::expose::assist_visible;
 use crate::home::gaps::needs_mapping;
 use crate::io::bundle::BundleEntry;
+use crate::lang::Catalog;
 use crate::parse::normalize::compact;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 use serde::Serialize;
@@ -113,9 +114,19 @@ pub struct Dashboard {
     pub traffic: Traffic,
 }
 
-pub fn build_dashboard(home: &HomeGraph, bundle: &[BundleEntry], dismissed: &[String], live_traffic: Traffic) -> Dashboard {
-    let assignment: Vec<_> =
-        home.entities.iter().filter(|entity| assist_visible(entity, home)).map(|entity| assignment_row(entity, home, dismissed)).collect();
+pub fn build_dashboard(
+    home: &HomeGraph,
+    bundle: &[BundleEntry],
+    dismissed: &[String],
+    live_traffic: Traffic,
+    catalog: &Catalog,
+) -> Dashboard {
+    let assignment: Vec<_> = home
+        .entities
+        .iter()
+        .filter(|entity| assist_visible(entity, home))
+        .map(|entity| assignment_row(entity, home, dismissed, catalog))
+        .collect();
     let high = assignment.iter().filter(|row| row.confidence == Confidence::High).count();
     let medium = assignment.iter().filter(|row| row.confidence == Confidence::Medium).count();
     let low = assignment.iter().filter(|row| row.confidence == Confidence::Low).count();
@@ -139,8 +150,8 @@ pub fn build_dashboard(home: &HomeGraph, bundle: &[BundleEntry], dismissed: &[St
     }
 }
 
-pub fn assignment_row(entity: &EntityRec, home: &HomeGraph, dismissed: &[String]) -> AssignmentRow {
-    let confidence = confidence(entity, home);
+pub fn assignment_row(entity: &EntityRec, home: &HomeGraph, dismissed: &[String], catalog: &Catalog) -> AssignmentRow {
+    let confidence = confidence(entity, home, catalog);
     let mut reasons = Vec::new();
     if entity.area.is_none() {
         reasons.push("missing_area".into());
@@ -163,10 +174,10 @@ pub fn assignment_row(entity: &EntityRec, home: &HomeGraph, dismissed: &[String]
     }
 }
 
-pub fn confidence(entity: &EntityRec, home: &HomeGraph) -> Confidence {
+pub fn confidence(entity: &EntityRec, home: &HomeGraph, catalog: &Catalog) -> Confidence {
     if entity.area.is_none() {
         Confidence::Low
-    } else if needs_mapping(entity, home, crate::lang::catalog()) {
+    } else if needs_mapping(entity, home, catalog) {
         Confidence::Medium
     } else {
         Confidence::High
@@ -359,15 +370,15 @@ mod tests {
     #[test]
     fn confidence_tracks_mapping_need() {
         let home = home();
-        assert_eq!(confidence(&home.entities[0], &home), Confidence::Low);
-        assert_eq!(confidence(&home.entities[1], &home), Confidence::Medium);
-        assert_eq!(confidence(&home.entities[2], &home), Confidence::High);
+        assert_eq!(confidence(&home.entities[0], &home, crate::lang::catalog()), Confidence::Low);
+        assert_eq!(confidence(&home.entities[1], &home, crate::lang::catalog()), Confidence::Medium);
+        assert_eq!(confidence(&home.entities[2], &home, crate::lang::catalog()), Confidence::High);
     }
 
     #[test]
     fn dashboard_counts_visible_entities() {
         let home = home();
-        let dash = build_dashboard(&home, &[], &[], Traffic::default());
+        let dash = build_dashboard(&home, &[], &[], Traffic::default(), crate::lang::catalog());
         assert_eq!(dash.counts.assist, 3);
         assert_eq!(dash.counts.high + dash.counts.medium + dash.counts.low, dash.counts.assist);
         assert_eq!(dash.coverage.leftover, dash.counts.medium + dash.counts.low);

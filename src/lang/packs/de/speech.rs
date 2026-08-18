@@ -1,4 +1,4 @@
-use super::speech::Speech;
+use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Das habe ich nicht zugeordnet. Sag zum Beispiel: Licht im Wohnzimmer an.",

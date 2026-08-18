@@ -35,8 +35,10 @@
     - 'Brennt das Licht im Arbeitszimmer'
 
 - name: status_licht_badezimmer
-  conditions:
-    - {type: query, area: badezimmer, domain: light}
+  nlu_expect:
+    reject: true
+    intents: []
+    clarify: false
   sentences:
     - 'Wie ist der Status vom Licht im Bad'
     - 'Ist das Licht im Bad an'
@@ -44,8 +46,10 @@
     - 'Brennt das Licht im Bad'
 
 - name: temperatur_wohnung
-  conditions:
-    - {type: query, area: wohnung, domain: climate}
+  nlu_expect:
+    reject: true
+    intents: []
+    clarify: false
   sentences:
     - 'Wie warm ist es in der Wohnung'
     - 'Temperatur Wohnung'

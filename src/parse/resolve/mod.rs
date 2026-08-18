@@ -99,14 +99,14 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
 
-    if domain.is_none_or(|d| d == "light") && catalog().any(tokens, &catalog().ceiling) {
+    if domain.is_none_or(|d| d == "light") && catalog().any(tokens, catalog().ceiling()) {
         let fixtures: Vec<EntityRec> = home
             .entities
             .iter()
             .filter(|e| assist_visible(e, home))
             .filter(|e| {
                 e.domain == "light"
-                    && catalog().ceiling.iter().any(|needle| {
+                    && catalog().ceiling().iter().any(|needle| {
                         e.name.to_lowercase().contains(needle)
                             || e.entity_id.contains(needle)
                             || e.aliases.iter().any(|a| a.contains(needle))
@@ -120,15 +120,15 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
 
-    if domain.is_none_or(|d| d == "light") && !catalog().any(tokens, &catalog().timer_nouns) {
+    if domain.is_none_or(|d| d == "light") && !catalog().any(tokens, catalog().timer_nouns()) {
         if let Some(picked) = pick_fixture(tokens, home, scope) {
             return Resolved { areas, floors, entities: picked, ambiguous: Vec::new() };
         }
     }
     if !areas.is_empty()
-        && catalog().any(tokens, &catalog().lamp_fixture)
-        && !catalog().any(tokens, &catalog().light_plural)
-        && !catalog().any(tokens, &catalog().room_level)
+        && catalog().any(tokens, catalog().lamp_fixture())
+        && !catalog().any(tokens, catalog().light_plural())
+        && !catalog().any(tokens, catalog().room_level())
     {
         let lights: Vec<EntityRec> = home
             .entities
@@ -171,24 +171,24 @@ pub(crate) fn entity_name_is_mentioned(tokens: &[String], entity: &EntityRec, ho
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
     let cat = catalog();
-    let room_level = cat.any(tokens, &cat.light_plural) || cat.any(tokens, &cat.room_level);
-    let needle = if cat.any(tokens, &cat.island) {
+    let room_level = cat.any(tokens, cat.light_plural()) || cat.any(tokens, cat.room_level());
+    let needle = if cat.any(tokens, cat.island()) {
         Some("island")
-    } else if cat.any(tokens, &cat.pendant) {
+    } else if cat.any(tokens, cat.pendant()) {
         Some("pendant")
-    } else if cat.any(tokens, &cat.bedside) {
-        if cat.any(tokens, &cat.right) {
+    } else if cat.any(tokens, cat.bedside()) {
+        if cat.any(tokens, cat.right()) {
             Some("right")
-        } else if cat.any(tokens, &cat.left) {
+        } else if cat.any(tokens, cat.left()) {
             Some("left")
         } else {
             Some("bedside")
         }
     } else if tokens.iter().any(|token| token == "floor" || cat.fixture_alias("floor").contains(&token.as_str())) {
         Some("floor")
-    } else if !room_level && cat.any(tokens, &cat.lamp_fixture) {
+    } else if !room_level && cat.any(tokens, cat.lamp_fixture()) {
         Some("lamp")
-    } else if cat.any(tokens, &cat.ceiling) {
+    } else if cat.any(tokens, cat.ceiling()) {
         Some("ceiling")
     } else {
         None
@@ -211,7 +211,7 @@ pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
     let hits: Vec<&str> = if aliases.is_empty() { vec![needle] } else { aliases.to_vec() };
     let matched = hits.iter().any(|alias| blob.contains(alias));
     if needle == "lamp" {
-        matched && !catalog().ceiling.iter().any(|word| blob.contains(word))
+        matched && !catalog().ceiling().iter().any(|word| blob.contains(word))
     } else {
         matched
     }
@@ -282,15 +282,15 @@ pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
     if label.is_empty() {
         return false;
     }
-    if label.contains(' ') || label.contains('_') {
-        let glued = compact(label);
-        if glued.len() > 6 && tokens.contains(&glued) {
-            return true;
-        }
-        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty()).collect();
-        return parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p)));
+    let compact_label = compact(label);
+    if tokens.iter().any(|token| token_eq(token, label) || compact(token) == compact_label) {
+        return true;
     }
-    tokens.iter().any(|t| token_eq(t, label))
+    if label.contains(' ') || label.contains('_') || label.contains('-') {
+        let parts: Vec<&str> = label.split([' ', '_', '-']).filter(|part| !part.is_empty()).collect();
+        return !parts.is_empty() && parts.iter().all(|part| tokens.iter().any(|token| token_eq(token, part)));
+    }
+    false
 }
 
 pub(crate) fn token_eq(token: &str, label: &str) -> bool {
@@ -315,21 +315,21 @@ fn number_word(token: &str) -> Option<String> {
 
 pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
     let cat = catalog();
-    if cat.any(tokens, &cat.timer_nouns) {
+    if cat.any(tokens, cat.timer_nouns()) {
         return Some("timer");
     }
     for t in tokens {
         if *t == "hue" {
             return Some("light");
         }
-        if cat.door_nouns.contains(t.as_str()) {
-            if cat.any(tokens, &cat.sensor_words) {
+        if cat.door_nouns().contains(t.as_str()) {
+            if cat.any(tokens, cat.sensor_words()) {
                 return Some("binary_sensor");
             }
-            if tokens.iter().any(|x| cat.lock_verbs.contains(x.as_str())) {
+            if tokens.iter().any(|x| cat.lock_verbs().contains(x.as_str())) {
                 return Some("lock");
             }
-            if cat.any(tokens, &cat.entry_words) {
+            if cat.any(tokens, cat.entry_words()) {
                 return Some("lock");
             }
             if is_garage_cover(tokens) {
@@ -337,8 +337,8 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
             }
             return Some("lock");
         }
-        if cat.window_words.contains(t.as_str()) {
-            if cat.any(tokens, &cat.sensor_words) {
+        if cat.window_words().contains(t.as_str()) {
+            if cat.any(tokens, cat.sensor_words()) {
                 return Some("binary_sensor");
             }
             return Some("cover");
@@ -347,12 +347,12 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
             continue;
         };
         if domain == "switch" {
-            let skip_laundry = cat.laundry_area.contains(t.as_str())
+            let skip_laundry = cat.laundry_area().contains(t.as_str())
                 && (has_light_noun(tokens)
                     || crate::parse::numbers::first_number(tokens).is_some()
                     || is_query_token(tokens)
                     || tokens.iter().any(|x| catalog().color(x).is_some()));
-            let skip_bare_machine = cat.bare_switch.contains(t.as_str()) && !cat.any(tokens, &cat.laundry_hint);
+            let skip_bare_machine = cat.bare_switch().contains(t.as_str()) && !cat.any(tokens, cat.laundry_hint());
             if skip_laundry || skip_bare_machine {
                 continue;
             }
@@ -369,10 +369,10 @@ pub(crate) fn pick_timers(tokens: &[String], home: &HomeGraph) -> Vec<String> {
     if tokens.iter().any(|t| catalog().is_all(t)) && !tokens.iter().any(|t| is_time_unit(t)) {
         return ids.into_iter().filter(|id| !id.contains("abstract")).collect();
     }
-    if catalog().any(tokens, &catalog().oven) {
+    if catalog().any(tokens, catalog().oven()) {
         return want("oven");
     }
-    if catalog().any(tokens, &catalog().laundry_timer)
+    if catalog().any(tokens, catalog().laundry_timer())
         || crate::home::policy::timer_hint(home, crate::parse::numbers::first_number(tokens)) == Some("laundry")
     {
         return want("laundry");
@@ -410,22 +410,22 @@ pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bo
 
 pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
     let cat = catalog();
-    if cat.any(tokens, &cat.temp_query)
-        || cat.any(tokens, &cat.light_nouns)
-        || cat.any(tokens, &cat.climate_nouns)
-        || cat.any(tokens, &cat.cover_nouns)
-        || cat.any(tokens, &cat.fan_nouns)
-        || cat.any(tokens, &cat.lock_nouns)
-        || cat.any(tokens, &cat.vacuum_nouns)
-        || cat.any(tokens, &cat.media_nouns)
-        || cat.any(tokens, &cat.timer_nouns)
-        || cat.any(tokens, &cat.list_nouns)
-        || cat.any(tokens, &cat.scene_nouns)
-        || cat.any(tokens, &cat.named_device)
-        || cat.any(tokens, &cat.on_words)
-        || cat.any(tokens, &cat.off_words)
-        || cat.any(tokens, &cat.laundry_machines)
-        || cat.any(tokens, &cat.status_words)
+    if cat.any(tokens, cat.temp_query())
+        || cat.any(tokens, cat.light_nouns())
+        || cat.any(tokens, cat.climate_nouns())
+        || cat.any(tokens, cat.cover_nouns())
+        || cat.any(tokens, cat.fan_nouns())
+        || cat.any(tokens, cat.lock_nouns())
+        || cat.any(tokens, cat.vacuum_nouns())
+        || cat.any(tokens, cat.media_nouns())
+        || cat.any(tokens, cat.timer_nouns())
+        || cat.any(tokens, cat.list_nouns())
+        || cat.any(tokens, cat.scene_nouns())
+        || cat.any(tokens, cat.named_device())
+        || cat.any(tokens, cat.on_words())
+        || cat.any(tokens, cat.off_words())
+        || cat.any(tokens, cat.laundry_machines())
+        || cat.any(tokens, cat.status_words())
     {
         return true;
     }

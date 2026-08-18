@@ -140,13 +140,13 @@ fn locale_overlay_adds_tokens_without_editing_rust() {
     assert_eq!(pin_language("fr-FR").unwrap(), "fr-FR");
     let fr = catalog_for(&["fr".into()]);
     assert_eq!(fr.verb("allume"), Some(VerbKind::On));
-    assert!(fr.light_nouns.contains("lumiere"));
+    assert!(fr.light_nouns().contains("lumiere"));
     let en = catalog_for(&["en".into()]);
     assert_eq!(en.verb("allume"), None);
     assert_eq!(en.verb("colour"), None);
     let gb = catalog_for(&["en-GB".into()]);
     assert_eq!(gb.verb("colour"), Some(VerbKind::Color));
-    assert!(gb.light_nouns.contains("bulb"));
+    assert!(gb.light_nouns().contains("bulb"));
     reset_runtime_packs();
 }
 

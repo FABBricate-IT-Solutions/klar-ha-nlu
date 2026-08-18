@@ -21,7 +21,7 @@ pub(crate) fn media_clause(
 ) -> Option<ClauseOut> {
     let intent = status_intent(tokens)
         .or_else(|| volume_intent(tokens, session, number))
-        .or_else(|| transport_intent(tokens, action))
+        .or_else(|| transport_intent(tokens, action, home, resolved))
         .or_else(|| favorite_intent(tokens))
         .or_else(|| transfer_intent(tokens, home, session))
         .or_else(|| play_intent(tokens, raw, home, action, resolved))?;
@@ -76,14 +76,17 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
     Some(intent)
 }
 
-fn transport_intent(tokens: &[String], action: Action) -> Option<Intent> {
+fn transport_intent(tokens: &[String], action: Action, home: &HomeGraph, resolved: &Resolved) -> Option<Intent> {
     let name = if matches!(action, Action::MediaPause) {
         "HassMediaPause"
     } else if any(tokens, &["vorheriges", "vorheriger", "previous", "zurueck"]) && media_context(tokens) {
         "HassMediaPrevious"
     } else if matches!(action, Action::MediaNext) {
         "HassMediaNext"
-    } else if (matches!(action, Action::MediaPlay) && !has_search_tail(tokens)) || (matches!(action, Action::On) && music_resume(tokens)) {
+    } else if (matches!(action, Action::MediaPlay) && !has_search_tail(tokens, home, resolved))
+        || (matches!(action, Action::On) && music_resume(tokens))
+        || any(tokens, &["resume", "unpause", "weiter", "fortsetzen"]) && !has_search_tail(tokens, home, resolved)
+    {
         "HassMediaUnpause"
     } else {
         return None;
@@ -107,7 +110,7 @@ pub(crate) fn media_transport_form(tokens: &[String], action: Action) -> bool {
                     | "resume"
                     | "unpause"
             )
-        }) && catalog().any(tokens, &catalog().media_nouns))
+        }) && catalog().any(tokens, catalog().media_nouns()))
 }
 
 fn play_intent(tokens: &[String], raw: &[String], home: &HomeGraph, action: Action, resolved: &Resolved) -> Option<Intent> {
@@ -152,7 +155,7 @@ fn favorite_intent(tokens: &[String]) -> Option<Intent> {
 }
 
 fn transfer_intent(tokens: &[String], home: &HomeGraph, session: &Session) -> Option<Intent> {
-    if !any(tokens, &["verschiebe", "move", "transfer"]) || !catalog().any(tokens, &catalog().media_nouns) {
+    if !any(tokens, &["verschiebe", "move", "transfer"]) || !catalog().any(tokens, catalog().media_nouns()) {
         return None;
     }
     let mut intent = Intent::new("MassTransferQueue");
@@ -242,6 +245,7 @@ fn skip_media_word(word: &str, home: &HomeGraph, resolved: &Resolved) -> bool {
     is_play_word(word)
         || catalog().is_filler(word)
         || catalog().is_conj(word)
+        || catalog().command_hedges().contains(word)
         || SKIP_MEDIA.contains(&word)
         || media_type_word(word).is_some()
         || resolved.areas.iter().any(|area| area_word(word, area, home))
@@ -430,7 +434,7 @@ pub(crate) fn now_playing_status(tokens: &[String]) -> bool {
         || has_phrase(tokens, &["what", "s", "playing"])
         || has_phrase(tokens, &["what", "is", "playing"])
         || (is_question(tokens) && any(tokens, &["titel", "track"]) && any(tokens, &["aktuell", "current", "now"]))
-        || (is_question(tokens) && !catalog().any(tokens, &catalog().tv_words) && music_context(tokens))
+        || (is_question(tokens) && !catalog().any(tokens, catalog().tv_words()) && music_context(tokens))
 }
 
 fn player_status(tokens: &[String]) -> bool {
@@ -438,7 +442,7 @@ fn player_status(tokens: &[String]) -> bool {
 }
 
 fn media_context(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().media_nouns) || any(tokens, &["song", "track", "titel", "lied", "musik", "music"])
+    catalog().any(tokens, catalog().media_nouns()) || any(tokens, &["song", "track", "titel", "lied", "musik", "music"])
 }
 
 fn music_context(tokens: &[String]) -> bool {
@@ -449,13 +453,8 @@ fn music_resume(tokens: &[String]) -> bool {
     any(tokens, &["musik", "music", "radio", "playback"]) && any(tokens, &["an", "on", "weiter", "resume", "unpause"])
 }
 
-fn has_search_tail(tokens: &[String]) -> bool {
-    !clean_media_words(
-        tokens,
-        &HomeGraph::default(),
-        &Resolved { areas: Vec::new(), floors: Vec::new(), entities: Vec::new(), ambiguous: Vec::new() },
-    )
-    .is_empty()
+fn has_search_tail(tokens: &[String], home: &HomeGraph, resolved: &Resolved) -> bool {
+    !clean_media_words(tokens, home, resolved).is_empty()
 }
 
 fn is_play_word(word: &str) -> bool {
@@ -475,8 +474,8 @@ fn is_question(tokens: &[String]) -> bool {
     let cat = catalog();
     any(tokens, &["was", "wie", "ist", "sind", "what", "whats", "is", "are", "how"])
         || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Query)))
-        || cat.any(tokens, &cat.question_words)
-        || cat.any(tokens, &cat.query_hint)
+        || cat.any(tokens, cat.question_words())
+        || cat.any(tokens, cat.query_hint())
 }
 
 fn area_word(word: &str, area_id: &str, home: &HomeGraph) -> bool {

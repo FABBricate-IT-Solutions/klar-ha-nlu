@@ -57,14 +57,14 @@ pub(super) fn score_entity(tokens: &[String], fuzzy_tokens: &[&str], entity: &En
             continue;
         }
         if super::token_hit(tokens, &label)
-            && !catalog().generic.contains(&label.as_str())
+            && !catalog().generic().contains(&label.as_str())
             && !catalog().is_conj(&label)
             && !catalog().is_filler(&label)
         {
             best = best.max(if label.contains(' ') || label.contains('_') { 1.0 } else { 0.94 });
             continue;
         }
-        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty() && !catalog().generic.contains(p)).collect();
+        let parts: Vec<&str> = label.split([' ', '_']).filter(|p| !p.is_empty() && !catalog().generic().contains(p)).collect();
         if parts.len() > 1 && parts.iter().all(|p| tokens.iter().any(|t| token_eq(t, p))) {
             best = best.max(0.96);
             continue;
@@ -109,7 +109,7 @@ pub(super) fn entity_name_evidence(tokens: &[String], entity: &EntityRec, home: 
                 !label.is_empty()
                     && tokens.iter().any(|token| {
                         let token = compact(token);
-                        catalog().list_nouns.iter().any(|suffix| token == format!("{label}{}", compact(suffix)))
+                        catalog().list_nouns().iter().any(|suffix| token == format!("{label}{}", compact(suffix)))
                     })
             }))
 }
@@ -129,7 +129,7 @@ fn fuzzy_label_window(tokens: &[String], fuzzy_tokens: &[&str], label: &str) -> 
 
 pub(crate) fn known_target_token(token: &str, home: &HomeGraph) -> bool {
     let cat = catalog();
-    if cat.generic.contains(token)
+    if cat.generic().contains(token)
         || cat.is_filler(token)
         || cat.is_particle(token)
         || cat.verb(token).is_some()
@@ -173,7 +173,7 @@ fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
     if tokens.iter().any(|t| {
         catalog().fixture_alias(t).iter().any(|alias| {
             let a = compact(alias);
-            a.len() >= 5 && !catalog().generic.contains(&a.as_str()) && name.contains(&a)
+            a.len() >= 5 && !catalog().generic().contains(&a.as_str()) && name.contains(&a)
         })
     }) {
         0.94
@@ -183,12 +183,12 @@ fn fixture_boost(tokens: &[String], entity: &EntityRec) -> f64 {
 }
 
 fn outlet_boost(tokens: &[String], entity: &EntityRec) -> f64 {
-    if !catalog().any(tokens, &catalog().outlet_words) {
+    if !catalog().any(tokens, catalog().outlet_words()) {
         return 0.0;
     }
     let id = entity.entity_id.to_ascii_lowercase();
     let name = compact(&entity.name);
-    if catalog().outlet_words.iter().any(|word| id.contains(word) || name.contains(word)) {
+    if catalog().outlet_words().iter().any(|word| id.contains(word) || name.contains(word)) {
         0.97
     } else {
         0.0
@@ -200,12 +200,12 @@ fn short_name_token(entity: &EntityRec) -> Option<String> {
     entity.name.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).find(|part| {
         part.len() >= 2
             && part.len() <= 3
-            && !catalog().generic.contains(&part.as_str())
+            && !catalog().generic().contains(&part.as_str())
             && !cat.is_particle(part)
             && !cat.is_filler(part)
             && !matches!(part.as_str(), "von" | "vom" | "of" | "und" | "and")
-            && !cat.on_words.contains(part.as_str())
-            && !cat.off_words.contains(part.as_str())
+            && !cat.on_words().contains(part.as_str())
+            && !cat.off_words().contains(part.as_str())
     })
 }
 
@@ -223,7 +223,7 @@ fn stolen_label(label: &str, entity: &EntityRec, home: &HomeGraph) -> bool {
     if folded.is_empty() {
         return true;
     }
-    if catalog().named_device.iter().any(|n| compact(n) == folded) {
+    if catalog().named_device().iter().any(|n| compact(n) == folded) {
         return true;
     }
     if home.areas.iter().any(|area| compact(&area.name) == folded || compact(&area.area_id) == folded) {
@@ -233,7 +233,7 @@ fn stolen_label(label: &str, entity: &EntityRec, home: &HomeGraph) -> bool {
         return true;
     }
     let parts: Vec<String> = label.split(|c: char| !c.is_ascii_alphanumeric()).map(compact).filter(|p| !p.is_empty()).collect();
-    !parts.is_empty() && parts.iter().all(|p| catalog().generic.contains(&p.as_str())) && sibling_lights(home, entity) > 0
+    !parts.is_empty() && parts.iter().all(|p| catalog().generic().contains(&p.as_str())) && sibling_lights(home, entity) > 0
 }
 
 fn sibling_lights(home: &HomeGraph, entity: &EntityRec) -> usize {

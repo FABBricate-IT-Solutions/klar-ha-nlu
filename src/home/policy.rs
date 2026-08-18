@@ -39,7 +39,8 @@ pub fn laundry_areas(home: &HomeGraph, cat: &Catalog) -> Vec<String> {
     home.areas
         .iter()
         .filter(|area| {
-            cat.laundry_area.contains(area.area_id.as_str()) || area.aliases.iter().any(|alias| cat.laundry_area.contains(alias.as_str()))
+            cat.laundry_area().contains(area.area_id.as_str())
+                || area.aliases.iter().any(|alias| cat.laundry_area().contains(alias.as_str()))
         })
         .map(|area| area.area_id.clone())
         .collect()
@@ -101,7 +102,7 @@ pub fn preferred_named<'a>(named: &[&'a EntityRec], cat: &Catalog) -> Option<&'a
     named
         .iter()
         .copied()
-        .filter(|entity| cat.named_device.contains(compact(&entity.name).as_str()))
+        .filter(|entity| cat.named_device().contains(compact(&entity.name).as_str()))
         .min_by_key(|entity| compact(&entity.name).len())
         .or_else(|| (named.len() == 1).then(|| named[0]))
 }

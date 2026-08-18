@@ -20,14 +20,14 @@ pub fn is_ood(tokens: &[String], home: &HomeGraph) -> bool {
 
 fn has_home_domain_cue(tokens: &[String]) -> bool {
     let cat = catalog();
-    cat.any(tokens, &cat.media_nouns)
-        || cat.any(tokens, &cat.timer_nouns)
-        || cat.any(tokens, &cat.list_nouns)
-        || cat.any(tokens, &cat.light_nouns)
-        || cat.any(tokens, &cat.cover_nouns)
-        || cat.any(tokens, &cat.lock_nouns)
-        || cat.any(tokens, &cat.climate_nouns)
-        || cat.any(tokens, &cat.tv_words)
+    cat.any(tokens, cat.media_nouns())
+        || cat.any(tokens, cat.timer_nouns())
+        || cat.any(tokens, cat.list_nouns())
+        || cat.any(tokens, cat.light_nouns())
+        || cat.any(tokens, cat.cover_nouns())
+        || cat.any(tokens, cat.lock_nouns())
+        || cat.any(tokens, cat.climate_nouns())
+        || cat.any(tokens, cat.tv_words())
         || tokens.iter().any(|token| matches!(token.as_str(), "queue" | "playing" | "volume" | "lautstarke" | "wiedergabe"))
 }
 
@@ -35,7 +35,7 @@ pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {
     if tokens.is_empty() || looks_like_home(tokens, home) {
         return false;
     }
-    catalog().any(tokens, &catalog().chat_news)
+    catalog().any(tokens, catalog().chat_news())
 }
 
 pub fn is_news_dismiss(tokens: &[String]) -> bool {
@@ -43,19 +43,19 @@ pub fn is_news_dismiss(tokens: &[String]) -> bool {
         return false;
     }
     let cat = catalog();
-    if cat.any(tokens, &cat.chat_news) {
+    if cat.any(tokens, cat.chat_news()) {
         return false;
     }
-    let closing = cat.any(tokens, &cat.chat_news_dismiss) || cat.any(tokens, &cat.chat_thanks);
+    let closing = cat.any(tokens, cat.chat_news_dismiss()) || cat.any(tokens, cat.chat_thanks());
     if !closing {
         return false;
     }
     tokens.iter().all(|t| {
-        cat.chat_news_dismiss.contains(t.as_str())
-            || cat.chat_thanks.contains(t.as_str())
-            || cat.fillers.contains(t.as_str())
-            || cat.particles.contains(t.as_str())
-            || cat.affirm.contains(t.as_str())
+        cat.chat_news_dismiss().contains(t.as_str())
+            || cat.chat_thanks().contains(t.as_str())
+            || cat.fillers().contains(t.as_str())
+            || cat.particles().contains(t.as_str())
+            || cat.affirm().contains(t.as_str())
     })
 }
 
@@ -69,10 +69,10 @@ pub(crate) fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
 
 fn is_casual(tokens: &[String]) -> bool {
     let cat = catalog();
-    cat.any(tokens, &cat.chat_greet)
-        || cat.any(tokens, &cat.chat_thanks)
-        || cat.any(tokens, &cat.chat_feeling)
-        || cat.any(tokens, &cat.chat_identity)
+    cat.any(tokens, cat.chat_greet())
+        || cat.any(tokens, cat.chat_thanks())
+        || cat.any(tokens, cat.chat_feeling())
+        || cat.any(tokens, cat.chat_identity())
         || is_identity_question(tokens)
         || is_wellbeing_question(tokens)
 }
@@ -94,20 +94,20 @@ fn is_wellbeing_question(tokens: &[String]) -> bool {
 
 fn is_special(tokens: &[String]) -> bool {
     let cat = catalog();
-    (cat.any(tokens, &cat.chat_tell)
-        && (cat.any(tokens, &cat.chat_yarn) || tokens.iter().any(|t| t.contains("witz") || t.contains("joke"))))
-        || cat.any(tokens, &cat.chat_yarn)
+    (cat.any(tokens, cat.chat_tell())
+        && (cat.any(tokens, cat.chat_yarn()) || tokens.iter().any(|t| t.contains("witz") || t.contains("joke"))))
+        || cat.any(tokens, cat.chat_yarn())
 }
 
 fn is_world_or_advice(tokens: &[String]) -> bool {
     let cat = catalog();
-    cat.any(tokens, &cat.chat_world) || cat.any(tokens, &cat.chat_advice)
+    cat.any(tokens, cat.chat_world()) || cat.any(tokens, cat.chat_advice())
 }
 
 fn is_open_question(tokens: &[String]) -> bool {
     let cat = catalog();
     tokens.first().is_some_and(|t| cat.is_question_start(t))
-        || tokens.iter().any(|t| cat.is_question_word(t) || cat.chat_open.contains(t.as_str()))
+        || tokens.iter().any(|t| cat.is_question_word(t) || cat.chat_open().contains(t.as_str()))
 }
 
 #[cfg(test)]

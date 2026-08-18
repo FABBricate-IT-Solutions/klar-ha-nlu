@@ -55,6 +55,7 @@ pub(super) fn build_analyses(
     record_stage(trace, "action_candidates", started, format!("{} action hypotheses", action_rows.iter().map(Vec::len).sum::<usize>()));
     let targets_started = Instant::now();
     let mut working = context.session.clone();
+    working.begin_remember_batch();
     let pending_action = context.session.pending_clarify().and_then(|pending| action_for_intent(&pending.template.name));
     let allowed_targets = context.session.pending_clarify().map(|pending| pending.options.clone());
     if let Some(pending) = working.pending_clarify().cloned() {
@@ -62,22 +63,21 @@ pub(super) fn build_analyses(
     }
     let mut analyses = Vec::new();
     for (index, (clause, hypotheses)) in clauses.into_iter().zip(action_rows).enumerate() {
-        let question = super::legacy::with_catalog(context.catalog, || looks_like_question(&clause));
+        let question = looks_like_question(&clause);
         let cat = context.catalog;
         let question_context = question
             || clause
                 .first()
                 .is_some_and(|token| matches!(token.as_str(), "ist" | "sind" | "wie" | "was" | "are" | "is" | "how" | "what" | "whats"));
         let list_marker = clause.iter().any(|token| token == "list" || token == "liste");
-        let complete_marker = cat.any(&clause, &cat.list_complete)
-            || cat.any(&clause, &cat.off_words)
+        let complete_marker = cat.any(&clause, cat.list_complete())
+            || cat.any(&clause, cat.off_words())
             || clause.iter().any(|token| matches!(cat.verb(token), Some(crate::lang::VerbKind::ListComplete)));
         let explicit_list_completion = list_marker && complete_marker;
         let mut bindings = Vec::new();
-        let mut baseline = super::legacy::with_catalog(context.catalog, || {
-            parse_clause_candidates_for_action(&clause, raw_tokens, context.home, &working, context.settings, &split.light_areas, None)
-        });
-        baseline.retain(|policy| !invalid_named_list_fallback(&clause, context.home, policy, context.catalog));
+        let mut baseline =
+            parse_clause_candidates_for_action(&clause, raw_tokens, context.home, &working, context.settings, &split.light_areas, None);
+        baseline.retain(|policy| !invalid_named_list_fallback(&clause, context.home, policy));
         if baseline.len() > MAX_POLICIES_PER_ACTION {
             return Err(ComplexityLimit);
         }
@@ -110,9 +110,7 @@ pub(super) fn build_analyses(
                 action_evidence.score = 0.86;
                 action_evidence.exact = false;
             }
-            let targets = capped_report(super::legacy::with_catalog(context.catalog, || {
-                resolve_scored(&clause, context.home, domain_for(policy.action, &clause))
-            }));
+            let targets = capped_report(resolve_scored(&clause, context.home, domain_for(policy.action, &clause)));
             let narrowed = lexical_disambiguation(&clause, context.home, &policy);
             push_binding(
                 &mut bindings,
@@ -145,20 +143,16 @@ pub(super) fn build_analyses(
         }
         forced.truncate(MAX_ACTION_HYPOTHESES);
         for hypothesis in forced {
-            let targets = capped_report(super::legacy::with_catalog(context.catalog, || {
-                resolve_scored(&clause, context.home, domain_for(hypothesis.action, &clause))
-            }));
-            let policies = super::legacy::with_catalog(context.catalog, || {
-                parse_clause_candidates_for_action(
-                    &clause,
-                    raw_tokens,
-                    context.home,
-                    &working,
-                    context.settings,
-                    &split.light_areas,
-                    Some(hypothesis.action),
-                )
-            });
+            let targets = capped_report(resolve_scored(&clause, context.home, domain_for(hypothesis.action, &clause)));
+            let policies = parse_clause_candidates_for_action(
+                &clause,
+                raw_tokens,
+                context.home,
+                &working,
+                context.settings,
+                &split.light_areas,
+                Some(hypothesis.action),
+            );
             if policies.len() > MAX_POLICIES_PER_ACTION {
                 return Err(ComplexityLimit);
             }
@@ -166,7 +160,7 @@ pub(super) fn build_analyses(
                 if policy_too_complex(&policy) {
                     return Err(ComplexityLimit);
                 }
-                if invalid_named_list_fallback(&clause, context.home, &policy, context.catalog) {
+                if invalid_named_list_fallback(&clause, context.home, &policy) {
                     continue;
                 }
                 if policy.policy == PolicyId::List && !baseline_has_list {
@@ -312,26 +306,21 @@ fn lexical_disambiguation(tokens: &[String], home: &HomeGraph, policy: &ClauseCa
     Some(intent_from_action(policy.action, tokens).with("entity_id", (*selected).clone()))
 }
 
-fn invalid_named_list_fallback(
-    tokens: &[String],
-    home: &HomeGraph,
-    policy: &ClauseCandidate,
-    catalog: &'static crate::lang::Catalog,
-) -> bool {
+fn invalid_named_list_fallback(tokens: &[String], home: &HomeGraph, policy: &ClauseCandidate) -> bool {
     let ClauseOut::Intents(intents) = &policy.outcome else {
         return false;
     };
     let shopping_fallback = intents.iter().any(|intent| intent.slot("name") == Some("shopping_list") && intent.slot("entity_id").is_none());
     let named = home.entities.iter().filter(|entity| entity.domain == "todo").any(|entity| {
-        phrase_tokens_present(tokens, &entity.name, catalog)
-            || entity.aliases.iter().any(|alias| phrase_tokens_present(tokens, alias, catalog))
-            || entity.tags.iter().any(|tag| phrase_tokens_present(tokens, tag, catalog))
+        phrase_tokens_present(tokens, &entity.name)
+            || entity.aliases.iter().any(|alias| phrase_tokens_present(tokens, alias))
+            || entity.tags.iter().any(|tag| phrase_tokens_present(tokens, tag))
     });
     shopping_fallback && named
 }
 
-fn phrase_tokens_present(tokens: &[String], phrase: &str, catalog: &'static crate::lang::Catalog) -> bool {
-    let words = super::legacy::with_catalog(catalog, || tokenize(phrase));
+fn phrase_tokens_present(tokens: &[String], phrase: &str) -> bool {
+    let words = tokenize(phrase);
     !words.is_empty() && words.iter().all(|word| tokens.contains(word))
 }
 

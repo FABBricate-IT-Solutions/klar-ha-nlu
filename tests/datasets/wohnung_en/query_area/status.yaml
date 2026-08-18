@@ -1,6 +1,8 @@
 - name: how_warm_home
-  conditions:
-    - {type: query, area: wohnung, domain: climate}
+  nlu_expect:
+    reject: true
+    intents: []
+    clarify: false
   sentences:
     - 'How warm is it in the apartment'
     - "What's the temperature at home"

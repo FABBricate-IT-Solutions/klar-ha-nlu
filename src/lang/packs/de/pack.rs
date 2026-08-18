@@ -1,11 +1,12 @@
-use super::groups::{Chat, Cues, Fixtures, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
-use super::morphology::PackMorphology;
-use super::LangId;
+use crate::lang::groups::{Chat, Cues, Fixtures, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use crate::lang::morphology::PackMorphology;
+use crate::lang::LangId;
 
-use super::de::VERBS;
+use super::speech::SPEECH;
+use super::verbs::VERBS;
 
 pub const PACK: LanguagePack = LanguagePack {
-    id: LangId::De,
+    id: LangId::new("de"),
     verbs: VERBS,
     talk: Talk {
         fillers: &[
@@ -467,6 +468,6 @@ pub const PACK: LanguagePack = LanguagePack {
         clock_missing: "Die Uhrzeit ist gerade nicht verfügbar.",
         no_weather: "Ich sehe kein Wetter.",
     },
-    speech: super::de_speech::SPEECH,
+    speech: SPEECH,
     morphology: PackMorphology::GERMAN,
 };
