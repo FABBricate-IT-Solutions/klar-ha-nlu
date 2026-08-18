@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .const import LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
+from .const import LANGUAGE_ALL, LANGUAGE_SYSTEM, LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
 
 
 def resolve_pack(language: str | None, enabled: list[str] | None = None) -> str:
@@ -29,11 +29,37 @@ def longest_pack(tag: str) -> str | None:
     return None
 
 
-def enabled_packs(raw: object) -> list[str]:
-    if not isinstance(raw, list) or not raw:
+def normalize_language_choice(raw: object) -> str:
+    if raw is None:
+        return LANGUAGE_ALL
+    if isinstance(raw, list):
+        if not raw:
+            return LANGUAGE_ALL
+        if raw[0] == LANGUAGE_SYSTEM:
+            return LANGUAGE_SYSTEM
+        if raw[0] == LANGUAGE_ALL:
+            return LANGUAGE_ALL
+        packs = [code for code in raw if code in SUPPORTED_LANGUAGES]
+        if len(packs) == 1:
+            return packs[0]
+        if len(packs) > 1:
+            return LANGUAGE_ALL
+        return LANGUAGE_SYSTEM
+    text = str(raw)
+    if text in {LANGUAGE_SYSTEM, LANGUAGE_ALL}:
+        return text
+    if text in SUPPORTED_LANGUAGES:
+        return text
+    return LANGUAGE_SYSTEM
+
+
+def enabled_packs(raw: object, hass_language: str | None = None) -> list[str]:
+    choice = normalize_language_choice(raw)
+    if choice == LANGUAGE_ALL:
         return list(SUPPORTED_LANGUAGES)
-    packs = [code for code in raw if code in SUPPORTED_LANGUAGES]
-    return packs or list(SUPPORTED_LANGUAGES)
+    if choice == LANGUAGE_SYSTEM:
+        return [resolve_pack(hass_language)]
+    return [choice]
 
 
 def advertise(packs: list[str]) -> list[str]:

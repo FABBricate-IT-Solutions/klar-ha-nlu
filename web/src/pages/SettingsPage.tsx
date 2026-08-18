@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, download, setToken, type LanguagePack } from "../api";
+import { LanguagePicker } from "../components/LanguagePicker";
 import type { Messages } from "../i18n";
 import type { BundleList, Settings } from "../types";
 
@@ -26,14 +27,7 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
     await api.clearBundle();
     refresh();
   };
-  const allCodes = packs.map((pack) => pack.code);
-  const enabled = settings.languages.length ? settings.languages : allCodes;
-  const toggleLang = (code: string) => {
-    const current = settings.languages.length ? settings.languages : allCodes;
-    const next = current.includes(code) ? current.filter((item) => item !== code) : [...current, code];
-    const languages = next.length === 0 || (allCodes.length > 0 && next.length === allCodes.length) ? [] : next;
-    onSettings({ ...settings, languages });
-  };
+  const setLanguages = (languages: string[]) => onSettings({ ...settings, languages });
   return (
     <div className="page">
       <section className="hero">
@@ -49,14 +43,15 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
             <option value="context_only">context_only</option>
           </select>
           <label>{t.languages}</label>
-          <div className="row" style={{ flexWrap: "wrap" }}>
-            {packs.map((pack) => (
-              <label key={pack.code} className="row">
-                <input type="checkbox" checked={enabled.includes(pack.code)} onChange={() => toggleLang(pack.code)} style={{ width: "auto" }} />
-                {pack.native_name} ({pack.code})
-              </label>
-            ))}
-          </div>
+          <LanguagePicker
+            packs={packs}
+            value={settings.languages}
+            allLabel={t.allLanguages}
+            searchLabel={t.languageSearch}
+            emptyLabel={t.noLanguageMatch}
+            onChange={setLanguages}
+          />
+          <p className="caption">{t.languageHint}</p>
           <label className="row">
             <input type="checkbox" checked={settings.confirm_risky_actions} onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })} style={{ width: "auto" }} />
             {t.confirmRisky}

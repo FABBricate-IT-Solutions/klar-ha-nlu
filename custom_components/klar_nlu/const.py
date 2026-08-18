@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 from .languages import LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
 
 DOMAIN = "klar_nlu"
@@ -9,6 +11,8 @@ CONF_URL = "url"
 CONF_MODE = "mode"
 CONF_FALLBACK_AGENT = "fallback_agent"
 CONF_LANGUAGES = "languages"
+LANGUAGE_SYSTEM = "system"
+LANGUAGE_ALL = "all"
 CONF_ASSIST_FILTER = "assist_filter"
 CONF_PERSONALITY = "personality"
 CONF_REFINE_PROMPT = "refine_prompt"
@@ -65,20 +69,56 @@ def addon_url_for_channel(channel: object) -> str:
 
 def is_managed_engine_url(url: object) -> bool:
     text = _normalize_engine_url(url)
-    return text in {
+    if text in {
         "",
         _normalize_engine_url(DEFAULT_URL),
         _normalize_engine_url(DEFAULT_ADDON_URL),
         _normalize_engine_url(DEFAULT_STAGING_ADDON_URL),
-    }
+    }:
+        return True
+    host = urlparse(text).hostname or ""
+    return host in {"klar-nlu", "klar-nlu-staging"} or host.endswith(
+        ("-klar-nlu", "-klar-nlu-staging")
+    )
 
 
-def resolve_engine_url(*, mode: object, channel: object, url: object) -> str:
-    if str(mode or MODE_LOCAL) != MODE_REMOTE:
-        return DEFAULT_URL
-    if is_managed_engine_url(url):
-        return addon_url_for_channel(channel)
-    return str(url or "").strip()
+def resolve_engine_target(
+    *,
+    mode: object,
+    channel: object,
+    url: object,
+    supervisor: bool = False,
+) -> tuple[str, str]:
+    text = str(url or "").strip()
+    if text and not is_managed_engine_url(text):
+        return MODE_REMOTE, text
+    if resolve_channel(channel) == CHANNEL_STAGING:
+        if supervisor or str(mode or "") == MODE_REMOTE:
+            return MODE_REMOTE, DEFAULT_STAGING_ADDON_URL
+        return MODE_LOCAL, DEFAULT_URL
+    if supervisor and (
+        str(mode or "") == MODE_REMOTE
+        or (
+            is_managed_engine_url(text)
+            and _normalize_engine_url(text) != _normalize_engine_url(DEFAULT_URL)
+        )
+    ):
+        return MODE_REMOTE, DEFAULT_ADDON_URL
+    if str(mode or MODE_LOCAL) == MODE_REMOTE:
+        return MODE_REMOTE, DEFAULT_ADDON_URL
+    return MODE_LOCAL, DEFAULT_URL
+
+
+def resolve_engine_url(
+    *,
+    mode: object,
+    channel: object,
+    url: object,
+    supervisor: bool = False,
+) -> str:
+    return resolve_engine_target(
+        mode=mode, channel=channel, url=url, supervisor=supervisor
+    )[1]
 
 
 def channel_for_addon_slug(slug: object) -> str:

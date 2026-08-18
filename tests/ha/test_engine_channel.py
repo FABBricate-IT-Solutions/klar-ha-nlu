@@ -95,6 +95,24 @@ class EngineChannelTests(unittest.TestCase):
             ),
             const.DEFAULT_URL,
         )
+        self.assertEqual(
+            const.resolve_engine_target(
+                mode=const.MODE_LOCAL,
+                channel=const.CHANNEL_STAGING,
+                url=const.DEFAULT_URL,
+                supervisor=True,
+            ),
+            (const.MODE_REMOTE, const.DEFAULT_STAGING_ADDON_URL),
+        )
+        self.assertEqual(
+            const.resolve_engine_target(
+                mode=const.MODE_LOCAL,
+                channel=const.CHANNEL_STABLE,
+                url=const.DEFAULT_STAGING_ADDON_URL,
+                supervisor=True,
+            ),
+            (const.MODE_REMOTE, const.DEFAULT_ADDON_URL),
+        )
 
     def test_resolve_engine_url_keeps_custom_host(self) -> None:
         custom = "http://192.168.1.40:10520"
