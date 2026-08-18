@@ -263,20 +263,19 @@ jobs:
           tag="${tag#v}"
           # CHANGELOG.md is written at prepare time. `git-cliff --latest` is
           # empty after a squash whose subject is `chore(release):` because
-          # cliff.toml skips those commits. Staging RCs reuse the CalVer
-          # section (suffix stripped in release-notes.py).
+          # cliff.toml skips those commits. Staging RCs list commits since main,
+          # not the last stable CHANGELOG section.
           if [[ "$PRERELEASE" == "true" ]]; then
+            git fetch --no-tags --depth=1 origin main || true
             {
               echo "> **Staging / release candidate.** Not a production cut."
               echo ">"
               echo "> Built from branch \`staging\`. Docker tags: \`staging\` and this RC tag."
               echo "> Stable remains CalVer / \`latest\` from \`main\`."
               echo
-              python3 scripts/release-notes.py "$tag" || true
+              python3 scripts/release-notes.py --since origin/main \
+                || echo "No non-merge commits since main yet."
             } > CHANGES.md
-            if ! grep -q '^### ' CHANGES.md; then
-              echo "No grouped CHANGELOG section for this RC yet." >> CHANGES.md
-            fi
           else
             python3 scripts/release-notes.py "$tag" > CHANGES.md
           fi
