@@ -81,5 +81,7 @@ async def _async_register_dashboard(hass: HomeAssistant) -> None:
             config={"mode": "storage"},
             require_admin=False,
         )
-    except (AttributeError, KeyError, TypeError, ValueError, RuntimeError):
+    except (AttributeError, KeyError, TypeError, ValueError, RuntimeError, OSError):
+        return
+    except Exception:
         return
