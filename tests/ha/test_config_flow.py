@@ -109,6 +109,12 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         keys = {marker.schema for marker in schema.schema}
         self.assertIn(config_flow.CONF_ASSIST_FILTER, keys)
         self.assertIn(config_flow.CONF_NLU_RAG, keys)
+        self.assertIn(config_flow.CONF_CHANNEL, keys)
+
+    def test_user_schema_offers_release_channel(self) -> None:
+        keys = {marker.schema for marker in config_flow.USER_SCHEMA.schema}
+        self.assertIn(config_flow.CONF_CHANNEL, keys)
+        self.assertIn(config_flow.CONF_MODE, keys)
 
     def test_options_schema_has_no_advanced_flag(self) -> None:
         with self.assertRaises(TypeError):
