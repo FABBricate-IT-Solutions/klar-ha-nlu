@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - encen eixugadora cuina
+  - eixugadora cuina encen
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - apaga eixugadora cuina
+  - eixugadora cuina apaga
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - encen rentadora bugaderia
+  - rentadora bugaderia encen
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - apaga rentadora bugaderia
+  - rentadora bugaderia apaga
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - encen dryer bugaderia
+  - dryer bugaderia encen
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - apaga dryer bugaderia
+  - dryer bugaderia apaga
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - encen rangehood cuina
+  - rangehood cuina encen
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - apaga rangehood cuina
+  - rangehood cuina apaga
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - encen ventiladorbad banymaster
+  - ventiladorbad banymaster encen
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - apaga ventiladorbad banymaster
+  - ventiladorbad banymaster apaga
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - encen ventiladorbad main bath
+  - ventiladorbad main bath encen
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - apaga ventiladorbad main bath
+  - ventiladorbad main bath apaga

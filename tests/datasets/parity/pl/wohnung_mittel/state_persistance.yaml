@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - wlacz ogrzewanie salon
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - wlacz swiatlo salon
+  - wylacz
+state_persistance/spoken::kugel_dann_aus:
+- - wlacz kula
+  - wylacz
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - wlacz swiatlo salon
+  - wlacz swiatlo kuchnia
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - wlacz swiatlo salon
+  - czerwony

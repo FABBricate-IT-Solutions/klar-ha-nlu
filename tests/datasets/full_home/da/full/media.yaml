@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - tv stue taend
+  - taend tv stue
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - sluk tv stue
+  - tv stue sluk
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause tv stue
+  - tv stue pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - tv alrum taend
+  - taend tv alrum
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - sluk tv alrum
+  - tv alrum sluk
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause tv alrum
+  - tv alrum pause

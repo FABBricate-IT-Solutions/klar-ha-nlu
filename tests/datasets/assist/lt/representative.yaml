@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - ijunk sviesa svetaine
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - isjunk sviesa virtuve
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

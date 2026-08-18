@@ -30,8 +30,71 @@ fn bcp47_chain_and_unknown_pin() {
     let us = LocaleId::parse("en-US").unwrap();
     assert_eq!(us.fallback_chain().iter().map(|item| item.tag.as_str()).collect::<Vec<_>>(), ["en-US", "en"]);
     assert_eq!(pin_language("de-DE").unwrap(), "de-DE");
-    assert!(matches!(pin_language("fr"), Err(LocaleError::Unknown(_))));
+    assert!(matches!(pin_language("ru"), Err(LocaleError::Unknown(_))));
+    assert!(matches!(pin_language("ru-RU"), Err(LocaleError::Unknown(_))));
     assert!(matches!(pin_language("zz"), Err(LocaleError::Unknown(_))));
+}
+
+#[test]
+fn every_compiled_pack_id_matches_registry() {
+    for id in klar_nlu::lang::LangId::all() {
+        assert_eq!(id.pack().id.code(), id.code(), "pack table must not swallow {id:?}");
+    }
+}
+
+#[test]
+fn every_compiled_locale_has_assist_and_parity_suites() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    let assist = std::fs::read_to_string(root.join("tests/assist_langs.rs")).expect("assist_langs.rs");
+    for id in klar_nlu::lang::LangId::all() {
+        let code = id.code();
+        assert!(assist.contains(&format!("(\"{code}\",")), "missing assist smoke for {code}");
+        if code == "de" || code == "en" {
+            continue;
+        }
+        for suite in ["wohnung_mittel", "familienhaus_de", "m0_exact", "m2_floors"] {
+            let dir = root.join("tests/datasets/parity").join(code).join(suite);
+            assert!(dir.is_dir(), "missing parity suite {} for {code}", dir.display());
+        }
+    }
+    assert!(root.join("tests/datasets/wohnung_mittel").is_dir());
+    assert!(root.join("tests/datasets/wohnung_en").is_dir());
+    assert!(root.join("tests/datasets/familienhaus_de").is_dir());
+    assert!(root.join("tests/datasets/family_home_en").is_dir());
+}
+
+#[test]
+fn every_compiled_pack_has_household_cues() {
+    for id in klar_nlu::lang::LangId::all() {
+        let house = &id.pack().household;
+        assert!(!house.teach.is_empty(), "{:?} teach", id.code());
+        assert!(!house.undo.is_empty(), "{:?} undo", id.code());
+        assert!(!house.clock.is_empty(), "{:?} clock", id.code());
+        assert!(!house.weather.is_empty(), "{:?} weather", id.code());
+    }
+}
+
+#[test]
+fn de_catalog_stays_isolated_from_other_compiled_packs() {
+    let de = catalog_for(&["de".into()]);
+    assert_eq!(de.verb("an"), Some(VerbKind::On));
+    assert_eq!(de.verb("allume"), None);
+    assert_eq!(de.verb("accendi"), None);
+    let en = catalog_for(&["en".into()]);
+    assert_eq!(en.verb("on"), Some(VerbKind::OnParticle));
+    assert_eq!(en.verb("allume"), None);
+    assert!(!klar_nlu::lang::LangId::all().iter().any(|id| id.code() == "ru"));
+}
+
+#[test]
+fn empty_or_all_codes_do_not_merge_a_default_pair() {
+    let empty = catalog_for(&[]);
+    assert_eq!(empty.verb("an"), None);
+    assert_eq!(empty.verb("on"), None);
+    let all = klar_nlu::lang::LangId::compiled_codes();
+    let merged_all = catalog_for(&all);
+    assert_eq!(merged_all.verb("an"), None);
+    assert_eq!(merged_all.verb("on"), None);
 }
 
 #[test]
@@ -140,7 +203,7 @@ intents:
     assert_eq!(imported.pack.extends, "de");
     assert!(imported.unsupported.iter().any(|row| row.contains("template") || row.contains("lists")), "{:?}", imported.unsupported);
     let french = parse_hassil("intents: {}\n", "fr", "fr.yaml").unwrap();
-    assert_eq!(french.pack.extends, "en");
+    assert_eq!(french.pack.extends, "fr");
 }
 
 #[test]

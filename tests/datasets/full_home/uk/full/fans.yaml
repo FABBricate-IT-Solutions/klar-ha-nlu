@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - вентилятор вітальняfam увімкни
+  - увімкни вентилятор вітальняfam
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - вимкни вентилятор вітальняfam
+  - вентилятор вітальняfam вимкни
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - постав вентилятор вітальняfam 40
+  - вентилятор вітальняfam 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - вентилятор спальня увімкни
+  - увімкни вентилятор спальня
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - вимкни вентилятор спальня
+  - вентилятор спальня вимкни
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - постав вентилятор спальня 40
+  - вентилятор спальня 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - вентилятор спальня2 увімкни
+  - увімкни вентилятор спальня2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - вимкни вентилятор спальня2
+  - вентилятор спальня2 вимкни
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - постав вентилятор спальня2 40
+  - вентилятор спальня2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - постав вентилятор вітальняfam 20
+  - вентилятор вітальняfam 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - постав вентилятор вітальняfam 60
+  - вентилятор вітальняfam 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - постав вентилятор вітальняfam 80
+  - вентилятор вітальняfam 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - постав вентилятор спальня 20
+  - вентилятор спальня 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - постав вентилятор спальня 60
+  - вентилятор спальня 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - постав вентилятор спальня 80
+  - вентилятор спальня 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - постав вентилятор спальня2 20
+  - вентилятор спальня2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - постав вентилятор спальня2 60
+  - вентилятор спальня2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - постав вентилятор спальня2 80
+  - вентилятор спальня2 80

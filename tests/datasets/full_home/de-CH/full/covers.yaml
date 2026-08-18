@@ -1,0 +1,321 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - ufmache store wohnzimmer
+  - store wohnzimmer ufmache
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - zue store wohnzimmer
+  - store wohnzimmer zue
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stell store wohnzimmer 0
+  - store wohnzimmer 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stell store wohnzimmer 25
+  - store wohnzimmer 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stell store wohnzimmer 40
+  - store wohnzimmer 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stell store wohnzimmer 75
+  - store wohnzimmer 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stell store wohnzimmer 100
+  - store wohnzimmer 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - ufmache store schlafzimmer
+  - store schlafzimmer ufmache
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - zue store schlafzimmer
+  - store schlafzimmer zue
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stell store schlafzimmer 0
+  - store schlafzimmer 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stell store schlafzimmer 25
+  - store schlafzimmer 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stell store schlafzimmer 40
+  - store schlafzimmer 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stell store schlafzimmer 75
+  - store schlafzimmer 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stell store schlafzimmer 100
+  - store schlafzimmer 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - ufmache store schlafzimmer2
+  - store schlafzimmer2 ufmache
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - zue store schlafzimmer2
+  - store schlafzimmer2 zue
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stell store schlafzimmer2 0
+  - store schlafzimmer2 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stell store schlafzimmer2 25
+  - store schlafzimmer2 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stell store schlafzimmer2 40
+  - store schlafzimmer2 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stell store schlafzimmer2 75
+  - store schlafzimmer2 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stell store schlafzimmer2 100
+  - store schlafzimmer2 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - ufmache store schlafzimmer3
+  - store schlafzimmer3 ufmache
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - zue store schlafzimmer3
+  - store schlafzimmer3 zue
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stell store schlafzimmer3 0
+  - store schlafzimmer3 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stell store schlafzimmer3 25
+  - store schlafzimmer3 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stell store schlafzimmer3 40
+  - store schlafzimmer3 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stell store schlafzimmer3 75
+  - store schlafzimmer3 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stell store schlafzimmer3 100
+  - store schlafzimmer3 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - ufmache store garage
+  - store garage ufmache
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - zue store garage
+  - store garage zue
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - stell store garage 0
+  - store garage 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - stell store garage 25
+  - store garage 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - stell store garage 40
+  - store garage 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - stell store garage 75
+  - store garage 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - stell store garage 100
+  - store garage 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - ufmache store wohnzimmer
+  - store wohnzimmer ufmache
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - ufmache store schlafzimmer
+  - store schlafzimmer ufmache

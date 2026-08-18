@@ -1,4 +1,6 @@
-use crate::types::{Intent, IntentPlan, MAX_CLARIFY_OPTIONS, MAX_DETAIL_CHARS, MAX_EVIDENCE_PER_ITEM, MAX_PLAN_STEPS};
+use crate::types::{
+    Intent, IntentPlan, ParseDecision, ParseOutcome, MAX_CLARIFY_OPTIONS, MAX_DETAIL_CHARS, MAX_EVIDENCE_PER_ITEM, MAX_PLAN_STEPS,
+};
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
 use uuid::Uuid;
@@ -14,6 +16,16 @@ pub struct LastTurn {
     pub area: Option<String>,
     pub name: String,
     pub domain: Option<String>,
+}
+
+#[derive(Debug, Clone)]
+pub struct LastHeard {
+    pub text: String,
+    pub decision: String,
+    pub speech: String,
+    pub reason: Option<String>,
+    pub area: Option<String>,
+    pub names: Vec<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -69,6 +81,9 @@ pub struct Session {
     pub wrong_log: Vec<String>,
     pub briefing: bool,
     pub preferred_area: Option<String>,
+    pub last_execute: Vec<Intent>,
+    pub last_heard: Option<LastHeard>,
+    pub pending_teach: Option<(String, String)>,
     last_used: Instant,
 }
 
@@ -87,6 +102,9 @@ impl Session {
             wrong_log: Vec::new(),
             briefing: false,
             preferred_area: None,
+            last_execute: Vec::new(),
+            last_heard: None,
+            pending_teach: None,
             last_used: Instant::now(),
         }
     }
@@ -109,6 +127,25 @@ impl Session {
 
     pub fn remember_entity(&mut self, entity_id: impl Into<String>) {
         self.remember(&Intent::new("HassTurnOn").with("entity_id", entity_id.into()));
+    }
+
+    pub fn note_heard(&mut self, outcome: &ParseOutcome) {
+        let (decision, reason) = match &outcome.decision {
+            ParseDecision::Execute => ("execute", None),
+            ParseDecision::Clarify { .. } => ("clarify", None),
+            ParseDecision::Confirm { .. } => ("confirm", None),
+            ParseDecision::Reject { reason } => ("reject", Some(format!("{reason:?}"))),
+            ParseDecision::Chat => ("chat", None),
+            ParseDecision::Error { code, .. } => ("error", Some(code.clone())),
+        };
+        self.last_heard = Some(LastHeard {
+            text: outcome.text.clone(),
+            decision: decision.into(),
+            speech: outcome.speech.clone(),
+            reason,
+            area: self.preferred_area.clone(),
+            names: outcome.plan.as_ref().map(|plan| plan.intents().into_iter().map(|intent| intent.name).collect()).unwrap_or_default(),
+        });
     }
 
     pub fn remember(&mut self, intent: &Intent) {

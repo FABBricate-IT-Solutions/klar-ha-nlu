@@ -1,0 +1,77 @@
+- name: list_add
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - adauga milk lista
+  - milk adauga lista
+- name: list_done
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - gata milk
+  - milk gata
+- name: list_done_milk
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - gata milk
+  - milk gata
+- name: list_add_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - adauga bread lista
+  - bread adauga lista
+- name: list_done_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - gata bread
+  - bread gata
+- name: list_add_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - adauga eggs lista
+  - eggs adauga lista
+- name: list_done_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - gata eggs
+  - eggs gata
+- name: list_add_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - adauga apples lista
+  - apples adauga lista
+- name: list_done_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - gata apples
+  - apples gata
+- name: list_add_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - adauga coffee lista
+  - coffee adauga lista
+- name: list_done_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - gata coffee
+  - coffee gata

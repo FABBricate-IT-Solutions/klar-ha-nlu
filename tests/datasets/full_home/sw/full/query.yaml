@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - nini taa sebuleni
+  - nini sebuleni taa
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - nini pazia sebuleni
+  - nini sebuleni pazia
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - nini kufuli kiingilio
+  - nini kiingilio kufuli
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - nini joto sebuleni
+  - nini sebuleni joto
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - nini tv sebuleni
+  - nini sebuleni tv
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - nini doorsensor kiingilio
+  - nini kiingilio doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - nini windowsensor sebuleni
+  - nini sebuleni windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - nini tempsensor sebuleni
+  - nini sebuleni tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - nini taa jikonini
+  - nini jikonini taa
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - nini taa office
+  - nini office taa
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - nini taa garden
+  - nini garden taa
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - nini taa basement
+  - nini basement taa
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - nini pazia chumbakulala
+  - nini chumbakulala pazia
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - nini pazia garage
+  - nini garage pazia
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - nini kufuli garage
+  - nini garage kufuli
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - nini joto chumbakulala
+  - nini chumbakulala joto
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - nini joto chumbakulala
+  - nini chumbakulala joto
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - nini tv sefula
+  - nini sefula tv
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - nini runinga sebuleni
+  - nini sebuleni runinga
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - nini motion jikonini
+  - nini jikonini motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - nini humidity sebuleni
+  - nini sebuleni humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - nini feni chumbakulala
+  - nini chumbakulala feni
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - nini kifagio sebuleni
+  - nini sebuleni kifagio
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - nini taa sebuleni
+  - nini sebuleni taa
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - nini taa jikonini
+  - nini jikonini taa
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - nini taa chumbakulala
+  - nini chumbakulala taa
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - nini taa chumbakulala
+  - nini chumbakulala taa
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - nini taa hallway
+  - nini hallway taa
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - nini taa sefula
+  - nini sefula taa
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - nini taa sefulaess
+  - nini sefulaess taa
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - nini taa garage
+  - nini garage taa
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - nini taa chumbakulala2
+  - nini chumbakulala2 taa
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - nini taa chumbakulala3
+  - nini chumbakulala3 taa
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - nini taa chumbakulala4
+  - nini chumbakulala4 taa
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - nini taa kiingilio
+  - nini kiingilio taa
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - nini taa chumbayaosha
+  - nini chumbayaosha taa
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - nini taa main bath
+  - nini main bath taa
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - nini taa choo
+  - nini choo taa
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - nini ensuite chumbakulala
+  - nini chumbakulala ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - nini taa chumbakulala
+  - nini chumbakulala taa
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - nini taa bafumaster
+  - nini bafumaster taa

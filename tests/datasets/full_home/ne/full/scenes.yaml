@@ -1,0 +1,48 @@
+- name: scene_film
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  sentences:
+  - bal chalchitra
+  - chalchitra bal
+- name: scene_night
+  conditions:
+  - type: action
+    entity_id: script.good_night
+    state: 'on'
+  sentences:
+  - bal raat
+  - raat bal
+- name: scene_leave
+  conditions:
+  - type: action
+    entity_id: script.leaving_home
+    state: 'on'
+  sentences:
+  - bal jane
+  - jane bal
+- name: scene_dinner
+  conditions:
+  - type: action
+    entity_id: scene.dinner_time
+    state: 'on'
+  sentences:
+  - bal dinner
+  - dinner bal
+- name: scene_morning
+  conditions:
+  - type: action
+    entity_id: scene.good_morning
+    state: 'on'
+  sentences:
+  - bal morning
+  - morning bal
+- name: scene_kids
+  conditions:
+  - type: action
+    entity_id: scene.kids_bedtime
+    state: 'on'
+  sentences:
+  - bal kids
+  - kids bal

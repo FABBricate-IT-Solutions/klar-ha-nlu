@@ -1,0 +1,48 @@
+- name: scene_film
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  sentences:
+  - zapni film
+  - film zapni
+- name: scene_night
+  conditions:
+  - type: action
+    entity_id: script.good_night
+    state: 'on'
+  sentences:
+  - zapni noc
+  - noc zapni
+- name: scene_leave
+  conditions:
+  - type: action
+    entity_id: script.leaving_home
+    state: 'on'
+  sentences:
+  - zapni odchod
+  - odchod zapni
+- name: scene_dinner
+  conditions:
+  - type: action
+    entity_id: scene.dinner_time
+    state: 'on'
+  sentences:
+  - zapni dinner
+  - dinner zapni
+- name: scene_morning
+  conditions:
+  - type: action
+    entity_id: scene.good_morning
+    state: 'on'
+  sentences:
+  - zapni morning
+  - morning zapni
+- name: scene_kids
+  conditions:
+  - type: action
+    entity_id: scene.kids_bedtime
+    state: 'on'
+  sentences:
+  - zapni kids
+  - kids zapni

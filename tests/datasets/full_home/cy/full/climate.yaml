@@ -1,0 +1,231 @@
+- name: climate.ground_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - gosod gwres ystafell 18
+  - gwres ystafell 18
+- name: climate.ground_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - gosod gwres ystafell 19
+  - gwres ystafell 19
+- name: climate.ground_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - gosod gwres ystafell 20
+  - gwres ystafell 20
+- name: climate.ground_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - gosod gwres ystafell 21
+  - gwres ystafell 21
+- name: climate.ground_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - gosod gwres ystafell 22
+  - gwres ystafell 22
+- name: climate.ground_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - gosod gwres ystafell 23
+  - gwres ystafell 23
+- name: climate.ground_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - gosod gwres ystafell 24
+  - gwres ystafell 24
+- name: climate.ground_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - beth gwres ystafell
+  - gwres ystafell
+- name: climate.upper_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - gosod gwres llofft 18
+  - gwres llofft 18
+- name: climate.upper_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - gosod gwres llofft 19
+  - gwres llofft 19
+- name: climate.upper_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - gosod gwres llofft 20
+  - gwres llofft 20
+- name: climate.upper_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - gosod gwres llofft 21
+  - gwres llofft 21
+- name: climate.upper_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - gosod gwres llofft 22
+  - gwres llofft 22
+- name: climate.upper_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - gosod gwres llofft 23
+  - gwres llofft 23
+- name: climate.upper_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - gosod gwres llofft 24
+  - gwres llofft 24
+- name: climate.upper_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - beth gwres llofft
+  - gwres llofft
+- name: climate.master_ac_18
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 18
+  sentences:
+  - gosod gwres llofft 18
+  - gwres llofft 18
+- name: climate.master_ac_19
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 19
+  sentences:
+  - gosod gwres llofft 19
+  - gwres llofft 19
+- name: climate.master_ac_20
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 20
+  sentences:
+  - gosod gwres llofft 20
+  - gwres llofft 20
+- name: climate.master_ac_21
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 21
+  sentences:
+  - gosod gwres llofft 21
+  - gwres llofft 21
+- name: climate.master_ac_22
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 22
+  sentences:
+  - gosod gwres llofft 22
+  - gwres llofft 22
+- name: climate.master_ac_23
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 23
+  sentences:
+  - gosod gwres llofft 23
+  - gwres llofft 23
+- name: climate.master_ac_24
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 24
+  sentences:
+  - gosod gwres llofft 24
+  - gwres llofft 24
+- name: climate.master_ac_get
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - beth gwres llofft
+  - gwres llofft
+- name: climate.ground_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - beth gwres ystafell
+  - gwres ystafell
+- name: climate.upper_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - beth gwres llofft
+  - gwres llofft
+- name: climate.master_ac_get_full
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - beth gwres llofft
+  - gwres llofft

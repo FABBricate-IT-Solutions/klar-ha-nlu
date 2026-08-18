@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - tele sala encen
+  - encen tele sala
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - apaga tele sala
+  - tele sala apaga
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pausa tele sala
+  - tele sala pausa
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - tele salaestar encen
+  - encen tele salaestar
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - apaga tele salaestar
+  - tele salaestar apaga
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pausa tele salaestar
+  - tele salaestar pausa

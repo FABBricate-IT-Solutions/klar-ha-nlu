@@ -1,0 +1,231 @@
+- name: climate.ground_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - settu hiti stofa 18
+  - hiti stofa 18
+- name: climate.ground_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - settu hiti stofa 19
+  - hiti stofa 19
+- name: climate.ground_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - settu hiti stofa 20
+  - hiti stofa 20
+- name: climate.ground_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - settu hiti stofa 21
+  - hiti stofa 21
+- name: climate.ground_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - settu hiti stofa 22
+  - hiti stofa 22
+- name: climate.ground_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - settu hiti stofa 23
+  - hiti stofa 23
+- name: climate.ground_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - settu hiti stofa 24
+  - hiti stofa 24
+- name: climate.ground_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - hvad hiti stofa
+  - hiti stofa
+- name: climate.upper_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - settu hiti svefnherbergi 18
+  - hiti svefnherbergi 18
+- name: climate.upper_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - settu hiti svefnherbergi 19
+  - hiti svefnherbergi 19
+- name: climate.upper_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - settu hiti svefnherbergi 20
+  - hiti svefnherbergi 20
+- name: climate.upper_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - settu hiti svefnherbergi 21
+  - hiti svefnherbergi 21
+- name: climate.upper_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - settu hiti svefnherbergi 22
+  - hiti svefnherbergi 22
+- name: climate.upper_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - settu hiti svefnherbergi 23
+  - hiti svefnherbergi 23
+- name: climate.upper_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - settu hiti svefnherbergi 24
+  - hiti svefnherbergi 24
+- name: climate.upper_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - hvad hiti svefnherbergi
+  - hiti svefnherbergi
+- name: climate.master_ac_18
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 18
+  sentences:
+  - settu hiti svefnherbergi 18
+  - hiti svefnherbergi 18
+- name: climate.master_ac_19
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 19
+  sentences:
+  - settu hiti svefnherbergi 19
+  - hiti svefnherbergi 19
+- name: climate.master_ac_20
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 20
+  sentences:
+  - settu hiti svefnherbergi 20
+  - hiti svefnherbergi 20
+- name: climate.master_ac_21
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 21
+  sentences:
+  - settu hiti svefnherbergi 21
+  - hiti svefnherbergi 21
+- name: climate.master_ac_22
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 22
+  sentences:
+  - settu hiti svefnherbergi 22
+  - hiti svefnherbergi 22
+- name: climate.master_ac_23
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 23
+  sentences:
+  - settu hiti svefnherbergi 23
+  - hiti svefnherbergi 23
+- name: climate.master_ac_24
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 24
+  sentences:
+  - settu hiti svefnherbergi 24
+  - hiti svefnherbergi 24
+- name: climate.master_ac_get
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - hvad hiti svefnherbergi
+  - hiti svefnherbergi
+- name: climate.ground_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - hvad hiti stofa
+  - hiti stofa
+- name: climate.upper_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - hvad hiti svefnherbergi
+  - hiti svefnherbergi
+- name: climate.master_ac_get_full
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - hvad hiti svefnherbergi
+  - hiti svefnherbergi

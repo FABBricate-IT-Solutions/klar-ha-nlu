@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- zapni casovac abstract 45 minut
+timers/timers::abstract_start_hours_minutes:
+- zapni casovac abstract 20 minut
+timers/timers::abstract_start_seconds:
+- zapni casovac abstract
+timers/timers::cancel_all_timers:
+- vypni vse casovac
+timers/timers::timer_laundry_cancel:
+- zapni casovac laundry
+timers/timers::timer_laundry_decrease:
+- zapni casovac laundry 5 minut
+timers/timers::timer_laundry_increase:
+- zapni casovac laundry 16 minut
+timers/timers::timer_laundry_pause:
+- vypni casovac laundry
+timers/timers::timer_laundry_start:
+- zapni casovac laundry
+timers/timers::timer_laundry_status:
+- co casovac laundry
+timers/timers::timer_laundry_unpause:
+- zapni casovac laundry
+timers/timers::timer_oven_cancel:
+- zapni casovac oven
+timers/timers::timer_oven_decrease:
+- zapni casovac oven 44 minut
+timers/timers::timer_oven_increase:
+- zapni casovac oven 30 minut
+timers/timers::timer_oven_pause:
+- vypni casovac oven
+timers/timers::timer_oven_start:
+- zapni casovac oven 2 minut
+timers/timers::timer_oven_status:
+- co casovac oven
+timers/timers::timer_oven_unpause:
+- zapni casovac oven

@@ -1,0 +1,231 @@
+- name: climate.ground_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - pune incalzire sufragerie 18
+  - incalzire sufragerie 18
+- name: climate.ground_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - pune incalzire sufragerie 19
+  - incalzire sufragerie 19
+- name: climate.ground_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - pune incalzire sufragerie 20
+  - incalzire sufragerie 20
+- name: climate.ground_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - pune incalzire sufragerie 21
+  - incalzire sufragerie 21
+- name: climate.ground_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - pune incalzire sufragerie 22
+  - incalzire sufragerie 22
+- name: climate.ground_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - pune incalzire sufragerie 23
+  - incalzire sufragerie 23
+- name: climate.ground_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - pune incalzire sufragerie 24
+  - incalzire sufragerie 24
+- name: climate.ground_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - ce incalzire sufragerie
+  - incalzire sufragerie
+- name: climate.upper_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - pune incalzire dormitor 18
+  - incalzire dormitor 18
+- name: climate.upper_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - pune incalzire dormitor 19
+  - incalzire dormitor 19
+- name: climate.upper_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - pune incalzire dormitor 20
+  - incalzire dormitor 20
+- name: climate.upper_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - pune incalzire dormitor 21
+  - incalzire dormitor 21
+- name: climate.upper_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - pune incalzire dormitor 22
+  - incalzire dormitor 22
+- name: climate.upper_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - pune incalzire dormitor 23
+  - incalzire dormitor 23
+- name: climate.upper_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - pune incalzire dormitor 24
+  - incalzire dormitor 24
+- name: climate.upper_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - ce incalzire dormitor
+  - incalzire dormitor
+- name: climate.master_ac_18
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 18
+  sentences:
+  - pune aer dormitor 18
+  - aer dormitor 18
+- name: climate.master_ac_19
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 19
+  sentences:
+  - pune aer dormitor 19
+  - aer dormitor 19
+- name: climate.master_ac_20
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 20
+  sentences:
+  - pune aer dormitor 20
+  - aer dormitor 20
+- name: climate.master_ac_21
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 21
+  sentences:
+  - pune aer dormitor 21
+  - aer dormitor 21
+- name: climate.master_ac_22
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 22
+  sentences:
+  - pune aer dormitor 22
+  - aer dormitor 22
+- name: climate.master_ac_23
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 23
+  sentences:
+  - pune aer dormitor 23
+  - aer dormitor 23
+- name: climate.master_ac_24
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 24
+  sentences:
+  - pune aer dormitor 24
+  - aer dormitor 24
+- name: climate.master_ac_get
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - ce aer dormitor
+  - aer dormitor
+- name: climate.ground_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - ce incalzire sufragerie
+  - incalzire sufragerie
+- name: climate.upper_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - ce incalzire dormitor
+  - incalzire dormitor
+- name: climate.master_ac_get_full
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - ce aer dormitor
+  - aer dormitor

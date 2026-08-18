@@ -1,0 +1,48 @@
+- name: scene_film
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  sentences:
+  - aanzetten film
+  - film aanzetten
+- name: scene_night
+  conditions:
+  - type: action
+    entity_id: script.good_night
+    state: 'on'
+  sentences:
+  - aanzetten nacht
+  - nacht aanzetten
+- name: scene_leave
+  conditions:
+  - type: action
+    entity_id: script.leaving_home
+    state: 'on'
+  sentences:
+  - aanzetten vertrek
+  - vertrek aanzetten
+- name: scene_dinner
+  conditions:
+  - type: action
+    entity_id: scene.dinner_time
+    state: 'on'
+  sentences:
+  - aanzetten diner
+  - diner aanzetten
+- name: scene_morning
+  conditions:
+  - type: action
+    entity_id: scene.good_morning
+    state: 'on'
+  sentences:
+  - aanzetten ochtend
+  - ochtend aanzetten
+- name: scene_kids
+  conditions:
+  - type: action
+    entity_id: scene.kids_bedtime
+    state: 'on'
+  sentences:
+  - aanzetten kinderen
+  - kinderen aanzetten

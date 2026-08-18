@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - kaj luc dnevna
+  - kaj dnevna luc
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - kaj zavesa dnevna
+  - kaj dnevna zavesa
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - kaj kljucavnica predsoba
+  - kaj predsoba kljucavnica
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - kaj ogrevanje dnevna
+  - kaj dnevna ogrevanje
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - kaj tv dnevna
+  - kaj dnevna tv
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - kaj doorsensor predsoba
+  - kaj predsoba doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - kaj windowsensor dnevna
+  - kaj dnevna windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - kaj tempsensor dnevna
+  - kaj dnevna tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - kaj luc kuhinja
+  - kaj kuhinja luc
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - kaj luc office
+  - kaj office luc
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - kaj luc garden
+  - kaj garden luc
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - kaj luc basement
+  - kaj basement luc
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - kaj zavesa spalnica
+  - kaj spalnica zavesa
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - kaj zavesa garage
+  - kaj garage zavesa
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - kaj kljucavnica garage
+  - kaj garage kljucavnica
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - kaj ogrevanje spalnica
+  - kaj spalnica ogrevanje
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - kaj temperatura spalnica
+  - kaj spalnica temperatura
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - kaj tv dnevnafam
+  - kaj dnevnafam tv
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - kaj televizor dnevna
+  - kaj dnevna televizor
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - kaj motion kuhinja
+  - kaj kuhinja motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - kaj humidity dnevna
+  - kaj dnevna humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - kaj ventilator spalnica
+  - kaj spalnica ventilator
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - kaj sesalnik dnevna
+  - kaj dnevna sesalnik
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - kaj luc dnevna
+  - kaj dnevna luc
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - kaj luc kuhinja
+  - kaj kuhinja luc
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - kaj luc spalnica
+  - kaj spalnica luc
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - kaj luc spalnica
+  - kaj spalnica luc
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - kaj luc hallway
+  - kaj hallway luc
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - kaj luc dnevnafam
+  - kaj dnevnafam luc
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - kaj luc dnevnafamess
+  - kaj dnevnafamess luc
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - kaj luc garage
+  - kaj garage luc
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - kaj luc spalnica2
+  - kaj spalnica2 luc
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - kaj luc spalnica3
+  - kaj spalnica3 luc
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - kaj luc spalnica4
+  - kaj spalnica4 luc
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - kaj luc predsoba
+  - kaj predsoba luc
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - kaj luc pralnica
+  - kaj pralnica luc
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - kaj luc main bath
+  - kaj main bath luc
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - kaj luc wc
+  - kaj wc luc
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - kaj ensuite spalnica
+  - kaj spalnica ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - kaj luc spalnica
+  - kaj spalnica luc
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - kaj luc kopalmaster
+  - kaj kopalmaster luc

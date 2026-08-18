@@ -1,0 +1,504 @@
+name: Full Home th
+language: th
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: chanlang
+  level: 0
+  aliases:
+  - chanlang
+  - lang
+- id: upper
+  name: chanbon
+  level: 1
+  aliases:
+  - chanbon
+  - bon
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Thangkhau
+  floor: ground
+  aliases:
+  - thangkhau
+- id: living
+  name: Hongnang
+  floor: ground
+  aliases:
+  - hongnang
+- id: dining
+  name: Hongkhropkhruaess
+  floor: ground
+  aliases:
+  - hongkhropkhruaess
+- id: kitchen
+  name: Hongkrua
+  floor: ground
+  aliases:
+  - hongkrua
+- id: family_room
+  name: Hongkhropkhrua
+  floor: ground
+  aliases:
+  - hongkhropkhrua
+- id: laundry
+  name: Hongsakpha
+  floor: ground
+  aliases:
+  - hongsakpha
+- id: powder_room
+  name: Hongnamkhaek
+  floor: ground
+  aliases:
+  - hongnamkhaek
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Hongnon
+  floor: upper
+  aliases:
+  - hongnon
+- id: bedroom_2
+  name: Hongnon2
+  floor: upper
+  aliases:
+  - hongnon2
+- id: bedroom_3
+  name: Hongnon3
+  floor: upper
+  aliases:
+  - hongnon3
+- id: bedroom_4
+  name: Hongnon4
+  floor: upper
+  aliases:
+  - hongnon4
+- id: master_bath
+  name: Hongnamlak
+  floor: upper
+  aliases:
+  - hongnamlak
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: thangkhau fai
+  aliases:
+  - thangkhau fai
+  - fai
+- id: light.living_ceiling
+  area_id: living
+  name: hongnang phalang
+  aliases:
+  - hongnang phalang
+  - phalang
+- id: light.living_lamp
+  area_id: living
+  name: hongnang fai
+  aliases:
+  - hongnang fai
+  - fai
+- id: light.dining_pendant
+  area_id: dining
+  name: hongkhropkhruaess fai
+  aliases:
+  - hongkhropkhruaess fai
+  - fai
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: hongkrua phalang
+  aliases:
+  - hongkrua phalang
+  - phalang
+- id: light.kitchen_island
+  area_id: kitchen
+  name: hongkrua ko
+  aliases:
+  - hongkrua ko
+  - ko
+- id: light.family_ceiling
+  area_id: family_room
+  name: hongkhropkhrua phalang
+  aliases:
+  - hongkhropkhrua phalang
+  - phalang
+- id: light.laundry_light
+  area_id: laundry
+  name: hongsakpha fai
+  aliases:
+  - hongsakpha fai
+  - fai
+- id: light.powder_room_light
+  area_id: powder_room
+  name: hongnamkhaek fai
+  aliases:
+  - hongnamkhaek fai
+  - fai
+- id: light.garage_light
+  area_id: garage
+  name: garage fai
+  aliases:
+  - garage fai
+  - fai
+- id: light.office_ceiling
+  area_id: office
+  name: office phalang
+  aliases:
+  - office phalang
+  - phalang
+- id: light.garden
+  area_id: garden
+  name: garden fai
+  aliases:
+  - garden fai
+  - fai
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: hongnon phalang
+  aliases:
+  - hongnon phalang
+  - phalang
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: hongnon ensuite
+  aliases:
+  - hongnon ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: hongnon left khangtiang
+  aliases:
+  - hongnon left khangtiang
+  - khangtiang
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: hongnon right khangtiang
+  aliases:
+  - hongnon right khangtiang
+  - khangtiang
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: hongnon2 phalang
+  aliases:
+  - hongnon2 phalang
+  - phalang
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: hongnon3 phalang
+  aliases:
+  - hongnon3 phalang
+  - phalang
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: hongnon4 phalang
+  aliases:
+  - hongnon4 phalang
+  - phalang
+- id: light.master_bath_light
+  area_id: master_bath
+  name: hongnamlak fai
+  aliases:
+  - hongnamlak fai
+  - fai
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath fai
+  aliases:
+  - main bath fai
+  - fai
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway fai
+  aliases:
+  - hallway fai
+  - fai
+- id: light.basement
+  area_id: basement
+  name: basement fai
+  aliases:
+  - basement fai
+  - fai
+- id: cover.living_blinds
+  area_id: living
+  name: hongnang man
+  aliases:
+  - hongnang man
+  - man
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: hongnon man
+  aliases:
+  - hongnon man
+  - man
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: hongnon2 man
+  aliases:
+  - hongnon2 man
+  - man
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: hongnon3 man
+  aliases:
+  - hongnon3 man
+  - man
+- id: cover.garage_door
+  area_id: garage
+  name: garage man
+  aliases:
+  - garage man
+  - man
+- id: climate.ground_thermostat
+  area_id: living
+  name: hongnang air
+  aliases:
+  - hongnang air
+  - air
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: hongnon air
+  aliases:
+  - hongnon air
+  - air
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: air hongnon
+  aliases:
+  - air hongnon
+  - air
+  - ac
+  tags:
+  - air
+- id: fan.family_fan
+  area_id: family_room
+  name: hongkhropkhrua phat
+  aliases:
+  - hongkhropkhrua phat
+  - phat
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: hongnon phat
+  aliases:
+  - hongnon phat
+  - phat
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: hongnon2 phat
+  aliases:
+  - hongnon2 phat
+  - phat
+- id: lock.front_door
+  area_id: entryway
+  name: front pratu
+  aliases:
+  - front pratu
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage pratu
+  aliases:
+  - garage pratu
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: hongkrua langchan
+  aliases:
+  - hongkrua langchan
+  - langchan
+- id: switch.rangehood
+  area_id: kitchen
+  name: hongkrua rangehood
+  aliases:
+  - hongkrua rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: hongsakpha sakpha
+  aliases:
+  - hongsakpha sakpha
+  - sakpha
+  - washer
+  tags:
+  - washer
+  - sakpha
+- id: switch.dryer
+  area_id: laundry
+  name: hongsakpha dryer
+  aliases:
+  - hongsakpha dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: hongnamlak phatbad
+  aliases:
+  - hongnamlak phatbad
+  - phatbad
+  tags:
+  - phatbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath phatbad
+  aliases:
+  - main bath phatbad
+  - phatbad
+  tags:
+  - phatbad
+- id: media_player.living_tv
+  area_id: living
+  name: hongnang thorathat
+  aliases:
+  - hongnang thorathat
+  - thorathat
+- id: media_player.family_tv
+  area_id: family_room
+  name: hongkhropkhrua thorathat
+  aliases:
+  - hongkhropkhrua thorathat
+  - thorathat
+- id: media_player.living_music
+  area_id: living
+  name: hongnang phleng
+  aliases:
+  - hongnang phleng
+  - phleng
+  platform: music_assistant
+  tags:
+  - phleng
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: hongkrua phleng
+  aliases:
+  - hongkrua phleng
+  - phleng
+  platform: music_assistant
+  tags:
+  - phleng
+- id: media_player.office_music
+  area_id: office
+  name: office phleng
+  aliases:
+  - office phleng
+  - phleng
+  platform: music_assistant
+  tags:
+  - phleng
+- id: vacuum.robot
+  area_id: living
+  name: hongnang dutfun
+  aliases:
+  - hongnang dutfun
+  - dutfun
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: thangkhau doorsensor
+  aliases:
+  - thangkhau doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: hongnang windowsensor
+  aliases:
+  - hongnang windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: hongkrua motion
+  aliases:
+  - hongkrua motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: hongnang tempsensor
+  aliases:
+  - hongnang tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: hongnang humidity
+  aliases:
+  - hongnang humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: nang
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: khuen
+- id: leaving_home
+  name: ok
+timers:
+- id: oven
+  name: oven tangwela
+- id: laundry
+  name: laundry tangwela
+- id: abstract
+  name: abstract tangwela
+lists:
+- id: shopping
+  name: raikan

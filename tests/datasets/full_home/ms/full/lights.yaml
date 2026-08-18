@@ -1,0 +1,4606 @@
+- name: lights_entryway_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu lorong
+  - lampu lorong hidupkan
+- name: lights_entryway_off
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu lorong
+  - lampu lorong matikan
+- name: lights_living_on
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu ruang
+  - lampu ruang hidupkan
+- name: lights_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu ruang
+  - lampu ruang matikan
+- name: lights_dining_on
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu ruankeluargaess
+  - lampu ruankeluargaess hidupkan
+- name: lights_dining_off
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu ruankeluargaess
+  - lampu ruankeluargaess matikan
+- name: lights_kitchen_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu dapur
+  - lampu dapur hidupkan
+- name: lights_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu dapur
+  - lampu dapur matikan
+- name: lights_family_room_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu ruankeluarga
+  - lampu ruankeluarga hidupkan
+- name: lights_family_room_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu ruankeluarga
+  - lampu ruankeluarga matikan
+- name: lights_laundry_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu dobi
+  - lampu dobi hidupkan
+- name: lights_laundry_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu dobi
+  - lampu dobi matikan
+- name: lights_powder_room_on
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu wc
+  - lampu wc hidupkan
+- name: lights_powder_room_off
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu wc
+  - lampu wc matikan
+- name: lights_garage_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu garage
+  - lampu garage hidupkan
+- name: lights_garage_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu garage
+  - lampu garage matikan
+- name: lights_office_on
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu office
+  - lampu office hidupkan
+- name: lights_office_off
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu office
+  - lampu office matikan
+- name: lights_garden_on
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu garden
+  - lampu garden hidupkan
+- name: lights_garden_off
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu garden
+  - lampu garden matikan
+- name: lights_master_bedroom_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu bilik
+  - lampu bilik hidupkan
+- name: lights_master_bedroom_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu bilik
+  - lampu bilik matikan
+- name: lights_bedroom_2_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu bilik2
+  - lampu bilik2 hidupkan
+- name: lights_bedroom_2_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu bilik2
+  - lampu bilik2 matikan
+- name: lights_bedroom_3_on
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu bilik3
+  - lampu bilik3 hidupkan
+- name: lights_bedroom_3_off
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu bilik3
+  - lampu bilik3 matikan
+- name: lights_bedroom_4_on
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu bilik4
+  - lampu bilik4 hidupkan
+- name: lights_bedroom_4_off
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu bilik4
+  - lampu bilik4 matikan
+- name: lights_master_bath_on
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu bilikmandimaster
+  - lampu bilikmandimaster hidupkan
+- name: lights_master_bath_off
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu bilikmandimaster
+  - lampu bilikmandimaster matikan
+- name: lights_main_bath_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu main bath
+  - lampu main bath hidupkan
+- name: lights_main_bath_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu main bath
+  - lampu main bath matikan
+- name: lights_hallway_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu hallway
+  - lampu hallway hidupkan
+- name: lights_hallway_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu hallway
+  - lampu hallway matikan
+- name: lights_basement_on
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan lampu basement
+  - lampu basement hidupkan
+- name: lights_basement_off
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan lampu basement
+  - lampu basement matikan
+- name: light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling ruang
+  - siling ruang hidupkan
+- name: light.living_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling ruang
+  - siling ruang matikan
+- name: light.living_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling ruang 20
+  - siling ruang 20
+- name: light.living_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling ruang 40
+  - siling ruang 40
+- name: light.living_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling ruang 50
+  - siling ruang 50
+- name: light.living_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling ruang 60
+  - siling ruang 60
+- name: light.living_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling ruang 80
+  - siling ruang 80
+- name: light.living_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling ruang 100
+  - siling ruang 100
+- name: light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - hidupkan lamp ruang
+  - lamp ruang hidupkan
+- name: light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - matikan lamp ruang
+  - lamp ruang matikan
+- name: light.living_lamp_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lamp ruang 20
+  - lamp ruang 20
+- name: light.living_lamp_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lamp ruang 40
+  - lamp ruang 40
+- name: light.living_lamp_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lamp ruang 50
+  - lamp ruang 50
+- name: light.living_lamp_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lamp ruang 60
+  - lamp ruang 60
+- name: light.living_lamp_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lamp ruang 80
+  - lamp ruang 80
+- name: light.living_lamp_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lamp ruang 100
+  - lamp ruang 100
+- name: light.kitchen_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling dapur
+  - siling dapur hidupkan
+- name: light.kitchen_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling dapur
+  - siling dapur matikan
+- name: light.kitchen_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling dapur 20
+  - siling dapur 20
+- name: light.kitchen_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling dapur 40
+  - siling dapur 40
+- name: light.kitchen_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling dapur 50
+  - siling dapur 50
+- name: light.kitchen_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling dapur 60
+  - siling dapur 60
+- name: light.kitchen_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling dapur 80
+  - siling dapur 80
+- name: light.kitchen_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling dapur 100
+  - siling dapur 100
+- name: light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - hidupkan pulau dapur
+  - pulau dapur hidupkan
+- name: light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - matikan pulau dapur
+  - pulau dapur matikan
+- name: light.kitchen_island_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan pulau dapur 20
+  - pulau dapur 20
+- name: light.kitchen_island_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan pulau dapur 40
+  - pulau dapur 40
+- name: light.kitchen_island_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan pulau dapur 50
+  - pulau dapur 50
+- name: light.kitchen_island_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan pulau dapur 60
+  - pulau dapur 60
+- name: light.kitchen_island_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan pulau dapur 80
+  - pulau dapur 80
+- name: light.kitchen_island_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan pulau dapur 100
+  - pulau dapur 100
+- name: light.master_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling bilik
+  - siling bilik hidupkan
+- name: light.master_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling bilik
+  - siling bilik matikan
+- name: light.master_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling bilik 20
+  - siling bilik 20
+- name: light.master_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling bilik 40
+  - siling bilik 40
+- name: light.master_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling bilik 50
+  - siling bilik 50
+- name: light.master_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling bilik 60
+  - siling bilik 60
+- name: light.master_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling bilik 80
+  - siling bilik 80
+- name: light.master_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling bilik 100
+  - siling bilik 100
+- name: light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - hidupkan katil bilik
+  - katil bilik hidupkan
+- name: light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - matikan katil bilik
+  - katil bilik matikan
+- name: light.master_bedside_left_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan katil bilik 20
+  - katil bilik 20
+- name: light.master_bedside_left_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan katil bilik 40
+  - katil bilik 40
+- name: light.master_bedside_left_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan katil bilik 50
+  - katil bilik 50
+- name: light.master_bedside_left_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan katil bilik 60
+  - katil bilik 60
+- name: light.master_bedside_left_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan katil bilik 80
+  - katil bilik 80
+- name: light.master_bedside_left_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan katil bilik 100
+  - katil bilik 100
+- name: light.office_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling office
+  - siling office hidupkan
+- name: light.office_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling office
+  - siling office matikan
+- name: light.office_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling office 20
+  - siling office 20
+- name: light.office_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling office 40
+  - siling office 40
+- name: light.office_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling office 50
+  - siling office 50
+- name: light.office_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling office 60
+  - siling office 60
+- name: light.office_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling office 80
+  - siling office 80
+- name: light.office_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling office 100
+  - siling office 100
+- name: light.garden_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  sentences:
+  - hidupkan lampu garden
+  - lampu garden hidupkan
+- name: light.garden_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  sentences:
+  - matikan lampu garden
+  - lampu garden matikan
+- name: light.garden_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu garden 20
+  - lampu garden 20
+- name: light.garden_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu garden 40
+  - lampu garden 40
+- name: light.garden_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu garden 50
+  - lampu garden 50
+- name: light.garden_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu garden 60
+  - lampu garden 60
+- name: light.garden_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu garden 80
+  - lampu garden 80
+- name: light.garden_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu garden 100
+  - lampu garden 100
+- name: light.basement_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - hidupkan lampu basement
+  - lampu basement hidupkan
+- name: light.basement_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  sentences:
+  - matikan lampu basement
+  - lampu basement matikan
+- name: light.basement_bright_20
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu basement 20
+  - lampu basement 20
+- name: light.basement_bright_40
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu basement 40
+  - lampu basement 40
+- name: light.basement_bright_50
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu basement 50
+  - lampu basement 50
+- name: light.basement_bright_60
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu basement 60
+  - lampu basement 60
+- name: light.basement_bright_80
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu basement 80
+  - lampu basement 80
+- name: light.basement_bright_100
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu basement 100
+  - lampu basement 100
+- name: light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu hallway
+  - lampu hallway hidupkan
+- name: light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - matikan lampu hallway
+  - lampu hallway matikan
+- name: light.hallway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu hallway 20
+  - lampu hallway 20
+- name: light.hallway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu hallway 40
+  - lampu hallway 40
+- name: light.hallway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu hallway 50
+  - lampu hallway 50
+- name: light.hallway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu hallway 60
+  - lampu hallway 60
+- name: light.hallway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu hallway 80
+  - lampu hallway 80
+- name: light.hallway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu hallway 100
+  - lampu hallway 100
+- name: light.family_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling ruankeluarga
+  - siling ruankeluarga hidupkan
+- name: light.family_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling ruankeluarga
+  - siling ruankeluarga matikan
+- name: light.family_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling ruankeluarga 20
+  - siling ruankeluarga 20
+- name: light.family_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling ruankeluarga 40
+  - siling ruankeluarga 40
+- name: light.family_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling ruankeluarga 50
+  - siling ruankeluarga 50
+- name: light.family_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling ruankeluarga 60
+  - siling ruankeluarga 60
+- name: light.family_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling ruankeluarga 80
+  - siling ruankeluarga 80
+- name: light.family_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling ruankeluarga 100
+  - siling ruankeluarga 100
+- name: light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - hidupkan lampu ruankeluargaess
+  - lampu ruankeluargaess hidupkan
+- name: light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - matikan lampu ruankeluargaess
+  - lampu ruankeluargaess matikan
+- name: light.dining_pendant_bright_20
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu ruankeluargaess 20
+  - lampu ruankeluargaess 20
+- name: light.dining_pendant_bright_40
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu ruankeluargaess 40
+  - lampu ruankeluargaess 40
+- name: light.dining_pendant_bright_50
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu ruankeluargaess 50
+  - lampu ruankeluargaess 50
+- name: light.dining_pendant_bright_60
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu ruankeluargaess 60
+  - lampu ruankeluargaess 60
+- name: light.dining_pendant_bright_80
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu ruankeluargaess 80
+  - lampu ruankeluargaess 80
+- name: light.dining_pendant_bright_100
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu ruankeluargaess 100
+  - lampu ruankeluargaess 100
+- name: light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu garage
+  - lampu garage hidupkan
+- name: light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - matikan lampu garage
+  - lampu garage matikan
+- name: light.garage_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu garage 20
+  - lampu garage 20
+- name: light.garage_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu garage 40
+  - lampu garage 40
+- name: light.garage_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu garage 50
+  - lampu garage 50
+- name: light.garage_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu garage 60
+  - lampu garage 60
+- name: light.garage_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu garage 80
+  - lampu garage 80
+- name: light.garage_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu garage 100
+  - lampu garage 100
+- name: light.bedroom2_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling bilik2
+  - siling bilik2 hidupkan
+- name: light.bedroom2_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling bilik2
+  - siling bilik2 matikan
+- name: light.bedroom2_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling bilik2 20
+  - siling bilik2 20
+- name: light.bedroom2_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling bilik2 40
+  - siling bilik2 40
+- name: light.bedroom2_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling bilik2 50
+  - siling bilik2 50
+- name: light.bedroom2_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling bilik2 60
+  - siling bilik2 60
+- name: light.bedroom2_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling bilik2 80
+  - siling bilik2 80
+- name: light.bedroom2_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling bilik2 100
+  - siling bilik2 100
+- name: light.bedroom3_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling bilik3
+  - siling bilik3 hidupkan
+- name: light.bedroom3_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling bilik3
+  - siling bilik3 matikan
+- name: light.bedroom3_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling bilik3 20
+  - siling bilik3 20
+- name: light.bedroom3_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling bilik3 40
+  - siling bilik3 40
+- name: light.bedroom3_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling bilik3 50
+  - siling bilik3 50
+- name: light.bedroom3_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling bilik3 60
+  - siling bilik3 60
+- name: light.bedroom3_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling bilik3 80
+  - siling bilik3 80
+- name: light.bedroom3_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling bilik3 100
+  - siling bilik3 100
+- name: light.bedroom4_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling bilik4
+  - siling bilik4 hidupkan
+- name: light.bedroom4_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  sentences:
+  - matikan siling bilik4
+  - siling bilik4 matikan
+- name: light.bedroom4_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan siling bilik4 20
+  - siling bilik4 20
+- name: light.bedroom4_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan siling bilik4 40
+  - siling bilik4 40
+- name: light.bedroom4_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan siling bilik4 50
+  - siling bilik4 50
+- name: light.bedroom4_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan siling bilik4 60
+  - siling bilik4 60
+- name: light.bedroom4_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan siling bilik4 80
+  - siling bilik4 80
+- name: light.bedroom4_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan siling bilik4 100
+  - siling bilik4 100
+- name: light.entryway_light_on
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu lorong
+  - lampu lorong hidupkan
+- name: light.entryway_light_off
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - matikan lampu lorong
+  - lampu lorong matikan
+- name: light.entryway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu lorong 20
+  - lampu lorong 20
+- name: light.entryway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu lorong 40
+  - lampu lorong 40
+- name: light.entryway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu lorong 50
+  - lampu lorong 50
+- name: light.entryway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu lorong 60
+  - lampu lorong 60
+- name: light.entryway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu lorong 80
+  - lampu lorong 80
+- name: light.entryway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu lorong 100
+  - lampu lorong 100
+- name: light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu dobi
+  - lampu dobi hidupkan
+- name: light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - matikan lampu dobi
+  - lampu dobi matikan
+- name: light.laundry_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu dobi 20
+  - lampu dobi 20
+- name: light.laundry_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu dobi 40
+  - lampu dobi 40
+- name: light.laundry_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu dobi 50
+  - lampu dobi 50
+- name: light.laundry_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu dobi 60
+  - lampu dobi 60
+- name: light.laundry_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu dobi 80
+  - lampu dobi 80
+- name: light.laundry_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu dobi 100
+  - lampu dobi 100
+- name: light.main_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu main bath
+  - lampu main bath hidupkan
+- name: light.main_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'off'
+  sentences:
+  - matikan lampu main bath
+  - lampu main bath matikan
+- name: light.main_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu main bath 20
+  - lampu main bath 20
+- name: light.main_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu main bath 40
+  - lampu main bath 40
+- name: light.main_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu main bath 50
+  - lampu main bath 50
+- name: light.main_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu main bath 60
+  - lampu main bath 60
+- name: light.main_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu main bath 80
+  - lampu main bath 80
+- name: light.main_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu main bath 100
+  - lampu main bath 100
+- name: light.powder_room_light_on
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu wc
+  - lampu wc hidupkan
+- name: light.powder_room_light_off
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - matikan lampu wc
+  - lampu wc matikan
+- name: light.powder_room_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu wc 20
+  - lampu wc 20
+- name: light.powder_room_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu wc 40
+  - lampu wc 40
+- name: light.powder_room_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu wc 50
+  - lampu wc 50
+- name: light.powder_room_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu wc 60
+  - lampu wc 60
+- name: light.powder_room_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu wc 80
+  - lampu wc 80
+- name: light.powder_room_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu wc 100
+  - lampu wc 100
+- name: light.master_ensuite_on
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'on'
+  sentences:
+  - hidupkan ensuite bilik
+  - ensuite bilik hidupkan
+- name: light.master_ensuite_off
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'off'
+  sentences:
+  - matikan ensuite bilik
+  - ensuite bilik matikan
+- name: light.master_ensuite_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan ensuite bilik 20
+  - ensuite bilik 20
+- name: light.master_ensuite_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan ensuite bilik 40
+  - ensuite bilik 40
+- name: light.master_ensuite_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan ensuite bilik 50
+  - ensuite bilik 50
+- name: light.master_ensuite_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan ensuite bilik 60
+  - ensuite bilik 60
+- name: light.master_ensuite_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan ensuite bilik 80
+  - ensuite bilik 80
+- name: light.master_ensuite_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan ensuite bilik 100
+  - ensuite bilik 100
+- name: light.master_bedside_right_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'on'
+  sentences:
+  - hidupkan katil bilik
+  - katil bilik hidupkan
+- name: light.master_bedside_right_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'off'
+  sentences:
+  - matikan katil bilik
+  - katil bilik matikan
+- name: light.master_bedside_right_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan katil bilik 20
+  - katil bilik 20
+- name: light.master_bedside_right_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan katil bilik 40
+  - katil bilik 40
+- name: light.master_bedside_right_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan katil bilik 50
+  - katil bilik 50
+- name: light.master_bedside_right_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan katil bilik 60
+  - katil bilik 60
+- name: light.master_bedside_right_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan katil bilik 80
+  - katil bilik 80
+- name: light.master_bedside_right_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan katil bilik 100
+  - katil bilik 100
+- name: light.master_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu bilikmandimaster
+  - lampu bilikmandimaster hidupkan
+- name: light.master_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'off'
+  sentences:
+  - matikan lampu bilikmandimaster
+  - lampu bilikmandimaster matikan
+- name: light.master_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - tetapkan lampu bilikmandimaster 20
+  - lampu bilikmandimaster 20
+- name: light.master_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - tetapkan lampu bilikmandimaster 40
+  - lampu bilikmandimaster 40
+- name: light.master_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - tetapkan lampu bilikmandimaster 50
+  - lampu bilikmandimaster 50
+- name: light.master_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - tetapkan lampu bilikmandimaster 60
+  - lampu bilikmandimaster 60
+- name: light.master_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - tetapkan lampu bilikmandimaster 80
+  - lampu bilikmandimaster 80
+- name: light.master_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - tetapkan lampu bilikmandimaster 100
+  - lampu bilikmandimaster 100
+- name: light.living_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling ruang red
+  - tetapkan lampu ruang red
+- name: light.living_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling ruang blue
+  - tetapkan lampu ruang blue
+- name: light.living_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling ruang green
+  - tetapkan lampu ruang green
+- name: light.living_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling ruang white
+  - tetapkan lampu ruang white
+- name: light.living_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling ruang yellow
+  - tetapkan lampu ruang yellow
+- name: light.living_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling ruang black
+  - tetapkan lampu ruang black
+- name: light.living_lamp_red
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lamp ruang red
+  - tetapkan lampu ruang red
+- name: light.living_lamp_blue
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lamp ruang blue
+  - tetapkan lampu ruang blue
+- name: light.living_lamp_green
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lamp ruang green
+  - tetapkan lampu ruang green
+- name: light.living_lamp_white
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lamp ruang white
+  - tetapkan lampu ruang white
+- name: light.living_lamp_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lamp ruang yellow
+  - tetapkan lampu ruang yellow
+- name: light.living_lamp_black
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lamp ruang black
+  - tetapkan lampu ruang black
+- name: light.kitchen_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling dapur red
+  - tetapkan lampu dapur red
+- name: light.kitchen_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling dapur blue
+  - tetapkan lampu dapur blue
+- name: light.kitchen_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling dapur green
+  - tetapkan lampu dapur green
+- name: light.kitchen_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling dapur white
+  - tetapkan lampu dapur white
+- name: light.kitchen_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling dapur yellow
+  - tetapkan lampu dapur yellow
+- name: light.kitchen_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling dapur black
+  - tetapkan lampu dapur black
+- name: light.kitchen_island_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: red
+  sentences:
+  - tetapkan pulau dapur red
+  - tetapkan lampu dapur red
+- name: light.kitchen_island_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan pulau dapur blue
+  - tetapkan lampu dapur blue
+- name: light.kitchen_island_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: green
+  sentences:
+  - tetapkan pulau dapur green
+  - tetapkan lampu dapur green
+- name: light.kitchen_island_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: white
+  sentences:
+  - tetapkan pulau dapur white
+  - tetapkan lampu dapur white
+- name: light.kitchen_island_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan pulau dapur yellow
+  - tetapkan lampu dapur yellow
+- name: light.kitchen_island_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: black
+  sentences:
+  - tetapkan pulau dapur black
+  - tetapkan lampu dapur black
+- name: light.master_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling bilik red
+  - tetapkan lampu bilik red
+- name: light.master_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling bilik blue
+  - tetapkan lampu bilik blue
+- name: light.master_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling bilik green
+  - tetapkan lampu bilik green
+- name: light.master_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling bilik white
+  - tetapkan lampu bilik white
+- name: light.master_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling bilik yellow
+  - tetapkan lampu bilik yellow
+- name: light.master_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling bilik black
+  - tetapkan lampu bilik black
+- name: light.master_bedside_left_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: red
+  sentences:
+  - tetapkan katil bilik red
+  - tetapkan lampu bilik red
+- name: light.master_bedside_left_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan katil bilik blue
+  - tetapkan lampu bilik blue
+- name: light.master_bedside_left_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: green
+  sentences:
+  - tetapkan katil bilik green
+  - tetapkan lampu bilik green
+- name: light.master_bedside_left_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: white
+  sentences:
+  - tetapkan katil bilik white
+  - tetapkan lampu bilik white
+- name: light.master_bedside_left_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan katil bilik yellow
+  - tetapkan lampu bilik yellow
+- name: light.master_bedside_left_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: black
+  sentences:
+  - tetapkan katil bilik black
+  - tetapkan lampu bilik black
+- name: light.office_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling office red
+  - tetapkan lampu office red
+- name: light.office_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling office blue
+  - tetapkan lampu office blue
+- name: light.office_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling office green
+  - tetapkan lampu office green
+- name: light.office_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling office white
+  - tetapkan lampu office white
+- name: light.office_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling office yellow
+  - tetapkan lampu office yellow
+- name: light.office_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling office black
+  - tetapkan lampu office black
+- name: light.garden_red
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu garden red
+  - lampu garden red
+- name: light.garden_blue
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu garden blue
+  - lampu garden blue
+- name: light.garden_green
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu garden green
+  - lampu garden green
+- name: light.garden_white
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu garden white
+  - lampu garden white
+- name: light.garden_yellow
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu garden yellow
+  - lampu garden yellow
+- name: light.garden_black
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu garden black
+  - lampu garden black
+- name: light.basement_red
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu basement red
+  - lampu basement red
+- name: light.basement_blue
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu basement blue
+  - lampu basement blue
+- name: light.basement_green
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu basement green
+  - lampu basement green
+- name: light.basement_white
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu basement white
+  - lampu basement white
+- name: light.basement_yellow
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu basement yellow
+  - lampu basement yellow
+- name: light.basement_black
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu basement black
+  - lampu basement black
+- name: light.hallway_light_red
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu hallway red
+  - lampu hallway red
+- name: light.hallway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu hallway blue
+  - lampu hallway blue
+- name: light.hallway_light_green
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu hallway green
+  - lampu hallway green
+- name: light.hallway_light_white
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu hallway white
+  - lampu hallway white
+- name: light.hallway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu hallway yellow
+  - lampu hallway yellow
+- name: light.hallway_light_black
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu hallway black
+  - lampu hallway black
+- name: light.family_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling ruankeluarga red
+  - tetapkan lampu ruankeluarga red
+- name: light.family_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling ruankeluarga blue
+  - tetapkan lampu ruankeluarga blue
+- name: light.family_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling ruankeluarga green
+  - tetapkan lampu ruankeluarga green
+- name: light.family_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling ruankeluarga white
+  - tetapkan lampu ruankeluarga white
+- name: light.family_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling ruankeluarga yellow
+  - tetapkan lampu ruankeluarga yellow
+- name: light.family_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling ruankeluarga black
+  - tetapkan lampu ruankeluarga black
+- name: light.dining_pendant_red
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu ruankeluargaess red
+  - lampu ruankeluargaess red
+- name: light.dining_pendant_blue
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu ruankeluargaess blue
+  - lampu ruankeluargaess blue
+- name: light.dining_pendant_green
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu ruankeluargaess green
+  - lampu ruankeluargaess green
+- name: light.dining_pendant_white
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu ruankeluargaess white
+  - lampu ruankeluargaess white
+- name: light.dining_pendant_yellow
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu ruankeluargaess yellow
+  - lampu ruankeluargaess yellow
+- name: light.dining_pendant_black
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu ruankeluargaess black
+  - lampu ruankeluargaess black
+- name: light.garage_light_red
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu garage red
+  - lampu garage red
+- name: light.garage_light_blue
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu garage blue
+  - lampu garage blue
+- name: light.garage_light_green
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu garage green
+  - lampu garage green
+- name: light.garage_light_white
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu garage white
+  - lampu garage white
+- name: light.garage_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu garage yellow
+  - lampu garage yellow
+- name: light.garage_light_black
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu garage black
+  - lampu garage black
+- name: light.bedroom2_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling bilik2 red
+  - tetapkan lampu bilik2 red
+- name: light.bedroom2_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling bilik2 blue
+  - tetapkan lampu bilik2 blue
+- name: light.bedroom2_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling bilik2 green
+  - tetapkan lampu bilik2 green
+- name: light.bedroom2_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling bilik2 white
+  - tetapkan lampu bilik2 white
+- name: light.bedroom2_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling bilik2 yellow
+  - tetapkan lampu bilik2 yellow
+- name: light.bedroom2_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling bilik2 black
+  - tetapkan lampu bilik2 black
+- name: light.bedroom3_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling bilik3 red
+  - tetapkan lampu bilik3 red
+- name: light.bedroom3_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling bilik3 blue
+  - tetapkan lampu bilik3 blue
+- name: light.bedroom3_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling bilik3 green
+  - tetapkan lampu bilik3 green
+- name: light.bedroom3_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling bilik3 white
+  - tetapkan lampu bilik3 white
+- name: light.bedroom3_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling bilik3 yellow
+  - tetapkan lampu bilik3 yellow
+- name: light.bedroom3_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling bilik3 black
+  - tetapkan lampu bilik3 black
+- name: light.bedroom4_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: red
+  sentences:
+  - tetapkan siling bilik4 red
+  - tetapkan lampu bilik4 red
+- name: light.bedroom4_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan siling bilik4 blue
+  - tetapkan lampu bilik4 blue
+- name: light.bedroom4_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: green
+  sentences:
+  - tetapkan siling bilik4 green
+  - tetapkan lampu bilik4 green
+- name: light.bedroom4_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: white
+  sentences:
+  - tetapkan siling bilik4 white
+  - tetapkan lampu bilik4 white
+- name: light.bedroom4_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan siling bilik4 yellow
+  - tetapkan lampu bilik4 yellow
+- name: light.bedroom4_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: black
+  sentences:
+  - tetapkan siling bilik4 black
+  - tetapkan lampu bilik4 black
+- name: light.entryway_light_red
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu lorong red
+  - lampu lorong red
+- name: light.entryway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu lorong blue
+  - lampu lorong blue
+- name: light.entryway_light_green
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu lorong green
+  - lampu lorong green
+- name: light.entryway_light_white
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu lorong white
+  - lampu lorong white
+- name: light.entryway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu lorong yellow
+  - lampu lorong yellow
+- name: light.entryway_light_black
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu lorong black
+  - lampu lorong black
+- name: light.laundry_light_red
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu dobi red
+  - lampu dobi red
+- name: light.laundry_light_blue
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu dobi blue
+  - lampu dobi blue
+- name: light.laundry_light_green
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu dobi green
+  - lampu dobi green
+- name: light.laundry_light_white
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu dobi white
+  - lampu dobi white
+- name: light.laundry_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu dobi yellow
+  - lampu dobi yellow
+- name: light.laundry_light_black
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu dobi black
+  - lampu dobi black
+- name: light.main_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu main bath red
+  - lampu main bath red
+- name: light.main_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu main bath blue
+  - lampu main bath blue
+- name: light.main_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu main bath green
+  - lampu main bath green
+- name: light.main_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu main bath white
+  - lampu main bath white
+- name: light.main_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu main bath yellow
+  - lampu main bath yellow
+- name: light.main_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu main bath black
+  - lampu main bath black
+- name: light.powder_room_light_red
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu wc red
+  - lampu wc red
+- name: light.powder_room_light_blue
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu wc blue
+  - lampu wc blue
+- name: light.powder_room_light_green
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu wc green
+  - lampu wc green
+- name: light.powder_room_light_white
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu wc white
+  - lampu wc white
+- name: light.powder_room_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu wc yellow
+  - lampu wc yellow
+- name: light.powder_room_light_black
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu wc black
+  - lampu wc black
+- name: light.master_ensuite_red
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: red
+  sentences:
+  - tetapkan ensuite bilik red
+  - tetapkan lampu bilik red
+- name: light.master_ensuite_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan ensuite bilik blue
+  - tetapkan lampu bilik blue
+- name: light.master_ensuite_green
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: green
+  sentences:
+  - tetapkan ensuite bilik green
+  - tetapkan lampu bilik green
+- name: light.master_ensuite_white
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: white
+  sentences:
+  - tetapkan ensuite bilik white
+  - tetapkan lampu bilik white
+- name: light.master_ensuite_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan ensuite bilik yellow
+  - tetapkan lampu bilik yellow
+- name: light.master_ensuite_black
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: black
+  sentences:
+  - tetapkan ensuite bilik black
+  - tetapkan lampu bilik black
+- name: light.master_bedside_right_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: red
+  sentences:
+  - tetapkan katil bilik red
+  - tetapkan lampu bilik red
+- name: light.master_bedside_right_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan katil bilik blue
+  - tetapkan lampu bilik blue
+- name: light.master_bedside_right_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: green
+  sentences:
+  - tetapkan katil bilik green
+  - tetapkan lampu bilik green
+- name: light.master_bedside_right_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: white
+  sentences:
+  - tetapkan katil bilik white
+  - tetapkan lampu bilik white
+- name: light.master_bedside_right_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan katil bilik yellow
+  - tetapkan lampu bilik yellow
+- name: light.master_bedside_right_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: black
+  sentences:
+  - tetapkan katil bilik black
+  - tetapkan lampu bilik black
+- name: light.master_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: red
+  sentences:
+  - tetapkan lampu bilikmandimaster red
+  - lampu bilikmandimaster red
+- name: light.master_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - tetapkan lampu bilikmandimaster blue
+  - lampu bilikmandimaster blue
+- name: light.master_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: green
+  sentences:
+  - tetapkan lampu bilikmandimaster green
+  - lampu bilikmandimaster green
+- name: light.master_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: white
+  sentences:
+  - tetapkan lampu bilikmandimaster white
+  - lampu bilikmandimaster white
+- name: light.master_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - tetapkan lampu bilikmandimaster yellow
+  - lampu bilikmandimaster yellow
+- name: light.master_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: black
+  sentences:
+  - tetapkan lampu bilikmandimaster black
+  - lampu bilikmandimaster black
+- name: all_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali dapur
+  - semua lampu matikan kecuali dapur
+  forbid:
+  - kitchen
+- name: all_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali office
+  - semua lampu matikan kecuali office
+  forbid:
+  - office
+- name: all_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali garage
+  - semua lampu matikan kecuali garage
+  forbid:
+  - garage
+- name: all_except_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali bilik
+  - semua lampu matikan kecuali bilik
+  forbid:
+  - master_bedroom
+- name: floor_ground_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan semua lampu bawah
+  - lampu bawah hidupkan
+- name: floor_ground_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu bawah
+  - lampu bawah matikan
+- name: floor_upper_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan semua lampu atas
+  - lampu atas hidupkan
+- name: floor_upper_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu atas
+  - lampu atas matikan
+- name: floor_basement_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - hidupkan semua lampu basement
+  - lampu basement hidupkan
+- name: floor_basement_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu basement
+  - lampu basement matikan
+- name: all_except_entryway
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali lorong
+  - semua lampu matikan kecuali lorong
+  forbid:
+  - entryway
+- name: all_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali ruang
+  - semua lampu matikan kecuali ruang
+  forbid:
+  - living
+- name: all_except_dining
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali ruankeluargaess
+  - semua lampu matikan kecuali ruankeluargaess
+  forbid:
+  - dining
+- name: all_except_family_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali ruankeluarga
+  - semua lampu matikan kecuali ruankeluarga
+  forbid:
+  - family_room
+- name: all_except_laundry
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali dobi
+  - semua lampu matikan kecuali dobi
+  forbid:
+  - laundry
+- name: all_except_powder_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali wc
+  - semua lampu matikan kecuali wc
+  forbid:
+  - powder_room
+- name: all_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali garden
+  - semua lampu matikan kecuali garden
+  forbid:
+  - garden
+- name: all_except_bedroom_2
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali bilik2
+  - semua lampu matikan kecuali bilik2
+  forbid:
+  - bedroom_2
+- name: all_except_bedroom_3
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali bilik3
+  - semua lampu matikan kecuali bilik3
+  forbid:
+  - bedroom_3
+- name: all_except_bedroom_4
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali bilik4
+  - semua lampu matikan kecuali bilik4
+  forbid:
+  - bedroom_4
+- name: all_except_master_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali bilikmandimaster
+  - semua lampu matikan kecuali bilikmandimaster
+  forbid:
+  - master_bath
+- name: all_except_main_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali main bath
+  - semua lampu matikan kecuali main bath
+  forbid:
+  - main_bath
+- name: all_except_hallway
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali hallway
+  - semua lampu matikan kecuali hallway
+  forbid:
+  - hallway
+- name: all_except_basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - matikan semua lampu kecuali basement
+  - semua lampu matikan kecuali basement
+  forbid:
+  - basement
+- name: light.basement_on_extra
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - hidupkan lampu basement
+  - lampu basement hidupkan
+- name: light.hallway_light_on_extra
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - hidupkan lampu hallway
+  - lampu hallway hidupkan
+- name: light.family_ceiling_on_extra
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - hidupkan siling ruankeluarga
+  - siling ruankeluarga hidupkan
+- name: light.dining_pendant_on_extra
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - hidupkan lampu ruankeluargaess
+  - lampu ruankeluargaess hidupkan

@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - inch varaguyr qnakaran2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - inch stalat qnakaran2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - inch varaguyr qnakaran3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - inch stalat qnakaran3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - inch stalat qnakaran4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - inch luys yntaniqess
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - inch luys mutq
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - inch stalat yntaniq
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - inch varaguyr garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - inch luys garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - inch luys mutqgang yev inch luys wc
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - inch luys mutqgang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - inch luys khohanots
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - inch luys lvacqaran
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - inch jerutsum hyurasenyak
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - inch varaguyr hyurasenyak
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - inch luys hyurasenyak
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - inch luys main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - inch luys lvacaranmaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - inch jerutsum qnakaran yev inch jerutsum hyurasenyak
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - inch varaguyr qnakaran yev inch varaguyr hyurasenyak
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - inch jerutsum qnakaran
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - inch varaguyr qnakaran
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - inch luys wc
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - inch varaguyr garage
+  - pakir
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - inch varaguyr garage
+  - batsir
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - inch varaguyr garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - inch varaguyr hyurasenyak
+  - pakir
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - inch varaguyr hyurasenyak
+  - batsir
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - inch varaguyr hyurasenyak
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - inch odapokhich yntaniq
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - inch odapokhich yntaniq
+  - anjatir
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - inch odapokhich yntaniq
+  - miatsu
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - inch luys mutq
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - inch luys mutq
+  - anjatir
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - inch luys mutq
+  - miatsu
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - inch kogpek mutq
+  - kogpek
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - inch kogpek mutq
+  - batsir
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - inch kogpek garage
+  - kogpek
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - inch kogpek garage
+  - batsir
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - inch herustatsuyts yntaniq
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - inch herustatsuyts yntaniq
+  - anjatir
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - inch herustatsuyts yntaniq
+  - miatsu
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - inch herustatsuyts hyurasenyak
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - inch herustatsuyts hyurasenyak
+  - anjatir
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - inch herustatsuyts hyurasenyak
+  - miatsu

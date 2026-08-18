@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - bat bongden phongkhach
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - tat bongden bep
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

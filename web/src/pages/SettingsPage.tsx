@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { api, download, setToken } from "../api";
+import { api, download, setToken, type LanguagePack } from "../api";
+import { LanguagePicker } from "../components/LanguagePicker";
 import type { Messages } from "../i18n";
 import type { BundleList, Settings } from "../types";
 
-const personalities = ["default", "butler", "locker", "fuersorglich", "party", "grantig", "sarkastisch", "pirat", "hippie", "gollum"];
-const packs = ["de", "en"];
-
 export function SettingsPage({ t, settings, onSettings }: { t: Messages; settings: Settings; onSettings: (s: Settings) => void }) {
   const [bundle, setBundle] = useState<BundleList | null>(null);
+  const [packs, setPacks] = useState<LanguagePack[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   useEffect(() => {
     refresh();
+    api.languages().then(setPacks).catch(() => setPacks([]));
   }, []);
   const save = async (next = settings) => {
     setToken(token);
@@ -27,12 +27,7 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
     await api.clearBundle();
     refresh();
   };
-  const toggleLang = (code: string) => {
-    const languages = settings.languages.includes(code)
-      ? settings.languages.filter((item) => item !== code)
-      : [...settings.languages, code];
-    onSettings({ ...settings, languages: languages.length ? languages : ["de"] });
-  };
+  const setLanguages = (languages: string[]) => onSettings({ ...settings, languages });
   return (
     <div className="page">
       <section className="hero">
@@ -41,24 +36,22 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
       </section>
       <section className="grid two">
         <div className="card">
-          <label>{t.personality}</label>
-          <select value={settings.personality} onChange={(ev) => onSettings({ ...settings, personality: ev.target.value })}>
-            {personalities.map((p) => <option value={p} key={p}>{p}</option>)}
-          </select>
+          <p className="caption">{t.personalityHa}</p>
           <label>{t.mode}</label>
           <select value={settings.mode} onChange={(ev) => onSettings({ ...settings, mode: ev.target.value as Settings["mode"] })}>
             <option value="full">full</option>
             <option value="context_only">context_only</option>
           </select>
           <label>{t.languages}</label>
-          <div className="row">
-            {packs.map((code) => (
-              <label key={code} className="row">
-                <input type="checkbox" checked={settings.languages.includes(code)} onChange={() => toggleLang(code)} style={{ width: "auto" }} />
-                {code}
-              </label>
-            ))}
-          </div>
+          <LanguagePicker
+            packs={packs}
+            value={settings.languages}
+            allLabel={t.allLanguages}
+            searchLabel={t.languageSearch}
+            emptyLabel={t.noLanguageMatch}
+            onChange={setLanguages}
+          />
+          <p className="caption">{t.languageHint}</p>
           <label className="row">
             <input type="checkbox" checked={settings.confirm_risky_actions} onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })} style={{ width: "auto" }} />
             {t.confirmRisky}

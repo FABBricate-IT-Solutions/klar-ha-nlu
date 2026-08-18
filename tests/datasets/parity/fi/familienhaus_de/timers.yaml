@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- sytyta ajastin abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- sytyta ajastin abstract 20 min
+timers/timers::abstract_start_seconds:
+- sytyta ajastin abstract
+timers/timers::cancel_all_timers:
+- sammuta kaikki ajastin
+timers/timers::timer_laundry_cancel:
+- sytyta ajastin laundry
+timers/timers::timer_laundry_decrease:
+- sytyta ajastin laundry 5 min
+timers/timers::timer_laundry_increase:
+- sytyta ajastin laundry 16 min
+timers/timers::timer_laundry_pause:
+- sammuta ajastin laundry
+timers/timers::timer_laundry_start:
+- sytyta ajastin laundry
+timers/timers::timer_laundry_status:
+- mika ajastin laundry
+timers/timers::timer_laundry_unpause:
+- sytyta ajastin laundry
+timers/timers::timer_oven_cancel:
+- sytyta ajastin oven
+timers/timers::timer_oven_decrease:
+- sytyta ajastin oven 44 min
+timers/timers::timer_oven_increase:
+- sytyta ajastin oven 30 min
+timers/timers::timer_oven_pause:
+- sammuta ajastin oven
+timers/timers::timer_oven_start:
+- sytyta ajastin oven 2 min
+timers/timers::timer_oven_status:
+- mika ajastin oven
+timers/timers::timer_oven_unpause:
+- sytyta ajastin oven

@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - zar zar eloter
+  - zar eloter zar
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - nyisd zar eloter
+  - zar eloter nyisd
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - zar zar garage
+  - zar garage zar
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - nyisd zar garage
+  - zar garage nyisd
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - zar zar eloter
+  - zar eloter zar
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - zar zar garage
+  - zar garage zar

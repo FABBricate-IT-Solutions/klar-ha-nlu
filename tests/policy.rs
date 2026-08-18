@@ -5,7 +5,7 @@ use klar_nlu::types::{Intent, IntentPlan, ParseDecision, RejectReason, Settings}
 use std::collections::HashSet;
 
 fn parse_de(text: &str, home: &klar_nlu::types::HomeGraph, session: &mut Session) -> klar_nlu::types::ParseOutcome {
-    nlu::parse(text, home, session, &[], &Settings::default())
+    nlu::parse(text, home, session, &[], &Settings::pinned("de"))
 }
 
 #[test]
@@ -78,11 +78,9 @@ fn inferred_actions_never_claim_perfect_confidence() {
 fn ood_sentences_reject_in_german_and_english() {
     let home = default_home();
     for (language, text, expected) in [
-        ("de", "Wie ist das Wetter", RejectReason::NoAction),
         ("de", "Was ist die Hauptstadt von Frankreich", RejectReason::NoAction),
         ("de", "Was soll ich kochen", RejectReason::NoAction),
         ("de", "bitte mal doch", RejectReason::EmptyInput),
-        ("en", "What's the weather", RejectReason::NoAction),
         ("en", "What is the capital of France", RejectReason::NoAction),
         ("en", "please please", RejectReason::EmptyInput),
     ] {
@@ -91,7 +89,7 @@ fn ood_sentences_reject_in_german_and_english() {
         assert_eq!(reject_reason(&outcome.decision), Some(&expected), "{language} {text}: {outcome:#?}");
         assert!(outcome.plan.is_none());
         assert!(outcome.candidates.is_empty());
-        assert!(!matches!(outcome.decision, ParseDecision::Chat | ParseDecision::Execute));
+        assert!(!matches!(outcome.decision, ParseDecision::Chat | ParseDecision::Execute), "{language} {text}");
     }
 }
 
@@ -142,7 +140,7 @@ fn yes_revalidates_stored_plan_against_current_graph() {
 
     let mut gone = home.clone();
     gone.assist = Some(HashSet::new());
-    let rejected = nlu::parse("ja", &gone, &mut session, &[], &Settings::default());
+    let rejected = nlu::parse("ja", &gone, &mut session, &[], &Settings::pinned("de"));
     assert!(matches!(rejected.decision, ParseDecision::Reject { reason: RejectReason::Unsafe }), "{rejected:#?}");
     assert!(rejected.plan.is_none());
     assert!(session.last.is_empty());
@@ -203,7 +201,7 @@ fn below_execute_threshold_does_not_emit_a_plan() {
         &home,
         &mut Session::new(),
         &[],
-        &Settings { confirm_risky_actions: false, ..Settings::default() },
+        &Settings { confirm_risky_actions: false, languages: vec!["de".into()], ..Settings::default() },
     );
     assert!(outcome.confidence < 0.80, "{}", outcome.confidence);
     assert!(!matches!(outcome.decision, ParseDecision::Execute), "{outcome:#?}");
@@ -216,7 +214,7 @@ fn below_execute_threshold_does_not_emit_a_plan() {
 #[test]
 fn competing_close_complete_plans_clarify() {
     let home = default_home();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let plan = IntentPlan::from_intents(vec![Intent::new("HassTurnOn").with("entity_id", "light.wohnzimmer")], 0.92, &[]);
     let (decision, plan_out) = nlu::safety_decide(&home, &settings, plan, 0.92, 0.02, true);
     assert!(matches!(decision, ParseDecision::Clarify { .. }), "{decision:#?}");

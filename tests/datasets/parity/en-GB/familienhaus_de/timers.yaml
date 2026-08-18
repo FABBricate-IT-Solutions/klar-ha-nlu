@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- enable timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- enable timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- enable timer abstract
+timers/timers::cancel_all_timers:
+- extinguish all timer
+timers/timers::timer_laundry_cancel:
+- enable timer laundry
+timers/timers::timer_laundry_decrease:
+- enable timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- enable timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- extinguish timer laundry
+timers/timers::timer_laundry_start:
+- enable timer laundry
+timers/timers::timer_laundry_status:
+- what timer laundry
+timers/timers::timer_laundry_unpause:
+- enable timer laundry
+timers/timers::timer_oven_cancel:
+- enable timer oven
+timers/timers::timer_oven_decrease:
+- enable timer oven 44 min
+timers/timers::timer_oven_increase:
+- enable timer oven 30 min
+timers/timers::timer_oven_pause:
+- extinguish timer oven
+timers/timers::timer_oven_start:
+- enable timer oven 2 min
+timers/timers::timer_oven_status:
+- what timer oven
+timers/timers::timer_oven_unpause:
+- enable timer oven

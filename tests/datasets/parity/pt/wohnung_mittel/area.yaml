@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- poe aquecimento banhomaster 23
+area/heizung::heizung_esszimmer_23:
+- poe aquecimento salaestaress 23
+area/heizung::heizung_schlafzimmer_23:
+- poe aquecimento quarto 23
+area/heizung::heizung_wohnzimmer_23:
+- poe aquecimento sala 23
+area/lichter::alle_an_ausser_kugel:
+- liga tudo luz exceto globo
+area/lichter::alle_an_ausser_schlafzimmer:
+- liga tudo luz exceto quarto
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- poe tudo luz exceto quarto 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- poe tudo luz exceto globo vermelho
+area/lichter::alle_ausser_kugel:
+- desliga tudo luz exceto globo
+area/lichter::alle_ausser_schlafzimmer:
+- desliga tudo luz exceto quarto
+area/lichter::alle_lichter_an:
+- liga tudo luz
+area/lichter::alle_lichter_aus:
+- desliga tudo luz
+area/lichter::arbeitszimmer_lichter_an:
+- liga luz sala
+area/lichter::arbeitszimmer_lichter_aus:
+- desliga luz sala
+area/lichter::esszimmer_lichter_an:
+- liga luz salaestaress
+area/lichter::esszimmer_lichter_aus:
+- desliga luz salaestaress
+area/lichter::kuche_lichter_an:
+- liga luz cozinha
+area/lichter::kuche_lichter_aus:
+- desliga luz cozinha
+area/lichter::schlafzimmer_auf_blau:
+- poe luz quarto azul
+area/lichter::schlafzimmer_auf_rot:
+- poe luz quarto vermelho
+area/lichter::wohnzimmer_helligkeit:
+- poe luz sala 45
+area/lichter::wohnzimmer_lichter_an:
+- liga luz sala
+area/lichter::wohnzimmer_lichter_aus:
+- desliga luz sala
+area/spoken::alle_ausser_kugel_stt:
+- desliga tudo luz exceto globo
+area/spoken::alle_ausser_schlaf_stt:
+- desliga tudo luz exceto quarto
+area/spoken::alle_ganzen_an:
+- liga tudo luz
+area/spoken::alle_lampen_aus:
+- desliga tudo luz
+area/spoken::esszimmer_weiss:
+- poe luz salaestaress branco
+area/spoken::stt_kuche_lichte:
+- desliga luz cozinha
+area/spoken::stt_licht_wohnzimmer_an:
+- liga luz sala
+area/spoken::stt_licht_wohnzimmer_aus:
+- desliga luz sala
+area/spoken::stt_schlafzimmer_dativ:
+- desliga luz quarto
+area/spoken::wohnzimmer_gruen:
+- poe luz sala verde
+area/spoken_more::alle_ausser_arbeitszimmer:
+- desliga tudo luz exceto sala
+area/spoken_more::arbeitszimmer_lampen_aus:
+- desliga luz sala
+area/spoken_more::esszimmer_30:
+- poe luz salaestaress 30
+area/spoken_more::esszimmer_lichte_an:
+- liga luz salaestaress
+area/spoken_more::kuche_80:
+- poe luz cozinha 80
+area/spoken_more::kuche_blau:
+- poe luz cozinha azul
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- desliga tudo luz exceto quarto
+area/spoken_more::wohnzimmer_gelb:
+- poe luz sala amarelo

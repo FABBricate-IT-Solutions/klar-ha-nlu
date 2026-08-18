@@ -1,0 +1,4606 @@
+- name: lights_entryway_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht hal
+  - licht hal aanzetten
+- name: lights_entryway_off
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht hal
+  - licht hal uitzetten
+- name: lights_living_on
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht woonkamer
+  - licht woonkamer aanzetten
+- name: lights_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht woonkamer
+  - licht woonkamer uitzetten
+- name: lights_dining_on
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht huiskameress
+  - licht huiskameress aanzetten
+- name: lights_dining_off
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht huiskameress
+  - licht huiskameress uitzetten
+- name: lights_kitchen_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht keuken
+  - licht keuken aanzetten
+- name: lights_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht keuken
+  - licht keuken uitzetten
+- name: lights_family_room_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht huiskamer
+  - licht huiskamer aanzetten
+- name: lights_family_room_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht huiskamer
+  - licht huiskamer uitzetten
+- name: lights_laundry_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht wasruimte
+  - licht wasruimte aanzetten
+- name: lights_laundry_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht wasruimte
+  - licht wasruimte uitzetten
+- name: lights_powder_room_on
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht toilet
+  - licht toilet aanzetten
+- name: lights_powder_room_off
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht toilet
+  - licht toilet uitzetten
+- name: lights_garage_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht garage
+  - licht garage aanzetten
+- name: lights_garage_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht garage
+  - licht garage uitzetten
+- name: lights_office_on
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht kantoor
+  - licht kantoor aanzetten
+- name: lights_office_off
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht kantoor
+  - licht kantoor uitzetten
+- name: lights_garden_on
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht garden
+  - licht garden aanzetten
+- name: lights_garden_off
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht garden
+  - licht garden uitzetten
+- name: lights_master_bedroom_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht slaapkamer
+  - licht slaapkamer aanzetten
+- name: lights_master_bedroom_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht slaapkamer
+  - licht slaapkamer uitzetten
+- name: lights_bedroom_2_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht slaapkamer2
+  - licht slaapkamer2 aanzetten
+- name: lights_bedroom_2_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht slaapkamer2
+  - licht slaapkamer2 uitzetten
+- name: lights_bedroom_3_on
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht slaapkamer3
+  - licht slaapkamer3 aanzetten
+- name: lights_bedroom_3_off
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht slaapkamer3
+  - licht slaapkamer3 uitzetten
+- name: lights_bedroom_4_on
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht slaapkamer4
+  - licht slaapkamer4 aanzetten
+- name: lights_bedroom_4_off
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht slaapkamer4
+  - licht slaapkamer4 uitzetten
+- name: lights_master_bath_on
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht badmaster
+  - licht badmaster aanzetten
+- name: lights_master_bath_off
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht badmaster
+  - licht badmaster uitzetten
+- name: lights_main_bath_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht badkamer
+  - licht badkamer aanzetten
+- name: lights_main_bath_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht badkamer
+  - licht badkamer uitzetten
+- name: lights_hallway_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht overloop
+  - licht overloop aanzetten
+- name: lights_hallway_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht overloop
+  - licht overloop uitzetten
+- name: lights_basement_on
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten licht basement
+  - licht basement aanzetten
+- name: lights_basement_off
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten licht basement
+  - licht basement uitzetten
+- name: light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond woonkamer
+  - plafond woonkamer aanzetten
+- name: light.living_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond woonkamer
+  - plafond woonkamer uitzetten
+- name: light.living_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond woonkamer 20
+  - plafond woonkamer 20
+- name: light.living_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond woonkamer 40
+  - plafond woonkamer 40
+- name: light.living_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond woonkamer 50
+  - plafond woonkamer 50
+- name: light.living_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond woonkamer 60
+  - plafond woonkamer 60
+- name: light.living_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond woonkamer 80
+  - plafond woonkamer 80
+- name: light.living_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond woonkamer 100
+  - plafond woonkamer 100
+- name: light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - aanzetten lamp woonkamer
+  - lamp woonkamer aanzetten
+- name: light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - uitzetten lamp woonkamer
+  - lamp woonkamer uitzetten
+- name: light.living_lamp_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 20
+  sentences:
+  - stel lamp woonkamer 20
+  - lamp woonkamer 20
+- name: light.living_lamp_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 40
+  sentences:
+  - stel lamp woonkamer 40
+  - lamp woonkamer 40
+- name: light.living_lamp_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 50
+  sentences:
+  - stel lamp woonkamer 50
+  - lamp woonkamer 50
+- name: light.living_lamp_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 60
+  sentences:
+  - stel lamp woonkamer 60
+  - lamp woonkamer 60
+- name: light.living_lamp_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 80
+  sentences:
+  - stel lamp woonkamer 80
+  - lamp woonkamer 80
+- name: light.living_lamp_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 100
+  sentences:
+  - stel lamp woonkamer 100
+  - lamp woonkamer 100
+- name: light.kitchen_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond keuken
+  - plafond keuken aanzetten
+- name: light.kitchen_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond keuken
+  - plafond keuken uitzetten
+- name: light.kitchen_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond keuken 20
+  - plafond keuken 20
+- name: light.kitchen_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond keuken 40
+  - plafond keuken 40
+- name: light.kitchen_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond keuken 50
+  - plafond keuken 50
+- name: light.kitchen_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond keuken 60
+  - plafond keuken 60
+- name: light.kitchen_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond keuken 80
+  - plafond keuken 80
+- name: light.kitchen_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond keuken 100
+  - plafond keuken 100
+- name: light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - aanzetten eiland keuken
+  - eiland keuken aanzetten
+- name: light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - uitzetten eiland keuken
+  - eiland keuken uitzetten
+- name: light.kitchen_island_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 20
+  sentences:
+  - stel eiland keuken 20
+  - eiland keuken 20
+- name: light.kitchen_island_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 40
+  sentences:
+  - stel eiland keuken 40
+  - eiland keuken 40
+- name: light.kitchen_island_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 50
+  sentences:
+  - stel eiland keuken 50
+  - eiland keuken 50
+- name: light.kitchen_island_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 60
+  sentences:
+  - stel eiland keuken 60
+  - eiland keuken 60
+- name: light.kitchen_island_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 80
+  sentences:
+  - stel eiland keuken 80
+  - eiland keuken 80
+- name: light.kitchen_island_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 100
+  sentences:
+  - stel eiland keuken 100
+  - eiland keuken 100
+- name: light.master_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond slaapkamer
+  - plafond slaapkamer aanzetten
+- name: light.master_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond slaapkamer
+  - plafond slaapkamer uitzetten
+- name: light.master_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond slaapkamer 20
+  - plafond slaapkamer 20
+- name: light.master_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond slaapkamer 40
+  - plafond slaapkamer 40
+- name: light.master_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond slaapkamer 50
+  - plafond slaapkamer 50
+- name: light.master_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond slaapkamer 60
+  - plafond slaapkamer 60
+- name: light.master_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond slaapkamer 80
+  - plafond slaapkamer 80
+- name: light.master_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond slaapkamer 100
+  - plafond slaapkamer 100
+- name: light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - aanzetten nachtkast slaapkamer
+  - nachtkast slaapkamer aanzetten
+- name: light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - uitzetten nachtkast slaapkamer
+  - nachtkast slaapkamer uitzetten
+- name: light.master_bedside_left_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 20
+  sentences:
+  - stel nachtkast slaapkamer 20
+  - nachtkast slaapkamer 20
+- name: light.master_bedside_left_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 40
+  sentences:
+  - stel nachtkast slaapkamer 40
+  - nachtkast slaapkamer 40
+- name: light.master_bedside_left_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 50
+  sentences:
+  - stel nachtkast slaapkamer 50
+  - nachtkast slaapkamer 50
+- name: light.master_bedside_left_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 60
+  sentences:
+  - stel nachtkast slaapkamer 60
+  - nachtkast slaapkamer 60
+- name: light.master_bedside_left_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 80
+  sentences:
+  - stel nachtkast slaapkamer 80
+  - nachtkast slaapkamer 80
+- name: light.master_bedside_left_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 100
+  sentences:
+  - stel nachtkast slaapkamer 100
+  - nachtkast slaapkamer 100
+- name: light.office_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond kantoor
+  - plafond kantoor aanzetten
+- name: light.office_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond kantoor
+  - plafond kantoor uitzetten
+- name: light.office_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond kantoor 20
+  - plafond kantoor 20
+- name: light.office_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond kantoor 40
+  - plafond kantoor 40
+- name: light.office_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond kantoor 50
+  - plafond kantoor 50
+- name: light.office_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond kantoor 60
+  - plafond kantoor 60
+- name: light.office_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond kantoor 80
+  - plafond kantoor 80
+- name: light.office_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond kantoor 100
+  - plafond kantoor 100
+- name: light.garden_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  sentences:
+  - aanzetten licht garden
+  - licht garden aanzetten
+- name: light.garden_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  sentences:
+  - uitzetten licht garden
+  - licht garden uitzetten
+- name: light.garden_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht garden 20
+  - licht garden 20
+- name: light.garden_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht garden 40
+  - licht garden 40
+- name: light.garden_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht garden 50
+  - licht garden 50
+- name: light.garden_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht garden 60
+  - licht garden 60
+- name: light.garden_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht garden 80
+  - licht garden 80
+- name: light.garden_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht garden 100
+  - licht garden 100
+- name: light.basement_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - aanzetten licht basement
+  - licht basement aanzetten
+- name: light.basement_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  sentences:
+  - uitzetten licht basement
+  - licht basement uitzetten
+- name: light.basement_bright_20
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht basement 20
+  - licht basement 20
+- name: light.basement_bright_40
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht basement 40
+  - licht basement 40
+- name: light.basement_bright_50
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht basement 50
+  - licht basement 50
+- name: light.basement_bright_60
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht basement 60
+  - licht basement 60
+- name: light.basement_bright_80
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht basement 80
+  - licht basement 80
+- name: light.basement_bright_100
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht basement 100
+  - licht basement 100
+- name: light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - aanzetten licht overloop
+  - licht overloop aanzetten
+- name: light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - uitzetten licht overloop
+  - licht overloop uitzetten
+- name: light.hallway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht overloop 20
+  - licht overloop 20
+- name: light.hallway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht overloop 40
+  - licht overloop 40
+- name: light.hallway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht overloop 50
+  - licht overloop 50
+- name: light.hallway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht overloop 60
+  - licht overloop 60
+- name: light.hallway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht overloop 80
+  - licht overloop 80
+- name: light.hallway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht overloop 100
+  - licht overloop 100
+- name: light.family_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond huiskamer
+  - plafond huiskamer aanzetten
+- name: light.family_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond huiskamer
+  - plafond huiskamer uitzetten
+- name: light.family_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond huiskamer 20
+  - plafond huiskamer 20
+- name: light.family_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond huiskamer 40
+  - plafond huiskamer 40
+- name: light.family_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond huiskamer 50
+  - plafond huiskamer 50
+- name: light.family_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond huiskamer 60
+  - plafond huiskamer 60
+- name: light.family_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond huiskamer 80
+  - plafond huiskamer 80
+- name: light.family_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond huiskamer 100
+  - plafond huiskamer 100
+- name: light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - aanzetten licht huiskameress
+  - licht huiskameress aanzetten
+- name: light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - uitzetten licht huiskameress
+  - licht huiskameress uitzetten
+- name: light.dining_pendant_bright_20
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht huiskameress 20
+  - licht huiskameress 20
+- name: light.dining_pendant_bright_40
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht huiskameress 40
+  - licht huiskameress 40
+- name: light.dining_pendant_bright_50
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht huiskameress 50
+  - licht huiskameress 50
+- name: light.dining_pendant_bright_60
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht huiskameress 60
+  - licht huiskameress 60
+- name: light.dining_pendant_bright_80
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht huiskameress 80
+  - licht huiskameress 80
+- name: light.dining_pendant_bright_100
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht huiskameress 100
+  - licht huiskameress 100
+- name: light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - aanzetten licht garage
+  - licht garage aanzetten
+- name: light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - uitzetten licht garage
+  - licht garage uitzetten
+- name: light.garage_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht garage 20
+  - licht garage 20
+- name: light.garage_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht garage 40
+  - licht garage 40
+- name: light.garage_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht garage 50
+  - licht garage 50
+- name: light.garage_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht garage 60
+  - licht garage 60
+- name: light.garage_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht garage 80
+  - licht garage 80
+- name: light.garage_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht garage 100
+  - licht garage 100
+- name: light.bedroom2_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond slaapkamer2
+  - plafond slaapkamer2 aanzetten
+- name: light.bedroom2_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond slaapkamer2
+  - plafond slaapkamer2 uitzetten
+- name: light.bedroom2_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond slaapkamer2 20
+  - plafond slaapkamer2 20
+- name: light.bedroom2_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond slaapkamer2 40
+  - plafond slaapkamer2 40
+- name: light.bedroom2_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond slaapkamer2 50
+  - plafond slaapkamer2 50
+- name: light.bedroom2_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond slaapkamer2 60
+  - plafond slaapkamer2 60
+- name: light.bedroom2_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond slaapkamer2 80
+  - plafond slaapkamer2 80
+- name: light.bedroom2_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond slaapkamer2 100
+  - plafond slaapkamer2 100
+- name: light.bedroom3_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond slaapkamer3
+  - plafond slaapkamer3 aanzetten
+- name: light.bedroom3_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond slaapkamer3
+  - plafond slaapkamer3 uitzetten
+- name: light.bedroom3_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond slaapkamer3 20
+  - plafond slaapkamer3 20
+- name: light.bedroom3_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond slaapkamer3 40
+  - plafond slaapkamer3 40
+- name: light.bedroom3_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond slaapkamer3 50
+  - plafond slaapkamer3 50
+- name: light.bedroom3_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond slaapkamer3 60
+  - plafond slaapkamer3 60
+- name: light.bedroom3_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond slaapkamer3 80
+  - plafond slaapkamer3 80
+- name: light.bedroom3_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond slaapkamer3 100
+  - plafond slaapkamer3 100
+- name: light.bedroom4_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond slaapkamer4
+  - plafond slaapkamer4 aanzetten
+- name: light.bedroom4_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  sentences:
+  - uitzetten plafond slaapkamer4
+  - plafond slaapkamer4 uitzetten
+- name: light.bedroom4_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stel plafond slaapkamer4 20
+  - plafond slaapkamer4 20
+- name: light.bedroom4_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stel plafond slaapkamer4 40
+  - plafond slaapkamer4 40
+- name: light.bedroom4_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stel plafond slaapkamer4 50
+  - plafond slaapkamer4 50
+- name: light.bedroom4_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stel plafond slaapkamer4 60
+  - plafond slaapkamer4 60
+- name: light.bedroom4_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stel plafond slaapkamer4 80
+  - plafond slaapkamer4 80
+- name: light.bedroom4_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stel plafond slaapkamer4 100
+  - plafond slaapkamer4 100
+- name: light.entryway_light_on
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - aanzetten licht hal
+  - licht hal aanzetten
+- name: light.entryway_light_off
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - uitzetten licht hal
+  - licht hal uitzetten
+- name: light.entryway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht hal 20
+  - licht hal 20
+- name: light.entryway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht hal 40
+  - licht hal 40
+- name: light.entryway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht hal 50
+  - licht hal 50
+- name: light.entryway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht hal 60
+  - licht hal 60
+- name: light.entryway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht hal 80
+  - licht hal 80
+- name: light.entryway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht hal 100
+  - licht hal 100
+- name: light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - aanzetten licht wasruimte
+  - licht wasruimte aanzetten
+- name: light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - uitzetten licht wasruimte
+  - licht wasruimte uitzetten
+- name: light.laundry_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht wasruimte 20
+  - licht wasruimte 20
+- name: light.laundry_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht wasruimte 40
+  - licht wasruimte 40
+- name: light.laundry_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht wasruimte 50
+  - licht wasruimte 50
+- name: light.laundry_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht wasruimte 60
+  - licht wasruimte 60
+- name: light.laundry_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht wasruimte 80
+  - licht wasruimte 80
+- name: light.laundry_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht wasruimte 100
+  - licht wasruimte 100
+- name: light.main_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'on'
+  sentences:
+  - aanzetten licht badkamer
+  - licht badkamer aanzetten
+- name: light.main_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'off'
+  sentences:
+  - uitzetten licht badkamer
+  - licht badkamer uitzetten
+- name: light.main_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht badkamer 20
+  - licht badkamer 20
+- name: light.main_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht badkamer 40
+  - licht badkamer 40
+- name: light.main_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht badkamer 50
+  - licht badkamer 50
+- name: light.main_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht badkamer 60
+  - licht badkamer 60
+- name: light.main_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht badkamer 80
+  - licht badkamer 80
+- name: light.main_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht badkamer 100
+  - licht badkamer 100
+- name: light.powder_room_light_on
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'on'
+  sentences:
+  - aanzetten licht toilet
+  - licht toilet aanzetten
+- name: light.powder_room_light_off
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - uitzetten licht toilet
+  - licht toilet uitzetten
+- name: light.powder_room_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht toilet 20
+  - licht toilet 20
+- name: light.powder_room_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht toilet 40
+  - licht toilet 40
+- name: light.powder_room_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht toilet 50
+  - licht toilet 50
+- name: light.powder_room_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht toilet 60
+  - licht toilet 60
+- name: light.powder_room_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht toilet 80
+  - licht toilet 80
+- name: light.powder_room_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht toilet 100
+  - licht toilet 100
+- name: light.master_ensuite_on
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'on'
+  sentences:
+  - aanzetten ensuite slaapkamer
+  - ensuite slaapkamer aanzetten
+- name: light.master_ensuite_off
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'off'
+  sentences:
+  - uitzetten ensuite slaapkamer
+  - ensuite slaapkamer uitzetten
+- name: light.master_ensuite_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 20
+  sentences:
+  - stel ensuite slaapkamer 20
+  - ensuite slaapkamer 20
+- name: light.master_ensuite_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 40
+  sentences:
+  - stel ensuite slaapkamer 40
+  - ensuite slaapkamer 40
+- name: light.master_ensuite_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 50
+  sentences:
+  - stel ensuite slaapkamer 50
+  - ensuite slaapkamer 50
+- name: light.master_ensuite_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 60
+  sentences:
+  - stel ensuite slaapkamer 60
+  - ensuite slaapkamer 60
+- name: light.master_ensuite_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 80
+  sentences:
+  - stel ensuite slaapkamer 80
+  - ensuite slaapkamer 80
+- name: light.master_ensuite_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 100
+  sentences:
+  - stel ensuite slaapkamer 100
+  - ensuite slaapkamer 100
+- name: light.master_bedside_right_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'on'
+  sentences:
+  - aanzetten nachtkast slaapkamer
+  - nachtkast slaapkamer aanzetten
+- name: light.master_bedside_right_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'off'
+  sentences:
+  - uitzetten nachtkast slaapkamer
+  - nachtkast slaapkamer uitzetten
+- name: light.master_bedside_right_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 20
+  sentences:
+  - stel nachtkast slaapkamer 20
+  - nachtkast slaapkamer 20
+- name: light.master_bedside_right_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 40
+  sentences:
+  - stel nachtkast slaapkamer 40
+  - nachtkast slaapkamer 40
+- name: light.master_bedside_right_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 50
+  sentences:
+  - stel nachtkast slaapkamer 50
+  - nachtkast slaapkamer 50
+- name: light.master_bedside_right_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 60
+  sentences:
+  - stel nachtkast slaapkamer 60
+  - nachtkast slaapkamer 60
+- name: light.master_bedside_right_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 80
+  sentences:
+  - stel nachtkast slaapkamer 80
+  - nachtkast slaapkamer 80
+- name: light.master_bedside_right_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 100
+  sentences:
+  - stel nachtkast slaapkamer 100
+  - nachtkast slaapkamer 100
+- name: light.master_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'on'
+  sentences:
+  - aanzetten licht badmaster
+  - licht badmaster aanzetten
+- name: light.master_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'off'
+  sentences:
+  - uitzetten licht badmaster
+  - licht badmaster uitzetten
+- name: light.master_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stel licht badmaster 20
+  - licht badmaster 20
+- name: light.master_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stel licht badmaster 40
+  - licht badmaster 40
+- name: light.master_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stel licht badmaster 50
+  - licht badmaster 50
+- name: light.master_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stel licht badmaster 60
+  - licht badmaster 60
+- name: light.master_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stel licht badmaster 80
+  - licht badmaster 80
+- name: light.master_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stel licht badmaster 100
+  - licht badmaster 100
+- name: light.living_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond woonkamer rood
+  - stel licht woonkamer rood
+- name: light.living_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond woonkamer blauw
+  - stel licht woonkamer blauw
+- name: light.living_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond woonkamer groen
+  - stel licht woonkamer groen
+- name: light.living_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond woonkamer wit
+  - stel licht woonkamer wit
+- name: light.living_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond woonkamer geel
+  - stel licht woonkamer geel
+- name: light.living_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond woonkamer zwart
+  - stel licht woonkamer zwart
+- name: light.living_lamp_red
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: red
+  sentences:
+  - stel lamp woonkamer rood
+  - stel licht woonkamer rood
+- name: light.living_lamp_blue
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: blue
+  sentences:
+  - stel lamp woonkamer blauw
+  - stel licht woonkamer blauw
+- name: light.living_lamp_green
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: green
+  sentences:
+  - stel lamp woonkamer groen
+  - stel licht woonkamer groen
+- name: light.living_lamp_white
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: white
+  sentences:
+  - stel lamp woonkamer wit
+  - stel licht woonkamer wit
+- name: light.living_lamp_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: yellow
+  sentences:
+  - stel lamp woonkamer geel
+  - stel licht woonkamer geel
+- name: light.living_lamp_black
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: black
+  sentences:
+  - stel lamp woonkamer zwart
+  - stel licht woonkamer zwart
+- name: light.kitchen_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond keuken rood
+  - stel licht keuken rood
+- name: light.kitchen_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond keuken blauw
+  - stel licht keuken blauw
+- name: light.kitchen_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond keuken groen
+  - stel licht keuken groen
+- name: light.kitchen_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond keuken wit
+  - stel licht keuken wit
+- name: light.kitchen_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond keuken geel
+  - stel licht keuken geel
+- name: light.kitchen_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond keuken zwart
+  - stel licht keuken zwart
+- name: light.kitchen_island_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: red
+  sentences:
+  - stel eiland keuken rood
+  - stel licht keuken rood
+- name: light.kitchen_island_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: blue
+  sentences:
+  - stel eiland keuken blauw
+  - stel licht keuken blauw
+- name: light.kitchen_island_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: green
+  sentences:
+  - stel eiland keuken groen
+  - stel licht keuken groen
+- name: light.kitchen_island_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: white
+  sentences:
+  - stel eiland keuken wit
+  - stel licht keuken wit
+- name: light.kitchen_island_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: yellow
+  sentences:
+  - stel eiland keuken geel
+  - stel licht keuken geel
+- name: light.kitchen_island_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: black
+  sentences:
+  - stel eiland keuken zwart
+  - stel licht keuken zwart
+- name: light.master_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond slaapkamer rood
+  - stel licht slaapkamer rood
+- name: light.master_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond slaapkamer blauw
+  - stel licht slaapkamer blauw
+- name: light.master_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond slaapkamer groen
+  - stel licht slaapkamer groen
+- name: light.master_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond slaapkamer wit
+  - stel licht slaapkamer wit
+- name: light.master_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond slaapkamer geel
+  - stel licht slaapkamer geel
+- name: light.master_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond slaapkamer zwart
+  - stel licht slaapkamer zwart
+- name: light.master_bedside_left_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: red
+  sentences:
+  - stel nachtkast slaapkamer rood
+  - stel licht slaapkamer rood
+- name: light.master_bedside_left_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: blue
+  sentences:
+  - stel nachtkast slaapkamer blauw
+  - stel licht slaapkamer blauw
+- name: light.master_bedside_left_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: green
+  sentences:
+  - stel nachtkast slaapkamer groen
+  - stel licht slaapkamer groen
+- name: light.master_bedside_left_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: white
+  sentences:
+  - stel nachtkast slaapkamer wit
+  - stel licht slaapkamer wit
+- name: light.master_bedside_left_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: yellow
+  sentences:
+  - stel nachtkast slaapkamer geel
+  - stel licht slaapkamer geel
+- name: light.master_bedside_left_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: black
+  sentences:
+  - stel nachtkast slaapkamer zwart
+  - stel licht slaapkamer zwart
+- name: light.office_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond kantoor rood
+  - stel licht kantoor rood
+- name: light.office_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond kantoor blauw
+  - stel licht kantoor blauw
+- name: light.office_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond kantoor groen
+  - stel licht kantoor groen
+- name: light.office_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond kantoor wit
+  - stel licht kantoor wit
+- name: light.office_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond kantoor geel
+  - stel licht kantoor geel
+- name: light.office_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond kantoor zwart
+  - stel licht kantoor zwart
+- name: light.garden_red
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: red
+  sentences:
+  - stel licht garden rood
+  - licht garden rood
+- name: light.garden_blue
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: blue
+  sentences:
+  - stel licht garden blauw
+  - licht garden blauw
+- name: light.garden_green
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: green
+  sentences:
+  - stel licht garden groen
+  - licht garden groen
+- name: light.garden_white
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: white
+  sentences:
+  - stel licht garden wit
+  - licht garden wit
+- name: light.garden_yellow
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht garden geel
+  - licht garden geel
+- name: light.garden_black
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: black
+  sentences:
+  - stel licht garden zwart
+  - licht garden zwart
+- name: light.basement_red
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: red
+  sentences:
+  - stel licht basement rood
+  - licht basement rood
+- name: light.basement_blue
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: blue
+  sentences:
+  - stel licht basement blauw
+  - licht basement blauw
+- name: light.basement_green
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: green
+  sentences:
+  - stel licht basement groen
+  - licht basement groen
+- name: light.basement_white
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: white
+  sentences:
+  - stel licht basement wit
+  - licht basement wit
+- name: light.basement_yellow
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht basement geel
+  - licht basement geel
+- name: light.basement_black
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: black
+  sentences:
+  - stel licht basement zwart
+  - licht basement zwart
+- name: light.hallway_light_red
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht overloop rood
+  - licht overloop rood
+- name: light.hallway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht overloop blauw
+  - licht overloop blauw
+- name: light.hallway_light_green
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht overloop groen
+  - licht overloop groen
+- name: light.hallway_light_white
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht overloop wit
+  - licht overloop wit
+- name: light.hallway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht overloop geel
+  - licht overloop geel
+- name: light.hallway_light_black
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht overloop zwart
+  - licht overloop zwart
+- name: light.family_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond huiskamer rood
+  - stel licht huiskamer rood
+- name: light.family_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond huiskamer blauw
+  - stel licht huiskamer blauw
+- name: light.family_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond huiskamer groen
+  - stel licht huiskamer groen
+- name: light.family_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond huiskamer wit
+  - stel licht huiskamer wit
+- name: light.family_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond huiskamer geel
+  - stel licht huiskamer geel
+- name: light.family_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond huiskamer zwart
+  - stel licht huiskamer zwart
+- name: light.dining_pendant_red
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: red
+  sentences:
+  - stel licht huiskameress rood
+  - licht huiskameress rood
+- name: light.dining_pendant_blue
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: blue
+  sentences:
+  - stel licht huiskameress blauw
+  - licht huiskameress blauw
+- name: light.dining_pendant_green
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: green
+  sentences:
+  - stel licht huiskameress groen
+  - licht huiskameress groen
+- name: light.dining_pendant_white
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: white
+  sentences:
+  - stel licht huiskameress wit
+  - licht huiskameress wit
+- name: light.dining_pendant_yellow
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht huiskameress geel
+  - licht huiskameress geel
+- name: light.dining_pendant_black
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: black
+  sentences:
+  - stel licht huiskameress zwart
+  - licht huiskameress zwart
+- name: light.garage_light_red
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht garage rood
+  - licht garage rood
+- name: light.garage_light_blue
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht garage blauw
+  - licht garage blauw
+- name: light.garage_light_green
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht garage groen
+  - licht garage groen
+- name: light.garage_light_white
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht garage wit
+  - licht garage wit
+- name: light.garage_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht garage geel
+  - licht garage geel
+- name: light.garage_light_black
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht garage zwart
+  - licht garage zwart
+- name: light.bedroom2_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond slaapkamer2 rood
+  - stel licht slaapkamer2 rood
+- name: light.bedroom2_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond slaapkamer2 blauw
+  - stel licht slaapkamer2 blauw
+- name: light.bedroom2_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond slaapkamer2 groen
+  - stel licht slaapkamer2 groen
+- name: light.bedroom2_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond slaapkamer2 wit
+  - stel licht slaapkamer2 wit
+- name: light.bedroom2_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond slaapkamer2 geel
+  - stel licht slaapkamer2 geel
+- name: light.bedroom2_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond slaapkamer2 zwart
+  - stel licht slaapkamer2 zwart
+- name: light.bedroom3_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond slaapkamer3 rood
+  - stel licht slaapkamer3 rood
+- name: light.bedroom3_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond slaapkamer3 blauw
+  - stel licht slaapkamer3 blauw
+- name: light.bedroom3_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond slaapkamer3 groen
+  - stel licht slaapkamer3 groen
+- name: light.bedroom3_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond slaapkamer3 wit
+  - stel licht slaapkamer3 wit
+- name: light.bedroom3_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond slaapkamer3 geel
+  - stel licht slaapkamer3 geel
+- name: light.bedroom3_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond slaapkamer3 zwart
+  - stel licht slaapkamer3 zwart
+- name: light.bedroom4_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stel plafond slaapkamer4 rood
+  - stel licht slaapkamer4 rood
+- name: light.bedroom4_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stel plafond slaapkamer4 blauw
+  - stel licht slaapkamer4 blauw
+- name: light.bedroom4_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stel plafond slaapkamer4 groen
+  - stel licht slaapkamer4 groen
+- name: light.bedroom4_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stel plafond slaapkamer4 wit
+  - stel licht slaapkamer4 wit
+- name: light.bedroom4_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stel plafond slaapkamer4 geel
+  - stel licht slaapkamer4 geel
+- name: light.bedroom4_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stel plafond slaapkamer4 zwart
+  - stel licht slaapkamer4 zwart
+- name: light.entryway_light_red
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht hal rood
+  - licht hal rood
+- name: light.entryway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht hal blauw
+  - licht hal blauw
+- name: light.entryway_light_green
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht hal groen
+  - licht hal groen
+- name: light.entryway_light_white
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht hal wit
+  - licht hal wit
+- name: light.entryway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht hal geel
+  - licht hal geel
+- name: light.entryway_light_black
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht hal zwart
+  - licht hal zwart
+- name: light.laundry_light_red
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht wasruimte rood
+  - licht wasruimte rood
+- name: light.laundry_light_blue
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht wasruimte blauw
+  - licht wasruimte blauw
+- name: light.laundry_light_green
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht wasruimte groen
+  - licht wasruimte groen
+- name: light.laundry_light_white
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht wasruimte wit
+  - licht wasruimte wit
+- name: light.laundry_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht wasruimte geel
+  - licht wasruimte geel
+- name: light.laundry_light_black
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht wasruimte zwart
+  - licht wasruimte zwart
+- name: light.main_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht badkamer rood
+  - licht badkamer rood
+- name: light.main_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht badkamer blauw
+  - licht badkamer blauw
+- name: light.main_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht badkamer groen
+  - licht badkamer groen
+- name: light.main_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht badkamer wit
+  - licht badkamer wit
+- name: light.main_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht badkamer geel
+  - licht badkamer geel
+- name: light.main_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht badkamer zwart
+  - licht badkamer zwart
+- name: light.powder_room_light_red
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht toilet rood
+  - licht toilet rood
+- name: light.powder_room_light_blue
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht toilet blauw
+  - licht toilet blauw
+- name: light.powder_room_light_green
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht toilet groen
+  - licht toilet groen
+- name: light.powder_room_light_white
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht toilet wit
+  - licht toilet wit
+- name: light.powder_room_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht toilet geel
+  - licht toilet geel
+- name: light.powder_room_light_black
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht toilet zwart
+  - licht toilet zwart
+- name: light.master_ensuite_red
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: red
+  sentences:
+  - stel ensuite slaapkamer rood
+  - stel licht slaapkamer rood
+- name: light.master_ensuite_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: blue
+  sentences:
+  - stel ensuite slaapkamer blauw
+  - stel licht slaapkamer blauw
+- name: light.master_ensuite_green
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: green
+  sentences:
+  - stel ensuite slaapkamer groen
+  - stel licht slaapkamer groen
+- name: light.master_ensuite_white
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: white
+  sentences:
+  - stel ensuite slaapkamer wit
+  - stel licht slaapkamer wit
+- name: light.master_ensuite_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: yellow
+  sentences:
+  - stel ensuite slaapkamer geel
+  - stel licht slaapkamer geel
+- name: light.master_ensuite_black
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: black
+  sentences:
+  - stel ensuite slaapkamer zwart
+  - stel licht slaapkamer zwart
+- name: light.master_bedside_right_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: red
+  sentences:
+  - stel nachtkast slaapkamer rood
+  - stel licht slaapkamer rood
+- name: light.master_bedside_right_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: blue
+  sentences:
+  - stel nachtkast slaapkamer blauw
+  - stel licht slaapkamer blauw
+- name: light.master_bedside_right_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: green
+  sentences:
+  - stel nachtkast slaapkamer groen
+  - stel licht slaapkamer groen
+- name: light.master_bedside_right_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: white
+  sentences:
+  - stel nachtkast slaapkamer wit
+  - stel licht slaapkamer wit
+- name: light.master_bedside_right_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: yellow
+  sentences:
+  - stel nachtkast slaapkamer geel
+  - stel licht slaapkamer geel
+- name: light.master_bedside_right_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: black
+  sentences:
+  - stel nachtkast slaapkamer zwart
+  - stel licht slaapkamer zwart
+- name: light.master_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: red
+  sentences:
+  - stel licht badmaster rood
+  - licht badmaster rood
+- name: light.master_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - stel licht badmaster blauw
+  - licht badmaster blauw
+- name: light.master_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: green
+  sentences:
+  - stel licht badmaster groen
+  - licht badmaster groen
+- name: light.master_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: white
+  sentences:
+  - stel licht badmaster wit
+  - licht badmaster wit
+- name: light.master_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - stel licht badmaster geel
+  - licht badmaster geel
+- name: light.master_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: black
+  sentences:
+  - stel licht badmaster zwart
+  - licht badmaster zwart
+- name: all_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve keuken
+  - alle licht uitzetten behalve keuken
+  forbid:
+  - kitchen
+- name: all_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve kantoor
+  - alle licht uitzetten behalve kantoor
+  forbid:
+  - office
+- name: all_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve garage
+  - alle licht uitzetten behalve garage
+  forbid:
+  - garage
+- name: all_except_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve slaapkamer
+  - alle licht uitzetten behalve slaapkamer
+  forbid:
+  - master_bedroom
+- name: floor_ground_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten alle licht beneden
+  - licht beneden aanzetten
+- name: floor_ground_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht beneden
+  - licht beneden uitzetten
+- name: floor_upper_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten alle licht boven
+  - licht boven aanzetten
+- name: floor_upper_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht boven
+  - licht boven uitzetten
+- name: floor_basement_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - aanzetten alle licht basement
+  - licht basement aanzetten
+- name: floor_basement_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht basement
+  - licht basement uitzetten
+- name: all_except_entryway
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve hal
+  - alle licht uitzetten behalve hal
+  forbid:
+  - entryway
+- name: all_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve woonkamer
+  - alle licht uitzetten behalve woonkamer
+  forbid:
+  - living
+- name: all_except_dining
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve huiskameress
+  - alle licht uitzetten behalve huiskameress
+  forbid:
+  - dining
+- name: all_except_family_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve huiskamer
+  - alle licht uitzetten behalve huiskamer
+  forbid:
+  - family_room
+- name: all_except_laundry
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve wasruimte
+  - alle licht uitzetten behalve wasruimte
+  forbid:
+  - laundry
+- name: all_except_powder_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve toilet
+  - alle licht uitzetten behalve toilet
+  forbid:
+  - powder_room
+- name: all_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve garden
+  - alle licht uitzetten behalve garden
+  forbid:
+  - garden
+- name: all_except_bedroom_2
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve slaapkamer2
+  - alle licht uitzetten behalve slaapkamer2
+  forbid:
+  - bedroom_2
+- name: all_except_bedroom_3
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve slaapkamer3
+  - alle licht uitzetten behalve slaapkamer3
+  forbid:
+  - bedroom_3
+- name: all_except_bedroom_4
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve slaapkamer4
+  - alle licht uitzetten behalve slaapkamer4
+  forbid:
+  - bedroom_4
+- name: all_except_master_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve badmaster
+  - alle licht uitzetten behalve badmaster
+  forbid:
+  - master_bath
+- name: all_except_main_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve badkamer
+  - alle licht uitzetten behalve badkamer
+  forbid:
+  - main_bath
+- name: all_except_hallway
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve overloop
+  - alle licht uitzetten behalve overloop
+  forbid:
+  - hallway
+- name: all_except_basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - uitzetten alle licht behalve basement
+  - alle licht uitzetten behalve basement
+  forbid:
+  - basement
+- name: light.basement_on_extra
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - aanzetten licht basement
+  - licht basement aanzetten
+- name: light.hallway_light_on_extra
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - aanzetten licht overloop
+  - licht overloop aanzetten
+- name: light.family_ceiling_on_extra
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - aanzetten plafond huiskamer
+  - plafond huiskamer aanzetten
+- name: light.dining_pendant_on_extra
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - aanzetten licht huiskameress
+  - licht huiskameress aanzetten

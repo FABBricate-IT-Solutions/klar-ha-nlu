@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - hidupkan pinggan dapur
+  - pinggan dapur hidupkan
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - matikan pinggan dapur
+  - pinggan dapur matikan
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - hidupkan mesinbasuh dobi
+  - mesinbasuh dobi hidupkan
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - matikan mesinbasuh dobi
+  - mesinbasuh dobi matikan
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - hidupkan dryer dobi
+  - dryer dobi hidupkan
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - matikan dryer dobi
+  - dryer dobi matikan
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - hidupkan rangehood dapur
+  - rangehood dapur hidupkan
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - matikan rangehood dapur
+  - rangehood dapur matikan
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - hidupkan kipasbad bilikmandimaster
+  - kipasbad bilikmandimaster hidupkan
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - matikan kipasbad bilikmandimaster
+  - kipasbad bilikmandimaster matikan
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - hidupkan kipasbad main bath
+  - kipasbad main bath hidupkan
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - matikan kipasbad main bath
+  - kipasbad main bath matikan

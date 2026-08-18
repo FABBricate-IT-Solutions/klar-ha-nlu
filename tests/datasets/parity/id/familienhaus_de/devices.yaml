@@ -1,0 +1,268 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- setel ac ruang 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- setel ac kamar 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- setel tirai kamar2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- tutup tirai kamar2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- buka tirai kamar2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- setel tirai kamar3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- tutup tirai kamar3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- buka tirai kamar3
+devices/cover_garage_door::cover_garage_door_change_position:
+- setel tirai garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- tutup tirai garage
+devices/cover_garage_door::cover_garage_door_open:
+- buka tirai garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- setel tirai ruang 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- tutup tirai ruang
+devices/cover_living_blinds::cover_living_blinds_open:
+- buka tirai ruang
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- setel tirai kamar 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- tutup tirai kamar
+devices/cover_master_blinds::cover_master_blinds_open:
+- buka tirai kamar
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- setel kipas kamar2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- matikan kipas kamar2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- nyalakan kipas kamar2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- setel kipas ruangkeluarga 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- matikan kipas ruangkeluarga
+devices/fan_family_fan::fan_family_fan_turn_on:
+- nyalakan kipas ruangkeluarga
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- setel kipas kamar 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- matikan kipas kamar
+devices/fan_master_fan::fan_master_fan_turn_on:
+- nyalakan kipas kamar
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- matikan kipas kamar dan matikan lampu dapur
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- nyalakan kipas kamar dan nyalakan lampu dapur
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- setel langit kamar2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- setel langit kamar2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- matikan langit kamar2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- nyalakan langit kamar2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- setel langit kamar3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- setel langit kamar3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- matikan langit kamar3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- nyalakan langit kamar3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- setel langit kamar4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- setel langit kamar4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- matikan langit kamar4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- nyalakan langit kamar4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- setel lampu ruangkeluargaess 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- setel lampu ruangkeluargaess blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- matikan lampu ruangkeluargaess
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- nyalakan lampu ruangkeluargaess
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- setel lampu lorong 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- setel lampu lorong yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- matikan lampu lorong
+devices/light_entryway_light::light_entryway_light_turn_on:
+- nyalakan lampu lorong
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- setel langit ruangkeluarga 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- setel langit ruangkeluarga purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- matikan langit ruangkeluarga
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- nyalakan langit ruangkeluarga
+devices/light_garage_light::light_garage_light_change_brightness:
+- setel lampu garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- setel lampu garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- matikan lampu garage
+devices/light_garage_light::light_garage_light_turn_on:
+- nyalakan lampu garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- setel lampu loronggang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- setel lampu loronggang white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- matikan lampu loronggang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- nyalakan lampu loronggang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- setel langit dapur 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- setel langit dapur orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- matikan langit dapur
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- nyalakan langit dapur
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- setel lampu dapur 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- setel lampu dapur green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- matikan lampu dapur
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- nyalakan lampu dapur
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- setel lampu binatu 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- setel lampu binatu white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- matikan lampu binatu
+devices/light_laundry_light::light_laundry_light_turn_on:
+- nyalakan lampu binatu
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- setel langit ruang 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- setel langit ruang black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- matikan langit ruang
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- nyalakan langit ruang
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- setel lampu ruang 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- setel lampu ruang red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- matikan lampu ruang
+devices/light_living_lamp::light_living_lamp_turn_on:
+- nyalakan lampu ruang
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- setel lampu main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- setel lampu main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- matikan lampu main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- nyalakan lampu main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- setel lampu kamarmandimaster 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- setel lampu kamarmandimaster black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- matikan lampu kamarmandimaster
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- nyalakan lampu kamarmandimaster
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- setel nakas kamar 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- setel nakas kamar red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- matikan nakas kamar
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- nyalakan nakas kamar
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- setel langit kamar 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- setel langit kamar blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- matikan langit kamar
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- nyalakan langit kamar
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- setel lampu kamar 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- setel lampu kamar black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- matikan lampu kamar
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- nyalakan lampu kamar
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- setel lampu wc 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- setel lampu wc black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- matikan lampu wc
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- nyalakan lampu wc
+devices/lock_front_door::lock_front_door_lock:
+- kunci kunci lorong
+devices/lock_front_door::lock_front_door_unlock:
+- buka kunci lorong
+devices/lock_garage_entry::lock_garage_entry_lock:
+- kunci kunci garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- buka kunci garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- nyalakan tv ruangkeluarga
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause tv ruangkeluarga
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- matikan tv ruangkeluarga
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- nyalakan tv ruangkeluarga
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- nyalakan tv ruangkeluarga
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- nyalakan tv ruangkeluarga
+devices/media_player_living_tv::media_player_living_tv_mute:
+- nyalakan tv ruang
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause tv ruang
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- matikan tv ruang
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- nyalakan tv ruang
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- nyalakan tv ruang
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- nyalakan tv ruang
+devices/scenes::dinner_time:
+- setel lampu ruangkeluargaess 90 dan nyalakan langit dapur dan setel lampu dapur
+  80
+devices/scenes::good_morning:
+- nyalakan langit dapur dan setel lampu ruangkeluargaess 100 dan buka tirai ruang
+  dan buka tirai kamar
+devices/scenes::kids_bedtime:
+- matikan langit kamar2 dan matikan langit kamar3 dan matikan langit kamar4 dan setel
+  lampu loronggang 15
+devices/scenes::movie_night:
+- matikan langit ruang dan setel lampu ruang 20 dan nyalakan tv ruang dan tutup tirai
+  ruang
+devices/scripts::good_night:
+- nyalakan adegan malam
+devices/scripts::leaving_home:
+- nyalakan adegan pergi
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- matikan piring
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- nyalakan piring
+devices/switch_dryer::switch_dryer_turn_off:
+- matikan pencuci
+devices/switch_dryer::switch_dryer_turn_on:
+- nyalakan pencuci
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- matikan pencuci
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- nyalakan pencuci

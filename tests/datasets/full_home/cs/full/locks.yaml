@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - zamkni zamek predsin
+  - zamek predsin zamkni
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - odemkni zamek predsin
+  - zamek predsin odemkni
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - zamkni zamek garage
+  - zamek garage zamkni
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - odemkni zamek garage
+  - zamek garage odemkni
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - zamkni zamek predsin
+  - zamek predsin zamkni
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - zamkni zamek garage
+  - zamek garage zamkni

@@ -1,0 +1,231 @@
+- name: climate.ground_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - stell heizung wohnzimmer 18
+  - heizung wohnzimmer 18
+- name: climate.ground_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - stell heizung wohnzimmer 19
+  - heizung wohnzimmer 19
+- name: climate.ground_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - stell heizung wohnzimmer 20
+  - heizung wohnzimmer 20
+- name: climate.ground_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - stell heizung wohnzimmer 21
+  - heizung wohnzimmer 21
+- name: climate.ground_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - stell heizung wohnzimmer 22
+  - heizung wohnzimmer 22
+- name: climate.ground_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - stell heizung wohnzimmer 23
+  - heizung wohnzimmer 23
+- name: climate.ground_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - stell heizung wohnzimmer 24
+  - heizung wohnzimmer 24
+- name: climate.ground_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - was heizung wohnzimmer
+  - heizung wohnzimmer
+- name: climate.upper_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - stell heizung schlafzimmer 18
+  - heizung schlafzimmer 18
+- name: climate.upper_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - stell heizung schlafzimmer 19
+  - heizung schlafzimmer 19
+- name: climate.upper_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - stell heizung schlafzimmer 20
+  - heizung schlafzimmer 20
+- name: climate.upper_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - stell heizung schlafzimmer 21
+  - heizung schlafzimmer 21
+- name: climate.upper_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - stell heizung schlafzimmer 22
+  - heizung schlafzimmer 22
+- name: climate.upper_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - stell heizung schlafzimmer 23
+  - heizung schlafzimmer 23
+- name: climate.upper_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - stell heizung schlafzimmer 24
+  - heizung schlafzimmer 24
+- name: climate.upper_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - was heizung schlafzimmer
+  - heizung schlafzimmer
+- name: climate.master_ac_18
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 18
+  sentences:
+  - stell temperatur schlafzimmer 18
+  - temperatur schlafzimmer 18
+- name: climate.master_ac_19
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 19
+  sentences:
+  - stell temperatur schlafzimmer 19
+  - temperatur schlafzimmer 19
+- name: climate.master_ac_20
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 20
+  sentences:
+  - stell temperatur schlafzimmer 20
+  - temperatur schlafzimmer 20
+- name: climate.master_ac_21
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 21
+  sentences:
+  - stell temperatur schlafzimmer 21
+  - temperatur schlafzimmer 21
+- name: climate.master_ac_22
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 22
+  sentences:
+  - stell temperatur schlafzimmer 22
+  - temperatur schlafzimmer 22
+- name: climate.master_ac_23
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 23
+  sentences:
+  - stell temperatur schlafzimmer 23
+  - temperatur schlafzimmer 23
+- name: climate.master_ac_24
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 24
+  sentences:
+  - stell temperatur schlafzimmer 24
+  - temperatur schlafzimmer 24
+- name: climate.master_ac_get
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - was temperatur schlafzimmer
+  - temperatur schlafzimmer
+- name: climate.ground_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - was heizung wohnzimmer
+  - heizung wohnzimmer
+- name: climate.upper_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - was heizung schlafzimmer
+  - heizung schlafzimmer
+- name: climate.master_ac_get_full
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - was temperatur schlafzimmer
+  - temperatur schlafzimmer

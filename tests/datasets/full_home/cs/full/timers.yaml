@@ -1,0 +1,70 @@
+- name: timer_oven
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 10
+  sentences:
+  - zapni casovac 10 minut
+  - casovac 10 minut
+- name: timer_laundry
+  conditions:
+  - type: action
+    entity_id: timer.laundry
+    attributes:
+      minutes: 45
+  sentences:
+  - zapni casovac 45 minut
+  - casovac 45 minut
+- name: timer_cancel
+  conditions:
+  - type: action
+    entity_id: timer.abstract
+  sentences:
+  - vypni casovac
+  - casovac vypni
+- name: timer_oven_5
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 5
+  sentences:
+  - zapni casovac 5 minut
+  - casovac 5 minut
+- name: timer_oven_15
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 15
+  sentences:
+  - zapni casovac 15 minut
+  - casovac 15 minut
+- name: timer_oven_20
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 20
+  sentences:
+  - zapni casovac 20 minut
+  - casovac 20 minut
+- name: timer_oven_30
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 30
+  sentences:
+  - zapni casovac 30 minut
+  - casovac 30 minut
+- name: timer_oven_60
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 60
+  sentences:
+  - zapni casovac 60 minut
+  - casovac 60 minut

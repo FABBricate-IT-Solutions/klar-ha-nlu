@@ -1,0 +1,4606 @@
+- name: lights_entryway_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu pravesham
+  - velugu pravesham veliginchu
+- name: lights_entryway_off
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu pravesham
+  - velugu pravesham arpu
+- name: lights_living_on
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu gadi
+  - velugu gadi veliginchu
+- name: lights_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu gadi
+  - velugu gadi arpu
+- name: lights_dining_on
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu kutumbamess
+  - velugu kutumbamess veliginchu
+- name: lights_dining_off
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu kutumbamess
+  - velugu kutumbamess arpu
+- name: lights_kitchen_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu vantagadi
+  - velugu vantagadi veliginchu
+- name: lights_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu vantagadi
+  - velugu vantagadi arpu
+- name: lights_family_room_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu kutumbam
+  - velugu kutumbam veliginchu
+- name: lights_family_room_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu kutumbam
+  - velugu kutumbam arpu
+- name: lights_laundry_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu laundry
+  - velugu laundry veliginchu
+- name: lights_laundry_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu laundry
+  - velugu laundry arpu
+- name: lights_powder_room_on
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu toilet
+  - velugu toilet veliginchu
+- name: lights_powder_room_off
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu toilet
+  - velugu toilet arpu
+- name: lights_garage_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu garage
+  - velugu garage veliginchu
+- name: lights_garage_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu garage
+  - velugu garage arpu
+- name: lights_office_on
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu office
+  - velugu office veliginchu
+- name: lights_office_off
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu office
+  - velugu office arpu
+- name: lights_garden_on
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu garden
+  - velugu garden veliginchu
+- name: lights_garden_off
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu garden
+  - velugu garden arpu
+- name: lights_master_bedroom_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu padakagadi
+  - velugu padakagadi veliginchu
+- name: lights_master_bedroom_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu padakagadi
+  - velugu padakagadi arpu
+- name: lights_bedroom_2_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu padakagadi2
+  - velugu padakagadi2 veliginchu
+- name: lights_bedroom_2_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu padakagadi2
+  - velugu padakagadi2 arpu
+- name: lights_bedroom_3_on
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu padakagadi3
+  - velugu padakagadi3 veliginchu
+- name: lights_bedroom_3_off
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu padakagadi3
+  - velugu padakagadi3 arpu
+- name: lights_bedroom_4_on
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu padakagadi4
+  - velugu padakagadi4 veliginchu
+- name: lights_bedroom_4_off
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu padakagadi4
+  - velugu padakagadi4 arpu
+- name: lights_master_bath_on
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu masterbath
+  - velugu masterbath veliginchu
+- name: lights_master_bath_off
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu masterbath
+  - velugu masterbath arpu
+- name: lights_main_bath_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu main bath
+  - velugu main bath veliginchu
+- name: lights_main_bath_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu main bath
+  - velugu main bath arpu
+- name: lights_hallway_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu hallway
+  - velugu hallway veliginchu
+- name: lights_hallway_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu hallway
+  - velugu hallway arpu
+- name: lights_basement_on
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu basement
+  - velugu basement veliginchu
+- name: lights_basement_off
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu basement
+  - velugu basement arpu
+- name: light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu gadi
+  - kappu gadi veliginchu
+- name: light.living_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu gadi
+  - kappu gadi arpu
+- name: light.living_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu gadi 20
+  - kappu gadi 20
+- name: light.living_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu gadi 40
+  - kappu gadi 40
+- name: light.living_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu gadi 50
+  - kappu gadi 50
+- name: light.living_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu gadi 60
+  - kappu gadi 60
+- name: light.living_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu gadi 80
+  - kappu gadi 80
+- name: light.living_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu gadi 100
+  - kappu gadi 100
+- name: light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - veliginchu lamp gadi
+  - lamp gadi veliginchu
+- name: light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - arpu lamp gadi
+  - lamp gadi arpu
+- name: light.living_lamp_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 20
+  sentences:
+  - set lamp gadi 20
+  - lamp gadi 20
+- name: light.living_lamp_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 40
+  sentences:
+  - set lamp gadi 40
+  - lamp gadi 40
+- name: light.living_lamp_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 50
+  sentences:
+  - set lamp gadi 50
+  - lamp gadi 50
+- name: light.living_lamp_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 60
+  sentences:
+  - set lamp gadi 60
+  - lamp gadi 60
+- name: light.living_lamp_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 80
+  sentences:
+  - set lamp gadi 80
+  - lamp gadi 80
+- name: light.living_lamp_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 100
+  sentences:
+  - set lamp gadi 100
+  - lamp gadi 100
+- name: light.kitchen_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu vantagadi
+  - kappu vantagadi veliginchu
+- name: light.kitchen_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu vantagadi
+  - kappu vantagadi arpu
+- name: light.kitchen_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu vantagadi 20
+  - kappu vantagadi 20
+- name: light.kitchen_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu vantagadi 40
+  - kappu vantagadi 40
+- name: light.kitchen_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu vantagadi 50
+  - kappu vantagadi 50
+- name: light.kitchen_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu vantagadi 60
+  - kappu vantagadi 60
+- name: light.kitchen_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu vantagadi 80
+  - kappu vantagadi 80
+- name: light.kitchen_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu vantagadi 100
+  - kappu vantagadi 100
+- name: light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - veliginchu dweepam vantagadi
+  - dweepam vantagadi veliginchu
+- name: light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - arpu dweepam vantagadi
+  - dweepam vantagadi arpu
+- name: light.kitchen_island_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 20
+  sentences:
+  - set dweepam vantagadi 20
+  - dweepam vantagadi 20
+- name: light.kitchen_island_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 40
+  sentences:
+  - set dweepam vantagadi 40
+  - dweepam vantagadi 40
+- name: light.kitchen_island_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 50
+  sentences:
+  - set dweepam vantagadi 50
+  - dweepam vantagadi 50
+- name: light.kitchen_island_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 60
+  sentences:
+  - set dweepam vantagadi 60
+  - dweepam vantagadi 60
+- name: light.kitchen_island_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 80
+  sentences:
+  - set dweepam vantagadi 80
+  - dweepam vantagadi 80
+- name: light.kitchen_island_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 100
+  sentences:
+  - set dweepam vantagadi 100
+  - dweepam vantagadi 100
+- name: light.master_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu padakagadi
+  - kappu padakagadi veliginchu
+- name: light.master_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu padakagadi
+  - kappu padakagadi arpu
+- name: light.master_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu padakagadi 20
+  - kappu padakagadi 20
+- name: light.master_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu padakagadi 40
+  - kappu padakagadi 40
+- name: light.master_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu padakagadi 50
+  - kappu padakagadi 50
+- name: light.master_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu padakagadi 60
+  - kappu padakagadi 60
+- name: light.master_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu padakagadi 80
+  - kappu padakagadi 80
+- name: light.master_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu padakagadi 100
+  - kappu padakagadi 100
+- name: light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - veliginchu mancham padakagadi
+  - mancham padakagadi veliginchu
+- name: light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - arpu mancham padakagadi
+  - mancham padakagadi arpu
+- name: light.master_bedside_left_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 20
+  sentences:
+  - set mancham padakagadi 20
+  - mancham padakagadi 20
+- name: light.master_bedside_left_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 40
+  sentences:
+  - set mancham padakagadi 40
+  - mancham padakagadi 40
+- name: light.master_bedside_left_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 50
+  sentences:
+  - set mancham padakagadi 50
+  - mancham padakagadi 50
+- name: light.master_bedside_left_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 60
+  sentences:
+  - set mancham padakagadi 60
+  - mancham padakagadi 60
+- name: light.master_bedside_left_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 80
+  sentences:
+  - set mancham padakagadi 80
+  - mancham padakagadi 80
+- name: light.master_bedside_left_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 100
+  sentences:
+  - set mancham padakagadi 100
+  - mancham padakagadi 100
+- name: light.office_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu office
+  - kappu office veliginchu
+- name: light.office_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu office
+  - kappu office arpu
+- name: light.office_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu office 20
+  - kappu office 20
+- name: light.office_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu office 40
+  - kappu office 40
+- name: light.office_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu office 50
+  - kappu office 50
+- name: light.office_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu office 60
+  - kappu office 60
+- name: light.office_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu office 80
+  - kappu office 80
+- name: light.office_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu office 100
+  - kappu office 100
+- name: light.garden_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  sentences:
+  - veliginchu velugu garden
+  - velugu garden veliginchu
+- name: light.garden_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  sentences:
+  - arpu velugu garden
+  - velugu garden arpu
+- name: light.garden_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu garden 20
+  - velugu garden 20
+- name: light.garden_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu garden 40
+  - velugu garden 40
+- name: light.garden_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu garden 50
+  - velugu garden 50
+- name: light.garden_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu garden 60
+  - velugu garden 60
+- name: light.garden_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu garden 80
+  - velugu garden 80
+- name: light.garden_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu garden 100
+  - velugu garden 100
+- name: light.basement_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - veliginchu velugu basement
+  - velugu basement veliginchu
+- name: light.basement_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  sentences:
+  - arpu velugu basement
+  - velugu basement arpu
+- name: light.basement_bright_20
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu basement 20
+  - velugu basement 20
+- name: light.basement_bright_40
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu basement 40
+  - velugu basement 40
+- name: light.basement_bright_50
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu basement 50
+  - velugu basement 50
+- name: light.basement_bright_60
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu basement 60
+  - velugu basement 60
+- name: light.basement_bright_80
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu basement 80
+  - velugu basement 80
+- name: light.basement_bright_100
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu basement 100
+  - velugu basement 100
+- name: light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu hallway
+  - velugu hallway veliginchu
+- name: light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - arpu velugu hallway
+  - velugu hallway arpu
+- name: light.hallway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu hallway 20
+  - velugu hallway 20
+- name: light.hallway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu hallway 40
+  - velugu hallway 40
+- name: light.hallway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu hallway 50
+  - velugu hallway 50
+- name: light.hallway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu hallway 60
+  - velugu hallway 60
+- name: light.hallway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu hallway 80
+  - velugu hallway 80
+- name: light.hallway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu hallway 100
+  - velugu hallway 100
+- name: light.family_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu kutumbam
+  - kappu kutumbam veliginchu
+- name: light.family_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu kutumbam
+  - kappu kutumbam arpu
+- name: light.family_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu kutumbam 20
+  - kappu kutumbam 20
+- name: light.family_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu kutumbam 40
+  - kappu kutumbam 40
+- name: light.family_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu kutumbam 50
+  - kappu kutumbam 50
+- name: light.family_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu kutumbam 60
+  - kappu kutumbam 60
+- name: light.family_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu kutumbam 80
+  - kappu kutumbam 80
+- name: light.family_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu kutumbam 100
+  - kappu kutumbam 100
+- name: light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - veliginchu velugu kutumbamess
+  - velugu kutumbamess veliginchu
+- name: light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - arpu velugu kutumbamess
+  - velugu kutumbamess arpu
+- name: light.dining_pendant_bright_20
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu kutumbamess 20
+  - velugu kutumbamess 20
+- name: light.dining_pendant_bright_40
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu kutumbamess 40
+  - velugu kutumbamess 40
+- name: light.dining_pendant_bright_50
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu kutumbamess 50
+  - velugu kutumbamess 50
+- name: light.dining_pendant_bright_60
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu kutumbamess 60
+  - velugu kutumbamess 60
+- name: light.dining_pendant_bright_80
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu kutumbamess 80
+  - velugu kutumbamess 80
+- name: light.dining_pendant_bright_100
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu kutumbamess 100
+  - velugu kutumbamess 100
+- name: light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu garage
+  - velugu garage veliginchu
+- name: light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - arpu velugu garage
+  - velugu garage arpu
+- name: light.garage_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu garage 20
+  - velugu garage 20
+- name: light.garage_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu garage 40
+  - velugu garage 40
+- name: light.garage_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu garage 50
+  - velugu garage 50
+- name: light.garage_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu garage 60
+  - velugu garage 60
+- name: light.garage_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu garage 80
+  - velugu garage 80
+- name: light.garage_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu garage 100
+  - velugu garage 100
+- name: light.bedroom2_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu padakagadi2
+  - kappu padakagadi2 veliginchu
+- name: light.bedroom2_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu padakagadi2
+  - kappu padakagadi2 arpu
+- name: light.bedroom2_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu padakagadi2 20
+  - kappu padakagadi2 20
+- name: light.bedroom2_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu padakagadi2 40
+  - kappu padakagadi2 40
+- name: light.bedroom2_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu padakagadi2 50
+  - kappu padakagadi2 50
+- name: light.bedroom2_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu padakagadi2 60
+  - kappu padakagadi2 60
+- name: light.bedroom2_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu padakagadi2 80
+  - kappu padakagadi2 80
+- name: light.bedroom2_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu padakagadi2 100
+  - kappu padakagadi2 100
+- name: light.bedroom3_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu padakagadi3
+  - kappu padakagadi3 veliginchu
+- name: light.bedroom3_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu padakagadi3
+  - kappu padakagadi3 arpu
+- name: light.bedroom3_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu padakagadi3 20
+  - kappu padakagadi3 20
+- name: light.bedroom3_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu padakagadi3 40
+  - kappu padakagadi3 40
+- name: light.bedroom3_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu padakagadi3 50
+  - kappu padakagadi3 50
+- name: light.bedroom3_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu padakagadi3 60
+  - kappu padakagadi3 60
+- name: light.bedroom3_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu padakagadi3 80
+  - kappu padakagadi3 80
+- name: light.bedroom3_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu padakagadi3 100
+  - kappu padakagadi3 100
+- name: light.bedroom4_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu padakagadi4
+  - kappu padakagadi4 veliginchu
+- name: light.bedroom4_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  sentences:
+  - arpu kappu padakagadi4
+  - kappu padakagadi4 arpu
+- name: light.bedroom4_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - set kappu padakagadi4 20
+  - kappu padakagadi4 20
+- name: light.bedroom4_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - set kappu padakagadi4 40
+  - kappu padakagadi4 40
+- name: light.bedroom4_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - set kappu padakagadi4 50
+  - kappu padakagadi4 50
+- name: light.bedroom4_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - set kappu padakagadi4 60
+  - kappu padakagadi4 60
+- name: light.bedroom4_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - set kappu padakagadi4 80
+  - kappu padakagadi4 80
+- name: light.bedroom4_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - set kappu padakagadi4 100
+  - kappu padakagadi4 100
+- name: light.entryway_light_on
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu pravesham
+  - velugu pravesham veliginchu
+- name: light.entryway_light_off
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - arpu velugu pravesham
+  - velugu pravesham arpu
+- name: light.entryway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu pravesham 20
+  - velugu pravesham 20
+- name: light.entryway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu pravesham 40
+  - velugu pravesham 40
+- name: light.entryway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu pravesham 50
+  - velugu pravesham 50
+- name: light.entryway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu pravesham 60
+  - velugu pravesham 60
+- name: light.entryway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu pravesham 80
+  - velugu pravesham 80
+- name: light.entryway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu pravesham 100
+  - velugu pravesham 100
+- name: light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu laundry
+  - velugu laundry veliginchu
+- name: light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - arpu velugu laundry
+  - velugu laundry arpu
+- name: light.laundry_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu laundry 20
+  - velugu laundry 20
+- name: light.laundry_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu laundry 40
+  - velugu laundry 40
+- name: light.laundry_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu laundry 50
+  - velugu laundry 50
+- name: light.laundry_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu laundry 60
+  - velugu laundry 60
+- name: light.laundry_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu laundry 80
+  - velugu laundry 80
+- name: light.laundry_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu laundry 100
+  - velugu laundry 100
+- name: light.main_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu main bath
+  - velugu main bath veliginchu
+- name: light.main_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'off'
+  sentences:
+  - arpu velugu main bath
+  - velugu main bath arpu
+- name: light.main_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu main bath 20
+  - velugu main bath 20
+- name: light.main_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu main bath 40
+  - velugu main bath 40
+- name: light.main_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu main bath 50
+  - velugu main bath 50
+- name: light.main_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu main bath 60
+  - velugu main bath 60
+- name: light.main_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu main bath 80
+  - velugu main bath 80
+- name: light.main_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu main bath 100
+  - velugu main bath 100
+- name: light.powder_room_light_on
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu toilet
+  - velugu toilet veliginchu
+- name: light.powder_room_light_off
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - arpu velugu toilet
+  - velugu toilet arpu
+- name: light.powder_room_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu toilet 20
+  - velugu toilet 20
+- name: light.powder_room_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu toilet 40
+  - velugu toilet 40
+- name: light.powder_room_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu toilet 50
+  - velugu toilet 50
+- name: light.powder_room_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu toilet 60
+  - velugu toilet 60
+- name: light.powder_room_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu toilet 80
+  - velugu toilet 80
+- name: light.powder_room_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu toilet 100
+  - velugu toilet 100
+- name: light.master_ensuite_on
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'on'
+  sentences:
+  - veliginchu ensuite padakagadi
+  - ensuite padakagadi veliginchu
+- name: light.master_ensuite_off
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'off'
+  sentences:
+  - arpu ensuite padakagadi
+  - ensuite padakagadi arpu
+- name: light.master_ensuite_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 20
+  sentences:
+  - set ensuite padakagadi 20
+  - ensuite padakagadi 20
+- name: light.master_ensuite_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 40
+  sentences:
+  - set ensuite padakagadi 40
+  - ensuite padakagadi 40
+- name: light.master_ensuite_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 50
+  sentences:
+  - set ensuite padakagadi 50
+  - ensuite padakagadi 50
+- name: light.master_ensuite_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 60
+  sentences:
+  - set ensuite padakagadi 60
+  - ensuite padakagadi 60
+- name: light.master_ensuite_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 80
+  sentences:
+  - set ensuite padakagadi 80
+  - ensuite padakagadi 80
+- name: light.master_ensuite_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 100
+  sentences:
+  - set ensuite padakagadi 100
+  - ensuite padakagadi 100
+- name: light.master_bedside_right_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'on'
+  sentences:
+  - veliginchu mancham padakagadi
+  - mancham padakagadi veliginchu
+- name: light.master_bedside_right_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'off'
+  sentences:
+  - arpu mancham padakagadi
+  - mancham padakagadi arpu
+- name: light.master_bedside_right_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 20
+  sentences:
+  - set mancham padakagadi 20
+  - mancham padakagadi 20
+- name: light.master_bedside_right_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 40
+  sentences:
+  - set mancham padakagadi 40
+  - mancham padakagadi 40
+- name: light.master_bedside_right_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 50
+  sentences:
+  - set mancham padakagadi 50
+  - mancham padakagadi 50
+- name: light.master_bedside_right_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 60
+  sentences:
+  - set mancham padakagadi 60
+  - mancham padakagadi 60
+- name: light.master_bedside_right_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 80
+  sentences:
+  - set mancham padakagadi 80
+  - mancham padakagadi 80
+- name: light.master_bedside_right_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 100
+  sentences:
+  - set mancham padakagadi 100
+  - mancham padakagadi 100
+- name: light.master_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu masterbath
+  - velugu masterbath veliginchu
+- name: light.master_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'off'
+  sentences:
+  - arpu velugu masterbath
+  - velugu masterbath arpu
+- name: light.master_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - set velugu masterbath 20
+  - velugu masterbath 20
+- name: light.master_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - set velugu masterbath 40
+  - velugu masterbath 40
+- name: light.master_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu masterbath 50
+  - velugu masterbath 50
+- name: light.master_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - set velugu masterbath 60
+  - velugu masterbath 60
+- name: light.master_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - set velugu masterbath 80
+  - velugu masterbath 80
+- name: light.master_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - set velugu masterbath 100
+  - velugu masterbath 100
+- name: light.living_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu gadi red
+  - set velugu gadi red
+- name: light.living_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu gadi blue
+  - set velugu gadi blue
+- name: light.living_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu gadi green
+  - set velugu gadi green
+- name: light.living_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu gadi white
+  - set velugu gadi white
+- name: light.living_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu gadi yellow
+  - set velugu gadi yellow
+- name: light.living_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu gadi black
+  - set velugu gadi black
+- name: light.living_lamp_red
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: red
+  sentences:
+  - set lamp gadi red
+  - set velugu gadi red
+- name: light.living_lamp_blue
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: blue
+  sentences:
+  - set lamp gadi blue
+  - set velugu gadi blue
+- name: light.living_lamp_green
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: green
+  sentences:
+  - set lamp gadi green
+  - set velugu gadi green
+- name: light.living_lamp_white
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: white
+  sentences:
+  - set lamp gadi white
+  - set velugu gadi white
+- name: light.living_lamp_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: yellow
+  sentences:
+  - set lamp gadi yellow
+  - set velugu gadi yellow
+- name: light.living_lamp_black
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: black
+  sentences:
+  - set lamp gadi black
+  - set velugu gadi black
+- name: light.kitchen_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu vantagadi red
+  - set velugu vantagadi red
+- name: light.kitchen_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu vantagadi blue
+  - set velugu vantagadi blue
+- name: light.kitchen_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu vantagadi green
+  - set velugu vantagadi green
+- name: light.kitchen_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu vantagadi white
+  - set velugu vantagadi white
+- name: light.kitchen_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu vantagadi yellow
+  - set velugu vantagadi yellow
+- name: light.kitchen_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu vantagadi black
+  - set velugu vantagadi black
+- name: light.kitchen_island_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: red
+  sentences:
+  - set dweepam vantagadi red
+  - set velugu vantagadi red
+- name: light.kitchen_island_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: blue
+  sentences:
+  - set dweepam vantagadi blue
+  - set velugu vantagadi blue
+- name: light.kitchen_island_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: green
+  sentences:
+  - set dweepam vantagadi green
+  - set velugu vantagadi green
+- name: light.kitchen_island_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: white
+  sentences:
+  - set dweepam vantagadi white
+  - set velugu vantagadi white
+- name: light.kitchen_island_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: yellow
+  sentences:
+  - set dweepam vantagadi yellow
+  - set velugu vantagadi yellow
+- name: light.kitchen_island_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: black
+  sentences:
+  - set dweepam vantagadi black
+  - set velugu vantagadi black
+- name: light.master_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu padakagadi red
+  - set velugu padakagadi red
+- name: light.master_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu padakagadi blue
+  - set velugu padakagadi blue
+- name: light.master_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu padakagadi green
+  - set velugu padakagadi green
+- name: light.master_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu padakagadi white
+  - set velugu padakagadi white
+- name: light.master_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu padakagadi yellow
+  - set velugu padakagadi yellow
+- name: light.master_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu padakagadi black
+  - set velugu padakagadi black
+- name: light.master_bedside_left_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: red
+  sentences:
+  - set mancham padakagadi red
+  - set velugu padakagadi red
+- name: light.master_bedside_left_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: blue
+  sentences:
+  - set mancham padakagadi blue
+  - set velugu padakagadi blue
+- name: light.master_bedside_left_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: green
+  sentences:
+  - set mancham padakagadi green
+  - set velugu padakagadi green
+- name: light.master_bedside_left_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: white
+  sentences:
+  - set mancham padakagadi white
+  - set velugu padakagadi white
+- name: light.master_bedside_left_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: yellow
+  sentences:
+  - set mancham padakagadi yellow
+  - set velugu padakagadi yellow
+- name: light.master_bedside_left_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: black
+  sentences:
+  - set mancham padakagadi black
+  - set velugu padakagadi black
+- name: light.office_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu office red
+  - set velugu office red
+- name: light.office_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu office blue
+  - set velugu office blue
+- name: light.office_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu office green
+  - set velugu office green
+- name: light.office_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu office white
+  - set velugu office white
+- name: light.office_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu office yellow
+  - set velugu office yellow
+- name: light.office_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu office black
+  - set velugu office black
+- name: light.garden_red
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: red
+  sentences:
+  - set velugu garden red
+  - velugu garden red
+- name: light.garden_blue
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: blue
+  sentences:
+  - set velugu garden blue
+  - velugu garden blue
+- name: light.garden_green
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: green
+  sentences:
+  - set velugu garden green
+  - velugu garden green
+- name: light.garden_white
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: white
+  sentences:
+  - set velugu garden white
+  - velugu garden white
+- name: light.garden_yellow
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu garden yellow
+  - velugu garden yellow
+- name: light.garden_black
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: black
+  sentences:
+  - set velugu garden black
+  - velugu garden black
+- name: light.basement_red
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: red
+  sentences:
+  - set velugu basement red
+  - velugu basement red
+- name: light.basement_blue
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: blue
+  sentences:
+  - set velugu basement blue
+  - velugu basement blue
+- name: light.basement_green
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: green
+  sentences:
+  - set velugu basement green
+  - velugu basement green
+- name: light.basement_white
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: white
+  sentences:
+  - set velugu basement white
+  - velugu basement white
+- name: light.basement_yellow
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu basement yellow
+  - velugu basement yellow
+- name: light.basement_black
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: black
+  sentences:
+  - set velugu basement black
+  - velugu basement black
+- name: light.hallway_light_red
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu hallway red
+  - velugu hallway red
+- name: light.hallway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu hallway blue
+  - velugu hallway blue
+- name: light.hallway_light_green
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu hallway green
+  - velugu hallway green
+- name: light.hallway_light_white
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu hallway white
+  - velugu hallway white
+- name: light.hallway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu hallway yellow
+  - velugu hallway yellow
+- name: light.hallway_light_black
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu hallway black
+  - velugu hallway black
+- name: light.family_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu kutumbam red
+  - set velugu kutumbam red
+- name: light.family_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu kutumbam blue
+  - set velugu kutumbam blue
+- name: light.family_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu kutumbam green
+  - set velugu kutumbam green
+- name: light.family_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu kutumbam white
+  - set velugu kutumbam white
+- name: light.family_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu kutumbam yellow
+  - set velugu kutumbam yellow
+- name: light.family_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu kutumbam black
+  - set velugu kutumbam black
+- name: light.dining_pendant_red
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: red
+  sentences:
+  - set velugu kutumbamess red
+  - velugu kutumbamess red
+- name: light.dining_pendant_blue
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: blue
+  sentences:
+  - set velugu kutumbamess blue
+  - velugu kutumbamess blue
+- name: light.dining_pendant_green
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: green
+  sentences:
+  - set velugu kutumbamess green
+  - velugu kutumbamess green
+- name: light.dining_pendant_white
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: white
+  sentences:
+  - set velugu kutumbamess white
+  - velugu kutumbamess white
+- name: light.dining_pendant_yellow
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu kutumbamess yellow
+  - velugu kutumbamess yellow
+- name: light.dining_pendant_black
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: black
+  sentences:
+  - set velugu kutumbamess black
+  - velugu kutumbamess black
+- name: light.garage_light_red
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu garage red
+  - velugu garage red
+- name: light.garage_light_blue
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu garage blue
+  - velugu garage blue
+- name: light.garage_light_green
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu garage green
+  - velugu garage green
+- name: light.garage_light_white
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu garage white
+  - velugu garage white
+- name: light.garage_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu garage yellow
+  - velugu garage yellow
+- name: light.garage_light_black
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu garage black
+  - velugu garage black
+- name: light.bedroom2_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu padakagadi2 red
+  - set velugu padakagadi2 red
+- name: light.bedroom2_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu padakagadi2 blue
+  - set velugu padakagadi2 blue
+- name: light.bedroom2_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu padakagadi2 green
+  - set velugu padakagadi2 green
+- name: light.bedroom2_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu padakagadi2 white
+  - set velugu padakagadi2 white
+- name: light.bedroom2_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu padakagadi2 yellow
+  - set velugu padakagadi2 yellow
+- name: light.bedroom2_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu padakagadi2 black
+  - set velugu padakagadi2 black
+- name: light.bedroom3_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu padakagadi3 red
+  - set velugu padakagadi3 red
+- name: light.bedroom3_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu padakagadi3 blue
+  - set velugu padakagadi3 blue
+- name: light.bedroom3_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu padakagadi3 green
+  - set velugu padakagadi3 green
+- name: light.bedroom3_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu padakagadi3 white
+  - set velugu padakagadi3 white
+- name: light.bedroom3_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu padakagadi3 yellow
+  - set velugu padakagadi3 yellow
+- name: light.bedroom3_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu padakagadi3 black
+  - set velugu padakagadi3 black
+- name: light.bedroom4_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: red
+  sentences:
+  - set kappu padakagadi4 red
+  - set velugu padakagadi4 red
+- name: light.bedroom4_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - set kappu padakagadi4 blue
+  - set velugu padakagadi4 blue
+- name: light.bedroom4_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: green
+  sentences:
+  - set kappu padakagadi4 green
+  - set velugu padakagadi4 green
+- name: light.bedroom4_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: white
+  sentences:
+  - set kappu padakagadi4 white
+  - set velugu padakagadi4 white
+- name: light.bedroom4_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - set kappu padakagadi4 yellow
+  - set velugu padakagadi4 yellow
+- name: light.bedroom4_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: black
+  sentences:
+  - set kappu padakagadi4 black
+  - set velugu padakagadi4 black
+- name: light.entryway_light_red
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu pravesham red
+  - velugu pravesham red
+- name: light.entryway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu pravesham blue
+  - velugu pravesham blue
+- name: light.entryway_light_green
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu pravesham green
+  - velugu pravesham green
+- name: light.entryway_light_white
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu pravesham white
+  - velugu pravesham white
+- name: light.entryway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu pravesham yellow
+  - velugu pravesham yellow
+- name: light.entryway_light_black
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu pravesham black
+  - velugu pravesham black
+- name: light.laundry_light_red
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu laundry red
+  - velugu laundry red
+- name: light.laundry_light_blue
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu laundry blue
+  - velugu laundry blue
+- name: light.laundry_light_green
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu laundry green
+  - velugu laundry green
+- name: light.laundry_light_white
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu laundry white
+  - velugu laundry white
+- name: light.laundry_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu laundry yellow
+  - velugu laundry yellow
+- name: light.laundry_light_black
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu laundry black
+  - velugu laundry black
+- name: light.main_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu main bath red
+  - velugu main bath red
+- name: light.main_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu main bath blue
+  - velugu main bath blue
+- name: light.main_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu main bath green
+  - velugu main bath green
+- name: light.main_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu main bath white
+  - velugu main bath white
+- name: light.main_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu main bath yellow
+  - velugu main bath yellow
+- name: light.main_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu main bath black
+  - velugu main bath black
+- name: light.powder_room_light_red
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu toilet red
+  - velugu toilet red
+- name: light.powder_room_light_blue
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu toilet blue
+  - velugu toilet blue
+- name: light.powder_room_light_green
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu toilet green
+  - velugu toilet green
+- name: light.powder_room_light_white
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu toilet white
+  - velugu toilet white
+- name: light.powder_room_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu toilet yellow
+  - velugu toilet yellow
+- name: light.powder_room_light_black
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu toilet black
+  - velugu toilet black
+- name: light.master_ensuite_red
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: red
+  sentences:
+  - set ensuite padakagadi red
+  - set velugu padakagadi red
+- name: light.master_ensuite_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: blue
+  sentences:
+  - set ensuite padakagadi blue
+  - set velugu padakagadi blue
+- name: light.master_ensuite_green
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: green
+  sentences:
+  - set ensuite padakagadi green
+  - set velugu padakagadi green
+- name: light.master_ensuite_white
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: white
+  sentences:
+  - set ensuite padakagadi white
+  - set velugu padakagadi white
+- name: light.master_ensuite_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: yellow
+  sentences:
+  - set ensuite padakagadi yellow
+  - set velugu padakagadi yellow
+- name: light.master_ensuite_black
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: black
+  sentences:
+  - set ensuite padakagadi black
+  - set velugu padakagadi black
+- name: light.master_bedside_right_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: red
+  sentences:
+  - set mancham padakagadi red
+  - set velugu padakagadi red
+- name: light.master_bedside_right_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: blue
+  sentences:
+  - set mancham padakagadi blue
+  - set velugu padakagadi blue
+- name: light.master_bedside_right_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: green
+  sentences:
+  - set mancham padakagadi green
+  - set velugu padakagadi green
+- name: light.master_bedside_right_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: white
+  sentences:
+  - set mancham padakagadi white
+  - set velugu padakagadi white
+- name: light.master_bedside_right_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: yellow
+  sentences:
+  - set mancham padakagadi yellow
+  - set velugu padakagadi yellow
+- name: light.master_bedside_right_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: black
+  sentences:
+  - set mancham padakagadi black
+  - set velugu padakagadi black
+- name: light.master_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: red
+  sentences:
+  - set velugu masterbath red
+  - velugu masterbath red
+- name: light.master_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - set velugu masterbath blue
+  - velugu masterbath blue
+- name: light.master_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: green
+  sentences:
+  - set velugu masterbath green
+  - velugu masterbath green
+- name: light.master_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: white
+  sentences:
+  - set velugu masterbath white
+  - velugu masterbath white
+- name: light.master_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - set velugu masterbath yellow
+  - velugu masterbath yellow
+- name: light.master_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: black
+  sentences:
+  - set velugu masterbath black
+  - velugu masterbath black
+- name: all_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp vantagadi
+  - anni velugu arpu tapp vantagadi
+  forbid:
+  - kitchen
+- name: all_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp office
+  - anni velugu arpu tapp office
+  forbid:
+  - office
+- name: all_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp garage
+  - anni velugu arpu tapp garage
+  forbid:
+  - garage
+- name: all_except_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp padakagadi
+  - anni velugu arpu tapp padakagadi
+  forbid:
+  - master_bedroom
+- name: floor_ground_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu kinda
+  - velugu kinda veliginchu
+- name: floor_ground_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu kinda
+  - velugu kinda arpu
+- name: floor_upper_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu paina
+  - velugu paina veliginchu
+- name: floor_upper_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu paina
+  - velugu paina arpu
+- name: floor_basement_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu basement
+  - velugu basement veliginchu
+- name: floor_basement_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu basement
+  - velugu basement arpu
+- name: all_except_entryway
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp pravesham
+  - anni velugu arpu tapp pravesham
+  forbid:
+  - entryway
+- name: all_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp gadi
+  - anni velugu arpu tapp gadi
+  forbid:
+  - living
+- name: all_except_dining
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp kutumbamess
+  - anni velugu arpu tapp kutumbamess
+  forbid:
+  - dining
+- name: all_except_family_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp kutumbam
+  - anni velugu arpu tapp kutumbam
+  forbid:
+  - family_room
+- name: all_except_laundry
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp laundry
+  - anni velugu arpu tapp laundry
+  forbid:
+  - laundry
+- name: all_except_powder_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp toilet
+  - anni velugu arpu tapp toilet
+  forbid:
+  - powder_room
+- name: all_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp garden
+  - anni velugu arpu tapp garden
+  forbid:
+  - garden
+- name: all_except_bedroom_2
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp padakagadi2
+  - anni velugu arpu tapp padakagadi2
+  forbid:
+  - bedroom_2
+- name: all_except_bedroom_3
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp padakagadi3
+  - anni velugu arpu tapp padakagadi3
+  forbid:
+  - bedroom_3
+- name: all_except_bedroom_4
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp padakagadi4
+  - anni velugu arpu tapp padakagadi4
+  forbid:
+  - bedroom_4
+- name: all_except_master_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp masterbath
+  - anni velugu arpu tapp masterbath
+  forbid:
+  - master_bath
+- name: all_except_main_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp main bath
+  - anni velugu arpu tapp main bath
+  forbid:
+  - main_bath
+- name: all_except_hallway
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp hallway
+  - anni velugu arpu tapp hallway
+  forbid:
+  - hallway
+- name: all_except_basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp basement
+  - anni velugu arpu tapp basement
+  forbid:
+  - basement
+- name: light.basement_on_extra
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - veliginchu velugu basement
+  - velugu basement veliginchu
+- name: light.hallway_light_on_extra
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - veliginchu velugu hallway
+  - velugu hallway veliginchu
+- name: light.family_ceiling_on_extra
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu kappu kutumbam
+  - kappu kutumbam veliginchu
+- name: light.dining_pendant_on_extra
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - veliginchu velugu kutumbamess
+  - velugu kutumbamess veliginchu

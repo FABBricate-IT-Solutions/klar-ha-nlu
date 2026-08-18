@@ -1,0 +1,529 @@
+- name: play_queen
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen lounge
+  - play queen telly lounge
+- name: play_album
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: rumours
+      media_type: album
+      artist: fleetwood mac
+  sentences:
+  - play album rumours by fleetwood mac lounge
+- name: play_radio
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode lounge
+- name: queue_song
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: bohemian rhapsody
+      enqueue: add
+  sentences:
+  - play bohemian rhapsody queue lounge
+- name: now_playing
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - what telly lounge
+  - what track lounge
+- name: music_volume_10
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 10
+  sentences:
+  - set telly lounge 10
+  - telly lounge 10
+- name: music_volume_20
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 20
+  sentences:
+  - set telly lounge 20
+  - telly lounge 20
+- name: music_volume_30
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 30
+  sentences:
+  - set telly lounge 30
+  - telly lounge 30
+- name: music_volume_50
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 50
+  sentences:
+  - set telly lounge 50
+  - telly lounge 50
+- name: music_volume_80
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 80
+  sentences:
+  - set telly lounge 80
+  - telly lounge 80
+- name: music_next
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: next
+  sentences:
+  - next track lounge
+- name: music_prev
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: previous
+  sentences:
+  - previous track lounge
+- name: kitchen_play
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen kitchen
+  - play queen telly kitchen
+- name: play_beatles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles lounge
+  - play beatles telly lounge
+- name: play_radiohead_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead lounge
+  - play radiohead telly lounge
+- name: play_abba_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba lounge
+  - play abba telly lounge
+- name: play_coldplay_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay lounge
+  - play coldplay telly lounge
+- name: play_adele_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele lounge
+  - play adele telly lounge
+- name: play_prince_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince lounge
+  - play prince telly lounge
+- name: play_bowie_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie lounge
+  - play bowie telly lounge
+- name: play_nirvana_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana lounge
+  - play nirvana telly lounge
+- name: play_eagles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles lounge
+  - play eagles telly lounge
+- name: play_madonna_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna lounge
+  - play madonna telly lounge
+- name: play_mozart_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart lounge
+  - play mozart telly lounge
+- name: play_daft punk_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk lounge
+  - play daft punk telly lounge
+- name: play_biafra_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra lounge
+  - play biafra telly lounge
+- name: play_queen_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen kitchen
+  - play queen telly kitchen
+- name: play_beatles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles kitchen
+  - play beatles telly kitchen
+- name: play_radiohead_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead kitchen
+  - play radiohead telly kitchen
+- name: play_abba_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba kitchen
+  - play abba telly kitchen
+- name: play_coldplay_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay kitchen
+  - play coldplay telly kitchen
+- name: play_adele_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele kitchen
+  - play adele telly kitchen
+- name: play_prince_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince kitchen
+  - play prince telly kitchen
+- name: play_bowie_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie kitchen
+  - play bowie telly kitchen
+- name: play_nirvana_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana kitchen
+  - play nirvana telly kitchen
+- name: play_eagles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles kitchen
+  - play eagles telly kitchen
+- name: play_madonna_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna kitchen
+  - play madonna telly kitchen
+- name: play_mozart_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart kitchen
+  - play mozart telly kitchen
+- name: play_daft punk_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk kitchen
+  - play daft punk telly kitchen
+- name: play_biafra_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra kitchen
+  - play biafra telly kitchen
+- name: play_queen_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen office
+  - play queen telly office
+- name: play_beatles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles office
+  - play beatles telly office
+- name: play_radiohead_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead office
+  - play radiohead telly office
+- name: play_abba_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba office
+  - play abba telly office
+- name: play_coldplay_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay office
+  - play coldplay telly office
+- name: play_adele_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele office
+  - play adele telly office
+- name: play_prince_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince office
+  - play prince telly office
+- name: play_bowie_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie office
+  - play bowie telly office
+- name: play_nirvana_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana office
+  - play nirvana telly office
+- name: play_eagles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles office
+  - play eagles telly office
+- name: play_madonna_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna office
+  - play madonna telly office
+- name: play_mozart_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart office
+  - play mozart telly office
+- name: play_daft punk_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk office
+  - play daft punk telly office
+- name: play_biafra_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra office
+  - play biafra telly office
+- name: radio_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode lounge
+- name: now_living
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - what telly lounge
+  - what track lounge
+- name: radio_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode kitchen
+- name: now_kitchen
+  conditions:
+  - type: query
+    entity_id: media_player.kitchen_music
+  sentences:
+  - what telly kitchen
+  - what track kitchen
+- name: radio_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode office
+- name: now_office
+  conditions:
+  - type: query
+    entity_id: media_player.office_music
+  sentences:
+  - what telly office
+  - what track office

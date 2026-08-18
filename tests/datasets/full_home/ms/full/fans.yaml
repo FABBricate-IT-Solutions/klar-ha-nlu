@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - kipas ruankeluarga hidupkan
+  - hidupkan kipas ruankeluarga
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - matikan kipas ruankeluarga
+  - kipas ruankeluarga matikan
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - tetapkan kipas ruankeluarga 40
+  - kipas ruankeluarga 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - kipas bilik hidupkan
+  - hidupkan kipas bilik
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - matikan kipas bilik
+  - kipas bilik matikan
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - tetapkan kipas bilik 40
+  - kipas bilik 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - kipas bilik2 hidupkan
+  - hidupkan kipas bilik2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - matikan kipas bilik2
+  - kipas bilik2 matikan
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - tetapkan kipas bilik2 40
+  - kipas bilik2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - tetapkan kipas ruankeluarga 20
+  - kipas ruankeluarga 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - tetapkan kipas ruankeluarga 60
+  - kipas ruankeluarga 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - tetapkan kipas ruankeluarga 80
+  - kipas ruankeluarga 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - tetapkan kipas bilik 20
+  - kipas bilik 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - tetapkan kipas bilik 60
+  - kipas bilik 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - tetapkan kipas bilik 80
+  - kipas bilik 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - tetapkan kipas bilik2 20
+  - kipas bilik2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - tetapkan kipas bilik2 60
+  - kipas bilik2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - tetapkan kipas bilik2 80
+  - kipas bilik2 80

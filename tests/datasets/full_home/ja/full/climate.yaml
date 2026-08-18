@@ -1,0 +1,231 @@
+- name: climate.ground_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - setto eakon ribingu 18
+  - eakon ribingu 18
+- name: climate.ground_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - setto eakon ribingu 19
+  - eakon ribingu 19
+- name: climate.ground_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - setto eakon ribingu 20
+  - eakon ribingu 20
+- name: climate.ground_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - setto eakon ribingu 21
+  - eakon ribingu 21
+- name: climate.ground_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - setto eakon ribingu 22
+  - eakon ribingu 22
+- name: climate.ground_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - setto eakon ribingu 23
+  - eakon ribingu 23
+- name: climate.ground_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.ground_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - setto eakon ribingu 24
+  - eakon ribingu 24
+- name: climate.ground_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - nani eakon ribingu
+  - eakon ribingu
+- name: climate.upper_thermostat_18
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 18
+  sentences:
+  - setto eakon shinshitsu 18
+  - eakon shinshitsu 18
+- name: climate.upper_thermostat_19
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 19
+  sentences:
+  - setto eakon shinshitsu 19
+  - eakon shinshitsu 19
+- name: climate.upper_thermostat_20
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 20
+  sentences:
+  - setto eakon shinshitsu 20
+  - eakon shinshitsu 20
+- name: climate.upper_thermostat_21
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 21
+  sentences:
+  - setto eakon shinshitsu 21
+  - eakon shinshitsu 21
+- name: climate.upper_thermostat_22
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 22
+  sentences:
+  - setto eakon shinshitsu 22
+  - eakon shinshitsu 22
+- name: climate.upper_thermostat_23
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 23
+  sentences:
+  - setto eakon shinshitsu 23
+  - eakon shinshitsu 23
+- name: climate.upper_thermostat_24
+  conditions:
+  - type: action
+    entity_id: climate.upper_thermostat
+    attributes:
+      temperature: 24
+  sentences:
+  - setto eakon shinshitsu 24
+  - eakon shinshitsu 24
+- name: climate.upper_thermostat_get
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - nani eakon shinshitsu
+  - eakon shinshitsu
+- name: climate.master_ac_18
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 18
+  sentences:
+  - setto eakon shinshitsu 18
+  - eakon shinshitsu 18
+- name: climate.master_ac_19
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 19
+  sentences:
+  - setto eakon shinshitsu 19
+  - eakon shinshitsu 19
+- name: climate.master_ac_20
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 20
+  sentences:
+  - setto eakon shinshitsu 20
+  - eakon shinshitsu 20
+- name: climate.master_ac_21
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 21
+  sentences:
+  - setto eakon shinshitsu 21
+  - eakon shinshitsu 21
+- name: climate.master_ac_22
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 22
+  sentences:
+  - setto eakon shinshitsu 22
+  - eakon shinshitsu 22
+- name: climate.master_ac_23
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 23
+  sentences:
+  - setto eakon shinshitsu 23
+  - eakon shinshitsu 23
+- name: climate.master_ac_24
+  conditions:
+  - type: action
+    entity_id: climate.master_ac
+    attributes:
+      temperature: 24
+  sentences:
+  - setto eakon shinshitsu 24
+  - eakon shinshitsu 24
+- name: climate.master_ac_get
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - nani eakon shinshitsu
+  - eakon shinshitsu
+- name: climate.ground_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - nani eakon ribingu
+  - eakon ribingu
+- name: climate.upper_thermostat_get_full
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - nani eakon shinshitsu
+  - eakon shinshitsu
+- name: climate.master_ac_get_full
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - nani eakon shinshitsu
+  - eakon shinshitsu

@@ -1,0 +1,4606 @@
+- name: lights_entryway_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی داخلہ
+  - روشنی داخلہ چالو
+- name: lights_entryway_off
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی داخلہ
+  - روشنی داخلہ بند
+- name: lights_living_on
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی لانج
+  - روشنی لانج چالو
+- name: lights_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی لانج
+  - روشنی لانج بند
+- name: lights_dining_on
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی خاندانیess
+  - روشنی خاندانیess چالو
+- name: lights_dining_off
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی خاندانیess
+  - روشنی خاندانیess بند
+- name: lights_kitchen_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی باورچی
+  - روشنی باورچی چالو
+- name: lights_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی باورچی
+  - روشنی باورچی بند
+- name: lights_family_room_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی خاندانی
+  - روشنی خاندانی چالو
+- name: lights_family_room_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی خاندانی
+  - روشنی خاندانی بند
+- name: lights_laundry_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی لانڈری
+  - روشنی لانڈری چالو
+- name: lights_laundry_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی لانڈری
+  - روشنی لانڈری بند
+- name: lights_powder_room_on
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی غسلخانہ
+  - روشنی غسلخانہ چالو
+- name: lights_powder_room_off
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی غسلخانہ
+  - روشنی غسلخانہ بند
+- name: lights_garage_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی garage
+  - روشنی garage چالو
+- name: lights_garage_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی garage
+  - روشنی garage بند
+- name: lights_office_on
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی office
+  - روشنی office چالو
+- name: lights_office_off
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی office
+  - روشنی office بند
+- name: lights_garden_on
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی garden
+  - روشنی garden چالو
+- name: lights_garden_off
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی garden
+  - روشنی garden بند
+- name: lights_master_bedroom_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی bedroom
+  - روشنی bedroom چالو
+- name: lights_master_bedroom_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی bedroom
+  - روشنی bedroom بند
+- name: lights_bedroom_2_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی bedroom2
+  - روشنی bedroom2 چالو
+- name: lights_bedroom_2_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی bedroom2
+  - روشنی bedroom2 بند
+- name: lights_bedroom_3_on
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی bedroom3
+  - روشنی bedroom3 چالو
+- name: lights_bedroom_3_off
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی bedroom3
+  - روشنی bedroom3 بند
+- name: lights_bedroom_4_on
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی bedroom4
+  - روشنی bedroom4 چالو
+- name: lights_bedroom_4_off
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی bedroom4
+  - روشنی bedroom4 بند
+- name: lights_master_bath_on
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی ماسٹرباتھ
+  - روشنی ماسٹرباتھ چالو
+- name: lights_master_bath_off
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی ماسٹرباتھ
+  - روشنی ماسٹرباتھ بند
+- name: lights_main_bath_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی main bath
+  - روشنی main bath چالو
+- name: lights_main_bath_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی main bath
+  - روشنی main bath بند
+- name: lights_hallway_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی hallway
+  - روشنی hallway چالو
+- name: lights_hallway_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی hallway
+  - روشنی hallway بند
+- name: lights_basement_on
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو روشنی basement
+  - روشنی basement چالو
+- name: lights_basement_off
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند روشنی basement
+  - روشنی basement بند
+- name: light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت لانج
+  - چھت لانج چالو
+- name: light.living_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت لانج
+  - چھت لانج بند
+- name: light.living_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت لانج 20
+  - چھت لانج 20
+- name: light.living_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت لانج 40
+  - چھت لانج 40
+- name: light.living_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت لانج 50
+  - چھت لانج 50
+- name: light.living_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت لانج 60
+  - چھت لانج 60
+- name: light.living_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت لانج 80
+  - چھت لانج 80
+- name: light.living_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت لانج 100
+  - چھت لانج 100
+- name: light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - چالو lamp لانج
+  - lamp لانج چالو
+- name: light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - بند lamp لانج
+  - lamp لانج بند
+- name: light.living_lamp_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو lamp لانج 20
+  - lamp لانج 20
+- name: light.living_lamp_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو lamp لانج 40
+  - lamp لانج 40
+- name: light.living_lamp_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو lamp لانج 50
+  - lamp لانج 50
+- name: light.living_lamp_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو lamp لانج 60
+  - lamp لانج 60
+- name: light.living_lamp_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو lamp لانج 80
+  - lamp لانج 80
+- name: light.living_lamp_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو lamp لانج 100
+  - lamp لانج 100
+- name: light.kitchen_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت باورچی
+  - چھت باورچی چالو
+- name: light.kitchen_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت باورچی
+  - چھت باورچی بند
+- name: light.kitchen_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت باورچی 20
+  - چھت باورچی 20
+- name: light.kitchen_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت باورچی 40
+  - چھت باورچی 40
+- name: light.kitchen_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت باورچی 50
+  - چھت باورچی 50
+- name: light.kitchen_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت باورچی 60
+  - چھت باورچی 60
+- name: light.kitchen_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت باورچی 80
+  - چھت باورچی 80
+- name: light.kitchen_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت باورچی 100
+  - چھت باورچی 100
+- name: light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - چالو جزیرہ باورچی
+  - جزیرہ باورچی چالو
+- name: light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - بند جزیرہ باورچی
+  - جزیرہ باورچی بند
+- name: light.kitchen_island_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو جزیرہ باورچی 20
+  - جزیرہ باورچی 20
+- name: light.kitchen_island_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو جزیرہ باورچی 40
+  - جزیرہ باورچی 40
+- name: light.kitchen_island_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو جزیرہ باورچی 50
+  - جزیرہ باورچی 50
+- name: light.kitchen_island_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو جزیرہ باورچی 60
+  - جزیرہ باورچی 60
+- name: light.kitchen_island_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو جزیرہ باورچی 80
+  - جزیرہ باورچی 80
+- name: light.kitchen_island_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو جزیرہ باورچی 100
+  - جزیرہ باورچی 100
+- name: light.master_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت bedroom
+  - چھت bedroom چالو
+- name: light.master_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت bedroom
+  - چھت bedroom بند
+- name: light.master_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت bedroom 20
+  - چھت bedroom 20
+- name: light.master_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت bedroom 40
+  - چھت bedroom 40
+- name: light.master_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت bedroom 50
+  - چھت bedroom 50
+- name: light.master_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت bedroom 60
+  - چھت bedroom 60
+- name: light.master_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت bedroom 80
+  - چھت bedroom 80
+- name: light.master_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت bedroom 100
+  - چھت bedroom 100
+- name: light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - چالو بسترکنار bedroom
+  - بسترکنار bedroom چالو
+- name: light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - بند بسترکنار bedroom
+  - بسترکنار bedroom بند
+- name: light.master_bedside_left_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو بسترکنار bedroom 20
+  - بسترکنار bedroom 20
+- name: light.master_bedside_left_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو بسترکنار bedroom 40
+  - بسترکنار bedroom 40
+- name: light.master_bedside_left_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو بسترکنار bedroom 50
+  - بسترکنار bedroom 50
+- name: light.master_bedside_left_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو بسترکنار bedroom 60
+  - بسترکنار bedroom 60
+- name: light.master_bedside_left_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو بسترکنار bedroom 80
+  - بسترکنار bedroom 80
+- name: light.master_bedside_left_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو بسترکنار bedroom 100
+  - بسترکنار bedroom 100
+- name: light.office_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت office
+  - چھت office چالو
+- name: light.office_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت office
+  - چھت office بند
+- name: light.office_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت office 20
+  - چھت office 20
+- name: light.office_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت office 40
+  - چھت office 40
+- name: light.office_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت office 50
+  - چھت office 50
+- name: light.office_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت office 60
+  - چھت office 60
+- name: light.office_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت office 80
+  - چھت office 80
+- name: light.office_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت office 100
+  - چھت office 100
+- name: light.garden_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  sentences:
+  - چالو روشنی garden
+  - روشنی garden چالو
+- name: light.garden_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  sentences:
+  - بند روشنی garden
+  - روشنی garden بند
+- name: light.garden_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی garden 20
+  - روشنی garden 20
+- name: light.garden_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی garden 40
+  - روشنی garden 40
+- name: light.garden_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی garden 50
+  - روشنی garden 50
+- name: light.garden_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی garden 60
+  - روشنی garden 60
+- name: light.garden_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی garden 80
+  - روشنی garden 80
+- name: light.garden_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی garden 100
+  - روشنی garden 100
+- name: light.basement_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - چالو روشنی basement
+  - روشنی basement چالو
+- name: light.basement_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  sentences:
+  - بند روشنی basement
+  - روشنی basement بند
+- name: light.basement_bright_20
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی basement 20
+  - روشنی basement 20
+- name: light.basement_bright_40
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی basement 40
+  - روشنی basement 40
+- name: light.basement_bright_50
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی basement 50
+  - روشنی basement 50
+- name: light.basement_bright_60
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی basement 60
+  - روشنی basement 60
+- name: light.basement_bright_80
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی basement 80
+  - روشنی basement 80
+- name: light.basement_bright_100
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی basement 100
+  - روشنی basement 100
+- name: light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - چالو روشنی hallway
+  - روشنی hallway چالو
+- name: light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - بند روشنی hallway
+  - روشنی hallway بند
+- name: light.hallway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی hallway 20
+  - روشنی hallway 20
+- name: light.hallway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی hallway 40
+  - روشنی hallway 40
+- name: light.hallway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی hallway 50
+  - روشنی hallway 50
+- name: light.hallway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی hallway 60
+  - روشنی hallway 60
+- name: light.hallway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی hallway 80
+  - روشنی hallway 80
+- name: light.hallway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی hallway 100
+  - روشنی hallway 100
+- name: light.family_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت خاندانی
+  - چھت خاندانی چالو
+- name: light.family_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت خاندانی
+  - چھت خاندانی بند
+- name: light.family_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت خاندانی 20
+  - چھت خاندانی 20
+- name: light.family_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت خاندانی 40
+  - چھت خاندانی 40
+- name: light.family_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت خاندانی 50
+  - چھت خاندانی 50
+- name: light.family_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت خاندانی 60
+  - چھت خاندانی 60
+- name: light.family_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت خاندانی 80
+  - چھت خاندانی 80
+- name: light.family_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت خاندانی 100
+  - چھت خاندانی 100
+- name: light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - چالو روشنی خاندانیess
+  - روشنی خاندانیess چالو
+- name: light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - بند روشنی خاندانیess
+  - روشنی خاندانیess بند
+- name: light.dining_pendant_bright_20
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی خاندانیess 20
+  - روشنی خاندانیess 20
+- name: light.dining_pendant_bright_40
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی خاندانیess 40
+  - روشنی خاندانیess 40
+- name: light.dining_pendant_bright_50
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی خاندانیess 50
+  - روشنی خاندانیess 50
+- name: light.dining_pendant_bright_60
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی خاندانیess 60
+  - روشنی خاندانیess 60
+- name: light.dining_pendant_bright_80
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی خاندانیess 80
+  - روشنی خاندانیess 80
+- name: light.dining_pendant_bright_100
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی خاندانیess 100
+  - روشنی خاندانیess 100
+- name: light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - چالو روشنی garage
+  - روشنی garage چالو
+- name: light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - بند روشنی garage
+  - روشنی garage بند
+- name: light.garage_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی garage 20
+  - روشنی garage 20
+- name: light.garage_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی garage 40
+  - روشنی garage 40
+- name: light.garage_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی garage 50
+  - روشنی garage 50
+- name: light.garage_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی garage 60
+  - روشنی garage 60
+- name: light.garage_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی garage 80
+  - روشنی garage 80
+- name: light.garage_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی garage 100
+  - روشنی garage 100
+- name: light.bedroom2_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت bedroom2
+  - چھت bedroom2 چالو
+- name: light.bedroom2_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت bedroom2
+  - چھت bedroom2 بند
+- name: light.bedroom2_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت bedroom2 20
+  - چھت bedroom2 20
+- name: light.bedroom2_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت bedroom2 40
+  - چھت bedroom2 40
+- name: light.bedroom2_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت bedroom2 50
+  - چھت bedroom2 50
+- name: light.bedroom2_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت bedroom2 60
+  - چھت bedroom2 60
+- name: light.bedroom2_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت bedroom2 80
+  - چھت bedroom2 80
+- name: light.bedroom2_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت bedroom2 100
+  - چھت bedroom2 100
+- name: light.bedroom3_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت bedroom3
+  - چھت bedroom3 چالو
+- name: light.bedroom3_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت bedroom3
+  - چھت bedroom3 بند
+- name: light.bedroom3_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت bedroom3 20
+  - چھت bedroom3 20
+- name: light.bedroom3_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت bedroom3 40
+  - چھت bedroom3 40
+- name: light.bedroom3_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت bedroom3 50
+  - چھت bedroom3 50
+- name: light.bedroom3_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت bedroom3 60
+  - چھت bedroom3 60
+- name: light.bedroom3_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت bedroom3 80
+  - چھت bedroom3 80
+- name: light.bedroom3_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت bedroom3 100
+  - چھت bedroom3 100
+- name: light.bedroom4_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت bedroom4
+  - چھت bedroom4 چالو
+- name: light.bedroom4_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  sentences:
+  - بند چھت bedroom4
+  - چھت bedroom4 بند
+- name: light.bedroom4_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو چھت bedroom4 20
+  - چھت bedroom4 20
+- name: light.bedroom4_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو چھت bedroom4 40
+  - چھت bedroom4 40
+- name: light.bedroom4_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو چھت bedroom4 50
+  - چھت bedroom4 50
+- name: light.bedroom4_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو چھت bedroom4 60
+  - چھت bedroom4 60
+- name: light.bedroom4_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو چھت bedroom4 80
+  - چھت bedroom4 80
+- name: light.bedroom4_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو چھت bedroom4 100
+  - چھت bedroom4 100
+- name: light.entryway_light_on
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - چالو روشنی داخلہ
+  - روشنی داخلہ چالو
+- name: light.entryway_light_off
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - بند روشنی داخلہ
+  - روشنی داخلہ بند
+- name: light.entryway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی داخلہ 20
+  - روشنی داخلہ 20
+- name: light.entryway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی داخلہ 40
+  - روشنی داخلہ 40
+- name: light.entryway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی داخلہ 50
+  - روشنی داخلہ 50
+- name: light.entryway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی داخلہ 60
+  - روشنی داخلہ 60
+- name: light.entryway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی داخلہ 80
+  - روشنی داخلہ 80
+- name: light.entryway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی داخلہ 100
+  - روشنی داخلہ 100
+- name: light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - چالو روشنی لانڈری
+  - روشنی لانڈری چالو
+- name: light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - بند روشنی لانڈری
+  - روشنی لانڈری بند
+- name: light.laundry_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی لانڈری 20
+  - روشنی لانڈری 20
+- name: light.laundry_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی لانڈری 40
+  - روشنی لانڈری 40
+- name: light.laundry_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی لانڈری 50
+  - روشنی لانڈری 50
+- name: light.laundry_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی لانڈری 60
+  - روشنی لانڈری 60
+- name: light.laundry_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی لانڈری 80
+  - روشنی لانڈری 80
+- name: light.laundry_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی لانڈری 100
+  - روشنی لانڈری 100
+- name: light.main_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'on'
+  sentences:
+  - چالو روشنی main bath
+  - روشنی main bath چالو
+- name: light.main_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'off'
+  sentences:
+  - بند روشنی main bath
+  - روشنی main bath بند
+- name: light.main_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی main bath 20
+  - روشنی main bath 20
+- name: light.main_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی main bath 40
+  - روشنی main bath 40
+- name: light.main_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی main bath 50
+  - روشنی main bath 50
+- name: light.main_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی main bath 60
+  - روشنی main bath 60
+- name: light.main_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی main bath 80
+  - روشنی main bath 80
+- name: light.main_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی main bath 100
+  - روشنی main bath 100
+- name: light.powder_room_light_on
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'on'
+  sentences:
+  - چالو روشنی غسلخانہ
+  - روشنی غسلخانہ چالو
+- name: light.powder_room_light_off
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - بند روشنی غسلخانہ
+  - روشنی غسلخانہ بند
+- name: light.powder_room_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی غسلخانہ 20
+  - روشنی غسلخانہ 20
+- name: light.powder_room_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی غسلخانہ 40
+  - روشنی غسلخانہ 40
+- name: light.powder_room_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی غسلخانہ 50
+  - روشنی غسلخانہ 50
+- name: light.powder_room_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی غسلخانہ 60
+  - روشنی غسلخانہ 60
+- name: light.powder_room_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی غسلخانہ 80
+  - روشنی غسلخانہ 80
+- name: light.powder_room_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی غسلخانہ 100
+  - روشنی غسلخانہ 100
+- name: light.master_ensuite_on
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'on'
+  sentences:
+  - چالو ensuite bedroom
+  - ensuite bedroom چالو
+- name: light.master_ensuite_off
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'off'
+  sentences:
+  - بند ensuite bedroom
+  - ensuite bedroom بند
+- name: light.master_ensuite_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو ensuite bedroom 20
+  - ensuite bedroom 20
+- name: light.master_ensuite_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو ensuite bedroom 40
+  - ensuite bedroom 40
+- name: light.master_ensuite_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو ensuite bedroom 50
+  - ensuite bedroom 50
+- name: light.master_ensuite_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو ensuite bedroom 60
+  - ensuite bedroom 60
+- name: light.master_ensuite_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو ensuite bedroom 80
+  - ensuite bedroom 80
+- name: light.master_ensuite_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو ensuite bedroom 100
+  - ensuite bedroom 100
+- name: light.master_bedside_right_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'on'
+  sentences:
+  - چالو بسترکنار bedroom
+  - بسترکنار bedroom چالو
+- name: light.master_bedside_right_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'off'
+  sentences:
+  - بند بسترکنار bedroom
+  - بسترکنار bedroom بند
+- name: light.master_bedside_right_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو بسترکنار bedroom 20
+  - بسترکنار bedroom 20
+- name: light.master_bedside_right_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو بسترکنار bedroom 40
+  - بسترکنار bedroom 40
+- name: light.master_bedside_right_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو بسترکنار bedroom 50
+  - بسترکنار bedroom 50
+- name: light.master_bedside_right_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو بسترکنار bedroom 60
+  - بسترکنار bedroom 60
+- name: light.master_bedside_right_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو بسترکنار bedroom 80
+  - بسترکنار bedroom 80
+- name: light.master_bedside_right_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو بسترکنار bedroom 100
+  - بسترکنار bedroom 100
+- name: light.master_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'on'
+  sentences:
+  - چالو روشنی ماسٹرباتھ
+  - روشنی ماسٹرباتھ چالو
+- name: light.master_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'off'
+  sentences:
+  - بند روشنی ماسٹرباتھ
+  - روشنی ماسٹرباتھ بند
+- name: light.master_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - رکھو روشنی ماسٹرباتھ 20
+  - روشنی ماسٹرباتھ 20
+- name: light.master_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - رکھو روشنی ماسٹرباتھ 40
+  - روشنی ماسٹرباتھ 40
+- name: light.master_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - رکھو روشنی ماسٹرباتھ 50
+  - روشنی ماسٹرباتھ 50
+- name: light.master_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - رکھو روشنی ماسٹرباتھ 60
+  - روشنی ماسٹرباتھ 60
+- name: light.master_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - رکھو روشنی ماسٹرباتھ 80
+  - روشنی ماسٹرباتھ 80
+- name: light.master_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - رکھو روشنی ماسٹرباتھ 100
+  - روشنی ماسٹرباتھ 100
+- name: light.living_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت لانج red
+  - رکھو روشنی لانج red
+- name: light.living_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت لانج blue
+  - رکھو روشنی لانج blue
+- name: light.living_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت لانج green
+  - رکھو روشنی لانج green
+- name: light.living_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت لانج white
+  - رکھو روشنی لانج white
+- name: light.living_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت لانج yellow
+  - رکھو روشنی لانج yellow
+- name: light.living_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت لانج black
+  - رکھو روشنی لانج black
+- name: light.living_lamp_red
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: red
+  sentences:
+  - رکھو lamp لانج red
+  - رکھو روشنی لانج red
+- name: light.living_lamp_blue
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: blue
+  sentences:
+  - رکھو lamp لانج blue
+  - رکھو روشنی لانج blue
+- name: light.living_lamp_green
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: green
+  sentences:
+  - رکھو lamp لانج green
+  - رکھو روشنی لانج green
+- name: light.living_lamp_white
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: white
+  sentences:
+  - رکھو lamp لانج white
+  - رکھو روشنی لانج white
+- name: light.living_lamp_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو lamp لانج yellow
+  - رکھو روشنی لانج yellow
+- name: light.living_lamp_black
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: black
+  sentences:
+  - رکھو lamp لانج black
+  - رکھو روشنی لانج black
+- name: light.kitchen_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت باورچی red
+  - رکھو روشنی باورچی red
+- name: light.kitchen_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت باورچی blue
+  - رکھو روشنی باورچی blue
+- name: light.kitchen_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت باورچی green
+  - رکھو روشنی باورچی green
+- name: light.kitchen_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت باورچی white
+  - رکھو روشنی باورچی white
+- name: light.kitchen_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت باورچی yellow
+  - رکھو روشنی باورچی yellow
+- name: light.kitchen_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت باورچی black
+  - رکھو روشنی باورچی black
+- name: light.kitchen_island_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: red
+  sentences:
+  - رکھو جزیرہ باورچی red
+  - رکھو روشنی باورچی red
+- name: light.kitchen_island_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: blue
+  sentences:
+  - رکھو جزیرہ باورچی blue
+  - رکھو روشنی باورچی blue
+- name: light.kitchen_island_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: green
+  sentences:
+  - رکھو جزیرہ باورچی green
+  - رکھو روشنی باورچی green
+- name: light.kitchen_island_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: white
+  sentences:
+  - رکھو جزیرہ باورچی white
+  - رکھو روشنی باورچی white
+- name: light.kitchen_island_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو جزیرہ باورچی yellow
+  - رکھو روشنی باورچی yellow
+- name: light.kitchen_island_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: black
+  sentences:
+  - رکھو جزیرہ باورچی black
+  - رکھو روشنی باورچی black
+- name: light.master_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت bedroom red
+  - رکھو روشنی bedroom red
+- name: light.master_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت bedroom blue
+  - رکھو روشنی bedroom blue
+- name: light.master_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت bedroom green
+  - رکھو روشنی bedroom green
+- name: light.master_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت bedroom white
+  - رکھو روشنی bedroom white
+- name: light.master_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت bedroom yellow
+  - رکھو روشنی bedroom yellow
+- name: light.master_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت bedroom black
+  - رکھو روشنی bedroom black
+- name: light.master_bedside_left_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: red
+  sentences:
+  - رکھو بسترکنار bedroom red
+  - رکھو روشنی bedroom red
+- name: light.master_bedside_left_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: blue
+  sentences:
+  - رکھو بسترکنار bedroom blue
+  - رکھو روشنی bedroom blue
+- name: light.master_bedside_left_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: green
+  sentences:
+  - رکھو بسترکنار bedroom green
+  - رکھو روشنی bedroom green
+- name: light.master_bedside_left_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: white
+  sentences:
+  - رکھو بسترکنار bedroom white
+  - رکھو روشنی bedroom white
+- name: light.master_bedside_left_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو بسترکنار bedroom yellow
+  - رکھو روشنی bedroom yellow
+- name: light.master_bedside_left_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: black
+  sentences:
+  - رکھو بسترکنار bedroom black
+  - رکھو روشنی bedroom black
+- name: light.office_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت office red
+  - رکھو روشنی office red
+- name: light.office_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت office blue
+  - رکھو روشنی office blue
+- name: light.office_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت office green
+  - رکھو روشنی office green
+- name: light.office_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت office white
+  - رکھو روشنی office white
+- name: light.office_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت office yellow
+  - رکھو روشنی office yellow
+- name: light.office_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت office black
+  - رکھو روشنی office black
+- name: light.garden_red
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی garden red
+  - روشنی garden red
+- name: light.garden_blue
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی garden blue
+  - روشنی garden blue
+- name: light.garden_green
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی garden green
+  - روشنی garden green
+- name: light.garden_white
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی garden white
+  - روشنی garden white
+- name: light.garden_yellow
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی garden yellow
+  - روشنی garden yellow
+- name: light.garden_black
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی garden black
+  - روشنی garden black
+- name: light.basement_red
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی basement red
+  - روشنی basement red
+- name: light.basement_blue
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی basement blue
+  - روشنی basement blue
+- name: light.basement_green
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی basement green
+  - روشنی basement green
+- name: light.basement_white
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی basement white
+  - روشنی basement white
+- name: light.basement_yellow
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی basement yellow
+  - روشنی basement yellow
+- name: light.basement_black
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی basement black
+  - روشنی basement black
+- name: light.hallway_light_red
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی hallway red
+  - روشنی hallway red
+- name: light.hallway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی hallway blue
+  - روشنی hallway blue
+- name: light.hallway_light_green
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی hallway green
+  - روشنی hallway green
+- name: light.hallway_light_white
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی hallway white
+  - روشنی hallway white
+- name: light.hallway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی hallway yellow
+  - روشنی hallway yellow
+- name: light.hallway_light_black
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی hallway black
+  - روشنی hallway black
+- name: light.family_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت خاندانی red
+  - رکھو روشنی خاندانی red
+- name: light.family_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت خاندانی blue
+  - رکھو روشنی خاندانی blue
+- name: light.family_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت خاندانی green
+  - رکھو روشنی خاندانی green
+- name: light.family_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت خاندانی white
+  - رکھو روشنی خاندانی white
+- name: light.family_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت خاندانی yellow
+  - رکھو روشنی خاندانی yellow
+- name: light.family_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت خاندانی black
+  - رکھو روشنی خاندانی black
+- name: light.dining_pendant_red
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی خاندانیess red
+  - روشنی خاندانیess red
+- name: light.dining_pendant_blue
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی خاندانیess blue
+  - روشنی خاندانیess blue
+- name: light.dining_pendant_green
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی خاندانیess green
+  - روشنی خاندانیess green
+- name: light.dining_pendant_white
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی خاندانیess white
+  - روشنی خاندانیess white
+- name: light.dining_pendant_yellow
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی خاندانیess yellow
+  - روشنی خاندانیess yellow
+- name: light.dining_pendant_black
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی خاندانیess black
+  - روشنی خاندانیess black
+- name: light.garage_light_red
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی garage red
+  - روشنی garage red
+- name: light.garage_light_blue
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی garage blue
+  - روشنی garage blue
+- name: light.garage_light_green
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی garage green
+  - روشنی garage green
+- name: light.garage_light_white
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی garage white
+  - روشنی garage white
+- name: light.garage_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی garage yellow
+  - روشنی garage yellow
+- name: light.garage_light_black
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی garage black
+  - روشنی garage black
+- name: light.bedroom2_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت bedroom2 red
+  - رکھو روشنی bedroom2 red
+- name: light.bedroom2_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت bedroom2 blue
+  - رکھو روشنی bedroom2 blue
+- name: light.bedroom2_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت bedroom2 green
+  - رکھو روشنی bedroom2 green
+- name: light.bedroom2_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت bedroom2 white
+  - رکھو روشنی bedroom2 white
+- name: light.bedroom2_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت bedroom2 yellow
+  - رکھو روشنی bedroom2 yellow
+- name: light.bedroom2_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت bedroom2 black
+  - رکھو روشنی bedroom2 black
+- name: light.bedroom3_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت bedroom3 red
+  - رکھو روشنی bedroom3 red
+- name: light.bedroom3_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت bedroom3 blue
+  - رکھو روشنی bedroom3 blue
+- name: light.bedroom3_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت bedroom3 green
+  - رکھو روشنی bedroom3 green
+- name: light.bedroom3_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت bedroom3 white
+  - رکھو روشنی bedroom3 white
+- name: light.bedroom3_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت bedroom3 yellow
+  - رکھو روشنی bedroom3 yellow
+- name: light.bedroom3_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت bedroom3 black
+  - رکھو روشنی bedroom3 black
+- name: light.bedroom4_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: red
+  sentences:
+  - رکھو چھت bedroom4 red
+  - رکھو روشنی bedroom4 red
+- name: light.bedroom4_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - رکھو چھت bedroom4 blue
+  - رکھو روشنی bedroom4 blue
+- name: light.bedroom4_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: green
+  sentences:
+  - رکھو چھت bedroom4 green
+  - رکھو روشنی bedroom4 green
+- name: light.bedroom4_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: white
+  sentences:
+  - رکھو چھت bedroom4 white
+  - رکھو روشنی bedroom4 white
+- name: light.bedroom4_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو چھت bedroom4 yellow
+  - رکھو روشنی bedroom4 yellow
+- name: light.bedroom4_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: black
+  sentences:
+  - رکھو چھت bedroom4 black
+  - رکھو روشنی bedroom4 black
+- name: light.entryway_light_red
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی داخلہ red
+  - روشنی داخلہ red
+- name: light.entryway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی داخلہ blue
+  - روشنی داخلہ blue
+- name: light.entryway_light_green
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی داخلہ green
+  - روشنی داخلہ green
+- name: light.entryway_light_white
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی داخلہ white
+  - روشنی داخلہ white
+- name: light.entryway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی داخلہ yellow
+  - روشنی داخلہ yellow
+- name: light.entryway_light_black
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی داخلہ black
+  - روشنی داخلہ black
+- name: light.laundry_light_red
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی لانڈری red
+  - روشنی لانڈری red
+- name: light.laundry_light_blue
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی لانڈری blue
+  - روشنی لانڈری blue
+- name: light.laundry_light_green
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی لانڈری green
+  - روشنی لانڈری green
+- name: light.laundry_light_white
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی لانڈری white
+  - روشنی لانڈری white
+- name: light.laundry_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی لانڈری yellow
+  - روشنی لانڈری yellow
+- name: light.laundry_light_black
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی لانڈری black
+  - روشنی لانڈری black
+- name: light.main_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی main bath red
+  - روشنی main bath red
+- name: light.main_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی main bath blue
+  - روشنی main bath blue
+- name: light.main_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی main bath green
+  - روشنی main bath green
+- name: light.main_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی main bath white
+  - روشنی main bath white
+- name: light.main_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی main bath yellow
+  - روشنی main bath yellow
+- name: light.main_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی main bath black
+  - روشنی main bath black
+- name: light.powder_room_light_red
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی غسلخانہ red
+  - روشنی غسلخانہ red
+- name: light.powder_room_light_blue
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی غسلخانہ blue
+  - روشنی غسلخانہ blue
+- name: light.powder_room_light_green
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی غسلخانہ green
+  - روشنی غسلخانہ green
+- name: light.powder_room_light_white
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی غسلخانہ white
+  - روشنی غسلخانہ white
+- name: light.powder_room_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی غسلخانہ yellow
+  - روشنی غسلخانہ yellow
+- name: light.powder_room_light_black
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی غسلخانہ black
+  - روشنی غسلخانہ black
+- name: light.master_ensuite_red
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: red
+  sentences:
+  - رکھو ensuite bedroom red
+  - رکھو روشنی bedroom red
+- name: light.master_ensuite_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: blue
+  sentences:
+  - رکھو ensuite bedroom blue
+  - رکھو روشنی bedroom blue
+- name: light.master_ensuite_green
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: green
+  sentences:
+  - رکھو ensuite bedroom green
+  - رکھو روشنی bedroom green
+- name: light.master_ensuite_white
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: white
+  sentences:
+  - رکھو ensuite bedroom white
+  - رکھو روشنی bedroom white
+- name: light.master_ensuite_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو ensuite bedroom yellow
+  - رکھو روشنی bedroom yellow
+- name: light.master_ensuite_black
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: black
+  sentences:
+  - رکھو ensuite bedroom black
+  - رکھو روشنی bedroom black
+- name: light.master_bedside_right_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: red
+  sentences:
+  - رکھو بسترکنار bedroom red
+  - رکھو روشنی bedroom red
+- name: light.master_bedside_right_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: blue
+  sentences:
+  - رکھو بسترکنار bedroom blue
+  - رکھو روشنی bedroom blue
+- name: light.master_bedside_right_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: green
+  sentences:
+  - رکھو بسترکنار bedroom green
+  - رکھو روشنی bedroom green
+- name: light.master_bedside_right_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: white
+  sentences:
+  - رکھو بسترکنار bedroom white
+  - رکھو روشنی bedroom white
+- name: light.master_bedside_right_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو بسترکنار bedroom yellow
+  - رکھو روشنی bedroom yellow
+- name: light.master_bedside_right_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: black
+  sentences:
+  - رکھو بسترکنار bedroom black
+  - رکھو روشنی bedroom black
+- name: light.master_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: red
+  sentences:
+  - رکھو روشنی ماسٹرباتھ red
+  - روشنی ماسٹرباتھ red
+- name: light.master_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - رکھو روشنی ماسٹرباتھ blue
+  - روشنی ماسٹرباتھ blue
+- name: light.master_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: green
+  sentences:
+  - رکھو روشنی ماسٹرباتھ green
+  - روشنی ماسٹرباتھ green
+- name: light.master_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: white
+  sentences:
+  - رکھو روشنی ماسٹرباتھ white
+  - روشنی ماسٹرباتھ white
+- name: light.master_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - رکھو روشنی ماسٹرباتھ yellow
+  - روشنی ماسٹرباتھ yellow
+- name: light.master_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: black
+  sentences:
+  - رکھو روشنی ماسٹرباتھ black
+  - روشنی ماسٹرباتھ black
+- name: all_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا باورچی
+  - سب روشنی بند سوا باورچی
+  forbid:
+  - kitchen
+- name: all_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا office
+  - سب روشنی بند سوا office
+  forbid:
+  - office
+- name: all_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا garage
+  - سب روشنی بند سوا garage
+  forbid:
+  - garage
+- name: all_except_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا bedroom
+  - سب روشنی بند سوا bedroom
+  forbid:
+  - master_bedroom
+- name: floor_ground_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو سب روشنی نیچے
+  - روشنی نیچے چالو
+- name: floor_ground_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی نیچے
+  - روشنی نیچے بند
+- name: floor_upper_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو سب روشنی اوپر
+  - روشنی اوپر چالو
+- name: floor_upper_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی اوپر
+  - روشنی اوپر بند
+- name: floor_basement_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - چالو سب روشنی basement
+  - روشنی basement چالو
+- name: floor_basement_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی basement
+  - روشنی basement بند
+- name: all_except_entryway
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا داخلہ
+  - سب روشنی بند سوا داخلہ
+  forbid:
+  - entryway
+- name: all_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا لانج
+  - سب روشنی بند سوا لانج
+  forbid:
+  - living
+- name: all_except_dining
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا خاندانیess
+  - سب روشنی بند سوا خاندانیess
+  forbid:
+  - dining
+- name: all_except_family_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا خاندانی
+  - سب روشنی بند سوا خاندانی
+  forbid:
+  - family_room
+- name: all_except_laundry
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا لانڈری
+  - سب روشنی بند سوا لانڈری
+  forbid:
+  - laundry
+- name: all_except_powder_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا غسلخانہ
+  - سب روشنی بند سوا غسلخانہ
+  forbid:
+  - powder_room
+- name: all_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا garden
+  - سب روشنی بند سوا garden
+  forbid:
+  - garden
+- name: all_except_bedroom_2
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا bedroom2
+  - سب روشنی بند سوا bedroom2
+  forbid:
+  - bedroom_2
+- name: all_except_bedroom_3
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا bedroom3
+  - سب روشنی بند سوا bedroom3
+  forbid:
+  - bedroom_3
+- name: all_except_bedroom_4
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا bedroom4
+  - سب روشنی بند سوا bedroom4
+  forbid:
+  - bedroom_4
+- name: all_except_master_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا ماسٹرباتھ
+  - سب روشنی بند سوا ماسٹرباتھ
+  forbid:
+  - master_bath
+- name: all_except_main_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا main bath
+  - سب روشنی بند سوا main bath
+  forbid:
+  - main_bath
+- name: all_except_hallway
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا hallway
+  - سب روشنی بند سوا hallway
+  forbid:
+  - hallway
+- name: all_except_basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - بند سب روشنی سوا basement
+  - سب روشنی بند سوا basement
+  forbid:
+  - basement
+- name: light.basement_on_extra
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - چالو روشنی basement
+  - روشنی basement چالو
+- name: light.hallway_light_on_extra
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - چالو روشنی hallway
+  - روشنی hallway چالو
+- name: light.family_ceiling_on_extra
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - چالو چھت خاندانی
+  - چھت خاندانی چالو
+- name: light.dining_pendant_on_extra
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - چالو روشنی خاندانیess
+  - روشنی خاندانیess چالو

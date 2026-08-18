@@ -1,0 +1,16 @@
+- name: vacuum_start
+  conditions:
+  - type: action
+    entity_id: vacuum.robot
+    state: 'on'
+  sentences:
+  - prizgi sesalnik
+  - sesalnik prizgi
+- name: vacuum_dock
+  conditions:
+  - type: action
+    entity_id: vacuum.robot
+    state: 'off'
+  sentences:
+  - ugasni sesalnik
+  - sesalnik ugasni

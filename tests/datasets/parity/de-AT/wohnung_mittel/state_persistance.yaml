@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - mach heizung wohnzimmer
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - mach licht wohnzimmer
+  - schalt
+state_persistance/spoken::kugel_dann_aus:
+- - mach kugel
+  - schalt
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - mach licht wohnzimmer
+  - mach licht kuche
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - mach licht wohnzimmer
+  - rot

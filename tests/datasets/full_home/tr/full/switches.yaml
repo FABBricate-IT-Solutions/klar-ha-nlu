@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - yak bulasik mutfak
+  - bulasik mutfak yak
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - sondur bulasik mutfak
+  - bulasik mutfak sondur
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - yak camasir camasir
+  - camasir camasir yak
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - sondur camasir camasir
+  - camasir camasir sondur
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - yak dryer camasir
+  - dryer camasir yak
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - sondur dryer camasir
+  - dryer camasir sondur
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - yak rangehood mutfak
+  - rangehood mutfak yak
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - sondur rangehood mutfak
+  - rangehood mutfak sondur
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - yak vantilatorbad ebatmaster
+  - vantilatorbad ebatmaster yak
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - sondur vantilatorbad ebatmaster
+  - vantilatorbad ebatmaster sondur
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - yak vantilatorbad main bath
+  - vantilatorbad main bath yak
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - sondur vantilatorbad main bath
+  - vantilatorbad main bath sondur

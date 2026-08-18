@@ -13,12 +13,14 @@ from pathlib import Path
 
 from aiohttp import ClientError, ClientSession, ClientTimeout
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .archive import require_sha256
 from .const import (
     CHANNEL_STAGING,
     DEFAULT_URL,
+    DOMAIN,
     ENGINE_VERSION,
     GITHUB_REPO,
     pick_staging_release,
@@ -74,6 +76,8 @@ class KlarEngine:
         await self._ensure_binary()
         await self._spawn()
         await self._wait_ready()
+        ir.async_delete_issue(self.hass, DOMAIN, "engine_down")
+        asyncio.create_task(self._watch())
 
     async def async_stop(self) -> None:
         proc = self._proc
@@ -219,6 +223,22 @@ class KlarEngine:
             if not line:
                 return
             _LOGGER.log(level, "klar: %s", line.decode(errors="replace").rstrip())
+
+    async def _watch(self) -> None:
+        proc = self._proc
+        if proc is None:
+            return
+        await proc.wait()
+        if self._proc is None:
+            return
+        ir.async_create_issue(
+            self.hass,
+            DOMAIN,
+            "engine_down",
+            is_fixable=False,
+            severity=ir.IssueSeverity.ERROR,
+            translation_key="engine_down",
+        )
 
     async def _wait_ready(self) -> None:
         for _ in range(_READY_TRIES):

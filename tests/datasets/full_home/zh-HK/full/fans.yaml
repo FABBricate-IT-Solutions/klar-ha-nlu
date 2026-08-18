@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - fengshan jiatingfang dakai
+  - dakai fengshan jiatingfang
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - guanbi fengshan jiatingfang
+  - fengshan jiatingfang guanbi
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - shezhi fengshan jiatingfang 40
+  - fengshan jiatingfang 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - fengshan woshi dakai
+  - dakai fengshan woshi
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - guanbi fengshan woshi
+  - fengshan woshi guanbi
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - shezhi fengshan woshi 40
+  - fengshan woshi 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - fengshan woshi2 dakai
+  - dakai fengshan woshi2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - guanbi fengshan woshi2
+  - fengshan woshi2 guanbi
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - shezhi fengshan woshi2 40
+  - fengshan woshi2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - shezhi fengshan jiatingfang 20
+  - fengshan jiatingfang 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - shezhi fengshan jiatingfang 60
+  - fengshan jiatingfang 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - shezhi fengshan jiatingfang 80
+  - fengshan jiatingfang 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - shezhi fengshan woshi 20
+  - fengshan woshi 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - shezhi fengshan woshi 60
+  - fengshan woshi 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - shezhi fengshan woshi 80
+  - fengshan woshi 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - shezhi fengshan woshi2 20
+  - fengshan woshi2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - shezhi fengshan woshi2 60
+  - fengshan woshi2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - shezhi fengshan woshi2 80
+  - fengshan woshi2 80

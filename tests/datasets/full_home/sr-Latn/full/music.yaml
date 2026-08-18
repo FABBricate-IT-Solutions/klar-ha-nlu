@@ -1,0 +1,529 @@
+- name: play_queen
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: queen
+  sentences:
+  - pusti queen dnevna
+  - pusti queen televizor dnevna
+- name: play_album
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: rumours
+      media_type: album
+      artist: fleetwood mac
+  sentences:
+  - pusti album rumours by fleetwood mac dnevna
+- name: play_radio
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - pusti queen radio mode dnevna
+- name: queue_song
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: bohemian rhapsody
+      enqueue: add
+  sentences:
+  - pusti bohemian rhapsody queue dnevna
+- name: now_playing
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - sta televizor dnevna
+  - sta track dnevna
+- name: music_volume_10
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 10
+  sentences:
+  - stavi televizor dnevna 10
+  - televizor dnevna 10
+- name: music_volume_20
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 20
+  sentences:
+  - stavi televizor dnevna 20
+  - televizor dnevna 20
+- name: music_volume_30
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 30
+  sentences:
+  - stavi televizor dnevna 30
+  - televizor dnevna 30
+- name: music_volume_50
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 50
+  sentences:
+  - stavi televizor dnevna 50
+  - televizor dnevna 50
+- name: music_volume_80
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 80
+  sentences:
+  - stavi televizor dnevna 80
+  - televizor dnevna 80
+- name: music_next
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: next
+  sentences:
+  - next track dnevna
+- name: music_prev
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: previous
+  sentences:
+  - previous track dnevna
+- name: kitchen_play
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - pusti queen kuhinja
+  - pusti queen televizor kuhinja
+- name: play_beatles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - pusti beatles dnevna
+  - pusti beatles televizor dnevna
+- name: play_radiohead_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - pusti radiohead dnevna
+  - pusti radiohead televizor dnevna
+- name: play_abba_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: abba
+  sentences:
+  - pusti abba dnevna
+  - pusti abba televizor dnevna
+- name: play_coldplay_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - pusti coldplay dnevna
+  - pusti coldplay televizor dnevna
+- name: play_adele_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: adele
+  sentences:
+  - pusti adele dnevna
+  - pusti adele televizor dnevna
+- name: play_prince_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: prince
+  sentences:
+  - pusti prince dnevna
+  - pusti prince televizor dnevna
+- name: play_bowie_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - pusti bowie dnevna
+  - pusti bowie televizor dnevna
+- name: play_nirvana_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - pusti nirvana dnevna
+  - pusti nirvana televizor dnevna
+- name: play_eagles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - pusti eagles dnevna
+  - pusti eagles televizor dnevna
+- name: play_madonna_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - pusti madonna dnevna
+  - pusti madonna televizor dnevna
+- name: play_mozart_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - pusti mozart dnevna
+  - pusti mozart televizor dnevna
+- name: play_daft punk_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - pusti daft punk dnevna
+  - pusti daft punk televizor dnevna
+- name: play_biafra_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - pusti biafra dnevna
+  - pusti biafra televizor dnevna
+- name: play_queen_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - pusti queen kuhinja
+  - pusti queen televizor kuhinja
+- name: play_beatles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - pusti beatles kuhinja
+  - pusti beatles televizor kuhinja
+- name: play_radiohead_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - pusti radiohead kuhinja
+  - pusti radiohead televizor kuhinja
+- name: play_abba_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: abba
+  sentences:
+  - pusti abba kuhinja
+  - pusti abba televizor kuhinja
+- name: play_coldplay_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - pusti coldplay kuhinja
+  - pusti coldplay televizor kuhinja
+- name: play_adele_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: adele
+  sentences:
+  - pusti adele kuhinja
+  - pusti adele televizor kuhinja
+- name: play_prince_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: prince
+  sentences:
+  - pusti prince kuhinja
+  - pusti prince televizor kuhinja
+- name: play_bowie_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - pusti bowie kuhinja
+  - pusti bowie televizor kuhinja
+- name: play_nirvana_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - pusti nirvana kuhinja
+  - pusti nirvana televizor kuhinja
+- name: play_eagles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - pusti eagles kuhinja
+  - pusti eagles televizor kuhinja
+- name: play_madonna_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - pusti madonna kuhinja
+  - pusti madonna televizor kuhinja
+- name: play_mozart_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - pusti mozart kuhinja
+  - pusti mozart televizor kuhinja
+- name: play_daft punk_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - pusti daft punk kuhinja
+  - pusti daft punk televizor kuhinja
+- name: play_biafra_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - pusti biafra kuhinja
+  - pusti biafra televizor kuhinja
+- name: play_queen_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: queen
+  sentences:
+  - pusti queen office
+  - pusti queen televizor office
+- name: play_beatles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - pusti beatles office
+  - pusti beatles televizor office
+- name: play_radiohead_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - pusti radiohead office
+  - pusti radiohead televizor office
+- name: play_abba_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: abba
+  sentences:
+  - pusti abba office
+  - pusti abba televizor office
+- name: play_coldplay_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - pusti coldplay office
+  - pusti coldplay televizor office
+- name: play_adele_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: adele
+  sentences:
+  - pusti adele office
+  - pusti adele televizor office
+- name: play_prince_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: prince
+  sentences:
+  - pusti prince office
+  - pusti prince televizor office
+- name: play_bowie_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - pusti bowie office
+  - pusti bowie televizor office
+- name: play_nirvana_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - pusti nirvana office
+  - pusti nirvana televizor office
+- name: play_eagles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - pusti eagles office
+  - pusti eagles televizor office
+- name: play_madonna_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - pusti madonna office
+  - pusti madonna televizor office
+- name: play_mozart_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - pusti mozart office
+  - pusti mozart televizor office
+- name: play_daft punk_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - pusti daft punk office
+  - pusti daft punk televizor office
+- name: play_biafra_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - pusti biafra office
+  - pusti biafra televizor office
+- name: radio_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - pusti queen radio mode dnevna
+- name: now_living
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - sta televizor dnevna
+  - sta track dnevna
+- name: radio_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - pusti queen radio mode kuhinja
+- name: now_kitchen
+  conditions:
+  - type: query
+    entity_id: media_player.kitchen_music
+  sentences:
+  - sta televizor kuhinja
+  - sta track kuhinja
+- name: radio_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - pusti queen radio mode office
+- name: now_office
+  conditions:
+  - type: query
+    entity_id: media_player.office_music
+  sentences:
+  - sta televizor office
+  - sta track office

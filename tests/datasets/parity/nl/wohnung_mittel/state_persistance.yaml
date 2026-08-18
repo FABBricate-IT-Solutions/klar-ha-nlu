@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - aanzetten verwarming woonkamer
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - aanzetten licht woonkamer
+  - uitzetten
+state_persistance/spoken::kugel_dann_aus:
+- - aanzetten bol
+  - uitzetten
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - aanzetten licht woonkamer
+  - aanzetten licht keuken
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - aanzetten licht woonkamer
+  - rood

@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - پنکھا خاندانی چالو
+  - چالو پنکھا خاندانی
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - بند پنکھا خاندانی
+  - پنکھا خاندانی بند
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - رکھو پنکھا خاندانی 40
+  - پنکھا خاندانی 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - پنکھا bedroom چالو
+  - چالو پنکھا bedroom
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - بند پنکھا bedroom
+  - پنکھا bedroom بند
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - رکھو پنکھا bedroom 40
+  - پنکھا bedroom 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - پنکھا bedroom2 چالو
+  - چالو پنکھا bedroom2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - بند پنکھا bedroom2
+  - پنکھا bedroom2 بند
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - رکھو پنکھا bedroom2 40
+  - پنکھا bedroom2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - رکھو پنکھا خاندانی 20
+  - پنکھا خاندانی 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - رکھو پنکھا خاندانی 60
+  - پنکھا خاندانی 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - رکھو پنکھا خاندانی 80
+  - پنکھا خاندانی 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - رکھو پنکھا bedroom 20
+  - پنکھا bedroom 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - رکھو پنکھا bedroom 60
+  - پنکھا bedroom 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - رکھو پنکھا bedroom 80
+  - پنکھا bedroom 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - رکھو پنکھا bedroom2 20
+  - پنکھا bedroom2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - رکھو پنکھا bedroom2 60
+  - پنکھا bedroom2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - رکھو پنکھا bedroom2 80
+  - پنکھا bedroom2 80

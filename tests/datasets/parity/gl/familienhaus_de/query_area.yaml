@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- que cortina cuarto2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- que cortina cuarto2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- que cortina cuarto2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- que cortina cuarto2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- que ventilador cuarto2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- que ventilador cuarto2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- que ventilador cuarto2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- que ventilador cuarto2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- que luz cuarto2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- que luz cuarto2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- que luz cuarto2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- que luz cuarto2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- que cortina cuarto3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- que cortina cuarto3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- que cortina cuarto3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- que cortina cuarto3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- que luz cuarto3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- que luz cuarto3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- que luz cuarto3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- que luz cuarto3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- que luz cuarto4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- que luz cuarto4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- que luz cuarto4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- que luz cuarto4
+query_area/dining_lights::dining_lights_get_brightness:
+- que luz salafamess
+query_area/dining_lights::dining_lights_get_state:
+- que luz salafamess
+query_area/dining_lights::dining_lights_list_off_lights:
+- que luz salafamess
+query_area/dining_lights::dining_lights_list_on_lights:
+- que luz salafamess
+query_area/entryway_lights::entryway_lights_get_brightness:
+- que luz entrada
+query_area/entryway_lights::entryway_lights_get_state:
+- que luz entrada
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- que luz entrada
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- que luz entrada
+query_area/entryway_locks::entryway_locks_get_state:
+- que pechadura entrada
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- que pechadura entrada
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- que pechadura entrada
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- que luz salafam e que luz cociña
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- que luz salafam e que luz cociña
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- que luz salafam e que luz cociña
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- que luz salafam e que luz cociña
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- que ventilador salafam
+query_area/family_room_fans::family_room_fans_get_state:
+- que ventilador salafam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- que ventilador salafam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- que ventilador salafam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- que luz salafam
+query_area/family_room_lights::family_room_lights_get_state:
+- que luz salafam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- que luz salafam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- que luz salafam
+query_area/garage_covers::garage_covers_get_position:
+- que cortina garage
+query_area/garage_covers::garage_covers_get_state:
+- que cortina garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- que cortina garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- que cortina garage
+query_area/garage_lights::garage_lights_get_brightness:
+- que luz garage
+query_area/garage_lights::garage_lights_get_state:
+- que luz garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- que luz garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- que luz garage
+query_area/garage_locks::garage_locks_get_state:
+- que pechadura garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- que pechadura garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- que pechadura garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- que luz entradagang e que luz aseo
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- que luz entradagang e que luz aseo
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- que luz entradagang e que luz aseo
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- que luz entradagang e que luz aseo
+query_area/hallway_lights::hallway_lights_get_brightness:
+- que luz entradagang
+query_area/hallway_lights::hallway_lights_get_state:
+- que luz entradagang
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- que luz entradagang
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- que luz entradagang
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- que luz cociña
+query_area/kitchen_lights::kitchen_lights_get_state:
+- que luz cociña
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- que luz cociña
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- que luz cociña
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- que aparello cociña
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- que aparello cociña
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- que aparello cociña
+query_area/laundry_lights::laundry_lights_get_brightness:
+- que luz lavandaria
+query_area/laundry_lights::laundry_lights_get_state:
+- que luz lavandaria
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- que luz lavandaria
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- que luz lavandaria
+query_area/laundry_switchs::laundry_switchs_get_state:
+- que aparello lavandaria
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- que aparello lavandaria
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- que aparello lavandaria
+query_area/living_climates::living_climates_get_temperature:
+- que calefaccion salon
+query_area/living_covers::living_covers_get_position:
+- que cortina salon
+query_area/living_covers::living_covers_get_state:
+- que cortina salon
+query_area/living_covers::living_covers_list_closed_covers:
+- que cortina salon
+query_area/living_covers::living_covers_list_open_covers:
+- que cortina salon
+query_area/living_lights::living_lights_get_brightness:
+- que luz salon
+query_area/living_lights::living_lights_get_state:
+- que luz salon
+query_area/living_lights::living_lights_list_off_lights:
+- que luz salon
+query_area/living_lights::living_lights_list_on_lights:
+- que luz salon
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- que luz main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- que luz main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- que luz main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- que luz main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- que aparello main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- que aparello main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- que aparello main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- que luz banomaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- que luz banomaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- que luz banomaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- que luz banomaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- que aparello banomaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- que aparello banomaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- que aparello banomaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- que cortina cuarto e que cortina salon
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- que cortina cuarto e que cortina salon
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- que cortina cuarto e que cortina salon
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- que cortina cuarto e que cortina salon
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- que calefaccion cuarto
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- que cortina cuarto
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- que cortina cuarto
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- que cortina cuarto
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- que cortina cuarto
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- que ventilador cuarto
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- que ventilador cuarto
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- que ventilador cuarto
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- que ventilador cuarto
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- que luz cuarto
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- que luz cuarto
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- que luz cuarto
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- que luz cuarto
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- que luz aseo
+query_area/powder_room_lights::powder_room_lights_get_state:
+- que luz aseo
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- que luz aseo
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- que luz aseo

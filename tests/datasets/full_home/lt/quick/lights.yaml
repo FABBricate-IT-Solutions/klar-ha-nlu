@@ -1,0 +1,256 @@
+- name: lights_living_on
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa svetaine
+- name: lights_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa svetaine
+- name: lights_kitchen_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa virtuve
+- name: lights_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa virtuve
+- name: lights_garage_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa garage
+- name: lights_garage_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa garage
+- name: lights_office_on
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa office
+- name: lights_office_off
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa office
+- name: lights_garden_on
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa garden
+- name: lights_garden_off
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa garden
+- name: lights_master_bedroom_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa miegamasis
+- name: lights_master_bedroom_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa miegamasis
+- name: lights_hallway_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa hallway
+- name: lights_hallway_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa hallway
+- name: lights_basement_on
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa basement
+- name: lights_basement_off
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - isjunk sviesa basement
+- name: light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - ijunk lubos svetaine
+- name: light.living_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - isjunk lubos svetaine
+- name: light.living_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - nustatyk lubos svetaine 50
+- name: light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - ijunk lamp svetaine
+- name: light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - isjunk lamp svetaine
+- name: light.kitchen_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - ijunk lubos virtuve
+- name: light.kitchen_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - isjunk lubos virtuve
+- name: light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - ijunk sala virtuve
+- name: light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - isjunk sala virtuve
+- name: light.master_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - ijunk lubos miegamasis
+- name: light.master_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - isjunk lubos miegamasis
+- name: light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - ijunk naktinis miegamasis
+- name: light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - isjunk naktinis miegamasis
+- name: light.office_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  sentences:
+  - ijunk lubos office
+- name: light.office_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  sentences:
+  - isjunk lubos office
+- name: light.garden_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  sentences:
+  - ijunk sviesa garden
+- name: light.garden_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  sentences:
+  - isjunk sviesa garden
+- name: light.living_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: red
+  sentences:
+  - nustatyk lubos svetaine red

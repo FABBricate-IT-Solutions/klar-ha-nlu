@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - seonpunggi gajoksil kyeo
+  - kyeo seonpunggi gajoksil
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - kkaeo seonpunggi gajoksil
+  - seonpunggi gajoksil kkaeo
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - seoljeong seonpunggi gajoksil 40
+  - seonpunggi gajoksil 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - seonpunggi chimsil kyeo
+  - kyeo seonpunggi chimsil
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - kkaeo seonpunggi chimsil
+  - seonpunggi chimsil kkaeo
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - seoljeong seonpunggi chimsil 40
+  - seonpunggi chimsil 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - seonpunggi chimsil2 kyeo
+  - kyeo seonpunggi chimsil2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - kkaeo seonpunggi chimsil2
+  - seonpunggi chimsil2 kkaeo
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - seoljeong seonpunggi chimsil2 40
+  - seonpunggi chimsil2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - seoljeong seonpunggi gajoksil 20
+  - seonpunggi gajoksil 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - seoljeong seonpunggi gajoksil 60
+  - seonpunggi gajoksil 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - seoljeong seonpunggi gajoksil 80
+  - seonpunggi gajoksil 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - seoljeong seonpunggi chimsil 20
+  - seonpunggi chimsil 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - seoljeong seonpunggi chimsil 60
+  - seonpunggi chimsil 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - seoljeong seonpunggi chimsil 80
+  - seonpunggi chimsil 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - seoljeong seonpunggi chimsil2 20
+  - seonpunggi chimsil2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - seoljeong seonpunggi chimsil2 60
+  - seonpunggi chimsil2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - seoljeong seonpunggi chimsil2 80
+  - seonpunggi chimsil2 80

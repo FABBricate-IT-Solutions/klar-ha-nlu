@@ -1,0 +1,321 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - open gordijn woonkamer
+  - gordijn woonkamer open
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - dicht gordijn woonkamer
+  - gordijn woonkamer dicht
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stel gordijn woonkamer 0
+  - gordijn woonkamer 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stel gordijn woonkamer 25
+  - gordijn woonkamer 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stel gordijn woonkamer 40
+  - gordijn woonkamer 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stel gordijn woonkamer 75
+  - gordijn woonkamer 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stel gordijn woonkamer 100
+  - gordijn woonkamer 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - open gordijn slaapkamer
+  - gordijn slaapkamer open
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - dicht gordijn slaapkamer
+  - gordijn slaapkamer dicht
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stel gordijn slaapkamer 0
+  - gordijn slaapkamer 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stel gordijn slaapkamer 25
+  - gordijn slaapkamer 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stel gordijn slaapkamer 40
+  - gordijn slaapkamer 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stel gordijn slaapkamer 75
+  - gordijn slaapkamer 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stel gordijn slaapkamer 100
+  - gordijn slaapkamer 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - open gordijn slaapkamer2
+  - gordijn slaapkamer2 open
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - dicht gordijn slaapkamer2
+  - gordijn slaapkamer2 dicht
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stel gordijn slaapkamer2 0
+  - gordijn slaapkamer2 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stel gordijn slaapkamer2 25
+  - gordijn slaapkamer2 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stel gordijn slaapkamer2 40
+  - gordijn slaapkamer2 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stel gordijn slaapkamer2 75
+  - gordijn slaapkamer2 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stel gordijn slaapkamer2 100
+  - gordijn slaapkamer2 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - open gordijn slaapkamer3
+  - gordijn slaapkamer3 open
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - dicht gordijn slaapkamer3
+  - gordijn slaapkamer3 dicht
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stel gordijn slaapkamer3 0
+  - gordijn slaapkamer3 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stel gordijn slaapkamer3 25
+  - gordijn slaapkamer3 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stel gordijn slaapkamer3 40
+  - gordijn slaapkamer3 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stel gordijn slaapkamer3 75
+  - gordijn slaapkamer3 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stel gordijn slaapkamer3 100
+  - gordijn slaapkamer3 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - open gordijn garage
+  - gordijn garage open
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - dicht gordijn garage
+  - gordijn garage dicht
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - stel gordijn garage 0
+  - gordijn garage 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - stel gordijn garage 25
+  - gordijn garage 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - stel gordijn garage 40
+  - gordijn garage 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - stel gordijn garage 75
+  - gordijn garage 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - stel gordijn garage 100
+  - gordijn garage 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - open gordijn woonkamer
+  - gordijn woonkamer open
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - open gordijn slaapkamer
+  - gordijn slaapkamer open

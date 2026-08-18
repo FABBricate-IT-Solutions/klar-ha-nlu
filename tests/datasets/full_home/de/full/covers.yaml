@@ -1,0 +1,296 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - oeffne rollo wohnzimmer
+  - rollo wohnzimmer auf
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - schliesse rollo wohnzimmer
+  - rollo wohnzimmer zu
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stelle rollo wohnzimmer auf 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stelle rollo wohnzimmer auf 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stelle rollo wohnzimmer auf 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stelle rollo wohnzimmer auf 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stelle rollo wohnzimmer auf 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - oeffne rollo schlafzimmer
+  - rollo schlafzimmer auf
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - schliesse rollo schlafzimmer
+  - rollo schlafzimmer zu
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stelle rollo schlafzimmer auf 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stelle rollo schlafzimmer auf 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stelle rollo schlafzimmer auf 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stelle rollo schlafzimmer auf 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stelle rollo schlafzimmer auf 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - oeffne rollo schlafzimmer2
+  - rollo schlafzimmer2 auf
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - schliesse rollo schlafzimmer2
+  - rollo schlafzimmer2 zu
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stelle rollo schlafzimmer2 auf 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stelle rollo schlafzimmer2 auf 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stelle rollo schlafzimmer2 auf 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stelle rollo schlafzimmer2 auf 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stelle rollo schlafzimmer2 auf 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - oeffne rollo schlafzimmer3
+  - rollo schlafzimmer3 auf
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - schliesse rollo schlafzimmer3
+  - rollo schlafzimmer3 zu
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - stelle rollo schlafzimmer3 auf 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - stelle rollo schlafzimmer3 auf 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - stelle rollo schlafzimmer3 auf 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - stelle rollo schlafzimmer3 auf 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - stelle rollo schlafzimmer3 auf 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - oeffne rollo garage
+  - rollo garage auf
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - schliesse rollo garage
+  - rollo garage zu
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - stelle rollo garage auf 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - stelle rollo garage auf 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - stelle rollo garage auf 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - stelle rollo garage auf 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - stelle rollo garage auf 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - oeffne rollo wohnzimmer
+  - rollo wohnzimmer auf
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - oeffne rollo schlafzimmer
+  - rollo schlafzimmer auf

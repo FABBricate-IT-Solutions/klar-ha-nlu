@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - miatsu luys hyurasenyak
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - anjatir luys khohanots
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

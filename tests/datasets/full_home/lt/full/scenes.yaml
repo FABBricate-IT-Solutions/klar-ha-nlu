@@ -1,0 +1,48 @@
+- name: scene_film
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  sentences:
+  - ijunk filmas
+  - filmas ijunk
+- name: scene_night
+  conditions:
+  - type: action
+    entity_id: script.good_night
+    state: 'on'
+  sentences:
+  - ijunk naktis
+  - naktis ijunk
+- name: scene_leave
+  conditions:
+  - type: action
+    entity_id: script.leaving_home
+    state: 'on'
+  sentences:
+  - ijunk isejimas
+  - isejimas ijunk
+- name: scene_dinner
+  conditions:
+  - type: action
+    entity_id: scene.dinner_time
+    state: 'on'
+  sentences:
+  - ijunk dinner
+  - dinner ijunk
+- name: scene_morning
+  conditions:
+  - type: action
+    entity_id: scene.good_morning
+    state: 'on'
+  sentences:
+  - ijunk morning
+  - morning ijunk
+- name: scene_kids
+  conditions:
+  - type: action
+    entity_id: scene.kids_bedtime
+    state: 'on'
+  sentences:
+  - ijunk kids
+  - kids ijunk

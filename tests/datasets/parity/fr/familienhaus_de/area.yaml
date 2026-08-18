@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- ferme store chambre2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- ouvre store chambre2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- mets store chambre2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- mets ventilateur chambre2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- eteins ventilateur chambre2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- allume ventilateur chambre2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- mets lumiere chambre2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- mets lumiere chambre2 rose
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- eteins lumiere chambre2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- allume lumiere chambre2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- ferme store chambre3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- ouvre store chambre3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- mets store chambre3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- mets lumiere chambre3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- mets lumiere chambre3 bleu
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- eteins lumiere chambre3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- allume lumiere chambre3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- mets lumiere chambre4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- mets lumiere chambre4 vert
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- eteins lumiere chambre4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- allume lumiere chambre4
+area/dining_lights::dining_lights_change_brightness:
+- mets lumiere salle 54
+area/dining_lights::dining_lights_change_color:
+- mets lumiere salle bleu
+area/dining_lights::dining_lights_turn_off:
+- eteins lumiere salle
+area/dining_lights::dining_lights_turn_on:
+- allume lumiere salle
+area/entryway_lights::entryway_lights_change_brightness:
+- mets lumiere entree 72
+area/entryway_lights::entryway_lights_change_color:
+- mets lumiere entree noir
+area/entryway_lights::entryway_lights_turn_off:
+- eteins lumiere entree
+area/entryway_lights::entryway_lights_turn_on:
+- allume lumiere entree
+area/entryway_locks::entryway_locks_lock:
+- verrouille serrure entree
+area/entryway_locks::entryway_locks_unlock:
+- deverrouille serrure entree
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- mets lumiere famille 39 puis mets lumiere cuisine 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- mets lumiere famille violet puis mets lumiere cuisine violet
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- eteins lumiere famille puis eteins lumiere cuisine
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- allume lumiere famille puis allume lumiere cuisine
+area/family_room_fans::family_room_fans_set_fan_speed:
+- mets ventilateur famille 32
+area/family_room_fans::family_room_fans_turn_off:
+- eteins ventilateur famille
+area/family_room_fans::family_room_fans_turn_on:
+- allume ventilateur famille
+area/family_room_lights::family_room_lights_change_brightness:
+- mets lumiere famille 44
+area/family_room_lights::family_room_lights_change_color:
+- mets lumiere famille vert
+area/family_room_lights::family_room_lights_turn_off:
+- eteins lumiere famille
+area/family_room_lights::family_room_lights_turn_on:
+- allume lumiere famille
+area/garage_covers::garage_covers_close:
+- ferme store garage
+area/garage_covers::garage_covers_open:
+- ouvre store garage
+area/garage_covers::garage_covers_set_position:
+- mets store garage 86
+area/garage_lights::garage_lights_change_brightness:
+- mets lumiere garage 16
+area/garage_lights::garage_lights_change_color:
+- mets lumiere garage bleu
+area/garage_lights::garage_lights_turn_off:
+- eteins lumiere garage
+area/garage_lights::garage_lights_turn_on:
+- allume lumiere garage
+area/garage_locks::garage_locks_lock:
+- verrouille serrure garage
+area/garage_locks::garage_locks_unlock:
+- deverrouille serrure garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- mets lumiere couloir 26 puis mets lumiere toilettes 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- mets lumiere couloir violet puis mets lumiere toilettes violet
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- eteins lumiere couloir puis eteins lumiere toilettes
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- allume lumiere couloir puis allume lumiere toilettes
+area/hallway_lights::hallway_lights_change_brightness:
+- mets lumiere couloir 61
+area/hallway_lights::hallway_lights_change_color:
+- mets lumiere couloir orange
+area/hallway_lights::hallway_lights_turn_off:
+- eteins lumiere couloir
+area/hallway_lights::hallway_lights_turn_on:
+- allume lumiere couloir
+area/kitchen_lights::kitchen_lights_change_brightness:
+- mets lumiere cuisine 45
+area/kitchen_lights::kitchen_lights_change_color:
+- mets lumiere cuisine rose
+area/kitchen_lights::kitchen_lights_turn_off:
+- eteins lumiere cuisine
+area/kitchen_lights::kitchen_lights_turn_on:
+- allume lumiere cuisine
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- eteins interrupteur cuisine
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- allume interrupteur cuisine
+area/laundry_lights::laundry_lights_change_brightness:
+- mets lumiere buanderie 62
+area/laundry_lights::laundry_lights_change_color:
+- mets lumiere buanderie jaune
+area/laundry_lights::laundry_lights_turn_off:
+- eteins lumiere buanderie
+area/laundry_lights::laundry_lights_turn_on:
+- allume lumiere buanderie
+area/laundry_switchs::laundry_switchs_turn_off:
+- eteins interrupteur buanderie
+area/laundry_switchs::laundry_switchs_turn_on:
+- allume interrupteur buanderie
+area/living_climates::living_climates_set_temperature:
+- mets chauffage salon 20
+area/living_covers::living_covers_close:
+- ferme store salon
+area/living_covers::living_covers_open:
+- ouvre store salon
+area/living_covers::living_covers_set_position:
+- mets store salon 46
+area/living_lights::living_lights_change_brightness:
+- mets lumiere salon 84
+area/living_lights::living_lights_change_color:
+- mets lumiere salon bleu
+area/living_lights::living_lights_turn_off:
+- eteins lumiere salon
+area/living_lights::living_lights_turn_on:
+- allume lumiere salon
+area/main_bath_lights::main_bath_lights_change_brightness:
+- mets lumiere salledebain 73
+area/main_bath_lights::main_bath_lights_change_color:
+- mets lumiere salledebain rose
+area/main_bath_lights::main_bath_lights_turn_off:
+- eteins lumiere salledebain
+area/main_bath_lights::main_bath_lights_turn_on:
+- allume lumiere salledebain
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- eteins interrupteur salledebain
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- allume interrupteur salledebain
+area/master_bath_lights::master_bath_lights_change_brightness:
+- mets lumiere bainmaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- mets lumiere bainmaster noir
+area/master_bath_lights::master_bath_lights_turn_off:
+- eteins lumiere bainmaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- allume lumiere bainmaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- eteins interrupteur bainmaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- allume interrupteur bainmaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- mets chauffage chambre 20 puis mets chauffage salon 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- ferme store chambre puis ferme store salon
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- ouvre store chambre puis ouvre store salon
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- mets store chambre 19 puis mets store salon 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- mets lumiere chambre 25 puis mets lumiere salon 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- mets lumiere chambre blanc puis mets lumiere salon blanc
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- eteins lumiere chambre puis eteins lumiere salon
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- allume lumiere chambre puis allume lumiere salon
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- mets lumiere chambre 57 puis mets lumiere salledebain 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- mets lumiere chambre rose puis mets lumiere salledebain rose
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- eteins lumiere chambre puis eteins lumiere salledebain
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- allume lumiere chambre puis allume lumiere salledebain
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- mets chauffage chambre 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- ferme store chambre
+area/master_bedroom_covers::master_bedroom_covers_open:
+- ouvre store chambre
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- mets store chambre 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- mets ventilateur chambre 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- eteins ventilateur chambre
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- allume ventilateur chambre
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- mets lumiere chambre 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- mets lumiere chambre rose
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- eteins lumiere chambre
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- allume lumiere chambre
+area/powder_room_lights::powder_room_lights_change_brightness:
+- mets lumiere toilettes 52
+area/powder_room_lights::powder_room_lights_change_color:
+- mets lumiere toilettes violet
+area/powder_room_lights::powder_room_lights_turn_off:
+- eteins lumiere toilettes
+area/powder_room_lights::powder_room_lights_turn_on:
+- allume lumiere toilettes
+area/spoken_lights::spoken_bedroom_inflection:
+- mets lumiere chambre rouge
+area/spoken_lights::spoken_except_island:
+- eteins tout lumiere sauf ilot
+area/spoken_lights::spoken_except_kitchen:
+- eteins tout lumiere sauf cuisine sauf ilot
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- eteins lumiere salon puis eteins lumiere salle puis eteins lumiere cuisine
+area/spoken_lights::spoken_stt_kitchen_off:
+- eteins lumiere cuisine
+area/spoken_lights::spoken_stt_living_off:
+- eteins lumiere salon

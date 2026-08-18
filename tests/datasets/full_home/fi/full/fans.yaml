@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - tuuletin olohuonefam sytyta
+  - sytyta tuuletin olohuonefam
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - sammuta tuuletin olohuonefam
+  - tuuletin olohuonefam sammuta
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - aseta tuuletin olohuonefam 40
+  - tuuletin olohuonefam 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - tuuletin makuuhuone sytyta
+  - sytyta tuuletin makuuhuone
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - sammuta tuuletin makuuhuone
+  - tuuletin makuuhuone sammuta
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - aseta tuuletin makuuhuone 40
+  - tuuletin makuuhuone 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - tuuletin makuuhuone2 sytyta
+  - sytyta tuuletin makuuhuone2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - sammuta tuuletin makuuhuone2
+  - tuuletin makuuhuone2 sammuta
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - aseta tuuletin makuuhuone2 40
+  - tuuletin makuuhuone2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - aseta tuuletin olohuonefam 20
+  - tuuletin olohuonefam 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - aseta tuuletin olohuonefam 60
+  - tuuletin olohuonefam 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - aseta tuuletin olohuonefam 80
+  - tuuletin olohuonefam 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - aseta tuuletin makuuhuone 20
+  - tuuletin makuuhuone 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - aseta tuuletin makuuhuone 60
+  - tuuletin makuuhuone 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - aseta tuuletin makuuhuone 80
+  - tuuletin makuuhuone 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - aseta tuuletin makuuhuone2 20
+  - tuuletin makuuhuone2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - aseta tuuletin makuuhuone2 60
+  - tuuletin makuuhuone2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - aseta tuuletin makuuhuone2 80
+  - tuuletin makuuhuone2 80

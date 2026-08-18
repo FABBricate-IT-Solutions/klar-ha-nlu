@@ -1,0 +1,321 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - apri tenda soggiorno
+  - tenda soggiorno apri
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - chiudi tenda soggiorno
+  - tenda soggiorno chiudi
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - metti tenda soggiorno 0
+  - tenda soggiorno 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - metti tenda soggiorno 25
+  - tenda soggiorno 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - metti tenda soggiorno 40
+  - tenda soggiorno 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - metti tenda soggiorno 75
+  - tenda soggiorno 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - metti tenda soggiorno 100
+  - tenda soggiorno 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - apri tenda camera
+  - tenda camera apri
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - chiudi tenda camera
+  - tenda camera chiudi
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - metti tenda camera 0
+  - tenda camera 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - metti tenda camera 25
+  - tenda camera 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - metti tenda camera 40
+  - tenda camera 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - metti tenda camera 75
+  - tenda camera 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - metti tenda camera 100
+  - tenda camera 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - apri tenda camera2
+  - tenda camera2 apri
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - chiudi tenda camera2
+  - tenda camera2 chiudi
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - metti tenda camera2 0
+  - tenda camera2 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - metti tenda camera2 25
+  - tenda camera2 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - metti tenda camera2 40
+  - tenda camera2 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - metti tenda camera2 75
+  - tenda camera2 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - metti tenda camera2 100
+  - tenda camera2 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - apri tenda camera3
+  - tenda camera3 apri
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - chiudi tenda camera3
+  - tenda camera3 chiudi
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - metti tenda camera3 0
+  - tenda camera3 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - metti tenda camera3 25
+  - tenda camera3 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - metti tenda camera3 40
+  - tenda camera3 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - metti tenda camera3 75
+  - tenda camera3 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - metti tenda camera3 100
+  - tenda camera3 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - apri tenda garage
+  - tenda garage apri
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - chiudi tenda garage
+  - tenda garage chiudi
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - metti tenda garage 0
+  - tenda garage 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - metti tenda garage 25
+  - tenda garage 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - metti tenda garage 40
+  - tenda garage 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - metti tenda garage 75
+  - tenda garage 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - metti tenda garage 100
+  - tenda garage 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - apri tenda soggiorno
+  - tenda soggiorno apri
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - apri tenda camera
+  - tenda camera apri

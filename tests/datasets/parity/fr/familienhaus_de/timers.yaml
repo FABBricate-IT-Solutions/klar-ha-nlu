@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- allume minuteur abstract 45 minute
+timers/timers::abstract_start_hours_minutes:
+- allume minuteur abstract 20 minute
+timers/timers::abstract_start_seconds:
+- allume minuteur abstract
+timers/timers::cancel_all_timers:
+- eteins tout minuteur
+timers/timers::timer_laundry_cancel:
+- allume minuteur laundry
+timers/timers::timer_laundry_decrease:
+- allume minuteur laundry 5 minute
+timers/timers::timer_laundry_increase:
+- allume minuteur laundry 16 minute
+timers/timers::timer_laundry_pause:
+- eteins minuteur laundry
+timers/timers::timer_laundry_start:
+- allume minuteur laundry
+timers/timers::timer_laundry_status:
+- quel minuteur laundry
+timers/timers::timer_laundry_unpause:
+- allume minuteur laundry
+timers/timers::timer_oven_cancel:
+- allume minuteur oven
+timers/timers::timer_oven_decrease:
+- allume minuteur oven 44 minute
+timers/timers::timer_oven_increase:
+- allume minuteur oven 30 minute
+timers/timers::timer_oven_pause:
+- eteins minuteur oven
+timers/timers::timer_oven_start:
+- allume minuteur oven 2 minute
+timers/timers::timer_oven_status:
+- quel minuteur oven
+timers/timers::timer_oven_unpause:
+- allume minuteur oven

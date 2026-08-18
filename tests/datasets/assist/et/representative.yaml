@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - lulita vali elutuba
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - kustuta vali kook
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

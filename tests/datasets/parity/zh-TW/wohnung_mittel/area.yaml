@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- shezhi kongtiao zhuwei 23
+area/heizung::heizung_esszimmer_23:
+- shezhi kongtiao jiatingfangess 23
+area/heizung::heizung_schlafzimmer_23:
+- shezhi kongtiao woshi 23
+area/heizung::heizung_wohnzimmer_23:
+- shezhi kongtiao keting 23
+area/lichter::alle_an_ausser_kugel:
+- dakai 全部 deng 除了 qiudeng
+area/lichter::alle_an_ausser_schlafzimmer:
+- dakai 全部 deng 除了 woshi
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- shezhi 全部 deng 除了 woshi 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- shezhi 全部 deng 除了 qiudeng red
+area/lichter::alle_ausser_kugel:
+- guanbi 全部 deng 除了 qiudeng
+area/lichter::alle_ausser_schlafzimmer:
+- guanbi 全部 deng 除了 woshi
+area/lichter::alle_lichter_an:
+- dakai 全部 deng
+area/lichter::alle_lichter_aus:
+- guanbi 全部 deng
+area/lichter::arbeitszimmer_lichter_an:
+- dakai deng keting
+area/lichter::arbeitszimmer_lichter_aus:
+- guanbi deng keting
+area/lichter::esszimmer_lichter_an:
+- dakai deng jiatingfangess
+area/lichter::esszimmer_lichter_aus:
+- guanbi deng jiatingfangess
+area/lichter::kuche_lichter_an:
+- dakai deng chufang
+area/lichter::kuche_lichter_aus:
+- guanbi deng chufang
+area/lichter::schlafzimmer_auf_blau:
+- shezhi deng woshi blue
+area/lichter::schlafzimmer_auf_rot:
+- shezhi deng woshi red
+area/lichter::wohnzimmer_helligkeit:
+- shezhi deng keting 45
+area/lichter::wohnzimmer_lichter_an:
+- dakai deng keting
+area/lichter::wohnzimmer_lichter_aus:
+- guanbi deng keting
+area/spoken::alle_ausser_kugel_stt:
+- guanbi 全部 deng 除了 qiudeng
+area/spoken::alle_ausser_schlaf_stt:
+- guanbi 全部 deng 除了 woshi
+area/spoken::alle_ganzen_an:
+- dakai 全部 deng
+area/spoken::alle_lampen_aus:
+- guanbi 全部 deng
+area/spoken::esszimmer_weiss:
+- shezhi deng jiatingfangess white
+area/spoken::stt_kuche_lichte:
+- guanbi deng chufang
+area/spoken::stt_licht_wohnzimmer_an:
+- dakai deng keting
+area/spoken::stt_licht_wohnzimmer_aus:
+- guanbi deng keting
+area/spoken::stt_schlafzimmer_dativ:
+- guanbi deng woshi
+area/spoken::wohnzimmer_gruen:
+- shezhi deng keting green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- guanbi 全部 deng 除了 keting
+area/spoken_more::arbeitszimmer_lampen_aus:
+- guanbi deng keting
+area/spoken_more::esszimmer_30:
+- shezhi deng jiatingfangess 30
+area/spoken_more::esszimmer_lichte_an:
+- dakai deng jiatingfangess
+area/spoken_more::kuche_80:
+- shezhi deng chufang 80
+area/spoken_more::kuche_blau:
+- shezhi deng chufang blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- guanbi 全部 deng 除了 woshi
+area/spoken_more::wohnzimmer_gelb:
+- shezhi deng keting yellow

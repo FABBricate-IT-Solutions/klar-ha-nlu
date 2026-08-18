@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- liga temporizador abstract 45 minuto
+timers/timers::abstract_start_hours_minutes:
+- liga temporizador abstract 20 minuto
+timers/timers::abstract_start_seconds:
+- liga temporizador abstract
+timers/timers::cancel_all_timers:
+- desliga tudo temporizador
+timers/timers::timer_laundry_cancel:
+- liga temporizador laundry
+timers/timers::timer_laundry_decrease:
+- liga temporizador laundry 5 minuto
+timers/timers::timer_laundry_increase:
+- liga temporizador laundry 16 minuto
+timers/timers::timer_laundry_pause:
+- desliga temporizador laundry
+timers/timers::timer_laundry_start:
+- liga temporizador laundry
+timers/timers::timer_laundry_status:
+- que temporizador laundry
+timers/timers::timer_laundry_unpause:
+- liga temporizador laundry
+timers/timers::timer_oven_cancel:
+- liga temporizador oven
+timers/timers::timer_oven_decrease:
+- liga temporizador oven 44 minuto
+timers/timers::timer_oven_increase:
+- liga temporizador oven 30 minuto
+timers/timers::timer_oven_pause:
+- desliga temporizador oven
+timers/timers::timer_oven_start:
+- liga temporizador oven 2 minuto
+timers/timers::timer_oven_status:
+- que temporizador oven
+timers/timers::timer_oven_unpause:
+- liga temporizador oven

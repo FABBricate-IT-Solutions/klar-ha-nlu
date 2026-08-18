@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - enth vilakku muriyil
+  - enth muriyil vilakku
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - enth jada muriyil
+  - enth muriyil jada
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - enth poott praveshanam
+  - enth praveshanam poott
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - enth chudu muriyil
+  - enth muriyil chudu
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - enth tv muriyil
+  - enth muriyil tv
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - enth doorsensor praveshanam
+  - enth praveshanam doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - enth windowsensor muriyil
+  - enth muriyil windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - enth tempsensor muriyil
+  - enth muriyil tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - enth vilakku adukkala
+  - enth adukkala vilakku
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - enth vilakku office
+  - enth office vilakku
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - enth vilakku garden
+  - enth garden vilakku
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - enth vilakku basement
+  - enth basement vilakku
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - enth jada kitappumuri
+  - enth kitappumuri jada
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - enth jada garage
+  - enth garage jada
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - enth poott garage
+  - enth garage poott
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - enth chudu kitappumuri
+  - enth kitappumuri chudu
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - enth chudu kitappumuri
+  - enth kitappumuri chudu
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - enth tv kutumbam
+  - enth kutumbam tv
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - enth tivi muriyil
+  - enth muriyil tivi
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - enth motion adukkala
+  - enth adukkala motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - enth humidity muriyil
+  - enth muriyil humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - enth fan kitappumuri
+  - enth kitappumuri fan
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - enth varal muriyil
+  - enth muriyil varal
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - enth vilakku muriyil
+  - enth muriyil vilakku
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - enth vilakku adukkala
+  - enth adukkala vilakku
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - enth vilakku kitappumuri
+  - enth kitappumuri vilakku
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - enth vilakku kitappumuri
+  - enth kitappumuri vilakku
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - enth vilakku hallway
+  - enth hallway vilakku
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - enth vilakku kutumbam
+  - enth kutumbam vilakku
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - enth vilakku kutumbamess
+  - enth kutumbamess vilakku
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - enth vilakku garage
+  - enth garage vilakku
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - enth vilakku kitappumuri2
+  - enth kitappumuri2 vilakku
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - enth vilakku kitappumuri3
+  - enth kitappumuri3 vilakku
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - enth vilakku kitappumuri4
+  - enth kitappumuri4 vilakku
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - enth vilakku praveshanam
+  - enth praveshanam vilakku
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - enth vilakku alakku
+  - enth alakku vilakku
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - enth vilakku main bath
+  - enth main bath vilakku
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - enth vilakku toilet
+  - enth toilet vilakku
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - enth ensuite kitappumuri
+  - enth kitappumuri ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - enth vilakku kitappumuri
+  - enth kitappumuri vilakku
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - enth vilakku masterbath
+  - enth masterbath vilakku

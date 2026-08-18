@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- encen temporitzador abstract 45 minut
+timers/timers::abstract_start_hours_minutes:
+- encen temporitzador abstract 20 minut
+timers/timers::abstract_start_seconds:
+- encen temporitzador abstract
+timers/timers::cancel_all_timers:
+- apaga tot temporitzador
+timers/timers::timer_laundry_cancel:
+- encen temporitzador laundry
+timers/timers::timer_laundry_decrease:
+- encen temporitzador laundry 5 minut
+timers/timers::timer_laundry_increase:
+- encen temporitzador laundry 16 minut
+timers/timers::timer_laundry_pause:
+- apaga temporitzador laundry
+timers/timers::timer_laundry_start:
+- encen temporitzador laundry
+timers/timers::timer_laundry_status:
+- que temporitzador laundry
+timers/timers::timer_laundry_unpause:
+- encen temporitzador laundry
+timers/timers::timer_oven_cancel:
+- encen temporitzador oven
+timers/timers::timer_oven_decrease:
+- encen temporitzador oven 44 minut
+timers/timers::timer_oven_increase:
+- encen temporitzador oven 30 minut
+timers/timers::timer_oven_pause:
+- apaga temporitzador oven
+timers/timers::timer_oven_start:
+- encen temporitzador oven 2 minut
+timers/timers::timer_oven_status:
+- que temporitzador oven
+timers/timers::timer_oven_unpause:
+- encen temporitzador oven

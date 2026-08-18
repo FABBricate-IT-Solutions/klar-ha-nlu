@@ -1,0 +1,48 @@
+- name: scene_film
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  sentences:
+  - چالو فلم
+  - فلم چالو
+- name: scene_night
+  conditions:
+  - type: action
+    entity_id: script.good_night
+    state: 'on'
+  sentences:
+  - چالو رات
+  - رات چالو
+- name: scene_leave
+  conditions:
+  - type: action
+    entity_id: script.leaving_home
+    state: 'on'
+  sentences:
+  - چالو خروج
+  - خروج چالو
+- name: scene_dinner
+  conditions:
+  - type: action
+    entity_id: scene.dinner_time
+    state: 'on'
+  sentences:
+  - چالو dinner
+  - dinner چالو
+- name: scene_morning
+  conditions:
+  - type: action
+    entity_id: scene.good_morning
+    state: 'on'
+  sentences:
+  - چالو morning
+  - morning چالو
+- name: scene_kids
+  conditions:
+  - type: action
+    entity_id: scene.kids_bedtime
+    state: 'on'
+  sentences:
+  - چالو kids
+  - kids چالو

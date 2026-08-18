@@ -12,7 +12,7 @@ fn home() -> HomeGraph {
 fn slots(text: &str) -> (String, Vec<(String, String)>, bool) {
     let home = home();
     let mut session = Session::new();
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     let intent = result.intents.first();
     (
         intent.map(|i| i.name.clone()).unwrap_or_default(),
@@ -68,7 +68,7 @@ fn schlafzimmerlicht_ohne_hue_area_id() {
         }
     }
     let mut session = Session::new();
-    let result = parse("Schlafzimmerlicht auf 50%", &home, &mut session, &[], &Settings::default());
+    let result = parse("Schlafzimmerlicht auf 50%", &home, &mut session, &[], &Settings::pinned("de"));
     let intent = result.intents.first().expect("intent");
     let entity = intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
     assert_eq!(entity, Some("light.schlafzimmer"), "{:?}", intent.slots);
@@ -184,10 +184,10 @@ fn geraet_nicht_raum_oder_szene() {
 
     let home = home();
     let mut session = Session::new();
-    let chat = parse("Wie geht es dir?", &home, &mut session, &[], &Settings::default());
+    let chat = parse("Wie geht es dir?", &home, &mut session, &[], &Settings::pinned("de"));
     assert!(chat.intents.is_empty(), "{:?}", chat.intents);
     assert!(chat.chat, "Smalltalk muss zum LLM");
-    let status = parse("Wie ist der Status der Küche?", &home, &mut session, &[], &Settings::default());
+    let status = parse("Wie ist der Status der Küche?", &home, &mut session, &[], &Settings::pinned("de"));
     assert!(!status.chat, "{:?}", status.intents);
     assert_target("Wie ist der Status von Küche", "HassGetState", &["kuche"], &["light.kuche_kuche", "light.alle_lichter"]);
     assert_target(
@@ -251,7 +251,7 @@ fn gruppen_ohne_bereichsslot() {
         }
     }
     let mut session = Session::new();
-    let asked = parse("Ist Wohn und Esszimmer an?", &home, &mut session, &[], &Settings::default());
+    let asked = parse("Ist Wohn und Esszimmer an?", &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(asked.intents.len(), 1, "{:?} {}", asked.intents, asked.speech);
     assert_eq!(asked.intents[0].name, "HassGetState", "{:?}", asked.intents);
     let id = asked.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
@@ -263,7 +263,7 @@ fn gruppen_ohne_bereichsslot() {
 fn schalte_es_wieder_aus() {
     let home = home();
     let mut session = Session::new();
-    let settings = Settings::default();
+    let settings = Settings::pinned("de");
     let on = parse("schalte das schlafzimmerlicht ein", &home, &mut session, &[], &settings);
     let on_id = on.intents[0].slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
     assert_eq!(on.intents[0].name, "HassTurnOn", "{:?}", on.intents);
@@ -350,7 +350,7 @@ fn kuechenlicht_ohne_alias_trifft_kueche() {
     }
     let mut session = Session::new();
     for text in ["Küchenlicht an", "Wie ist der Status von Küchenlicht", "Schalte das Küchenlicht in der Küche an"] {
-        let result = parse(text, &home, &mut session, &[], &Settings::default());
+        let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
         let intent = result.intents.first().expect(text);
         let entity = intent.slots.iter().find(|s| s.name == "entity_id").map(|s| s.value.as_str());
         let area = intent.slots.iter().find(|s| s.name == "area").map(|s| s.value.as_str());
@@ -370,7 +370,7 @@ fn wohnzimmer_temperatur_ist_klima() {
 }
 
 fn parse_live(text: &str) -> klar_nlu::types::ParseResult {
-    parse(text, &home(), &mut Session::new(), &[], &Settings::default())
+    parse(text, &home(), &mut Session::new(), &[], &Settings::pinned("de"))
 }
 
 fn intent_targets(result: &klar_nlu::types::ParseResult) -> Vec<(String, Option<String>, Option<String>)> {

@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - lukk lukk esik
+  - lukk esik lukk
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - ava lukk esik
+  - lukk esik ava
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - lukk lukk garage
+  - lukk garage lukk
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - ava lukk garage
+  - lukk garage ava
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - lukk lukk esik
+  - lukk esik lukk
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - lukk lukk garage
+  - lukk garage lukk

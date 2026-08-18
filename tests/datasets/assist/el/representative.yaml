@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - αναψε φως σαλονι
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - σβησε φως κουζινα
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

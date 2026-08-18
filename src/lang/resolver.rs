@@ -53,7 +53,16 @@ pub fn is_known(locale: &LocaleId) -> bool {
 }
 
 pub fn builtin_for(tag: &str) -> Option<LangId> {
-    LangId::from_code(tag).or_else(|| LocaleId::parse(tag).ok().and_then(|locale| LangId::from_code(&locale.language)))
+    if let Some(id) = LangId::from_code(tag) {
+        return Some(id);
+    }
+    let locale = LocaleId::parse(tag).ok()?;
+    for step in locale.fallback_chain() {
+        if let Some(id) = LangId::from_code(&step.tag) {
+            return Some(id);
+        }
+    }
+    None
 }
 
 pub fn overlay_for(tag: &str) -> Option<ExternalPack> {
@@ -94,15 +103,6 @@ pub fn apply_overlay(catalog: &mut Catalog, pack: &ExternalPack) -> Result<(), S
         }
     }
     let extra = pack.morphology();
-    if catalog.morphology.room_suffixes.is_empty() {
-        catalog.morphology.room_suffixes.extend(super::morphology::DEFAULT_ROOM_SUFFIXES.iter().copied());
-    }
-    if catalog.morphology.color_suffixes.is_empty() {
-        catalog.morphology.color_suffixes.extend(super::morphology::DEFAULT_COLOR_SUFFIXES.iter().copied());
-    }
-    if catalog.morphology.linking.is_empty() {
-        catalog.morphology.linking.extend(super::morphology::default_linking());
-    }
     catalog.morphology.room_suffixes.extend(extra.room_suffixes);
     catalog.morphology.color_suffixes.extend(extra.color_suffixes);
     catalog.morphology.linking.extend(extra.linking);

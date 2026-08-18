@@ -1,0 +1,4606 @@
+- name: lights_entryway_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht vorzimmer
+  - licht vorzimmer mach
+- name: lights_entryway_off
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht vorzimmer
+  - licht vorzimmer schalt
+- name: lights_living_on
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht wohnzimmer
+  - licht wohnzimmer mach
+- name: lights_living_off
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht wohnzimmer
+  - licht wohnzimmer schalt
+- name: lights_dining_on
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht wohnstubeess
+  - licht wohnstubeess mach
+- name: lights_dining_off
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht wohnstubeess
+  - licht wohnstubeess schalt
+- name: lights_kitchen_on
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht kuche
+  - licht kuche mach
+- name: lights_kitchen_off
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht kuche
+  - licht kuche schalt
+- name: lights_family_room_on
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht wohnstube
+  - licht wohnstube mach
+- name: lights_family_room_off
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht wohnstube
+  - licht wohnstube schalt
+- name: lights_laundry_on
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht waschraum
+  - licht waschraum mach
+- name: lights_laundry_off
+  conditions:
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht waschraum
+  - licht waschraum schalt
+- name: lights_powder_room_on
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht klosett
+  - licht klosett mach
+- name: lights_powder_room_off
+  conditions:
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht klosett
+  - licht klosett schalt
+- name: lights_garage_on
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht garage
+  - licht garage mach
+- name: lights_garage_off
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht garage
+  - licht garage schalt
+- name: lights_office_on
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht arbeitszimmer
+  - licht arbeitszimmer mach
+- name: lights_office_off
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht arbeitszimmer
+  - licht arbeitszimmer schalt
+- name: lights_garden_on
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht garten
+  - licht garten mach
+- name: lights_garden_off
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht garten
+  - licht garten schalt
+- name: lights_master_bedroom_on
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht schlafzimmer
+  - licht schlafzimmer mach
+- name: lights_master_bedroom_off
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht schlafzimmer
+  - licht schlafzimmer schalt
+- name: lights_bedroom_2_on
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht schlafzimmer2
+  - licht schlafzimmer2 mach
+- name: lights_bedroom_2_off
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht schlafzimmer2
+  - licht schlafzimmer2 schalt
+- name: lights_bedroom_3_on
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht schlafzimmer3
+  - licht schlafzimmer3 mach
+- name: lights_bedroom_3_off
+  conditions:
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht schlafzimmer3
+  - licht schlafzimmer3 schalt
+- name: lights_bedroom_4_on
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht schlafzimmer4
+  - licht schlafzimmer4 mach
+- name: lights_bedroom_4_off
+  conditions:
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht schlafzimmer4
+  - licht schlafzimmer4 schalt
+- name: lights_master_bath_on
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht badmaster
+  - licht badmaster mach
+- name: lights_master_bath_off
+  conditions:
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht badmaster
+  - licht badmaster schalt
+- name: lights_main_bath_on
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht badmastermain
+  - licht badmastermain mach
+- name: lights_main_bath_off
+  conditions:
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht badmastermain
+  - licht badmastermain schalt
+- name: lights_hallway_on
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht hallway
+  - licht hallway mach
+- name: lights_hallway_off
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht hallway
+  - licht hallway schalt
+- name: lights_basement_on
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht keller
+  - licht keller mach
+- name: lights_basement_off
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht keller
+  - licht keller schalt
+- name: light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - mach decke wohnzimmer
+  - decke wohnzimmer mach
+- name: light.living_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke wohnzimmer
+  - decke wohnzimmer schalt
+- name: light.living_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke wohnzimmer 20
+  - decke wohnzimmer 20
+- name: light.living_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke wohnzimmer 40
+  - decke wohnzimmer 40
+- name: light.living_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke wohnzimmer 50
+  - decke wohnzimmer 50
+- name: light.living_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke wohnzimmer 60
+  - decke wohnzimmer 60
+- name: light.living_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke wohnzimmer 80
+  - decke wohnzimmer 80
+- name: light.living_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke wohnzimmer 100
+  - decke wohnzimmer 100
+- name: light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - mach leuchte wohnzimmer
+  - leuchte wohnzimmer mach
+- name: light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - schalt leuchte wohnzimmer
+  - leuchte wohnzimmer schalt
+- name: light.living_lamp_bright_20
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 20
+  sentences:
+  - stell leuchte wohnzimmer 20
+  - leuchte wohnzimmer 20
+- name: light.living_lamp_bright_40
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 40
+  sentences:
+  - stell leuchte wohnzimmer 40
+  - leuchte wohnzimmer 40
+- name: light.living_lamp_bright_50
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 50
+  sentences:
+  - stell leuchte wohnzimmer 50
+  - leuchte wohnzimmer 50
+- name: light.living_lamp_bright_60
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 60
+  sentences:
+  - stell leuchte wohnzimmer 60
+  - leuchte wohnzimmer 60
+- name: light.living_lamp_bright_80
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 80
+  sentences:
+  - stell leuchte wohnzimmer 80
+  - leuchte wohnzimmer 80
+- name: light.living_lamp_bright_100
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      brightness: 100
+  sentences:
+  - stell leuchte wohnzimmer 100
+  - leuchte wohnzimmer 100
+- name: light.kitchen_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - mach decke kuche
+  - decke kuche mach
+- name: light.kitchen_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke kuche
+  - decke kuche schalt
+- name: light.kitchen_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke kuche 20
+  - decke kuche 20
+- name: light.kitchen_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke kuche 40
+  - decke kuche 40
+- name: light.kitchen_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke kuche 50
+  - decke kuche 50
+- name: light.kitchen_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke kuche 60
+  - decke kuche 60
+- name: light.kitchen_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke kuche 80
+  - decke kuche 80
+- name: light.kitchen_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke kuche 100
+  - decke kuche 100
+- name: light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - mach insel kuche
+  - insel kuche mach
+- name: light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - schalt insel kuche
+  - insel kuche schalt
+- name: light.kitchen_island_bright_20
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 20
+  sentences:
+  - stell insel kuche 20
+  - insel kuche 20
+- name: light.kitchen_island_bright_40
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 40
+  sentences:
+  - stell insel kuche 40
+  - insel kuche 40
+- name: light.kitchen_island_bright_50
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 50
+  sentences:
+  - stell insel kuche 50
+  - insel kuche 50
+- name: light.kitchen_island_bright_60
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 60
+  sentences:
+  - stell insel kuche 60
+  - insel kuche 60
+- name: light.kitchen_island_bright_80
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 80
+  sentences:
+  - stell insel kuche 80
+  - insel kuche 80
+- name: light.kitchen_island_bright_100
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      brightness: 100
+  sentences:
+  - stell insel kuche 100
+  - insel kuche 100
+- name: light.master_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  sentences:
+  - mach decke schlafzimmer
+  - decke schlafzimmer mach
+- name: light.master_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke schlafzimmer
+  - decke schlafzimmer schalt
+- name: light.master_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke schlafzimmer 20
+  - decke schlafzimmer 20
+- name: light.master_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke schlafzimmer 40
+  - decke schlafzimmer 40
+- name: light.master_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke schlafzimmer 50
+  - decke schlafzimmer 50
+- name: light.master_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke schlafzimmer 60
+  - decke schlafzimmer 60
+- name: light.master_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke schlafzimmer 80
+  - decke schlafzimmer 80
+- name: light.master_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke schlafzimmer 100
+  - decke schlafzimmer 100
+- name: light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - mach nachttisch schlafzimmer
+  - nachttisch schlafzimmer mach
+- name: light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - schalt nachttisch schlafzimmer
+  - nachttisch schlafzimmer schalt
+- name: light.master_bedside_left_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 20
+  sentences:
+  - stell nachttisch schlafzimmer 20
+  - nachttisch schlafzimmer 20
+- name: light.master_bedside_left_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 40
+  sentences:
+  - stell nachttisch schlafzimmer 40
+  - nachttisch schlafzimmer 40
+- name: light.master_bedside_left_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 50
+  sentences:
+  - stell nachttisch schlafzimmer 50
+  - nachttisch schlafzimmer 50
+- name: light.master_bedside_left_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 60
+  sentences:
+  - stell nachttisch schlafzimmer 60
+  - nachttisch schlafzimmer 60
+- name: light.master_bedside_left_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 80
+  sentences:
+  - stell nachttisch schlafzimmer 80
+  - nachttisch schlafzimmer 80
+- name: light.master_bedside_left_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      brightness: 100
+  sentences:
+  - stell nachttisch schlafzimmer 100
+  - nachttisch schlafzimmer 100
+- name: light.office_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  sentences:
+  - mach decke arbeitszimmer
+  - decke arbeitszimmer mach
+- name: light.office_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke arbeitszimmer
+  - decke arbeitszimmer schalt
+- name: light.office_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke arbeitszimmer 20
+  - decke arbeitszimmer 20
+- name: light.office_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke arbeitszimmer 40
+  - decke arbeitszimmer 40
+- name: light.office_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke arbeitszimmer 50
+  - decke arbeitszimmer 50
+- name: light.office_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke arbeitszimmer 60
+  - decke arbeitszimmer 60
+- name: light.office_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke arbeitszimmer 80
+  - decke arbeitszimmer 80
+- name: light.office_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke arbeitszimmer 100
+  - decke arbeitszimmer 100
+- name: light.garden_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  sentences:
+  - mach licht garten
+  - licht garten mach
+- name: light.garden_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  sentences:
+  - schalt licht garten
+  - licht garten schalt
+- name: light.garden_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht garten 20
+  - licht garten 20
+- name: light.garden_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht garten 40
+  - licht garten 40
+- name: light.garden_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht garten 50
+  - licht garten 50
+- name: light.garden_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht garten 60
+  - licht garten 60
+- name: light.garden_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht garten 80
+  - licht garten 80
+- name: light.garden_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht garten 100
+  - licht garten 100
+- name: light.basement_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - mach licht keller
+  - licht keller mach
+- name: light.basement_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  sentences:
+  - schalt licht keller
+  - licht keller schalt
+- name: light.basement_bright_20
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht keller 20
+  - licht keller 20
+- name: light.basement_bright_40
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht keller 40
+  - licht keller 40
+- name: light.basement_bright_50
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht keller 50
+  - licht keller 50
+- name: light.basement_bright_60
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht keller 60
+  - licht keller 60
+- name: light.basement_bright_80
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht keller 80
+  - licht keller 80
+- name: light.basement_bright_100
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht keller 100
+  - licht keller 100
+- name: light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - mach licht hallway
+  - licht hallway mach
+- name: light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - schalt licht hallway
+  - licht hallway schalt
+- name: light.hallway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht hallway 20
+  - licht hallway 20
+- name: light.hallway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht hallway 40
+  - licht hallway 40
+- name: light.hallway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht hallway 50
+  - licht hallway 50
+- name: light.hallway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht hallway 60
+  - licht hallway 60
+- name: light.hallway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht hallway 80
+  - licht hallway 80
+- name: light.hallway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht hallway 100
+  - licht hallway 100
+- name: light.family_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - mach decke wohnstube
+  - decke wohnstube mach
+- name: light.family_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke wohnstube
+  - decke wohnstube schalt
+- name: light.family_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke wohnstube 20
+  - decke wohnstube 20
+- name: light.family_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke wohnstube 40
+  - decke wohnstube 40
+- name: light.family_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke wohnstube 50
+  - decke wohnstube 50
+- name: light.family_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke wohnstube 60
+  - decke wohnstube 60
+- name: light.family_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke wohnstube 80
+  - decke wohnstube 80
+- name: light.family_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke wohnstube 100
+  - decke wohnstube 100
+- name: light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - mach licht wohnstubeess
+  - licht wohnstubeess mach
+- name: light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - schalt licht wohnstubeess
+  - licht wohnstubeess schalt
+- name: light.dining_pendant_bright_20
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht wohnstubeess 20
+  - licht wohnstubeess 20
+- name: light.dining_pendant_bright_40
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht wohnstubeess 40
+  - licht wohnstubeess 40
+- name: light.dining_pendant_bright_50
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht wohnstubeess 50
+  - licht wohnstubeess 50
+- name: light.dining_pendant_bright_60
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht wohnstubeess 60
+  - licht wohnstubeess 60
+- name: light.dining_pendant_bright_80
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht wohnstubeess 80
+  - licht wohnstubeess 80
+- name: light.dining_pendant_bright_100
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht wohnstubeess 100
+  - licht wohnstubeess 100
+- name: light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - mach licht garage
+  - licht garage mach
+- name: light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - schalt licht garage
+  - licht garage schalt
+- name: light.garage_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht garage 20
+  - licht garage 20
+- name: light.garage_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht garage 40
+  - licht garage 40
+- name: light.garage_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht garage 50
+  - licht garage 50
+- name: light.garage_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht garage 60
+  - licht garage 60
+- name: light.garage_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht garage 80
+  - licht garage 80
+- name: light.garage_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht garage 100
+  - licht garage 100
+- name: light.bedroom2_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'on'
+  sentences:
+  - mach decke schlafzimmer2
+  - decke schlafzimmer2 mach
+- name: light.bedroom2_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke schlafzimmer2
+  - decke schlafzimmer2 schalt
+- name: light.bedroom2_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke schlafzimmer2 20
+  - decke schlafzimmer2 20
+- name: light.bedroom2_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke schlafzimmer2 40
+  - decke schlafzimmer2 40
+- name: light.bedroom2_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke schlafzimmer2 50
+  - decke schlafzimmer2 50
+- name: light.bedroom2_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke schlafzimmer2 60
+  - decke schlafzimmer2 60
+- name: light.bedroom2_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke schlafzimmer2 80
+  - decke schlafzimmer2 80
+- name: light.bedroom2_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke schlafzimmer2 100
+  - decke schlafzimmer2 100
+- name: light.bedroom3_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'on'
+  sentences:
+  - mach decke schlafzimmer3
+  - decke schlafzimmer3 mach
+- name: light.bedroom3_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke schlafzimmer3
+  - decke schlafzimmer3 schalt
+- name: light.bedroom3_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke schlafzimmer3 20
+  - decke schlafzimmer3 20
+- name: light.bedroom3_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke schlafzimmer3 40
+  - decke schlafzimmer3 40
+- name: light.bedroom3_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke schlafzimmer3 50
+  - decke schlafzimmer3 50
+- name: light.bedroom3_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke schlafzimmer3 60
+  - decke schlafzimmer3 60
+- name: light.bedroom3_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke schlafzimmer3 80
+  - decke schlafzimmer3 80
+- name: light.bedroom3_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke schlafzimmer3 100
+  - decke schlafzimmer3 100
+- name: light.bedroom4_ceiling_on
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'on'
+  sentences:
+  - mach decke schlafzimmer4
+  - decke schlafzimmer4 mach
+- name: light.bedroom4_ceiling_off
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    state: 'off'
+  sentences:
+  - schalt decke schlafzimmer4
+  - decke schlafzimmer4 schalt
+- name: light.bedroom4_ceiling_bright_20
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 20
+  sentences:
+  - stell decke schlafzimmer4 20
+  - decke schlafzimmer4 20
+- name: light.bedroom4_ceiling_bright_40
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 40
+  sentences:
+  - stell decke schlafzimmer4 40
+  - decke schlafzimmer4 40
+- name: light.bedroom4_ceiling_bright_50
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 50
+  sentences:
+  - stell decke schlafzimmer4 50
+  - decke schlafzimmer4 50
+- name: light.bedroom4_ceiling_bright_60
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 60
+  sentences:
+  - stell decke schlafzimmer4 60
+  - decke schlafzimmer4 60
+- name: light.bedroom4_ceiling_bright_80
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 80
+  sentences:
+  - stell decke schlafzimmer4 80
+  - decke schlafzimmer4 80
+- name: light.bedroom4_ceiling_bright_100
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      brightness: 100
+  sentences:
+  - stell decke schlafzimmer4 100
+  - decke schlafzimmer4 100
+- name: light.entryway_light_on
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'on'
+  sentences:
+  - mach licht vorzimmer
+  - licht vorzimmer mach
+- name: light.entryway_light_off
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    state: 'off'
+  sentences:
+  - schalt licht vorzimmer
+  - licht vorzimmer schalt
+- name: light.entryway_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht vorzimmer 20
+  - licht vorzimmer 20
+- name: light.entryway_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht vorzimmer 40
+  - licht vorzimmer 40
+- name: light.entryway_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht vorzimmer 50
+  - licht vorzimmer 50
+- name: light.entryway_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht vorzimmer 60
+  - licht vorzimmer 60
+- name: light.entryway_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht vorzimmer 80
+  - licht vorzimmer 80
+- name: light.entryway_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht vorzimmer 100
+  - licht vorzimmer 100
+- name: light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - mach licht waschraum
+  - licht waschraum mach
+- name: light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - schalt licht waschraum
+  - licht waschraum schalt
+- name: light.laundry_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht waschraum 20
+  - licht waschraum 20
+- name: light.laundry_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht waschraum 40
+  - licht waschraum 40
+- name: light.laundry_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht waschraum 50
+  - licht waschraum 50
+- name: light.laundry_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht waschraum 60
+  - licht waschraum 60
+- name: light.laundry_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht waschraum 80
+  - licht waschraum 80
+- name: light.laundry_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht waschraum 100
+  - licht waschraum 100
+- name: light.main_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'on'
+  sentences:
+  - mach licht badmastermain
+  - licht badmastermain mach
+- name: light.main_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    state: 'off'
+  sentences:
+  - schalt licht badmastermain
+  - licht badmastermain schalt
+- name: light.main_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht badmastermain 20
+  - licht badmastermain 20
+- name: light.main_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht badmastermain 40
+  - licht badmastermain 40
+- name: light.main_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht badmastermain 50
+  - licht badmastermain 50
+- name: light.main_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht badmastermain 60
+  - licht badmastermain 60
+- name: light.main_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht badmastermain 80
+  - licht badmastermain 80
+- name: light.main_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht badmastermain 100
+  - licht badmastermain 100
+- name: light.powder_room_light_on
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'on'
+  sentences:
+  - mach licht klosett
+  - licht klosett mach
+- name: light.powder_room_light_off
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - schalt licht klosett
+  - licht klosett schalt
+- name: light.powder_room_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht klosett 20
+  - licht klosett 20
+- name: light.powder_room_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht klosett 40
+  - licht klosett 40
+- name: light.powder_room_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht klosett 50
+  - licht klosett 50
+- name: light.powder_room_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht klosett 60
+  - licht klosett 60
+- name: light.powder_room_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht klosett 80
+  - licht klosett 80
+- name: light.powder_room_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht klosett 100
+  - licht klosett 100
+- name: light.master_ensuite_on
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'on'
+  sentences:
+  - mach ensuite schlafzimmer
+  - ensuite schlafzimmer mach
+- name: light.master_ensuite_off
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    state: 'off'
+  sentences:
+  - schalt ensuite schlafzimmer
+  - ensuite schlafzimmer schalt
+- name: light.master_ensuite_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 20
+  sentences:
+  - stell ensuite schlafzimmer 20
+  - ensuite schlafzimmer 20
+- name: light.master_ensuite_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 40
+  sentences:
+  - stell ensuite schlafzimmer 40
+  - ensuite schlafzimmer 40
+- name: light.master_ensuite_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 50
+  sentences:
+  - stell ensuite schlafzimmer 50
+  - ensuite schlafzimmer 50
+- name: light.master_ensuite_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 60
+  sentences:
+  - stell ensuite schlafzimmer 60
+  - ensuite schlafzimmer 60
+- name: light.master_ensuite_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 80
+  sentences:
+  - stell ensuite schlafzimmer 80
+  - ensuite schlafzimmer 80
+- name: light.master_ensuite_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      brightness: 100
+  sentences:
+  - stell ensuite schlafzimmer 100
+  - ensuite schlafzimmer 100
+- name: light.master_bedside_right_on
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'on'
+  sentences:
+  - mach nachttisch schlafzimmer
+  - nachttisch schlafzimmer mach
+- name: light.master_bedside_right_off
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    state: 'off'
+  sentences:
+  - schalt nachttisch schlafzimmer
+  - nachttisch schlafzimmer schalt
+- name: light.master_bedside_right_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 20
+  sentences:
+  - stell nachttisch schlafzimmer 20
+  - nachttisch schlafzimmer 20
+- name: light.master_bedside_right_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 40
+  sentences:
+  - stell nachttisch schlafzimmer 40
+  - nachttisch schlafzimmer 40
+- name: light.master_bedside_right_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 50
+  sentences:
+  - stell nachttisch schlafzimmer 50
+  - nachttisch schlafzimmer 50
+- name: light.master_bedside_right_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 60
+  sentences:
+  - stell nachttisch schlafzimmer 60
+  - nachttisch schlafzimmer 60
+- name: light.master_bedside_right_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 80
+  sentences:
+  - stell nachttisch schlafzimmer 80
+  - nachttisch schlafzimmer 80
+- name: light.master_bedside_right_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      brightness: 100
+  sentences:
+  - stell nachttisch schlafzimmer 100
+  - nachttisch schlafzimmer 100
+- name: light.master_bath_light_on
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'on'
+  sentences:
+  - mach licht badmaster
+  - licht badmaster mach
+- name: light.master_bath_light_off
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    state: 'off'
+  sentences:
+  - schalt licht badmaster
+  - licht badmaster schalt
+- name: light.master_bath_light_bright_20
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 20
+  sentences:
+  - stell licht badmaster 20
+  - licht badmaster 20
+- name: light.master_bath_light_bright_40
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 40
+  sentences:
+  - stell licht badmaster 40
+  - licht badmaster 40
+- name: light.master_bath_light_bright_50
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht badmaster 50
+  - licht badmaster 50
+- name: light.master_bath_light_bright_60
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 60
+  sentences:
+  - stell licht badmaster 60
+  - licht badmaster 60
+- name: light.master_bath_light_bright_80
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 80
+  sentences:
+  - stell licht badmaster 80
+  - licht badmaster 80
+- name: light.master_bath_light_bright_100
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      brightness: 100
+  sentences:
+  - stell licht badmaster 100
+  - licht badmaster 100
+- name: light.living_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke wohnzimmer rot
+  - stell licht wohnzimmer rot
+- name: light.living_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke wohnzimmer blau
+  - stell licht wohnzimmer blau
+- name: light.living_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke wohnzimmer gruen
+  - stell licht wohnzimmer gruen
+- name: light.living_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke wohnzimmer weiss
+  - stell licht wohnzimmer weiss
+- name: light.living_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke wohnzimmer gelb
+  - stell licht wohnzimmer gelb
+- name: light.living_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke wohnzimmer schwarz
+  - stell licht wohnzimmer schwarz
+- name: light.living_lamp_red
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: red
+  sentences:
+  - stell leuchte wohnzimmer rot
+  - stell licht wohnzimmer rot
+- name: light.living_lamp_blue
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: blue
+  sentences:
+  - stell leuchte wohnzimmer blau
+  - stell licht wohnzimmer blau
+- name: light.living_lamp_green
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: green
+  sentences:
+  - stell leuchte wohnzimmer gruen
+  - stell licht wohnzimmer gruen
+- name: light.living_lamp_white
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: white
+  sentences:
+  - stell leuchte wohnzimmer weiss
+  - stell licht wohnzimmer weiss
+- name: light.living_lamp_yellow
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: yellow
+  sentences:
+  - stell leuchte wohnzimmer gelb
+  - stell licht wohnzimmer gelb
+- name: light.living_lamp_black
+  conditions:
+  - type: action
+    entity_id: light.living_lamp
+    attributes:
+      color: black
+  sentences:
+  - stell leuchte wohnzimmer schwarz
+  - stell licht wohnzimmer schwarz
+- name: light.kitchen_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke kuche rot
+  - stell licht kuche rot
+- name: light.kitchen_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke kuche blau
+  - stell licht kuche blau
+- name: light.kitchen_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke kuche gruen
+  - stell licht kuche gruen
+- name: light.kitchen_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke kuche weiss
+  - stell licht kuche weiss
+- name: light.kitchen_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke kuche gelb
+  - stell licht kuche gelb
+- name: light.kitchen_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke kuche schwarz
+  - stell licht kuche schwarz
+- name: light.kitchen_island_red
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: red
+  sentences:
+  - stell insel kuche rot
+  - stell licht kuche rot
+- name: light.kitchen_island_blue
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: blue
+  sentences:
+  - stell insel kuche blau
+  - stell licht kuche blau
+- name: light.kitchen_island_green
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: green
+  sentences:
+  - stell insel kuche gruen
+  - stell licht kuche gruen
+- name: light.kitchen_island_white
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: white
+  sentences:
+  - stell insel kuche weiss
+  - stell licht kuche weiss
+- name: light.kitchen_island_yellow
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: yellow
+  sentences:
+  - stell insel kuche gelb
+  - stell licht kuche gelb
+- name: light.kitchen_island_black
+  conditions:
+  - type: action
+    entity_id: light.kitchen_island
+    attributes:
+      color: black
+  sentences:
+  - stell insel kuche schwarz
+  - stell licht kuche schwarz
+- name: light.master_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke schlafzimmer rot
+  - stell licht schlafzimmer rot
+- name: light.master_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke schlafzimmer blau
+  - stell licht schlafzimmer blau
+- name: light.master_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke schlafzimmer gruen
+  - stell licht schlafzimmer gruen
+- name: light.master_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke schlafzimmer weiss
+  - stell licht schlafzimmer weiss
+- name: light.master_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke schlafzimmer gelb
+  - stell licht schlafzimmer gelb
+- name: light.master_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke schlafzimmer schwarz
+  - stell licht schlafzimmer schwarz
+- name: light.master_bedside_left_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: red
+  sentences:
+  - stell nachttisch schlafzimmer rot
+  - stell licht schlafzimmer rot
+- name: light.master_bedside_left_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: blue
+  sentences:
+  - stell nachttisch schlafzimmer blau
+  - stell licht schlafzimmer blau
+- name: light.master_bedside_left_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: green
+  sentences:
+  - stell nachttisch schlafzimmer gruen
+  - stell licht schlafzimmer gruen
+- name: light.master_bedside_left_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: white
+  sentences:
+  - stell nachttisch schlafzimmer weiss
+  - stell licht schlafzimmer weiss
+- name: light.master_bedside_left_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: yellow
+  sentences:
+  - stell nachttisch schlafzimmer gelb
+  - stell licht schlafzimmer gelb
+- name: light.master_bedside_left_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_left
+    attributes:
+      color: black
+  sentences:
+  - stell nachttisch schlafzimmer schwarz
+  - stell licht schlafzimmer schwarz
+- name: light.office_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke arbeitszimmer rot
+  - stell licht arbeitszimmer rot
+- name: light.office_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke arbeitszimmer blau
+  - stell licht arbeitszimmer blau
+- name: light.office_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke arbeitszimmer gruen
+  - stell licht arbeitszimmer gruen
+- name: light.office_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke arbeitszimmer weiss
+  - stell licht arbeitszimmer weiss
+- name: light.office_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke arbeitszimmer gelb
+  - stell licht arbeitszimmer gelb
+- name: light.office_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke arbeitszimmer schwarz
+  - stell licht arbeitszimmer schwarz
+- name: light.garden_red
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: red
+  sentences:
+  - stell licht garten rot
+  - licht garten rot
+- name: light.garden_blue
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: blue
+  sentences:
+  - stell licht garten blau
+  - licht garten blau
+- name: light.garden_green
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: green
+  sentences:
+  - stell licht garten gruen
+  - licht garten gruen
+- name: light.garden_white
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: white
+  sentences:
+  - stell licht garten weiss
+  - licht garten weiss
+- name: light.garden_yellow
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht garten gelb
+  - licht garten gelb
+- name: light.garden_black
+  conditions:
+  - type: action
+    entity_id: light.garden
+    attributes:
+      color: black
+  sentences:
+  - stell licht garten schwarz
+  - licht garten schwarz
+- name: light.basement_red
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: red
+  sentences:
+  - stell licht keller rot
+  - licht keller rot
+- name: light.basement_blue
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: blue
+  sentences:
+  - stell licht keller blau
+  - licht keller blau
+- name: light.basement_green
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: green
+  sentences:
+  - stell licht keller gruen
+  - licht keller gruen
+- name: light.basement_white
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: white
+  sentences:
+  - stell licht keller weiss
+  - licht keller weiss
+- name: light.basement_yellow
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht keller gelb
+  - licht keller gelb
+- name: light.basement_black
+  conditions:
+  - type: action
+    entity_id: light.basement
+    attributes:
+      color: black
+  sentences:
+  - stell licht keller schwarz
+  - licht keller schwarz
+- name: light.hallway_light_red
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht hallway rot
+  - licht hallway rot
+- name: light.hallway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht hallway blau
+  - licht hallway blau
+- name: light.hallway_light_green
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht hallway gruen
+  - licht hallway gruen
+- name: light.hallway_light_white
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht hallway weiss
+  - licht hallway weiss
+- name: light.hallway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht hallway gelb
+  - licht hallway gelb
+- name: light.hallway_light_black
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht hallway schwarz
+  - licht hallway schwarz
+- name: light.family_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke wohnstube rot
+  - stell licht wohnstube rot
+- name: light.family_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke wohnstube blau
+  - stell licht wohnstube blau
+- name: light.family_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke wohnstube gruen
+  - stell licht wohnstube gruen
+- name: light.family_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke wohnstube weiss
+  - stell licht wohnstube weiss
+- name: light.family_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke wohnstube gelb
+  - stell licht wohnstube gelb
+- name: light.family_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke wohnstube schwarz
+  - stell licht wohnstube schwarz
+- name: light.dining_pendant_red
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: red
+  sentences:
+  - stell licht wohnstubeess rot
+  - licht wohnstubeess rot
+- name: light.dining_pendant_blue
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: blue
+  sentences:
+  - stell licht wohnstubeess blau
+  - licht wohnstubeess blau
+- name: light.dining_pendant_green
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: green
+  sentences:
+  - stell licht wohnstubeess gruen
+  - licht wohnstubeess gruen
+- name: light.dining_pendant_white
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: white
+  sentences:
+  - stell licht wohnstubeess weiss
+  - licht wohnstubeess weiss
+- name: light.dining_pendant_yellow
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht wohnstubeess gelb
+  - licht wohnstubeess gelb
+- name: light.dining_pendant_black
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    attributes:
+      color: black
+  sentences:
+  - stell licht wohnstubeess schwarz
+  - licht wohnstubeess schwarz
+- name: light.garage_light_red
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht garage rot
+  - licht garage rot
+- name: light.garage_light_blue
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht garage blau
+  - licht garage blau
+- name: light.garage_light_green
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht garage gruen
+  - licht garage gruen
+- name: light.garage_light_white
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht garage weiss
+  - licht garage weiss
+- name: light.garage_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht garage gelb
+  - licht garage gelb
+- name: light.garage_light_black
+  conditions:
+  - type: action
+    entity_id: light.garage_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht garage schwarz
+  - licht garage schwarz
+- name: light.bedroom2_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke schlafzimmer2 rot
+  - stell licht schlafzimmer2 rot
+- name: light.bedroom2_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke schlafzimmer2 blau
+  - stell licht schlafzimmer2 blau
+- name: light.bedroom2_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke schlafzimmer2 gruen
+  - stell licht schlafzimmer2 gruen
+- name: light.bedroom2_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke schlafzimmer2 weiss
+  - stell licht schlafzimmer2 weiss
+- name: light.bedroom2_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke schlafzimmer2 gelb
+  - stell licht schlafzimmer2 gelb
+- name: light.bedroom2_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom2_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke schlafzimmer2 schwarz
+  - stell licht schlafzimmer2 schwarz
+- name: light.bedroom3_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke schlafzimmer3 rot
+  - stell licht schlafzimmer3 rot
+- name: light.bedroom3_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke schlafzimmer3 blau
+  - stell licht schlafzimmer3 blau
+- name: light.bedroom3_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke schlafzimmer3 gruen
+  - stell licht schlafzimmer3 gruen
+- name: light.bedroom3_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke schlafzimmer3 weiss
+  - stell licht schlafzimmer3 weiss
+- name: light.bedroom3_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke schlafzimmer3 gelb
+  - stell licht schlafzimmer3 gelb
+- name: light.bedroom3_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom3_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke schlafzimmer3 schwarz
+  - stell licht schlafzimmer3 schwarz
+- name: light.bedroom4_ceiling_red
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: red
+  sentences:
+  - stell decke schlafzimmer4 rot
+  - stell licht schlafzimmer4 rot
+- name: light.bedroom4_ceiling_blue
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: blue
+  sentences:
+  - stell decke schlafzimmer4 blau
+  - stell licht schlafzimmer4 blau
+- name: light.bedroom4_ceiling_green
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: green
+  sentences:
+  - stell decke schlafzimmer4 gruen
+  - stell licht schlafzimmer4 gruen
+- name: light.bedroom4_ceiling_white
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: white
+  sentences:
+  - stell decke schlafzimmer4 weiss
+  - stell licht schlafzimmer4 weiss
+- name: light.bedroom4_ceiling_yellow
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: yellow
+  sentences:
+  - stell decke schlafzimmer4 gelb
+  - stell licht schlafzimmer4 gelb
+- name: light.bedroom4_ceiling_black
+  conditions:
+  - type: action
+    entity_id: light.bedroom4_ceiling
+    attributes:
+      color: black
+  sentences:
+  - stell decke schlafzimmer4 schwarz
+  - stell licht schlafzimmer4 schwarz
+- name: light.entryway_light_red
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht vorzimmer rot
+  - licht vorzimmer rot
+- name: light.entryway_light_blue
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht vorzimmer blau
+  - licht vorzimmer blau
+- name: light.entryway_light_green
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht vorzimmer gruen
+  - licht vorzimmer gruen
+- name: light.entryway_light_white
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht vorzimmer weiss
+  - licht vorzimmer weiss
+- name: light.entryway_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht vorzimmer gelb
+  - licht vorzimmer gelb
+- name: light.entryway_light_black
+  conditions:
+  - type: action
+    entity_id: light.entryway_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht vorzimmer schwarz
+  - licht vorzimmer schwarz
+- name: light.laundry_light_red
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht waschraum rot
+  - licht waschraum rot
+- name: light.laundry_light_blue
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht waschraum blau
+  - licht waschraum blau
+- name: light.laundry_light_green
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht waschraum gruen
+  - licht waschraum gruen
+- name: light.laundry_light_white
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht waschraum weiss
+  - licht waschraum weiss
+- name: light.laundry_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht waschraum gelb
+  - licht waschraum gelb
+- name: light.laundry_light_black
+  conditions:
+  - type: action
+    entity_id: light.laundry_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht waschraum schwarz
+  - licht waschraum schwarz
+- name: light.main_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht badmastermain rot
+  - licht badmastermain rot
+- name: light.main_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht badmastermain blau
+  - licht badmastermain blau
+- name: light.main_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht badmastermain gruen
+  - licht badmastermain gruen
+- name: light.main_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht badmastermain weiss
+  - licht badmastermain weiss
+- name: light.main_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht badmastermain gelb
+  - licht badmastermain gelb
+- name: light.main_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.main_bath_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht badmastermain schwarz
+  - licht badmastermain schwarz
+- name: light.powder_room_light_red
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht klosett rot
+  - licht klosett rot
+- name: light.powder_room_light_blue
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht klosett blau
+  - licht klosett blau
+- name: light.powder_room_light_green
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht klosett gruen
+  - licht klosett gruen
+- name: light.powder_room_light_white
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht klosett weiss
+  - licht klosett weiss
+- name: light.powder_room_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht klosett gelb
+  - licht klosett gelb
+- name: light.powder_room_light_black
+  conditions:
+  - type: action
+    entity_id: light.powder_room_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht klosett schwarz
+  - licht klosett schwarz
+- name: light.master_ensuite_red
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: red
+  sentences:
+  - stell ensuite schlafzimmer rot
+  - stell licht schlafzimmer rot
+- name: light.master_ensuite_blue
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: blue
+  sentences:
+  - stell ensuite schlafzimmer blau
+  - stell licht schlafzimmer blau
+- name: light.master_ensuite_green
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: green
+  sentences:
+  - stell ensuite schlafzimmer gruen
+  - stell licht schlafzimmer gruen
+- name: light.master_ensuite_white
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: white
+  sentences:
+  - stell ensuite schlafzimmer weiss
+  - stell licht schlafzimmer weiss
+- name: light.master_ensuite_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: yellow
+  sentences:
+  - stell ensuite schlafzimmer gelb
+  - stell licht schlafzimmer gelb
+- name: light.master_ensuite_black
+  conditions:
+  - type: action
+    entity_id: light.master_ensuite
+    attributes:
+      color: black
+  sentences:
+  - stell ensuite schlafzimmer schwarz
+  - stell licht schlafzimmer schwarz
+- name: light.master_bedside_right_red
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: red
+  sentences:
+  - stell nachttisch schlafzimmer rot
+  - stell licht schlafzimmer rot
+- name: light.master_bedside_right_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: blue
+  sentences:
+  - stell nachttisch schlafzimmer blau
+  - stell licht schlafzimmer blau
+- name: light.master_bedside_right_green
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: green
+  sentences:
+  - stell nachttisch schlafzimmer gruen
+  - stell licht schlafzimmer gruen
+- name: light.master_bedside_right_white
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: white
+  sentences:
+  - stell nachttisch schlafzimmer weiss
+  - stell licht schlafzimmer weiss
+- name: light.master_bedside_right_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: yellow
+  sentences:
+  - stell nachttisch schlafzimmer gelb
+  - stell licht schlafzimmer gelb
+- name: light.master_bedside_right_black
+  conditions:
+  - type: action
+    entity_id: light.master_bedside_right
+    attributes:
+      color: black
+  sentences:
+  - stell nachttisch schlafzimmer schwarz
+  - stell licht schlafzimmer schwarz
+- name: light.master_bath_light_red
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: red
+  sentences:
+  - stell licht badmaster rot
+  - licht badmaster rot
+- name: light.master_bath_light_blue
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: blue
+  sentences:
+  - stell licht badmaster blau
+  - licht badmaster blau
+- name: light.master_bath_light_green
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: green
+  sentences:
+  - stell licht badmaster gruen
+  - licht badmaster gruen
+- name: light.master_bath_light_white
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: white
+  sentences:
+  - stell licht badmaster weiss
+  - licht badmaster weiss
+- name: light.master_bath_light_yellow
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: yellow
+  sentences:
+  - stell licht badmaster gelb
+  - licht badmaster gelb
+- name: light.master_bath_light_black
+  conditions:
+  - type: action
+    entity_id: light.master_bath_light
+    attributes:
+      color: black
+  sentences:
+  - stell licht badmaster schwarz
+  - licht badmaster schwarz
+- name: all_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser kuche
+  - alle licht schalt ausser kuche
+  forbid:
+  - kitchen
+- name: all_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser arbeitszimmer
+  - alle licht schalt ausser arbeitszimmer
+  forbid:
+  - office
+- name: all_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser garage
+  - alle licht schalt ausser garage
+  forbid:
+  - garage
+- name: all_except_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser schlafzimmer
+  - alle licht schalt ausser schlafzimmer
+  forbid:
+  - master_bedroom
+- name: floor_ground_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht erdgeschoss
+  - licht erdgeschoss mach
+- name: floor_ground_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht erdgeschoss
+  - licht erdgeschoss schalt
+- name: floor_upper_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht obergeschoss
+  - licht obergeschoss mach
+- name: floor_upper_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht obergeschoss
+  - licht obergeschoss schalt
+- name: floor_basement_on
+  conditions:
+  - type: action
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht basement
+  - licht basement mach
+- name: floor_basement_off
+  conditions:
+  - type: action
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht basement
+  - licht basement schalt
+- name: all_except_entryway
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser vorzimmer
+  - alle licht schalt ausser vorzimmer
+  forbid:
+  - entryway
+- name: all_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser wohnzimmer
+  - alle licht schalt ausser wohnzimmer
+  forbid:
+  - living
+- name: all_except_dining
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser wohnstubeess
+  - alle licht schalt ausser wohnstubeess
+  forbid:
+  - dining
+- name: all_except_family_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser wohnstube
+  - alle licht schalt ausser wohnstube
+  forbid:
+  - family_room
+- name: all_except_laundry
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser waschraum
+  - alle licht schalt ausser waschraum
+  forbid:
+  - laundry
+- name: all_except_powder_room
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser klosett
+  - alle licht schalt ausser klosett
+  forbid:
+  - powder_room
+- name: all_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser garten
+  - alle licht schalt ausser garten
+  forbid:
+  - garden
+- name: all_except_bedroom_2
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser schlafzimmer2
+  - alle licht schalt ausser schlafzimmer2
+  forbid:
+  - bedroom_2
+- name: all_except_bedroom_3
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser schlafzimmer3
+  - alle licht schalt ausser schlafzimmer3
+  forbid:
+  - bedroom_3
+- name: all_except_bedroom_4
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser schlafzimmer4
+  - alle licht schalt ausser schlafzimmer4
+  forbid:
+  - bedroom_4
+- name: all_except_master_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser badmaster
+  - alle licht schalt ausser badmaster
+  forbid:
+  - master_bath
+- name: all_except_main_bath
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser badmastermain
+  - alle licht schalt ausser badmastermain
+  forbid:
+  - main_bath
+- name: all_except_hallway
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser hallway
+  - alle licht schalt ausser hallway
+  forbid:
+  - hallway
+- name: all_except_basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser keller
+  - alle licht schalt ausser keller
+  forbid:
+  - basement
+- name: light.basement_on_extra
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  sentences:
+  - mach licht keller
+  - licht keller mach
+- name: light.hallway_light_on_extra
+  conditions:
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - mach licht hallway
+  - licht hallway mach
+- name: light.family_ceiling_on_extra
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  sentences:
+  - mach decke wohnstube
+  - decke wohnstube mach
+- name: light.dining_pendant_on_extra
+  conditions:
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - mach licht wohnstubeess
+  - licht wohnstubeess mach

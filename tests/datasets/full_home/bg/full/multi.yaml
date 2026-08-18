@@ -1,0 +1,142 @@
+- name: multi_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина хол и кухня
+  - светлина хол и кухня включи
+- name: multi_off_lock
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - изключи светлина хол и ключалка врата
+  - изключи хол и ключалка врата
+- name: multi_kitchen_dining
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина кухня и дневнаfamess
+  - светлина кухня и дневнаfamess включи
+- name: multi_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина office и hallway
+  - светлина office и hallway включи
+- name: multi_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина garage и garden
+  - светлина garage и garden включи
+- name: multi_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина спалня и main bath
+  - светлина спалня и main bath включи
+- name: multi_family_room_living
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина дневнаfam и хол
+  - светлина дневнаfam и хол включи
+- name: multi_basement_garden
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина basement и garden
+  - светлина basement и garden включи
+- name: multi_hallway_office
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина hallway и office
+  - светлина hallway и office включи
+- name: multi_dining_kitchen
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина дневнаfamess и кухня
+  - светлина дневнаfamess и кухня включи
+- name: multi_bedroom_2_bedroom_3
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - включи светлина спалня2 и спалня3
+  - светлина спалня2 и спалня3 включи

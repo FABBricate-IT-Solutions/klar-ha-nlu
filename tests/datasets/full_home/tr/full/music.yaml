@@ -1,0 +1,529 @@
+- name: play_queen
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: queen
+  sentences:
+  - oynat queen salon
+  - oynat queen televizyon salon
+- name: play_album
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: rumours
+      media_type: album
+      artist: fleetwood mac
+  sentences:
+  - oynat album rumours by fleetwood mac salon
+- name: play_radio
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - oynat queen radio mode salon
+- name: queue_song
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: bohemian rhapsody
+      enqueue: add
+  sentences:
+  - oynat bohemian rhapsody queue salon
+- name: now_playing
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - ne televizyon salon
+  - ne track salon
+- name: music_volume_10
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 10
+  sentences:
+  - ayarla televizyon salon 10
+  - televizyon salon 10
+- name: music_volume_20
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 20
+  sentences:
+  - ayarla televizyon salon 20
+  - televizyon salon 20
+- name: music_volume_30
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 30
+  sentences:
+  - ayarla televizyon salon 30
+  - televizyon salon 30
+- name: music_volume_50
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 50
+  sentences:
+  - ayarla televizyon salon 50
+  - televizyon salon 50
+- name: music_volume_80
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 80
+  sentences:
+  - ayarla televizyon salon 80
+  - televizyon salon 80
+- name: music_next
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: next
+  sentences:
+  - next track salon
+- name: music_prev
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: previous
+  sentences:
+  - previous track salon
+- name: kitchen_play
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - oynat queen mutfak
+  - oynat queen televizyon mutfak
+- name: play_beatles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - oynat beatles salon
+  - oynat beatles televizyon salon
+- name: play_radiohead_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - oynat radiohead salon
+  - oynat radiohead televizyon salon
+- name: play_abba_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: abba
+  sentences:
+  - oynat abba salon
+  - oynat abba televizyon salon
+- name: play_coldplay_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - oynat coldplay salon
+  - oynat coldplay televizyon salon
+- name: play_adele_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: adele
+  sentences:
+  - oynat adele salon
+  - oynat adele televizyon salon
+- name: play_prince_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: prince
+  sentences:
+  - oynat prince salon
+  - oynat prince televizyon salon
+- name: play_bowie_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - oynat bowie salon
+  - oynat bowie televizyon salon
+- name: play_nirvana_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - oynat nirvana salon
+  - oynat nirvana televizyon salon
+- name: play_eagles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - oynat eagles salon
+  - oynat eagles televizyon salon
+- name: play_madonna_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - oynat madonna salon
+  - oynat madonna televizyon salon
+- name: play_mozart_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - oynat mozart salon
+  - oynat mozart televizyon salon
+- name: play_daft punk_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - oynat daft punk salon
+  - oynat daft punk televizyon salon
+- name: play_biafra_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - oynat biafra salon
+  - oynat biafra televizyon salon
+- name: play_queen_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - oynat queen mutfak
+  - oynat queen televizyon mutfak
+- name: play_beatles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - oynat beatles mutfak
+  - oynat beatles televizyon mutfak
+- name: play_radiohead_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - oynat radiohead mutfak
+  - oynat radiohead televizyon mutfak
+- name: play_abba_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: abba
+  sentences:
+  - oynat abba mutfak
+  - oynat abba televizyon mutfak
+- name: play_coldplay_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - oynat coldplay mutfak
+  - oynat coldplay televizyon mutfak
+- name: play_adele_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: adele
+  sentences:
+  - oynat adele mutfak
+  - oynat adele televizyon mutfak
+- name: play_prince_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: prince
+  sentences:
+  - oynat prince mutfak
+  - oynat prince televizyon mutfak
+- name: play_bowie_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - oynat bowie mutfak
+  - oynat bowie televizyon mutfak
+- name: play_nirvana_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - oynat nirvana mutfak
+  - oynat nirvana televizyon mutfak
+- name: play_eagles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - oynat eagles mutfak
+  - oynat eagles televizyon mutfak
+- name: play_madonna_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - oynat madonna mutfak
+  - oynat madonna televizyon mutfak
+- name: play_mozart_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - oynat mozart mutfak
+  - oynat mozart televizyon mutfak
+- name: play_daft punk_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - oynat daft punk mutfak
+  - oynat daft punk televizyon mutfak
+- name: play_biafra_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - oynat biafra mutfak
+  - oynat biafra televizyon mutfak
+- name: play_queen_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: queen
+  sentences:
+  - oynat queen office
+  - oynat queen televizyon office
+- name: play_beatles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - oynat beatles office
+  - oynat beatles televizyon office
+- name: play_radiohead_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - oynat radiohead office
+  - oynat radiohead televizyon office
+- name: play_abba_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: abba
+  sentences:
+  - oynat abba office
+  - oynat abba televizyon office
+- name: play_coldplay_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - oynat coldplay office
+  - oynat coldplay televizyon office
+- name: play_adele_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: adele
+  sentences:
+  - oynat adele office
+  - oynat adele televizyon office
+- name: play_prince_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: prince
+  sentences:
+  - oynat prince office
+  - oynat prince televizyon office
+- name: play_bowie_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - oynat bowie office
+  - oynat bowie televizyon office
+- name: play_nirvana_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - oynat nirvana office
+  - oynat nirvana televizyon office
+- name: play_eagles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - oynat eagles office
+  - oynat eagles televizyon office
+- name: play_madonna_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - oynat madonna office
+  - oynat madonna televizyon office
+- name: play_mozart_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - oynat mozart office
+  - oynat mozart televizyon office
+- name: play_daft punk_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - oynat daft punk office
+  - oynat daft punk televizyon office
+- name: play_biafra_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - oynat biafra office
+  - oynat biafra televizyon office
+- name: radio_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - oynat queen radio mode salon
+- name: now_living
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - ne televizyon salon
+  - ne track salon
+- name: radio_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - oynat queen radio mode mutfak
+- name: now_kitchen
+  conditions:
+  - type: query
+    entity_id: media_player.kitchen_music
+  sentences:
+  - ne televizyon mutfak
+  - ne track mutfak
+- name: radio_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - oynat queen radio mode office
+- name: now_office
+  conditions:
+  - type: query
+    entity_id: media_player.office_music
+  sentences:
+  - ne televizyon office
+  - ne track office

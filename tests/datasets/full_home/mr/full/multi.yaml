@@ -1,0 +1,142 @@
+- name: multi_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva baithak ani svayampak
+  - diva baithak ani svayampak chalu
+- name: multi_off_lock
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - band diva baithak ani kulup darwaja
+  - band baithak ani kulup darwaja
+- name: multi_kitchen_dining
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva svayampak ani kutumbess
+  - diva svayampak ani kutumbess chalu
+- name: multi_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva office ani hallway
+  - diva office ani hallway chalu
+- name: multi_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva garage ani garden
+  - diva garage ani garden chalu
+- name: multi_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva shayankaksh ani main bath
+  - diva shayankaksh ani main bath chalu
+- name: multi_family_room_living
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva kutumb ani baithak
+  - diva kutumb ani baithak chalu
+- name: multi_basement_garden
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva basement ani garden
+  - diva basement ani garden chalu
+- name: multi_hallway_office
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva hallway ani office
+  - diva hallway ani office chalu
+- name: multi_dining_kitchen
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva kutumbess ani svayampak
+  - diva kutumbess ani svayampak chalu
+- name: multi_bedroom_2_bedroom_3
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - chalu diva shayankaksh2 ani shayankaksh3
+  - diva shayankaksh2 ani shayankaksh3 chalu

@@ -1,0 +1,321 @@
+- name: cover.living_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - کھولو پردہ لانج
+  - پردہ لانج کھولو
+- name: cover.living_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: closed
+  sentences:
+  - بندکرو پردہ لانج
+  - پردہ لانج بندکرو
+- name: cover.living_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 0
+  sentences:
+  - رکھو پردہ لانج 0
+  - پردہ لانج 0
+- name: cover.living_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 25
+  sentences:
+  - رکھو پردہ لانج 25
+  - پردہ لانج 25
+- name: cover.living_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 40
+  sentences:
+  - رکھو پردہ لانج 40
+  - پردہ لانج 40
+- name: cover.living_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 75
+  sentences:
+  - رکھو پردہ لانج 75
+  - پردہ لانج 75
+- name: cover.living_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    attributes:
+      position: 100
+  sentences:
+  - رکھو پردہ لانج 100
+  - پردہ لانج 100
+- name: cover.master_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - کھولو پردہ bedroom
+  - پردہ bedroom کھولو
+- name: cover.master_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: closed
+  sentences:
+  - بندکرو پردہ bedroom
+  - پردہ bedroom بندکرو
+- name: cover.master_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 0
+  sentences:
+  - رکھو پردہ bedroom 0
+  - پردہ bedroom 0
+- name: cover.master_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 25
+  sentences:
+  - رکھو پردہ bedroom 25
+  - پردہ bedroom 25
+- name: cover.master_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 40
+  sentences:
+  - رکھو پردہ bedroom 40
+  - پردہ bedroom 40
+- name: cover.master_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 75
+  sentences:
+  - رکھو پردہ bedroom 75
+  - پردہ bedroom 75
+- name: cover.master_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    attributes:
+      position: 100
+  sentences:
+  - رکھو پردہ bedroom 100
+  - پردہ bedroom 100
+- name: cover.bedroom2_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: open
+  sentences:
+  - کھولو پردہ bedroom2
+  - پردہ bedroom2 کھولو
+- name: cover.bedroom2_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    state: closed
+  sentences:
+  - بندکرو پردہ bedroom2
+  - پردہ bedroom2 بندکرو
+- name: cover.bedroom2_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 0
+  sentences:
+  - رکھو پردہ bedroom2 0
+  - پردہ bedroom2 0
+- name: cover.bedroom2_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 25
+  sentences:
+  - رکھو پردہ bedroom2 25
+  - پردہ bedroom2 25
+- name: cover.bedroom2_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 40
+  sentences:
+  - رکھو پردہ bedroom2 40
+  - پردہ bedroom2 40
+- name: cover.bedroom2_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 75
+  sentences:
+  - رکھو پردہ bedroom2 75
+  - پردہ bedroom2 75
+- name: cover.bedroom2_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom2_blinds
+    attributes:
+      position: 100
+  sentences:
+  - رکھو پردہ bedroom2 100
+  - پردہ bedroom2 100
+- name: cover.bedroom3_blinds_open
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: open
+  sentences:
+  - کھولو پردہ bedroom3
+  - پردہ bedroom3 کھولو
+- name: cover.bedroom3_blinds_close
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    state: closed
+  sentences:
+  - بندکرو پردہ bedroom3
+  - پردہ bedroom3 بندکرو
+- name: cover.bedroom3_blinds_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 0
+  sentences:
+  - رکھو پردہ bedroom3 0
+  - پردہ bedroom3 0
+- name: cover.bedroom3_blinds_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 25
+  sentences:
+  - رکھو پردہ bedroom3 25
+  - پردہ bedroom3 25
+- name: cover.bedroom3_blinds_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 40
+  sentences:
+  - رکھو پردہ bedroom3 40
+  - پردہ bedroom3 40
+- name: cover.bedroom3_blinds_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 75
+  sentences:
+  - رکھو پردہ bedroom3 75
+  - پردہ bedroom3 75
+- name: cover.bedroom3_blinds_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.bedroom3_blinds
+    attributes:
+      position: 100
+  sentences:
+  - رکھو پردہ bedroom3 100
+  - پردہ bedroom3 100
+- name: cover.garage_door_open
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: open
+  sentences:
+  - کھولو پردہ garage
+  - پردہ garage کھولو
+- name: cover.garage_door_close
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    state: closed
+  sentences:
+  - بندکرو پردہ garage
+  - پردہ garage بندکرو
+- name: cover.garage_door_pos_0
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 0
+  sentences:
+  - رکھو پردہ garage 0
+  - پردہ garage 0
+- name: cover.garage_door_pos_25
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 25
+  sentences:
+  - رکھو پردہ garage 25
+  - پردہ garage 25
+- name: cover.garage_door_pos_40
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 40
+  sentences:
+  - رکھو پردہ garage 40
+  - پردہ garage 40
+- name: cover.garage_door_pos_75
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 75
+  sentences:
+  - رکھو پردہ garage 75
+  - پردہ garage 75
+- name: cover.garage_door_pos_100
+  conditions:
+  - type: action
+    entity_id: cover.garage_door
+    attributes:
+      position: 100
+  sentences:
+  - رکھو پردہ garage 100
+  - پردہ garage 100
+- name: cover.living_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: open
+  sentences:
+  - کھولو پردہ لانج
+  - پردہ لانج کھولو
+- name: cover.master_blinds_open_extra
+  conditions:
+  - type: action
+    entity_id: cover.master_blinds
+    state: open
+  sentences:
+  - کھولو پردہ bedroom
+  - پردہ bedroom کھولو

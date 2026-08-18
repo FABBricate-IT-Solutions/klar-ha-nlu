@@ -1,0 +1,16 @@
+- name: vacuum_start
+  conditions:
+  - type: action
+    entity_id: vacuum.robot
+    state: 'on'
+  sentences:
+  - ijunk siurblys
+  - siurblys ijunk
+- name: vacuum_dock
+  conditions:
+  - type: action
+    entity_id: vacuum.robot
+    state: 'off'
+  sentences:
+  - isjunk siurblys
+  - siurblys isjunk

@@ -1,0 +1,529 @@
+- name: play_queen
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen salon
+  - play queen musique salon
+- name: play_album
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: rumours
+      media_type: album
+      artist: fleetwood mac
+  sentences:
+  - play album rumours by fleetwood mac salon
+- name: play_radio
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode salon
+- name: queue_song
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: bohemian rhapsody
+      enqueue: add
+  sentences:
+  - play bohemian rhapsody queue salon
+- name: now_playing
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - quel musique salon
+  - quel track salon
+- name: music_volume_10
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 10
+  sentences:
+  - mets musique salon 10
+  - musique salon 10
+- name: music_volume_20
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 20
+  sentences:
+  - mets musique salon 20
+  - musique salon 20
+- name: music_volume_30
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 30
+  sentences:
+  - mets musique salon 30
+  - musique salon 30
+- name: music_volume_50
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 50
+  sentences:
+  - mets musique salon 50
+  - musique salon 50
+- name: music_volume_80
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 80
+  sentences:
+  - mets musique salon 80
+  - musique salon 80
+- name: music_next
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: next
+  sentences:
+  - next track salon
+- name: music_prev
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: previous
+  sentences:
+  - previous track salon
+- name: kitchen_play
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen cuisine
+  - play queen musique cuisine
+- name: play_beatles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles salon
+  - play beatles musique salon
+- name: play_radiohead_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead salon
+  - play radiohead musique salon
+- name: play_abba_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba salon
+  - play abba musique salon
+- name: play_coldplay_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay salon
+  - play coldplay musique salon
+- name: play_adele_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele salon
+  - play adele musique salon
+- name: play_prince_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince salon
+  - play prince musique salon
+- name: play_bowie_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie salon
+  - play bowie musique salon
+- name: play_nirvana_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana salon
+  - play nirvana musique salon
+- name: play_eagles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles salon
+  - play eagles musique salon
+- name: play_madonna_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna salon
+  - play madonna musique salon
+- name: play_mozart_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart salon
+  - play mozart musique salon
+- name: play_daft punk_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk salon
+  - play daft punk musique salon
+- name: play_biafra_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra salon
+  - play biafra musique salon
+- name: play_queen_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen cuisine
+  - play queen musique cuisine
+- name: play_beatles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles cuisine
+  - play beatles musique cuisine
+- name: play_radiohead_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead cuisine
+  - play radiohead musique cuisine
+- name: play_abba_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba cuisine
+  - play abba musique cuisine
+- name: play_coldplay_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay cuisine
+  - play coldplay musique cuisine
+- name: play_adele_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele cuisine
+  - play adele musique cuisine
+- name: play_prince_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince cuisine
+  - play prince musique cuisine
+- name: play_bowie_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie cuisine
+  - play bowie musique cuisine
+- name: play_nirvana_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana cuisine
+  - play nirvana musique cuisine
+- name: play_eagles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles cuisine
+  - play eagles musique cuisine
+- name: play_madonna_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna cuisine
+  - play madonna musique cuisine
+- name: play_mozart_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart cuisine
+  - play mozart musique cuisine
+- name: play_daft punk_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk cuisine
+  - play daft punk musique cuisine
+- name: play_biafra_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra cuisine
+  - play biafra musique cuisine
+- name: play_queen_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen bureau
+  - play queen musique bureau
+- name: play_beatles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles bureau
+  - play beatles musique bureau
+- name: play_radiohead_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead bureau
+  - play radiohead musique bureau
+- name: play_abba_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba bureau
+  - play abba musique bureau
+- name: play_coldplay_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay bureau
+  - play coldplay musique bureau
+- name: play_adele_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele bureau
+  - play adele musique bureau
+- name: play_prince_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince bureau
+  - play prince musique bureau
+- name: play_bowie_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie bureau
+  - play bowie musique bureau
+- name: play_nirvana_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana bureau
+  - play nirvana musique bureau
+- name: play_eagles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles bureau
+  - play eagles musique bureau
+- name: play_madonna_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna bureau
+  - play madonna musique bureau
+- name: play_mozart_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart bureau
+  - play mozart musique bureau
+- name: play_daft punk_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk bureau
+  - play daft punk musique bureau
+- name: play_biafra_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra bureau
+  - play biafra musique bureau
+- name: radio_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode salon
+- name: now_living
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - quel musique salon
+  - quel track salon
+- name: radio_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode cuisine
+- name: now_kitchen
+  conditions:
+  - type: query
+    entity_id: media_player.kitchen_music
+  sentences:
+  - quel musique cuisine
+  - quel track cuisine
+- name: radio_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode bureau
+- name: now_office
+  conditions:
+  - type: query
+    entity_id: media_player.office_music
+  sentences:
+  - quel musique bureau
+  - quel track bureau

@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - iesledz gaisma istaba
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - izsledz gaisma virtuve
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

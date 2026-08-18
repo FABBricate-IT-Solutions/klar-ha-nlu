@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- liga timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- liga timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- liga timer abstract
+timers/timers::cancel_all_timers:
+- desliga tudo timer
+timers/timers::timer_laundry_cancel:
+- liga timer laundry
+timers/timers::timer_laundry_decrease:
+- liga timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- liga timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- desliga timer laundry
+timers/timers::timer_laundry_start:
+- liga timer laundry
+timers/timers::timer_laundry_status:
+- que timer laundry
+timers/timers::timer_laundry_unpause:
+- liga timer laundry
+timers/timers::timer_oven_cancel:
+- liga timer oven
+timers/timers::timer_oven_decrease:
+- liga timer oven 44 min
+timers/timers::timer_oven_increase:
+- liga timer oven 30 min
+timers/timers::timer_oven_pause:
+- desliga timer oven
+timers/timers::timer_oven_start:
+- liga timer oven 2 min
+timers/timers::timer_oven_status:
+- que timer oven
+timers/timers::timer_oven_unpause:
+- liga timer oven

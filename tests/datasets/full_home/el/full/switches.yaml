@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - αναψε πιατα κουζινα
+  - πιατα κουζινα αναψε
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - σβησε πιατα κουζινα
+  - πιατα κουζινα σβησε
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - αναψε πλυντηριο πλυσταριο
+  - πλυντηριο πλυσταριο αναψε
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - σβησε πλυντηριο πλυσταριο
+  - πλυντηριο πλυσταριο σβησε
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - αναψε dryer πλυσταριο
+  - dryer πλυσταριο αναψε
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - σβησε dryer πλυσταριο
+  - dryer πλυσταριο σβησε
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - αναψε rangehood κουζινα
+  - rangehood κουζινα αναψε
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - σβησε rangehood κουζινα
+  - rangehood κουζινα σβησε
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - αναψε ανεμιστηραςbad μπανιοmaster
+  - ανεμιστηραςbad μπανιοmaster αναψε
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - σβησε ανεμιστηραςbad μπανιοmaster
+  - ανεμιστηραςbad μπανιοmaster σβησε
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - αναψε ανεμιστηραςbad main bath
+  - ανεμιστηραςbad main bath αναψε
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - σβησε ανεμιστηραςbad main bath
+  - ανεμιστηραςbad main bath σβησε

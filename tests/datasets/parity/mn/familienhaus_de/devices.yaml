@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- tokhiruul khalaalt zochny 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- tokhiruul khalaalt untlagiin 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- tokhiruul khoshig untlagiin2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- khaa khoshig untlagiin2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- nee khoshig untlagiin2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- tokhiruul khoshig untlagiin3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- khaa khoshig untlagiin3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- nee khoshig untlagiin3
+devices/cover_garage_door::cover_garage_door_change_position:
+- tokhiruul khoshig garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- khaa khoshig garage
+devices/cover_garage_door::cover_garage_door_open:
+- nee khoshig garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- tokhiruul khoshig zochny 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- khaa khoshig zochny
+devices/cover_living_blinds::cover_living_blinds_open:
+- nee khoshig zochny
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- tokhiruul khoshig untlagiin 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- khaa khoshig untlagiin
+devices/cover_master_blinds::cover_master_blinds_open:
+- nee khoshig untlagiin
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- tokhiruul sens untlagiin2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- untraa sens untlagiin2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- asaa sens untlagiin2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- tokhiruul sens gerbul 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- untraa sens gerbul
+devices/fan_family_fan::fan_family_fan_turn_on:
+- asaa sens gerbul
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- tokhiruul sens untlagiin 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- untraa sens untlagiin
+devices/fan_master_fan::fan_master_fan_turn_on:
+- asaa sens untlagiin
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- untraa sens untlagiin ba untraa gerel galtogoo
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- asaa sens untlagiin ba asaa gerel galtogoo
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- tokhiruul taaz untlagiin2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- tokhiruul taaz untlagiin2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- untraa taaz untlagiin2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- asaa taaz untlagiin2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- tokhiruul taaz untlagiin3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- tokhiruul taaz untlagiin3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- untraa taaz untlagiin3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- asaa taaz untlagiin3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- tokhiruul taaz untlagiin4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- tokhiruul taaz untlagiin4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- untraa taaz untlagiin4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- asaa taaz untlagiin4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- tokhiruul gerel gerbuless 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- tokhiruul gerel gerbuless blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- untraa gerel gerbuless
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- asaa gerel gerbuless
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- tokhiruul gerel orol 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- tokhiruul gerel orol yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- untraa gerel orol
+devices/light_entryway_light::light_entryway_light_turn_on:
+- asaa gerel orol
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- tokhiruul taaz gerbul 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- tokhiruul taaz gerbul purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- untraa taaz gerbul
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- asaa taaz gerbul
+devices/light_garage_light::light_garage_light_change_brightness:
+- tokhiruul gerel garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- tokhiruul gerel garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- untraa gerel garage
+devices/light_garage_light::light_garage_light_turn_on:
+- asaa gerel garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- tokhiruul gerel orolgang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- tokhiruul gerel orolgang white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- untraa gerel orolgang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- asaa gerel orolgang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- tokhiruul taaz galtogoo 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- tokhiruul taaz galtogoo orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- untraa taaz galtogoo
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- asaa taaz galtogoo
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- tokhiruul gerel galtogoo 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- tokhiruul gerel galtogoo green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- untraa gerel galtogoo
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- asaa gerel galtogoo
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- tokhiruul gerel ugaalga 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- tokhiruul gerel ugaalga white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- untraa gerel ugaalga
+devices/light_laundry_light::light_laundry_light_turn_on:
+- asaa gerel ugaalga
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- tokhiruul taaz zochny 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- tokhiruul taaz zochny black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- untraa taaz zochny
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- asaa taaz zochny
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- tokhiruul gerel zochny 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- tokhiruul gerel zochny red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- untraa gerel zochny
+devices/light_living_lamp::light_living_lamp_turn_on:
+- asaa gerel zochny
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- tokhiruul gerel main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- tokhiruul gerel main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- untraa gerel main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- asaa gerel main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- tokhiruul gerel untlagiinugasalgach 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- tokhiruul gerel untlagiinugasalgach black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- untraa gerel untlagiinugasalgach
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- asaa gerel untlagiinugasalgach
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- tokhiruul oronii untlagiin 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- tokhiruul oronii untlagiin red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- untraa oronii untlagiin
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- asaa oronii untlagiin
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- tokhiruul taaz untlagiin 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- tokhiruul taaz untlagiin blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- untraa taaz untlagiin
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- asaa taaz untlagiin
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- tokhiruul gerel untlagiin 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- tokhiruul gerel untlagiin black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- untraa gerel untlagiin
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- asaa gerel untlagiin
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- tokhiruul gerel oroon 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- tokhiruul gerel oroon black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- untraa gerel oroon
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- asaa gerel oroon
+devices/lock_front_door::lock_front_door_lock:
+- tugjee tugjee orol
+devices/lock_front_door::lock_front_door_unlock:
+- nee tugjee orol
+devices/lock_garage_entry::lock_garage_entry_lock:
+- tugjee tugjee garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- nee tugjee garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- asaa televiz gerbul
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause televiz gerbul
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- untraa televiz gerbul
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- asaa televiz gerbul
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- asaa televiz gerbul
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- asaa televiz gerbul
+devices/media_player_living_tv::media_player_living_tv_mute:
+- asaa televiz zochny
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause televiz zochny
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- untraa televiz zochny
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- asaa televiz zochny
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- asaa televiz zochny
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- asaa televiz zochny
+devices/scenes::dinner_time:
+- tokhiruul gerel gerbuless 90 ba asaa taaz galtogoo ba tokhiruul gerel galtogoo 80
+devices/scenes::good_morning:
+- asaa taaz galtogoo ba tokhiruul gerel gerbuless 100 ba nee khoshig zochny ba nee
+  khoshig untlagiin
+devices/scenes::kids_bedtime:
+- untraa taaz untlagiin2 ba untraa taaz untlagiin3 ba untraa taaz untlagiin4 ba tokhiruul
+  gerel orolgang 15
+devices/scenes::movie_night:
+- untraa taaz zochny ba tokhiruul gerel zochny 20 ba asaa televiz zochny ba khaa khoshig
+  zochny
+devices/scripts::good_night:
+- asaa uzegdel shono
+devices/scripts::leaving_home:
+- asaa uzegdel garah
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- untraa sav
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- asaa sav
+devices/switch_dryer::switch_dryer_turn_off:
+- untraa ugaalgyn
+devices/switch_dryer::switch_dryer_turn_on:
+- asaa ugaalgyn
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- untraa ugaalgyn
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- asaa ugaalgyn

@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - lulita noudepesu kook
+  - noudepesu kook lulita
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - kustuta noudepesu kook
+  - noudepesu kook kustuta
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - lulita pesumasin pesuruum
+  - pesumasin pesuruum lulita
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - kustuta pesumasin pesuruum
+  - pesumasin pesuruum kustuta
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - lulita dryer pesuruum
+  - dryer pesuruum lulita
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - kustuta dryer pesuruum
+  - dryer pesuruum kustuta
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - lulita rangehood kook
+  - rangehood kook lulita
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - kustuta rangehood kook
+  - rangehood kook kustuta
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - lulita ventilaatorbad vannmaster
+  - ventilaatorbad vannmaster lulita
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - kustuta ventilaatorbad vannmaster
+  - ventilaatorbad vannmaster kustuta
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - lulita ventilaatorbad main bath
+  - ventilaatorbad main bath lulita
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - kustuta ventilaatorbad main bath
+  - ventilaatorbad main bath kustuta

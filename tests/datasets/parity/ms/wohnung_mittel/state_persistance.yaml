@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - hidupkan pendingin ruang
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - hidupkan lampu ruang
+  - matikan
+state_persistance/spoken::kugel_dann_aus:
+- - hidupkan bola
+  - matikan
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - hidupkan lampu ruang
+  - hidupkan lampu dapur
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - hidupkan lampu ruang
+  - red

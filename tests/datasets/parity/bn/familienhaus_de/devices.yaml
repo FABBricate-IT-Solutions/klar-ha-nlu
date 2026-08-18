@@ -1,0 +1,267 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- set gorom bosar 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- set gorom shobarghor 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- set porda shobarghor2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- bondho porda shobarghor2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- khol porda shobarghor2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- set porda shobarghor3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- bondho porda shobarghor3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- khol porda shobarghor3
+devices/cover_garage_door::cover_garage_door_change_position:
+- set porda garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- bondho porda garage
+devices/cover_garage_door::cover_garage_door_open:
+- khol porda garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- set porda bosar 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- bondho porda bosar
+devices/cover_living_blinds::cover_living_blinds_open:
+- khol porda bosar
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- set porda shobarghor 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- bondho porda shobarghor
+devices/cover_master_blinds::cover_master_blinds_open:
+- khol porda shobarghor
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- set pakha shobarghor2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- nibhao pakha shobarghor2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- jalao pakha shobarghor2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- set pakha paribarik 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- nibhao pakha paribarik
+devices/fan_family_fan::fan_family_fan_turn_on:
+- jalao pakha paribarik
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- set pakha shobarghor 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- nibhao pakha shobarghor
+devices/fan_master_fan::fan_master_fan_turn_on:
+- jalao pakha shobarghor
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- nibhao pakha shobarghor ebong nibhao alo ranna
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- jalao pakha shobarghor ebong jalao alo ranna
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- set chhad shobarghor2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- set chhad shobarghor2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- nibhao chhad shobarghor2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- jalao chhad shobarghor2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- set chhad shobarghor3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- set chhad shobarghor3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- nibhao chhad shobarghor3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- jalao chhad shobarghor3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- set chhad shobarghor4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- set chhad shobarghor4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- nibhao chhad shobarghor4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- jalao chhad shobarghor4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- set alo paribarikess 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- set alo paribarikess blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- nibhao alo paribarikess
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- jalao alo paribarikess
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- set alo prabesh 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- set alo prabesh yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- nibhao alo prabesh
+devices/light_entryway_light::light_entryway_light_turn_on:
+- jalao alo prabesh
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- set chhad paribarik 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- set chhad paribarik purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- nibhao chhad paribarik
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- jalao chhad paribarik
+devices/light_garage_light::light_garage_light_change_brightness:
+- set alo garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- set alo garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- nibhao alo garage
+devices/light_garage_light::light_garage_light_turn_on:
+- jalao alo garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- set alo prabeshgang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- set alo prabeshgang white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- nibhao alo prabeshgang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- jalao alo prabeshgang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- set chhad ranna 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- set chhad ranna orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- nibhao chhad ranna
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- jalao chhad ranna
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- set alo ranna 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- set alo ranna green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- nibhao alo ranna
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- jalao alo ranna
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- set alo dhoa 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- set alo dhoa white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- nibhao alo dhoa
+devices/light_laundry_light::light_laundry_light_turn_on:
+- jalao alo dhoa
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- set chhad bosar 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- set chhad bosar black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- nibhao chhad bosar
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- jalao chhad bosar
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- set alo bosar 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- set alo bosar red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- nibhao alo bosar
+devices/light_living_lamp::light_living_lamp_turn_on:
+- jalao alo bosar
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- set alo main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- set alo main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- nibhao alo main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- jalao alo main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- set alo masterbath 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- set alo masterbath black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- nibhao alo masterbath
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- jalao alo masterbath
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- set bichana shobarghor 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- set bichana shobarghor red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- nibhao bichana shobarghor
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- jalao bichana shobarghor
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- set chhad shobarghor 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- set chhad shobarghor blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- nibhao chhad shobarghor
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- jalao chhad shobarghor
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- set alo shobarghor 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- set alo shobarghor black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- nibhao alo shobarghor
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- jalao alo shobarghor
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- set alo shauchagar 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- set alo shauchagar black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- nibhao alo shauchagar
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- jalao alo shauchagar
+devices/lock_front_door::lock_front_door_lock:
+- tala tala prabesh
+devices/lock_front_door::lock_front_door_unlock:
+- khol tala prabesh
+devices/lock_garage_entry::lock_garage_entry_lock:
+- tala tala garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- khol tala garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- jalao tivi paribarik
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause tivi paribarik
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- nibhao tivi paribarik
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- jalao tivi paribarik
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- jalao tivi paribarik
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- jalao tivi paribarik
+devices/media_player_living_tv::media_player_living_tv_mute:
+- jalao tivi bosar
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause tivi bosar
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- nibhao tivi bosar
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- jalao tivi bosar
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- jalao tivi bosar
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- jalao tivi bosar
+devices/scenes::dinner_time:
+- set alo paribarikess 90 ebong jalao chhad ranna ebong set alo ranna 80
+devices/scenes::good_morning:
+- jalao chhad ranna ebong set alo paribarikess 100 ebong khol porda bosar ebong khol
+  porda shobarghor
+devices/scenes::kids_bedtime:
+- nibhao chhad shobarghor2 ebong nibhao chhad shobarghor3 ebong nibhao chhad shobarghor4
+  ebong set alo prabeshgang 15
+devices/scenes::movie_night:
+- nibhao chhad bosar ebong set alo bosar 20 ebong jalao tivi bosar ebong bondho porda
+  bosar
+devices/scripts::good_night:
+- jalao drishyo rat
+devices/scripts::leaving_home:
+- jalao drishyo ber
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- nibhao basan
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- jalao basan
+devices/switch_dryer::switch_dryer_turn_off:
+- nibhao washing
+devices/switch_dryer::switch_dryer_turn_on:
+- jalao washing
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- nibhao washing
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- jalao washing

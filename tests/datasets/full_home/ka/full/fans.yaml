@@ -1,0 +1,156 @@
+- name: fan.family_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'on'
+  sentences:
+  - ventilatori ojakhisotakhi charte
+  - charte ventilatori ojakhisotakhi
+- name: fan.family_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    state: 'off'
+  sentences:
+  - gamorte ventilatori ojakhisotakhi
+  - ventilatori ojakhisotakhi gamorte
+- name: fan.family_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - daayene ventilatori ojakhisotakhi 40
+  - ventilatori ojakhisotakhi 40
+- name: fan.master_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  sentences:
+  - ventilatori sadzinebeli charte
+  - charte ventilatori sadzinebeli
+- name: fan.master_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'off'
+  sentences:
+  - gamorte ventilatori sadzinebeli
+  - ventilatori sadzinebeli gamorte
+- name: fan.master_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - daayene ventilatori sadzinebeli 40
+  - ventilatori sadzinebeli 40
+- name: fan.bedroom2_fan_on
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'on'
+  sentences:
+  - ventilatori sadzinebeli2 charte
+  - charte ventilatori sadzinebeli2
+- name: fan.bedroom2_fan_off
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    state: 'off'
+  sentences:
+  - gamorte ventilatori sadzinebeli2
+  - ventilatori sadzinebeli2 gamorte
+- name: fan.bedroom2_fan_speed
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 40
+  sentences:
+  - daayene ventilatori sadzinebeli2 40
+  - ventilatori sadzinebeli2 40
+- name: fan.family_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - daayene ventilatori ojakhisotakhi 20
+  - ventilatori ojakhisotakhi 20
+- name: fan.family_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - daayene ventilatori ojakhisotakhi 60
+  - ventilatori ojakhisotakhi 60
+- name: fan.family_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.family_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - daayene ventilatori ojakhisotakhi 80
+  - ventilatori ojakhisotakhi 80
+- name: fan.master_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - daayene ventilatori sadzinebeli 20
+  - ventilatori sadzinebeli 20
+- name: fan.master_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - daayene ventilatori sadzinebeli 60
+  - ventilatori sadzinebeli 60
+- name: fan.master_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - daayene ventilatori sadzinebeli 80
+  - ventilatori sadzinebeli 80
+- name: fan.bedroom2_fan_speed_20
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 20
+  sentences:
+  - daayene ventilatori sadzinebeli2 20
+  - ventilatori sadzinebeli2 20
+- name: fan.bedroom2_fan_speed_60
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 60
+  sentences:
+  - daayene ventilatori sadzinebeli2 60
+  - ventilatori sadzinebeli2 60
+- name: fan.bedroom2_fan_speed_80
+  conditions:
+  - type: action
+    entity_id: fan.bedroom2_fan
+    attributes:
+      percentage: 80
+  sentences:
+  - daayene ventilatori sadzinebeli2 80
+  - ventilatori sadzinebeli2 80

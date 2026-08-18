@@ -1,0 +1,248 @@
+query_area/bedroom_2_covers::bedroom_2_covers_get_position:
+- kas uzuolaida miegamasis2
+query_area/bedroom_2_covers::bedroom_2_covers_get_state:
+- kas uzuolaida miegamasis2
+query_area/bedroom_2_covers::bedroom_2_covers_list_closed_covers:
+- kas uzuolaida miegamasis2
+query_area/bedroom_2_covers::bedroom_2_covers_list_open_covers:
+- kas uzuolaida miegamasis2
+query_area/bedroom_2_fans::bedroom_2_fans_get_fan_speed:
+- kas ventiliatorius miegamasis2
+query_area/bedroom_2_fans::bedroom_2_fans_get_state:
+- kas ventiliatorius miegamasis2
+query_area/bedroom_2_fans::bedroom_2_fans_list_off_fans:
+- kas ventiliatorius miegamasis2
+query_area/bedroom_2_fans::bedroom_2_fans_list_on_fans:
+- kas ventiliatorius miegamasis2
+query_area/bedroom_2_lights::bedroom_2_lights_get_brightness:
+- kas sviesa miegamasis2
+query_area/bedroom_2_lights::bedroom_2_lights_get_state:
+- kas sviesa miegamasis2
+query_area/bedroom_2_lights::bedroom_2_lights_list_off_lights:
+- kas sviesa miegamasis2
+query_area/bedroom_2_lights::bedroom_2_lights_list_on_lights:
+- kas sviesa miegamasis2
+query_area/bedroom_3_covers::bedroom_3_covers_get_position:
+- kas uzuolaida miegamasis3
+query_area/bedroom_3_covers::bedroom_3_covers_get_state:
+- kas uzuolaida miegamasis3
+query_area/bedroom_3_covers::bedroom_3_covers_list_closed_covers:
+- kas uzuolaida miegamasis3
+query_area/bedroom_3_covers::bedroom_3_covers_list_open_covers:
+- kas uzuolaida miegamasis3
+query_area/bedroom_3_lights::bedroom_3_lights_get_brightness:
+- kas sviesa miegamasis3
+query_area/bedroom_3_lights::bedroom_3_lights_get_state:
+- kas sviesa miegamasis3
+query_area/bedroom_3_lights::bedroom_3_lights_list_off_lights:
+- kas sviesa miegamasis3
+query_area/bedroom_3_lights::bedroom_3_lights_list_on_lights:
+- kas sviesa miegamasis3
+query_area/bedroom_4_lights::bedroom_4_lights_get_brightness:
+- kas sviesa miegamasis4
+query_area/bedroom_4_lights::bedroom_4_lights_get_state:
+- kas sviesa miegamasis4
+query_area/bedroom_4_lights::bedroom_4_lights_list_off_lights:
+- kas sviesa miegamasis4
+query_area/bedroom_4_lights::bedroom_4_lights_list_on_lights:
+- kas sviesa miegamasis4
+query_area/dining_lights::dining_lights_get_brightness:
+- kas sviesa svetainefamess
+query_area/dining_lights::dining_lights_get_state:
+- kas sviesa svetainefamess
+query_area/dining_lights::dining_lights_list_off_lights:
+- kas sviesa svetainefamess
+query_area/dining_lights::dining_lights_list_on_lights:
+- kas sviesa svetainefamess
+query_area/entryway_lights::entryway_lights_get_brightness:
+- kas sviesa prieskambaris
+query_area/entryway_lights::entryway_lights_get_state:
+- kas sviesa prieskambaris
+query_area/entryway_lights::entryway_lights_list_off_lights:
+- kas sviesa prieskambaris
+query_area/entryway_lights::entryway_lights_list_on_lights:
+- kas sviesa prieskambaris
+query_area/entryway_locks::entryway_locks_get_state:
+- kas spyna prieskambaris
+query_area/entryway_locks::entryway_locks_list_locked_locks:
+- kas spyna prieskambaris
+query_area/entryway_locks::entryway_locks_list_unlocked_locks:
+- kas spyna prieskambaris
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
+- kas sviesa svetainefam ir kas sviesa virtuve
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
+- kas sviesa svetainefam ir kas sviesa virtuve
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
+- kas sviesa svetainefam ir kas sviesa virtuve
+query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
+- kas sviesa svetainefam ir kas sviesa virtuve
+query_area/family_room_fans::family_room_fans_get_fan_speed:
+- kas ventiliatorius svetainefam
+query_area/family_room_fans::family_room_fans_get_state:
+- kas ventiliatorius svetainefam
+query_area/family_room_fans::family_room_fans_list_off_fans:
+- kas ventiliatorius svetainefam
+query_area/family_room_fans::family_room_fans_list_on_fans:
+- kas ventiliatorius svetainefam
+query_area/family_room_lights::family_room_lights_get_brightness:
+- kas sviesa svetainefam
+query_area/family_room_lights::family_room_lights_get_state:
+- kas sviesa svetainefam
+query_area/family_room_lights::family_room_lights_list_off_lights:
+- kas sviesa svetainefam
+query_area/family_room_lights::family_room_lights_list_on_lights:
+- kas sviesa svetainefam
+query_area/garage_covers::garage_covers_get_position:
+- kas uzuolaida garage
+query_area/garage_covers::garage_covers_get_state:
+- kas uzuolaida garage
+query_area/garage_covers::garage_covers_list_closed_covers:
+- kas uzuolaida garage
+query_area/garage_covers::garage_covers_list_open_covers:
+- kas uzuolaida garage
+query_area/garage_lights::garage_lights_get_brightness:
+- kas sviesa garage
+query_area/garage_lights::garage_lights_get_state:
+- kas sviesa garage
+query_area/garage_lights::garage_lights_list_off_lights:
+- kas sviesa garage
+query_area/garage_lights::garage_lights_list_on_lights:
+- kas sviesa garage
+query_area/garage_locks::garage_locks_get_state:
+- kas spyna garage
+query_area/garage_locks::garage_locks_list_locked_locks:
+- kas spyna garage
+query_area/garage_locks::garage_locks_list_unlocked_locks:
+- kas spyna garage
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
+- kas sviesa prieskambarisgang ir kas sviesa wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
+- kas sviesa prieskambarisgang ir kas sviesa wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
+- kas sviesa prieskambarisgang ir kas sviesa wc
+query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
+- kas sviesa prieskambarisgang ir kas sviesa wc
+query_area/hallway_lights::hallway_lights_get_brightness:
+- kas sviesa prieskambarisgang
+query_area/hallway_lights::hallway_lights_get_state:
+- kas sviesa prieskambarisgang
+query_area/hallway_lights::hallway_lights_list_off_lights:
+- kas sviesa prieskambarisgang
+query_area/hallway_lights::hallway_lights_list_on_lights:
+- kas sviesa prieskambarisgang
+query_area/kitchen_lights::kitchen_lights_get_brightness:
+- kas sviesa virtuve
+query_area/kitchen_lights::kitchen_lights_get_state:
+- kas sviesa virtuve
+query_area/kitchen_lights::kitchen_lights_list_off_lights:
+- kas sviesa virtuve
+query_area/kitchen_lights::kitchen_lights_list_on_lights:
+- kas sviesa virtuve
+query_area/kitchen_switchs::kitchen_switchs_get_state:
+- kas prietaisas virtuve
+query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
+- kas prietaisas virtuve
+query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
+- kas prietaisas virtuve
+query_area/laundry_lights::laundry_lights_get_brightness:
+- kas sviesa skalbykla
+query_area/laundry_lights::laundry_lights_get_state:
+- kas sviesa skalbykla
+query_area/laundry_lights::laundry_lights_list_off_lights:
+- kas sviesa skalbykla
+query_area/laundry_lights::laundry_lights_list_on_lights:
+- kas sviesa skalbykla
+query_area/laundry_switchs::laundry_switchs_get_state:
+- kas prietaisas skalbykla
+query_area/laundry_switchs::laundry_switchs_list_off_switchs:
+- kas prietaisas skalbykla
+query_area/laundry_switchs::laundry_switchs_list_on_switchs:
+- kas prietaisas skalbykla
+query_area/living_climates::living_climates_get_temperature:
+- kas sildymas svetaine
+query_area/living_covers::living_covers_get_position:
+- kas uzuolaida svetaine
+query_area/living_covers::living_covers_get_state:
+- kas uzuolaida svetaine
+query_area/living_covers::living_covers_list_closed_covers:
+- kas uzuolaida svetaine
+query_area/living_covers::living_covers_list_open_covers:
+- kas uzuolaida svetaine
+query_area/living_lights::living_lights_get_brightness:
+- kas sviesa svetaine
+query_area/living_lights::living_lights_get_state:
+- kas sviesa svetaine
+query_area/living_lights::living_lights_list_off_lights:
+- kas sviesa svetaine
+query_area/living_lights::living_lights_list_on_lights:
+- kas sviesa svetaine
+query_area/main_bath_lights::main_bath_lights_get_brightness:
+- kas sviesa main bath
+query_area/main_bath_lights::main_bath_lights_get_state:
+- kas sviesa main bath
+query_area/main_bath_lights::main_bath_lights_list_off_lights:
+- kas sviesa main bath
+query_area/main_bath_lights::main_bath_lights_list_on_lights:
+- kas sviesa main bath
+query_area/main_bath_switchs::main_bath_switchs_get_state:
+- kas prietaisas main bath
+query_area/main_bath_switchs::main_bath_switchs_list_off_switchs:
+- kas prietaisas main bath
+query_area/main_bath_switchs::main_bath_switchs_list_on_switchs:
+- kas prietaisas main bath
+query_area/master_bath_lights::master_bath_lights_get_brightness:
+- kas sviesa voniamaster
+query_area/master_bath_lights::master_bath_lights_get_state:
+- kas sviesa voniamaster
+query_area/master_bath_lights::master_bath_lights_list_off_lights:
+- kas sviesa voniamaster
+query_area/master_bath_lights::master_bath_lights_list_on_lights:
+- kas sviesa voniamaster
+query_area/master_bath_switchs::master_bath_switchs_get_state:
+- kas prietaisas voniamaster
+query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
+- kas prietaisas voniamaster
+query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
+- kas prietaisas voniamaster
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
+- kas uzuolaida miegamasis ir kas uzuolaida svetaine
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
+- kas uzuolaida miegamasis ir kas uzuolaida svetaine
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
+- kas uzuolaida miegamasis ir kas uzuolaida svetaine
+query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
+- kas uzuolaida miegamasis ir kas uzuolaida svetaine
+query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
+- kas sildymas miegamasis
+query_area/master_bedroom_covers::master_bedroom_covers_get_position:
+- kas uzuolaida miegamasis
+query_area/master_bedroom_covers::master_bedroom_covers_get_state:
+- kas uzuolaida miegamasis
+query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
+- kas uzuolaida miegamasis
+query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
+- kas uzuolaida miegamasis
+query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
+- kas ventiliatorius miegamasis
+query_area/master_bedroom_fans::master_bedroom_fans_get_state:
+- kas ventiliatorius miegamasis
+query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
+- kas ventiliatorius miegamasis
+query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
+- kas ventiliatorius miegamasis
+query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
+- kas sviesa miegamasis
+query_area/master_bedroom_lights::master_bedroom_lights_get_state:
+- kas sviesa miegamasis
+query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
+- kas sviesa miegamasis
+query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
+- kas sviesa miegamasis
+query_area/powder_room_lights::powder_room_lights_get_brightness:
+- kas sviesa wc
+query_area/powder_room_lights::powder_room_lights_get_state:
+- kas sviesa wc
+query_area/powder_room_lights::powder_room_lights_list_off_lights:
+- kas sviesa wc
+query_area/powder_room_lights::powder_room_lights_list_on_lights:
+- kas sviesa wc

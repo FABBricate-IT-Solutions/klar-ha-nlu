@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - zamek zamek przedpokoj
+  - zamek przedpokoj zamek
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - otworz zamek przedpokoj
+  - zamek przedpokoj otworz
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - zamek zamek garage
+  - zamek garage zamek
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - otworz zamek garage
+  - zamek garage otworz
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - zamek zamek przedpokoj
+  - zamek przedpokoj zamek
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - zamek zamek garage
+  - zamek garage zamek

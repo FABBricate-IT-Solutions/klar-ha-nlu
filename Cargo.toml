@@ -2,7 +2,8 @@
 name = "klar-nlu"
 version = "2026.8.32"
 edition = "2021"
-description = "Deterministische deutsche NLU für Home Assistant"
+rust-version = "1.85"
+description = "Deterministic NLU for Home Assistant"
 license = "MIT"
 default-run = "klar"
 
@@ -23,6 +24,10 @@ strsim = "0.11"
 uuid = { version = "1", features = ["v4"] }
 serde_yaml = "0.9"
 tower-http = { version = "0.7.0", features = ["fs"] }
+
+[features]
+default = []
+disable-v1-parity = []
 
 [profile.test]
 opt-level = 1

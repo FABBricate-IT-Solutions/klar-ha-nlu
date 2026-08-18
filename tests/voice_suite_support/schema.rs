@@ -48,7 +48,7 @@ pub(crate) struct StateRecord {
     pub(crate) values: BTreeMap<String, serde_yaml::Value>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Deserialize)]
 #[serde(untagged)]
 pub(crate) enum Sentences {
     Turns(Vec<Vec<String>>),

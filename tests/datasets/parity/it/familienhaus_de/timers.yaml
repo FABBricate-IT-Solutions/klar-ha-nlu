@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- accendi timer abstract 45 minuto
+timers/timers::abstract_start_hours_minutes:
+- accendi timer abstract 20 minuto
+timers/timers::abstract_start_seconds:
+- accendi timer abstract
+timers/timers::cancel_all_timers:
+- spegni tutti timer
+timers/timers::timer_laundry_cancel:
+- accendi timer laundry
+timers/timers::timer_laundry_decrease:
+- accendi timer laundry 5 minuto
+timers/timers::timer_laundry_increase:
+- accendi timer laundry 16 minuto
+timers/timers::timer_laundry_pause:
+- spegni timer laundry
+timers/timers::timer_laundry_start:
+- accendi timer laundry
+timers/timers::timer_laundry_status:
+- cosa timer laundry
+timers/timers::timer_laundry_unpause:
+- accendi timer laundry
+timers/timers::timer_oven_cancel:
+- accendi timer oven
+timers/timers::timer_oven_decrease:
+- accendi timer oven 44 minuto
+timers/timers::timer_oven_increase:
+- accendi timer oven 30 minuto
+timers/timers::timer_oven_pause:
+- spegni timer oven
+timers/timers::timer_oven_start:
+- accendi timer oven 2 minuto
+timers/timers::timer_oven_status:
+- cosa timer oven
+timers/timers::timer_oven_unpause:
+- accendi timer oven

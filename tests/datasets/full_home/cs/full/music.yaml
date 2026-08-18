@@ -1,0 +1,529 @@
+- name: play_queen
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen obyvak
+  - play queen hudba obyvak
+- name: play_album
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: rumours
+      media_type: album
+      artist: fleetwood mac
+  sentences:
+  - play album rumours by fleetwood mac obyvak
+- name: play_radio
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode obyvak
+- name: queue_song
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: bohemian rhapsody
+      enqueue: add
+  sentences:
+  - play bohemian rhapsody queue obyvak
+- name: now_playing
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - co hudba obyvak
+  - co track obyvak
+- name: music_volume_10
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 10
+  sentences:
+  - nastav hudba obyvak 10
+  - hudba obyvak 10
+- name: music_volume_20
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 20
+  sentences:
+  - nastav hudba obyvak 20
+  - hudba obyvak 20
+- name: music_volume_30
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 30
+  sentences:
+  - nastav hudba obyvak 30
+  - hudba obyvak 30
+- name: music_volume_50
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 50
+  sentences:
+  - nastav hudba obyvak 50
+  - hudba obyvak 50
+- name: music_volume_80
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      volume_level: 80
+  sentences:
+  - nastav hudba obyvak 80
+  - hudba obyvak 80
+- name: music_next
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: next
+  sentences:
+  - next track obyvak
+- name: music_prev
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    state: previous
+  sentences:
+  - previous track obyvak
+- name: kitchen_play
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen kuchyne
+  - play queen hudba kuchyne
+- name: play_beatles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles obyvak
+  - play beatles hudba obyvak
+- name: play_radiohead_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead obyvak
+  - play radiohead hudba obyvak
+- name: play_abba_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba obyvak
+  - play abba hudba obyvak
+- name: play_coldplay_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay obyvak
+  - play coldplay hudba obyvak
+- name: play_adele_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele obyvak
+  - play adele hudba obyvak
+- name: play_prince_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince obyvak
+  - play prince hudba obyvak
+- name: play_bowie_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie obyvak
+  - play bowie hudba obyvak
+- name: play_nirvana_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana obyvak
+  - play nirvana hudba obyvak
+- name: play_eagles_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles obyvak
+  - play eagles hudba obyvak
+- name: play_madonna_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna obyvak
+  - play madonna hudba obyvak
+- name: play_mozart_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart obyvak
+  - play mozart hudba obyvak
+- name: play_daft punk_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk obyvak
+  - play daft punk hudba obyvak
+- name: play_biafra_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra obyvak
+  - play biafra hudba obyvak
+- name: play_queen_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen kuchyne
+  - play queen hudba kuchyne
+- name: play_beatles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles kuchyne
+  - play beatles hudba kuchyne
+- name: play_radiohead_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead kuchyne
+  - play radiohead hudba kuchyne
+- name: play_abba_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba kuchyne
+  - play abba hudba kuchyne
+- name: play_coldplay_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay kuchyne
+  - play coldplay hudba kuchyne
+- name: play_adele_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele kuchyne
+  - play adele hudba kuchyne
+- name: play_prince_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince kuchyne
+  - play prince hudba kuchyne
+- name: play_bowie_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie kuchyne
+  - play bowie hudba kuchyne
+- name: play_nirvana_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana kuchyne
+  - play nirvana hudba kuchyne
+- name: play_eagles_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles kuchyne
+  - play eagles hudba kuchyne
+- name: play_madonna_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna kuchyne
+  - play madonna hudba kuchyne
+- name: play_mozart_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart kuchyne
+  - play mozart hudba kuchyne
+- name: play_daft punk_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk kuchyne
+  - play daft punk hudba kuchyne
+- name: play_biafra_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra kuchyne
+  - play biafra hudba kuchyne
+- name: play_queen_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: queen
+  sentences:
+  - play queen office
+  - play queen hudba office
+- name: play_beatles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: beatles
+  sentences:
+  - play beatles office
+  - play beatles hudba office
+- name: play_radiohead_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: radiohead
+  sentences:
+  - play radiohead office
+  - play radiohead hudba office
+- name: play_abba_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: abba
+  sentences:
+  - play abba office
+  - play abba hudba office
+- name: play_coldplay_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: coldplay
+  sentences:
+  - play coldplay office
+  - play coldplay hudba office
+- name: play_adele_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: adele
+  sentences:
+  - play adele office
+  - play adele hudba office
+- name: play_prince_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: prince
+  sentences:
+  - play prince office
+  - play prince hudba office
+- name: play_bowie_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: bowie
+  sentences:
+  - play bowie office
+  - play bowie hudba office
+- name: play_nirvana_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: nirvana
+  sentences:
+  - play nirvana office
+  - play nirvana hudba office
+- name: play_eagles_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: eagles
+  sentences:
+  - play eagles office
+  - play eagles hudba office
+- name: play_madonna_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: madonna
+  sentences:
+  - play madonna office
+  - play madonna hudba office
+- name: play_mozart_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: mozart
+  sentences:
+  - play mozart office
+  - play mozart hudba office
+- name: play_daft punk_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: daft punk
+  sentences:
+  - play daft punk office
+  - play daft punk hudba office
+- name: play_biafra_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      search_query: biafra
+  sentences:
+  - play biafra office
+  - play biafra hudba office
+- name: radio_living
+  conditions:
+  - type: action
+    entity_id: media_player.living_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode obyvak
+- name: now_living
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - co hudba obyvak
+  - co track obyvak
+- name: radio_kitchen
+  conditions:
+  - type: action
+    entity_id: media_player.kitchen_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode kuchyne
+- name: now_kitchen
+  conditions:
+  - type: query
+    entity_id: media_player.kitchen_music
+  sentences:
+  - co hudba kuchyne
+  - co track kuchyne
+- name: radio_office
+  conditions:
+  - type: action
+    entity_id: media_player.office_music
+    attributes:
+      media_id: queen
+      radio_mode: 'true'
+  sentences:
+  - play queen radio mode office
+- name: now_office
+  conditions:
+  - type: query
+    entity_id: media_player.office_music
+  sentences:
+  - co hudba office
+  - co track office

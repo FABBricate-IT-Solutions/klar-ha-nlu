@@ -156,8 +156,7 @@ fn device_label(name: &str, domain: &str) -> String {
     let folded = compact(&pretty);
     let named = catalog().light_nouns.iter().any(|n| folded.contains(n))
         || catalog().named_device.iter().any(|n| folded.contains(n))
-        || folded.contains("leuchte")
-        || folded.contains("lamp");
+        || catalog().light_singular.iter().any(|n| folded.contains(n));
     if domain == "light" && !named {
         format!("{pretty}{}", pack.light_suffix)
     } else {
@@ -239,13 +238,15 @@ fn pretty_device(raw: &str) -> String {
     parts
         .iter()
         .enumerate()
-        .map(|(i, part)| {
-            if i > 0 && (catalog().is_conj(part) || matches!(*part, "im" | "in" | "the" | "der" | "die" | "das")) {
-                (*part).to_string()
-            } else {
-                title_word(part)
-            }
-        })
+        .map(
+            |(i, part)| {
+                if i > 0 && (catalog().is_conj(part) || catalog().is_filler(part)) {
+                    (*part).to_string()
+                } else {
+                    title_word(part)
+                }
+            },
+        )
         .collect::<Vec<_>>()
         .join(" ")
 }

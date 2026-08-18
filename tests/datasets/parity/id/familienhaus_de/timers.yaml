@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- nyalakan timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- nyalakan timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- nyalakan timer abstract
+timers/timers::cancel_all_timers:
+- matikan semua timer
+timers/timers::timer_laundry_cancel:
+- nyalakan timer laundry
+timers/timers::timer_laundry_decrease:
+- nyalakan timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- nyalakan timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- matikan timer laundry
+timers/timers::timer_laundry_start:
+- nyalakan timer laundry
+timers/timers::timer_laundry_status:
+- apa timer laundry
+timers/timers::timer_laundry_unpause:
+- nyalakan timer laundry
+timers/timers::timer_oven_cancel:
+- nyalakan timer oven
+timers/timers::timer_oven_decrease:
+- nyalakan timer oven 44 min
+timers/timers::timer_oven_increase:
+- nyalakan timer oven 30 min
+timers/timers::timer_oven_pause:
+- matikan timer oven
+timers/timers::timer_oven_start:
+- nyalakan timer oven 2 min
+timers/timers::timer_oven_status:
+- apa timer oven
+timers/timers::timer_oven_unpause:
+- nyalakan timer oven

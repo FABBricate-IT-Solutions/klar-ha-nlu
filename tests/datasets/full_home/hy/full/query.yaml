@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - inch luys hyurasenyak
+  - inch hyurasenyak luys
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - inch varaguyr hyurasenyak
+  - inch hyurasenyak varaguyr
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - inch kogpek mutq
+  - inch mutq kogpek
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - inch jerutsum hyurasenyak
+  - inch hyurasenyak jerutsum
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - inch tv hyurasenyak
+  - inch hyurasenyak tv
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - inch doorsensor mutq
+  - inch mutq doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - inch windowsensor hyurasenyak
+  - inch hyurasenyak windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - inch tempsensor hyurasenyak
+  - inch hyurasenyak tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - inch luys khohanots
+  - inch khohanots luys
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - inch luys office
+  - inch office luys
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - inch luys garden
+  - inch garden luys
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - inch luys basement
+  - inch basement luys
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - inch varaguyr qnakaran
+  - inch qnakaran varaguyr
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - inch varaguyr garage
+  - inch garage varaguyr
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - inch kogpek garage
+  - inch garage kogpek
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - inch jerutsum qnakaran
+  - inch qnakaran jerutsum
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - inch jerutsum qnakaran
+  - inch qnakaran jerutsum
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - inch tv yntaniq
+  - inch yntaniq tv
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - inch herustatsuyts hyurasenyak
+  - inch hyurasenyak herustatsuyts
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - inch motion khohanots
+  - inch khohanots motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - inch humidity hyurasenyak
+  - inch hyurasenyak humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - inch odapokhich qnakaran
+  - inch qnakaran odapokhich
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - inch poshekul hyurasenyak
+  - inch hyurasenyak poshekul
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - inch luys hyurasenyak
+  - inch hyurasenyak luys
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - inch luys khohanots
+  - inch khohanots luys
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - inch luys qnakaran
+  - inch qnakaran luys
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - inch luys qnakaran
+  - inch qnakaran luys
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - inch luys hallway
+  - inch hallway luys
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - inch luys yntaniq
+  - inch yntaniq luys
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - inch luys yntaniqess
+  - inch yntaniqess luys
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - inch luys garage
+  - inch garage luys
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - inch luys qnakaran2
+  - inch qnakaran2 luys
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - inch luys qnakaran3
+  - inch qnakaran3 luys
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - inch luys qnakaran4
+  - inch qnakaran4 luys
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - inch luys mutq
+  - inch mutq luys
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - inch luys lvacqaran
+  - inch lvacqaran luys
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - inch luys main bath
+  - inch main bath luys
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - inch luys wc
+  - inch wc luys
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - inch ensuite qnakaran
+  - inch qnakaran ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - inch luys qnakaran
+  - inch qnakaran luys
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - inch luys lvacaranmaster
+  - inch lvacaranmaster luys

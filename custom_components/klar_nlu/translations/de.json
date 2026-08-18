@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Der Release-Kanal wählt die Engine. Mitgeliefert: GitHub-CalVer oder neuestes Staging-Prerelease. Bereits laufend: Klar NLU oder Klar NLU (Staging). Eine eigene URL bleibt unverändert.",
+        "description": "Der Release-Kanal wählt die Engine und lässt sich später ändern. Unter Home Assistant OS nutzt Staging Klar NLU (Staging), auch wenn die Integration mit der mitgelieferten Engine gestartet wurde. Eine eigene URL bleibt.",
         "data": {
           "mode": "Engine",
           "channel": "Release-Kanal",
@@ -25,6 +25,7 @@
         "title": "Klar NLU",
         "description": "Die Persönlichkeit liegt in Home Assistant und bleibt nach einer Neuinstallation der Klar-App erhalten. Assist und die LLM-Verfeinerung nutzen sie bei jeder Antwort.",
         "data": {
+          "mode": "Engine",
           "personality": "Persönlichkeit",
           "languages": "Sprachen",
           "fallback_agent": "Conversation-Agent für Smalltalk",
@@ -43,7 +44,8 @@
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät.",
           "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung.",
-          "channel": "Stable: CalVer-GitHub-Release und die Klar-NLU-App (`http://klar-nlu:10520`). Staging: neuestes Prerelease und Klar NLU (Staging) (`http://klar-nlu-staging:10520`). Eine eigene URL bleibt unverändert. Nach dem Wechsel neu laden. Nicht in `.storage` umbiegen."
+          "languages": "Standard ist die Home-Assistant-Systemsprache. Alle Sprachen lässt jede kompilierte Assist-Locale aktiv. Assist pinnt pro Request ein Pack.",
+          "channel": "Geht jederzeit. Unter Home Assistant OS zeigt Staging auf Klar NLU (Staging), auch wenn die Integration mit der mitgelieferten Engine angelegt wurde. Stable geht zurück zur Klar-NLU-App oder zur mitgelieferten Engine. Eine eigene URL bleibt. Nicht in `.storage` umbiegen."
         }
       }
     },
@@ -64,10 +66,10 @@
         "staging": "Staging (Release Candidate)"
       }
     },
-    "languages": {
+    "nlu_language": {
       "options": {
-        "de": "Deutsch",
-        "en": "Englisch"
+        "system": "Systemsprache",
+        "all": "Alle Sprachen"
       }
     },
     "personality": {
@@ -102,6 +104,18 @@
           "gollum": "Gollum"
         }
       }
+    },
+    "sensor": {
+      "last_heard": { "name": "Zuletzt gehört" },
+      "last_decision": { "name": "Letzte Entscheidung" },
+      "last_speech": { "name": "Letzte Antwort" },
+      "last_area": { "name": "Gehört in" }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-Engine gestoppt",
+      "description": "Der mitgelieferte Klar-Prozess läuft nicht. Lade Klar NLU unter Einstellungen → Geräte und Dienste neu."
     }
   }
 }

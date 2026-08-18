@@ -1,0 +1,16 @@
+- name: vacuum_start
+  conditions:
+  - type: action
+    entity_id: vacuum.robot
+    state: 'on'
+  sentences:
+  - staubsauger starten
+  - sauger an
+- name: vacuum_dock
+  conditions:
+  - type: action
+    entity_id: vacuum.robot
+    state: 'off'
+  sentences:
+  - staubsauger zurueck
+  - sauger zurueck

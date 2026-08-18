@@ -1,0 +1,48 @@
+- name: lock.front_door_lock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - alhwedh alhwedh porth
+  - alhwedh porth alhwedh
+- name: lock.front_door_unlock
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: unlocked
+  sentences:
+  - igeri alhwedh porth
+  - alhwedh porth igeri
+- name: lock.garage_entry_lock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - alhwedh alhwedh garage
+  - alhwedh garage alhwedh
+- name: lock.garage_entry_unlock
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: unlocked
+  sentences:
+  - igeri alhwedh garage
+  - alhwedh garage igeri
+- name: lock.front_door_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - alhwedh alhwedh porth
+  - alhwedh porth alhwedh
+- name: lock.garage_entry_lock_extra
+  conditions:
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - alhwedh alhwedh garage
+  - alhwedh garage alhwedh

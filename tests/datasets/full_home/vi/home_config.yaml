@@ -1,0 +1,504 @@
+name: Full Home vi
+language: vi
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: duoi
+  level: 0
+  aliases:
+  - duoi
+  - tret
+- id: upper
+  name: tang
+  level: 1
+  aliases:
+  - tang
+  - tren
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Loivao
+  floor: ground
+  aliases:
+  - loivao
+- id: living
+  name: Phongkhach
+  floor: ground
+  aliases:
+  - phongkhach
+- id: dining
+  name: Phonggiadinhess
+  floor: ground
+  aliases:
+  - phonggiadinhess
+- id: kitchen
+  name: Bep
+  floor: ground
+  aliases:
+  - bep
+- id: family_room
+  name: Phonggiadinh
+  floor: ground
+  aliases:
+  - phonggiadinh
+- id: laundry
+  name: Phonggiat
+  floor: ground
+  aliases:
+  - phonggiat
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Phongngu
+  floor: upper
+  aliases:
+  - phongngu
+- id: bedroom_2
+  name: Phongngu2
+  floor: upper
+  aliases:
+  - phongngu2
+- id: bedroom_3
+  name: Phongngu3
+  floor: upper
+  aliases:
+  - phongngu3
+- id: bedroom_4
+  name: Phongngu4
+  floor: upper
+  aliases:
+  - phongngu4
+- id: master_bath
+  name: Phongtamchinh
+  floor: upper
+  aliases:
+  - phongtamchinh
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: loivao bongden
+  aliases:
+  - loivao bongden
+  - bongden
+- id: light.living_ceiling
+  area_id: living
+  name: phongkhach tran
+  aliases:
+  - phongkhach tran
+  - tran
+- id: light.living_lamp
+  area_id: living
+  name: phongkhach bongden
+  aliases:
+  - phongkhach bongden
+  - bongden
+- id: light.dining_pendant
+  area_id: dining
+  name: phonggiadinhess bongden
+  aliases:
+  - phonggiadinhess bongden
+  - bongden
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: bep tran
+  aliases:
+  - bep tran
+  - tran
+- id: light.kitchen_island
+  area_id: kitchen
+  name: bep dao
+  aliases:
+  - bep dao
+  - dao
+- id: light.family_ceiling
+  area_id: family_room
+  name: phonggiadinh tran
+  aliases:
+  - phonggiadinh tran
+  - tran
+- id: light.laundry_light
+  area_id: laundry
+  name: phonggiat bongden
+  aliases:
+  - phonggiat bongden
+  - bongden
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc bongden
+  aliases:
+  - wc bongden
+  - bongden
+- id: light.garage_light
+  area_id: garage
+  name: garage bongden
+  aliases:
+  - garage bongden
+  - bongden
+- id: light.office_ceiling
+  area_id: office
+  name: office tran
+  aliases:
+  - office tran
+  - tran
+- id: light.garden
+  area_id: garden
+  name: garden bongden
+  aliases:
+  - garden bongden
+  - bongden
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: phongngu tran
+  aliases:
+  - phongngu tran
+  - tran
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: phongngu ensuite
+  aliases:
+  - phongngu ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: phongngu left dau giuong
+  aliases:
+  - phongngu left dau giuong
+  - dau giuong
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: phongngu right dau giuong
+  aliases:
+  - phongngu right dau giuong
+  - dau giuong
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: phongngu2 tran
+  aliases:
+  - phongngu2 tran
+  - tran
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: phongngu3 tran
+  aliases:
+  - phongngu3 tran
+  - tran
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: phongngu4 tran
+  aliases:
+  - phongngu4 tran
+  - tran
+- id: light.master_bath_light
+  area_id: master_bath
+  name: phongtamchinh bongden
+  aliases:
+  - phongtamchinh bongden
+  - bongden
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath bongden
+  aliases:
+  - main bath bongden
+  - bongden
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway bongden
+  aliases:
+  - hallway bongden
+  - bongden
+- id: light.basement
+  area_id: basement
+  name: basement bongden
+  aliases:
+  - basement bongden
+  - bongden
+- id: cover.living_blinds
+  area_id: living
+  name: phongkhach rem
+  aliases:
+  - phongkhach rem
+  - rem
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: phongngu rem
+  aliases:
+  - phongngu rem
+  - rem
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: phongngu2 rem
+  aliases:
+  - phongngu2 rem
+  - rem
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: phongngu3 rem
+  aliases:
+  - phongngu3 rem
+  - rem
+- id: cover.garage_door
+  area_id: garage
+  name: garage rem
+  aliases:
+  - garage rem
+  - rem
+- id: climate.ground_thermostat
+  area_id: living
+  name: phongkhach dieuhoa
+  aliases:
+  - phongkhach dieuhoa
+  - dieuhoa
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: phongngu dieuhoa
+  aliases:
+  - phongngu dieuhoa
+  - dieuhoa
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: dieuhoa phongngu
+  aliases:
+  - dieuhoa phongngu
+  - dieuhoa
+  - ac
+  tags:
+  - dieuhoa
+- id: fan.family_fan
+  area_id: family_room
+  name: phonggiadinh quat
+  aliases:
+  - phonggiadinh quat
+  - quat
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: phongngu quat
+  aliases:
+  - phongngu quat
+  - quat
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: phongngu2 quat
+  aliases:
+  - phongngu2 quat
+  - quat
+- id: lock.front_door
+  area_id: entryway
+  name: front cua
+  aliases:
+  - front cua
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage cua
+  aliases:
+  - garage cua
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: bep chen
+  aliases:
+  - bep chen
+  - chen
+- id: switch.rangehood
+  area_id: kitchen
+  name: bep rangehood
+  aliases:
+  - bep rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: phonggiat maygiat
+  aliases:
+  - phonggiat maygiat
+  - maygiat
+  - washer
+  tags:
+  - washer
+  - maygiat
+- id: switch.dryer
+  area_id: laundry
+  name: phonggiat dryer
+  aliases:
+  - phonggiat dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: phongtamchinh quatbad
+  aliases:
+  - phongtamchinh quatbad
+  - quatbad
+  tags:
+  - quatbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath quatbad
+  aliases:
+  - main bath quatbad
+  - quatbad
+  tags:
+  - quatbad
+- id: media_player.living_tv
+  area_id: living
+  name: phongkhach tivi
+  aliases:
+  - phongkhach tivi
+  - tivi
+- id: media_player.family_tv
+  area_id: family_room
+  name: phonggiadinh tivi
+  aliases:
+  - phonggiadinh tivi
+  - tivi
+- id: media_player.living_music
+  area_id: living
+  name: phongkhach tivi
+  aliases:
+  - phongkhach tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: bep tivi
+  aliases:
+  - bep tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: phongkhach hutbui
+  aliases:
+  - phongkhach hutbui
+  - hutbui
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: loivao doorsensor
+  aliases:
+  - loivao doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: phongkhach windowsensor
+  aliases:
+  - phongkhach windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: bep motion
+  aliases:
+  - bep motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: phongkhach tempsensor
+  aliases:
+  - phongkhach tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: phongkhach humidity
+  aliases:
+  - phongkhach humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: phim
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: dem
+- id: leaving_home
+  name: ra ve
+timers:
+- id: oven
+  name: oven hen
+- id: laundry
+  name: laundry hen
+- id: abstract
+  name: abstract hen
+lists:
+- id: shopping
+  name: danhsach

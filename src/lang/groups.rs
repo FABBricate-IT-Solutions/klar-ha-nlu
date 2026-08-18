@@ -1,3 +1,4 @@
+use super::morphology::PackMorphology;
 use super::speech::Speech;
 use super::verbs::VerbKind;
 use super::LangId;
@@ -7,6 +8,7 @@ use super::LangId;
 pub enum NumberStyle {
     GermanUnd,
     EnglishTens,
+    ListedOnly,
 }
 
 pub struct GroupClarify {
@@ -170,7 +172,34 @@ pub struct Chat {
     pub news_done: &'static str,
 }
 
-/// Static word lists for one language. Add a new file (`fr.rs`) and register it on `LangId`.
+/// Teach / explain / undo / clock / weather. Same path for every compiled locale.
+pub struct Household {
+    pub teach: &'static [&'static str],
+    pub explain: &'static [&'static str],
+    pub undo: &'static [&'static str],
+    pub clock: &'static [&'static str],
+    pub weather: &'static [&'static str],
+    pub clock_skip: &'static [&'static str],
+    pub heard_nothing: &'static str,
+    pub heard: &'static str,
+    pub executed: &'static str,
+    pub asked_risky: &'static str,
+    pub unclear_device: &'static str,
+    pub stopped: &'static str,
+    pub no_match: &'static str,
+    pub was_chat: &'static str,
+    pub decision: &'static str,
+    pub in_area: &'static str,
+    pub nothing_undo: &'static str,
+    pub teach_which: &'static str,
+    pub teach_invalid: &'static str,
+    pub teach_ok: &'static str,
+    pub clock_ok: &'static str,
+    pub clock_missing: &'static str,
+    pub no_weather: &'static str,
+}
+
+/// Static word lists for one compiled language. Register new packs in `registry.rs`.
 pub struct LanguagePack {
     pub id: LangId,
     pub verbs: &'static [(&'static str, VerbKind)],
@@ -180,5 +209,7 @@ pub struct LanguagePack {
     pub cues: Cues,
     pub maps: Maps,
     pub chat: Chat,
+    pub household: Household,
     pub speech: Speech,
+    pub morphology: PackMorphology,
 }

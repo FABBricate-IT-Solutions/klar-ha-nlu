@@ -1,0 +1,1632 @@
+- name: and_light.living_ceiling_light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - mach wohnzimmer decke und wohnzimmer leuchte
+  - wohnzimmer decke und wohnzimmer leuchte mach
+- name: and_light.living_ceiling_light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - schalt wohnzimmer decke und wohnzimmer leuchte
+  - wohnzimmer decke und wohnzimmer leuchte schalt
+- name: and_light.kitchen_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - mach kuche decke und kuche insel
+  - kuche decke und kuche insel mach
+- name: and_light.kitchen_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - schalt kuche decke und kuche insel
+  - kuche decke und kuche insel schalt
+- name: and_light.living_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - mach wohnzimmer decke und kuche insel
+  - wohnzimmer decke und kuche insel mach
+- name: and_light.living_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - schalt wohnzimmer decke und kuche insel
+  - wohnzimmer decke und kuche insel schalt
+- name: and_light.office_ceiling_light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - mach arbeitszimmer decke und hallway licht
+  - arbeitszimmer decke und hallway licht mach
+- name: and_light.office_ceiling_light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - schalt arbeitszimmer decke und hallway licht
+  - arbeitszimmer decke und hallway licht schalt
+- name: and_light.garden_light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - mach garten licht und garage licht
+  - garten licht und garage licht mach
+- name: and_light.garden_light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - schalt garten licht und garage licht
+  - garten licht und garage licht schalt
+- name: and_light.master_ceiling_light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - mach schlafzimmer decke und schlafzimmer nachttisch
+  - schlafzimmer decke und schlafzimmer nachttisch mach
+- name: and_light.master_ceiling_light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - schalt schlafzimmer decke und schlafzimmer nachttisch
+  - schlafzimmer decke und schlafzimmer nachttisch schalt
+- name: and_light.family_ceiling_light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - mach wohnstube decke und wohnstubeess licht
+  - wohnstube decke und wohnstubeess licht mach
+- name: and_light.family_ceiling_light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - schalt wohnstube decke und wohnstubeess licht
+  - wohnstube decke und wohnstubeess licht schalt
+- name: and_light.basement_light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - mach keller licht und waschraum licht
+  - keller licht und waschraum licht mach
+- name: and_light.basement_light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - schalt keller licht und waschraum licht
+  - keller licht und waschraum licht schalt
+- name: and_fan.master_fan_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - mach schlafzimmer ventilator und kuche insel
+  - schlafzimmer ventilator und kuche insel mach
+- name: and_cover.living_blinds_light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: 'on'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - mach wohnzimmer vorhang und wohnzimmer decke
+  - wohnzimmer vorhang und wohnzimmer decke mach
+- name: and_switch.washing_machine_switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - mach waschraum waschmaschine und waschraum dryer
+  - waschraum waschmaschine und waschraum dryer mach
+- name: off_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht wohnzimmer und kuche
+  - licht wohnzimmer und kuche schalt
+- name: off_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht arbeitszimmer und hallway
+  - licht arbeitszimmer und hallway schalt
+- name: off_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht garage und garten
+  - licht garage und garten schalt
+- name: off_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht schlafzimmer und badmastermain
+  - licht schlafzimmer und badmastermain schalt
+- name: off_family_room_dining
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht wohnstube und wohnstubeess
+  - licht wohnstube und wohnstubeess schalt
+- name: off_living_dining_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht wohnzimmer und wohnstubeess und kuche
+  - licht wohnzimmer wohnstubeess und kuche schalt
+- name: on_office_hallway_garage
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - mach licht arbeitszimmer und hallway und garage
+  - licht arbeitszimmer hallway und garage mach
+- name: off_garden_basement_laundry
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt licht garten und keller und waschraum
+  - licht garten keller und waschraum schalt
+- name: except_light.kitchen_island
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser insel kuche
+  - alle licht schalt ausser insel kuche
+  forbid:
+  - light.kitchen_island
+  - kitchen
+- name: except_light.living_lamp
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser leuchte wohnzimmer
+  - alle licht schalt ausser leuchte wohnzimmer
+  forbid:
+  - light.living_lamp
+  - living
+- name: except_light.garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser garten
+  - alle licht schalt ausser garten
+  forbid:
+  - light.garden
+  - garden
+- name: except_light.office_ceiling
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser decke arbeitszimmer
+  - alle licht schalt ausser decke arbeitszimmer
+  forbid:
+  - light.office_ceiling
+  - office
+- name: except_light.basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser keller
+  - alle licht schalt ausser keller
+  forbid:
+  - light.basement
+  - basement
+- name: all_on_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht ausser kuche
+  - alle licht mach ausser kuche
+  forbid:
+  - kitchen
+- name: all_on_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht ausser arbeitszimmer
+  - alle licht mach ausser arbeitszimmer
+  forbid:
+  - office
+- name: all_on_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht ausser garten
+  - alle licht mach ausser garten
+  forbid:
+  - garden
+- name: all_on_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht ausser wohnzimmer
+  - alle licht mach ausser wohnzimmer
+  forbid:
+  - living
+- name: all_on_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - mach alle licht ausser garage
+  - alle licht mach ausser garage
+  forbid:
+  - garage
+- name: except_in_kitchen_island
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - schalt alle licht kuche ausser insel
+  - alle licht kuche schalt ausser insel
+  forbid:
+  - light.kitchen_island
+- name: except_in_living_lamp
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - schalt alle licht wohnzimmer ausser leuchte
+  - alle licht wohnzimmer schalt ausser leuchte
+  forbid:
+  - light.living_lamp
+- name: except_island_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - mach alle licht ausser insel kuche
+  - alle licht mach ausser insel kuche
+  forbid:
+  - light.kitchen_island
+- name: except_kitchen_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser kuche und arbeitszimmer
+  - alle licht schalt ausser kuche und arbeitszimmer
+  forbid:
+  - kitchen
+  - office
+- name: except_living_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser wohnzimmer und schlafzimmer
+  - alle licht schalt ausser wohnzimmer und schlafzimmer
+  forbid:
+  - living
+  - master_bedroom
+- name: except_garage_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht ausser garage und garten
+  - alle licht schalt ausser garage und garten
+  forbid:
+  - garage
+  - garden
+- name: floor_ground_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht erdgeschoss ausser kuche
+  - alle licht erdgeschoss schalt ausser kuche
+  forbid:
+  - kitchen
+- name: floor_upper_except_master_bedroom
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht obergeschoss ausser schlafzimmer
+  - alle licht obergeschoss schalt ausser schlafzimmer
+  forbid:
+  - master_bedroom
+- name: floor_ground_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - schalt alle licht erdgeschoss ausser arbeitszimmer
+  - alle licht erdgeschoss schalt ausser arbeitszimmer
+  forbid:
+  - office
+- name: covers_living_master_open
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  sentences:
+  - oeffne vorhang wohnzimmer und schlafzimmer
+  - vorhang wohnzimmer und schlafzimmer oeffne
+- name: covers_living_master_close
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  sentences:
+  - schliesse vorhang wohnzimmer und schlafzimmer
+  - vorhang wohnzimmer und schlafzimmer schliesse
+- name: climate_living_master_21
+  conditions:
+  - type: action
+    area: living
+    domain: climate
+    attributes:
+      temperature: 21
+  - type: action
+    area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 21
+  sentences:
+  - stell heizung wohnzimmer und schlafzimmer 21
+  - heizung wohnzimmer und schlafzimmer 21
+- name: bright_living_kitchen_50
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      brightness: 50
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      brightness: 50
+  sentences:
+  - stell licht wohnzimmer und kuche 50
+  - licht wohnzimmer und kuche 50
+- name: color_living_kitchen_red
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      color: red
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      color: red
+  sentences:
+  - stell licht wohnzimmer und kuche rot
+  - licht wohnzimmer und kuche rot
+- name: query_living_kitchen_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - was licht wohnzimmer und kuche
+  - licht wohnzimmer und kuche
+- name: temp_living_and_light_kitchen_off
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - was heizung wohnzimmer und schalt licht kuche
+  - schalt licht kuche und was heizung wohnzimmer
+- name: locks_front_and_garage
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - schloss front tuer und garage tuer
+  - schloss schloss vorzimmer und garage
+- name: scene_and_powder_off
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - mach filmabend und schalt licht klosett
+  - schalt licht klosett und mach filmabend

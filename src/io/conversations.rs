@@ -32,6 +32,8 @@ pub struct ConversationTurn {
     pub confirm_prompt: Option<String>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub candidate_id: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub preferred_area: Option<String>,
 }
 
 #[derive(Clone)]
@@ -68,7 +70,12 @@ impl ConversationJournal {
     }
 }
 
-pub fn turn_from_outcome(outcome: &ParseOutcome, include_text: bool, last_names: Vec<String>) -> ConversationTurn {
+pub fn turn_from_outcome(
+    outcome: &ParseOutcome,
+    include_text: bool,
+    last_names: Vec<String>,
+    preferred_area: Option<String>,
+) -> ConversationTurn {
     let (confirm_prompt, candidate_id) = match &outcome.decision {
         ParseDecision::Confirm { prompt, candidate_id } => (Some(prompt.clone()), Some(candidate_id.clone())),
         ParseDecision::Clarify { prompt, .. } => (Some(prompt.clone()), None),
@@ -86,6 +93,7 @@ pub fn turn_from_outcome(outcome: &ParseOutcome, include_text: bool, last_names:
         last_names,
         confirm_prompt,
         candidate_id,
+        preferred_area,
     }
 }
 
@@ -119,7 +127,10 @@ fn write_turns(path: &FsPath, turns: &[ConversationTurn]) -> std::io::Result<()>
 }
 
 pub fn routes() -> Router<AppState> {
-    Router::new().route("/api/v2/conversations", get(list_conversations)).route("/api/v2/conversations/{id}", get(get_conversation))
+    Router::new()
+        .route("/api/v2/conversations", get(list_conversations))
+        .route("/api/v2/conversations/{id}", get(get_conversation))
+        .route("/api/v2/last-turn", get(last_turn))
 }
 
 async fn list_conversations(
@@ -148,6 +159,17 @@ async fn get_conversation(
     Ok(Json(state.journal.by_id(&id)))
 }
 
+async fn last_turn(
+    State(state): State<AppState>,
+    ConnectInfo(peer): ConnectInfo<SocketAddr>,
+    headers: HeaderMap,
+) -> Result<Json<Option<ConversationTurn>>, StatusCode> {
+    if !reads_allowed(Some(peer), &headers, &state.token) {
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+    Ok(Json(state.journal.list().into_iter().next_back()))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -172,7 +194,7 @@ mod tests {
             retrieval: None,
             policy_trace: None,
         };
-        let turn = turn_from_outcome(&outcome, false, Vec::new());
+        let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
         assert_eq!(turn.decision, "confirm");
         assert!(turn.text.is_none());
         assert_eq!(turn.confirm_prompt.as_deref(), Some("Really?"));
@@ -201,7 +223,8 @@ mod tests {
             retrieval: None,
             policy_trace: None,
         };
-        let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()]);
+        let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()], Some("kueche".into()));
+        assert_eq!(turn.preferred_area.as_deref(), Some("kueche"));
         assert_eq!(turn.text.as_deref(), Some("x"));
         assert!(turn.candidate_id.is_none());
     }

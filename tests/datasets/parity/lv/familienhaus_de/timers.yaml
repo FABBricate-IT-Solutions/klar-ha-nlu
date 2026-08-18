@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- iesledz taimeris abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- iesledz taimeris abstract 20 min
+timers/timers::abstract_start_seconds:
+- iesledz taimeris abstract
+timers/timers::cancel_all_timers:
+- izsledz viss taimeris
+timers/timers::timer_laundry_cancel:
+- iesledz taimeris laundry
+timers/timers::timer_laundry_decrease:
+- iesledz taimeris laundry 5 min
+timers/timers::timer_laundry_increase:
+- iesledz taimeris laundry 16 min
+timers/timers::timer_laundry_pause:
+- izsledz taimeris laundry
+timers/timers::timer_laundry_start:
+- iesledz taimeris laundry
+timers/timers::timer_laundry_status:
+- kas taimeris laundry
+timers/timers::timer_laundry_unpause:
+- iesledz taimeris laundry
+timers/timers::timer_oven_cancel:
+- iesledz taimeris oven
+timers/timers::timer_oven_decrease:
+- iesledz taimeris oven 44 min
+timers/timers::timer_oven_increase:
+- iesledz taimeris oven 30 min
+timers/timers::timer_oven_pause:
+- izsledz taimeris oven
+timers/timers::timer_oven_start:
+- iesledz taimeris oven 2 min
+timers/timers::timer_oven_status:
+- kas taimeris oven
+timers/timers::timer_oven_unpause:
+- iesledz taimeris oven

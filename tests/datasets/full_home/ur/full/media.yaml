@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - ٹی وی لانج چالو
+  - چالو ٹی وی لانج
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - بند ٹی وی لانج
+  - ٹی وی لانج بند
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause ٹی وی لانج
+  - ٹی وی لانج pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - ٹی وی خاندانی چالو
+  - چالو ٹی وی خاندانی
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - بند ٹی وی خاندانی
+  - ٹی وی خاندانی بند
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause ٹی وی خاندانی
+  - ٹی وی خاندانی pause

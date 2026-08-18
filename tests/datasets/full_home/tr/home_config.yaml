@@ -1,0 +1,504 @@
+name: Full Home tr
+language: tr
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: alt
+  level: 0
+  aliases:
+  - alt
+  - zemin
+- id: upper
+  name: ust
+  level: 1
+  aliases:
+  - ust
+  - kat
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Giris
+  floor: ground
+  aliases:
+  - giris
+- id: living
+  name: Salon
+  floor: ground
+  aliases:
+  - salon
+- id: dining
+  name: Aileess
+  floor: ground
+  aliases:
+  - aileess
+- id: kitchen
+  name: Mutfak
+  floor: ground
+  aliases:
+  - mutfak
+- id: family_room
+  name: Aile
+  floor: ground
+  aliases:
+  - aile
+- id: laundry
+  name: Camasir
+  floor: ground
+  aliases:
+  - camasir
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Yatakodasi
+  floor: upper
+  aliases:
+  - yatakodasi
+- id: bedroom_2
+  name: Yatakodasi2
+  floor: upper
+  aliases:
+  - yatakodasi2
+- id: bedroom_3
+  name: Yatakodasi3
+  floor: upper
+  aliases:
+  - yatakodasi3
+- id: bedroom_4
+  name: Yatakodasi4
+  floor: upper
+  aliases:
+  - yatakodasi4
+- id: master_bath
+  name: Ebatmaster
+  floor: upper
+  aliases:
+  - ebatmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Koridor
+  floor: upper
+  aliases:
+  - koridor
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: giris isik
+  aliases:
+  - giris isik
+  - isik
+- id: light.living_ceiling
+  area_id: living
+  name: salon tavan
+  aliases:
+  - salon tavan
+  - tavan
+- id: light.living_lamp
+  area_id: living
+  name: salon isik
+  aliases:
+  - salon isik
+  - isik
+- id: light.dining_pendant
+  area_id: dining
+  name: aileess isik
+  aliases:
+  - aileess isik
+  - isik
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: mutfak tavan
+  aliases:
+  - mutfak tavan
+  - tavan
+- id: light.kitchen_island
+  area_id: kitchen
+  name: mutfak ada
+  aliases:
+  - mutfak ada
+  - ada
+- id: light.family_ceiling
+  area_id: family_room
+  name: aile tavan
+  aliases:
+  - aile tavan
+  - tavan
+- id: light.laundry_light
+  area_id: laundry
+  name: camasir isik
+  aliases:
+  - camasir isik
+  - isik
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc isik
+  aliases:
+  - wc isik
+  - isik
+- id: light.garage_light
+  area_id: garage
+  name: garage isik
+  aliases:
+  - garage isik
+  - isik
+- id: light.office_ceiling
+  area_id: office
+  name: office tavan
+  aliases:
+  - office tavan
+  - tavan
+- id: light.garden
+  area_id: garden
+  name: garden isik
+  aliases:
+  - garden isik
+  - isik
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: yatakodasi tavan
+  aliases:
+  - yatakodasi tavan
+  - tavan
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: yatakodasi ensuite
+  aliases:
+  - yatakodasi ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: yatakodasi left komodin
+  aliases:
+  - yatakodasi left komodin
+  - komodin
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: yatakodasi right komodin
+  aliases:
+  - yatakodasi right komodin
+  - komodin
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: yatakodasi2 tavan
+  aliases:
+  - yatakodasi2 tavan
+  - tavan
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: yatakodasi3 tavan
+  aliases:
+  - yatakodasi3 tavan
+  - tavan
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: yatakodasi4 tavan
+  aliases:
+  - yatakodasi4 tavan
+  - tavan
+- id: light.master_bath_light
+  area_id: master_bath
+  name: ebatmaster isik
+  aliases:
+  - ebatmaster isik
+  - isik
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath isik
+  aliases:
+  - main bath isik
+  - isik
+- id: light.hallway_light
+  area_id: hallway
+  name: koridor isik
+  aliases:
+  - koridor isik
+  - isik
+- id: light.basement
+  area_id: basement
+  name: basement isik
+  aliases:
+  - basement isik
+  - isik
+- id: cover.living_blinds
+  area_id: living
+  name: salon perde
+  aliases:
+  - salon perde
+  - perde
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: yatakodasi perde
+  aliases:
+  - yatakodasi perde
+  - perde
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: yatakodasi2 perde
+  aliases:
+  - yatakodasi2 perde
+  - perde
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: yatakodasi3 perde
+  aliases:
+  - yatakodasi3 perde
+  - perde
+- id: cover.garage_door
+  area_id: garage
+  name: garage perde
+  aliases:
+  - garage perde
+  - perde
+- id: climate.ground_thermostat
+  area_id: living
+  name: salon klima
+  aliases:
+  - salon klima
+  - klima
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: yatakodasi klima
+  aliases:
+  - yatakodasi klima
+  - klima
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: sicaklik yatakodasi
+  aliases:
+  - sicaklik yatakodasi
+  - sicaklik
+  - ac
+  tags:
+  - sicaklik
+- id: fan.family_fan
+  area_id: family_room
+  name: aile vantilator
+  aliases:
+  - aile vantilator
+  - vantilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: yatakodasi vantilator
+  aliases:
+  - yatakodasi vantilator
+  - vantilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: yatakodasi2 vantilator
+  aliases:
+  - yatakodasi2 vantilator
+  - vantilator
+- id: lock.front_door
+  area_id: entryway
+  name: front kapi
+  aliases:
+  - front kapi
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage kapi
+  aliases:
+  - garage kapi
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: mutfak bulasik
+  aliases:
+  - mutfak bulasik
+  - bulasik
+- id: switch.rangehood
+  area_id: kitchen
+  name: mutfak rangehood
+  aliases:
+  - mutfak rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: camasir camasir
+  aliases:
+  - camasir camasir
+  - camasir
+  - washer
+  tags:
+  - washer
+  - camasir
+- id: switch.dryer
+  area_id: laundry
+  name: camasir dryer
+  aliases:
+  - camasir dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: ebatmaster vantilatorbad
+  aliases:
+  - ebatmaster vantilatorbad
+  - vantilatorbad
+  tags:
+  - vantilatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath vantilatorbad
+  aliases:
+  - main bath vantilatorbad
+  - vantilatorbad
+  tags:
+  - vantilatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: salon tv
+  aliases:
+  - salon tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: aile tv
+  aliases:
+  - aile tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: salon televizyon
+  aliases:
+  - salon televizyon
+  - televizyon
+  platform: music_assistant
+  tags:
+  - televizyon
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: mutfak televizyon
+  aliases:
+  - mutfak televizyon
+  - televizyon
+  platform: music_assistant
+  tags:
+  - televizyon
+- id: media_player.office_music
+  area_id: office
+  name: office televizyon
+  aliases:
+  - office televizyon
+  - televizyon
+  platform: music_assistant
+  tags:
+  - televizyon
+- id: vacuum.robot
+  area_id: living
+  name: salon supurge
+  aliases:
+  - salon supurge
+  - supurge
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: giris doorsensor
+  aliases:
+  - giris doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: salon windowsensor
+  aliases:
+  - salon windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: mutfak motion
+  aliases:
+  - mutfak motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: salon tempsensor
+  aliases:
+  - salon tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: salon humidity
+  aliases:
+  - salon humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: gece
+- id: leaving_home
+  name: cikis
+timers:
+- id: oven
+  name: oven zamanlayici
+- id: laundry
+  name: laundry zamanlayici
+- id: abstract
+  name: abstract zamanlayici
+lists:
+- id: shopping
+  name: liste

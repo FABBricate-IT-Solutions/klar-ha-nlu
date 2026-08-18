@@ -1,0 +1,287 @@
+- name: query_light.living_ceiling
+  conditions:
+  - type: query
+    entity_id: light.living_ceiling
+  sentences:
+  - hva lys stue
+  - hva stue lys
+- name: query_cover.living_blinds
+  conditions:
+  - type: query
+    entity_id: cover.living_blinds
+  sentences:
+  - hva gardin stue
+  - hva stue gardin
+- name: query_lock.front_door
+  conditions:
+  - type: query
+    entity_id: lock.front_door
+  sentences:
+  - hva laas entree
+  - hva entree laas
+- name: query_climate.ground_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  sentences:
+  - hva varme stue
+  - hva stue varme
+- name: query_media_player.living_tv
+  conditions:
+  - type: query
+    entity_id: media_player.living_tv
+  sentences:
+  - hva tv stue
+  - hva stue tv
+- name: query_binary_sensor.front_door_sensor
+  conditions:
+  - type: query
+    entity_id: binary_sensor.front_door_sensor
+  sentences:
+  - hva doorsensor entree
+  - hva entree doorsensor
+- name: query_binary_sensor.living_window
+  conditions:
+  - type: query
+    entity_id: binary_sensor.living_window
+  sentences:
+  - hva windowsensor stue
+  - hva stue windowsensor
+- name: query_sensor.living_temperature
+  conditions:
+  - type: query
+    entity_id: sensor.living_temperature
+  sentences:
+  - hva tempsensor stue
+  - hva stue tempsensor
+- name: query_light.kitchen_ceiling
+  conditions:
+  - type: query
+    entity_id: light.kitchen_ceiling
+  sentences:
+  - hva lys kjokken
+  - hva kjokken lys
+- name: query_light.office_ceiling
+  conditions:
+  - type: query
+    entity_id: light.office_ceiling
+  sentences:
+  - hva lys office
+  - hva office lys
+- name: query_light.garden
+  conditions:
+  - type: query
+    entity_id: light.garden
+  sentences:
+  - hva lys garden
+  - hva garden lys
+- name: query_light.basement
+  conditions:
+  - type: query
+    entity_id: light.basement
+  sentences:
+  - hva lys basement
+  - hva basement lys
+- name: query_cover.master_blinds
+  conditions:
+  - type: query
+    entity_id: cover.master_blinds
+  sentences:
+  - hva gardin soverom
+  - hva soverom gardin
+- name: query_cover.garage_door
+  conditions:
+  - type: query
+    entity_id: cover.garage_door
+  sentences:
+  - hva gardin garage
+  - hva garage gardin
+- name: query_lock.garage_entry
+  conditions:
+  - type: query
+    entity_id: lock.garage_entry
+  sentences:
+  - hva laas garage
+  - hva garage laas
+- name: query_climate.upper_thermostat
+  conditions:
+  - type: query
+    entity_id: climate.upper_thermostat
+  sentences:
+  - hva varme soverom
+  - hva soverom varme
+- name: query_climate.master_ac
+  conditions:
+  - type: query
+    entity_id: climate.master_ac
+  sentences:
+  - hva temperatur soverom
+  - hva soverom temperatur
+- name: query_media_player.family_tv
+  conditions:
+  - type: query
+    entity_id: media_player.family_tv
+  sentences:
+  - hva tv stuefam
+  - hva stuefam tv
+- name: query_media_player.living_music
+  conditions:
+  - type: query
+    entity_id: media_player.living_music
+  sentences:
+  - hva musikk stue
+  - hva stue musikk
+- name: query_binary_sensor.kitchen_motion
+  conditions:
+  - type: query
+    entity_id: binary_sensor.kitchen_motion
+  sentences:
+  - hva motion kjokken
+  - hva kjokken motion
+- name: query_sensor.living_humidity
+  conditions:
+  - type: query
+    entity_id: sensor.living_humidity
+  sentences:
+  - hva humidity stue
+  - hva stue humidity
+- name: query_fan.master_fan
+  conditions:
+  - type: query
+    entity_id: fan.master_fan
+  sentences:
+  - hva vifte soverom
+  - hva soverom vifte
+- name: query_vacuum.robot
+  conditions:
+  - type: query
+    entity_id: vacuum.robot
+  sentences:
+  - hva stovsuger stue
+  - hva stue stovsuger
+- name: query_light.living_lamp
+  conditions:
+  - type: query
+    entity_id: light.living_lamp
+  sentences:
+  - hva lys stue
+  - hva stue lys
+- name: query_light.kitchen_island
+  conditions:
+  - type: query
+    entity_id: light.kitchen_island
+  sentences:
+  - hva lys kjokken
+  - hva kjokken lys
+- name: query_light.master_ceiling
+  conditions:
+  - type: query
+    entity_id: light.master_ceiling
+  sentences:
+  - hva lys soverom
+  - hva soverom lys
+- name: query_light.master_bedside_left
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_left
+  sentences:
+  - hva lys soverom
+  - hva soverom lys
+- name: query_light.hallway_light
+  conditions:
+  - type: query
+    entity_id: light.hallway_light
+  sentences:
+  - hva lys hallway
+  - hva hallway lys
+- name: query_light.family_ceiling
+  conditions:
+  - type: query
+    entity_id: light.family_ceiling
+  sentences:
+  - hva lys stuefam
+  - hva stuefam lys
+- name: query_light.dining_pendant
+  conditions:
+  - type: query
+    entity_id: light.dining_pendant
+  sentences:
+  - hva lys stuefamess
+  - hva stuefamess lys
+- name: query_light.garage_light
+  conditions:
+  - type: query
+    entity_id: light.garage_light
+  sentences:
+  - hva lys garage
+  - hva garage lys
+- name: query_light.bedroom2_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom2_ceiling
+  sentences:
+  - hva lys soverom2
+  - hva soverom2 lys
+- name: query_light.bedroom3_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom3_ceiling
+  sentences:
+  - hva lys soverom3
+  - hva soverom3 lys
+- name: query_light.bedroom4_ceiling
+  conditions:
+  - type: query
+    entity_id: light.bedroom4_ceiling
+  sentences:
+  - hva lys soverom4
+  - hva soverom4 lys
+- name: query_light.entryway_light
+  conditions:
+  - type: query
+    entity_id: light.entryway_light
+  sentences:
+  - hva lys entree
+  - hva entree lys
+- name: query_light.laundry_light
+  conditions:
+  - type: query
+    entity_id: light.laundry_light
+  sentences:
+  - hva lys vaskerom
+  - hva vaskerom lys
+- name: query_light.main_bath_light
+  conditions:
+  - type: query
+    entity_id: light.main_bath_light
+  sentences:
+  - hva lys main bath
+  - hva main bath lys
+- name: query_light.powder_room_light
+  conditions:
+  - type: query
+    entity_id: light.powder_room_light
+  sentences:
+  - hva lys toalett
+  - hva toalett lys
+- name: query_light.master_ensuite
+  conditions:
+  - type: query
+    entity_id: light.master_ensuite
+  sentences:
+  - hva ensuite soverom
+  - hva soverom ensuite
+- name: query_light.master_bedside_right
+  conditions:
+  - type: query
+    entity_id: light.master_bedside_right
+  sentences:
+  - hva lys soverom
+  - hva soverom lys
+- name: query_light.master_bath_light
+  conditions:
+  - type: query
+    entity_id: light.master_bath_light
+  sentences:
+  - hva lys badmaster
+  - hva badmaster lys

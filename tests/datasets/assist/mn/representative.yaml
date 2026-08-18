@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - asaa gerel zochny
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - untraa gerel galtogoo
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

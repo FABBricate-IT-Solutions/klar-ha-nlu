@@ -8,13 +8,13 @@ use klar_nlu::types::Settings;
 pub fn run(text: &str) -> (Vec<String>, bool) {
     let home = default_home();
     let mut session = Session::new();
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     (result.intents.iter().map(|i| i.name.clone()).collect(), result.clarify)
 }
 
 pub fn slots(text: &str) -> Vec<(String, Vec<(String, String)>)> {
     let home = default_home();
     let mut session = Session::new();
-    let result = parse(text, &home, &mut session, &[], &Settings::default());
+    let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
     result.intents.into_iter().map(|i| (i.name, i.slots.into_iter().map(|s| (s.name, s.value)).collect())).collect()
 }

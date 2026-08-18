@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - encen calefaccio sala
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - encen llum sala
+  - apaga
+state_persistance/spoken::kugel_dann_aus:
+- - encen bola
+  - apaga
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - encen llum sala
+  - encen llum cuina
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - encen llum sala
+  - vermell

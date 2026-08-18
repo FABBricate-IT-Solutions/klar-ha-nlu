@@ -1,0 +1,96 @@
+- name: switch.dishwasher_on
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'on'
+  sentences:
+  - miatsu aman khohanots
+  - aman khohanots miatsu
+- name: switch.dishwasher_off
+  conditions:
+  - type: action
+    entity_id: switch.dishwasher
+    state: 'off'
+  sentences:
+  - anjatir aman khohanots
+  - aman khohanots anjatir
+- name: switch.washing_machine_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  sentences:
+  - miatsu lvacqimekena lvacqaran
+  - lvacqimekena lvacqaran miatsu
+- name: switch.washing_machine_off
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'off'
+  sentences:
+  - anjatir lvacqimekena lvacqaran
+  - lvacqimekena lvacqaran anjatir
+- name: switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - miatsu dryer lvacqaran
+  - dryer lvacqaran miatsu
+- name: switch.dryer_off
+  conditions:
+  - type: action
+    entity_id: switch.dryer
+    state: 'off'
+  sentences:
+  - anjatir dryer lvacqaran
+  - dryer lvacqaran anjatir
+- name: switch.rangehood_on
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'on'
+  sentences:
+  - miatsu rangehood khohanots
+  - rangehood khohanots miatsu
+- name: switch.rangehood_off
+  conditions:
+  - type: action
+    entity_id: switch.rangehood
+    state: 'off'
+  sentences:
+  - anjatir rangehood khohanots
+  - rangehood khohanots anjatir
+- name: switch.master_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'on'
+  sentences:
+  - miatsu odapokhichbad lvacaranmaster
+  - odapokhichbad lvacaranmaster miatsu
+- name: switch.master_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.master_bath_fan
+    state: 'off'
+  sentences:
+  - anjatir odapokhichbad lvacaranmaster
+  - odapokhichbad lvacaranmaster anjatir
+- name: switch.main_bath_fan_on
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'on'
+  sentences:
+  - miatsu odapokhichbad main bath
+  - odapokhichbad main bath miatsu
+- name: switch.main_bath_fan_off
+  conditions:
+  - type: action
+    entity_id: switch.main_bath_fan
+    state: 'off'
+  sentences:
+  - anjatir odapokhichbad main bath
+  - odapokhichbad main bath anjatir

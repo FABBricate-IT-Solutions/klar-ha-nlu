@@ -1,0 +1,26 @@
+multiple_intents/multi::alle_ausser_schlaf_und_kueche:
+- apaga todo luz excepto dormitorio excepto cocina
+multiple_intents/multi::licht_und_heizung:
+- enciende luz salon y pon calefaccion salon 23
+multiple_intents/multi::wohn_und_ess_aus:
+- apaga luz salon y apaga luz estanciaess
+multiple_intents/multi::wohn_und_ess_rot:
+- pon luz salon rojo y pon luz estanciaess rojo
+multiple_intents/multi::wz_und_kuche_licht:
+- enciende luz salon y enciende luz cocina
+multiple_intents/multi::zwei_raeume_und_heizung:
+- enciende luz salon y enciende luz cocina y pon calefaccion salon 23
+multiple_intents/spoken::drei_raeume_an:
+- enciende luz salon y enciende luz estanciaess y enciende luz cocina
+multiple_intents/spoken::drei_raeume_aus:
+- apaga luz salon y apaga luz estanciaess y apaga luz cocina
+multiple_intents/spoken::ess_und_wohn_aus:
+- apaga luz salon y apaga luz estanciaess
+multiple_intents/spoken::kugel_und_decke_aus:
+- apaga bola y apaga techo
+multiple_intents/spoken_more::kuche_und_ess_an:
+- enciende luz cocina y enciende luz estanciaess
+multiple_intents/spoken_more::wz_ess_arbeit_aus:
+- apaga luz salon y apaga luz estanciaess
+multiple_intents/spoken_more::wz_und_arbeit_aus:
+- apaga luz salon

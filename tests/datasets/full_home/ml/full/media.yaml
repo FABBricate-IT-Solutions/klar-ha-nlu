@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - tv muriyil theli
+  - theli tv muriyil
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - anaykku tv muriyil
+  - tv muriyil anaykku
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause tv muriyil
+  - tv muriyil pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - tv kutumbam theli
+  - theli tv kutumbam
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - anaykku tv kutumbam
+  - tv kutumbam anaykku
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause tv kutumbam
+  - tv kutumbam pause

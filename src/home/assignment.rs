@@ -166,7 +166,7 @@ pub fn assignment_row(entity: &EntityRec, home: &HomeGraph, dismissed: &[String]
 pub fn confidence(entity: &EntityRec, home: &HomeGraph) -> Confidence {
     if entity.area.is_none() {
         Confidence::Low
-    } else if needs_mapping(entity, home) {
+    } else if needs_mapping(entity, home, crate::lang::catalog()) {
         Confidence::Medium
     } else {
         Confidence::High

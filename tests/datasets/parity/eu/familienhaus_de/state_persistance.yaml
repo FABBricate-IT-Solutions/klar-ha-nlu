@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - zer gortina logela2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - zer sabai logela2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - zer gortina logela3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - zer sabai logela3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - zer sabai logela4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - zer argia familiagelaess
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - zer argia sarrera
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - zer sabai familiagela
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - zer gortina garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - zer argia garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - zer argia sarreragang eta zer argia wc
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - zer argia sarreragang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - zer argia sukaldea
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - zer argia garbiketa
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - zer berogailu egongela
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - zer gortina egongela
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - zer argia egongela
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - zer argia main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - zer argia bainumaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - zer berogailu logela eta zer berogailu egongela
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - zer gortina logela eta zer gortina egongela
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - zer berogailu logela
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - zer gortina logela
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - zer argia wc
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - zer gortina garage
+  - itxi
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - zer gortina garage
+  - ireki
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - zer gortina garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - zer gortina egongela
+  - itxi
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - zer gortina egongela
+  - ireki
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - zer gortina egongela
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - zer haizagailua familiagela
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - zer haizagailua familiagela
+  - itzali
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - zer haizagailua familiagela
+  - piztu
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - zer argia sarrera
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - zer argia sarrera
+  - itzali
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - zer argia sarrera
+  - piztu
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - zer sarraila sarrera
+  - sarraila
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - zer sarraila sarrera
+  - ireki
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - zer sarraila garage
+  - sarraila
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - zer sarraila garage
+  - ireki
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - zer telebista familiagela
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - zer telebista familiagela
+  - itzali
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - zer telebista familiagela
+  - piztu
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - zer telebista egongela
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - zer telebista egongela
+  - itzali
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - zer telebista egongela
+  - piztu

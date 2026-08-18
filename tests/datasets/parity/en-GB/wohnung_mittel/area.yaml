@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- set heating ensuite 23
+area/heizung::heizung_esszimmer_23:
+- set heating loungefamess 23
+area/heizung::heizung_schlafzimmer_23:
+- set heating bedroom 23
+area/heizung::heizung_wohnzimmer_23:
+- set heating lounge 23
+area/lichter::alle_an_ausser_kugel:
+- enable all light except globe
+area/lichter::alle_an_ausser_schlafzimmer:
+- enable all light except bedroom
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- set all light except bedroom 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- set all light except globe red
+area/lichter::alle_ausser_kugel:
+- extinguish all light except globe
+area/lichter::alle_ausser_schlafzimmer:
+- extinguish all light except bedroom
+area/lichter::alle_lichter_an:
+- enable all light
+area/lichter::alle_lichter_aus:
+- extinguish all light
+area/lichter::arbeitszimmer_lichter_an:
+- enable light lounge
+area/lichter::arbeitszimmer_lichter_aus:
+- extinguish light lounge
+area/lichter::esszimmer_lichter_an:
+- enable light loungefamess
+area/lichter::esszimmer_lichter_aus:
+- extinguish light loungefamess
+area/lichter::kuche_lichter_an:
+- enable light kitchen
+area/lichter::kuche_lichter_aus:
+- extinguish light kitchen
+area/lichter::schlafzimmer_auf_blau:
+- set light bedroom blue
+area/lichter::schlafzimmer_auf_rot:
+- set light bedroom red
+area/lichter::wohnzimmer_helligkeit:
+- set light lounge 45
+area/lichter::wohnzimmer_lichter_an:
+- enable light lounge
+area/lichter::wohnzimmer_lichter_aus:
+- extinguish light lounge
+area/spoken::alle_ausser_kugel_stt:
+- extinguish all light except globe
+area/spoken::alle_ausser_schlaf_stt:
+- extinguish all light except bedroom
+area/spoken::alle_ganzen_an:
+- enable all light
+area/spoken::alle_lampen_aus:
+- extinguish all light
+area/spoken::esszimmer_weiss:
+- set light loungefamess white
+area/spoken::stt_kuche_lichte:
+- extinguish light kitchen
+area/spoken::stt_licht_wohnzimmer_an:
+- enable light lounge
+area/spoken::stt_licht_wohnzimmer_aus:
+- extinguish light lounge
+area/spoken::stt_schlafzimmer_dativ:
+- extinguish light bedroom
+area/spoken::wohnzimmer_gruen:
+- set light lounge green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- extinguish all light except lounge
+area/spoken_more::arbeitszimmer_lampen_aus:
+- extinguish light lounge
+area/spoken_more::esszimmer_30:
+- set light loungefamess 30
+area/spoken_more::esszimmer_lichte_an:
+- enable light loungefamess
+area/spoken_more::kuche_80:
+- set light kitchen 80
+area/spoken_more::kuche_blau:
+- set light kitchen blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- extinguish all light except bedroom
+area/spoken_more::wohnzimmer_gelb:
+- set light lounge yellow

@@ -1,0 +1,504 @@
+name: Full Home is
+language: is
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: nedri
+  level: 0
+  aliases:
+  - nedri
+  - nidri
+- id: upper
+  name: haed
+  level: 1
+  aliases:
+  - haed
+  - upp
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Anddyri
+  floor: ground
+  aliases:
+  - anddyri
+- id: living
+  name: Stofa
+  floor: ground
+  aliases:
+  - stofa
+- id: dining
+  name: Stofafamess
+  floor: ground
+  aliases:
+  - stofafamess
+- id: kitchen
+  name: Eldhus
+  floor: ground
+  aliases:
+  - eldhus
+- id: family_room
+  name: Stofafam
+  floor: ground
+  aliases:
+  - stofafam
+- id: laundry
+  name: Thvottahus
+  floor: ground
+  aliases:
+  - thvottahus
+- id: powder_room
+  name: klósett
+  floor: ground
+  aliases:
+  - klósett
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Svefnherbergi
+  floor: upper
+  aliases:
+  - svefnherbergi
+- id: bedroom_2
+  name: Svefnherbergi2
+  floor: upper
+  aliases:
+  - svefnherbergi2
+- id: bedroom_3
+  name: Svefnherbergi3
+  floor: upper
+  aliases:
+  - svefnherbergi3
+- id: bedroom_4
+  name: Svefnherbergi4
+  floor: upper
+  aliases:
+  - svefnherbergi4
+- id: master_bath
+  name: Badmaster
+  floor: upper
+  aliases:
+  - badmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: anddyri ljos
+  aliases:
+  - anddyri ljos
+  - ljos
+- id: light.living_ceiling
+  area_id: living
+  name: stofa loft
+  aliases:
+  - stofa loft
+  - loft
+- id: light.living_lamp
+  area_id: living
+  name: stofa ljos
+  aliases:
+  - stofa ljos
+  - ljos
+- id: light.dining_pendant
+  area_id: dining
+  name: stofafamess ljos
+  aliases:
+  - stofafamess ljos
+  - ljos
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: eldhus loft
+  aliases:
+  - eldhus loft
+  - loft
+- id: light.kitchen_island
+  area_id: kitchen
+  name: eldhus eyja
+  aliases:
+  - eldhus eyja
+  - eyja
+- id: light.family_ceiling
+  area_id: family_room
+  name: stofafam loft
+  aliases:
+  - stofafam loft
+  - loft
+- id: light.laundry_light
+  area_id: laundry
+  name: thvottahus ljos
+  aliases:
+  - thvottahus ljos
+  - ljos
+- id: light.powder_room_light
+  area_id: powder_room
+  name: klósett ljos
+  aliases:
+  - klósett ljos
+  - ljos
+- id: light.garage_light
+  area_id: garage
+  name: garage ljos
+  aliases:
+  - garage ljos
+  - ljos
+- id: light.office_ceiling
+  area_id: office
+  name: office loft
+  aliases:
+  - office loft
+  - loft
+- id: light.garden
+  area_id: garden
+  name: garden ljos
+  aliases:
+  - garden ljos
+  - ljos
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: svefnherbergi loft
+  aliases:
+  - svefnherbergi loft
+  - loft
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: svefnherbergi ensuite
+  aliases:
+  - svefnherbergi ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: svefnherbergi left nattbord
+  aliases:
+  - svefnherbergi left nattbord
+  - nattbord
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: svefnherbergi right nattbord
+  aliases:
+  - svefnherbergi right nattbord
+  - nattbord
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: svefnherbergi2 loft
+  aliases:
+  - svefnherbergi2 loft
+  - loft
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: svefnherbergi3 loft
+  aliases:
+  - svefnherbergi3 loft
+  - loft
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: svefnherbergi4 loft
+  aliases:
+  - svefnherbergi4 loft
+  - loft
+- id: light.master_bath_light
+  area_id: master_bath
+  name: badmaster ljos
+  aliases:
+  - badmaster ljos
+  - ljos
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath ljos
+  aliases:
+  - main bath ljos
+  - ljos
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway ljos
+  aliases:
+  - hallway ljos
+  - ljos
+- id: light.basement
+  area_id: basement
+  name: basement ljos
+  aliases:
+  - basement ljos
+  - ljos
+- id: cover.living_blinds
+  area_id: living
+  name: stofa gardina
+  aliases:
+  - stofa gardina
+  - gardina
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: svefnherbergi gardina
+  aliases:
+  - svefnherbergi gardina
+  - gardina
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: svefnherbergi2 gardina
+  aliases:
+  - svefnherbergi2 gardina
+  - gardina
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: svefnherbergi3 gardina
+  aliases:
+  - svefnherbergi3 gardina
+  - gardina
+- id: cover.garage_door
+  area_id: garage
+  name: garage gardina
+  aliases:
+  - garage gardina
+  - gardina
+- id: climate.ground_thermostat
+  area_id: living
+  name: stofa hiti
+  aliases:
+  - stofa hiti
+  - hiti
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: svefnherbergi hiti
+  aliases:
+  - svefnherbergi hiti
+  - hiti
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: hiti svefnherbergi
+  aliases:
+  - hiti svefnherbergi
+  - hiti
+  - ac
+  tags:
+  - hiti
+- id: fan.family_fan
+  area_id: family_room
+  name: stofafam viftu
+  aliases:
+  - stofafam viftu
+  - viftu
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: svefnherbergi viftu
+  aliases:
+  - svefnherbergi viftu
+  - viftu
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: svefnherbergi2 viftu
+  aliases:
+  - svefnherbergi2 viftu
+  - viftu
+- id: lock.front_door
+  area_id: entryway
+  name: front hurd
+  aliases:
+  - front hurd
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage hurd
+  aliases:
+  - garage hurd
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: eldhus uppvthvott
+  aliases:
+  - eldhus uppvthvott
+  - uppvthvott
+- id: switch.rangehood
+  area_id: kitchen
+  name: eldhus rangehood
+  aliases:
+  - eldhus rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: thvottahus thvottavel
+  aliases:
+  - thvottahus thvottavel
+  - thvottavel
+  - washer
+  tags:
+  - washer
+  - thvottavel
+- id: switch.dryer
+  area_id: laundry
+  name: thvottahus dryer
+  aliases:
+  - thvottahus dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: badmaster viftubad
+  aliases:
+  - badmaster viftubad
+  - viftubad
+  tags:
+  - viftubad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath viftubad
+  aliases:
+  - main bath viftubad
+  - viftubad
+  tags:
+  - viftubad
+- id: media_player.living_tv
+  area_id: living
+  name: stofa sjónvarp
+  aliases:
+  - stofa sjónvarp
+  - sjónvarp
+- id: media_player.family_tv
+  area_id: family_room
+  name: stofafam sjónvarp
+  aliases:
+  - stofafam sjónvarp
+  - sjónvarp
+- id: media_player.living_music
+  area_id: living
+  name: stofa sjonvarp
+  aliases:
+  - stofa sjonvarp
+  - sjonvarp
+  platform: music_assistant
+  tags:
+  - sjonvarp
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: eldhus sjonvarp
+  aliases:
+  - eldhus sjonvarp
+  - sjonvarp
+  platform: music_assistant
+  tags:
+  - sjonvarp
+- id: media_player.office_music
+  area_id: office
+  name: office sjonvarp
+  aliases:
+  - office sjonvarp
+  - sjonvarp
+  platform: music_assistant
+  tags:
+  - sjonvarp
+- id: vacuum.robot
+  area_id: living
+  name: stofa ryksuga
+  aliases:
+  - stofa ryksuga
+  - ryksuga
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: anddyri doorsensor
+  aliases:
+  - anddyri doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: stofa windowsensor
+  aliases:
+  - stofa windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: eldhus motion
+  aliases:
+  - eldhus motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: stofa tempsensor
+  aliases:
+  - stofa tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: stofa humidity
+  aliases:
+  - stofa humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: kvikmynd
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nott
+- id: leaving_home
+  name: brottfor
+timers:
+- id: oven
+  name: oven timi
+- id: laundry
+  name: laundry timi
+- id: abstract
+  name: abstract timi
+lists:
+- id: shopping
+  name: listi

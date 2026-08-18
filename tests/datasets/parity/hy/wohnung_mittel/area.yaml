@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- dir jerutsum lvacaranmaster 23
+area/heizung::heizung_esszimmer_23:
+- dir jerutsum yntaniqess 23
+area/heizung::heizung_schlafzimmer_23:
+- dir jerutsum qnakaran 23
+area/heizung::heizung_wohnzimmer_23:
+- dir jerutsum hyurasenyak 23
+area/lichter::alle_an_ausser_kugel:
+- miatsu bolor luys batsi gundayin
+area/lichter::alle_an_ausser_schlafzimmer:
+- miatsu bolor luys batsi qnakaran
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- dir bolor luys batsi qnakaran 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- dir bolor luys batsi gundayin red
+area/lichter::alle_ausser_kugel:
+- anjatir bolor luys batsi gundayin
+area/lichter::alle_ausser_schlafzimmer:
+- anjatir bolor luys batsi qnakaran
+area/lichter::alle_lichter_an:
+- miatsu bolor luys
+area/lichter::alle_lichter_aus:
+- anjatir bolor luys
+area/lichter::arbeitszimmer_lichter_an:
+- miatsu luys hyurasenyak
+area/lichter::arbeitszimmer_lichter_aus:
+- anjatir luys hyurasenyak
+area/lichter::esszimmer_lichter_an:
+- miatsu luys yntaniqess
+area/lichter::esszimmer_lichter_aus:
+- anjatir luys yntaniqess
+area/lichter::kuche_lichter_an:
+- miatsu luys khohanots
+area/lichter::kuche_lichter_aus:
+- anjatir luys khohanots
+area/lichter::schlafzimmer_auf_blau:
+- dir luys qnakaran blue
+area/lichter::schlafzimmer_auf_rot:
+- dir luys qnakaran red
+area/lichter::wohnzimmer_helligkeit:
+- dir luys hyurasenyak 45
+area/lichter::wohnzimmer_lichter_an:
+- miatsu luys hyurasenyak
+area/lichter::wohnzimmer_lichter_aus:
+- anjatir luys hyurasenyak
+area/spoken::alle_ausser_kugel_stt:
+- anjatir bolor luys batsi gundayin
+area/spoken::alle_ausser_schlaf_stt:
+- anjatir bolor luys batsi qnakaran
+area/spoken::alle_ganzen_an:
+- miatsu bolor luys
+area/spoken::alle_lampen_aus:
+- anjatir bolor luys
+area/spoken::esszimmer_weiss:
+- dir luys yntaniqess white
+area/spoken::stt_kuche_lichte:
+- anjatir luys khohanots
+area/spoken::stt_licht_wohnzimmer_an:
+- miatsu luys hyurasenyak
+area/spoken::stt_licht_wohnzimmer_aus:
+- anjatir luys hyurasenyak
+area/spoken::stt_schlafzimmer_dativ:
+- anjatir luys qnakaran
+area/spoken::wohnzimmer_gruen:
+- dir luys hyurasenyak green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- anjatir bolor luys batsi hyurasenyak
+area/spoken_more::arbeitszimmer_lampen_aus:
+- anjatir luys hyurasenyak
+area/spoken_more::esszimmer_30:
+- dir luys yntaniqess 30
+area/spoken_more::esszimmer_lichte_an:
+- miatsu luys yntaniqess
+area/spoken_more::kuche_80:
+- dir luys khohanots 80
+area/spoken_more::kuche_blau:
+- dir luys khohanots blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- anjatir bolor luys batsi qnakaran
+area/spoken_more::wohnzimmer_gelb:
+- dir luys hyurasenyak yellow

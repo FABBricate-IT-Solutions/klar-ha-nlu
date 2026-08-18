@@ -1,0 +1,34 @@
+- name: ha_status_kueche
+  conditions:
+    - {type: query, area: kuche, domain: light}
+  forbid:
+    - light.alle_lichter
+  sentences:
+    - 'What is the status of the kitchen'
+    - 'Kitchen light status'
+
+- name: ha_status_lichter
+  conditions:
+    - {type: query, entity_id: light.alle_lichter}
+  forbid:
+    - wohnzimmer
+    - esszimmer
+    - kuche
+    - light.wohnzimmer
+    - light.esszimmer
+    - light.wohn_und_esszimmer
+    - wohnung
+  sentences:
+    - 'What is the status of the lights'
+    - 'Status of all lights'
+    - 'How are all the lights'
+
+- name: ha_status_kugel
+  conditions:
+    - {type: query, entity_id: light.schlafzimmer_kugel}
+  forbid:
+    - light.alle_lichter
+    - schlafzimmer
+  sentences:
+    - 'What is the status of the globe'
+    - 'Globe light status'

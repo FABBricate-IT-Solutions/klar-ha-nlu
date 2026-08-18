@@ -1,0 +1,1632 @@
+- name: and_light.living_ceiling_light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - veliginchu gadi kappu mariyu gadi lamp
+  - gadi kappu mariyu gadi lamp veliginchu
+- name: and_light.living_ceiling_light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - arpu gadi kappu mariyu gadi lamp
+  - gadi kappu mariyu gadi lamp arpu
+- name: and_light.kitchen_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - veliginchu vantagadi kappu mariyu vantagadi dweepam
+  - vantagadi kappu mariyu vantagadi dweepam veliginchu
+- name: and_light.kitchen_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - arpu vantagadi kappu mariyu vantagadi dweepam
+  - vantagadi kappu mariyu vantagadi dweepam arpu
+- name: and_light.living_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - veliginchu gadi kappu mariyu vantagadi dweepam
+  - gadi kappu mariyu vantagadi dweepam veliginchu
+- name: and_light.living_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - arpu gadi kappu mariyu vantagadi dweepam
+  - gadi kappu mariyu vantagadi dweepam arpu
+- name: and_light.office_ceiling_light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - veliginchu office kappu mariyu hallway velugu
+  - office kappu mariyu hallway velugu veliginchu
+- name: and_light.office_ceiling_light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - arpu office kappu mariyu hallway velugu
+  - office kappu mariyu hallway velugu arpu
+- name: and_light.garden_light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - veliginchu garden velugu mariyu garage velugu
+  - garden velugu mariyu garage velugu veliginchu
+- name: and_light.garden_light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - arpu garden velugu mariyu garage velugu
+  - garden velugu mariyu garage velugu arpu
+- name: and_light.master_ceiling_light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - veliginchu padakagadi kappu mariyu padakagadi mancham
+  - padakagadi kappu mariyu padakagadi mancham veliginchu
+- name: and_light.master_ceiling_light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - arpu padakagadi kappu mariyu padakagadi mancham
+  - padakagadi kappu mariyu padakagadi mancham arpu
+- name: and_light.family_ceiling_light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - veliginchu kutumbam kappu mariyu kutumbamess velugu
+  - kutumbam kappu mariyu kutumbamess velugu veliginchu
+- name: and_light.family_ceiling_light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - arpu kutumbam kappu mariyu kutumbamess velugu
+  - kutumbam kappu mariyu kutumbamess velugu arpu
+- name: and_light.basement_light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - veliginchu basement velugu mariyu laundry velugu
+  - basement velugu mariyu laundry velugu veliginchu
+- name: and_light.basement_light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - arpu basement velugu mariyu laundry velugu
+  - basement velugu mariyu laundry velugu arpu
+- name: and_fan.master_fan_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - veliginchu padakagadi fanu mariyu vantagadi dweepam
+  - padakagadi fanu mariyu vantagadi dweepam veliginchu
+- name: and_cover.living_blinds_light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: 'on'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu gadi thera mariyu gadi kappu
+  - gadi thera mariyu gadi kappu veliginchu
+- name: and_switch.washing_machine_switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - veliginchu laundry washing mariyu laundry dryer
+  - laundry washing mariyu laundry dryer veliginchu
+- name: off_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu gadi mariyu vantagadi
+  - velugu gadi mariyu vantagadi arpu
+- name: off_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu office mariyu hallway
+  - velugu office mariyu hallway arpu
+- name: off_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu garage mariyu garden
+  - velugu garage mariyu garden arpu
+- name: off_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu padakagadi mariyu main bath
+  - velugu padakagadi mariyu main bath arpu
+- name: off_family_room_dining
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu kutumbam mariyu kutumbamess
+  - velugu kutumbam mariyu kutumbamess arpu
+- name: off_living_dining_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu gadi mariyu kutumbamess mariyu vantagadi
+  - velugu gadi kutumbamess mariyu vantagadi arpu
+- name: on_office_hallway_garage
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu velugu office mariyu hallway mariyu garage
+  - velugu office hallway mariyu garage veliginchu
+- name: off_garden_basement_laundry
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu velugu garden mariyu basement mariyu laundry
+  - velugu garden basement mariyu laundry arpu
+- name: except_light.kitchen_island
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp dweepam vantagadi
+  - anni velugu arpu tapp dweepam vantagadi
+  forbid:
+  - light.kitchen_island
+  - kitchen
+- name: except_light.living_lamp
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp lamp gadi
+  - anni velugu arpu tapp lamp gadi
+  forbid:
+  - light.living_lamp
+  - living
+- name: except_light.garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp garden
+  - anni velugu arpu tapp garden
+  forbid:
+  - light.garden
+  - garden
+- name: except_light.office_ceiling
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp kappu office
+  - anni velugu arpu tapp kappu office
+  forbid:
+  - light.office_ceiling
+  - office
+- name: except_light.basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp basement
+  - anni velugu arpu tapp basement
+  forbid:
+  - light.basement
+  - basement
+- name: all_on_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu tapp vantagadi
+  - anni velugu veliginchu tapp vantagadi
+  forbid:
+  - kitchen
+- name: all_on_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu tapp office
+  - anni velugu veliginchu tapp office
+  forbid:
+  - office
+- name: all_on_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu tapp garden
+  - anni velugu veliginchu tapp garden
+  forbid:
+  - garden
+- name: all_on_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu tapp gadi
+  - anni velugu veliginchu tapp gadi
+  forbid:
+  - living
+- name: all_on_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu tapp garage
+  - anni velugu veliginchu tapp garage
+  forbid:
+  - garage
+- name: except_in_kitchen_island
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - arpu anni velugu vantagadi tapp dweepam
+  - anni velugu vantagadi arpu tapp dweepam
+  forbid:
+  - light.kitchen_island
+- name: except_in_living_lamp
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - arpu anni velugu gadi tapp lamp
+  - anni velugu gadi arpu tapp lamp
+  forbid:
+  - light.living_lamp
+- name: except_island_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - veliginchu anni velugu tapp dweepam vantagadi
+  - anni velugu veliginchu tapp dweepam vantagadi
+  forbid:
+  - light.kitchen_island
+- name: except_kitchen_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp vantagadi mariyu office
+  - anni velugu arpu tapp vantagadi mariyu office
+  forbid:
+  - kitchen
+  - office
+- name: except_living_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp gadi mariyu padakagadi
+  - anni velugu arpu tapp gadi mariyu padakagadi
+  forbid:
+  - living
+  - master_bedroom
+- name: except_garage_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu tapp garage mariyu garden
+  - anni velugu arpu tapp garage mariyu garden
+  forbid:
+  - garage
+  - garden
+- name: floor_ground_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu kinda tapp vantagadi
+  - anni velugu kinda arpu tapp vantagadi
+  forbid:
+  - kitchen
+- name: floor_upper_except_master_bedroom
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu paina tapp padakagadi
+  - anni velugu paina arpu tapp padakagadi
+  forbid:
+  - master_bedroom
+- name: floor_ground_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - arpu anni velugu kinda tapp office
+  - anni velugu kinda arpu tapp office
+  forbid:
+  - office
+- name: covers_living_master_open
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  sentences:
+  - theruvu thera gadi mariyu padakagadi
+  - thera gadi mariyu padakagadi theruvu
+- name: covers_living_master_close
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  sentences:
+  - mooyi thera gadi mariyu padakagadi
+  - thera gadi mariyu padakagadi mooyi
+- name: climate_living_master_21
+  conditions:
+  - type: action
+    area: living
+    domain: climate
+    attributes:
+      temperature: 21
+  - type: action
+    area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 21
+  sentences:
+  - set vedi gadi mariyu padakagadi 21
+  - vedi gadi mariyu padakagadi 21
+- name: bright_living_kitchen_50
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      brightness: 50
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      brightness: 50
+  sentences:
+  - set velugu gadi mariyu vantagadi 50
+  - velugu gadi mariyu vantagadi 50
+- name: color_living_kitchen_red
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      color: red
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      color: red
+  sentences:
+  - set velugu gadi mariyu vantagadi red
+  - velugu gadi mariyu vantagadi red
+- name: query_living_kitchen_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - emi velugu gadi mariyu vantagadi
+  - velugu gadi mariyu vantagadi
+- name: temp_living_and_light_kitchen_off
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - emi vedi gadi mariyu arpu velugu vantagadi
+  - arpu velugu vantagadi mariyu emi vedi gadi
+- name: locks_front_and_garage
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - talam front talupu mariyu garage talupu
+  - talam talam pravesham mariyu garage
+- name: scene_and_powder_off
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - veliginchu cinema mariyu arpu velugu toilet
+  - arpu velugu toilet mariyu veliginchu cinema

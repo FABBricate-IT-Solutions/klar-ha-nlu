@@ -53,6 +53,10 @@ struct YamlDevice {
     name: String,
     #[serde(default)]
     aliases: Vec<String>,
+    #[serde(default)]
+    platform: Option<String>,
+    #[serde(default)]
+    tags: Vec<String>,
 }
 
 #[derive(Deserialize)]
@@ -115,7 +119,7 @@ pub fn load_home_config(path: &Path) -> Result<HomeGraph, String> {
                 }
             }
             aliases.extend(extra_device_aliases(&d.id, &d.name, &domain));
-            EntityRec { entity_id: d.id, name: d.name, domain, platform: None, area: d.area_id, aliases, tags: Vec::new() }
+            EntityRec { entity_id: d.id, name: d.name, domain, platform: d.platform, area: d.area_id, aliases, tags: d.tags }
         })
         .collect();
     let mut scene_members: HashMap<String, Vec<String>> = HashMap::new();
@@ -288,7 +292,9 @@ fn extra_area_aliases(id: &str) -> Vec<String> {
         "main_bath" | "badezimmer" => vec!["bathroom".into(), "badezimmer".into(), "bad".into(), "bath".into()],
         "hallway" | "flur" => vec!["hall".into(), "corridor".into(), "flur".into(), "hallway".into(), "diele".into()],
         "wohnung" => vec!["ueberall".into(), "everywhere".into(), "all".into(), "home".into(), "house".into(), "apartment".into()],
-        "arbeitszimmer" => vec!["office".into(), "study".into(), "buero".into(), "arbeitszimmer".into()],
+        "arbeitszimmer" | "office" => vec!["office".into(), "study".into(), "buero".into(), "arbeitszimmer".into()],
+        "garden" | "garten" => vec!["garden".into(), "garten".into(), "yard".into(), "balkon".into()],
+        "basement" | "keller" => vec!["basement".into(), "keller".into(), "cellar".into()],
         "esszimmer" => vec!["dining".into(), "diningroom".into(), "esszimmer".into()],
         "kuche" | "kueche" => vec!["kitchen".into(), "kuche".into(), "kueche".into()],
         "balkon" => vec!["balcony".into(), "terrace".into(), "balkon".into(), "terrasse".into()],
@@ -320,7 +326,7 @@ fn extra_device_aliases(id: &str, name: &str, domain: &str) -> Vec<String> {
             extra.push("haustuer".into());
         }
         if id.contains("garage") || folded.contains("garage") {
-            extra.extend(["garagentuer".into(), "garageneingang".into()]);
+            extra.extend(["garagentuer".into(), "garagentor".into(), "garageneingang".into()]);
         }
     }
     if id.contains("dryer") || folded == "dryer" || folded == "trockner" {
@@ -330,4 +336,31 @@ fn extra_device_aliases(id: &str, name: &str, domain: &str) -> Vec<String> {
         extra.extend(["washer".into(), "waschmaschine".into(), "washing".into()]);
     }
     extra
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::PathBuf;
+
+    #[test]
+    fn yaml_keeps_music_assistant_platform() {
+        let dir = tempfile();
+        let path = dir.join("home.yaml");
+        std::fs::write(
+            &path,
+            "areas:\n  - {id: living, name: Living}\ndevices:\n  - {id: media_player.box, area_id: living, name: Box, platform: music_assistant, tags: [Musik]}\n",
+        )
+        .expect("write");
+        let home = load_home_config(&path).expect("load");
+        let player = home.entities.iter().find(|entity| entity.entity_id == "media_player.box").expect("player");
+        assert_eq!(player.platform.as_deref(), Some("music_assistant"));
+        assert_eq!(player.tags, vec!["Musik"]);
+    }
+
+    fn tempfile() -> PathBuf {
+        let dir = std::env::temp_dir().join(format!("klar-home-{}", std::process::id()));
+        let _ = std::fs::create_dir_all(&dir);
+        dir
+    }
 }

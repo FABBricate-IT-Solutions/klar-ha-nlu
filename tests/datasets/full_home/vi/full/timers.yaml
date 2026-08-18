@@ -1,0 +1,70 @@
+- name: timer_oven
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 10
+  sentences:
+  - bat hen 10 min
+  - hen 10 min
+- name: timer_laundry
+  conditions:
+  - type: action
+    entity_id: timer.laundry
+    attributes:
+      minutes: 45
+  sentences:
+  - bat hen 45 min
+  - hen 45 min
+- name: timer_cancel
+  conditions:
+  - type: action
+    entity_id: timer.abstract
+  sentences:
+  - tat hen
+  - hen tat
+- name: timer_oven_5
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 5
+  sentences:
+  - bat hen 5 min
+  - hen 5 min
+- name: timer_oven_15
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 15
+  sentences:
+  - bat hen 15 min
+  - hen 15 min
+- name: timer_oven_20
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 20
+  sentences:
+  - bat hen 20 min
+  - hen 20 min
+- name: timer_oven_30
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 30
+  sentences:
+  - bat hen 30 min
+  - hen 30 min
+- name: timer_oven_60
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 60
+  sentences:
+  - bat hen 60 min
+  - hen 60 min

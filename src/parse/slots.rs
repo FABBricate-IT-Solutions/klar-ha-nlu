@@ -4,7 +4,7 @@ use crate::home::roles::is_light_like;
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::compound::area_slots;
-use crate::parse::infer::{bind_domain, color_word, except_focus, except_tail, wants_all_lights};
+use crate::parse::infer::{bind_domain, color_word, except_focus, except_tail, mentions_lamp_fixture, wants_all_lights};
 use crate::parse::normalize::compact;
 use crate::parse::resolve::resolve;
 use crate::types::{EntityRec, HomeGraph, Intent};
@@ -82,7 +82,14 @@ fn excepted_areas(tokens: &[String], home: &HomeGraph) -> HashSet<String> {
         return HashSet::new();
     };
     let cat = catalog();
-    if cat.any(&focus, &cat.named_device) || cat.any(&focus, &cat.light_nouns) {
+    if cat.any(&focus, &cat.named_device)
+        || cat.any(&focus, &cat.light_nouns)
+        || cat.any(&focus, &cat.island)
+        || cat.any(&focus, &cat.ceiling)
+        || mentions_lamp_fixture(&focus)
+        || cat.any(&focus, &cat.bedside)
+        || cat.any(&focus, &cat.pendant)
+    {
         return HashSet::new();
     }
     resolve(&focus, home, Some("light")).areas.into_iter().collect()
@@ -94,7 +101,15 @@ fn excepted_light_ids(tokens: &[String], home: &HomeGraph) -> HashSet<String> {
         return HashSet::new();
     };
     let resolved = resolve(&focus, home, Some("light"));
-    let seed = resolved.entities.first().or_else(|| resolved.ambiguous.iter().min_by_key(|entity| compact(&entity.name).len()));
+    let in_except =
+        |entity: &EntityRec| resolved.areas.is_empty() || entity.area.as_ref().is_some_and(|area| resolved.areas.contains(area));
+    let seed = resolved
+        .entities
+        .iter()
+        .chain(resolved.ambiguous.iter())
+        .find(|entity| in_except(entity))
+        .or_else(|| resolved.ambiguous.iter().min_by_key(|entity| compact(&entity.name).len()))
+        .or_else(|| resolved.entities.first());
     let Some(seed) = seed else {
         return HashSet::new();
     };
@@ -111,7 +126,7 @@ fn area_switchable_lights<'a>(home: &'a HomeGraph, area: &str) -> Vec<&'a Entity
         .iter()
         .filter(|entity| {
             assist_visible(entity, home)
-                && is_light_like(entity)
+                && is_light_like(entity, catalog())
                 && !is_infra(entity)
                 && !is_infra_light(entity)
                 && entity.area.as_deref() == Some(area)
@@ -361,7 +376,7 @@ pub(crate) fn laundry_switch_clause(
     if catalog().any(tokens, &catalog().laundry_machines) {
         return None;
     }
-    let areas = crate::home::policy::laundry_areas(home);
+    let areas = crate::home::policy::laundry_areas(home, catalog());
     let area = areas.first()?.as_str();
     let switches: Vec<String> = home
         .entities
@@ -441,7 +456,8 @@ mod tests {
     }
 
     fn parse_with_home(sentence: &str, home: HomeGraph) -> crate::types::ParseResult {
-        parse(sentence, &home, &mut Session::new(), &[], &Settings::default())
+        let lang = if sentence.starts_with("Füge") { "de" } else { "en" };
+        parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned(lang))
     }
 
     fn todo(id: &str, name: &str, aliases: &[&str], tags: &[&str]) -> EntityRec {

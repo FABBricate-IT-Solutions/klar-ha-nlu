@@ -1,0 +1,70 @@
+- name: timer_oven
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 10
+  sentences:
+  - cas amadoir 10 min
+  - amadoir 10 min
+- name: timer_laundry
+  conditions:
+  - type: action
+    entity_id: timer.laundry
+    attributes:
+      minutes: 45
+  sentences:
+  - cas amadoir 45 min
+  - amadoir 45 min
+- name: timer_cancel
+  conditions:
+  - type: action
+    entity_id: timer.abstract
+  sentences:
+  - much amadoir
+  - amadoir much
+- name: timer_oven_5
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 5
+  sentences:
+  - cas amadoir 5 min
+  - amadoir 5 min
+- name: timer_oven_15
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 15
+  sentences:
+  - cas amadoir 15 min
+  - amadoir 15 min
+- name: timer_oven_20
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 20
+  sentences:
+  - cas amadoir 20 min
+  - amadoir 20 min
+- name: timer_oven_30
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 30
+  sentences:
+  - cas amadoir 30 min
+  - amadoir 30 min
+- name: timer_oven_60
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 60
+  sentences:
+  - cas amadoir 60 min
+  - amadoir 60 min

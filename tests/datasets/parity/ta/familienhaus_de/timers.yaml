@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- eru timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- eru timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- eru timer abstract
+timers/timers::cancel_all_timers:
+- anai ellam timer
+timers/timers::timer_laundry_cancel:
+- eru timer laundry
+timers/timers::timer_laundry_decrease:
+- eru timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- eru timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- anai timer laundry
+timers/timers::timer_laundry_start:
+- eru timer laundry
+timers/timers::timer_laundry_status:
+- enna timer laundry
+timers/timers::timer_laundry_unpause:
+- eru timer laundry
+timers/timers::timer_oven_cancel:
+- eru timer oven
+timers/timers::timer_oven_decrease:
+- eru timer oven 44 min
+timers/timers::timer_oven_increase:
+- eru timer oven 30 min
+timers/timers::timer_oven_pause:
+- anai timer oven
+timers/timers::timer_oven_start:
+- eru timer oven 2 min
+timers/timers::timer_oven_status:
+- enna timer oven
+timers/timers::timer_oven_unpause:
+- eru timer oven

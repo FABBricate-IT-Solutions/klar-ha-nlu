@@ -1,0 +1,70 @@
+- name: timer_oven
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 10
+  sentences:
+  - dakai dingshi 10 min
+  - dingshi 10 min
+- name: timer_laundry
+  conditions:
+  - type: action
+    entity_id: timer.laundry
+    attributes:
+      minutes: 45
+  sentences:
+  - dakai dingshi 45 min
+  - dingshi 45 min
+- name: timer_cancel
+  conditions:
+  - type: action
+    entity_id: timer.abstract
+  sentences:
+  - guanbi dingshi
+  - dingshi guanbi
+- name: timer_oven_5
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 5
+  sentences:
+  - dakai dingshi 5 min
+  - dingshi 5 min
+- name: timer_oven_15
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 15
+  sentences:
+  - dakai dingshi 15 min
+  - dingshi 15 min
+- name: timer_oven_20
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 20
+  sentences:
+  - dakai dingshi 20 min
+  - dingshi 20 min
+- name: timer_oven_30
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 30
+  sentences:
+  - dakai dingshi 30 min
+  - dingshi 30 min
+- name: timer_oven_60
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 60
+  sentences:
+  - dakai dingshi 60 min
+  - dingshi 60 min

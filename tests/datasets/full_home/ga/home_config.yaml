@@ -1,0 +1,504 @@
+name: Full Home ga
+language: ga
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: bun
+  level: 0
+  aliases:
+  - bun
+  - thios
+- id: upper
+  name: urlár
+  level: 1
+  aliases:
+  - urlár
+  - thuas
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Halla
+  floor: ground
+  aliases:
+  - halla
+- id: living
+  name: Seomra
+  floor: ground
+  aliases:
+  - seomra
+- id: dining
+  name: Seomrateaghlaighess
+  floor: ground
+  aliases:
+  - seomrateaghlaighess
+- id: kitchen
+  name: Cistin
+  floor: ground
+  aliases:
+  - cistin
+- id: family_room
+  name: Seomrateaghlaigh
+  floor: ground
+  aliases:
+  - seomrateaghlaigh
+- id: laundry
+  name: Seomraniochta
+  floor: ground
+  aliases:
+  - seomraniochta
+- id: powder_room
+  name: Leithreas
+  floor: ground
+  aliases:
+  - leithreas
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Seomraleong
+  floor: upper
+  aliases:
+  - seomraleong
+- id: bedroom_2
+  name: Seomraleong2
+  floor: upper
+  aliases:
+  - seomraleong2
+- id: bedroom_3
+  name: Seomraleong3
+  floor: upper
+  aliases:
+  - seomraleong3
+- id: bedroom_4
+  name: Seomraleong4
+  floor: upper
+  aliases:
+  - seomraleong4
+- id: master_bath
+  name: Folcadanmaster
+  floor: upper
+  aliases:
+  - folcadanmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: halla solas
+  aliases:
+  - halla solas
+  - solas
+- id: light.living_ceiling
+  area_id: living
+  name: seomra uasteorainn
+  aliases:
+  - seomra uasteorainn
+  - uasteorainn
+- id: light.living_lamp
+  area_id: living
+  name: seomra solas
+  aliases:
+  - seomra solas
+  - solas
+- id: light.dining_pendant
+  area_id: dining
+  name: seomrateaghlaighess solas
+  aliases:
+  - seomrateaghlaighess solas
+  - solas
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: cistin uasteorainn
+  aliases:
+  - cistin uasteorainn
+  - uasteorainn
+- id: light.kitchen_island
+  area_id: kitchen
+  name: cistin oilean
+  aliases:
+  - cistin oilean
+  - oilean
+- id: light.family_ceiling
+  area_id: family_room
+  name: seomrateaghlaigh uasteorainn
+  aliases:
+  - seomrateaghlaigh uasteorainn
+  - uasteorainn
+- id: light.laundry_light
+  area_id: laundry
+  name: seomraniochta solas
+  aliases:
+  - seomraniochta solas
+  - solas
+- id: light.powder_room_light
+  area_id: powder_room
+  name: leithreas solas
+  aliases:
+  - leithreas solas
+  - solas
+- id: light.garage_light
+  area_id: garage
+  name: garage solas
+  aliases:
+  - garage solas
+  - solas
+- id: light.office_ceiling
+  area_id: office
+  name: office uasteorainn
+  aliases:
+  - office uasteorainn
+  - uasteorainn
+- id: light.garden
+  area_id: garden
+  name: garden solas
+  aliases:
+  - garden solas
+  - solas
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: seomraleong uasteorainn
+  aliases:
+  - seomraleong uasteorainn
+  - uasteorainn
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: seomraleong ensuite
+  aliases:
+  - seomraleong ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: seomraleong left leaba
+  aliases:
+  - seomraleong left leaba
+  - leaba
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: seomraleong right leaba
+  aliases:
+  - seomraleong right leaba
+  - leaba
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: seomraleong2 uasteorainn
+  aliases:
+  - seomraleong2 uasteorainn
+  - uasteorainn
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: seomraleong3 uasteorainn
+  aliases:
+  - seomraleong3 uasteorainn
+  - uasteorainn
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: seomraleong4 uasteorainn
+  aliases:
+  - seomraleong4 uasteorainn
+  - uasteorainn
+- id: light.master_bath_light
+  area_id: master_bath
+  name: folcadanmaster solas
+  aliases:
+  - folcadanmaster solas
+  - solas
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath solas
+  aliases:
+  - main bath solas
+  - solas
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway solas
+  aliases:
+  - hallway solas
+  - solas
+- id: light.basement
+  area_id: basement
+  name: basement solas
+  aliases:
+  - basement solas
+  - solas
+- id: cover.living_blinds
+  area_id: living
+  name: seomra cuirtin
+  aliases:
+  - seomra cuirtin
+  - cuirtin
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: seomraleong cuirtin
+  aliases:
+  - seomraleong cuirtin
+  - cuirtin
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: seomraleong2 cuirtin
+  aliases:
+  - seomraleong2 cuirtin
+  - cuirtin
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: seomraleong3 cuirtin
+  aliases:
+  - seomraleong3 cuirtin
+  - cuirtin
+- id: cover.garage_door
+  area_id: garage
+  name: garage cuirtin
+  aliases:
+  - garage cuirtin
+  - cuirtin
+- id: climate.ground_thermostat
+  area_id: living
+  name: seomra teas
+  aliases:
+  - seomra teas
+  - teas
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: seomraleong teas
+  aliases:
+  - seomraleong teas
+  - teas
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: teas seomraleong
+  aliases:
+  - teas seomraleong
+  - teas
+  - ac
+  tags:
+  - teas
+- id: fan.family_fan
+  area_id: family_room
+  name: seomrateaghlaigh fean
+  aliases:
+  - seomrateaghlaigh fean
+  - fean
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: seomraleong fean
+  aliases:
+  - seomraleong fean
+  - fean
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: seomraleong2 fean
+  aliases:
+  - seomraleong2 fean
+  - fean
+- id: lock.front_door
+  area_id: entryway
+  name: front doras
+  aliases:
+  - front doras
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage doras
+  aliases:
+  - garage doras
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: cistin soitheach
+  aliases:
+  - cistin soitheach
+  - soitheach
+- id: switch.rangehood
+  area_id: kitchen
+  name: cistin rangehood
+  aliases:
+  - cistin rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: seomraniochta meaisinniocadh
+  aliases:
+  - seomraniochta meaisinniocadh
+  - meaisinniocadh
+  - washer
+  tags:
+  - washer
+  - meaisinniocadh
+- id: switch.dryer
+  area_id: laundry
+  name: seomraniochta dryer
+  aliases:
+  - seomraniochta dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: folcadanmaster feanbad
+  aliases:
+  - folcadanmaster feanbad
+  - feanbad
+  tags:
+  - feanbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath feanbad
+  aliases:
+  - main bath feanbad
+  - feanbad
+  tags:
+  - feanbad
+- id: media_player.living_tv
+  area_id: living
+  name: seomra teilifis
+  aliases:
+  - seomra teilifis
+  - teilifis
+- id: media_player.family_tv
+  area_id: family_room
+  name: seomrateaghlaigh teilifis
+  aliases:
+  - seomrateaghlaigh teilifis
+  - teilifis
+- id: media_player.living_music
+  area_id: living
+  name: seomra teilifis
+  aliases:
+  - seomra teilifis
+  - teilifis
+  platform: music_assistant
+  tags:
+  - teilifis
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: cistin teilifis
+  aliases:
+  - cistin teilifis
+  - teilifis
+  platform: music_assistant
+  tags:
+  - teilifis
+- id: media_player.office_music
+  area_id: office
+  name: office teilifis
+  aliases:
+  - office teilifis
+  - teilifis
+  platform: music_assistant
+  tags:
+  - teilifis
+- id: vacuum.robot
+  area_id: living
+  name: seomra folusaire
+  aliases:
+  - seomra folusaire
+  - folusaire
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: halla doorsensor
+  aliases:
+  - halla doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: seomra windowsensor
+  aliases:
+  - seomra windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: cistin motion
+  aliases:
+  - cistin motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: seomra tempsensor
+  aliases:
+  - seomra tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: seomra humidity
+  aliases:
+  - seomra humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: scannan
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: oiche
+- id: leaving_home
+  name: imeacht
+timers:
+- id: oven
+  name: oven amadoir
+- id: laundry
+  name: laundry amadoir
+- id: abstract
+  name: abstract amadoir
+lists:
+- id: shopping
+  name: liosta

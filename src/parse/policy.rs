@@ -105,6 +105,13 @@ pub(crate) fn media_claimed_empty(candidates: &[ClauseCandidate]) -> bool {
     })
 }
 
+pub(crate) fn retain_after_media_claim(candidates: &mut Vec<ClauseCandidate>, named: bool) {
+    candidates.retain(|candidate| match candidate.policy {
+        PolicyId::GroundedEntities | PolicyId::GroundedAmbiguous => named,
+        policy => media_fallback_allowed(policy),
+    });
+}
+
 pub(crate) fn media_fallback_allowed(policy: PolicyId) -> bool {
     matches!(
         policy,

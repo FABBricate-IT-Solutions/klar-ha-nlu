@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- chalu timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- chalu timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- chalu timer abstract
+timers/timers::cancel_all_timers:
+- band sabh timer
+timers/timers::timer_laundry_cancel:
+- chalu timer laundry
+timers/timers::timer_laundry_decrease:
+- chalu timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- chalu timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- band timer laundry
+timers/timers::timer_laundry_start:
+- chalu timer laundry
+timers/timers::timer_laundry_status:
+- ki timer laundry
+timers/timers::timer_laundry_unpause:
+- chalu timer laundry
+timers/timers::timer_oven_cancel:
+- chalu timer oven
+timers/timers::timer_oven_decrease:
+- chalu timer oven 44 min
+timers/timers::timer_oven_increase:
+- chalu timer oven 30 min
+timers/timers::timer_oven_pause:
+- band timer oven
+timers/timers::timer_oven_start:
+- chalu timer oven 2 min
+timers/timers::timer_oven_status:
+- ki timer oven
+timers/timers::timer_oven_unpause:
+- chalu timer oven

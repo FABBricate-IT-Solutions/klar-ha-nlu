@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- yak zamanlayici abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- yak zamanlayici abstract 20 min
+timers/timers::abstract_start_seconds:
+- yak zamanlayici abstract
+timers/timers::cancel_all_timers:
+- sondur hepsi zamanlayici
+timers/timers::timer_laundry_cancel:
+- yak zamanlayici laundry
+timers/timers::timer_laundry_decrease:
+- yak zamanlayici laundry 5 min
+timers/timers::timer_laundry_increase:
+- yak zamanlayici laundry 16 min
+timers/timers::timer_laundry_pause:
+- sondur zamanlayici laundry
+timers/timers::timer_laundry_start:
+- yak zamanlayici laundry
+timers/timers::timer_laundry_status:
+- ne zamanlayici laundry
+timers/timers::timer_laundry_unpause:
+- yak zamanlayici laundry
+timers/timers::timer_oven_cancel:
+- yak zamanlayici oven
+timers/timers::timer_oven_decrease:
+- yak zamanlayici oven 44 min
+timers/timers::timer_oven_increase:
+- yak zamanlayici oven 30 min
+timers/timers::timer_oven_pause:
+- sondur zamanlayici oven
+timers/timers::timer_oven_start:
+- yak zamanlayici oven 2 min
+timers/timers::timer_oven_status:
+- ne zamanlayici oven
+timers/timers::timer_oven_unpause:
+- yak zamanlayici oven

@@ -1,0 +1,502 @@
+name: Full Home en-GB
+language: en-GB
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: downstairs
+  level: 0
+  aliases:
+  - downstairs
+  - ground
+- id: upper
+  name: upstairs
+  level: 1
+  aliases:
+  - upstairs
+  - upper
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Porch
+  floor: ground
+  aliases:
+  - porch
+- id: living
+  name: Lounge
+  floor: ground
+  aliases:
+  - lounge
+- id: dining
+  name: Loungefamess
+  floor: ground
+  aliases:
+  - loungefamess
+- id: kitchen
+  name: Kitchen
+  floor: ground
+  aliases:
+  - kitchen
+- id: family_room
+  name: Loungefam
+  floor: ground
+  aliases:
+  - loungefam
+- id: laundry
+  name: Utility
+  floor: ground
+  aliases:
+  - utility
+- id: powder_room
+  name: Loo
+  floor: ground
+  aliases:
+  - loo
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Bedroom
+  floor: upper
+  aliases:
+  - bedroom
+- id: bedroom_2
+  name: Bedroom2
+  floor: upper
+  aliases:
+  - bedroom2
+- id: bedroom_3
+  name: Bedroom3
+  floor: upper
+  aliases:
+  - bedroom3
+- id: bedroom_4
+  name: Bedroom4
+  floor: upper
+  aliases:
+  - bedroom4
+- id: master_bath
+  name: Ensuite
+  floor: upper
+  aliases:
+  - ensuite
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: porch light
+  aliases:
+  - porch light
+  - light
+- id: light.living_ceiling
+  area_id: living
+  name: lounge ceiling
+  aliases:
+  - lounge ceiling
+  - ceiling
+- id: light.living_lamp
+  area_id: living
+  name: lounge bulb
+  aliases:
+  - lounge bulb
+  - bulb
+- id: light.dining_pendant
+  area_id: dining
+  name: loungefamess light
+  aliases:
+  - loungefamess light
+  - light
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kitchen ceiling
+  aliases:
+  - kitchen ceiling
+  - ceiling
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kitchen island
+  aliases:
+  - kitchen island
+  - island
+- id: light.family_ceiling
+  area_id: family_room
+  name: loungefam ceiling
+  aliases:
+  - loungefam ceiling
+  - ceiling
+- id: light.laundry_light
+  area_id: laundry
+  name: utility light
+  aliases:
+  - utility light
+  - light
+- id: light.powder_room_light
+  area_id: powder_room
+  name: loo light
+  aliases:
+  - loo light
+  - light
+- id: light.garage_light
+  area_id: garage
+  name: garage light
+  aliases:
+  - garage light
+  - light
+- id: light.office_ceiling
+  area_id: office
+  name: office ceiling
+  aliases:
+  - office ceiling
+  - ceiling
+- id: light.garden
+  area_id: garden
+  name: garden light
+  aliases:
+  - garden light
+  - light
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: bedroom ceiling
+  aliases:
+  - bedroom ceiling
+  - ceiling
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: bedroom ensuite
+  aliases:
+  - bedroom ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: bedroom left bedside
+  aliases:
+  - bedroom left bedside
+  - bedside
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: bedroom right bedside
+  aliases:
+  - bedroom right bedside
+  - bedside
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: bedroom2 ceiling
+  aliases:
+  - bedroom2 ceiling
+  - ceiling
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: bedroom3 ceiling
+  aliases:
+  - bedroom3 ceiling
+  - ceiling
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: bedroom4 ceiling
+  aliases:
+  - bedroom4 ceiling
+  - ceiling
+- id: light.master_bath_light
+  area_id: master_bath
+  name: ensuite light
+  aliases:
+  - ensuite light
+  - light
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath light
+  aliases:
+  - main bath light
+  - light
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway light
+  aliases:
+  - hallway light
+  - light
+- id: light.basement
+  area_id: basement
+  name: basement light
+  aliases:
+  - basement light
+  - light
+- id: cover.living_blinds
+  area_id: living
+  name: lounge curtain
+  aliases:
+  - lounge curtain
+  - curtain
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: bedroom curtain
+  aliases:
+  - bedroom curtain
+  - curtain
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: bedroom2 curtain
+  aliases:
+  - bedroom2 curtain
+  - curtain
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: bedroom3 curtain
+  aliases:
+  - bedroom3 curtain
+  - curtain
+- id: cover.garage_door
+  area_id: garage
+  name: garage curtain
+  aliases:
+  - garage curtain
+  - curtain
+- id: climate.ground_thermostat
+  area_id: living
+  name: lounge heating
+  aliases:
+  - lounge heating
+  - heating
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: bedroom heating
+  aliases:
+  - bedroom heating
+  - heating
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: temperature bedroom
+  aliases:
+  - temperature bedroom
+  - temperature
+  - ac
+  tags:
+  - temperature
+- id: fan.family_fan
+  area_id: family_room
+  name: loungefam fan
+  aliases:
+  - loungefam fan
+  - fan
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: bedroom fan
+  aliases:
+  - bedroom fan
+  - fan
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: bedroom2 fan
+  aliases:
+  - bedroom2 fan
+  - fan
+- id: lock.front_door
+  area_id: entryway
+  name: front door
+  aliases:
+  - front door
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage door
+  aliases:
+  - garage door
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kitchen dishwasher
+  aliases:
+  - kitchen dishwasher
+  - dishwasher
+- id: switch.rangehood
+  area_id: kitchen
+  name: kitchen rangehood
+  aliases:
+  - kitchen rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: utility washer
+  aliases:
+  - utility washer
+  - washer
+  tags:
+  - washer
+- id: switch.dryer
+  area_id: laundry
+  name: utility dryer
+  aliases:
+  - utility dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: ensuite fanbad
+  aliases:
+  - ensuite fanbad
+  - fanbad
+  tags:
+  - fanbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath fanbad
+  aliases:
+  - main bath fanbad
+  - fanbad
+  tags:
+  - fanbad
+- id: media_player.living_tv
+  area_id: living
+  name: lounge telly
+  aliases:
+  - lounge telly
+  - telly
+- id: media_player.family_tv
+  area_id: family_room
+  name: loungefam telly
+  aliases:
+  - loungefam telly
+  - telly
+- id: media_player.living_music
+  area_id: living
+  name: lounge telly
+  aliases:
+  - lounge telly
+  - telly
+  platform: music_assistant
+  tags:
+  - telly
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kitchen telly
+  aliases:
+  - kitchen telly
+  - telly
+  platform: music_assistant
+  tags:
+  - telly
+- id: media_player.office_music
+  area_id: office
+  name: office telly
+  aliases:
+  - office telly
+  - telly
+  platform: music_assistant
+  tags:
+  - telly
+- id: vacuum.robot
+  area_id: living
+  name: lounge hoover
+  aliases:
+  - lounge hoover
+  - hoover
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: porch doorsensor
+  aliases:
+  - porch doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: lounge windowsensor
+  aliases:
+  - lounge windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kitchen motion
+  aliases:
+  - kitchen motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: lounge tempsensor
+  aliases:
+  - lounge tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: lounge humidity
+  aliases:
+  - lounge humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden whats the weather
+  aliases:
+  - garden whats the weather
+  - whats the weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: night
+- id: leaving_home
+  name: leaving
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: list

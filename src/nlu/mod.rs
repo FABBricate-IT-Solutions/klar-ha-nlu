@@ -1,8 +1,11 @@
+#![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic))]
+
 mod binding;
 mod context;
 mod decision;
 mod draft;
 mod evidence;
+mod household;
 mod legacy;
 mod pipeline;
 mod policy_route;

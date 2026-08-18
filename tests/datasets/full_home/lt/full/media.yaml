@@ -1,0 +1,48 @@
+- name: media_player.living_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'on'
+  sentences:
+  - tv svetaine ijunk
+  - ijunk tv svetaine
+- name: media_player.living_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: 'off'
+  sentences:
+  - isjunk tv svetaine
+  - tv svetaine isjunk
+- name: media_player.living_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.living_tv
+    state: paused
+  sentences:
+  - pause tv svetaine
+  - tv svetaine pause
+- name: media_player.family_tv_on
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'on'
+  sentences:
+  - tv svetainefam ijunk
+  - ijunk tv svetainefam
+- name: media_player.family_tv_off
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: 'off'
+  sentences:
+  - isjunk tv svetainefam
+  - tv svetainefam isjunk
+- name: media_player.family_tv_pause
+  conditions:
+  - type: action
+    entity_id: media_player.family_tv
+    state: paused
+  sentences:
+  - pause tv svetainefam
+  - tv svetainefam pause

@@ -142,6 +142,7 @@ export type ConversationTurn = {
   last_names: string[];
   confirm_prompt?: string | null;
   candidate_id?: string | null;
+  preferred_area?: string | null;
 };
 
 export type Suggestion = {

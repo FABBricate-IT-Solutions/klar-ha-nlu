@@ -1,0 +1,142 @@
+- name: multi_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa svetaine ir virtuve
+  - sviesa svetaine ir virtuve ijunk
+- name: multi_off_lock
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - isjunk sviesa svetaine ir spyna durys
+  - isjunk svetaine ir spyna durys
+- name: multi_kitchen_dining
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa virtuve ir svetainefamess
+  - sviesa virtuve ir svetainefamess ijunk
+- name: multi_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa office ir hallway
+  - sviesa office ir hallway ijunk
+- name: multi_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa garage ir garden
+  - sviesa garage ir garden ijunk
+- name: multi_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa miegamasis ir main bath
+  - sviesa miegamasis ir main bath ijunk
+- name: multi_family_room_living
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa svetainefam ir svetaine
+  - sviesa svetainefam ir svetaine ijunk
+- name: multi_basement_garden
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa basement ir garden
+  - sviesa basement ir garden ijunk
+- name: multi_hallway_office
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa hallway ir office
+  - sviesa hallway ir office ijunk
+- name: multi_dining_kitchen
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa svetainefamess ir virtuve
+  - sviesa svetainefamess ir virtuve ijunk
+- name: multi_bedroom_2_bedroom_3
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - ijunk sviesa miegamasis2 ir miegamasis3
+  - sviesa miegamasis2 ir miegamasis3 ijunk

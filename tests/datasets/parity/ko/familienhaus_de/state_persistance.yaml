@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - mwo keoteun chimsil2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - mwo cheonjang chimsil2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - mwo keoteun chimsil3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - mwo cheonjang chimsil3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - mwo cheonjang chimsil4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - mwo bul gajoksiless
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - mwo bul hyeongwan
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - mwo cheonjang gajoksil
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - mwo keoteun garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - mwo bul garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - mwo bul hyeongwangang 그리고 mwo bul hwajangsil
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - mwo bul hyeongwangang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - mwo bul bueok
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - mwo bul setaksil
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - mwo nanbang geosil
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - mwo keoteun geosil
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - mwo bul geosil
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - mwo bul main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - mwo bul anbangyoksil
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - mwo nanbang chimsil 그리고 mwo nanbang geosil
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - mwo keoteun chimsil 그리고 mwo keoteun geosil
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - mwo nanbang chimsil
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - mwo keoteun chimsil
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - mwo bul hwajangsil
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - mwo keoteun garage
+  - dada
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - mwo keoteun garage
+  - yeolo
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - mwo keoteun garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - mwo keoteun geosil
+  - dada
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - mwo keoteun geosil
+  - yeolo
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - mwo keoteun geosil
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - mwo seonpunggi gajoksil
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - mwo seonpunggi gajoksil
+  - kkaeo
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - mwo seonpunggi gajoksil
+  - kyeo
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - mwo bul hyeongwan
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - mwo bul hyeongwan
+  - kkaeo
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - mwo bul hyeongwan
+  - kyeo
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - mwo jamulsoe hyeongwan
+  - jamulsoe
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - mwo jamulsoe hyeongwan
+  - yeolo
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - mwo jamulsoe garage
+  - jamulsoe
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - mwo jamulsoe garage
+  - yeolo
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - mwo tibi gajoksil
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - mwo tibi gajoksil
+  - kkaeo
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - mwo tibi gajoksil
+  - kyeo
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - mwo tibi geosil
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - mwo tibi geosil
+  - kkaeo
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - mwo tibi geosil
+  - kyeo

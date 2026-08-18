@@ -1,0 +1,268 @@
+devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
+- tang air hongnang 23
+devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
+- tang air hongnon 19
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
+- tang man hongnon2 67
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
+- pit man hongnon2
+devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
+- poet man hongnon2
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
+- tang man hongnon3 27
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
+- pit man hongnon3
+devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
+- poet man hongnon3
+devices/cover_garage_door::cover_garage_door_change_position:
+- tang man garage 52
+devices/cover_garage_door::cover_garage_door_close:
+- pit man garage
+devices/cover_garage_door::cover_garage_door_open:
+- poet man garage
+devices/cover_living_blinds::cover_living_blinds_change_position:
+- tang man hongnang 35
+devices/cover_living_blinds::cover_living_blinds_close:
+- pit man hongnang
+devices/cover_living_blinds::cover_living_blinds_open:
+- poet man hongnang
+devices/cover_master_blinds::cover_master_blinds_change_position:
+- tang man hongnon 19
+devices/cover_master_blinds::cover_master_blinds_close:
+- pit man hongnon
+devices/cover_master_blinds::cover_master_blinds_open:
+- poet man hongnon
+devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
+- tang phat hongnon2 72
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
+- pitfai phat hongnon2
+devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
+- poetfai phat hongnon2
+devices/fan_family_fan::fan_family_fan_set_fan_speed:
+- tang phat hongkhropkhrua 63
+devices/fan_family_fan::fan_family_fan_turn_off:
+- pitfai phat hongkhropkhrua
+devices/fan_family_fan::fan_family_fan_turn_on:
+- poetfai phat hongkhropkhrua
+devices/fan_master_fan::fan_master_fan_set_fan_speed:
+- tang phat hongnon 28
+devices/fan_master_fan::fan_master_fan_turn_off:
+- pitfai phat hongnon
+devices/fan_master_fan::fan_master_fan_turn_on:
+- poetfai phat hongnon
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
+- pitfai phat hongnon และ pitfai fai hongkrua
+devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
+- poetfai phat hongnon และ poetfai fai hongkrua
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
+- tang phalang hongnon2 94
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
+- tang phalang hongnon2 pink
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
+- pitfai phalang hongnon2
+devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
+- poetfai phalang hongnon2
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
+- tang phalang hongnon3 36
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
+- tang phalang hongnon3 yellow
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
+- pitfai phalang hongnon3
+devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
+- poetfai phalang hongnon3
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
+- tang phalang hongnon4 60
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
+- tang phalang hongnon4 red
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
+- pitfai phalang hongnon4
+devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
+- poetfai phalang hongnon4
+devices/light_dining_pendant::light_dining_pendant_change_brightness:
+- tang fai hongkhropkhruaess 21
+devices/light_dining_pendant::light_dining_pendant_change_color:
+- tang fai hongkhropkhruaess blue
+devices/light_dining_pendant::light_dining_pendant_turn_off:
+- pitfai fai hongkhropkhruaess
+devices/light_dining_pendant::light_dining_pendant_turn_on:
+- poetfai fai hongkhropkhruaess
+devices/light_entryway_light::light_entryway_light_change_brightness:
+- tang fai thangkhau 88
+devices/light_entryway_light::light_entryway_light_change_color:
+- tang fai thangkhau yellow
+devices/light_entryway_light::light_entryway_light_turn_off:
+- pitfai fai thangkhau
+devices/light_entryway_light::light_entryway_light_turn_on:
+- poetfai fai thangkhau
+devices/light_family_ceiling::light_family_ceiling_change_brightness:
+- tang phalang hongkhropkhrua 98
+devices/light_family_ceiling::light_family_ceiling_change_color:
+- tang phalang hongkhropkhrua purple
+devices/light_family_ceiling::light_family_ceiling_turn_off:
+- pitfai phalang hongkhropkhrua
+devices/light_family_ceiling::light_family_ceiling_turn_on:
+- poetfai phalang hongkhropkhrua
+devices/light_garage_light::light_garage_light_change_brightness:
+- tang fai garage 76
+devices/light_garage_light::light_garage_light_change_color:
+- tang fai garage green
+devices/light_garage_light::light_garage_light_turn_off:
+- pitfai fai garage
+devices/light_garage_light::light_garage_light_turn_on:
+- poetfai fai garage
+devices/light_hallway_light::light_hallway_light_change_brightness:
+- tang fai thangkhaugang 11
+devices/light_hallway_light::light_hallway_light_change_color:
+- tang fai thangkhaugang white
+devices/light_hallway_light::light_hallway_light_turn_off:
+- pitfai fai thangkhaugang
+devices/light_hallway_light::light_hallway_light_turn_on:
+- poetfai fai thangkhaugang
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
+- tang phalang hongkrua 25
+devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
+- tang phalang hongkrua orange
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
+- pitfai phalang hongkrua
+devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
+- poetfai phalang hongkrua
+devices/light_kitchen_island::light_kitchen_island_change_brightness:
+- tang fai hongkrua 99
+devices/light_kitchen_island::light_kitchen_island_change_color:
+- tang fai hongkrua green
+devices/light_kitchen_island::light_kitchen_island_turn_off:
+- pitfai fai hongkrua
+devices/light_kitchen_island::light_kitchen_island_turn_on:
+- poetfai fai hongkrua
+devices/light_laundry_light::light_laundry_light_change_brightness:
+- tang fai hongsakpha 18
+devices/light_laundry_light::light_laundry_light_change_color:
+- tang fai hongsakpha white
+devices/light_laundry_light::light_laundry_light_turn_off:
+- pitfai fai hongsakpha
+devices/light_laundry_light::light_laundry_light_turn_on:
+- poetfai fai hongsakpha
+devices/light_living_ceiling::light_living_ceiling_change_brightness:
+- tang phalang hongnang 72
+devices/light_living_ceiling::light_living_ceiling_change_color:
+- tang phalang hongnang black
+devices/light_living_ceiling::light_living_ceiling_turn_off:
+- pitfai phalang hongnang
+devices/light_living_ceiling::light_living_ceiling_turn_on:
+- poetfai phalang hongnang
+devices/light_living_lamp::light_living_lamp_change_brightness:
+- tang fai hongnang 72
+devices/light_living_lamp::light_living_lamp_change_color:
+- tang fai hongnang red
+devices/light_living_lamp::light_living_lamp_turn_off:
+- pitfai fai hongnang
+devices/light_living_lamp::light_living_lamp_turn_on:
+- poetfai fai hongnang
+devices/light_main_bath_light::light_main_bath_light_change_brightness:
+- tang fai main bath 85
+devices/light_main_bath_light::light_main_bath_light_change_color:
+- tang fai main bath blue
+devices/light_main_bath_light::light_main_bath_light_turn_off:
+- pitfai fai main bath
+devices/light_main_bath_light::light_main_bath_light_turn_on:
+- poetfai fai main bath
+devices/light_master_bath_light::light_master_bath_light_change_brightness:
+- tang fai hongnamlak 18
+devices/light_master_bath_light::light_master_bath_light_change_color:
+- tang fai hongnamlak black
+devices/light_master_bath_light::light_master_bath_light_turn_off:
+- pitfai fai hongnamlak
+devices/light_master_bath_light::light_master_bath_light_turn_on:
+- poetfai fai hongnamlak
+devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
+- tang khangtiang hongnon 25
+devices/light_master_bedside_right::light_master_bedside_right_change_color:
+- tang khangtiang hongnon red
+devices/light_master_bedside_right::light_master_bedside_right_turn_off:
+- pitfai khangtiang hongnon
+devices/light_master_bedside_right::light_master_bedside_right_turn_on:
+- poetfai khangtiang hongnon
+devices/light_master_ceiling::light_master_ceiling_change_brightness:
+- tang phalang hongnon 77
+devices/light_master_ceiling::light_master_ceiling_change_color:
+- tang phalang hongnon blue
+devices/light_master_ceiling::light_master_ceiling_turn_off:
+- pitfai phalang hongnon
+devices/light_master_ceiling::light_master_ceiling_turn_on:
+- poetfai phalang hongnon
+devices/light_master_ensuite::light_master_ensuite_change_brightness:
+- tang fai hongnon 55
+devices/light_master_ensuite::light_master_ensuite_change_color:
+- tang fai hongnon black
+devices/light_master_ensuite::light_master_ensuite_turn_off:
+- pitfai fai hongnon
+devices/light_master_ensuite::light_master_ensuite_turn_on:
+- poetfai fai hongnon
+devices/light_powder_room_light::light_powder_room_light_change_brightness:
+- tang fai hongnamkhaek 22
+devices/light_powder_room_light::light_powder_room_light_change_color:
+- tang fai hongnamkhaek black
+devices/light_powder_room_light::light_powder_room_light_turn_off:
+- pitfai fai hongnamkhaek
+devices/light_powder_room_light::light_powder_room_light_turn_on:
+- poetfai fai hongnamkhaek
+devices/lock_front_door::lock_front_door_lock:
+- kunjae kunjae thangkhau
+devices/lock_front_door::lock_front_door_unlock:
+- poet kunjae thangkhau
+devices/lock_garage_entry::lock_garage_entry_lock:
+- kunjae kunjae garage
+devices/lock_garage_entry::lock_garage_entry_unlock:
+- poet kunjae garage
+devices/media_player_family_tv::media_player_family_tv_mute:
+- poetfai thiwi hongkhropkhrua
+devices/media_player_family_tv::media_player_family_tv_pause:
+- pause thiwi hongkhropkhrua
+devices/media_player_family_tv::media_player_family_tv_turn_off:
+- pitfai thiwi hongkhropkhrua
+devices/media_player_family_tv::media_player_family_tv_turn_on:
+- poetfai thiwi hongkhropkhrua
+devices/media_player_family_tv::media_player_family_tv_unmute:
+- poetfai thiwi hongkhropkhrua
+devices/media_player_family_tv::media_player_family_tv_unpause:
+- poetfai thiwi hongkhropkhrua
+devices/media_player_living_tv::media_player_living_tv_mute:
+- poetfai thiwi hongnang
+devices/media_player_living_tv::media_player_living_tv_pause:
+- pause thiwi hongnang
+devices/media_player_living_tv::media_player_living_tv_turn_off:
+- pitfai thiwi hongnang
+devices/media_player_living_tv::media_player_living_tv_turn_on:
+- poetfai thiwi hongnang
+devices/media_player_living_tv::media_player_living_tv_unmute:
+- poetfai thiwi hongnang
+devices/media_player_living_tv::media_player_living_tv_unpause:
+- poetfai thiwi hongnang
+devices/scenes::dinner_time:
+- tang fai hongkhropkhruaess 90 และ poetfai phalang hongkrua และ tang fai hongkrua
+  80
+devices/scenes::good_morning:
+- poetfai phalang hongkrua และ tang fai hongkhropkhruaess 100 และ poet man hongnang
+  และ poet man hongnon
+devices/scenes::kids_bedtime:
+- pitfai phalang hongnon2 และ pitfai phalang hongnon3 และ pitfai phalang hongnon4
+  และ tang fai thangkhaugang 15
+devices/scenes::movie_night:
+- pitfai phalang hongnang และ tang fai hongnang 20 และ poetfai thiwi hongnang และ
+  pit man hongnang
+devices/scripts::good_night:
+- poetfai chak khuen
+devices/scripts::leaving_home:
+- poetfai chak ok
+devices/switch_dishwasher::switch_dishwasher_turn_off:
+- pitfai langchan
+devices/switch_dishwasher::switch_dishwasher_turn_on:
+- poetfai langchan
+devices/switch_dryer::switch_dryer_turn_off:
+- pitfai sakpha
+devices/switch_dryer::switch_dryer_turn_on:
+- poetfai sakpha
+devices/switch_washing_machine::switch_washing_machine_turn_off:
+- pitfai sakpha
+devices/switch_washing_machine::switch_washing_machine_turn_on:
+- poetfai sakpha

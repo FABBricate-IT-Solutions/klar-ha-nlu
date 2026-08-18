@@ -1,0 +1,142 @@
+- name: multi_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali elutuba ja kook
+  - vali elutuba ja kook lulita
+- name: multi_off_lock
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - kustuta vali elutuba ja lukk uks
+  - kustuta elutuba ja lukk uks
+- name: multi_kitchen_dining
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali kook ja peredetubaess
+  - vali kook ja peredetubaess lulita
+- name: multi_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali office ja hallway
+  - vali office ja hallway lulita
+- name: multi_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali garage ja garden
+  - vali garage ja garden lulita
+- name: multi_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali magamistuba ja main bath
+  - vali magamistuba ja main bath lulita
+- name: multi_family_room_living
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali peredetuba ja elutuba
+  - vali peredetuba ja elutuba lulita
+- name: multi_basement_garden
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali basement ja garden
+  - vali basement ja garden lulita
+- name: multi_hallway_office
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali hallway ja office
+  - vali hallway ja office lulita
+- name: multi_dining_kitchen
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali peredetubaess ja kook
+  - vali peredetubaess ja kook lulita
+- name: multi_bedroom_2_bedroom_3
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - lulita vali magamistuba2 ja magamistuba3
+  - vali magamistuba2 ja magamistuba3 lulita

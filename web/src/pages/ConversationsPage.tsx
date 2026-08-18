@@ -52,6 +52,7 @@ export function ConversationsPage({ t, onReplay }: { t: Messages; onReplay: (tex
                 <div>
                   <span className={`chip ${turn.decision === "execute" ? "intent" : ""}`}>{turn.decision}</span>
                   {turn.text && <p>{turn.text}</p>}
+                  {turn.preferred_area && <p className="caption">{t.heardIn}: {turn.preferred_area}</p>}
                   <p className="muted">{turn.speech || turn.confirm_prompt || ""}</p>
                   {(turn.last_names ?? []).length > 0 && <p className="mono">{turn.last_names.join(" · ")}</p>}
                 </div>

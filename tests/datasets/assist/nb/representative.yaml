@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - skru lys stue
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - slaa lys kjokken
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

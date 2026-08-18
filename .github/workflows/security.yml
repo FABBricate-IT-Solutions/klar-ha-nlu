@@ -5,6 +5,7 @@ on:
   schedule:
     - cron: "17 6 * * 1"
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -17,9 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: rustsec/audit-check@v2.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: dtolnay/rust-toolchain@1.85
+      # 0.22.2+ needs rustc 1.88; MSRV is 1.85.
+      - run: cargo install cargo-audit --version 0.22.1 --locked --force
+      - run: cargo audit
 
   deny:
     name: cargo-deny
@@ -30,3 +32,96 @@ jobs:
         with:
           command: check
           arguments: --all-features
+
+  gitleaks:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # The GitHub Action requires an org license; the CLI does not.
+      - name: Gitleaks
+        run: |
+          set -euo pipefail
+          version=8.28.0
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${version}/gitleaks_${version}_linux_x64.tar.gz" | tar -xz gitleaks
+          ./gitleaks detect --source . --verbose --redact --exit-code 1
+
+  semgrep:
+    name: semgrep
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v7
+      - name: Default catalog rules
+        run: semgrep scan --config .semgrep/klar.yml --error --quiet
+
+  # Weekly/manual only. Skipped on workflow_call so release reuse stays fast.
+  codeql:
+    name: codeql-rust
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: rust
+          build-mode: none
+          config-file: .github/codeql/codeql-config.yml
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:rust"
+
+  # Weekly/manual scan of the published multi-arch image. Not on every PR.
+  trivy:
+    name: trivy-ghcr
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: read
+      security-events: write
+    steps:
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Image present
+        id: image
+        env:
+          IMAGE: ghcr.io/fabbricate-it-solutions/klar-nlu:latest
+        run: |
+          if docker manifest inspect "$IMAGE" >/dev/null 2>&1; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: aquasecurity/trivy-action@v0.36.0
+        if: steps.image.outputs.present == 'true'
+        with:
+          image-ref: ghcr.io/fabbricate-it-solutions/klar-nlu:latest
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          vuln-type: os,library
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: "1"
+        env:
+          TRIVY_USERNAME: ${{ github.actor }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      - uses: github/codeql-action/upload-sarif@v4
+        if: always() && steps.image.outputs.present == 'true'
+        with:
+          sarif_file: trivy-results.sarif
+      - name: Skip missing image
+        if: steps.image.outputs.present != 'true'
+        run: echo "GHCR :latest is not published yet — skip Trivy"

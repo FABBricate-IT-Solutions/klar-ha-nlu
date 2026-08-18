@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- enciende temporizador abstract 45 minuto
+timers/timers::abstract_start_hours_minutes:
+- enciende temporizador abstract 20 minuto
+timers/timers::abstract_start_seconds:
+- enciende temporizador abstract
+timers/timers::cancel_all_timers:
+- apaga todo temporizador
+timers/timers::timer_laundry_cancel:
+- enciende temporizador laundry
+timers/timers::timer_laundry_decrease:
+- enciende temporizador laundry 5 minuto
+timers/timers::timer_laundry_increase:
+- enciende temporizador laundry 16 minuto
+timers/timers::timer_laundry_pause:
+- apaga temporizador laundry
+timers/timers::timer_laundry_start:
+- enciende temporizador laundry
+timers/timers::timer_laundry_status:
+- que temporizador laundry
+timers/timers::timer_laundry_unpause:
+- enciende temporizador laundry
+timers/timers::timer_oven_cancel:
+- enciende temporizador oven
+timers/timers::timer_oven_decrease:
+- enciende temporizador oven 44 minuto
+timers/timers::timer_oven_increase:
+- enciende temporizador oven 30 minuto
+timers/timers::timer_oven_pause:
+- apaga temporizador oven
+timers/timers::timer_oven_start:
+- enciende temporizador oven 2 minuto
+timers/timers::timer_oven_status:
+- que temporizador oven
+timers/timers::timer_oven_unpause:
+- enciende temporizador oven

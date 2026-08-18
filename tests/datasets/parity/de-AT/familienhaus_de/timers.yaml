@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- mach timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- mach timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- mach timer abstract
+timers/timers::cancel_all_timers:
+- schalt alle timer
+timers/timers::timer_laundry_cancel:
+- mach timer laundry
+timers/timers::timer_laundry_decrease:
+- mach timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- mach timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- schalt timer laundry
+timers/timers::timer_laundry_start:
+- mach timer laundry
+timers/timers::timer_laundry_status:
+- was timer laundry
+timers/timers::timer_laundry_unpause:
+- mach timer laundry
+timers/timers::timer_oven_cancel:
+- mach timer oven
+timers/timers::timer_oven_decrease:
+- mach timer oven 44 min
+timers/timers::timer_oven_increase:
+- mach timer oven 30 min
+timers/timers::timer_oven_pause:
+- schalt timer oven
+timers/timers::timer_oven_start:
+- mach timer oven 2 min
+timers/timers::timer_oven_status:
+- was timer oven
+timers/timers::timer_oven_unpause:
+- mach timer oven

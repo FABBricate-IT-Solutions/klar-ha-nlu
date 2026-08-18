@@ -1,9 +1,17 @@
 use crate::lang::catalog;
+use crate::lang::VerbKind;
 use crate::parse::action::{has_light_noun, Action};
 use crate::parse::fuzzy::{select_unique, Profile};
 use crate::parse::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
-use crate::types::{known_intent, CustomSentence, Intent};
+use crate::types::{known_intent, CustomSentence, EntityRec, Intent};
+
+fn dock_hint(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| {
+        matches!(catalog().verb(token), Some(VerbKind::Dock))
+            || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
+    })
+}
 
 fn last_domain(session: &Session, prefix: &str) -> bool {
     session.last_domains().any(|d| d == prefix) || session.last_entities().any(|e| e.starts_with(&format!("{prefix}.")))
@@ -29,6 +37,9 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
     if question && (vacuum || matches!(action, Action::VacuumDock | Action::VacuumStart)) {
         return Action::GetState;
     }
+    if vacuum && dock_hint(tokens) {
+        return Action::VacuumDock;
+    }
     if vacuum
         && (matches!(action, Action::On) || catalog().any(tokens, &catalog().start_words) || catalog().any(tokens, &catalog().vacuum_start))
     {
@@ -49,8 +60,19 @@ fn refine_tokens(action: Action, tokens: &[String], number: Option<i32>, questio
     action
 }
 
+pub(crate) fn mentions_lamp_fixture(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| token == "lamp" || catalog().lamp_fixture.contains(token.as_str()))
+}
+
 fn session_domain(session: &Session, tokens: &[String]) -> Option<&'static str> {
-    if has_light_noun(tokens) {
+    let cat = catalog();
+    if has_light_noun(tokens)
+        || cat.any(tokens, &cat.ceiling)
+        || cat.any(tokens, &cat.named_device)
+        || cat.any(tokens, &cat.island)
+        || mentions_lamp_fixture(tokens)
+        || cat.any(tokens, &cat.bedside)
+    {
         return None;
     }
     ["climate", "cover", "fan", "lock", "media_player"].into_iter().find(|prefix| last_domain(session, prefix))
@@ -136,13 +158,19 @@ pub(crate) fn wants_all_lights(tokens: &[String]) -> bool {
     if !cat.any(tokens, &cat.light_nouns) && !cat.any(tokens, &cat.light_plural) {
         return false;
     }
-    tokens.iter().any(|t| cat.is_all(t)) || (cat.any(tokens, &cat.status_words) && cat.any(tokens, &cat.light_plural))
+    tokens.iter().any(|t| cat.is_all(t))
+        || tokens.iter().any(|t| cat.is_except(t))
+        || (cat.any(tokens, &cat.status_words) && cat.any(tokens, &cat.light_plural))
 }
 
 pub(crate) fn except_tail(tokens: &[String]) -> Option<&[String]> {
     if let Some(at) = tokens.iter().position(|token| catalog().is_except(token)) {
         let tail = &tokens[at + 1..];
-        return (!tail.is_empty()).then_some(tail);
+        if !tail.is_empty() {
+            return Some(tail);
+        }
+        let head = except_head_focus(&tokens[..at]);
+        return (!head.is_empty()).then_some(head);
     }
     if let Some(tail) = tokens.windows(2).enumerate().find_map(|(at, pair)| {
         let phrase = matches!(
@@ -161,6 +189,16 @@ pub(crate) fn except_tail(tokens: &[String]) -> Option<&[String]> {
         }
     }
     None
+}
+
+fn except_head_focus(tokens: &[String]) -> &[String] {
+    let cat = catalog();
+    let start = tokens
+        .iter()
+        .rposition(|token| cat.verb(token).is_some() || cat.is_all(token) || cat.is_particle(token))
+        .map(|index| index + 1)
+        .unwrap_or(0);
+    &tokens[start..]
 }
 
 /// Exception focus without the command verb leaked after the room ("… außer Schlafzimmer ausschalten").
@@ -190,9 +228,7 @@ pub(crate) fn looks_like_question(tokens: &[String]) -> bool {
 
 pub(crate) fn looks_like_correction(tokens: &[String]) -> bool {
     let blob = join_tokens(tokens);
-    catalog().correction.iter().any(|w| blob.contains(w))
-        || catalog().correction_phrases.iter().any(|phrase| blob.contains(phrase))
-        || (tokens.iter().any(|t| t == "nein") && catalog().any(tokens, &catalog().correction))
+    catalog().correction.iter().any(|w| blob.contains(w)) || catalog().correction_phrases.iter().any(|phrase| blob.contains(phrase))
 }
 
 pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option<String> {
@@ -217,13 +253,38 @@ pub(crate) fn pick_clarification(tokens: &[String], session: &Session) -> Option
         .cloned()
 }
 
-fn fixture_aliases(token: &str) -> Vec<&str> {
-    let aliases = catalog().fixture_alias(token);
-    if aliases.is_empty() {
-        vec![token]
+pub(crate) fn fixture_matches(entity: &EntityRec, needle: &str) -> bool {
+    let blob = format!("{} {} {}", entity.entity_id, fold_umlaut(&entity.name), entity.aliases.join(" "));
+    let hits = fixture_aliases(needle);
+    let matched = hits.iter().any(|alias| blob.contains(alias));
+    let cat = catalog();
+    if needle == "lamp" || cat.lamp_fixture.contains(needle) {
+        matched && !blob.contains("decke") && cat.ceiling.iter().all(|word| !blob.contains(word))
     } else {
-        aliases.to_vec()
+        matched
     }
+}
+
+fn fixture_aliases(token: &str) -> Vec<&str> {
+    let cat = catalog();
+    let aliases = cat.fixture_alias(token);
+    let mut out: Vec<&str> = if aliases.is_empty() { vec![token] } else { aliases.to_vec() };
+    if token == "ceiling" || cat.ceiling.contains(token) {
+        out.extend(["ceiling", "decke", "deckenlampe"]);
+    }
+    if token == "island" || cat.island.contains(token) {
+        out.extend(["island", "insel"]);
+    }
+    if token == "lamp" || cat.lamp_fixture.contains(token) {
+        out.extend(["lamp", "lampe"]);
+    }
+    if cat.bedside.contains(token) {
+        out.extend(["nacht", "nachttisch", "bedside"]);
+    }
+    if token == "globe" || token == "kugel" || aliases.iter().any(|alias| *alias == "globe") {
+        out.extend(["kugel", "globe"]);
+    }
+    out
 }
 
 pub(crate) fn match_custom(tokens: &[String], text: &str, custom: &[CustomSentence], allowed: &[String]) -> Option<Intent> {
@@ -342,6 +403,10 @@ mod tests {
         assert_eq!(infer_action(Action::On, &tokens, None, true, &session, Some("vacuum")), Action::GetState);
         assert_eq!(infer_action(Action::GetState, &tokens, None, true, &session, Some("vacuum")), Action::GetState);
         assert_eq!(infer_action(Action::On, &["r2d2".into(), "an".into()], None, false, &session, Some("vacuum")), Action::VacuumStart);
+        assert_eq!(
+            infer_action(Action::On, &["dock".into(), "staubsauger".into()], None, false, &session, Some("vacuum")),
+            Action::VacuumDock
+        );
     }
 
     #[test]

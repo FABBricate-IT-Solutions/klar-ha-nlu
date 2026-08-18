@@ -1,0 +1,70 @@
+- name: timer_oven
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 10
+  sentences:
+  - روشن تایمر 10 min
+  - تایمر 10 min
+- name: timer_laundry
+  conditions:
+  - type: action
+    entity_id: timer.laundry
+    attributes:
+      minutes: 45
+  sentences:
+  - روشن تایمر 45 min
+  - تایمر 45 min
+- name: timer_cancel
+  conditions:
+  - type: action
+    entity_id: timer.abstract
+  sentences:
+  - خاموش تایمر
+  - تایمر خاموش
+- name: timer_oven_5
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 5
+  sentences:
+  - روشن تایمر 5 min
+  - تایمر 5 min
+- name: timer_oven_15
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 15
+  sentences:
+  - روشن تایمر 15 min
+  - تایمر 15 min
+- name: timer_oven_20
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 20
+  sentences:
+  - روشن تایمر 20 min
+  - تایمر 20 min
+- name: timer_oven_30
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 30
+  sentences:
+  - روشن تایمر 30 min
+  - تایمر 30 min
+- name: timer_oven_60
+  conditions:
+  - type: action
+    entity_id: timer.oven
+    attributes:
+      minutes: 60
+  sentences:
+  - روشن تایمر 60 min
+  - تایمر 60 min

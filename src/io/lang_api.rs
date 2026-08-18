@@ -20,10 +20,33 @@ use std::net::SocketAddr;
 
 pub fn routes() -> Router<AppState> {
     Router::new()
+        .route("/api/v2/languages", get(list_languages))
         .route("/api/lang/overlay", get(get_overlay).post(set_overlay))
         .route("/api/lang/preview", post(preview))
         .route("/api/lang/explain", post(explain))
         .route("/api/lang/rollback", post(rollback))
+}
+
+async fn list_languages() -> Json<Vec<LanguageOut>> {
+    Json(
+        crate::lang::languages()
+            .iter()
+            .map(|meta| LanguageOut {
+                code: meta.code.to_string(),
+                native_name: meta.native_name.to_string(),
+                script: meta.script.to_string(),
+                variants: meta.variants.iter().map(|item| (*item).to_string()).collect(),
+            })
+            .collect(),
+    )
+}
+
+#[derive(Serialize)]
+struct LanguageOut {
+    code: String,
+    native_name: String,
+    script: String,
+    variants: Vec<String>,
 }
 
 #[derive(Serialize)]

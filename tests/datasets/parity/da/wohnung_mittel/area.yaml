@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- saet varme badmaster 23
+area/heizung::heizung_esszimmer_23:
+- saet varme alrumess 23
+area/heizung::heizung_schlafzimmer_23:
+- saet varme sovevaerelse 23
+area/heizung::heizung_wohnzimmer_23:
+- saet varme stue 23
+area/lichter::alle_an_ausser_kugel:
+- taend alle lys undtagen kugle
+area/lichter::alle_an_ausser_schlafzimmer:
+- taend alle lys undtagen sovevaerelse
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- saet alle lys undtagen sovevaerelse 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- saet alle lys undtagen kugle rod
+area/lichter::alle_ausser_kugel:
+- sluk alle lys undtagen kugle
+area/lichter::alle_ausser_schlafzimmer:
+- sluk alle lys undtagen sovevaerelse
+area/lichter::alle_lichter_an:
+- taend alle lys
+area/lichter::alle_lichter_aus:
+- sluk alle lys
+area/lichter::arbeitszimmer_lichter_an:
+- taend lys stue
+area/lichter::arbeitszimmer_lichter_aus:
+- sluk lys stue
+area/lichter::esszimmer_lichter_an:
+- taend lys alrumess
+area/lichter::esszimmer_lichter_aus:
+- sluk lys alrumess
+area/lichter::kuche_lichter_an:
+- taend lys kokken
+area/lichter::kuche_lichter_aus:
+- sluk lys kokken
+area/lichter::schlafzimmer_auf_blau:
+- saet lys sovevaerelse bla
+area/lichter::schlafzimmer_auf_rot:
+- saet lys sovevaerelse rod
+area/lichter::wohnzimmer_helligkeit:
+- saet lys stue 45
+area/lichter::wohnzimmer_lichter_an:
+- taend lys stue
+area/lichter::wohnzimmer_lichter_aus:
+- sluk lys stue
+area/spoken::alle_ausser_kugel_stt:
+- sluk alle lys undtagen kugle
+area/spoken::alle_ausser_schlaf_stt:
+- sluk alle lys undtagen sovevaerelse
+area/spoken::alle_ganzen_an:
+- taend alle lys
+area/spoken::alle_lampen_aus:
+- sluk alle lys
+area/spoken::esszimmer_weiss:
+- saet lys alrumess hvid
+area/spoken::stt_kuche_lichte:
+- sluk lys kokken
+area/spoken::stt_licht_wohnzimmer_an:
+- taend lys stue
+area/spoken::stt_licht_wohnzimmer_aus:
+- sluk lys stue
+area/spoken::stt_schlafzimmer_dativ:
+- sluk lys sovevaerelse
+area/spoken::wohnzimmer_gruen:
+- saet lys stue gron
+area/spoken_more::alle_ausser_arbeitszimmer:
+- sluk alle lys undtagen stue
+area/spoken_more::arbeitszimmer_lampen_aus:
+- sluk lys stue
+area/spoken_more::esszimmer_30:
+- saet lys alrumess 30
+area/spoken_more::esszimmer_lichte_an:
+- taend lys alrumess
+area/spoken_more::kuche_80:
+- saet lys kokken 80
+area/spoken_more::kuche_blau:
+- saet lys kokken bla
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- sluk alle lys undtagen sovevaerelse
+area/spoken_more::wohnzimmer_gelb:
+- saet lys stue gul

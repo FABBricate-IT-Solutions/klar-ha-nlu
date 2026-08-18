@@ -1,0 +1,504 @@
+name: Full Home lb
+language: lb
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: ierd
+  level: 0
+  aliases:
+  - ierd
+  - ënnen
+- id: upper
+  name: iwwer
+  level: 1
+  aliases:
+  - iwwer
+  - uewen
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Entrada
+  floor: ground
+  aliases:
+  - entrada
+- id: living
+  name: Wunnen
+  floor: ground
+  aliases:
+  - wunnen
+- id: dining
+  name: Wunnsalless
+  floor: ground
+  aliases:
+  - wunnsalless
+- id: kitchen
+  name: Kichen
+  floor: ground
+  aliases:
+  - kichen
+- id: family_room
+  name: Wunnsall
+  floor: ground
+  aliases:
+  - wunnsall
+- id: laundry
+  name: Waschraum
+  floor: ground
+  aliases:
+  - waschraum
+- id: powder_room
+  name: Toilette
+  floor: ground
+  aliases:
+  - toilette
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: schlofzëmmer
+  floor: upper
+  aliases:
+  - schlofzëmmer
+- id: bedroom_2
+  name: schlofzëmmer2
+  floor: upper
+  aliases:
+  - schlofzëmmer2
+- id: bedroom_3
+  name: schlofzëmmer3
+  floor: upper
+  aliases:
+  - schlofzëmmer3
+- id: bedroom_4
+  name: schlofzëmmer4
+  floor: upper
+  aliases:
+  - schlofzëmmer4
+- id: master_bath
+  name: Bademaster
+  floor: upper
+  aliases:
+  - bademaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: entrada luucht
+  aliases:
+  - entrada luucht
+  - luucht
+- id: light.living_ceiling
+  area_id: living
+  name: wunnen decken
+  aliases:
+  - wunnen decken
+  - decken
+- id: light.living_lamp
+  area_id: living
+  name: wunnen luucht
+  aliases:
+  - wunnen luucht
+  - luucht
+- id: light.dining_pendant
+  area_id: dining
+  name: wunnsalless luucht
+  aliases:
+  - wunnsalless luucht
+  - luucht
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kichen decken
+  aliases:
+  - kichen decken
+  - decken
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kichen eiland
+  aliases:
+  - kichen eiland
+  - eiland
+- id: light.family_ceiling
+  area_id: family_room
+  name: wunnsall decken
+  aliases:
+  - wunnsall decken
+  - decken
+- id: light.laundry_light
+  area_id: laundry
+  name: waschraum luucht
+  aliases:
+  - waschraum luucht
+  - luucht
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toilette luucht
+  aliases:
+  - toilette luucht
+  - luucht
+- id: light.garage_light
+  area_id: garage
+  name: garage luucht
+  aliases:
+  - garage luucht
+  - luucht
+- id: light.office_ceiling
+  area_id: office
+  name: office decken
+  aliases:
+  - office decken
+  - decken
+- id: light.garden
+  area_id: garden
+  name: garden luucht
+  aliases:
+  - garden luucht
+  - luucht
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: schlofzëmmer decken
+  aliases:
+  - schlofzëmmer decken
+  - decken
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: schlofzëmmer ensuite
+  aliases:
+  - schlofzëmmer ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: schlofzëmmer left nuettsdesch
+  aliases:
+  - schlofzëmmer left nuettsdesch
+  - nuettsdesch
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: schlofzëmmer right nuettsdesch
+  aliases:
+  - schlofzëmmer right nuettsdesch
+  - nuettsdesch
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: schlofzëmmer2 decken
+  aliases:
+  - schlofzëmmer2 decken
+  - decken
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: schlofzëmmer3 decken
+  aliases:
+  - schlofzëmmer3 decken
+  - decken
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: schlofzëmmer4 decken
+  aliases:
+  - schlofzëmmer4 decken
+  - decken
+- id: light.master_bath_light
+  area_id: master_bath
+  name: bademaster luucht
+  aliases:
+  - bademaster luucht
+  - luucht
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath luucht
+  aliases:
+  - main bath luucht
+  - luucht
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway luucht
+  aliases:
+  - hallway luucht
+  - luucht
+- id: light.basement
+  area_id: basement
+  name: basement luucht
+  aliases:
+  - basement luucht
+  - luucht
+- id: cover.living_blinds
+  area_id: living
+  name: wunnen riddo
+  aliases:
+  - wunnen riddo
+  - riddo
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: schlofzëmmer riddo
+  aliases:
+  - schlofzëmmer riddo
+  - riddo
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: schlofzëmmer2 riddo
+  aliases:
+  - schlofzëmmer2 riddo
+  - riddo
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: schlofzëmmer3 riddo
+  aliases:
+  - schlofzëmmer3 riddo
+  - riddo
+- id: cover.garage_door
+  area_id: garage
+  name: garage riddo
+  aliases:
+  - garage riddo
+  - riddo
+- id: climate.ground_thermostat
+  area_id: living
+  name: wunnen heizung
+  aliases:
+  - wunnen heizung
+  - heizung
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: schlofzëmmer heizung
+  aliases:
+  - schlofzëmmer heizung
+  - heizung
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: heizung schlofzëmmer
+  aliases:
+  - heizung schlofzëmmer
+  - heizung
+  - ac
+  tags:
+  - heizung
+- id: fan.family_fan
+  area_id: family_room
+  name: wunnsall ventilator
+  aliases:
+  - wunnsall ventilator
+  - ventilator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: schlofzëmmer ventilator
+  aliases:
+  - schlofzëmmer ventilator
+  - ventilator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: schlofzëmmer2 ventilator
+  aliases:
+  - schlofzëmmer2 ventilator
+  - ventilator
+- id: lock.front_door
+  area_id: entryway
+  name: front dir
+  aliases:
+  - front dir
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage dir
+  aliases:
+  - garage dir
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kichen spuelmaschinn
+  aliases:
+  - kichen spuelmaschinn
+  - spuelmaschinn
+- id: switch.rangehood
+  area_id: kitchen
+  name: kichen rangehood
+  aliases:
+  - kichen rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: waschraum waschmaschinn
+  aliases:
+  - waschraum waschmaschinn
+  - waschmaschinn
+  - washer
+  tags:
+  - washer
+  - waschmaschinn
+- id: switch.dryer
+  area_id: laundry
+  name: waschraum dryer
+  aliases:
+  - waschraum dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: bademaster ventilatorbad
+  aliases:
+  - bademaster ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ventilatorbad
+  aliases:
+  - main bath ventilatorbad
+  - ventilatorbad
+  tags:
+  - ventilatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: wunnen tv
+  aliases:
+  - wunnen tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: wunnsall tv
+  aliases:
+  - wunnsall tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: wunnen tele
+  aliases:
+  - wunnen tele
+  - tele
+  platform: music_assistant
+  tags:
+  - tele
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kichen tele
+  aliases:
+  - kichen tele
+  - tele
+  platform: music_assistant
+  tags:
+  - tele
+- id: media_player.office_music
+  area_id: office
+  name: office tele
+  aliases:
+  - office tele
+  - tele
+  platform: music_assistant
+  tags:
+  - tele
+- id: vacuum.robot
+  area_id: living
+  name: wunnen staubsauger
+  aliases:
+  - wunnen staubsauger
+  - staubsauger
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: entrada doorsensor
+  aliases:
+  - entrada doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: wunnen windowsensor
+  aliases:
+  - wunnen windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kichen motion
+  aliases:
+  - kichen motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: wunnen tempsensor
+  aliases:
+  - wunnen tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: wunnen humidity
+  aliases:
+  - wunnen humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nuets
+- id: leaving_home
+  name: fortgoen
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: lescht

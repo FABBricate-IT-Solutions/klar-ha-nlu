@@ -1,0 +1,455 @@
+on_area:
+- zet het {light} in de {room} aan
+- zet de {light} {room} aan
+- '{on} {light} {room}'
+- '{light} {room} {on}'
+- '{on} {all} {light} {room}'
+- '{all} {light} {room} {on}'
+off_area:
+- zet het {light} in de {room} uit
+- zet de {light} {room} uit
+- '{off} {light} {room}'
+- '{light} {room} {off}'
+- '{off} {all} {light} {room}'
+- '{all} {light} {room} {off}'
+on_fixture:
+- zet {fixture} in de {room} aan
+- '{on} {fixture} {room}'
+- '{fixture} {room} aan'
+- '{fixture} {room} {on}'
+- '{on} {room} {fixture}'
+- '{room} {fixture} {on}'
+off_fixture:
+- zet {fixture} in de {room} uit
+- '{off} {fixture} {room}'
+- '{fixture} {room} uit'
+- '{fixture} {room} {off}'
+- '{off} {room} {fixture}'
+- '{room} {fixture} {off}'
+set_bright:
+- '{set} {fixture} in de {room} op {n}'
+- '{set} {light} {room} op {n}'
+- '{fixture} {room} op {n}'
+- '{set} {fixture} {room} {n}'
+- '{set} {light} {room} {n}'
+- '{fixture} {room} {n}'
+set_color:
+- '{set} {fixture} in de {room} {color}'
+- '{set} {light} {room} {color}'
+- '{light} {room} {color}'
+- '{set} {fixture} {room} {color}'
+- '{fixture} {room} {color}'
+- '{set} {fixture} {color}'
+set_temp:
+- '{set} {climate} in de {room} op {n}'
+- '{set} {climate} {room} op {n}'
+- '{climate} op {n}'
+- '{set} {climate} {room} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {n}'
+get_temp:
+- '{query} is de {climate} in de {room}'
+- temperatuur {room}
+- '{query} {climate}'
+- '{query} {climate} {room}'
+- '{climate} {room}'
+- '{room} {climate}'
+open_cover:
+- '{open} {cover} in de {room}'
+- '{open} {cover} {room}'
+- '{cover} {room} {open}'
+- '{open} {room} {cover}'
+- '{room} {cover} {open}'
+- '{open} {cover}'
+close_cover:
+- '{close} {cover} in de {room}'
+- '{close} {cover} {room}'
+- '{cover} {room} {close}'
+- '{close} {room} {cover}'
+- '{room} {cover} {close}'
+- '{close} {cover}'
+set_pos:
+- '{set} {cover} in de {room} op {n}'
+- '{set} {cover} {room} {n}'
+- '{cover} {room} op {n}'
+- '{cover} {room} {n}'
+- '{set} {cover} {n}'
+- '{room} {cover} {n}'
+lock:
+- '{lock_v} de {door}'
+- '{lock_v} {lock} {room}'
+- '{door} {lock_v}'
+- '{lock_v} {door}'
+- '{lock} {room} {lock_v}'
+- '{room} {lock} {lock_v}'
+unlock:
+- '{unlock} de {door}'
+- '{unlock} {lock} {room}'
+- '{open} de {door}'
+- '{unlock} {door}'
+- '{lock} {room} {unlock}'
+- '{room} {lock} {unlock}'
+fan_on:
+- zet de {fan} in de {room} aan
+- '{on} {fan} {room}'
+- '{fan} {room} aan'
+- '{fan} {room} {on}'
+- '{on} {room} {fan}'
+- '{room} {fan} {on}'
+fan_off:
+- zet de {fan} in de {room} uit
+- '{off} {fan} {room}'
+- '{fan} {room} uit'
+- '{fan} {room} {off}'
+- '{off} {room} {fan}'
+- '{room} {fan} {off}'
+fan_speed:
+- '{set} de {fan} in de {room} op {n}'
+- '{set} {fan} {room} {n}'
+- '{fan} {room} op {n}'
+- '{fan} {room} {n}'
+- '{set} {fan} {n}'
+- '{room} {fan} {n}'
+switch_on:
+- zet {appliance} aan
+- '{on} {appliance}'
+- '{appliance} {on}'
+- '{on} the {appliance}'
+- '{appliance} {on} {room}'
+- '{on} {appliance} {room}'
+switch_off:
+- zet {appliance} uit
+- '{off} {appliance}'
+- '{appliance} {off}'
+- '{off} the {appliance}'
+- '{appliance} {off} {room}'
+- '{off} {appliance} {room}'
+vac_start:
+- '{on} {vacuum}'
+- start {vacuum}
+- '{vacuum} aan'
+- '{vacuum} {on}'
+- '{on} the {vacuum}'
+- '{vacuum} {on} {room}'
+vac_dock:
+- '{off} {vacuum}'
+- stuur {vacuum} naar het station
+- '{vacuum} naar het station'
+- '{vacuum} {off}'
+- '{off} the {vacuum}'
+- '{vacuum} {off} {room}'
+media_on:
+- zet de {tv} in de {room} aan
+- '{on} {tv} {room}'
+- '{tv} {room} aan'
+- '{tv} {room} {on}'
+- '{on} {room} {tv}'
+- '{room} {tv} {on}'
+media_off:
+- zet de {tv} in de {room} uit
+- '{off} {tv} {room}'
+- '{tv} {room} uit'
+- '{tv} {room} {off}'
+- '{off} {room} {tv}'
+- '{room} {tv} {off}'
+media_pause:
+- '{pause} de {tv} in de {room}'
+- '{pause} {tv}'
+- zet {tv} op {pause}
+- '{pause} {tv} {room}'
+- '{tv} {room} {pause}'
+- '{pause} {music} {room}'
+media_vol:
+- '{set} {music} op {n}'
+- '{set} {tv} op {n}'
+- volume op {n}
+- '{set} {music} {n}'
+- '{set} {tv} {n}'
+- '{music} {n}'
+media_next:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+media_prev:
+- '{play} {music}'
+- '{on} {music}'
+- '{on} {music} {room}'
+- '{play} {music} {room}'
+- '{music} {on}'
+- '{music} {play}'
+play_search:
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- '{play} {search}'
+- speel {search}
+- '{play} {search} {music}'
+- '{play} {music} {search}'
+play_album:
+- '{play} {album} {search} van {artist}'
+- speel {album} {search} van {artist}
+- '{album} {search} van {artist}'
+- '{play} {album} {search} {by} {artist}'
+- '{play} {album} {search}'
+- '{album} {search} {by} {artist}'
+play_radio:
+- '{play} {search} {radio}'
+- speel {search} op de {radio}
+- '{radio} {search}'
+- '{play} {radio} {search}'
+- '{on} {search} {radio}'
+- '{play} {search} {radio} {room}'
+play_queue:
+- '{play} {search}'
+- speel {search}
+- '{play} {search} {room}'
+- '{on} {search} {room}'
+- '{play} {search} {music}'
+- '{play} {music} {search}'
+now_playing:
+- wat speelt er
+- '{query} {music} {room}'
+- wat hoor ik
+- '{query} {music}'
+- '{music} {room}'
+- '{query} {tv} {room}'
+scene:
+- '{on} {scene_name}'
+- activeer {scene_name}
+- '{scene_name} aan'
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+script:
+- '{on} {scene_name}'
+- start {scene_name}
+- '{scene_name} aan'
+- '{scene_name} {on}'
+- '{on} the {scene_name}'
+- '{scene_name}'
+timer_start:
+- '{on} {timer} {n} {minutes}'
+- zet {timer} van {n} {minutes}
+- '{timer} van {n} {minutes}'
+- '{timer} {n} {minutes}'
+- '{on} {timer_name} {n}'
+- '{timer} {timer_name} {n} {minutes}'
+timer_cancel:
+- '{off} {timer}'
+- zet {timer} uit
+- stop {timer}
+- '{timer} {off}'
+- '{off} the {timer}'
+- '{timer} {done}'
+list_add:
+- '{add} {item} toe aan de {list}'
+- '{add} {item} {list}'
+- '{item} op de {list}'
+- '{item} {list}'
+- '{add} {item}'
+- '{list} {item}'
+list_done:
+- '{done} {item} toe aan de {list}'
+- '{done} {item} {list}'
+- '{item} op de {list}'
+- '{item} {list}'
+- '{done} {item}'
+- '{list} {item}'
+floor_on:
+- zet het {light} in de {floor} aan
+- zet de {light} {floor} aan
+- '{on} {light} {floor}'
+- '{light} {floor} {on}'
+- '{on} {all} {light} {floor}'
+- '{all} {light} {floor} {on}'
+floor_off:
+- zet het {light} in de {floor} aan
+- zet de {light} {floor} aan
+- '{off} {light} {floor}'
+- '{light} {floor} {off}'
+- '{off} {all} {light} {floor}'
+- '{all} {light} {floor} {off}'
+all_except:
+- zet {all} {light} uit {except} {room}
+- '{off} {all} {light} {except} {room}'
+- '{all} {light} uit {except} {room}'
+- '{all} {light} {off} {except} {room}'
+- '{off} {light} {except} {room}'
+- '{all} {off} {except} {room}'
+all_except_on:
+- zet {all} {light} uit {except} {room}
+- '{on} {all} {light} {except} {room}'
+- '{all} {light} uit {except} {room}'
+- '{all} {light} {on} {except} {room}'
+- '{on} {light} {except} {room}'
+- '{all} {on} {except} {room}'
+except_fixture:
+- zet {all} {light} uit {except} {skip_fixture}
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} uit {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+query_entity:
+- '{query} is {target} in de {room}'
+- '{query} {target} {room}'
+- '{query} {target}'
+- '{target} {room}'
+- '{room} {target}'
+- '{query} {room} {target}'
+multi_and:
+- zet het {light} {room} {and} {room2} aan
+- '{on} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} aan'
+- '{light} {room} {and} {room2} {on}'
+- '{on} {room} {and} {room2}'
+- '{room} {and} {room2} {on}'
+multi_off:
+- zet het {light} {room} {and} {room2} aan
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} aan'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+multi_fixtures:
+- '{on} {room} {fixture} {and} {room2} {fixture2}'
+- '{on} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {on}'
+- '{fixture} {and} {fixture2} {on}'
+- '{on} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {on}'
+multi_fixtures_off:
+- '{off} {room} {fixture} {and} {room2} {fixture2}'
+- '{off} {fixture} {and} {fixture2}'
+- '{room} {fixture} {and} {room2} {fixture2} {off}'
+- '{fixture} {and} {fixture2} {off}'
+- '{off} {fixture} {room} {and} {fixture2} {room2}'
+- '{room} {fixture} {and} {fixture2} {off}'
+multi_three:
+- zet het {light} {room} {and} {room2} {and} {room3} aan
+- '{on} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} aan'
+- '{light} {room} {and} {room2} {and} {room3} {on}'
+- '{on} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {on}'
+multi_three_off:
+- zet het {light} {room} {and} {room2} {and} {room3} aan
+- '{off} {light} {room} {and} {room2} {and} {room3}'
+- '{light} {room} {and} {room2} {and} {room3} aan'
+- '{light} {room} {and} {room2} {and} {room3} {off}'
+- '{off} {room} {and} {room2} {and} {room3}'
+- '{room} {and} {room2} {and} {room3} {off}'
+multi_off_lock:
+- zet het {light} {room} {and} {room2} aan
+- '{off} {light} {room} {and} {room2}'
+- '{light} {room} {and} {room2} aan'
+- '{light} {room} {and} {room2} {off}'
+- '{off} {room} {and} {room2}'
+- '{room} {and} {room2} {off}'
+except_in_area:
+- zet {all} {light} uit {except} {skip_fixture}
+- '{off} {all} {light} {except} {skip_fixture}'
+- '{all} {light} uit {except} {skip_fixture}'
+- '{all} {light} {off} {except} {skip_fixture}'
+- '{off} {light} {except} {skip_fixture}'
+- '{all} {off} {except} {skip_fixture}'
+except_two:
+- zet {all} {light} uit {except} {room} {and} {room2}
+- '{off} {all} {light} {except} {room} {and} {room2}'
+- '{all} {light} uit {except} {room} {and} {room2}'
+- '{all} {light} {off} {except} {room} {and} {room2}'
+- '{off} {light} {except} {room} {and} {room2}'
+- '{all} {off} {except} {room} {and} {room2}'
+except_fixture_on:
+- zet {all} {light} uit {except} {skip_fixture}
+- '{on} {all} {light} {except} {skip_fixture}'
+- '{all} {light} uit {except} {skip_fixture}'
+- '{all} {light} {on} {except} {skip_fixture}'
+- '{on} {light} {except} {skip_fixture}'
+- '{all} {on} {except} {skip_fixture}'
+floor_except:
+- zet {all} {light} {floor} uit {except} {room}
+- '{off} {all} {light} {floor} {except} {room}'
+- '{all} {light} {floor} uit {except} {room}'
+- '{all} {light} {floor} {off} {except} {room}'
+- '{off} {light} {floor} {except} {room}'
+- '{all} {off} {except} {room}'
+multi_covers:
+- '{open} {cover} in de {room} {and} {room2}'
+- '{open} {cover} {room} {and} {room2}'
+- '{cover} {room} {open} {and} {room2}'
+- '{open} {room} {cover} {and} {room2}'
+- '{room} {cover} {open} {and} {room2}'
+- '{open} {cover} {and} {room2}'
+multi_covers_close:
+- '{close} {cover} in de {room} {and} {room2}'
+- '{close} {cover} {room} {and} {room2}'
+- '{cover} {room} {close} {and} {room2}'
+- '{close} {room} {cover} {and} {room2}'
+- '{room} {cover} {close} {and} {room2}'
+- '{close} {cover} {and} {room2}'
+multi_climate:
+- '{set} {climate} in de {room} {and} {room2} op {n}'
+- '{set} {climate} {room} {and} {room2} op {n}'
+- '{climate} op {n}'
+- '{set} {climate} {room} {and} {room2} {n}'
+- '{set} {climate} {n}'
+- '{climate} {room} {and} {room2} {n}'
+multi_bright:
+- '{set} {fixture} in de {room} {and} {room2} op {n}'
+- '{set} {light} {room} {and} {room2} op {n}'
+- '{fixture} {room} {and} {room2} op {n}'
+- '{set} {fixture} {room} {and} {room2} {n}'
+- '{set} {light} {room} {and} {room2} {n}'
+- '{fixture} {room} {and} {room2} {n}'
+multi_color:
+- '{set} {fixture} in de {room} {and} {room2} {color}'
+- '{set} {light} {room} {and} {room2} {color}'
+- '{light} {room} {and} {room2} {color}'
+- '{set} {fixture} {room} {and} {room2} {color}'
+- '{fixture} {room} {and} {room2} {color}'
+- '{set} {fixture} {color}'
+query_two:
+- '{query} is {target} in de {room} {and} {room2}'
+- '{query} {target} {room} {and} {room2}'
+- '{query} {target}'
+- '{target} {room} {and} {room2}'
+- '{room} {and} {room2} {target}'
+- '{query} {room} {and} {room2} {target}'
+query_and_off:
+- '{query} {climate} {room} {and} {off} {light} {room2}'
+- '{off} {light} {room2} {and} {query} {climate} {room}'
+- '{climate} {room} {and} {light} {room2} {off}'
+- '{query} {room} {and} {off} {room2}'
+- '{off} {room2} {and} {query} {climate}'
+- '{light} {room2} {off} {and} {climate} {room}'
+multi_locks:
+- '{lock_v} de {door}'
+- '{lock_v} {lock} {room} {and} {room2}'
+- '{door} {lock_v}'
+- '{lock_v} {door}'
+- '{lock} {room} {and} {room2} {lock_v}'
+- '{room} {and} {room2} {lock} {lock_v}'
+scene_and_off:
+- '{on} {scene_name} {and} {off} {light} {room}'
+- activeer {scene_name} {and} {off} {light} {room}
+- '{scene_name} aan {and} {off} {light} {room}'
+- '{scene_name} {on} {and} {off} {light} {room}'
+- '{on} the {scene_name} {and} {off} {light} {room}'
+- '{scene_name} {and} {off} {light} {room}'
+clock:
+- hoe laat is het
+- hoe laat
+- '{clock}'
+- '{query} {clock}'
+- '{clock} {query}'
+- '{query} {clock} {clock}'
+weather:
+- wat is het weer
+- hoe is het weer
+- '{weather}'
+- '{query} {weather}'
+- '{weather} {query}'
+- '{query} {weather} {weather}'

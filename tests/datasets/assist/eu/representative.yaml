@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - piztu argia egongela
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - itzali argia sukaldea
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

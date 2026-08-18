@@ -1,0 +1,504 @@
+name: Full Home he
+language: he
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: קרקע
+  level: 0
+  aliases:
+  - קרקע
+  - למטה
+- id: upper
+  name: קומה
+  level: 1
+  aliases:
+  - קומה
+  - למעלה
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: כניסה
+  floor: ground
+  aliases:
+  - כניסה
+- id: living
+  name: סלון
+  floor: ground
+  aliases:
+  - סלון
+- id: dining
+  name: משפחהess
+  floor: ground
+  aliases:
+  - משפחהess
+- id: kitchen
+  name: מטבח
+  floor: ground
+  aliases:
+  - מטבח
+- id: family_room
+  name: משפחה
+  floor: ground
+  aliases:
+  - משפחה
+- id: laundry
+  name: כביסה
+  floor: ground
+  aliases:
+  - כביסה
+- id: powder_room
+  name: שירותים
+  floor: ground
+  aliases:
+  - שירותים
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: חדרשינה
+  floor: upper
+  aliases:
+  - חדרשינה
+- id: bedroom_2
+  name: חדרשינה2
+  floor: upper
+  aliases:
+  - חדרשינה2
+- id: bedroom_3
+  name: חדרשינה3
+  floor: upper
+  aliases:
+  - חדרשינה3
+- id: bedroom_4
+  name: חדרשינה4
+  floor: upper
+  aliases:
+  - חדרשינה4
+- id: master_bath
+  name: חדררחצהראשי
+  floor: upper
+  aliases:
+  - חדררחצהראשי
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: כניסה אור
+  aliases:
+  - כניסה אור
+  - אור
+- id: light.living_ceiling
+  area_id: living
+  name: סלון תקרה
+  aliases:
+  - סלון תקרה
+  - תקרה
+- id: light.living_lamp
+  area_id: living
+  name: סלון אור
+  aliases:
+  - סלון אור
+  - אור
+- id: light.dining_pendant
+  area_id: dining
+  name: משפחהess אור
+  aliases:
+  - משפחהess אור
+  - אור
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: מטבח תקרה
+  aliases:
+  - מטבח תקרה
+  - תקרה
+- id: light.kitchen_island
+  area_id: kitchen
+  name: מטבח אי
+  aliases:
+  - מטבח אי
+  - אי
+- id: light.family_ceiling
+  area_id: family_room
+  name: משפחה תקרה
+  aliases:
+  - משפחה תקרה
+  - תקרה
+- id: light.laundry_light
+  area_id: laundry
+  name: כביסה אור
+  aliases:
+  - כביסה אור
+  - אור
+- id: light.powder_room_light
+  area_id: powder_room
+  name: שירותים אור
+  aliases:
+  - שירותים אור
+  - אור
+- id: light.garage_light
+  area_id: garage
+  name: garage אור
+  aliases:
+  - garage אור
+  - אור
+- id: light.office_ceiling
+  area_id: office
+  name: office תקרה
+  aliases:
+  - office תקרה
+  - תקרה
+- id: light.garden
+  area_id: garden
+  name: garden אור
+  aliases:
+  - garden אור
+  - אור
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: חדרשינה תקרה
+  aliases:
+  - חדרשינה תקרה
+  - תקרה
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: חדרשינה ensuite
+  aliases:
+  - חדרשינה ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: חדרשינה left לידמיטה
+  aliases:
+  - חדרשינה left לידמיטה
+  - לידמיטה
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: חדרשינה right לידמיטה
+  aliases:
+  - חדרשינה right לידמיטה
+  - לידמיטה
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: חדרשינה2 תקרה
+  aliases:
+  - חדרשינה2 תקרה
+  - תקרה
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: חדרשינה3 תקרה
+  aliases:
+  - חדרשינה3 תקרה
+  - תקרה
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: חדרשינה4 תקרה
+  aliases:
+  - חדרשינה4 תקרה
+  - תקרה
+- id: light.master_bath_light
+  area_id: master_bath
+  name: חדררחצהראשי אור
+  aliases:
+  - חדררחצהראשי אור
+  - אור
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath אור
+  aliases:
+  - main bath אור
+  - אור
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway אור
+  aliases:
+  - hallway אור
+  - אור
+- id: light.basement
+  area_id: basement
+  name: basement אור
+  aliases:
+  - basement אור
+  - אור
+- id: cover.living_blinds
+  area_id: living
+  name: סלון וילון
+  aliases:
+  - סלון וילון
+  - וילון
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: חדרשינה וילון
+  aliases:
+  - חדרשינה וילון
+  - וילון
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: חדרשינה2 וילון
+  aliases:
+  - חדרשינה2 וילון
+  - וילון
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: חדרשינה3 וילון
+  aliases:
+  - חדרשינה3 וילון
+  - וילון
+- id: cover.garage_door
+  area_id: garage
+  name: garage וילון
+  aliases:
+  - garage וילון
+  - וילון
+- id: climate.ground_thermostat
+  area_id: living
+  name: סלון חימום
+  aliases:
+  - סלון חימום
+  - חימום
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: חדרשינה חימום
+  aliases:
+  - חדרשינה חימום
+  - חימום
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: טמפרטורה חדרשינה
+  aliases:
+  - טמפרטורה חדרשינה
+  - טמפרטורה
+  - ac
+  tags:
+  - טמפרטורה
+- id: fan.family_fan
+  area_id: family_room
+  name: משפחה מאוורר
+  aliases:
+  - משפחה מאוורר
+  - מאוורר
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: חדרשינה מאוורר
+  aliases:
+  - חדרשינה מאוורר
+  - מאוורר
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: חדרשינה2 מאוורר
+  aliases:
+  - חדרשינה2 מאוורר
+  - מאוורר
+- id: lock.front_door
+  area_id: entryway
+  name: front דלת
+  aliases:
+  - front דלת
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage דלת
+  aliases:
+  - garage דלת
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: מטבח מדיח
+  aliases:
+  - מטבח מדיח
+  - מדיח
+- id: switch.rangehood
+  area_id: kitchen
+  name: מטבח rangehood
+  aliases:
+  - מטבח rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: כביסה מכונתכביסה
+  aliases:
+  - כביסה מכונתכביסה
+  - מכונתכביסה
+  - washer
+  tags:
+  - washer
+  - מכונתכביסה
+- id: switch.dryer
+  area_id: laundry
+  name: כביסה dryer
+  aliases:
+  - כביסה dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: חדררחצהראשי מאווררbad
+  aliases:
+  - חדררחצהראשי מאווררbad
+  - מאווררbad
+  tags:
+  - מאווררbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath מאווררbad
+  aliases:
+  - main bath מאווררbad
+  - מאווררbad
+  tags:
+  - מאווררbad
+- id: media_player.living_tv
+  area_id: living
+  name: סלון טלוויזיה
+  aliases:
+  - סלון טלוויזיה
+  - טלוויזיה
+- id: media_player.family_tv
+  area_id: family_room
+  name: משפחה טלוויזיה
+  aliases:
+  - משפחה טלוויזיה
+  - טלוויזיה
+- id: media_player.living_music
+  area_id: living
+  name: סלון טלוויזיה
+  aliases:
+  - סלון טלוויזיה
+  - טלוויזיה
+  platform: music_assistant
+  tags:
+  - טלוויזיה
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: מטבח טלוויזיה
+  aliases:
+  - מטבח טלוויזיה
+  - טלוויזיה
+  platform: music_assistant
+  tags:
+  - טלוויזיה
+- id: media_player.office_music
+  area_id: office
+  name: office טלוויזיה
+  aliases:
+  - office טלוויזיה
+  - טלוויזיה
+  platform: music_assistant
+  tags:
+  - טלוויזיה
+- id: vacuum.robot
+  area_id: living
+  name: סלון שואב
+  aliases:
+  - סלון שואב
+  - שואב
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: כניסה doorsensor
+  aliases:
+  - כניסה doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: סלון windowsensor
+  aliases:
+  - סלון windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: מטבח motion
+  aliases:
+  - מטבח motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: סלון tempsensor
+  aliases:
+  - סלון tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: סלון humidity
+  aliases:
+  - סלון humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: סרט
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: לילה
+- id: leaving_home
+  name: יציאה
+timers:
+- id: oven
+  name: oven טיימר
+- id: laundry
+  name: laundry טיימר
+- id: abstract
+  name: abstract טיימר
+lists:
+- id: shopping
+  name: רשימה

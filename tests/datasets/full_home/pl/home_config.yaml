@@ -1,0 +1,504 @@
+name: Full Home pl
+language: pl
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: parter
+  level: 0
+  aliases:
+  - parter
+  - dol
+- id: upper
+  name: pietro
+  level: 1
+  aliases:
+  - pietro
+  - gora
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Przedpokoj
+  floor: ground
+  aliases:
+  - przedpokoj
+- id: living
+  name: Salon
+  floor: ground
+  aliases:
+  - salon
+- id: dining
+  name: Salonfamess
+  floor: ground
+  aliases:
+  - salonfamess
+- id: kitchen
+  name: Kuchnia
+  floor: ground
+  aliases:
+  - kuchnia
+- id: family_room
+  name: Salonfam
+  floor: ground
+  aliases:
+  - salonfam
+- id: laundry
+  name: Pralnia
+  floor: ground
+  aliases:
+  - pralnia
+- id: powder_room
+  name: Toaleta
+  floor: ground
+  aliases:
+  - toaleta
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Sypialnia
+  floor: upper
+  aliases:
+  - sypialnia
+- id: bedroom_2
+  name: Sypialnia2
+  floor: upper
+  aliases:
+  - sypialnia2
+- id: bedroom_3
+  name: Sypialnia3
+  floor: upper
+  aliases:
+  - sypialnia3
+- id: bedroom_4
+  name: Sypialnia4
+  floor: upper
+  aliases:
+  - sypialnia4
+- id: master_bath
+  name: Lazmaster
+  floor: upper
+  aliases:
+  - lazmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Korytarz
+  floor: upper
+  aliases:
+  - korytarz
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: przedpokoj swiatlo
+  aliases:
+  - przedpokoj swiatlo
+  - swiatlo
+- id: light.living_ceiling
+  area_id: living
+  name: salon sufit
+  aliases:
+  - salon sufit
+  - sufit
+- id: light.living_lamp
+  area_id: living
+  name: salon swiatlo
+  aliases:
+  - salon swiatlo
+  - swiatlo
+- id: light.dining_pendant
+  area_id: dining
+  name: salonfamess swiatlo
+  aliases:
+  - salonfamess swiatlo
+  - swiatlo
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kuchnia sufit
+  aliases:
+  - kuchnia sufit
+  - sufit
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kuchnia wyspa
+  aliases:
+  - kuchnia wyspa
+  - wyspa
+- id: light.family_ceiling
+  area_id: family_room
+  name: salonfam sufit
+  aliases:
+  - salonfam sufit
+  - sufit
+- id: light.laundry_light
+  area_id: laundry
+  name: pralnia swiatlo
+  aliases:
+  - pralnia swiatlo
+  - swiatlo
+- id: light.powder_room_light
+  area_id: powder_room
+  name: toaleta swiatlo
+  aliases:
+  - toaleta swiatlo
+  - swiatlo
+- id: light.garage_light
+  area_id: garage
+  name: garage swiatlo
+  aliases:
+  - garage swiatlo
+  - swiatlo
+- id: light.office_ceiling
+  area_id: office
+  name: office sufit
+  aliases:
+  - office sufit
+  - sufit
+- id: light.garden
+  area_id: garden
+  name: garden swiatlo
+  aliases:
+  - garden swiatlo
+  - swiatlo
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: sypialnia sufit
+  aliases:
+  - sypialnia sufit
+  - sufit
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: sypialnia ensuite
+  aliases:
+  - sypialnia ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: sypialnia left noca
+  aliases:
+  - sypialnia left noca
+  - noca
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: sypialnia right noca
+  aliases:
+  - sypialnia right noca
+  - noca
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: sypialnia2 sufit
+  aliases:
+  - sypialnia2 sufit
+  - sufit
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: sypialnia3 sufit
+  aliases:
+  - sypialnia3 sufit
+  - sufit
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: sypialnia4 sufit
+  aliases:
+  - sypialnia4 sufit
+  - sufit
+- id: light.master_bath_light
+  area_id: master_bath
+  name: lazmaster swiatlo
+  aliases:
+  - lazmaster swiatlo
+  - swiatlo
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath swiatlo
+  aliases:
+  - main bath swiatlo
+  - swiatlo
+- id: light.hallway_light
+  area_id: hallway
+  name: korytarz swiatlo
+  aliases:
+  - korytarz swiatlo
+  - swiatlo
+- id: light.basement
+  area_id: basement
+  name: basement swiatlo
+  aliases:
+  - basement swiatlo
+  - swiatlo
+- id: cover.living_blinds
+  area_id: living
+  name: salon zaslona
+  aliases:
+  - salon zaslona
+  - zaslona
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: sypialnia zaslona
+  aliases:
+  - sypialnia zaslona
+  - zaslona
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: sypialnia2 zaslona
+  aliases:
+  - sypialnia2 zaslona
+  - zaslona
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: sypialnia3 zaslona
+  aliases:
+  - sypialnia3 zaslona
+  - zaslona
+- id: cover.garage_door
+  area_id: garage
+  name: garage zaslona
+  aliases:
+  - garage zaslona
+  - zaslona
+- id: climate.ground_thermostat
+  area_id: living
+  name: salon ogrzewanie
+  aliases:
+  - salon ogrzewanie
+  - ogrzewanie
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: sypialnia ogrzewanie
+  aliases:
+  - sypialnia ogrzewanie
+  - ogrzewanie
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: temperatura sypialnia
+  aliases:
+  - temperatura sypialnia
+  - temperatura
+  - ac
+  tags:
+  - temperatura
+- id: fan.family_fan
+  area_id: family_room
+  name: salonfam wentylator
+  aliases:
+  - salonfam wentylator
+  - wentylator
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: sypialnia wentylator
+  aliases:
+  - sypialnia wentylator
+  - wentylator
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: sypialnia2 wentylator
+  aliases:
+  - sypialnia2 wentylator
+  - wentylator
+- id: lock.front_door
+  area_id: entryway
+  name: front drzwi
+  aliases:
+  - front drzwi
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage drzwi
+  aliases:
+  - garage drzwi
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kuchnia zmywarka
+  aliases:
+  - kuchnia zmywarka
+  - zmywarka
+- id: switch.rangehood
+  area_id: kitchen
+  name: kuchnia rangehood
+  aliases:
+  - kuchnia rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: pralnia pralka
+  aliases:
+  - pralnia pralka
+  - pralka
+  - washer
+  tags:
+  - washer
+  - pralka
+- id: switch.dryer
+  area_id: laundry
+  name: pralnia dryer
+  aliases:
+  - pralnia dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: lazmaster wentylatorbad
+  aliases:
+  - lazmaster wentylatorbad
+  - wentylatorbad
+  tags:
+  - wentylatorbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath wentylatorbad
+  aliases:
+  - main bath wentylatorbad
+  - wentylatorbad
+  tags:
+  - wentylatorbad
+- id: media_player.living_tv
+  area_id: living
+  name: salon telewizor
+  aliases:
+  - salon telewizor
+  - telewizor
+- id: media_player.family_tv
+  area_id: family_room
+  name: salonfam telewizor
+  aliases:
+  - salonfam telewizor
+  - telewizor
+- id: media_player.living_music
+  area_id: living
+  name: salon telewizor
+  aliases:
+  - salon telewizor
+  - telewizor
+  platform: music_assistant
+  tags:
+  - telewizor
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kuchnia telewizor
+  aliases:
+  - kuchnia telewizor
+  - telewizor
+  platform: music_assistant
+  tags:
+  - telewizor
+- id: media_player.office_music
+  area_id: office
+  name: office telewizor
+  aliases:
+  - office telewizor
+  - telewizor
+  platform: music_assistant
+  tags:
+  - telewizor
+- id: vacuum.robot
+  area_id: living
+  name: salon odkurzacz
+  aliases:
+  - salon odkurzacz
+  - odkurzacz
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: przedpokoj doorsensor
+  aliases:
+  - przedpokoj doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: salon windowsensor
+  aliases:
+  - salon windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kuchnia motion
+  aliases:
+  - kuchnia motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: salon tempsensor
+  aliases:
+  - salon tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: salon humidity
+  aliases:
+  - salon humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: noc
+- id: leaving_home
+  name: wyjscie
+timers:
+- id: oven
+  name: oven minutnik
+- id: laundry
+  name: laundry minutnik
+- id: abstract
+  name: abstract minutnik
+lists:
+- id: shopping
+  name: lista

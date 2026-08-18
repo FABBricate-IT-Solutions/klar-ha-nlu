@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - washa taa sebuleni
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - zima taa jikonini
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

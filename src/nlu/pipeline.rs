@@ -3,7 +3,7 @@ use crate::parse::normalize::{strip_fillers, tokenize};
 use crate::parse::respond::{speak_clarify, speak_unknown};
 use crate::parse::split::split_clauses;
 use crate::session::Session;
-use crate::types::{Evidence, Intent, IntentCandidate, ParseDecision, ParseOutcome, ParseTrace, RejectReason, StageTrace};
+use crate::types::{Evidence, Intent, IntentCandidate, IntentPlan, ParseDecision, ParseOutcome, ParseTrace, RejectReason, StageTrace};
 use std::collections::BTreeSet;
 use std::time::Instant;
 
@@ -68,7 +68,8 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     };
 
     let started = Instant::now();
-    let ranking = rank_candidates(&analyses, context.home, context.policies, &mut trace);
+    let mut ranking = rank_candidates(&analyses, context.home, context.policies, &mut trace);
+    apply_resolved_lock_pair(&mut ranking, &context, &split.tokens);
     record_stage(&mut trace, "ranking", started, format!("{} ranked candidates", ranking.candidates.len()));
     let clarify = ranking.clarification.clone();
     let mut intents = ranking.selected.as_ref().map_or_else(Vec::new, |candidate| candidate.plan.intents());
@@ -134,12 +135,19 @@ impl PipelineResult {
         for intent in &self.commit.remember {
             session.remember(intent);
         }
+        if self.commit.remember.iter().any(|intent| super::household::invert_intent(intent).is_some()) {
+            session.last_execute = self.commit.remember.clone();
+        }
         if let Some(briefing) = self.commit.briefing {
             session.briefing = briefing;
         }
         if self.commit.mark_wrong {
             session.mark_wrong();
         }
+        if let Some(teach) = self.commit.teach {
+            session.pending_teach = Some(teach);
+        }
+        session.note_heard(&self.outcome);
         self.outcome
     }
 }
@@ -151,6 +159,18 @@ fn finish(
     evidence: Vec<Evidence>,
     mut trace: ParseTrace,
 ) -> PipelineResult {
+    let mut evidence = evidence;
+    if let Some(area) = context.session.preferred_area.as_deref().filter(|area| !area.is_empty()) {
+        if !evidence.iter().any(|item| item.kind == "preferred_area") {
+            evidence.push(Evidence {
+                kind: "preferred_area".into(),
+                source: "satellite".into(),
+                value: area.to_string(),
+                score: 1.0,
+                exact: true,
+            });
+        }
+    }
     let started = Instant::now();
     let executable_plan = matches!(draft.decision, ParseDecision::Execute).then(|| draft.plan.clone()).flatten();
     let execute = matches!(draft.decision, ParseDecision::Execute);
@@ -207,6 +227,63 @@ fn finish(
     }
     outcome.enforce_output_caps();
     PipelineResult { outcome, commit: draft.commit }
+}
+
+fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context: &ParseContext<'_>, tokens: &[String]) {
+    let locks = legacy::with_catalog(context.catalog, || {
+        crate::parse::resolve::resolve(tokens, context.home, Some("lock"))
+            .entities
+            .into_iter()
+            .filter(|entity| entity.domain == "lock")
+            .map(|entity| entity.entity_id)
+            .collect::<Vec<_>>()
+    });
+    if locks.len() < 2 {
+        return;
+    }
+    if ranking.selected.as_ref().is_some_and(|candidate| {
+        candidate.plan.steps.iter().any(|step| matches!(step.intent.name.as_str(), "HassGetState" | "HassClimateGetTemperature"))
+    }) {
+        return;
+    }
+    let lock_only = ranking.selected.as_ref().is_some_and(|candidate| {
+        candidate.plan.steps.iter().all(|step| {
+            step.intent.slot("entity_id").is_some_and(|id| id.starts_with("lock.")) || step.intent.slot("domain") == Some("lock")
+        })
+    });
+    let clarifying_locks =
+        ranking.clarification.as_ref().is_some_and(|(options, _)| options.iter().filter(|id| id.starts_with("lock.")).count() >= 2);
+    if !lock_only && !clarifying_locks {
+        return;
+    }
+    let name = ranking
+        .selected
+        .as_ref()
+        .and_then(|candidate| candidate.plan.steps.first())
+        .map(|step| step.intent.name.as_str())
+        .filter(|name| *name == "HassTurnOff")
+        .unwrap_or("HassTurnOn");
+    let intents: Vec<Intent> = locks.iter().map(|id| Intent::new(name).with("entity_id", id).with("domain", "lock")).collect();
+    let plan = IntentPlan::from_intents(intents, ranking.confidence.max(0.92), &[]);
+    ranking.clarification = None;
+    ranking.competing = false;
+    ranking.margin = 1.0;
+    ranking.confidence = ranking.confidence.max(0.92);
+    if let Some(selected) = ranking.selected.as_mut() {
+        selected.plan = plan;
+        selected.margin = 1.0;
+        selected.score = selected.score.max(0.92);
+    } else {
+        ranking.selected = Some(IntentCandidate {
+            id: "plan-000".into(),
+            plan,
+            score: 0.92,
+            margin: 1.0,
+            policy: "grounded_entities".into(),
+            precedence: 0,
+            evidence: Vec::new(),
+        });
+    }
 }
 
 fn dedup_intents(intents: &mut Vec<Intent>) {

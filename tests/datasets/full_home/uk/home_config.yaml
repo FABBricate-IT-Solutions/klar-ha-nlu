@@ -1,0 +1,504 @@
+name: Full Home uk
+language: uk
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: перший
+  level: 0
+  aliases:
+  - перший
+  - внизу
+- id: upper
+  name: поверх
+  level: 1
+  aliases:
+  - поверх
+  - вгорі
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: передпокій
+  floor: ground
+  aliases:
+  - передпокій
+- id: living
+  name: вітальня
+  floor: ground
+  aliases:
+  - вітальня
+- id: dining
+  name: вітальняfamess
+  floor: ground
+  aliases:
+  - вітальняfamess
+- id: kitchen
+  name: кухня
+  floor: ground
+  aliases:
+  - кухня
+- id: family_room
+  name: вітальняfam
+  floor: ground
+  aliases:
+  - вітальняfam
+- id: laundry
+  name: пральня
+  floor: ground
+  aliases:
+  - пральня
+- id: powder_room
+  name: туалет
+  floor: ground
+  aliases:
+  - туалет
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: спальня
+  floor: upper
+  aliases:
+  - спальня
+- id: bedroom_2
+  name: спальня2
+  floor: upper
+  aliases:
+  - спальня2
+- id: bedroom_3
+  name: спальня3
+  floor: upper
+  aliases:
+  - спальня3
+- id: bedroom_4
+  name: спальня4
+  floor: upper
+  aliases:
+  - спальня4
+- id: master_bath
+  name: ваннаmaster
+  floor: upper
+  aliases:
+  - ваннаmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: передпокій світло
+  aliases:
+  - передпокій світло
+  - світло
+- id: light.living_ceiling
+  area_id: living
+  name: вітальня стеля
+  aliases:
+  - вітальня стеля
+  - стеля
+- id: light.living_lamp
+  area_id: living
+  name: вітальня світло
+  aliases:
+  - вітальня світло
+  - світло
+- id: light.dining_pendant
+  area_id: dining
+  name: вітальняfamess світло
+  aliases:
+  - вітальняfamess світло
+  - світло
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: кухня стеля
+  aliases:
+  - кухня стеля
+  - стеля
+- id: light.kitchen_island
+  area_id: kitchen
+  name: кухня острів
+  aliases:
+  - кухня острів
+  - острів
+- id: light.family_ceiling
+  area_id: family_room
+  name: вітальняfam стеля
+  aliases:
+  - вітальняfam стеля
+  - стеля
+- id: light.laundry_light
+  area_id: laundry
+  name: пральня світло
+  aliases:
+  - пральня світло
+  - світло
+- id: light.powder_room_light
+  area_id: powder_room
+  name: туалет світло
+  aliases:
+  - туалет світло
+  - світло
+- id: light.garage_light
+  area_id: garage
+  name: garage світло
+  aliases:
+  - garage світло
+  - світло
+- id: light.office_ceiling
+  area_id: office
+  name: office стеля
+  aliases:
+  - office стеля
+  - стеля
+- id: light.garden
+  area_id: garden
+  name: garden світло
+  aliases:
+  - garden світло
+  - світло
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: спальня стеля
+  aliases:
+  - спальня стеля
+  - стеля
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: спальня ensuite
+  aliases:
+  - спальня ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: спальня left нічний
+  aliases:
+  - спальня left нічний
+  - нічний
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: спальня right нічний
+  aliases:
+  - спальня right нічний
+  - нічний
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: спальня2 стеля
+  aliases:
+  - спальня2 стеля
+  - стеля
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: спальня3 стеля
+  aliases:
+  - спальня3 стеля
+  - стеля
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: спальня4 стеля
+  aliases:
+  - спальня4 стеля
+  - стеля
+- id: light.master_bath_light
+  area_id: master_bath
+  name: ваннаmaster світло
+  aliases:
+  - ваннаmaster світло
+  - світло
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath світло
+  aliases:
+  - main bath світло
+  - світло
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway світло
+  aliases:
+  - hallway світло
+  - світло
+- id: light.basement
+  area_id: basement
+  name: basement світло
+  aliases:
+  - basement світло
+  - світло
+- id: cover.living_blinds
+  area_id: living
+  name: вітальня штора
+  aliases:
+  - вітальня штора
+  - штора
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: спальня штора
+  aliases:
+  - спальня штора
+  - штора
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: спальня2 штора
+  aliases:
+  - спальня2 штора
+  - штора
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: спальня3 штора
+  aliases:
+  - спальня3 штора
+  - штора
+- id: cover.garage_door
+  area_id: garage
+  name: garage штора
+  aliases:
+  - garage штора
+  - штора
+- id: climate.ground_thermostat
+  area_id: living
+  name: вітальня опалення
+  aliases:
+  - вітальня опалення
+  - опалення
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: спальня опалення
+  aliases:
+  - спальня опалення
+  - опалення
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: температура спальня
+  aliases:
+  - температура спальня
+  - температура
+  - ac
+  tags:
+  - температура
+- id: fan.family_fan
+  area_id: family_room
+  name: вітальняfam вентилятор
+  aliases:
+  - вітальняfam вентилятор
+  - вентилятор
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: спальня вентилятор
+  aliases:
+  - спальня вентилятор
+  - вентилятор
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: спальня2 вентилятор
+  aliases:
+  - спальня2 вентилятор
+  - вентилятор
+- id: lock.front_door
+  area_id: entryway
+  name: front двері
+  aliases:
+  - front двері
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage двері
+  aliases:
+  - garage двері
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: кухня посудомийка
+  aliases:
+  - кухня посудомийка
+  - посудомийка
+- id: switch.rangehood
+  area_id: kitchen
+  name: кухня rangehood
+  aliases:
+  - кухня rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: пральня пральна
+  aliases:
+  - пральня пральна
+  - пральна
+  - washer
+  tags:
+  - washer
+  - пральна
+- id: switch.dryer
+  area_id: laundry
+  name: пральня dryer
+  aliases:
+  - пральня dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: ваннаmaster вентиляторbad
+  aliases:
+  - ваннаmaster вентиляторbad
+  - вентиляторbad
+  tags:
+  - вентиляторbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath вентиляторbad
+  aliases:
+  - main bath вентиляторbad
+  - вентиляторbad
+  tags:
+  - вентиляторbad
+- id: media_player.living_tv
+  area_id: living
+  name: вітальня тв
+  aliases:
+  - вітальня тв
+  - тв
+- id: media_player.family_tv
+  area_id: family_room
+  name: вітальняfam тв
+  aliases:
+  - вітальняfam тв
+  - тв
+- id: media_player.living_music
+  area_id: living
+  name: вітальня телевізор
+  aliases:
+  - вітальня телевізор
+  - телевізор
+  platform: music_assistant
+  tags:
+  - телевізор
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: кухня телевізор
+  aliases:
+  - кухня телевізор
+  - телевізор
+  platform: music_assistant
+  tags:
+  - телевізор
+- id: media_player.office_music
+  area_id: office
+  name: office телевізор
+  aliases:
+  - office телевізор
+  - телевізор
+  platform: music_assistant
+  tags:
+  - телевізор
+- id: vacuum.robot
+  area_id: living
+  name: вітальня пилосос
+  aliases:
+  - вітальня пилосос
+  - пилосос
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: передпокій doorsensor
+  aliases:
+  - передпокій doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: вітальня windowsensor
+  aliases:
+  - вітальня windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: кухня motion
+  aliases:
+  - кухня motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: вітальня tempsensor
+  aliases:
+  - вітальня tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: вітальня humidity
+  aliases:
+  - вітальня humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: фільм
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: ніч
+- id: leaving_home
+  name: вихід
+timers:
+- id: oven
+  name: oven таймер
+- id: laundry
+  name: laundry таймер
+- id: abstract
+  name: abstract таймер
+lists:
+- id: shopping
+  name: список

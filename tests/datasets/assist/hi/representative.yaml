@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - jalao batti baithak
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - bujhao batti rasoi
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

@@ -1,0 +1,504 @@
+name: Full Home kw
+language: kw
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: dor
+  level: 0
+  aliases:
+  - dor
+  - is
+- id: upper
+  name: leur
+  level: 1
+  aliases:
+  - leur
+  - ugh
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Porth
+  floor: ground
+  aliases:
+  - porth
+- id: living
+  name: Stafell
+  floor: ground
+  aliases:
+  - stafell
+- id: dining
+  name: Stevellteyluess
+  floor: ground
+  aliases:
+  - stevellteyluess
+- id: kitchen
+  name: Kegin
+  floor: ground
+  aliases:
+  - kegin
+- id: family_room
+  name: Stevellteylu
+  floor: ground
+  aliases:
+  - stevellteylu
+- id: laundry
+  name: Stevellgolhi
+  floor: ground
+  aliases:
+  - stevellgolhi
+- id: powder_room
+  name: Tybach
+  floor: ground
+  aliases:
+  - tybach
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Chambour
+  floor: upper
+  aliases:
+  - chambour
+- id: bedroom_2
+  name: Chambour2
+  floor: upper
+  aliases:
+  - chambour2
+- id: bedroom_3
+  name: Chambour3
+  floor: upper
+  aliases:
+  - chambour3
+- id: bedroom_4
+  name: Chambour4
+  floor: upper
+  aliases:
+  - chambour4
+- id: master_bath
+  name: Kewndhavas
+  floor: upper
+  aliases:
+  - kewndhavas
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: porth golow
+  aliases:
+  - porth golow
+  - golow
+- id: light.living_ceiling
+  area_id: living
+  name: stafell nen
+  aliases:
+  - stafell nen
+  - nen
+- id: light.living_lamp
+  area_id: living
+  name: stafell golow
+  aliases:
+  - stafell golow
+  - golow
+- id: light.dining_pendant
+  area_id: dining
+  name: stevellteyluess golow
+  aliases:
+  - stevellteyluess golow
+  - golow
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: kegin nen
+  aliases:
+  - kegin nen
+  - nen
+- id: light.kitchen_island
+  area_id: kitchen
+  name: kegin enys
+  aliases:
+  - kegin enys
+  - enys
+- id: light.family_ceiling
+  area_id: family_room
+  name: stevellteylu nen
+  aliases:
+  - stevellteylu nen
+  - nen
+- id: light.laundry_light
+  area_id: laundry
+  name: stevellgolhi golow
+  aliases:
+  - stevellgolhi golow
+  - golow
+- id: light.powder_room_light
+  area_id: powder_room
+  name: tybach golow
+  aliases:
+  - tybach golow
+  - golow
+- id: light.garage_light
+  area_id: garage
+  name: garage golow
+  aliases:
+  - garage golow
+  - golow
+- id: light.office_ceiling
+  area_id: office
+  name: office nen
+  aliases:
+  - office nen
+  - nen
+- id: light.garden
+  area_id: garden
+  name: garden golow
+  aliases:
+  - garden golow
+  - golow
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: chambour nen
+  aliases:
+  - chambour nen
+  - nen
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: chambour ensuite
+  aliases:
+  - chambour ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: chambour left gweli
+  aliases:
+  - chambour left gweli
+  - gweli
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: chambour right gweli
+  aliases:
+  - chambour right gweli
+  - gweli
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: chambour2 nen
+  aliases:
+  - chambour2 nen
+  - nen
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: chambour3 nen
+  aliases:
+  - chambour3 nen
+  - nen
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: chambour4 nen
+  aliases:
+  - chambour4 nen
+  - nen
+- id: light.master_bath_light
+  area_id: master_bath
+  name: kewndhavas golow
+  aliases:
+  - kewndhavas golow
+  - golow
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath golow
+  aliases:
+  - main bath golow
+  - golow
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway golow
+  aliases:
+  - hallway golow
+  - golow
+- id: light.basement
+  area_id: basement
+  name: basement golow
+  aliases:
+  - basement golow
+  - golow
+- id: cover.living_blinds
+  area_id: living
+  name: stafell curtayn
+  aliases:
+  - stafell curtayn
+  - curtayn
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: chambour curtayn
+  aliases:
+  - chambour curtayn
+  - curtayn
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: chambour2 curtayn
+  aliases:
+  - chambour2 curtayn
+  - curtayn
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: chambour3 curtayn
+  aliases:
+  - chambour3 curtayn
+  - curtayn
+- id: cover.garage_door
+  area_id: garage
+  name: garage curtayn
+  aliases:
+  - garage curtayn
+  - curtayn
+- id: climate.ground_thermostat
+  area_id: living
+  name: stafell tomder
+  aliases:
+  - stafell tomder
+  - tomder
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: chambour tomder
+  aliases:
+  - chambour tomder
+  - tomder
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: tomder chambour
+  aliases:
+  - tomder chambour
+  - tomder
+  - ac
+  tags:
+  - tomder
+- id: fan.family_fan
+  area_id: family_room
+  name: stevellteylu gwyns
+  aliases:
+  - stevellteylu gwyns
+  - gwyns
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: chambour gwyns
+  aliases:
+  - chambour gwyns
+  - gwyns
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: chambour2 gwyns
+  aliases:
+  - chambour2 gwyns
+  - gwyns
+- id: lock.front_door
+  area_id: entryway
+  name: front daras
+  aliases:
+  - front daras
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage daras
+  aliases:
+  - garage daras
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: kegin lestri
+  aliases:
+  - kegin lestri
+  - lestri
+- id: switch.rangehood
+  area_id: kitchen
+  name: kegin rangehood
+  aliases:
+  - kegin rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: stevellgolhi jynnwolhi
+  aliases:
+  - stevellgolhi jynnwolhi
+  - jynnwolhi
+  - washer
+  tags:
+  - washer
+  - jynnwolhi
+- id: switch.dryer
+  area_id: laundry
+  name: stevellgolhi dryer
+  aliases:
+  - stevellgolhi dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: kewndhavas gwynsbad
+  aliases:
+  - kewndhavas gwynsbad
+  - gwynsbad
+  tags:
+  - gwynsbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath gwynsbad
+  aliases:
+  - main bath gwynsbad
+  - gwynsbad
+  tags:
+  - gwynsbad
+- id: media_player.living_tv
+  area_id: living
+  name: stafell pellwolok
+  aliases:
+  - stafell pellwolok
+  - pellwolok
+- id: media_player.family_tv
+  area_id: family_room
+  name: stevellteylu pellwolok
+  aliases:
+  - stevellteylu pellwolok
+  - pellwolok
+- id: media_player.living_music
+  area_id: living
+  name: stafell pellwolok
+  aliases:
+  - stafell pellwolok
+  - pellwolok
+  platform: music_assistant
+  tags:
+  - pellwolok
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: kegin pellwolok
+  aliases:
+  - kegin pellwolok
+  - pellwolok
+  platform: music_assistant
+  tags:
+  - pellwolok
+- id: media_player.office_music
+  area_id: office
+  name: office pellwolok
+  aliases:
+  - office pellwolok
+  - pellwolok
+  platform: music_assistant
+  tags:
+  - pellwolok
+- id: vacuum.robot
+  area_id: living
+  name: stafell sughva
+  aliases:
+  - stafell sughva
+  - sughva
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: porth doorsensor
+  aliases:
+  - porth doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: stafell windowsensor
+  aliases:
+  - stafell windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: kegin motion
+  aliases:
+  - kegin motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: stafell tempsensor
+  aliases:
+  - stafell tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: stafell humidity
+  aliases:
+  - stafell humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: nos
+- id: leaving_home
+  name: mos
+timers:
+- id: oven
+  name: oven termyn
+- id: laundry
+  name: laundry termyn
+- id: abstract
+  name: abstract termyn
+lists:
+- id: shopping
+  name: rol

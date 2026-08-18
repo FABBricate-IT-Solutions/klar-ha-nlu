@@ -1,0 +1,63 @@
+# Custom SAST. Do not enable a community Rust pack on generated lexicons.
+# Fail on ERROR. Compiled locales are first-class; do not restore a de+en caste.
+rules:
+  - id: klar-no-privileged-langid-default
+    message: Do not restore LangId::DEFAULT as [De, En]. Every compiled locale is first-class.
+    languages: [rust]
+    severity: ERROR
+    metadata:
+      category: correctness
+    paths:
+      include:
+        - /src/lang/mod.rs
+    pattern: "pub const DEFAULT: [LangId; 2] = [LangId::De, LangId::En];"
+
+  - id: klar-no-de-en-default-catalog
+    message: Do not merge only De and En as the default catalog. Empty means no merge; pin per request.
+    languages: [rust]
+    severity: ERROR
+    metadata:
+      category: correctness
+    paths:
+      include:
+        - /src/lang/mod.rs
+    pattern: Catalog::merge(&[LangId::De.pack(), LangId::En.pack()])
+
+  - id: klar-no-de-en-default-languages
+    message: Do not restore DEFAULT_LANGUAGES = ("de", "en"). Compiled locales are first-class.
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: correctness
+    paths:
+      include:
+        - /custom_components/klar_nlu/const.py
+    pattern: DEFAULT_LANGUAGES = ("de", "en")
+
+  - id: klar-no-settings-de-en-default
+    message: Settings default_languages must not special-case de+en.
+    languages: [rust]
+    severity: ERROR
+    metadata:
+      category: correctness
+    paths:
+      include:
+        - /src/types/settings.rs
+    pattern: |
+      fn default_languages() -> Vec<String> {
+        vec!["de".into(), "en".into()]
+      }
+
+  - id: klar-no-langid-special-case-in-parse
+    message: Do not special-case LangId::De or LangId::En in parse/. Packs bind when Assist pins them.
+    languages: [rust]
+    severity: ERROR
+    metadata:
+      category: correctness
+    paths:
+      include:
+        - /src/parse/**/*.rs
+        - /src/parse/*.rs
+    pattern-either:
+      - pattern: LangId::De
+      - pattern: LangId::En

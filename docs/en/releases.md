@@ -28,6 +28,30 @@ chore(release): prepare for 2026.8.0
 
 `chore(deps*)` and `chore(release)` are omitted from the changelog.
 
+## Staging (release candidates)
+
+Language and feature work lands on **`staging` first**, not `main`. `staging` and `main` are **protected**: open a PR/MR, do not push the branch directly.
+
+Every merge to `staging` runs **Staging** (same quality + security jobs as Release, not language-parity / full_home). It then:
+
+1. Tags `{CalVer}-staging.{sha7}` from `Cargo.toml` + the merge SHA (example: `2026.8.30-staging.a1b2c3d`)
+2. Calls **Build** with `prerelease: true`
+3. Publishes a GitHub **prerelease** (`prerelease: true`, `make_latest: false`)
+4. Pushes Docker tags `{rc}` and **`staging`** — never `latest`
+
+Stable cuts stay on **`main` + CalVer tags** as below.
+
+You must create `staging` on GitHub once and protect it (Actions cannot always set this without admin):
+
+- Require a pull request before merging (no direct push)
+- Do not allow force-push or deletion
+- Require the same PR checks as `main` (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`)
+- Optional: require one approval
+
+Promote an RC by opening a PR **`staging` → `main`**. That merge cuts the next CalVer as today.
+
+Home Assistant switch: [home-assistant.md](home-assistant.md) — Configure → **Release channel** (bundled GitHub download and default app URL).
+
 ## Cut a release
 
 Every merge to `main` cuts the next `YYYY.M.PATCH` automatically. The Release workflow:

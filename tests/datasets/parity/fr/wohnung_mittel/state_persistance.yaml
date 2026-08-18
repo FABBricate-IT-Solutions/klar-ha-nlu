@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - allume chauffage salon
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - allume lumiere salon
+  - eteins
+state_persistance/spoken::kugel_dann_aus:
+- - allume globe
+  - eteins
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - allume lumiere salon
+  - allume lumiere cuisine
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - allume lumiere salon
+  - rouge

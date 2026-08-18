@@ -1,0 +1,504 @@
+name: Full Home gu
+language: gu
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: niche
+  level: 0
+  aliases:
+  - niche
+  - zamin
+- id: upper
+  name: upar
+  level: 1
+  aliases:
+  - upar
+  - majla
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: Pravesh
+  floor: ground
+  aliases:
+  - pravesh
+- id: living
+  name: Orado
+  floor: ground
+  aliases:
+  - orado
+- id: dining
+  name: Kutumbess
+  floor: ground
+  aliases:
+  - kutumbess
+- id: kitchen
+  name: Rasodu
+  floor: ground
+  aliases:
+  - rasodu
+- id: family_room
+  name: Kutumb
+  floor: ground
+  aliases:
+  - kutumb
+- id: laundry
+  name: Dhovanu
+  floor: ground
+  aliases:
+  - dhovanu
+- id: powder_room
+  name: Shauchalay
+  floor: ground
+  aliases:
+  - shauchalay
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: Shayankhand
+  floor: upper
+  aliases:
+  - shayankhand
+- id: bedroom_2
+  name: Shayankhand2
+  floor: upper
+  aliases:
+  - shayankhand2
+- id: bedroom_3
+  name: Shayankhand3
+  floor: upper
+  aliases:
+  - shayankhand3
+- id: bedroom_4
+  name: Shayankhand4
+  floor: upper
+  aliases:
+  - shayankhand4
+- id: master_bath
+  name: Mukhyasnan
+  floor: upper
+  aliases:
+  - mukhyasnan
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: pravesh prakash
+  aliases:
+  - pravesh prakash
+  - prakash
+- id: light.living_ceiling
+  area_id: living
+  name: orado chhat
+  aliases:
+  - orado chhat
+  - chhat
+- id: light.living_lamp
+  area_id: living
+  name: orado prakash
+  aliases:
+  - orado prakash
+  - prakash
+- id: light.dining_pendant
+  area_id: dining
+  name: kutumbess prakash
+  aliases:
+  - kutumbess prakash
+  - prakash
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: rasodu chhat
+  aliases:
+  - rasodu chhat
+  - chhat
+- id: light.kitchen_island
+  area_id: kitchen
+  name: rasodu tapu
+  aliases:
+  - rasodu tapu
+  - tapu
+- id: light.family_ceiling
+  area_id: family_room
+  name: kutumb chhat
+  aliases:
+  - kutumb chhat
+  - chhat
+- id: light.laundry_light
+  area_id: laundry
+  name: dhovanu prakash
+  aliases:
+  - dhovanu prakash
+  - prakash
+- id: light.powder_room_light
+  area_id: powder_room
+  name: shauchalay prakash
+  aliases:
+  - shauchalay prakash
+  - prakash
+- id: light.garage_light
+  area_id: garage
+  name: garage prakash
+  aliases:
+  - garage prakash
+  - prakash
+- id: light.office_ceiling
+  area_id: office
+  name: office chhat
+  aliases:
+  - office chhat
+  - chhat
+- id: light.garden
+  area_id: garden
+  name: garden prakash
+  aliases:
+  - garden prakash
+  - prakash
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: shayankhand chhat
+  aliases:
+  - shayankhand chhat
+  - chhat
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: shayankhand ensuite
+  aliases:
+  - shayankhand ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: shayankhand left palang
+  aliases:
+  - shayankhand left palang
+  - palang
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: shayankhand right palang
+  aliases:
+  - shayankhand right palang
+  - palang
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: shayankhand2 chhat
+  aliases:
+  - shayankhand2 chhat
+  - chhat
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: shayankhand3 chhat
+  aliases:
+  - shayankhand3 chhat
+  - chhat
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: shayankhand4 chhat
+  aliases:
+  - shayankhand4 chhat
+  - chhat
+- id: light.master_bath_light
+  area_id: master_bath
+  name: mukhyasnan prakash
+  aliases:
+  - mukhyasnan prakash
+  - prakash
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath prakash
+  aliases:
+  - main bath prakash
+  - prakash
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway prakash
+  aliases:
+  - hallway prakash
+  - prakash
+- id: light.basement
+  area_id: basement
+  name: basement prakash
+  aliases:
+  - basement prakash
+  - prakash
+- id: cover.living_blinds
+  area_id: living
+  name: orado pado
+  aliases:
+  - orado pado
+  - pado
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: shayankhand pado
+  aliases:
+  - shayankhand pado
+  - pado
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: shayankhand2 pado
+  aliases:
+  - shayankhand2 pado
+  - pado
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: shayankhand3 pado
+  aliases:
+  - shayankhand3 pado
+  - pado
+- id: cover.garage_door
+  area_id: garage
+  name: garage pado
+  aliases:
+  - garage pado
+  - pado
+- id: climate.ground_thermostat
+  area_id: living
+  name: orado garmi
+  aliases:
+  - orado garmi
+  - garmi
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: shayankhand garmi
+  aliases:
+  - shayankhand garmi
+  - garmi
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: garmi shayankhand
+  aliases:
+  - garmi shayankhand
+  - garmi
+  - ac
+  tags:
+  - garmi
+- id: fan.family_fan
+  area_id: family_room
+  name: kutumb pankho
+  aliases:
+  - kutumb pankho
+  - pankho
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: shayankhand pankho
+  aliases:
+  - shayankhand pankho
+  - pankho
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: shayankhand2 pankho
+  aliases:
+  - shayankhand2 pankho
+  - pankho
+- id: lock.front_door
+  area_id: entryway
+  name: front darwajo
+  aliases:
+  - front darwajo
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage darwajo
+  aliases:
+  - garage darwajo
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: rasodu vasan
+  aliases:
+  - rasodu vasan
+  - vasan
+- id: switch.rangehood
+  area_id: kitchen
+  name: rasodu rangehood
+  aliases:
+  - rasodu rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: dhovanu washing
+  aliases:
+  - dhovanu washing
+  - washing
+  - washer
+  tags:
+  - washer
+  - washing
+- id: switch.dryer
+  area_id: laundry
+  name: dhovanu dryer
+  aliases:
+  - dhovanu dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: mukhyasnan pankhobad
+  aliases:
+  - mukhyasnan pankhobad
+  - pankhobad
+  tags:
+  - pankhobad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath pankhobad
+  aliases:
+  - main bath pankhobad
+  - pankhobad
+  tags:
+  - pankhobad
+- id: media_player.living_tv
+  area_id: living
+  name: orado tv
+  aliases:
+  - orado tv
+  - tv
+- id: media_player.family_tv
+  area_id: family_room
+  name: kutumb tv
+  aliases:
+  - kutumb tv
+  - tv
+- id: media_player.living_music
+  area_id: living
+  name: orado tivi
+  aliases:
+  - orado tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: rasodu tivi
+  aliases:
+  - rasodu tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: media_player.office_music
+  area_id: office
+  name: office tivi
+  aliases:
+  - office tivi
+  - tivi
+  platform: music_assistant
+  tags:
+  - tivi
+- id: vacuum.robot
+  area_id: living
+  name: orado jhadu
+  aliases:
+  - orado jhadu
+  - jhadu
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: pravesh doorsensor
+  aliases:
+  - pravesh doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: orado windowsensor
+  aliases:
+  - orado windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: rasodu motion
+  aliases:
+  - rasodu motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: orado tempsensor
+  aliases:
+  - orado tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: orado humidity
+  aliases:
+  - orado humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: film
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: raat
+- id: leaving_home
+  name: javu
+timers:
+- id: oven
+  name: oven timer
+- id: laundry
+  name: laundry timer
+- id: abstract
+  name: abstract timer
+lists:
+- id: shopping
+  name: yadi

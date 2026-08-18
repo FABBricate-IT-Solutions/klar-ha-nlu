@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- cau llen llofft2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- agor llen llofft2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- gosod llen llofft2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- gosod gwyntyll llofft2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- diffodd gwyntyll llofft2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- tro gwyntyll llofft2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- gosod golau llofft2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- gosod golau llofft2 pink
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- diffodd golau llofft2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- tro golau llofft2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- cau llen llofft3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- agor llen llofft3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- gosod llen llofft3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- gosod golau llofft3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- gosod golau llofft3 blue
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- diffodd golau llofft3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- tro golau llofft3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- gosod golau llofft4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- gosod golau llofft4 green
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- diffodd golau llofft4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- tro golau llofft4
+area/dining_lights::dining_lights_change_brightness:
+- gosod golau ystafellteuluess 54
+area/dining_lights::dining_lights_change_color:
+- gosod golau ystafellteuluess blue
+area/dining_lights::dining_lights_turn_off:
+- diffodd golau ystafellteuluess
+area/dining_lights::dining_lights_turn_on:
+- tro golau ystafellteuluess
+area/entryway_lights::entryway_lights_change_brightness:
+- gosod golau cyntedd 72
+area/entryway_lights::entryway_lights_change_color:
+- gosod golau cyntedd black
+area/entryway_lights::entryway_lights_turn_off:
+- diffodd golau cyntedd
+area/entryway_lights::entryway_lights_turn_on:
+- tro golau cyntedd
+area/entryway_locks::entryway_locks_lock:
+- clo clo cyntedd
+area/entryway_locks::entryway_locks_unlock:
+- agor clo cyntedd
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- gosod golau ystafellteulu 39 a gosod golau cegin 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- gosod golau ystafellteulu purple a gosod golau cegin purple
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- diffodd golau ystafellteulu a diffodd golau cegin
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- tro golau ystafellteulu a tro golau cegin
+area/family_room_fans::family_room_fans_set_fan_speed:
+- gosod gwyntyll ystafellteulu 32
+area/family_room_fans::family_room_fans_turn_off:
+- diffodd gwyntyll ystafellteulu
+area/family_room_fans::family_room_fans_turn_on:
+- tro gwyntyll ystafellteulu
+area/family_room_lights::family_room_lights_change_brightness:
+- gosod golau ystafellteulu 44
+area/family_room_lights::family_room_lights_change_color:
+- gosod golau ystafellteulu green
+area/family_room_lights::family_room_lights_turn_off:
+- diffodd golau ystafellteulu
+area/family_room_lights::family_room_lights_turn_on:
+- tro golau ystafellteulu
+area/garage_covers::garage_covers_close:
+- cau llen garage
+area/garage_covers::garage_covers_open:
+- agor llen garage
+area/garage_covers::garage_covers_set_position:
+- gosod llen garage 86
+area/garage_lights::garage_lights_change_brightness:
+- gosod golau garage 16
+area/garage_lights::garage_lights_change_color:
+- gosod golau garage blue
+area/garage_lights::garage_lights_turn_off:
+- diffodd golau garage
+area/garage_lights::garage_lights_turn_on:
+- tro golau garage
+area/garage_locks::garage_locks_lock:
+- clo clo garage
+area/garage_locks::garage_locks_unlock:
+- agor clo garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- gosod golau cynteddgang 26 a gosod golau toiled 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- gosod golau cynteddgang purple a gosod golau toiled purple
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- diffodd golau cynteddgang a diffodd golau toiled
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- tro golau cynteddgang a tro golau toiled
+area/hallway_lights::hallway_lights_change_brightness:
+- gosod golau cynteddgang 61
+area/hallway_lights::hallway_lights_change_color:
+- gosod golau cynteddgang orange
+area/hallway_lights::hallway_lights_turn_off:
+- diffodd golau cynteddgang
+area/hallway_lights::hallway_lights_turn_on:
+- tro golau cynteddgang
+area/kitchen_lights::kitchen_lights_change_brightness:
+- gosod golau cegin 45
+area/kitchen_lights::kitchen_lights_change_color:
+- gosod golau cegin pink
+area/kitchen_lights::kitchen_lights_turn_off:
+- diffodd golau cegin
+area/kitchen_lights::kitchen_lights_turn_on:
+- tro golau cegin
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- diffodd dyfais cegin
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- tro dyfais cegin
+area/laundry_lights::laundry_lights_change_brightness:
+- gosod golau ystafellolchi 62
+area/laundry_lights::laundry_lights_change_color:
+- gosod golau ystafellolchi yellow
+area/laundry_lights::laundry_lights_turn_off:
+- diffodd golau ystafellolchi
+area/laundry_lights::laundry_lights_turn_on:
+- tro golau ystafellolchi
+area/laundry_switchs::laundry_switchs_turn_off:
+- diffodd dyfais ystafellolchi
+area/laundry_switchs::laundry_switchs_turn_on:
+- tro dyfais ystafellolchi
+area/living_climates::living_climates_set_temperature:
+- gosod gwres ystafell 20
+area/living_covers::living_covers_close:
+- cau llen ystafell
+area/living_covers::living_covers_open:
+- agor llen ystafell
+area/living_covers::living_covers_set_position:
+- gosod llen ystafell 46
+area/living_lights::living_lights_change_brightness:
+- gosod golau ystafell 84
+area/living_lights::living_lights_change_color:
+- gosod golau ystafell blue
+area/living_lights::living_lights_turn_off:
+- diffodd golau ystafell
+area/living_lights::living_lights_turn_on:
+- tro golau ystafell
+area/main_bath_lights::main_bath_lights_change_brightness:
+- gosod golau main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- gosod golau main bath pink
+area/main_bath_lights::main_bath_lights_turn_off:
+- diffodd golau main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- tro golau main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- diffodd dyfais main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- tro dyfais main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- gosod golau bathmaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- gosod golau bathmaster black
+area/master_bath_lights::master_bath_lights_turn_off:
+- diffodd golau bathmaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- tro golau bathmaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- diffodd dyfais bathmaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- tro dyfais bathmaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- gosod gwres llofft 20 a gosod gwres ystafell 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- cau llen llofft a cau llen ystafell
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- agor llen llofft a agor llen ystafell
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- gosod llen llofft 19 a gosod llen ystafell 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- gosod golau llofft 25 a gosod golau ystafell 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- gosod golau llofft white a gosod golau ystafell white
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- diffodd golau llofft a diffodd golau ystafell
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- tro golau llofft a tro golau ystafell
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- gosod golau llofft 57 a gosod golau main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- gosod golau llofft pink a gosod golau main bath pink
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- diffodd golau llofft a diffodd golau main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- tro golau llofft a tro golau main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- gosod gwres llofft 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- cau llen llofft
+area/master_bedroom_covers::master_bedroom_covers_open:
+- agor llen llofft
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- gosod llen llofft 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- gosod gwyntyll llofft 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- diffodd gwyntyll llofft
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- tro gwyntyll llofft
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- gosod golau llofft 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- gosod golau llofft pink
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- diffodd golau llofft
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- tro golau llofft
+area/powder_room_lights::powder_room_lights_change_brightness:
+- gosod golau toiled 52
+area/powder_room_lights::powder_room_lights_change_color:
+- gosod golau toiled purple
+area/powder_room_lights::powder_room_lights_turn_off:
+- diffodd golau toiled
+area/powder_room_lights::powder_room_lights_turn_on:
+- tro golau toiled
+area/spoken_lights::spoken_bedroom_inflection:
+- gosod golau llofft red
+area/spoken_lights::spoken_except_island:
+- diffodd pob golau heblaw ynys
+area/spoken_lights::spoken_except_kitchen:
+- diffodd pob golau heblaw cegin heblaw ynys
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- diffodd golau ystafell a diffodd golau ystafellteuluess a diffodd golau cegin
+area/spoken_lights::spoken_stt_kitchen_off:
+- diffodd golau cegin
+area/spoken_lights::spoken_stt_living_off:
+- diffodd golau ystafell

@@ -1,0 +1,248 @@
+area/bedroom_2_covers::bedroom_2_covers_close:
+- pecha cortina cuarto2
+area/bedroom_2_covers::bedroom_2_covers_open:
+- abre cortina cuarto2
+area/bedroom_2_covers::bedroom_2_covers_set_position:
+- pon cortina cuarto2 16
+area/bedroom_2_fans::bedroom_2_fans_set_fan_speed:
+- pon ventilador cuarto2 32
+area/bedroom_2_fans::bedroom_2_fans_turn_off:
+- apaga ventilador cuarto2
+area/bedroom_2_fans::bedroom_2_fans_turn_on:
+- acende ventilador cuarto2
+area/bedroom_2_lights::bedroom_2_lights_change_brightness:
+- pon luz cuarto2 65
+area/bedroom_2_lights::bedroom_2_lights_change_color:
+- pon luz cuarto2 pink
+area/bedroom_2_lights::bedroom_2_lights_turn_off:
+- apaga luz cuarto2
+area/bedroom_2_lights::bedroom_2_lights_turn_on:
+- acende luz cuarto2
+area/bedroom_3_covers::bedroom_3_covers_close:
+- pecha cortina cuarto3
+area/bedroom_3_covers::bedroom_3_covers_open:
+- abre cortina cuarto3
+area/bedroom_3_covers::bedroom_3_covers_set_position:
+- pon cortina cuarto3 29
+area/bedroom_3_lights::bedroom_3_lights_change_brightness:
+- pon luz cuarto3 76
+area/bedroom_3_lights::bedroom_3_lights_change_color:
+- pon luz cuarto3 blue
+area/bedroom_3_lights::bedroom_3_lights_turn_off:
+- apaga luz cuarto3
+area/bedroom_3_lights::bedroom_3_lights_turn_on:
+- acende luz cuarto3
+area/bedroom_4_lights::bedroom_4_lights_change_brightness:
+- pon luz cuarto4 69
+area/bedroom_4_lights::bedroom_4_lights_change_color:
+- pon luz cuarto4 green
+area/bedroom_4_lights::bedroom_4_lights_turn_off:
+- apaga luz cuarto4
+area/bedroom_4_lights::bedroom_4_lights_turn_on:
+- acende luz cuarto4
+area/dining_lights::dining_lights_change_brightness:
+- pon luz salafamess 54
+area/dining_lights::dining_lights_change_color:
+- pon luz salafamess blue
+area/dining_lights::dining_lights_turn_off:
+- apaga luz salafamess
+area/dining_lights::dining_lights_turn_on:
+- acende luz salafamess
+area/entryway_lights::entryway_lights_change_brightness:
+- pon luz entrada 72
+area/entryway_lights::entryway_lights_change_color:
+- pon luz entrada black
+area/entryway_lights::entryway_lights_turn_off:
+- apaga luz entrada
+area/entryway_lights::entryway_lights_turn_on:
+- acende luz entrada
+area/entryway_locks::entryway_locks_lock:
+- pechadura pechadura entrada
+area/entryway_locks::entryway_locks_unlock:
+- abre pechadura entrada
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
+- pon luz salafam 39 e pon luz cociña 39
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
+- pon luz salafam purple e pon luz cociña purple
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
+- apaga luz salafam e apaga luz cociña
+area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
+- acende luz salafam e acende luz cociña
+area/family_room_fans::family_room_fans_set_fan_speed:
+- pon ventilador salafam 32
+area/family_room_fans::family_room_fans_turn_off:
+- apaga ventilador salafam
+area/family_room_fans::family_room_fans_turn_on:
+- acende ventilador salafam
+area/family_room_lights::family_room_lights_change_brightness:
+- pon luz salafam 44
+area/family_room_lights::family_room_lights_change_color:
+- pon luz salafam green
+area/family_room_lights::family_room_lights_turn_off:
+- apaga luz salafam
+area/family_room_lights::family_room_lights_turn_on:
+- acende luz salafam
+area/garage_covers::garage_covers_close:
+- pecha cortina garage
+area/garage_covers::garage_covers_open:
+- abre cortina garage
+area/garage_covers::garage_covers_set_position:
+- pon cortina garage 86
+area/garage_lights::garage_lights_change_brightness:
+- pon luz garage 16
+area/garage_lights::garage_lights_change_color:
+- pon luz garage blue
+area/garage_lights::garage_lights_turn_off:
+- apaga luz garage
+area/garage_lights::garage_lights_turn_on:
+- acende luz garage
+area/garage_locks::garage_locks_lock:
+- pechadura pechadura garage
+area/garage_locks::garage_locks_unlock:
+- abre pechadura garage
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
+- pon luz entradagang 26 e pon luz aseo 26
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
+- pon luz entradagang purple e pon luz aseo purple
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
+- apaga luz entradagang e apaga luz aseo
+area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
+- acende luz entradagang e acende luz aseo
+area/hallway_lights::hallway_lights_change_brightness:
+- pon luz entradagang 61
+area/hallway_lights::hallway_lights_change_color:
+- pon luz entradagang orange
+area/hallway_lights::hallway_lights_turn_off:
+- apaga luz entradagang
+area/hallway_lights::hallway_lights_turn_on:
+- acende luz entradagang
+area/kitchen_lights::kitchen_lights_change_brightness:
+- pon luz cociña 45
+area/kitchen_lights::kitchen_lights_change_color:
+- pon luz cociña pink
+area/kitchen_lights::kitchen_lights_turn_off:
+- apaga luz cociña
+area/kitchen_lights::kitchen_lights_turn_on:
+- acende luz cociña
+area/kitchen_switchs::kitchen_switchs_turn_off:
+- apaga aparello cociña
+area/kitchen_switchs::kitchen_switchs_turn_on:
+- acende aparello cociña
+area/laundry_lights::laundry_lights_change_brightness:
+- pon luz lavandaria 62
+area/laundry_lights::laundry_lights_change_color:
+- pon luz lavandaria yellow
+area/laundry_lights::laundry_lights_turn_off:
+- apaga luz lavandaria
+area/laundry_lights::laundry_lights_turn_on:
+- acende luz lavandaria
+area/laundry_switchs::laundry_switchs_turn_off:
+- apaga aparello lavandaria
+area/laundry_switchs::laundry_switchs_turn_on:
+- acende aparello lavandaria
+area/living_climates::living_climates_set_temperature:
+- pon calefaccion salon 20
+area/living_covers::living_covers_close:
+- pecha cortina salon
+area/living_covers::living_covers_open:
+- abre cortina salon
+area/living_covers::living_covers_set_position:
+- pon cortina salon 46
+area/living_lights::living_lights_change_brightness:
+- pon luz salon 84
+area/living_lights::living_lights_change_color:
+- pon luz salon blue
+area/living_lights::living_lights_turn_off:
+- apaga luz salon
+area/living_lights::living_lights_turn_on:
+- acende luz salon
+area/main_bath_lights::main_bath_lights_change_brightness:
+- pon luz main bath 73
+area/main_bath_lights::main_bath_lights_change_color:
+- pon luz main bath pink
+area/main_bath_lights::main_bath_lights_turn_off:
+- apaga luz main bath
+area/main_bath_lights::main_bath_lights_turn_on:
+- acende luz main bath
+area/main_bath_switchs::main_bath_switchs_turn_off:
+- apaga aparello main bath
+area/main_bath_switchs::main_bath_switchs_turn_on:
+- acende aparello main bath
+area/master_bath_lights::master_bath_lights_change_brightness:
+- pon luz banomaster 60
+area/master_bath_lights::master_bath_lights_change_color:
+- pon luz banomaster black
+area/master_bath_lights::master_bath_lights_turn_off:
+- apaga luz banomaster
+area/master_bath_lights::master_bath_lights_turn_on:
+- acende luz banomaster
+area/master_bath_switchs::master_bath_switchs_turn_off:
+- apaga aparello banomaster
+area/master_bath_switchs::master_bath_switchs_turn_on:
+- acende aparello banomaster
+area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- pon calefaccion cuarto 20 e pon calefaccion salon 20
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
+- pecha cortina cuarto e pecha cortina salon
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
+- abre cortina cuarto e abre cortina salon
+area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- pon cortina cuarto 19 e pon cortina salon 19
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
+- pon luz cuarto 25 e pon luz salon 25
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
+- pon luz cuarto white e pon luz salon white
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
+- apaga luz cuarto e apaga luz salon
+area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
+- acende luz cuarto e acende luz salon
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
+- pon luz cuarto 57 e pon luz main bath 57
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
+- pon luz cuarto pink e pon luz main bath pink
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
+- apaga luz cuarto e apaga luz main bath
+area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
+- acende luz cuarto e acende luz main bath
+area/master_bedroom_climates::master_bedroom_climates_set_temperature:
+- pon calefaccion cuarto 20
+area/master_bedroom_covers::master_bedroom_covers_close:
+- pecha cortina cuarto
+area/master_bedroom_covers::master_bedroom_covers_open:
+- abre cortina cuarto
+area/master_bedroom_covers::master_bedroom_covers_set_position:
+- pon cortina cuarto 38
+area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
+- pon ventilador cuarto 79
+area/master_bedroom_fans::master_bedroom_fans_turn_off:
+- apaga ventilador cuarto
+area/master_bedroom_fans::master_bedroom_fans_turn_on:
+- acende ventilador cuarto
+area/master_bedroom_lights::master_bedroom_lights_change_brightness:
+- pon luz cuarto 73
+area/master_bedroom_lights::master_bedroom_lights_change_color:
+- pon luz cuarto pink
+area/master_bedroom_lights::master_bedroom_lights_turn_off:
+- apaga luz cuarto
+area/master_bedroom_lights::master_bedroom_lights_turn_on:
+- acende luz cuarto
+area/powder_room_lights::powder_room_lights_change_brightness:
+- pon luz aseo 52
+area/powder_room_lights::powder_room_lights_change_color:
+- pon luz aseo purple
+area/powder_room_lights::powder_room_lights_turn_off:
+- apaga luz aseo
+area/powder_room_lights::powder_room_lights_turn_on:
+- acende luz aseo
+area/spoken_lights::spoken_bedroom_inflection:
+- pon luz cuarto red
+area/spoken_lights::spoken_except_island:
+- apaga todo luz excepto illa
+area/spoken_lights::spoken_except_kitchen:
+- apaga todo luz excepto cociña excepto illa
+area/spoken_lights::spoken_listing_living_dining_kitchen:
+- apaga luz salon e apaga luz salafamess e apaga luz cociña
+area/spoken_lights::spoken_stt_kitchen_off:
+- apaga luz cociña
+area/spoken_lights::spoken_stt_living_off:
+- apaga luz salon

@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- hachchu timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- hachchu timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- hachchu timer abstract
+timers/timers::cancel_all_timers:
+- arisu ella timer
+timers/timers::timer_laundry_cancel:
+- hachchu timer laundry
+timers/timers::timer_laundry_decrease:
+- hachchu timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- hachchu timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- arisu timer laundry
+timers/timers::timer_laundry_start:
+- hachchu timer laundry
+timers/timers::timer_laundry_status:
+- enu timer laundry
+timers/timers::timer_laundry_unpause:
+- hachchu timer laundry
+timers/timers::timer_oven_cancel:
+- hachchu timer oven
+timers/timers::timer_oven_decrease:
+- hachchu timer oven 44 min
+timers/timers::timer_oven_increase:
+- hachchu timer oven 30 min
+timers/timers::timer_oven_pause:
+- arisu timer oven
+timers/timers::timer_oven_start:
+- hachchu timer oven 2 min
+timers/timers::timer_oven_status:
+- enu timer oven
+timers/timers::timer_oven_unpause:
+- hachchu timer oven

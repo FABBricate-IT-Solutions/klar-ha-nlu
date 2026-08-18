@@ -1,0 +1,52 @@
+devices/geraete::deckenlampe_aus:
+- vypni strop spalna
+devices/geraete::device_arbeitszimmer_an:
+- zapni svetlo obyvacka
+devices/geraete::device_esszimmer_an:
+- zapni svetlo obyvackafamess
+devices/geraete::device_kuche_kuche_an:
+- zapni svetlo kuchyne
+devices/geraete::device_wohnzimmer_an:
+- zapni svetlo obyvacka
+devices/geraete::filmabend:
+- zapni Filmabend
+devices/geraete::kugel_an:
+- zapni gula spalna
+devices/geraete::luefter_50:
+- nastav ventilator obyvacka 50
+devices/geraete::pc_an:
+- zapni pristroj
+devices/geraete::r2d2_saugen:
+- zapni vysavac obyvacka
+devices/geraete::rollo_zu:
+- zatvor zaves obyvacka
+devices/geraete::spuelmaschine_aus:
+- vypni umyvacka
+devices/geraete::tuer_abschliessen:
+- zamok zamok predsiengang
+devices/geraete::waschmaschine_an:
+- zapni pracka
+devices/klima::klima_schlaf_21:
+- nastav kurenie spalna 21
+devices/spoken::deckenlampe_an:
+- zapni strop spalna
+devices/spoken::kugel_aus:
+- vypni gula spalna
+devices/spoken::luefter_aus:
+- vypni ventilator obyvacka
+devices/spoken::rollo_auf:
+- otvor zaves obyvacka
+devices/spoken::trockner_an:
+- zapni pracka
+devices/spoken::tv_aus:
+- vypni televizor
+devices/spoken_more::decke_aus_casual:
+- vypni strop spalna
+devices/spoken_more::kugel_casual:
+- zapni gula spalna
+devices/spoken_more::pc_aus:
+- vypni pristroj
+devices/spoken_more::spuelmaschine_an:
+- zapni umyvacka
+devices/spoken_more::waschmaschine_aus:
+- vypni pracka

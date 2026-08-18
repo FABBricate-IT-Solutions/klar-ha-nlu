@@ -1,0 +1,504 @@
+name: Full Home el
+language: el
+difficulty: full
+policy:
+  preferred_climate: climate.upper_thermostat
+  timer_hints:
+    90: laundry
+floors:
+- id: ground
+  name: ισογειο
+  level: 0
+  aliases:
+  - ισογειο
+  - κατω
+- id: upper
+  name: οροφος
+  level: 1
+  aliases:
+  - οροφος
+  - πανω
+- id: basement
+  name: basement
+  level: -1
+  aliases:
+  - basement
+  - keller
+areas:
+- id: entryway
+  name: εισοδος
+  floor: ground
+  aliases:
+  - εισοδος
+- id: living
+  name: σαλονι
+  floor: ground
+  aliases:
+  - σαλονι
+- id: dining
+  name: σαλονιfamess
+  floor: ground
+  aliases:
+  - σαλονιfamess
+- id: kitchen
+  name: κουζινα
+  floor: ground
+  aliases:
+  - κουζινα
+- id: family_room
+  name: σαλονιfam
+  floor: ground
+  aliases:
+  - σαλονιfam
+- id: laundry
+  name: πλυσταριο
+  floor: ground
+  aliases:
+  - πλυσταριο
+- id: powder_room
+  name: Wc
+  floor: ground
+  aliases:
+  - wc
+- id: garage
+  name: Garage
+  floor: ground
+  aliases:
+  - garage
+- id: office
+  name: Office
+  floor: ground
+  aliases:
+  - office
+- id: garden
+  name: Garden
+  floor: ground
+  aliases:
+  - garden
+- id: master_bedroom
+  name: υπνοδωματο
+  floor: upper
+  aliases:
+  - υπνοδωματο
+- id: bedroom_2
+  name: υπνοδωματο2
+  floor: upper
+  aliases:
+  - υπνοδωματο2
+- id: bedroom_3
+  name: υπνοδωματο3
+  floor: upper
+  aliases:
+  - υπνοδωματο3
+- id: bedroom_4
+  name: υπνοδωματο4
+  floor: upper
+  aliases:
+  - υπνοδωματο4
+- id: master_bath
+  name: μπανιοmaster
+  floor: upper
+  aliases:
+  - μπανιοmaster
+- id: main_bath
+  name: Main Bath
+  floor: upper
+  aliases:
+  - main bath
+- id: hallway
+  name: Hallway
+  floor: upper
+  aliases:
+  - hallway
+- id: basement
+  name: Basement
+  floor: basement
+  aliases:
+  - basement
+devices:
+- id: light.entryway_light
+  area_id: entryway
+  name: εισοδος φως
+  aliases:
+  - εισοδος φως
+  - φως
+- id: light.living_ceiling
+  area_id: living
+  name: σαλονι ταβανι
+  aliases:
+  - σαλονι ταβανι
+  - ταβανι
+- id: light.living_lamp
+  area_id: living
+  name: σαλονι φως
+  aliases:
+  - σαλονι φως
+  - φως
+- id: light.dining_pendant
+  area_id: dining
+  name: σαλονιfamess φως
+  aliases:
+  - σαλονιfamess φως
+  - φως
+- id: light.kitchen_ceiling
+  area_id: kitchen
+  name: κουζινα ταβανι
+  aliases:
+  - κουζινα ταβανι
+  - ταβανι
+- id: light.kitchen_island
+  area_id: kitchen
+  name: κουζινα νησι
+  aliases:
+  - κουζινα νησι
+  - νησι
+- id: light.family_ceiling
+  area_id: family_room
+  name: σαλονιfam ταβανι
+  aliases:
+  - σαλονιfam ταβανι
+  - ταβανι
+- id: light.laundry_light
+  area_id: laundry
+  name: πλυσταριο φως
+  aliases:
+  - πλυσταριο φως
+  - φως
+- id: light.powder_room_light
+  area_id: powder_room
+  name: wc φως
+  aliases:
+  - wc φως
+  - φως
+- id: light.garage_light
+  area_id: garage
+  name: garage φως
+  aliases:
+  - garage φως
+  - φως
+- id: light.office_ceiling
+  area_id: office
+  name: office ταβανι
+  aliases:
+  - office ταβανι
+  - ταβανι
+- id: light.garden
+  area_id: garden
+  name: garden φως
+  aliases:
+  - garden φως
+  - φως
+- id: light.master_ceiling
+  area_id: master_bedroom
+  name: υπνοδωματο ταβανι
+  aliases:
+  - υπνοδωματο ταβανι
+  - ταβανι
+- id: light.master_ensuite
+  area_id: master_bedroom
+  name: υπνοδωματο ensuite
+  aliases:
+  - υπνοδωματο ensuite
+  - ensuite
+  tags:
+  - ensuite
+- id: light.master_bedside_left
+  area_id: master_bedroom
+  name: υπνοδωματο left κομοδινο
+  aliases:
+  - υπνοδωματο left κομοδινο
+  - κομοδινο
+- id: light.master_bedside_right
+  area_id: master_bedroom
+  name: υπνοδωματο right κομοδινο
+  aliases:
+  - υπνοδωματο right κομοδινο
+  - κομοδινο
+- id: light.bedroom2_ceiling
+  area_id: bedroom_2
+  name: υπνοδωματο2 ταβανι
+  aliases:
+  - υπνοδωματο2 ταβανι
+  - ταβανι
+- id: light.bedroom3_ceiling
+  area_id: bedroom_3
+  name: υπνοδωματο3 ταβανι
+  aliases:
+  - υπνοδωματο3 ταβανι
+  - ταβανι
+- id: light.bedroom4_ceiling
+  area_id: bedroom_4
+  name: υπνοδωματο4 ταβανι
+  aliases:
+  - υπνοδωματο4 ταβανι
+  - ταβανι
+- id: light.master_bath_light
+  area_id: master_bath
+  name: μπανιοmaster φως
+  aliases:
+  - μπανιοmaster φως
+  - φως
+- id: light.main_bath_light
+  area_id: main_bath
+  name: main bath φως
+  aliases:
+  - main bath φως
+  - φως
+- id: light.hallway_light
+  area_id: hallway
+  name: hallway φως
+  aliases:
+  - hallway φως
+  - φως
+- id: light.basement
+  area_id: basement
+  name: basement φως
+  aliases:
+  - basement φως
+  - φως
+- id: cover.living_blinds
+  area_id: living
+  name: σαλονι κουρτινα
+  aliases:
+  - σαλονι κουρτινα
+  - κουρτινα
+- id: cover.master_blinds
+  area_id: master_bedroom
+  name: υπνοδωματο κουρτινα
+  aliases:
+  - υπνοδωματο κουρτινα
+  - κουρτινα
+- id: cover.bedroom2_blinds
+  area_id: bedroom_2
+  name: υπνοδωματο2 κουρτινα
+  aliases:
+  - υπνοδωματο2 κουρτινα
+  - κουρτινα
+- id: cover.bedroom3_blinds
+  area_id: bedroom_3
+  name: υπνοδωματο3 κουρτινα
+  aliases:
+  - υπνοδωματο3 κουρτινα
+  - κουρτινα
+- id: cover.garage_door
+  area_id: garage
+  name: garage κουρτινα
+  aliases:
+  - garage κουρτινα
+  - κουρτινα
+- id: climate.ground_thermostat
+  area_id: living
+  name: σαλονι θερμανση
+  aliases:
+  - σαλονι θερμανση
+  - θερμανση
+- id: climate.upper_thermostat
+  area_id: master_bedroom
+  name: υπνοδωματο θερμανση
+  aliases:
+  - υπνοδωματο θερμανση
+  - θερμανση
+- id: climate.master_ac
+  area_id: master_bedroom
+  name: θερμοκρασια υπνοδωματο
+  aliases:
+  - θερμοκρασια υπνοδωματο
+  - θερμοκρασια
+  - ac
+  tags:
+  - θερμοκρασια
+- id: fan.family_fan
+  area_id: family_room
+  name: σαλονιfam ανεμιστηρας
+  aliases:
+  - σαλονιfam ανεμιστηρας
+  - ανεμιστηρας
+- id: fan.master_fan
+  area_id: master_bedroom
+  name: υπνοδωματο ανεμιστηρας
+  aliases:
+  - υπνοδωματο ανεμιστηρας
+  - ανεμιστηρας
+- id: fan.bedroom2_fan
+  area_id: bedroom_2
+  name: υπνοδωματο2 ανεμιστηρας
+  aliases:
+  - υπνοδωματο2 ανεμιστηρας
+  - ανεμιστηρας
+- id: lock.front_door
+  area_id: entryway
+  name: front πορτα
+  aliases:
+  - front πορτα
+  tags:
+  - front
+- id: lock.garage_entry
+  area_id: garage
+  name: garage πορτα
+  aliases:
+  - garage πορτα
+  tags:
+  - garage
+- id: switch.dishwasher
+  area_id: kitchen
+  name: κουζινα πιατα
+  aliases:
+  - κουζινα πιατα
+  - πιατα
+- id: switch.rangehood
+  area_id: kitchen
+  name: κουζινα rangehood
+  aliases:
+  - κουζινα rangehood
+  - rangehood
+  tags:
+  - rangehood
+- id: switch.washing_machine
+  area_id: laundry
+  name: πλυσταριο πλυντηριο
+  aliases:
+  - πλυσταριο πλυντηριο
+  - πλυντηριο
+  - washer
+  tags:
+  - washer
+  - πλυντηριο
+- id: switch.dryer
+  area_id: laundry
+  name: πλυσταριο dryer
+  aliases:
+  - πλυσταριο dryer
+  - dryer
+  tags:
+  - dryer
+- id: switch.master_bath_fan
+  area_id: master_bath
+  name: μπανιοmaster ανεμιστηραςbad
+  aliases:
+  - μπανιοmaster ανεμιστηραςbad
+  - ανεμιστηραςbad
+  tags:
+  - ανεμιστηραςbad
+- id: switch.main_bath_fan
+  area_id: main_bath
+  name: main bath ανεμιστηραςbad
+  aliases:
+  - main bath ανεμιστηραςbad
+  - ανεμιστηραςbad
+  tags:
+  - ανεμιστηραςbad
+- id: media_player.living_tv
+  area_id: living
+  name: σαλονι τηλεοραση
+  aliases:
+  - σαλονι τηλεοραση
+  - τηλεοραση
+- id: media_player.family_tv
+  area_id: family_room
+  name: σαλονιfam τηλεοραση
+  aliases:
+  - σαλονιfam τηλεοραση
+  - τηλεοραση
+- id: media_player.living_music
+  area_id: living
+  name: σαλονι τηλεοραση
+  aliases:
+  - σαλονι τηλεοραση
+  - τηλεοραση
+  platform: music_assistant
+  tags:
+  - τηλεοραση
+- id: media_player.kitchen_music
+  area_id: kitchen
+  name: κουζινα τηλεοραση
+  aliases:
+  - κουζινα τηλεοραση
+  - τηλεοραση
+  platform: music_assistant
+  tags:
+  - τηλεοραση
+- id: media_player.office_music
+  area_id: office
+  name: office τηλεοραση
+  aliases:
+  - office τηλεοραση
+  - τηλεοραση
+  platform: music_assistant
+  tags:
+  - τηλεοραση
+- id: vacuum.robot
+  area_id: living
+  name: σαλονι σκουπα
+  aliases:
+  - σαλονι σκουπα
+  - σκουπα
+- id: binary_sensor.front_door_sensor
+  area_id: entryway
+  name: εισοδος doorsensor
+  aliases:
+  - εισοδος doorsensor
+  - doorsensor
+  tags:
+  - doorsensor
+- id: binary_sensor.living_window
+  area_id: living
+  name: σαλονι windowsensor
+  aliases:
+  - σαλονι windowsensor
+  - windowsensor
+  tags:
+  - windowsensor
+- id: binary_sensor.kitchen_motion
+  area_id: kitchen
+  name: κουζινα motion
+  aliases:
+  - κουζινα motion
+  - motion
+  tags:
+  - motion
+- id: sensor.living_temperature
+  area_id: living
+  name: σαλονι tempsensor
+  aliases:
+  - σαλονι tempsensor
+  - tempsensor
+  tags:
+  - tempsensor
+- id: sensor.living_humidity
+  area_id: living
+  name: σαλονι humidity
+  aliases:
+  - σαλονι humidity
+  - humidity
+  tags:
+  - humidity
+- id: weather.home
+  area_id: garden
+  name: garden weather
+  aliases:
+  - garden weather
+  - weather
+scenes:
+- id: movie_night
+  name: ταινια
+- id: dinner_time
+  name: dinner
+- id: kids_bedtime
+  name: kids
+- id: good_morning
+  name: morning
+scripts:
+- id: good_night
+  name: νυχτα
+- id: leaving_home
+  name: εξοδος
+timers:
+- id: oven
+  name: oven χρονομετρο
+- id: laundry
+  name: laundry χρονομετρο
+- id: abstract
+  name: abstract χρονομετρο
+lists:
+- id: shopping
+  name: λιστα

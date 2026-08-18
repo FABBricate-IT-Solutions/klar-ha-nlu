@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - what curtain bedroom2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - what ceiling bedroom2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - what curtain bedroom3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - what ceiling bedroom3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - what ceiling bedroom4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - what light loungefamess
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - what light porch
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - what ceiling loungefam
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - what curtain garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - what light garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - what light porchgang and what light loo
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - what light porchgang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - what light kitchen
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - what light utility
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - what heating lounge
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - what curtain lounge
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - what light lounge
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - what light main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - what light ensuite
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - what heating bedroom and what heating lounge
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - what curtain bedroom and what curtain lounge
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - what heating bedroom
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - what curtain bedroom
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - what light loo
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - what curtain garage
+  - close
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - what curtain garage
+  - open
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - what curtain garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - what curtain lounge
+  - close
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - what curtain lounge
+  - open
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - what curtain lounge
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - what fan loungefam
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - what fan loungefam
+  - extinguish
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - what fan loungefam
+  - enable
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - what light porch
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - what light porch
+  - extinguish
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - what light porch
+  - enable
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - what lock porch
+  - lock
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - what lock porch
+  - open
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - what lock garage
+  - lock
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - what lock garage
+  - open
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - what telly loungefam
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - what telly loungefam
+  - extinguish
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - what telly loungefam
+  - enable
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - what telly lounge
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - what telly lounge
+  - extinguish
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - what telly lounge
+  - enable

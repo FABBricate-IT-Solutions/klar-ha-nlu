@@ -1,0 +1,142 @@
+- name: multi_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hongnang และ hongkrua
+  - fai hongnang และ hongkrua poetfai
+- name: multi_off_lock
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  sentences:
+  - pitfai fai hongnang และ kunjae pratu
+  - pitfai hongnang และ kunjae pratu
+- name: multi_kitchen_dining
+  conditions:
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hongkrua และ hongkhropkhruaess
+  - fai hongkrua และ hongkhropkhruaess poetfai
+- name: multi_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai office และ hallway
+  - fai office และ hallway poetfai
+- name: multi_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai garage และ garden
+  - fai garage และ garden poetfai
+- name: multi_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hongnon และ main bath
+  - fai hongnon และ main bath poetfai
+- name: multi_family_room_living
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hongkhropkhrua และ hongnang
+  - fai hongkhropkhrua และ hongnang poetfai
+- name: multi_basement_garden
+  conditions:
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai basement และ garden
+  - fai basement และ garden poetfai
+- name: multi_hallway_office
+  conditions:
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hallway และ office
+  - fai hallway และ office poetfai
+- name: multi_dining_kitchen
+  conditions:
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hongkhropkhruaess และ hongkrua
+  - fai hongkhropkhruaess และ hongkrua poetfai
+- name: multi_bedroom_2_bedroom_3
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  sentences:
+  - poetfai fai hongnon2 และ hongnon3
+  - fai hongnon2 และ hongnon3 poetfai

@@ -1,0 +1,12 @@
+- name: light_on
+  sentences:
+    - skakel lig sitkamer
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+- name: light_off
+  sentences:
+    - doof lig kombuis
+  nlu_expect:
+    intents:
+      - intent: HassTurnOff

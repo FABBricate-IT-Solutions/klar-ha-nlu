@@ -1,0 +1,1632 @@
+- name: and_light.living_ceiling_light.living_lamp_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'on'
+  sentences:
+  - tsukete ribingu tenjo と ribingu lamp
+  - ribingu tenjo と ribingu lamp tsukete
+- name: and_light.living_ceiling_light.living_lamp_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.living_lamp
+    state: 'off'
+  sentences:
+  - keshite ribingu tenjo と ribingu lamp
+  - ribingu tenjo と ribingu lamp keshite
+- name: and_light.kitchen_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - tsukete kitchin tenjo と kitchin shima
+  - kitchin tenjo と kitchin shima tsukete
+- name: and_light.kitchen_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - keshite kitchin tenjo と kitchin shima
+  - kitchin tenjo と kitchin shima keshite
+- name: and_light.living_ceiling_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - tsukete ribingu tenjo と kitchin shima
+  - ribingu tenjo と kitchin shima tsukete
+- name: and_light.living_ceiling_light.kitchen_island_off
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'off'
+  sentences:
+  - keshite ribingu tenjo と kitchin shima
+  - ribingu tenjo と kitchin shima keshite
+- name: and_light.office_ceiling_light.hallway_light_on
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'on'
+  sentences:
+  - tsukete office tenjo と roka raito
+  - office tenjo と roka raito tsukete
+- name: and_light.office_ceiling_light.hallway_light_off
+  conditions:
+  - type: action
+    entity_id: light.office_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.hallway_light
+    state: 'off'
+  sentences:
+  - keshite office tenjo と roka raito
+  - office tenjo と roka raito keshite
+- name: and_light.garden_light.garage_light_on
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'on'
+  - type: action
+    entity_id: light.garage_light
+    state: 'on'
+  sentences:
+  - tsukete garden raito と garage raito
+  - garden raito と garage raito tsukete
+- name: and_light.garden_light.garage_light_off
+  conditions:
+  - type: action
+    entity_id: light.garden
+    state: 'off'
+  - type: action
+    entity_id: light.garage_light
+    state: 'off'
+  sentences:
+  - keshite garden raito と garage raito
+  - garden raito と garage raito keshite
+- name: and_light.master_ceiling_light.master_bedside_left_on
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'on'
+  sentences:
+  - tsukete shinshitsu tenjo と shinshitsu beddowaki
+  - shinshitsu tenjo と shinshitsu beddowaki tsukete
+- name: and_light.master_ceiling_light.master_bedside_left_off
+  conditions:
+  - type: action
+    entity_id: light.master_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.master_bedside_left
+    state: 'off'
+  sentences:
+  - keshite shinshitsu tenjo と shinshitsu beddowaki
+  - shinshitsu tenjo と shinshitsu beddowaki keshite
+- name: and_light.family_ceiling_light.dining_pendant_on
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'on'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'on'
+  sentences:
+  - tsukete famirii tenjo と famiriiess raito
+  - famirii tenjo と famiriiess raito tsukete
+- name: and_light.family_ceiling_light.dining_pendant_off
+  conditions:
+  - type: action
+    entity_id: light.family_ceiling
+    state: 'off'
+  - type: action
+    entity_id: light.dining_pendant
+    state: 'off'
+  sentences:
+  - keshite famirii tenjo と famiriiess raito
+  - famirii tenjo と famiriiess raito keshite
+- name: and_light.basement_light.laundry_light_on
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'on'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'on'
+  sentences:
+  - tsukete chika raito と sentakushitsu raito
+  - chika raito と sentakushitsu raito tsukete
+- name: and_light.basement_light.laundry_light_off
+  conditions:
+  - type: action
+    entity_id: light.basement
+    state: 'off'
+  - type: action
+    entity_id: light.laundry_light
+    state: 'off'
+  sentences:
+  - keshite chika raito と sentakushitsu raito
+  - chika raito と sentakushitsu raito keshite
+- name: and_fan.master_fan_light.kitchen_island_on
+  conditions:
+  - type: action
+    entity_id: fan.master_fan
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_island
+    state: 'on'
+  sentences:
+  - tsukete shinshitsu fan と kitchin shima
+  - shinshitsu fan と kitchin shima tsukete
+- name: and_cover.living_blinds_light.living_ceiling_on
+  conditions:
+  - type: action
+    entity_id: cover.living_blinds
+    state: 'on'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'on'
+  sentences:
+  - tsukete ribingu kaaten と ribingu tenjo
+  - ribingu kaaten と ribingu tenjo tsukete
+- name: and_switch.washing_machine_switch.dryer_on
+  conditions:
+  - type: action
+    entity_id: switch.washing_machine
+    state: 'on'
+  - type: action
+    entity_id: switch.dryer
+    state: 'on'
+  sentences:
+  - tsukete sentakushitsu sentakuki と sentakushitsu kansouki
+  - sentakushitsu sentakuki と sentakushitsu kansouki tsukete
+- name: off_living_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito ribingu と kitchin
+  - raito ribingu と kitchin keshite
+- name: off_office_hallway
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito office と roka
+  - raito office と roka keshite
+- name: off_garage_garden
+  conditions:
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito garage と garden
+  - raito garage と garden keshite
+- name: off_master_bedroom_main_bath
+  conditions:
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito shinshitsu と main bath
+  - raito shinshitsu と main bath keshite
+- name: off_family_room_dining
+  conditions:
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito famirii と famiriiess
+  - raito famirii と famiriiess keshite
+- name: off_living_dining_kitchen
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito ribingu と famiriiess と kitchin
+  - raito ribingu famiriiess と kitchin keshite
+- name: on_office_hallway_garage
+  conditions:
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  sentences:
+  - tsukete raito office と roka と garage
+  - raito office roka と garage tsukete
+- name: off_garden_basement_laundry
+  conditions:
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite raito garden と chika と sentakushitsu
+  - raito garden chika と sentakushitsu keshite
+- name: except_light.kitchen_island
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 shima kitchin
+  - 全部 raito keshite 以外 shima kitchin
+  forbid:
+  - light.kitchen_island
+  - kitchen
+- name: except_light.living_lamp
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 lamp ribingu
+  - 全部 raito keshite 以外 lamp ribingu
+  forbid:
+  - light.living_lamp
+  - living
+- name: except_light.garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 garden
+  - 全部 raito keshite 以外 garden
+  forbid:
+  - light.garden
+  - garden
+- name: except_light.office_ceiling
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 tenjo office
+  - 全部 raito keshite 以外 tenjo office
+  forbid:
+  - light.office_ceiling
+  - office
+- name: except_light.basement
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 chika
+  - 全部 raito keshite 以外 chika
+  forbid:
+  - light.basement
+  - basement
+- name: all_on_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - tsukete 全部 raito 以外 kitchin
+  - 全部 raito tsukete 以外 kitchin
+  forbid:
+  - kitchen
+- name: all_on_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - tsukete 全部 raito 以外 office
+  - 全部 raito tsukete 以外 office
+  forbid:
+  - office
+- name: all_on_except_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - tsukete 全部 raito 以外 garden
+  - 全部 raito tsukete 以外 garden
+  forbid:
+  - garden
+- name: all_on_except_living
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - tsukete 全部 raito 以外 ribingu
+  - 全部 raito tsukete 以外 ribingu
+  forbid:
+  - living
+- name: all_on_except_garage
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  sentences:
+  - tsukete 全部 raito 以外 garage
+  - 全部 raito tsukete 以外 garage
+  forbid:
+  - garage
+- name: except_in_kitchen_island
+  conditions:
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'off'
+  sentences:
+  - keshite 全部 raito kitchin 以外 shima
+  - 全部 raito kitchin keshite 以外 shima
+  forbid:
+  - light.kitchen_island
+- name: except_in_living_lamp
+  conditions:
+  - type: action
+    entity_id: light.living_ceiling
+    state: 'off'
+  sentences:
+  - keshite 全部 raito ribingu 以外 lamp
+  - 全部 raito ribingu keshite 以外 lamp
+  forbid:
+  - light.living_lamp
+- name: except_island_on
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'on'
+  - type: action
+    area: living
+    domain: light
+    state: 'on'
+  - type: action
+    area: dining
+    domain: light
+    state: 'on'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'on'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'on'
+  - type: action
+    area: garage
+    domain: light
+    state: 'on'
+  - type: action
+    area: office
+    domain: light
+    state: 'on'
+  - type: action
+    area: garden
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'on'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'on'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'on'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'on'
+  - type: action
+    area: basement
+    domain: light
+    state: 'on'
+  - type: action
+    entity_id: light.kitchen_ceiling
+    state: 'on'
+  sentences:
+  - tsukete 全部 raito 以外 shima kitchin
+  - 全部 raito tsukete 以外 shima kitchin
+  forbid:
+  - light.kitchen_island
+- name: except_kitchen_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 kitchin と office
+  - 全部 raito keshite 以外 kitchin と office
+  forbid:
+  - kitchen
+  - office
+- name: except_living_master_bedroom
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 ribingu と shinshitsu
+  - 全部 raito keshite 以外 ribingu と shinshitsu
+  forbid:
+  - living
+  - master_bedroom
+- name: except_garage_garden
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bedroom
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  - type: action
+    area: basement
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito 以外 garage と garden
+  - 全部 raito keshite 以外 garage と garden
+  forbid:
+  - garage
+  - garden
+- name: floor_ground_except_kitchen
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: office
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito kakai 以外 kitchin
+  - 全部 raito kakai keshite 以外 kitchin
+  forbid:
+  - kitchen
+- name: floor_upper_except_master_bedroom
+  conditions:
+  - type: action
+    area: bedroom_2
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_3
+    domain: light
+    state: 'off'
+  - type: action
+    area: bedroom_4
+    domain: light
+    state: 'off'
+  - type: action
+    area: master_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: main_bath
+    domain: light
+    state: 'off'
+  - type: action
+    area: hallway
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito joukai 以外 shinshitsu
+  - 全部 raito joukai keshite 以外 shinshitsu
+  forbid:
+  - master_bedroom
+- name: floor_ground_except_office
+  conditions:
+  - type: action
+    area: entryway
+    domain: light
+    state: 'off'
+  - type: action
+    area: living
+    domain: light
+    state: 'off'
+  - type: action
+    area: dining
+    domain: light
+    state: 'off'
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  - type: action
+    area: family_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: laundry
+    domain: light
+    state: 'off'
+  - type: action
+    area: powder_room
+    domain: light
+    state: 'off'
+  - type: action
+    area: garage
+    domain: light
+    state: 'off'
+  - type: action
+    area: garden
+    domain: light
+    state: 'off'
+  sentences:
+  - keshite 全部 raito kakai 以外 office
+  - 全部 raito kakai keshite 以外 office
+  forbid:
+  - office
+- name: covers_living_master_open
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: open
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: open
+  sentences:
+  - akete kaaten ribingu と shinshitsu
+  - kaaten ribingu と shinshitsu akete
+- name: covers_living_master_close
+  conditions:
+  - type: action
+    area: living
+    domain: cover
+    state: closed
+  - type: action
+    area: master_bedroom
+    domain: cover
+    state: closed
+  sentences:
+  - shimete kaaten ribingu と shinshitsu
+  - kaaten ribingu と shinshitsu shimete
+- name: climate_living_master_21
+  conditions:
+  - type: action
+    area: living
+    domain: climate
+    attributes:
+      temperature: 21
+  - type: action
+    area: master_bedroom
+    domain: climate
+    attributes:
+      temperature: 21
+  sentences:
+  - setto eakon ribingu と shinshitsu 21
+  - eakon ribingu と shinshitsu 21
+- name: bright_living_kitchen_50
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      brightness: 50
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      brightness: 50
+  sentences:
+  - setto raito ribingu と kitchin 50
+  - raito ribingu と kitchin 50
+- name: color_living_kitchen_red
+  conditions:
+  - type: action
+    area: living
+    domain: light
+    attributes:
+      color: red
+  - type: action
+    area: kitchen
+    domain: light
+    attributes:
+      color: red
+  sentences:
+  - setto raito ribingu と kitchin red
+  - raito ribingu と kitchin red
+- name: query_living_kitchen_lights
+  conditions:
+  - type: query
+    area: living
+    domain: light
+  - type: query
+    area: kitchen
+    domain: light
+  sentences:
+  - nani raito ribingu と kitchin
+  - raito ribingu と kitchin
+- name: temp_living_and_light_kitchen_off
+  conditions:
+  - type: query
+    entity_id: climate.ground_thermostat
+  - type: action
+    area: kitchen
+    domain: light
+    state: 'off'
+  sentences:
+  - nani eakon ribingu と keshite raito kitchin
+  - keshite raito kitchin と nani eakon ribingu
+- name: locks_front_and_garage
+  conditions:
+  - type: action
+    entity_id: lock.front_door
+    state: locked
+  - type: action
+    entity_id: lock.garage_entry
+    state: locked
+  sentences:
+  - kagi front doa と garage doa
+  - kagi kagi genkan と garage
+- name: scene_and_powder_off
+  conditions:
+  - type: action
+    entity_id: scene.movie_night
+    state: 'on'
+  - type: action
+    entity_id: light.powder_room_light
+    state: 'off'
+  sentences:
+  - tsukete eiga と keshite raito toire
+  - keshite raito toire と tsukete eiga

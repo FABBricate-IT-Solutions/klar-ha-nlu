@@ -1,0 +1,15 @@
+state_persistance/followup::heizung_dann_grad:
+- - enciende calefaccion salon
+  - ' 21'
+state_persistance/followup::wohnzimmer_dann_aus:
+- - enciende luz salon
+  - apaga
+state_persistance/spoken::kugel_dann_aus:
+- - enciende bola
+  - apaga
+state_persistance/spoken::wohnzimmer_dann_kueche:
+- - enciende luz salon
+  - enciende luz cocina
+state_persistance/spoken::wohnzimmer_dann_rot:
+- - enciende luz salon
+  - rojo

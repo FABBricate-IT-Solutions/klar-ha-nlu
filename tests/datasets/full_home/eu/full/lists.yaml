@@ -1,0 +1,77 @@
+- name: list_add
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - add milk zerrenda
+  - milk add zerrenda
+- name: list_done
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - done milk
+  - milk done
+- name: list_done_milk
+  conditions:
+  - type: todo_list
+    item: milk
+  sentences:
+  - done milk
+  - milk done
+- name: list_add_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - add bread zerrenda
+  - bread add zerrenda
+- name: list_done_bread
+  conditions:
+  - type: todo_list
+    item: bread
+  sentences:
+  - done bread
+  - bread done
+- name: list_add_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - add eggs zerrenda
+  - eggs add zerrenda
+- name: list_done_eggs
+  conditions:
+  - type: todo_list
+    item: eggs
+  sentences:
+  - done eggs
+  - eggs done
+- name: list_add_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - add apples zerrenda
+  - apples add zerrenda
+- name: list_done_apples
+  conditions:
+  - type: todo_list
+    item: apples
+  sentences:
+  - done apples
+  - apples done
+- name: list_add_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - add coffee zerrenda
+  - coffee add zerrenda
+- name: list_done_coffee
+  conditions:
+  - type: todo_list
+    item: coffee
+  sentences:
+  - done coffee
+  - coffee done

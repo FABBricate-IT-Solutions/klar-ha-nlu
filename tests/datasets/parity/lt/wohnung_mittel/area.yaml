@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- nustatyk sildymas voniamaster 23
+area/heizung::heizung_esszimmer_23:
+- nustatyk sildymas svetainefamess 23
+area/heizung::heizung_schlafzimmer_23:
+- nustatyk sildymas miegamasis 23
+area/heizung::heizung_wohnzimmer_23:
+- nustatyk sildymas svetaine 23
+area/lichter::alle_an_ausser_kugel:
+- ijunk viskas sviesa iskyrus rutulys
+area/lichter::alle_an_ausser_schlafzimmer:
+- ijunk viskas sviesa iskyrus miegamasis
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- nustatyk viskas sviesa iskyrus miegamasis 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- nustatyk viskas sviesa iskyrus rutulys red
+area/lichter::alle_ausser_kugel:
+- isjunk viskas sviesa iskyrus rutulys
+area/lichter::alle_ausser_schlafzimmer:
+- isjunk viskas sviesa iskyrus miegamasis
+area/lichter::alle_lichter_an:
+- ijunk viskas sviesa
+area/lichter::alle_lichter_aus:
+- isjunk viskas sviesa
+area/lichter::arbeitszimmer_lichter_an:
+- ijunk sviesa svetaine
+area/lichter::arbeitszimmer_lichter_aus:
+- isjunk sviesa svetaine
+area/lichter::esszimmer_lichter_an:
+- ijunk sviesa svetainefamess
+area/lichter::esszimmer_lichter_aus:
+- isjunk sviesa svetainefamess
+area/lichter::kuche_lichter_an:
+- ijunk sviesa virtuve
+area/lichter::kuche_lichter_aus:
+- isjunk sviesa virtuve
+area/lichter::schlafzimmer_auf_blau:
+- nustatyk sviesa miegamasis blue
+area/lichter::schlafzimmer_auf_rot:
+- nustatyk sviesa miegamasis red
+area/lichter::wohnzimmer_helligkeit:
+- nustatyk sviesa svetaine 45
+area/lichter::wohnzimmer_lichter_an:
+- ijunk sviesa svetaine
+area/lichter::wohnzimmer_lichter_aus:
+- isjunk sviesa svetaine
+area/spoken::alle_ausser_kugel_stt:
+- isjunk viskas sviesa iskyrus rutulys
+area/spoken::alle_ausser_schlaf_stt:
+- isjunk viskas sviesa iskyrus miegamasis
+area/spoken::alle_ganzen_an:
+- ijunk viskas sviesa
+area/spoken::alle_lampen_aus:
+- isjunk viskas sviesa
+area/spoken::esszimmer_weiss:
+- nustatyk sviesa svetainefamess white
+area/spoken::stt_kuche_lichte:
+- isjunk sviesa virtuve
+area/spoken::stt_licht_wohnzimmer_an:
+- ijunk sviesa svetaine
+area/spoken::stt_licht_wohnzimmer_aus:
+- isjunk sviesa svetaine
+area/spoken::stt_schlafzimmer_dativ:
+- isjunk sviesa miegamasis
+area/spoken::wohnzimmer_gruen:
+- nustatyk sviesa svetaine green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- isjunk viskas sviesa iskyrus svetaine
+area/spoken_more::arbeitszimmer_lampen_aus:
+- isjunk sviesa svetaine
+area/spoken_more::esszimmer_30:
+- nustatyk sviesa svetainefamess 30
+area/spoken_more::esszimmer_lichte_an:
+- ijunk sviesa svetainefamess
+area/spoken_more::kuche_80:
+- nustatyk sviesa virtuve 80
+area/spoken_more::kuche_blau:
+- nustatyk sviesa virtuve blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- isjunk viskas sviesa iskyrus miegamasis
+area/spoken_more::wohnzimmer_gelb:
+- nustatyk sviesa svetaine yellow

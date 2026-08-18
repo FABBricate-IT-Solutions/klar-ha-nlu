@@ -1,0 +1,138 @@
+state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
+- - mis kardin magamistuba2
+  - ' 51'
+state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
+- - mis lagi magamistuba2
+  - ' 20'
+state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
+- - mis kardin magamistuba3
+  - ' 67'
+state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
+- - mis lagi magamistuba3
+  - ' 63'
+state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
+- - mis lagi magamistuba4
+  - ' 80'
+state_persistance/area_dining_lights::dining_lights_set_brightness:
+- - mis vali peredetubaess
+  - ' 68'
+state_persistance/area_entryway_lights::entryway_lights_set_brightness:
+- - mis vali esik
+  - ' 54'
+state_persistance/area_family_room_lights::family_room_lights_set_brightness:
+- - mis lagi peredetuba
+  - ' 94'
+state_persistance/area_garage_covers::garage_covers_set_position:
+- - mis kardin garage
+  - ' 18'
+state_persistance/area_garage_lights::garage_lights_set_brightness:
+- - mis vali garage
+  - ' 27'
+state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
+- - mis vali esikgang ja mis vali wc
+  - ' 100'
+state_persistance/area_hallway_lights::hallway_lights_set_brightness:
+- - mis vali esikgang
+  - ' 69'
+state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
+- - mis vali kook
+  - ' 46'
+state_persistance/area_laundry_lights::laundry_lights_set_brightness:
+- - mis vali pesuruum
+  - ' 62'
+state_persistance/area_living_climates::living_climates_set_temperature:
+- - mis kyte elutuba
+  - ' 95'
+state_persistance/area_living_covers::living_covers_set_position:
+- - mis kardin elutuba
+  - ' 86'
+state_persistance/area_living_lights::living_lights_set_brightness:
+- - mis vali elutuba
+  - ' 55'
+state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
+- - mis vali main bath
+  - ' 96'
+state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
+- - mis vali vannmaster
+  - ' 50'
+state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
+- - mis kyte magamistuba ja mis kyte elutuba
+  - ' 69'
+state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
+- - mis kardin magamistuba ja mis kardin elutuba
+  - ' 15'
+state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
+- - mis kyte magamistuba
+  - ' 44'
+state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
+- - mis kardin magamistuba
+  - ' 88'
+state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
+- - mis vali wc
+  - ' 70'
+state_persistance/device_cover_garage_door::cover_garage_door_close:
+- - mis kardin garage
+  - sulge
+state_persistance/device_cover_garage_door::cover_garage_door_open:
+- - mis kardin garage
+  - ava
+state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
+- - mis kardin garage
+  - '23'
+state_persistance/device_cover_living_blinds::cover_living_blinds_close:
+- - mis kardin elutuba
+  - sulge
+state_persistance/device_cover_living_blinds::cover_living_blinds_open:
+- - mis kardin elutuba
+  - ava
+state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
+- - mis kardin elutuba
+  - '85'
+state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
+- - mis ventilaator peredetuba
+  - ' 43'
+state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
+- - mis ventilaator peredetuba
+  - kustuta
+state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
+- - mis ventilaator peredetuba
+  - lulita
+state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
+- - mis vali esik
+  - '12'
+state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
+- - mis vali esik
+  - kustuta
+state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
+- - mis vali esik
+  - lulita
+state_persistance/device_lock_front_door::lock_front_door_lock:
+- - mis lukk esik
+  - lukk
+state_persistance/device_lock_front_door::lock_front_door_unlock:
+- - mis lukk esik
+  - ava
+state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
+- - mis lukk garage
+  - lukk
+state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
+- - mis lukk garage
+  - ava
+state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
+- - mis teler peredetuba
+  - ' 21'
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
+- - mis teler peredetuba
+  - kustuta
+state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
+- - mis teler peredetuba
+  - lulita
+state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
+- - mis teler elutuba
+  - ' 21'
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
+- - mis teler elutuba
+  - kustuta
+state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
+- - mis teler elutuba
+  - lulita

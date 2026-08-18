@@ -1,0 +1,82 @@
+area/heizung::heizung_badezimmer_23:
+- set garmi mukhyasnan 23
+area/heizung::heizung_esszimmer_23:
+- set garmi kutumbess 23
+area/heizung::heizung_schlafzimmer_23:
+- set garmi shayankhand 23
+area/heizung::heizung_wohnzimmer_23:
+- set garmi orado 23
+area/lichter::alle_an_ausser_kugel:
+- chalu badhu prakash sivay gol
+area/lichter::alle_an_ausser_schlafzimmer:
+- chalu badhu prakash sivay shayankhand
+area/lichter::alle_auf_20_ausser_schlafzimmer:
+- set badhu prakash sivay shayankhand 20
+area/lichter::alle_auf_rot_ausser_kugel:
+- set badhu prakash sivay gol red
+area/lichter::alle_ausser_kugel:
+- bandh badhu prakash sivay gol
+area/lichter::alle_ausser_schlafzimmer:
+- bandh badhu prakash sivay shayankhand
+area/lichter::alle_lichter_an:
+- chalu badhu prakash
+area/lichter::alle_lichter_aus:
+- bandh badhu prakash
+area/lichter::arbeitszimmer_lichter_an:
+- chalu prakash orado
+area/lichter::arbeitszimmer_lichter_aus:
+- bandh prakash orado
+area/lichter::esszimmer_lichter_an:
+- chalu prakash kutumbess
+area/lichter::esszimmer_lichter_aus:
+- bandh prakash kutumbess
+area/lichter::kuche_lichter_an:
+- chalu prakash rasodu
+area/lichter::kuche_lichter_aus:
+- bandh prakash rasodu
+area/lichter::schlafzimmer_auf_blau:
+- set prakash shayankhand blue
+area/lichter::schlafzimmer_auf_rot:
+- set prakash shayankhand red
+area/lichter::wohnzimmer_helligkeit:
+- set prakash orado 45
+area/lichter::wohnzimmer_lichter_an:
+- chalu prakash orado
+area/lichter::wohnzimmer_lichter_aus:
+- bandh prakash orado
+area/spoken::alle_ausser_kugel_stt:
+- bandh badhu prakash sivay gol
+area/spoken::alle_ausser_schlaf_stt:
+- bandh badhu prakash sivay shayankhand
+area/spoken::alle_ganzen_an:
+- chalu badhu prakash
+area/spoken::alle_lampen_aus:
+- bandh badhu prakash
+area/spoken::esszimmer_weiss:
+- set prakash kutumbess white
+area/spoken::stt_kuche_lichte:
+- bandh prakash rasodu
+area/spoken::stt_licht_wohnzimmer_an:
+- chalu prakash orado
+area/spoken::stt_licht_wohnzimmer_aus:
+- bandh prakash orado
+area/spoken::stt_schlafzimmer_dativ:
+- bandh prakash shayankhand
+area/spoken::wohnzimmer_gruen:
+- set prakash orado green
+area/spoken_more::alle_ausser_arbeitszimmer:
+- bandh badhu prakash sivay orado
+area/spoken_more::arbeitszimmer_lampen_aus:
+- bandh prakash orado
+area/spoken_more::esszimmer_30:
+- set prakash kutumbess 30
+area/spoken_more::esszimmer_lichte_an:
+- chalu prakash kutumbess
+area/spoken_more::kuche_80:
+- set prakash rasodu 80
+area/spoken_more::kuche_blau:
+- set prakash rasodu blue
+area/spoken_more::ueberall_ausser_schlaf_stt:
+- bandh badhu prakash sivay shayankhand
+area/spoken_more::wohnzimmer_gelb:
+- set prakash orado yellow

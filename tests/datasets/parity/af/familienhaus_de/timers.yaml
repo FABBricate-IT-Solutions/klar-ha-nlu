@@ -1,0 +1,36 @@
+timers/timers::abstract_start:
+- skakel timer abstract 45 min
+timers/timers::abstract_start_hours_minutes:
+- skakel timer abstract 20 min
+timers/timers::abstract_start_seconds:
+- skakel timer abstract
+timers/timers::cancel_all_timers:
+- doof almal timer
+timers/timers::timer_laundry_cancel:
+- skakel timer laundry
+timers/timers::timer_laundry_decrease:
+- skakel timer laundry 5 min
+timers/timers::timer_laundry_increase:
+- skakel timer laundry 16 min
+timers/timers::timer_laundry_pause:
+- doof timer laundry
+timers/timers::timer_laundry_start:
+- skakel timer laundry
+timers/timers::timer_laundry_status:
+- wat timer laundry
+timers/timers::timer_laundry_unpause:
+- skakel timer laundry
+timers/timers::timer_oven_cancel:
+- skakel timer oven
+timers/timers::timer_oven_decrease:
+- skakel timer oven 44 min
+timers/timers::timer_oven_increase:
+- skakel timer oven 30 min
+timers/timers::timer_oven_pause:
+- doof timer oven
+timers/timers::timer_oven_start:
+- skakel timer oven 2 min
+timers/timers::timer_oven_status:
+- wat timer oven
+timers/timers::timer_oven_unpause:
+- skakel timer oven

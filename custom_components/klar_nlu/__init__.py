@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP, Platform
 from homeassistant.core import HomeAssistant
@@ -20,15 +22,18 @@ from .const import (
     resolve_personality,
 )
 from .engine import KlarEngine, async_push_personality
+from .panel import async_setup_panel
+from .services import async_setup_services
 from .sync import HomeGraphSync, engine_url
 
-PLATFORMS = [Platform.CONVERSATION, Platform.SELECT]
+PLATFORMS = [Platform.CONVERSATION, Platform.SELECT, Platform.SENSOR]
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     engine: KlarEngine | None = None
-    if entry.data.get(CONF_MODE) == MODE_LOCAL:
+    if entry.options.get(CONF_MODE, entry.data.get(CONF_MODE)) == MODE_LOCAL:
         engine = KlarEngine(
             hass,
             channel=resolve_channel(
@@ -57,6 +62,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     }
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await sync.async_start()
+    await async_setup_services(hass)
+    try:
+        await async_setup_panel(hass)
+    except Exception:
+        _LOGGER.exception("Klar sidebar panel failed; engine still loads")
     await _async_sync_personality(hass, entry)
     entry.async_on_unload(entry.add_update_listener(_async_on_update))
     return True
@@ -91,6 +101,7 @@ async def _async_on_update(hass: HomeAssistant, entry: ConfigEntry) -> None:
         CONF_LANGUAGES,
         CONF_ASSIST_FILTER,
         CONF_CHANNEL,
+        CONF_MODE,
     )
     if any(previous.get(key) != current.get(key) for key in reload_keys):
         await hass.config_entries.async_reload(entry.entry_id)
