@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Klar](https://raw.githubusercontent.com/FABBricate-IT-Solutions/klar-ha-nlu/main/docs/klar-logo-sm.png)
-
 <img src="docs/social-preview.png" alt="Klar NLU" width="640">
 
 </div>
@@ -17,7 +15,7 @@
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Deterministische Sprachsteuerung für Home Assistant. Klar NLU zerlegt gesprochene Sätze in HA-Intents — ohne Cloud, ohne Modellgewichte.
+Deterministische Sprachsteuerung für Home Assistant — **67 Sprachen**, lokal, ohne Cloud. Assist-Alternative: **100 % vs 31,3 %** auf 9.922 DE/EN-Haussätzen ([Benchmark](docs/benchmark-assist.md)). Klar steuert das Haus; ein LLM redet nur.
 
 **Haushaltsweg:** [Einstieg](docs/getting-started.md) — HACS → Entitäten freigeben → Assist-Pipeline → fünf Sätze → Zuordnung. Wenn etwas fehlt: [Fehlerbehebung](docs/troubleshooting.md).
 
