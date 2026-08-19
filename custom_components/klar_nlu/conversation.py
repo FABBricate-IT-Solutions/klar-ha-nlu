@@ -6,7 +6,6 @@ from typing import Any
 import aiohttp
 from homeassistant.components import conversation
 from homeassistant.components.conversation import (
-    AssistantContent,
     ChatLog,
     ConversationEntity,
     ConversationInput,
@@ -54,7 +53,14 @@ from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
-from .refine import async_finish_speech, refine_prompt
+from .refine import (
+    async_finish_speech,
+    emit_assistant_speech,
+    isolated_conversation_id,
+    nested_llm_session,
+    refine_prompt,
+    skip_rewrite,
+)
 from .sensor import remember_turn
 
 _LOGGER = logging.getLogger(__name__)
@@ -204,7 +210,7 @@ class KlarConversationEntity(ConversationEntity):
                 speech = rendered
         if hit == "llm" and action and not clarify and not payload.get("unreachable"):
             fallback = await self._fallback(
-                user_input, chat_log, pack, True, chat_only_prompt(pack, action), False, retrieval
+                user_input, chat_log, pack, True, chat_only_prompt(pack, action), retrieval
             )
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
@@ -218,9 +224,7 @@ class KlarConversationEntity(ConversationEntity):
             and not payload.get("unreachable")
             and (decision_type != "reject" or self._nlu_rag())
         ):
-            fallback = await self._fallback(
-                user_input, chat_log, pack, chat, retrieval=retrieval, record=False
-            )
+            fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
             )
@@ -262,7 +266,7 @@ class KlarConversationEntity(ConversationEntity):
             llm = speech or _cue(_DONE, pack, "OK")
             return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False)
         return await self._spoken(
-            user_input, chat_log, pack, llm, fallback.conversation_id or conversation_id,
+            user_input, chat_log, pack, llm, conversation_id,
             bool(getattr(fallback, "continue_conversation", False)), "chat",
         )
 
@@ -277,18 +281,19 @@ class KlarConversationEntity(ConversationEntity):
         decision: str = "",
     ) -> ConversationResult:
         agent_id = self._fallback_agent_id()
-        speech = await async_finish_speech(
-            self.hass,
-            bool(self._entry.options.get(CONF_REFINE_SPEECH)),
-            agent_id,
-            self._agent_controls_home(str(agent_id or "")),
-            speech,
-            user_input.context,
-            user_input.language,
-            pack,
-            self._personality(),
-            str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
-        )
+        if not skip_rewrite(decision):
+            speech = await async_finish_speech(
+                self.hass,
+                bool(self._entry.options.get(CONF_REFINE_SPEECH)),
+                agent_id,
+                self._agent_controls_home(str(agent_id or "")),
+                speech,
+                user_input.context,
+                user_input.language,
+                pack,
+                self._personality(),
+                str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+            )
         remember_turn(
             self.hass,
             self._entry.entry_id,
@@ -297,9 +302,7 @@ class KlarConversationEntity(ConversationEntity):
             decision,
             self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
         )
-        chat_log.async_add_assistant_content_without_tools(
-            AssistantContent(agent_id=user_input.agent_id, content=speech)
-        )
+        await emit_assistant_speech(chat_log, user_input.agent_id, speech)
         response = intent.IntentResponse(language=user_input.language or pack)
         response.async_set_speech(speech)
         return ConversationResult(
@@ -325,12 +328,11 @@ class KlarConversationEntity(ConversationEntity):
             prompt = news_prompt(pack, headlines, extra_s)
         else:
             prompt = news_followup_prompt(pack, extra_s)
-        result = await self._fallback(user_input, chat_log, pack, True, prompt, False)
+        result = await self._fallback(user_input, chat_log, pack, True, prompt)
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
-        cid = (getattr(result, "conversation_id", None) if result is not None else None) or conversation_id
-        return await self._spoken(user_input, chat_log, pack, spoken, cid, True, "chat")
+        return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
 
     def _nlu_rag(self) -> bool:
         return bool(self._entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
@@ -407,9 +409,9 @@ class KlarConversationEntity(ConversationEntity):
         pack: str,
         chat: bool = False,
         prompt: str | None = None,
-        record: bool = True,
         retrieval: dict[str, Any] | None = None,
     ) -> ConversationResult | None:
+        del chat_log
         agent_id = self._fallback_agent_id()
         if not agent_id:
             return None
@@ -429,26 +431,13 @@ class KlarConversationEntity(ConversationEntity):
             result = await conversation.async_converse(
                 self.hass,
                 user_input.text,
-                user_input.conversation_id,
+                isolated_conversation_id(),
                 user_input.context,
-                language=user_input.language,
-                agent_id=agent_id,
-                device_id=user_input.device_id,
-                satellite_id=getattr(user_input, "satellite_id", None),
-                extra_system_prompt=system,
+                **nested_llm_session(agent_id, user_input.language, system),
             )
         except Exception as err:  # noqa: BLE001 — other agent is a system boundary
             _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)
             return None
-        if not record:
-            return result
-        last = chat_log.content[-1] if chat_log.content else None
-        if getattr(last, "role", None) != "assistant":
-            speech = _speech_from_result(result)
-            if speech:
-                chat_log.async_add_assistant_content_without_tools(
-                    AssistantContent(agent_id=user_input.agent_id, content=speech)
-                )
         return result
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:

@@ -3,7 +3,7 @@ use crate::home::policy::is_infra;
 use crate::home::roles::{is_light_like, matches_domain};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
-use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit};
+use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
 use score::{fuzzy_tokens, overlap, score_entity, sort_hits};
@@ -283,7 +283,7 @@ pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
         return false;
     }
     let compact_label = compact(label);
-    if tokens.iter().any(|token| token_eq(token, label) || compact(token) == compact_label) {
+    if tokens.iter().any(|token| token_eq(token, label) || compact(token) == compact_label || umlaut_eq(&compact(token), &compact_label)) {
         return true;
     }
     if label.contains(' ') || label.contains('_') || label.contains('-') {
@@ -294,7 +294,7 @@ pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
 }
 
 pub(crate) fn token_eq(token: &str, label: &str) -> bool {
-    if token == label {
+    if token == label || umlaut_eq(token, label) {
         return true;
     }
     if number_word(token).as_deref() == Some(label) || number_word(label).as_deref() == Some(token) {

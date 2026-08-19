@@ -2,8 +2,6 @@
 
 <div align="center">
 
-![Klar](https://raw.githubusercontent.com/FABBricate-IT-Solutions/klar-ha-nlu/main/docs/klar-logo-sm.png)
-
 <img src="docs/social-preview.png" alt="Klar NLU" width="640">
 
 </div>
@@ -17,7 +15,7 @@
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Deterministic voice control for Home Assistant. Klar NLU turns spoken sentences into HA intents — no cloud, no model weights.
+Deterministic voice control for Home Assistant — **67 languages**, on-device, no cloud. Assist alternative: **100% vs 31.3%** on 9,922 DE/EN household sentences ([benchmark](docs/en/benchmark-assist.md)). Klar executes house commands; an LLM only talks.
 
 **Household path:** [Getting started](docs/en/getting-started.md) — HACS → expose entities → Assist pipeline → five phrases → Mapping. If something misses: [troubleshooting](docs/en/troubleshooting.md).
 

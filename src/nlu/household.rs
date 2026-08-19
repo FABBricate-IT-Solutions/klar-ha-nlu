@@ -2,6 +2,7 @@
 
 use crate::lang::Household;
 use crate::parse::normalize::fold_umlaut;
+use crate::parse::normalize::umlaut_eq;
 use crate::session::LastHeard;
 use crate::types::{Intent, RejectReason};
 
@@ -45,7 +46,9 @@ fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> b
         tokens.iter().any(|token| {
             fold_umlaut(&area.area_id) == *token
                 || fold_umlaut(&area.name) == *token
-                || area.aliases.iter().any(|alias| fold_umlaut(alias) == *token)
+                || umlaut_eq(&fold_umlaut(&area.area_id), token)
+                || umlaut_eq(&fold_umlaut(&area.name), token)
+                || area.aliases.iter().any(|alias| fold_umlaut(alias) == *token || umlaut_eq(&fold_umlaut(alias), token))
         })
     });
     has_area || tokens.len() > 2

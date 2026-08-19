@@ -5,7 +5,7 @@ use crate::home::policy::is_whole_home;
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::fuzzy::{evidence, select_unique, Profile};
-use crate::parse::normalize::{compact, fold_umlaut, inflected_eq};
+use crate::parse::normalize::{compact, fold_marks, fold_umlaut, inflected_eq, umlaut_eq};
 use crate::types::{EntityRec, HomeGraph};
 use std::collections::HashSet;
 
@@ -129,6 +129,10 @@ fn area_prefixes(home: &HomeGraph) -> Vec<(String, String)> {
         let name = compact(&area.name);
         if name.len() >= 4 {
             prefixes.push((name, area.area_id.clone()));
+        }
+        let slug = compact(&fold_marks(&area.name));
+        if slug.len() >= 4 && slug != compact(&area.area_id) {
+            prefixes.push((slug, area.area_id.clone()));
         }
         for alias in &area.aliases {
             let folded = compact(alias);
@@ -400,6 +404,7 @@ fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::parse
             || catalog().status_words().contains(token.as_str())
             || matches!(token.as_str(), "of" | "the")
             || rooms.contains(token)
+            || rooms.iter().any(|word| umlaut_eq(token, word))
     })
 }
 
@@ -411,6 +416,7 @@ fn area_words(home: &HomeGraph, areas: &[String]) -> HashSet<String> {
         };
         words.insert(compact(&area.area_id));
         words.insert(compact(&area.name));
+        words.insert(compact(&fold_marks(&area.name)));
         words.extend(area.aliases.iter().map(|alias| compact(alias)));
     }
     words
