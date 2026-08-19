@@ -483,7 +483,8 @@ fn on_action(tokens: &[String], i: usize) -> Option<Action> {
         return Some(Action::On);
     }
     if is_query_token(tokens)
-        || (has_media_noun(tokens) && tokens.iter().any(|x| matches!(x.as_str(), "stop" | "pause" | "playback" | "stopped")))
+        || (has_media_noun(tokens)
+            && tokens.iter().any(|x| matches!(x.as_str(), "stop" | "stopp" | "stoppen" | "pause" | "playback" | "stopped")))
     {
         return None;
     }
