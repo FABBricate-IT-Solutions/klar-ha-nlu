@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.40](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.39...2026.8.40) - 2026-08-19
+
+
+
+### Bug Fixes
+
+- keep compound.rs under the 500-line gate([92ce6e7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/92ce6e7dc9122cca1336f197e77aed9f372190b2))
+
+- speak final TTS and stream it by sentence([6201129](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/620112940e02d0c20187f722cd5c11ac9cad56d4))
+
+- match umlaut rooms like Küche to HA slugs([fff3d05](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fff3d053b1afbf9ddfafb2683ea18a0f4e05224d))
+
+
+### Documentation
+
+- show 67 languages and the follow-up banner([e9802c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e9802c838e917c8539685a4c22a24b5da71ce76b))
+
+
+### Miscellaneous
+
+- stop shipping armv7 after Home Assistant dropped 32-bit([a262240](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a2622405d3c66895ec9b2ca4ccbafe1eb31e8287))
+
+
+### Other
+
+- Merge pull request #118 from FABBricate-IT-Solutions/drop/armv7([569a6b8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/569a6b83bcdd547630e9ac8634434730318c816d))
+
+- Merge pull request #117 from FABBricate-IT-Solutions/fix/tts-stream-umlaut([428a2ef](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/428a2ef773bcdbbe9f8860fa8cc10d8e91817155))
+
 ## [2026.8.39](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.38...2026.8.39) - 2026-08-19
 
 
