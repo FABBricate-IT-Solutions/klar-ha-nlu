@@ -9,14 +9,16 @@ _ACT = "klar.act"
 
 _INSTRUCT = {
     "de": (
-        "Du darfst das Haus nur über Klar-Werkzeuge steuern: "
-        f"{_PARSE} mit einem Satz oder {_ACT} mit Intent und Slots. "
-        "Rufe keine Home-Assistant-Werkzeuge auf."
+        "Wenn der Satz ein Hausbefehl ist, antworte mit genau einer Zeile und sonst nichts: "
+        "KLAR_PARSE: <klarer Befehl>. "
+        "Sonst antworte kurz im Gespräch. "
+        "Nenne niemals Werkzeuge, Intents oder Präfixe."
     ),
     "en": (
-        "You may control the home only through Klar tools: "
-        f"{_PARSE} with a sentence or {_ACT} with intent and slots. "
-        "Do not call Home Assistant tools."
+        "If the sentence is a home command, reply with exactly one line and nothing else: "
+        "KLAR_PARSE: <clear command>. "
+        "Otherwise reply briefly in conversation. "
+        "Never name tools, intents, or prefixes."
     ),
 }
 
@@ -65,6 +67,14 @@ def parse_tool_reply(speech: str) -> dict[str, Any] | None:
                 slots[key] = value
         return {"tool": _ACT, "intent": name.strip(), "slots": slots}
     return None
+
+
+def leaks_klar_tools(speech: str) -> bool:
+    """True when the model named Klar tools instead of using the protocol line."""
+    if parse_tool_reply(speech) is not None:
+        return False
+    text = (speech or "").lower().replace("`", "")
+    return "klar.parse" in text or "klar.act" in text or "klar_parse" in text or "klar_act" in text
 
 
 def act_payload(intent_name: str, slots: dict[str, str]) -> dict[str, Any]:
