@@ -147,6 +147,19 @@ class EngineChannelTests(unittest.TestCase):
         )
         self.assertIsNone(const.pick_staging_release("nope"))
 
+    def test_addon_and_engine_drop_armv7(self) -> None:
+        engine = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text()
+        self.assertNotIn("armv7", engine)
+        for rel in (
+            "config.yaml",
+            "addon/config.yaml",
+            "addon-staging/config.yaml",
+            "addon/build.yaml",
+            "addon-staging/build.yaml",
+            ".github/workflows/build.yml",
+        ):
+            self.assertNotIn("armv7", (ROOT / rel).read_text(), rel)
+
 
 if __name__ == "__main__":
     unittest.main()

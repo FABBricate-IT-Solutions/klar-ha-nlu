@@ -64,7 +64,7 @@ Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Re
 
 **Actions → Release → Run workflow** bleibt für einen manuellen Override (Feld leer = nächste Version, oder z. B. `2026.8.0`).
 
-Build erzeugt linux-x86_64, linux-aarch64 und linux-armv7 und hängt die Tarballs an das GitHub-Release. Der Release-Text ist der letzte git-cliff-Abschnitt.
+Build erzeugt linux-x86_64 und linux-aarch64 und hängt die Tarballs an das GitHub-Release. Der Release-Text ist der letzte git-cliff-Abschnitt.
 
 Ein Tag von deinem Rechner startet Build weiter selbst: `git tag 2026.8.0 && git push origin 2026.8.0`.
 

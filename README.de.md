@@ -76,7 +76,7 @@ docker run --rm --network host \
   ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
 ```
 
-Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`, `klar-nlu-armv7`). RC-Images: Tag `staging`.
+Integrations-URL: `http://127.0.0.1:10520`. Es gibt auch Images pro Arch (`klar-nlu-amd64`, `klar-nlu-aarch64`). RC-Images: Tag `staging`.
 
 Manuell: `custom_components/klar_nlu` nach `config/custom_components/klar_nlu` kopieren, dann neu starten.
 
@@ -143,7 +143,7 @@ cargo build --release
 
 Changelogs kommen von [git-cliff](https://git-cliff.org/) und [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, …). Siehe [CHANGELOG.md](CHANGELOG.md).
 
-Jeder Merge auf `main` erhöht die [Home-Assistant-CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), schreibt das Changelog und taggt. Der Build-Workflow hängt danach linux-x86_64-, linux-aarch64- und linux-armv7-Tarballs an das GitHub Release. **Actions → Release → Run workflow** bleibt für einen manuellen Override. Ein manuelles `git tag 2026.8.0 && git push origin 2026.8.0` geht weiter.
+Jeder Merge auf `main` erhöht die [Home-Assistant-CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), schreibt das Changelog und taggt. Der Build-Workflow hängt danach linux-x86_64- und linux-aarch64-Tarballs an das GitHub Release. **Actions → Release → Run workflow** bleibt für einen manuellen Override. Ein manuelles `git tag 2026.8.0 && git push origin 2026.8.0` geht weiter.
 
 Dependabot öffnet wöchentlich PRs für Crates und Actions; `cargo-audit` und `cargo-deny` laufen bei jeder Änderung.
 
