@@ -24,9 +24,9 @@ except ImportError:  # stdlib tests load this module without a package
         return not controls_home
 
 try:
-    from .refine_voices import _PERSONALITY, _RULES
+    from .refine_voices import _PERSONALITY, _RULES, locale_shots
 except ImportError:  # stdlib tests load this module without a package
-    from refine_voices import _PERSONALITY, _RULES
+    from refine_voices import _PERSONALITY, _RULES, locale_shots
 
 _LOGGER = logging.getLogger(__name__)
 _INTENT = re.compile(r"\bHass[A-Z][A-Za-z]+\b")
@@ -61,17 +61,30 @@ def should_refine(
     return bool(enabled and agent_id and speech.strip() and home)
 
 
+_STAMP_BAN = (
+    "zur kenntnis genommen",
+    "notiert",
+    "vermerkt",
+    "besorgt",
+    "soweit gemeldet",
+    "duly noted",
+    "taken into account",
+    "noted.",
+    "enregistré",
+    "enregistre",
+    "pris en note",
+    "fehlinterpretation",
+    "genoteerd",
+)
+
+
 def refine_prompt(pack: str, personality: str, extra: str | None) -> str:
-    rules = _RULES.get(pack, _RULES["de"])
-    voice, shots = (_PERSONALITY.get(personality) or _PERSONALITY["default"]).get(
-        pack,
-        _PERSONALITY["default"]["de"],
-    )
+    person = _PERSONALITY.get(personality) or _PERSONALITY["default"]
     custom = (extra or "").strip()
-    voice = voice.rstrip(".")
     if pack == "en":
+        voice, shots = person["en"]
         prompt = (
-            f"{rules}\n\nVoice: {voice}.\n"
+            f"{_RULES['en']}\n\nVoice: {voice.rstrip('.')}.\n"
             f"Sound like this character. Vary the wording. "
             f"Do not stamp the same opening every time.\n"
             f"Examples:\n{shots}"
@@ -79,19 +92,34 @@ def refine_prompt(pack: str, personality: str, extra: str | None) -> str:
         if custom:
             prompt = f"{prompt}\nAdditional style instruction: {custom}"
         return prompt
+    if pack == "de":
+        voice, shots = person["de"]
+        prompt = (
+            f"{_RULES['de']}\n\nStimme: {voice.rstrip('.')}.\n"
+            f"Klinge wie diese Figur. Variiere die Formulierung. "
+            f"Klebe nicht jedes Mal dieselbe Eröffnung davor.\n"
+            f"Beispiele:\n{shots}"
+        )
+        if custom:
+            prompt = f"{prompt}\nZusätzliche Stil-Anweisung: {custom}"
+        return prompt
+    voice, _blank = person.get("meta") or person["en"]
+    shots = locale_shots(pack, personality) or _blank
     prompt = (
-        f"{rules}\n\nStimme: {voice}.\n"
-        f"Klinge wie diese Figur. Variiere die Formulierung. "
-        f"Klebe nicht jedes Mal dieselbe Eröffnung davor.\n"
-        f"Beispiele:\n{shots}"
+        f"{_RULES['meta']}\n\nVoice: {voice.rstrip('.')}.\n"
+        f"Output language = language of the input line. "
+        f"Sound like this character. Vary the wording. "
+        f"Do not stamp the same opening every time.\n"
     )
+    if shots:
+        prompt = f"{prompt}Examples:\n{shots}\n"
     if custom:
-        prompt = f"{prompt}\nZusätzliche Stil-Anweisung: {custom}"
+        prompt = f"{prompt}Additional style instruction: {custom}"
     return prompt
 
 
 def refine_input(speech: str, pack: str) -> str:
-    template = _INPUT.get(pack, _INPUT["de"])
+    template = _INPUT.get(pack, "{speech}")
     return template.format(speech=speech.strip())
 
 
@@ -117,6 +145,9 @@ def accept_refined(original: str, refined: str) -> str | None:
     if not source_nums and _NUM_WORD.search(speech):
         return None
     if len(speech) > max(len(original) * 6, 280):
+        return None
+    folded = speech.casefold()
+    if any(ban in folded for ban in _STAMP_BAN):
         return None
     return speech
 

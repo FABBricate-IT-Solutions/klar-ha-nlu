@@ -95,10 +95,27 @@ fn slot<'a>(intent: &'a Intent, name: &str) -> Option<&'a str> {
 }
 
 #[test]
-fn de_simple_play_uses_search_and_play_on_ma_player() {
+fn de_simple_play_uses_mass_play_on_ma_player() {
     let intent = one("Spiel Queen", "de");
-    assert_eq!(intent.name, "HassMediaSearchAndPlay");
+    assert_eq!(intent.name, "MassPlayMedia");
+    assert_eq!(slot(&intent, "media_id"), Some("queen"));
     assert_eq!(slot(&intent, "search_query"), Some("queen"));
+    assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+}
+
+#[test]
+fn de_play_music_in_area_unpauses_instead_of_turning_on() {
+    let intent = one("Spiele Musik im Wohnzimmer", "de");
+    assert_eq!(intent.name, "HassMediaUnpause");
+    assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+    assert_ne!(intent.name, "HassTurnOn");
+}
+
+#[test]
+fn de_play_artist_in_area_uses_mass() {
+    let intent = one("Spiele Linkin Park im Wohnzimmer", "de");
+    assert_eq!(intent.name, "MassPlayMedia");
+    assert_eq!(slot(&intent, "media_id"), Some("linkin park"));
     assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
 }
 
@@ -114,8 +131,8 @@ fn de_album_by_artist_uses_mass_play_media() {
 #[test]
 fn en_playlist_in_area_keeps_media_type() {
     let intent = one("Play the playlist Chill in the living room", "en");
-    assert_eq!(intent.name, "HassMediaSearchAndPlay");
-    assert_eq!(slot(&intent, "search_query"), Some("chill"));
+    assert_eq!(intent.name, "MassPlayMedia");
+    assert_eq!(slot(&intent, "media_id"), Some("chill"));
     assert_eq!(slot(&intent, "media_class"), Some("playlist"));
     assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
 }
@@ -216,19 +233,42 @@ fn climate_like_question_is_not_media_favorite_or_status() {
 #[test]
 fn preferred_area_selects_local_music_assistant_player() {
     let living = one_with_area("Spiel Queen", "de", "wohnzimmer", home_with_kitchen_player());
-    assert_eq!(living.name, "HassMediaSearchAndPlay");
+    assert_eq!(living.name, "MassPlayMedia");
     assert_eq!(slot(&living, "entity_id"), Some("media_player.wohnzimmer_2"));
 
     let kitchen = one_with_area("Spiel Queen", "de", "kuche", home_with_kitchen_player());
-    assert_eq!(kitchen.name, "HassMediaSearchAndPlay");
+    assert_eq!(kitchen.name, "MassPlayMedia");
     assert_eq!(slot(&kitchen, "entity_id"), Some("media_player.kuche_2"));
 }
 
 #[test]
 fn explicit_music_area_overrides_assist_area() {
     let intent = one_with_area("Spiel Queen im Wohnzimmer", "de", "kuche", home_with_kitchen_player());
-    assert_eq!(intent.name, "HassMediaSearchAndPlay");
+    assert_eq!(intent.name, "MassPlayMedia");
     assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+}
+
+#[test]
+fn play_on_plain_tagged_speaker_keeps_ha_search() {
+    let mut home = default_home();
+    home.entities.retain(|entity| entity.domain != "media_player");
+    home.entities.push(entity("media_player.box", "Box", "media_player", None, Some("wohnzimmer"), &["box"], &["Musik"]));
+    let parsed = intents("Spiel Queen", "de", &home, &mut Session::new());
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    assert_eq!(parsed[0].name, "HassMediaSearchAndPlay");
+    assert_eq!(slot(&parsed[0], "search_query"), Some("queen"));
+    assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.box"));
+}
+
+#[test]
+fn play_music_in_area_without_ma_unpauses_tagged_speaker() {
+    let mut home = default_home();
+    home.entities.retain(|entity| entity.domain != "media_player");
+    home.entities.push(entity("media_player.e01", "Wohnzimmer Box", "media_player", None, Some("wohnzimmer"), &[], &["Musik"]));
+    let parsed = intents("Spiele Musik im Wohnzimmer", "de", &home, &mut Session::new());
+    assert_eq!(parsed.len(), 1, "{parsed:?}");
+    assert_eq!(parsed[0].name, "HassMediaUnpause");
+    assert_eq!(slot(&parsed[0], "entity_id"), Some("media_player.e01"));
 }
 
 #[test]

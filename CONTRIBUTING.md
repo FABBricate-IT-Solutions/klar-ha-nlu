@@ -25,7 +25,7 @@ Per-locale **datasets** (Wohn+Family+m0+m2 overlays): `python3 scripts/parity/ge
 
 ## Language packs
 
-- Hand-written reference: `src/lang/de_pack.rs`, `src/lang/en_pack.rs` (verb tables in `src/lang/de.rs` / `en.rs`)
+- Hand-written reference: `src/lang/packs/de/`, `src/lang/packs/en/`
 - Generated locales: `src/lang/packs/{code}/` via `scripts/lang_packs/generate.py`
 - Generated locales use the same `LanguagePack` path as the hand-written de/en reference packs
 - Russian (`ru`) is not shipped

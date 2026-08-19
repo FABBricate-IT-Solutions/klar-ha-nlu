@@ -1,5 +1,4 @@
 use super::schema::{ExpectedIntent, NluExpectation};
-use super::waivers;
 use super::RunStats;
 use klar_nlu::types::{Intent, ParseResult};
 use std::collections::BTreeMap;
@@ -64,86 +63,6 @@ fn scalar(value: &serde_yaml::Value) -> Result<String, String> {
         serde_yaml::Value::String(value) => Ok(value.clone()),
         _ => Err(format!("expected a scalar value, got {value:?}")),
     }
-}
-
-pub(super) fn record_waiver_or_failure(stats: &mut RunStats, suite: &str, group: &str, label: &str, turns: &[String], error: String) {
-    let kind = mismatch_kind(&error);
-    let fingerprint = mismatch_fingerprint(&error);
-    match waivers::matching(suite, group, label, kind, fingerprint) {
-        Some(waiver) => {
-            stats.waived += 1;
-            stats.used_waivers.insert(waiver.id);
-            stats
-                .waivers
-                .push(format!("{} {group}/{label}: {turns:?} — kind={kind} fingerprint={fingerprint:016x} — {}", waiver.id, waiver.reason));
-        }
-        None => {
-            let expected = waivers::for_case(suite, group, label)
-                .map(|waiver| format!("{}={}:{:016x}", waiver.id, waiver.kind, waiver.fingerprint))
-                .collect::<Vec<_>>();
-            let detail = if expected.is_empty() { "no waiver".into() } else { format!("expected {}", expected.join(",")) };
-            record_failure(
-                stats,
-                group,
-                label,
-                turns,
-                format!("unwaived mismatch kind={kind} fingerprint={fingerprint:016x} ({detail}): {error}"),
-            );
-        }
-    }
-}
-
-fn mismatch_kind(error: &str) -> &'static str {
-    if error.starts_with("V1/V2 parity mismatch") {
-        "parity"
-    } else {
-        "oracle"
-    }
-}
-
-fn mismatch_fingerprint(error: &str) -> u64 {
-    let normalized = normalize_mismatch(error);
-    normalized.bytes().fold(0xcbf2_9ce4_8422_2325_u64, |hash, byte| (hash ^ u64::from(byte)).wrapping_mul(0x0000_0100_0000_01b3))
-}
-
-fn normalize_mismatch(error: &str) -> String {
-    if error.starts_with("V1/V2 parity mismatch") {
-        let legacy = parse_result_intents(error, "legacy=ParseResult").unwrap_or("missing");
-        let current = parse_result_intents(error, "current=ParseResult").unwrap_or("missing");
-        return format!("legacy={legacy}|current={current}");
-    }
-    let intent_names = error.split("Intent { name: \"").skip(1).filter_map(|tail| tail.split('"').next()).collect::<Vec<_>>().join(",");
-    if !intent_names.is_empty() {
-        return format!("oracle:{}:{intent_names}", failure_kind(error));
-    }
-    let mut normalized = String::with_capacity(error.len());
-    let mut index = 0;
-    let bytes = error.as_bytes();
-    while index < bytes.len() {
-        if error.get(index..index + 36).is_some_and(uuid_like) {
-            normalized.push_str("<conversation-id>");
-            index += 36;
-        } else {
-            let character = error[index..].chars().next().expect("valid string boundary");
-            if !character.is_whitespace() || !normalized.ends_with(' ') {
-                normalized.push(if character.is_whitespace() { ' ' } else { character });
-            }
-            index += character.len_utf8();
-        }
-    }
-    normalized
-}
-
-fn parse_result_intents<'a>(error: &'a str, marker: &str) -> Option<&'a str> {
-    let result = error.split_once(marker)?.1;
-    let intents = result.split_once("intents: [")?.1;
-    intents.split_once("], speech:").map(|(value, _)| value)
-}
-
-fn uuid_like(value: &str) -> bool {
-    value.char_indices().all(|(index, character)| {
-        matches!(index, 8 | 13 | 18 | 23) && character == '-' || !matches!(index, 8 | 13 | 18 | 23) && character.is_ascii_hexdigit()
-    })
 }
 
 pub(super) fn record_failure(stats: &mut RunStats, group: &str, label: &str, turns: &[String], error: String) {

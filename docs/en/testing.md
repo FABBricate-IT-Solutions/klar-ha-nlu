@@ -114,7 +114,7 @@ python3 scripts/voice_suite/gen_family_de.py  # familienhaus_de from family_home
 - Natural phrasing (except, bedrooms, living and dining) — add variants in `scripts/gen_voice_suite.py`, not only as a Rust assert
 - Every new variant in **German and English** (apartment + family home)
 
-A change to `src/lang/de.rs`, `src/lang/en.rs`, `src/lang/de_pack.rs`, or `src/lang/en_pack.rs` without a suite run in both languages is incomplete. The lists are the tests.
+A change to `src/lang/packs/de/` or `src/lang/packs/en/` without a suite run in both languages is incomplete. The lists are the tests.
 
 For changes to `src/parse/action.rs`, `src/parse/resolve/`, `src/parse/slots.rs`, or `src/home/roles.rs`, run apartment and family-home suites. Those modules affect several domains and languages at once.
 

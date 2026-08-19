@@ -10,7 +10,6 @@ use std::time::Instant;
 use super::binding::{build_analyses, MAX_CLAUSES};
 use super::context::ParseContext;
 use super::draft::{reject, replay_or_decide, route_pending, route_special, safety_decision, Draft, SessionCommit};
-use super::legacy;
 use super::ranking::rank_candidates;
 use super::retrieval;
 use super::semantic;
@@ -23,31 +22,29 @@ pub(super) struct PipelineResult {
 }
 
 pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
+    let _bound = crate::lang::bind_catalog(context.catalog);
     let mut trace = ParseTrace::default();
     let started = Instant::now();
-    let (raw_tokens, split) = legacy::with_catalog(context.catalog, || {
-        let raw_tokens = tokenize(context.text);
-        let split = expand_compounds(&strip_fillers(&raw_tokens), context.home);
-        (raw_tokens, split)
-    });
+    let raw_tokens = tokenize(context.text);
+    let split = expand_compounds(&strip_fillers(&raw_tokens), context.home);
     trace.tokens = split.tokens.iter().take(MAX_NORMALIZED_TOKENS).cloned().collect();
     trace.normalized = trace.tokens.join(" ");
     record_stage(&mut trace, "normalize", started, format!("{} normalized tokens", split.tokens.len()));
     if split.tokens.len() > MAX_NORMALIZED_TOKENS {
-        let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
+        let draft = reject(RejectReason::InvalidInput, speak_unknown());
         return finish(&context, draft, Vec::new(), Vec::new(), trace);
     }
 
     let started = Instant::now();
-    let clauses = legacy::with_catalog(context.catalog, || split_clauses(&split.tokens, context.home));
+    let clauses = split_clauses(&split.tokens, context.home);
     record_stage(&mut trace, "features", started, format!("{} clauses", clauses.len()));
 
-    if let Some(draft) = legacy::with_catalog(context.catalog, || route_special(&context, &raw_tokens, &split)) {
+    if let Some(draft) = route_special(&context, &raw_tokens, &split) {
         record_stage(&mut trace, "safety_decision", Instant::now(), decision_name(&draft.decision).into());
         let candidates = draft.output_candidate.clone().into_iter().collect();
         return finish(&context, draft, candidates, Vec::new(), trace);
     }
-    if let Some(draft) = legacy::with_catalog(context.catalog, || route_pending(&context, &split.tokens)) {
+    if let Some(draft) = route_pending(&context, &split.tokens) {
         let started = Instant::now();
         let draft = safety_decision(draft, &context);
         record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
@@ -56,13 +53,13 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     }
 
     if clauses.len() > MAX_CLAUSES {
-        let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
+        let draft = reject(RejectReason::InvalidInput, speak_unknown());
         return finish(&context, draft, Vec::new(), Vec::new(), trace);
     }
     let analyses = match build_analyses(&context, clauses, &raw_tokens, &split, &mut trace) {
         Ok(analyses) => analyses,
         Err(_) => {
-            let draft = reject(RejectReason::InvalidInput, legacy::with_catalog(context.catalog, speak_unknown));
+            let draft = reject(RejectReason::InvalidInput, speak_unknown());
             return finish(&context, draft, Vec::new(), Vec::new(), trace);
         }
     };
@@ -76,7 +73,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     dedup_intents(&mut intents);
     let selected_plan = ranking.selected.as_ref().map(|candidate| candidate.plan.clone());
     let draft = if let Some((options, template)) = clarify {
-        let prompt = legacy::with_catalog(context.catalog, || speak_clarify(&options, Some(context.home)));
+        let prompt = speak_clarify(&options, Some(context.home));
         Draft {
             decision: ParseDecision::Clarify { prompt: prompt.clone(), options: options.clone() },
             plan: None,
@@ -97,7 +94,7 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     let started = Instant::now();
     let mut draft = safety_decision(draft, &context);
     record_stage(&mut trace, "safety_decision", started, decision_name(&draft.decision).into());
-    if let Some(adapted) = legacy::with_catalog(context.catalog, || semantic::consider(&context, &split.tokens, &draft)) {
+    if let Some(adapted) = semantic::consider(&context, &split.tokens, &draft) {
         let started = Instant::now();
         draft = safety_decision(adapted, &context);
         record_stage(&mut trace, "semantic_adapter", started, decision_name(&draft.decision).into());
@@ -131,6 +128,9 @@ impl PipelineResult {
         }
         if let Some((candidate_id, plan, prompt)) = self.commit.confirm {
             session.set_confirm(candidate_id, plan, prompt);
+        }
+        if !self.commit.remember.is_empty() {
+            session.begin_remember_batch();
         }
         for intent in &self.commit.remember {
             session.remember(intent);
@@ -230,14 +230,12 @@ fn finish(
 }
 
 fn apply_resolved_lock_pair(ranking: &mut super::ranking::RankingResult, context: &ParseContext<'_>, tokens: &[String]) {
-    let locks = legacy::with_catalog(context.catalog, || {
-        crate::parse::resolve::resolve(tokens, context.home, Some("lock"))
-            .entities
-            .into_iter()
-            .filter(|entity| entity.domain == "lock")
-            .map(|entity| entity.entity_id)
-            .collect::<Vec<_>>()
-    });
+    let locks = crate::parse::resolve::resolve(tokens, context.home, Some("lock"))
+        .entities
+        .into_iter()
+        .filter(|entity| entity.domain == "lock")
+        .map(|entity| entity.entity_id)
+        .collect::<Vec<_>>();
     if locks.len() < 2 {
         return;
     }

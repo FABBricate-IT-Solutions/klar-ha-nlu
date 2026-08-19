@@ -79,6 +79,7 @@ jobs:
             tests/full_home.rs
             tests/datasets
             custom_components/klar_nlu/languages.py
+            custom_components/klar_nlu/speech_locale.py
           )
           dirty="$(git status --porcelain -- "${paths[@]}")"
           if [[ -n "$dirty" ]]; then

@@ -1,13 +1,12 @@
-use super::expect::{exact_result_ok, failure_kind, record_failure, record_waiver_or_failure};
+use super::expect::{exact_result_ok, failure_kind, record_failure};
 use super::legacy;
 use super::schema::{Case, Sentences};
-use super::waivers;
 use super::world::TestWorld;
 use super::{load_cases, RunStats};
-use klar_nlu::parse::parse_checked;
+use klar_nlu::parse::parse;
 use klar_nlu::session::Session;
 use klar_nlu::types::{HomeGraph, Settings};
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeMap;
 use std::path::PathBuf;
 
 #[allow(dead_code)]
@@ -46,7 +45,7 @@ pub(crate) fn run_groups_lang(
         None => Settings { languages: vec!["de".into(), "en".into()], ..Settings::default() },
     };
     let root = super::datasets_root().join(name);
-    let mut stats = RunStats { ok: 0, fail: 0, waived: 0, fails: Vec::new(), waivers: Vec::new(), used_waivers: BTreeSet::new() };
+    let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
     for group in groups {
         for (label, mut case) in load_cases(&root.join(group)) {
             if let Some(map) = overlay {
@@ -65,15 +64,7 @@ pub(crate) fn run_groups_lang(
             }
             let legacy_clarify = *group == "clarifications";
             for turns in turns_of(&case.sentences) {
-                run_case(name, group, &label, &case, &turns, legacy_clarify, &home, &settings, &mut stats);
-            }
-        }
-    }
-    if overlay.is_none() {
-        for waiver in waivers::expected_for(name, groups) {
-            if !stats.used_waivers.contains(waiver.id) {
-                stats.fail += 1;
-                stats.fails.push(format!("stale waiver {} for {}/{}/{}", waiver.id, waiver.suite, waiver.group, waiver.label));
+                run_case(group, &label, &case, &turns, legacy_clarify, &home, &settings, &mut stats);
             }
         }
     }
@@ -82,7 +73,6 @@ pub(crate) fn run_groups_lang(
 
 #[allow(clippy::too_many_arguments)]
 fn run_case(
-    suite: &str,
     group: &str,
     label: &str,
     case: &Case,
@@ -96,15 +86,7 @@ fn run_case(
     let mut session = Session::new();
     let mut last = None;
     for (index, sentence) in turns.iter().enumerate() {
-        let (result, parity_error) = parse_checked(sentence, home, &mut session, &[], settings);
-        // full_home judges the current engine against the case oracle. V1/V2 drift
-        // stays in the large suite / voice_suite so it cannot block language CI.
-        if let Some(error) = parity_error {
-            if !suite.starts_with("full_home/") {
-                record_waiver_or_failure(stats, suite, group, label, turns, error);
-                return;
-            }
-        }
+        let result = parse(sentence, home, &mut session, &[], settings);
         if let Err(error) = world.apply_intents(&result.intents, home, !case.world_expect.is_empty()) {
             record_failure(stats, group, label, turns, error);
             return;
@@ -132,7 +114,7 @@ fn run_case(
     .and_then(|()| legacy::speech_ok(&result.speech, &case.speech_has, &case.speech_forbids));
     match checked {
         Ok(()) => stats.ok += 1,
-        Err(error) => record_waiver_or_failure(stats, suite, group, label, turns, error),
+        Err(error) => record_failure(stats, group, label, turns, error),
     }
 }
 
@@ -141,8 +123,6 @@ pub(crate) fn print_stats(title: &str, stats: &RunStats) {
     let pct = if total == 0 { 0.0 } else { 100.0 * stats.ok as f64 / total as f64 };
     println!("\n=== {title} ===");
     println!("  {total} Sätze  {} ok  {} fehl  {pct:.1}%", stats.ok, stats.fail);
-    println!("  {} explizit freigegebene Legacy-Waiver", stats.waived);
-    println!("  V1/V2 output and session parity checked inline");
     let mut kinds: BTreeMap<String, usize> = BTreeMap::new();
     for line in &stats.fails {
         *kinds.entry(failure_kind(line).into()).or_default() += 1;
@@ -150,9 +130,6 @@ pub(crate) fn print_stats(title: &str, stats: &RunStats) {
     println!("  fail-kinds {kinds:?}");
     for line in stats.fails.iter().take(25) {
         println!("  FAIL {line}");
-    }
-    for line in &stats.waivers {
-        println!("  WAIVER {line}");
     }
     if stats.fails.len() > 25 {
         println!("  … {} weitere", stats.fails.len() - 25);

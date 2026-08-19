@@ -5,12 +5,21 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-_ACTION = {
-    "HassTurnOn": {"de": "{where} ist an.", "en": "{where} is on."},
-    "HassTurnOff": {"de": "{where} ist aus.", "en": "{where} is off."},
-    "HassToggle": {"de": "{where} ist umgeschaltet.", "en": "{where} is toggled."},
-    "HassLightSet": {"de": "{where} auf {level}.", "en": "{where} is at {level}."},
+try:
+    from .speech_locale import SPEECH_PACKS
+except ImportError:
+    try:
+        from speech_locale import SPEECH_PACKS
+    except ImportError:
+        SPEECH_PACKS = {}
+
+_FALLBACK_ACTION = {
+    "HassTurnOn": "{where} is on.",
+    "HassTurnOff": "{where} is off.",
+    "HassToggle": "{where} is switched.",
+    "HassLightSet": "{where} is at {level}.",
 }
+_WRAP = 0
 
 _MEDIA_ACTION = {
     "HassMediaPause": ("{where} ist pausiert.", "{where} is paused."),
@@ -20,6 +29,7 @@ _MEDIA_ACTION = {
     "HassMediaPlayerMute": ("{where} ist stumm.", "{where} is muted."),
     "HassMediaPlayerUnmute": ("Der Ton von {where} ist an.", "{where} is unmuted."),
     "MassFavorite": ("Als Favorit markiert.", "Marked as a favorite."),
+    "HassMediaSearchAndPlay": ("Die Wiedergabe wurde gestartet.", "Playback started."),
     "MassPlayMedia": ("Die Wiedergabe wurde gestartet.", "Playback started."),
     "MassTransferQueue": ("Die Warteschlange wurde übertragen.", "The queue was transferred."),
 }
@@ -48,29 +58,25 @@ _DE_STATE = {
     "fan_only": "nur Lüfter",
 }
 
-_STYLE = {
-    ("butler", "de"): "Sehr wohl. ",
-    ("butler", "en"): "Very well. ",
-    ("locker", "de"): "Geht klar. ",
-    ("locker", "en"): "Got it. ",
-    ("fuersorglich", "de"): "Mache ich sofort. ",
-    ("fuersorglich", "en"): "Doing that now. ",
-    ("party", "de"): "Läuft! ",
-    ("party", "en"): "Let's go! ",
-    ("grantig", "de"): "Schon gut. ",
-    ("grantig", "en"): "Fine. ",
-    ("sarkastisch", "de"): "Wie überraschend, wieder ein Befehl. ",
-    ("sarkastisch", "en"): "What a surprise, another command. ",
-    ("pirat", "de"): "Aye. ",
-    ("pirat", "en"): "Aye. ",
-    ("hippie", "de"): "Alles easy. ",
-    ("hippie", "en"): "All good. ",
-    ("gollum", "de"): "Ja, mein Schatz. ",
-    ("gollum", "en"): "Yes, my precious. ",
-}
+def _locale(pack: str) -> dict:
+    return SPEECH_PACKS.get(pack) or SPEECH_PACKS.get("en") or {}
+
+
+def _en(pack: str) -> bool:
+    return pack != "de"
+
 
 def style(speech: str, personality: str, pack: str) -> str:
-    prefix = _STYLE.get((personality, pack), "")
+    global _WRAP
+    if personality in {"", "default"}:
+        return speech
+    variants = list((_locale(pack).get("personality") or {}).get(personality) or [])
+    if not variants:
+        variants = list((_locale("en").get("personality") or {}).get(personality) or [])
+    if not variants:
+        return speech
+    _WRAP += 1
+    prefix = variants[(hash(speech) + _WRAP) % len(variants)]
     if not prefix or speech.startswith(prefix.strip()):
         return speech
     return f"{prefix}{speech}"
@@ -78,16 +84,14 @@ def style(speech: str, personality: str, pack: str) -> str:
 def from_handled(handled: Any, pack: str, item: dict) -> str | None:
     name = str(item.get("name") or "")
     if _is_query(handled, name):
-        query = query_speech(handled, pack, item)
-        if query:
-            return query
+        return query_speech(handled, pack, item) or None
     media_action = _media_action_speech(name, pack, item, handled)
     if media_action:
         return media_action
-    template = (_ACTION.get(name) or {}).get(pack)
+    template = (_locale(pack).get("actions") or {}).get(name) or _FALLBACK_ACTION.get(name)
     if template:
         where = _pretty_where(handled, item, pack)
-        return template.format(where=where, level=_level(item, pack))
+        return template.format(where=where, level=_level(item, pack), loc=where)
     text = _plain_speech(handled)
     if text:
         if pack == "de":
@@ -115,10 +119,10 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
         return _room_status(rows, area, pack)
     lights = [row for row in rows if row[2] == "light"]
     if len(lights) >= 2:
-        on_word, off_word = ("on", "off") if pack == "en" else ("an", "aus")
+        on_word, off_word = ("on", "off") if _en(pack) else ("an", "aus")
         on = sum(1 for row in lights if row[1] == on_word)
         off = sum(1 for row in lights if row[1] == off_word)
-        if pack == "en":
+        if _en(pack):
             bits = [f"{on} lights on"] if on else []
             if off:
                 bits.append(f"{off} lights off")
@@ -134,7 +138,7 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
         return ". ".join(bits + extra[:3]) + "."
     parts: list[str] = []
     for name, spoken, _domain in rows[:4]:
-        if pack == "en":
+        if _en(pack):
             parts.append(f"{name} is {spoken.replace(',', '.')}.")
         else:
             parts.append(f"{name} ist {spoken}.")
@@ -143,7 +147,7 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
 def queue_speech(response: Any, state: Any, pack: str) -> str:
     current = _media_title(state)
     upcoming = [title for title in _queue_titles(response) if title and title != current][:3]
-    if pack == "en":
+    if _en(pack):
         bits = [f"Now playing {current}."] if current else []
         if not upcoming:
             empty = "The queue is empty." if not current else "There is nothing else in the queue."
@@ -172,24 +176,24 @@ def media_state_speech(state: Any, status: str, pack: str) -> str:
         volume = attrs.get("volume_level")
         muted = bool(attrs.get("is_volume_muted"))
         pct = _volume_percent(volume)
-        if pack == "en":
+        if _en(pack):
             body = f"Volume is {pct} percent." if pct else "I cannot read the volume."
             return f"{body} It is muted." if muted else body
         body = f"Lautstärke ist {pct} Prozent." if pct else "Ich kann die Lautstärke nicht lesen."
         return f"{body} Der Ton ist stumm." if muted else body
     if status == "mute":
         muted = bool(attrs.get("is_volume_muted"))
-        if pack == "en":
+        if _en(pack):
             return "It is muted." if muted else "It is not muted."
         return "Der Ton ist stumm." if muted else "Der Ton ist an."
     if status in {"now_playing", "player"}:
         if title:
-            if pack == "en":
+            if _en(pack):
                 prefix = "Now playing" if raw_state == "playing" else "Selected"
                 return f"{prefix} {title}."
             prefix = "Gerade läuft" if raw_state == "playing" else "Ausgewählt ist"
             return f"{prefix} {title}."
-        if pack == "en":
+        if _en(pack):
             return f"The player is {spoken_state}."
         return f"Der Player ist {spoken_state}."
     return ""
@@ -197,19 +201,19 @@ def media_state_speech(state: Any, status: str, pack: str) -> str:
 def _media_action_speech(name: str, pack: str, item: dict, handled: Any) -> str:
     where = _pretty_where(handled, item, pack)
     if name == "HassSetVolume":
-        if pack == "en":
+        if _en(pack):
             return f"{where} volume is set to {_level(item, pack)}."
         return f"Die Lautstärke von {where} ist auf {_level(item, pack)}."
     if name == "HassSetVolumeRelative":
         down = _slots(item).get("volume_step") == "down"
-        if pack == "en":
+        if _en(pack):
             return f"{where} volume was {'lowered' if down else 'raised'}."
         action = "verringert" if down else "erhöht"
         return f"Die Lautstärke von {where} wurde {action}."
     templates = _MEDIA_ACTION.get(name)
     if not templates:
         return ""
-    return templates[1 if pack == "en" else 0].format(where=where)
+    return templates[1 if _en(pack) else 0].format(where=where)
 
 def _room_label(item: dict | None) -> str:
     if not item:
@@ -236,14 +240,14 @@ def _room_status(rows: list[tuple[str, str, str]], area: str, pack: str) -> str:
     others = [(n, v) for n, v, d in rows if d != "light"][:3]
     if len(rows) == 1 and rows[0][2] == "light":
         spoken = rows[0][1]
-        if pack == "en":
+        if _en(pack):
             return f"The light {where} is {spoken}."
         return f"{where[:1].upper()}{where[1:]} ist das Licht {spoken}."
     if len(lights) >= 2:
-        on_word, off_word = ("on", "off") if pack == "en" else ("an", "aus")
+        on_word, off_word = ("on", "off") if _en(pack) else ("an", "aus")
         on = sum(1 for row in lights if row[1] == on_word)
         off = sum(1 for row in lights if row[1] == off_word)
-        if pack == "en":
+        if _en(pack):
             bits = [f"{on} lights on"] if on else []
             if off:
                 bits.append(f"{off} lights off")
@@ -257,7 +261,7 @@ def _room_status(rows: list[tuple[str, str, str]], area: str, pack: str) -> str:
     parts: list[str] = []
     for name, spoken, domain in rows[:4]:
         label = "Licht" if pack == "de" and domain == "light" and name.lower() in _LIGHT_TAIL else name
-        if pack == "en":
+        if _en(pack):
             parts.append(f"{label} is {spoken.replace(',', '.')}")
         else:
             parts.append(f"{label} ist {spoken}")
@@ -425,7 +429,7 @@ def _pretty_where(handled: Any, item: dict, pack: str) -> str:
     ]
     names = _drop_prefixes([name for name in names if name])
     if names:
-        return (" und " if pack == "de" else " and ").join(names)
+        return (_locale(pack).get("and_join") or " and ").join(names)
     raw = str(slots.get("name") or slots.get("area") or "")
     if "." in raw:
         raw = ""
@@ -486,7 +490,7 @@ def _spoken_device(name: str, entity_id: str, pack: str) -> str:
         token in folded for token in ("licht", "lampe", "leuchte", "light", "lamp", "kugel")
     )
     if domain == "light" and pretty and not light_word:
-        pretty = f"{pretty} light" if pack == "en" else f"{pretty}licht"
+        pretty = f"{pretty} light" if _en(pack) else f"{pretty}licht"
     if pretty:
         return pretty[:1].upper() + pretty[1:]
     return pretty

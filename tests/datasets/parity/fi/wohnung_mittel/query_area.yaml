@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - mika valo olohuone
 query_area/status::status_licht_badezimmer:
-- mika valo kylpymaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - mika valo olohuonefamess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - mika olohuone ja olohuonefamess
 query_area/status::temperatur_wohnung:
-- mika lampo wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - mika lampo olohuone

@@ -65,7 +65,7 @@ The choice lives in this integration, not in the Klar app, so it survives reinst
 | `hippie` | chill, soft |
 | `gollum` | hissy, still clear |
 
-With LLM refine the voice lives in the sentence — not in a stamp such as “Very well.” Without refine, a short cue remains as fallback (`Sehr wohl.`, `Aye.`, …).
+With LLM refine the voice lives in the sentence — not in a stamp such as “Very well.” Without refine, a short spoken variant rotates in (sometimes none). The fallback is not a fixed stamp. Refine follows the language of the input line; it does not silently wrap other locales in German.
 
 ## LLM refine
 

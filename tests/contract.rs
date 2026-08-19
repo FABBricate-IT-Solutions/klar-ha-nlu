@@ -163,7 +163,7 @@ fn parallel_language_catalogs_do_not_cross_contaminate() {
 }
 
 #[test]
-fn dual_run_handles_scored_disambiguation_and_queries() {
+fn scored_disambiguation_and_queries_execute() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/family_home_en/home_config.yaml")).expect("home");
     for text in [
         "Are the laundry switches on or off",
@@ -173,8 +173,74 @@ fn dual_run_handles_scored_disambiguation_and_queries() {
         "What's the volume level of the Living Room TV?",
     ] {
         let mut session = Session::new();
-        let (_, parity_error) = klar_nlu::parse::parse_checked(text, &home, &mut session, &[], &Settings::pinned("en"));
-        assert!(parity_error.is_none(), "{text}: {}", parity_error.unwrap_or_default());
+        let result = parse(text, &home, &mut session, &[], &Settings::pinned("en"));
+        assert!(!result.intents.is_empty() || result.clarify, "{text}: {result:?}");
+    }
+}
+
+#[test]
+fn resume_named_tv_unpauses_instead_of_search() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/family_home_en/home_config.yaml")).expect("home");
+    for text in ["resume living tv", "if you don't mind, resume living tv"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &Settings::pinned("en"));
+        assert_eq!(result.intents.len(), 1, "{text}: {result:?}");
+        assert_eq!(result.intents[0].name, "HassMediaUnpause", "{text}: {result:?}");
+        assert_eq!(result.intents[0].slot("entity_id"), Some("media_player.living_tv"), "{text}: {result:?}");
+    }
+}
+
+#[test]
+fn brightness_followup_keeps_both_queried_rooms() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let settings = Settings::pinned("de");
+    let outcome = nlu::parse("Status Lichter Flur und Gäste-WC", &home, &mut session, &[], &settings);
+    assert!(
+        outcome.plan.as_ref().is_some_and(|plan| {
+            let areas: Vec<_> = plan.intents().into_iter().filter_map(|intent| intent.slot("area").map(str::to_string)).collect();
+            areas.iter().any(|area| area == "hallway") && areas.iter().any(|area| area == "powder_room")
+        }),
+        "{outcome:#?}"
+    );
+    let result = parse("auf 100", &home, &mut session, &[], &settings);
+    let ids: Vec<_> = result.intents.iter().filter_map(|intent| intent.slot("entity_id").map(str::to_string)).collect();
+    let areas: Vec<_> = result.intents.iter().filter_map(|intent| intent.slot("area").map(str::to_string)).collect();
+    assert!(
+        ids.contains(&"light.hallway_light".to_string()) && ids.contains(&"light.powder_room_light".to_string())
+            || areas.iter().any(|area| area.contains("hallway") || area.contains("flur"))
+                && areas.iter().any(|area| area.contains("powder") || area.contains("gaeste") || area.contains("gaste")),
+        "{result:?}"
+    );
+    assert!(result.intents.iter().all(|intent| intent.name == "HassLightSet"), "{result:?}");
+}
+
+#[test]
+fn compound_heating_inherits_mentioned_room() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    let mut session = Session::new();
+    let result = parse("Mach das Licht im Wohnzimmer an und stell die Heizung auf 23", &home, &mut session, &[], &Settings::pinned("de"));
+    assert!(
+        result.intents.iter().any(|intent| intent.name == "HassTurnOn" && intent.slot("entity_id") == Some("light.wohnzimmer")),
+        "{result:?}"
+    );
+    assert!(
+        result.intents.iter().any(|intent| {
+            intent.name == "HassClimateSetTemperature"
+                && intent.slot("temperature") == Some("23")
+                && (intent.slot("area") == Some("wohnzimmer") || intent.slot("entity_id") == Some("climate.better_thermostat_wohnzimmer"))
+        }),
+        "{result:?}"
+    );
+}
+
+#[test]
+fn bathroom_light_query_rejects_when_no_visible_light() {
+    let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/wohnung_mittel/home_config.yaml")).expect("home");
+    for text in ["Ist das Licht im Bad an", "Wie ist der Status vom Licht im Bad"] {
+        let mut session = Session::new();
+        let result = parse(text, &home, &mut session, &[], &Settings::pinned("de"));
+        assert!(result.intents.is_empty() && !result.clarify, "{text}: {result:?}");
     }
 }
 
@@ -252,7 +318,7 @@ fn risky_lock_is_automatically_confirmed_without_executable_plan() {
 }
 
 #[test]
-fn golden_dual_run_including_follow_up() {
+fn follow_up_turns_off_the_same_light() {
     let home = default_home();
     let settings = Settings::pinned("de");
     let mut session = Session::new();
@@ -263,7 +329,7 @@ fn golden_dual_run_including_follow_up() {
 }
 
 #[test]
-fn golden_dual_run_clarification_follow_up() {
+fn clarification_follow_up_picks_the_named_lamp() {
     let home = klar_nlu::home::load_home_config(std::path::Path::new("tests/datasets/familienhaus_de/home_config.yaml")).expect("home");
     let settings = Settings::pinned("de");
     let mut session = Session::new();

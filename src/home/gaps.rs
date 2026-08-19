@@ -56,7 +56,7 @@ fn distinctive(entity: &EntityRec, home: &HomeGraph, cat: &Catalog) -> Vec<Strin
         .filter(|part| {
             part.len() > 2
                 && !part.chars().all(|c| c.is_ascii_digit())
-                && !cat.generic.contains(&part.as_str())
+                && !cat.generic().contains(&part.as_str())
                 && !WEAK.contains(&part.as_str())
                 && !rooms.contains(part)
         })

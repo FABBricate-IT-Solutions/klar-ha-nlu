@@ -170,20 +170,20 @@ fn split_two_targets(tokens: &[String]) -> Option<usize> {
 
 fn both_covers(left: &[String], right: &[String]) -> bool {
     let cat = catalog();
-    let cover = |tokens: &[String]| cat.any(tokens, &cat.cover_nouns) || cat.any(tokens, &cat.curtain_nouns);
+    let cover = |tokens: &[String]| cat.any(tokens, cat.cover_nouns()) || cat.any(tokens, cat.curtain_nouns());
     cover(left) && cover(right)
 }
 
 fn device_side(tokens: &[String]) -> bool {
     let cat = catalog();
-    cat.any(tokens, &cat.device_side)
-        || cat.any(tokens, &cat.named_device)
-        || cat.any(tokens, &cat.ceiling)
-        || cat.any(tokens, &cat.cover_nouns)
-        || cat.any(tokens, &cat.fan_nouns)
-        || cat.any(tokens, &cat.island)
+    cat.any(tokens, cat.device_side())
+        || cat.any(tokens, cat.named_device())
+        || cat.any(tokens, cat.ceiling())
+        || cat.any(tokens, cat.cover_nouns())
+        || cat.any(tokens, cat.fan_nouns())
+        || cat.any(tokens, cat.island())
         || crate::parse::infer::mentions_lamp_fixture(tokens)
-        || cat.any(tokens, &cat.laundry_machines)
+        || cat.any(tokens, cat.laundry_machines())
         || tokens.iter().any(|token| matches!(token.as_str(), "dryer" | "washer"))
 }
 
@@ -266,10 +266,10 @@ pub(crate) fn follow_fixture(tokens: &[String], home: &crate::types::HomeGraph, 
         .collect();
     let find = |n: &str| lights.iter().find(|id| id.contains(n)).map(|s| (*s).to_string());
     let cat = catalog();
-    if cat.any(tokens, &cat.island) {
+    if cat.any(tokens, cat.island()) {
         return find("island").or_else(|| find("insel"));
     }
-    if cat.any(tokens, &cat.ceiling) {
+    if cat.any(tokens, cat.ceiling()) {
         return find("ceiling").or_else(|| find("decke"));
     }
     if crate::parse::infer::mentions_lamp_fixture(tokens) {

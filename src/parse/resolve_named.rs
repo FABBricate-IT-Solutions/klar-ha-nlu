@@ -25,7 +25,7 @@ pub(crate) fn fuzzy_areas(tokens: &[String], areas: &[AreaRec]) -> Option<Vec<St
     let max_width = tokens.len().min(3);
     for width in 1..=max_width {
         for window in tokens.windows(width) {
-            if window.iter().all(|token| catalog().generic.contains(&token.as_str())) {
+            if window.iter().all(|token| catalog().generic().contains(&token.as_str())) {
                 continue;
             }
             let observed = window.join("");
@@ -51,13 +51,13 @@ pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Opti
     let cat = catalog();
     let mut found = Vec::new();
     for token in tokens {
-        let generic_lamp = cat.light_nouns.contains(token.as_str()) || cat.light_singular.contains(token.as_str());
-        let named = cat.named_device.contains(token.as_str()) && !generic_lamp;
-        let ceiling = cat.ceiling.contains(token.as_str());
-        let island = cat.island.contains(token.as_str());
-        let bedside = cat.bedside.contains(token.as_str());
+        let generic_lamp = cat.light_nouns().contains(token.as_str()) || cat.light_singular().contains(token.as_str());
+        let named = cat.named_device().contains(token.as_str()) && !generic_lamp;
+        let ceiling = cat.ceiling().contains(token.as_str());
+        let island = cat.island().contains(token.as_str());
+        let bedside = cat.bedside().contains(token.as_str());
         let floor = token == "floor" || cat.fixture_alias("floor").contains(&token.as_str());
-        let lamp = !floor && (token == "lamp" || cat.lamp_fixture.contains(token.as_str()));
+        let lamp = !floor && (token == "lamp" || cat.lamp_fixture().contains(token.as_str()));
         if !named && !ceiling && !island && !bedside && !lamp && !floor {
             continue;
         }

@@ -16,9 +16,7 @@ klar lang import-hassil --from pfad/zu/hassil --into /data --language de --dry-r
 
 ## Aufbau
 
-- `src/lang/de_pack.rs` / `en_pack.rs` — handgeschriebene Referenzpacks
-- `src/lang/de.rs` / `en.rs` — Verbtabellen für diese Packs
-- `src/lang/packs/{code}/` — generierte `verbs.rs`, `speech.rs`, `pack.rs`
+- `src/lang/packs/{code}/` — `verbs.rs`, `speech.rs`, `pack.rs` (de/en hand-written reference; others generated)
 - `src/lang/registry.rs` — kompilierte Ids, `from_code`, `pack()`, `GET /api/v2/languages`
 - `scripts/lang_packs/` — Generator (HassIL-Harvest nur Bootstrap). `generate.py` nicht im Pre-Commit ausführen.
 

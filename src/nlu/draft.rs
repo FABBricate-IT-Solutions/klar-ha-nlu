@@ -9,7 +9,6 @@ use crate::types::{allow_permitted, first_matching_rule, Intent, IntentCandidate
 
 use super::context::ParseContext;
 use super::decision::{decide_band, PolicyBand};
-use super::legacy;
 use super::ranking::RankingResult;
 use super::speech::{apply_rule_speech, confirmation_prompt};
 use super::validation::{filter_valid_steps, requires_confirmation, validate_plan, PlanInvalid};
@@ -152,7 +151,7 @@ pub(super) fn replay_or_decide(
 ) -> Draft {
     if intents.is_empty() {
         if let Some(previous) = last_visible(context.session, context.home) {
-            if let Some(number) = legacy::with_catalog(context.catalog, || first_number(tokens)) {
+            if let Some(number) = first_number(tokens) {
                 let (name, slot) = if previous.starts_with("climate.") {
                     ("HassClimateSetTemperature", "temperature")
                 } else if previous.starts_with("fan.") {
@@ -161,19 +160,25 @@ pub(super) fn replay_or_decide(
                     ("HassLightSet", "brightness")
                 };
                 intents.push(Intent::new(name).with("entity_id", previous).with(slot, number.to_string()));
-            } else if context.catalog.any(tokens, &context.catalog.replay_on_off) {
-                let name = if context.catalog.any(tokens, &context.catalog.replay_off) { "HassTurnOff" } else { "HassTurnOn" };
+            } else if context.catalog.any(tokens, context.catalog.replay_on_off()) {
+                let name = if context.catalog.any(tokens, context.catalog.replay_off()) { "HassTurnOff" } else { "HassTurnOn" };
                 intents.push(Intent::new(name).with("entity_id", previous));
             }
-        } else if context.catalog.any(tokens, &context.catalog.on_words) || context.catalog.any(tokens, &context.catalog.off_words) {
-            let off = context.catalog.any(tokens, &context.catalog.off_words);
+        } else if context.catalog.any(tokens, context.catalog.on_words()) || context.catalog.any(tokens, context.catalog.off_words()) {
+            let named_target = {
+                let resolved = crate::parse::resolve::resolve(tokens, context.home, None);
+                !resolved.areas.is_empty() || !resolved.entities.is_empty() || !resolved.floors.is_empty()
+            };
+            if named_target {
+                let mut draft = reject(RejectReason::NoTarget, speak_unknown());
+                draft.commit.briefing = Some(false);
+                return draft;
+            }
+            let off = context.catalog.any(tokens, context.catalog.off_words());
             return Draft {
-                decision: ParseDecision::Clarify {
-                    prompt: legacy::with_catalog(context.catalog, || speak_need_target(off)),
-                    options: Vec::new(),
-                },
+                decision: ParseDecision::Clarify { prompt: speak_need_target(off), options: Vec::new() },
                 plan: None,
-                speech: legacy::with_catalog(context.catalog, || speak_need_target(off)),
+                speech: speak_need_target(off),
                 confidence: ranking.confidence,
                 margin: ranking.margin,
                 selected_candidate_id: None,
@@ -188,7 +193,7 @@ pub(super) fn replay_or_decide(
     }
     if intents.is_empty() {
         let reason = if ranking.candidates.is_empty() { RejectReason::NoAction } else { RejectReason::NoTarget };
-        let mut draft = reject(reason, legacy::with_catalog(context.catalog, speak_unknown));
+        let mut draft = reject(reason, speak_unknown());
         draft.commit.briefing = Some(false);
         draft
     } else if let Some(plan) = selected_plan.filter(|plan| plan.intents() == intents) {
@@ -226,11 +231,11 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
     }
     if draft.safety_confirmed {
         let Some(plan) = draft.plan.as_ref() else {
-            return invalid_plan(draft, PlanInvalid::Schema, context.catalog);
+            return invalid_plan(draft, PlanInvalid::Schema);
         };
         return match validate_plan(plan, context.home) {
             Ok(()) => draft,
-            Err(reason) => invalid_plan(draft, reason, context.catalog),
+            Err(reason) => invalid_plan(draft, reason),
         };
     }
     if let Some(plan) = draft.plan.take() {
@@ -238,12 +243,11 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         if filtered.steps.is_empty() {
             let reason = validate_plan(&plan, context.home).err().unwrap_or(PlanInvalid::MissingTarget);
             draft.plan = Some(plan);
-            return invalid_plan(draft, reason, context.catalog);
+            return invalid_plan(draft, reason);
         }
         if filtered.steps.len() != plan.steps.len() {
             let intents = filtered.intents();
-            draft.speech =
-                legacy::with_catalog(context.catalog, || speak(&intents, context.settings.personality, false, Some(context.home)));
+            draft.speech = speak(&intents, context.settings.personality, false, Some(context.home));
             draft.commit.remember = intents;
         }
         draft.confidence = filtered.confidence;
@@ -255,10 +259,10 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         draft.plan = Some(filtered);
     }
     let Some(plan) = draft.plan.as_ref() else {
-        return invalid_plan(draft, PlanInvalid::Schema, context.catalog);
+        return invalid_plan(draft, PlanInvalid::Schema);
     };
     if let Err(reason) = validate_plan(plan, context.home) {
-        return invalid_plan(draft, reason, context.catalog);
+        return invalid_plan(draft, reason);
     }
     let compiled_risky = context.settings.confirm_risky_actions && requires_confirmation(plan);
     if let Some(action) = super::policy_route::apply_matched_action(context, plan) {
@@ -272,7 +276,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         payload: matched.and_then(|(rule, _)| rule.payload.clone()),
     });
     if matches!(matched.map(|(_, hit)| hit), Some(PolicyHit::Block)) {
-        let mut rejected = reject(RejectReason::Unsafe, legacy::with_catalog(context.catalog, speak_unknown));
+        let mut rejected = reject(RejectReason::Unsafe, speak_unknown());
         rejected.confidence = draft.confidence;
         rejected.margin = draft.margin;
         rejected.plan = draft.plan.clone();
@@ -299,7 +303,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
             draft
         }
         PolicyBand::Clarify => {
-            let prompt = legacy::with_catalog(context.catalog, || speak_need_target(false));
+            let prompt = speak_need_target(false);
             draft.decision = ParseDecision::Clarify { prompt: prompt.clone(), options: Vec::new() };
             draft.speech = prompt;
             draft.plan = None;
@@ -309,7 +313,7 @@ pub(super) fn safety_decision(mut draft: Draft, context: &ParseContext<'_>) -> D
         }
         PolicyBand::Reject => {
             let reason = if risky { RejectReason::Unsafe } else { RejectReason::NoAction };
-            let mut rejected = reject(reason, legacy::with_catalog(context.catalog, speak_unknown));
+            let mut rejected = reject(reason, speak_unknown());
             rejected.confidence = draft.confidence;
             rejected.margin = draft.margin;
             rejected
@@ -340,14 +344,14 @@ pub(super) fn reject(reason: RejectReason, speech: String) -> Draft {
     }
 }
 
-fn invalid_plan(mut draft: Draft, reason: PlanInvalid, catalog: &'static crate::lang::Catalog) -> Draft {
+fn invalid_plan(mut draft: Draft, reason: PlanInvalid) -> Draft {
     draft.decision = match reason {
         PlanInvalid::MissingTarget => ParseDecision::Reject { reason: RejectReason::NoTarget },
         PlanInvalid::UnsafeTarget => ParseDecision::Reject { reason: RejectReason::Unsafe },
         PlanInvalid::Schema => ParseDecision::Error { code: "invalid_plan".into(), message: "Planner emitted an invalid plan".into() },
     };
     draft.plan = None;
-    draft.speech = legacy::with_catalog(catalog, speak_unknown);
+    draft.speech = speak_unknown();
     draft.commit.remember.clear();
     draft.commit.clear_pending = false;
     draft
@@ -393,7 +397,7 @@ fn execute_plan(
         })
     });
     let intents = plan.intents();
-    let speech = legacy::with_catalog(context.catalog, || speak(&intents, context.settings.personality, false, Some(context.home)));
+    let speech = speak(&intents, context.settings.personality, false, Some(context.home));
     Draft {
         decision: ParseDecision::Execute,
         confidence: plan.confidence,

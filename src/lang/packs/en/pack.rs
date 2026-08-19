@@ -1,75 +1,12 @@
-use super::groups::{Chat, Cues, Fixtures, GroupClarify, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
-use super::morphology::PackMorphology;
-use super::speech::Speech;
-use super::LangId;
+use crate::lang::groups::{Chat, Cues, Fixtures, GroupClarify, Household, LanguagePack, Maps, Nouns, NumberStyle, Talk};
+use crate::lang::morphology::PackMorphology;
+use crate::lang::LangId;
 
-use super::en::VERBS;
-
-const SPEECH: Speech = Speech {
-    unknown: "I did not match that. Try: turn on the living room light.",
-    need_on: "What should I turn on?",
-    need_off: "What should I turn off?",
-    need_which: "Tell me which device you mean.",
-    correction: "Noted. I will treat the last sentence as a misread.",
-    clarify: "Do you mean {names}?",
-    clarify_or: " or ",
-    and_join: " and ",
-    group_on: "{names} are on.",
-    group_off: "{names} are off.",
-    turn_on: "{target} is on.",
-    turn_on_scene: "Started {target}.",
-    turn_off: "{target} is off.",
-    toggle: "{target} is toggled.",
-    light_set: "{target} is at {n} percent.",
-    light_color: "{target} is {color}.",
-    climate_set: "{noun} {target} is at {n} degrees.",
-    heat_noun: "Heat",
-    cool_noun: "AC",
-    get_temp: "Temperature {loc}.",
-    get_state: "Checking {target}.",
-    media_pause: "Playback is paused.",
-    media_play: "Playback is back on.",
-    media_next: "Next track.",
-    media_previous: "Previous track.",
-    media_mute: "Muted.",
-    media_unmute: "Unmuted.",
-    media_volume: "Volume is set.",
-    media_search: "Starting music.",
-    media_transfer: "Moving music.",
-    media_favorite: "Track favorited.",
-    fan_set: "Fan is at {n} percent.",
-    vacuum_start: "{target} is vacuuming.",
-    vacuum_dock: "{target} is heading to the dock.",
-    vacuum_default: "The vacuum",
-    timer_start: "Timer is running.",
-    timer_cancel: "Timer is off.",
-    timer_pause: "Timer is paused.",
-    list_add: "Added to the list.",
-    done: "Done: {name}.",
-    light_suffix: " light",
-    area_light: "the light {loc}",
-    loc_in: "in the {room}",
-    loc_in_der: "in the {room}",
-    loc_home: "in the home",
-    or_home: "the device",
-    room_names: &[("kuche", "kitchen"), ("kueche", "kitchen"), ("wohnung", "home")],
-    loc_der_rooms: &[],
-    personality: &[
-        ("butler", "Very well. "),
-        ("locker", "Got it. "),
-        ("fuersorglich", "Doing that now. "),
-        ("party", "Let's go! "),
-        ("grantig", "Fine. "),
-        ("sarkastisch", "What a surprise, another command. "),
-        ("pirat", "Aye. "),
-        ("hippie", "All good. "),
-        ("gollum", "Yes, my precious. "),
-    ],
-    confirm: "Should I really do that?",
-};
+use super::speech::SPEECH;
+use super::verbs::VERBS;
 
 pub const PACK: LanguagePack = LanguagePack {
-    id: LangId::En,
+    id: LangId::new("en"),
     verbs: VERBS,
     talk: Talk {
         fillers: &[

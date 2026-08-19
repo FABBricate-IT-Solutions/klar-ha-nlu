@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - sta svetlo dnevna
 query_area/status::status_licht_badezimmer:
-- sta svetlo kupatilomaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - sta svetlo dnevnafamess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - sta dnevna i dnevnafamess
 query_area/status::temperatur_wohnung:
-- sta grejanje wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - sta grejanje dnevna

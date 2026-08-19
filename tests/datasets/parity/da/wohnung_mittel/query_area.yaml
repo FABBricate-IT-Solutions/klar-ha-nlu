@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - hvad lys stue
 query_area/status::status_licht_badezimmer:
-- hvad lys badmaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - hvad lys alrumess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - hvad stue og alrumess
 query_area/status::temperatur_wohnung:
-- hvad varme wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - hvad varme stue

@@ -139,6 +139,11 @@ fn is_clarify_candidate(candidate: &IntentCandidate) -> bool {
     candidate.policy.contains("clarify") || candidate.evidence.iter().any(|item| item.value == "clarify")
 }
 
+fn session_power_replay(fragment: &IntentCandidate) -> bool {
+    fragment.policy.starts_with("session_")
+        && fragment.plan.steps.iter().all(|step| matches!(step.intent.name.as_str(), "HassTurnOn" | "HassTurnOff" | "HassToggle"))
+}
+
 fn keep_fragment(fragment: &IntentCandidate, home: &HomeGraph) -> bool {
     if !usable_fragment(fragment) {
         return false;
@@ -196,7 +201,7 @@ fn combine_entry(
 ) -> Option<BeamEntry> {
     if fragment.plan.steps.is_empty()
         || (!current.choices.is_empty()
-            && (fragment.policy.contains("fallback") || fragment.policy.contains("leftover") || fragment.policy.starts_with("session_")))
+            && (fragment.policy.contains("fallback") || fragment.policy.contains("leftover") || session_power_replay(fragment)))
     {
         return None;
     }
@@ -356,7 +361,16 @@ fn binding_score(intents: &[Intent], binding: &BindingAnalysis) -> f64 {
         }
         return if matches!(
             binding.policy.policy.as_str(),
-            "laundry_switch" | "all_lights" | "preferred_area_command" | "area_command" | "floor_command" | "query_area" | "multi_area"
+            "laundry_switch"
+                | "all_lights"
+                | "preferred_area_command"
+                | "area_command"
+                | "floor_command"
+                | "query_area"
+                | "multi_area"
+                | "session_areas"
+                | "session_climate_cover"
+                | "session_entities"
         ) {
             0.90
         } else {
@@ -382,7 +396,7 @@ fn add_target_evidence(evidence: &mut Vec<Evidence>, intent: &Intent, binding: &
         ) {
             ("policy_expansion", 0.82)
         } else {
-            ("legacy_resolver_binding", 0.74)
+            ("resolver_binding", 0.74)
         };
         evidence.push(Evidence {
             kind: if target.contains('.') {

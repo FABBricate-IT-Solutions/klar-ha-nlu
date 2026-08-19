@@ -16,6 +16,7 @@ pub struct LastTurn {
     pub area: Option<String>,
     pub name: String,
     pub domain: Option<String>,
+    pub turn: u32,
 }
 
 #[derive(Debug, Clone)]
@@ -47,32 +48,6 @@ pub enum PendingInteraction {
     Confirm(ConfirmState),
 }
 
-#[cfg(debug_assertions)]
-#[derive(Debug, PartialEq)]
-pub(crate) struct SessionParity {
-    last: Vec<LastParity>,
-    pending: Option<PendingParity>,
-    wrong_log: Vec<String>,
-    briefing: bool,
-    preferred_area: Option<String>,
-}
-
-#[cfg(debug_assertions)]
-#[derive(Debug, PartialEq)]
-struct LastParity {
-    entity: Option<String>,
-    area: Option<String>,
-    name: String,
-    domain: Option<String>,
-}
-
-#[cfg(debug_assertions)]
-#[derive(Debug, PartialEq)]
-enum PendingParity {
-    Clarify(Vec<String>, Intent),
-    Confirm(String, IntentPlan, String),
-}
-
 #[derive(Debug, Clone)]
 pub struct Session {
     pub id: String,
@@ -84,6 +59,7 @@ pub struct Session {
     pub last_execute: Vec<Intent>,
     pub last_heard: Option<LastHeard>,
     pub pending_teach: Option<(String, String)>,
+    last_turn_id: u32,
     last_used: Instant,
 }
 
@@ -105,8 +81,13 @@ impl Session {
             last_execute: Vec::new(),
             last_heard: None,
             pending_teach: None,
+            last_turn_id: 0,
             last_used: Instant::now(),
         }
+    }
+
+    pub fn begin_remember_batch(&mut self) {
+        self.last_turn_id = self.last_turn_id.wrapping_add(1);
     }
 
     pub fn last_entities(&self) -> impl Iterator<Item = &str> {
@@ -156,7 +137,7 @@ impl Session {
         if let Some(id) = &entity {
             self.last.retain(|turn| turn.entity.as_deref() != Some(id.as_str()));
         }
-        self.last.insert(0, LastTurn { entity, area, name: intent.name.clone(), domain });
+        self.last.insert(0, LastTurn { entity, area, name: intent.name.clone(), domain, turn: self.last_turn_id });
         self.last.truncate(LAST_KEEP);
     }
 
@@ -208,42 +189,6 @@ impl Session {
         self.wrong_log.push(self.id.clone());
         if self.wrong_log.len() > WRONG_LOG_KEEP {
             self.wrong_log.drain(..self.wrong_log.len() - WRONG_LOG_KEEP);
-        }
-    }
-
-    #[cfg(debug_assertions)]
-    pub(crate) fn parity_snapshot(&self) -> SessionParity {
-        let clarify_template = self.pending_clarify().map(|state| &state.template);
-        let last = self
-            .last
-            .iter()
-            .filter(|turn| {
-                clarify_template.is_none_or(|template| {
-                    turn.name != template.name
-                        || turn.entity.as_deref() != template.slot("entity_id")
-                        || turn.area.as_deref() != template.slot("area")
-                })
-            })
-            .map(|turn| LastParity {
-                entity: turn.entity.clone(),
-                area: turn.area.clone(),
-                name: turn.name.clone(),
-                domain: turn.domain.clone(),
-            })
-            .collect();
-        let pending = match self.pending.as_ref() {
-            Some(PendingInteraction::Clarify(state)) => Some(PendingParity::Clarify(state.options.clone(), state.template.clone())),
-            Some(PendingInteraction::Confirm(state)) => {
-                Some(PendingParity::Confirm(state.candidate_id.clone(), state.plan.clone(), state.prompt.clone()))
-            }
-            None => None,
-        };
-        SessionParity {
-            last,
-            pending,
-            wrong_log: self.wrong_log.clone(),
-            briefing: self.briefing,
-            preferred_area: self.preferred_area.clone(),
         }
     }
 }

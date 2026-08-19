@@ -15,6 +15,20 @@ _FAILED = {
     "de": "Das hat nicht geklappt.",
     "en": "That did not work.",
 }
+_FAILED_HINT = {
+    "media_unavailable": {
+        "de": "Der Player ist gerade nicht erreichbar.",
+        "en": "That player is not available.",
+    },
+    "mass_target_unavailable": {
+        "de": "Der Musik-Player ist gerade nicht erreichbar.",
+        "en": "The music player is not available.",
+    },
+    "entity_not_exposed": {
+        "de": "Dieses Gerät ist für Assist nicht freigegeben.",
+        "en": "That device is not exposed to Assist.",
+    },
+}
 _PARTIAL = {
     "de": "Ein Schritt ist fehlgeschlagen.",
     "en": "One step failed.",
@@ -47,7 +61,8 @@ async def execute_plan(
         speech = " ".join([*spoken, extra]).strip()
     else:
         outcome = "error"
-        speech = _FAILED.get(pack, _FAILED["en"])
+        hint = next((step.get("error") for step in steps if step.get("error")), None)
+        speech = (_FAILED_HINT.get(str(hint)) or {}).get(pack) or _FAILED.get(pack, _FAILED["en"])
     return validate_execute_result({"outcome": outcome, "speech": speech, "steps": steps})
 
 
