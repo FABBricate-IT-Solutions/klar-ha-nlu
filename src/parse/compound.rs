@@ -294,15 +294,8 @@ fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
     !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
 }
 
-/// Room-level light bind. Computed once; `area_slots` and clarify both use it.
-///
-/// Apartment rule: `light.{area}` is a room group only when its name is the
-/// room, `{room}licht` / `{room}light`, or a generic room light. A named
-/// fixture that reuses that id (Schlafzimmer → Hue Kugel) is `OccupiedId` —
-/// room commands target every light in the area and do not ask. Compound
-/// "Schlafzimmerlicht" still binds that fixture via `pick_compound_light`.
-/// Homes without `light.{area}` and several fixtures clarify on singular
-/// "the light".
+/// Room-level light bind. `light.{area}` is a room group when named as the room
+/// or a generic light; a named fixture on that id is `OccupiedId`.
 pub(crate) enum LightAim {
     RoomGroup(String),
     OccupiedId,
