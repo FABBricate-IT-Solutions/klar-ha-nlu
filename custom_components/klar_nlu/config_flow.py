@@ -48,6 +48,8 @@ from .languages import LANGUAGE_NAMES
 
 
 def _language_options() -> list[dict[str, str]]:
+    # HA SelectSelector requires value+label on every dict option.
+    # Missing labels make the options flow return HTTP 400.
     packs = [
         {"value": code, "label": f"{LANGUAGE_NAMES.get(code, code)} ({code})"}
         for code in SUPPORTED_LANGUAGES
