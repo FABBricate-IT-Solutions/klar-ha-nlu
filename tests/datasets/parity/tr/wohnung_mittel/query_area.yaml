@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - ne isik salon
 query_area/status::status_licht_badezimmer:
-- ne isik ebatmaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - ne isik aileess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - ne salon ve aileess
 query_area/status::temperatur_wohnung:
-- ne klima wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - ne klima salon

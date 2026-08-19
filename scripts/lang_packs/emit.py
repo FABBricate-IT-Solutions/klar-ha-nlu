@@ -37,6 +37,23 @@ def rust_list(values: list[str], indent: str = "        ") -> str:
     return f"&[\n{inner},\n{indent}]"
 
 
+def rust_str_slice(values: list[str], indent: str = "        ") -> str:
+    if not values:
+        return "&[]"
+    rendered = ", ".join(rust_str(item) for item in values)
+    if len(rendered) < 72:
+        return f"&[{rendered}]"
+    inner = ",\n".join(f"{indent}    {rust_str(item)}" for item in values)
+    return f"&[\n{inner},\n{indent}]"
+
+
+def rust_personality(pairs: list[tuple[str, list[str]]], indent: str = "    ") -> str:
+    if not pairs:
+        return "&[]"
+    inner = ",\n".join(f"{indent}    ({rust_str(key)}, {rust_str_slice(variants, indent + '    ')})" for key, variants in pairs)
+    return f"&[\n{inner},\n{indent}]"
+
+
 def rust_pairs(pairs: list[tuple[str, str]], indent: str = "        ") -> str:
     folded = []
     seen: set[str] = set()
@@ -102,7 +119,7 @@ def unique_verbs(verbs: list[tuple[str, str]]) -> list[tuple[str, str]]:
 def speech_rs(lang: dict) -> str:
     s = lang["speech"]
     rooms = rust_pairs(lang.get("room_names", []), "    ")
-    pers = rust_pairs(lang.get("personality", []), "    ")
+    pers = rust_personality(lang.get("personality", []), "    ")
     der = rust_list(lang.get("loc_der_rooms", []), "    ")
     return f"""{RUST_BANNER}use crate::lang::speech::Speech;
 

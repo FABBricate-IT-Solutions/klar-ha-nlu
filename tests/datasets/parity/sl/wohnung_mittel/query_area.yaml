@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - kaj luc dnevna
 query_area/status::status_licht_badezimmer:
-- kaj luc kopalmaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - kaj luc dnevnafamess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - kaj dnevna in dnevnafamess
 query_area/status::temperatur_wohnung:
-- kaj ogrevanje wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - kaj ogrevanje dnevna

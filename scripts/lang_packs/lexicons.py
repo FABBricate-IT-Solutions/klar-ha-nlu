@@ -9,6 +9,7 @@ from lang_packs.lexicons_script import script
 from lang_packs.lexicons_slavic import slavic
 from lang_packs.lexicons_west import west
 from lang_packs.speech_tmpl import chat, speech
+from lang_packs.voices import triples
 
 BUILTINS = [
     {
@@ -96,11 +97,11 @@ ALL_CORES = [
             scenes=["film", "cinema"],
         ),
         speech(
-            "Je n'ai pas compris. Essaie: allume la lumiere du salon.",
+            "Je n'ai pas compris. Dis-moi par exemple quelle lumiere allumer.",
             "Que dois-je allumer?",
             "Que dois-je eteindre?",
             "Dis-moi quel appareil tu veux.",
-            "Note. Je traite la derniere phrase comme une erreur.",
+            "D'accord, j'oublie la derniere phrase.",
             "Tu veux dire {names}?",
             " ou ",
             " et ",
@@ -109,21 +110,21 @@ ALL_CORES = [
             "{target} est allume.",
             "{target} est lance.",
             "{target} est eteint.",
-            "{target} est inverse.",
+            "{target} bascule.",
             "{target} est a {n} pour cent.",
             "{target} est {color}.",
             "{noun} {target} est a {n} degres.",
             "Chauffage",
             "Climatisation",
-            "Temperature {loc}.",
-            "Je verifie {target}.",
+            "La temperature {loc}.",
+            "Je regarde {target}.",
             "Lecture en pause.",
             "Lecture reprise.",
             "Piste suivante.",
             "Piste precedente.",
             "Son coupe.",
             "Son reactive.",
-            "Volume regle.",
+            "Le volume est regle.",
             "Musique lancee.",
             "Musique deplacee.",
             "Titre ajoute.",
@@ -206,7 +207,17 @@ ALL_CORES = [
             ]
         ),
         [("allume la lumiere salon", "HassTurnOn"), ("eteins la lumiere cuisine", "HassTurnOff")],
-        personality=["Tres bien. ", "C'est note. ", "Je m'en occupe. ", "C'est parti! ", "Bon. ", "Encore un ordre. ", "Aye. ", "Cool. ", "Oui, mon precieux. "],
+        personality=triples(
+            ("Tres bien. ", "Avec plaisir. ", ""),
+            ("C'est bon. ", "Carre. ", ""),
+            ("Je m'en occupe. ", "Tout va bien. ", ""),
+            ("C'est parti. ", "Super. ", ""),
+            ("Bon. ", "S'il le faut. ", ""),
+            ("Evidemment. ", "Quelle surprise. ", ""),
+            ("Aye. ", "Capitaine. ", ""),
+            ("Cool. ", "Tranquille. ", ""),
+            ("Oui. ", "Oui, mon precieux. ", ""),
+        ),
         scene_synonyms=[("cinema", "film")],
         extra_verbs=[("next", "Next"), ("suivant", "Next")],
     ),

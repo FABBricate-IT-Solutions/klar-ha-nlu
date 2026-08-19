@@ -65,7 +65,7 @@ Die Auswahl liegt in dieser Integration, nicht in der Klar-App, und überlebt ei
 | `hippie` | entspannt, weich |
 | `gollum` | knisternd, verständlich |
 
-Mit LLM-Refine steckt die Stimme im Satz — nicht in einem Stempel wie „Sehr wohl“. Ohne Refine bleibt eine kurze Formel als Fallback (`Sehr wohl.`, `Aye.`, …).
+Mit LLM-Refine steckt die Stimme im Satz — nicht in einem Stempel wie „Sehr wohl“. Ohne Refine rotiert eine kurze gesprochene Variante (manchmal gar keine Formel). Der Fallback ist kein fester Stempel. Refine folgt der Sprache der Input-Zeile, nicht stillschweigend Deutsch.
 
 ## LLM-Verfeinerung
 

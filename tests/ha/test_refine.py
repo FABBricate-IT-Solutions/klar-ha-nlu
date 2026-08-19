@@ -52,6 +52,8 @@ class RefineTests(unittest.TestCase):
         self.assertIn("Klebe nicht jedes Mal dieselbe Eröffnung davor.", prompt)
         self.assertNotIn("Formel: Sehr wohl.", prompt)
         self.assertNotIn("Hänge immer an", prompt)
+        self.assertNotIn("besorgt", prompt)
+        self.assertNotIn("soweit gemeldet", prompt)
         self.assertIn("Ein oder zwei Sätze.", prompt)
 
     def test_each_personality_has_its_own_voice(self) -> None:
@@ -160,38 +162,50 @@ class RefineTests(unittest.TestCase):
         self.assertEqual(set(refine._PERSONALITY), set(const.PERSONALITIES))
         for pack in ("de", "en"):
             seen_prompts: set[str] = set()
-            seen_cues: set[str] = set()
             for name in const.PERSONALITIES:
                 prompt = refine.refine_prompt(pack, name, None)
                 spoken = speech.style("Licht ist an.", name, pack)
                 self.assertNotIn(prompt, seen_prompts)
                 seen_prompts.add(prompt)
+                variants = list((speech._locale(pack).get("personality") or {}).get(name) or [""])
+                expected = {f"{prefix}Licht ist an." for prefix in variants}
+                expected.add("Licht ist an.")
                 if name == "default":
                     self.assertEqual(spoken, "Licht ist an.")
                     continue
-                cue = spoken[: -len("Licht ist an.")].strip()
-                self.assertTrue(cue, name)
-                self.assertNotIn(cue, seen_cues)
-                seen_cues.add(cue)
+                self.assertTrue(variants, name)
+                self.assertIn(spoken, expected, name)
         butler = refine.refine_prompt("de", const.resolve_personality("butler"), None)
         grantig = refine.refine_prompt("de", const.resolve_personality("grantig"), None)
         self.assertIn("Butler", butler)
         self.assertNotIn("grantig", butler)
         self.assertIn("grantig", grantig)
         self.assertNotIn("Butler", grantig)
-        self.assertEqual(
-            speech.style("Licht ist an.", "butler", "de"),
-            "Sehr wohl. Licht ist an.",
-        )
+        spoken = speech.style("Licht ist an.", "butler", "de")
+        variants = set((speech._locale("de").get("personality") or {}).get("butler") or [])
+        self.assertTrue(variants, "butler variants")
+        self.assertIn(spoken, {f"{prefix}Licht ist an." for prefix in variants})
 
     def test_successful_refine_keeps_natural_line_without_restamping_cue(self) -> None:
         source = "Wohnzimmer Licht ist an."
         natural = "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet."
         self.assertEqual(refine.accept_refined(source, natural), natural)
-        self.assertEqual(
-            speech.style(source, "butler", "de"),
-            "Sehr wohl. Wohnzimmer Licht ist an.",
-        )
+        spoken = speech.style(source, "butler", "de")
+        variants = set((speech._locale("de").get("personality") or {}).get("butler") or [])
+        self.assertIn(spoken, {f"{prefix}{source}" for prefix in variants})
+
+    def test_other_packs_do_not_use_german_wrapper(self) -> None:
+        for pack in ("fr", "nl", "ja"):
+            prompt = refine.refine_prompt(pack, "butler", None)
+            self.assertNotIn("Stimme:", prompt, pack)
+            self.assertNotIn("Klebe nicht jedes Mal", prompt, pack)
+            self.assertIn("same language", prompt.lower(), pack)
+            self.assertIn("input line", prompt.lower(), pack)
+
+    def test_accept_refined_rejects_bureaucratic_stamps(self) -> None:
+        self.assertIsNone(refine.accept_refined("Licht ist an.", "Zur Kenntnis genommen. Licht ist an."))
+        self.assertIsNone(refine.accept_refined("Licht ist an.", "Das ist besorgt."))
+        self.assertIsNone(refine.accept_refined("Licht ist an.", "soweit gemeldet"))
 
     def test_no_homeassistant_runtime_falls_back_to_none(self) -> None:
         out = asyncio.run(

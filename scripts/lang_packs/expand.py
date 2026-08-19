@@ -9,18 +9,7 @@ that locale's lexicon actually lists them. de-CH/de-AT may keep German.
 from __future__ import annotations
 
 from lang_packs.extras import pack_extras
-
-PERSONALITY_KEYS = (
-    "butler",
-    "locker",
-    "fuersorglich",
-    "party",
-    "grantig",
-    "sarkastisch",
-    "pirat",
-    "hippie",
-    "gollum",
-)
+from lang_packs.voices import normalize_personality
 
 ROOMS = (
     ("wohnzimmer", "living"),
@@ -149,7 +138,7 @@ def expand(core: dict) -> dict:
         "speech": speech,
         "room_names": [(canon, native) for native, canon in rooms[:3]],
         "loc_der_rooms": [r[0] for r in rooms[:2]],
-        "personality": list(zip(PERSONALITY_KEYS, core.get("personality", [" "] * 9))),
+        "personality": normalize_personality(core.get("personality")),
         "talk": {
             "fillers": unique(w["fillers"]),
             "action_keep": unique(on[:2] + off[:2] + opn[:1] + close[:1]),

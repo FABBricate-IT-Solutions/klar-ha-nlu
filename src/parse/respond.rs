@@ -1,6 +1,11 @@
 use crate::lang::catalog;
 use crate::parse::normalize::compact;
 use crate::types::{HomeGraph, Intent, Personality};
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+use std::sync::atomic::{AtomicU64, Ordering};
+
+static WRAP_TICK: AtomicU64 = AtomicU64::new(0);
 
 fn speech() -> &'static crate::lang::Speech {
     catalog().speech()
@@ -292,9 +297,28 @@ fn wrap(personality: Personality, body: &str) -> String {
         Personality::Pirat => "pirat",
         Personality::Hippie => "hippie",
         Personality::Gollum => "gollum",
-        Personality::Default => "",
+        Personality::Default => return body.to_string(),
     };
-    format!("{}{body}", speech().personality_prefix(key))
+    let prefixes = speech().personality_prefixes(key);
+    if prefixes.is_empty() {
+        return body.to_string();
+    }
+    let prefix = prefixes[pick_variant(body, prefixes.len())];
+    if prefix.is_empty() {
+        return body.to_string();
+    }
+    format!("{prefix}{body}")
+}
+
+fn pick_variant(body: &str, n: usize) -> usize {
+    if n <= 1 {
+        return 0;
+    }
+    let tick = WRAP_TICK.fetch_add(1, Ordering::Relaxed);
+    let mut hasher = DefaultHasher::new();
+    body.hash(&mut hasher);
+    tick.hash(&mut hasher);
+    (hasher.finish() as usize) % n
 }
 
 #[cfg(test)]
@@ -326,7 +350,10 @@ mod tests {
         let kugel = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer");
         assert_eq!(speak(&[kugel], Personality::Default, false, None), "Schlafzimmerlicht ist an.");
         let butler = speak(&[Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer")], Personality::Butler, false, None);
-        assert_eq!(butler, "Sehr wohl. Schlafzimmerlicht ist an.");
+        let body = "Schlafzimmerlicht ist an.";
+        let prefixes = crate::lang::catalog().speech().personality_prefixes("butler");
+        assert!(!prefixes.is_empty(), "butler must have spoken variants");
+        assert!(prefixes.iter().any(|prefix| butler == format!("{prefix}{body}")), "{butler} not in {prefixes:?}");
     }
 
     #[test]

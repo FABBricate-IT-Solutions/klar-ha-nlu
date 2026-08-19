@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from lang_packs.speech_tmpl import chat, speech
+from lang_packs.voices import empty_personality
 
 NUMBER_VALUES = list(range(0, 21)) + [30, 40, 50, 60, 70, 80, 90, 100]
 
@@ -28,7 +29,7 @@ def C(code, native, variants, w, speech_d, chat_d, rooms, colors, numbers, smoke
         "colors": colors,
         "numbers": numbers,
         "smoke": smoke,
-        "personality": extra.get("personality", ["", "", "", "", "", "", "", "", ""]),
+        "personality": extra.get("personality", empty_personality()),
     }
     core.update({k: v for k, v in extra.items() if k not in ("mod", "script", "personality")})
     return core
@@ -110,58 +111,78 @@ def euro_chat(hello, thanks, who, story, news, intro, nudge, done):
     )
 
 
-def sp(unknown, on, off, which, confirm, and_join=" ", or_join=" / ", heat="", cool="", light=""):
+def _spoken(spoken: dict, key: str, default: str) -> str:
+    value = spoken.get(key)
+    return default if value is None else value
+
+
+def sp(
+    unknown,
+    on,
+    off,
+    which,
+    confirm,
+    and_join=" ",
+    or_join=" / ",
+    heat="",
+    cool="",
+    light="",
+    correction=None,
+    spoken=None,
+):
+    spoken = spoken or {}
     heat = heat or on
     cool = cool or off
     lamp = light or on
+    body = lambda key, default: _spoken(spoken, key, default)
     return speech(
-        unknown,
-        on,
-        off,
-        which,
-        confirm,
-        "{names}?",
+        body("unknown", unknown),
+        body("need_on", on),
+        body("need_off", off),
+        body("need_which", which),
+        body("correction", correction if correction is not None else confirm),
+        body("clarify", "{names}?"),
         or_join,
         and_join,
-        "{names}.",
-        "{names}.",
-        "{target}.",
-        "{target}.",
-        "{target}.",
-        "{target}.",
-        "{target} {n}%",
-        "{target} {color}",
-        "{noun} {target} {n}",
+        body("group_on", "{names}."),
+        body("group_off", "{names}."),
+        body("turn_on", "{target}."),
+        body("turn_on_scene", "{target}."),
+        body("turn_off", "{target}."),
+        body("toggle", "{target}."),
+        body("light_set", "{target} {n}%"),
+        body("light_color", "{target} {color}"),
+        body("climate_set", "{noun} {target} {n}"),
         heat,
         cool,
-        "{loc}",
-        "{target}",
-        on,
-        on,
-        on,
-        off,
-        off,
-        on,
-        "{n}",
-        on,
-        on,
-        on,
-        "{n}",
-        "{target}",
-        "{target}",
-        on,
-        on,
-        off,
-        off,
-        on,
-        "{name}",
+        body("get_temp", "{loc}"),
+        body("get_state", "{target}"),
+        body("media_pause", on),
+        body("media_play", on),
+        body("media_next", on),
+        body("media_previous", off),
+        body("media_mute", off),
+        body("media_unmute", on),
+        body("media_volume", "{n}"),
+        body("media_search", on),
+        body("media_transfer", on),
+        body("media_favorite", on),
+        body("fan_set", "{n}"),
+        body("vacuum_start", "{target}"),
+        body("vacuum_dock", "{target}"),
+        body("vacuum_default", on),
+        body("timer_start", on),
+        body("timer_cancel", off),
+        body("timer_pause", off),
+        body("list_add", on),
+        body("done", "{name}"),
         f" {lamp}" if lamp else "",
         f"{lamp} {{loc}}" if lamp else "{loc}",
         "{room}",
         "{room}",
         on,
         on,
-        confirm,
+        body("confirm", confirm),
     )
 
 
@@ -210,6 +231,10 @@ def pack(
     smoke=None,
     and_join=" ",
     or_join=" / ",
+    personality=None,
+    correction=None,
+    need_which=None,
+    spoken=None,
 ):
     words = w(
         on=on,
@@ -247,13 +272,15 @@ def pack(
             unknown,
             need_on,
             need_off,
-            need_on,
+            need_which or need_on,
             confirm,
             and_join=and_join,
             or_join=or_join,
             heat=climate[0],
             cool=climate[-1],
             light=light0,
+            correction=correction,
+            spoken=spoken,
         ),
         euro_chat([on0], [confirm], [on0], [on0], [off0], unknown, confirm, confirm),
         living_kitchen(living, kitchen),
@@ -262,4 +289,5 @@ def pack(
         smoke or [(f"{on0} {light0} {living}", "HassTurnOn"), (f"{off0} {light0} {kitchen}", "HassTurnOff")],
         script=script,
         extra_verbs=extra_verbs or [],
+        personality=personality if personality is not None else empty_personality(),
     )
