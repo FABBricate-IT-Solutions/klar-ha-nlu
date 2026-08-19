@@ -266,7 +266,7 @@ pub(crate) fn is_garage_cover(tokens: &[String]) -> bool {
 }
 
 fn has_media_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, catalog().media_nouns())
+    catalog().any(tokens, catalog().media_nouns()) || tokens.iter().any(|token| matches!(token.as_str(), "wiedergabe" | "playback"))
 }
 
 fn has_cover_noun(tokens: &[String]) -> bool {
