@@ -35,8 +35,6 @@ _ASSETS = {
     "amd64": "klar-linux-x86_64.tar.gz",
     "aarch64": "klar-linux-aarch64.tar.gz",
     "arm64": "klar-linux-aarch64.tar.gz",
-    "armv7l": "klar-linux-armv7.tar.gz",
-    "armv7": "klar-linux-armv7.tar.gz",
 }
 
 _READY_TRIES = 30

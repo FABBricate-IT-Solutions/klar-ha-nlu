@@ -76,7 +76,7 @@ docker run --rm --network host \
   ghcr.io/fabbricate-it-solutions/klar-nlu:2026.8.30
 ```
 
-Integration URL: `http://127.0.0.1:10520`. Images also exist per arch (`klar-nlu-amd64`, `klar-nlu-aarch64`, `klar-nlu-armv7`). RC images: tag `staging`.
+Integration URL: `http://127.0.0.1:10520`. Images also exist per arch (`klar-nlu-amd64`, `klar-nlu-aarch64`). RC images: tag `staging`.
 
 Manual install: copy `custom_components/klar_nlu` to `config/custom_components/klar_nlu`, then restart.
 
@@ -143,7 +143,7 @@ Do not run `scripts/lang_packs/generate.py` in pre-commit. See [CONTRIBUTING.md]
 
 Changelogs come from [git-cliff](https://git-cliff.org/) and [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, …). See [CHANGELOG.md](CHANGELOG.md).
 
-Every merge to `main` bumps the [Home Assistant CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), writes the changelog, and tags. The Build workflow then attaches linux-x86_64, linux-aarch64, and linux-armv7 tarballs to the GitHub Release. **Actions → Release → Run workflow** remains for a manual override. A manual `git tag 2026.8.0 && git push origin 2026.8.0` still works.
+Every merge to `main` bumps the [Home Assistant CalVer](https://developers.home-assistant.io/docs/versioning/) (`YYYY.M.PATCH`), writes the changelog, and tags. The Build workflow then attaches linux-x86_64 and linux-aarch64 tarballs to the GitHub Release. **Actions → Release → Run workflow** remains for a manual override. A manual `git tag 2026.8.0 && git push origin 2026.8.0` still works.
 
 Dependabot opens weekly PRs for crates and Actions; `cargo-audit` and `cargo-deny` run on every change.
 

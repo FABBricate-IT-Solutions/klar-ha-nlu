@@ -42,10 +42,6 @@ jobs:
             name: linux-aarch64
             ha_arch: aarch64
             platform: linux/arm64
-          - target: armv7-unknown-linux-gnueabihf
-            name: linux-armv7
-            ha_arch: armv7
-            platform: linux/arm/v7
     steps:
       - uses: actions/checkout@v7
         with:
@@ -184,7 +180,6 @@ jobs:
           src=(
             "${GHCR}-amd64:${version}"
             "${GHCR}-aarch64:${version}"
-            "${GHCR}-armv7:${version}"
           )
           docker buildx imagetools create -t "${GHCR}:${version}" "${src[@]}"
           if [[ "${extra_edge:-}" == "true" ]]; then
