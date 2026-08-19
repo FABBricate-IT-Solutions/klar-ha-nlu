@@ -33,6 +33,7 @@ def _load(name: str, rel: str):
 
 _load("klar_nlu.languages", "languages.py")
 const = _load("klar_nlu.const", "const.py")
+voices = _load("refine_voices", "refine_voices.py")
 refine = _load("klar_refine", "refine.py")
 speech = _load("klar_speech", "speech.py")
 
@@ -46,15 +47,41 @@ class RefineTests(unittest.TestCase):
         self.assertIn("2 Lichter sind an, 3 Lichter sind aus.", prompt)
         self.assertIn("21,5 °C", prompt)
         self.assertIn("Keine neuen Zahlen", prompt)
-        self.assertIn("Butler", prompt)
         self.assertIn("ein oder zwei Sätze", prompt)
-        self.assertIn("Keine feste Eröffnungsformel", prompt)
-        self.assertIn("Klebe nicht jedes Mal dieselbe Eröffnung davor.", prompt)
+        self.assertIn("Ein oder zwei Sätze.", prompt)
+        self.assertIn("Offene Fragen", prompt)
+        self.assertIn("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage.", prompt)
         self.assertNotIn("Formel: Sehr wohl.", prompt)
         self.assertNotIn("Hänge immer an", prompt)
         self.assertNotIn("besorgt", prompt)
         self.assertNotIn("soweit gemeldet", prompt)
-        self.assertIn("Ein oder zwei Sätze.", prompt)
+        self.assertNotIn("Butler", prompt)
+
+    def test_empty_extra_uses_builtin_personality_voice(self) -> None:
+        prompt = refine.refine_prompt("de", "butler", None)
+        self.assertIn("Butler", prompt)
+        self.assertIn("Klebe nicht jedes Mal dieselbe Eröffnung davor.", prompt)
+        self.assertIn("Status", prompt)
+
+    def test_stored_prompt_replaces_builtin_voice(self) -> None:
+        prompt = refine.refine_prompt("de", "butler", "Stimme: Jarvis.\nBeispiele:\nX → Y")
+        self.assertIn("Keine Home-Assistant-Werkzeuge", prompt)
+        self.assertIn("Jarvis", prompt)
+        self.assertNotIn("Butler", prompt)
+
+    def test_personality_change_swaps_stored_prompt(self) -> None:
+        butler = voices.editable_prompt("butler", "de")
+        jarvis = voices.editable_prompt("jarvis", "de")
+        self.assertIn("Butler", butler)
+        self.assertIn("Jarvis", jarvis)
+        self.assertIn("21,5 °C", butler)
+        self.assertIn("Schlafzimmerlicht ist an.", butler)
+        swapped = voices.resolve_stored_prompt("jarvis", "butler", butler, "de")
+        self.assertEqual(swapped, jarvis)
+        kept = voices.resolve_stored_prompt("butler", "butler", "mein stil", "de")
+        self.assertEqual(kept, "mein stil")
+        filled = voices.resolve_stored_prompt("grantig", "grantig", "", "de")
+        self.assertEqual(filled, voices.editable_prompt("grantig", "de"))
 
     def test_each_personality_has_its_own_voice(self) -> None:
         flavor = {
@@ -68,6 +95,7 @@ class RefineTests(unittest.TestCase):
             "pirat": "piratenhaft",
             "hippie": "entspannt",
             "gollum": "gollumartig",
+            "jarvis": "Jarvis",
         }
         seen: set[str] = set()
         for name, marker in flavor.items():
@@ -83,9 +111,13 @@ class RefineTests(unittest.TestCase):
         self.assertIn("Do not call Home Assistant tools", prompt)
         self.assertIn("casual", prompt)
         self.assertIn("Voice:", prompt)
+        self.assertIn("open questions", prompt.lower())
         self.assertIn("Do not stamp the same opening every time.", prompt)
         self.assertIn("all set", prompt)
         self.assertNotIn("Additional style instruction", prompt)
+
+    def test_nlu_home_turn_removed_because_every_reply_refines(self) -> None:
+        self.assertFalse(hasattr(refine, "nlu_home_turn"))
 
     def test_input_wraps_speech_so_queries_are_not_answered(self) -> None:
         wrapped = refine.refine_input("Temperatur im Schlafzimmer.", "de")
@@ -114,6 +146,10 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an..."))
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"))
         self.assertEqual(
+            refine.accept_refined("Meinst du Küche oder Wohnzimmer?", "Küche oder Wohnzimmer, Sir?"),
+            "Küche oder Wohnzimmer, Sir?",
+        )
+        self.assertEqual(
             refine.accept_refined(
                 "Wohnzimmer Licht ist an.",
                 "Das Licht im Wohnzimmer ist an. Ich habe es für Sie eingeschaltet.",
@@ -126,21 +162,22 @@ class RefineTests(unittest.TestCase):
         )
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an. " + ("x" * 400)))
 
-    def test_should_refine_home_status_and_control(self) -> None:
+    def test_should_refine_any_spoken_reply(self) -> None:
         self.assertTrue(
-            refine.should_refine(True, "conversation.llm", "Licht ist an.", True)
+            refine.should_refine(True, "conversation.llm", "Licht ist an.")
         )
         self.assertTrue(
-            refine.should_refine(True, "conversation.llm", "Im Wohnzimmer sind es 21,5 °C.", True)
+            refine.should_refine(True, "conversation.llm", "Im Wohnzimmer sind es 21,5 °C.")
         )
+        self.assertTrue(refine.should_refine(True, "conversation.llm", "Hallo"))
+        self.assertTrue(refine.should_refine(True, "conversation.llm", "Die Nachrichten."))
         self.assertFalse(
-            refine.should_refine(False, "conversation.llm", "Licht ist an.", True)
+            refine.should_refine(False, "conversation.llm", "Licht ist an.")
         )
-        self.assertFalse(refine.should_refine(True, None, "Licht ist an.", True))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", "", True))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", "Hallo", False))
-        self.assertFalse(refine.should_refine(True, "conversation.llm", "News", False))
+        self.assertFalse(refine.should_refine(True, None, "Licht ist an."))
+        self.assertFalse(refine.should_refine(True, "conversation.llm", ""))
         self.assertFalse(hasattr(refine, "_TIMEOUT"))
+        self.assertFalse(hasattr(refine, "nlu_home_turn"))
 
     def test_extra_body_disables_thinking_for_ha_openai_client(self) -> None:
         self.assertEqual(

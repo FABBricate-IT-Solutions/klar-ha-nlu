@@ -39,6 +39,16 @@ class FallbackTests(unittest.TestCase):
         self.assertIn("Sei kurz.", prompt)
         self.assertIn("keine Home-Assistant-Werkzeuge", prompt)
 
+    def test_personality_leads_open_chat_system_prompt(self) -> None:
+        prompt = fallback.with_personality(
+            "Du antwortest nur im Gespräch.",
+            "Stimme: Jarvis.\nBeispiele:\nX → Y",
+        )
+        self.assertTrue(prompt.startswith("Stimme: Jarvis."))
+        self.assertIn("nur im Gespräch", prompt)
+        self.assertEqual(fallback.with_personality("", "Stimme: Butler."), "Stimme: Butler.")
+        self.assertEqual(fallback.with_personality("Nur reden.", None), "Nur reden.")
+
     def test_control_agent_never_used_as_fallback(self) -> None:
         self.assertTrue(fallback.can_use_fallback_agent(False, False))
         self.assertFalse(fallback.can_use_fallback_agent(True, False))

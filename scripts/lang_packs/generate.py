@@ -127,7 +127,7 @@ def refine_shot_rows(bundle: dict) -> dict[str, str]:
             (
                 f"{on} → {variants[0]}{on}",
                 f"{off} → {off}",
-                f"{temp} → {variants[2]}{temp}" if variants[2] else f"{temp} → {temp}",
+                f"{temp} → {(variants[0] if not variants[2] else variants[2])}{temp}",
             )
         )
     return rows

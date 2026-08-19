@@ -16,6 +16,7 @@ PERSONALITY_KEYS = (
     "pirat",
     "hippie",
     "gollum",
+    "jarvis",
 )
 
 # Flavor lives in the sentence. One of the three variants may be "" (body only).
@@ -130,6 +131,15 @@ VOICES = {
         "en": ["Yes. ", "Yes, my precious. ", ""],
         "fr": ["Oui. ", "Oui, mon précieux. ", ""],
     },
+    "jarvis": {
+        "role": "precise house assistant, terse, polite, slightly dry",
+        "do": "sir sparingly, confirm switch and status",
+        "dont": "Marvel quotes, same opener every time",
+        "pattern": ["of course sir", "right away", "body only"],
+        "de": ["Natürlich, Sir. ", "Sofort. ", ""],
+        "en": ["Of course, sir. ", "Right away. ", ""],
+        "fr": ["Bien sûr, monsieur. ", "Aussitôt. ", ""],
+    },
 }
 
 # Bodies every locale must speak. unknown is never a command.
@@ -209,9 +219,14 @@ def empty_personality() -> list[list[str]]:
 
 
 def triples(*rows: object) -> list[list[str]]:
-    if len(rows) != len(PERSONALITY_KEYS):
-        raise ValueError(f"personality needs {len(PERSONALITY_KEYS)} rows")
-    return [normalize_variants(row) for row in rows]
+    normalized = [normalize_variants(row) for row in rows]
+    if len(normalized) > len(PERSONALITY_KEYS):
+        raise ValueError(f"personality needs at most {len(PERSONALITY_KEYS)} rows")
+    while len(normalized) < len(PERSONALITY_KEYS):
+        key = PERSONALITY_KEYS[len(normalized)]
+        fallback = VOICES.get(key) or {}
+        normalized.append(list(fallback.get("en") or ["", "", ""]))
+    return normalized
 
 
 def spoken_home(

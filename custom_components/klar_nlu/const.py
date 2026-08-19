@@ -37,6 +37,7 @@ PERSONALITIES = (
     "pirat",
     "hippie",
     "gollum",
+    "jarvis",
 )
 
 
