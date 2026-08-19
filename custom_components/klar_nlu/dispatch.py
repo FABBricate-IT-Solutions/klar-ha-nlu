@@ -10,7 +10,7 @@ from typing import Any
 
 from homeassistant.components.conversation import ConversationInput
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import area_registry, entity_registry, intent
+from homeassistant.helpers import entity_registry, intent
 
 from .intents import (
     ENTITY_SERVICES,
@@ -20,6 +20,7 @@ from .intents import (
     area_label,
     item_slots,
     list_slots,
+    resolve_area,
     timer_slots,
 )
 from .speech import from_handled, media_state_speech, queue_speech
@@ -95,6 +96,8 @@ async def handle_intent(
     if name in _SERVICE_ONLY:
         if not entity_id:
             return _fail("missing_entity")
+        return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
+    if entity_id and (name in ENTITY_SERVICES or name == "HassLightSet"):
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
     if entity_id:
         if not exposed(entity_id):
@@ -184,11 +187,7 @@ async def climate_query(
 def climate_states_in_area(hass: HomeAssistant, area_key: str) -> list[Any]:
     if not area_key:
         return []
-    areas = area_registry.async_get(hass)
-    area = areas.async_get_area(area_key)
-    if area is None:
-        folded = area_key.casefold()
-        area = next((item for item in areas.async_list_areas() if str(item.name).casefold() == folded), None)
+    area = resolve_area(hass, area_key)
     if area is None:
         return []
     registry = entity_registry.async_get(hass)

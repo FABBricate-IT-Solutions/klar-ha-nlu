@@ -38,6 +38,64 @@ pub fn fold_umlaut(s: &str) -> String {
     fold_latin(s)
 }
 
+/// Home Assistant slugify strips marks (`ü`→`u`). Klar's pack fold uses digraphs (`ü`→`ue`).
+pub fn fold_marks(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    for c in s.chars() {
+        match c {
+            'ä' | 'Ä' | 'à' | 'á' | 'â' | 'ã' | 'å' | 'ā' | 'ă' => out.push('a'),
+            'ö' | 'Ö' | 'ò' | 'ó' | 'ô' | 'õ' | 'ø' | 'ō' | 'ő' => out.push('o'),
+            'ü' | 'Ü' | 'ù' | 'ú' | 'û' | 'ū' | 'ű' => out.push('u'),
+            'ß' => out.push_str("ss"),
+            'ç' | 'č' | 'ć' => out.push('c'),
+            'è' | 'é' | 'ê' | 'ë' | 'ē' | 'ė' | 'ę' => out.push('e'),
+            'ì' | 'í' | 'î' | 'ï' | 'ī' | 'į' | 'ı' => out.push('i'),
+            'ñ' | 'ń' | 'ň' => out.push('n'),
+            'ý' | 'ÿ' => out.push('y'),
+            'ž' | 'ź' | 'ż' => out.push('z'),
+            'š' | 'ś' | 'ş' | 'Ş' => out.push('s'),
+            'ł' => out.push('l'),
+            'đ' => out.push('d'),
+            'æ' => out.push('a'),
+            'œ' => out.push('o'),
+            'ğ' | 'Ğ' => out.push('g'),
+            'ț' | 'Ț' => out.push('t'),
+            'ș' | 'Ș' => out.push('s'),
+            other => out.extend(other.to_lowercase()),
+        }
+    }
+    out
+}
+
+/// Equal when one side used HA's `ü`→`u` slug and the other Klar's `ü`→`ue` fold.
+pub fn umlaut_eq(a: &str, b: &str) -> bool {
+    if a == b {
+        return true;
+    }
+    let a: Vec<char> = a.chars().collect();
+    let b: Vec<char> = b.chars().collect();
+    let (mut i, mut j) = (0usize, 0usize);
+    while i < a.len() && j < b.len() {
+        if a[i] != b[j] {
+            return false;
+        }
+        if matches!(a[i], 'a' | 'o' | 'u') {
+            let a_e = a.get(i + 1) == Some(&'e');
+            let b_e = b.get(j + 1) == Some(&'e');
+            if a_e != b_e {
+                if a_e {
+                    i += 1;
+                } else {
+                    j += 1;
+                }
+            }
+        }
+        i += 1;
+        j += 1;
+    }
+    i == a.len() && j == b.len()
+}
+
 pub fn tokenize(text: &str) -> Vec<String> {
     let folded = fold_latin(text);
     if folded.chars().any(is_script_unit) {
@@ -200,5 +258,19 @@ mod tests {
     #[test]
     fn latin_tokenize_is_unchanged_when_text_has_no_cjk() {
         assert_eq!(tokenize("allume la lumiere salon"), vec!["allume", "la", "lumiere", "salon"]);
+    }
+
+    #[test]
+    fn umlaut_eq_matches_ha_slug_and_klar_fold() {
+        use super::{fold_marks, umlaut_eq};
+        assert_eq!(fold_marks("Küche"), "kuche");
+        assert_eq!(fold_marks("Büro"), "buro");
+        assert_eq!(fold_marks("Gästezimmer"), "gastezimmer");
+        assert!(umlaut_eq("kueche", "kuche"));
+        assert!(umlaut_eq("kuche", "kueche"));
+        assert!(umlaut_eq("buero", "buro"));
+        assert!(umlaut_eq("gaestezimmer", "gastezimmer"));
+        assert!(!umlaut_eq("kueche", "wohnzimmer"));
+        assert!(!umlaut_eq("quelle", "kuche"));
     }
 }
