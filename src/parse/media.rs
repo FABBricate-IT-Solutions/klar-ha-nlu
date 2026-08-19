@@ -12,8 +12,8 @@ use crate::types::{EntityRec, HomeGraph, Intent};
 
 #[path = "media_words.rs"]
 mod media_words;
-use media_words::*;
 pub(crate) use media_words::now_playing_status;
+use media_words::*;
 
 pub(crate) fn media_clause(
     tokens: &[String],
