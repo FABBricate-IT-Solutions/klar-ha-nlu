@@ -6,6 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.35](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.34...2026.8.35) - 2026-08-18
+
+
+
+### Bug Fixes
+
+- options flow 400 on Configure (#108)([1e75383](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1e753831d7c7d0e7a3409ffa9c2463affb794026))
+
+## [2026.8.34](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.33...2026.8.34) - 2026-08-18
+
+
+
+### Documentation
+
+- bump rust from 1.85-bookworm to 1.97-bookworm (#104)([4d5bf80](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4d5bf804d2bc7685d84fcc815cb7fa6837237cc5))
+
+
+### Other
+
+- bump uuid from 1.24.0 to 1.24.1 in the rust-patch group (#105)([828d1cb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/828d1cb462e21644b63ab3779cc88a3fe41399c1))
+
+## [2026.8.33](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.32...2026.8.33) - 2026-08-18
+
+
+
+### Other
+
+- Merge pull request #103 from FABBricate-IT-Solutions/release/promote-staging([4e5b3c6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4e5b3c682ee7f2dd3ca39a15ef0146dc6bfd58ce))
+
+- main 2026.8.32 into staging for the stable cut([d572987](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d57298791c7c8fc72ca9af38d24b5355af106ab0))
+
+## [2026.8.32](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.31...2026.8.32) - 2026-08-18
+
+
+
+### Features
+
+- add a Stable/Staging switch on main([bb4f8f1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bb4f8f13117b79d1477bc288cc85fadcd5fd9c19))
+
+
+### Other
+
+- Merge pull request #97 from FABBricate-IT-Solutions/feat/simple-channel-switch-main([b106172](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1061725570f205f4df3ff1b32baeff5faf5b089))
+
 ## [2026.8.31](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.30...2026.8.31) - 2026-08-17
 
 
