@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.39](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.38...2026.8.39) - 2026-08-19
+
+
+
+### Other
+
+- Merge pull request #116 from FABBricate-IT-Solutions/release/promote-personality([a5c0a13](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a5c0a13ec1076449ec8df6c2532b9b7f4a18ba57))
+
+- Merge remote-tracking branch 'origin/main' into release/promote-personality([21125cc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/21125cc97e6e4926ae17e44f4915cc82705401e2))
+
 ## [2026.8.38](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.37...2026.8.38) - 2026-08-19
 
 
