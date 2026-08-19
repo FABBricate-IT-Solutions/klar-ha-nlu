@@ -50,7 +50,7 @@ from .fallback import (
     news_prompt,
 )
 from .intents import home_intents, registered_intent_names
-from .rag_tools import act_payload, parse_tool_reply, rag_prompt
+from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
 from .refine import async_refine_speech, should_refine
@@ -207,7 +207,11 @@ class KlarConversationEntity(ConversationEntity):
             fallback = await self._fallback(user_input, chat_log, pack, True, chat_only_prompt(pack, action), retrieval=retrieval)
             if fallback is not None:
                 tooled = await self._klar_tool_turn(user_input, chat_log, pack, fallback)
-                return tooled if tooled is not None else fallback
+                if tooled is not None:
+                    return tooled
+                if leaks_klar_tools(_speech_from_result(fallback)):
+                    return self._spoken(user_input, chat_log, pack, speech or _cue(_DONE, pack, "OK"), conversation_id, False)
+                return fallback
         if (
             not skips_llm_fallback(hit)
             and not clarify
@@ -218,7 +222,11 @@ class KlarConversationEntity(ConversationEntity):
             fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
             if fallback is not None:
                 tooled = await self._klar_tool_turn(user_input, chat_log, pack, fallback)
-                return tooled if tooled is not None else fallback
+                if tooled is not None:
+                    return tooled
+                if leaks_klar_tools(_speech_from_result(fallback)):
+                    return self._spoken(user_input, chat_log, pack, speech or _cue(_DONE, pack, "OK"), conversation_id, False)
+                return fallback
 
         if decision_type == "execute" and intents:
             names = {item.get("name") for item in intents}
