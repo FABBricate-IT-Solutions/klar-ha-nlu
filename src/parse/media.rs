@@ -37,7 +37,24 @@ pub(crate) fn media_clause(
     if transfer && intent.slot("source_player") == Some(target.entity_id.as_str()) {
         return Some(ClauseOut::Intents(Vec::new()));
     }
-    Some(ClauseOut::Intents(vec![intent.with("entity_id", &target.entity_id)]))
+    Some(ClauseOut::Intents(vec![bind_play_backend(intent, target).with("entity_id", &target.entity_id)]))
+}
+
+fn bind_play_backend(intent: Intent, target: &EntityRec) -> Intent {
+    if intent.name != "HassMediaSearchAndPlay" || !is_music_assistant_player(target) {
+        return intent;
+    }
+    let query = intent.slot("media_id").or_else(|| intent.slot("search_query")).unwrap_or_default();
+    if query.is_empty() {
+        return intent;
+    }
+    let mut rewritten = Intent::new("MassPlayMedia").with("media_id", query).with("search_query", query);
+    for slot in ["media_class", "media_type", "artist", "enqueue", "radio_mode"] {
+        if let Some(value) = intent.slot(slot) {
+            rewritten = rewritten.with(slot, value);
+        }
+    }
+    rewritten
 }
 
 fn status_intent(tokens: &[String]) -> Option<Intent> {
@@ -326,6 +343,10 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
     {
         return home.entities.iter().filter(|entity| eligible_media_player(entity, home)).collect();
     }
+    let mass: Vec<&EntityRec> = music.iter().copied().filter(|entity| is_music_assistant_player(entity)).collect();
+    if !mass.is_empty() {
+        return mass;
+    }
     music
 }
 
@@ -407,7 +428,11 @@ fn select_player<'a>(players: &[&'a EntityRec], session: &Session) -> Option<&'a
     if preferred.len() == 1 {
         return preferred.first().copied();
     }
-    session.last_entities().find_map(|id| players.iter().copied().find(|player| player.entity_id == id))
+    if let Some(entity) = session.last_entities().find_map(|id| players.iter().copied().find(|player| player.entity_id == id)) {
+        return Some(entity);
+    }
+    let mass: Vec<&EntityRec> = players.iter().copied().filter(|player| is_music_assistant_player(player)).collect();
+    (mass.len() == 1).then(|| mass[0])
 }
 
 fn has_volume_word(tokens: &[String]) -> bool {

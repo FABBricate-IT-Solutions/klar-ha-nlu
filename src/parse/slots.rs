@@ -285,7 +285,7 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
             }
         }
         Action::MediaPause => Intent::new("HassMediaPause"),
-        Action::MediaPlay => Intent::new("HassTurnOn").with("domain", "media_player"),
+        Action::MediaPlay => Intent::new("HassMediaUnpause"),
         Action::MediaNext => Intent::new("HassMediaNext"),
         Action::MediaMute => Intent::new("HassMediaPlayerMute"),
         Action::FanSpeed => Intent::new("HassFanSetSpeed"),
