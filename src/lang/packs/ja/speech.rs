@@ -60,6 +60,7 @@ pub(super) const SPEECH: Speech = Speech {
         ("pirat", &["Aye. ", "船長。 ", ""]),
         ("hippie", &["のんびり。 ", "ゆっくり。 ", ""]),
         ("gollum", &["はい。 ", "はい、宝物。 ", ""]),
+        ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
     confirm: "本当に実行しますか？",
 };

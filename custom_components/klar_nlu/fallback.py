@@ -54,6 +54,14 @@ def chat_only_prompt(pack: str, extra: str | None) -> str:
     return f"{extra}\n{only}" if extra else only
 
 
+def with_personality(base: str | None, voice: str | None) -> str:
+    voice = (voice or "").strip()
+    base = (base or "").strip()
+    if voice and base:
+        return f"{voice}\n\n{base}"
+    return voice or base
+
+
 def news_prompt(pack: str, headlines: list[str], extra: str | None) -> str:
     body = _NEWS.get(pack, _NEWS["de"])
     if headlines:

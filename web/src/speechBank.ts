@@ -68,6 +68,10 @@ const VOICES: Record<string, Record<string, Lines>> = {
     de: mix(DE_DEFAULT, ["Ja.", "Ja, mein Schatz.", "Mhm."], ["{name} ist erledigt.", "In {area}: {name}.", "Ja."]),
     en: mix(EN_DEFAULT, ["Yes.", "Yes, my precious.", "Yes."], ["{name} is done.", "In {area}: {name}.", "Yes."]),
   },
+  jarvis: {
+    de: mix(DE_DEFAULT, ["Natürlich, Sir.", "Sofort.", "Wie Sie wünschen."], ["{name} ist erledigt.", "In {area} ist {name} fertig.", "Auftrag erledigt."], ["Soll ich {name} ausführen, Sir?", "Eine Bestätigung zu {name} in {area}.", "Darf ich {name} anfassen?"]),
+    en: mix(EN_DEFAULT, ["Of course, sir.", "Right away.", "As you wish."], ["{name} is done.", "In {area}, {name} is done.", "Task complete."], ["Shall I proceed with {name}, sir?", "A confirmation for {name} in {area}.", "May I change {name}?"]),
+  },
 };
 
 const FALLBACK = VOICES.default;

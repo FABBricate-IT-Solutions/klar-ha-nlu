@@ -297,6 +297,7 @@ fn wrap(personality: Personality, body: &str) -> String {
         Personality::Pirat => "pirat",
         Personality::Hippie => "hippie",
         Personality::Gollum => "gollum",
+        Personality::Jarvis => "jarvis",
         Personality::Default => return body.to_string(),
     };
     let prefixes = speech().personality_prefixes(key);

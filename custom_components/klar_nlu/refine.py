@@ -24,9 +24,11 @@ except ImportError:  # stdlib tests load this module without a package
         return not controls_home
 
 try:
-    from .refine_voices import _PERSONALITY, _RULES, locale_shots
+    from .refine_voices import _PERSONALITY, _RULES, voice_block
+    from .speech import style
 except ImportError:  # stdlib tests load this module without a package
-    from refine_voices import _PERSONALITY, _RULES, locale_shots
+    from refine_voices import _PERSONALITY, _RULES, voice_block
+    from speech import style
 
 _LOGGER = logging.getLogger(__name__)
 _INTENT = re.compile(r"\bHass[A-Z][A-Za-z]+\b")
@@ -52,13 +54,28 @@ _THINKING_OFF = {"chat_template_kwargs": {"enable_thinking": False}}
 _MODEL_KEYS = ("chat_model", "model", "llm_model")
 
 
-def should_refine(
+def should_refine(enabled: bool, agent_id: str | None, speech: str) -> bool:
+    return bool(enabled and agent_id and speech.strip())
+
+
+async def async_finish_speech(
+    hass: HomeAssistant,
     enabled: bool,
     agent_id: str | None,
+    controls_home: bool,
     speech: str,
-    home: bool,
-) -> bool:
-    return bool(enabled and agent_id and speech.strip() and home)
+    context: Context,
+    language: str | None,
+    pack: str,
+    personality: str,
+    extra_prompt: str | None,
+) -> str:
+    if not should_refine(enabled, agent_id, speech):
+        return style(speech, personality, pack)
+    refined = await async_refine_speech(
+        hass, str(agent_id), controls_home, speech, context, language, pack, personality, extra_prompt
+    )
+    return refined or style(speech, personality, pack)
 
 
 _STAMP_BAN = (
@@ -79,43 +96,15 @@ _STAMP_BAN = (
 
 
 def refine_prompt(pack: str, personality: str, extra: str | None) -> str:
-    person = _PERSONALITY.get(personality) or _PERSONALITY["default"]
+    if personality not in _PERSONALITY:
+        personality = "default"
     custom = (extra or "").strip()
+    voice = custom or voice_block(pack, personality)
     if pack == "en":
-        voice, shots = person["en"]
-        prompt = (
-            f"{_RULES['en']}\n\nVoice: {voice.rstrip('.')}.\n"
-            f"Sound like this character. Vary the wording. "
-            f"Do not stamp the same opening every time.\n"
-            f"Examples:\n{shots}"
-        )
-        if custom:
-            prompt = f"{prompt}\nAdditional style instruction: {custom}"
-        return prompt
+        return f"{_RULES['en']}\n\n{voice}"
     if pack == "de":
-        voice, shots = person["de"]
-        prompt = (
-            f"{_RULES['de']}\n\nStimme: {voice.rstrip('.')}.\n"
-            f"Klinge wie diese Figur. Variiere die Formulierung. "
-            f"Klebe nicht jedes Mal dieselbe Eröffnung davor.\n"
-            f"Beispiele:\n{shots}"
-        )
-        if custom:
-            prompt = f"{prompt}\nZusätzliche Stil-Anweisung: {custom}"
-        return prompt
-    voice, _blank = person.get("meta") or person["en"]
-    shots = locale_shots(pack, personality) or _blank
-    prompt = (
-        f"{_RULES['meta']}\n\nVoice: {voice.rstrip('.')}.\n"
-        f"Output language = language of the input line. "
-        f"Sound like this character. Vary the wording. "
-        f"Do not stamp the same opening every time.\n"
-    )
-    if shots:
-        prompt = f"{prompt}Examples:\n{shots}\n"
-    if custom:
-        prompt = f"{prompt}Additional style instruction: {custom}"
-    return prompt
+        return f"{_RULES['de']}\n\n{voice}"
+    return f"{_RULES['meta']}\n\n{voice}"
 
 
 def refine_input(speech: str, pack: str) -> str:

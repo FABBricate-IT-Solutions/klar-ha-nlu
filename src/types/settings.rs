@@ -14,6 +14,7 @@ pub enum Personality {
     Pirat,
     Hippie,
     Gollum,
+    Jarvis,
 }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Default)]

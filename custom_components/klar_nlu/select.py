@@ -9,10 +9,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     CONF_PERSONALITY,
+    CONF_REFINE_PROMPT,
     DOMAIN,
     PERSONALITIES,
     resolve_personality,
 )
+from .refine_voices import editable_prompt, prompt_pack
 
 
 async def async_setup_entry(
@@ -52,7 +54,13 @@ class KlarPersonalitySelect(SelectEntity):
         personality = resolve_personality(option)
         if personality not in PERSONALITIES or personality == self.current_option:
             return
+        pack = prompt_pack(getattr(getattr(self.hass, "config", None), "language", None))
         self.hass.config_entries.async_update_entry(
-            self._entry, options={**self._entry.options, CONF_PERSONALITY: personality}
+            self._entry,
+            options={
+                **self._entry.options,
+                CONF_PERSONALITY: personality,
+                CONF_REFINE_PROMPT: editable_prompt(personality, pack),
+            },
         )
         self.async_write_ha_state()

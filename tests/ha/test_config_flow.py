@@ -99,6 +99,7 @@ def _load_config_flow() -> types.ModuleType:
         _load(f"{PACKAGE}.languages", "languages.py")
         _load(f"{PACKAGE}.const", "const.py")
         _load(f"{PACKAGE}.lang_select", "lang_select.py")
+        _load(f"{PACKAGE}.refine_voices", "refine_voices.py")
         return _load(f"{PACKAGE}.config_flow", "config_flow.py")
 
 
