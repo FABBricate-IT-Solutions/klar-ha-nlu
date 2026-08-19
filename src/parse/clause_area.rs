@@ -31,7 +31,7 @@ pub(crate) fn area_command(ctx: &Clause) -> Option<ClauseOut> {
     }
     if let Some(lamp) = pick_singular_lamp(ctx.tokens, ctx.home, &ctx.resolved.areas) {
         let force = !matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::GetState)
-            || catalog().any(ctx.raw, &catalog().command_hedges);
+            || catalog().any(ctx.raw, catalog().command_hedges());
         if force {
             let mut intents = vec![fill_intent(
                 ctx.action,

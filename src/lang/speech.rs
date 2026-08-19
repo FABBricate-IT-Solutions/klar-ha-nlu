@@ -49,13 +49,17 @@ pub struct Speech {
     pub or_home: &'static str,
     pub room_names: &'static [(&'static str, &'static str)],
     pub loc_der_rooms: &'static [&'static str],
-    pub personality: &'static [(&'static str, &'static str)],
+    pub personality: &'static [(&'static str, &'static [&'static str])],
     pub confirm: &'static str,
 }
 
 impl Speech {
+    pub fn personality_prefixes(self, name: &str) -> &'static [&'static str] {
+        self.personality.iter().find(|(key, _)| *key == name).map(|(_, prefixes)| *prefixes).unwrap_or(&[])
+    }
+
     pub fn personality_prefix(self, name: &str) -> &'static str {
-        self.personality.iter().find(|(key, _)| *key == name).map(|(_, prefix)| *prefix).unwrap_or("")
+        self.personality_prefixes(name).first().copied().unwrap_or("")
     }
 
     pub fn room_name(self, folded: &str) -> Option<&'static str> {

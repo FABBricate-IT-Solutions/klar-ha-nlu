@@ -6,7 +6,6 @@ mod decision;
 mod draft;
 mod evidence;
 mod household;
-mod legacy;
 mod pipeline;
 mod policy_route;
 mod ranking;

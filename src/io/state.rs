@@ -60,6 +60,10 @@ impl AppState {
         self.journal.append(turn_from_outcome(outcome, include_text, last_names, area));
     }
 
+    pub async fn catalog_for_settings(&self) -> &'static crate::lang::Catalog {
+        crate::lang::catalog_for(&self.settings.lock().await.languages)
+    }
+
     pub async fn apply_teach(&self, entity_id: &str, alias: &str) {
         if entity_id.split('.').count() != 2
             || alias.chars().count() < 2

@@ -112,7 +112,7 @@ pub fn apply_compound_light(home: &HomeGraph, tokens: &[String], light_areas: &[
     if !resolved.areas.contains(&area) {
         resolved.areas.push(area.clone());
     }
-    let named = tokens.iter().any(|t| catalog().named_device.contains(t.as_str()) && !is_light_noun(t));
+    let named = tokens.iter().any(|t| catalog().named_device().contains(t.as_str()) && !is_light_noun(t));
     if named {
         return;
     }
@@ -179,12 +179,12 @@ fn split_fuzzy_area_device(token: &str, prefixes: &[(String, String)]) -> Option
 fn compound_heads() -> Vec<&'static str> {
     let cat = catalog();
     let mut nouns: Vec<&'static str> = cat
-        .light_nouns
+        .light_nouns()
         .iter()
-        .chain(cat.light_singular.iter())
-        .chain(cat.climate_nouns.iter())
-        .chain(cat.fan_nouns.iter())
-        .chain(cat.cover_nouns.iter())
+        .chain(cat.light_singular().iter())
+        .chain(cat.climate_nouns().iter())
+        .chain(cat.fan_nouns().iter())
+        .chain(cat.cover_nouns().iter())
         .copied()
         .filter(|noun| noun.len() >= 4)
         .collect();
@@ -211,24 +211,24 @@ fn strip_fuge(rest: &str) -> &str {
 
 fn is_device_noun(token: &str) -> bool {
     let cat = catalog();
-    cat.light_nouns.contains(token)
-        || cat.light_singular.contains(token)
-        || cat.climate_nouns.contains(token)
-        || cat.fan_nouns.contains(token)
-        || cat.cover_nouns.contains(token)
-        || cat.media_nouns.contains(token)
-        || cat.named_device.contains(token)
-        || catalog().extra_device_nouns.contains(token)
+    cat.light_nouns().contains(token)
+        || cat.light_singular().contains(token)
+        || cat.climate_nouns().contains(token)
+        || cat.fan_nouns().contains(token)
+        || cat.cover_nouns().contains(token)
+        || cat.media_nouns().contains(token)
+        || cat.named_device().contains(token)
+        || catalog().extra_device_nouns().contains(token)
 }
 
 fn is_light_noun(token: &str) -> bool {
     let cat = catalog();
-    cat.light_nouns.contains(token) || cat.light_singular.contains(token) || token == "beleuchtung"
+    cat.light_nouns().contains(token) || cat.light_singular().contains(token) || token == "beleuchtung"
 }
 
 pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Option<String> {
-    let mentioned = tokens.iter().any(|t| catalog().scene_nouns.contains(t.as_str()) || catalog().script_words.contains(t.as_str()));
-    if !mentioned && catalog().any(tokens, &catalog().light_nouns) {
+    let mentioned = tokens.iter().any(|t| catalog().scene_nouns().contains(t.as_str()) || catalog().script_words().contains(t.as_str()));
+    if !mentioned && catalog().any(tokens, catalog().light_nouns()) {
         return None;
     }
     let mut hits: Vec<String> = home
@@ -239,7 +239,7 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
         .filter(|e| scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home)))
         .map(|e| e.entity_id.clone())
         .collect();
-    let named = mentioned || catalog().any(tokens, &catalog().scene_named);
+    let named = mentioned || catalog().any(tokens, catalog().scene_named());
     (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
 }
 
@@ -256,7 +256,7 @@ fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
     let parts: Vec<String> = fold_umlaut(name)
         .split_whitespace()
         .map(scene_token)
-        .filter(|p| p.len() > 3 && !catalog().weak_scene.contains(p.as_str()) && scene_distinctive(p, home))
+        .filter(|p| p.len() > 3 && !catalog().weak_scene().contains(p.as_str()) && scene_distinctive(p, home))
         .collect();
     if parts.is_empty() {
         return false;
@@ -283,7 +283,7 @@ fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
 }
 
 fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
-    if catalog().light_nouns.contains(part) || catalog().generic.contains(&part) {
+    if catalog().light_nouns().contains(part) || catalog().generic().contains(&part) {
         return false;
     }
     let folded = compact(part);
@@ -331,7 +331,7 @@ pub(crate) fn light_aim(home: &HomeGraph, area: &str, tokens: &[String]) -> Ligh
         return LightAim::Unique(id);
     }
     let cat = catalog();
-    let singular = cat.any(tokens, &cat.light_singular) && !cat.any(tokens, &cat.light_plural) && !cat.any(tokens, &cat.illuminate);
+    let singular = cat.any(tokens, cat.light_singular()) && !cat.any(tokens, cat.light_plural()) && !cat.any(tokens, cat.illuminate());
     if singular && area_light_count(home, area) > 1 {
         return LightAim::Clarify;
     }
@@ -362,23 +362,23 @@ pub(crate) fn query_keeps_entity(
         return true;
     }
     let cat = catalog();
-    if cat.any(tokens, &cat.named_device) {
+    if cat.any(tokens, cat.named_device()) {
         return true;
     }
-    if cat.any(tokens, &cat.climate_nouns) {
+    if cat.any(tokens, cat.climate_nouns()) {
         return false;
     }
-    if cat.any(tokens, &cat.media_nouns) || cat.any(tokens, &cat.outlet_words) {
+    if cat.any(tokens, cat.media_nouns()) || cat.any(tokens, cat.outlet_words()) {
         return true;
     }
     if room_status_only(tokens, home, resolved) {
         return false;
     }
     if !resolved.areas.is_empty()
-        && cat.any(tokens, &cat.light_nouns)
-        && !cat.any(tokens, &cat.ceiling)
-        && !cat.any(tokens, &cat.lamp_fixture)
-        && !cat.any(tokens, &cat.island)
+        && cat.any(tokens, cat.light_nouns())
+        && !cat.any(tokens, cat.ceiling())
+        && !cat.any(tokens, cat.lamp_fixture())
+        && !cat.any(tokens, cat.island())
     {
         return false;
     }
@@ -386,7 +386,7 @@ pub(crate) fn query_keeps_entity(
 }
 
 fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::parse::resolve::Resolved) -> bool {
-    if resolved.areas.is_empty() || !catalog().any(tokens, &catalog().status_words) {
+    if resolved.areas.is_empty() || !catalog().any(tokens, catalog().status_words()) {
         return false;
     }
     let cat = catalog();
@@ -397,7 +397,7 @@ fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::parse
             || cat.is_query_hint(token)
             || cat.is_question_word(token)
             || cat.is_question_start(token)
-            || catalog().status_words.contains(token.as_str())
+            || catalog().status_words().contains(token.as_str())
             || matches!(token.as_str(), "of" | "the")
             || rooms.contains(token)
     })
@@ -457,7 +457,7 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
         .filter(|e| !is_generic_room_light(e, home, catalog()))
         .filter(|e| {
             let blob = compact(&format!("{} {}", e.name, e.aliases.join(" ")));
-            catalog().named_device.iter().any(|n| blob.contains(n))
+            catalog().named_device().iter().any(|n| blob.contains(n))
         })
         .collect();
     if let Some(hit) = crate::home::policy::preferred_named(&named, catalog()) {

@@ -233,6 +233,49 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertFalse(spoken.ok)
         hass.services.async_call.assert_not_awaited()
 
+    async def test_search_and_play_on_mass_player_uses_music_assistant(self) -> None:
+        player = _State(
+            "media_player.wohnzimmer",
+            mass_player_type="player",
+            friendly_name="Wohnzimmer",
+        )
+        hass = _hass(player)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item(
+                "HassMediaSearchAndPlay",
+                entity_id=player.entity_id,
+                search_query="linkin park",
+            ),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        self.assertIn("Wiedergabe", spoken.speech or "")
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("music_assistant", "play_media"))
+        self.assertEqual(call.args[2]["media_id"], "linkin park")
+        dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_unpause_uses_media_play_service(self) -> None:
+        player = _State("media_player.wohnzimmer", "paused", friendly_name="Wohnzimmer")
+        hass = _hass(player)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassMediaUnpause", entity_id=player.entity_id),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        self.assertIn("spielt", spoken.speech or "")
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("media_player", "media_play"))
+        dispatch.intent.async_handle.assert_not_awaited()
+
     async def test_volume_uses_native_intent(self) -> None:
         player = _State("media_player.wohnzimmer", friendly_name="Wohnzimmer")
         hass = _hass(player)

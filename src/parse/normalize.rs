@@ -43,7 +43,16 @@ pub fn tokenize(text: &str) -> Vec<String> {
     if folded.chars().any(is_script_unit) {
         tokenize_script(&folded)
     } else {
-        folded.split(|c: char| !c.is_alphanumeric()).filter(|t| !t.is_empty()).map(|t| t.to_string()).collect()
+        folded
+            .split(|c: char| !c.is_alphanumeric() && c != '\'')
+            .filter(|token| !token.is_empty())
+            .map(|token| {
+                let token =
+                    if token.len() > 2 && (token.ends_with("'s") || token.ends_with("'S")) { &token[..token.len() - 2] } else { token };
+                token.replace('\'', "")
+            })
+            .filter(|token| !token.is_empty())
+            .collect()
     }
 }
 
@@ -165,11 +174,11 @@ pub fn inflected_eq(token: &str, label: &str) -> bool {
 
 pub(crate) fn is_time_unit(token: &str) -> bool {
     let cat = catalog();
-    cat.hours.contains(token) || cat.minutes.contains(token) || cat.seconds.contains(token)
+    cat.hours().contains(token) || cat.minutes().contains(token) || cat.seconds().contains(token)
 }
 
 pub(crate) fn article_one(token: &str) -> bool {
-    catalog().article_one.contains(token)
+    catalog().article_one().contains(token)
 }
 
 #[cfg(test)]

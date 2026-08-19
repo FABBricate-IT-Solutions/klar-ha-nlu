@@ -29,6 +29,10 @@ _LOGGER = logging.getLogger(__name__)
 # HA has no native intent for these Music Assistant / mute / relative-volume actions.
 _SERVICE_ONLY = {
     "HassSetVolumeRelative",
+    "HassMediaPause",
+    "HassMediaUnpause",
+    "HassMediaNext",
+    "HassMediaPrevious",
     "HassMediaPlayerMute",
     "HassMediaPlayerUnmute",
 }
@@ -67,10 +71,16 @@ async def handle_intent(
     if not name:
         return _fail("missing_intent")
     slots = item_slots(item)
+    entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
+        query = str(slots.get("media_id", {}).get("value") or slots.get("search_query", {}).get("value") or "")
+        if query:
+            slots = {**slots, "media_id": {"value": query}}
+            item = {**item, "name": "MassPlayMedia"}
+            return await run_mass(hass, "MassPlayMedia", slots, pack, item, exposed)
     if name in MASS_INTENTS:
         return await run_mass(hass, name, slots, pack, item, exposed)
     media_status = str(slots.get("media_status", {}).get("value") or "")
-    entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassGetState" and media_status:
         # Custom now-playing speech; HA has no media_status intent.
         state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
@@ -372,6 +382,22 @@ def clean_service_data(slots: dict[str, Any], names: list[str]) -> dict[str, Any
         if value not in (None, ""):
             data[name] = value
     return data
+
+
+def music_assistant_player(hass: HomeAssistant, entity_id: str) -> bool:
+    if not entity_id.startswith("media_player."):
+        return False
+    state = hass.states.get(entity_id)
+    attrs = getattr(state, "attributes", None) or {}
+    if isinstance(attrs, dict) and (
+        attrs.get("mass_player_type") or "music assistant" in str(attrs.get("source") or "").lower()
+    ):
+        return True
+    try:
+        entry = entity_registry.async_get(hass).async_get(entity_id)
+    except Exception:  # noqa: BLE001 — registry is a system boundary
+        return False
+    return bool(entry is not None and getattr(entry, "platform", None) == "music_assistant")
 
 
 def favorite_button(hass: HomeAssistant, player: str) -> str:

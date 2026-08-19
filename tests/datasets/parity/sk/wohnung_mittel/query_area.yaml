@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - co svetlo obyvacka
 query_area/status::status_licht_badezimmer:
-- co svetlo kupelmaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - co svetlo obyvackafamess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - co obyvacka a obyvackafamess
 query_area/status::temperatur_wohnung:
-- co kurenie wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - co kurenie obyvacka

@@ -1,5 +1,4 @@
-use super::groups::LanguagePack;
-use super::verbs::VerbKind;
+use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("an", VerbKind::On),
@@ -134,5 +133,3 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("pink", VerbKind::Color),
     ("prozent", VerbKind::Percent),
 ];
-
-pub const PACK: LanguagePack = super::de_pack::PACK;

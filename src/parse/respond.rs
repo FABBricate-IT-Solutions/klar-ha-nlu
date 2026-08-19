@@ -1,6 +1,11 @@
 use crate::lang::catalog;
 use crate::parse::normalize::compact;
 use crate::types::{HomeGraph, Intent, Personality};
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+use std::sync::atomic::{AtomicU64, Ordering};
+
+static WRAP_TICK: AtomicU64 = AtomicU64::new(0);
 
 fn speech() -> &'static crate::lang::Speech {
     catalog().speech()
@@ -154,9 +159,9 @@ fn device_label(name: &str, domain: &str) -> String {
     let pack = speech();
     let pretty = pretty_device(name);
     let folded = compact(&pretty);
-    let named = catalog().light_nouns.iter().any(|n| folded.contains(n))
-        || catalog().named_device.iter().any(|n| folded.contains(n))
-        || catalog().light_singular.iter().any(|n| folded.contains(n));
+    let named = catalog().light_nouns().iter().any(|n| folded.contains(n))
+        || catalog().named_device().iter().any(|n| folded.contains(n))
+        || catalog().light_singular().iter().any(|n| folded.contains(n));
     if domain == "light" && !named {
         format!("{pretty}{}", pack.light_suffix)
     } else {
@@ -194,7 +199,7 @@ fn domain_of(id: &str) -> &str {
 fn climate_noun(intent: &Intent) -> &'static str {
     let pack = speech();
     let id = intent.slot("entity_id").unwrap_or("");
-    let cool = catalog().climate_cool.iter().any(|w| id.contains(w)) && !id.contains("thermostat");
+    let cool = catalog().climate_cool().iter().any(|w| id.contains(w)) && !id.contains("thermostat");
     if cool {
         pack.cool_noun
     } else {
@@ -206,9 +211,9 @@ fn climate_named(target: &str, noun: &str) -> bool {
     let noun_folded = compact(noun);
     crate::parse::normalize::tokenize(target).into_iter().any(|folded| {
         folded == noun_folded
-            || catalog().climate_nouns.contains(folded.as_str())
-            || catalog().climate_cool.contains(folded.as_str())
-            || catalog().climate_heat.contains(folded.as_str())
+            || catalog().climate_nouns().contains(folded.as_str())
+            || catalog().climate_cool().contains(folded.as_str())
+            || catalog().climate_heat().contains(folded.as_str())
             || matches!(folded.as_str(), "heizung" | "heat" | "heater" | "thermostat" | "klima" | "klimaanlage" | "ac" | "aircon")
     })
 }
@@ -229,8 +234,8 @@ fn vacuum_name(where_: &str) -> String {
 fn pretty_device(raw: &str) -> String {
     let parts: Vec<&str> = raw.split_whitespace().filter(|p| !p.is_empty()).collect();
     let tail = parts.last().copied().unwrap_or("");
-    let light = catalog().light_nouns.contains(tail) || catalog().light_plural.contains(tail);
-    let all = parts.first().is_some_and(|p| catalog().all_words.contains(p));
+    let light = catalog().light_nouns().contains(tail) || catalog().light_plural().contains(tail);
+    let all = parts.first().is_some_and(|p| catalog().all_words().contains(p));
     if light && !all && parts.len() >= 2 {
         let head = parts[..parts.len() - 1].join("");
         return title_word(&format!("{head}{tail}"));
@@ -292,9 +297,28 @@ fn wrap(personality: Personality, body: &str) -> String {
         Personality::Pirat => "pirat",
         Personality::Hippie => "hippie",
         Personality::Gollum => "gollum",
-        Personality::Default => "",
+        Personality::Default => return body.to_string(),
     };
-    format!("{}{body}", speech().personality_prefix(key))
+    let prefixes = speech().personality_prefixes(key);
+    if prefixes.is_empty() {
+        return body.to_string();
+    }
+    let prefix = prefixes[pick_variant(body, prefixes.len())];
+    if prefix.is_empty() {
+        return body.to_string();
+    }
+    format!("{prefix}{body}")
+}
+
+fn pick_variant(body: &str, n: usize) -> usize {
+    if n <= 1 {
+        return 0;
+    }
+    let tick = WRAP_TICK.fetch_add(1, Ordering::Relaxed);
+    let mut hasher = DefaultHasher::new();
+    body.hash(&mut hasher);
+    tick.hash(&mut hasher);
+    (hasher.finish() as usize) % n
 }
 
 #[cfg(test)]
@@ -326,7 +350,10 @@ mod tests {
         let kugel = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer");
         assert_eq!(speak(&[kugel], Personality::Default, false, None), "Schlafzimmerlicht ist an.");
         let butler = speak(&[Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer")], Personality::Butler, false, None);
-        assert_eq!(butler, "Sehr wohl. Schlafzimmerlicht ist an.");
+        let body = "Schlafzimmerlicht ist an.";
+        let prefixes = crate::lang::catalog().speech().personality_prefixes("butler");
+        assert!(!prefixes.is_empty(), "butler must have spoken variants");
+        assert!(prefixes.iter().any(|prefix| butler == format!("{prefix}{body}")), "{butler} not in {prefixes:?}");
     }
 
     #[test]

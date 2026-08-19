@@ -117,7 +117,7 @@ python3 scripts/voice_suite/gen_family_de.py  # familienhaus_de aus family_home_
 - Natürliche Mundart (außer, lichte, Schlafzimmern, Wohn und Esszimmer) — neue Variante nach `scripts/gen_voice_suite.py`, nicht nur als Rust-Assert
 - Jede neue Variante in **Deutsch und Englisch** (Wohnung + Familienhaus)
 
-Eine Änderung an `src/lang/de.rs`, `src/lang/en.rs`, `src/lang/de_pack.rs` oder `src/lang/en_pack.rs` ohne Suite-Lauf in beiden Sprachen ist unvollständig. Die Listen sind die Tests.
+Eine Änderung an `src/lang/packs/de/` oder `src/lang/packs/en/` ohne Suite-Lauf in beiden Sprachen ist unvollständig. Die Listen sind die Tests.
 
 Bei Änderungen an `src/parse/action.rs`, `src/parse/resolve/`, `src/parse/slots.rs` oder `src/home/roles.rs` immer Wohnung und Familienhaus laufen lassen. Diese Module beeinflussen mehrere Domänen und Sprachen gleichzeitig.
 

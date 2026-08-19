@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - co swiatlo salon
 query_area/status::status_licht_badezimmer:
-- co swiatlo lazmaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - co swiatlo salonfamess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - co salon i salonfamess
 query_area/status::temperatur_wohnung:
-- co ogrzewanie wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - co ogrzewanie salon

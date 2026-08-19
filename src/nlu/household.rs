@@ -38,7 +38,7 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
 /// extra tokens means indoor climate, not the forecast entity.
 fn climate_overrides_weather(context: &ParseContext<'_>, tokens: &[String]) -> bool {
     let cat = context.catalog;
-    if !cat.any(tokens, &cat.climate_nouns) {
+    if !cat.any(tokens, cat.climate_nouns()) {
         return false;
     }
     let has_area = context.home.areas.iter().any(|area| {

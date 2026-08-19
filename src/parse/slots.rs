@@ -82,13 +82,13 @@ fn excepted_areas(tokens: &[String], home: &HomeGraph) -> HashSet<String> {
         return HashSet::new();
     };
     let cat = catalog();
-    if cat.any(&focus, &cat.named_device)
-        || cat.any(&focus, &cat.light_nouns)
-        || cat.any(&focus, &cat.island)
-        || cat.any(&focus, &cat.ceiling)
+    if cat.any(&focus, cat.named_device())
+        || cat.any(&focus, cat.light_nouns())
+        || cat.any(&focus, cat.island())
+        || cat.any(&focus, cat.ceiling())
         || mentions_lamp_fixture(&focus)
-        || cat.any(&focus, &cat.bedside)
-        || cat.any(&focus, &cat.pendant)
+        || cat.any(&focus, cat.bedside())
+        || cat.any(&focus, cat.pendant())
     {
         return HashSet::new();
     }
@@ -232,9 +232,9 @@ pub(crate) fn fill_list_intent(action: Action, tokens: &[String], target: Option
 }
 
 fn timer_unit(tokens: &[String]) -> &'static str {
-    if catalog().any(tokens, &catalog().hours) {
+    if catalog().any(tokens, catalog().hours()) {
         "hours"
-    } else if catalog().any(tokens, &catalog().seconds) {
+    } else if catalog().any(tokens, catalog().seconds()) {
         "seconds"
     } else {
         "minutes"
@@ -247,9 +247,9 @@ fn list_item(tokens: &[String], target: Option<&EntityRec>) -> Option<String> {
         .iter()
         .map(String::as_str)
         .filter(|token| {
-            !cat.list_skip.contains(token)
-                && !cat.list_nouns.contains(token)
-                && !cat.shopping_names.contains(token)
+            !cat.list_skip().contains(token)
+                && !cat.list_nouns().contains(token)
+                && !cat.shopping_names().contains(token)
                 && !target.is_some_and(|entity| target_label_token(token, entity))
         })
         .collect();
@@ -267,7 +267,7 @@ fn target_label_token(token: &str, entity: &EntityRec) -> bool {
         .chain(entity.tags.iter())
         .flat_map(|label| std::iter::once(compact(label)).chain(label.split(|character: char| !character.is_alphanumeric()).map(compact)))
         .filter(|label| !label.is_empty())
-        .any(|label| token == label || catalog().list_nouns.iter().any(|suffix| token == format!("{label}{}", compact(suffix))))
+        .any(|label| token == label || catalog().list_nouns().iter().any(|suffix| token == format!("{label}{}", compact(suffix))))
 }
 
 pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
@@ -278,14 +278,14 @@ pub(crate) fn intent_from_action(action: Action, tokens: &[String]) -> Intent {
         Action::SetLight => Intent::new("HassLightSet"),
         Action::SetTemp => Intent::new("HassClimateSetTemperature"),
         Action::GetState => {
-            if catalog().any(tokens, &catalog().temp_query) {
+            if catalog().any(tokens, catalog().temp_query()) {
                 Intent::new("HassClimateGetTemperature")
             } else {
                 Intent::new("HassGetState")
             }
         }
         Action::MediaPause => Intent::new("HassMediaPause"),
-        Action::MediaPlay => Intent::new("HassTurnOn").with("domain", "media_player"),
+        Action::MediaPlay => Intent::new("HassMediaUnpause"),
         Action::MediaNext => Intent::new("HassMediaNext"),
         Action::MediaMute => Intent::new("HassMediaPlayerMute"),
         Action::FanSpeed => Intent::new("HassFanSetSpeed"),
@@ -370,10 +370,10 @@ pub(crate) fn laundry_switch_clause(
     if domain != Some("switch") || !matches!(action, Action::On | Action::Off | Action::Toggle) {
         return None;
     }
-    if !catalog().any(tokens, &catalog().laundry_area) {
+    if !catalog().any(tokens, catalog().laundry_area()) {
         return None;
     }
-    if catalog().any(tokens, &catalog().laundry_machines) {
+    if catalog().any(tokens, catalog().laundry_machines()) {
         return None;
     }
     let areas = crate::home::policy::laundry_areas(home, catalog());
@@ -387,13 +387,13 @@ pub(crate) fn laundry_switch_clause(
     if switches.len() < 2 {
         return None;
     }
-    let plural = catalog().any(tokens, &catalog().switch_plural);
-    let start = catalog().any(tokens, &catalog().start_words);
+    let plural = catalog().any(tokens, catalog().switch_plural());
+    let start = catalog().any(tokens, catalog().start_words());
     let one = (tokens.iter().any(|t| t == "switch") && !plural) || start;
     if !one && !plural {
         return Some(ClauseOut::Clarify(switches, intent_from_action(action, tokens).with("area", area).with("domain", "switch")));
     }
-    let id = one.then(|| switches.iter().find(|id| catalog().laundry_machines.iter().any(|m| id.contains(m))).cloned()).flatten();
+    let id = one.then(|| switches.iter().find(|id| catalog().laundry_machines().iter().any(|m| id.contains(m))).cloned()).flatten();
     Some(ClauseOut::Intents(vec![fill_intent(action, tokens, number, id.as_deref(), Some(area), Some("switch"))]))
 }
 

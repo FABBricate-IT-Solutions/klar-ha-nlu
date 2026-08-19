@@ -1,9 +1,11 @@
 //! Validate external packs against the schema and the builtin they extend.
 
+use super::catalog::WordKey;
 use super::external::{ExternalPack, PACK_FORMAT};
 use super::locale::LocaleId;
 use super::Catalog;
 use crate::types::known_intent;
+use std::collections::HashSet;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidationIssue {
@@ -75,23 +77,23 @@ pub fn validate_pack(pack: &ExternalPack, base: Option<&Catalog>) -> ValidationR
     report
 }
 
-pub(super) fn set_field(path: &str) -> Option<fn(&mut Catalog) -> &mut std::collections::HashSet<&'static str>> {
+pub(super) fn set_field(path: &str) -> Option<fn(&mut Catalog) -> &mut HashSet<&'static str>> {
     Some(match path {
-        "talk.fillers" => |catalog| &mut catalog.fillers,
-        "talk.action_keep" => |catalog| &mut catalog.action_keep,
-        "talk.conjunctions" => |catalog| &mut catalog.conjunctions,
-        "talk.particles" => |catalog| &mut catalog.particles,
-        "talk.affirm" => |catalog| &mut catalog.affirm,
-        "nouns.light_nouns" => |catalog| &mut catalog.light_nouns,
-        "nouns.light_singular" => |catalog| &mut catalog.light_singular,
-        "nouns.light_plural" => |catalog| &mut catalog.light_plural,
-        "nouns.cover_nouns" => |catalog| &mut catalog.cover_nouns,
-        "nouns.climate_nouns" => |catalog| &mut catalog.climate_nouns,
-        "nouns.lock_nouns" => |catalog| &mut catalog.lock_nouns,
-        "nouns.scene_nouns" => |catalog| &mut catalog.scene_nouns,
-        "cues.on_words" => |catalog| &mut catalog.on_words,
-        "cues.off_words" => |catalog| &mut catalog.off_words,
-        "cues.extra_device_nouns" => |catalog| &mut catalog.extra_device_nouns,
+        "talk.fillers" => |catalog| catalog.words_mut(WordKey::Fillers),
+        "talk.action_keep" => |catalog| catalog.words_mut(WordKey::ActionKeep),
+        "talk.conjunctions" => |catalog| catalog.words_mut(WordKey::Conjunctions),
+        "talk.particles" => |catalog| catalog.words_mut(WordKey::Particles),
+        "talk.affirm" => |catalog| catalog.words_mut(WordKey::Affirm),
+        "nouns.light_nouns" => |catalog| catalog.words_mut(WordKey::LightNouns),
+        "nouns.light_singular" => |catalog| catalog.words_mut(WordKey::LightSingular),
+        "nouns.light_plural" => |catalog| catalog.words_mut(WordKey::LightPlural),
+        "nouns.cover_nouns" => |catalog| catalog.words_mut(WordKey::CoverNouns),
+        "nouns.climate_nouns" => |catalog| catalog.words_mut(WordKey::ClimateNouns),
+        "nouns.lock_nouns" => |catalog| catalog.words_mut(WordKey::LockNouns),
+        "nouns.scene_nouns" => |catalog| catalog.words_mut(WordKey::SceneNouns),
+        "cues.on_words" => |catalog| catalog.words_mut(WordKey::OnWords),
+        "cues.off_words" => |catalog| catalog.words_mut(WordKey::OffWords),
+        "cues.extra_device_nouns" => |catalog| catalog.words_mut(WordKey::ExtraDeviceNouns),
         _ => return None,
     })
 }

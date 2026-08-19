@@ -25,10 +25,6 @@ uuid = { version = "1", features = ["v4"] }
 serde_yaml = "0.9"
 tower-http = { version = "0.7.0", features = ["fs"] }
 
-[features]
-default = []
-disable-v1-parity = []
-
 [profile.test]
 opt-level = 1
 debug = "line-tables-only"

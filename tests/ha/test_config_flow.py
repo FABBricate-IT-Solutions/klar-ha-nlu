@@ -128,6 +128,7 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         codes = [item["value"] for item in options]
         self.assertEqual(codes[0], config_flow.LANGUAGE_SYSTEM)
         self.assertEqual(codes[1], config_flow.LANGUAGE_ALL)
+        self.assertTrue(all("label" in item and "value" in item for item in options))
         self.assertIn("de", codes)
         self.assertIn("en", codes)
         self.assertIn("fr", codes)

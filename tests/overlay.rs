@@ -74,12 +74,12 @@ fn user_set_delta_reaches_catalog_and_can_be_removed() {
         sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["kugelchen".into()], remove: vec![] })].into(),
     }));
     let catalog = catalog_for(&["de".into()]);
-    assert!(catalog.light_nouns.contains("kugelchen"));
+    assert!(catalog.light_nouns().contains("kugelchen"));
     install_user_overlay(Some(LanguageOverlay {
         sets: [("nouns.light_nouns".into(), SetDelta { add: vec![], remove: vec!["kugelchen".into()] })].into(),
     }));
     let catalog = catalog_for(&["de".into()]);
-    assert!(!catalog.light_nouns.contains("kugelchen"));
+    assert!(!catalog.light_nouns().contains("kugelchen"));
     reset_runtime_packs();
 }
 
@@ -91,10 +91,10 @@ fn preview_bind_does_not_change_installed_overlay() {
         LanguageOverlay { sets: [("nouns.light_nouns".into(), SetDelta { add: vec!["vorschauwort".into()], remove: vec![] })].into() };
     {
         let _guard = bind_preview_user(Some(proposed));
-        assert!(catalog_for(&["de".into()]).light_nouns.contains("vorschauwort"));
+        assert!(catalog_for(&["de".into()]).light_nouns().contains("vorschauwort"));
         assert!(installed_user_overlay().is_none());
     }
-    assert!(!catalog_for(&["de".into()]).light_nouns.contains("vorschauwort"));
+    assert!(!catalog_for(&["de".into()]).light_nouns().contains("vorschauwort"));
     reset_runtime_packs();
 }
 

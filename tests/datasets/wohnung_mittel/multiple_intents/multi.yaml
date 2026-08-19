@@ -11,6 +11,8 @@
   conditions:
     - {type: action, area: wohnzimmer, domain: light, state: 'on'}
     - type: action
+      area: wohnzimmer
+      domain: climate
       attributes:
         temperature: 23
   sentences:
@@ -23,6 +25,8 @@
     - {type: action, area: wohnzimmer, domain: light, state: 'on'}
     - {type: action, area: kuche, domain: light, state: 'on'}
     - type: action
+      area: wohnzimmer
+      domain: climate
       attributes:
         temperature: 23
   sentences:

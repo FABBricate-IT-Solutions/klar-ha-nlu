@@ -36,34 +36,6 @@ pub(crate) struct Clause<'a> {
 
 type PolicyFn = for<'policy> fn(&Clause<'policy>) -> Option<ClauseOut>;
 
-#[cfg(debug_assertions)]
-pub(crate) fn parse_clause(
-    tokens: &[String],
-    raw: &[String],
-    home: &HomeGraph,
-    session: &Session,
-    settings: &Settings,
-    light_areas: &[String],
-) -> ClauseOut {
-    parse_clause_candidates(tokens, raw, home, session, settings, light_areas)
-        .into_iter()
-        .next()
-        .map(|candidate| candidate.outcome)
-        .unwrap_or_else(|| ClauseOut::Intents(Vec::new()))
-}
-
-#[cfg(debug_assertions)]
-pub(crate) fn parse_clause_candidates(
-    tokens: &[String],
-    raw: &[String],
-    home: &HomeGraph,
-    session: &Session,
-    settings: &Settings,
-    light_areas: &[String],
-) -> Vec<ClauseCandidate> {
-    parse_clause_candidates_for_action(tokens, raw, home, session, settings, light_areas, None)
-}
-
 pub(crate) fn parse_clause_candidates_for_action(
     tokens: &[String],
     raw: &[String],
@@ -74,7 +46,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     forced_action: Option<Action>,
 ) -> Vec<ClauseCandidate> {
     let cat = catalog();
-    let free_text_payload = cat.any(tokens, &cat.list_nouns) || cat.any(tokens, &cat.media_nouns);
+    let free_text_payload = cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.media_nouns());
     if !free_text_payload && tokens.iter().any(|token| cat.is_protected_typo(token) && !known_target_token(token, home)) {
         return Vec::new();
     }
@@ -257,6 +229,9 @@ fn preferred_area_command(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn light_rooms_clarify(ctx: &Clause) -> Option<ClauseOut> {
+    if ctx.question || !ctx.resolved.areas.is_empty() {
+        return None;
+    }
     if !matches!(ctx.action, Action::On | Action::Off | Action::Toggle) {
         return None;
     }
@@ -288,7 +263,7 @@ fn fallback_temp(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn fallback_cover(ctx: &Clause) -> Option<ClauseOut> {
-    (matches!(ctx.action, Action::CoverClose | Action::CoverOpen) && catalog().any(ctx.tokens, &catalog().curtain_nouns)).then(|| {
+    (matches!(ctx.action, Action::CoverClose | Action::CoverOpen) && catalog().any(ctx.tokens, catalog().curtain_nouns())).then(|| {
         let area = fallback_cover_area(ctx.home);
         finish_intents(vec![fill_intent(ctx.action, ctx.tokens, ctx.number, None, area.as_deref(), Some("cover"))], ctx)
     })

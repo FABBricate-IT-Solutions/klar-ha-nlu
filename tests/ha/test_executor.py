@@ -118,6 +118,24 @@ class ExecutorTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(payload["steps"][0]["status"], "error")
         self.assertIn("did not work", payload["speech"])
 
+    async def test_media_failure_speaks_a_useful_reason(self) -> None:
+        with patch.object(
+            executor,
+            "handle_intent",
+            return_value=dispatch.IntentStepResult(False, error="media_unavailable"),
+        ):
+            payload = await executor.execute_plan(
+                SimpleNamespace(),
+                SimpleNamespace(text="x", context=object(), language="de"),
+                [_item("HassMediaSearchAndPlay", entity_id="media_player.e01", search_query="linkin park")],
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertEqual(payload["outcome"], "error")
+        self.assertIn("nicht erreichbar", payload["speech"])
+        self.assertNotEqual(payload["speech"], "Das hat nicht geklappt.")
+
     def test_confirm_payload_never_yields_intents(self) -> None:
         payload = {
             "schema_version": "2.0",

@@ -13,7 +13,7 @@ query_area/status::status_alle_lichter:
 query_area/status::status_licht_arbeitszimmer:
 - vad ljus vardagsrum
 query_area/status::status_licht_badezimmer:
-- vad ljus badmaster
+- weather france
 query_area/status::status_licht_esszimmer:
 - vad ljus allrumess
 query_area/status::status_licht_kuche:
@@ -23,6 +23,6 @@ query_area/status::status_licht_wohnzimmer:
 query_area/status::status_wohn_und_esszimmer:
 - vad vardagsrum och allrumess
 query_area/status::temperatur_wohnung:
-- vad varme wohnung
+- weather france
 query_area/status::temperatur_wohnzimmer:
 - vad varme vardagsrum

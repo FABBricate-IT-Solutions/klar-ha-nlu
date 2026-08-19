@@ -9,18 +9,7 @@ that locale's lexicon actually lists them. de-CH/de-AT may keep German.
 from __future__ import annotations
 
 from lang_packs.extras import pack_extras
-
-PERSONALITY_KEYS = (
-    "butler",
-    "locker",
-    "fuersorglich",
-    "party",
-    "grantig",
-    "sarkastisch",
-    "pirat",
-    "hippie",
-    "gollum",
-)
+from lang_packs.voices import normalize_personality
 
 ROOMS = (
     ("wohnzimmer", "living"),
@@ -149,7 +138,7 @@ def expand(core: dict) -> dict:
         "speech": speech,
         "room_names": [(canon, native) for native, canon in rooms[:3]],
         "loc_der_rooms": [r[0] for r in rooms[:2]],
-        "personality": list(zip(PERSONALITY_KEYS, core.get("personality", [" "] * 9))),
+        "personality": normalize_personality(core.get("personality")),
         "talk": {
             "fillers": unique(w["fillers"]),
             "action_keep": unique(on[:2] + off[:2] + opn[:1] + close[:1]),
@@ -296,7 +285,7 @@ def household_from(core: dict, w: dict, speech: dict) -> dict:
     explain = unique(w.get("explain", []) + extra.get("explain", []) + ([f"{q0} {o0} {s0}".strip()] if q0 and o0 and s0 else []))
     undo = unique(w.get("undo", []) + extra.get("undo", []) + ([f"{o0} {door0}".strip()] if o0 and door0 else []))
     clock = unique(w.get("clock", []) + extra.get("clock", []) + ([f"{q0} {timer0}".strip()] if q0 and timer0 else []))
-    weather = unique(w.get("weather", []) + extra.get("weather", []) + ["weather"])
+    weather = unique(w.get("weather", []) + extra.get("weather", []) + ([f"{q0} {climate0}".strip()] if q0 and climate0 else []))
     return {
         "teach": teach,
         "explain": explain,
@@ -339,37 +328,17 @@ def smoke_rows(core: dict, on: list[str]) -> list[tuple[str, str]]:
 
 def fixture_alias_rows(w: dict) -> list[tuple[str, list[str]]]:
     rows: list[tuple[str, list[str]]] = []
-    for native in w.get("island", []):
-        rows.append((native, unique([native, "island"])))
-    for native in w.get("ceiling", []):
-        rows.append((native, unique([native, "ceiling"])))
-    for native in w.get("globe", []):
-        rows.append((native, unique([native, "globe"])))
-    for native in w.get("bedside", []):
-        rows.append((native, unique([native, "bedside"])))
-    for native in w.get("pendant", []):
-        rows.append((native, unique([native, "pendant"])))
-    for native in w.get("dishwasher", []):
-        rows.append((native, unique([native, "spul", "spuel"])))
-    for native in w.get("washer", []):
-        rows.append((native, unique([native, "wasch"])))
-    for native in w.get("tv", []):
-        rows.append((native, unique([native, "tv", "tele"])))
-    for native in w.get("left", []):
-        rows.append((native, unique([native, "left"])))
-    for native in w.get("right", []):
-        rows.append((native, unique([native, "right"])))
+    for key in ("island", "ceiling", "globe", "bedside", "pendant", "dishwasher", "washer", "tv", "left", "right"):
+        for native in w.get(key, []):
+            rows.append((native, unique([native])))
     return rows
 
 
 def scene_synonym_rows(core: dict, w: dict) -> list[tuple[str, str]]:
-    rows = list(core.get("scene_synonyms", []))
-    for native in w.get("scenes", []):
-        rows.append((native, "filmabend"))
-    for native in w.get("good_night", []):
-        rows.append((native, "nacht"))
-    for native in w.get("leaving", []):
-        rows.append((native, "verlassen"))
+    rows = [(src, dst) for src, dst in core.get("scene_synonyms", []) if src and dst]
+    for native in w.get("scenes", []) + w.get("good_night", []) + w.get("leaving", []):
+        if native:
+            rows.append((native, native))
     return rows
 
 

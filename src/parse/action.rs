@@ -96,7 +96,7 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
                 }
             }
             Some(VerbKind::Roll) => {
-                if catalog().any(tokens, &catalog().roll_close) {
+                if catalog().any(tokens, catalog().roll_close()) {
                     Some(Action::CoverClose)
                 } else {
                     Some(Action::CoverOpen)
@@ -118,10 +118,10 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
                 Some(if crate::parse::numbers::first_number(tokens).is_some() { Action::SetTemp } else { Action::GetState })
             }
             Some(VerbKind::Query) => Some(Action::GetState),
-            Some(VerbKind::Switch) => Some(if cat.any(tokens, &cat.off_words) { Action::Off } else { Action::On }),
-            Some(VerbKind::Pause) => Some(if cat.any(tokens, &cat.timer_nouns) { Action::TimerPause } else { Action::MediaPause }),
+            Some(VerbKind::Switch) => Some(if cat.any(tokens, cat.off_words()) { Action::Off } else { Action::On }),
+            Some(VerbKind::Pause) => Some(if cat.any(tokens, cat.timer_nouns()) { Action::TimerPause } else { Action::MediaPause }),
             Some(VerbKind::Playback) => playback_action(tokens),
-            Some(VerbKind::Play) => Some(if cat.any(tokens, &cat.timer_nouns) { Action::TimerStart } else { Action::MediaPlay }),
+            Some(VerbKind::Play) => Some(if cat.any(tokens, cat.timer_nouns()) { Action::TimerStart } else { Action::MediaPlay }),
             Some(VerbKind::Next) => Some(Action::MediaNext),
             Some(VerbKind::Mute) => Some(Action::MediaMute),
             Some(VerbKind::FanNoun) => {
@@ -148,7 +148,7 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::ClarifyWrong) => Some(Action::ClarifyWrong),
             Some(VerbKind::Timer) => Some(timer_kind(tokens)),
             Some(VerbKind::List) => {
-                Some(if catalog().any(tokens, &catalog().list_complete) { Action::ListComplete } else { Action::ListAdd })
+                Some(if catalog().any(tokens, catalog().list_complete()) { Action::ListComplete } else { Action::ListAdd })
             }
             Some(VerbKind::Add) => add_action(tokens),
             Some(VerbKind::ListComplete) => Some(Action::ListComplete),
@@ -194,7 +194,7 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
                 | Action::ListComplete
         )
     ) || (matches!(command, Some(Action::On))
-        && tokens.iter().any(|token| catalog().scene_nouns.contains(token.as_str()) || catalog().script_words.contains(token.as_str())))
+        && tokens.iter().any(|token| catalog().scene_nouns().contains(token.as_str()) || catalog().script_words().contains(token.as_str())))
 }
 
 pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<i32>) -> Action {
@@ -226,17 +226,17 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
 fn has_structural_anchor(tokens: &[String]) -> bool {
     let cat = catalog();
     crate::parse::numbers::first_number(tokens).is_some()
-        || cat.any(tokens, &cat.light_nouns)
-        || cat.any(tokens, &cat.cover_nouns)
-        || cat.any(tokens, &cat.fan_nouns)
-        || cat.any(tokens, &cat.climate_nouns)
-        || cat.any(tokens, &cat.media_nouns)
-        || cat.any(tokens, &cat.lock_nouns)
-        || cat.any(tokens, &cat.timer_nouns)
-        || cat.any(tokens, &cat.list_nouns)
-        || cat.any(tokens, &cat.vacuum_nouns)
-        || cat.any(tokens, &cat.scene_nouns)
-        || cat.any(tokens, &cat.script_words)
+        || cat.any(tokens, cat.light_nouns())
+        || cat.any(tokens, cat.cover_nouns())
+        || cat.any(tokens, cat.fan_nouns())
+        || cat.any(tokens, cat.climate_nouns())
+        || cat.any(tokens, cat.media_nouns())
+        || cat.any(tokens, cat.lock_nouns())
+        || cat.any(tokens, cat.timer_nouns())
+        || cat.any(tokens, cat.list_nouns())
+        || cat.any(tokens, cat.vacuum_nouns())
+        || cat.any(tokens, cat.scene_nouns())
+        || cat.any(tokens, cat.script_words())
 }
 
 pub(crate) fn is_query_token(tokens: &[String]) -> bool {
@@ -259,45 +259,45 @@ fn set_by_number(tokens: &[String]) -> Action {
 
 pub(crate) fn is_garage_cover(tokens: &[String]) -> bool {
     let cat = catalog();
-    let garage = cat.any(tokens, &cat.garage_words);
-    let cover_door = cat.any(tokens, &cat.garage_cover);
-    let lock_door = cat.any(tokens, &cat.garage_lock_block);
+    let garage = cat.any(tokens, cat.garage_words());
+    let cover_door = cat.any(tokens, cat.garage_cover());
+    let lock_door = cat.any(tokens, cat.garage_lock_block());
     garage && cover_door && !lock_door
 }
 
 fn has_media_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().media_nouns)
+    catalog().any(tokens, catalog().media_nouns())
 }
 
 fn has_cover_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().cover_nouns)
+    catalog().any(tokens, catalog().cover_nouns())
 }
 
 fn has_fan_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().fan_nouns)
+    catalog().any(tokens, catalog().fan_nouns())
 }
 
 pub(crate) fn has_light_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().light_nouns)
+    catalog().any(tokens, catalog().light_nouns())
 }
 
 fn has_climate_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().climate_nouns)
+    catalog().any(tokens, catalog().climate_nouns())
 }
 
 fn has_power_word(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().power_words)
+    catalog().any(tokens, catalog().power_words())
 }
 
 fn has_lock_or_door(tokens: &[String]) -> bool {
     let cat = catalog();
-    cat.any(tokens, &cat.lock_nouns) || cat.any(tokens, &cat.door_nouns)
+    cat.any(tokens, cat.lock_nouns()) || cat.any(tokens, cat.door_nouns())
 }
 
 fn open_action(tokens: &[String]) -> Option<Action> {
     if has_cover_noun(tokens) {
         Some(Action::CoverOpen)
-    } else if catalog().any(tokens, &catalog().lock_nouns) {
+    } else if catalog().any(tokens, catalog().lock_nouns()) {
         Some(Action::Unlock)
     } else {
         Some(Action::On)
@@ -306,7 +306,7 @@ fn open_action(tokens: &[String]) -> Option<Action> {
 
 fn open_door_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.door_nouns) || cat.any(tokens, &cat.lock_nouns) {
+    if cat.any(tokens, cat.door_nouns()) || cat.any(tokens, cat.lock_nouns()) {
         Some(Action::Unlock)
     } else if has_cover_noun(tokens) {
         Some(Action::CoverOpen)
@@ -316,7 +316,7 @@ fn open_door_action(tokens: &[String]) -> Option<Action> {
 }
 
 fn off_action(tokens: &[String]) -> Option<Action> {
-    if catalog().any(tokens, &catalog().lock_nouns) {
+    if catalog().any(tokens, catalog().lock_nouns()) {
         Some(Action::Unlock)
     } else {
         Some(Action::Off)
@@ -325,7 +325,7 @@ fn off_action(tokens: &[String]) -> Option<Action> {
 
 fn up_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.close_words) {
+    if cat.any(tokens, cat.close_words()) {
         None
     } else if crate::parse::numbers::first_number(tokens).is_some() {
         Some(set_by_number(tokens))
@@ -338,7 +338,7 @@ fn up_action(tokens: &[String]) -> Option<Action> {
 
 fn down_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.list_down) || cat.any(tokens, &cat.timer_add) {
+    if cat.any(tokens, cat.list_down()) || cat.any(tokens, cat.timer_add()) {
         None
     } else if crate::parse::numbers::first_number(tokens).is_some() {
         Some(set_by_number(tokens))
@@ -373,11 +373,11 @@ fn auf_action(tokens: &[String]) -> Option<Action> {
 
 fn timer_kind(tokens: &[String]) -> Action {
     let cat = catalog();
-    if cat.any(tokens, &cat.timer_cancel) {
+    if cat.any(tokens, cat.timer_cancel()) {
         Action::TimerCancel
-    } else if cat.any(tokens, &cat.timer_pause) {
+    } else if cat.any(tokens, cat.timer_pause()) {
         Action::TimerPause
-    } else if cat.any(tokens, &cat.timer_add) {
+    } else if cat.any(tokens, cat.timer_add()) {
         Action::TimerAdd
     } else {
         Action::TimerStart
@@ -385,7 +385,7 @@ fn timer_kind(tokens: &[String]) -> Action {
 }
 
 fn stop_action(tokens: &[String]) -> Option<Action> {
-    if catalog().any(tokens, &catalog().timer_nouns) {
+    if catalog().any(tokens, catalog().timer_nouns()) {
         Some(Action::TimerCancel)
     } else if has_media_noun(tokens) {
         Some(Action::MediaPause)
@@ -395,7 +395,7 @@ fn stop_action(tokens: &[String]) -> Option<Action> {
 }
 
 fn playback_action(tokens: &[String]) -> Option<Action> {
-    if catalog().any(tokens, &catalog().playback_resume) {
+    if catalog().any(tokens, catalog().playback_resume()) {
         Some(Action::MediaPlay)
     } else {
         Some(Action::MediaPause)
@@ -410,7 +410,7 @@ fn vacuum_noun_action(tokens: &[String]) -> Option<Action> {
             || matches!(token.as_str(), "dock" | "docking" | "station" | "base" | "zurueck")
     }) {
         Some(Action::VacuumDock)
-    } else if catalog().any(tokens, &catalog().vacuum_start) || catalog().any(tokens, &catalog().start_words) {
+    } else if catalog().any(tokens, catalog().vacuum_start()) || catalog().any(tokens, catalog().start_words()) {
         Some(Action::VacuumStart)
     } else {
         None
@@ -429,9 +429,9 @@ fn close_action(tokens: &[String]) -> Option<Action> {
 
 fn lock_noun_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    let trailing_on = tokens.last().is_some_and(|x| cat.on_words.contains(x.as_str()));
-    let unlock = tokens.iter().any(|x| cat.unlock_follow.contains(x.as_str()) || x == "unlock")
-        || (tokens.iter().any(|x| matches!(x.as_str(), "flick" | "flip")) && cat.any(tokens, &cat.door_nouns) && !trailing_on);
+    let trailing_on = tokens.last().is_some_and(|x| cat.on_words().contains(x.as_str()));
+    let unlock = tokens.iter().any(|x| cat.unlock_follow().contains(x.as_str()) || x == "unlock")
+        || (tokens.iter().any(|x| matches!(x.as_str(), "flick" | "flip")) && cat.any(tokens, cat.door_nouns()) && !trailing_on);
     Some(if unlock { Action::Unlock } else { Action::Lock })
 }
 
@@ -447,13 +447,13 @@ fn close_lock_action(tokens: &[String]) -> Option<Action> {
 
 fn flick_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.off_words) {
+    if cat.any(tokens, cat.off_words()) {
         Some(Action::Off)
-    } else if cat.any(tokens, &cat.on_words) {
+    } else if cat.any(tokens, cat.on_words()) {
         Some(Action::On)
-    } else if cat.any(tokens, &cat.open_words) {
+    } else if cat.any(tokens, cat.open_words()) {
         Some(if has_cover_noun(tokens) || is_garage_cover(tokens) { Action::CoverOpen } else { Action::On })
-    } else if cat.any(tokens, &cat.close_words) {
+    } else if cat.any(tokens, cat.close_words()) {
         Some(if has_cover_noun(tokens) || is_garage_cover(tokens) { Action::CoverClose } else { Action::Off })
     } else if crate::parse::numbers::first_number(tokens).is_some() && (has_cover_noun(tokens) || is_garage_cover(tokens)) {
         Some(Action::CoverSet)
@@ -464,9 +464,9 @@ fn flick_action(tokens: &[String]) -> Option<Action> {
 
 fn add_action(tokens: &[String]) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.list_nouns) || cat.any(tokens, &cat.chores) {
-        Some(if cat.any(tokens, &cat.list_complete) { Action::ListComplete } else { Action::ListAdd })
-    } else if cat.any(tokens, &cat.timer_nouns) {
+    if cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.chores()) {
+        Some(if cat.any(tokens, cat.list_complete()) { Action::ListComplete } else { Action::ListAdd })
+    } else if cat.any(tokens, cat.timer_nouns()) {
         Some(Action::TimerAdd)
     } else {
         None
@@ -475,11 +475,11 @@ fn add_action(tokens: &[String]) -> Option<Action> {
 
 fn on_action(tokens: &[String], i: usize) -> Option<Action> {
     let cat = catalog();
-    if cat.any(tokens, &cat.chores) || cat.any(tokens, &cat.list_nouns) {
+    if cat.any(tokens, cat.chores()) || cat.any(tokens, cat.list_nouns()) {
         return None;
     }
     let after_conj = tokens[i + 1..].iter().any(|x| cat.is_conj(x));
-    if after_conj || cat.any(tokens, &cat.scene_nouns) || cat.any(tokens, &cat.script_words) {
+    if after_conj || cat.any(tokens, cat.scene_nouns()) || cat.any(tokens, cat.script_words()) {
         return Some(Action::On);
     }
     if is_query_token(tokens)

@@ -17,15 +17,16 @@ fn zwei_raeume_und_heizung() {
     let found = slots("Mach das Licht im Wohnzimmer und in der Küche an und stell die Heizung auf 23");
     let names: Vec<_> = found.iter().map(|(n, _)| n.as_str()).collect();
     assert_eq!(names.iter().filter(|n| **n == "HassTurnOn").count(), 2, "{found:?}");
-    assert!(!names.contains(&"HassClimateSetTemperature"), "kitchen has no Assist-visible climate; V2 keeps the lights: {found:?}");
-    let areas: Vec<_> = found
-        .iter()
-        .filter(|(n, _)| n == "HassTurnOn")
-        .flat_map(|(_, slots)| slots.iter().filter(|(k, _)| k == "area").map(|(_, v)| v.as_str()))
-        .collect();
     assert!(
-        areas.contains(&"wohnzimmer") || found.iter().any(|(_, s)| { s.iter().any(|(k, v)| k == "entity_id" && v.contains("wohnzimmer")) })
+        found.iter().any(|(name, slots)| {
+            name == "HassClimateSetTemperature"
+                && slots.iter().any(|(key, value)| key == "temperature" && value == "23")
+                && slots.iter().any(|(key, value)| key == "entity_id" && value == "climate.better_thermostat_wohnzimmer")
+        }),
+        "heating follows the living-room clause; kitchen has no climate: {found:?}"
     );
+    assert!(found.iter().any(|(_, slots)| slots.iter().any(|(key, value)| key == "entity_id" && value.contains("wohnzimmer"))));
+    assert!(found.iter().any(|(_, slots)| slots.iter().any(|(key, value)| key == "area" && value == "kuche")));
 }
 
 #[test]

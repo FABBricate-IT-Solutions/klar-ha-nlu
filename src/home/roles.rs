@@ -16,13 +16,13 @@ pub enum ClimateKind {
 
 pub fn role_of_tag(tag: &str, cat: &Catalog) -> Option<&'static str> {
     let folded = compact(tag);
-    if cat.role_light.contains(folded.as_str()) {
+    if cat.role_light().contains(folded.as_str()) {
         Some("light")
-    } else if cat.role_climate.contains(folded.as_str()) {
+    } else if cat.role_climate().contains(folded.as_str()) {
         Some("climate")
-    } else if cat.role_media.contains(folded.as_str()) {
+    } else if cat.role_media().contains(folded.as_str()) {
         Some("media_player")
-    } else if cat.role_fan.contains(folded.as_str()) {
+    } else if cat.role_fan().contains(folded.as_str()) {
         Some("fan")
     } else {
         None
@@ -30,8 +30,8 @@ pub fn role_of_tag(tag: &str, cat: &Catalog) -> Option<&'static str> {
 }
 
 pub fn wanted_climate_kind(tokens: &[String], cat: &Catalog) -> Option<ClimateKind> {
-    let cool = cat.any(tokens, &cat.climate_cool);
-    let heat = cat.any(tokens, &cat.climate_heat);
+    let cool = cat.any(tokens, cat.climate_cool());
+    let heat = cat.any(tokens, cat.climate_heat());
     match (cool, heat) {
         (true, false) => Some(ClimateKind::Cool),
         (false, true) => Some(ClimateKind::Heat),
@@ -50,10 +50,10 @@ pub fn climate_kind(entity: &EntityRec, cat: &Catalog) -> Option<ClimateKind> {
         return Some(ClimateKind::Heat);
     }
     let tags: Vec<String> = entity.tags.iter().map(|tag| compact(tag)).collect();
-    if tags.iter().any(|tag| cat.climate_cool.contains(tag.as_str())) {
+    if tags.iter().any(|tag| cat.climate_cool().contains(tag.as_str())) {
         return Some(ClimateKind::Cool);
     }
-    if tags.iter().any(|tag| cat.climate_heat.contains(tag.as_str())) {
+    if tags.iter().any(|tag| cat.climate_heat().contains(tag.as_str())) {
         return Some(ClimateKind::Heat);
     }
     Some(ClimateKind::Heat)
@@ -65,12 +65,12 @@ fn climate_blob(entity: &EntityRec) -> String {
 
 fn cool_named(entity: &EntityRec, cat: &Catalog) -> bool {
     let blob = climate_blob(entity);
-    cat.climate_cool.iter().any(|word| blob.contains(word)) || blob.ends_with("ac")
+    cat.climate_cool().iter().any(|word| blob.contains(word)) || blob.ends_with("ac")
 }
 
 fn heat_named(entity: &EntityRec, cat: &Catalog) -> bool {
     let blob = climate_blob(entity);
-    cat.climate_heat.iter().any(|word| blob.contains(word))
+    cat.climate_heat().iter().any(|word| blob.contains(word))
 }
 
 pub fn is_role_tag(tag: &str, cat: &Catalog) -> bool {

@@ -4,11 +4,16 @@ use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
-use crate::parse::normalize::{compact, fold_umlaut};
+use crate::parse::normalize::compact;
 use crate::parse::resolve::Resolved;
 use crate::parse::slots::ClauseOut;
 use crate::session::Session;
 use crate::types::{EntityRec, HomeGraph, Intent};
+
+#[path = "media_words.rs"]
+mod media_words;
+pub(crate) use media_words::now_playing_status;
+use media_words::*;
 
 pub(crate) fn media_clause(
     tokens: &[String],
@@ -21,7 +26,7 @@ pub(crate) fn media_clause(
 ) -> Option<ClauseOut> {
     let intent = status_intent(tokens)
         .or_else(|| volume_intent(tokens, session, number))
-        .or_else(|| transport_intent(tokens, action))
+        .or_else(|| transport_intent(tokens, action, home, resolved))
         .or_else(|| favorite_intent(tokens))
         .or_else(|| transfer_intent(tokens, home, session))
         .or_else(|| play_intent(tokens, raw, home, action, resolved))?;
@@ -37,7 +42,24 @@ pub(crate) fn media_clause(
     if transfer && intent.slot("source_player") == Some(target.entity_id.as_str()) {
         return Some(ClauseOut::Intents(Vec::new()));
     }
-    Some(ClauseOut::Intents(vec![intent.with("entity_id", &target.entity_id)]))
+    Some(ClauseOut::Intents(vec![bind_play_backend(intent, target).with("entity_id", &target.entity_id)]))
+}
+
+fn bind_play_backend(intent: Intent, target: &EntityRec) -> Intent {
+    if intent.name != "HassMediaSearchAndPlay" || !is_music_assistant_player(target) {
+        return intent;
+    }
+    let query = intent.slot("media_id").or_else(|| intent.slot("search_query")).unwrap_or_default();
+    if query.is_empty() {
+        return intent;
+    }
+    let mut rewritten = Intent::new("MassPlayMedia").with("media_id", query).with("search_query", query);
+    for slot in ["media_class", "media_type", "artist", "enqueue", "radio_mode"] {
+        if let Some(value) = intent.slot(slot) {
+            rewritten = rewritten.with(slot, value);
+        }
+    }
+    rewritten
 }
 
 fn status_intent(tokens: &[String]) -> Option<Intent> {
@@ -76,14 +98,17 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
     Some(intent)
 }
 
-fn transport_intent(tokens: &[String], action: Action) -> Option<Intent> {
+fn transport_intent(tokens: &[String], action: Action, home: &HomeGraph, resolved: &Resolved) -> Option<Intent> {
     let name = if matches!(action, Action::MediaPause) {
         "HassMediaPause"
     } else if any(tokens, &["vorheriges", "vorheriger", "previous", "zurueck"]) && media_context(tokens) {
         "HassMediaPrevious"
     } else if matches!(action, Action::MediaNext) {
         "HassMediaNext"
-    } else if (matches!(action, Action::MediaPlay) && !has_search_tail(tokens)) || (matches!(action, Action::On) && music_resume(tokens)) {
+    } else if (matches!(action, Action::MediaPlay) && !has_search_tail(tokens, home, resolved))
+        || (matches!(action, Action::On) && music_resume(tokens))
+        || any(tokens, &["resume", "unpause", "weiter", "fortsetzen"]) && !has_search_tail(tokens, home, resolved)
+    {
         "HassMediaUnpause"
     } else {
         return None;
@@ -107,7 +132,7 @@ pub(crate) fn media_transport_form(tokens: &[String], action: Action) -> bool {
                     | "resume"
                     | "unpause"
             )
-        }) && catalog().any(tokens, &catalog().media_nouns))
+        }) && catalog().any(tokens, catalog().media_nouns()))
 }
 
 fn play_intent(tokens: &[String], raw: &[String], home: &HomeGraph, action: Action, resolved: &Resolved) -> Option<Intent> {
@@ -152,7 +177,7 @@ fn favorite_intent(tokens: &[String]) -> Option<Intent> {
 }
 
 fn transfer_intent(tokens: &[String], home: &HomeGraph, session: &Session) -> Option<Intent> {
-    if !any(tokens, &["verschiebe", "move", "transfer"]) || !catalog().any(tokens, &catalog().media_nouns) {
+    if !any(tokens, &["verschiebe", "move", "transfer"]) || !catalog().any(tokens, catalog().media_nouns()) {
         return None;
     }
     let mut intent = Intent::new("MassTransferQueue");
@@ -204,66 +229,6 @@ fn media_request(raw: &[String], home: &HomeGraph, resolved: &Resolved) -> Optio
         radio_mode,
         needs_mass: radio_mode || enqueue.is_some() || by_at.is_some(),
     })
-}
-
-fn clean_media_words(words: &[String], home: &HomeGraph, resolved: &Resolved) -> Vec<String> {
-    words.iter().filter(|word| !skip_media_word(word, home, resolved)).cloned().collect()
-}
-
-const SKIP_MEDIA: &[&str] = &[
-    "on",
-    "using",
-    "with",
-    "mit",
-    "auf",
-    "ueber",
-    "von",
-    "by",
-    "to",
-    "als",
-    "naechstes",
-    "next",
-    "queue",
-    "warteschlange",
-    "radiomodus",
-    "mode",
-    "modus",
-    "room",
-    "zimmer",
-    "tv",
-    "television",
-    "playback",
-    "media",
-    "music",
-    "musik",
-];
-
-fn skip_media_word(word: &str, home: &HomeGraph, resolved: &Resolved) -> bool {
-    is_play_word(word)
-        || catalog().is_filler(word)
-        || catalog().is_conj(word)
-        || SKIP_MEDIA.contains(&word)
-        || media_type_word(word).is_some()
-        || resolved.areas.iter().any(|area| area_word(word, area, home))
-        || resolved.entities.iter().any(|entity| entity_word(word, entity))
-        || resolved.ambiguous.iter().any(|entity| entity_word(word, entity))
-}
-
-fn media_type(words: &[String]) -> Option<&'static str> {
-    words.iter().find_map(|word| media_type_word(word))
-}
-
-fn media_type_word(word: &str) -> Option<&'static str> {
-    match word {
-        "lied" | "titel" | "song" | "track" => Some("track"),
-        "album" | "platte" | "record" | "ep" | "single" => Some("album"),
-        "playlist" | "wiedergabeliste" => Some("playlist"),
-        "kuenstler" | "artist" | "band" | "gruppe" | "group" => Some("artist"),
-        "radio" | "sender" | "radiosender" | "station" => Some("radio"),
-        "podcast" => Some("podcast"),
-        "hoerbuch" | "audiobook" => Some("audiobook"),
-        _ => None,
-    }
 }
 
 fn target_player<'a>(
@@ -321,6 +286,10 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
             && music.is_empty())
     {
         return home.entities.iter().filter(|entity| eligible_media_player(entity, home)).collect();
+    }
+    let mass: Vec<&EntityRec> = music.iter().copied().filter(|entity| is_music_assistant_player(entity)).collect();
+    if !mass.is_empty() {
+        return mass;
     }
     music
 }
@@ -403,96 +372,9 @@ fn select_player<'a>(players: &[&'a EntityRec], session: &Session) -> Option<&'a
     if preferred.len() == 1 {
         return preferred.first().copied();
     }
-    session.last_entities().find_map(|id| players.iter().copied().find(|player| player.entity_id == id))
-}
-
-fn has_volume_word(tokens: &[String]) -> bool {
-    tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke")) || media_context(tokens)
-}
-
-fn queue_status(tokens: &[String]) -> bool {
-    is_question(tokens) && (any(tokens, &["queue", "warteschlange"]) || (any(tokens, &["next", "naechstes"]) && media_context(tokens)))
-        || has_phrase(tokens, &["kommt", "als", "naechstes"])
-}
-
-fn volume_status(tokens: &[String]) -> bool {
-    is_question(tokens) && tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke"))
-}
-
-fn mute_status(tokens: &[String]) -> bool {
-    is_question(tokens) && any(tokens, &["stumm", "muted", "mute"]) && media_context(tokens)
-}
-pub(crate) fn now_playing_status(tokens: &[String]) -> bool {
-    has_phrase(tokens, &["was", "laeuft"])
-        || has_phrase(tokens, &["was", "spielt"])
-        || has_phrase(tokens, &["whats", "playing"])
-        || has_phrase(tokens, &["what", "playing"])
-        || has_phrase(tokens, &["what", "s", "playing"])
-        || has_phrase(tokens, &["what", "is", "playing"])
-        || (is_question(tokens) && any(tokens, &["titel", "track"]) && any(tokens, &["aktuell", "current", "now"]))
-        || (is_question(tokens) && !catalog().any(tokens, &catalog().tv_words) && music_context(tokens))
-}
-
-fn player_status(tokens: &[String]) -> bool {
-    is_question(tokens) && music_context(tokens) && any(tokens, &["status", "zustand", "an", "on", "playing", "laeuft"])
-}
-
-fn media_context(tokens: &[String]) -> bool {
-    catalog().any(tokens, &catalog().media_nouns) || any(tokens, &["song", "track", "titel", "lied", "musik", "music"])
-}
-
-fn music_context(tokens: &[String]) -> bool {
-    any(tokens, &["musik", "music", "radio", "song", "track", "titel", "lied", "playlist", "wiedergabeliste", "playback"])
-}
-
-fn music_resume(tokens: &[String]) -> bool {
-    any(tokens, &["musik", "music", "radio", "playback"]) && any(tokens, &["an", "on", "weiter", "resume", "unpause"])
-}
-
-fn has_search_tail(tokens: &[String]) -> bool {
-    !clean_media_words(
-        tokens,
-        &HomeGraph::default(),
-        &Resolved { areas: Vec::new(), floors: Vec::new(), entities: Vec::new(), ambiguous: Vec::new() },
-    )
-    .is_empty()
-}
-
-fn is_play_word(word: &str) -> bool {
-    ["spiel", "spiele", "hoere", "hoer", "abspielen", "weiter", "fortsetzen", "play", "listen", "put", "resume", "unpause"].contains(&word)
-        || matches!(catalog().verb(word), Some(VerbKind::Play))
-}
-
-fn any(tokens: &[String], words: &[&str]) -> bool {
-    tokens.iter().any(|token| words.contains(&token.as_str()))
-}
-
-fn has_phrase(tokens: &[String], phrase: &[&str]) -> bool {
-    tokens.windows(phrase.len()).any(|window| window.iter().map(String::as_str).eq(phrase.iter().copied()))
-}
-
-fn is_question(tokens: &[String]) -> bool {
-    let cat = catalog();
-    any(tokens, &["was", "wie", "ist", "sind", "what", "whats", "is", "are", "how"])
-        || tokens.iter().any(|token| matches!(cat.verb(token), Some(VerbKind::Query)))
-        || cat.any(tokens, &cat.question_words)
-        || cat.any(tokens, &cat.query_hint)
-}
-
-fn area_word(word: &str, area_id: &str, home: &HomeGraph) -> bool {
-    home.areas.iter().find(|area| area.area_id == area_id).is_some_and(|area| {
-        label_has_word(&area.name, word)
-            || label_has_word(&area.area_id, word)
-            || area.aliases.iter().any(|alias| label_has_word(alias, word))
-    })
-}
-
-fn entity_word(word: &str, entity: &EntityRec) -> bool {
-    let suffix = entity.entity_id.rsplit('.').next().unwrap_or(&entity.entity_id);
-    label_has_word(&entity.name, word) || label_has_word(suffix, word) || entity.aliases.iter().any(|alias| label_has_word(alias, word))
-}
-
-fn label_has_word(label: &str, word: &str) -> bool {
-    let folded = fold_umlaut(label);
-    folded.split(|c: char| !c.is_alphanumeric()).any(|part| part == word)
+    if let Some(entity) = session.last_entities().find_map(|id| players.iter().copied().find(|player| player.entity_id == id)) {
+        return Some(entity);
+    }
+    let mass: Vec<&EntityRec> = players.iter().copied().filter(|player| is_music_assistant_player(player)).collect();
+    (mass.len() == 1).then(|| mass[0])
 }

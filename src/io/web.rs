@@ -228,7 +228,7 @@ async fn get_gaps(
     read_gate(peer, &headers, &state.token)?;
     let home = state.home.snapshot().await;
     Ok(Json(GapsOut {
-        leftover: leftover(&home, crate::lang::catalog()),
+        leftover: leftover(&home, state.catalog_for_settings().await),
         rooms: home.areas.clone(),
         overlay: load_overlay(&state.data_dir),
     }))

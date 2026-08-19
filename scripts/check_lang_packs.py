@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """CI gates for compiled Assist packs.
 
-de/en are hand-written builtins in src/lang/de_pack.rs and en_pack.rs.
+de/en live in src/lang/packs/{de,en}/ as hand-written reference packs.
 The generator must not overwrite them. Shared LanguagePack fields belong
 in those two packs, scripts/lang_packs/emit.py, and this checklist.
 """
@@ -33,8 +33,9 @@ SIZE_ROOTS = [
     ROOT / "scripts" / "parity",
 ]
 FIELD_GROUPS = ("Talk", "Nouns", "Fixtures", "Cues", "Maps", "Chat", "Household", "LanguagePack")
-GERMAN_SCAFFOLD = re.compile(r"aufgabenliste|klimaanlage|(?<![A-Za-z])insel(?![A-Za-z])")
-DE_SCAFFOLD_OK = {"de_ch", "de_at"}
+GERMAN_SCAFFOLD = re.compile(r"aufgabenliste|klimaanlage|(?<![A-Za-z])insel(?![A-Za-z])|filmabend|verlassen")
+HANDWRITTEN = {"de", "en"}
+DE_SCAFFOLD_OK = HANDWRITTEN | {"de_ch", "de_at"}
 MOD_TO_TAG = {
     "de_ch": "de-CH",
     "de_at": "de-AT",
@@ -103,8 +104,8 @@ def struct_fields(source: str, name: str) -> list[str]:
 def check_field_checklist() -> None:
     groups = (ROOT / "src" / "lang" / "groups.rs").read_text(encoding="utf-8")
     emit = (ROOT / "scripts" / "lang_packs" / "emit.py").read_text(encoding="utf-8")
-    de_pack = (ROOT / "src" / "lang" / "de_pack.rs").read_text(encoding="utf-8")
-    en_pack = (ROOT / "src" / "lang" / "en_pack.rs").read_text(encoding="utf-8")
+    de_pack = (PACKS / "de" / "pack.rs").read_text(encoding="utf-8")
+    en_pack = (PACKS / "en" / "pack.rs").read_text(encoding="utf-8")
     missing = []
     for name in FIELD_GROUPS:
         for field in struct_fields(groups, name):
@@ -113,9 +114,9 @@ def check_field_checklist() -> None:
             if f"{field}:" not in emit and f"{field} =" not in emit:
                 missing.append(f"emit.py missing {name}.{field}")
             if f"{field}:" not in de_pack:
-                missing.append(f"de_pack.rs missing {name}.{field}")
+                missing.append(f"packs/de/pack.rs missing {name}.{field}")
             if f"{field}:" not in en_pack:
-                missing.append(f"en_pack.rs missing {name}.{field}")
+                missing.append(f"packs/en/pack.rs missing {name}.{field}")
     if missing:
         fail("LanguagePack field checklist:\n" + "\n".join(missing))
 
@@ -123,6 +124,8 @@ def check_field_checklist() -> None:
 def check_banners() -> None:
     missing = []
     for rust in PACKS.rglob("*.rs"):
+        if rust.parent.name in HANDWRITTEN:
+            continue
         if BANNER not in rust.read_text(encoding="utf-8"):
             missing.append(str(rust.relative_to(ROOT)))
     for path in (
@@ -145,11 +148,13 @@ def main() -> None:
         mapped = MOD_TO_TAG.get(pack.name, pack.name)
         if mapped == "ru" or pack.name == "ru":
             fail("russian pack must not ship")
-        if not (DATASETS / mapped / "representative.yaml").is_file():
+        handwritten = pack.name in HANDWRITTEN
+        if not handwritten and not (DATASETS / mapped / "representative.yaml").is_file():
             missing_repr.append(mapped)
-        for suite in PARITY_SUITES:
-            if not (PARITY / mapped / suite).is_dir():
-                fail(f"{pack.name} missing parity suite tests/datasets/parity/{mapped}/{suite}")
+        if not handwritten:
+            for suite in PARITY_SUITES:
+                if not (PARITY / mapped / suite).is_dir():
+                    fail(f"{pack.name} missing parity suite tests/datasets/parity/{mapped}/{suite}")
         verbs = (pack / "verbs.rs").read_text(encoding="utf-8")
         speech = (pack / "speech.rs").read_text(encoding="utf-8")
         body = (pack / "pack.rs").read_text(encoding="utf-8")
@@ -162,7 +167,7 @@ def main() -> None:
         for field in ("teach:", "undo:", "clock:", "weather:"):
             if f"{field} &[]" in body:
                 fail(f"{pack.name} household {field} is empty")
-        if FAKE_SUFFIX.search(body) or FAKE_SUFFIX.search(verbs):
+        if not handwritten and (FAKE_SUFFIX.search(body) or FAKE_SUFFIX.search(verbs)):
             fail(f"{pack.name} has synthetic suffix tokens")
         if pack.name not in DE_SCAFFOLD_OK and GERMAN_SCAFFOLD.search(body):
             fail(f"{pack.name} has German home-graph tokens")

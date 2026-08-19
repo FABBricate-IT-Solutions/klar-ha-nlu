@@ -29,8 +29,8 @@ pub(crate) fn resolve_targets(
     if domain.is_none() && matches!(action, Action::On | Action::Off | Action::Toggle) {
         let named_other = first.entities.iter().any(|entity| entity.domain != "light");
         let skip_lights = named_other
-            || catalog().any(tokens, &catalog().skip_light)
-            || (catalog().any(tokens, &catalog().laundry_area) && !catalog().any(tokens, &catalog().light_nouns));
+            || catalog().any(tokens, catalog().skip_light())
+            || (catalog().any(tokens, catalog().laundry_area()) && !catalog().any(tokens, catalog().light_nouns()));
         if !skip_lights {
             let lights = resolve(tokens, home, Some("light"));
             if lights.ambiguous.is_empty() && (!lights.entities.is_empty() || !lights.areas.is_empty()) {
@@ -51,7 +51,7 @@ pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens
     if domain == Some("fan") && matches!(action, Action::On | Action::Off | Action::Toggle | Action::FanSpeed | Action::GetState) {
         return Some("fan");
     }
-    if domain == Some("media_player") && cat.any(tokens, &cat.media_nouns) {
+    if domain == Some("media_player") && cat.any(tokens, cat.media_nouns()) {
         return Some("media_player");
     }
     None

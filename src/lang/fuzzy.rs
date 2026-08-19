@@ -62,8 +62,8 @@ impl Catalog {
             && self.color(token).is_none()
             && self.verb(token).is_none()
             && !self.domain_map.contains_key(token)
-            && !self.generic.contains(token)
-            && !self.all_words.contains(token)
+            && !self.generic().contains(token)
+            && !self.all_words().contains(token)
             && !self.is_except(token)
             && (self
                 .colors
@@ -90,16 +90,16 @@ impl Catalog {
             return None;
         }
         let groups = [
-            ("light", &self.light_nouns),
-            ("climate", &self.climate_nouns),
-            ("cover", &self.cover_nouns),
-            ("fan", &self.fan_nouns),
-            ("media_player", &self.media_nouns),
-            ("lock", &self.lock_nouns),
-            ("timer", &self.timer_nouns),
-            ("todo", &self.list_nouns),
-            ("vacuum", &self.vacuum_nouns),
-            ("scene", &self.scene_nouns),
+            ("light", self.light_nouns()),
+            ("climate", self.climate_nouns()),
+            ("cover", self.cover_nouns()),
+            ("fan", self.fan_nouns()),
+            ("media_player", self.media_nouns()),
+            ("lock", self.lock_nouns()),
+            ("timer", self.timer_nouns()),
+            ("todo", self.list_nouns()),
+            ("vacuum", self.vacuum_nouns()),
+            ("scene", self.scene_nouns()),
         ];
         let candidates: Vec<(&'static str, &'static str)> = groups
             .into_iter()
@@ -118,10 +118,10 @@ impl Catalog {
         token.chars().count() >= 6
             && !self.is_filler(token)
             && !self.is_particle(token)
-            && !self.generic.contains(token)
-            && !self.on_words.contains(token)
-            && !self.off_words.contains(token)
-            && !self.all_words.contains(token)
+            && !self.generic().contains(token)
+            && !self.on_words().contains(token)
+            && !self.off_words().contains(token)
+            && !self.all_words().contains(token)
             && !self.is_except(token)
             && self.number(token).is_none()
             && token.parse::<i32>().is_err()

@@ -1,4 +1,5 @@
 mod merge;
+mod words;
 
 use super::groups::{GroupClarify, LanguagePack as Pack, NumberStyle};
 use super::morphology::Morphology;
@@ -7,6 +8,8 @@ use super::verbs::VerbKind;
 use super::LangId;
 use crate::types::CustomSentence;
 use std::collections::{HashMap, HashSet};
+
+pub use words::WordKey;
 
 pub struct Catalog {
     packs: Vec<&'static Pack>,
@@ -23,119 +26,7 @@ pub struct Catalog {
     pub synonym_pairs: Vec<(&'static str, &'static str)>,
     pub scene_synonyms: Vec<(&'static str, &'static str)>,
     pub speech: Vec<&'static Speech>,
-    pub fillers: HashSet<&'static str>,
-    pub action_keep: HashSet<&'static str>,
-    pub conjunctions: HashSet<&'static str>,
-    pub particles: HashSet<&'static str>,
-    pub affirm: HashSet<&'static str>,
-    pub or_words: HashSet<&'static str>,
-    pub all_words: HashSet<&'static str>,
-    pub query_hint: HashSet<&'static str>,
-    pub question_starts: HashSet<&'static str>,
-    pub question_words: HashSet<&'static str>,
-    pub correction: HashSet<&'static str>,
-    pub correction_phrases: HashSet<&'static str>,
-    pub clarify_pick: HashSet<&'static str>,
-    pub light_nouns: HashSet<&'static str>,
-    pub light_singular: HashSet<&'static str>,
-    pub light_plural: HashSet<&'static str>,
-    pub cover_nouns: HashSet<&'static str>,
-    pub curtain_nouns: HashSet<&'static str>,
-    pub fan_nouns: HashSet<&'static str>,
-    pub climate_nouns: HashSet<&'static str>,
-    pub media_nouns: HashSet<&'static str>,
-    pub lock_nouns: HashSet<&'static str>,
-    pub door_nouns: HashSet<&'static str>,
-    pub garage_words: HashSet<&'static str>,
-    pub garage_cover: HashSet<&'static str>,
-    pub timer_nouns: HashSet<&'static str>,
-    pub list_nouns: HashSet<&'static str>,
-    pub vacuum_nouns: HashSet<&'static str>,
-    pub scene_nouns: HashSet<&'static str>,
-    pub script_words: HashSet<&'static str>,
-    pub switch_plural: HashSet<&'static str>,
-    pub device_side: HashSet<&'static str>,
-    pub named_device: HashSet<&'static str>,
-    pub island: HashSet<&'static str>,
-    pub ceiling: HashSet<&'static str>,
-    pub lamp_fixture: HashSet<&'static str>,
-    pub pendant: HashSet<&'static str>,
-    pub bedside: HashSet<&'static str>,
-    pub left: HashSet<&'static str>,
-    pub right: HashSet<&'static str>,
-    pub sides: HashSet<&'static str>,
-    pub singular_lamp: HashSet<&'static str>,
-    pub singular_lamp_block: HashSet<&'static str>,
-    pub power_words: HashSet<&'static str>,
-    pub command_hedges: HashSet<&'static str>,
-    pub skip_light: HashSet<&'static str>,
-    pub laundry_area: HashSet<&'static str>,
-    pub laundry_machines: HashSet<&'static str>,
-    pub kitchen: HashSet<&'static str>,
-    pub open_words: HashSet<&'static str>,
-    pub close_words: HashSet<&'static str>,
-    pub roll_close: HashSet<&'static str>,
-    pub unlock_follow: HashSet<&'static str>,
-    pub cover_open_follow: HashSet<&'static str>,
-    pub garage_lock_block: HashSet<&'static str>,
-    pub on_words: HashSet<&'static str>,
-    pub off_words: HashSet<&'static str>,
-    pub scene_named: HashSet<&'static str>,
-    pub temp_query: HashSet<&'static str>,
-    pub timer_query: HashSet<&'static str>,
-    pub brightness: HashSet<&'static str>,
-    pub start_words: HashSet<&'static str>,
-    pub replay_on_off: HashSet<&'static str>,
-    pub replay_off: HashSet<&'static str>,
-    pub sensor_words: HashSet<&'static str>,
-    pub lock_verbs: HashSet<&'static str>,
-    pub entry_words: HashSet<&'static str>,
-    pub oven: HashSet<&'static str>,
-    pub laundry_timer: HashSet<&'static str>,
-    pub illuminate: HashSet<&'static str>,
-    pub list_down: HashSet<&'static str>,
-    pub chores: HashSet<&'static str>,
-    pub weak_scene: HashSet<&'static str>,
-    pub timer_cancel: HashSet<&'static str>,
-    pub timer_pause: HashSet<&'static str>,
-    pub timer_add: HashSet<&'static str>,
-    pub list_complete: HashSet<&'static str>,
-    pub playback_resume: HashSet<&'static str>,
-    pub vacuum_start: HashSet<&'static str>,
-    pub hours: HashSet<&'static str>,
-    pub minutes: HashSet<&'static str>,
-    pub seconds: HashSet<&'static str>,
-    pub list_skip: HashSet<&'static str>,
-    pub shopping_names: HashSet<&'static str>,
-    pub status_words: HashSet<&'static str>,
-    pub window_words: HashSet<&'static str>,
-    pub open_close: HashSet<&'static str>,
-    pub laundry_hint: HashSet<&'static str>,
-    pub bare_switch: HashSet<&'static str>,
-    pub outlet_words: HashSet<&'static str>,
-    pub tv_words: HashSet<&'static str>,
-    pub climate_cool: HashSet<&'static str>,
-    pub climate_heat: HashSet<&'static str>,
-    pub role_light: HashSet<&'static str>,
-    pub role_climate: HashSet<&'static str>,
-    pub role_media: HashSet<&'static str>,
-    pub role_fan: HashSet<&'static str>,
-    pub generic: HashSet<&'static str>,
-    pub room_level: HashSet<&'static str>,
-    pub extra_device_nouns: HashSet<&'static str>,
-    pub article_one: HashSet<&'static str>,
-    pub room_index_nouns: HashSet<&'static str>,
-    pub chat_greet: HashSet<&'static str>,
-    pub chat_thanks: HashSet<&'static str>,
-    pub chat_feeling: HashSet<&'static str>,
-    pub chat_identity: HashSet<&'static str>,
-    pub chat_tell: HashSet<&'static str>,
-    pub chat_yarn: HashSet<&'static str>,
-    pub chat_world: HashSet<&'static str>,
-    pub chat_advice: HashSet<&'static str>,
-    pub chat_open: HashSet<&'static str>,
-    pub chat_news: HashSet<&'static str>,
-    pub chat_news_dismiss: HashSet<&'static str>,
+    pub(super) sets: HashMap<words::WordKey, HashSet<&'static str>>,
     pub news_intro: &'static str,
     pub news_nudge: &'static str,
     pub news_done: &'static str,
@@ -149,31 +40,31 @@ impl Catalog {
     }
 
     pub fn is_filler(&self, t: &str) -> bool {
-        self.fillers.contains(t)
+        self.fillers().contains(t)
     }
 
     pub fn is_action_keep(&self, t: &str) -> bool {
-        self.action_keep.contains(t)
+        self.action_keep().contains(t)
     }
 
     pub fn is_conj(&self, t: &str) -> bool {
-        self.conjunctions.contains(t)
+        self.conjunctions().contains(t)
     }
 
     pub fn is_particle(&self, t: &str) -> bool {
-        self.particles.contains(t)
+        self.particles().contains(t)
     }
 
     pub fn is_affirm(&self, t: &str) -> bool {
-        self.affirm.contains(t)
+        self.affirm().contains(t)
     }
 
     pub fn is_or(&self, t: &str) -> bool {
-        self.or_words.contains(t)
+        self.or_words().contains(t)
     }
 
     pub fn is_all(&self, t: &str) -> bool {
-        self.all_words.contains(t)
+        self.all_words().contains(t)
     }
 
     pub fn is_except(&self, t: &str) -> bool {
@@ -181,7 +72,7 @@ impl Catalog {
     }
 
     pub fn is_query_hint(&self, t: &str) -> bool {
-        self.query_hint.contains(t)
+        self.query_hint().contains(t)
     }
 
     pub fn any(&self, tokens: &[String], set: &HashSet<&'static str>) -> bool {
@@ -259,15 +150,15 @@ impl Catalog {
     }
 
     pub fn wants_singular_lamp(&self, tokens: &[String]) -> bool {
-        self.any(tokens, &self.singular_lamp) && !self.any(tokens, &self.singular_lamp_block)
+        self.any(tokens, self.singular_lamp()) && !self.any(tokens, self.singular_lamp_block())
     }
 
     pub fn is_question_start(&self, t: &str) -> bool {
-        self.question_starts.contains(t)
+        self.question_starts().contains(t)
     }
 
     pub fn is_question_word(&self, t: &str) -> bool {
-        self.question_words.contains(t)
+        self.question_words().contains(t)
     }
 
     pub fn knows_surface(&self, token: &str) -> bool {
@@ -275,24 +166,24 @@ impl Catalog {
             || self.domain_map.contains_key(token)
             || self.colors.contains_key(token)
             || self.numbers.contains_key(token)
-            || self.light_nouns.contains(token)
-            || self.cover_nouns.contains(token)
-            || self.climate_nouns.contains(token)
-            || self.media_nouns.contains(token)
-            || self.lock_nouns.contains(token)
-            || self.timer_nouns.contains(token)
-            || self.list_nouns.contains(token)
-            || self.fan_nouns.contains(token)
-            || self.vacuum_nouns.contains(token)
-            || self.scene_nouns.contains(token)
-            || self.on_words.contains(token)
-            || self.off_words.contains(token)
-            || self.open_words.contains(token)
-            || self.close_words.contains(token)
-            || self.generic.contains(token)
-            || self.all_words.contains(token)
-            || self.conjunctions.contains(token)
-            || self.question_words.contains(token)
+            || self.light_nouns().contains(token)
+            || self.cover_nouns().contains(token)
+            || self.climate_nouns().contains(token)
+            || self.media_nouns().contains(token)
+            || self.lock_nouns().contains(token)
+            || self.timer_nouns().contains(token)
+            || self.list_nouns().contains(token)
+            || self.fan_nouns().contains(token)
+            || self.vacuum_nouns().contains(token)
+            || self.scene_nouns().contains(token)
+            || self.on_words().contains(token)
+            || self.off_words().contains(token)
+            || self.open_words().contains(token)
+            || self.close_words().contains(token)
+            || self.generic().contains(token)
+            || self.all_words().contains(token)
+            || self.conjunctions().contains(token)
+            || self.question_words().contains(token)
             || self.is_except(token)
             || self.synonym_pairs.iter().any(|(alias, _)| *alias == token)
     }
@@ -310,7 +201,7 @@ impl Catalog {
     }
 
     pub fn speech(&self) -> &'static Speech {
-        self.speech.first().copied().unwrap_or(&super::de::PACK.speech)
+        self.speech.first().copied().unwrap_or(&super::packs::de::PACK.speech)
     }
 
     pub fn synonyms<'a>(&'a self, token: &'a str) -> impl Iterator<Item = &'a str> + 'a {
@@ -340,7 +231,7 @@ mod tests {
         let cat = catalog();
         let licht = vec!["licht".into()];
         assert!(cat.pack_any(&licht, |p| p.nouns.light_nouns));
-        assert_eq!(cat.pack_any(&licht, |p| p.nouns.light_nouns), cat.any(&licht, &cat.light_nouns));
+        assert_eq!(cat.pack_any(&licht, |p| p.nouns.light_nouns), cat.any(&licht, cat.light_nouns()));
         assert!(!cat.pack_has("licht", |p| p.nouns.cover_nouns));
     }
 

@@ -27,7 +27,13 @@ async fn get_dashboard(
     }
     let home = state.home.snapshot().await;
     let overlay = load_overlay(&state.data_dir);
-    Ok(Json(build_dashboard(&home, &state.bundle.load(), &overlay.ui.dismissed, state.metrics.snapshot())))
+    Ok(Json(build_dashboard(
+        &home,
+        &state.bundle.load(),
+        &overlay.ui.dismissed,
+        state.metrics.snapshot(),
+        state.catalog_for_settings().await,
+    )))
 }
 
 async fn get_ui(
@@ -96,7 +102,8 @@ async fn apply_suggestions(
     }
     let home = state.home.snapshot().await;
     let mut overlay = load_overlay(&state.data_dir);
-    let dashboard = build_dashboard(&home, &state.bundle.load(), &overlay.ui.dismissed, state.metrics.snapshot());
+    let dashboard =
+        build_dashboard(&home, &state.bundle.load(), &overlay.ui.dismissed, state.metrics.snapshot(), state.catalog_for_settings().await);
     let mut rows = Vec::new();
     for row in dashboard.assignment {
         let Some(suggestion) = row.suggested_area else {
