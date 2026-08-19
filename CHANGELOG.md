@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.36](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.35...2026.8.36) - 2026-08-19
+
+
+
+### Other
+
+- Merge pull request #110 from FABBricate-IT-Solutions/release/promote-staging([4cbc4fa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4cbc4facb509107250789472d0e96010abd566f1))
+
+- Merge remote-tracking branch 'origin/main' into release/promote-staging([4bf2dec](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4bf2dec4a89ff348bf228a1a9bf4652a49d5140d))
+
 ## [2026.8.35](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.34...2026.8.35) - 2026-08-18
 
 
