@@ -285,6 +285,7 @@ fn personality_key(personality: Personality) -> &'static str {
         Personality::Pirat => "pirat",
         Personality::Hippie => "hippie",
         Personality::Gollum => "gollum",
+        Personality::Jarvis => "jarvis",
     }
 }
 

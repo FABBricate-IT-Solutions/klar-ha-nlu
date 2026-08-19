@@ -45,6 +45,7 @@ from .const import (
 )
 from .lang_select import normalize_language_choice
 from .languages import LANGUAGE_NAMES
+from .refine_voices import editable_prompt, prompt_pack, resolve_stored_prompt
 
 
 def _language_options() -> list[dict[str, str]]:
@@ -200,6 +201,13 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
 
 class KlarOptionsFlow(config_entries.OptionsFlow):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self._shown_personality: str | None = None
+
+    def _pack(self) -> str:
+        return prompt_pack(getattr(getattr(self.hass, "config", None), "language", None))
+
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
@@ -208,6 +216,20 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 user_input.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
             )
             personality = resolve_personality(user_input.get(CONF_PERSONALITY))
+            pack = self._pack()
+            if self._shown_personality is not None and personality != self._shown_personality:
+                self._shown_personality = personality
+                swapped = {
+                    **user_input,
+                    CONF_PERSONALITY: personality,
+                    CONF_REFINE_PROMPT: editable_prompt(personality, pack),
+                }
+                return self.async_show_form(
+                    step_id="init",
+                    data_schema=self.add_suggested_values_to_schema(
+                        _options_schema(), swapped
+                    ),
+                )
             data: dict[str, Any] = {
                 CONF_LANGUAGES: language,
                 CONF_PERSONALITY: personality,
@@ -216,9 +238,13 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             if agent:
                 data[CONF_FALLBACK_AGENT] = agent
             data[CONF_REFINE_SPEECH] = bool(user_input.get(CONF_REFINE_SPEECH))
-            refine_prompt = (user_input.get(CONF_REFINE_PROMPT) or "").strip()
-            if refine_prompt:
-                data[CONF_REFINE_PROMPT] = refine_prompt
+            data[CONF_REFINE_PROMPT] = resolve_stored_prompt(
+                personality,
+                self._shown_personality
+                or resolve_personality(self.config_entry.options.get(CONF_PERSONALITY)),
+                user_input.get(CONF_REFINE_PROMPT),
+                pack,
+            )
             channel = resolve_channel(user_input.get(CONF_CHANNEL))
             mode, url = resolve_engine_target(
                 mode=user_input.get(
@@ -296,6 +322,14 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         suggested[CONF_LANGUAGES] = normalize_language_choice(
             suggested.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
         )
+        personality = resolve_personality(suggested.get(CONF_PERSONALITY))
+        suggested[CONF_PERSONALITY] = personality
+        stored_prompt = str(suggested.get(CONF_REFINE_PROMPT) or "").strip()
+        suggested[CONF_REFINE_PROMPT] = stored_prompt or editable_prompt(
+            personality,
+            self._pack(),
+        )
+        self._shown_personality = personality
         if is_managed_engine_url(suggested.get(CONF_URL)):
             suggested[CONF_MODE], suggested[CONF_URL] = resolve_engine_target(
                 mode=suggested[CONF_MODE],
