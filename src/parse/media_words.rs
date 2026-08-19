@@ -27,6 +27,7 @@ const SKIP_MEDIA: &[&str] = &[
     "tv",
     "television",
     "playback",
+    "wiedergabe",
     "media",
     "music",
     "musik",
@@ -102,11 +103,11 @@ pub(super) fn media_context(tokens: &[String]) -> bool {
 }
 
 pub(super) fn music_context(tokens: &[String]) -> bool {
-    any(tokens, &["musik", "music", "radio", "song", "track", "titel", "lied", "playlist", "wiedergabeliste", "playback"])
+    any(tokens, &["musik", "music", "radio", "song", "track", "titel", "lied", "playlist", "wiedergabeliste", "playback", "wiedergabe"])
 }
 
 pub(super) fn music_resume(tokens: &[String]) -> bool {
-    any(tokens, &["musik", "music", "radio", "playback"]) && any(tokens, &["an", "on", "weiter", "resume", "unpause"])
+    any(tokens, &["musik", "music", "radio", "playback", "wiedergabe"]) && any(tokens, &["an", "on", "weiter", "resume", "unpause"])
 }
 
 pub(super) fn has_search_tail(tokens: &[String], home: &HomeGraph, resolved: &Resolved) -> bool {

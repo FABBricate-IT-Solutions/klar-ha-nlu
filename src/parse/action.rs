@@ -266,7 +266,7 @@ pub(crate) fn is_garage_cover(tokens: &[String]) -> bool {
 }
 
 fn has_media_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, catalog().media_nouns())
+    catalog().any(tokens, catalog().media_nouns()) || tokens.iter().any(|token| matches!(token.as_str(), "wiedergabe" | "playback"))
 }
 
 fn has_cover_noun(tokens: &[String]) -> bool {
@@ -483,7 +483,8 @@ fn on_action(tokens: &[String], i: usize) -> Option<Action> {
         return Some(Action::On);
     }
     if is_query_token(tokens)
-        || (has_media_noun(tokens) && tokens.iter().any(|x| matches!(x.as_str(), "stop" | "pause" | "playback" | "stopped")))
+        || (has_media_noun(tokens)
+            && tokens.iter().any(|x| matches!(x.as_str(), "stop" | "stopp" | "stoppen" | "pause" | "playback" | "stopped")))
     {
         return None;
     }

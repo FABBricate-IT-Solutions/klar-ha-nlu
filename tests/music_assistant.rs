@@ -357,6 +357,10 @@ fn german_transport_imperatives_are_recognized() {
     for (text, expected) in [
         ("Pausiere die Musik", "HassMediaPause"),
         ("Pause die Musik", "HassMediaPause"),
+        ("Musik stoppen", "HassMediaPause"),
+        ("Wiedergabe stopp", "HassMediaPause"),
+        ("Wiedergabe stoppen", "HassMediaPause"),
+        ("Stopp die Wiedergabe", "HassMediaPause"),
         ("Nächster Titel", "HassMediaNext"),
         ("Nächste Musik", "HassMediaNext"),
     ] {
