@@ -34,11 +34,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: x86_64-unknown-linux-gnu
+          # musl-static: HA Core is Alpine. gnu binaries execve with ENOENT there.
+          - target: x86_64-unknown-linux-musl
             name: linux-x86_64
             ha_arch: amd64
             platform: linux/amd64
-          - target: aarch64-unknown-linux-gnu
+          - target: aarch64-unknown-linux-musl
             name: linux-aarch64
             ha_arch: aarch64
             platform: linux/arm64
@@ -57,13 +58,23 @@ jobs:
           key: ${{ matrix.target }}
       - name: Build
         run: cargo build --release --locked --target ${{ matrix.target }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build UI
+        working-directory: web
+        run: npm ci && npm run build
       - name: Package
         run: |
           dest="klar-${{ matrix.name }}"
           python3 scripts/third-party-notices.py > THIRD_PARTY
           cp "target/${{ matrix.target }}/release/klar" klar
           chmod +x klar
-          tar -czf "${dest}.tar.gz" klar LICENSE THIRD_PARTY
+          rm -rf ui
+          cp -R web/dist ui
+          tar -czf "${dest}.tar.gz" klar LICENSE THIRD_PARTY ui
       - uses: actions/upload-artifact@v7
         with:
           name: klar-${{ matrix.name }}
@@ -101,16 +112,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-node@v7
-        if: github.event_name != 'pull_request'
-        with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: web/package-lock.json
-      - name: Build UI
-        if: github.event_name != 'pull_request'
-        working-directory: web
-        run: npm ci && npm run build
       - name: Push container
         if: github.event_name != 'pull_request'
         env:
