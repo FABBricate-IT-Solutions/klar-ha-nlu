@@ -7,8 +7,6 @@ import logging
 import os
 import platform
 import secrets
-import tarfile
-from io import BytesIO
 from pathlib import Path
 
 from aiohttp import ClientError, ClientSession, ClientTimeout
@@ -16,7 +14,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .archive import pick_klar_member, require_sha256
+from .archive import extract_klar_archive, require_sha256
 from .const import (
     CHANNEL_STAGING,
     DEFAULT_URL,
@@ -40,6 +38,10 @@ _ASSETS = {
 _READY_TRIES = 30
 
 
+def _read_stamp(path: Path) -> str:
+    return path.read_text(encoding="utf-8").strip() if path.is_file() else ""
+
+
 def _release_urls(version: str) -> tuple[str, ...]:
     tag = version.lstrip("v")
     base = f"https://api.github.com/repos/{GITHUB_REPO}/releases/tags"
@@ -61,7 +63,7 @@ class KlarEngine:
 
     @property
     def bindir(self) -> Path:
-        return Path(self.hass.config.path(".storage", "klar_nlu"))
+        return Path(self.hass.config.path("klar_nlu"))
 
     @property
     def binary(self) -> Path:
@@ -94,18 +96,20 @@ class KlarEngine:
 
     async def _ensure_binary(self) -> None:
         stamp = self.bindir / "version"
-        current = stamp.read_text(encoding="utf-8").strip() if stamp.is_file() else ""
+        current = await self.hass.async_add_executor_job(_read_stamp, stamp)
+        present = await self.hass.async_add_executor_job(self.binary.is_file)
         session = async_get_clientsession(self.hass)
         timeout = ClientTimeout(total=180)
         if self.channel != CHANNEL_STAGING:
             wanted = self._stamp_for(ENGINE_VERSION)
-            if self.binary.is_file() and current in {wanted, ENGINE_VERSION}:
+            if present and current in {wanted, ENGINE_VERSION}:
                 return
         try:
             release = await self._fetch_release(session, timeout)
             version = str(release.get("tag_name") or ENGINE_VERSION).lstrip("v")
             wanted = self._stamp_for(version)
-            if self.binary.is_file() and current == wanted:
+            present = await self.hass.async_add_executor_job(self.binary.is_file)
+            if present and current == wanted:
                 return
             machine = platform.machine().lower()
             asset = _ASSETS.get(machine)
@@ -158,20 +162,7 @@ class KlarEngine:
         )
 
     def _extract(self, blob: bytes, stamp: str) -> None:
-        self.bindir.mkdir(parents=True, exist_ok=True)
-        with tarfile.open(fileobj=BytesIO(blob), mode="r:gz") as tar:
-            tar.extraction_filter = getattr(tarfile, "data_filter", tarfile.tar_filter)
-            wanted = pick_klar_member(
-                [item.name for item in tar.getmembers() if item.isfile()]
-            )
-            if wanted is None:
-                raise RuntimeError("Klar archive has no klar binary")
-            member = tar.getmember(wanted)
-            extracted = tar.extractfile(member)
-            if extracted is None:
-                raise RuntimeError("Klar archive could not be read")
-            self.binary.write_bytes(extracted.read())
-        self.binary.chmod(0o755)
+        extract_klar_archive(blob, self.bindir)
         (self.bindir / "version").write_text(stamp, encoding="utf-8")
 
     def _ensure_token(self) -> str:
@@ -186,23 +177,30 @@ class KlarEngine:
         return token
 
     async def _spawn(self) -> None:
-        self.token = self._ensure_token()
+        self.token = await self.hass.async_add_executor_job(self._ensure_token)
         env = os.environ.copy()
         env["KLAR_TOKEN"] = self.token
-        self._proc = await asyncio.create_subprocess_exec(
-            str(self.binary),
-            "--config-dir",
-            str(self.hass.config.config_dir),
-            "--data-dir",
-            str(self.bindir),
-            "--http",
-            "127.0.0.1:10520",
-            "--wyoming",
-            "127.0.0.1:10500",
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            env=env,
-        )
+        env["KLAR_UI_DIR"] = str(self.bindir / "ui")
+        try:
+            self._proc = await asyncio.create_subprocess_exec(
+                str(self.binary),
+                "--config-dir",
+                str(self.hass.config.config_dir),
+                "--data-dir",
+                str(self.bindir),
+                "--http",
+                "127.0.0.1:10520",
+                "--wyoming",
+                "127.0.0.1:10500",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                env=env,
+            )
+        except FileNotFoundError as err:
+            raise RuntimeError(
+                f"Klar binary not runnable at {self.binary} ({err}). "
+                "Home Assistant Core is Alpine musl; the release tarball must be musl."
+            ) from err
         asyncio.create_task(self._pipe_log(self._proc.stdout, logging.DEBUG))
         asyncio.create_task(self._pipe_log(self._proc.stderr, logging.WARNING))
         _LOGGER.info("Started Klar engine pid=%s", self._proc.pid)

@@ -5,7 +5,10 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import tarfile
+import tempfile
 import unittest
+from io import BytesIO
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -62,6 +65,24 @@ class MemberTests(unittest.TestCase):
 
     def test_rejects_path_escape(self) -> None:
         self.assertIsNone(pick_klar_member(["../klar"]))
+
+
+class ExtractTests(unittest.TestCase):
+    def test_writes_binary_and_ui(self) -> None:
+        blob = BytesIO()
+        with tarfile.open(fileobj=blob, mode="w:gz") as tar:
+            info = tarfile.TarInfo("klar")
+            payload = b"engine"
+            info.size = len(payload)
+            tar.addfile(info, BytesIO(payload))
+            ui = tarfile.TarInfo("ui/index.html")
+            html = b"<html></html>"
+            ui.size = len(html)
+            tar.addfile(ui, BytesIO(html))
+        dest = Path(tempfile.mkdtemp())
+        archive.extract_klar_archive(blob.getvalue(), dest)
+        self.assertEqual((dest / "klar").read_bytes(), b"engine")
+        self.assertEqual((dest / "ui" / "index.html").read_bytes(), html)
 
 
 if __name__ == "__main__":

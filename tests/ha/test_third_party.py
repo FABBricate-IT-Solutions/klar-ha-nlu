@@ -77,10 +77,13 @@ class NoticeTests(unittest.TestCase):
                 tar.add(dest, arcname="klar")
                 tar.add(license_path, arcname="LICENSE")
                 tar.add(third, arcname="THIRD_PARTY")
+                ui = Path(tmp) / "index.html"
+                ui.write_text("<html></html>", encoding="utf-8")
+                tar.add(ui, arcname="ui/index.html")
             blob.seek(0)
             with tarfile.open(fileobj=blob, mode="r:gz") as tar:
-                names = {Path(item.name).name for item in tar.getmembers() if item.isfile()}
-        self.assertEqual(names, {"klar", "LICENSE", "THIRD_PARTY"})
+                names = {Path(item.name).as_posix() for item in tar.getmembers() if item.isfile()}
+        self.assertEqual(names, {"klar", "LICENSE", "THIRD_PARTY", "ui/index.html"})
 
 
 if __name__ == "__main__":

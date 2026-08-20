@@ -150,13 +150,17 @@ class EngineChannelTests(unittest.TestCase):
     def test_addon_and_engine_drop_armv7(self) -> None:
         engine = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text()
         self.assertNotIn("armv7", engine)
+        build = (ROOT / ".github" / "workflows" / "build.yml").read_text()
+        self.assertNotIn("armv7", build)
+        self.assertIn("x86_64-unknown-linux-musl", build)
+        self.assertIn("aarch64-unknown-linux-musl", build)
+        self.assertNotIn("unknown-linux-gnu", build)
         for rel in (
             "config.yaml",
             "addon/config.yaml",
             "addon-staging/config.yaml",
             "addon/build.yaml",
             "addon-staging/build.yaml",
-            ".github/workflows/build.yml",
         ):
             self.assertNotIn("armv7", (ROOT / rel).read_text(), rel)
 
