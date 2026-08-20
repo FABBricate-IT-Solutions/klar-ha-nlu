@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Der Release-Kanal wählt die Engine und lässt sich später ändern. Unter Home Assistant OS nutzt Staging Klar NLU (Staging), auch wenn die Integration mit der mitgelieferten Engine gestartet wurde. Eine eigene URL bleibt.",
+        "description": "Diese Integration spricht mit Assist. Eine separate Engine parst Sprache: die Klar-NLU-App (Add-on), dieser mitgelieferte Prozess oder Docker. Unter Home Assistant OS zusätzlich die App installieren und Klar-NLU-App verwenden wählen. Ohne App Mitgelieferte Engine starten. Nicht beides. Der Release-Kanal lässt sich später ändern.",
         "data": {
           "mode": "Engine",
           "channel": "Release-Kanal",
@@ -56,8 +56,8 @@
   "selector": {
     "engine_mode": {
       "options": {
-        "local": "Mitgelieferte Engine starten (empfohlen)",
-        "remote": "Bereits laufende Engine verwenden"
+        "local": "Mitgelieferte Engine starten (nur HACS)",
+        "remote": "Klar-NLU-App oder Docker verwenden"
       }
     },
     "release_channel": {

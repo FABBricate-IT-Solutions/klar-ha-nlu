@@ -17,7 +17,7 @@
 
 Deterministische Sprachsteuerung für Home Assistant — **67 Sprachen**, lokal, ohne Cloud. Assist-Alternative: **100 % vs 31,3 %** auf 9.922 DE/EN-Haussätzen ([Benchmark](docs/benchmark-assist.md)). Klar steuert das Haus; ein LLM redet nur.
 
-**Haushaltsweg:** [Einstieg](docs/getting-started.md) — HACS → Entitäten freigeben → Assist-Pipeline → fünf Sätze → Zuordnung. Wenn etwas fehlt: [Fehlerbehebung](docs/troubleshooting.md).
+**Haushaltsweg:** [Einstieg](docs/getting-started.md) — Teile unten installieren → Entitäten freigeben → Assist-Pipeline → fünf Sätze → Zuordnung. Wenn etwas fehlt: [Fehlerbehebung](docs/troubleshooting.md).
 
 **Breaking V2:** HTTP-Parse läuft nur noch über `POST /api/v2/parse` (`schema_version: "2.0"`). Rust-Engine und Home-Assistant-Integration zusammen aktualisieren. `POST /api/parse` entfällt. Vorhandene `klar_nlu.json`-Overlays laden weiter; `klar migrate import --from` prüft Konflikte, Waisen und unsichere Settings, bevor V2 geschrieben wird.
 
@@ -43,26 +43,31 @@ Klar NLU steuert Geräte selbst. Ein LLM redet oder formuliert um — Haus-Inten
 
 ## Home Assistant
 
-HACS installiert die Conversation-Integration. Beim Einrichten **Mitgelieferte Engine starten** wählen — die Integration lädt das passende GitHub-Release und startet Klar NLU neben Home Assistant. HACS selbst kann den Rust-Prozess nicht starten.
+Klar besteht aus zwei Teilen. Sie machen unterschiedliche Jobs. Beides zu installieren macht das Parsen **nicht** genauer.
+
+| Teil | Rolle | Installieren, wenn… |
+|------|-------|---------------------|
+| **HACS-Integration** | Conversation-Agent für Assist: Räume/Geräte synchronisieren, Intents ausführen | Assist Klar nutzen soll (immer) |
+| **App (Add-on)** | NLU-Engine im eigenen Container, Zuordnung / Labor in der Seitenleiste | Home Assistant OS und diese UI gewünscht |
+| **Mitgelieferte Engine** | Dieselbe Integration lädt das GitHub-Release und startet die Engine in Core | Keine App (Container / Core, oder HAOS ohne App) |
+
+Nur **einen** Engine-Host. App und mitgelieferte Engine nicht gleichzeitig.
+
+- **Home Assistant OS:** **beide** — HACS für Assist, die App für Engine und Zuordnung/Labor. Seitenleiste **Klar NLU** ist die App; Lovelace **Klar** ist nur der letzte Assist-Zug.
+- **Ohne Supervisor:** nur HACS, beim Setup **Mitgelieferte Engine starten (nur HACS)** behalten.
+- **App ohne HACS:** Zuordnung/Labor können öffnen, Assist nutzt Klar aber nicht.
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=FABBricate-IT-Solutions&repository=klar-ha-nlu&category=integration)
 
 1. Badge klicken, oder in HACS → Integrationen → ⋮ → Benutzerdefinierte Repositories `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als **Integration** hinzufügen
 2. **Klar NLU** herunterladen und Home Assistant neu starten
-3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) und **Mitgelieferte Engine starten** behalten
-4. Geräte freigeben, mit denen ihr sprechen wollt (Einstellungen → Sprachassistenten → Freigeben)
-5. Assist-Pipeline: Conversation-Engine = **Klar NLU**
-6. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen. Dort auch: Persönlichkeit, und **NLU-Antworten vom LLM verfeinern**, wenn der Agent Bestätigungen umformulieren soll
+3. Unter Home Assistant OS zusätzlich das [App-Repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu) hinzufügen, **Klar NLU** installieren und starten
+4. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu) — mit laufender App **Klar-NLU-App oder Docker verwenden**; ohne App **Mitgelieferte Engine starten (nur HACS)**
+5. Geräte freigeben, mit denen ihr sprechen wollt (Einstellungen → Sprachassistenten → Freigeben)
+6. Assist-Pipeline: Conversation-Engine = **Klar NLU**
+7. Optional in den Optionen einen Conversation-Agent für Smalltalk wählen. Dort auch: Persönlichkeit, und **NLU-Antworten vom LLM verfeinern**, wenn der Agent Bestätigungen umformulieren soll
 
-Läuft Klar NLU schon, **Bereits laufende Engine verwenden** wählen und die URL setzen.
-
-Schritt für Schritt mit Beispielsätzen: [docs/getting-started.md](docs/getting-started.md).
-
-### Add-on (Home Assistant OS)
-
-[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
-
-Einstellungen → Add-ons → ⋮ → Repositories → `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` → **Klar NLU** oder **Klar NLU (Staging)** installieren.
+Schritt für Schritt mit Beispielsätzen: [docs/getting-started.md](docs/getting-started.md). Ausführlich: [docs/home-assistant.md](docs/home-assistant.md).
 
 Release Candidates: Konfigurieren → **Release-Kanal** → Staging. Das zeigt auf `http://klar-nlu-staging:10520` oder das neueste GitHub-Prerelease. Stable geht zurück auf `http://klar-nlu:10520`. Siehe [Releases](docs/releases.md).
 

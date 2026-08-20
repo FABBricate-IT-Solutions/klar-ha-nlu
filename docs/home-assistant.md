@@ -4,7 +4,9 @@
 
 Haushaltsweg: [Einstieg](getting-started.md). Fehltreffer, Token, Bundle: [Fehlerbehebung](troubleshooting.md).
 
-Klar NLU hängt als Conversation-Entity an Assist. HACS kann die Rust-Engine nicht starten. Die Integration schon: sie lädt das passende GitHub-Release nach `.storage/klar_nlu/` und startet es auf `127.0.0.1:10520`.
+Klar NLU hängt als Conversation-Entity an Assist. Das ist die **HACS-Integration**. Die **Engine**, die Sprache parst, ist getrennt: Klar-NLU-App (Add-on), das mitgelieferte Kind, das die Integration startet, oder Docker. Derselbe Parser — die App macht Assist nicht schlauer.
+
+Unter Home Assistant OS beides installieren, wenn Assist **und** Zuordnung/Labor gebraucht werden. Nur HACS reicht für Assist ohne App-UI. Nur die App koppelt Assist nicht.
 
 V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release aktualisieren; ein gemischtes Paar schlägt fehl. Jede kompilierte Assist-Locale ist erstklassig; Assist pinnt pro Request ein Pack.
 
@@ -16,7 +18,7 @@ V2 spricht nur `POST /api/v2/parse`. Integration und Engine im selben Release ak
 2. **Klar NLU** herunterladen und Home Assistant neu starten.
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
    oder Einstellungen → Geräte & Dienste → Integration hinzufügen → **Klar NLU**.
-4. **Mitgelieferte Engine starten** behalten (braucht ein GitHub Release mit Linux-Tarballs). Oder **Bereits laufende Engine verwenden** und die URL setzen.
+4. Mit laufender App **Klar-NLU-App oder Docker verwenden**. Ohne App **Mitgelieferte Engine starten (nur HACS)** (braucht ein GitHub Release mit Linux-Tarballs).
 5. Mitgelieferte Engine: **Release-Kanal** = Stable (CalVer) oder Staging (neuestes GitHub-Prerelease). Später unter Konfigurieren änderbar.
 
 Ohne HACS `custom_components/klar_nlu` nach `<config>/custom_components/klar_nlu` kopieren und neu starten.
@@ -97,13 +99,15 @@ Bei OpenAI-kompatiblen Agenten schickt Klar `chat_template_kwargs.enable_thinkin
 
 ## Engine starten
 
-**Mitgeliefert (am einfachsten):** HACS-Integration → **Mitgelieferte Engine starten**. Lädt das GitHub-Release nach `.storage/klar_nlu/`.
+Nur **einen** Host. Ein Reload der Integration auf die App-URL beendet das mitgelieferte Kind.
 
-**Add-on (HAOS):**
+**Home Assistant OS (empfohlen):** HACS-Integration **plus** App. Die App ist Engine-Host und Zuordnung/Labor (Seitenleiste **Klar NLU**).
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
 
-`https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als Add-on-Repository hinzufügen, **Klar NLU** oder **Klar NLU (Staging)** installieren.
+`https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` als App-Repository hinzufügen, **Klar NLU** oder **Klar NLU (Staging)** installieren und starten, in der Integration **Klar-NLU-App oder Docker verwenden** (`http://klar-nlu:10520`).
+
+**Mitgeliefert (keine App):** HACS-Integration → **Mitgelieferte Engine starten (nur HACS)**. Lädt das GitHub-Release nach `/config/klar_nlu/`. Assist funktioniert. Zuordnung/Labor binden `127.0.0.1` in Core, ein Handy kommt nicht ran. Lovelace **Klar** ist nur der letzte Assist-Zug.
 
 **Stable vs Staging:** ein Schalter. Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Release-Kanal**. Stable zeigt auf die Klar-NLU-App (`http://klar-nlu:10520`) bzw. das CalVer-GitHub-Release. Staging zeigt auf Klar NLU (Staging) (`http://klar-nlu-staging:10520`) bzw. das neueste Prerelease. Eine eigene URL bleibt unverändert. Nach dem Wechsel lädt die Integration neu. Nicht in `.storage` umbiegen.
 
