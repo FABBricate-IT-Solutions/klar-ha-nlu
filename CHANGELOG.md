@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.41](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.40...2026.8.41) - 2026-08-20
+
+
+
+### Bug Fixes
+
+- pack the engine tarball member as klar([3ae4060](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3ae406053dfec889cc31b6d78b4ffbfe1541d857))
+
+
+### Other
+
+- Merge pull request #120 from FABBricate-IT-Solutions/fix/archive-klar-binary([2ca0d44](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2ca0d448f477265ef4cf0cb9c117c93d14852992))
+
 ## [2026.8.40](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.39...2026.8.40) - 2026-08-19
 
 
