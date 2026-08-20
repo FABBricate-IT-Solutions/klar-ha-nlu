@@ -16,7 +16,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .archive import require_sha256
+from .archive import pick_klar_member, require_sha256
 from .const import (
     CHANNEL_STAGING,
     DEFAULT_URL,
@@ -161,18 +161,12 @@ class KlarEngine:
         self.bindir.mkdir(parents=True, exist_ok=True)
         with tarfile.open(fileobj=BytesIO(blob), mode="r:gz") as tar:
             tar.extraction_filter = getattr(tarfile, "data_filter", tarfile.tar_filter)
-            member = next(
-                (
-                    item
-                    for item in tar.getmembers()
-                    if item.isfile()
-                    and Path(item.name).name == "klar"
-                    and ".." not in Path(item.name).parts
-                ),
-                None,
+            wanted = pick_klar_member(
+                [item.name for item in tar.getmembers() if item.isfile()]
             )
-            if member is None:
+            if wanted is None:
                 raise RuntimeError("Klar archive has no klar binary")
+            member = tar.getmember(wanted)
             extracted = tar.extractfile(member)
             if extracted is None:
                 raise RuntimeError("Klar archive could not be read")

@@ -61,9 +61,9 @@ jobs:
         run: |
           dest="klar-${{ matrix.name }}"
           python3 scripts/third-party-notices.py > THIRD_PARTY
-          cp "target/${{ matrix.target }}/release/klar" "$dest"
-          chmod +x "$dest"
-          tar -czf "${dest}.tar.gz" "$dest" LICENSE THIRD_PARTY
+          cp "target/${{ matrix.target }}/release/klar" klar
+          chmod +x klar
+          tar -czf "${dest}.tar.gz" klar LICENSE THIRD_PARTY
       - uses: actions/upload-artifact@v7
         with:
           name: klar-${{ matrix.name }}
