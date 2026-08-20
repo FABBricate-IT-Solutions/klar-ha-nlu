@@ -4,7 +4,9 @@
 
 Household zero-to-Assist: [getting started](getting-started.md). Misses, token, bundle: [troubleshooting](troubleshooting.md).
 
-Klar NLU attaches to Assist as a conversation entity. HACS cannot start the Rust engine. The integration can: it downloads the matching GitHub Release into `.storage/klar_nlu/` and runs it on `127.0.0.1:10520`.
+Klar NLU attaches to Assist as a conversation entity. That is the **HACS integration**. The **engine** that parses speech is separate: the Klar NLU App (add-on), the bundled child the integration starts, or Docker. Same parser either way — the App does not make Assist smarter.
+
+Install both on Home Assistant OS if you want Assist **and** Mapping/Lab. HACS alone is enough for Assist without the App UI. The App alone does not hook Assist.
 
 V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the same release; a mixed pair will fail. Every compiled Assist locale is first-class; Assist pins one pack per request.
 
@@ -16,7 +18,7 @@ V2 talks `POST /api/v2/parse` only. Update the integration and the engine in the
 2. Download **Klar NLU** and restart Home Assistant.
 3. [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=klar_nlu)  
    or Settings → Devices & services → Add integration → **Klar NLU**.
-4. Keep **Start the bundled engine** (needs a GitHub Release with linux tarballs). Or pick **Use an engine that is already running** and set the URL.
+4. With the App running, pick **Use the Klar NLU App or Docker**. Without it, pick **Start the bundled engine (HACS only)** (needs a GitHub Release with linux tarballs).
 5. Bundled engine: **Release channel** = Stable (CalVer) or Staging (latest GitHub prerelease). You can change this later under Configure.
 
 Without HACS, copy `custom_components/klar_nlu` to `<config>/custom_components/klar_nlu` and restart.
@@ -97,13 +99,15 @@ On OpenAI-compatible agents Klar sends `chat_template_kwargs.enable_thinking=fal
 
 ## Starting the engine
 
-**Bundled (simplest):** HACS integration → **Start the bundled engine**. Downloads the GitHub Release into `.storage/klar_nlu/`.
+Pick **one** host. Reloading the integration onto the App URL stops the bundled child.
 
-**Add-on (HAOS):**
+**Home Assistant OS (recommended):** HACS integration **plus** the App. The App is the engine host and the Mapping/Lab UI (sidebar **Klar NLU**).
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FFABBricate-IT-Solutions%2Fklar-ha-nlu)
 
-Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an add-on repository, then install **Klar NLU** or **Klar NLU (Staging)**.
+Add `https://github.com/FABBricate-IT-Solutions/klar-ha-nlu` as an App repository, install **Klar NLU** or **Klar NLU (Staging)**, start it, then in the integration choose **Use the Klar NLU App or Docker** (`http://klar-nlu:10520`).
+
+**Bundled (no App):** HACS integration → **Start the bundled engine (HACS only)**. Downloads the GitHub Release into `/config/klar_nlu/`. Assist works. Mapping/Lab bind `127.0.0.1` inside Core, so a phone cannot open them. Lovelace **Klar** is only the last Assist turn.
 
 **Stable vs staging:** one switch. Settings → Devices & services → Klar NLU → Configure → **Release channel**. Stable points at the Klar NLU app (`http://klar-nlu:10520`) or the CalVer GitHub release. Staging points at Klar NLU (Staging) (`http://klar-nlu-staging:10520`) or the latest prerelease. A custom URL is left alone. The integration reloads after the switch. Do not edit `.storage`.
 

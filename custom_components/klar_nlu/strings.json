@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Release channel picks the engine and can be changed later. On Home Assistant OS, Staging uses Klar NLU (Staging) even if you started with the bundled engine. A custom URL is left alone.",
+        "description": "This integration talks to Assist. A separate engine parses speech: the Klar NLU App (add-on), this bundled process, or Docker. On Home Assistant OS install the App as well, then pick Use the Klar NLU App. Without the App, pick Start the bundled engine. Do not run both. Release channel can be changed later.",
         "data": {
           "mode": "Engine",
           "channel": "Release channel",
@@ -56,8 +56,8 @@
   "selector": {
     "engine_mode": {
       "options": {
-        "local": "Start the bundled engine (recommended)",
-        "remote": "Use an engine that is already running"
+        "local": "Start the bundled engine (HACS only)",
+        "remote": "Use the Klar NLU App or Docker"
       }
     },
     "release_channel": {
