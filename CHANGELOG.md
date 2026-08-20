@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.42](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.41...2026.8.42) - 2026-08-20
+
+
+
+### Bug Fixes
+
+- run the bundled engine on Alpine Home Assistant Core([f91b0c6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f91b0c6e958eacf861b5c7f7b39e2603ee5ebe01))
+
+
+### Other
+
+- Merge pull request #121 from FABBricate-IT-Solutions/fix/bundled-musl-engine([4539012](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4539012094d9e5386443f5e907dc6d53f4caebbd))
+
 ## [2026.8.41](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.40...2026.8.41) - 2026-08-20
 
 
