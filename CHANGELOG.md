@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.43](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.42...2026.8.43) - 2026-08-20
+
+
+
+### Documentation
+
+- spell out HACS vs App vs bundled engine([2125e2d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2125e2dbe6cd553b5765b03fa334f92563d52ba1))
+
+
+### Other
+
+- Merge pull request #122 from FABBricate-IT-Solutions/docs/clarify-hacs-vs-app([81d6d1c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/81d6d1c4abd4344f2f2f98a72628b2b37b9d4972))
+
 ## [2026.8.42](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.41...2026.8.42) - 2026-08-20
 
 
