@@ -263,6 +263,7 @@ class RefineTests(unittest.TestCase):
     def test_skip_rewrite_for_llm_replies_only(self) -> None:
         self.assertTrue(refine.skip_rewrite("chat"))
         self.assertTrue(refine.skip_rewrite("llm"))
+        self.assertTrue(refine.skip_rewrite("chime"))
         self.assertFalse(refine.skip_rewrite("execute"))
         self.assertFalse(refine.skip_rewrite("clarify"))
         self.assertFalse(refine.skip_rewrite("trigger"))

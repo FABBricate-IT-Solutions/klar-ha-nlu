@@ -35,6 +35,7 @@
           "token": "Write-Token",
           "assist_filter": "Nur für Assist freigegebene Entitäten steuern",
           "nlu_rag": "NLU-RAG (optional)",
+          "quiet_ack": "Kurze Bestätigung (Chime)",
           "channel": "Release-Kanal"
         },
         "data_description": {
@@ -44,6 +45,7 @@
           "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
           "assist_filter": "Entwickleroption. An (Standard): Klar ändert nur, was Assist sehen darf. Aus: auch versteckte Sensoren und Schalter — leichter das falsche Gerät.",
           "nlu_rag": "Standard aus. Wenn an, bekommt das Fallback-Modell bei Chat und leerem Reject nur den bereits gematchten Ausschnitt. Befehle nur über Klar-Werkzeuge, nie über Assist- oder Home-Assistant-Steuerung.",
+          "quiet_ack": "Bei einfachem Licht oder Schalter an/aus keine gesprochene Antwort, nur ein kurzer Ton am Satelliten.",
           "languages": "Standard ist die Home-Assistant-Systemsprache. Alle Sprachen lässt jede kompilierte Assist-Locale aktiv. Assist pinnt pro Request ein Pack.",
           "channel": "Geht jederzeit. Unter Home Assistant OS zeigt Staging auf Klar NLU (Staging), auch wenn die Integration mit der mitgelieferten Engine angelegt wurde. Stable geht zurück zur Klar-NLU-App oder zur mitgelieferten Engine. Eine eigene URL bleibt. Nicht in `.storage` umbiegen."
         }
@@ -106,6 +108,9 @@
           "jarvis": "Jarvis"
         }
       }
+    },
+    "switch": {
+      "quiet_ack": { "name": "Kurze Bestätigung" }
     },
     "sensor": {
       "last_heard": { "name": "Zuletzt gehört" },

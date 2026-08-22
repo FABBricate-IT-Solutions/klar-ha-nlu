@@ -35,6 +35,7 @@
           "token": "Write token",
           "assist_filter": "Only control entities exposed to Assist",
           "nlu_rag": "NLU-RAG (opt-in)",
+          "quiet_ack": "Short confirmation (chime)",
           "channel": "Release channel"
         },
         "data_description": {
@@ -44,6 +45,7 @@
           "token": "Same token as the Klar add-on. Needed for overlay writes from Home Assistant.",
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
           "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
+          "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime on the satellite.",
           "languages": "Default follows the Home Assistant system language. All languages keeps every compiled Assist locale enabled. Assist still pins one pack per request.",
           "channel": "Works anytime. On Home Assistant OS, Staging points at Klar NLU (Staging) even if setup started the bundled engine. Stable goes back to the Klar NLU app or the bundled engine. A custom URL is left alone. Do not edit `.storage`."
         }
@@ -106,6 +108,9 @@
           "jarvis": "Jarvis"
         }
       }
+    },
+    "switch": {
+      "quiet_ack": { "name": "Short confirmation" }
     },
     "sensor": {
       "last_heard": { "name": "Last heard" },
