@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "இந்த ஒருங்கிணைப்பு Assist உடன் பேசுகிறது. தனி இயந்திரம் பேச்சைப் பகுக்கிறது: Klar NLU செயலி, தொகுப்பு செயல், அல்லது Docker. Home Assistant OS இல் செயலியையும் நிறுவி Klar NLU செயலியைப் பயன்படுத்து என்பதைத் தேர்ந்தெடுக்கவும். செயலி இல்லையெனில் தொகுப்பு இயந்திரத்தைத் தொடங்கவும். இரண்டையும் ஒன்றாக இயக்க வேண்டாம்.",
+        "data": {
+          "mode": "இயந்திரம்",
+          "channel": "வெளியீட்டு சேனல்",
+          "url": "Klar API URL",
+          "token": "எழுதும் டோக்கன்"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) ஆக இருக்க வேண்டும், பயனர் பெயர் இல்லாமல்."
+    },
+    "abort": {
+      "already_configured": "Klar NLU ஏற்கனவே அமைக்கப்பட்டுள்ளது"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "ஆளுமை இங்கே சேமிக்கப்பட்டு Klar செயலியை மீண்டும் நிறுவிய பிறகும் இருக்கும்.",
+        "data": {
+          "mode": "இயந்திரம்",
+          "personality": "ஆளுமை",
+          "languages": "மொழிகள்",
+          "fallback_agent": "அரட்டைக்கான உரையாடல் முகவர்",
+          "refine_speech": "LLM NLU பதில்களை மீண்டும் எழுதட்டும்",
+          "refine_prompt": "மேம்பாட்டு அறிவுறுத்தல்",
+          "url": "Klar API URL",
+          "token": "எழுதும் டோக்கன்",
+          "assist_filter": "Assist காணும் அலகுகளை மட்டும் கட்டுப்படுத்து",
+          "nlu_rag": "NLU-RAG (விருப்பம்)",
+          "quiet_ack": "குறுகிய உறுதி (மணி)",
+          "channel": "வெளியீட்டு சேனல்"
+        },
+        "data_description": {
+          "personality": "இந்த ஒருங்கிணைப்பில் உள்ளது, Klar செயலியில் இல்லை.",
+          "refine_speech": "Klar சாதனங்களைக் கட்டுப்படுத்துகிறது. காப்பு LLM பதிலை மீண்டும் எழுதுகிறது.",
+          "refine_prompt": "குரலின் அமைப்பு அறிவுறுத்தல். சாதனக் கட்டுப்பாடு இல்லை, புதிய உண்மை இல்லை, அதே மொழி.",
+          "token": "Klar செயலியில் உள்ள அதே டோக்கன்.",
+          "assist_filter": "ஆன்: Assist காண்பது மட்டும். ஆஃப்: மறைந்த அலகுகளும்.",
+          "nlu_rag": "இயல்பு ஆஃப். அரட்டையில் பொருந்திய பகுதி மட்டும் காப்பு மாதிரிக்குச் செல்லும்.",
+          "quiet_ack": "எளிய விளக்கு ஆன்/ஆஃப்பில் வாக்கியம் இல்லை, செயற்கைக்கோளில் குறுகிய ஒலி.",
+          "languages": "இயல்பு Home Assistant கணினி மொழி.",
+          "channel": "எப்போது வேண்டுமானாலும். Staging Klar NLU (Staging) ஐச் சுட்டுகிறது."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) ஆக இருக்க வேண்டும், பயனர் பெயர் இல்லாமல்."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "தொகுப்பு இயந்திரத்தைத் தொடங்கு (HACS மட்டும்)",
+        "remote": "Klar NLU செயலி அல்லது Docker பயன்படுத்து"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (தயாரிப்பு)",
+        "staging": "Staging (வேட்பாளர்)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "கணினி மொழி",
+        "all": "அனைத்து மொழிகள்"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "சாதாரண",
+        "butler": "Butler",
+        "locker": "தளர்வான",
+        "fuersorglich": "கவனமான",
+        "party": "Party",
+        "grantig": "கோபமான",
+        "sarkastisch": "நையாண்டி",
+        "pirat": "கடற்கொள்ளை",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "ஆளுமை",
+        "state": {
+          "default": "சாதாரண",
+          "butler": "Butler",
+          "locker": "தளர்வான",
+          "fuersorglich": "கவனமான",
+          "party": "Party",
+          "grantig": "கோபமான",
+          "sarkastisch": "நையாண்டி",
+          "pirat": "கடற்கொள்ளை",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "குறுகிய உறுதி"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "கடைசியாகக் கேட்டது"
+      },
+      "last_decision": {
+        "name": "கடைசி முடிவு"
+      },
+      "last_speech": {
+        "name": "கடைசி பதில்"
+      },
+      "last_area": {
+        "name": "கேட்ட இடம்"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar இயந்திரம் நின்றது",
+      "description": "தொகுப்பு Klar செயல் இயங்கவில்லை. அமைப்புகள் → சாதனங்கள் மற்றும் சேவைகளில் Klar NLU ஐ மீண்டும் ஏற்றவும்."
+    }
+  }
+}

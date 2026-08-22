@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Die Integration redet mit Assist. D'Engine lauft als Klar-NLU-App, mitglieferte Prozess oder Docker. Uf Home Assistant OS d App installiere und Klar-NLU-App wähle. Ohni App Mitglieferte Engine starte. Nöd beides. De Release-Kanal cha mer spöter wächsle.",
+        "data": {
+          "mode": "Engine",
+          "channel": "Release-Kanal",
+          "url": "URL vo de Klar-API",
+          "token": "Write-Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "D URL mues http(s) si, ohni Benutzername."
+    },
+    "abort": {
+      "already_configured": "Klar NLU isch scho ygrichtet"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "D Persönlichkeit blibt i Home Assistant, au nach ere Neuinstallation vo de Klar-App. Beim Wächsle wird de Verfyynerigs-Prompt kopiert.",
+        "data": {
+          "mode": "Engine",
+          "personality": "Persönlichkeit",
+          "languages": "Sprache",
+          "fallback_agent": "Conversation-Agent für Smalltalk",
+          "refine_speech": "NLU-Antworten vom LLM verfyynere",
+          "refine_prompt": "Verfyynerigs-Prompt",
+          "url": "URL vo de Klar-API",
+          "token": "Write-Token",
+          "assist_filter": "Nur für Assist freigebeni Entitäte stüre",
+          "nlu_rag": "NLU-RAG (optional)",
+          "quiet_ack": "Churzi Bestätigung (Chime)",
+          "channel": "Release-Kanal"
+        },
+        "data_description": {
+          "personality": "Lyt i dere Integration, nöd i de Klar-App. Assist und d LLM-Stimm folged em Prompt.",
+          "refine_speech": "Klar stüret wyter d Grät. S Fallback-LLM formuliert d Antwort um.",
+          "refine_prompt": "Systemprompt vo de Stimm. Kei Grätestüürig, kei neui Fakte, gliichi Sprach.",
+          "token": "Glyche Token wie im Klar-Addon.",
+          "assist_filter": "Aa: nur was Assist gseht. Us: au versteckti Entitäte.",
+          "nlu_rag": "Standard us. Bi Chat nume de gmatchti Uschnitt ans Fallback-Modell.",
+          "quiet_ack": "Bi eifachem Liecht aa/us kei gredti Antwort, nur en churze Ton.",
+          "languages": "Standard isch d Home-Assistant-Systemsprach.",
+          "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "D URL mues http(s) si, ohni Benutzername."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Mitglieferte Engine starte (nur HACS)",
+        "remote": "Klar-NLU-App oder Docker bruche"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (Produktion)",
+        "staging": "Staging (Release Candidate)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Systemsprach",
+        "all": "Alli Sprache"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Locker",
+        "fuersorglich": "Fürsorglich",
+        "party": "Party",
+        "grantig": "Grantig",
+        "sarkastisch": "Sarkastisch",
+        "pirat": "Pirat",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Persönlichkeit",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Locker",
+          "fuersorglich": "Fürsorglich",
+          "party": "Party",
+          "grantig": "Grantig",
+          "sarkastisch": "Sarkastisch",
+          "pirat": "Pirat",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Churzi Bestätigung"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Zletzt ghört"
+      },
+      "last_decision": {
+        "name": "Letschti Entscheidig"
+      },
+      "last_speech": {
+        "name": "Letschti Antwort"
+      },
+      "last_area": {
+        "name": "Ghört in"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-Engine gstoppt",
+      "description": "De mitglieferte Klar-Prozess lauft nöd. Lad Klar NLU under Istellige → Grät und Dienst neu."
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Această integrare vorbește cu Assist. Un motor separat analizează vorbirea: aplicația Klar NLU, procesul inclus sau Docker. Pe Home Assistant OS instalați și aplicația, apoi alegeți Folosește aplicația Klar NLU. Fără aplicație porniți motorul inclus. Nu rulați ambele.",
+        "data": {
+          "mode": "Motor",
+          "channel": "Canal de lansare",
+          "url": "URL API Klar",
+          "token": "Token de scriere"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL-ul trebuie să fie http(s), fără utilizator."
+    },
+    "abort": {
+      "already_configured": "Klar NLU este deja configurat"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Personalitatea se salvează aici și rămâne după reinstalarea aplicației Klar.",
+        "data": {
+          "mode": "Motor",
+          "personality": "Personalitate",
+          "languages": "Limbi",
+          "fallback_agent": "Agent de conversație pentru vorbărie",
+          "refine_speech": "Lasă LLM-ul să reformuleze răspunsurile NLU",
+          "refine_prompt": "Prompt de rafinare",
+          "url": "URL API Klar",
+          "token": "Token de scriere",
+          "assist_filter": "Controlează doar entitățile expuse către Assist",
+          "nlu_rag": "NLU-RAG (opțional)",
+          "quiet_ack": "Confirmare scurtă (clopoțel)",
+          "channel": "Canal de lansare"
+        },
+        "data_description": {
+          "personality": "Este în această integrare, nu în aplicația Klar.",
+          "refine_speech": "Klar controlează în continuare dispozitivele. LLM-ul de rezervă reformulează răspunsul.",
+          "refine_prompt": "Promptul de sistem al vocii. Fără control de dispozitive, fără fapte noi, aceeași limbă.",
+          "token": "Același token ca în aplicația Klar.",
+          "assist_filter": "Pornit: doar ce vede Assist. Oprit: și entități ascunse.",
+          "nlu_rag": "Dezactivat implicit. La conversație doar fragmentul recunoscut merge la modelul de rezervă.",
+          "quiet_ack": "La aprindere/stingere simplă nu vorbește, doar un sunet scurt pe satelit.",
+          "languages": "Implicit urmează limba sistemului Home Assistant.",
+          "channel": "Oricând. Staging indică Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL-ul trebuie să fie http(s), fără utilizator."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Pornește motorul inclus (doar HACS)",
+        "remote": "Folosește aplicația Klar NLU sau Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (producție)",
+        "staging": "Staging (candidat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Limba sistemului",
+        "all": "Toate limbile"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Dezinvolt",
+        "fuersorglich": "Grijuliu",
+        "party": "Party",
+        "grantig": "Morocănos",
+        "sarkastisch": "Sarcastic",
+        "pirat": "Pirat",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personalitate",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Dezinvolt",
+          "fuersorglich": "Grijuliu",
+          "party": "Party",
+          "grantig": "Morocănos",
+          "sarkastisch": "Sarcastic",
+          "pirat": "Pirat",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Confirmare scurtă"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Ultima audire"
+      },
+      "last_decision": {
+        "name": "Ultima decizie"
+      },
+      "last_speech": {
+        "name": "Ultimul răspuns"
+      },
+      "last_area": {
+        "name": "Auzit în"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Motorul Klar s-a oprit",
+      "description": "Procesul Klar inclus nu rulează. Reîncărcați Klar NLU din Setări → Dispozitive și servicii."
+    }
+  }
+}

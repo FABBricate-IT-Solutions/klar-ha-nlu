@@ -19,6 +19,7 @@ from .const import (
     CONF_MODE,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
+    CONF_QUIET_ACK,
     CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
@@ -27,6 +28,7 @@ from .const import (
     DEFAULT_CHANNEL,
     DEFAULT_NLU_RAG,
     DEFAULT_PERSONALITY,
+    DEFAULT_QUIET_ACK,
     DEFAULT_REFINE_PROMPT,
     DEFAULT_REFINE_SPEECH,
     DEFAULT_URL,
@@ -107,6 +109,7 @@ def _options_schema() -> vol.Schema:
             selector.BooleanSelector()
         ),
         vol.Optional(CONF_NLU_RAG, default=DEFAULT_NLU_RAG): selector.BooleanSelector(),
+        vol.Optional(CONF_QUIET_ACK, default=DEFAULT_QUIET_ACK): selector.BooleanSelector(),
         vol.Optional(CONF_CHANNEL, default=DEFAULT_CHANNEL): selector.SelectSelector(
             selector.SelectSelectorConfig(
                 options=[CHANNEL_STABLE, CHANNEL_STAGING],
@@ -291,6 +294,12 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                     )
                 )
             data[CONF_NLU_RAG] = bool(user_input.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+            data[CONF_QUIET_ACK] = bool(
+                user_input.get(
+                    CONF_QUIET_ACK,
+                    self.config_entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK),
+                )
+            )
             return self.async_create_entry(data=data)
         suggested = {
             CONF_LANGUAGES: LANGUAGE_SYSTEM,
@@ -299,6 +308,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
             CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
             CONF_NLU_RAG: DEFAULT_NLU_RAG,
+            CONF_QUIET_ACK: DEFAULT_QUIET_ACK,
             CONF_MODE: self.config_entry.options.get(
                 CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)
             ),

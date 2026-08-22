@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "यह इंटीग्रेशन Assist से बात करता है। अलग इंजन वाणी पढ़ता है: Klar NLU ऐप, बंडल प्रक्रिया, या Docker। Home Assistant OS पर ऐप भी लगाएँ और Klar NLU ऐप इस्तेमाल करें चुनें। बिना ऐप बंडल इंजन चलाएँ। दोनों एक साथ न चलाएँ।",
+        "data": {
+          "mode": "इंजन",
+          "channel": "रिलीज़ चैनल",
+          "url": "Klar API URL",
+          "token": "लेखन टोकन"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) होना चाहिए, बिना उपयोगकर्ता नाम।"
+    },
+    "abort": {
+      "already_configured": "Klar NLU पहले से सेट है"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "व्यक्तित्व यहाँ सहेजा जाता है और Klar ऐप फिर से लगाने के बाद भी रहता है।",
+        "data": {
+          "mode": "इंजन",
+          "personality": "व्यक्तित्व",
+          "languages": "भाषाएँ",
+          "fallback_agent": "गपशप के लिए बातचीत एजेंट",
+          "refine_speech": "LLM से NLU उत्तर सुधारें",
+          "refine_prompt": "सुधार संकेत",
+          "url": "Klar API URL",
+          "token": "लेखन टोकन",
+          "assist_filter": "केवल Assist को दिखाई इकाइयाँ नियंत्रित करें",
+          "nlu_rag": "NLU-RAG (वैकल्पिक)",
+          "quiet_ack": "छोटी पुष्टि (घंटी)",
+          "channel": "रिलीज़ चैनल"
+        },
+        "data_description": {
+          "personality": "इस इंटीग्रेशन में है, Klar ऐप में नहीं।",
+          "refine_speech": "Klar उपकरण नियंत्रित करता रहता है। बैकअप LLM उत्तर फिर लिखता है।",
+          "refine_prompt": "आवाज़ का सिस्टम संकेत। उपकरण नियंत्रण नहीं, नए तथ्य नहीं, वही भाषा।",
+          "token": "Klar ऐप जैसा ही टोकन।",
+          "assist_filter": "चालू: केवल जो Assist देखे। बंद: छिपी इकाइयाँ भी।",
+          "nlu_rag": "डिफ़ॉल्ट बंद। बातचीत में केवल मिला टुकड़ा बैकअप मॉडल को जाता है।",
+          "quiet_ack": "साधारण बत्ती चालू/बंद पर वाक्य नहीं, उपग्रह पर छोटी ध्वनि।",
+          "languages": "डिफ़ॉल्ट Home Assistant की सिस्टम भाषा है।",
+          "channel": "कभी भी। Staging Klar NLU (Staging) की ओर है।"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) होना चाहिए, बिना उपयोगकर्ता नाम।"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "बंडल इंजन शुरू करें (केवल HACS)",
+        "remote": "Klar NLU ऐप या Docker इस्तेमाल करें"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (उत्पादन)",
+        "staging": "Staging (उम्मीदवार)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "सिस्टम भाषा",
+        "all": "सभी भाषाएँ"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "सामान्य",
+        "butler": "Butler",
+        "locker": "आरामदायक",
+        "fuersorglich": "ध्यान रखने वाला",
+        "party": "Party",
+        "grantig": "चिड़चिड़ा",
+        "sarkastisch": "व्यंग्यात्मक",
+        "pirat": "समुद्री डाकू",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "व्यक्तित्व",
+        "state": {
+          "default": "सामान्य",
+          "butler": "Butler",
+          "locker": "आरामदायक",
+          "fuersorglich": "ध्यान रखने वाला",
+          "party": "Party",
+          "grantig": "चिड़चिड़ा",
+          "sarkastisch": "व्यंग्यात्मक",
+          "pirat": "समुद्री डाकू",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "छोटी पुष्टि"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "आखिरी सुना"
+      },
+      "last_decision": {
+        "name": "आखिरी निर्णय"
+      },
+      "last_speech": {
+        "name": "आखिरी उत्तर"
+      },
+      "last_area": {
+        "name": "सुना गया"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar इंजन रुक गया",
+      "description": "बंडल Klar प्रक्रिया नहीं चल रही। सेटिंग्स → डिवाइस और सेवाएँ से Klar NLU फिर लोड करें।"
+    }
+  }
+}

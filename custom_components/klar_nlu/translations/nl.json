@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Deze integratie praat met Assist. Een aparte engine herkent spraak: de Klar NLU-app, dit meegeleverde proces of Docker. Op Home Assistant OS ook de app installeren en Klar NLU-app gebruiken kiezen. Zonder app de meegeleverde engine starten. Niet allebei. Het releasekanaal kun je later wijzigen.",
+        "data": {
+          "mode": "Engine",
+          "channel": "Releasekanaal",
+          "url": "Klar-API-URL",
+          "token": "Schrijftoken"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL moet http(s) zijn, zonder gebruikersnaam."
+    },
+    "abort": {
+      "already_configured": "Klar NLU is al ingesteld"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "De persoonlijkheid staat hier en blijft bewaard na herinstallatie van de Klar-app.",
+        "data": {
+          "mode": "Engine",
+          "personality": "Persoonlijkheid",
+          "languages": "Talen",
+          "fallback_agent": "Conversatie-agent voor smalltalk",
+          "refine_speech": "NLU-antwoorden door de LLM laten herschrijven",
+          "refine_prompt": "Verfijningsprompt",
+          "url": "Klar-API-URL",
+          "token": "Schrijftoken",
+          "assist_filter": "Alleen aan Assist vrijgegeven entiteiten bedienen",
+          "nlu_rag": "NLU-RAG (optioneel)",
+          "quiet_ack": "Korte bevestiging (chime)",
+          "channel": "Releasekanaal"
+        },
+        "data_description": {
+          "personality": "Staat in deze integratie, niet in de Klar-app. Assist en de LLM-stem volgen de prompt.",
+          "refine_speech": "Klar bedient nog steeds de apparaten. De fallback-LLM herschrijft daarna het antwoord.",
+          "refine_prompt": "Systeempprompt van de stem. Geen apparaatbediening, geen nieuwe feiten, dezelfde taal.",
+          "token": "Dezelfde token als in de Klar-app.",
+          "assist_filter": "Aan: alleen wat Assist mag zien. Uit: ook verborgen entiteiten.",
+          "nlu_rag": "Standaard uit. Bij chat alleen het herkende stuk naar het fallback-model.",
+          "quiet_ack": "Bij eenvoudig licht of schakelaar aan/uit geen gesproken antwoord, alleen een korte toon.",
+          "languages": "Standaard is de Home Assistant-systeemtaal.",
+          "channel": "Altijd. Staging wijst naar Klar NLU (Staging), Stable naar de app of de meegeleverde engine."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL moet http(s) zijn, zonder gebruikersnaam."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Meegeleverde engine starten (alleen HACS)",
+        "remote": "Klar NLU-app of Docker gebruiken"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (productie)",
+        "staging": "Staging (release candidate)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Systeemtaal",
+        "all": "Alle talen"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normaal",
+        "butler": "Butler",
+        "locker": "Relaxed",
+        "fuersorglich": "Zorgzaam",
+        "party": "Party",
+        "grantig": "Knorrig",
+        "sarkastisch": "Sarcastisch",
+        "pirat": "Piraat",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Persoonlijkheid",
+        "state": {
+          "default": "Normaal",
+          "butler": "Butler",
+          "locker": "Relaxed",
+          "fuersorglich": "Zorgzaam",
+          "party": "Party",
+          "grantig": "Knorrig",
+          "sarkastisch": "Sarcastisch",
+          "pirat": "Piraat",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Korte bevestiging"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Laatst gehoord"
+      },
+      "last_decision": {
+        "name": "Laatste beslissing"
+      },
+      "last_speech": {
+        "name": "Laatste antwoord"
+      },
+      "last_area": {
+        "name": "Gehoord in"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-engine gestopt",
+      "description": "Het meegeleverde Klar-proces draait niet. Herlaad Klar NLU via Instellingen → Apparaten en diensten."
+    }
+  }
+}

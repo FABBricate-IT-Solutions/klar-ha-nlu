@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Tato integrace mluví s Assist. Samostatný engine zpracovává řeč: aplikace Klar NLU, tento přibalený proces nebo Docker. V Home Assistant OS nainstalujte i aplikaci a zvolte Použít aplikaci Klar NLU. Bez aplikace spusťte přibalený engine. Nespouštějte obojí.",
+        "data": {
+          "mode": "Engine",
+          "channel": "Kanál vydání",
+          "url": "URL Klar API",
+          "token": "Zapisovací token"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL musí být http(s) bez uživatelského jména."
+    },
+    "abort": {
+      "already_configured": "Klar NLU už je nastavené"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Osobnost je uložená tady a přežije přeinstalaci aplikace Klar.",
+        "data": {
+          "mode": "Engine",
+          "personality": "Osobnost",
+          "languages": "Jazyky",
+          "fallback_agent": "Konverzační agent pro pokec",
+          "refine_speech": "Nechat LLM upravit odpovědi NLU",
+          "refine_prompt": "Prompt pro úpravu",
+          "url": "URL Klar API",
+          "token": "Zapisovací token",
+          "assist_filter": "Ovládat jen entity viditelné pro Assist",
+          "nlu_rag": "NLU-RAG (volitelné)",
+          "quiet_ack": "Krátké potvrzení (zvonek)",
+          "channel": "Kanál vydání"
+        },
+        "data_description": {
+          "personality": "Je v této integraci, ne v aplikaci Klar.",
+          "refine_speech": "Klar dál ovládá zařízení. Záložní LLM upraví odpověď.",
+          "refine_prompt": "Systémový prompt hlasu. Bez ovládání zařízení, bez nových faktů, stejný jazyk.",
+          "token": "Stejný token jako v aplikaci Klar.",
+          "assist_filter": "Zapnuto: jen to, co Assist smí vidět. Vypnuto: i skryté entity.",
+          "nlu_rag": "Ve výchozím stavu vypnuto. V chatu jde na záložní model jen rozpoznaný úsek.",
+          "quiet_ack": "U jednoduchého zapnutí nebo vypnutí světla žádná věta, jen krátký tón.",
+          "languages": "Výchozí je systémový jazyk Home Assistantu.",
+          "channel": "Kdykoli. Staging míří na Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL musí být http(s) bez uživatelského jména."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Spustit přibalený engine (jen HACS)",
+        "remote": "Použít aplikaci Klar NLU nebo Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (produkce)",
+        "staging": "Staging (kandidát)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Jazyk systému",
+        "all": "Všechny jazyky"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Běžná",
+        "butler": "Butler",
+        "locker": "Uvolněná",
+        "fuersorglich": "Pečující",
+        "party": "Party",
+        "grantig": "Mrzutá",
+        "sarkastisch": "Sarkastická",
+        "pirat": "Pirát",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Osobnost",
+        "state": {
+          "default": "Běžná",
+          "butler": "Butler",
+          "locker": "Uvolněná",
+          "fuersorglich": "Pečující",
+          "party": "Party",
+          "grantig": "Mrzutá",
+          "sarkastisch": "Sarkastická",
+          "pirat": "Pirát",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Krátké potvrzení"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Naposledy slyšeno"
+      },
+      "last_decision": {
+        "name": "Poslední rozhodnutí"
+      },
+      "last_speech": {
+        "name": "Poslední odpověď"
+      },
+      "last_area": {
+        "name": "Slyšeno v"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar engine zastaven",
+      "description": "Přibalený proces Klar neběží. Znovu načtěte Klar NLU v Nastavení → Zařízení a služby."
+    }
+  }
+}

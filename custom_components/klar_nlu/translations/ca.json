@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Aquesta integració parla amb Assist. Un motor separat analitza la veu: l’app Klar NLU, aquest procés inclòs o Docker. A Home Assistant OS instal·leu també l’app i trieu Fer servir l’app Klar NLU. Sense app, inicieu el motor inclòs. No executeu tots dos.",
+        "data": {
+          "mode": "Motor",
+          "channel": "Canal de publicació",
+          "url": "URL de l’API Klar",
+          "token": "Testimoni d’escriptura"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "L’URL ha de ser http(s), sense usuari."
+    },
+    "abort": {
+      "already_configured": "Klar NLU ja està configurat"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "La personalitat es desa aquí i sobreviu a la reinstal·lació de l’app Klar.",
+        "data": {
+          "mode": "Motor",
+          "personality": "Personalitat",
+          "languages": "Llengües",
+          "fallback_agent": "Agent de conversa per a xerrameca",
+          "refine_speech": "Deixar que l'LLM reformuli les respostes NLU",
+          "refine_prompt": "Indicació de refinament",
+          "url": "URL de l’API Klar",
+          "token": "Testimoni d’escriptura",
+          "assist_filter": "Controlar només entitats exposades a Assist",
+          "nlu_rag": "NLU-RAG (opcional)",
+          "quiet_ack": "Confirmació breu (timbre)",
+          "channel": "Canal de publicació"
+        },
+        "data_description": {
+          "personality": "És en aquesta integració, no a l’app Klar.",
+          "refine_speech": "Klar continua controlant els aparells. L'LLM de reserva reformula la resposta.",
+          "refine_prompt": "Indicació de sistema de la veu. Sense control d’aparells, sense fets nous, mateixa llengua.",
+          "token": "El mateix testimoni que a l’app Klar.",
+          "assist_filter": "Activat: només el que Assist pot veure. Desactivat: també entitats ocultes.",
+          "nlu_rag": "Desactivat per defecte. Al xat només el fragment reconegut va al model de reserva.",
+          "quiet_ack": "En encendre o apagar simple, sense frase: només un timbre curt al satèl·lit.",
+          "languages": "Per defecte, la llengua del sistema de Home Assistant.",
+          "channel": "En qualsevol moment. Staging apunta a Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "L’URL ha de ser http(s), sense usuari."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Iniciar el motor inclòs (només HACS)",
+        "remote": "Fer servir l’app Klar NLU o Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (producció)",
+        "staging": "Staging (candidat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Llengua del sistema",
+        "all": "Totes les llengües"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Informal",
+        "fuersorglich": "Atenta",
+        "party": "Party",
+        "grantig": "Rondinaire",
+        "sarkastisch": "Sarcastica",
+        "pirat": "Pirata",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personalitat",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Informal",
+          "fuersorglich": "Atenta",
+          "party": "Party",
+          "grantig": "Rondinaire",
+          "sarkastisch": "Sarcastica",
+          "pirat": "Pirata",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Confirmació breu"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Darrera escolta"
+      },
+      "last_decision": {
+        "name": "Darrera decisió"
+      },
+      "last_speech": {
+        "name": "Darrera resposta"
+      },
+      "last_area": {
+        "name": "Escoltat a"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Motor Klar aturat",
+      "description": "El procés Klar inclòs no s’està executant. Torneu a carregar Klar NLU a Configuració → Dispositius i serveis."
+    }
+  }
+}

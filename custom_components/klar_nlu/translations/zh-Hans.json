@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "此集成与 Assist 对话。语音由 Klar NLU 应用、捆绑进程或 Docker 解析。在 Home Assistant OS 上请安装应用并选择使用 Klar NLU 应用；否则启动捆绑引擎。不要同时运行。发布通道可稍后更改。",
+        "data": {
+          "mode": "引擎",
+          "channel": "发布通道",
+          "url": "Klar API 地址",
+          "token": "写入令牌"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "网址必须是 http(s)，且不含用户名。"
+    },
+    "abort": {
+      "already_configured": "Klar NLU 已经配置"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "人格保存在此集成中，重装 Klar 应用后仍然有效。",
+        "data": {
+          "mode": "引擎",
+          "personality": "人格",
+          "languages": "语言",
+          "fallback_agent": "闲聊对话代理",
+          "refine_speech": "用 LLM 润色 NLU 回复",
+          "refine_prompt": "润色提示词",
+          "url": "Klar API 地址",
+          "token": "写入令牌",
+          "assist_filter": "仅控制已向 Assist 公开的实体",
+          "nlu_rag": "NLU-RAG（可选）",
+          "quiet_ack": "短确认（提示音）",
+          "channel": "发布通道"
+        },
+        "data_description": {
+          "personality": "保存在此集成中，不在 Klar 应用里。Assist 与 LLM 语音遵循该提示词。",
+          "refine_speech": "Klar 仍控制设备。后备 LLM 会改写已完成的回复。",
+          "refine_prompt": "语音系统提示。不控制设备、不编造事实、保持同一语言。",
+          "token": "与 Klar 应用相同的令牌。",
+          "assist_filter": "开：仅 Assist 可见实体。关：也包括隐藏实体。",
+          "nlu_rag": "默认关闭。闲聊时只把已匹配片段送给后备模型。",
+          "quiet_ack": "简单开关灯时不说话，只在卫星上播放短提示音。",
+          "languages": "默认跟随 Home Assistant 系统语言。",
+          "channel": "随时可改。预发布指向 Klar NLU（Staging）。"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "网址必须是 http(s)，且不含用户名。"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "启动捆绑引擎（仅 HACS）",
+        "remote": "使用 Klar NLU 应用或 Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "稳定版（生产）",
+        "staging": "预发布（候选）"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "系统语言",
+        "all": "全部语言"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "普通",
+        "butler": "Butler",
+        "locker": "轻松",
+        "fuersorglich": "体贴",
+        "party": "Party",
+        "grantig": "别扭",
+        "sarkastisch": "讽刺",
+        "pirat": "海盗",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "人格",
+        "state": {
+          "default": "普通",
+          "butler": "Butler",
+          "locker": "轻松",
+          "fuersorglich": "体贴",
+          "party": "Party",
+          "grantig": "别扭",
+          "sarkastisch": "讽刺",
+          "pirat": "海盗",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "短确认"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "上次听到"
+      },
+      "last_decision": {
+        "name": "上次判定"
+      },
+      "last_speech": {
+        "name": "上次回复"
+      },
+      "last_area": {
+        "name": "听到位置"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar 引擎已停止",
+      "description": "捆绑的 Klar 进程未运行。请在设置 → 设备与服务中重新加载 Klar NLU。"
+    }
+  }
+}

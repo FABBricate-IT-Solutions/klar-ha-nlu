@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Labhraíonn an comhtháthú seo le Assist. Déanann inneall ar leith anailís ar chaint: aip Klar NLU, an próiseas cuachta, nó Docker. Ar Home Assistant OS suiteáil an aip freisin agus roghnaigh Úsáid aip Klar NLU. Gan an aip, tosaigh an t-inneall cuachta. Ná rith an dá cheann.",
+        "data": {
+          "mode": "Inneall",
+          "channel": "Cainéal eisiúna",
+          "url": "URL API Klar",
+          "token": "Comhartha scríofa"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Ní mór don URL a bheith http(s) gan ainm úsáideora."
+    },
+    "abort": {
+      "already_configured": "Tá Klar NLU socraithe cheana"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Stóráiltear an phearsantacht anseo agus fanann sí tar éis aip Klar a athshuiteáil.",
+        "data": {
+          "mode": "Inneall",
+          "personality": "Pearsantacht",
+          "languages": "Teangacha",
+          "fallback_agent": "Gníomhaire comhrá le haghaidh cainte",
+          "refine_speech": "Lig don LLM freagraí NLU a athscríobh",
+          "refine_prompt": "Leid mhionchoigeartaithe",
+          "url": "URL API Klar",
+          "token": "Comhartha scríofa",
+          "assist_filter": "Rialaigh eintitis nochta do Assist amháin",
+          "nlu_rag": "NLU-RAG (roghnach)",
+          "quiet_ack": "Deimhniú gearr (clog)",
+          "channel": "Cainéal eisiúna"
+        },
+        "data_description": {
+          "personality": "San chomhtháthú seo, ní in aip Klar.",
+          "refine_speech": "Rialaíonn Klar gléasanna fós. Athscríobhann an LLM cúltaca an freagra.",
+          "refine_prompt": "Leid chórais na gutha. Gan rialú gléis, gan fíricí nua, an teanga chéanna.",
+          "token": "An comhartha céanna is atá in aip Klar.",
+          "assist_filter": "Ar: an méid a fheiceann Assist amháin. As: eintitis fholaithe freisin.",
+          "nlu_rag": "As de réir réamhshocraithe. Sa chomhrá téann an slisne meaitseáilte amháin chuig an tsamhail chúltaca.",
+          "quiet_ack": "Ar lasadh/mhúchadh simplí solais, gan abairt, fuaim ghearr ar an satailít amháin.",
+          "languages": "Leanann an réamhshocrú teanga an chórais Home Assistant.",
+          "channel": "Am ar bith. Díríonn Staging ar Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Ní mór don URL a bheith http(s) gan ainm úsáideora."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Tosaigh an t-inneall cuachta (HACS amháin)",
+        "remote": "Úsáid aip Klar NLU nó Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (táirgeadh)",
+        "staging": "Staging (iarrthóir)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Teanga an chórais",
+        "all": "Gach teanga"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Gnáth",
+        "butler": "Butler",
+        "locker": "Réchúiseach",
+        "fuersorglich": "Cúramach",
+        "party": "Party",
+        "grantig": "Greannmhar",
+        "sarkastisch": "Searbhasach",
+        "pirat": "Foghlaí mara",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Pearsantacht",
+        "state": {
+          "default": "Gnáth",
+          "butler": "Butler",
+          "locker": "Réchúiseach",
+          "fuersorglich": "Cúramach",
+          "party": "Party",
+          "grantig": "Greannmhar",
+          "sarkastisch": "Searbhasach",
+          "pirat": "Foghlaí mara",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Deimhniú gearr"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Cloiste deireanach"
+      },
+      "last_decision": {
+        "name": "Cinneadh deireanach"
+      },
+      "last_speech": {
+        "name": "Freagra deireanach"
+      },
+      "last_area": {
+        "name": "Cloiste i"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Stop inneall Klar",
+      "description": "Níl an próiseas Klar cuachta ag rith. Athlódáil Klar NLU i Socruithe → Gléasanna agus seirbhísí."
+    }
+  }
+}

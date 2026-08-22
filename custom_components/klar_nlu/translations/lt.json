@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Ši integracija kalba su Assist. Atskiras variklis analizuoja kalbą: Klar NLU programa, pridedamas procesas arba Docker. Home Assistant OS įdiekite ir programą, tada rinkitės Naudoti Klar NLU programą. Be programos paleiskite pridedamą variklį. Nenaudokite abiejų.",
+        "data": {
+          "mode": "Variklis",
+          "channel": "Leidimo kanalas",
+          "url": "Klar API URL",
+          "token": "Rašymo prieigos raktas"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL turi būti http(s) be naudotojo vardo."
+    },
+    "abort": {
+      "already_configured": "Klar NLU jau sukonfigūruotas"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Asmenybė saugoma čia ir lieka po Klar programos pakartotinio diegimo.",
+        "data": {
+          "mode": "Variklis",
+          "personality": "Asmenybė",
+          "languages": "Kalbos",
+          "fallback_agent": "Pokalbių agentas plepėjimui",
+          "refine_speech": "Leisti LLM perrašyti NLU atsakymus",
+          "refine_prompt": "Tobulinimo užklausa",
+          "url": "Klar API URL",
+          "token": "Rašymo prieigos raktas",
+          "assist_filter": "Valdyti tik Assist matomus objektus",
+          "nlu_rag": "NLU-RAG (neprivaloma)",
+          "quiet_ack": "Trumpas patvirtinimas (skambutis)",
+          "channel": "Leidimo kanalas"
+        },
+        "data_description": {
+          "personality": "Šioje integracijoje, ne Klar programoje.",
+          "refine_speech": "Klar ir toliau valdo įrenginius. Atsarginis LLM perrašo atsakymą.",
+          "refine_prompt": "Balso sistemos užklausa. Be įrenginių valdymo, be naujų faktų, ta pati kalba.",
+          "token": "Tas pats raktas kaip Klar programoje.",
+          "assist_filter": "Įjungta: tik tai, ką mato Assist. Išjungta: ir paslėpti objektai.",
+          "nlu_rag": "Pagal numatymą išjungta. Pokalbyje atsarginiam modeliui eina tik atpažinta dalis.",
+          "quiet_ack": "Paprastai įjungiant / išjungiant šviesą be sakinio, tik trumpas garsas palydove.",
+          "languages": "Pagal numatymą seka Home Assistant sistemos kalbą.",
+          "channel": "Bet kada. Staging nurodo Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL turi būti http(s) be naudotojo vardo."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Paleisti pridedamą variklį (tik HACS)",
+        "remote": "Naudoti Klar NLU programą arba Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (gamyba)",
+        "staging": "Staging (kandidatas)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Sistemos kalba",
+        "all": "Visos kalbos"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Įprasta",
+        "butler": "Butler",
+        "locker": "Laisva",
+        "fuersorglich": "Rūpestinga",
+        "party": "Party",
+        "grantig": "Niūri",
+        "sarkastisch": "Sarkastiška",
+        "pirat": "Piratų",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Asmenybė",
+        "state": {
+          "default": "Įprasta",
+          "butler": "Butler",
+          "locker": "Laisva",
+          "fuersorglich": "Rūpestinga",
+          "party": "Party",
+          "grantig": "Niūri",
+          "sarkastisch": "Sarkastiška",
+          "pirat": "Piratų",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Trumpas patvirtinimas"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Paskutinį kartą girdėta"
+      },
+      "last_decision": {
+        "name": "Paskutinis sprendimas"
+      },
+      "last_speech": {
+        "name": "Paskutinis atsakymas"
+      },
+      "last_area": {
+        "name": "Girdėta"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar variklis sustojo",
+      "description": "Pridedamas Klar procesas neveikia. Įkelkite Klar NLU iš naujo: Nuostatos → Įrenginiai ir paslaugos."
+    }
+  }
+}
