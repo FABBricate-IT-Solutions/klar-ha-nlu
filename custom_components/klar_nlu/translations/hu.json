@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Ez az integráció az Assisttel beszél. A beszédet külön motor elemzi: a Klar NLU alkalmazás, a csomagolt folyamat vagy Docker. Home Assistant OS-en telepítse az alkalmazást, és válassza a Klar NLU alkalmazás használata. Alkalmazás nélkül indítsa a csomagolt motort. Ne futtassa mindkettőt.",
+        "data": {
+          "mode": "Motor",
+          "channel": "Kiadási csatorna",
+          "url": "Klar API URL",
+          "token": "Írási token"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Az URL http(s) legyen, felhasználónév nélkül."
+    },
+    "abort": {
+      "already_configured": "A Klar NLU már be van állítva"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "A személyiség itt tárolódik, és a Klar alkalmazás újratelepítése után is megmarad.",
+        "data": {
+          "mode": "Motor",
+          "personality": "Személyiség",
+          "languages": "Nyelvek",
+          "fallback_agent": "Csevegő beszélgetési ügynök",
+          "refine_speech": "Az LLM fogalmazza újra az NLU válaszokat",
+          "refine_prompt": "Finomító prompt",
+          "url": "Klar API URL",
+          "token": "Írási token",
+          "assist_filter": "Csak az Assistnek kitett entitások vezérlése",
+          "nlu_rag": "NLU-RAG (opcionális)",
+          "quiet_ack": "Rövid megerősítés (csengő)",
+          "channel": "Kiadási csatorna"
+        },
+        "data_description": {
+          "personality": "Ebben az integrációban van, nem a Klar alkalmazásban.",
+          "refine_speech": "A Klar továbbra is vezérli az eszközöket. A tartalék LLM átírja a választ.",
+          "refine_prompt": "A hang rendszerpromptja. Nincs eszközvezérlés, nincs új tény, ugyanaz a nyelv.",
+          "token": "Ugyanaz a token, mint a Klar alkalmazásban.",
+          "assist_filter": "Be: csak amit az Assist lát. Ki: rejtett entitások is.",
+          "nlu_rag": "Alapból ki. Csevegéskor csak az illeszkedő szelet megy a tartalék modellnek.",
+          "quiet_ack": "Egyszerű lámpa ki/be esetén nincs beszéd, csak rövid hang a műholdon.",
+          "languages": "Alapértelmezés a Home Assistant rendszer nyelve.",
+          "channel": "Bármikor. A Staging a Klar NLU (Staging) felé mutat."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Az URL http(s) legyen, felhasználónév nélkül."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Csomagolt motor indítása (csak HACS)",
+        "remote": "Klar NLU alkalmazás vagy Docker használata"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (éles)",
+        "staging": "Staging (jelölt)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Rendszer nyelve",
+        "all": "Minden nyelv"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normál",
+        "butler": "Butler",
+        "locker": "Laza",
+        "fuersorglich": "Gondoskodó",
+        "party": "Party",
+        "grantig": "Mogorva",
+        "sarkastisch": "Szarkasztikus",
+        "pirat": "Kalóz",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Személyiség",
+        "state": {
+          "default": "Normál",
+          "butler": "Butler",
+          "locker": "Laza",
+          "fuersorglich": "Gondoskodó",
+          "party": "Party",
+          "grantig": "Mogorva",
+          "sarkastisch": "Szarkasztikus",
+          "pirat": "Kalóz",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Rövid megerősítés"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Utoljára hallott"
+      },
+      "last_decision": {
+        "name": "Utolsó döntés"
+      },
+      "last_speech": {
+        "name": "Utolsó válasz"
+      },
+      "last_area": {
+        "name": "Hallva itt"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "A Klar motor leállt",
+      "description": "A csomagolt Klar folyamat nem fut. Töltse újra a Klar NLU-t: Beállítások → Eszközök és szolgáltatások."
+    }
+  }
+}

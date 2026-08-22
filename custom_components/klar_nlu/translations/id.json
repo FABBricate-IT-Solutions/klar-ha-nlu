@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Integrasi ini berbicara dengan Assist. Mesin terpisah menafsirkan ucapan: aplikasi Klar NLU, proses terbundel, atau Docker. Di Home Assistant OS pasang juga aplikasinya lalu pilih Gunakan aplikasi Klar NLU. Tanpa aplikasi, jalankan mesin terbundel. Jangan jalankan keduanya.",
+        "data": {
+          "mode": "Mesin",
+          "channel": "Saluran rilis",
+          "url": "URL API Klar",
+          "token": "Token tulis"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL harus http(s) tanpa nama pengguna."
+    },
+    "abort": {
+      "already_configured": "Klar NLU sudah diatur"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Kepribadian disimpan di sini dan tetap ada setelah memasang ulang aplikasi Klar.",
+        "data": {
+          "mode": "Mesin",
+          "personality": "Kepribadian",
+          "languages": "Bahasa",
+          "fallback_agent": "Agen percakapan untuk ngobrol",
+          "refine_speech": "Biarkan LLM merapikan balasan NLU",
+          "refine_prompt": "Prompt perapian",
+          "url": "URL API Klar",
+          "token": "Token tulis",
+          "assist_filter": "Hanya kendalikan entitas yang terlihat Assist",
+          "nlu_rag": "NLU-RAG (opsional)",
+          "quiet_ack": "Konfirmasi singkat (lonceng)",
+          "channel": "Saluran rilis"
+        },
+        "data_description": {
+          "personality": "Ada di integrasi ini, bukan di aplikasi Klar.",
+          "refine_speech": "Klar tetap mengendalikan perangkat. LLM cadangan menulis ulang balasan.",
+          "refine_prompt": "Prompt sistem suara. Tanpa kendali perangkat, tanpa fakta baru, bahasa yang sama.",
+          "token": "Token yang sama dengan aplikasi Klar.",
+          "assist_filter": "Nyala: hanya yang Assist boleh lihat. Mati: termasuk yang tersembunyi.",
+          "nlu_rag": "Default mati. Saat ngobrol hanya potongan yang cocok dikirim ke model cadangan.",
+          "quiet_ack": "Untuk nyala/mati lampu sederhana, tidak berbicara, hanya bunyi singkat di satelit.",
+          "languages": "Default mengikuti bahasa sistem Home Assistant.",
+          "channel": "Bisa kapan saja. Staging mengarah ke Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL harus http(s) tanpa nama pengguna."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Jalankan mesin terbundel (hanya HACS)",
+        "remote": "Gunakan aplikasi Klar NLU atau Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (produksi)",
+        "staging": "Staging (kandidat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Bahasa sistem",
+        "all": "Semua bahasa"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Biasa",
+        "butler": "Butler",
+        "locker": "Santai",
+        "fuersorglich": "Penyayang",
+        "party": "Party",
+        "grantig": "Pemarah",
+        "sarkastisch": "Sarkastis",
+        "pirat": "Bajak laut",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Kepribadian",
+        "state": {
+          "default": "Biasa",
+          "butler": "Butler",
+          "locker": "Santai",
+          "fuersorglich": "Penyayang",
+          "party": "Party",
+          "grantig": "Pemarah",
+          "sarkastisch": "Sarkastis",
+          "pirat": "Bajak laut",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Konfirmasi singkat"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Terakhir didengar"
+      },
+      "last_decision": {
+        "name": "Keputusan terakhir"
+      },
+      "last_speech": {
+        "name": "Balasan terakhir"
+      },
+      "last_area": {
+        "name": "Didengar di"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Mesin Klar berhenti",
+      "description": "Proses Klar terbundel tidak berjalan. Muat ulang Klar NLU di Pengaturan → Perangkat dan layanan."
+    }
+  }
+}

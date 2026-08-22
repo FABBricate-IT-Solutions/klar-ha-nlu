@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "This integration talks to Assist. A separate engine parses speech: the Klar NLU App, this bundled process, or Docker. On Home Assistant OS install the App as well, then pick Use the Klar NLU App. Without the App, pick Start the bundled engine. Do not run both.",
+        "data": {
+          "mode": "ఇంజిన్",
+          "channel": "రిలీజ్ ఛానల్",
+          "url": "Klar API URL",
+          "token": "రాత టోకెన్"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL must be http(s) without userinfo."
+    },
+    "abort": {
+      "already_configured": "Klar NLU ఇప్పటికే సెటప్ అయింది"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "The personality is stored here, so it survives reinstalling the Klar app.",
+        "data": {
+          "mode": "ఇంజిన్",
+          "personality": "వ్యక్తిత్వం",
+          "languages": "భాషలు",
+          "fallback_agent": "సంభాషణకు చాట్ ఏజెంట్",
+          "refine_speech": "LLM NLU సమాధానాలను మళ్లీ రాయనివ్వండి",
+          "refine_prompt": "మెరుగుదల ప్రాంప్ట్",
+          "url": "Klar API URL",
+          "token": "రాత టోకెన్",
+          "assist_filter": "Assistకు కనిపించే అంశాలను మాత్రమే నియంత్రించండి",
+          "nlu_rag": "NLU-RAG (ఐచ్ఛికం)",
+          "quiet_ack": "చిన్న నిర్ధారణ (గంట)",
+          "channel": "రిలీజ్ ఛానల్"
+        },
+        "data_description": {
+          "personality": "ఈ ఇంటిగ్రేషన్‌లో ఉంది, Klar యాప్‌లో కాదు.",
+          "refine_speech": "Klar still controls devices. The fallback LLM rewrites the reply.",
+          "refine_prompt": "Voice system prompt. No device control, no new facts, same language.",
+          "token": "Klar యాప్‌లో ఉన్నట్టే టోకెన్.",
+          "assist_filter": "ఆన్: Assist చూసేది మాత్రమే. ఆఫ్: దాచిన అంశాలు కూడా.",
+          "nlu_rag": "డిఫాల్ట్ ఆఫ్. చాట్‌లో సరిపోయిన భాగం మాత్రమే బ్యాకప్ మోడల్‌కు వెళ్తుంది.",
+          "quiet_ack": "సాధారణ లైట్ ఆన్/ఆఫ్‌లో వాక్యం లేదు, ఉపగ్రహంపై చిన్న ధ్వని మాత్రమే.",
+          "languages": "డిఫాల్ట్ Home Assistant సిస్టమ్ భాష.",
+          "channel": "ఎప్పుడైనా. Staging Klar NLU (Staging) వైపు చూపిస్తుంది."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL must be http(s) without userinfo."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "బండిల్ ఇంజిన్ ప్రారంభించు (HACS మాత్రమే)",
+        "remote": "Klar NLU యాప్ లేదా Docker ఉపయోగించు"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (ఉత్పత్తి)",
+        "staging": "Staging (అభ్యర్థి)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "సిస్టమ్ భాష",
+        "all": "అన్ని భాషలు"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "సాధారణ",
+        "butler": "Butler",
+        "locker": "సడలిన",
+        "fuersorglich": "శ్రద్ధగల",
+        "party": "Party",
+        "grantig": "కోపంగా",
+        "sarkastisch": "వ్యంగ్యం",
+        "pirat": "సముద్రదొంగ",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "వ్యక్తిత్వం",
+        "state": {
+          "default": "సాధారణ",
+          "butler": "Butler",
+          "locker": "సడలిన",
+          "fuersorglich": "శ్రద్ధగల",
+          "party": "Party",
+          "grantig": "కోపంగా",
+          "sarkastisch": "వ్యంగ్యం",
+          "pirat": "సముద్రదొంగ",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "చిన్న నిర్ధారణ"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "చివరిగా విన్నది"
+      },
+      "last_decision": {
+        "name": "చివరి నిర్ణయం"
+      },
+      "last_speech": {
+        "name": "చివరి సమాధానం"
+      },
+      "last_area": {
+        "name": "విన్న చోటు"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar ఇంజిన్ ఆగింది",
+      "description": "బండిల్ Klar ప్రక్రియ నడవడం లేదు. సెట్టింగ్‌లు → పరికరాలు మరియు సేవలలో Klar NLUను మళ్లీ లోడ్ చేయండి."
+    }
+  }
+}

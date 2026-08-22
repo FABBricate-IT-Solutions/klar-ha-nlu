@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "This integration talks to Assist. A separate engine parses speech: the Klar NLU App, this bundled process, or Docker. On Home Assistant OS install the App as well, then pick Use the Klar NLU App. Without the App, pick Start the bundled engine. Do not run both. The release channel can be changed later.",
+        "data": {
+          "mode": "Engine",
+          "channel": "Release channel",
+          "url": "Klar API URL",
+          "token": "Write token"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL must be http(s) without userinfo."
+    },
+    "abort": {
+      "already_configured": "Klar NLU is already set up"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "The personality is stored here, so it survives reinstalling the Klar app. Picking a personality copies its LLM refine prompt into this form.",
+        "data": {
+          "mode": "Engine",
+          "personality": "Personality",
+          "languages": "Languages",
+          "fallback_agent": "Conversation agent for chit-chat",
+          "refine_speech": "Let the LLM refine NLU replies",
+          "refine_prompt": "Refinement prompt",
+          "url": "Klar API URL",
+          "token": "Write token",
+          "assist_filter": "Only control entities exposed to Assist",
+          "nlu_rag": "NLU-RAG (opt-in)",
+          "quiet_ack": "Short confirmation (chime)",
+          "channel": "Release channel"
+        },
+        "data_description": {
+          "personality": "Stored in this integration, not in the Klar app. Assist and the LLM voice follow the prompt.",
+          "refine_speech": "Klar still controls devices. The fallback LLM then rewrites each finished reply.",
+          "refine_prompt": "System prompt for the voice. No device control, no new facts, same language.",
+          "token": "Same token as the Klar add-on.",
+          "assist_filter": "On (default): only what Assist may see. Off: hidden entities too.",
+          "nlu_rag": "Off by default. Chat and empty rejects send the matched slice to the fallback model.",
+          "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime.",
+          "languages": "Default follows the Home Assistant system language.",
+          "channel": "Works anytime. Staging points at Klar NLU (Staging). Stable goes back to the app or bundled engine."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL must be http(s) without userinfo."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Start the bundled engine (HACS only)",
+        "remote": "Use the Klar NLU App or Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (production)",
+        "staging": "Staging (release candidate)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "System language",
+        "all": "All languages"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Casual",
+        "fuersorglich": "Caring",
+        "party": "Party",
+        "grantig": "Grumpy",
+        "sarkastisch": "Sarcastic",
+        "pirat": "Pirate",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personality",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Casual",
+          "fuersorglich": "Caring",
+          "party": "Party",
+          "grantig": "Grumpy",
+          "sarkastisch": "Sarcastic",
+          "pirat": "Pirate",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Short confirmation"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Last heard"
+      },
+      "last_decision": {
+        "name": "Last decision"
+      },
+      "last_speech": {
+        "name": "Last reply"
+      },
+      "last_area": {
+        "name": "Heard in"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar engine stopped",
+      "description": "The bundled Klar process is not running. Reload Klar NLU from Settings → Devices & Services."
+    }
+  }
+}

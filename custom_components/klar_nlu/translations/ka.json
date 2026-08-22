@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "ეს ინტეგრაცია Assist-თან საუბრობს. ცალკე ძრავა აანალიზებს მეტყველებას: Klar NLU აპი, ჩართული პროცესი ან Docker. Home Assistant OS-ზე დააყენეთ აპიც და აირჩიეთ Klar NLU აპის გამოყენება. აპის გარეშე გაუშვით ჩართული ძრავა. ორივე ერთად ნუ გაუშვებთ.",
+        "data": {
+          "mode": "ძრავა",
+          "channel": "გამოშვების არხი",
+          "url": "Klar API URL",
+          "token": "ჩაწერის ტოკენი"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL უნდა იყოს http(s) მომხმარებლის სახელის გარეშე."
+    },
+    "abort": {
+      "already_configured": "Klar NLU უკვეა კონფიგურირებული"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "პიროვნება აქ ინახება და რჩება Klar აპის ხელახლა დაყენების შემდეგ.",
+        "data": {
+          "mode": "ძრავა",
+          "personality": "პიროვნება",
+          "languages": "ენები",
+          "fallback_agent": "საუბრის აგენტი ჩატისთვის",
+          "refine_speech": "LLM-მა გადააფორმოს NLU პასუხები",
+          "refine_prompt": "დახვეწის მოთხოვნა",
+          "url": "Klar API URL",
+          "token": "ჩაწერის ტოკენი",
+          "assist_filter": "მართე მხოლოდ Assist-ისთვის გამოჩენილი ერთეულები",
+          "nlu_rag": "NLU-RAG (არასავალდებულო)",
+          "quiet_ack": "მოკლე დადასტურება (ზარი)",
+          "channel": "გამოშვების არხი"
+        },
+        "data_description": {
+          "personality": "ამ ინტეგრაციაშია, არა Klar აპში.",
+          "refine_speech": "Klar კვლავ მართავს მოწყობილობებს. სარეზერვო LLM გადაწერს პასუხს.",
+          "refine_prompt": "ხმის სისტემური მოთხოვნა. მოწყობილობის კონტროლი არა, ახალი ფაქტები არა, იგივე ენა.",
+          "token": "იგივე ტოკენი, რაც Klar აპში.",
+          "assist_filter": "ჩართული: მხოლოდ ის, რასაც Assist ხედავს. გამორთული: დამალული ერთეულებიც.",
+          "nlu_rag": "ნაგულისხმევად გამორთული. ჩატში სარეზერვო მოდელს მხოლოდ დამთხვეული ნაწილი მიდის.",
+          "quiet_ack": "მარტივი სინათლის ჩართვა/გამორთვა უსიტყვოდ, მხოლოდ მოკლე ხმა თანამგზავრზე.",
+          "languages": "ნაგულისხმევი მიჰყვება Home Assistant სისტემის ენას.",
+          "channel": "ნებისმიერ დროს. Staging მიუთითებს Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL უნდა იყოს http(s) მომხმარებლის სახელის გარეშე."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "ჩართული ძრავის გაშვება (მხოლოდ HACS)",
+        "remote": "Klar NLU აპის ან Docker-ის გამოყენება"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (წარმოება)",
+        "staging": "Staging (კანდიდატი)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "სისტემის ენა",
+        "all": "ყველა ენა"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "ჩვეულებრივი",
+        "butler": "Butler",
+        "locker": "მშვიდი",
+        "fuersorglich": "მზრუნველი",
+        "party": "Party",
+        "grantig": "გაბრაზებული",
+        "sarkastisch": "სარკასტული",
+        "pirat": "მეკობრე",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "პიროვნება",
+        "state": {
+          "default": "ჩვეულებრივი",
+          "butler": "Butler",
+          "locker": "მშვიდი",
+          "fuersorglich": "მზრუნველი",
+          "party": "Party",
+          "grantig": "გაბრაზებული",
+          "sarkastisch": "სარკასტული",
+          "pirat": "მეკობრე",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "მოკლე დადასტურება"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "ბოლოს გაგონილი"
+      },
+      "last_decision": {
+        "name": "ბოლო გადაწყვეტილება"
+      },
+      "last_speech": {
+        "name": "ბოლო პასუხი"
+      },
+      "last_area": {
+        "name": "გაიგო"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar ძრავა გაჩერდა",
+      "description": "ჩართული Klar პროცესი არ მუშაობს. გადატვირთეთ Klar NLU პარამეტრები → მოწყობილობები და სერვისები."
+    }
+  }
+}

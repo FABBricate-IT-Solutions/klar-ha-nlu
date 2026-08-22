@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Integrasi ini bercakap dengan Assist. Enjin berasingan mentafsir pertuturan: aplikasi Klar NLU, proses terbungkus atau Docker. Pada Home Assistant OS pasang juga aplikasi lalu pilih Guna aplikasi Klar NLU. Tanpa aplikasi, mulakan enjin terbungkus. Jangan jalankan kedua-duanya.",
+        "data": {
+          "mode": "Enjin",
+          "channel": "Saluran keluaran",
+          "url": "URL API Klar",
+          "token": "Token tulis"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL mestilah http(s) tanpa nama pengguna."
+    },
+    "abort": {
+      "already_configured": "Klar NLU sudah disediakan"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Personaliti disimpan di sini dan kekal selepas memasang semula aplikasi Klar.",
+        "data": {
+          "mode": "Enjin",
+          "personality": "Personaliti",
+          "languages": "Bahasa",
+          "fallback_agent": "Ejen perbualan untuk sembang",
+          "refine_speech": "Biarkan LLM merapikan jawapan NLU",
+          "refine_prompt": "Prom pemurnian",
+          "url": "URL API Klar",
+          "token": "Token tulis",
+          "assist_filter": "Kawal hanya entiti yang terdedah kepada Assist",
+          "nlu_rag": "NLU-RAG (pilihan)",
+          "quiet_ack": "Pengesahan ringkas (loceng)",
+          "channel": "Saluran keluaran"
+        },
+        "data_description": {
+          "personality": "Ada dalam integrasi ini, bukan dalam aplikasi Klar.",
+          "refine_speech": "Klar masih mengawal peranti. LLM sandaran menulis semula jawapan.",
+          "refine_prompt": "Prom sistem suara. Tiada kawalan peranti, tiada fakta baharu, bahasa yang sama.",
+          "token": "Token yang sama dengan aplikasi Klar.",
+          "assist_filter": "Hidup: hanya yang Assist boleh lihat. Mati: termasuk entiti tersembunyi.",
+          "nlu_rag": "Lalai mati. Semasa sembang hanya potongan yang sepadan dihantar ke model sandaran.",
+          "quiet_ack": "Untuk hidup/mati lampu ringkas, tiada ayat, hanya bunyi pendek pada satelit.",
+          "languages": "Lalai mengikut bahasa sistem Home Assistant.",
+          "channel": "Boleh bila-bila masa. Staging menunjuk ke Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL mestilah http(s) tanpa nama pengguna."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Mulakan enjin terbungkus (HACS sahaja)",
+        "remote": "Guna aplikasi Klar NLU atau Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (pengeluaran)",
+        "staging": "Staging (calon)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Bahasa sistem",
+        "all": "Semua bahasa"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Biasa",
+        "butler": "Butler",
+        "locker": "Santai",
+        "fuersorglich": "Prihatin",
+        "party": "Party",
+        "grantig": "Merajuk",
+        "sarkastisch": "Sarkastik",
+        "pirat": "Lanun",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personaliti",
+        "state": {
+          "default": "Biasa",
+          "butler": "Butler",
+          "locker": "Santai",
+          "fuersorglich": "Prihatin",
+          "party": "Party",
+          "grantig": "Merajuk",
+          "sarkastisch": "Sarkastik",
+          "pirat": "Lanun",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Pengesahan ringkas"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Terakhir didengar"
+      },
+      "last_decision": {
+        "name": "Keputusan terakhir"
+      },
+      "last_speech": {
+        "name": "Jawapan terakhir"
+      },
+      "last_area": {
+        "name": "Didengar di"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Enjin Klar berhenti",
+      "description": "Proses Klar terbungkus tidak berjalan. Muat semula Klar NLU dalam Tetapan → Peranti dan perkhidmatan."
+    }
+  }
+}

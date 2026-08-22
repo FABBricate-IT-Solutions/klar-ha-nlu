@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Ця інтеграція розмовляє з Assist. Окремий рушій розбирає мовлення: застосунок Klar NLU, вбудований процес або Docker. На Home Assistant OS встановіть також застосунок і виберіть Використовувати застосунок Klar NLU. Без застосунку запустіть вбудований рушій. Не запускайте обидва.",
+        "data": {
+          "mode": "Рушій",
+          "channel": "Канал випуску",
+          "url": "URL API Klar",
+          "token": "Токен запису"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL має бути http(s) без імені користувача."
+    },
+    "abort": {
+      "already_configured": "Klar NLU уже налаштовано"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Особистість зберігається тут і лишається після перевстановлення застосунку Klar.",
+        "data": {
+          "mode": "Рушій",
+          "personality": "Особистість",
+          "languages": "Мови",
+          "fallback_agent": "Розмовний агент для балачок",
+          "refine_speech": "Нехай LLM переформулює відповіді NLU",
+          "refine_prompt": "Підказка уточнення",
+          "url": "URL API Klar",
+          "token": "Токен запису",
+          "assist_filter": "Керувати лише сутностями, відкритими для Assist",
+          "nlu_rag": "NLU-RAG (необов’язково)",
+          "quiet_ack": "Коротке підтвердження (дзвінок)",
+          "channel": "Канал випуску"
+        },
+        "data_description": {
+          "personality": "У цій інтеграції, не в застосунку Klar.",
+          "refine_speech": "Klar і далі керує пристроями. Резервна LLM переписує відповідь.",
+          "refine_prompt": "Системна підказка голосу. Без керування пристроями, без нових фактів, та сама мова.",
+          "token": "Той самий токен, що в застосунку Klar.",
+          "assist_filter": "Увімкнено: лише те, що бачить Assist. Вимкнено: також приховані сутності.",
+          "nlu_rag": "Типово вимкнено. У розмові до резервної моделі йде лише розпізнаний фрагмент.",
+          "quiet_ack": "При простому вмиканні/вимиканні світла без фрази, лише короткий звук на супутнику.",
+          "languages": "Типово відповідає мові системи Home Assistant.",
+          "channel": "Будь-коли. Staging вказує на Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL має бути http(s) без імені користувача."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Запустити вбудований рушій (лише HACS)",
+        "remote": "Використовувати застосунок Klar NLU або Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (продукція)",
+        "staging": "Staging (кандидат)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Мова системи",
+        "all": "Усі мови"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Звичайна",
+        "butler": "Butler",
+        "locker": "Невимушена",
+        "fuersorglich": "Турботлива",
+        "party": "Party",
+        "grantig": "Бурчлива",
+        "sarkastisch": "Саркастична",
+        "pirat": "Пірат",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Особистість",
+        "state": {
+          "default": "Звичайна",
+          "butler": "Butler",
+          "locker": "Невимушена",
+          "fuersorglich": "Турботлива",
+          "party": "Party",
+          "grantig": "Бурчлива",
+          "sarkastisch": "Саркастична",
+          "pirat": "Пірат",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Коротке підтвердження"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Останнє почуте"
+      },
+      "last_decision": {
+        "name": "Останнє рішення"
+      },
+      "last_speech": {
+        "name": "Остання відповідь"
+      },
+      "last_area": {
+        "name": "Почуто в"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Рушій Klar зупинено",
+      "description": "Вбудований процес Klar не запущено. Перезавантажте Klar NLU у Налаштування → Пристрої та служби."
+    }
+  }
+}

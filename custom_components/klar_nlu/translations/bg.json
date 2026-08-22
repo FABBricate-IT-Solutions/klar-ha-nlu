@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Тази интеграция говори с Assist. Отделен двигател разпознава речта: приложението Klar NLU, включеният процес или Docker. На Home Assistant OS инсталирайте и приложението и изберете Използвай приложението Klar NLU. Без приложение стартирайте включения двигател. Не пускайте и двете.",
+        "data": {
+          "mode": "Двигател",
+          "channel": "Канал за издание",
+          "url": "URL на Klar API",
+          "token": "Токен за запис"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL трябва да е http(s) без потребител."
+    },
+    "abort": {
+      "already_configured": "Klar NLU вече е настроено"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Личността се пази тук и остава след преинсталация на приложението Klar.",
+        "data": {
+          "mode": "Двигател",
+          "personality": "Личност",
+          "languages": "Езици",
+          "fallback_agent": "Разговорен агент за бъбрене",
+          "refine_speech": "LLM да преформулира отговорите на NLU",
+          "refine_prompt": "Подсказка за дооформяне",
+          "url": "URL на Klar API",
+          "token": "Токен за запис",
+          "assist_filter": "Управлявай само обекти, показани на Assist",
+          "nlu_rag": "NLU-RAG (по избор)",
+          "quiet_ack": "Кратко потвърждение (звънец)",
+          "channel": "Канал за издание"
+        },
+        "data_description": {
+          "personality": "В тази интеграция, не в приложението Klar.",
+          "refine_speech": "Klar продължава да управлява устройствата. Резервният LLM пренаписва отговора.",
+          "refine_prompt": "Системна подсказка за гласа. Без управление на устройства, без нови факти, същият език.",
+          "token": "Същият токен като в приложението Klar.",
+          "assist_filter": "Вкл.: само каквото вижда Assist. Изкл.: и скрити обекти.",
+          "nlu_rag": "По подразбиране изкл. При разговор към резервния модел отива само разпознатият отрязък.",
+          "quiet_ack": "При просто вкл./изкл. на лампа няма говор, само кратък звук на сателита.",
+          "languages": "По подразбиране следва езика на системата Home Assistant.",
+          "channel": "По всяко време. Staging сочи към Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL трябва да е http(s) без потребител."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Стартирай включения двигател (само HACS)",
+        "remote": "Използвай приложението Klar NLU или Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (продукция)",
+        "staging": "Staging (кандидат)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Език на системата",
+        "all": "Всички езици"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Обикновена",
+        "butler": "Butler",
+        "locker": "Непринудена",
+        "fuersorglich": "Грижовна",
+        "party": "Party",
+        "grantig": "Сърдита",
+        "sarkastisch": "Саркастична",
+        "pirat": "Пират",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Личност",
+        "state": {
+          "default": "Обикновена",
+          "butler": "Butler",
+          "locker": "Непринудена",
+          "fuersorglich": "Грижовна",
+          "party": "Party",
+          "grantig": "Сърдита",
+          "sarkastisch": "Саркастична",
+          "pirat": "Пират",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Кратко потвърждение"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Последно чуто"
+      },
+      "last_decision": {
+        "name": "Последно решение"
+      },
+      "last_speech": {
+        "name": "Последен отговор"
+      },
+      "last_area": {
+        "name": "Чуто в"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Двигателят Klar е спрял",
+      "description": "Включеният процес Klar не работи. Презаредете Klar NLU в Настройки → Устройства и услуги."
+    }
+  }
+}

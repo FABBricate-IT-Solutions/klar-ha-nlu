@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "この連携は Assist と話します。音声は Klar NLU アプリ、同梱プロセス、または Docker が解析します。Home Assistant OS ではアプリも入れ、「Klar NLU アプリを使う」を選んでください。アプリがなければ同梱エンジンを起動します。両方は動かさないでください。",
+        "data": {
+          "mode": "エンジン",
+          "channel": "リリースチャネル",
+          "url": "Klar API の URL",
+          "token": "書き込みトークン"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL はユーザー情報なしの http(s) である必要があります。"
+    },
+    "abort": {
+      "already_configured": "Klar NLU はすでに設定されています"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "人格はこの連携に保存され、Klar アプリを再インストールしても残ります。",
+        "data": {
+          "mode": "エンジン",
+          "personality": "人格",
+          "languages": "言語",
+          "fallback_agent": "雑談用会話エージェント",
+          "refine_speech": "LLM で NLU の返答を整える",
+          "refine_prompt": "整形プロンプト",
+          "url": "Klar API の URL",
+          "token": "書き込みトークン",
+          "assist_filter": "Assist に公開されたエンティティだけ操作する",
+          "nlu_rag": "NLU-RAG（任意）",
+          "quiet_ack": "短い確認（チャイム）",
+          "channel": "リリースチャネル"
+        },
+        "data_description": {
+          "personality": "Klar アプリではなく、この連携に保存されます。",
+          "refine_speech": "Klar は機器を操作し続けます。予備の LLM が返答を書き直します。",
+          "refine_prompt": "声のシステムプロンプト。機器操作なし、新しい事実なし、同じ言語。",
+          "token": "Klar アプリと同じトークンです。",
+          "assist_filter": "オン：Assist が見えるものだけ。オフ：非表示も含む。",
+          "nlu_rag": "既定はオフ。雑談では一致した断片だけを予備モデルへ送ります。",
+          "quiet_ack": "単純な照明のオン／オフでは発話せず、衛星で短い音だけ鳴らします。",
+          "languages": "既定は Home Assistant のシステム言語です。",
+          "channel": "いつでも変更できます。Staging は Klar NLU（Staging）を指します。"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL はユーザー情報なしの http(s) である必要があります。"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "同梱エンジンを起動（HACS のみ）",
+        "remote": "Klar NLU アプリまたは Docker を使う"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable（本番）",
+        "staging": "Staging（候補）"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "システム言語",
+        "all": "すべての言語"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "標準",
+        "butler": "Butler",
+        "locker": "カジュアル",
+        "fuersorglich": "やさしい",
+        "party": "Party",
+        "grantig": "不機嫌",
+        "sarkastisch": "皮肉",
+        "pirat": "海賊",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "人格",
+        "state": {
+          "default": "標準",
+          "butler": "Butler",
+          "locker": "カジュアル",
+          "fuersorglich": "やさしい",
+          "party": "Party",
+          "grantig": "不機嫌",
+          "sarkastisch": "皮肉",
+          "pirat": "海賊",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "短い確認"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "最後に聞いた内容"
+      },
+      "last_decision": {
+        "name": "最後の判定"
+      },
+      "last_speech": {
+        "name": "最後の返答"
+      },
+      "last_area": {
+        "name": "聞いた場所"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar エンジンが停止",
+      "description": "同梱の Klar プロセスが動いていません。設定 → デバイスとサービスで Klar NLU を再読み込みしてください。"
+    }
+  }
+}

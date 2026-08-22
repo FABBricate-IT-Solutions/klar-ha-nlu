@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "यो एकीकरण Assist सँग बोल्छ। छुट्टै इन्जिन वाणी पढ्छ: Klar NLU एप, बन्डल प्रक्रिया, वा Docker। Home Assistant OS मा एप पनि राखेर Klar NLU एप प्रयोग गर्नुहोस् रोज्नुहोस्। एप नभए बन्डल इन्जिन सुरु गर्नुहोस्। दुवै सँगै नचलाउनुहोस्।",
+        "data": {
+          "mode": "इन्जिन",
+          "channel": "रिलिज च्यानल",
+          "url": "Klar API URL",
+          "token": "लेख्ने टोकन"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) हुनुपर्छ, प्रयोगकर्ता नामबिना।"
+    },
+    "abort": {
+      "already_configured": "Klar NLU पहिले नै सेट छ"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "व्यक्तित्व यहाँ सुरक्षित हुन्छ र Klar एप फेरि राखेपछि पनि रहन्छ।",
+        "data": {
+          "mode": "इन्जिन",
+          "personality": "व्यक्तित्व",
+          "languages": "भाषाहरू",
+          "fallback_agent": "गफगाफका लागि कुराकानी एजेन्ट",
+          "refine_speech": "LLM लाई NLU जवाफ सच्याउन दिनुहोस्",
+          "refine_prompt": "सुधार संकेत",
+          "url": "Klar API URL",
+          "token": "लेख्ने टोकन",
+          "assist_filter": "Assist लाई देखिने एकाइ मात्र नियन्त्रण गर्नुहोस्",
+          "nlu_rag": "NLU-RAG (वैकल्पिक)",
+          "quiet_ack": "छोटो पुष्टि (घन्टी)",
+          "channel": "रिलिज च्यानल"
+        },
+        "data_description": {
+          "personality": "यो एकीकरणमा छ, Klar एपमा होइन।",
+          "refine_speech": "Klar उपकरण नियन्त्रण गरिरहन्छ। ब्याकअप LLM जवाफ फेरि लेख्छ।",
+          "refine_prompt": "आवाजको सिस्टम संकेत। उपकरण नियन्त्रण छैन, नयाँ तथ्य छैन, उही भाषा।",
+          "token": "Klar एपकै जस्तो टोकन।",
+          "assist_filter": "अन: Assist ले देख्ने मात्र। अफ: लुकेका एकाइ पनि।",
+          "nlu_rag": "पूर्वनिर्धारित अफ। कुराकानीमा मिलेको टुक्रा मात्र ब्याकअप मोडेलमा जान्छ।",
+          "quiet_ack": "साधारण बत्ती अन/अफमा वाक्य छैन, उपग्रहमा छोटो आवाज मात्र।",
+          "languages": "पूर्वनिर्धारित Home Assistant प्रणाली भाषा हो।",
+          "channel": "जुनसुकै बेला। Staging Klar NLU (Staging) तर्फ देखाउँछ।"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) हुनुपर्छ, प्रयोगकर्ता नामबिना।"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "बन्डल इन्जिन सुरु गर्नुहोस् (HACS मात्र)",
+        "remote": "Klar NLU एप वा Docker प्रयोग गर्नुहोस्"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (उत्पादन)",
+        "staging": "Staging (उम्मेदवार)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "प्रणाली भाषा",
+        "all": "सबै भाषा"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "सामान्य",
+        "butler": "Butler",
+        "locker": "आरामदायी",
+        "fuersorglich": "हेरचाह गर्ने",
+        "party": "Party",
+        "grantig": "रिसाहा",
+        "sarkastisch": "व्यङ्ग्यात्मक",
+        "pirat": "समुद्री डाकू",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "व्यक्तित्व",
+        "state": {
+          "default": "सामान्य",
+          "butler": "Butler",
+          "locker": "आरामदायी",
+          "fuersorglich": "हेरचाह गर्ने",
+          "party": "Party",
+          "grantig": "रिसाहा",
+          "sarkastisch": "व्यङ्ग्यात्मक",
+          "pirat": "समुद्री डाकू",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "छोटो पुष्टि"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "पछिल्लो सुनेको"
+      },
+      "last_decision": {
+        "name": "पछिल्लो निर्णय"
+      },
+      "last_speech": {
+        "name": "पछिल्लो जवाफ"
+      },
+      "last_area": {
+        "name": "सुनिएको"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar इन्जिन रोकियो",
+      "description": "बन्डल Klar प्रक्रिया चलिरहेको छैन। सेटिङ → यन्त्र र सेवाबाट Klar NLU फेरि लोड गर्नुहोस्।"
+    }
+  }
+}

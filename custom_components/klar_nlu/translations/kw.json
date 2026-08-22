@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "An kesunwans ma a gews orth Assist. Jynn dyffrans a dhiskwedh kows: an app Klar NLU, an argerdh kessyss, po Docker. War Home Assistant OS gwra installya an app ynwedh ha dewis Usya an app Klar NLU. Heb an app, dalleth an jynn kessyss. Na wra rewlya an dhew.",
+        "data": {
+          "mode": "Jynn",
+          "channel": "Kanel dyllo",
+          "url": "URL API Klar",
+          "token": "Tokyn skrifa"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Res yw dhe’n URL bos http(s) heb hanow usyer."
+    },
+    "abort": {
+      "already_configured": "Klar NLU yw settys seulabrys"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "An personoleth yw gwithys omma ha trigys wosa dasinstallya an app Klar.",
+        "data": {
+          "mode": "Jynn",
+          "personality": "Personoleth",
+          "languages": "Yethow",
+          "fallback_agent": "Agent keskows rag hwedhlow",
+          "refine_speech": "Gas dhe’n LLM dasskrifa gorthypow NLU",
+          "refine_prompt": "Prompt finheans",
+          "url": "URL API Klar",
+          "token": "Tokyn skrifa",
+          "assist_filter": "Kontrollya yn unnik entites diskudhys dhe Assist",
+          "nlu_rag": "NLU-RAG (dewisyel)",
+          "quiet_ack": "Afydhyans berr (klogh)",
+          "channel": "Kanel dyllo"
+        },
+        "data_description": {
+          "personality": "Y’n kesunwans ma, a-napp Klar.",
+          "refine_speech": "Klar a wra hwath kontrollya devisys. An LLM reserv a dhasskrif an gorthyp.",
+          "refine_prompt": "Prompt system an lev. Heb kontrol devis, heb feythow nowydh, an keth yeth.",
+          "token": "An keth tokyn avel y’n app Klar.",
+          "assist_filter": "War: yn unnik an pyth a wel Assist. Dhe-ves: entites kudh ynwedh.",
+          "nlu_rag": "Dhe-ves dre dhefowt. Yn keskows yn unnik an tamm kevys a ydh dhe’n model reserv.",
+          "quiet_ack": "War golow sempel war/dhe-ves, heb lavar, son berr war an loer yn unnik.",
+          "languages": "Defowt a hol yeth system Home Assistant.",
+          "channel": "Pub termyn. Staging a boynt orth Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Res yw dhe’n URL bos http(s) heb hanow usyer."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Dalleth an jynn kessyss (HACS yn unnik)",
+        "remote": "Usya an app Klar NLU po Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (askorrans)",
+        "staging": "Staging (ombrofyer)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Yeth an system",
+        "all": "Pub yeth"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Usadow",
+        "butler": "Butler",
+        "locker": "Dibryder",
+        "fuersorglich": "Omwithus",
+        "party": "Party",
+        "grantig": "Sornus",
+        "sarkastisch": "Sarkastek",
+        "pirat": "Morladron",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personoleth",
+        "state": {
+          "default": "Usadow",
+          "butler": "Butler",
+          "locker": "Dibryder",
+          "fuersorglich": "Omwithus",
+          "party": "Party",
+          "grantig": "Sornus",
+          "sarkastisch": "Sarkastek",
+          "pirat": "Morladron",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Afydhyans berr"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Klewys diwettha"
+      },
+      "last_decision": {
+        "name": "Ernans diwettha"
+      },
+      "last_speech": {
+        "name": "Gorthyp diwettha"
+      },
+      "last_area": {
+        "name": "Klewys yn"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Jynn Klar a hedhis",
+      "description": "Nyns yw an argerdh Klar kessyss ow rewlya. Dasgarga Klar NLU yn Settyansow → Devisys ha gonisyow."
+    }
+  }
+}

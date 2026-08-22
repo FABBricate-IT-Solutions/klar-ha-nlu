@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "이 통합은 Assist와 대화합니다. 음성은 Klar NLU 앱, 번들 프로세스 또는 Docker가 분석합니다. Home Assistant OS에서는 앱을 설치하고 Klar NLU 앱 사용을 고르세요. 앱이 없으면 번들 엔진을 시작하세요. 둘 다 실행하지 마세요.",
+        "data": {
+          "mode": "엔진",
+          "channel": "릴리스 채널",
+          "url": "Klar API URL",
+          "token": "쓰기 토큰"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL은 사용자 정보 없는 http(s)여야 합니다."
+    },
+    "abort": {
+      "already_configured": "Klar NLU가 이미 설정되어 있습니다"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "성격은 여기에 저장되며 Klar 앱을 다시 설치해도 유지됩니다.",
+        "data": {
+          "mode": "엔진",
+          "personality": "성격",
+          "languages": "언어",
+          "fallback_agent": "잡담용 대화 에이전트",
+          "refine_speech": "LLM으로 NLU 답변 다듬기",
+          "refine_prompt": "다듬기 프롬프트",
+          "url": "Klar API URL",
+          "token": "쓰기 토큰",
+          "assist_filter": "Assist에 공개된 엔티티만 제어",
+          "nlu_rag": "NLU-RAG(선택)",
+          "quiet_ack": "짧은 확인(차임)",
+          "channel": "릴리스 채널"
+        },
+        "data_description": {
+          "personality": "Klar 앱이 아니라 이 통합에 저장됩니다.",
+          "refine_speech": "Klar는 계속 기기를 제어합니다. 예비 LLM이 답변을 다시 씁니다.",
+          "refine_prompt": "음성 시스템 프롬프트. 기기 제어 없음, 새 사실 없음, 같은 언어.",
+          "token": "Klar 앱과 같은 토큰입니다.",
+          "assist_filter": "켜짐: Assist가 볼 수 있는 것만. 꺼짐: 숨긴 엔티티 포함.",
+          "nlu_rag": "기본은 꺼짐. 잡담에서는 이미 맞춘 조각만 예비 모델로 보냅니다.",
+          "quiet_ack": "간단한 조명 켜기/끄기에서는 말하지 않고 위성에서 짧은 소리만 냅니다.",
+          "languages": "기본값은 Home Assistant 시스템 언어입니다.",
+          "channel": "언제든 변경할 수 있습니다. Staging은 Klar NLU(Staging)를 가리킵니다."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL은 사용자 정보 없는 http(s)여야 합니다."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "번들 엔진 시작(HACS만)",
+        "remote": "Klar NLU 앱 또는 Docker 사용"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable(운영)",
+        "staging": "Staging(후보)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "시스템 언어",
+        "all": "모든 언어"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "기본",
+        "butler": "Butler",
+        "locker": "편안한",
+        "fuersorglich": "다정한",
+        "party": "Party",
+        "grantig": "까칠한",
+        "sarkastisch": "빈정대는",
+        "pirat": "해적",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "성격",
+        "state": {
+          "default": "기본",
+          "butler": "Butler",
+          "locker": "편안한",
+          "fuersorglich": "다정한",
+          "party": "Party",
+          "grantig": "까칠한",
+          "sarkastisch": "빈정대는",
+          "pirat": "해적",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "짧은 확인"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "마지막으로 들음"
+      },
+      "last_decision": {
+        "name": "마지막 결정"
+      },
+      "last_speech": {
+        "name": "마지막 답변"
+      },
+      "last_area": {
+        "name": "들린 위치"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar 엔진 중지됨",
+      "description": "번들 Klar 프로세스가 실행되지 않습니다. 설정 → 기기 및 서비스에서 Klar NLU를 다시 로드하세요."
+    }
+  }
+}

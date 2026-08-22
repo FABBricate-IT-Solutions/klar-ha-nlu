@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Dës Integratioun schwätzt mat Assist. Eng separat Engine analyséiert Sprooch: d’Klar-NLU-App, dëse gebëndelte Prozess oder Docker. Op Home Assistant OS installéiert och d’App a wielt Klar-NLU-App benotzen. Ouni App start d’gebëndelt Engine. Net béid lafen.",
+        "data": {
+          "mode": "Engine",
+          "channel": "Release-Kanal",
+          "url": "Klar API URL",
+          "token": "Schreif-Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "D’URL muss http(s) sinn ouni Benotzernumm."
+    },
+    "abort": {
+      "already_configured": "Klar NLU ass scho konfiguréiert"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "D’Perséinlechkeet gëtt hei gespäichert a bleift no der Neiinstallatioun vun der Klar-App.",
+        "data": {
+          "mode": "Engine",
+          "personality": "Perséinlechkeet",
+          "languages": "Sproochen",
+          "fallback_agent": "Gespréichsagënt fir Smalltalk",
+          "refine_speech": "Den LLM NLU-Äntwerten ëmformuléieren loossen",
+          "refine_prompt": "Verfeinerungsprompt",
+          "url": "Klar API URL",
+          "token": "Schreif-Token",
+          "assist_filter": "Nëmmen Entitéiten steieren, déi Assist gesäit",
+          "nlu_rag": "NLU-RAG (optional)",
+          "quiet_ack": "Kuerz Bestätegung (Klack)",
+          "channel": "Release-Kanal"
+        },
+        "data_description": {
+          "personality": "An dëser Integratioun, net an der Klar-App.",
+          "refine_speech": "Klar steiert weider Apparater. Den Ersatz-LLM schreift d’Äntwert ëm.",
+          "refine_prompt": "Systemprompt vun der Stëmm. Keng Apparatsteierung, keng nei Fakten, selwecht Sprooch.",
+          "token": "Deeselwechten Token wéi an der Klar-App.",
+          "assist_filter": "Un: nëmmen wat Assist gesäit. Aus: och verstoppt Entitéiten.",
+          "nlu_rag": "Standard aus. Am Chat geet nëmmen de passenden Ausschnëtt un d’Ersatzmodell.",
+          "quiet_ack": "Bei einfachem Luucht un/aus keng Saz, nëmme kuerze Toun um Satellit.",
+          "languages": "Standard ass d’Systemsprooch vun Home Assistant.",
+          "channel": "Jäerzäit. Staging weist op Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "D’URL muss http(s) sinn ouni Benotzernumm."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Gebëndelt Engine starten (nëmmen HACS)",
+        "remote": "Klar-NLU-App oder Docker benotzen"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (Produktioun)",
+        "staging": "Staging (Kandidat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Systemsprooch",
+        "all": "All Sproochen"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Locker",
+        "fuersorglich": "Fürsorgeresch",
+        "party": "Party",
+        "grantig": "Mürrësch",
+        "sarkastisch": "Sarkastesch",
+        "pirat": "Pirat",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Perséinlechkeet",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Locker",
+          "fuersorglich": "Fürsorgeresch",
+          "party": "Party",
+          "grantig": "Mürrësch",
+          "sarkastisch": "Sarkastesch",
+          "pirat": "Pirat",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Kuerz Bestätegung"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Lescht héieren"
+      },
+      "last_decision": {
+        "name": "Lescht Decisioun"
+      },
+      "last_speech": {
+        "name": "Lescht Äntwert"
+      },
+      "last_area": {
+        "name": "Héieren zu"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-Engine gestoppt",
+      "description": "De gebëndelte Klar-Prozess leeft net. Lued Klar NLU ënner Astellungen → Apparater a Servicer nei."
+    }
+  }
+}
