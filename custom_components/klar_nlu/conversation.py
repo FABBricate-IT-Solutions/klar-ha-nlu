@@ -29,12 +29,14 @@ from .const import (
     CONF_LANGUAGES,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
+    CONF_QUIET_ACK,
     CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_NLU_RAG,
+    DEFAULT_QUIET_ACK,
     DEFAULT_URL,
     DOMAIN,
     resolve_personality,
@@ -54,6 +56,7 @@ from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
+from .quiet import play_chime, quiet_ack_applies
 from .refine import async_finish_speech, refine_prompt
 from .sensor import remember_turn
 
@@ -239,6 +242,11 @@ class KlarConversationEntity(ConversationEntity):
             )
             if executed.get("speech"):
                 speech = str(executed["speech"])
+            if self._quiet_ack() and quiet_ack_applies(executed, plan):
+                await play_chime(self.hass, user_input)
+                return await self._spoken(
+                    user_input, chat_log, pack, "", conversation_id, False, "chime"
+                )
         return await self._spoken(
             user_input, chat_log, pack, speech, conversation_id, clarify, decision_type
         )
@@ -277,18 +285,19 @@ class KlarConversationEntity(ConversationEntity):
         decision: str = "",
     ) -> ConversationResult:
         agent_id = self._fallback_agent_id()
-        speech = await async_finish_speech(
-            self.hass,
-            bool(self._entry.options.get(CONF_REFINE_SPEECH)),
-            agent_id,
-            self._agent_controls_home(str(agent_id or "")),
-            speech,
-            user_input.context,
-            user_input.language,
-            pack,
-            self._personality(),
-            str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
-        )
+        if speech.strip():
+            speech = await async_finish_speech(
+                self.hass,
+                bool(self._entry.options.get(CONF_REFINE_SPEECH)),
+                agent_id,
+                self._agent_controls_home(str(agent_id or "")),
+                speech,
+                user_input.context,
+                user_input.language,
+                pack,
+                self._personality(),
+                str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+            )
         remember_turn(
             self.hass,
             self._entry.entry_id,
@@ -297,9 +306,10 @@ class KlarConversationEntity(ConversationEntity):
             decision,
             self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
         )
-        chat_log.async_add_assistant_content_without_tools(
-            AssistantContent(agent_id=user_input.agent_id, content=speech)
-        )
+        if speech.strip():
+            chat_log.async_add_assistant_content_without_tools(
+                AssistantContent(agent_id=user_input.agent_id, content=speech)
+            )
         response = intent.IntentResponse(language=user_input.language or pack)
         response.async_set_speech(speech)
         return ConversationResult(
@@ -334,6 +344,9 @@ class KlarConversationEntity(ConversationEntity):
 
     def _nlu_rag(self) -> bool:
         return bool(self._entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+
+    def _quiet_ack(self) -> bool:
+        return bool(self._entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK))
 
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""

@@ -18,6 +18,7 @@ CONF_PERSONALITY = "personality"
 CONF_REFINE_PROMPT = "refine_prompt"
 CONF_REFINE_SPEECH = "refine_speech"
 CONF_NLU_RAG = "nlu_rag"
+CONF_QUIET_ACK = "quiet_ack"
 CONF_TOKEN = "token"
 CONF_CHANNEL = "channel"
 ENGINE_VERSION = "2026.8.31"
@@ -26,6 +27,7 @@ DEFAULT_PERSONALITY = "default"
 DEFAULT_REFINE_PROMPT = ""
 DEFAULT_REFINE_SPEECH = False
 DEFAULT_NLU_RAG = False
+DEFAULT_QUIET_ACK = False
 PERSONALITIES = (
     "default",
     "butler",
