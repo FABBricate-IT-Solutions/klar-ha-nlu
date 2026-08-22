@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "האינטגרציה הזו מדברת עם Assist. מנוע נפרד מפענח דיבור: אפליקציית Klar NLU, התהליך המצורף או Docker. ב-Home Assistant OS התקינו גם את האפליקציה ובחרו להשתמש באפליקציית Klar NLU. בלי אפליקציה הפעילו את המנוע המצורף. אל תריצו את שניהם.",
+        "data": {
+          "mode": "מנוע",
+          "channel": "ערוץ הפצה",
+          "url": "כתובת API של Klar",
+          "token": "אסימון כתיבה"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "הכתובת חייבת להיות http(s) בלי שם משתמש."
+    },
+    "abort": {
+      "already_configured": "Klar NLU כבר מוגדר"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "האישיות נשמרת כאן ונשארת אחרי התקנה מחדש של אפליקציית Klar.",
+        "data": {
+          "mode": "מנוע",
+          "personality": "אישיות",
+          "languages": "שפות",
+          "fallback_agent": "סוכן שיחה לפטפוט",
+          "refine_speech": "לתת ל-LLM לנסח מחדש תשובות NLU",
+          "refine_prompt": "הנחיית עידון",
+          "url": "כתובת API של Klar",
+          "token": "אסימון כתיבה",
+          "assist_filter": "לשלוט רק בישויות החשופות ל-Assist",
+          "nlu_rag": "NLU-RAG (אופציונלי)",
+          "quiet_ack": "אישור קצר (פעמון)",
+          "channel": "ערוץ הפצה"
+        },
+        "data_description": {
+          "personality": "באינטגרציה הזו, לא באפליקציית Klar.",
+          "refine_speech": "Klar ממשיך לשלוט במכשירים. ה-LLM הרזרבי כותב מחדש את התשובה.",
+          "refine_prompt": "הנחיית מערכת לקול. בלי שליטה במכשירים, בלי עובדות חדשות, אותה שפה.",
+          "token": "אותו אסימון כמו באפליקציית Klar.",
+          "assist_filter": "דלוק: רק מה ש-Assist רואה. כבוי: גם ישויות מוסתרות.",
+          "nlu_rag": "כבוי כברירת מחדל. בצ'אט נשלח למודל הרזרבי רק הקטע שזוהה.",
+          "quiet_ack": "בהדלקה/כיבוי פשוט של אור אין דיבור, רק צליל קצר בלוויין.",
+          "languages": "ברירת המחדל היא שפת המערכת של Home Assistant.",
+          "channel": "בכל עת. Staging מצביע על Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "הכתובת חייבת להיות http(s) בלי שם משתמש."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "הפעלת המנוע המצורף (HACS בלבד)",
+        "remote": "שימוש באפליקציית Klar NLU או Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (ייצור)",
+        "staging": "Staging (מועמד)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "שפת המערכת",
+        "all": "כל השפות"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "רגיל",
+        "butler": "Butler",
+        "locker": "רגוע",
+        "fuersorglich": "דואג",
+        "party": "Party",
+        "grantig": "עצבני",
+        "sarkastisch": "סרקסטי",
+        "pirat": "פיראט",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "אישיות",
+        "state": {
+          "default": "רגיל",
+          "butler": "Butler",
+          "locker": "רגוע",
+          "fuersorglich": "דואג",
+          "party": "Party",
+          "grantig": "עצבני",
+          "sarkastisch": "סרקסטי",
+          "pirat": "פיראט",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "אישור קצר"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "נשמע לאחרונה"
+      },
+      "last_decision": {
+        "name": "החלטה אחרונה"
+      },
+      "last_speech": {
+        "name": "תשובה אחרונה"
+      },
+      "last_area": {
+        "name": "נשמע ב"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "מנוע Klar נעצר",
+      "description": "תהליך Klar המצורף אינו רץ. טענו מחדש את Klar NLU בהגדרות ← מכשירים ושירותים."
+    }
+  }
+}

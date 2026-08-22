@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "此整合與 Assist 對話。語音由 Klar NLU 應用程式、內建程序或 Docker 解析。在 Home Assistant OS 請安裝應用並選擇使用 Klar NLU 應用；否則啟動內建引擎。不要同時執行。發行通道可稍後變更。",
+        "data": {
+          "mode": "引擎",
+          "channel": "發行通道",
+          "url": "Klar API 網址",
+          "token": "寫入權杖"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "網址必須是 http(s)，且不含使用者名稱。"
+    },
+    "abort": {
+      "already_configured": "Klar NLU 已經設定"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "人格儲存在此整合中，重裝 Klar 應用後仍然有效。",
+        "data": {
+          "mode": "引擎",
+          "personality": "人格",
+          "languages": "語言",
+          "fallback_agent": "閒聊對話代理",
+          "refine_speech": "用 LLM 潤飾 NLU 回覆",
+          "refine_prompt": "潤飾提示",
+          "url": "Klar API 網址",
+          "token": "寫入權杖",
+          "assist_filter": "只控制已向 Assist 公開的實體",
+          "nlu_rag": "NLU-RAG（選用）",
+          "quiet_ack": "簡短確認（提示音）",
+          "channel": "發行通道"
+        },
+        "data_description": {
+          "personality": "存在此整合中，不在 Klar 應用裡。",
+          "refine_speech": "Klar 仍控制裝置。後援 LLM 會改寫回覆。",
+          "refine_prompt": "語音系統提示。不控制裝置、不編造事實、維持同一語言。",
+          "token": "與 Klar 應用相同的權杖。",
+          "assist_filter": "開：僅 Assist 可見實體。關：也包含隱藏實體。",
+          "nlu_rag": "預設關閉。閒聊時只把已比對片段送給後援模型。",
+          "quiet_ack": "簡單開關燈時不說話，只在衛星播放短提示音。",
+          "languages": "預設跟隨 Home Assistant 系統語言。",
+          "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "網址必須是 http(s)，且不含使用者名稱。"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "啟動內建引擎（僅 HACS）",
+        "remote": "使用 Klar NLU 應用或 Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "穩定版（正式）",
+        "staging": "預發佈（候選）"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "系統語言",
+        "all": "所有語言"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "一般",
+        "butler": "Butler",
+        "locker": "輕鬆",
+        "fuersorglich": "體貼",
+        "party": "Party",
+        "grantig": "彆扭",
+        "sarkastisch": "諷刺",
+        "pirat": "海盜",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "人格",
+        "state": {
+          "default": "一般",
+          "butler": "Butler",
+          "locker": "輕鬆",
+          "fuersorglich": "體貼",
+          "party": "Party",
+          "grantig": "彆扭",
+          "sarkastisch": "諷刺",
+          "pirat": "海盜",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "簡短確認"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "上次聽到"
+      },
+      "last_decision": {
+        "name": "上次判定"
+      },
+      "last_speech": {
+        "name": "上次回覆"
+      },
+      "last_area": {
+        "name": "聽到位置"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar 引擎已停止",
+      "description": "內建 Klar 程序未在執行。請在設定 → 裝置與服務重新載入 Klar NLU。"
+    }
+  }
+}

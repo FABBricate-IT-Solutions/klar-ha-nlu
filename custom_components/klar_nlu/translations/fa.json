@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "این یکپارچه‌سازی با Assist صحبت می‌کند. موتور جداگانه‌ای گفتار را تحلیل می‌کند: برنامه Klar NLU، فرایند همراه یا Docker. در Home Assistant OS برنامه را نصب کنید و استفاده از برنامه Klar NLU را انتخاب کنید. بدون برنامه موتور همراه را شروع کنید. هر دو را با هم اجرا نکنید.",
+        "data": {
+          "mode": "موتور",
+          "channel": "کانال انتشار",
+          "url": "نشانی API کلار",
+          "token": "توکن نوشتن"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "نشانی باید http(s) باشد و نام کاربری نداشته باشد."
+    },
+    "abort": {
+      "already_configured": "Klar NLU از قبل پیکربندی شده"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "شخصیت اینجا ذخیره می‌شود و پس از نصب دوباره برنامه Klar باقی می‌ماند.",
+        "data": {
+          "mode": "موتور",
+          "personality": "شخصیت",
+          "languages": "زبان‌ها",
+          "fallback_agent": "عامل گفتگو برای گپ",
+          "refine_speech": "بازنویسی پاسخ‌های NLU توسط LLM",
+          "refine_prompt": "اعلان اصلاح",
+          "url": "نشانی API کلار",
+          "token": "توکن نوشتن",
+          "assist_filter": "فقط نهادهای نمایان برای Assist را کنترل کن",
+          "nlu_rag": "NLU-RAG (اختیاری)",
+          "quiet_ack": "تأیید کوتاه (زنگ)",
+          "channel": "کانال انتشار"
+        },
+        "data_description": {
+          "personality": "در این یکپارچه‌سازی است، نه در برنامه Klar.",
+          "refine_speech": "Klar همچنان دستگاه‌ها را کنترل می‌کند. LLM پشتیبان پاسخ را بازنویسی می‌کند.",
+          "refine_prompt": "اعلان سیستمی صدا. بدون کنترل دستگاه، بدون واقعیت تازه، همان زبان.",
+          "token": "همان توکن برنامه Klar.",
+          "assist_filter": "روشن: فقط آنچه Assist می‌بیند. خاموش: شامل نهادهای پنهان.",
+          "nlu_rag": "پیش‌فرض خاموش. در گپ فقط قطعه تطبیق‌شده به مدل پشتیبان می‌رود.",
+          "quiet_ack": "روشن/خاموش ساده چراغ بدون جمله؛ فقط صدای کوتاه روی ماهواره.",
+          "languages": "پیش‌فرض زبان سیستم Home Assistant است.",
+          "channel": "هر زمان. Staging به Klar NLU (Staging) اشاره می‌کند."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "نشانی باید http(s) باشد و نام کاربری نداشته باشد."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "شروع موتور همراه (فقط HACS)",
+        "remote": "استفاده از برنامه Klar NLU یا Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (تولید)",
+        "staging": "Staging (نامزد)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "زبان سیستم",
+        "all": "همه زبان‌ها"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "معمولی",
+        "butler": "Butler",
+        "locker": "راحت",
+        "fuersorglich": "مهربان",
+        "party": "Party",
+        "grantig": "بدخلق",
+        "sarkastisch": "طعنه‌آمیز",
+        "pirat": "دزد دریایی",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "شخصیت",
+        "state": {
+          "default": "معمولی",
+          "butler": "Butler",
+          "locker": "راحت",
+          "fuersorglich": "مهربان",
+          "party": "Party",
+          "grantig": "بدخلق",
+          "sarkastisch": "طعنه‌آمیز",
+          "pirat": "دزد دریایی",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "تأیید کوتاه"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "آخرین شنیده"
+      },
+      "last_decision": {
+        "name": "آخرین تصمیم"
+      },
+      "last_speech": {
+        "name": "آخرین پاسخ"
+      },
+      "last_area": {
+        "name": "شنیده در"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "موتور Klar متوقف شد",
+      "description": "فرایند همراه Klar در حال اجرا نیست. Klar NLU را در تنظیمات ← دستگاه‌ها و خدمات دوباره بارگذاری کنید."
+    }
+  }
+}

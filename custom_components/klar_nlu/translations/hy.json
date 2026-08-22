@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Այս ինտեգրումը խոսում է Assist-ի հետ։ Առանձին շարժիչ է վերլուծում խոսքը՝ Klar NLU հավելվածը, կցված գործընթացը կամ Docker։ Home Assistant OS-ում տեղադրեք նաև հավելվածը և ընտրեք Օգտագործել Klar NLU հավելվածը։ Առանց հավելվածի գործարկեք կցված շարժիչը։ Մի գործարկեք երկուսն էլ։",
+        "data": {
+          "mode": "Շարժիչ",
+          "channel": "Թողարկման ալիք",
+          "url": "Klar API հասցե",
+          "token": "Գրման նշան"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Հասցեն պետք է լինի http(s)՝ առանց օգտանվան։"
+    },
+    "abort": {
+      "already_configured": "Klar NLU արդեն կարգավորված է"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Անհատականությունը պահվում է այստեղ և մնում է Klar հավելվածը վերատեղադրելուց հետո։",
+        "data": {
+          "mode": "Շարժիչ",
+          "personality": "Անհատականություն",
+          "languages": "Լեզուներ",
+          "fallback_agent": "Զրույցի գործակալ շաղակրատանքի համար",
+          "refine_speech": "Թող LLM-ը վերաձևակերպի NLU պատասխանները",
+          "refine_prompt": "Հղկման հուշում",
+          "url": "Klar API հասցե",
+          "token": "Գրման նշան",
+          "assist_filter": "Կառավարել միայն Assist-ին երևացող միավորները",
+          "nlu_rag": "NLU-RAG (ըստ ցանկության)",
+          "quiet_ack": "Կարճ հաստատում (զանգ)",
+          "channel": "Թողարկման ալիք"
+        },
+        "data_description": {
+          "personality": "Այս ինտեգրման մեջ է, ոչ Klar հավելվածում։",
+          "refine_speech": "Klar-ը շարունակում է կառավարել սարքերը։ Պահեստային LLM-ը վերագրում է պատասխանը։",
+          "refine_prompt": "Ձայնի համակարգային հուշում։ Առանց սարքի կառավարման, առանց նոր փաստերի, նույն լեզուն։",
+          "token": "Նույն նշանը, ինչ Klar հավելվածում։",
+          "assist_filter": "Միացված՝ միայն այն, ինչ տեսնում է Assist-ը։ Անջատված՝ նաև թաքնված միավորներ։",
+          "nlu_rag": "Լռելյայն անջատված։ Զրույցում պահեստային մոդելին գնում է միայն համընկած հատվածը։",
+          "quiet_ack": "Պարզ լույս միացնել/անջատելիս խոսք չկա, միայն կարճ ձայն արբանյակի վրա։",
+          "languages": "Լռելյայն հետևում է Home Assistant համակարգի լեզվին։",
+          "channel": "Ցանկացած պահի։ Staging-ը մատնանշում է Klar NLU (Staging)։"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Հասցեն պետք է լինի http(s)՝ առանց օգտանվան։"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Գործարկել կցված շարժիչը (միայն HACS)",
+        "remote": "Օգտագործել Klar NLU հավելվածը կամ Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (արտադրություն)",
+        "staging": "Staging (թեկնածու)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Համակարգի լեզու",
+        "all": "Բոլոր լեզուները"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Սովորական",
+        "butler": "Butler",
+        "locker": "Ազատ",
+        "fuersorglich": "Հոգատար",
+        "party": "Party",
+        "grantig": "Դժգոհ",
+        "sarkastisch": "Սարկաստիկ",
+        "pirat": "Ծովահեն",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Անհատականություն",
+        "state": {
+          "default": "Սովորական",
+          "butler": "Butler",
+          "locker": "Ազատ",
+          "fuersorglich": "Հոգատար",
+          "party": "Party",
+          "grantig": "Դժգոհ",
+          "sarkastisch": "Սարկաստիկ",
+          "pirat": "Ծովահեն",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Կարճ հաստատում"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Վերջին լսածը"
+      },
+      "last_decision": {
+        "name": "Վերջին որոշումը"
+      },
+      "last_speech": {
+        "name": "Վերջին պատասխանը"
+      },
+      "last_area": {
+        "name": "Լսվել է"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar շարժիչը կանգնել է",
+      "description": "Կցված Klar գործընթացը չի աշխատում։ Վերաբեռնեք Klar NLU-ն Կարգավորումներ → Սարքեր և ծառայություններ։"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Bu entegrasyon Assist ile konuşur. Ayrı bir motor konuşmayı çözer: Klar NLU uygulaması, paket süreç veya Docker. Home Assistant OS’te uygulamayı kurun ve Klar NLU uygulamasını kullan seçin. Uygulama yoksa paket motoru başlatın. İkisini birden çalıştırmayın.",
+        "data": {
+          "mode": "Motor",
+          "channel": "Yayın kanalı",
+          "url": "Klar API URL’si",
+          "token": "Yazma jetonu"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) olmalı, kullanıcı adı olmamalı."
+    },
+    "abort": {
+      "already_configured": "Klar NLU zaten kurulu"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Kişilik burada saklanır ve Klar uygulaması yeniden kurulunca da kalır.",
+        "data": {
+          "mode": "Motor",
+          "personality": "Kişilik",
+          "languages": "Diller",
+          "fallback_agent": "Sohbet için konuşma aracısı",
+          "refine_speech": "LLM NLU yanıtlarını yeniden yazsın",
+          "refine_prompt": "İyileştirme istemi",
+          "url": "Klar API URL’si",
+          "token": "Yazma jetonu",
+          "assist_filter": "Yalnız Assist’e açık varlıkları denetle",
+          "nlu_rag": "NLU-RAG (isteğe bağlı)",
+          "quiet_ack": "Kısa onay (zil)",
+          "channel": "Yayın kanalı"
+        },
+        "data_description": {
+          "personality": "Klar uygulamasında değil, bu entegrasyonda.",
+          "refine_speech": "Klar cihazları denetlemeye devam eder. Yedek LLM yanıtı yeniden yazar.",
+          "refine_prompt": "Sesin sistem istemi. Cihaz denetimi yok, yeni olgu yok, aynı dil.",
+          "token": "Klar uygulamasındakiyle aynı jeton.",
+          "assist_filter": "Açık: yalnızca Assist’in gördüğü. Kapalı: gizli varlıklar da.",
+          "nlu_rag": "Varsayılan kapalı. Sohbette yedek modele yalnızca eşleşen dilim gider.",
+          "quiet_ack": "Basit ışık aç/kapa konuşulmaz, uydu üzerinde kısa ses.",
+          "languages": "Varsayılan Home Assistant sistem dilidir.",
+          "channel": "İstediğiniz zaman. Staging, Klar NLU (Staging)’i gösterir."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL http(s) olmalı, kullanıcı adı olmamalı."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Paket motoru başlat (yalnız HACS)",
+        "remote": "Klar NLU uygulaması veya Docker kullan"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (üretim)",
+        "staging": "Staging (aday)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Sistem dili",
+        "all": "Tüm diller"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Rahat",
+        "fuersorglich": "Şefkatli",
+        "party": "Party",
+        "grantig": "Huysuz",
+        "sarkastisch": "Alaycı",
+        "pirat": "Korsan",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Kişilik",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Rahat",
+          "fuersorglich": "Şefkatli",
+          "party": "Party",
+          "grantig": "Huysuz",
+          "sarkastisch": "Alaycı",
+          "pirat": "Korsan",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Kısa onay"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Son duyulan"
+      },
+      "last_decision": {
+        "name": "Son karar"
+      },
+      "last_speech": {
+        "name": "Son yanıt"
+      },
+      "last_area": {
+        "name": "Duyulduğu yer"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar motoru durdu",
+      "description": "Paket Klar süreci çalışmıyor. Ayarlar → Cihazlar ve hizmetler’den Klar NLU’yu yeniden yükleyin."
+    }
+  }
+}

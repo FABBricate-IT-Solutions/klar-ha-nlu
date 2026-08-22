@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Cette intégration parle à Assist. Un moteur séparé analyse la parole : l’app Klar NLU, ce processus intégré ou Docker. Sous Home Assistant OS, installez aussi l’app puis choisissez Utiliser l’app Klar NLU. Sans app, démarrez le moteur intégré. Ne lancez pas les deux. Le canal de publication se change plus tard.",
+        "data": {
+          "mode": "Moteur",
+          "channel": "Canal de publication",
+          "url": "URL de l’API Klar",
+          "token": "Jeton d’écriture"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "L’URL doit être en http(s), sans identifiants."
+    },
+    "abort": {
+      "already_configured": "Klar NLU est déjà configuré"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "La personnalité est stockée ici et survit à la réinstallation de l’app Klar. En la changeant, le prompt de raffinage LLM est copié dans ce formulaire.",
+        "data": {
+          "mode": "Moteur",
+          "personality": "Personnalité",
+          "languages": "Langues",
+          "fallback_agent": "Agent de conversation pour le bavardage",
+          "refine_speech": "Laisser le LLM reformuler les réponses NLU",
+          "refine_prompt": "Prompt de raffinage",
+          "url": "URL de l’API Klar",
+          "token": "Jeton d’écriture",
+          "assist_filter": "Ne commander que les entités exposées à Assist",
+          "nlu_rag": "NLU-RAG (optionnel)",
+          "quiet_ack": "Confirmation courte (carillon)",
+          "channel": "Canal de publication"
+        },
+        "data_description": {
+          "personality": "Stockée dans cette intégration, pas dans l’app Klar. Assist et la voix LLM suivent le prompt.",
+          "refine_speech": "Klar commande toujours les appareils. Le LLM de secours reformule ensuite chaque réponse.",
+          "refine_prompt": "Prompt système de la voix. Pas de commande d’appareils, pas de faits nouveaux, même langue.",
+          "token": "Le même jeton que dans l’app Klar.",
+          "assist_filter": "Activé : seulement ce qu’Assist peut voir. Désactivé : aussi les entités masquées.",
+          "nlu_rag": "Désactivé par défaut. En discussion, seul l’extrait déjà reconnu va au modèle de secours.",
+          "quiet_ack": "Pour un simple allumage ou extinction, pas de phrase : un court carillon sur le satellite.",
+          "languages": "Par défaut, la langue système de Home Assistant.",
+          "channel": "À tout moment. Staging pointe vers Klar NLU (Staging), Stable vers l’app ou le moteur intégré."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "L’URL doit être en http(s), sans identifiants."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Démarrer le moteur intégré (HACS uniquement)",
+        "remote": "Utiliser l’app Klar NLU ou Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (production)",
+        "staging": "Staging (candidat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Langue du système",
+        "all": "Toutes les langues"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normale",
+        "butler": "Butler",
+        "locker": "Décontractée",
+        "fuersorglich": "Attentionnée",
+        "party": "Party",
+        "grantig": "Grognon",
+        "sarkastisch": "Sarcastique",
+        "pirat": "Pirate",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personnalité",
+        "state": {
+          "default": "Normale",
+          "butler": "Butler",
+          "locker": "Décontractée",
+          "fuersorglich": "Attentionnée",
+          "party": "Party",
+          "grantig": "Grognon",
+          "sarkastisch": "Sarcastique",
+          "pirat": "Pirate",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Confirmation courte"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Dernière écoute"
+      },
+      "last_decision": {
+        "name": "Dernière décision"
+      },
+      "last_speech": {
+        "name": "Dernière réponse"
+      },
+      "last_area": {
+        "name": "Entendu dans"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Moteur Klar arrêté",
+      "description": "Le processus Klar intégré ne tourne pas. Rechargez Klar NLU dans Paramètres → Appareils et services."
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Þessi samþætting talar við Assist. Sérstök vél greinir tal: Klar NLU appið, innifalinn ferill eða Docker. Á Home Assistant OS settu einnig appið upp og veldu Nota Klar NLU appið. Án apps skaltu ræsa innifalda vélina. Ekki keyra bæði.",
+        "data": {
+          "mode": "Vél",
+          "channel": "Útgáfurás",
+          "url": "Klar API slóð",
+          "token": "Skriftóki"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Slóðin verður að vera http(s) án notandanafns."
+    },
+    "abort": {
+      "already_configured": "Klar NLU er þegar sett upp"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Persónuleikinn er vistaður hér og helst eftir enduruppsetningu á Klar appinu.",
+        "data": {
+          "mode": "Vél",
+          "personality": "Persónuleiki",
+          "languages": "Tungumál",
+          "fallback_agent": "Samræðuumsjónarmaður fyrir spjall",
+          "refine_speech": "Láta LLM endurskrifa NLU svör",
+          "refine_prompt": "Fínstillingarvísbending",
+          "url": "Klar API slóð",
+          "token": "Skriftóki",
+          "assist_filter": "Stýra aðeins einingum sem Assist sér",
+          "nlu_rag": "NLU-RAG (valfrjálst)",
+          "quiet_ack": "Stutt staðfesting (bjalla)",
+          "channel": "Útgáfurás"
+        },
+        "data_description": {
+          "personality": "Í þessari samþættingu, ekki í Klar appinu.",
+          "refine_speech": "Klar stýrir áfram tækjum. Varas LLM endurskrifar svarið.",
+          "refine_prompt": "Kerfisvísbending raddarinnar. Engin tækjastýring, engar nýjar staðreyndir, sama tungumál.",
+          "token": "Sami tóki og í Klar appinu.",
+          "assist_filter": "Kveikt: aðeins það sem Assist sér. Slökkt: líka faldar einingar.",
+          "nlu_rag": "Slökkt sjálfgefið. Í spjalli fer aðeins samsvarandi sneið til varalíkansins.",
+          "quiet_ack": "Við einfalda kveikingu/slökkvun ljóss er ekkert talað, aðeins stuttur hljóð á gervihnettinum.",
+          "languages": "Sjálfgefið fylgir kerfistungumáli Home Assistant.",
+          "channel": "Hvenær sem er. Staging vísar á Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Slóðin verður að vera http(s) án notandanafns."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Ræsa innifalda vélina (aðeins HACS)",
+        "remote": "Nota Klar NLU appið eða Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (framleiðsla)",
+        "staging": "Staging (umsækjandi)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Kerfistungumál",
+        "all": "Öll tungumál"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Venjulegt",
+        "butler": "Butler",
+        "locker": "Afslappað",
+        "fuersorglich": "Umhyggjusamt",
+        "party": "Party",
+        "grantig": "Fýlt",
+        "sarkastisch": "Háðskt",
+        "pirat": "Sjóræningi",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Persónuleiki",
+        "state": {
+          "default": "Venjulegt",
+          "butler": "Butler",
+          "locker": "Afslappað",
+          "fuersorglich": "Umhyggjusamt",
+          "party": "Party",
+          "grantig": "Fýlt",
+          "sarkastisch": "Háðskt",
+          "pirat": "Sjóræningi",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Stutt staðfesting"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Síðast heyrt"
+      },
+      "last_decision": {
+        "name": "Síðasta ákvörðun"
+      },
+      "last_speech": {
+        "name": "Síðasta svar"
+      },
+      "last_area": {
+        "name": "Heyrt í"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar vélin stöðvaðist",
+      "description": "Innifalinn Klar ferill er ekki í gangi. Endurhladdu Klar NLU undir Stillingar → Tæki og þjónustur."
+    }
+  }
+}

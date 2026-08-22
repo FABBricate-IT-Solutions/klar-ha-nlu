@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Mae’r integreiddiad hwn yn siarad ag Assist. Peiriant ar wahân sy’n dadansoddi lleferydd: ap Klar NLU, y broses ynghlwm, neu Docker. Ar Home Assistant OS gosodwch yr ap hefyd a dewiswch Defnyddio ap Klar NLU. Heb yr ap, cychwynnwch y peiriant ynghlwm. Peidiwch â rhedeg y ddau.",
+        "data": {
+          "mode": "Peiriant",
+          "channel": "Sianel rhyddhau",
+          "url": "URL API Klar",
+          "token": "Tocyn ysgrifennu"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Rhaid i’r URL fod yn http(s) heb enw defnyddiwr."
+    },
+    "abort": {
+      "already_configured": "Mae Klar NLU eisoes wedi’i osod"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Mae’r personoliaeth yn cael ei storio yma ac yn aros ar ôl ailosod ap Klar.",
+        "data": {
+          "mode": "Peiriant",
+          "personality": "Personoliaeth",
+          "languages": "Ieithoedd",
+          "fallback_agent": "Asiant sgwrs ar gyfer siarad hamddenol",
+          "refine_speech": "Gadael i’r LLM ailysgrifennu atebion NLU",
+          "refine_prompt": "Anogwr mireinio",
+          "url": "URL API Klar",
+          "token": "Tocyn ysgrifennu",
+          "assist_filter": "Rheoli dim ond endidau sy’n weladwy i Assist",
+          "nlu_rag": "NLU-RAG (dewisol)",
+          "quiet_ack": "Cadarnhad byr (cloch)",
+          "channel": "Sianel rhyddhau"
+        },
+        "data_description": {
+          "personality": "Yn yr integreiddiad hwn, nid yn ap Klar.",
+          "refine_speech": "Mae Klar yn dal i reoli dyfeisiau. Mae’r LLM wrth gefn yn ailysgrifennu’r ateb.",
+          "refine_prompt": "Anogwr system y llais. Dim rheoli dyfais, dim ffeithiau newydd, yr un iaith.",
+          "token": "Yr un tocyn ag yn ap Klar.",
+          "assist_filter": "Ymlaen: dim ond beth mae Assist yn ei weld. I ffwrdd: endidau cudd hefyd.",
+          "nlu_rag": "I ffwrdd yn ddiofyn. Mewn sgwrs dim ond y darn sy’n cyfateb sy’n mynd at y model wrth gefn.",
+          "quiet_ack": "Ar oleuadau syml ymlaen/i ffwrdd, dim brawddeg, dim ond sain fer ar y lloeren.",
+          "languages": "Yn ddiofyn, iaith system Home Assistant.",
+          "channel": "Unrhyw bryd. Mae Staging yn pwyntio at Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Rhaid i’r URL fod yn http(s) heb enw defnyddiwr."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Cychwyn y peiriant ynghlwm (HACS yn unig)",
+        "remote": "Defnyddio ap Klar NLU neu Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (cynhyrchu)",
+        "staging": "Staging (ymgeisydd)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Iaith y system",
+        "all": "Pob iaith"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Arferol",
+        "butler": "Butler",
+        "locker": "Hamddenol",
+        "fuersorglich": "Gofalgar",
+        "party": "Party",
+        "grantig": "Swnllyd",
+        "sarkastisch": "Sarcastig",
+        "pirat": "Môr-leidr",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personoliaeth",
+        "state": {
+          "default": "Arferol",
+          "butler": "Butler",
+          "locker": "Hamddenol",
+          "fuersorglich": "Gofalgar",
+          "party": "Party",
+          "grantig": "Swnllyd",
+          "sarkastisch": "Sarcastig",
+          "pirat": "Môr-leidr",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Cadarnhad byr"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Clywyd ddiwethaf"
+      },
+      "last_decision": {
+        "name": "Penderfyniad diwethaf"
+      },
+      "last_speech": {
+        "name": "Ateb diwethaf"
+      },
+      "last_area": {
+        "name": "Clywyd yn"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Peiriant Klar wedi stopio",
+      "description": "Nid yw proses Klar ynghlwm yn rhedeg. Ail-lwythwch Klar NLU yn Gosodiadau → Dyfeisiau a gwasanaethau."
+    }
+  }
+}

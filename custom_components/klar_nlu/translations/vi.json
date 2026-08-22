@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Tích hợp này nói chuyện với Assist. Một động cơ riêng phân tích giọng nói: ứng dụng Klar NLU, tiến trình kèm theo hoặc Docker. Trên Home Assistant OS hãy cài ứng dụng và chọn Dùng ứng dụng Klar NLU. Không có ứng dụng thì khởi động động cơ kèm theo. Đừng chạy cả hai.",
+        "data": {
+          "mode": "Động cơ",
+          "channel": "Kênh phát hành",
+          "url": "URL API Klar",
+          "token": "Token ghi"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL phải là http(s), không có tên người dùng."
+    },
+    "abort": {
+      "already_configured": "Klar NLU đã được thiết lập"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Tính cách được lưu ở đây và còn sau khi cài lại ứng dụng Klar.",
+        "data": {
+          "mode": "Động cơ",
+          "personality": "Tính cách",
+          "languages": "Ngôn ngữ",
+          "fallback_agent": "Tác nhân trò chuyện phiếm",
+          "refine_speech": "Để LLM chỉnh câu trả lời NLU",
+          "refine_prompt": "Lời nhắc tinh chỉnh",
+          "url": "URL API Klar",
+          "token": "Token ghi",
+          "assist_filter": "Chỉ điều khiển thực thể đã mở cho Assist",
+          "nlu_rag": "NLU-RAG (tuỳ chọn)",
+          "quiet_ack": "Xác nhận ngắn (chuông)",
+          "channel": "Kênh phát hành"
+        },
+        "data_description": {
+          "personality": "Nằm trong tích hợp này, không trong ứng dụng Klar.",
+          "refine_speech": "Klar vẫn điều khiển thiết bị. LLM dự phòng viết lại câu trả lời.",
+          "refine_prompt": "Lời nhắc hệ thống của giọng nói. Không điều khiển thiết bị, không bịa sự thật, cùng ngôn ngữ.",
+          "token": "Cùng token với ứng dụng Klar.",
+          "assist_filter": "Bật: chỉ những gì Assist thấy. Tắt: cả thực thể ẩn.",
+          "nlu_rag": "Mặc định tắt. Khi trò chuyện chỉ gửi đoạn đã khớp tới mô hình dự phòng.",
+          "quiet_ack": "Bật/tắt đèn đơn giản thì không nói, chỉ một tiếng ngắn trên vệ tinh.",
+          "languages": "Mặc định theo ngôn ngữ hệ thống của Home Assistant.",
+          "channel": "Đổi bất cứ lúc nào. Staging trỏ tới Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL phải là http(s), không có tên người dùng."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Khởi động động cơ kèm theo (chỉ HACS)",
+        "remote": "Dùng ứng dụng Klar NLU hoặc Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (sản xuất)",
+        "staging": "Staging (ứng viên)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Ngôn ngữ hệ thống",
+        "all": "Mọi ngôn ngữ"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Bình thường",
+        "butler": "Butler",
+        "locker": "Thoải mái",
+        "fuersorglich": "Ân cần",
+        "party": "Party",
+        "grantig": "Cáu kỉnh",
+        "sarkastisch": "Châm biếm",
+        "pirat": "Hải tặc",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Tính cách",
+        "state": {
+          "default": "Bình thường",
+          "butler": "Butler",
+          "locker": "Thoải mái",
+          "fuersorglich": "Ân cần",
+          "party": "Party",
+          "grantig": "Cáu kỉnh",
+          "sarkastisch": "Châm biếm",
+          "pirat": "Hải tặc",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Xác nhận ngắn"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Nghe gần nhất"
+      },
+      "last_decision": {
+        "name": "Quyết định gần nhất"
+      },
+      "last_speech": {
+        "name": "Trả lời gần nhất"
+      },
+      "last_area": {
+        "name": "Nghe tại"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Động cơ Klar đã dừng",
+      "description": "Tiến trình Klar kèm theo không chạy. Tải lại Klar NLU trong Cài đặt → Thiết bị và dịch vụ."
+    }
+  }
+}

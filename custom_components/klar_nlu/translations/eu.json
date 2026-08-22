@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Integrazio honek Assist-ekin hitz egiten du. Motor bereizi batek aztertzen du ahotsa: Klar NLU aplikazioa, prozesu bildua edo Docker. Home Assistant OS-en instalatu aplikazioa eta aukeratu Erabili Klar NLU aplikazioa. Aplikaziorik gabe, abiarazi motor bildua. Ez exekutatu biak.",
+        "data": {
+          "mode": "Motorra",
+          "channel": "Argitalpen kanala",
+          "url": "Klar API URLa",
+          "token": "Idazteko tokena"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URLak http(s) izan behar du, erabiltzaile-izenik gabe."
+    },
+    "abort": {
+      "already_configured": "Klar NLU dagoeneko konfiguratuta dago"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Nortasuna hemen gordetzen da eta Klar aplikazioa berrinstalatu ostean ere geratzen da.",
+        "data": {
+          "mode": "Motorra",
+          "personality": "Nortasuna",
+          "languages": "Hizkuntzak",
+          "fallback_agent": "Berriketarako elkarrizketa-agentea",
+          "refine_speech": "Utzi LLM-ari NLU erantzunak birformulatzeko",
+          "refine_prompt": "Fintzeko gonbita",
+          "url": "Klar API URLa",
+          "token": "Idazteko tokena",
+          "assist_filter": "Kontrolatu Assist-i agertutako entitateak soilik",
+          "nlu_rag": "NLU-RAG (aukerakoa)",
+          "quiet_ack": "Berrespen laburra (kanpaia)",
+          "channel": "Argitalpen kanala"
+        },
+        "data_description": {
+          "personality": "Integrazio honetan dago, ez Klar aplikazioan.",
+          "refine_speech": "Klar-ek gailuak kontrolatzen jarraitzen du. Ordezko LLM-ak erantzuna berridazten du.",
+          "refine_prompt": "Ahotsaren sistema-gonbita. Gailu-kontrolik ez, datu berririk ez, hizkuntza bera.",
+          "token": "Klar aplikazioko token bera.",
+          "assist_filter": "Piztuta: Assist-ek ikusten duena soilik. Itzalita: ezkutuko entitateak ere.",
+          "nlu_rag": "Itzalita lehenetsita. Berriketan bat datorren zatia bakarrik doa ordezko eredura.",
+          "quiet_ack": "Argia piztu/itzali sinplean ez da hitzik, soinu laburra satelitean.",
+          "languages": "Lehenetsita Home Assistant sistemaren hizkuntza da.",
+          "channel": "Edozein unetan. Staging-ek Klar NLU (Staging) seinalatzen du."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URLak http(s) izan behar du, erabiltzaile-izenik gabe."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Abiarazi motor bildua (HACS soilik)",
+        "remote": "Erabili Klar NLU aplikazioa edo Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (ekoizpena)",
+        "staging": "Staging (hautagaia)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Sistemaren hizkuntza",
+        "all": "Hizkuntza guztiak"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normala",
+        "butler": "Butler",
+        "locker": "Lasai",
+        "fuersorglich": "Zaintzailea",
+        "party": "Party",
+        "grantig": "Haserre",
+        "sarkastisch": "Sarkastikoa",
+        "pirat": "Pirata",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Nortasuna",
+        "state": {
+          "default": "Normala",
+          "butler": "Butler",
+          "locker": "Lasai",
+          "fuersorglich": "Zaintzailea",
+          "party": "Party",
+          "grantig": "Haserre",
+          "sarkastisch": "Sarkastikoa",
+          "pirat": "Pirata",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Berrespen laburra"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Azken entzundakoa"
+      },
+      "last_decision": {
+        "name": "Azken erabakia"
+      },
+      "last_speech": {
+        "name": "Azken erantzuna"
+      },
+      "last_area": {
+        "name": "Hemen entzuna"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar motorra gelditu da",
+      "description": "Klar prozesu bildua ez dago martxan. Kargatu berriro Klar NLU Ezarpenak → Gailuak eta zerbitzuak atalean."
+    }
+  }
+}
