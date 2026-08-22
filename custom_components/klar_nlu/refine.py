@@ -68,7 +68,7 @@ def isolated_conversation_id() -> str:
 
 def skip_rewrite(decision: str) -> bool:
     """LLM fallback already applied the personality prompt — a second pass rewrites after TTS started."""
-    return decision in {"chat", "llm"}
+    return decision in {"chat", "llm", "chime"}
 
 
 def nested_llm_session(agent_id: str, language: str | None, prompt: str | None) -> dict[str, Any]:

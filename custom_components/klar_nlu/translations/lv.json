@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Šī integrācija runā ar Assist. Atsevišķs dzinējs analizē runu: Klar NLU lietotne, iekļautais process vai Docker. Home Assistant OS instalējiet arī lietotni un izvēlieties Izmantot Klar NLU lietotni. Bez lietotnes palaidiet iekļauto dzinēju. Nedarbojiet abus.",
+        "data": {
+          "mode": "Dzinējs",
+          "channel": "Izlaides kanāls",
+          "url": "Klar API URL",
+          "token": "Rakstīšanas marķieris"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL jābūt http(s) bez lietotājvārda."
+    },
+    "abort": {
+      "already_configured": "Klar NLU jau ir iestatīts"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Personība tiek saglabāta šeit un paliek pēc Klar lietotnes atkārtotas instalēšanas.",
+        "data": {
+          "mode": "Dzinējs",
+          "personality": "Personība",
+          "languages": "Valodas",
+          "fallback_agent": "Sarunu aģents tērzēšanai",
+          "refine_speech": "Ļaut LLM pārfrāzēt NLU atbildes",
+          "refine_prompt": "Uzlabošanas uzvedne",
+          "url": "Klar API URL",
+          "token": "Rakstīšanas marķieris",
+          "assist_filter": "Vadīt tikai Assist redzamās entītijas",
+          "nlu_rag": "NLU-RAG (pēc izvēles)",
+          "quiet_ack": "Īsa apstiprināšana (zvans)",
+          "channel": "Izlaides kanāls"
+        },
+        "data_description": {
+          "personality": "Šajā integrācijā, nevis Klar lietotnē.",
+          "refine_speech": "Klar joprojām vada ierīces. Rezerves LLM pārraksta atbildi.",
+          "refine_prompt": "Balss sistēmas uzvedne. Bez ierīču vadības, bez jauniem faktiem, tā pati valoda.",
+          "token": "Tas pats marķieris kā Klar lietotnē.",
+          "assist_filter": "Ieslēgts: tikai to, ko redz Assist. Izslēgts: arī slēptās entītijas.",
+          "nlu_rag": "Pēc noklusējuma izslēgts. Tērzēšanā rezerves modelim iet tikai atpazītais fragments.",
+          "quiet_ack": "Vienkāršai gaismas ieslēgšanai/izslēgšanai nav teikuma, tikai īss skaņa uz satelīta.",
+          "languages": "Pēc noklusējuma seko Home Assistant sistēmas valodai.",
+          "channel": "Jebkurā laikā. Staging norāda uz Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL jābūt http(s) bez lietotājvārda."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Palaist iekļauto dzinēju (tikai HACS)",
+        "remote": "Izmantot Klar NLU lietotni vai Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (ražošana)",
+        "staging": "Staging (kandidāts)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Sistēmas valoda",
+        "all": "Visas valodas"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Parasta",
+        "butler": "Butler",
+        "locker": "Neformāla",
+        "fuersorglich": "Gādīga",
+        "party": "Party",
+        "grantig": "Nikna",
+        "sarkastisch": "Sarkastiska",
+        "pirat": "Pirāts",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personība",
+        "state": {
+          "default": "Parasta",
+          "butler": "Butler",
+          "locker": "Neformāla",
+          "fuersorglich": "Gādīga",
+          "party": "Party",
+          "grantig": "Nikna",
+          "sarkastisch": "Sarkastiska",
+          "pirat": "Pirāts",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Īsa apstiprināšana"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Pēdējoreiz dzirdēts"
+      },
+      "last_decision": {
+        "name": "Pēdējais lēmums"
+      },
+      "last_speech": {
+        "name": "Pēdējā atbilde"
+      },
+      "last_area": {
+        "name": "Dzirdēts"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar dzinējs apstājās",
+      "description": "Iekļautais Klar process nedarbojas. Pārlādējiet Klar NLU sadaļā Iestatījumi → Ierīces un pakalpojumi."
+    }
+  }
+}

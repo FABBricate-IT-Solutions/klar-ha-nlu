@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "এই ইন্টিগ্রেশন Assist-এর সঙ্গে কথা বলে। আলাদা ইঞ্জিন কথা বিশ্লেষণ করে: Klar NLU অ্যাপ, বান্ডিল প্রক্রিয়া, বা Docker। Home Assistant OS-এ অ্যাপও ইনস্টল করে Klar NLU অ্যাপ ব্যবহার করুন বেছে নিন। অ্যাপ ছাড়া বান্ডিল ইঞ্জিন চালান। দুটো একসঙ্গে চালাবেন না।",
+        "data": {
+          "mode": "ইঞ্জিন",
+          "channel": "রিলিজ চ্যানেল",
+          "url": "Klar API URL",
+          "token": "লেখার টোকেন"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL হতে হবে http(s), ব্যবহারকারীর নাম ছাড়া।"
+    },
+    "abort": {
+      "already_configured": "Klar NLU ইতিমধ্যে সেটআপ আছে"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "ব্যক্তিত্ব এখানে সংরক্ষিত এবং Klar অ্যাপ পুনরায় ইনস্টলের পরেও থাকে।",
+        "data": {
+          "mode": "ইঞ্জিন",
+          "personality": "ব্যক্তিত্ব",
+          "languages": "ভাষা",
+          "fallback_agent": "আড্ডার জন্য কথোপকথন এজেন্ট",
+          "refine_speech": "LLM দিয়ে NLU উত্তর লিখুন",
+          "refine_prompt": "পরিমার্জন প্রম্পট",
+          "url": "Klar API URL",
+          "token": "লেখার টোকেন",
+          "assist_filter": "শুধু Assist-এ দেখা সত্তা নিয়ন্ত্রণ করুন",
+          "nlu_rag": "NLU-RAG (ঐচ্ছিক)",
+          "quiet_ack": "সংক্ষিপ্ত নিশ্চিতকরণ (ঘণ্টা)",
+          "channel": "রিলিজ চ্যানেল"
+        },
+        "data_description": {
+          "personality": "এই ইন্টিগ্রেশনে, Klar অ্যাপে নয়।",
+          "refine_speech": "Klar এখনও ডিভাইস নিয়ন্ত্রণ করে। ব্যাকআপ LLM উত্তর আবার লেখে।",
+          "refine_prompt": "কণ্ঠের সিস্টেম প্রম্পট। ডিভাইস নিয়ন্ত্রণ নেই, নতুন তথ্য নেই, একই ভাষা।",
+          "token": "Klar অ্যাপের মতোই টোকেন।",
+          "assist_filter": "চালু: শুধু Assist যা দেখে। বন্ধ: লুকোনো সত্তাও।",
+          "nlu_rag": "ডিফল্ট বন্ধ। আড্ডায় শুধু মিলে যাওয়া অংশ ব্যাকআপ মডেলে যায়।",
+          "quiet_ack": "সাধারণ আলো চালু/বন্ধে বাক্য নেই, স্যাটেলাইটে শুধু ছোট শব্দ।",
+          "languages": "ডিফল্ট Home Assistant সিস্টেম ভাষা।",
+          "channel": "যখন খুশি। Staging Klar NLU (Staging) দেখায়।"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL হতে হবে http(s), ব্যবহারকারীর নাম ছাড়া।"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "বান্ডিল ইঞ্জিন চালু করুন (শুধু HACS)",
+        "remote": "Klar NLU অ্যাপ বা Docker ব্যবহার করুন"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (উৎপাদন)",
+        "staging": "Staging (প্রার্থী)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "সিস্টেম ভাষা",
+        "all": "সব ভাষা"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "সাধারণ",
+        "butler": "Butler",
+        "locker": "আরামদায়ক",
+        "fuersorglich": "যত্নশীল",
+        "party": "Party",
+        "grantig": "খিটখিটে",
+        "sarkastisch": "ব্যঙ্গাত্মক",
+        "pirat": "জলদস্যু",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "ব্যক্তিত্ব",
+        "state": {
+          "default": "সাধারণ",
+          "butler": "Butler",
+          "locker": "আরামদায়ক",
+          "fuersorglich": "যত্নশীল",
+          "party": "Party",
+          "grantig": "খিটখিটে",
+          "sarkastisch": "ব্যঙ্গাত্মক",
+          "pirat": "জলদস্যু",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "সংক্ষিপ্ত নিশ্চিতকরণ"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "শেষ শোনা"
+      },
+      "last_decision": {
+        "name": "শেষ সিদ্ধান্ত"
+      },
+      "last_speech": {
+        "name": "শেষ উত্তর"
+      },
+      "last_area": {
+        "name": "শোনা গেছে"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar ইঞ্জিন থেমেছে",
+      "description": "বান্ডিল Klar প্রক্রিয়া চলছে না। সেটিংস → ডিভাইস ও পরিষেবা থেকে Klar NLU আবার লোড করুন।"
+    }
+  }
+}

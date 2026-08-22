@@ -28,12 +28,14 @@ from .const import (
     CONF_LANGUAGES,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
+    CONF_QUIET_ACK,
     CONF_REFINE_PROMPT,
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_NLU_RAG,
+    DEFAULT_QUIET_ACK,
     DEFAULT_URL,
     DOMAIN,
     resolve_personality,
@@ -61,6 +63,7 @@ from .refine import (
     refine_prompt,
     skip_rewrite,
 )
+from .quiet import play_chime, quiet_ack_applies
 from .sensor import remember_turn
 
 _LOGGER = logging.getLogger(__name__)
@@ -243,6 +246,11 @@ class KlarConversationEntity(ConversationEntity):
             )
             if executed.get("speech"):
                 speech = str(executed["speech"])
+            if self._quiet_ack() and quiet_ack_applies(executed, plan):
+                await play_chime(self.hass, user_input)
+                return await self._spoken(
+                    user_input, chat_log, pack, "", conversation_id, False, "chime"
+                )
         return await self._spoken(
             user_input, chat_log, pack, speech, conversation_id, clarify, decision_type
         )
@@ -302,7 +310,8 @@ class KlarConversationEntity(ConversationEntity):
             decision,
             self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
         )
-        await emit_assistant_speech(chat_log, user_input.agent_id, speech)
+        if speech.strip():
+            await emit_assistant_speech(chat_log, user_input.agent_id, speech)
         response = intent.IntentResponse(language=user_input.language or pack)
         response.async_set_speech(speech)
         return ConversationResult(
@@ -336,6 +345,9 @@ class KlarConversationEntity(ConversationEntity):
 
     def _nlu_rag(self) -> bool:
         return bool(self._entry.options.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+
+    def _quiet_ack(self) -> bool:
+        return bool(self._entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK))
 
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""

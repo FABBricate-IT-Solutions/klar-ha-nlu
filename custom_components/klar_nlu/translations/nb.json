@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Denne integrasjonen snakker med Assist. En egen motor tolker tale: Klar NLU-appen, denne medfølgende prosessen eller Docker. På Home Assistant OS, installer også appen og velg Bruk Klar NLU-appen. Uten app, start den medfølgende motoren. Ikke kjør begge.",
+        "data": {
+          "mode": "Motor",
+          "channel": "Utgivelseskanal",
+          "url": "Klar-API-URL",
+          "token": "Skrivetoken"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL må være http(s) uten brukernavn."
+    },
+    "abort": {
+      "already_configured": "Klar NLU er allerede satt opp"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Personligheten lagres her og overlever reinstallasjon av Klar-appen.",
+        "data": {
+          "mode": "Motor",
+          "personality": "Personlighet",
+          "languages": "Språk",
+          "fallback_agent": "Samtaleagent for småprat",
+          "refine_speech": "La LLM omskrive NLU-svar",
+          "refine_prompt": "Forbedringsprompt",
+          "url": "Klar-API-URL",
+          "token": "Skrivetoken",
+          "assist_filter": "Styr bare enheter som er synlige for Assist",
+          "nlu_rag": "NLU-RAG (valgfritt)",
+          "quiet_ack": "Kort bekreftelse (ding)",
+          "channel": "Utgivelseskanal"
+        },
+        "data_description": {
+          "personality": "Ligger i denne integrasjonen, ikke i Klar-appen.",
+          "refine_speech": "Klar styrer fortsatt enhetene. Reserve-LLM omskriver svaret.",
+          "refine_prompt": "Systemprompt for stemmen. Ingen enhetsstyring, ingen nye fakta, samme språk.",
+          "token": "Samme token som i Klar-appen.",
+          "assist_filter": "På: bare det Assist kan se. Av: også skjulte enheter.",
+          "nlu_rag": "Av som standard. Ved prat sendes bare det gjenkjente utsnittet til reservemodellen.",
+          "quiet_ack": "Ved enkelt lys eller bryter av/på ingen setning, bare en kort tone.",
+          "languages": "Standard er Home Assistants systemspråk.",
+          "channel": "Når som helst. Staging peker på Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL må være http(s) uten brukernavn."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Start den medfølgende motoren (kun HACS)",
+        "remote": "Bruk Klar NLU-appen eller Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (produksjon)",
+        "staging": "Staging (utgivelseskandidat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Systemspråk",
+        "all": "Alle språk"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Uformell",
+        "fuersorglich": "Omsorgsfull",
+        "party": "Party",
+        "grantig": "Gretten",
+        "sarkastisch": "Sarkastisk",
+        "pirat": "Pirat",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personlighet",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Uformell",
+          "fuersorglich": "Omsorgsfull",
+          "party": "Party",
+          "grantig": "Gretten",
+          "sarkastisch": "Sarkastisk",
+          "pirat": "Pirat",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Kort bekreftelse"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Sist hørt"
+      },
+      "last_decision": {
+        "name": "Siste beslutning"
+      },
+      "last_speech": {
+        "name": "Siste svar"
+      },
+      "last_area": {
+        "name": "Hørt i"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-motor stoppet",
+      "description": "Den medfølgende Klar-prosessen kjører ikke. Last Klar NLU på nytt under Innstillinger → Enheter og tjenester."
+    }
+  }
+}

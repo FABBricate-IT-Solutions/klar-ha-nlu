@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "See integratsioon räägib Assistiga. Eraldi mootor parsib kõne: Klar NLU rakendus, kaasasolev protsess või Docker. Home Assistant OS-is paigalda ka rakendus ja vali Kasuta Klar NLU rakendust. Ilma rakenduseta käivita kaasasolev mootor. Ära jooksuta mõlemat.",
+        "data": {
+          "mode": "Mootor",
+          "channel": "Väljalaskekanal",
+          "url": "Klar API URL",
+          "token": "Kirjutamistõend"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL peab olema http(s) ilma kasutajanimega."
+    },
+    "abort": {
+      "already_configured": "Klar NLU on juba seadistatud"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Isiksus salvestatakse siia ja jääb alles pärast Klar rakenduse uuesti paigaldamist.",
+        "data": {
+          "mode": "Mootor",
+          "personality": "Isiksus",
+          "languages": "Keeled",
+          "fallback_agent": "Vestlusagent vestluseks",
+          "refine_speech": "Las LLM sõnastab NLU vastused ümber",
+          "refine_prompt": "Viimistlusviip",
+          "url": "Klar API URL",
+          "token": "Kirjutamistõend",
+          "assist_filter": "Juhi ainult Assistile nähtavaid olemeid",
+          "nlu_rag": "NLU-RAG (valikuline)",
+          "quiet_ack": "Lühike kinnitus (kelluke)",
+          "channel": "Väljalaskekanal"
+        },
+        "data_description": {
+          "personality": "Selles integratsioonis, mitte Klar rakenduses.",
+          "refine_speech": "Klar juhib endiselt seadmeid. Varumudel LLM kirjutab vastuse ümber.",
+          "refine_prompt": "Hääle süsteemiviip. Ilma seadmejuhtimiseta, ilma uute faktideta, sama keel.",
+          "token": "Sama tõend mis Klar rakenduses.",
+          "assist_filter": "Sees: ainult see, mida Assist näeb. Väljas: ka peidetud olemid.",
+          "nlu_rag": "Vaikimisi väljas. Vestluses läheb varumudelile ainult vastav lõik.",
+          "quiet_ack": "Lihtsa tule sisse/välja korral ei räägi, ainult lühike heli satelliidil.",
+          "languages": "Vaikimisi järgib Home Assistanti süsteemikeelt.",
+          "channel": "Igal ajal. Staging osutab Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL peab olema http(s) ilma kasutajanimega."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Käivita kaasasolev mootor (ainult HACS)",
+        "remote": "Kasuta Klar NLU rakendust või Dockerit"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (tootmine)",
+        "staging": "Staging (kandidaat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Süsteemi keel",
+        "all": "Kõik keeled"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Tavaline",
+        "butler": "Butler",
+        "locker": "Vaba",
+        "fuersorglich": "Hooliv",
+        "party": "Party",
+        "grantig": "Tige",
+        "sarkastisch": "Sarkastiline",
+        "pirat": "Piraat",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Isiksus",
+        "state": {
+          "default": "Tavaline",
+          "butler": "Butler",
+          "locker": "Vaba",
+          "fuersorglich": "Hooliv",
+          "party": "Party",
+          "grantig": "Tige",
+          "sarkastisch": "Sarkastiline",
+          "pirat": "Piraat",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Lühike kinnitus"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Viimati kuuldud"
+      },
+      "last_decision": {
+        "name": "Viimane otsus"
+      },
+      "last_speech": {
+        "name": "Viimane vastus"
+      },
+      "last_area": {
+        "name": "Kuuldud kohas"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar mootor seiskus",
+      "description": "Kaasasolev Klar protsess ei tööta. Laadi Klar NLU uuesti jaotisest Seaded → Seadmed ja teenused."
+    }
+  }
+}

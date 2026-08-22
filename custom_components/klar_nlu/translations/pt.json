@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Esta integração fala com o Assist. Um motor separado analisa a fala: a app Klar NLU, este processo incluído ou Docker. No Home Assistant OS instale também a app e escolha Usar a app Klar NLU. Sem app, inicie o motor incluído. Não execute ambos. O canal de lançamento pode ser alterado depois.",
+        "data": {
+          "mode": "Motor",
+          "channel": "Canal de lançamento",
+          "url": "URL da API Klar",
+          "token": "Token de escrita"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "O URL deve ser http(s), sem credenciais."
+    },
+    "abort": {
+      "already_configured": "O Klar NLU já está configurado"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "A personalidade fica aqui e sobrevive à reinstalação da app Klar.",
+        "data": {
+          "mode": "Motor",
+          "personality": "Personalidade",
+          "languages": "Idiomas",
+          "fallback_agent": "Agente de conversação para conversa",
+          "refine_speech": "Deixar o LLM reformular as respostas NLU",
+          "refine_prompt": "Prompt de refinamento",
+          "url": "URL da API Klar",
+          "token": "Token de escrita",
+          "assist_filter": "Controlar só entidades expostas ao Assist",
+          "nlu_rag": "NLU-RAG (opcional)",
+          "quiet_ack": "Confirmação curta (sinal)",
+          "channel": "Canal de lançamento"
+        },
+        "data_description": {
+          "personality": "Está nesta integração, não na app Klar. O Assist e a voz LLM seguem o prompt.",
+          "refine_speech": "O Klar continua a controlar os dispositivos. O LLM de recurso reformula a resposta.",
+          "refine_prompt": "Prompt de sistema da voz. Sem controlo de dispositivos, sem factos novos, mesma língua.",
+          "token": "O mesmo token da app Klar.",
+          "assist_filter": "Ligado: só o que o Assist pode ver. Desligado: também entidades ocultas.",
+          "nlu_rag": "Desligado por predefinição. No chat só o excerto reconhecido vai para o modelo de recurso.",
+          "quiet_ack": "Num ligar ou desligar simples, sem frase: só um sinal curto no satélite.",
+          "languages": "A predefinição é o idioma do sistema do Home Assistant.",
+          "channel": "Em qualquer altura. Staging aponta para Klar NLU (Staging); Stable para a app ou o motor incluído."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "O URL deve ser http(s), sem credenciais."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Iniciar o motor incluído (apenas HACS)",
+        "remote": "Usar a app Klar NLU ou Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (produção)",
+        "staging": "Staging (candidato)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Idioma do sistema",
+        "all": "Todos os idiomas"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normal",
+        "butler": "Butler",
+        "locker": "Descontraída",
+        "fuersorglich": "Atenciosa",
+        "party": "Party",
+        "grantig": "Rabugenta",
+        "sarkastisch": "Sarcástica",
+        "pirat": "Pirata",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Personalidade",
+        "state": {
+          "default": "Normal",
+          "butler": "Butler",
+          "locker": "Descontraída",
+          "fuersorglich": "Atenciosa",
+          "party": "Party",
+          "grantig": "Rabugenta",
+          "sarkastisch": "Sarcástica",
+          "pirat": "Pirata",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Confirmação curta"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Última audição"
+      },
+      "last_decision": {
+        "name": "Última decisão"
+      },
+      "last_speech": {
+        "name": "Última resposta"
+      },
+      "last_area": {
+        "name": "Ouvido em"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Motor Klar parado",
+      "description": "O processo Klar incluído não está a correr. Recarregue o Klar NLU em Definições → Dispositivos e serviços."
+    }
+  }
+}

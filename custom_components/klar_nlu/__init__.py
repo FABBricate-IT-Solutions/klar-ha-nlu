@@ -23,10 +23,11 @@ from .const import (
 )
 from .engine import KlarEngine, async_push_personality
 from .panel import async_setup_panel
+from .quiet import async_setup_chime
 from .services import async_setup_services
 from .sync import HomeGraphSync, engine_url
 
-PLATFORMS = [Platform.CONVERSATION, Platform.SELECT, Platform.SENSOR]
+PLATFORMS = [Platform.CONVERSATION, Platform.SELECT, Platform.SENSOR, Platform.SWITCH]
 _LOGGER = logging.getLogger(__name__)
 
 
@@ -63,6 +64,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     await sync.async_start()
     await async_setup_services(hass)
+    await async_setup_chime(hass)
     try:
         await async_setup_panel(hass)
     except Exception:

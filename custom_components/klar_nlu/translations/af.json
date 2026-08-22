@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "Hierdie integrasie praat met Assist. ’n Aparte enjin ontleed spraak: die Klar NLU-app, hierdie gebundelde proses of Docker. Op Home Assistant OS installeer ook die app en kies Gebruik die Klar NLU-app. Sonder die app, begin die gebundelde enjin. Moenie albei laat loop nie.",
+        "data": {
+          "mode": "Enjin",
+          "channel": "Vrystellingskanaal",
+          "url": "Klar API-URL",
+          "token": "Skryf-token"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL moet http(s) wees sonder gebruikersnaam."
+    },
+    "abort": {
+      "already_configured": "Klar NLU is al opgestel"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "Die persoonlikheid word hier gestoor en bly na herinstallasie van die Klar-app.",
+        "data": {
+          "mode": "Enjin",
+          "personality": "Persoonlikheid",
+          "languages": "Tale",
+          "fallback_agent": "Gespreksagent vir kuierpraatjies",
+          "refine_speech": "Laat die LLM NLU-antwoorde herformuleer",
+          "refine_prompt": "Verfynde opdrag",
+          "url": "Klar API-URL",
+          "token": "Skryf-token",
+          "assist_filter": "Beheer slegs entiteite wat aan Assist blootgestel is",
+          "nlu_rag": "NLU-RAG (opsioneel)",
+          "quiet_ack": "Kort bevestiging (klokkie)",
+          "channel": "Vrystellingskanaal"
+        },
+        "data_description": {
+          "personality": "In hierdie integrasie, nie in die Klar-app nie.",
+          "refine_speech": "Klar beheer steeds toestelle. Die rugsteun-LLM herskryf die antwoord.",
+          "refine_prompt": "Stelselopdrag vir die stem. Geen toestelbeheer, geen nuwe feite, dieselfde taal.",
+          "token": "Dieselfde token as in die Klar-app.",
+          "assist_filter": "Aan: net wat Assist mag sien. Af: ook versteekte entiteite.",
+          "nlu_rag": "Verstek af. In gesels stuur slegs die ooreenstemmende stuk na die rugsteunmodel.",
+          "quiet_ack": "By eenvoudige lig aan/af geen sin nie, net ’n kort klank op die satelliet.",
+          "languages": "Verstek volg die Home Assistant-stelseltaal.",
+          "channel": "Enige tyd. Staging wys na Klar NLU (Staging)."
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL moet http(s) wees sonder gebruikersnaam."
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "Begin die gebundelde enjin (slegs HACS)",
+        "remote": "Gebruik die Klar NLU-app of Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (produksie)",
+        "staging": "Staging (kandidaat)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "Stelseltaal",
+        "all": "Alle tale"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "Normaal",
+        "butler": "Butler",
+        "locker": "Ontspanne",
+        "fuersorglich": "Omgeë",
+        "party": "Party",
+        "grantig": "Knorrig",
+        "sarkastisch": "Sarkasties",
+        "pirat": "Seerower",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "Persoonlikheid",
+        "state": {
+          "default": "Normaal",
+          "butler": "Butler",
+          "locker": "Ontspanne",
+          "fuersorglich": "Omgeë",
+          "party": "Party",
+          "grantig": "Knorrig",
+          "sarkastisch": "Sarkasties",
+          "pirat": "Seerower",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "Kort bevestiging"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "Laas gehoor"
+      },
+      "last_decision": {
+        "name": "Laaste besluit"
+      },
+      "last_speech": {
+        "name": "Laaste antwoord"
+      },
+      "last_area": {
+        "name": "Gehoor in"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar-enjin gestop",
+      "description": "Die gebundelde Klar-proses loop nie. Herlaai Klar NLU in Instellings → Toestelle en dienste."
+    }
+  }
+}

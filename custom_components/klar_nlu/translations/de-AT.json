@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Diese Integration spricht mit Assist. Die Engine läuft als Klar-NLU-App, mitgelieferter Prozess oder Docker. Unter Home Assistant OS die App wählen, sonst die mitgelieferte Engine. Nicht beides. Der Release-Kanal lässt sich später ändern.",
+        "description": "Diese Integration spricht mit Assist. Die Engine läuft als Klar-NLU-App, mitgelieferter Prozess oder Docker. Unter Home Assistant OS die App installieren und Klar-NLU-App verwenden. Nicht beides. Den Release-Kanal kannst du später ändern.",
         "data": {
           "mode": "Engine",
           "channel": "Release-Kanal",
@@ -23,7 +23,7 @@
     "step": {
       "init": {
         "title": "Klar NLU",
-        "description": "Die Persönlichkeit liegt in Home Assistant und bleibt nach einer Neuinstallation der Klar-App erhalten. Beim Wechsel wird der LLM-Verfeinerungs-Prompt in die Einstellungen kopiert. Assist nutzt ihn bei jeder Antwort.",
+        "description": "Die Persönlichkeit bleibt in Home Assistant, auch nach einer Neuinstallation der Klar-App.",
         "data": {
           "mode": "Engine",
           "personality": "Persönlichkeit",
@@ -39,15 +39,15 @@
           "channel": "Release-Kanal"
         },
         "data_description": {
-          "personality": "Liegt in dieser Integration, nicht in der Klar-App. Beim Wechsel wird der Verfeinerungs-Prompt geladen. Assist und die LLM-Stimme folgen ihm.",
-          "refine_speech": "Klar steuert weiter die Geräte. Das Fallback-LLM formuliert danach jede fertige Antwort um. Klar schickt enable_thinking=false mit.",
-          "refine_prompt": "Systemprompt der Stimme. Persönlichkeit wechseln, absenden, Prompt anpassen. Keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
-          "token": "Derselbe Token wie im Klar-Addon. Für Overlay-Schreibzugriffe aus Home Assistant.",
-          "assist_filter": "An (Standard): nur was Assist sehen darf. Aus: auch versteckte Entitäten — leichter das falsche Gerät.",
-          "nlu_rag": "Standard aus. Bei Chat und leerem Reject nur den gematchten Ausschnitt an das Fallback-Modell. Nur Klar-Werkzeuge.",
-          "quiet_ack": "Bei einfachem Licht oder Schalter an/aus keine gesprochene Antwort, nur ein kurzer Ton am Satelliten.",
-          "languages": "Standard ist die Home-Assistant-Systemsprache. Alle Sprachen lässt jede kompilierte Assist-Locale aktiv.",
-          "channel": "Geht jederzeit. Staging zeigt auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine. Eine eigene URL bleibt."
+          "personality": "Liegt in dieser Integration, nicht in der Klar-App.",
+          "refine_speech": "Klar steuert weiter die Geräte. Das Fallback-LLM formuliert die Antwort um.",
+          "refine_prompt": "Systemprompt der Stimme. Keine Gerätesteuerung, keine neuen Fakten, gleiche Sprache.",
+          "token": "Derselbe Token wie im Klar-Addon.",
+          "assist_filter": "An: nur was Assist sehen darf. Aus: auch versteckte Entitäten.",
+          "nlu_rag": "Standard aus. Bei Chat nur den gematchten Ausschnitt an das Fallback-Modell.",
+          "quiet_ack": "Bei einfachem Licht an/aus keine gesprochene Antwort, nur ein kurzer Ton.",
+          "languages": "Standard ist die Home-Assistant-Systemsprache.",
+          "channel": "Jederzeit. Staging auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine."
         }
       }
     },

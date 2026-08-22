@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "یہ انٹیگریشن Assist سے بات کرتی ہے۔ الگ انجن تقریر پڑھتا ہے: Klar NLU ایپ، شامل عمل، یا Docker۔ Home Assistant OS پر ایپ لگائیں اور Klar NLU ایپ استعمال کریں منتخب کریں۔ بغیر ایپ شامل انجن چلائیں۔ دونوں ایک ساتھ نہ چلائیں۔",
+        "data": {
+          "mode": "انجن",
+          "channel": "ریلیز چینل",
+          "url": "Klar API یو آر ایل",
+          "token": "لکھنے کا ٹوکن"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "یو آر ایل http(s) ہو اور صارف نام نہ ہو۔"
+    },
+    "abort": {
+      "already_configured": "Klar NLU پہلے سے سیٹ ہے"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "شخصیت یہاں محفوظ ہے اور Klar ایپ دوبارہ نصب کرنے کے بعد بھی رہتی ہے۔",
+        "data": {
+          "mode": "انجن",
+          "personality": "شخصیت",
+          "languages": "زبانیں",
+          "fallback_agent": "گپ شپ کے لیے گفتگو ایجنٹ",
+          "refine_speech": "LLM سے NLU جواب درست کریں",
+          "refine_prompt": "درستگی کا پرامپٹ",
+          "url": "Klar API یو آر ایل",
+          "token": "لکھنے کا ٹوکن",
+          "assist_filter": "صرف Assist کو دکھائی گئی ہستیاں کنٹرول کریں",
+          "nlu_rag": "NLU-RAG (اختیاری)",
+          "quiet_ack": "مختصر تصدیق (گھنٹی)",
+          "channel": "ریلیز چینل"
+        },
+        "data_description": {
+          "personality": "اس انٹیگریشن میں ہے، Klar ایپ میں نہیں۔",
+          "refine_speech": "Klar آلات کنٹرول کرتا رہتا ہے۔ بیک اپ LLM جواب دوبارہ لکھتا ہے۔",
+          "refine_prompt": "آواز کا سسٹم پرامپٹ۔ آلات کنٹرول نہیں، نئی حقیقت نہیں، وہی زبان۔",
+          "token": "وہی ٹوکن جو Klar ایپ میں ہے۔",
+          "assist_filter": "آن: صرف جو Assist دیکھے۔ آف: چھپی ہستیاں بھی۔",
+          "nlu_rag": "طے شدہ آف۔ بات چیت میں صرف پہچانا ہوا ٹکڑا بیک اپ ماڈل کو جاتا ہے۔",
+          "quiet_ack": "سادہ بتی آن/آف پر بات نہیں، سیٹلائٹ پر صرف مختصر آواز۔",
+          "languages": "طے شدہ Home Assistant کی سسٹم زبان ہے۔",
+          "channel": "کسی بھی وقت۔ Staging Klar NLU (Staging) کی طرف ہے۔"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "یو آر ایل http(s) ہو اور صارف نام نہ ہو۔"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "شامل انجن چلائیں (صرف HACS)",
+        "remote": "Klar NLU ایپ یا Docker استعمال کریں"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (پروڈکشن)",
+        "staging": "Staging (امیدوار)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "سسٹم زبان",
+        "all": "تمام زبانیں"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "عام",
+        "butler": "Butler",
+        "locker": "آسان",
+        "fuersorglich": "خیال رکھنے والی",
+        "party": "Party",
+        "grantig": "چڑچڑی",
+        "sarkastisch": "طنزیہ",
+        "pirat": "قزاق",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "شخصیت",
+        "state": {
+          "default": "عام",
+          "butler": "Butler",
+          "locker": "آسان",
+          "fuersorglich": "خیال رکھنے والی",
+          "party": "Party",
+          "grantig": "چڑچڑی",
+          "sarkastisch": "طنزیہ",
+          "pirat": "قزاق",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "مختصر تصدیق"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "آخری سنا"
+      },
+      "last_decision": {
+        "name": "آخری فیصلہ"
+      },
+      "last_speech": {
+        "name": "آخری جواب"
+      },
+      "last_area": {
+        "name": "سنا گیا"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "Klar انجن رک گیا",
+      "description": "شامل Klar عمل نہیں چل رہا۔ سیٹنگز ← آلات اور سروسز سے Klar NLU دوبارہ لوڈ کریں۔"
+    }
+  }
+}

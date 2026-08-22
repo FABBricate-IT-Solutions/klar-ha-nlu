@@ -1,0 +1,138 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Klar NLU",
+        "description": "การเชื่อมต่อนี้คุยกับ Assist เครื่องแยกจะถอดเสียง: แอป Klar NLU โปรเซสที่มากับตัว หรือ Docker บน Home Assistant OS ให้ติดตั้งแอปแล้วเลือกใช้แอป Klar NLU ถ้าไม่มีแอป ให้เริ่มเอนจินที่มากับตัว อย่าเปิดทั้งสอง",
+        "data": {
+          "mode": "เอนจิน",
+          "channel": "ช่องเผยแพร่",
+          "url": "URL ของ Klar API",
+          "token": "โทเคนเขียน"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL ต้องเป็น http(s) และไม่มีชื่อผู้ใช้"
+    },
+    "abort": {
+      "already_configured": "ตั้งค่า Klar NLU แล้ว"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Klar NLU",
+        "description": "บุคลิกเก็บที่นี่ และยังอยู่หลังติดตั้งแอป Klar ใหม่",
+        "data": {
+          "mode": "เอนจิน",
+          "personality": "บุคลิก",
+          "languages": "ภาษา",
+          "fallback_agent": "เอเจนต์สนทนาสำหรับคุยเล่น",
+          "refine_speech": "ให้ LLM ปรับคำตอบ NLU",
+          "refine_prompt": "พรอมต์ปรับแต่ง",
+          "url": "URL ของ Klar API",
+          "token": "โทเคนเขียน",
+          "assist_filter": "ควบคุมเฉพาะเอนทิตีที่เปิดให้ Assist",
+          "nlu_rag": "NLU-RAG (ไม่บังคับ)",
+          "quiet_ack": "ยืนยันสั้น (เสียง ding)",
+          "channel": "ช่องเผยแพร่"
+        },
+        "data_description": {
+          "personality": "อยู่ในอินทิเกรชันนี้ ไม่ได้อยู่ในแอป Klar",
+          "refine_speech": "Klar ยังควบคุมอุปกรณ์ LLM สำรองจะเขียนคำตอบใหม่",
+          "refine_prompt": "พรอมต์ระบบของเสียง ไม่ควบคุมอุปกรณ์ ไม่สร้างข้อเท็จจริงใหม่ ภาษาเดิม",
+          "token": "โทเคนเดียวกับแอป Klar",
+          "assist_filter": "เปิด: เฉพาะที่ Assist เห็น ปิด: รวมเอนทิตีที่ซ่อน",
+          "nlu_rag": "ปิดเป็นค่าเริ่มต้น ตอนคุยส่งเฉพาะช่วงที่จับได้ไปยังโมเดลสำรอง",
+          "quiet_ack": "เปิดหรือปิดไฟอย่างง่ายจะไม่พูด มีแต่เสียงสั้นที่ดาวเทียม",
+          "languages": "ค่าเริ่มต้นคือภาษาของระบบ Home Assistant",
+          "channel": "เปลี่ยนได้ตลอด Staging ชี้ไปที่ Klar NLU (Staging)"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "URL ต้องเป็น http(s) และไม่มีชื่อผู้ใช้"
+    }
+  },
+  "selector": {
+    "engine_mode": {
+      "options": {
+        "local": "เริ่มเอนจินที่มากับตัว (เฉพาะ HACS)",
+        "remote": "ใช้แอป Klar NLU หรือ Docker"
+      }
+    },
+    "release_channel": {
+      "options": {
+        "stable": "Stable (ใช้งานจริง)",
+        "staging": "Staging (ตัวทดลอง)"
+      }
+    },
+    "nlu_language": {
+      "options": {
+        "system": "ภาษาของระบบ",
+        "all": "ทุกภาษา"
+      }
+    },
+    "personality": {
+      "options": {
+        "default": "ปกติ",
+        "butler": "Butler",
+        "locker": "สบาย ๆ",
+        "fuersorglich": "ใส่ใจ",
+        "party": "Party",
+        "grantig": "หงุดหงิด",
+        "sarkastisch": "ประชด",
+        "pirat": "โจรสลัด",
+        "hippie": "Hippie",
+        "gollum": "Gollum",
+        "jarvis": "Jarvis"
+      }
+    }
+  },
+  "entity": {
+    "select": {
+      "personality": {
+        "name": "บุคลิก",
+        "state": {
+          "default": "ปกติ",
+          "butler": "Butler",
+          "locker": "สบาย ๆ",
+          "fuersorglich": "ใส่ใจ",
+          "party": "Party",
+          "grantig": "หงุดหงิด",
+          "sarkastisch": "ประชด",
+          "pirat": "โจรสลัด",
+          "hippie": "Hippie",
+          "gollum": "Gollum",
+          "jarvis": "Jarvis"
+        }
+      }
+    },
+    "switch": {
+      "quiet_ack": {
+        "name": "ยืนยันสั้น"
+      }
+    },
+    "sensor": {
+      "last_heard": {
+        "name": "ได้ยินล่าสุด"
+      },
+      "last_decision": {
+        "name": "การตัดสินใจล่าสุด"
+      },
+      "last_speech": {
+        "name": "คำตอบล่าสุด"
+      },
+      "last_area": {
+        "name": "ได้ยินที่"
+      }
+    }
+  },
+  "issues": {
+    "engine_down": {
+      "title": "เอนจิน Klar หยุด",
+      "description": "โปรเซส Klar ที่มากับตัวไม่ได้ทำงาน โหลด Klar NLU ใหม่ที่ การตั้งค่า → อุปกรณ์และบริการ"
+    }
+  }
+}
