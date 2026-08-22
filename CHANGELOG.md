@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.44](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.43...2026.8.44) - 2026-08-22
+
+
+
+### Features
+
+- localize the HA UI for every Assist locale([a8de462](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a8de46258c2393c2ba4f6c49e0787192e2d33e46))
+
+- add a quiet chime switch for simple light replies([dccb80a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/dccb80a3cc14259c3c55d97e4cea6bfb84cccc19))
+
+
+### Other
+
+- Merge pull request #124 from FABBricate-IT-Solutions/feat/quiet-ack-main([f6acd98](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f6acd98703604c3b9a0ce64b25afb4f809242556))
+
 ## [2026.8.43](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.42...2026.8.43) - 2026-08-20
 
 
