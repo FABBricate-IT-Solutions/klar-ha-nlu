@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.46](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.45...2026.8.46) - 2026-08-27
+
+
+
+### Features
+
+- list, create, delete, and move calendar events in 67 Assist languages. Follow-ups stay in Home Assistant, so “delete that” and “move it to Friday” work after a list without series, attendees, or reminders ([#128](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/128))([2c57f4e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2c57f4e6caf2a39e51c768caea3563e2b38930b1))
+
+
+### Other
+
+- Merge pull request #128 from FABBricate-IT-Solutions/feat/calendar-delete-move([9309f0f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9309f0f937be6817c97312e9330802678556bd9a))
+
 ## [2026.8.45](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.44...2026.8.45) - 2026-08-27
 
 
