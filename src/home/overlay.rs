@@ -1,8 +1,9 @@
+use super::paths::{confined_file, read_to_string_confined, write_atomic_confined};
 use crate::lang::{LanguageOverlay, LanguageRevision};
 use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct UiPoint {
@@ -79,20 +80,19 @@ pub struct Overlay {
     pub speech_bank: SpeechBank,
 }
 
+const OVERLAY_FILE: &str = "klar_nlu.json";
+
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {
-    dir.join("klar_nlu.json")
+    confined_file(dir, OVERLAY_FILE).unwrap_or_else(|_| PathBuf::from(OVERLAY_FILE))
 }
 
 pub fn load_overlay(dir: &Path) -> Overlay {
-    let raw = std::fs::read_to_string(overlay_path(dir)).unwrap_or_default();
+    let raw = read_to_string_confined(dir, OVERLAY_FILE).unwrap_or_default();
     serde_json::from_str(&raw).unwrap_or_default()
 }
 
 pub fn save_overlay(dir: &Path, overlay: &Overlay) -> std::io::Result<()> {
-    let path = overlay_path(dir);
-    let tmp = path.with_extension("json.tmp");
-    std::fs::write(&tmp, serde_json::to_vec_pretty(overlay).unwrap_or_default())?;
-    std::fs::rename(tmp, path)
+    write_atomic_confined(dir, OVERLAY_FILE, &serde_json::to_vec_pretty(overlay).unwrap_or_default())
 }
 
 pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {

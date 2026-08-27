@@ -1,3 +1,4 @@
+use crate::home::paths::{read_confined, read_to_string_confined, remove_confined, write_atomic_confined};
 use crate::io::auth::{reads_allowed, writes_allowed};
 use crate::io::state::AppState;
 use crate::types::{Intent, ParseResult};
@@ -15,6 +16,7 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 const MAX_ENTRIES: usize = 2000;
 const KEEP_ENTRIES: usize = 1500;
+const BUNDLE_FILE: &str = "support_bundle.jsonl";
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct BundleRequest {
@@ -50,17 +52,17 @@ pub struct BundleEntry {
 
 #[derive(Clone)]
 pub struct BundleStore {
-    path: PathBuf,
+    dir: PathBuf,
     lock: std::sync::Arc<Mutex<()>>,
 }
 
 impl BundleStore {
     pub fn open(data_dir: &Path) -> Self {
-        Self { path: data_dir.join("support_bundle.jsonl"), lock: std::sync::Arc::new(Mutex::new(())) }
+        Self { dir: data_dir.to_path_buf(), lock: std::sync::Arc::new(Mutex::new(())) }
     }
 
-    pub fn path(&self) -> &Path {
-        &self.path
+    pub fn path(&self) -> PathBuf {
+        crate::home::paths::confined_file(&self.dir, BUNDLE_FILE).unwrap_or_else(|_| PathBuf::from(BUNDLE_FILE))
     }
 
     pub fn append(&self, mut entry: BundleEntry) {
@@ -68,24 +70,24 @@ impl BundleStore {
             entry.id = new_id(entry.ts_ms);
         }
         let _guard = self.lock.lock().unwrap_or_else(|e| e.into_inner());
-        let mut entries = read_entries(&self.path);
+        let mut entries = read_entries(&self.dir);
         let dirty = ensure_ids(&mut entries);
         entries.push(entry);
         if entries.len() > MAX_ENTRIES {
             entries = entries.split_off(entries.len() - KEEP_ENTRIES);
         } else if !dirty && entries.len() > 1 {
             if let Ok(line) = serde_json::to_string(entries.last().unwrap()) {
-                return append_line(&self.path, &line);
+                return append_line(&self.dir, &line);
             }
         }
-        write_entries(&self.path, &entries);
+        write_entries(&self.dir, &entries);
     }
 
     pub fn load(&self) -> Vec<BundleEntry> {
         let _guard = self.lock.lock().unwrap_or_else(|e| e.into_inner());
-        let mut entries = read_entries(&self.path);
+        let mut entries = read_entries(&self.dir);
         if ensure_ids(&mut entries) {
-            write_entries(&self.path, &entries);
+            write_entries(&self.dir, &entries);
         }
         entries
     }
@@ -95,25 +97,25 @@ impl BundleStore {
             return 0;
         }
         let _guard = self.lock.lock().unwrap_or_else(|e| e.into_inner());
-        let mut entries = read_entries(&self.path);
+        let mut entries = read_entries(&self.dir);
         ensure_ids(&mut entries);
         let before = entries.len();
         entries.retain(|e| !ids.iter().any(|id| id == &e.id));
         let removed = before - entries.len();
         if removed > 0 {
-            write_entries(&self.path, &entries);
+            write_entries(&self.dir, &entries);
         }
         removed
     }
 
     pub fn protocol_bytes(&self) -> Vec<u8> {
         let _guard = self.lock.lock().unwrap_or_else(|e| e.into_inner());
-        std::fs::read(&self.path).unwrap_or_default()
+        read_confined(&self.dir, BUNDLE_FILE).unwrap_or_default()
     }
 
     pub fn clear(&self) {
         let _guard = self.lock.lock().unwrap_or_else(|e| e.into_inner());
-        let _ = std::fs::remove_file(&self.path);
+        let _ = remove_confined(&self.dir, BUNDLE_FILE);
     }
 
     pub fn dataset_yaml(&self) -> String {
@@ -213,8 +215,8 @@ fn new_id(ts_ms: u64) -> String {
     format!("{ts_ms}-{nanos:08x}")
 }
 
-fn read_entries(path: &Path) -> Vec<BundleEntry> {
-    let raw = std::fs::read_to_string(path).unwrap_or_default();
+fn read_entries(dir: &Path) -> Vec<BundleEntry> {
+    let raw = read_to_string_confined(dir, BUNDLE_FILE).unwrap_or_default();
     raw.lines().filter(|l| !l.is_empty()).filter_map(|line| serde_json::from_str(line).ok()).collect()
 }
 
@@ -229,12 +231,9 @@ fn ensure_ids(entries: &mut [BundleEntry]) -> bool {
     dirty
 }
 
-fn write_entries(path: &Path, entries: &[BundleEntry]) {
-    if let Some(parent) = path.parent() {
-        let _ = std::fs::create_dir_all(parent);
-    }
+fn write_entries(dir: &Path, entries: &[BundleEntry]) {
     if entries.is_empty() {
-        let _ = std::fs::remove_file(path);
+        let _ = remove_confined(dir, BUNDLE_FILE);
         return;
     }
     let mut body = String::new();
@@ -244,26 +243,17 @@ fn write_entries(path: &Path, entries: &[BundleEntry]) {
             body.push('\n');
         }
     }
-    let tmp = path.with_extension("jsonl.tmp");
-    if std::fs::write(&tmp, body.as_bytes()).is_ok() {
-        let _ = std::fs::rename(tmp, path);
-    }
+    let _ = write_atomic_confined(dir, BUNDLE_FILE, body.as_bytes());
 }
 
-fn append_line(path: &Path, line: &str) {
-    if let Some(parent) = path.parent() {
-        let _ = std::fs::create_dir_all(parent);
-    }
-    let mut body = std::fs::read_to_string(path).unwrap_or_default();
+fn append_line(dir: &Path, line: &str) {
+    let mut body = read_to_string_confined(dir, BUNDLE_FILE).unwrap_or_default();
     if !body.is_empty() && !body.ends_with('\n') {
         body.push('\n');
     }
     body.push_str(line);
     body.push('\n');
-    let tmp = path.with_extension("jsonl.tmp");
-    if std::fs::write(&tmp, body.as_bytes()).is_ok() {
-        let _ = std::fs::rename(tmp, path);
-    }
+    let _ = write_atomic_confined(dir, BUNDLE_FILE, body.as_bytes());
 }
 
 pub fn routes() -> Router<AppState> {
