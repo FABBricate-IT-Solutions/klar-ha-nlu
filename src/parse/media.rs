@@ -286,7 +286,6 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
     }
     let music = music_players(home);
     if any(tokens, &["tv", "television", "fernseher", "soundbar"])
-        || catalog().any(tokens, catalog().media_nouns())
         || catalog().any(tokens, catalog().tv_words())
         || (tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke"))
             && !music_context(tokens)

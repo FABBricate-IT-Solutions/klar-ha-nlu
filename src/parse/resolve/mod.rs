@@ -3,6 +3,7 @@ use crate::home::policy::is_infra;
 use crate::home::roles::matches_domain;
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
+use crate::parse::fuzzy::{evidence, Profile};
 use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
@@ -212,7 +213,14 @@ fn distinctive_light_name(tokens: &[String], entity: &EntityRec, home: &HomeGrap
             && !cat.light_nouns().contains(token.as_str())
             && !cat.light_singular().contains(token.as_str())
             && !room.iter().any(|name| name == &folded || name.contains(&folded) || folded.contains(name.as_str()))
-            && (blob.contains(&folded) || entity.entity_id.contains(&folded))
+            && (blob.contains(&folded)
+                || entity.entity_id.contains(&folded)
+                || evidence(token, &blob, Profile::Target).is_some()
+                || entity
+                    .name
+                    .split([' ', '_'])
+                    .chain(entity.entity_id.split(['.', '_']))
+                    .any(|part| evidence(token, part, Profile::Target).is_some()))
     })
 }
 
