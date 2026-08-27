@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - open curtain bedroom
-  - curtain bedroom open
+  - open curtain bedroommaster
+  - curtain bedroommaster open
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - close curtain bedroom
-  - curtain bedroom close
+  - close curtain bedroommaster
+  - curtain bedroommaster close
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set curtain bedroom 0
-  - curtain bedroom 0
+  - set curtain bedroommaster 0
+  - curtain bedroommaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set curtain bedroom 25
-  - curtain bedroom 25
+  - set curtain bedroommaster 25
+  - curtain bedroommaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set curtain bedroom 40
-  - curtain bedroom 40
+  - set curtain bedroommaster 40
+  - curtain bedroommaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set curtain bedroom 75
-  - curtain bedroom 75
+  - set curtain bedroommaster 75
+  - curtain bedroommaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - set curtain bedroom 100
-  - curtain bedroom 100
+  - set curtain bedroommaster 100
+  - curtain bedroommaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - open curtain bedroom
-  - curtain bedroom open
+  - open curtain bedroommaster
+  - curtain bedroommaster open

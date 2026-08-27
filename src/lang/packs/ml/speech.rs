@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Manasilayilla.",
-    need_on: "Enth thelikkanam?",
-    need_off: "Enth anaykkanam?",
+    need_on: "എന്ത് തെളിക്കണം?",
+    need_off: "എന്ത് അണയ്ക്കണം?",
     need_which: "Enth thelikkanam?",
     correction: "Sheri, avasanam sentence njan ozhivakku.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " um ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} thelinju.",
+    turn_on: "{target} തെളിഞ്ഞു.",
     turn_on_scene: "{target}.",
-    turn_off: "{target} ananju.",
+    turn_off: "{target} അണഞ്ഞു.",
     toggle: "{target} maattunnu.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Enth thelikkanam?",
     or_home: "Enth thelikkanam?",
-    room_names: &[("wohnzimmer", "muriyil"), ("kuche", "adukkala")],
-    loc_der_rooms: &["adukkala", "muriyil"],
+    room_names: &[("wohnzimmer", "ഹാൾ"), ("kuche", "അടുക്കള")],
+    loc_der_rooms: &["അടുക്കള", "ഹാൾ"],
     personality: &[
         ("butler", &["Nannayi. ", "Santhoshathode. ", ""]),
         ("locker", &["Manasilayi. ", "Aayi. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Athe. ", "Athe, ente nidhi. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Sherikkum?",
+    confirm: "ശെരിക്കും?",
 };

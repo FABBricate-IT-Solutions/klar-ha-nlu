@@ -1,15 +1,15 @@
 state_persistance/followup::heizung_dann_grad:
-- - dakai kongtiao keting
+- - 打开 空调 客厅
   - ' 21'
 state_persistance/followup::wohnzimmer_dann_aus:
-- - dakai deng keting
-  - guanbi
+- - 打开 灯 客厅
+  - 关闭
 state_persistance/spoken::kugel_dann_aus:
-- - dakai qiudeng
-  - guanbi
+- - 打开 qiudeng
+  - 关闭
 state_persistance/spoken::wohnzimmer_dann_kueche:
-- - dakai deng keting
-  - dakai deng chufang
+- - 打开 灯 客厅
+  - 打开 灯 厨房
 state_persistance/spoken::wohnzimmer_dann_rot:
-- - dakai deng keting
-  - red
+- - 打开 全部 灯 客厅
+  - 红

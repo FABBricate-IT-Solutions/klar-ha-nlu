@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otworz zaslona sypialnia
-  - zaslona sypialnia otworz
+  - otworz zaslona sypialniamaster
+  - zaslona sypialniamaster otworz
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zamknij zaslona sypialnia
-  - zaslona sypialnia zamknij
+  - zamknij zaslona sypialniamaster
+  - zaslona sypialniamaster zamknij
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - ustaw zaslona sypialnia 0
-  - zaslona sypialnia 0
+  - ustaw zaslona sypialniamaster 0
+  - zaslona sypialniamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - ustaw zaslona sypialnia 25
-  - zaslona sypialnia 25
+  - ustaw zaslona sypialniamaster 25
+  - zaslona sypialniamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - ustaw zaslona sypialnia 40
-  - zaslona sypialnia 40
+  - ustaw zaslona sypialniamaster 40
+  - zaslona sypialniamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - ustaw zaslona sypialnia 75
-  - zaslona sypialnia 75
+  - ustaw zaslona sypialniamaster 75
+  - zaslona sypialniamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - ustaw zaslona sypialnia 100
-  - zaslona sypialnia 100
+  - ustaw zaslona sypialniamaster 100
+  - zaslona sypialniamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otworz zaslona sypialnia
-  - zaslona sypialnia otworz
+  - otworz zaslona sypialniamaster
+  - zaslona sypialniamaster otworz

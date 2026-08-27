@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - chalu prakash orado
+    - ચાલુ પ્રકાશ ઓરડો
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - bandh prakash rasodu
+    - બંધ પ્રકાશ રસોડું
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - calendar ma su
+    - કેલેન્ડર મા શું
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - umero dentist kale 15 calendar
+    - ઉમેરો દાંત કાલે 15 કેલેન્ડર
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - kadhi dentist calendar
+    - કાઢી દાંત કેલેન્ડર
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - khalav dentist kale 16 calendar
+    - ખસેવ દાંત કાલે 16 કેલેન્ડર
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - vagad depeche
+    - ચલાવો depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

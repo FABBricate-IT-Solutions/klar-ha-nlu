@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - nustatyk sildymas svetaine 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- nustatyk sildymas miegamasis 19
+- nustatyk sildymas miegamasismaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - nustatyk uzuolaida miegamasis2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - atidaryk uzuolaida svetaine
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- nustatyk uzuolaida miegamasis 19
+- nustatyk uzuolaida miegamasismaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- uzdaryk uzuolaida miegamasis
+- uzdaryk uzuolaida miegamasismaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- atidaryk uzuolaida miegamasis
+- atidaryk uzuolaida miegamasismaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - nustatyk ventiliatorius miegamasis2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - ijunk ventiliatorius svetainefam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- nustatyk ventiliatorius miegamasis 28
+- nustatyk ventiliatorius miegamasismaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- isjunk ventiliatorius miegamasis
+- isjunk ventiliatorius miegamasismaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- ijunk ventiliatorius miegamasis
+- ijunk ventiliatorius miegamasismaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- isjunk ventiliatorius miegamasis ir isjunk sviesa virtuve
+- isjunk ventiliatorius miegamasismaster then isjunk sala virtuve
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- ijunk ventiliatorius miegamasis ir ijunk sviesa virtuve
+- ijunk ventiliatorius miegamasismaster then ijunk sala virtuve
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - nustatyk lubos miegamasis2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - ijunk lubos virtuve
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- nustatyk sviesa virtuve 99
+- nustatyk sala virtuve 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- nustatyk sviesa virtuve green
+- nustatyk sala virtuve green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- isjunk sviesa virtuve
+- isjunk sala virtuve
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- ijunk sviesa virtuve
+- ijunk sala virtuve
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - nustatyk sviesa skalbykla 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - ijunk lubos svetaine
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- nustatyk sviesa svetaine 72
+- nustatyk lamp svetaine 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- nustatyk sviesa svetaine red
+- nustatyk lamp svetaine red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- isjunk sviesa svetaine
+- isjunk lamp svetaine
 devices/light_living_lamp::light_living_lamp_turn_on:
-- ijunk sviesa svetaine
+- ijunk lamp svetaine
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - nustatyk sviesa main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - ijunk sviesa voniamaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- nustatyk naktinis miegamasis 25
+- nustatyk naktinis miegamasismaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- nustatyk naktinis miegamasis red
+- nustatyk naktinis miegamasismaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- isjunk naktinis miegamasis
+- isjunk naktinis miegamasismaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- ijunk naktinis miegamasis
+- ijunk naktinis miegamasismaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- nustatyk lubos miegamasis 77
+- nustatyk lubos miegamasismaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- nustatyk lubos miegamasis blue
+- nustatyk lubos miegamasismaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- isjunk lubos miegamasis
+- isjunk lubos miegamasismaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- ijunk lubos miegamasis
+- ijunk lubos miegamasismaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- nustatyk sviesa miegamasis 55
+- nustatyk ankleide miegamasismaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- nustatyk sviesa miegamasis black
+- nustatyk ankleide miegamasismaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- isjunk sviesa miegamasis
+- isjunk ankleide miegamasismaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- ijunk sviesa miegamasis
+- ijunk ankleide miegamasismaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - nustatyk sviesa wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - ijunk televizorius svetainefam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause televizorius svetainefam
+- pause tv svetainefam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - isjunk televizorius svetainefam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - ijunk televizorius svetaine
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause televizorius svetaine
+- pause tv svetaine
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - isjunk televizorius svetaine
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,29 +239,35 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - ijunk televizorius svetaine
 devices/scenes::dinner_time:
-- nustatyk sviesa svetainefamess 90 ir ijunk lubos virtuve ir nustatyk sviesa virtuve
+- nustatyk sviesa svetainefamess 90 then ijunk lubos virtuve then nustatyk sala virtuve
   80
 devices/scenes::good_morning:
-- ijunk lubos virtuve ir nustatyk sviesa svetainefamess 100 ir atidaryk uzuolaida
-  svetaine ir atidaryk uzuolaida miegamasis
+- ijunk lubos virtuve then nustatyk sviesa svetainefamess 100 then atidaryk uzuolaida
+  svetaine then atidaryk uzuolaida miegamasismaster
 devices/scenes::kids_bedtime:
-- isjunk lubos miegamasis2 ir isjunk lubos miegamasis3 ir isjunk lubos miegamasis4
-  ir nustatyk sviesa prieskambarisgang 15
+- isjunk lubos miegamasis2 then isjunk lubos miegamasis3 then isjunk lubos miegamasis4
+  then nustatyk sviesa prieskambarisgang 15
 devices/scenes::movie_night:
-- isjunk lubos svetaine ir nustatyk sviesa svetaine 20 ir ijunk televizorius svetaine
-  ir uzdaryk uzuolaida svetaine
+- isjunk lubos svetaine then nustatyk lamp svetaine 20 then ijunk televizorius svetaine
+  then uzdaryk uzuolaida svetaine
 devices/scripts::good_night:
-- ijunk scena naktis
+- isjunk lubos svetaine then isjunk lamp svetaine then isjunk sviesa svetainefamess
+  then isjunk lubos virtuve then isjunk sala virtuve then isjunk lubos svetainefam
+  then isjunk sviesa prieskambaris then isjunk sviesa prieskambarisgang then spyna
+  spyna prieskambaris then spyna spyna garage then nustatyk sildymas miegamasismaster
+  20
 devices/scripts::leaving_home:
-- ijunk scena isejimas
+- isjunk lubos svetaine then isjunk lamp svetaine then isjunk lubos virtuve then isjunk
+  lubos svetainefam then isjunk sviesa prieskambaris then spyna spyna prieskambaris
+  then spyna spyna garage then uzdaryk uzuolaida garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - isjunk indaplove
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - ijunk indaplove
 devices/switch_dryer::switch_dryer_turn_off:
-- isjunk skalbimo
+- isjunk dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- ijunk skalbimo
+- ijunk dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - isjunk skalbimo
 devices/switch_washing_machine::switch_washing_machine_turn_on:

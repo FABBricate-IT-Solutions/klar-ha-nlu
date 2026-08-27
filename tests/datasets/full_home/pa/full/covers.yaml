@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - kholh parda vithak
-  - parda vithak kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ ਬੈਠਕ
+  - ਪਰਦਾ ਬੈਠਕ ਖੋਲ੍ਹ
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - bandkar parda vithak
-  - parda vithak bandkar
+  - ਬੰਦਕਰ ਪਰਦਾ ਬੈਠਕ
+  - ਪਰਦਾ ਬੈਠਕ ਬੰਦਕਰ
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda vithak 0
-  - parda vithak 0
+  - ਸੈੱਟ ਪਰਦਾ ਬੈਠਕ 0
+  - ਪਰਦਾ ਬੈਠਕ 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda vithak 25
-  - parda vithak 25
+  - ਸੈੱਟ ਪਰਦਾ ਬੈਠਕ 25
+  - ਪਰਦਾ ਬੈਠਕ 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda vithak 40
-  - parda vithak 40
+  - ਸੈੱਟ ਪਰਦਾ ਬੈਠਕ 40
+  - ਪਰਦਾ ਬੈਠਕ 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda vithak 75
-  - parda vithak 75
+  - ਸੈੱਟ ਪਰਦਾ ਬੈਠਕ 75
+  - ਪਰਦਾ ਬੈਠਕ 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda vithak 100
-  - parda vithak 100
+  - ਸੈੱਟ ਪਰਦਾ ਬੈਠਕ 100
+  - ਪਰਦਾ ਬੈਠਕ 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - kholh parda bedroom
-  - parda bedroom kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ bedroommaster
+  - ਪਰਦਾ bedroommaster ਖੋਲ੍ਹ
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - bandkar parda bedroom
-  - parda bedroom bandkar
+  - ਬੰਦਕਰ ਪਰਦਾ bedroommaster
+  - ਪਰਦਾ bedroommaster ਬੰਦਕਰ
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda bedroom 0
-  - parda bedroom 0
+  - ਸੈੱਟ ਪਰਦਾ bedroommaster 0
+  - ਪਰਦਾ bedroommaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda bedroom 25
-  - parda bedroom 25
+  - ਸੈੱਟ ਪਰਦਾ bedroommaster 25
+  - ਪਰਦਾ bedroommaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda bedroom 40
-  - parda bedroom 40
+  - ਸੈੱਟ ਪਰਦਾ bedroommaster 40
+  - ਪਰਦਾ bedroommaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda bedroom 75
-  - parda bedroom 75
+  - ਸੈੱਟ ਪਰਦਾ bedroommaster 75
+  - ਪਰਦਾ bedroommaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda bedroom 100
-  - parda bedroom 100
+  - ਸੈੱਟ ਪਰਦਾ bedroommaster 100
+  - ਪਰਦਾ bedroommaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - kholh parda bedroom2
-  - parda bedroom2 kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ bedroom2
+  - ਪਰਦਾ bedroom2 ਖੋਲ੍ਹ
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - bandkar parda bedroom2
-  - parda bedroom2 bandkar
+  - ਬੰਦਕਰ ਪਰਦਾ bedroom2
+  - ਪਰਦਾ bedroom2 ਬੰਦਕਰ
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda bedroom2 0
-  - parda bedroom2 0
+  - ਸੈੱਟ ਪਰਦਾ bedroom2 0
+  - ਪਰਦਾ bedroom2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda bedroom2 25
-  - parda bedroom2 25
+  - ਸੈੱਟ ਪਰਦਾ bedroom2 25
+  - ਪਰਦਾ bedroom2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda bedroom2 40
-  - parda bedroom2 40
+  - ਸੈੱਟ ਪਰਦਾ bedroom2 40
+  - ਪਰਦਾ bedroom2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda bedroom2 75
-  - parda bedroom2 75
+  - ਸੈੱਟ ਪਰਦਾ bedroom2 75
+  - ਪਰਦਾ bedroom2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda bedroom2 100
-  - parda bedroom2 100
+  - ਸੈੱਟ ਪਰਦਾ bedroom2 100
+  - ਪਰਦਾ bedroom2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - kholh parda bedroom3
-  - parda bedroom3 kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ bedroom3
+  - ਪਰਦਾ bedroom3 ਖੋਲ੍ਹ
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - bandkar parda bedroom3
-  - parda bedroom3 bandkar
+  - ਬੰਦਕਰ ਪਰਦਾ bedroom3
+  - ਪਰਦਾ bedroom3 ਬੰਦਕਰ
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda bedroom3 0
-  - parda bedroom3 0
+  - ਸੈੱਟ ਪਰਦਾ bedroom3 0
+  - ਪਰਦਾ bedroom3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda bedroom3 25
-  - parda bedroom3 25
+  - ਸੈੱਟ ਪਰਦਾ bedroom3 25
+  - ਪਰਦਾ bedroom3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda bedroom3 40
-  - parda bedroom3 40
+  - ਸੈੱਟ ਪਰਦਾ bedroom3 40
+  - ਪਰਦਾ bedroom3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda bedroom3 75
-  - parda bedroom3 75
+  - ਸੈੱਟ ਪਰਦਾ bedroom3 75
+  - ਪਰਦਾ bedroom3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda bedroom3 100
-  - parda bedroom3 100
+  - ਸੈੱਟ ਪਰਦਾ bedroom3 100
+  - ਪਰਦਾ bedroom3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - kholh parda garage
-  - parda garage kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ garage
+  - ਪਰਦਾ garage ਖੋਲ੍ਹ
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - bandkar parda garage
-  - parda garage bandkar
+  - ਬੰਦਕਰ ਪਰਦਾ garage
+  - ਪਰਦਾ garage ਬੰਦਕਰ
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda garage 0
-  - parda garage 0
+  - ਸੈੱਟ ਪਰਦਾ garage 0
+  - ਪਰਦਾ garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda garage 25
-  - parda garage 25
+  - ਸੈੱਟ ਪਰਦਾ garage 25
+  - ਪਰਦਾ garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda garage 40
-  - parda garage 40
+  - ਸੈੱਟ ਪਰਦਾ garage 40
+  - ਪਰਦਾ garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda garage 75
-  - parda garage 75
+  - ਸੈੱਟ ਪਰਦਾ garage 75
+  - ਪਰਦਾ garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set parda garage 100
-  - parda garage 100
+  - ਸੈੱਟ ਪਰਦਾ garage 100
+  - ਪਰਦਾ garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - kholh parda vithak
-  - parda vithak kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ ਬੈਠਕ
+  - ਪਰਦਾ ਬੈਠਕ ਖੋਲ੍ਹ
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - kholh parda bedroom
-  - parda bedroom kholh
+  - ਖੋਲ੍ਹ ਪਰਦਾ bedroommaster
+  - ਪਰਦਾ bedroommaster ਖੋਲ੍ਹ

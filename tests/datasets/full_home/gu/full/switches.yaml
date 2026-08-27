@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - chalu vasan rasodu
-  - vasan rasodu chalu
+  - ચાલુ vasan રસોડું
+  - vasan રસોડું ચાલુ
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - bandh vasan rasodu
-  - vasan rasodu bandh
+  - બંધ vasan રસોડું
+  - vasan રસોડું બંધ
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - chalu washing dhovanu
-  - washing dhovanu chalu
+  - ચાલુ washing dhovanu
+  - washing dhovanu ચાલુ
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - bandh washing dhovanu
-  - washing dhovanu bandh
+  - બંધ washing dhovanu
+  - washing dhovanu બંધ
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - chalu dryer dhovanu
-  - dryer dhovanu chalu
+  - ચાલુ dryer dhovanu
+  - dryer dhovanu ચાલુ
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - bandh dryer dhovanu
-  - dryer dhovanu bandh
+  - બંધ dryer dhovanu
+  - dryer dhovanu બંધ
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - chalu rangehood rasodu
-  - rangehood rasodu chalu
+  - ચાલુ rangehood રસોડું
+  - rangehood રસોડું ચાલુ
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - bandh rangehood rasodu
-  - rangehood rasodu bandh
+  - બંધ rangehood રસોડું
+  - rangehood રસોડું બંધ
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - chalu pankhobad mukhyasnan
-  - pankhobad mukhyasnan chalu
+  - ચાલુ પંખોbad mukhyasnan
+  - પંખોbad mukhyasnan ચાલુ
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - bandh pankhobad mukhyasnan
-  - pankhobad mukhyasnan bandh
+  - બંધ પંખોbad mukhyasnan
+  - પંખોbad mukhyasnan બંધ
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - chalu pankhobad main bath
-  - pankhobad main bath chalu
+  - ચાલુ પંખોbad main bath
+  - પંખોbad main bath ચાલુ
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - bandh pankhobad main bath
-  - pankhobad main bath bandh
+  - બંધ પંખોbad main bath
+  - પંખોbad main bath બંધ

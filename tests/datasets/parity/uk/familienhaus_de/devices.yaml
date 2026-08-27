@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - постав опалення вітальня 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- постав опалення спальня 19
+- постав опалення спальняmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - постав штора спальня2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - відкрий штора вітальня
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- постав штора спальня 19
+- постав штора спальняmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- закрий штора спальня
+- закрий штора спальняmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- відкрий штора спальня
+- відкрий штора спальняmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - постав вентилятор спальня2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - увімкни вентилятор вітальняfam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- постав вентилятор спальня 28
+- постав вентилятор спальняmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- вимкни вентилятор спальня
+- вимкни вентилятор спальняmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- увімкни вентилятор спальня
+- увімкни вентилятор спальняmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- вимкни вентилятор спальня і вимкни світло кухня
+- вимкни вентилятор спальняmaster then вимкни острів кухня
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- увімкни вентилятор спальня і увімкни світло кухня
+- увімкни вентилятор спальняmaster then увімкни острів кухня
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - постав стеля спальня2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - увімкни стеля кухня
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- постав світло кухня 99
+- постав острів кухня 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- постав світло кухня green
+- постав острів кухня green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- вимкни світло кухня
+- вимкни острів кухня
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- увімкни світло кухня
+- увімкни острів кухня
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - постав світло пральня 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - увімкни стеля вітальня
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- постав світло вітальня 72
+- постав lamp вітальня 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- постав світло вітальня red
+- постав lamp вітальня red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- вимкни світло вітальня
+- вимкни lamp вітальня
 devices/light_living_lamp::light_living_lamp_turn_on:
-- увімкни світло вітальня
+- увімкни lamp вітальня
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - постав світло main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - увімкни світло ваннаmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- постав нічний спальня 25
+- постав нічний спальняmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- постав нічний спальня red
+- постав нічний спальняmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- вимкни нічний спальня
+- вимкни нічний спальняmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- увімкни нічний спальня
+- увімкни нічний спальняmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- постав стеля спальня 77
+- постав стеля спальняmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- постав стеля спальня blue
+- постав стеля спальняmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- вимкни стеля спальня
+- вимкни стеля спальняmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- увімкни стеля спальня
+- увімкни стеля спальняmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- постав світло спальня 55
+- постав ankleide спальняmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- постав світло спальня black
+- постав ankleide спальняmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- вимкни світло спальня
+- вимкни ankleide спальняmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- увімкни світло спальня
+- увімкни ankleide спальняmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - постав світло туалет 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - увімкни телевізор вітальняfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause телевізор вітальняfam
+- pause tv вітальняfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - вимкни телевізор вітальняfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - увімкни телевізор вітальня
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause телевізор вітальня
+- pause tv вітальня
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - вимкни телевізор вітальня
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - увімкни телевізор вітальня
 devices/scenes::dinner_time:
-- постав світло вітальняfamess 90 і увімкни стеля кухня і постав світло кухня 80
+- постав світло вітальняfamess 90 then увімкни стеля кухня then постав острів кухня
+  80
 devices/scenes::good_morning:
-- увімкни стеля кухня і постав світло вітальняfamess 100 і відкрий штора вітальня
-  і відкрий штора спальня
+- увімкни стеля кухня then постав світло вітальняfamess 100 then відкрий штора вітальня
+  then відкрий штора спальняmaster
 devices/scenes::kids_bedtime:
-- вимкни стеля спальня2 і вимкни стеля спальня3 і вимкни стеля спальня4 і постав світло
-  передпокійgang 15
+- вимкни стеля спальня2 then вимкни стеля спальня3 then вимкни стеля спальня4 then
+  постав світло передпокійgang 15
 devices/scenes::movie_night:
-- вимкни стеля вітальня і постав світло вітальня 20 і увімкни телевізор вітальня і
-  закрий штора вітальня
+- вимкни стеля вітальня then постав lamp вітальня 20 then увімкни телевізор вітальня
+  then закрий штора вітальня
 devices/scripts::good_night:
-- увімкни сцена ніч
+- вимкни стеля вітальня then вимкни lamp вітальня then вимкни світло вітальняfamess
+  then вимкни стеля кухня then вимкни острів кухня then вимкни стеля вітальняfam then
+  вимкни світло передпокій then вимкни світло передпокійgang then замок замок передпокій
+  then замок замок garage then постав опалення спальняmaster 20
 devices/scripts::leaving_home:
-- увімкни сцена вихід
+- вимкни стеля вітальня then вимкни lamp вітальня then вимкни стеля кухня then вимкни
+  стеля вітальняfam then вимкни світло передпокій then замок замок передпокій then
+  замок замок garage then закрий штора garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - вимкни посудомийка
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - увімкни посудомийка
 devices/switch_dryer::switch_dryer_turn_off:
-- вимкни пральна
+- вимкни dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- увімкни пральна
+- увімкни dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - вимкни пральна
 devices/switch_washing_machine::switch_washing_machine_turn_on:

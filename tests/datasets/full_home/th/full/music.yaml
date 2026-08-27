@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - len queen hongnang
-  - len queen phleng hongnang
+  - เล่น queen ห้องนั่งเล่น
+  - เล่น queen ทีวี ห้องนั่งเล่น
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - len album rumours by fleetwood mac hongnang
+  - เล่น album rumours by fleetwood mac ห้องนั่งเล่น
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - len queen radio mode hongnang
+  - เล่น queen radio mode ห้องนั่งเล่น
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - len bohemian rhapsody queue hongnang
+  - เล่น bohemian rhapsody queue ห้องนั่งเล่น
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - arai phleng hongnang
-  - arai track hongnang
+  - อะไร ทีวี ห้องนั่งเล่น
+  - อะไร track ห้องนั่งเล่น
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - tang phleng hongnang 10
-  - phleng hongnang 10
+  - ตั้ง ทีวี ห้องนั่งเล่น 10
+  - ทีวี ห้องนั่งเล่น 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - tang phleng hongnang 20
-  - phleng hongnang 20
+  - ตั้ง ทีวี ห้องนั่งเล่น 20
+  - ทีวี ห้องนั่งเล่น 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - tang phleng hongnang 30
-  - phleng hongnang 30
+  - ตั้ง ทีวี ห้องนั่งเล่น 30
+  - ทีวี ห้องนั่งเล่น 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - tang phleng hongnang 50
-  - phleng hongnang 50
+  - ตั้ง ทีวี ห้องนั่งเล่น 50
+  - ทีวี ห้องนั่งเล่น 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - tang phleng hongnang 80
-  - phleng hongnang 80
+  - ตั้ง ทีวี ห้องนั่งเล่น 80
+  - ทีวี ห้องนั่งเล่น 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track hongnang
+  - next track ห้องนั่งเล่น
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track hongnang
+  - previous track ห้องนั่งเล่น
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - len queen hongkrua
-  - len queen phleng hongkrua
+  - เล่น queen ห้องครัว
+  - เล่น queen ทีวี ห้องครัว
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - len beatles hongnang
-  - len beatles phleng hongnang
+  - เล่น beatles ห้องนั่งเล่น
+  - เล่น beatles ทีวี ห้องนั่งเล่น
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - len radiohead hongnang
-  - len radiohead phleng hongnang
+  - เล่น radiohead ห้องนั่งเล่น
+  - เล่น radiohead ทีวี ห้องนั่งเล่น
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - len abba hongnang
-  - len abba phleng hongnang
+  - เล่น abba ห้องนั่งเล่น
+  - เล่น abba ทีวี ห้องนั่งเล่น
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - len coldplay hongnang
-  - len coldplay phleng hongnang
+  - เล่น coldplay ห้องนั่งเล่น
+  - เล่น coldplay ทีวี ห้องนั่งเล่น
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - len adele hongnang
-  - len adele phleng hongnang
+  - เล่น adele ห้องนั่งเล่น
+  - เล่น adele ทีวี ห้องนั่งเล่น
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - len prince hongnang
-  - len prince phleng hongnang
+  - เล่น prince ห้องนั่งเล่น
+  - เล่น prince ทีวี ห้องนั่งเล่น
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - len bowie hongnang
-  - len bowie phleng hongnang
+  - เล่น bowie ห้องนั่งเล่น
+  - เล่น bowie ทีวี ห้องนั่งเล่น
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - len nirvana hongnang
-  - len nirvana phleng hongnang
+  - เล่น nirvana ห้องนั่งเล่น
+  - เล่น nirvana ทีวี ห้องนั่งเล่น
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - len eagles hongnang
-  - len eagles phleng hongnang
+  - เล่น eagles ห้องนั่งเล่น
+  - เล่น eagles ทีวี ห้องนั่งเล่น
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - len madonna hongnang
-  - len madonna phleng hongnang
+  - เล่น madonna ห้องนั่งเล่น
+  - เล่น madonna ทีวี ห้องนั่งเล่น
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - len mozart hongnang
-  - len mozart phleng hongnang
+  - เล่น mozart ห้องนั่งเล่น
+  - เล่น mozart ทีวี ห้องนั่งเล่น
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - len daft punk hongnang
-  - len daft punk phleng hongnang
+  - เล่น daft punk ห้องนั่งเล่น
+  - เล่น daft punk ทีวี ห้องนั่งเล่น
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - len biafra hongnang
-  - len biafra phleng hongnang
+  - เล่น biafra ห้องนั่งเล่น
+  - เล่น biafra ทีวี ห้องนั่งเล่น
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - len queen hongkrua
-  - len queen phleng hongkrua
+  - เล่น queen ห้องครัว
+  - เล่น queen ทีวี ห้องครัว
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - len beatles hongkrua
-  - len beatles phleng hongkrua
+  - เล่น beatles ห้องครัว
+  - เล่น beatles ทีวี ห้องครัว
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - len radiohead hongkrua
-  - len radiohead phleng hongkrua
+  - เล่น radiohead ห้องครัว
+  - เล่น radiohead ทีวี ห้องครัว
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - len abba hongkrua
-  - len abba phleng hongkrua
+  - เล่น abba ห้องครัว
+  - เล่น abba ทีวี ห้องครัว
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - len coldplay hongkrua
-  - len coldplay phleng hongkrua
+  - เล่น coldplay ห้องครัว
+  - เล่น coldplay ทีวี ห้องครัว
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - len adele hongkrua
-  - len adele phleng hongkrua
+  - เล่น adele ห้องครัว
+  - เล่น adele ทีวี ห้องครัว
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - len prince hongkrua
-  - len prince phleng hongkrua
+  - เล่น prince ห้องครัว
+  - เล่น prince ทีวี ห้องครัว
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - len bowie hongkrua
-  - len bowie phleng hongkrua
+  - เล่น bowie ห้องครัว
+  - เล่น bowie ทีวี ห้องครัว
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - len nirvana hongkrua
-  - len nirvana phleng hongkrua
+  - เล่น nirvana ห้องครัว
+  - เล่น nirvana ทีวี ห้องครัว
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - len eagles hongkrua
-  - len eagles phleng hongkrua
+  - เล่น eagles ห้องครัว
+  - เล่น eagles ทีวี ห้องครัว
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - len madonna hongkrua
-  - len madonna phleng hongkrua
+  - เล่น madonna ห้องครัว
+  - เล่น madonna ทีวี ห้องครัว
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - len mozart hongkrua
-  - len mozart phleng hongkrua
+  - เล่น mozart ห้องครัว
+  - เล่น mozart ทีวี ห้องครัว
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - len daft punk hongkrua
-  - len daft punk phleng hongkrua
+  - เล่น daft punk ห้องครัว
+  - เล่น daft punk ทีวี ห้องครัว
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - len biafra hongkrua
-  - len biafra phleng hongkrua
+  - เล่น biafra ห้องครัว
+  - เล่น biafra ทีวี ห้องครัว
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - len queen office
-  - len queen phleng office
+  - เล่น queen office
+  - เล่น queen ทีวี office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - len beatles office
-  - len beatles phleng office
+  - เล่น beatles office
+  - เล่น beatles ทีวี office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - len radiohead office
-  - len radiohead phleng office
+  - เล่น radiohead office
+  - เล่น radiohead ทีวี office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - len abba office
-  - len abba phleng office
+  - เล่น abba office
+  - เล่น abba ทีวี office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - len coldplay office
-  - len coldplay phleng office
+  - เล่น coldplay office
+  - เล่น coldplay ทีวี office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - len adele office
-  - len adele phleng office
+  - เล่น adele office
+  - เล่น adele ทีวี office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - len prince office
-  - len prince phleng office
+  - เล่น prince office
+  - เล่น prince ทีวี office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - len bowie office
-  - len bowie phleng office
+  - เล่น bowie office
+  - เล่น bowie ทีวี office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - len nirvana office
-  - len nirvana phleng office
+  - เล่น nirvana office
+  - เล่น nirvana ทีวี office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - len eagles office
-  - len eagles phleng office
+  - เล่น eagles office
+  - เล่น eagles ทีวี office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - len madonna office
-  - len madonna phleng office
+  - เล่น madonna office
+  - เล่น madonna ทีวี office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - len mozart office
-  - len mozart phleng office
+  - เล่น mozart office
+  - เล่น mozart ทีวี office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - len daft punk office
-  - len daft punk phleng office
+  - เล่น daft punk office
+  - เล่น daft punk ทีวี office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - len biafra office
-  - len biafra phleng office
+  - เล่น biafra office
+  - เล่น biafra ทีวี office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - len queen radio mode hongnang
+  - เล่น queen radio mode ห้องนั่งเล่น
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - arai phleng hongnang
-  - arai track hongnang
+  - อะไร ทีวี ห้องนั่งเล่น
+  - อะไร track ห้องนั่งเล่น
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - len queen radio mode hongkrua
+  - เล่น queen radio mode ห้องครัว
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - arai phleng hongkrua
-  - arai track hongkrua
+  - อะไร ทีวี ห้องครัว
+  - อะไร track ห้องครัว
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - len queen radio mode office
+  - เล่น queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - arai phleng office
-  - arai track office
+  - อะไร ทีวี office
+  - อะไร track office

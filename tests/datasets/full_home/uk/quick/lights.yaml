@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - увімкни світло спальня
+  - увімкни світло спальняmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - вимкни світло спальня
+  - вимкни світло спальняmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - увімкни стеля спальня
+  - увімкни стеля спальняmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - вимкни стеля спальня
+  - вимкни стеля спальняmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - увімкни нічний спальня
+  - увімкни нічний спальняmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - вимкни нічний спальня
+  - вимкни нічний спальняmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

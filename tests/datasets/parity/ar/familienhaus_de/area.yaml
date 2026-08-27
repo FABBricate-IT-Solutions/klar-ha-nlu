@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - شغل مروحة غرفة2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- حط ضوء غرفة2 65
+- حط كل ضوء غرفة2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- حط ضوء غرفة2 pink
+- حط كل ضوء غرفة2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- اطفئ ضوء غرفة2
+- اطفئ كل ضوء غرفة2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- شغل ضوء غرفة2
+- شغل كل ضوء غرفة2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - اغلق ستارة غرفة3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - حط ستارة غرفة3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- حط ضوء غرفة3 76
+- حط كل ضوء غرفة3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- حط ضوء غرفة3 blue
+- حط كل ضوء غرفة3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- اطفئ ضوء غرفة3
+- اطفئ كل ضوء غرفة3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- شغل ضوء غرفة3
+- شغل كل ضوء غرفة3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- حط ضوء غرفة4 69
+- حط كل ضوء غرفة4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- حط ضوء غرفة4 green
+- حط كل ضوء غرفة4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- اطفئ ضوء غرفة4
+- اطفئ كل ضوء غرفة4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- شغل ضوء غرفة4
+- شغل كل ضوء غرفة4
 area/dining_lights::dining_lights_change_brightness:
-- حط ضوء عائليess 54
+- حط كل ضوء عائليess 54
 area/dining_lights::dining_lights_change_color:
-- حط ضوء عائليess blue
+- حط كل ضوء عائليess blue
 area/dining_lights::dining_lights_turn_off:
-- اطفئ ضوء عائليess
+- اطفئ كل ضوء عائليess
 area/dining_lights::dining_lights_turn_on:
-- شغل ضوء عائليess
+- شغل كل ضوء عائليess
 area/entryway_lights::entryway_lights_change_brightness:
-- حط ضوء مدخل 72
+- حط كل ضوء مدخل 72
 area/entryway_lights::entryway_lights_change_color:
-- حط ضوء مدخل black
+- حط كل ضوء مدخل black
 area/entryway_lights::entryway_lights_turn_off:
-- اطفئ ضوء مدخل
+- اطفئ كل ضوء مدخل
 area/entryway_lights::entryway_lights_turn_on:
-- شغل ضوء مدخل
+- شغل كل ضوء مدخل
 area/entryway_locks::entryway_locks_lock:
 - قفل قفل مدخل
 area/entryway_locks::entryway_locks_unlock:
 - افتح قفل مدخل
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- حط ضوء عائلي 39 و حط ضوء مطبخ 39
+- حط كل ضوء عائلي 39 then حط كل ضوء مطبخ 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- حط ضوء عائلي purple و حط ضوء مطبخ purple
+- حط كل ضوء عائلي purple then حط كل ضوء مطبخ purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- اطفئ ضوء عائلي و اطفئ ضوء مطبخ
+- اطفئ كل ضوء عائلي then اطفئ كل ضوء مطبخ
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- شغل ضوء عائلي و شغل ضوء مطبخ
+- شغل كل ضوء عائلي then شغل كل ضوء مطبخ
 area/family_room_fans::family_room_fans_set_fan_speed:
 - حط مروحة عائلي 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - شغل مروحة عائلي
 area/family_room_lights::family_room_lights_change_brightness:
-- حط ضوء عائلي 44
+- حط كل ضوء عائلي 44
 area/family_room_lights::family_room_lights_change_color:
-- حط ضوء عائلي green
+- حط كل ضوء عائلي green
 area/family_room_lights::family_room_lights_turn_off:
-- اطفئ ضوء عائلي
+- اطفئ كل ضوء عائلي
 area/family_room_lights::family_room_lights_turn_on:
-- شغل ضوء عائلي
+- شغل كل ضوء عائلي
 area/garage_covers::garage_covers_close:
 - اغلق ستارة garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - حط ستارة garage 86
 area/garage_lights::garage_lights_change_brightness:
-- حط ضوء garage 16
+- حط كل ضوء garage 16
 area/garage_lights::garage_lights_change_color:
-- حط ضوء garage blue
+- حط كل ضوء garage blue
 area/garage_lights::garage_lights_turn_off:
-- اطفئ ضوء garage
+- اطفئ كل ضوء garage
 area/garage_lights::garage_lights_turn_on:
-- شغل ضوء garage
+- شغل كل ضوء garage
 area/garage_locks::garage_locks_lock:
 - قفل قفل garage
 area/garage_locks::garage_locks_unlock:
 - افتح قفل garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- حط ضوء مدخلgang 26 و حط ضوء حمامضيف 26
+- حط كل ضوء مدخلgang 26 then حط كل ضوء حمامضيف 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- حط ضوء مدخلgang purple و حط ضوء حمامضيف purple
+- حط كل ضوء مدخلgang purple then حط كل ضوء حمامضيف purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- اطفئ ضوء مدخلgang و اطفئ ضوء حمامضيف
+- اطفئ كل ضوء مدخلgang then اطفئ كل ضوء حمامضيف
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- شغل ضوء مدخلgang و شغل ضوء حمامضيف
+- شغل كل ضوء مدخلgang then شغل كل ضوء حمامضيف
 area/hallway_lights::hallway_lights_change_brightness:
-- حط ضوء مدخلgang 61
+- حط كل ضوء مدخلgang 61
 area/hallway_lights::hallway_lights_change_color:
-- حط ضوء مدخلgang orange
+- حط كل ضوء مدخلgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- اطفئ ضوء مدخلgang
+- اطفئ كل ضوء مدخلgang
 area/hallway_lights::hallway_lights_turn_on:
-- شغل ضوء مدخلgang
+- شغل كل ضوء مدخلgang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- حط ضوء مطبخ 45
+- حط كل ضوء مطبخ 45
 area/kitchen_lights::kitchen_lights_change_color:
-- حط ضوء مطبخ pink
+- حط كل ضوء مطبخ pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- اطفئ ضوء مطبخ
+- اطفئ كل ضوء مطبخ
 area/kitchen_lights::kitchen_lights_turn_on:
-- شغل ضوء مطبخ
+- شغل كل ضوء مطبخ
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- اطفئ جهاز مطبخ
+- اطفئ كل جهاز مطبخ
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- شغل جهاز مطبخ
+- شغل كل جهاز مطبخ
 area/laundry_lights::laundry_lights_change_brightness:
-- حط ضوء غسيل 62
+- حط كل ضوء غسيل 62
 area/laundry_lights::laundry_lights_change_color:
-- حط ضوء غسيل yellow
+- حط كل ضوء غسيل yellow
 area/laundry_lights::laundry_lights_turn_off:
-- اطفئ ضوء غسيل
+- اطفئ كل ضوء غسيل
 area/laundry_lights::laundry_lights_turn_on:
-- شغل ضوء غسيل
+- شغل كل ضوء غسيل
 area/laundry_switchs::laundry_switchs_turn_off:
-- اطفئ جهاز غسيل
+- اطفئ كل جهاز غسيل
 area/laundry_switchs::laundry_switchs_turn_on:
-- شغل جهاز غسيل
+- شغل كل جهاز غسيل
 area/living_climates::living_climates_set_temperature:
 - حط تكييف صالون 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,100 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - حط ستارة صالون 46
 area/living_lights::living_lights_change_brightness:
-- حط ضوء صالون 84
+- حط كل ضوء صالون 84
 area/living_lights::living_lights_change_color:
-- حط ضوء صالون blue
+- حط كل ضوء صالون blue
 area/living_lights::living_lights_turn_off:
-- اطفئ ضوء صالون
+- اطفئ كل ضوء صالون
 area/living_lights::living_lights_turn_on:
-- شغل ضوء صالون
+- شغل كل ضوء صالون
 area/main_bath_lights::main_bath_lights_change_brightness:
-- حط ضوء main bath 73
+- حط كل ضوء main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- حط ضوء main bath pink
+- حط كل ضوء main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- اطفئ ضوء main bath
+- اطفئ كل ضوء main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- شغل ضوء main bath
+- شغل كل ضوء main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- اطفئ جهاز main bath
+- اطفئ كل جهاز main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- شغل جهاز main bath
+- شغل كل جهاز main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- حط ضوء حمامرئيسي 60
+- حط كل ضوء حمامرئيسي 60
 area/master_bath_lights::master_bath_lights_change_color:
-- حط ضوء حمامرئيسي black
+- حط كل ضوء حمامرئيسي black
 area/master_bath_lights::master_bath_lights_turn_off:
-- اطفئ ضوء حمامرئيسي
+- اطفئ كل ضوء حمامرئيسي
 area/master_bath_lights::master_bath_lights_turn_on:
-- شغل ضوء حمامرئيسي
+- شغل كل ضوء حمامرئيسي
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- اطفئ جهاز حمامرئيسي
+- اطفئ كل جهاز حمامرئيسي
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- شغل جهاز حمامرئيسي
+- شغل كل جهاز حمامرئيسي
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- حط تكييف غرفة 20 و حط تكييف صالون 20
+- حط تكييف غرفةmaster 20 then حط تكييف صالون 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- اغلق ستارة غرفة و اغلق ستارة صالون
+- اغلق ستارة غرفةmaster then اغلق ستارة صالون
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- افتح ستارة غرفة و افتح ستارة صالون
+- افتح ستارة غرفةmaster then افتح ستارة صالون
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- حط ستارة غرفة 19 و حط ستارة صالون 19
+- حط ستارة غرفةmaster 19 then حط ستارة صالون 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- حط ضوء غرفة 25 و حط ضوء صالون 25
+- حط كل ضوء غرفةmaster 25 then حط كل ضوء صالون 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- حط ضوء غرفة white و حط ضوء صالون white
+- حط كل ضوء غرفةmaster white then حط كل ضوء صالون white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- اطفئ ضوء غرفة و اطفئ ضوء صالون
+- اطفئ كل ضوء غرفةmaster then اطفئ كل ضوء صالون
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- شغل ضوء غرفة و شغل ضوء صالون
+- شغل كل ضوء غرفةmaster then شغل كل ضوء صالون
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- حط ضوء غرفة 57 و حط ضوء main bath 57
+- حط كل ضوء غرفةmaster 57 then حط كل ضوء main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- حط ضوء غرفة pink و حط ضوء main bath pink
+- حط كل ضوء غرفةmaster pink then حط كل ضوء main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- اطفئ ضوء غرفة و اطفئ ضوء main bath
+- اطفئ كل ضوء غرفةmaster then اطفئ كل ضوء main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- شغل ضوء غرفة و شغل ضوء main bath
+- شغل كل ضوء غرفةmaster then شغل كل ضوء main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- حط تكييف غرفة 20
+- حط تكييف غرفةmaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- اغلق ستارة غرفة
+- اغلق ستارة غرفةmaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- افتح ستارة غرفة
+- افتح ستارة غرفةmaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- حط ستارة غرفة 38
+- حط ستارة غرفةmaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- حط مروحة غرفة 79
+- حط مروحة غرفةmaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- اطفئ مروحة غرفة
+- اطفئ مروحة غرفةmaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- شغل مروحة غرفة
+- شغل مروحة غرفةmaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- حط ضوء غرفة 73
+- حط كل ضوء غرفةmaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- حط ضوء غرفة pink
+- حط كل ضوء غرفةmaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- اطفئ ضوء غرفة
+- اطفئ كل ضوء غرفةmaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- شغل ضوء غرفة
+- شغل كل ضوء غرفةmaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- حط ضوء حمامضيف 52
+- حط كل ضوء حمامضيف 52
 area/powder_room_lights::powder_room_lights_change_color:
-- حط ضوء حمامضيف purple
+- حط كل ضوء حمامضيف purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- اطفئ ضوء حمامضيف
+- اطفئ كل ضوء حمامضيف
 area/powder_room_lights::powder_room_lights_turn_on:
-- شغل ضوء حمامضيف
+- شغل كل ضوء حمامضيف
 area/spoken_lights::spoken_bedroom_inflection:
-- حط ضوء غرفة red
+- حط كل ضوء غرفةmaster red
 area/spoken_lights::spoken_except_island:
 - اطفئ كل ضوء إلا جزيرة
 area/spoken_lights::spoken_except_kitchen:
-- اطفئ كل ضوء إلا مطبخ إلا جزيرة
+- اطفئ كل ضوء إلا مطبخ
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- اطفئ ضوء صالون و اطفئ ضوء عائليess و اطفئ ضوء مطبخ
+- اطفئ كل ضوء صالون then اطفئ كل ضوء عائليess then اطفئ كل ضوء مطبخ
 area/spoken_lights::spoken_stt_kitchen_off:
-- اطفئ ضوء مطبخ
+- اطفئ كل ضوء مطبخ
 area/spoken_lights::spoken_stt_living_off:
-- اطفئ ضوء صالون
+- اطفئ كل ضوء صالون

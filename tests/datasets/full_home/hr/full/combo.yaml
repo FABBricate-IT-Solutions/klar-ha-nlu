@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - upali spavaca strop i spavaca nocni
-  - spavaca strop i spavaca nocni upali
+  - upali spavacamaster strop i spavacamaster nocni
+  - spavacamaster strop i spavacamaster nocni upali
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - ugasi spavaca strop i spavaca nocni
-  - spavaca strop i spavaca nocni ugasi
+  - ugasi spavacamaster strop i spavacamaster nocni
+  - spavacamaster strop i spavacamaster nocni ugasi
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - upali spavaca ventilator i kuhinja otok
-  - spavaca ventilator i kuhinja otok upali
+  - upali spavacamaster ventilator i kuhinja otok
+  - spavacamaster ventilator i kuhinja otok upali
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - ugasi svjetlo spavaca i main bath
-  - svjetlo spavaca i main bath ugasi
+  - ugasi svjetlo spavacamaster i main bath
+  - svjetlo spavacamaster i main bath ugasi
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - ugasi sve svjetlo osim dnevni i spavaca
-  - sve svjetlo ugasi osim dnevni i spavaca
+  - ugasi sve svjetlo osim dnevni i spavacamaster
+  - sve svjetlo ugasi osim dnevni i spavacamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - ugasi sve svjetlo kat osim spavaca
-  - sve svjetlo kat ugasi osim spavaca
+  - ugasi sve svjetlo kat osim spavacamaster
+  - sve svjetlo kat ugasi osim spavacamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - otvori zavjesa dnevni i spavaca
-  - zavjesa dnevni i spavaca otvori
+  - otvori zavjesa dnevni i spavacamaster
+  - zavjesa dnevni i spavacamaster otvori
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - zatvori zavjesa dnevni i spavaca
-  - zavjesa dnevni i spavaca zatvori
+  - zatvori zavjesa dnevni i spavacamaster
+  - zavjesa dnevni i spavacamaster zatvori
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stavi grijanje dnevni i spavaca 21
-  - grijanje dnevni i spavaca 21
+  - stavi grijanje dnevni i spavacamaster 21
+  - grijanje dnevni i spavacamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

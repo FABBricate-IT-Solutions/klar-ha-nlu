@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - poottu poottu nuzhaivu
-  - poottu nuzhaivu poottu
+  - பூட்டு பூட்டு nuzhaivu
+  - பூட்டு nuzhaivu பூட்டு
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - thira poottu nuzhaivu
-  - poottu nuzhaivu thira
+  - திற பூட்டு nuzhaivu
+  - பூட்டு nuzhaivu திற
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - poottu poottu garage
-  - poottu garage poottu
+  - பூட்டு பூட்டு garage
+  - பூட்டு garage பூட்டு
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - thira poottu garage
-  - poottu garage thira
+  - திற பூட்டு garage
+  - பூட்டு garage திற
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - poottu poottu nuzhaivu
-  - poottu nuzhaivu poottu
+  - பூட்டு பூட்டு nuzhaivu
+  - பூட்டு nuzhaivu பூட்டு
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - poottu poottu garage
-  - poottu garage poottu
+  - பூட்டு பூட்டு garage
+  - பூட்டு garage பூட்டு

@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Ver gavige.",
-    need_on: "Ra chavrtо?",
-    need_off: "Ra gamovrtо?",
+    need_on: "რა ჩავრთო?",
+    need_off: "რა გამოვრთო?",
     need_which: "Ra chavrtо?",
     correction: "Kargi, bolo winadadebas vtoveb.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " da ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} chartulia.",
+    turn_on: "{target} ჩართულია.",
     turn_on_scene: "{target}.",
-    turn_off: "{target} gamortulia.",
+    turn_off: "{target} გამორთულია.",
     toggle: "{target} icvleba.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Ra chavrtо?",
     or_home: "Ra chavrtо?",
-    room_names: &[("wohnzimmer", "misagebi"), ("kuche", "samzareulo")],
-    loc_der_rooms: &["misagebi", "samzareulo"],
+    room_names: &[("wohnzimmer", "მისაღები"), ("kuche", "სამზარეულო")],
+    loc_der_rooms: &["მისაღები", "სამზარეულო"],
     personality: &[
         ("butler", &["Kargi. ", "Siasiaghnit. ", ""]),
         ("locker", &["Gavige. ", "Gaiketda. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Ki. ", "Ki, chemi sagandzuri. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Martla?",
+    confirm: "მართლა?",
 };

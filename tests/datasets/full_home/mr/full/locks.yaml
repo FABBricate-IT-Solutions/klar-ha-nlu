@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - kulup kulup pravesh
-  - kulup pravesh kulup
+  - कुलूप कुलूप pravesh
+  - कुलूप pravesh कुलूप
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - ughad kulup pravesh
-  - kulup pravesh ughad
+  - उघड कुलूप pravesh
+  - कुलूप pravesh उघड
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kulup kulup garage
-  - kulup garage kulup
+  - कुलूप कुलूप garage
+  - कुलूप garage कुलूप
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - ughad kulup garage
-  - kulup garage ughad
+  - उघड कुलूप garage
+  - कुलूप garage उघड
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - kulup kulup pravesh
-  - kulup pravesh kulup
+  - कुलूप कुलूप pravesh
+  - कुलूप pravesh कुलूप
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kulup kulup garage
-  - kulup garage kulup
+  - कुलूप कुलूप garage
+  - कुलूप garage कुलूप

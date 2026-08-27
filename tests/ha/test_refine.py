@@ -114,7 +114,14 @@ class RefineTests(unittest.TestCase):
         self.assertIn("open questions", prompt.lower())
         self.assertIn("Do not stamp the same opening every time.", prompt)
         self.assertIn("all set", prompt)
+        self.assertIn("Do not translate into German", prompt)
         self.assertNotIn("Additional style instruction", prompt)
+
+    def test_german_stored_extra_is_ignored_for_other_packs(self) -> None:
+        prompt = refine.refine_prompt("en", "butler", "Stimme: Jarvis.\nSchalt-Bestätigungen")
+        self.assertIn("Do not translate into German", prompt)
+        self.assertIn("Voice:", prompt)
+        self.assertNotIn("Stimme:", prompt)
 
     def test_nlu_home_turn_removed_because_every_reply_refines(self) -> None:
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
@@ -390,6 +397,7 @@ class RefineTests(unittest.TestCase):
         body = src[start:end]
         self.assertIn("isolated_conversation_id", body)
         self.assertIn("nested_llm_session", body)
+        self.assertIn("speak_tag(pack)", body)
         self.assertNotIn("user_input.conversation_id", body)
         self.assertNotIn("user_input.device_id", body)
         self.assertNotIn("record", body)

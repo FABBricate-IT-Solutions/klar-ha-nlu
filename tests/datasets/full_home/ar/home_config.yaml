@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: غرفة
+  name: غرفةmaster
   floor: upper
   aliases:
+  - غرفةmaster
   - غرفة
 - id: bedroom_2
   name: غرفة2
@@ -130,10 +131,10 @@ devices:
   - سقف
 - id: light.living_lamp
   area_id: living
-  name: صالون ضوء
+  name: صالون lamp
   aliases:
-  - صالون ضوء
-  - ضوء
+  - صالون lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: عائليess ضوء
@@ -190,29 +191,29 @@ devices:
   - ضوء
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: غرفة سقف
+  name: غرفةmaster سقف
   aliases:
-  - غرفة سقف
+  - غرفةmaster سقف
   - سقف
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: غرفة ensuite
+  name: غرفةmaster ensuite
   aliases:
-  - غرفة ensuite
+  - غرفةmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: غرفة left جانبسرير
+  name: غرفةmaster left جانبسرير
   aliases:
-  - غرفة left جانبسرير
+  - غرفةmaster left جانبسرير
   - جانبسرير
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: غرفة right جانبسرير
+  name: غرفةmaster right جانبسرير
   aliases:
-  - غرفة right جانبسرير
+  - غرفةmaster right جانبسرير
   - جانبسرير
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - ستارة
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: غرفة ستارة
+  name: غرفةmaster ستارة
   aliases:
-  - غرفة ستارة
+  - غرفةmaster ستارة
   - ستارة
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - تكييف
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: غرفة تكييف
+  name: غرفةmaster تكييف
   aliases:
-  - غرفة تكييف
+  - غرفةmaster تكييف
   - تكييف
 - id: climate.master_ac
   area_id: master_bedroom
-  name: حرارة غرفة
+  name: حرارة غرفةmaster
   aliases:
-  - حرارة غرفة
+  - حرارة غرفةmaster
   - حرارة
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - مروحة
 - id: fan.master_fan
   area_id: master_bedroom
-  name: غرفة مروحة
+  name: غرفةmaster مروحة
   aliases:
-  - غرفة مروحة
+  - غرفةmaster مروحة
   - مروحة
 - id: fan.bedroom2_fan
   area_id: bedroom_2

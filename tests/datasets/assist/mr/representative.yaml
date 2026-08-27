@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - chalu diva baithak
+    - चालू दिवा बैठक
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - band diva svayampak
+    - बंद दिवा स्वयंपाक
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - calendar madhe kay
+    - दिनदर्शिका मध्ये काय
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - bhar dentist udya 15 calendar
+    - भर दंत उद्या 15 दिनदर्शिका
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - kad dentist calendar
+    - काढ दंत दिनदर्शिका
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - halav dentist udya 16 calendar
+    - हलव दंत उद्या 16 दिनदर्शिका
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - vajav depeche
+    - चालव depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

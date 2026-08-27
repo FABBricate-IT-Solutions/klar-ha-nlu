@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - co zamek predsin
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- co svetlo obyvakfam a co svetlo kuchyne
+- co svetlo obyvakfam then co svetlo kuchyne
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- co svetlo obyvakfam a co svetlo kuchyne
+- co svetlo obyvakfam then co svetlo kuchyne
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- co svetlo obyvakfam a co svetlo kuchyne
+- co svetlo obyvakfam then co svetlo kuchyne
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- co svetlo obyvakfam a co svetlo kuchyne
+- co svetlo obyvakfam then co svetlo kuchyne
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - co ventilator obyvakfam
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - co zamek garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- co svetlo predsingang a co svetlo wc
+- co svetlo predsingang then co svetlo wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- co svetlo predsingang a co svetlo wc
+- co svetlo predsingang then co svetlo wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- co svetlo predsingang a co svetlo wc
+- co svetlo predsingang then co svetlo wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- co svetlo predsingang a co svetlo wc
+- co svetlo predsingang then co svetlo wc
 query_area/hallway_lights::hallway_lights_get_brightness:
 - co svetlo predsingang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - co pristroj koupelmaster
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- co zaves loznice a co zaves obyvak
+- co zaves loznicemaster then co zaves obyvak
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- co zaves loznice a co zaves obyvak
+- co zaves loznicemaster then co zaves obyvak
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- co zaves loznice a co zaves obyvak
+- co zaves loznicemaster then co zaves obyvak
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- co zaves loznice a co zaves obyvak
+- co zaves loznicemaster then co zaves obyvak
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- co topeni loznice
+- co topeni loznicemaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- co zaves loznice
+- co zaves loznicemaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- co zaves loznice
+- co zaves loznicemaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- co zaves loznice
+- co zaves loznicemaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- co zaves loznice
+- co zaves loznicemaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- co ventilator loznice
+- co ventilator loznicemaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- co ventilator loznice
+- co ventilator loznicemaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- co ventilator loznice
+- co ventilator loznicemaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- co ventilator loznice
+- co ventilator loznicemaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- co svetlo loznice
+- co svetlo loznicemaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- co svetlo loznice
+- co svetlo loznicemaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- co svetlo loznice
+- co svetlo loznicemaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- co svetlo loznice
+- co svetlo loznicemaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - co svetlo wc
 query_area/powder_room_lights::powder_room_lights_get_state:

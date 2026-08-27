@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - روشن اتاقخواب سقف و اتاقخواب کنارتخت
-  - اتاقخواب سقف و اتاقخواب کنارتخت روشن
+  - روشن اتاقخوابmaster سقف و اتاقخوابmaster کنارتخت
+  - اتاقخوابmaster سقف و اتاقخوابmaster کنارتخت روشن
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - خاموش اتاقخواب سقف و اتاقخواب کنارتخت
-  - اتاقخواب سقف و اتاقخواب کنارتخت خاموش
+  - خاموش اتاقخوابmaster سقف و اتاقخوابmaster کنارتخت
+  - اتاقخوابmaster سقف و اتاقخوابmaster کنارتخت خاموش
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - روشن اتاقخواب پنکه و آشپزخانه جزیره
-  - اتاقخواب پنکه و آشپزخانه جزیره روشن
+  - روشن اتاقخوابmaster پنکه و آشپزخانه جزیره
+  - اتاقخوابmaster پنکه و آشپزخانه جزیره روشن
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - خاموش چراغ اتاقخواب و main bath
-  - چراغ اتاقخواب و main bath خاموش
+  - خاموش چراغ اتاقخوابmaster و main bath
+  - چراغ اتاقخوابmaster و main bath خاموش
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - خاموش همه چراغ جز پذیرایی و اتاقخواب
-  - همه چراغ خاموش جز پذیرایی و اتاقخواب
+  - خاموش همه چراغ جز پذیرایی و اتاقخوابmaster
+  - همه چراغ خاموش جز پذیرایی و اتاقخوابmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - خاموش همه چراغ بالا جز اتاقخواب
-  - همه چراغ بالا خاموش جز اتاقخواب
+  - خاموش همه چراغ بالا جز اتاقخوابmaster
+  - همه چراغ بالا خاموش جز اتاقخوابmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - باز پرده پذیرایی و اتاقخواب
-  - پرده پذیرایی و اتاقخواب باز
+  - باز پرده پذیرایی و اتاقخوابmaster
+  - پرده پذیرایی و اتاقخوابmaster باز
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - بسته پرده پذیرایی و اتاقخواب
-  - پرده پذیرایی و اتاقخواب بسته
+  - بسته پرده پذیرایی و اتاقخوابmaster
+  - پرده پذیرایی و اتاقخوابmaster بسته
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - بگذار سرما پذیرایی و اتاقخواب 21
-  - سرما پذیرایی و اتاقخواب 21
+  - بگذار سرما پذیرایی و اتاقخوابmaster 21
+  - سرما پذیرایی و اتاقخوابmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

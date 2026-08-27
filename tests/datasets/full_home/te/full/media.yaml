@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv gadi veliginchu
-  - veliginchu tv gadi
+  - tv గది వెలిగించు
+  - వెలిగించు tv గది
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - arpu tv gadi
-  - tv gadi arpu
+  - ఆర్పు tv గది
+  - tv గది ఆర్పు
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv gadi
-  - tv gadi pause
+  - ఆపు tv గది
+  - tv గది ఆపు
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv kutumbam veliginchu
-  - veliginchu tv kutumbam
+  - tv kutumbam వెలిగించు
+  - వెలిగించు tv kutumbam
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - arpu tv kutumbam
-  - tv kutumbam arpu
+  - ఆర్పు tv kutumbam
+  - tv kutumbam ఆర్పు
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv kutumbam
-  - tv kutumbam pause
+  - ఆపు tv kutumbam
+  - tv kutumbam ఆపు

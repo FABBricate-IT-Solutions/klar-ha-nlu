@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku muriyil um adukkala
-  - vilakku muriyil um adukkala theli
+  - തെളി വിളക്ക് ഹാൾ ഉം അടുക്കള
+  - വിളക്ക് ഹാൾ ഉം അടുക്കള തെളി
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - anaykku vilakku muriyil um poott vathil
-  - anaykku muriyil um poott vathil
+  - അണയ്ക്ക് വിളക്ക് ഹാൾ ഉം പൂട്ട് വാതിൽ
+  - അണയ്ക്ക് ഹാൾ ഉം പൂട്ട് വാതിൽ
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku adukkala um kutumbamess
-  - vilakku adukkala um kutumbamess theli
+  - തെളി വിളക്ക് അടുക്കള ഉം kutumbamess
+  - വിളക്ക് അടുക്കള ഉം kutumbamess തെളി
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku office um hallway
-  - vilakku office um hallway theli
+  - തെളി വിളക്ക് office ഉം hallway
+  - വിളക്ക് office ഉം hallway തെളി
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku garage um garden
-  - vilakku garage um garden theli
+  - തെളി വിളക്ക് garage ഉം garden
+  - വിളക്ക് garage ഉം garden തെളി
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kitappumuri um main bath
-  - vilakku kitappumuri um main bath theli
+  - തെളി വിളക്ക് kitappumurimaster ഉം main bath
+  - വിളക്ക് kitappumurimaster ഉം main bath തെളി
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kutumbam um muriyil
-  - vilakku kutumbam um muriyil theli
+  - തെളി വിളക്ക് kutumbam ഉം ഹാൾ
+  - വിളക്ക് kutumbam ഉം ഹാൾ തെളി
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku basement um garden
-  - vilakku basement um garden theli
+  - തെളി വിളക്ക് basement ഉം garden
+  - വിളക്ക് basement ഉം garden തെളി
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku hallway um office
-  - vilakku hallway um office theli
+  - തെളി വിളക്ക് hallway ഉം office
+  - വിളക്ക് hallway ഉം office തെളി
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kutumbamess um adukkala
-  - vilakku kutumbamess um adukkala theli
+  - തെളി വിളക്ക് kutumbamess ഉം അടുക്കള
+  - വിളക്ക് kutumbamess ഉം അടുക്കള തെളി
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kitappumuri2 um kitappumuri3
-  - vilakku kitappumuri2 um kitappumuri3 theli
+  - തെളി വിളക്ക് kitappumuri2 ഉം kitappumuri3
+  - വിളക്ക് kitappumuri2 ഉം kitappumuri3 തെളി

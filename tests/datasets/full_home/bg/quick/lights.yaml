@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - включи светлина спалня
+  - включи светлина спалняmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи светлина спалня
+  - изключи светлина спалняmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - включи таван спалня
+  - включи таван спалняmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - изключи таван спалня
+  - изключи таван спалняmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - включи нощно спалня
+  - включи нощно спалняmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - изключи нощно спалня
+  - изключи нощно спалняmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

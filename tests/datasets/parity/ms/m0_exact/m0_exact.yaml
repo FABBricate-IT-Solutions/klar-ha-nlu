@@ -1,9 +1,9 @@
 m0_exact/representative::exact_clarify:
 - hidupkan lampu ruang
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread senarai
+- done bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- hidupkan siling bilik3 dan matikan lampu lorong
+- hidupkan siling bilik3 then matikan lampu lorong
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - hidupkan pemasa oven
 m0_exact/representative::exact_todo_list:
-- add apples senarai
+- add apples aufgabenliste

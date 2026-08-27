@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Gulamistaba
+  name: Gulamistabamaster
   floor: upper
   aliases:
+  - gulamistabamaster
   - gulamistaba
 - id: bedroom_2
   name: Gulamistaba2
@@ -130,10 +131,10 @@ devices:
   - griesti
 - id: light.living_lamp
   area_id: living
-  name: istaba gaisma
+  name: istaba lamp
   aliases:
-  - istaba gaisma
-  - gaisma
+  - istaba lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: dzivojamafamess gaisma
@@ -190,29 +191,29 @@ devices:
   - gaisma
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: gulamistaba griesti
+  name: gulamistabamaster griesti
   aliases:
-  - gulamistaba griesti
+  - gulamistabamaster griesti
   - griesti
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: gulamistaba ensuite
+  name: gulamistabamaster ensuite
   aliases:
-  - gulamistaba ensuite
+  - gulamistabamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: gulamistaba left bedside
+  name: gulamistabamaster left bedside
   aliases:
-  - gulamistaba left bedside
+  - gulamistabamaster left bedside
   - bedside
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: gulamistaba right bedside
+  name: gulamistabamaster right bedside
   aliases:
-  - gulamistaba right bedside
+  - gulamistabamaster right bedside
   - bedside
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - aizkars
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: gulamistaba aizkars
+  name: gulamistabamaster aizkars
   aliases:
-  - gulamistaba aizkars
+  - gulamistabamaster aizkars
   - aizkars
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - apkure
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: gulamistaba apkure
+  name: gulamistabamaster apkure
   aliases:
-  - gulamistaba apkure
+  - gulamistabamaster apkure
   - apkure
 - id: climate.master_ac
   area_id: master_bedroom
-  name: apkure gulamistaba
+  name: apkure gulamistabamaster
   aliases:
-  - apkure gulamistaba
+  - apkure gulamistabamaster
   - apkure
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilators
 - id: fan.master_fan
   area_id: master_bedroom
-  name: gulamistaba ventilators
+  name: gulamistabamaster ventilators
   aliases:
-  - gulamistaba ventilators
+  - gulamistabamaster ventilators
   - ventilators
 - id: fan.bedroom2_fan
   area_id: bedroom_2

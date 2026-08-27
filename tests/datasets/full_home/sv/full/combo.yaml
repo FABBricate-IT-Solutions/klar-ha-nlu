@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - tand sovrum tak och sovrum sanglampa
-  - sovrum tak och sovrum sanglampa tand
+  - tand sovrummaster tak och sovrummaster sanglampa
+  - sovrummaster tak och sovrummaster sanglampa tand
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - slack sovrum tak och sovrum sanglampa
-  - sovrum tak och sovrum sanglampa slack
+  - slack sovrummaster tak och sovrummaster sanglampa
+  - sovrummaster tak och sovrummaster sanglampa slack
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tand sovrum flakt och kok o
-  - sovrum flakt och kok o tand
+  - tand sovrummaster flakt och kok o
+  - sovrummaster flakt och kok o tand
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slack ljus sovrum och main bath
-  - ljus sovrum och main bath slack
+  - slack ljus sovrummaster och main bath
+  - ljus sovrummaster och main bath slack
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slack alla ljus utom vardagsrum och sovrum
-  - alla ljus slack utom vardagsrum och sovrum
+  - slack alla ljus utom vardagsrum och sovrummaster
+  - alla ljus slack utom vardagsrum och sovrummaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slack alla ljus ovanvaning utom sovrum
-  - alla ljus ovanvaning slack utom sovrum
+  - slack alla ljus ovanvaning utom sovrummaster
+  - alla ljus ovanvaning slack utom sovrummaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - oppna gardin vardagsrum och sovrum
-  - gardin vardagsrum och sovrum oppna
+  - oppna gardin vardagsrum och sovrummaster
+  - gardin vardagsrum och sovrummaster oppna
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - stang gardin vardagsrum och sovrum
-  - gardin vardagsrum och sovrum stang
+  - stang gardin vardagsrum och sovrummaster
+  - gardin vardagsrum och sovrummaster stang
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - satt varme vardagsrum och sovrum 21
-  - varme vardagsrum och sovrum 21
+  - satt varme vardagsrum och sovrummaster 21
+  - varme vardagsrum och sovrummaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

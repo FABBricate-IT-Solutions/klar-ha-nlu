@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - extinguish all light
 area/lichter::arbeitszimmer_lichter_an:
-- enable light lounge
+- enable all light office
 area/lichter::arbeitszimmer_lichter_aus:
-- extinguish light lounge
+- extinguish all light office
 area/lichter::esszimmer_lichter_an:
-- enable light loungefamess
+- enable all light loungefamess
 area/lichter::esszimmer_lichter_aus:
-- extinguish light loungefamess
+- extinguish all light loungefamess
 area/lichter::kuche_lichter_an:
-- enable light kitchen
+- enable all light kitchen
 area/lichter::kuche_lichter_aus:
-- extinguish light kitchen
+- extinguish all light kitchen
 area/lichter::schlafzimmer_auf_blau:
-- set light bedroom blue
+- set all light bedroom blue
 area/lichter::schlafzimmer_auf_rot:
-- set light bedroom red
+- set all light bedroom red
 area/lichter::wohnzimmer_helligkeit:
-- set light lounge 45
+- set all light lounge 45
 area/lichter::wohnzimmer_lichter_an:
-- enable light lounge
+- enable all light lounge
 area/lichter::wohnzimmer_lichter_aus:
-- extinguish light lounge
+- extinguish all light lounge
 area/spoken::alle_ausser_kugel_stt:
 - extinguish all light except globe
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - extinguish all light
 area/spoken::esszimmer_weiss:
-- set light loungefamess white
+- set all light loungefamess white
 area/spoken::stt_kuche_lichte:
-- extinguish light kitchen
+- extinguish all light kitchen
 area/spoken::stt_licht_wohnzimmer_an:
-- enable light lounge
+- enable all light lounge
 area/spoken::stt_licht_wohnzimmer_aus:
-- extinguish light lounge
+- extinguish all light lounge
 area/spoken::stt_schlafzimmer_dativ:
-- extinguish light bedroom
+- extinguish all light bedroom
 area/spoken::wohnzimmer_gruen:
-- set light lounge green
+- set all light lounge green
 area/spoken_more::alle_ausser_arbeitszimmer:
-- extinguish all light except lounge
+- extinguish all light except office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- extinguish light lounge
+- extinguish all light office
 area/spoken_more::esszimmer_30:
-- set light loungefamess 30
+- set all light loungefamess 30
 area/spoken_more::esszimmer_lichte_an:
-- enable light loungefamess
+- enable all light loungefamess
 area/spoken_more::kuche_80:
-- set light kitchen 80
+- set all light kitchen 80
 area/spoken_more::kuche_blau:
-- set light kitchen blue
+- set all light kitchen blue
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - extinguish all light except bedroom
 area/spoken_more::wohnzimmer_gelb:
-- set light lounge yellow
+- set all light lounge yellow

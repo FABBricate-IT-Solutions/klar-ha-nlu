@@ -36,6 +36,7 @@
           "assist_filter": "Steruj tylko encjami widocznymi dla Assist",
           "nlu_rag": "NLU-RAG (opcjonalnie)",
           "quiet_ack": "Krótkie potwierdzenie (dźwięk)",
+          "calendar_llm": "Wysyłaj zapytania kalendarza do LLM",
           "channel": "Kanał wydań"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Wł.: tylko to, co Assist może widzieć. Wył.: także ukryte encje.",
           "nlu_rag": "Domyślnie wył. Przy czacie tylko rozpoznany fragment idzie do modelu zapasowego.",
           "quiet_ack": "Przy prostym włączeniu lub wyłączeniu światła brak zdania, tylko krótki dźwięk.",
+          "calendar_llm": "Domyślnie wyłączone. Wł.: Klar czyta kalendarz, zapasowy LLM mówi wydarzenia. Wył.: Klar mówi listę. Tworzenie, usuwanie i przenoszenie zostają w Klar.",
           "languages": "Domyślnie język systemu Home Assistant.",
           "channel": "W każdej chwili. Staging wskazuje na Klar NLU (Staging)."
         }

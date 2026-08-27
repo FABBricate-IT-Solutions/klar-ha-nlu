@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - enu belaku hallige
-  - enu hallige belaku
+  - ಏನು ಬೆಳಕು ಹಾಲ್
+  - ಏನು ಹಾಲ್ ಬೆಳಕು
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - enu parade hallige
-  - enu hallige parade
+  - ಏನು ಪರದೆ ಹಾಲ್
+  - ಏನು ಹಾಲ್ ಪರದೆ
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - enu biga pravesha
-  - enu pravesha biga
+  - ಏನು ಬೀಗ pravesha
+  - ಏನು pravesha ಬೀಗ
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - enu bisi hallige
-  - enu hallige bisi
+  - ಏನು ಬಿಸಿ ಹಾಲ್
+  - ಏನು ಹಾಲ್ ಬಿಸಿ
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - enu tv hallige
-  - enu hallige tv
+  - ಏನು tv ಹಾಲ್
+  - ಏನು ಹಾಲ್ tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - enu doorsensor pravesha
-  - enu pravesha doorsensor
+  - ಏನು doorsensor pravesha
+  - ಏನು pravesha doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - enu windowsensor hallige
-  - enu hallige windowsensor
+  - ಏನು windowsensor ಹಾಲ್
+  - ಏನು ಹಾಲ್ windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - enu tempsensor hallige
-  - enu hallige tempsensor
+  - ಏನು tempsensor ಹಾಲ್
+  - ಏನು ಹಾಲ್ tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - enu belaku aduge
-  - enu aduge belaku
+  - ಏನು ಬೆಳಕು ಅಡುಗೆ
+  - ಏನು ಅಡುಗೆ ಬೆಳಕು
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - enu belaku office
-  - enu office belaku
+  - ಏನು ಬೆಳಕು office
+  - ಏನು office ಬೆಳಕು
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - enu belaku garden
-  - enu garden belaku
+  - ಏನು ಬೆಳಕು garden
+  - ಏನು garden ಬೆಳಕು
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - enu belaku basement
-  - enu basement belaku
+  - ಏನು ಬೆಳಕು basement
+  - ಏನು basement ಬೆಳಕು
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - enu parade shayanakone
-  - enu shayanakone parade
+  - ಏನು ಪರದೆ shayanakonemaster
+  - ಏನು shayanakonemaster ಪರದೆ
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - enu parade garage
-  - enu garage parade
+  - ಏನು ಪರದೆ garage
+  - ಏನು garage ಪರದೆ
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - enu biga garage
-  - enu garage biga
+  - ಏನು ಬೀಗ garage
+  - ಏನು garage ಬೀಗ
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - enu bisi shayanakone
-  - enu shayanakone bisi
+  - ಏನು ಬಿಸಿ shayanakonemaster
+  - ಏನು shayanakonemaster ಬಿಸಿ
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - enu bisi shayanakone
-  - enu shayanakone bisi
+  - ಏನು bisi shayanakonemaster
+  - ಏನು shayanakonemaster bisi
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - enu tv kutumba
-  - enu kutumba tv
+  - ಏನು tv kutumba
+  - ಏನು kutumba tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enu tivi hallige
-  - enu hallige tivi
+  - ಏನು ಟಿವಿ ಹಾಲ್
+  - ಏನು ಹಾಲ್ ಟಿವಿ
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - enu motion aduge
-  - enu aduge motion
+  - ಏನು motion ಅಡುಗೆ
+  - ಏನು ಅಡುಗೆ motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - enu humidity hallige
-  - enu hallige humidity
+  - ಏನು humidity ಹಾಲ್
+  - ಏನು ಹಾಲ್ humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - enu fanu shayanakone
-  - enu shayanakone fanu
+  - ಏನು ಫ್ಯಾನ್ shayanakonemaster
+  - ಏನು shayanakonemaster ಫ್ಯಾನ್
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - enu gudisu hallige
-  - enu hallige gudisu
+  - ಏನು ಗುಡಿಸು ಹಾಲ್
+  - ಏನು ಹಾಲ್ ಗುಡಿಸು
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - enu belaku hallige
-  - enu hallige belaku
+  - ಏನು ಬೆಳಕು ಹಾಲ್
+  - ಏನು ಹಾಲ್ ಬೆಳಕು
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - enu belaku aduge
-  - enu aduge belaku
+  - ಏನು ಬೆಳಕು ಅಡುಗೆ
+  - ಏನು ಅಡುಗೆ ಬೆಳಕು
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - enu belaku shayanakone
-  - enu shayanakone belaku
+  - ಏನು ಬೆಳಕು shayanakonemaster
+  - ಏನು shayanakonemaster ಬೆಳಕು
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - enu belaku shayanakone
-  - enu shayanakone belaku
+  - ಏನು ಬೆಳಕು shayanakonemaster
+  - ಏನು shayanakonemaster ಬೆಳಕು
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - enu belaku hallway
-  - enu hallway belaku
+  - ಏನು ಬೆಳಕು hallway
+  - ಏನು hallway ಬೆಳಕು
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - enu belaku kutumba
-  - enu kutumba belaku
+  - ಏನು ಬೆಳಕು kutumba
+  - ಏನು kutumba ಬೆಳಕು
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - enu belaku kutumbaess
-  - enu kutumbaess belaku
+  - ಏನು ಬೆಳಕು kutumbaess
+  - ಏನು kutumbaess ಬೆಳಕು
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - enu belaku garage
-  - enu garage belaku
+  - ಏನು ಬೆಳಕು garage
+  - ಏನು garage ಬೆಳಕು
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - enu belaku shayanakone2
-  - enu shayanakone2 belaku
+  - ಏನು ಬೆಳಕು shayanakone2
+  - ಏನು shayanakone2 ಬೆಳಕು
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - enu belaku shayanakone3
-  - enu shayanakone3 belaku
+  - ಏನು ಬೆಳಕು shayanakone3
+  - ಏನು shayanakone3 ಬೆಳಕು
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - enu belaku shayanakone4
-  - enu shayanakone4 belaku
+  - ಏನು ಬೆಳಕು shayanakone4
+  - ಏನು shayanakone4 ಬೆಳಕು
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - enu belaku pravesha
-  - enu pravesha belaku
+  - ಏನು ಬೆಳಕು pravesha
+  - ಏನು pravesha ಬೆಳಕು
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - enu belaku ogeyuva
-  - enu ogeyuva belaku
+  - ಏನು ಬೆಳಕು ogeyuva
+  - ಏನು ogeyuva ಬೆಳಕು
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - enu belaku main bath
-  - enu main bath belaku
+  - ಏನು ಬೆಳಕು main bath
+  - ಏನು main bath ಬೆಳಕು
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - enu belaku shauchalaya
-  - enu shauchalaya belaku
+  - ಏನು ಬೆಳಕು shauchalaya
+  - ಏನು shauchalaya ಬೆಳಕು
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - enu ensuite shayanakone
-  - enu shayanakone ensuite
+  - ಏನು ensuite shayanakonemaster
+  - ಏನು shayanakonemaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - enu belaku shayanakone
-  - enu shayanakone belaku
+  - ಏನು ಬೆಳಕು shayanakonemaster
+  - ಏನು shayanakonemaster ಬೆಳಕು
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - enu belaku mukhyasnana
-  - enu mukhyasnana belaku
+  - ಏನು ಬೆಳಕು mukhyasnana
+  - ಏನು mukhyasnana ಬೆಳಕು

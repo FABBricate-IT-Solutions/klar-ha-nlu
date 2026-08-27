@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - увімкни спальня стеля і спальня нічний
-  - спальня стеля і спальня нічний увімкни
+  - увімкни спальняmaster стеля і спальняmaster нічний
+  - спальняmaster стеля і спальняmaster нічний увімкни
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - вимкни спальня стеля і спальня нічний
-  - спальня стеля і спальня нічний вимкни
+  - вимкни спальняmaster стеля і спальняmaster нічний
+  - спальняmaster стеля і спальняmaster нічний вимкни
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - увімкни спальня вентилятор і кухня острів
-  - спальня вентилятор і кухня острів увімкни
+  - увімкни спальняmaster вентилятор і кухня острів
+  - спальняmaster вентилятор і кухня острів увімкни
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - вимкни світло спальня і main bath
-  - світло спальня і main bath вимкни
+  - вимкни світло спальняmaster і main bath
+  - світло спальняmaster і main bath вимкни
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - вимкни все світло крім вітальня і спальня
-  - все світло вимкни крім вітальня і спальня
+  - вимкни все світло крім вітальня і спальняmaster
+  - все світло вимкни крім вітальня і спальняmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - вимкни все світло поверх крім спальня
-  - все світло поверх вимкни крім спальня
+  - вимкни все світло поверх крім спальняmaster
+  - все світло поверх вимкни крім спальняmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - відкрий штора вітальня і спальня
-  - штора вітальня і спальня відкрий
+  - відкрий штора вітальня і спальняmaster
+  - штора вітальня і спальняmaster відкрий
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - закрий штора вітальня і спальня
-  - штора вітальня і спальня закрий
+  - закрий штора вітальня і спальняmaster
+  - штора вітальня і спальняmaster закрий
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - постав опалення вітальня і спальня 21
-  - опалення вітальня і спальня 21
+  - постав опалення вітальня і спальняmaster 21
+  - опалення вітальня і спальняmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

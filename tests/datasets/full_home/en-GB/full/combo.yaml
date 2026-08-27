@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - enable bedroom ceiling and bedroom bedside
-  - bedroom ceiling and bedroom bedside enable
+  - enable bedroommaster ceiling and bedroommaster bedside
+  - bedroommaster ceiling and bedroommaster bedside enable
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - extinguish bedroom ceiling and bedroom bedside
-  - bedroom ceiling and bedroom bedside extinguish
+  - extinguish bedroommaster ceiling and bedroommaster bedside
+  - bedroommaster ceiling and bedroommaster bedside extinguish
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - enable bedroom fan and kitchen island
-  - bedroom fan and kitchen island enable
+  - enable bedroommaster fan and kitchen island
+  - bedroommaster fan and kitchen island enable
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - extinguish light bedroom and main bath
-  - light bedroom and main bath extinguish
+  - extinguish light bedroommaster and main bath
+  - light bedroommaster and main bath extinguish
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - extinguish all light except lounge and bedroom
-  - all light extinguish except lounge and bedroom
+  - extinguish all light except lounge and bedroommaster
+  - all light extinguish except lounge and bedroommaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - extinguish all light upstairs except bedroom
-  - all light upstairs extinguish except bedroom
+  - extinguish all light upstairs except bedroommaster
+  - all light upstairs extinguish except bedroommaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - open curtain lounge and bedroom
-  - curtain lounge and bedroom open
+  - open curtain lounge and bedroommaster
+  - curtain lounge and bedroommaster open
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - close curtain lounge and bedroom
-  - curtain lounge and bedroom close
+  - close curtain lounge and bedroommaster
+  - curtain lounge and bedroommaster close
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set heating lounge and bedroom 21
-  - heating lounge and bedroom 21
+  - set heating lounge and bedroommaster 21
+  - heating lounge and bedroommaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

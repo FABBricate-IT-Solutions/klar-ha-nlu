@@ -36,6 +36,7 @@
           "assist_filter": "Nëmmen Entitéiten steieren, déi Assist gesäit",
           "nlu_rag": "NLU-RAG (optional)",
           "quiet_ack": "Kuerz Bestätegung (Klack)",
+          "calendar_llm": "Kalennerfroen un d'LLM schécken",
           "channel": "Release-Kanal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Un: nëmmen wat Assist gesäit. Aus: och verstoppt Entitéiten.",
           "nlu_rag": "Standard aus. Am Chat geet nëmmen de passenden Ausschnëtt un d’Ersatzmodell.",
           "quiet_ack": "Bei einfachem Luucht un/aus keng Saz, nëmme kuerze Toun um Satellit.",
+          "calendar_llm": "Standard aus. Un: Klar liest de Kalenner, d'Ersatz-LLM seet d'Terminer. Aus: Klar seet d'Lëscht selwer. Uleeën, läschen a réckelen bleiwen bei Klar.",
           "languages": "Standard ass d’Systemsprooch vun Home Assistant.",
           "channel": "Jäerzäit. Staging weist op Klar NLU (Staging)."
         }

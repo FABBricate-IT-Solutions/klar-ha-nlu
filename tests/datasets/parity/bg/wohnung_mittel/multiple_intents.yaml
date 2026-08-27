@@ -1,26 +1,30 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - изключи всичко светлина освен спалня освен кухня
 multiple_intents/multi::licht_und_heizung:
-- включи светлина хол и сложи парно хол 23
+- включи всичко светлина хол then сложи парно хол 23
 multiple_intents/multi::wohn_und_ess_aus:
-- изключи светлина хол и изключи светлина дневнаfamess
+- изключи всичко светлина хол then изключи всичко светлина дневнаfamess
 multiple_intents/multi::wohn_und_ess_rot:
-- сложи светлина хол red и сложи светлина дневнаfamess red
+- сложи всичко светлина хол red then сложи всичко светлина дневнаfamess red
 multiple_intents/multi::wz_und_kuche_licht:
-- включи светлина хол и включи светлина кухня
+- включи всичко светлина хол then включи всичко светлина кухня
 multiple_intents/multi::zwei_raeume_und_heizung:
-- включи светлина хол и включи светлина кухня и сложи парно хол 23
+- включи всичко светлина хол then включи всичко светлина кухня then сложи парно хол
+  23
 multiple_intents/spoken::drei_raeume_an:
-- включи светлина хол и включи светлина дневнаfamess и включи светлина кухня
+- включи всичко светлина хол then включи всичко светлина дневнаfamess then включи
+  всичко светлина кухня
 multiple_intents/spoken::drei_raeume_aus:
-- изключи светлина хол и изключи светлина дневнаfamess и изключи светлина кухня
+- изключи всичко светлина хол then изключи всичко светлина дневнаfamess then изключи
+  всичко светлина кухня
 multiple_intents/spoken::ess_und_wohn_aus:
-- изключи светлина хол и изключи светлина дневнаfamess
+- изключи всичко светлина хол then изключи всичко светлина дневнаfamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- изключи топка и изключи таван
+- топка и таван спалня изключи
 multiple_intents/spoken_more::kuche_und_ess_an:
-- включи светлина кухня и включи светлина дневнаfamess
+- включи всичко светлина кухня then включи всичко светлина дневнаfamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- изключи светлина хол и изключи светлина дневнаfamess
+- изключи всичко светлина хол then изключи всичко светлина дневнаfamess then изключи
+  всичко светлина office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- изключи светлина хол
+- изключи всичко светлина хол then изключи всичко светлина office

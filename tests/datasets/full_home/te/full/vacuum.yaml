@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - veliginchu udchu
-  - udchu veliginchu
+  - వెలిగించు ఊడ్చు
+  - ఊడ్చు వెలిగించు
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - arpu udchu
-  - udchu arpu
+  - ఆర్పు ఊడ్చు
+  - ఊడ్చు ఆర్పు

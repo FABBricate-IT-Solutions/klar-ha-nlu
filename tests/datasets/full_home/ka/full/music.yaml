@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - daukare queen misagebi
-  - daukare queen televizori misagebi
+  - დაკვრა queen მისაღები
+  - დაკვრა queen ტელევიზორი მისაღები
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - daukare album rumours by fleetwood mac misagebi
+  - დაკვრა album rumours by fleetwood mac მისაღები
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - daukare queen radio mode misagebi
+  - დაკვრა queen radio mode მისაღები
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - daukare bohemian rhapsody queue misagebi
+  - დაკვრა bohemian rhapsody queue მისაღები
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ra televizori misagebi
-  - ra track misagebi
+  - რა ტელევიზორი მისაღები
+  - რა track მისაღები
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - daayene televizori misagebi 10
-  - televizori misagebi 10
+  - დააყენე ტელევიზორი მისაღები 10
+  - ტელევიზორი მისაღები 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - daayene televizori misagebi 20
-  - televizori misagebi 20
+  - დააყენე ტელევიზორი მისაღები 20
+  - ტელევიზორი მისაღები 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - daayene televizori misagebi 30
-  - televizori misagebi 30
+  - დააყენე ტელევიზორი მისაღები 30
+  - ტელევიზორი მისაღები 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - daayene televizori misagebi 50
-  - televizori misagebi 50
+  - დააყენე ტელევიზორი მისაღები 50
+  - ტელევიზორი მისაღები 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - daayene televizori misagebi 80
-  - televizori misagebi 80
+  - დააყენე ტელევიზორი მისაღები 80
+  - ტელევიზორი მისაღები 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track misagebi
+  - next track მისაღები
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track misagebi
+  - previous track მისაღები
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - daukare queen samzareulo
-  - daukare queen televizori samzareulo
+  - დაკვრა queen სამზარეულო
+  - დაკვრა queen ტელევიზორი სამზარეულო
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - daukare beatles misagebi
-  - daukare beatles televizori misagebi
+  - დაკვრა beatles მისაღები
+  - დაკვრა beatles ტელევიზორი მისაღები
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - daukare radiohead misagebi
-  - daukare radiohead televizori misagebi
+  - დაკვრა radiohead მისაღები
+  - დაკვრა radiohead ტელევიზორი მისაღები
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - daukare abba misagebi
-  - daukare abba televizori misagebi
+  - დაკვრა abba მისაღები
+  - დაკვრა abba ტელევიზორი მისაღები
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - daukare coldplay misagebi
-  - daukare coldplay televizori misagebi
+  - დაკვრა coldplay მისაღები
+  - დაკვრა coldplay ტელევიზორი მისაღები
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - daukare adele misagebi
-  - daukare adele televizori misagebi
+  - დაკვრა adele მისაღები
+  - დაკვრა adele ტელევიზორი მისაღები
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - daukare prince misagebi
-  - daukare prince televizori misagebi
+  - დაკვრა prince მისაღები
+  - დაკვრა prince ტელევიზორი მისაღები
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - daukare bowie misagebi
-  - daukare bowie televizori misagebi
+  - დაკვრა bowie მისაღები
+  - დაკვრა bowie ტელევიზორი მისაღები
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - daukare nirvana misagebi
-  - daukare nirvana televizori misagebi
+  - დაკვრა nirvana მისაღები
+  - დაკვრა nirvana ტელევიზორი მისაღები
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - daukare eagles misagebi
-  - daukare eagles televizori misagebi
+  - დაკვრა eagles მისაღები
+  - დაკვრა eagles ტელევიზორი მისაღები
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - daukare madonna misagebi
-  - daukare madonna televizori misagebi
+  - დაკვრა madonna მისაღები
+  - დაკვრა madonna ტელევიზორი მისაღები
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - daukare mozart misagebi
-  - daukare mozart televizori misagebi
+  - დაკვრა mozart მისაღები
+  - დაკვრა mozart ტელევიზორი მისაღები
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - daukare daft punk misagebi
-  - daukare daft punk televizori misagebi
+  - დაკვრა daft punk მისაღები
+  - დაკვრა daft punk ტელევიზორი მისაღები
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - daukare biafra misagebi
-  - daukare biafra televizori misagebi
+  - დაკვრა biafra მისაღები
+  - დაკვრა biafra ტელევიზორი მისაღები
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - daukare queen samzareulo
-  - daukare queen televizori samzareulo
+  - დაკვრა queen სამზარეულო
+  - დაკვრა queen ტელევიზორი სამზარეულო
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - daukare beatles samzareulo
-  - daukare beatles televizori samzareulo
+  - დაკვრა beatles სამზარეულო
+  - დაკვრა beatles ტელევიზორი სამზარეულო
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - daukare radiohead samzareulo
-  - daukare radiohead televizori samzareulo
+  - დაკვრა radiohead სამზარეულო
+  - დაკვრა radiohead ტელევიზორი სამზარეულო
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - daukare abba samzareulo
-  - daukare abba televizori samzareulo
+  - დაკვრა abba სამზარეულო
+  - დაკვრა abba ტელევიზორი სამზარეულო
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - daukare coldplay samzareulo
-  - daukare coldplay televizori samzareulo
+  - დაკვრა coldplay სამზარეულო
+  - დაკვრა coldplay ტელევიზორი სამზარეულო
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - daukare adele samzareulo
-  - daukare adele televizori samzareulo
+  - დაკვრა adele სამზარეულო
+  - დაკვრა adele ტელევიზორი სამზარეულო
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - daukare prince samzareulo
-  - daukare prince televizori samzareulo
+  - დაკვრა prince სამზარეულო
+  - დაკვრა prince ტელევიზორი სამზარეულო
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - daukare bowie samzareulo
-  - daukare bowie televizori samzareulo
+  - დაკვრა bowie სამზარეულო
+  - დაკვრა bowie ტელევიზორი სამზარეულო
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - daukare nirvana samzareulo
-  - daukare nirvana televizori samzareulo
+  - დაკვრა nirvana სამზარეულო
+  - დაკვრა nirvana ტელევიზორი სამზარეულო
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - daukare eagles samzareulo
-  - daukare eagles televizori samzareulo
+  - დაკვრა eagles სამზარეულო
+  - დაკვრა eagles ტელევიზორი სამზარეულო
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - daukare madonna samzareulo
-  - daukare madonna televizori samzareulo
+  - დაკვრა madonna სამზარეულო
+  - დაკვრა madonna ტელევიზორი სამზარეულო
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - daukare mozart samzareulo
-  - daukare mozart televizori samzareulo
+  - დაკვრა mozart სამზარეულო
+  - დაკვრა mozart ტელევიზორი სამზარეულო
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - daukare daft punk samzareulo
-  - daukare daft punk televizori samzareulo
+  - დაკვრა daft punk სამზარეულო
+  - დაკვრა daft punk ტელევიზორი სამზარეულო
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - daukare biafra samzareulo
-  - daukare biafra televizori samzareulo
+  - დაკვრა biafra სამზარეულო
+  - დაკვრა biafra ტელევიზორი სამზარეულო
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - daukare queen office
-  - daukare queen televizori office
+  - დაკვრა queen office
+  - დაკვრა queen ტელევიზორი office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - daukare beatles office
-  - daukare beatles televizori office
+  - დაკვრა beatles office
+  - დაკვრა beatles ტელევიზორი office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - daukare radiohead office
-  - daukare radiohead televizori office
+  - დაკვრა radiohead office
+  - დაკვრა radiohead ტელევიზორი office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - daukare abba office
-  - daukare abba televizori office
+  - დაკვრა abba office
+  - დაკვრა abba ტელევიზორი office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - daukare coldplay office
-  - daukare coldplay televizori office
+  - დაკვრა coldplay office
+  - დაკვრა coldplay ტელევიზორი office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - daukare adele office
-  - daukare adele televizori office
+  - დაკვრა adele office
+  - დაკვრა adele ტელევიზორი office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - daukare prince office
-  - daukare prince televizori office
+  - დაკვრა prince office
+  - დაკვრა prince ტელევიზორი office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - daukare bowie office
-  - daukare bowie televizori office
+  - დაკვრა bowie office
+  - დაკვრა bowie ტელევიზორი office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - daukare nirvana office
-  - daukare nirvana televizori office
+  - დაკვრა nirvana office
+  - დაკვრა nirvana ტელევიზორი office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - daukare eagles office
-  - daukare eagles televizori office
+  - დაკვრა eagles office
+  - დაკვრა eagles ტელევიზორი office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - daukare madonna office
-  - daukare madonna televizori office
+  - დაკვრა madonna office
+  - დაკვრა madonna ტელევიზორი office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - daukare mozart office
-  - daukare mozart televizori office
+  - დაკვრა mozart office
+  - დაკვრა mozart ტელევიზორი office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - daukare daft punk office
-  - daukare daft punk televizori office
+  - დაკვრა daft punk office
+  - დაკვრა daft punk ტელევიზორი office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - daukare biafra office
-  - daukare biafra televizori office
+  - დაკვრა biafra office
+  - დაკვრა biafra ტელევიზორი office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - daukare queen radio mode misagebi
+  - დაკვრა queen radio mode მისაღები
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ra televizori misagebi
-  - ra track misagebi
+  - რა ტელევიზორი მისაღები
+  - რა track მისაღები
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - daukare queen radio mode samzareulo
+  - დაკვრა queen radio mode სამზარეულო
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - ra televizori samzareulo
-  - ra track samzareulo
+  - რა ტელევიზორი სამზარეულო
+  - რა track სამზარეულო
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - daukare queen radio mode office
+  - დაკვრა queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - ra televizori office
-  - ra track office
+  - რა ტელევიზორი office
+  - რა track office

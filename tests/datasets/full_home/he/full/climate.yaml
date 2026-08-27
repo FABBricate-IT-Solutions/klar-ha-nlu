@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - שים חימום חדרשינה 18
-  - חימום חדרשינה 18
+  - שים חימום חדרשינהmaster 18
+  - חימום חדרשינהmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - שים חימום חדרשינה 19
-  - חימום חדרשינה 19
+  - שים חימום חדרשינהmaster 19
+  - חימום חדרשינהmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - שים חימום חדרשינה 20
-  - חימום חדרשינה 20
+  - שים חימום חדרשינהmaster 20
+  - חימום חדרשינהmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - שים חימום חדרשינה 21
-  - חימום חדרשינה 21
+  - שים חימום חדרשינהmaster 21
+  - חימום חדרשינהmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - שים חימום חדרשינה 22
-  - חימום חדרשינה 22
+  - שים חימום חדרשינהmaster 22
+  - חימום חדרשינהmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - שים חימום חדרשינה 23
-  - חימום חדרשינה 23
+  - שים חימום חדרשינהmaster 23
+  - חימום חדרשינהmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - שים חימום חדרשינה 24
-  - חימום חדרשינה 24
+  - שים חימום חדרשינהmaster 24
+  - חימום חדרשינהmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - מה חימום חדרשינה
-  - חימום חדרשינה
+  - מה חימום חדרשינהmaster
+  - חימום חדרשינהmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - שים טמפרטורה חדרשינה 18
-  - טמפרטורה חדרשינה 18
+  - שים טמפרטורה חדרשינהmaster 18
+  - טמפרטורה חדרשינהmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - שים טמפרטורה חדרשינה 19
-  - טמפרטורה חדרשינה 19
+  - שים טמפרטורה חדרשינהmaster 19
+  - טמפרטורה חדרשינהmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - שים טמפרטורה חדרשינה 20
-  - טמפרטורה חדרשינה 20
+  - שים טמפרטורה חדרשינהmaster 20
+  - טמפרטורה חדרשינהmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - שים טמפרטורה חדרשינה 21
-  - טמפרטורה חדרשינה 21
+  - שים טמפרטורה חדרשינהmaster 21
+  - טמפרטורה חדרשינהmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - שים טמפרטורה חדרשינה 22
-  - טמפרטורה חדרשינה 22
+  - שים טמפרטורה חדרשינהmaster 22
+  - טמפרטורה חדרשינהmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - שים טמפרטורה חדרשינה 23
-  - טמפרטורה חדרשינה 23
+  - שים טמפרטורה חדרשינהmaster 23
+  - טמפרטורה חדרשינהmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - שים טמפרטורה חדרשינה 24
-  - טמפרטורה חדרשינה 24
+  - שים טמפרטורה חדרשינהmaster 24
+  - טמפרטורה חדרשינהmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - מה טמפרטורה חדרשינה
-  - טמפרטורה חדרשינה
+  - מה טמפרטורה חדרשינהmaster
+  - טמפרטורה חדרשינהmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - מה חימום חדרשינה
-  - חימום חדרשינה
+  - מה חימום חדרשינהmaster
+  - חימום חדרשינהmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - מה טמפרטורה חדרשינה
-  - טמפרטורה חדרשינה
+  - מה טמפרטורה חדרשינהmaster
+  - טמפרטורה חדרשינהmaster

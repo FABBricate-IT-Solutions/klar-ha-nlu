@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Bilik
+  name: Bilikmaster
   floor: upper
   aliases:
+  - bilikmaster
   - bilik
 - id: bedroom_2
   name: Bilik2
@@ -130,10 +131,10 @@ devices:
   - siling
 - id: light.living_lamp
   area_id: living
-  name: ruang lampu
+  name: ruang lamp
   aliases:
-  - ruang lampu
-  - lampu
+  - ruang lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: ruankeluargaess lampu
@@ -190,29 +191,29 @@ devices:
   - lampu
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: bilik siling
+  name: bilikmaster siling
   aliases:
-  - bilik siling
+  - bilikmaster siling
   - siling
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: bilik ensuite
+  name: bilikmaster ensuite
   aliases:
-  - bilik ensuite
+  - bilikmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: bilik left katil
+  name: bilikmaster left katil
   aliases:
-  - bilik left katil
+  - bilikmaster left katil
   - katil
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: bilik right katil
+  name: bilikmaster right katil
   aliases:
-  - bilik right katil
+  - bilikmaster right katil
   - katil
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - langsir
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: bilik langsir
+  name: bilikmaster langsir
   aliases:
-  - bilik langsir
+  - bilikmaster langsir
   - langsir
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - pendingin
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: bilik pendingin
+  name: bilikmaster pendingin
   aliases:
-  - bilik pendingin
+  - bilikmaster pendingin
   - pendingin
 - id: climate.master_ac
   area_id: master_bedroom
-  name: pendingin bilik
+  name: pendingin bilikmaster
   aliases:
-  - pendingin bilik
+  - pendingin bilikmaster
   - pendingin
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - kipas
 - id: fan.master_fan
   area_id: master_bedroom
-  name: bilik kipas
+  name: bilikmaster kipas
   aliases:
-  - bilik kipas
+  - bilikmaster kipas
   - kipas
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -1,26 +1,30 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - iskljuci sve svetlo osim spavaca osim kuhinja
 multiple_intents/multi::licht_und_heizung:
-- ukljuci svetlo dnevna i stavi grejanje dnevna 23
+- ukljuci sve svetlo dnevna then stavi grejanje dnevna 23
 multiple_intents/multi::wohn_und_ess_aus:
-- iskljuci svetlo dnevna i iskljuci svetlo dnevnafamess
+- iskljuci sve svetlo dnevna then iskljuci sve svetlo dnevnafamess
 multiple_intents/multi::wohn_und_ess_rot:
-- stavi svetlo dnevna red i stavi svetlo dnevnafamess red
+- stavi sve svetlo dnevna red then stavi sve svetlo dnevnafamess red
 multiple_intents/multi::wz_und_kuche_licht:
-- ukljuci svetlo dnevna i ukljuci svetlo kuhinja
+- ukljuci sve svetlo dnevna then ukljuci sve svetlo kuhinja
 multiple_intents/multi::zwei_raeume_und_heizung:
-- ukljuci svetlo dnevna i ukljuci svetlo kuhinja i stavi grejanje dnevna 23
+- ukljuci sve svetlo dnevna then ukljuci sve svetlo kuhinja then stavi grejanje dnevna
+  23
 multiple_intents/spoken::drei_raeume_an:
-- ukljuci svetlo dnevna i ukljuci svetlo dnevnafamess i ukljuci svetlo kuhinja
+- ukljuci sve svetlo dnevna then ukljuci sve svetlo dnevnafamess then ukljuci sve
+  svetlo kuhinja
 multiple_intents/spoken::drei_raeume_aus:
-- iskljuci svetlo dnevna i iskljuci svetlo dnevnafamess i iskljuci svetlo kuhinja
+- iskljuci sve svetlo dnevna then iskljuci sve svetlo dnevnafamess then iskljuci sve
+  svetlo kuhinja
 multiple_intents/spoken::ess_und_wohn_aus:
-- iskljuci svetlo dnevna i iskljuci svetlo dnevnafamess
+- iskljuci sve svetlo dnevna then iskljuci sve svetlo dnevnafamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- iskljuci kugla i iskljuci plafon
+- kugla i plafon spavaca iskljuci
 multiple_intents/spoken_more::kuche_und_ess_an:
-- ukljuci svetlo kuhinja i ukljuci svetlo dnevnafamess
+- ukljuci sve svetlo kuhinja then ukljuci sve svetlo dnevnafamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- iskljuci svetlo dnevna i iskljuci svetlo dnevnafamess
+- iskljuci sve svetlo dnevna then iskljuci sve svetlo dnevnafamess then iskljuci sve
+  svetlo office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- iskljuci svetlo dnevna
+- iskljuci sve svetlo dnevna then iskljuci sve svetlo office

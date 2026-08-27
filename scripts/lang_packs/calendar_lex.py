@@ -9,6 +9,7 @@ from __future__ import annotations
 from lang_packs.calendar_lex_east import east_packs
 from lang_packs.calendar_lex_more import merge_more
 from lang_packs.calendar_ops_lex import merge_ops
+from lang_packs.native_apply import apply_calendar
 
 
 def _sp(
@@ -306,6 +307,7 @@ CALENDAR.update(east_packs(_row, _sp))
 
 merge_more(CALENDAR, _row, _sp)
 merge_ops(CALENDAR)
+apply_calendar(CALENDAR)
 
 
 def calendar_for(code: str) -> dict:

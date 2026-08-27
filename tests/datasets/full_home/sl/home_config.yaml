@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Spalnica
+  name: Spalnicamaster
   floor: upper
   aliases:
+  - spalnicamaster
   - spalnica
 - id: bedroom_2
   name: Spalnica2
@@ -130,10 +131,10 @@ devices:
   - strop
 - id: light.living_lamp
   area_id: living
-  name: dnevna luc
+  name: dnevna lamp
   aliases:
-  - dnevna luc
-  - luc
+  - dnevna lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: dnevnafamess luc
@@ -190,29 +191,29 @@ devices:
   - luc
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: spalnica strop
+  name: spalnicamaster strop
   aliases:
-  - spalnica strop
+  - spalnicamaster strop
   - strop
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: spalnica ensuite
+  name: spalnicamaster ensuite
   aliases:
-  - spalnica ensuite
+  - spalnicamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: spalnica left nocna
+  name: spalnicamaster left nocna
   aliases:
-  - spalnica left nocna
+  - spalnicamaster left nocna
   - nocna
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: spalnica right nocna
+  name: spalnicamaster right nocna
   aliases:
-  - spalnica right nocna
+  - spalnicamaster right nocna
   - nocna
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - zavesa
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: spalnica zavesa
+  name: spalnicamaster zavesa
   aliases:
-  - spalnica zavesa
+  - spalnicamaster zavesa
   - zavesa
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - ogrevanje
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: spalnica ogrevanje
+  name: spalnicamaster ogrevanje
   aliases:
-  - spalnica ogrevanje
+  - spalnicamaster ogrevanje
   - ogrevanje
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatura spalnica
+  name: temperatura spalnicamaster
   aliases:
-  - temperatura spalnica
+  - temperatura spalnicamaster
   - temperatura
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: spalnica ventilator
+  name: spalnicamaster ventilator
   aliases:
-  - spalnica ventilator
+  - spalnicamaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

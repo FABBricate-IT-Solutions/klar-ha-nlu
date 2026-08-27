@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Chhasetskatsi.",
-    need_on: "Inch miatsnem?",
-    need_off: "Inch anjatem?",
+    need_on: "Ինչ միացնեմ?",
+    need_off: "Ինչ անջատեմ?",
     need_which: "Inch miatsnem?",
     correction: "Lav, verjin nakadasutyune toghnum em.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " yev ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} miatsvats e.",
+    turn_on: "{target} միացված է։",
     turn_on_scene: "{target}.",
-    turn_off: "{target} anjatvats e.",
+    turn_off: "{target} անջատված է։",
     toggle: "{target} poxvum e.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Inch miatsnem?",
     or_home: "Inch miatsnem?",
-    room_names: &[("wohnzimmer", "hyurasenyak"), ("kuche", "khohanots")],
-    loc_der_rooms: &["hyurasenyak", "khohanots"],
+    room_names: &[("wohnzimmer", "հյուրասենյակ"), ("kuche", "խոհանոց")],
+    loc_der_rooms: &["խոհանոց", "հյուրասենյակ"],
     personality: &[
         ("butler", &["Lav. ", "Hachuyqov. ", ""]),
         ("locker", &["Hasatsa. ", "Arvats e. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Ayo. ", "Ayo, im gandze. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Iskapes?",
+    confirm: "Իսկապե՞ս։",
 };

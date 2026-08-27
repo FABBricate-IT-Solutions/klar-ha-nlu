@@ -291,10 +291,11 @@ _PERSONALITY = {
 
 
 def prompt_pack(language: object | None) -> str:
-    text = str(language or "").replace("-", "_").casefold()
-    if text.startswith("en"):
-        return "en"
-    return "de"
+    try:
+        from .lang_select import resolve_pack
+    except ImportError:
+        from lang_select import resolve_pack  # type: ignore[no-redef]
+    return resolve_pack(str(language) if language else None)
 
 
 def voice_block(pack: str, personality: str) -> str:
@@ -319,7 +320,7 @@ def voice_block(pack: str, personality: str) -> str:
     shots = locale_shots(pack, personality) or blank
     block = (
         f"Voice: {voice.rstrip('.')}.\n"
-        f"Output language = language of the input line. "
+        f"Keep the Klar NLU output language. Do not translate into German unless that is the pack. "
         f"Sound like this character. Vary the wording. "
         f"Do not stamp the same opening every time.\n"
     )

@@ -1,26 +1,29 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - extinguish all light except bedroom except kitchen
 multiple_intents/multi::licht_und_heizung:
-- enable light lounge and set heating lounge 23
+- enable all light lounge then set heating lounge 23
 multiple_intents/multi::wohn_und_ess_aus:
-- extinguish light lounge and extinguish light loungefamess
+- extinguish all light lounge then extinguish all light loungefamess
 multiple_intents/multi::wohn_und_ess_rot:
-- set light lounge red and set light loungefamess red
+- set all light lounge red then set all light loungefamess red
 multiple_intents/multi::wz_und_kuche_licht:
-- enable light lounge and enable light kitchen
+- enable all light lounge then enable all light kitchen
 multiple_intents/multi::zwei_raeume_und_heizung:
-- enable light lounge and enable light kitchen and set heating lounge 23
+- enable all light lounge then enable all light kitchen then set heating lounge 23
 multiple_intents/spoken::drei_raeume_an:
-- enable light lounge and enable light loungefamess and enable light kitchen
+- enable all light lounge then enable all light loungefamess then enable all light
+  kitchen
 multiple_intents/spoken::drei_raeume_aus:
-- extinguish light lounge and extinguish light loungefamess and extinguish light kitchen
+- extinguish all light lounge then extinguish all light loungefamess then extinguish
+  all light kitchen
 multiple_intents/spoken::ess_und_wohn_aus:
-- extinguish light lounge and extinguish light loungefamess
+- extinguish all light lounge then extinguish all light loungefamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- extinguish globe and extinguish ceiling
+- globe and ceiling bedroom extinguish
 multiple_intents/spoken_more::kuche_und_ess_an:
-- enable light kitchen and enable light loungefamess
+- enable all light kitchen then enable all light loungefamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- extinguish light lounge and extinguish light loungefamess
+- extinguish all light lounge then extinguish all light loungefamess then extinguish
+  all light office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- extinguish light lounge
+- extinguish all light lounge then extinguish all light office

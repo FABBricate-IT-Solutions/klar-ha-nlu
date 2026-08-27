@@ -1,3 +1,4 @@
+use crate::home::paths::{read_to_string_confined, write_confined};
 use crate::io::auth::reads_allowed;
 use crate::io::state::AppState;
 use crate::types::{ParseDecision, ParseOutcome};
@@ -13,6 +14,7 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 const MAX_TURNS: usize = 200;
 const TTL_MS: u64 = 24 * 60 * 60 * 1000;
+const JOURNAL_FILE: &str = "conversations.jsonl";
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ConversationTurn {
@@ -38,15 +40,14 @@ pub struct ConversationTurn {
 
 #[derive(Clone)]
 pub struct ConversationJournal {
-    path: PathBuf,
+    dir: PathBuf,
     lock: std::sync::Arc<Mutex<Vec<ConversationTurn>>>,
 }
 
 impl ConversationJournal {
     pub fn open(data_dir: &FsPath) -> Self {
-        let path = data_dir.join("conversations.jsonl");
-        let turns = read_turns(&path);
-        Self { path, lock: std::sync::Arc::new(Mutex::new(turns)) }
+        let turns = read_turns(data_dir);
+        Self { dir: data_dir.to_path_buf(), lock: std::sync::Arc::new(Mutex::new(turns)) }
     }
 
     pub fn append(&self, turn: ConversationTurn) {
@@ -58,7 +59,7 @@ impl ConversationJournal {
             let drop = turns.len() - MAX_TURNS;
             turns.drain(0..drop);
         }
-        let _ = write_turns(&self.path, &turns);
+        let _ = write_turns(&self.dir, &turns);
     }
 
     pub fn list(&self) -> Vec<ConversationTurn> {
@@ -112,18 +113,18 @@ fn now_ms() -> u64 {
     SystemTime::now().duration_since(UNIX_EPOCH).map(|d| d.as_millis() as u64).unwrap_or(0)
 }
 
-fn read_turns(path: &FsPath) -> Vec<ConversationTurn> {
-    let raw = std::fs::read_to_string(path).unwrap_or_default();
+fn read_turns(dir: &FsPath) -> Vec<ConversationTurn> {
+    let raw = read_to_string_confined(dir, JOURNAL_FILE).unwrap_or_default();
     raw.lines().filter_map(|line| serde_json::from_str(line).ok()).collect()
 }
 
-fn write_turns(path: &FsPath, turns: &[ConversationTurn]) -> std::io::Result<()> {
+fn write_turns(dir: &FsPath, turns: &[ConversationTurn]) -> std::io::Result<()> {
     let mut body = String::new();
     for turn in turns {
         body.push_str(&serde_json::to_string(turn).unwrap_or_default());
         body.push('\n');
     }
-    std::fs::write(path, body)
+    write_confined(dir, JOURNAL_FILE, body.as_bytes())
 }
 
 pub fn routes() -> Router<AppState> {

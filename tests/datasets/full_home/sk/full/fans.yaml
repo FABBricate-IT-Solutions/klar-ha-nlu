@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator spalna zapni
-  - zapni ventilator spalna
+  - ventilator spalnamaster zapni
+  - zapni ventilator spalnamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - vypni ventilator spalna
-  - ventilator spalna vypni
+  - vypni ventilator spalnamaster
+  - ventilator spalnamaster vypni
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - nastav ventilator spalna 40
-  - ventilator spalna 40
+  - nastav ventilator spalnamaster 40
+  - ventilator spalnamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - nastav ventilator spalna 20
-  - ventilator spalna 20
+  - nastav ventilator spalnamaster 20
+  - ventilator spalnamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - nastav ventilator spalna 60
-  - ventilator spalna 60
+  - nastav ventilator spalnamaster 60
+  - ventilator spalnamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - nastav ventilator spalna 80
-  - ventilator spalna 80
+  - nastav ventilator spalnamaster 80
+  - ventilator spalnamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - افتح ستارة غرفة
-  - ستارة غرفة افتح
+  - افتح ستارة غرفةmaster
+  - ستارة غرفةmaster افتح
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - اغلق ستارة غرفة
-  - ستارة غرفة اغلق
+  - اغلق ستارة غرفةmaster
+  - ستارة غرفةmaster اغلق
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - حط ستارة غرفة 0
-  - ستارة غرفة 0
+  - حط ستارة غرفةmaster 0
+  - ستارة غرفةmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - حط ستارة غرفة 25
-  - ستارة غرفة 25
+  - حط ستارة غرفةmaster 25
+  - ستارة غرفةmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - حط ستارة غرفة 40
-  - ستارة غرفة 40
+  - حط ستارة غرفةmaster 40
+  - ستارة غرفةmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - حط ستارة غرفة 75
-  - ستارة غرفة 75
+  - حط ستارة غرفةmaster 75
+  - ستارة غرفةmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - حط ستارة غرفة 100
-  - ستارة غرفة 100
+  - حط ستارة غرفةmaster 100
+  - ستارة غرفةmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - افتح ستارة غرفة
-  - ستارة غرفة افتح
+  - افتح ستارة غرفةmaster
+  - ستارة غرفةmaster افتح

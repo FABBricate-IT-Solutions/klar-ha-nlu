@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - theli varal
-  - varal theli
+  - തെളി വാരൽ
+  - വാരൽ തെളി
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - anaykku varal
-  - varal anaykku
+  - അണയ്ക്ക് വാരൽ
+  - വാരൽ അണയ്ക്ക്

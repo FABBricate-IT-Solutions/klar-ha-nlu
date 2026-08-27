@@ -21,13 +21,53 @@ _LOGGER = logging.getLogger(__name__)
 
 _FEEDS = {
     "de": "https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml",
+    "de-CH": "https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml",
+    "de-AT": "https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml",
     "en": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "en-GB": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "fr": "https://feeds.bbci.co.uk/afrique/rss.xml",
+    "es": "https://feeds.bbci.co.uk/mundo/rss.xml",
+    "ca": "https://feeds.bbci.co.uk/mundo/rss.xml",
+    "gl": "https://feeds.bbci.co.uk/mundo/rss.xml",
+    "pt": "https://feeds.bbci.co.uk/portuguese/rss.xml",
+    "pt-BR": "https://feeds.bbci.co.uk/portuguese/rss.xml",
+    "ar": "https://feeds.bbci.co.uk/arabic/rss.xml",
+    "fa": "https://feeds.bbci.co.uk/arabic/rss.xml",
+    "ur": "https://feeds.bbci.co.uk/urdu/rss.xml",
+    "hi": "https://feeds.bbci.co.uk/hindi/rss.xml",
+    "bn": "https://feeds.bbci.co.uk/bengali/rss.xml",
+    "mr": "https://feeds.bbci.co.uk/hindi/rss.xml",
+    "ne": "https://feeds.bbci.co.uk/hindi/rss.xml",
+    "gu": "https://feeds.bbci.co.uk/hindi/rss.xml",
+    "pa": "https://feeds.bbci.co.uk/hindi/rss.xml",
+    "ta": "https://feeds.bbci.co.uk/tamil/rss.xml",
+    "te": "https://feeds.bbci.co.uk/telugu/rss.xml",
+    "ja": "https://www.nhk.or.jp/rss/news/cat0.xml",
+    "zh-CN": "https://feeds.bbci.co.uk/zhongwen/simp/rss.xml",
+    "zh-TW": "https://feeds.bbci.co.uk/zhongwen/trad/rss.xml",
+    "zh-HK": "https://feeds.bbci.co.uk/zhongwen/trad/rss.xml",
+    "ko": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "th": "https://feeds.bbci.co.uk/thai/rss.xml",
 }
+_DEFAULT_FEED = _FEEDS["en"]
 _UA = "KlarNLU/2026.8.9 (Home Assistant news briefing)"
 
 _NUDGE = {
     "de": "Möchtest du zu einer der Meldungen mehr erfahren?",
+    "de-CH": "Wotsch zu einere vo de Meldige meh ghöre?",
+    "de-AT": "Möchtest du zu einer der Meldungen mehr erfahren?",
     "en": "Would you like to hear more about any of those stories?",
+    "en-GB": "Would you like to hear more about any of those stories?",
+    "fr": "Tu veux en savoir plus sur l'une de ces infos ?",
+    "es": "¿Quieres saber más de alguna de estas noticias?",
+    "ja": "どれかについてもっと聞きたいですか？",
+    "zh-CN": "想了解其中哪一条的详情吗？",
+    "zh-TW": "想了解其中哪一則的詳情嗎？",
+    "zh-HK": "想知多啲邊一則？",
+    "ko": "이 중 더 듣고 싶은 소식이 있나요?",
+    "hi": "किसी खबर के बारे में और सुनना है?",
+    "ar": "هل تريد معرفة المزيد عن أحد هذه الأخبار؟",
+    "th": "อยากฟังรายละเอียดข่าวไหนเพิ่มไหม",
 }
 
 _ASKED = (
@@ -49,11 +89,35 @@ _ASKED = (
     "more detail",
     "any of those",
     "einer der",
+    "もっと",
+    "詳しく",
+    "了解",
+    "详情",
+    "詳情",
+    "더 듣",
+    "더 알",
+    "और सुन",
+    "और जान",
+    "المزيد",
+    "เพิ่ม",
+    "en savoir",
+    "saber más",
+    "saber mas",
 )
 
 
+def feed_url(pack: str) -> str:
+    if pack in _FEEDS:
+        return _FEEDS[pack]
+    base = pack.split("-", 1)[0]
+    return _FEEDS.get(base, _DEFAULT_FEED)
+
+
 def nudge(pack: str) -> str:
-    return _NUDGE.get(pack, _NUDGE["de"])
+    if pack in _NUDGE:
+        return _NUDGE[pack]
+    base = pack.split("-", 1)[0]
+    return _NUDGE.get(base, _NUDGE["en"])
 
 
 def asked_for_more(text: str) -> bool:
@@ -99,7 +163,7 @@ def headlines_from_xml(raw: str, limit: int = 5) -> list[str]:
 async def fetch_headlines(hass: HomeAssistant, pack: str, limit: int = 5) -> list[str]:
     if aiohttp is None:
         return []
-    url = _FEEDS.get(pack, _FEEDS["de"])
+    url = feed_url(pack)
     try:
         session = async_get_clientsession(hass)
         async with session.get(

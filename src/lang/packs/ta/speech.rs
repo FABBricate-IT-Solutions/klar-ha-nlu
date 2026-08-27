@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Puriyavillai.",
-    need_on: "Enna erukka?",
-    need_off: "Enna anaikka?",
+    need_on: "என்ன ஏற்ற?",
+    need_off: "என்ன அணைக்க?",
     need_which: "Enna erukka?",
     correction: "Sari, last vaakiyam vidaikkiren.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " matrum ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} eriyuthu.",
+    turn_on: "{target} எரிகிறது.",
     turn_on_scene: "{target}.",
-    turn_off: "{target} anaithu.",
+    turn_off: "{target} அணைந்தது.",
     toggle: "{target} maatrugirathu.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Enna erukka?",
     or_home: "Enna erukka?",
-    room_names: &[("wohnzimmer", "arai"), ("kuche", "samaiyal")],
-    loc_der_rooms: &["arai", "samaiyal"],
+    room_names: &[("wohnzimmer", "அறை"), ("kuche", "சமையல்")],
+    loc_der_rooms: &["அறை", "சமையல்"],
     personality: &[
         ("butler", &["Nandraga. ", "Santhoshama. ", ""]),
         ("locker", &["Purinjiduchu. ", "Aachu. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Aam. ", "Aam, en nidhi. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Unmaiyil?",
+    confirm: "உண்மையில்?",
 };

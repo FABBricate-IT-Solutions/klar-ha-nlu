@@ -1,19 +1,19 @@
 multiple_intents/multiple_intents::multi_0:
-- eteins lumiere toilettes puis allume Guten Morgen
+- eteins lumiere toilettes puis allume scene good_morning
 multiple_intents/multiple_intents::multi_1:
-- quel lavevaisselle puis allume Haus verlassen
+- quel lavevaisselle puis allume scene leaving_home
 multiple_intents/multiple_intents::multi_10:
-- mets ventilateur chambre2 50 puis quel store chambre2 puis quel store chambre
+- mets ventilateur chambre2 50 puis quel store chambre2 puis quel store chambremaster
 multiple_intents/multiple_intents::multi_12:
-- eteins chevet chambre puis allume lumiere buanderie
+- eteins chevet chambremaster puis allume tout lumiere buanderie
 multiple_intents/multiple_intents::multi_14:
-- eteins lumiere cuisine puis quel lumiere couloir
+- eteins tout lumiere cuisine puis quel lumiere couloir
 multiple_intents/multiple_intents::multi_15:
-- quel store chambre2 puis eteins lumiere cuisine
+- quel store chambre2 puis eteins tout lumiere cuisine
 multiple_intents/multiple_intents::multi_16:
 - allume plafond cuisine puis quel lumiere couloir
 multiple_intents/multiple_intents::multi_18:
-- eteins ventilateur famille puis mets lumiere cuisine 20
+- eteins ventilateur famille puis mets ilot cuisine 20
 multiple_intents/multiple_intents::multi_19:
 - quel ventilateur chambre2 puis allume lumiere buanderie
 multiple_intents/multiple_intents::multi_2:
@@ -27,7 +27,7 @@ multiple_intents/multiple_intents::multi_5:
 multiple_intents/multiple_intents::multi_6:
 - allume plafond chambre3 puis eteins lumiere entree
 multiple_intents/multiple_intents::multi_7:
-- allume Filmabend puis eteins lavevaisselle
+- allume scene movie_night puis eteins lavevaisselle
 multiple_intents/multiple_intents::multi_8:
 - deverrouille serrure garage puis quel lumiere garage
 multiple_intents/multiple_intents::multi_9:

@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: спавача
+  name: спавачаmaster
   floor: upper
   aliases:
+  - спавачаmaster
   - спавача
 - id: bedroom_2
   name: спавача2
@@ -130,10 +131,10 @@ devices:
   - плафон
 - id: light.living_lamp
   area_id: living
-  name: дневна светло
+  name: дневна lamp
   aliases:
-  - дневна светло
-  - светло
+  - дневна lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: дневнаfamess светло
@@ -190,29 +191,29 @@ devices:
   - светло
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: спавача плафон
+  name: спавачаmaster плафон
   aliases:
-  - спавача плафон
+  - спавачаmaster плафон
   - плафон
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: спавача ensuite
+  name: спавачаmaster ensuite
   aliases:
-  - спавача ensuite
+  - спавачаmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: спавача left ноћни
+  name: спавачаmaster left ноћни
   aliases:
-  - спавача left ноћни
+  - спавачаmaster left ноћни
   - ноћни
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: спавача right ноћни
+  name: спавачаmaster right ноћни
   aliases:
-  - спавача right ноћни
+  - спавачаmaster right ноћни
   - ноћни
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - завеса
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: спавача завеса
+  name: спавачаmaster завеса
   aliases:
-  - спавача завеса
+  - спавачаmaster завеса
   - завеса
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - грејање
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: спавача грејање
+  name: спавачаmaster грејање
   aliases:
-  - спавача грејање
+  - спавачаmaster грејање
   - грејање
 - id: climate.master_ac
   area_id: master_bedroom
-  name: температура спавача
+  name: температура спавачаmaster
   aliases:
-  - температура спавача
+  - температура спавачаmaster
   - температура
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - вентилатор
 - id: fan.master_fan
   area_id: master_bedroom
-  name: спавача вентилатор
+  name: спавачаmaster вентилатор
   aliases:
-  - спавача вентилатор
+  - спавачаmaster вентилатор
   - вентилатор
 - id: fan.bedroom2_fan
   area_id: bedroom_2

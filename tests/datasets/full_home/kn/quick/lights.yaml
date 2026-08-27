@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku hallige
+  - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku hallige
+  - ಆರಿಸು ಬೆಳಕು ಹಾಲ್
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku aduge
+  - ಹಚ್ಚು ಬೆಳಕು ಅಡುಗೆ
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku aduge
+  - ಆರಿಸು ಬೆಳಕು ಅಡುಗೆ
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku garage
+  - ಹಚ್ಚು ಬೆಳಕು garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku garage
+  - ಆರಿಸು ಬೆಳಕು garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku office
+  - ಹಚ್ಚು ಬೆಳಕು office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku office
+  - ಆರಿಸು ಬೆಳಕು office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku garden
+  - ಹಚ್ಚು ಬೆಳಕು garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku garden
+  - ಆರಿಸು ಬೆಳಕು garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone
+  - ಹಚ್ಚು ಬೆಳಕು shayanakonemaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shayanakone
+  - ಆರಿಸು ಬೆಳಕು shayanakonemaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku hallway
+  - ಹಚ್ಚು ಬೆಳಕು hallway
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku hallway
+  - ಆರಿಸು ಬೆಳಕು hallway
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku basement
+  - ಹಚ್ಚು ಬೆಳಕು basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,21 +125,21 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku basement
+  - ಆರಿಸು ಬೆಳಕು basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani hallige
+  - ಹಚ್ಚು chavani ಹಾಲ್
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - arisu chavani hallige
+  - ಆರಿಸು chavani ಹಾಲ್
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -147,105 +147,105 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani hallige 50
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 50
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - hachchu lamp hallige
+  - ಹಚ್ಚು belaku ಹಾಲ್
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - arisu lamp hallige
+  - ಆರಿಸು belaku ಹಾಲ್
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani aduge
+  - ಹಚ್ಚು chavani ಅಡುಗೆ
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - arisu chavani aduge
+  - ಆರಿಸು chavani ಅಡುಗೆ
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - hachchu dweepa aduge
+  - ಹಚ್ಚು dweepa ಅಡುಗೆ
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - arisu dweepa aduge
+  - ಆರಿಸು dweepa ಅಡುಗೆ
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani shayanakone
+  - ಹಚ್ಚು chavani shayanakonemaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - arisu chavani shayanakone
+  - ಆರಿಸು chavani shayanakonemaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - hachchu mancha shayanakone
+  - ಹಚ್ಚು mancha shayanakonemaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - arisu mancha shayanakone
+  - ಆರಿಸು mancha shayanakonemaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani office
+  - ಹಚ್ಚು chavani office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - arisu chavani office
+  - ಆರಿಸು chavani office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - hachchu belaku garden
+  - ಹಚ್ಚು ಬೆಳಕು garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - arisu belaku garden
+  - ಆರಿಸು ಬೆಳಕು garden
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -253,4 +253,4 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani hallige red
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ red

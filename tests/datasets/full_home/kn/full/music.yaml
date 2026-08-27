@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajisu queen hallige
-  - bajisu queen tivi hallige
+  - ಹಾಡು queen ಹಾಲ್
+  - ಹಾಡು queen ಟಿವಿ ಹಾಲ್
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - bajisu album rumours by fleetwood mac hallige
+  - ಹಾಡು album rumours by fleetwood mac ಹಾಲ್
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajisu queen radio mode hallige
+  - ಹಾಡು queen radio mode ಹಾಲ್
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - bajisu bohemian rhapsody queue hallige
+  - ಹಾಡು bohemian rhapsody queue ಹಾಲ್
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enu tivi hallige
-  - enu track hallige
+  - ಏನು ಟಿವಿ ಹಾಲ್
+  - ಏನು track ಹಾಲ್
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - hondisu tivi hallige 10
-  - tivi hallige 10
+  - ಹೊಂದಿಸು ಟಿವಿ ಹಾಲ್ 10
+  - ಟಿವಿ ಹಾಲ್ 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - hondisu tivi hallige 20
-  - tivi hallige 20
+  - ಹೊಂದಿಸು ಟಿವಿ ಹಾಲ್ 20
+  - ಟಿವಿ ಹಾಲ್ 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - hondisu tivi hallige 30
-  - tivi hallige 30
+  - ಹೊಂದಿಸು ಟಿವಿ ಹಾಲ್ 30
+  - ಟಿವಿ ಹಾಲ್ 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - hondisu tivi hallige 50
-  - tivi hallige 50
+  - ಹೊಂದಿಸು ಟಿವಿ ಹಾಲ್ 50
+  - ಟಿವಿ ಹಾಲ್ 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - hondisu tivi hallige 80
-  - tivi hallige 80
+  - ಹೊಂದಿಸು ಟಿವಿ ಹಾಲ್ 80
+  - ಟಿವಿ ಹಾಲ್ 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track hallige
+  - next track ಹಾಲ್
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track hallige
+  - previous track ಹಾಲ್
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajisu queen aduge
-  - bajisu queen tivi aduge
+  - ಹಾಡು queen ಅಡುಗೆ
+  - ಹಾಡು queen ಟಿವಿ ಅಡುಗೆ
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajisu beatles hallige
-  - bajisu beatles tivi hallige
+  - ಹಾಡು beatles ಹಾಲ್
+  - ಹಾಡು beatles ಟಿವಿ ಹಾಲ್
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajisu radiohead hallige
-  - bajisu radiohead tivi hallige
+  - ಹಾಡು radiohead ಹಾಲ್
+  - ಹಾಡು radiohead ಟಿವಿ ಹಾಲ್
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajisu abba hallige
-  - bajisu abba tivi hallige
+  - ಹಾಡು abba ಹಾಲ್
+  - ಹಾಡು abba ಟಿವಿ ಹಾಲ್
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajisu coldplay hallige
-  - bajisu coldplay tivi hallige
+  - ಹಾಡು coldplay ಹಾಲ್
+  - ಹಾಡು coldplay ಟಿವಿ ಹಾಲ್
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajisu adele hallige
-  - bajisu adele tivi hallige
+  - ಹಾಡು adele ಹಾಲ್
+  - ಹಾಡು adele ಟಿವಿ ಹಾಲ್
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajisu prince hallige
-  - bajisu prince tivi hallige
+  - ಹಾಡು prince ಹಾಲ್
+  - ಹಾಡು prince ಟಿವಿ ಹಾಲ್
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajisu bowie hallige
-  - bajisu bowie tivi hallige
+  - ಹಾಡು bowie ಹಾಲ್
+  - ಹಾಡು bowie ಟಿವಿ ಹಾಲ್
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajisu nirvana hallige
-  - bajisu nirvana tivi hallige
+  - ಹಾಡು nirvana ಹಾಲ್
+  - ಹಾಡು nirvana ಟಿವಿ ಹಾಲ್
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajisu eagles hallige
-  - bajisu eagles tivi hallige
+  - ಹಾಡು eagles ಹಾಲ್
+  - ಹಾಡು eagles ಟಿವಿ ಹಾಲ್
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajisu madonna hallige
-  - bajisu madonna tivi hallige
+  - ಹಾಡು madonna ಹಾಲ್
+  - ಹಾಡು madonna ಟಿವಿ ಹಾಲ್
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajisu mozart hallige
-  - bajisu mozart tivi hallige
+  - ಹಾಡು mozart ಹಾಲ್
+  - ಹಾಡು mozart ಟಿವಿ ಹಾಲ್
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajisu daft punk hallige
-  - bajisu daft punk tivi hallige
+  - ಹಾಡು daft punk ಹಾಲ್
+  - ಹಾಡು daft punk ಟಿವಿ ಹಾಲ್
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajisu biafra hallige
-  - bajisu biafra tivi hallige
+  - ಹಾಡು biafra ಹಾಲ್
+  - ಹಾಡು biafra ಟಿವಿ ಹಾಲ್
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajisu queen aduge
-  - bajisu queen tivi aduge
+  - ಹಾಡು queen ಅಡುಗೆ
+  - ಹಾಡು queen ಟಿವಿ ಅಡುಗೆ
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajisu beatles aduge
-  - bajisu beatles tivi aduge
+  - ಹಾಡು beatles ಅಡುಗೆ
+  - ಹಾಡು beatles ಟಿವಿ ಅಡುಗೆ
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajisu radiohead aduge
-  - bajisu radiohead tivi aduge
+  - ಹಾಡು radiohead ಅಡುಗೆ
+  - ಹಾಡು radiohead ಟಿವಿ ಅಡುಗೆ
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajisu abba aduge
-  - bajisu abba tivi aduge
+  - ಹಾಡು abba ಅಡುಗೆ
+  - ಹಾಡು abba ಟಿವಿ ಅಡುಗೆ
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajisu coldplay aduge
-  - bajisu coldplay tivi aduge
+  - ಹಾಡು coldplay ಅಡುಗೆ
+  - ಹಾಡು coldplay ಟಿವಿ ಅಡುಗೆ
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajisu adele aduge
-  - bajisu adele tivi aduge
+  - ಹಾಡು adele ಅಡುಗೆ
+  - ಹಾಡು adele ಟಿವಿ ಅಡುಗೆ
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajisu prince aduge
-  - bajisu prince tivi aduge
+  - ಹಾಡು prince ಅಡುಗೆ
+  - ಹಾಡು prince ಟಿವಿ ಅಡುಗೆ
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajisu bowie aduge
-  - bajisu bowie tivi aduge
+  - ಹಾಡು bowie ಅಡುಗೆ
+  - ಹಾಡು bowie ಟಿವಿ ಅಡುಗೆ
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajisu nirvana aduge
-  - bajisu nirvana tivi aduge
+  - ಹಾಡು nirvana ಅಡುಗೆ
+  - ಹಾಡು nirvana ಟಿವಿ ಅಡುಗೆ
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajisu eagles aduge
-  - bajisu eagles tivi aduge
+  - ಹಾಡು eagles ಅಡುಗೆ
+  - ಹಾಡು eagles ಟಿವಿ ಅಡುಗೆ
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajisu madonna aduge
-  - bajisu madonna tivi aduge
+  - ಹಾಡು madonna ಅಡುಗೆ
+  - ಹಾಡು madonna ಟಿವಿ ಅಡುಗೆ
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajisu mozart aduge
-  - bajisu mozart tivi aduge
+  - ಹಾಡು mozart ಅಡುಗೆ
+  - ಹಾಡು mozart ಟಿವಿ ಅಡುಗೆ
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajisu daft punk aduge
-  - bajisu daft punk tivi aduge
+  - ಹಾಡು daft punk ಅಡುಗೆ
+  - ಹಾಡು daft punk ಟಿವಿ ಅಡುಗೆ
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajisu biafra aduge
-  - bajisu biafra tivi aduge
+  - ಹಾಡು biafra ಅಡುಗೆ
+  - ಹಾಡು biafra ಟಿವಿ ಅಡುಗೆ
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajisu queen office
-  - bajisu queen tivi office
+  - ಹಾಡು queen office
+  - ಹಾಡು queen ಟಿವಿ office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajisu beatles office
-  - bajisu beatles tivi office
+  - ಹಾಡು beatles office
+  - ಹಾಡು beatles ಟಿವಿ office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajisu radiohead office
-  - bajisu radiohead tivi office
+  - ಹಾಡು radiohead office
+  - ಹಾಡು radiohead ಟಿವಿ office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajisu abba office
-  - bajisu abba tivi office
+  - ಹಾಡು abba office
+  - ಹಾಡು abba ಟಿವಿ office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajisu coldplay office
-  - bajisu coldplay tivi office
+  - ಹಾಡು coldplay office
+  - ಹಾಡು coldplay ಟಿವಿ office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajisu adele office
-  - bajisu adele tivi office
+  - ಹಾಡು adele office
+  - ಹಾಡು adele ಟಿವಿ office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajisu prince office
-  - bajisu prince tivi office
+  - ಹಾಡು prince office
+  - ಹಾಡು prince ಟಿವಿ office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajisu bowie office
-  - bajisu bowie tivi office
+  - ಹಾಡು bowie office
+  - ಹಾಡು bowie ಟಿವಿ office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajisu nirvana office
-  - bajisu nirvana tivi office
+  - ಹಾಡು nirvana office
+  - ಹಾಡು nirvana ಟಿವಿ office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajisu eagles office
-  - bajisu eagles tivi office
+  - ಹಾಡು eagles office
+  - ಹಾಡು eagles ಟಿವಿ office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajisu madonna office
-  - bajisu madonna tivi office
+  - ಹಾಡು madonna office
+  - ಹಾಡು madonna ಟಿವಿ office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajisu mozart office
-  - bajisu mozart tivi office
+  - ಹಾಡು mozart office
+  - ಹಾಡು mozart ಟಿವಿ office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajisu daft punk office
-  - bajisu daft punk tivi office
+  - ಹಾಡು daft punk office
+  - ಹಾಡು daft punk ಟಿವಿ office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajisu biafra office
-  - bajisu biafra tivi office
+  - ಹಾಡು biafra office
+  - ಹಾಡು biafra ಟಿವಿ office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajisu queen radio mode hallige
+  - ಹಾಡು queen radio mode ಹಾಲ್
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enu tivi hallige
-  - enu track hallige
+  - ಏನು ಟಿವಿ ಹಾಲ್
+  - ಏನು track ಹಾಲ್
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajisu queen radio mode aduge
+  - ಹಾಡು queen radio mode ಅಡುಗೆ
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - enu tivi aduge
-  - enu track aduge
+  - ಏನು ಟಿವಿ ಅಡುಗೆ
+  - ಏನು track ಅಡುಗೆ
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajisu queen radio mode office
+  - ಹಾಡು queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - enu tivi office
-  - enu track office
+  - ಏನು ಟಿವಿ office
+  - ಏನು track office

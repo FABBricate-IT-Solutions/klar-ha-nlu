@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - aprinde ventilator dormitor2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- pune lumina dormitor2 65
+- pune tot lumina dormitor2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- pune lumina dormitor2 roz
+- pune tot lumina dormitor2 roz
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- stinge lumina dormitor2
+- stinge tot lumina dormitor2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- aprinde lumina dormitor2
+- aprinde tot lumina dormitor2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - inchide perdea dormitor3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - pune perdea dormitor3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- pune lumina dormitor3 76
+- pune tot lumina dormitor3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- pune lumina dormitor3 albastru
+- pune tot lumina dormitor3 albastru
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- stinge lumina dormitor3
+- stinge tot lumina dormitor3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- aprinde lumina dormitor3
+- aprinde tot lumina dormitor3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- pune lumina dormitor4 69
+- pune tot lumina dormitor4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- pune lumina dormitor4 verde
+- pune tot lumina dormitor4 verde
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- stinge lumina dormitor4
+- stinge tot lumina dormitor4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- aprinde lumina dormitor4
+- aprinde tot lumina dormitor4
 area/dining_lights::dining_lights_change_brightness:
-- pune lumina sufrageriefamess 54
+- pune tot lumina sufrageriefamess 54
 area/dining_lights::dining_lights_change_color:
-- pune lumina sufrageriefamess albastru
+- pune tot lumina sufrageriefamess albastru
 area/dining_lights::dining_lights_turn_off:
-- stinge lumina sufrageriefamess
+- stinge tot lumina sufrageriefamess
 area/dining_lights::dining_lights_turn_on:
-- aprinde lumina sufrageriefamess
+- aprinde tot lumina sufrageriefamess
 area/entryway_lights::entryway_lights_change_brightness:
-- pune lumina hol 72
+- pune tot lumina hol 72
 area/entryway_lights::entryway_lights_change_color:
-- pune lumina hol negru
+- pune tot lumina hol negru
 area/entryway_lights::entryway_lights_turn_off:
-- stinge lumina hol
+- stinge tot lumina hol
 area/entryway_lights::entryway_lights_turn_on:
-- aprinde lumina hol
+- aprinde tot lumina hol
 area/entryway_locks::entryway_locks_lock:
 - blocheaza yala hol
 area/entryway_locks::entryway_locks_unlock:
 - deschide yala hol
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- pune lumina sufrageriefam 39 si pune lumina bucatarie 39
+- pune tot lumina sufrageriefam 39 then pune tot lumina bucatarie 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- pune lumina sufrageriefam mov si pune lumina bucatarie mov
+- pune tot lumina sufrageriefam mov then pune tot lumina bucatarie mov
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- stinge lumina sufrageriefam si stinge lumina bucatarie
+- stinge tot lumina sufrageriefam then stinge tot lumina bucatarie
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- aprinde lumina sufrageriefam si aprinde lumina bucatarie
+- aprinde tot lumina sufrageriefam then aprinde tot lumina bucatarie
 area/family_room_fans::family_room_fans_set_fan_speed:
 - pune ventilator sufrageriefam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - aprinde ventilator sufrageriefam
 area/family_room_lights::family_room_lights_change_brightness:
-- pune lumina sufrageriefam 44
+- pune tot lumina sufrageriefam 44
 area/family_room_lights::family_room_lights_change_color:
-- pune lumina sufrageriefam verde
+- pune tot lumina sufrageriefam verde
 area/family_room_lights::family_room_lights_turn_off:
-- stinge lumina sufrageriefam
+- stinge tot lumina sufrageriefam
 area/family_room_lights::family_room_lights_turn_on:
-- aprinde lumina sufrageriefam
+- aprinde tot lumina sufrageriefam
 area/garage_covers::garage_covers_close:
 - inchide perdea garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - pune perdea garage 86
 area/garage_lights::garage_lights_change_brightness:
-- pune lumina garage 16
+- pune tot lumina garage 16
 area/garage_lights::garage_lights_change_color:
-- pune lumina garage albastru
+- pune tot lumina garage albastru
 area/garage_lights::garage_lights_turn_off:
-- stinge lumina garage
+- stinge tot lumina garage
 area/garage_lights::garage_lights_turn_on:
-- aprinde lumina garage
+- aprinde tot lumina garage
 area/garage_locks::garage_locks_lock:
 - blocheaza yala garage
 area/garage_locks::garage_locks_unlock:
 - deschide yala garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- pune lumina holgang 26 si pune lumina toaleta 26
+- pune tot lumina holgang 26 then pune tot lumina toaleta 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- pune lumina holgang mov si pune lumina toaleta mov
+- pune tot lumina holgang mov then pune tot lumina toaleta mov
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- stinge lumina holgang si stinge lumina toaleta
+- stinge tot lumina holgang then stinge tot lumina toaleta
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- aprinde lumina holgang si aprinde lumina toaleta
+- aprinde tot lumina holgang then aprinde tot lumina toaleta
 area/hallway_lights::hallway_lights_change_brightness:
-- pune lumina holgang 61
+- pune tot lumina holgang 61
 area/hallway_lights::hallway_lights_change_color:
-- pune lumina holgang portocaliu
+- pune tot lumina holgang portocaliu
 area/hallway_lights::hallway_lights_turn_off:
-- stinge lumina holgang
+- stinge tot lumina holgang
 area/hallway_lights::hallway_lights_turn_on:
-- aprinde lumina holgang
+- aprinde tot lumina holgang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- pune lumina bucatarie 45
+- pune tot lumina bucatarie 45
 area/kitchen_lights::kitchen_lights_change_color:
-- pune lumina bucatarie roz
+- pune tot lumina bucatarie roz
 area/kitchen_lights::kitchen_lights_turn_off:
-- stinge lumina bucatarie
+- stinge tot lumina bucatarie
 area/kitchen_lights::kitchen_lights_turn_on:
-- aprinde lumina bucatarie
+- aprinde tot lumina bucatarie
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- stinge aparat bucatarie
+- stinge tot aparat bucatarie
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- aprinde aparat bucatarie
+- aprinde tot aparat bucatarie
 area/laundry_lights::laundry_lights_change_brightness:
-- pune lumina spalatorie 62
+- pune tot lumina spalatorie 62
 area/laundry_lights::laundry_lights_change_color:
-- pune lumina spalatorie galben
+- pune tot lumina spalatorie galben
 area/laundry_lights::laundry_lights_turn_off:
-- stinge lumina spalatorie
+- stinge tot lumina spalatorie
 area/laundry_lights::laundry_lights_turn_on:
-- aprinde lumina spalatorie
+- aprinde tot lumina spalatorie
 area/laundry_switchs::laundry_switchs_turn_off:
-- stinge aparat spalatorie
+- stinge tot aparat spalatorie
 area/laundry_switchs::laundry_switchs_turn_on:
-- aprinde aparat spalatorie
+- aprinde tot aparat spalatorie
 area/living_climates::living_climates_set_temperature:
 - pune incalzire sufragerie 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - pune perdea sufragerie 46
 area/living_lights::living_lights_change_brightness:
-- pune lumina sufragerie 84
+- pune tot lumina sufragerie 84
 area/living_lights::living_lights_change_color:
-- pune lumina sufragerie albastru
+- pune tot lumina sufragerie albastru
 area/living_lights::living_lights_turn_off:
-- stinge lumina sufragerie
+- stinge tot lumina sufragerie
 area/living_lights::living_lights_turn_on:
-- aprinde lumina sufragerie
+- aprinde tot lumina sufragerie
 area/main_bath_lights::main_bath_lights_change_brightness:
-- pune lumina main bath 73
+- pune tot lumina main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- pune lumina main bath roz
+- pune tot lumina main bath roz
 area/main_bath_lights::main_bath_lights_turn_off:
-- stinge lumina main bath
+- stinge tot lumina main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- aprinde lumina main bath
+- aprinde tot lumina main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- stinge aparat main bath
+- stinge tot aparat main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- aprinde aparat main bath
+- aprinde tot aparat main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- pune lumina baiemaster 60
+- pune tot lumina baiemaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- pune lumina baiemaster negru
+- pune tot lumina baiemaster negru
 area/master_bath_lights::master_bath_lights_turn_off:
-- stinge lumina baiemaster
+- stinge tot lumina baiemaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- aprinde lumina baiemaster
+- aprinde tot lumina baiemaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- stinge aparat baiemaster
+- stinge tot aparat baiemaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- aprinde aparat baiemaster
+- aprinde tot aparat baiemaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- pune incalzire dormitor 20 si pune incalzire sufragerie 20
+- pune incalzire dormitormaster 20 then pune incalzire sufragerie 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- inchide perdea dormitor si inchide perdea sufragerie
+- inchide perdea dormitormaster then inchide perdea sufragerie
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- deschide perdea dormitor si deschide perdea sufragerie
+- deschide perdea dormitormaster then deschide perdea sufragerie
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- pune perdea dormitor 19 si pune perdea sufragerie 19
+- pune perdea dormitormaster 19 then pune perdea sufragerie 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- pune lumina dormitor 25 si pune lumina sufragerie 25
+- pune tot lumina dormitormaster 25 then pune tot lumina sufragerie 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- pune lumina dormitor alb si pune lumina sufragerie alb
+- pune tot lumina dormitormaster alb then pune tot lumina sufragerie alb
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- stinge lumina dormitor si stinge lumina sufragerie
+- stinge tot lumina dormitormaster then stinge tot lumina sufragerie
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- aprinde lumina dormitor si aprinde lumina sufragerie
+- aprinde tot lumina dormitormaster then aprinde tot lumina sufragerie
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- pune lumina dormitor 57 si pune lumina main bath 57
+- pune tot lumina dormitormaster 57 then pune tot lumina main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- pune lumina dormitor roz si pune lumina main bath roz
+- pune tot lumina dormitormaster roz then pune tot lumina main bath roz
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- stinge lumina dormitor si stinge lumina main bath
+- stinge tot lumina dormitormaster then stinge tot lumina main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- aprinde lumina dormitor si aprinde lumina main bath
+- aprinde tot lumina dormitormaster then aprinde tot lumina main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- pune incalzire dormitor 20
+- pune incalzire dormitormaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- inchide perdea dormitor
+- inchide perdea dormitormaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- deschide perdea dormitor
+- deschide perdea dormitormaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- pune perdea dormitor 38
+- pune perdea dormitormaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- pune ventilator dormitor 79
+- pune ventilator dormitormaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- stinge ventilator dormitor
+- stinge ventilator dormitormaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- aprinde ventilator dormitor
+- aprinde ventilator dormitormaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- pune lumina dormitor 73
+- pune tot lumina dormitormaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- pune lumina dormitor roz
+- pune tot lumina dormitormaster roz
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- stinge lumina dormitor
+- stinge tot lumina dormitormaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- aprinde lumina dormitor
+- aprinde tot lumina dormitormaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- pune lumina toaleta 52
+- pune tot lumina toaleta 52
 area/powder_room_lights::powder_room_lights_change_color:
-- pune lumina toaleta mov
+- pune tot lumina toaleta mov
 area/powder_room_lights::powder_room_lights_turn_off:
-- stinge lumina toaleta
+- stinge tot lumina toaleta
 area/powder_room_lights::powder_room_lights_turn_on:
-- aprinde lumina toaleta
+- aprinde tot lumina toaleta
 area/spoken_lights::spoken_bedroom_inflection:
-- pune lumina dormitor rosu
+- pune tot lumina dormitormaster rosu
 area/spoken_lights::spoken_except_island:
 - stinge tot lumina exceptand insula
 area/spoken_lights::spoken_except_kitchen:
-- stinge tot lumina exceptand bucatarie exceptand insula
+- stinge tot lumina exceptand bucatarie
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- stinge lumina sufragerie si stinge lumina sufrageriefamess si stinge lumina bucatarie
+- stinge tot lumina sufragerie then stinge tot lumina sufrageriefamess then stinge
+  tot lumina bucatarie
 area/spoken_lights::spoken_stt_kitchen_off:
-- stinge lumina bucatarie
+- stinge tot lumina bucatarie
 area/spoken_lights::spoken_stt_living_off:
-- stinge lumina sufragerie
+- stinge tot lumina sufragerie

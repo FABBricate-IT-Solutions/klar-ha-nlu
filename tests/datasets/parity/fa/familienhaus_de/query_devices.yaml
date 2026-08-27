@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- چی چراغ ورودی
+- چی sensor در ورودی
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
 - چی سرما پذیرایی
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- چی سرما اتاقخواب
+- چی سرما اتاقخوابmaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - چی پرده اتاقخواب2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -21,9 +21,9 @@ query_devices/cover_living_blinds::cover_living_blinds_get_position:
 query_devices/cover_living_blinds::cover_living_blinds_get_status:
 - چی پرده پذیرایی
 query_devices/cover_master_blinds::cover_master_blinds_get_position:
-- چی پرده اتاقخواب
+- چی پرده اتاقخوابmaster
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
-- چی پرده اتاقخواب
+- چی پرده اتاقخوابmaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
 - چی پنکه اتاقخواب2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
@@ -33,9 +33,9 @@ query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
 query_devices/fan_family_fan::fan_family_fan_get_status:
 - چی پنکه خانواده
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- چی پنکه اتاقخواب
+- چی پنکه اتاقخوابmaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- چی پنکه اتاقخواب
+- چی پنکه اتاقخوابmaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - چی سقف اتاقخواب2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -73,9 +73,9 @@ query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
 - چی سقف آشپزخانه
 query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
-- چی چراغ آشپزخانه
+- چی جزیره آشپزخانه
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
-- چی چراغ آشپزخانه
+- چی جزیره آشپزخانه
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
 - چی چراغ رختشویی
 query_devices/light_laundry_light::light_laundry_light_get_status:
@@ -85,9 +85,9 @@ query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
 - چی سقف پذیرایی
 query_devices/light_living_lamp::light_living_lamp_get_brightness:
-- چی چراغ پذیرایی
+- چی lamp پذیرایی
 query_devices/light_living_lamp::light_living_lamp_get_status:
-- چی چراغ پذیرایی
+- چی lamp پذیرایی
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
 - چی چراغ main bath
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
@@ -97,21 +97,21 @@ query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
 - چی چراغ حماماصلی
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
-- چی کنارتخت اتاقخواب
+- چی کنارتخت اتاقخوابmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
-- چی کنارتخت اتاقخواب
+- چی کنارتخت اتاقخوابmaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
-- چی کنارتخت اتاقخواب
+- چی کنارتخت اتاقخوابmaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
-- چی کنارتخت اتاقخواب
+- چی کنارتخت اتاقخوابmaster
 query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
-- چی سقف اتاقخواب
+- چی سقف اتاقخوابmaster
 query_devices/light_master_ceiling::light_master_ceiling_get_status:
-- چی سقف اتاقخواب
+- چی سقف اتاقخوابmaster
 query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
-- چی چراغ اتاقخواب
+- چی ankleide اتاقخوابmaster
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
-- چی چراغ اتاقخواب
+- چی ankleide اتاقخوابmaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
 - چی چراغ سرویس
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
@@ -127,6 +127,6 @@ query_devices/media_player_living_tv::media_player_living_tv_get_status:
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - چی ظرفشویی
 query_devices/switch_dryer::switch_dryer_get_status:
-- چی لباسشویی
+- چی dryer
 query_devices/switch_washing_machine::switch_washing_machine_get_status:
 - چی لباسشویی

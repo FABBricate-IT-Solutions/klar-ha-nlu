@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - opnadu gardina svefnherbergi
-  - gardina svefnherbergi opnadu
+  - opnadu gardina svefnherbergimaster
+  - gardina svefnherbergimaster opnadu
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - lokadu gardina svefnherbergi
-  - gardina svefnherbergi lokadu
+  - lokadu gardina svefnherbergimaster
+  - gardina svefnherbergimaster lokadu
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - settu gardina svefnherbergi 0
-  - gardina svefnherbergi 0
+  - settu gardina svefnherbergimaster 0
+  - gardina svefnherbergimaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - settu gardina svefnherbergi 25
-  - gardina svefnherbergi 25
+  - settu gardina svefnherbergimaster 25
+  - gardina svefnherbergimaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - settu gardina svefnherbergi 40
-  - gardina svefnherbergi 40
+  - settu gardina svefnherbergimaster 40
+  - gardina svefnherbergimaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - settu gardina svefnherbergi 75
-  - gardina svefnherbergi 75
+  - settu gardina svefnherbergimaster 75
+  - gardina svefnherbergimaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - settu gardina svefnherbergi 100
-  - gardina svefnherbergi 100
+  - settu gardina svefnherbergimaster 100
+  - gardina svefnherbergimaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - opnadu gardina svefnherbergi
-  - gardina svefnherbergi opnadu
+  - opnadu gardina svefnherbergimaster
+  - gardina svefnherbergimaster opnadu

@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - encen llum habitacio
-  - llum habitacio encen
+  - encen llum habitaciomaster
+  - llum habitaciomaster encen
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga llum habitacio
-  - llum habitacio apaga
+  - apaga llum habitaciomaster
+  - llum habitaciomaster apaga
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - encen sostre habitacio
-  - sostre habitacio encen
+  - encen sostre habitaciomaster
+  - sostre habitaciomaster encen
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - apaga sostre habitacio
-  - sostre habitacio apaga
+  - apaga sostre habitaciomaster
+  - sostre habitaciomaster apaga
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - posa sostre habitacio 20
-  - sostre habitacio 20
+  - posa sostre habitaciomaster 20
+  - sostre habitaciomaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - posa sostre habitacio 40
-  - sostre habitacio 40
+  - posa sostre habitaciomaster 40
+  - sostre habitaciomaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - posa sostre habitacio 50
-  - sostre habitacio 50
+  - posa sostre habitaciomaster 50
+  - sostre habitaciomaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - posa sostre habitacio 60
-  - sostre habitacio 60
+  - posa sostre habitaciomaster 60
+  - sostre habitaciomaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - posa sostre habitacio 80
-  - sostre habitacio 80
+  - posa sostre habitaciomaster 80
+  - sostre habitaciomaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - posa sostre habitacio 100
-  - sostre habitacio 100
+  - posa sostre habitaciomaster 100
+  - sostre habitaciomaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - encen tauleta habitacio
-  - tauleta habitacio encen
+  - encen tauleta habitaciomaster
+  - tauleta habitaciomaster encen
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - apaga tauleta habitacio
-  - tauleta habitacio apaga
+  - apaga tauleta habitaciomaster
+  - tauleta habitaciomaster apaga
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - posa tauleta habitacio 20
-  - tauleta habitacio 20
+  - posa tauleta habitaciomaster 20
+  - tauleta habitaciomaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - posa tauleta habitacio 40
-  - tauleta habitacio 40
+  - posa tauleta habitaciomaster 40
+  - tauleta habitaciomaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - posa tauleta habitacio 50
-  - tauleta habitacio 50
+  - posa tauleta habitaciomaster 50
+  - tauleta habitaciomaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - posa tauleta habitacio 60
-  - tauleta habitacio 60
+  - posa tauleta habitaciomaster 60
+  - tauleta habitaciomaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - posa tauleta habitacio 80
-  - tauleta habitacio 80
+  - posa tauleta habitaciomaster 80
+  - tauleta habitaciomaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - posa tauleta habitacio 100
-  - tauleta habitacio 100
+  - posa tauleta habitaciomaster 100
+  - tauleta habitaciomaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - encen ensuite habitacio
-  - ensuite habitacio encen
+  - encen ensuite habitaciomaster
+  - ensuite habitaciomaster encen
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - apaga ensuite habitacio
-  - ensuite habitacio apaga
+  - apaga ensuite habitaciomaster
+  - ensuite habitaciomaster apaga
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - posa ensuite habitacio 20
-  - ensuite habitacio 20
+  - posa ensuite habitaciomaster 20
+  - ensuite habitaciomaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - posa ensuite habitacio 40
-  - ensuite habitacio 40
+  - posa ensuite habitaciomaster 40
+  - ensuite habitaciomaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - posa ensuite habitacio 50
-  - ensuite habitacio 50
+  - posa ensuite habitaciomaster 50
+  - ensuite habitaciomaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - posa ensuite habitacio 60
-  - ensuite habitacio 60
+  - posa ensuite habitaciomaster 60
+  - ensuite habitaciomaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - posa ensuite habitacio 80
-  - ensuite habitacio 80
+  - posa ensuite habitaciomaster 80
+  - ensuite habitaciomaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - posa ensuite habitacio 100
-  - ensuite habitacio 100
+  - posa ensuite habitaciomaster 100
+  - ensuite habitaciomaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - encen tauleta habitacio
-  - tauleta habitacio encen
+  - encen tauleta habitaciomaster
+  - tauleta habitaciomaster encen
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - apaga tauleta habitacio
-  - tauleta habitacio apaga
+  - apaga tauleta habitaciomaster
+  - tauleta habitaciomaster apaga
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - posa tauleta habitacio 20
-  - tauleta habitacio 20
+  - posa tauleta habitaciomaster 20
+  - tauleta habitaciomaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - posa tauleta habitacio 40
-  - tauleta habitacio 40
+  - posa tauleta habitaciomaster 40
+  - tauleta habitaciomaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - posa tauleta habitacio 50
-  - tauleta habitacio 50
+  - posa tauleta habitaciomaster 50
+  - tauleta habitaciomaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - posa tauleta habitacio 60
-  - tauleta habitacio 60
+  - posa tauleta habitaciomaster 60
+  - tauleta habitaciomaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - posa tauleta habitacio 80
-  - tauleta habitacio 80
+  - posa tauleta habitaciomaster 80
+  - tauleta habitaciomaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - posa tauleta habitacio 100
-  - tauleta habitacio 100
+  - posa tauleta habitaciomaster 100
+  - tauleta habitaciomaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - posa sostre habitacio vermell
-  - posa llum habitacio vermell
+  - posa sostre habitaciomaster vermell
+  - posa llum habitaciomaster vermell
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - posa sostre habitacio blau
-  - posa llum habitacio blau
+  - posa sostre habitaciomaster blau
+  - posa llum habitaciomaster blau
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - posa sostre habitacio verd
-  - posa llum habitacio verd
+  - posa sostre habitaciomaster verd
+  - posa llum habitaciomaster verd
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - posa sostre habitacio blanc
-  - posa llum habitacio blanc
+  - posa sostre habitaciomaster blanc
+  - posa llum habitaciomaster blanc
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - posa sostre habitacio groc
-  - posa llum habitacio groc
+  - posa sostre habitaciomaster groc
+  - posa llum habitaciomaster groc
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - posa sostre habitacio negre
-  - posa llum habitacio negre
+  - posa sostre habitaciomaster negre
+  - posa llum habitaciomaster negre
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - posa tauleta habitacio vermell
-  - posa llum habitacio vermell
+  - posa tauleta habitaciomaster vermell
+  - posa llum habitaciomaster vermell
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - posa tauleta habitacio blau
-  - posa llum habitacio blau
+  - posa tauleta habitaciomaster blau
+  - posa llum habitaciomaster blau
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - posa tauleta habitacio verd
-  - posa llum habitacio verd
+  - posa tauleta habitaciomaster verd
+  - posa llum habitaciomaster verd
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - posa tauleta habitacio blanc
-  - posa llum habitacio blanc
+  - posa tauleta habitaciomaster blanc
+  - posa llum habitaciomaster blanc
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - posa tauleta habitacio groc
-  - posa llum habitacio groc
+  - posa tauleta habitaciomaster groc
+  - posa llum habitaciomaster groc
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - posa tauleta habitacio negre
-  - posa llum habitacio negre
+  - posa tauleta habitaciomaster negre
+  - posa llum habitaciomaster negre
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - posa ensuite habitacio vermell
-  - posa llum habitacio vermell
+  - posa ensuite habitaciomaster vermell
+  - posa llum habitaciomaster vermell
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - posa ensuite habitacio blau
-  - posa llum habitacio blau
+  - posa ensuite habitaciomaster blau
+  - posa llum habitaciomaster blau
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - posa ensuite habitacio verd
-  - posa llum habitacio verd
+  - posa ensuite habitaciomaster verd
+  - posa llum habitaciomaster verd
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - posa ensuite habitacio blanc
-  - posa llum habitacio blanc
+  - posa ensuite habitaciomaster blanc
+  - posa llum habitaciomaster blanc
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - posa ensuite habitacio groc
-  - posa llum habitacio groc
+  - posa ensuite habitaciomaster groc
+  - posa llum habitaciomaster groc
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - posa ensuite habitacio negre
-  - posa llum habitacio negre
+  - posa ensuite habitaciomaster negre
+  - posa llum habitaciomaster negre
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - posa tauleta habitacio vermell
-  - posa llum habitacio vermell
+  - posa tauleta habitaciomaster vermell
+  - posa llum habitaciomaster vermell
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - posa tauleta habitacio blau
-  - posa llum habitacio blau
+  - posa tauleta habitaciomaster blau
+  - posa llum habitaciomaster blau
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - posa tauleta habitacio verd
-  - posa llum habitacio verd
+  - posa tauleta habitaciomaster verd
+  - posa llum habitaciomaster verd
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - posa tauleta habitacio blanc
-  - posa llum habitacio blanc
+  - posa tauleta habitaciomaster blanc
+  - posa llum habitaciomaster blanc
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - posa tauleta habitacio groc
-  - posa llum habitacio groc
+  - posa tauleta habitaciomaster groc
+  - posa llum habitaciomaster groc
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - posa tauleta habitacio negre
-  - posa llum habitacio negre
+  - posa tauleta habitaciomaster negre
+  - posa llum habitaciomaster negre
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga tot llum excepte habitacio
-  - tot llum apaga excepte habitacio
+  - apaga tot llum excepte habitaciomaster
+  - tot llum apaga excepte habitaciomaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

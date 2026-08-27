@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Chumbakulala
+  name: Chumbakulalamaster
   floor: upper
   aliases:
+  - chumbakulalamaster
   - chumbakulala
 - id: bedroom_2
   name: Chumbakulala2
@@ -130,10 +131,10 @@ devices:
   - dari
 - id: light.living_lamp
   area_id: living
-  name: sebuleni taa
+  name: sebuleni lamp
   aliases:
-  - sebuleni taa
-  - taa
+  - sebuleni lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: sefulaess taa
@@ -190,29 +191,29 @@ devices:
   - taa
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: chumbakulala dari
+  name: chumbakulalamaster dari
   aliases:
-  - chumbakulala dari
+  - chumbakulalamaster dari
   - dari
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: chumbakulala ensuite
+  name: chumbakulalamaster ensuite
   aliases:
-  - chumbakulala ensuite
+  - chumbakulalamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: chumbakulala left kitanda
+  name: chumbakulalamaster left kitanda
   aliases:
-  - chumbakulala left kitanda
+  - chumbakulalamaster left kitanda
   - kitanda
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: chumbakulala right kitanda
+  name: chumbakulalamaster right kitanda
   aliases:
-  - chumbakulala right kitanda
+  - chumbakulalamaster right kitanda
   - kitanda
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - pazia
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: chumbakulala pazia
+  name: chumbakulalamaster pazia
   aliases:
-  - chumbakulala pazia
+  - chumbakulalamaster pazia
   - pazia
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - joto
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: chumbakulala joto
+  name: chumbakulalamaster joto
   aliases:
-  - chumbakulala joto
+  - chumbakulalamaster joto
   - joto
 - id: climate.master_ac
   area_id: master_bedroom
-  name: joto chumbakulala
+  name: joto chumbakulalamaster
   aliases:
-  - joto chumbakulala
+  - joto chumbakulalamaster
   - joto
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - feni
 - id: fan.master_fan
   area_id: master_bedroom
-  name: chumbakulala feni
+  name: chumbakulalamaster feni
   aliases:
-  - chumbakulala feni
+  - chumbakulalamaster feni
   - feni
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - washa chumbakulala dari na chumbakulala kitanda
-  - chumbakulala dari na chumbakulala kitanda washa
+  - washa chumbakulalamaster dari na chumbakulalamaster kitanda
+  - chumbakulalamaster dari na chumbakulalamaster kitanda washa
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - zima chumbakulala dari na chumbakulala kitanda
-  - chumbakulala dari na chumbakulala kitanda zima
+  - zima chumbakulalamaster dari na chumbakulalamaster kitanda
+  - chumbakulalamaster dari na chumbakulalamaster kitanda zima
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - washa chumbakulala feni na jikonini kisiwa
-  - chumbakulala feni na jikonini kisiwa washa
+  - washa chumbakulalamaster feni na jikonini kisiwa
+  - chumbakulalamaster feni na jikonini kisiwa washa
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - zima taa chumbakulala na main bath
-  - taa chumbakulala na main bath zima
+  - zima taa chumbakulalamaster na main bath
+  - taa chumbakulalamaster na main bath zima
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - zima yote taa isipokuwa sebuleni na chumbakulala
-  - yote taa zima isipokuwa sebuleni na chumbakulala
+  - zima yote taa isipokuwa sebuleni na chumbakulalamaster
+  - yote taa zima isipokuwa sebuleni na chumbakulalamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - zima yote taa juu isipokuwa chumbakulala
-  - yote taa juu zima isipokuwa chumbakulala
+  - zima yote taa juu isipokuwa chumbakulalamaster
+  - yote taa juu zima isipokuwa chumbakulalamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - fungua pazia sebuleni na chumbakulala
-  - pazia sebuleni na chumbakulala fungua
+  - fungua pazia sebuleni na chumbakulalamaster
+  - pazia sebuleni na chumbakulalamaster fungua
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - funga pazia sebuleni na chumbakulala
-  - pazia sebuleni na chumbakulala funga
+  - funga pazia sebuleni na chumbakulalamaster
+  - pazia sebuleni na chumbakulalamaster funga
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - weka joto sebuleni na chumbakulala 21
-  - joto sebuleni na chumbakulala 21
+  - weka joto sebuleni na chumbakulalamaster 21
+  - joto sebuleni na chumbakulalamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

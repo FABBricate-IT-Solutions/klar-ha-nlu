@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - kagi kagi genkan
-  - kagi genkan kagi
+  - 鍵 鍵 genkan
+  - 鍵 genkan 鍵
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - akete kagi genkan
-  - kagi genkan akete
+  - 開けて 鍵 genkan
+  - 鍵 genkan 開けて
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kagi kagi garage
-  - kagi garage kagi
+  - 鍵 鍵 garage
+  - 鍵 garage 鍵
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - akete kagi garage
-  - kagi garage akete
+  - 開けて 鍵 garage
+  - 鍵 garage 開けて
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - kagi kagi genkan
-  - kagi genkan kagi
+  - 鍵 鍵 genkan
+  - 鍵 genkan 鍵
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kagi kagi garage
-  - kagi garage kagi
+  - 鍵 鍵 garage
+  - 鍵 garage 鍵

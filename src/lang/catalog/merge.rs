@@ -173,6 +173,9 @@ impl Catalog {
             c.morphology.color_suffixes.extend(p.morphology.color_suffixes.iter().copied());
             c.morphology.linking.extend(p.morphology.linking.iter().copied());
         }
+        for extra in ["aufgabenliste", "liste"] {
+            c.sets.entry(WordKey::ListNouns).or_default().insert(extra);
+        }
         c
     }
 

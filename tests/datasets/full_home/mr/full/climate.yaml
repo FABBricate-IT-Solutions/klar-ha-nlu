@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set ushnata baithak 18
-  - ushnata baithak 18
+  - सेट उष्णता बैठक 18
+  - उष्णता बैठक 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set ushnata baithak 19
-  - ushnata baithak 19
+  - सेट उष्णता बैठक 19
+  - उष्णता बैठक 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set ushnata baithak 20
-  - ushnata baithak 20
+  - सेट उष्णता बैठक 20
+  - उष्णता बैठक 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set ushnata baithak 21
-  - ushnata baithak 21
+  - सेट उष्णता बैठक 21
+  - उष्णता बैठक 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set ushnata baithak 22
-  - ushnata baithak 22
+  - सेट उष्णता बैठक 22
+  - उष्णता बैठक 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set ushnata baithak 23
-  - ushnata baithak 23
+  - सेट उष्णता बैठक 23
+  - उष्णता बैठक 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set ushnata baithak 24
-  - ushnata baithak 24
+  - सेट उष्णता बैठक 24
+  - उष्णता बैठक 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - kay ushnata baithak
-  - ushnata baithak
+  - काय उष्णता बैठक
+  - उष्णता बैठक
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set ushnata shayankaksh 18
-  - ushnata shayankaksh 18
+  - सेट उष्णता shayankakshmaster 18
+  - उष्णता shayankakshmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set ushnata shayankaksh 19
-  - ushnata shayankaksh 19
+  - सेट उष्णता shayankakshmaster 19
+  - उष्णता shayankakshmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set ushnata shayankaksh 20
-  - ushnata shayankaksh 20
+  - सेट उष्णता shayankakshmaster 20
+  - उष्णता shayankakshmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set ushnata shayankaksh 21
-  - ushnata shayankaksh 21
+  - सेट उष्णता shayankakshmaster 21
+  - उष्णता shayankakshmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set ushnata shayankaksh 22
-  - ushnata shayankaksh 22
+  - सेट उष्णता shayankakshmaster 22
+  - उष्णता shayankakshmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set ushnata shayankaksh 23
-  - ushnata shayankaksh 23
+  - सेट उष्णता shayankakshmaster 23
+  - उष्णता shayankakshmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set ushnata shayankaksh 24
-  - ushnata shayankaksh 24
+  - सेट उष्णता shayankakshmaster 24
+  - उष्णता shayankakshmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kay ushnata shayankaksh
-  - ushnata shayankaksh
+  - काय उष्णता shayankakshmaster
+  - उष्णता shayankakshmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set ushnata shayankaksh 18
-  - ushnata shayankaksh 18
+  - सेट ushnata shayankakshmaster 18
+  - ushnata shayankakshmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set ushnata shayankaksh 19
-  - ushnata shayankaksh 19
+  - सेट ushnata shayankakshmaster 19
+  - ushnata shayankakshmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set ushnata shayankaksh 20
-  - ushnata shayankaksh 20
+  - सेट ushnata shayankakshmaster 20
+  - ushnata shayankakshmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set ushnata shayankaksh 21
-  - ushnata shayankaksh 21
+  - सेट ushnata shayankakshmaster 21
+  - ushnata shayankakshmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set ushnata shayankaksh 22
-  - ushnata shayankaksh 22
+  - सेट ushnata shayankakshmaster 22
+  - ushnata shayankakshmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set ushnata shayankaksh 23
-  - ushnata shayankaksh 23
+  - सेट ushnata shayankakshmaster 23
+  - ushnata shayankakshmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - set ushnata shayankaksh 24
-  - ushnata shayankaksh 24
+  - सेट ushnata shayankakshmaster 24
+  - ushnata shayankakshmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kay ushnata shayankaksh
-  - ushnata shayankaksh
+  - काय ushnata shayankakshmaster
+  - ushnata shayankakshmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - kay ushnata baithak
-  - ushnata baithak
+  - काय उष्णता बैठक
+  - उष्णता बैठक
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kay ushnata shayankaksh
-  - ushnata shayankaksh
+  - काय उष्णता shayankakshmaster
+  - उष्णता shayankakshmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kay ushnata shayankaksh
-  - ushnata shayankaksh
+  - काय ushnata shayankakshmaster
+  - ushnata shayankakshmaster

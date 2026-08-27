@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - batsir varaguyr hyurasenyak
-  - varaguyr hyurasenyak batsir
+  - բացիր վարագույր հյուրասենյակ
+  - վարագույր հյուրասենյակ բացիր
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - pakir varaguyr hyurasenyak
-  - varaguyr hyurasenyak pakir
+  - փակիր վարագույր հյուրասենյակ
+  - վարագույր հյուրասենյակ փակիր
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - dir varaguyr hyurasenyak 0
-  - varaguyr hyurasenyak 0
+  - դիր վարագույր հյուրասենյակ 0
+  - վարագույր հյուրասենյակ 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - dir varaguyr hyurasenyak 25
-  - varaguyr hyurasenyak 25
+  - դիր վարագույր հյուրասենյակ 25
+  - վարագույր հյուրասենյակ 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - dir varaguyr hyurasenyak 40
-  - varaguyr hyurasenyak 40
+  - դիր վարագույր հյուրասենյակ 40
+  - վարագույր հյուրասենյակ 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - dir varaguyr hyurasenyak 75
-  - varaguyr hyurasenyak 75
+  - դիր վարագույր հյուրասենյակ 75
+  - վարագույր հյուրասենյակ 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - dir varaguyr hyurasenyak 100
-  - varaguyr hyurasenyak 100
+  - դիր վարագույր հյուրասենյակ 100
+  - վարագույր հյուրասենյակ 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - batsir varaguyr qnakaran
-  - varaguyr qnakaran batsir
+  - բացիր վարագույր qnakaranmaster
+  - վարագույր qnakaranmaster բացիր
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - pakir varaguyr qnakaran
-  - varaguyr qnakaran pakir
+  - փակիր վարագույր qnakaranmaster
+  - վարագույր qnakaranmaster փակիր
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - dir varaguyr qnakaran 0
-  - varaguyr qnakaran 0
+  - դիր վարագույր qnakaranmaster 0
+  - վարագույր qnakaranmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - dir varaguyr qnakaran 25
-  - varaguyr qnakaran 25
+  - դիր վարագույր qnakaranmaster 25
+  - վարագույր qnakaranmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - dir varaguyr qnakaran 40
-  - varaguyr qnakaran 40
+  - դիր վարագույր qnakaranmaster 40
+  - վարագույր qnakaranmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - dir varaguyr qnakaran 75
-  - varaguyr qnakaran 75
+  - դիր վարագույր qnakaranmaster 75
+  - վարագույր qnakaranmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - dir varaguyr qnakaran 100
-  - varaguyr qnakaran 100
+  - դիր վարագույր qnakaranmaster 100
+  - վարագույր qnakaranmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - batsir varaguyr qnakaran2
-  - varaguyr qnakaran2 batsir
+  - բացիր վարագույր qnakaran2
+  - վարագույր qnakaran2 բացիր
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - pakir varaguyr qnakaran2
-  - varaguyr qnakaran2 pakir
+  - փակիր վարագույր qnakaran2
+  - վարագույր qnakaran2 փակիր
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - dir varaguyr qnakaran2 0
-  - varaguyr qnakaran2 0
+  - դիր վարագույր qnakaran2 0
+  - վարագույր qnakaran2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - dir varaguyr qnakaran2 25
-  - varaguyr qnakaran2 25
+  - դիր վարագույր qnakaran2 25
+  - վարագույր qnakaran2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - dir varaguyr qnakaran2 40
-  - varaguyr qnakaran2 40
+  - դիր վարագույր qnakaran2 40
+  - վարագույր qnakaran2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - dir varaguyr qnakaran2 75
-  - varaguyr qnakaran2 75
+  - դիր վարագույր qnakaran2 75
+  - վարագույր qnakaran2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - dir varaguyr qnakaran2 100
-  - varaguyr qnakaran2 100
+  - դիր վարագույր qnakaran2 100
+  - վարագույր qnakaran2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - batsir varaguyr qnakaran3
-  - varaguyr qnakaran3 batsir
+  - բացիր վարագույր qnakaran3
+  - վարագույր qnakaran3 բացիր
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - pakir varaguyr qnakaran3
-  - varaguyr qnakaran3 pakir
+  - փակիր վարագույր qnakaran3
+  - վարագույր qnakaran3 փակիր
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - dir varaguyr qnakaran3 0
-  - varaguyr qnakaran3 0
+  - դիր վարագույր qnakaran3 0
+  - վարագույր qnakaran3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - dir varaguyr qnakaran3 25
-  - varaguyr qnakaran3 25
+  - դիր վարագույր qnakaran3 25
+  - վարագույր qnakaran3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - dir varaguyr qnakaran3 40
-  - varaguyr qnakaran3 40
+  - դիր վարագույր qnakaran3 40
+  - վարագույր qnakaran3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - dir varaguyr qnakaran3 75
-  - varaguyr qnakaran3 75
+  - դիր վարագույր qnakaran3 75
+  - վարագույր qnakaran3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - dir varaguyr qnakaran3 100
-  - varaguyr qnakaran3 100
+  - դիր վարագույր qnakaran3 100
+  - վարագույր qnakaran3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - batsir varaguyr garage
-  - varaguyr garage batsir
+  - բացիր վարագույր garage
+  - վարագույր garage բացիր
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - pakir varaguyr garage
-  - varaguyr garage pakir
+  - փակիր վարագույր garage
+  - վարագույր garage փակիր
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - dir varaguyr garage 0
-  - varaguyr garage 0
+  - դիր վարագույր garage 0
+  - վարագույր garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - dir varaguyr garage 25
-  - varaguyr garage 25
+  - դիր վարագույր garage 25
+  - վարագույր garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - dir varaguyr garage 40
-  - varaguyr garage 40
+  - դիր վարագույր garage 40
+  - վարագույր garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - dir varaguyr garage 75
-  - varaguyr garage 75
+  - դիր վարագույր garage 75
+  - վարագույր garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - dir varaguyr garage 100
-  - varaguyr garage 100
+  - դիր վարագույր garage 100
+  - վարագույր garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - batsir varaguyr hyurasenyak
-  - varaguyr hyurasenyak batsir
+  - բացիր վարագույր հյուրասենյակ
+  - վարագույր հյուրասենյակ բացիր
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - batsir varaguyr qnakaran
-  - varaguyr qnakaran batsir
+  - բացիր վարագույր qnakaranmaster
+  - վարագույր qnakaranmaster բացիր

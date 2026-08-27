@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - dakai saodi
-  - saodi dakai
+  - 打開 掃地
+  - 掃地 打開
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - guanbi saodi
-  - saodi guanbi
+  - 關閉 掃地
+  - 掃地 關閉

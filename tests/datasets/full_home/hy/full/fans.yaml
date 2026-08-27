@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - odapokhich yntaniq miatsu
-  - miatsu odapokhich yntaniq
+  - օդափոխիչ yntaniq միացրու
+  - միացրու օդափոխիչ yntaniq
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - anjatir odapokhich yntaniq
-  - odapokhich yntaniq anjatir
+  - անջատիր օդափոխիչ yntaniq
+  - օդափոխիչ yntaniq անջատիր
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - dir odapokhich yntaniq 40
-  - odapokhich yntaniq 40
+  - դիր օդափոխիչ yntaniq 40
+  - օդափոխիչ yntaniq 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - odapokhich qnakaran miatsu
-  - miatsu odapokhich qnakaran
+  - օդափոխիչ qnakaranmaster միացրու
+  - միացրու օդափոխիչ qnakaranmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - anjatir odapokhich qnakaran
-  - odapokhich qnakaran anjatir
+  - անջատիր օդափոխիչ qnakaranmaster
+  - օդափոխիչ qnakaranmaster անջատիր
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - dir odapokhich qnakaran 40
-  - odapokhich qnakaran 40
+  - դիր օդափոխիչ qnakaranmaster 40
+  - օդափոխիչ qnakaranmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - odapokhich qnakaran2 miatsu
-  - miatsu odapokhich qnakaran2
+  - օդափոխիչ qnakaran2 միացրու
+  - միացրու օդափոխիչ qnakaran2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - anjatir odapokhich qnakaran2
-  - odapokhich qnakaran2 anjatir
+  - անջատիր օդափոխիչ qnakaran2
+  - օդափոխիչ qnakaran2 անջատիր
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - dir odapokhich qnakaran2 40
-  - odapokhich qnakaran2 40
+  - դիր օդափոխիչ qnakaran2 40
+  - օդափոխիչ qnakaran2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - dir odapokhich yntaniq 20
-  - odapokhich yntaniq 20
+  - դիր օդափոխիչ yntaniq 20
+  - օդափոխիչ yntaniq 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - dir odapokhich yntaniq 60
-  - odapokhich yntaniq 60
+  - դիր օդափոխիչ yntaniq 60
+  - օդափոխիչ yntaniq 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - dir odapokhich yntaniq 80
-  - odapokhich yntaniq 80
+  - դիր օդափոխիչ yntaniq 80
+  - օդափոխիչ yntaniq 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - dir odapokhich qnakaran 20
-  - odapokhich qnakaran 20
+  - դիր օդափոխիչ qnakaranmaster 20
+  - օդափոխիչ qnakaranmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - dir odapokhich qnakaran 60
-  - odapokhich qnakaran 60
+  - դիր օդափոխիչ qnakaranmaster 60
+  - օդափոխիչ qnakaranmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - dir odapokhich qnakaran 80
-  - odapokhich qnakaran 80
+  - դիր օդափոխիչ qnakaranmaster 80
+  - օդափոխիչ qnakaranmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - dir odapokhich qnakaran2 20
-  - odapokhich qnakaran2 20
+  - դիր օդափոխիչ qnakaran2 20
+  - օդափոխիչ qnakaran2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - dir odapokhich qnakaran2 60
-  - odapokhich qnakaran2 60
+  - դիր օդափոխիչ qnakaran2 60
+  - օդափոխիչ qnakaran2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - dir odapokhich qnakaran2 80
-  - odapokhich qnakaran2 80
+  - դիր օդափոխիչ qnakaran2 80
+  - օդափոխիչ qnakaran2 80

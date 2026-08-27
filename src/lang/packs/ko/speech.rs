@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "잘 못 들었어요.",
-    need_on: "뭘 켤까요?",
-    need_off: "뭘 끌까요?",
+    need_on: "뭐을 켤까요?",
+    need_off: "뭐을 끌까요?",
     need_which: "뭘 켤까요?",
     correction: "알겠어요, 마지막 문장은 빼둘게요.",
     clarify: "{names}?",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "뭘 켤까요?",
     or_home: "뭘 켤까요?",
-    room_names: &[("wohnzimmer", "geosil"), ("kuche", "bueok")],
-    loc_der_rooms: &["bueok", "geosil"],
+    room_names: &[("wohnzimmer", "거실"), ("kuche", "부엌")],
+    loc_der_rooms: &["거실", "부엌"],
     personality: &[
         ("butler", &["알겠습니다. ", "기꺼이. ", ""]),
         ("locker", &["오케이. ", "됐어. ", ""]),

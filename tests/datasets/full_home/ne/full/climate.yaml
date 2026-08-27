@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set tato baithak 18
-  - tato baithak 18
+  - सेट तातो बैठक 18
+  - तातो बैठक 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set tato baithak 19
-  - tato baithak 19
+  - सेट तातो बैठक 19
+  - तातो बैठक 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set tato baithak 20
-  - tato baithak 20
+  - सेट तातो बैठक 20
+  - तातो बैठक 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set tato baithak 21
-  - tato baithak 21
+  - सेट तातो बैठक 21
+  - तातो बैठक 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set tato baithak 22
-  - tato baithak 22
+  - सेट तातो बैठक 22
+  - तातो बैठक 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set tato baithak 23
-  - tato baithak 23
+  - सेट तातो बैठक 23
+  - तातो बैठक 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set tato baithak 24
-  - tato baithak 24
+  - सेट तातो बैठक 24
+  - तातो बैठक 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ke tato baithak
-  - tato baithak
+  - के तातो बैठक
+  - तातो बैठक
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set tato sutnekotha 18
-  - tato sutnekotha 18
+  - सेट तातो sutnekothamaster 18
+  - तातो sutnekothamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set tato sutnekotha 19
-  - tato sutnekotha 19
+  - सेट तातो sutnekothamaster 19
+  - तातो sutnekothamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set tato sutnekotha 20
-  - tato sutnekotha 20
+  - सेट तातो sutnekothamaster 20
+  - तातो sutnekothamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set tato sutnekotha 21
-  - tato sutnekotha 21
+  - सेट तातो sutnekothamaster 21
+  - तातो sutnekothamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set tato sutnekotha 22
-  - tato sutnekotha 22
+  - सेट तातो sutnekothamaster 22
+  - तातो sutnekothamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set tato sutnekotha 23
-  - tato sutnekotha 23
+  - सेट तातो sutnekothamaster 23
+  - तातो sutnekothamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set tato sutnekotha 24
-  - tato sutnekotha 24
+  - सेट तातो sutnekothamaster 24
+  - तातो sutnekothamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ke tato sutnekotha
-  - tato sutnekotha
+  - के तातो sutnekothamaster
+  - तातो sutnekothamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set tato sutnekotha 18
-  - tato sutnekotha 18
+  - सेट tato sutnekothamaster 18
+  - tato sutnekothamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set tato sutnekotha 19
-  - tato sutnekotha 19
+  - सेट tato sutnekothamaster 19
+  - tato sutnekothamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set tato sutnekotha 20
-  - tato sutnekotha 20
+  - सेट tato sutnekothamaster 20
+  - tato sutnekothamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set tato sutnekotha 21
-  - tato sutnekotha 21
+  - सेट tato sutnekothamaster 21
+  - tato sutnekothamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set tato sutnekotha 22
-  - tato sutnekotha 22
+  - सेट tato sutnekothamaster 22
+  - tato sutnekothamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set tato sutnekotha 23
-  - tato sutnekotha 23
+  - सेट tato sutnekothamaster 23
+  - tato sutnekothamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - set tato sutnekotha 24
-  - tato sutnekotha 24
+  - सेट tato sutnekothamaster 24
+  - tato sutnekothamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ke tato sutnekotha
-  - tato sutnekotha
+  - के tato sutnekothamaster
+  - tato sutnekothamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ke tato baithak
-  - tato baithak
+  - के तातो बैठक
+  - तातो बैठक
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ke tato sutnekotha
-  - tato sutnekotha
+  - के तातो sutnekothamaster
+  - तातो sutnekothamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ke tato sutnekotha
-  - tato sutnekotha
+  - के tato sutnekothamaster
+  - tato sutnekothamaster

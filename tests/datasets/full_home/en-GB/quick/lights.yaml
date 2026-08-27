@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - enable light bedroom
+  - enable light bedroommaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - extinguish light bedroom
+  - extinguish light bedroommaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - enable ceiling bedroom
+  - enable ceiling bedroommaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - extinguish ceiling bedroom
+  - extinguish ceiling bedroommaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - enable bedside bedroom
+  - enable bedside bedroommaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - extinguish bedside bedroom
+  - extinguish bedside bedroommaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

@@ -36,6 +36,7 @@
           "assist_filter": "Yalnız Assist’e açık varlıkları denetle",
           "nlu_rag": "NLU-RAG (isteğe bağlı)",
           "quiet_ack": "Kısa onay (zil)",
+          "calendar_llm": "Takvim sorgularını LLM'ye gönder",
           "channel": "Yayın kanalı"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Açık: yalnızca Assist’in gördüğü. Kapalı: gizli varlıklar da.",
           "nlu_rag": "Varsayılan kapalı. Sohbette yedek modele yalnızca eşleşen dilim gider.",
           "quiet_ack": "Basit ışık aç/kapa konuşulmaz, uydu üzerinde kısa ses.",
+          "calendar_llm": "Varsayılan kapalı. Açık: Klar takvimi okur, yedek LLM etkinlikleri söyler. Kapalı: Klar listeyi söyler. Oluşturma, silme ve taşıma Klar'da kalır.",
           "languages": "Varsayılan Home Assistant sistem dilidir.",
           "channel": "İstediğiniz zaman. Staging, Klar NLU (Staging)’i gösterir."
         }

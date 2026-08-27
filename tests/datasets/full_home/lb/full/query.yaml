@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - wat riddo schlofzëmmer
-  - wat schlofzëmmer riddo
+  - wat riddo schlofzëmmermaster
+  - wat schlofzëmmermaster riddo
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - wat heizung schlofzëmmer
-  - wat schlofzëmmer heizung
+  - wat heizung schlofzëmmermaster
+  - wat schlofzëmmermaster heizung
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - wat heizung schlofzëmmer
-  - wat schlofzëmmer heizung
+  - wat heizung schlofzëmmermaster
+  - wat schlofzëmmermaster heizung
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - wat ventilator schlofzëmmer
-  - wat schlofzëmmer ventilator
+  - wat ventilator schlofzëmmermaster
+  - wat schlofzëmmermaster ventilator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - wat luucht schlofzëmmer
-  - wat schlofzëmmer luucht
+  - wat luucht schlofzëmmermaster
+  - wat schlofzëmmermaster luucht
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - wat luucht schlofzëmmer
-  - wat schlofzëmmer luucht
+  - wat luucht schlofzëmmermaster
+  - wat schlofzëmmermaster luucht
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - wat ensuite schlofzëmmer
-  - wat schlofzëmmer ensuite
+  - wat ensuite schlofzëmmermaster
+  - wat schlofzëmmermaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - wat luucht schlofzëmmer
-  - wat schlofzëmmer luucht
+  - wat luucht schlofzëmmermaster
+  - wat schlofzëmmermaster luucht
 - name: query_light.master_bath_light
   conditions:
   - type: query

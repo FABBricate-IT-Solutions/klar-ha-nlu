@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - seonpunggi gajoksil kyeo
-  - kyeo seonpunggi gajoksil
+  - 선풍기 gajoksil 켜
+  - 켜 선풍기 gajoksil
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - kkaeo seonpunggi gajoksil
-  - seonpunggi gajoksil kkaeo
+  - 꺼 선풍기 gajoksil
+  - 선풍기 gajoksil 꺼
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - seoljeong seonpunggi gajoksil 40
-  - seonpunggi gajoksil 40
+  - 설정 선풍기 gajoksil 40
+  - 선풍기 gajoksil 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - seonpunggi chimsil kyeo
-  - kyeo seonpunggi chimsil
+  - 선풍기 chimsilmaster 켜
+  - 켜 선풍기 chimsilmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - kkaeo seonpunggi chimsil
-  - seonpunggi chimsil kkaeo
+  - 꺼 선풍기 chimsilmaster
+  - 선풍기 chimsilmaster 꺼
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - seoljeong seonpunggi chimsil 40
-  - seonpunggi chimsil 40
+  - 설정 선풍기 chimsilmaster 40
+  - 선풍기 chimsilmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - seonpunggi chimsil2 kyeo
-  - kyeo seonpunggi chimsil2
+  - 선풍기 chimsil2 켜
+  - 켜 선풍기 chimsil2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - kkaeo seonpunggi chimsil2
-  - seonpunggi chimsil2 kkaeo
+  - 꺼 선풍기 chimsil2
+  - 선풍기 chimsil2 꺼
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - seoljeong seonpunggi chimsil2 40
-  - seonpunggi chimsil2 40
+  - 설정 선풍기 chimsil2 40
+  - 선풍기 chimsil2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - seoljeong seonpunggi gajoksil 20
-  - seonpunggi gajoksil 20
+  - 설정 선풍기 gajoksil 20
+  - 선풍기 gajoksil 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - seoljeong seonpunggi gajoksil 60
-  - seonpunggi gajoksil 60
+  - 설정 선풍기 gajoksil 60
+  - 선풍기 gajoksil 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - seoljeong seonpunggi gajoksil 80
-  - seonpunggi gajoksil 80
+  - 설정 선풍기 gajoksil 80
+  - 선풍기 gajoksil 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - seoljeong seonpunggi chimsil 20
-  - seonpunggi chimsil 20
+  - 설정 선풍기 chimsilmaster 20
+  - 선풍기 chimsilmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - seoljeong seonpunggi chimsil 60
-  - seonpunggi chimsil 60
+  - 설정 선풍기 chimsilmaster 60
+  - 선풍기 chimsilmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - seoljeong seonpunggi chimsil 80
-  - seonpunggi chimsil 80
+  - 설정 선풍기 chimsilmaster 80
+  - 선풍기 chimsilmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - seoljeong seonpunggi chimsil2 20
-  - seonpunggi chimsil2 20
+  - 설정 선풍기 chimsil2 20
+  - 선풍기 chimsil2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - seoljeong seonpunggi chimsil2 60
-  - seonpunggi chimsil2 60
+  - 설정 선풍기 chimsil2 60
+  - 선풍기 chimsil2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - seoljeong seonpunggi chimsil2 80
-  - seonpunggi chimsil2 80
+  - 설정 선풍기 chimsil2 80
+  - 선풍기 chimsil2 80

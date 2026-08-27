@@ -3,75 +3,75 @@
   - type: todo_list
     item: milk
   sentences:
-  - add milk talika
-  - milk add talika
+  - add milk তালিকা
+  - milk add তালিকা
 - name: list_done
   conditions:
   - type: todo_list
     item: milk
   sentences:
-  - done milk
-  - milk done
+  - হয়েছে milk
+  - milk হয়েছে
 - name: list_done_milk
   conditions:
   - type: todo_list
     item: milk
   sentences:
-  - done milk
-  - milk done
+  - হয়েছে milk
+  - milk হয়েছে
 - name: list_add_bread
   conditions:
   - type: todo_list
     item: bread
   sentences:
-  - add bread talika
-  - bread add talika
+  - add bread তালিকা
+  - bread add তালিকা
 - name: list_done_bread
   conditions:
   - type: todo_list
     item: bread
   sentences:
-  - done bread
-  - bread done
+  - হয়েছে bread
+  - bread হয়েছে
 - name: list_add_eggs
   conditions:
   - type: todo_list
     item: eggs
   sentences:
-  - add eggs talika
-  - eggs add talika
+  - add eggs তালিকা
+  - eggs add তালিকা
 - name: list_done_eggs
   conditions:
   - type: todo_list
     item: eggs
   sentences:
-  - done eggs
-  - eggs done
+  - হয়েছে eggs
+  - eggs হয়েছে
 - name: list_add_apples
   conditions:
   - type: todo_list
     item: apples
   sentences:
-  - add apples talika
-  - apples add talika
+  - add apples তালিকা
+  - apples add তালিকা
 - name: list_done_apples
   conditions:
   - type: todo_list
     item: apples
   sentences:
-  - done apples
-  - apples done
+  - হয়েছে apples
+  - apples হয়েছে
 - name: list_add_coffee
   conditions:
   - type: todo_list
     item: coffee
   sentences:
-  - add coffee talika
-  - coffee add talika
+  - add coffee তালিকা
+  - coffee add তালিকা
 - name: list_done_coffee
   conditions:
   - type: todo_list
     item: coffee
   sentences:
-  - done coffee
-  - coffee done
+  - হয়েছে coffee
+  - coffee হয়েছে

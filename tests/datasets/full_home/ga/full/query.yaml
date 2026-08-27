@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - cad cuirtin seomraleong
-  - cad seomraleong cuirtin
+  - cad cuirtin seomraleongmaster
+  - cad seomraleongmaster cuirtin
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - cad teas seomraleong
-  - cad seomraleong teas
+  - cad teas seomraleongmaster
+  - cad seomraleongmaster teas
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - cad teas seomraleong
-  - cad seomraleong teas
+  - cad teas seomraleongmaster
+  - cad seomraleongmaster teas
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - cad fean seomraleong
-  - cad seomraleong fean
+  - cad fean seomraleongmaster
+  - cad seomraleongmaster fean
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - cad solas seomraleong
-  - cad seomraleong solas
+  - cad solas seomraleongmaster
+  - cad seomraleongmaster solas
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - cad solas seomraleong
-  - cad seomraleong solas
+  - cad solas seomraleongmaster
+  - cad seomraleongmaster solas
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - cad ensuite seomraleong
-  - cad seomraleong ensuite
+  - cad ensuite seomraleongmaster
+  - cad seomraleongmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - cad solas seomraleong
-  - cad seomraleong solas
+  - cad solas seomraleongmaster
+  - cad seomraleongmaster solas
 - name: query_light.master_bath_light
   conditions:
   - type: query

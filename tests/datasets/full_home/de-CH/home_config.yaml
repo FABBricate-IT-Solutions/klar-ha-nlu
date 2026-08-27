@@ -66,19 +66,20 @@ areas:
   aliases:
   - garage
 - id: office
-  name: Arbeitszimmer
+  name: Office
   floor: ground
   aliases:
-  - arbeitszimmer
+  - office
 - id: garden
   name: Garten
   floor: ground
   aliases:
   - garten
 - id: master_bedroom
-  name: Schlafzimmer
+  name: Schlafzimmermaster
   floor: upper
   aliases:
+  - schlafzimmermaster
   - schlafzimmer
 - id: bedroom_2
   name: Schlafzimmer2
@@ -130,10 +131,10 @@ devices:
   - decke
 - id: light.living_lamp
   area_id: living
-  name: wohnzimmer liecht
+  name: wohnzimmer lamp
   aliases:
-  - wohnzimmer liecht
-  - liecht
+  - wohnzimmer lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: stubeess liecht
@@ -178,9 +179,9 @@ devices:
   - liecht
 - id: light.office_ceiling
   area_id: office
-  name: arbeitszimmer decke
+  name: office decke
   aliases:
-  - arbeitszimmer decke
+  - office decke
   - decke
 - id: light.garden
   area_id: garden
@@ -190,29 +191,29 @@ devices:
   - liecht
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: schlafzimmer decke
+  name: schlafzimmermaster decke
   aliases:
-  - schlafzimmer decke
+  - schlafzimmermaster decke
   - decke
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: schlafzimmer ensuite
+  name: schlafzimmermaster ensuite
   aliases:
-  - schlafzimmer ensuite
+  - schlafzimmermaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: schlafzimmer left nachttisch
+  name: schlafzimmermaster left nachttisch
   aliases:
-  - schlafzimmer left nachttisch
+  - schlafzimmermaster left nachttisch
   - nachttisch
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: schlafzimmer right nachttisch
+  name: schlafzimmermaster right nachttisch
   aliases:
-  - schlafzimmer right nachttisch
+  - schlafzimmermaster right nachttisch
   - nachttisch
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - store
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: schlafzimmer store
+  name: schlafzimmermaster store
   aliases:
-  - schlafzimmer store
+  - schlafzimmermaster store
   - store
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - heizig
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: schlafzimmer heizig
+  name: schlafzimmermaster heizig
   aliases:
-  - schlafzimmer heizig
+  - schlafzimmermaster heizig
   - heizig
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatur schlafzimmer
+  name: temperatur schlafzimmermaster
   aliases:
-  - temperatur schlafzimmer
+  - temperatur schlafzimmermaster
   - temperatur
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: schlafzimmer ventilator
+  name: schlafzimmermaster ventilator
   aliases:
-  - schlafzimmer ventilator
+  - schlafzimmermaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2
@@ -365,12 +366,14 @@ devices:
   - waschmaschine
 - id: switch.dryer
   area_id: laundry
-  name: waschruum dryer
+  name: waschruum trockner
   aliases:
-  - waschruum dryer
+  - waschruum trockner
+  - trockner
   - dryer
   tags:
   - dryer
+  - trockner
 - id: switch.master_bath_fan
   area_id: master_bath
   name: badmaster ventilatorbad
@@ -419,9 +422,9 @@ devices:
   - fernseh
 - id: media_player.office_music
   area_id: office
-  name: arbeitszimmer fernseh
+  name: office fernseh
   aliases:
-  - arbeitszimmer fernseh
+  - office fernseh
   - fernseh
   platform: music_assistant
   tags:

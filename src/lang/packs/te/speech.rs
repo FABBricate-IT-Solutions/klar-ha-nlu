@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Ardham kaledu.",
-    need_on: "Emi veliginchali?",
-    need_off: "Emi arpali?",
+    need_on: "ఏమి వెలిగించాలి?",
+    need_off: "ఏమి ఆర్పాలి?",
     need_which: "Emi veliginchali?",
     correction: "Sare, chivari vaakya vadilesthunnanu.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " mariyu ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} veligindi.",
+    turn_on: "{target} వెలిగింది.",
     turn_on_scene: "{target}.",
-    turn_off: "{target} aripoyindi.",
+    turn_off: "{target} ఆరిపోయింది.",
     toggle: "{target} marustundi.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Emi veliginchali?",
     or_home: "Emi veliginchali?",
-    room_names: &[("wohnzimmer", "gadi"), ("kuche", "vantagadi")],
-    loc_der_rooms: &["gadi", "vantagadi"],
+    room_names: &[("wohnzimmer", "గది"), ("kuche", "వంటగది")],
+    loc_der_rooms: &["గది", "వంటగది"],
     personality: &[
         ("butler", &["Baagundi. ", "Santoshamga. ", ""]),
         ("locker", &["Ardham ayindi. ", "Ayindi. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Avunu. ", "Avunu, naa nidhi. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Nijanga?",
+    confirm: "నిజంగా?",
 };

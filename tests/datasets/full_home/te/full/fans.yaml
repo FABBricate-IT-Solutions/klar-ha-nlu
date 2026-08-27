@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - fanu kutumbam veliginchu
-  - veliginchu fanu kutumbam
+  - ఫ్యాన్ kutumbam వెలిగించు
+  - వెలిగించు ఫ్యాన్ kutumbam
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - arpu fanu kutumbam
-  - fanu kutumbam arpu
+  - ఆర్పు ఫ్యాన్ kutumbam
+  - ఫ్యాన్ kutumbam ఆర్పు
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set fanu kutumbam 40
-  - fanu kutumbam 40
+  - సెట్ ఫ్యాన్ kutumbam 40
+  - ఫ్యాన్ kutumbam 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - fanu padakagadi veliginchu
-  - veliginchu fanu padakagadi
+  - ఫ్యాన్ padakagadimaster వెలిగించు
+  - వెలిగించు ఫ్యాన్ padakagadimaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - arpu fanu padakagadi
-  - fanu padakagadi arpu
+  - ఆర్పు ఫ్యాన్ padakagadimaster
+  - ఫ్యాన్ padakagadimaster ఆర్పు
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set fanu padakagadi 40
-  - fanu padakagadi 40
+  - సెట్ ఫ్యాన్ padakagadimaster 40
+  - ఫ్యాన్ padakagadimaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - fanu padakagadi2 veliginchu
-  - veliginchu fanu padakagadi2
+  - ఫ్యాన్ padakagadi2 వెలిగించు
+  - వెలిగించు ఫ్యాన్ padakagadi2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - arpu fanu padakagadi2
-  - fanu padakagadi2 arpu
+  - ఆర్పు ఫ్యాన్ padakagadi2
+  - ఫ్యాన్ padakagadi2 ఆర్పు
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - set fanu padakagadi2 40
-  - fanu padakagadi2 40
+  - సెట్ ఫ్యాన్ padakagadi2 40
+  - ఫ్యాన్ padakagadi2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fanu kutumbam 20
-  - fanu kutumbam 20
+  - సెట్ ఫ్యాన్ kutumbam 20
+  - ఫ్యాన్ kutumbam 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fanu kutumbam 60
-  - fanu kutumbam 60
+  - సెట్ ఫ్యాన్ kutumbam 60
+  - ఫ్యాన్ kutumbam 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set fanu kutumbam 80
-  - fanu kutumbam 80
+  - సెట్ ఫ్యాన్ kutumbam 80
+  - ఫ్యాన్ kutumbam 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fanu padakagadi 20
-  - fanu padakagadi 20
+  - సెట్ ఫ్యాన్ padakagadimaster 20
+  - ఫ్యాన్ padakagadimaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fanu padakagadi 60
-  - fanu padakagadi 60
+  - సెట్ ఫ్యాన్ padakagadimaster 60
+  - ఫ్యాన్ padakagadimaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set fanu padakagadi 80
-  - fanu padakagadi 80
+  - సెట్ ఫ్యాన్ padakagadimaster 80
+  - ఫ్యాన్ padakagadimaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fanu padakagadi2 20
-  - fanu padakagadi2 20
+  - సెట్ ఫ్యాన్ padakagadi2 20
+  - ఫ్యాన్ padakagadi2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fanu padakagadi2 60
-  - fanu padakagadi2 60
+  - సెట్ ఫ్యాన్ padakagadi2 60
+  - ఫ్యాన్ padakagadi2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - set fanu padakagadi2 80
-  - fanu padakagadi2 80
+  - సెట్ ఫ్యాన్ padakagadi2 80
+  - ఫ్యాన్ padakagadi2 80

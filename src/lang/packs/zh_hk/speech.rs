@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "開咩？",
     or_home: "開咩？",
-    room_names: &[("wohnzimmer", "keting"), ("kuche", "chufang")],
-    loc_der_rooms: &["chufang", "keting"],
+    room_names: &[("wohnzimmer", "客廳"), ("kuche", "廚房")],
+    loc_der_rooms: &["客廳", "廚房"],
     personality: &[
         ("butler", &["好呀。 ", "樂意。 ", ""]),
         ("locker", &["得。 ", "搞掂。 ", ""]),

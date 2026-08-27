@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - metti riscaldamento camera 18
-  - riscaldamento camera 18
+  - metti riscaldamento cameramaster 18
+  - riscaldamento cameramaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - metti riscaldamento camera 19
-  - riscaldamento camera 19
+  - metti riscaldamento cameramaster 19
+  - riscaldamento cameramaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - metti riscaldamento camera 20
-  - riscaldamento camera 20
+  - metti riscaldamento cameramaster 20
+  - riscaldamento cameramaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - metti riscaldamento camera 21
-  - riscaldamento camera 21
+  - metti riscaldamento cameramaster 21
+  - riscaldamento cameramaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - metti riscaldamento camera 22
-  - riscaldamento camera 22
+  - metti riscaldamento cameramaster 22
+  - riscaldamento cameramaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - metti riscaldamento camera 23
-  - riscaldamento camera 23
+  - metti riscaldamento cameramaster 23
+  - riscaldamento cameramaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - metti riscaldamento camera 24
-  - riscaldamento camera 24
+  - metti riscaldamento cameramaster 24
+  - riscaldamento cameramaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - cosa riscaldamento camera
-  - riscaldamento camera
+  - cosa riscaldamento cameramaster
+  - riscaldamento cameramaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - metti clima camera 18
-  - clima camera 18
+  - metti clima cameramaster 18
+  - clima cameramaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - metti clima camera 19
-  - clima camera 19
+  - metti clima cameramaster 19
+  - clima cameramaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - metti clima camera 20
-  - clima camera 20
+  - metti clima cameramaster 20
+  - clima cameramaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - metti clima camera 21
-  - clima camera 21
+  - metti clima cameramaster 21
+  - clima cameramaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - metti clima camera 22
-  - clima camera 22
+  - metti clima cameramaster 22
+  - clima cameramaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - metti clima camera 23
-  - clima camera 23
+  - metti clima cameramaster 23
+  - clima cameramaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - metti clima camera 24
-  - clima camera 24
+  - metti clima cameramaster 24
+  - clima cameramaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - cosa clima camera
-  - clima camera
+  - cosa clima cameramaster
+  - clima cameramaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - cosa riscaldamento camera
-  - riscaldamento camera
+  - cosa riscaldamento cameramaster
+  - riscaldamento cameramaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - cosa clima camera
-  - clima camera
+  - cosa clima cameramaster
+  - clima cameramaster

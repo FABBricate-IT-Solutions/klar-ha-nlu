@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - yuu gerel zochny
-  - yuu zochny gerel
+  - юу гэрэл зочны
+  - юу зочны гэрэл
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - yuu khoshig zochny
-  - yuu zochny khoshig
+  - юу хөшиг зочны
+  - юу зочны хөшиг
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - yuu tugjee orol
-  - yuu orol tugjee
+  - юу түгжээ orol
+  - юу orol түгжээ
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - yuu khalaalt zochny
-  - yuu zochny khalaalt
+  - юу халаалт зочны
+  - юу зочны халаалт
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - yuu tv zochny
-  - yuu zochny tv
+  - юу tv зочны
+  - юу зочны tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - yuu doorsensor orol
-  - yuu orol doorsensor
+  - юу doorsensor orol
+  - юу orol doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - yuu windowsensor zochny
-  - yuu zochny windowsensor
+  - юу windowsensor зочны
+  - юу зочны windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - yuu tempsensor zochny
-  - yuu zochny tempsensor
+  - юу tempsensor зочны
+  - юу зочны tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - yuu gerel galtogoo
-  - yuu galtogoo gerel
+  - юу гэрэл галтогоо
+  - юу галтогоо гэрэл
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - yuu gerel office
-  - yuu office gerel
+  - юу гэрэл office
+  - юу office гэрэл
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - yuu gerel garden
-  - yuu garden gerel
+  - юу гэрэл garden
+  - юу garden гэрэл
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - yuu gerel basement
-  - yuu basement gerel
+  - юу гэрэл basement
+  - юу basement гэрэл
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - yuu khoshig untlagiin
-  - yuu untlagiin khoshig
+  - юу хөшиг untlagiinmaster
+  - юу untlagiinmaster хөшиг
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - yuu khoshig garage
-  - yuu garage khoshig
+  - юу хөшиг garage
+  - юу garage хөшиг
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - yuu tugjee garage
-  - yuu garage tugjee
+  - юу түгжээ garage
+  - юу garage түгжээ
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - yuu khalaalt untlagiin
-  - yuu untlagiin khalaalt
+  - юу халаалт untlagiinmaster
+  - юу untlagiinmaster халаалт
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - yuu khalaalt untlagiin
-  - yuu untlagiin khalaalt
+  - юу khalaalt untlagiinmaster
+  - юу untlagiinmaster khalaalt
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - yuu tv gerbul
-  - yuu gerbul tv
+  - юу tv gerbul
+  - юу gerbul tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - yuu televiz zochny
-  - yuu zochny televiz
+  - юу телевиз зочны
+  - юу зочны телевиз
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - yuu motion galtogoo
-  - yuu galtogoo motion
+  - юу motion галтогоо
+  - юу галтогоо motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - yuu humidity zochny
-  - yuu zochny humidity
+  - юу humidity зочны
+  - юу зочны humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - yuu sens untlagiin
-  - yuu untlagiin sens
+  - юу сэнс untlagiinmaster
+  - юу untlagiinmaster сэнс
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - yuu toos zochny
-  - yuu zochny toos
+  - юу тоос зочны
+  - юу зочны тоос
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - yuu gerel zochny
-  - yuu zochny gerel
+  - юу гэрэл зочны
+  - юу зочны гэрэл
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - yuu gerel galtogoo
-  - yuu galtogoo gerel
+  - юу гэрэл галтогоо
+  - юу галтогоо гэрэл
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - yuu gerel untlagiin
-  - yuu untlagiin gerel
+  - юу гэрэл untlagiinmaster
+  - юу untlagiinmaster гэрэл
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - yuu gerel untlagiin
-  - yuu untlagiin gerel
+  - юу гэрэл untlagiinmaster
+  - юу untlagiinmaster гэрэл
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - yuu gerel hallway
-  - yuu hallway gerel
+  - юу гэрэл hallway
+  - юу hallway гэрэл
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - yuu gerel gerbul
-  - yuu gerbul gerel
+  - юу гэрэл gerbul
+  - юу gerbul гэрэл
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - yuu gerel gerbuless
-  - yuu gerbuless gerel
+  - юу гэрэл gerbuless
+  - юу gerbuless гэрэл
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - yuu gerel garage
-  - yuu garage gerel
+  - юу гэрэл garage
+  - юу garage гэрэл
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - yuu gerel untlagiin2
-  - yuu untlagiin2 gerel
+  - юу гэрэл untlagiin2
+  - юу untlagiin2 гэрэл
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - yuu gerel untlagiin3
-  - yuu untlagiin3 gerel
+  - юу гэрэл untlagiin3
+  - юу untlagiin3 гэрэл
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - yuu gerel untlagiin4
-  - yuu untlagiin4 gerel
+  - юу гэрэл untlagiin4
+  - юу untlagiin4 гэрэл
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - yuu gerel orol
-  - yuu orol gerel
+  - юу гэрэл orol
+  - юу orol гэрэл
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - yuu gerel ugaalga
-  - yuu ugaalga gerel
+  - юу гэрэл ugaalga
+  - юу ugaalga гэрэл
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - yuu gerel main bath
-  - yuu main bath gerel
+  - юу гэрэл main bath
+  - юу main bath гэрэл
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - yuu gerel oroon
-  - yuu oroon gerel
+  - юу гэрэл oroon
+  - юу oroon гэрэл
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - yuu ensuite untlagiin
-  - yuu untlagiin ensuite
+  - юу ensuite untlagiinmaster
+  - юу untlagiinmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - yuu gerel untlagiin
-  - yuu untlagiin gerel
+  - юу гэрэл untlagiinmaster
+  - юу untlagiinmaster гэрэл
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - yuu gerel untlagiinugasalgach
-  - yuu untlagiinugasalgach gerel
+  - юу гэрэл untlagiinugasalgach
+  - юу untlagiinugasalgach гэрэл

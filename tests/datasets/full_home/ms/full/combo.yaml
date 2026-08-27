@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - hidupkan bilik siling dan bilik katil
-  - bilik siling dan bilik katil hidupkan
+  - hidupkan bilikmaster siling dan bilikmaster katil
+  - bilikmaster siling dan bilikmaster katil hidupkan
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - matikan bilik siling dan bilik katil
-  - bilik siling dan bilik katil matikan
+  - matikan bilikmaster siling dan bilikmaster katil
+  - bilikmaster siling dan bilikmaster katil matikan
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - hidupkan bilik kipas dan dapur pulau
-  - bilik kipas dan dapur pulau hidupkan
+  - hidupkan bilikmaster kipas dan dapur pulau
+  - bilikmaster kipas dan dapur pulau hidupkan
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan lampu bilik dan main bath
-  - lampu bilik dan main bath matikan
+  - matikan lampu bilikmaster dan main bath
+  - lampu bilikmaster dan main bath matikan
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan semua lampu kecuali ruang dan bilik
-  - semua lampu matikan kecuali ruang dan bilik
+  - matikan semua lampu kecuali ruang dan bilikmaster
+  - semua lampu matikan kecuali ruang dan bilikmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan semua lampu atas kecuali bilik
-  - semua lampu atas matikan kecuali bilik
+  - matikan semua lampu atas kecuali bilikmaster
+  - semua lampu atas matikan kecuali bilikmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - buka langsir ruang dan bilik
-  - langsir ruang dan bilik buka
+  - buka langsir ruang dan bilikmaster
+  - langsir ruang dan bilikmaster buka
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - tutup langsir ruang dan bilik
-  - langsir ruang dan bilik tutup
+  - tutup langsir ruang dan bilikmaster
+  - langsir ruang dan bilikmaster tutup
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - tetapkan pendingin ruang dan bilik 21
-  - pendingin ruang dan bilik 21
+  - tetapkan pendingin ruang dan bilikmaster 21
+  - pendingin ruang dan bilikmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

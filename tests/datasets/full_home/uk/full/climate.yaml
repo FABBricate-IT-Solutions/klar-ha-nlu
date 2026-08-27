@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - постав опалення спальня 18
-  - опалення спальня 18
+  - постав опалення спальняmaster 18
+  - опалення спальняmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - постав опалення спальня 19
-  - опалення спальня 19
+  - постав опалення спальняmaster 19
+  - опалення спальняmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - постав опалення спальня 20
-  - опалення спальня 20
+  - постав опалення спальняmaster 20
+  - опалення спальняmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - постав опалення спальня 21
-  - опалення спальня 21
+  - постав опалення спальняmaster 21
+  - опалення спальняmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - постав опалення спальня 22
-  - опалення спальня 22
+  - постав опалення спальняmaster 22
+  - опалення спальняmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - постав опалення спальня 23
-  - опалення спальня 23
+  - постав опалення спальняmaster 23
+  - опалення спальняmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - постав опалення спальня 24
-  - опалення спальня 24
+  - постав опалення спальняmaster 24
+  - опалення спальняmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - що опалення спальня
-  - опалення спальня
+  - що опалення спальняmaster
+  - опалення спальняmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - постав температура спальня 18
-  - температура спальня 18
+  - постав температура спальняmaster 18
+  - температура спальняmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - постав температура спальня 19
-  - температура спальня 19
+  - постав температура спальняmaster 19
+  - температура спальняmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - постав температура спальня 20
-  - температура спальня 20
+  - постав температура спальняmaster 20
+  - температура спальняmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - постав температура спальня 21
-  - температура спальня 21
+  - постав температура спальняmaster 21
+  - температура спальняmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - постав температура спальня 22
-  - температура спальня 22
+  - постав температура спальняmaster 22
+  - температура спальняmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - постав температура спальня 23
-  - температура спальня 23
+  - постав температура спальняmaster 23
+  - температура спальняmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - постав температура спальня 24
-  - температура спальня 24
+  - постав температура спальняmaster 24
+  - температура спальняmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - що температура спальня
-  - температура спальня
+  - що температура спальняmaster
+  - температура спальняmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - що опалення спальня
-  - опалення спальня
+  - що опалення спальняmaster
+  - опалення спальняmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - що температура спальня
-  - температура спальня
+  - що температура спальняmaster
+  - температура спальняmaster

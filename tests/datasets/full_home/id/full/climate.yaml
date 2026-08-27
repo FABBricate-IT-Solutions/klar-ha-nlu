@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - setel ac kamar 18
-  - ac kamar 18
+  - setel ac kamarmaster 18
+  - ac kamarmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - setel ac kamar 19
-  - ac kamar 19
+  - setel ac kamarmaster 19
+  - ac kamarmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - setel ac kamar 20
-  - ac kamar 20
+  - setel ac kamarmaster 20
+  - ac kamarmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - setel ac kamar 21
-  - ac kamar 21
+  - setel ac kamarmaster 21
+  - ac kamarmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - setel ac kamar 22
-  - ac kamar 22
+  - setel ac kamarmaster 22
+  - ac kamarmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - setel ac kamar 23
-  - ac kamar 23
+  - setel ac kamarmaster 23
+  - ac kamarmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - setel ac kamar 24
-  - ac kamar 24
+  - setel ac kamarmaster 24
+  - ac kamarmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - apa ac kamar
-  - ac kamar
+  - apa ac kamarmaster
+  - ac kamarmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - setel ac kamar 18
-  - ac kamar 18
+  - setel ac kamarmaster 18
+  - ac kamarmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - setel ac kamar 19
-  - ac kamar 19
+  - setel ac kamarmaster 19
+  - ac kamarmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - setel ac kamar 20
-  - ac kamar 20
+  - setel ac kamarmaster 20
+  - ac kamarmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - setel ac kamar 21
-  - ac kamar 21
+  - setel ac kamarmaster 21
+  - ac kamarmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - setel ac kamar 22
-  - ac kamar 22
+  - setel ac kamarmaster 22
+  - ac kamarmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - setel ac kamar 23
-  - ac kamar 23
+  - setel ac kamarmaster 23
+  - ac kamarmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - setel ac kamar 24
-  - ac kamar 24
+  - setel ac kamarmaster 24
+  - ac kamarmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - apa ac kamar
-  - ac kamar
+  - apa ac kamarmaster
+  - ac kamarmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - apa ac kamar
-  - ac kamar
+  - apa ac kamarmaster
+  - ac kamarmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - apa ac kamar
-  - ac kamar
+  - apa ac kamarmaster
+  - ac kamarmaster

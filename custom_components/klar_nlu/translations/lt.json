@@ -36,6 +36,7 @@
           "assist_filter": "Valdyti tik Assist matomus objektus",
           "nlu_rag": "NLU-RAG (neprivaloma)",
           "quiet_ack": "Trumpas patvirtinimas (skambutis)",
+          "calendar_llm": "Siųsti kalendoriaus užklausas LLM",
           "channel": "Leidimo kanalas"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Įjungta: tik tai, ką mato Assist. Išjungta: ir paslėpti objektai.",
           "nlu_rag": "Pagal numatymą išjungta. Pokalbyje atsarginiam modeliui eina tik atpažinta dalis.",
           "quiet_ack": "Paprastai įjungiant / išjungiant šviesą be sakinio, tik trumpas garsas palydove.",
+          "calendar_llm": "Pagal numatymą išjungta. Įjungta: Klar skaito kalendorių, atsarginis LLM sako įvykius. Išjungta: Klar sako sąrašą. Kūrimas, trynimas ir perkėlimas lieka Klar.",
           "languages": "Pagal numatymą seka Home Assistant sistemos kalbą.",
           "channel": "Bet kada. Staging nurodo Klar NLU (Staging)."
         }

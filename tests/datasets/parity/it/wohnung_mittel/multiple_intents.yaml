@@ -1,26 +1,30 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - spegni tutti luce eccetto camera eccetto cucina
 multiple_intents/multi::licht_und_heizung:
-- accendi luce soggiorno e metti riscaldamento soggiorno 23
+- accendi tutti luce soggiorno then metti riscaldamento soggiorno 23
 multiple_intents/multi::wohn_und_ess_aus:
-- spegni luce soggiorno e spegni luce soggiornofamess
+- spegni tutti luce soggiorno then spegni tutti luce soggiornofamess
 multiple_intents/multi::wohn_und_ess_rot:
-- metti luce soggiorno rosso e metti luce soggiornofamess rosso
+- metti tutti luce soggiorno rosso then metti tutti luce soggiornofamess rosso
 multiple_intents/multi::wz_und_kuche_licht:
-- accendi luce soggiorno e accendi luce cucina
+- accendi tutti luce soggiorno then accendi tutti luce cucina
 multiple_intents/multi::zwei_raeume_und_heizung:
-- accendi luce soggiorno e accendi luce cucina e metti riscaldamento soggiorno 23
+- accendi tutti luce soggiorno then accendi tutti luce cucina then metti riscaldamento
+  soggiorno 23
 multiple_intents/spoken::drei_raeume_an:
-- accendi luce soggiorno e accendi luce soggiornofamess e accendi luce cucina
+- accendi tutti luce soggiorno then accendi tutti luce soggiornofamess then accendi
+  tutti luce cucina
 multiple_intents/spoken::drei_raeume_aus:
-- spegni luce soggiorno e spegni luce soggiornofamess e spegni luce cucina
+- spegni tutti luce soggiorno then spegni tutti luce soggiornofamess then spegni tutti
+  luce cucina
 multiple_intents/spoken::ess_und_wohn_aus:
-- spegni luce soggiorno e spegni luce soggiornofamess
+- spegni tutti luce soggiorno then spegni tutti luce soggiornofamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- spegni sfera e spegni soffitto
+- sfera e soffitto camera spegni
 multiple_intents/spoken_more::kuche_und_ess_an:
-- accendi luce cucina e accendi luce soggiornofamess
+- accendi tutti luce cucina then accendi tutti luce soggiornofamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- spegni luce soggiorno e spegni luce soggiornofamess
+- spegni tutti luce soggiorno then spegni tutti luce soggiornofamess then spegni tutti
+  luce office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- spegni luce soggiorno
+- spegni tutti luce soggiorno then spegni tutti luce office

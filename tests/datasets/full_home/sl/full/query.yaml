@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - kaj zavesa spalnica
-  - kaj spalnica zavesa
+  - kaj zavesa spalnicamaster
+  - kaj spalnicamaster zavesa
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kaj ogrevanje spalnica
-  - kaj spalnica ogrevanje
+  - kaj ogrevanje spalnicamaster
+  - kaj spalnicamaster ogrevanje
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kaj temperatura spalnica
-  - kaj spalnica temperatura
+  - kaj temperatura spalnicamaster
+  - kaj spalnicamaster temperatura
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - kaj ventilator spalnica
-  - kaj spalnica ventilator
+  - kaj ventilator spalnicamaster
+  - kaj spalnicamaster ventilator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - kaj luc spalnica
-  - kaj spalnica luc
+  - kaj luc spalnicamaster
+  - kaj spalnicamaster luc
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - kaj luc spalnica
-  - kaj spalnica luc
+  - kaj luc spalnicamaster
+  - kaj spalnicamaster luc
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - kaj ensuite spalnica
-  - kaj spalnica ensuite
+  - kaj ensuite spalnicamaster
+  - kaj spalnicamaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - kaj luc spalnica
-  - kaj spalnica luc
+  - kaj luc spalnicamaster
+  - kaj spalnicamaster luc
 - name: query_light.master_bath_light
   conditions:
   - type: query

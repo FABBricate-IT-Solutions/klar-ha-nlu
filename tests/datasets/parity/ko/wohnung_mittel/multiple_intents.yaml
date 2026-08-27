@@ -1,26 +1,26 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
-- kkaeo 모두 bul 빼고 chimsil 빼고 bueok
+- 꺼 모두 불 빼고 chimsil 빼고 부엌
 multiple_intents/multi::licht_und_heizung:
-- kyeo bul geosil 그리고 seoljeong nanbang geosil 23
+- 켜 모두 불 거실 then 설정 난방 거실 23
 multiple_intents/multi::wohn_und_ess_aus:
-- kkaeo bul geosil 그리고 kkaeo bul gajoksiless
+- 꺼 모두 불 거실 then 꺼 모두 불 gajoksiless
 multiple_intents/multi::wohn_und_ess_rot:
-- seoljeong bul geosil red 그리고 seoljeong bul gajoksiless red
+- 설정 모두 불 거실 빨강 then 설정 모두 불 gajoksiless 빨강
 multiple_intents/multi::wz_und_kuche_licht:
-- kyeo bul geosil 그리고 kyeo bul bueok
+- 켜 모두 불 거실 then 켜 모두 불 부엌
 multiple_intents/multi::zwei_raeume_und_heizung:
-- kyeo bul geosil 그리고 kyeo bul bueok 그리고 seoljeong nanbang geosil 23
+- 켜 모두 불 거실 then 켜 모두 불 부엌 then 설정 난방 거실 23
 multiple_intents/spoken::drei_raeume_an:
-- kyeo bul geosil 그리고 kyeo bul gajoksiless 그리고 kyeo bul bueok
+- 켜 모두 불 거실 then 켜 모두 불 gajoksiless then 켜 모두 불 부엌
 multiple_intents/spoken::drei_raeume_aus:
-- kkaeo bul geosil 그리고 kkaeo bul gajoksiless 그리고 kkaeo bul bueok
+- 꺼 모두 불 거실 then 꺼 모두 불 gajoksiless then 꺼 모두 불 부엌
 multiple_intents/spoken::ess_und_wohn_aus:
-- kkaeo bul geosil 그리고 kkaeo bul gajoksiless
+- 꺼 모두 불 거실 then 꺼 모두 불 gajoksiless
 multiple_intents/spoken::kugel_und_decke_aus:
-- kkaeo gong 그리고 kkaeo cheonjang
+- gong 그리고 cheonjang chimsil 꺼
 multiple_intents/spoken_more::kuche_und_ess_an:
-- kyeo bul bueok 그리고 kyeo bul gajoksiless
+- 켜 모두 불 부엌 then 켜 모두 불 gajoksiless
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- kkaeo bul geosil 그리고 kkaeo bul gajoksiless
+- 꺼 모두 불 거실 then 꺼 모두 불 gajoksiless then 꺼 모두 불 office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- kkaeo bul geosil
+- 꺼 모두 불 거실 then 꺼 모두 불 office

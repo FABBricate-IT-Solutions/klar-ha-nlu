@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Cuarto
+  name: Cuartomaster
   floor: upper
   aliases:
+  - cuartomaster
   - cuarto
 - id: bedroom_2
   name: Cuarto2
@@ -130,10 +131,10 @@ devices:
   - teito
 - id: light.living_lamp
   area_id: living
-  name: salon luz
+  name: salon lamp
   aliases:
-  - salon luz
-  - luz
+  - salon lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: salafamess luz
@@ -190,29 +191,29 @@ devices:
   - luz
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: cuarto teito
+  name: cuartomaster teito
   aliases:
-  - cuarto teito
+  - cuartomaster teito
   - teito
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: cuarto ensuite
+  name: cuartomaster ensuite
   aliases:
-  - cuarto ensuite
+  - cuartomaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: cuarto left mesilla
+  name: cuartomaster left mesilla
   aliases:
-  - cuarto left mesilla
+  - cuartomaster left mesilla
   - mesilla
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: cuarto right mesilla
+  name: cuartomaster right mesilla
   aliases:
-  - cuarto right mesilla
+  - cuartomaster right mesilla
   - mesilla
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - cortina
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: cuarto cortina
+  name: cuartomaster cortina
   aliases:
-  - cuarto cortina
+  - cuartomaster cortina
   - cortina
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - calefaccion
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: cuarto calefaccion
+  name: cuartomaster calefaccion
   aliases:
-  - cuarto calefaccion
+  - cuartomaster calefaccion
   - calefaccion
 - id: climate.master_ac
   area_id: master_bedroom
-  name: calefaccion cuarto
+  name: calefaccion cuartomaster
   aliases:
-  - calefaccion cuarto
+  - calefaccion cuartomaster
   - calefaccion
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilador
 - id: fan.master_fan
   area_id: master_bedroom
-  name: cuarto ventilador
+  name: cuartomaster ventilador
   aliases:
-  - cuarto ventilador
+  - cuartomaster ventilador
   - ventilador
 - id: fan.bedroom2_fan
   area_id: bedroom_2

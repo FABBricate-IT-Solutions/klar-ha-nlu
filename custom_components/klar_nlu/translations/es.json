@@ -36,6 +36,7 @@
           "assist_filter": "Controlar solo entidades expuestas a Assist",
           "nlu_rag": "NLU-RAG (opcional)",
           "quiet_ack": "Confirmación breve (timbre)",
+          "calendar_llm": "Enviar consultas de calendario al LLM",
           "channel": "Canal de publicación"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Activado: solo lo que Assist puede ver. Desactivado: también entidades ocultas.",
           "nlu_rag": "Desactivado por defecto. En el chat solo el fragmento reconocido va al modelo de reserva.",
           "quiet_ack": "En encender o apagar simple, sin frase: solo un timbre corto en el satélite.",
+          "calendar_llm": "Desactivado por defecto. Activado: Klar lee el calendario y el LLM de reserva dice los eventos. Desactivado: Klar dice la lista. Crear, borrar y mover siguen en Klar.",
           "languages": "Por defecto, el idioma del sistema de Home Assistant.",
           "channel": "En cualquier momento. Staging apunta a Klar NLU (Staging); Stable a la app o al motor incluido."
         }

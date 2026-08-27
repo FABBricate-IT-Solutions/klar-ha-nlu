@@ -58,6 +58,11 @@ class NewsTests(unittest.TestCase):
         announced = news.compose_speech("Intro.", "LLM-Text.", "", True)
         self.assertEqual(announced, "LLM-Text.")
 
+    def test_unknown_pack_uses_english_feed_not_german(self) -> None:
+        self.assertNotIn("tagesschau", news.feed_url("ja"))
+        self.assertEqual(news.feed_url("xx"), news.feed_url("en"))
+        self.assertNotIn("Möchtest", news.nudge("ja"))
+
     def test_news_prompt_lists_headlines(self) -> None:
         prompt = fallback.news_prompt("de", ["Erste Meldung"], "Sei kurz.")
         self.assertIn("Sei kurz.", prompt)

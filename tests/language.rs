@@ -46,9 +46,11 @@ fn every_compiled_pack_id_matches_registry() {
 fn every_compiled_locale_has_assist_and_parity_suites() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let assist = std::fs::read_to_string(root.join("tests/assist_langs.rs")).expect("assist_langs.rs");
+    let handwritten = std::fs::read_to_string(root.join("tests/script_utterances.rs")).expect("script_utterances.rs");
     for id in klar_nlu::lang::LangId::all() {
         let code = id.code();
         assert!(assist.contains(&format!("(\"{code}\",")), "missing assist smoke for {code}");
+        assert!(handwritten.contains(&format!("(\"{code}\",")), "missing handwritten utterance for {code}");
         if code == "de" || code == "en" {
             continue;
         }

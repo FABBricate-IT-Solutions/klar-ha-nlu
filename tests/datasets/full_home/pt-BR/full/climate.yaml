@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - poe ar quarto 18
-  - ar quarto 18
+  - poe ar quartomaster 18
+  - ar quartomaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - poe ar quarto 19
-  - ar quarto 19
+  - poe ar quartomaster 19
+  - ar quartomaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - poe ar quarto 20
-  - ar quarto 20
+  - poe ar quartomaster 20
+  - ar quartomaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - poe ar quarto 21
-  - ar quarto 21
+  - poe ar quartomaster 21
+  - ar quartomaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - poe ar quarto 22
-  - ar quarto 22
+  - poe ar quartomaster 22
+  - ar quartomaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - poe ar quarto 23
-  - ar quarto 23
+  - poe ar quartomaster 23
+  - ar quartomaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - poe ar quarto 24
-  - ar quarto 24
+  - poe ar quartomaster 24
+  - ar quartomaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - que ar quarto
-  - ar quarto
+  - que ar quartomaster
+  - ar quartomaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - poe temperatura quarto 18
-  - temperatura quarto 18
+  - poe temperatura quartomaster 18
+  - temperatura quartomaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - poe temperatura quarto 19
-  - temperatura quarto 19
+  - poe temperatura quartomaster 19
+  - temperatura quartomaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - poe temperatura quarto 20
-  - temperatura quarto 20
+  - poe temperatura quartomaster 20
+  - temperatura quartomaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - poe temperatura quarto 21
-  - temperatura quarto 21
+  - poe temperatura quartomaster 21
+  - temperatura quartomaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - poe temperatura quarto 22
-  - temperatura quarto 22
+  - poe temperatura quartomaster 22
+  - temperatura quartomaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - poe temperatura quarto 23
-  - temperatura quarto 23
+  - poe temperatura quartomaster 23
+  - temperatura quartomaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - poe temperatura quarto 24
-  - temperatura quarto 24
+  - poe temperatura quartomaster 24
+  - temperatura quartomaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - que temperatura quarto
-  - temperatura quarto
+  - que temperatura quartomaster
+  - temperatura quartomaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - que ar quarto
-  - ar quarto
+  - que ar quartomaster
+  - ar quartomaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - que temperatura quarto
-  - temperatura quarto
+  - que temperatura quartomaster
+  - temperatura quartomaster

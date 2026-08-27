@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - увімкни вентилятор спальня2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- постав світло спальня2 65
+- постав все світло спальня2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- постав світло спальня2 pink
+- постав все світло спальня2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- вимкни світло спальня2
+- вимкни все світло спальня2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- увімкни світло спальня2
+- увімкни все світло спальня2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - закрий штора спальня3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - постав штора спальня3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- постав світло спальня3 76
+- постав все світло спальня3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- постав світло спальня3 blue
+- постав все світло спальня3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- вимкни світло спальня3
+- вимкни все світло спальня3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- увімкни світло спальня3
+- увімкни все світло спальня3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- постав світло спальня4 69
+- постав все світло спальня4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- постав світло спальня4 green
+- постав все світло спальня4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- вимкни світло спальня4
+- вимкни все світло спальня4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- увімкни світло спальня4
+- увімкни все світло спальня4
 area/dining_lights::dining_lights_change_brightness:
-- постав світло вітальняfamess 54
+- постав все світло вітальняfamess 54
 area/dining_lights::dining_lights_change_color:
-- постав світло вітальняfamess blue
+- постав все світло вітальняfamess blue
 area/dining_lights::dining_lights_turn_off:
-- вимкни світло вітальняfamess
+- вимкни все світло вітальняfamess
 area/dining_lights::dining_lights_turn_on:
-- увімкни світло вітальняfamess
+- увімкни все світло вітальняfamess
 area/entryway_lights::entryway_lights_change_brightness:
-- постав світло передпокій 72
+- постав все світло передпокій 72
 area/entryway_lights::entryway_lights_change_color:
-- постав світло передпокій black
+- постав все світло передпокій black
 area/entryway_lights::entryway_lights_turn_off:
-- вимкни світло передпокій
+- вимкни все світло передпокій
 area/entryway_lights::entryway_lights_turn_on:
-- увімкни світло передпокій
+- увімкни все світло передпокій
 area/entryway_locks::entryway_locks_lock:
 - замок замок передпокій
 area/entryway_locks::entryway_locks_unlock:
 - відкрий замок передпокій
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- постав світло вітальняfam 39 і постав світло кухня 39
+- постав все світло вітальняfam 39 then постав все світло кухня 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- постав світло вітальняfam purple і постав світло кухня purple
+- постав все світло вітальняfam purple then постав все світло кухня purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- вимкни світло вітальняfam і вимкни світло кухня
+- вимкни все світло вітальняfam then вимкни все світло кухня
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- увімкни світло вітальняfam і увімкни світло кухня
+- увімкни все світло вітальняfam then увімкни все світло кухня
 area/family_room_fans::family_room_fans_set_fan_speed:
 - постав вентилятор вітальняfam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - увімкни вентилятор вітальняfam
 area/family_room_lights::family_room_lights_change_brightness:
-- постав світло вітальняfam 44
+- постав все світло вітальняfam 44
 area/family_room_lights::family_room_lights_change_color:
-- постав світло вітальняfam green
+- постав все світло вітальняfam green
 area/family_room_lights::family_room_lights_turn_off:
-- вимкни світло вітальняfam
+- вимкни все світло вітальняfam
 area/family_room_lights::family_room_lights_turn_on:
-- увімкни світло вітальняfam
+- увімкни все світло вітальняfam
 area/garage_covers::garage_covers_close:
 - закрий штора garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - постав штора garage 86
 area/garage_lights::garage_lights_change_brightness:
-- постав світло garage 16
+- постав все світло garage 16
 area/garage_lights::garage_lights_change_color:
-- постав світло garage blue
+- постав все світло garage blue
 area/garage_lights::garage_lights_turn_off:
-- вимкни світло garage
+- вимкни все світло garage
 area/garage_lights::garage_lights_turn_on:
-- увімкни світло garage
+- увімкни все світло garage
 area/garage_locks::garage_locks_lock:
 - замок замок garage
 area/garage_locks::garage_locks_unlock:
 - відкрий замок garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- постав світло передпокійgang 26 і постав світло туалет 26
+- постав все світло передпокійgang 26 then постав все світло туалет 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- постав світло передпокійgang purple і постав світло туалет purple
+- постав все світло передпокійgang purple then постав все світло туалет purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- вимкни світло передпокійgang і вимкни світло туалет
+- вимкни все світло передпокійgang then вимкни все світло туалет
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- увімкни світло передпокійgang і увімкни світло туалет
+- увімкни все світло передпокійgang then увімкни все світло туалет
 area/hallway_lights::hallway_lights_change_brightness:
-- постав світло передпокійgang 61
+- постав все світло передпокійgang 61
 area/hallway_lights::hallway_lights_change_color:
-- постав світло передпокійgang orange
+- постав все світло передпокійgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- вимкни світло передпокійgang
+- вимкни все світло передпокійgang
 area/hallway_lights::hallway_lights_turn_on:
-- увімкни світло передпокійgang
+- увімкни все світло передпокійgang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- постав світло кухня 45
+- постав все світло кухня 45
 area/kitchen_lights::kitchen_lights_change_color:
-- постав світло кухня pink
+- постав все світло кухня pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- вимкни світло кухня
+- вимкни все світло кухня
 area/kitchen_lights::kitchen_lights_turn_on:
-- увімкни світло кухня
+- увімкни все світло кухня
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- вимкни пристрій кухня
+- вимкни все пристрій кухня
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- увімкни пристрій кухня
+- увімкни все пристрій кухня
 area/laundry_lights::laundry_lights_change_brightness:
-- постав світло пральня 62
+- постав все світло пральня 62
 area/laundry_lights::laundry_lights_change_color:
-- постав світло пральня yellow
+- постав все світло пральня yellow
 area/laundry_lights::laundry_lights_turn_off:
-- вимкни світло пральня
+- вимкни все світло пральня
 area/laundry_lights::laundry_lights_turn_on:
-- увімкни світло пральня
+- увімкни все світло пральня
 area/laundry_switchs::laundry_switchs_turn_off:
-- вимкни пристрій пральня
+- вимкни все пристрій пральня
 area/laundry_switchs::laundry_switchs_turn_on:
-- увімкни пристрій пральня
+- увімкни все пристрій пральня
 area/living_climates::living_climates_set_temperature:
 - постав опалення вітальня 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - постав штора вітальня 46
 area/living_lights::living_lights_change_brightness:
-- постав світло вітальня 84
+- постав все світло вітальня 84
 area/living_lights::living_lights_change_color:
-- постав світло вітальня blue
+- постав все світло вітальня blue
 area/living_lights::living_lights_turn_off:
-- вимкни світло вітальня
+- вимкни все світло вітальня
 area/living_lights::living_lights_turn_on:
-- увімкни світло вітальня
+- увімкни все світло вітальня
 area/main_bath_lights::main_bath_lights_change_brightness:
-- постав світло main bath 73
+- постав все світло main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- постав світло main bath pink
+- постав все світло main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- вимкни світло main bath
+- вимкни все світло main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- увімкни світло main bath
+- увімкни все світло main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- вимкни пристрій main bath
+- вимкни все пристрій main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- увімкни пристрій main bath
+- увімкни все пристрій main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- постав світло ваннаmaster 60
+- постав все світло ваннаmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- постав світло ваннаmaster black
+- постав все світло ваннаmaster black
 area/master_bath_lights::master_bath_lights_turn_off:
-- вимкни світло ваннаmaster
+- вимкни все світло ваннаmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- увімкни світло ваннаmaster
+- увімкни все світло ваннаmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- вимкни пристрій ваннаmaster
+- вимкни все пристрій ваннаmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- увімкни пристрій ваннаmaster
+- увімкни все пристрій ваннаmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- постав опалення спальня 20 і постав опалення вітальня 20
+- постав опалення спальняmaster 20 then постав опалення вітальня 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- закрий штора спальня і закрий штора вітальня
+- закрий штора спальняmaster then закрий штора вітальня
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- відкрий штора спальня і відкрий штора вітальня
+- відкрий штора спальняmaster then відкрий штора вітальня
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- постав штора спальня 19 і постав штора вітальня 19
+- постав штора спальняmaster 19 then постав штора вітальня 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- постав світло спальня 25 і постав світло вітальня 25
+- постав все світло спальняmaster 25 then постав все світло вітальня 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- постав світло спальня white і постав світло вітальня white
+- постав все світло спальняmaster white then постав все світло вітальня white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- вимкни світло спальня і вимкни світло вітальня
+- вимкни все світло спальняmaster then вимкни все світло вітальня
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- увімкни світло спальня і увімкни світло вітальня
+- увімкни все світло спальняmaster then увімкни все світло вітальня
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- постав світло спальня 57 і постав світло main bath 57
+- постав все світло спальняmaster 57 then постав все світло main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- постав світло спальня pink і постав світло main bath pink
+- постав все світло спальняmaster pink then постав все світло main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- вимкни світло спальня і вимкни світло main bath
+- вимкни все світло спальняmaster then вимкни все світло main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- увімкни світло спальня і увімкни світло main bath
+- увімкни все світло спальняmaster then увімкни все світло main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- постав опалення спальня 20
+- постав опалення спальняmaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- закрий штора спальня
+- закрий штора спальняmaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- відкрий штора спальня
+- відкрий штора спальняmaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- постав штора спальня 38
+- постав штора спальняmaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- постав вентилятор спальня 79
+- постав вентилятор спальняmaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- вимкни вентилятор спальня
+- вимкни вентилятор спальняmaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- увімкни вентилятор спальня
+- увімкни вентилятор спальняmaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- постав світло спальня 73
+- постав все світло спальняmaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- постав світло спальня pink
+- постав все світло спальняmaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- вимкни світло спальня
+- вимкни все світло спальняmaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- увімкни світло спальня
+- увімкни все світло спальняmaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- постав світло туалет 52
+- постав все світло туалет 52
 area/powder_room_lights::powder_room_lights_change_color:
-- постав світло туалет purple
+- постав все світло туалет purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- вимкни світло туалет
+- вимкни все світло туалет
 area/powder_room_lights::powder_room_lights_turn_on:
-- увімкни світло туалет
+- увімкни все світло туалет
 area/spoken_lights::spoken_bedroom_inflection:
-- постав світло спальня red
+- постав все світло спальняmaster red
 area/spoken_lights::spoken_except_island:
 - вимкни все світло крім острів
 area/spoken_lights::spoken_except_kitchen:
-- вимкни все світло крім кухня крім острів
+- вимкни все світло крім кухня
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- вимкни світло вітальня і вимкни світло вітальняfamess і вимкни світло кухня
+- вимкни все світло вітальня then вимкни все світло вітальняfamess then вимкни все
+  світло кухня
 area/spoken_lights::spoken_stt_kitchen_off:
-- вимкни світло кухня
+- вимкни все світло кухня
 area/spoken_lights::spoken_stt_living_off:
-- вимкни світло вітальня
+- вимкни все світло вітальня

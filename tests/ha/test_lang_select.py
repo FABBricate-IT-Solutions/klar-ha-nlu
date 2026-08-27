@@ -59,6 +59,18 @@ class LangSelectTests(unittest.TestCase):
     def test_empty_list_is_all(self) -> None:
         self.assertEqual(lang.normalize_language_choice([]), lang.LANGUAGE_ALL)
 
+    def test_selected_klar_pack_wins_over_assist_language(self) -> None:
+        self.assertEqual(lang.resolve_pack("de", ["en"]), "en")
+        self.assertEqual(lang.resolve_pack("de-DE", ["en"]), "en")
+        self.assertEqual(lang.resolve_pack("de", ["de", "en"]), "de")
+        self.assertEqual(lang.resolve_pack("en-GB", ["en-GB"]), "en-GB")
+        self.assertEqual(lang.speak_tag("en"), "en")
+        self.assertEqual(lang.speak_tag("zh-CN"), "zh-CN")
+        lock = lang.language_lock("en")
+        self.assertIn("English", lock)
+        self.assertIn("German", lock)
+        self.assertIn("Deutsch", lang.language_lock("de"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht arbeitszimmer
+  - mach licht office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt licht arbeitszimmer
+  - schalt licht office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht schlafzimmer
+  - mach licht schlafzimmermaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt licht schlafzimmer
+  - schalt licht schlafzimmermaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,42 +196,42 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - mach decke schlafzimmer
+  - mach decke schlafzimmermaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - schalt decke schlafzimmer
+  - schalt decke schlafzimmermaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - mach nachttisch schlafzimmer
+  - mach nachttisch schlafzimmermaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - schalt nachttisch schlafzimmer
+  - schalt nachttisch schlafzimmermaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - mach decke arbeitszimmer
+  - mach decke office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - schalt decke arbeitszimmer
+  - schalt decke office
 - name: light.garden_on
   conditions:
   - type: action

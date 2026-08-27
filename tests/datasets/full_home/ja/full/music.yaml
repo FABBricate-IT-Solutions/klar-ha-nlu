@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - play queen ribingu
-  - play queen ongaku ribingu
+  - play queen リビング
+  - play queen テレビ リビング
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - play album rumours by fleetwood mac ribingu
+  - play album rumours by fleetwood mac リビング
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - play queen radio mode ribingu
+  - play queen radio mode リビング
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - play bohemian rhapsody queue ribingu
+  - play bohemian rhapsody queue リビング
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - nani ongaku ribingu
-  - nani track ribingu
+  - 何 テレビ リビング
+  - 何 track リビング
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - setto ongaku ribingu 10
-  - ongaku ribingu 10
+  - セット テレビ リビング 10
+  - テレビ リビング 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - setto ongaku ribingu 20
-  - ongaku ribingu 20
+  - セット テレビ リビング 20
+  - テレビ リビング 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - setto ongaku ribingu 30
-  - ongaku ribingu 30
+  - セット テレビ リビング 30
+  - テレビ リビング 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - setto ongaku ribingu 50
-  - ongaku ribingu 50
+  - セット テレビ リビング 50
+  - テレビ リビング 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - setto ongaku ribingu 80
-  - ongaku ribingu 80
+  - セット テレビ リビング 80
+  - テレビ リビング 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track ribingu
+  - next track リビング
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track ribingu
+  - previous track リビング
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - play queen kitchin
-  - play queen ongaku kitchin
+  - play queen キッチン
+  - play queen テレビ キッチン
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - play beatles ribingu
-  - play beatles ongaku ribingu
+  - play beatles リビング
+  - play beatles テレビ リビング
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - play radiohead ribingu
-  - play radiohead ongaku ribingu
+  - play radiohead リビング
+  - play radiohead テレビ リビング
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - play abba ribingu
-  - play abba ongaku ribingu
+  - play abba リビング
+  - play abba テレビ リビング
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - play coldplay ribingu
-  - play coldplay ongaku ribingu
+  - play coldplay リビング
+  - play coldplay テレビ リビング
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - play adele ribingu
-  - play adele ongaku ribingu
+  - play adele リビング
+  - play adele テレビ リビング
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - play prince ribingu
-  - play prince ongaku ribingu
+  - play prince リビング
+  - play prince テレビ リビング
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - play bowie ribingu
-  - play bowie ongaku ribingu
+  - play bowie リビング
+  - play bowie テレビ リビング
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - play nirvana ribingu
-  - play nirvana ongaku ribingu
+  - play nirvana リビング
+  - play nirvana テレビ リビング
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - play eagles ribingu
-  - play eagles ongaku ribingu
+  - play eagles リビング
+  - play eagles テレビ リビング
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - play madonna ribingu
-  - play madonna ongaku ribingu
+  - play madonna リビング
+  - play madonna テレビ リビング
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - play mozart ribingu
-  - play mozart ongaku ribingu
+  - play mozart リビング
+  - play mozart テレビ リビング
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - play daft punk ribingu
-  - play daft punk ongaku ribingu
+  - play daft punk リビング
+  - play daft punk テレビ リビング
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - play biafra ribingu
-  - play biafra ongaku ribingu
+  - play biafra リビング
+  - play biafra テレビ リビング
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - play queen kitchin
-  - play queen ongaku kitchin
+  - play queen キッチン
+  - play queen テレビ キッチン
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - play beatles kitchin
-  - play beatles ongaku kitchin
+  - play beatles キッチン
+  - play beatles テレビ キッチン
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - play radiohead kitchin
-  - play radiohead ongaku kitchin
+  - play radiohead キッチン
+  - play radiohead テレビ キッチン
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - play abba kitchin
-  - play abba ongaku kitchin
+  - play abba キッチン
+  - play abba テレビ キッチン
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - play coldplay kitchin
-  - play coldplay ongaku kitchin
+  - play coldplay キッチン
+  - play coldplay テレビ キッチン
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - play adele kitchin
-  - play adele ongaku kitchin
+  - play adele キッチン
+  - play adele テレビ キッチン
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - play prince kitchin
-  - play prince ongaku kitchin
+  - play prince キッチン
+  - play prince テレビ キッチン
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - play bowie kitchin
-  - play bowie ongaku kitchin
+  - play bowie キッチン
+  - play bowie テレビ キッチン
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - play nirvana kitchin
-  - play nirvana ongaku kitchin
+  - play nirvana キッチン
+  - play nirvana テレビ キッチン
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - play eagles kitchin
-  - play eagles ongaku kitchin
+  - play eagles キッチン
+  - play eagles テレビ キッチン
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - play madonna kitchin
-  - play madonna ongaku kitchin
+  - play madonna キッチン
+  - play madonna テレビ キッチン
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - play mozart kitchin
-  - play mozart ongaku kitchin
+  - play mozart キッチン
+  - play mozart テレビ キッチン
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - play daft punk kitchin
-  - play daft punk ongaku kitchin
+  - play daft punk キッチン
+  - play daft punk テレビ キッチン
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - play biafra kitchin
-  - play biafra ongaku kitchin
+  - play biafra キッチン
+  - play biafra テレビ キッチン
 - name: play_queen_office
   conditions:
   - type: action
@@ -361,7 +361,7 @@
       search_query: queen
   sentences:
   - play queen office
-  - play queen ongaku office
+  - play queen テレビ office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -370,7 +370,7 @@
       search_query: beatles
   sentences:
   - play beatles office
-  - play beatles ongaku office
+  - play beatles テレビ office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -379,7 +379,7 @@
       search_query: radiohead
   sentences:
   - play radiohead office
-  - play radiohead ongaku office
+  - play radiohead テレビ office
 - name: play_abba_office
   conditions:
   - type: action
@@ -388,7 +388,7 @@
       search_query: abba
   sentences:
   - play abba office
-  - play abba ongaku office
+  - play abba テレビ office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -397,7 +397,7 @@
       search_query: coldplay
   sentences:
   - play coldplay office
-  - play coldplay ongaku office
+  - play coldplay テレビ office
 - name: play_adele_office
   conditions:
   - type: action
@@ -406,7 +406,7 @@
       search_query: adele
   sentences:
   - play adele office
-  - play adele ongaku office
+  - play adele テレビ office
 - name: play_prince_office
   conditions:
   - type: action
@@ -415,7 +415,7 @@
       search_query: prince
   sentences:
   - play prince office
-  - play prince ongaku office
+  - play prince テレビ office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -424,7 +424,7 @@
       search_query: bowie
   sentences:
   - play bowie office
-  - play bowie ongaku office
+  - play bowie テレビ office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -433,7 +433,7 @@
       search_query: nirvana
   sentences:
   - play nirvana office
-  - play nirvana ongaku office
+  - play nirvana テレビ office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -442,7 +442,7 @@
       search_query: eagles
   sentences:
   - play eagles office
-  - play eagles ongaku office
+  - play eagles テレビ office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -451,7 +451,7 @@
       search_query: madonna
   sentences:
   - play madonna office
-  - play madonna ongaku office
+  - play madonna テレビ office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -460,7 +460,7 @@
       search_query: mozart
   sentences:
   - play mozart office
-  - play mozart ongaku office
+  - play mozart テレビ office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -469,7 +469,7 @@
       search_query: daft punk
   sentences:
   - play daft punk office
-  - play daft punk ongaku office
+  - play daft punk テレビ office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -478,7 +478,7 @@
       search_query: biafra
   sentences:
   - play biafra office
-  - play biafra ongaku office
+  - play biafra テレビ office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - play queen radio mode ribingu
+  - play queen radio mode リビング
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - nani ongaku ribingu
-  - nani track ribingu
+  - 何 テレビ リビング
+  - 何 track リビング
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - play queen radio mode kitchin
+  - play queen radio mode キッチン
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - nani ongaku kitchin
-  - nani track kitchin
+  - 何 テレビ キッチン
+  - 何 track キッチン
 - name: radio_office
   conditions:
   - type: action
@@ -525,5 +525,5 @@
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - nani ongaku office
-  - nani track office
+  - 何 テレビ office
+  - 何 track office

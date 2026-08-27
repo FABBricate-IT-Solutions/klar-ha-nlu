@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - enth vilakku muriyil
-  - enth muriyil vilakku
+  - എന്ത് വിളക്ക് ഹാൾ
+  - എന്ത് ഹാൾ വിളക്ക്
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - enth jada muriyil
-  - enth muriyil jada
+  - എന്ത് ജാലകം ഹാൾ
+  - എന്ത് ഹാൾ ജാലകം
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - enth poott praveshanam
-  - enth praveshanam poott
+  - എന്ത് പൂട്ട് praveshanam
+  - എന്ത് praveshanam പൂട്ട്
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - enth chudu muriyil
-  - enth muriyil chudu
+  - എന്ത് ചൂട് ഹാൾ
+  - എന്ത് ഹാൾ ചൂട്
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - enth tv muriyil
-  - enth muriyil tv
+  - എന്ത് tv ഹാൾ
+  - എന്ത് ഹാൾ tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - enth doorsensor praveshanam
-  - enth praveshanam doorsensor
+  - എന്ത് doorsensor praveshanam
+  - എന്ത് praveshanam doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - enth windowsensor muriyil
-  - enth muriyil windowsensor
+  - എന്ത് windowsensor ഹാൾ
+  - എന്ത് ഹാൾ windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - enth tempsensor muriyil
-  - enth muriyil tempsensor
+  - എന്ത് tempsensor ഹാൾ
+  - എന്ത് ഹാൾ tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - enth vilakku adukkala
-  - enth adukkala vilakku
+  - എന്ത് വിളക്ക് അടുക്കള
+  - എന്ത് അടുക്കള വിളക്ക്
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - enth vilakku office
-  - enth office vilakku
+  - എന്ത് വിളക്ക് office
+  - എന്ത് office വിളക്ക്
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - enth vilakku garden
-  - enth garden vilakku
+  - എന്ത് വിളക്ക് garden
+  - എന്ത് garden വിളക്ക്
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - enth vilakku basement
-  - enth basement vilakku
+  - എന്ത് വിളക്ക് basement
+  - എന്ത് basement വിളക്ക്
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - enth jada kitappumuri
-  - enth kitappumuri jada
+  - എന്ത് ജാലകം kitappumurimaster
+  - എന്ത് kitappumurimaster ജാലകം
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - enth jada garage
-  - enth garage jada
+  - എന്ത് ജാലകം garage
+  - എന്ത് garage ജാലകം
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - enth poott garage
-  - enth garage poott
+  - എന്ത് പൂട്ട് garage
+  - എന്ത് garage പൂട്ട്
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - enth chudu kitappumuri
-  - enth kitappumuri chudu
+  - എന്ത് ചൂട് kitappumurimaster
+  - എന്ത് kitappumurimaster ചൂട്
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - enth chudu kitappumuri
-  - enth kitappumuri chudu
+  - എന്ത് chudu kitappumurimaster
+  - എന്ത് kitappumurimaster chudu
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - enth tv kutumbam
-  - enth kutumbam tv
+  - എന്ത് tv kutumbam
+  - എന്ത് kutumbam tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enth tivi muriyil
-  - enth muriyil tivi
+  - എന്ത് ടിവി ഹാൾ
+  - എന്ത് ഹാൾ ടിവി
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - enth motion adukkala
-  - enth adukkala motion
+  - എന്ത് motion അടുക്കള
+  - എന്ത് അടുക്കള motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - enth humidity muriyil
-  - enth muriyil humidity
+  - എന്ത് humidity ഹാൾ
+  - എന്ത് ഹാൾ humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - enth fan kitappumuri
-  - enth kitappumuri fan
+  - എന്ത് ഫാൻ kitappumurimaster
+  - എന്ത് kitappumurimaster ഫാൻ
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - enth varal muriyil
-  - enth muriyil varal
+  - എന്ത് വാരൽ ഹാൾ
+  - എന്ത് ഹാൾ വാരൽ
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - enth vilakku muriyil
-  - enth muriyil vilakku
+  - എന്ത് വിളക്ക് ഹാൾ
+  - എന്ത് ഹാൾ വിളക്ക്
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - enth vilakku adukkala
-  - enth adukkala vilakku
+  - എന്ത് വിളക്ക് അടുക്കള
+  - എന്ത് അടുക്കള വിളക്ക്
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - enth vilakku kitappumuri
-  - enth kitappumuri vilakku
+  - എന്ത് വിളക്ക് kitappumurimaster
+  - എന്ത് kitappumurimaster വിളക്ക്
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - enth vilakku kitappumuri
-  - enth kitappumuri vilakku
+  - എന്ത് വിളക്ക് kitappumurimaster
+  - എന്ത് kitappumurimaster വിളക്ക്
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - enth vilakku hallway
-  - enth hallway vilakku
+  - എന്ത് വിളക്ക് hallway
+  - എന്ത് hallway വിളക്ക്
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - enth vilakku kutumbam
-  - enth kutumbam vilakku
+  - എന്ത് വിളക്ക് kutumbam
+  - എന്ത് kutumbam വിളക്ക്
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - enth vilakku kutumbamess
-  - enth kutumbamess vilakku
+  - എന്ത് വിളക്ക് kutumbamess
+  - എന്ത് kutumbamess വിളക്ക്
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - enth vilakku garage
-  - enth garage vilakku
+  - എന്ത് വിളക്ക് garage
+  - എന്ത് garage വിളക്ക്
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - enth vilakku kitappumuri2
-  - enth kitappumuri2 vilakku
+  - എന്ത് വിളക്ക് kitappumuri2
+  - എന്ത് kitappumuri2 വിളക്ക്
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - enth vilakku kitappumuri3
-  - enth kitappumuri3 vilakku
+  - എന്ത് വിളക്ക് kitappumuri3
+  - എന്ത് kitappumuri3 വിളക്ക്
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - enth vilakku kitappumuri4
-  - enth kitappumuri4 vilakku
+  - എന്ത് വിളക്ക് kitappumuri4
+  - എന്ത് kitappumuri4 വിളക്ക്
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - enth vilakku praveshanam
-  - enth praveshanam vilakku
+  - എന്ത് വിളക്ക് praveshanam
+  - എന്ത് praveshanam വിളക്ക്
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - enth vilakku alakku
-  - enth alakku vilakku
+  - എന്ത് വിളക്ക് alakku
+  - എന്ത് alakku വിളക്ക്
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - enth vilakku main bath
-  - enth main bath vilakku
+  - എന്ത് വിളക്ക് main bath
+  - എന്ത് main bath വിളക്ക്
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - enth vilakku toilet
-  - enth toilet vilakku
+  - എന്ത് വിളക്ക് toilet
+  - എന്ത് toilet വിളക്ക്
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - enth ensuite kitappumuri
-  - enth kitappumuri ensuite
+  - എന്ത് ensuite kitappumurimaster
+  - എന്ത് kitappumurimaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - enth vilakku kitappumuri
-  - enth kitappumuri vilakku
+  - എന്ത് വിളക്ക് kitappumurimaster
+  - എന്ത് kitappumurimaster വിളക്ക്
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - enth vilakku masterbath
-  - enth masterbath vilakku
+  - എന്ത് വിളക്ക് masterbath
+  - എന്ത് masterbath വിളക്ക്

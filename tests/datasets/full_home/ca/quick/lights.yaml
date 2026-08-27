@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - encen llum habitacio
+  - encen llum habitaciomaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga llum habitacio
+  - apaga llum habitaciomaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - encen sostre habitacio
+  - encen sostre habitaciomaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - apaga sostre habitacio
+  - apaga sostre habitaciomaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - encen tauleta habitacio
+  - encen tauleta habitaciomaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - apaga tauleta habitacio
+  - apaga tauleta habitaciomaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

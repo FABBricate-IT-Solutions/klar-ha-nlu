@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - apa lampu garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - apa lampu loronggang dan apa lampu wc
+- - apa lampu loronggang then apa lampu wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - apa lampu loronggang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - apa lampu bilikmandimaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - apa pendingin bilik dan apa pendingin ruang
+- - apa pendingin bilikmaster then apa pendingin ruang
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - apa langsir bilik dan apa langsir ruang
+- - apa langsir bilikmaster then apa langsir ruang
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - apa pendingin bilik
+- - apa pendingin bilikmaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - apa langsir bilik
+- - apa langsir bilikmaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - apa lampu wc

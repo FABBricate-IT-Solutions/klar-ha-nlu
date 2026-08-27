@@ -1,35 +1,35 @@
 multiple_intents/multiple_intents::multi_0:
-- isjunk sviesa wc ir ijunk Guten Morgen
+- isjunk sviesa wc then ijunk scena good_morning
 multiple_intents/multiple_intents::multi_1:
-- kas indaplove ir ijunk Haus verlassen
+- kas indaplove then ijunk scena leaving_home
 multiple_intents/multiple_intents::multi_10:
-- nustatyk ventiliatorius miegamasis2 50 ir kas uzuolaida miegamasis2 ir kas uzuolaida
-  miegamasis
+- nustatyk ventiliatorius miegamasis2 50 then kas uzuolaida miegamasis2 then kas uzuolaida
+  miegamasismaster
 multiple_intents/multiple_intents::multi_12:
-- isjunk naktinis miegamasis ir ijunk sviesa skalbykla
+- isjunk naktinis miegamasismaster then ijunk viskas sviesa skalbykla
 multiple_intents/multiple_intents::multi_14:
-- isjunk sviesa virtuve ir kas sviesa prieskambarisgang
+- isjunk viskas sviesa virtuve then kas sviesa prieskambarisgang
 multiple_intents/multiple_intents::multi_15:
-- kas uzuolaida miegamasis2 ir isjunk sviesa virtuve
+- kas uzuolaida miegamasis2 then isjunk viskas sviesa virtuve
 multiple_intents/multiple_intents::multi_16:
-- ijunk lubos virtuve ir kas sviesa prieskambarisgang
+- ijunk lubos virtuve then kas sviesa prieskambarisgang
 multiple_intents/multiple_intents::multi_18:
-- isjunk ventiliatorius svetainefam ir nustatyk sviesa virtuve 20
+- isjunk ventiliatorius svetainefam then nustatyk sala virtuve 20
 multiple_intents/multiple_intents::multi_19:
-- kas ventiliatorius miegamasis2 ir ijunk sviesa skalbykla
+- kas ventiliatorius miegamasis2 then ijunk sviesa skalbykla
 multiple_intents/multiple_intents::multi_2:
-- kas sviesa garage ir uzdaryk uzuolaida svetaine
+- kas sviesa garage then uzdaryk uzuolaida svetaine
 multiple_intents/multiple_intents::multi_3:
-- kas sildymas svetaine ir isjunk lubos svetaine
+- kas sildymas svetaine then isjunk lubos svetaine
 multiple_intents/multiple_intents::multi_4:
-- uzdaryk uzuolaida miegamasis3 ir uzdaryk uzuolaida garage ir ijunk lubos miegamasis2
+- uzdaryk uzuolaida miegamasis3 then uzdaryk uzuolaida garage then ijunk lubos miegamasis2
 multiple_intents/multiple_intents::multi_5:
-- isjunk sviesa svetainefamess ir nustatyk ventiliatorius miegamasis2 50
+- isjunk sviesa svetainefamess then nustatyk ventiliatorius miegamasis2 50
 multiple_intents/multiple_intents::multi_6:
-- ijunk lubos miegamasis3 ir isjunk sviesa prieskambaris
+- ijunk lubos miegamasis3 then isjunk sviesa prieskambaris
 multiple_intents/multiple_intents::multi_7:
-- ijunk Filmabend ir isjunk indaplove
+- ijunk scena movie_night then isjunk indaplove
 multiple_intents/multiple_intents::multi_8:
-- atidaryk spyna garage ir kas sviesa garage
+- atidaryk spyna garage then kas sviesa garage
 multiple_intents/multiple_intents::multi_9:
-- pause televizorius svetaine ir isjunk lubos svetaine
+- pause tv svetaine then isjunk lubos svetaine

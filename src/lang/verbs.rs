@@ -155,3 +155,12 @@ impl std::str::FromStr for VerbKind {
         }
     }
 }
+
+pub(crate) fn extra_verb(token: &str) -> Option<VerbKind> {
+    match token {
+        "pause" | "pausiere" | "pausieren" => Some(VerbKind::Pause),
+        "done" | "erledigt" | "fertig" => Some(VerbKind::ListComplete),
+        "add" | "fuege" | "hinzu" => Some(VerbKind::Add),
+        _ => None,
+    }
+}

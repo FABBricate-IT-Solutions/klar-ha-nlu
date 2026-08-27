@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - ايش ستارة غرفة
-  - ايش غرفة ستارة
+  - ايش ستارة غرفةmaster
+  - ايش غرفةmaster ستارة
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ايش تكييف غرفة
-  - ايش غرفة تكييف
+  - ايش تكييف غرفةmaster
+  - ايش غرفةmaster تكييف
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ايش حرارة غرفة
-  - ايش غرفة حرارة
+  - ايش حرارة غرفةmaster
+  - ايش غرفةmaster حرارة
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - ايش مروحة غرفة
-  - ايش غرفة مروحة
+  - ايش مروحة غرفةmaster
+  - ايش غرفةmaster مروحة
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - ايش ضوء غرفة
-  - ايش غرفة ضوء
+  - ايش ضوء غرفةmaster
+  - ايش غرفةmaster ضوء
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - ايش ضوء غرفة
-  - ايش غرفة ضوء
+  - ايش ضوء غرفةmaster
+  - ايش غرفةmaster ضوء
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - ايش ensuite غرفة
-  - ايش غرفة ensuite
+  - ايش ensuite غرفةmaster
+  - ايش غرفةmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - ايش ضوء غرفة
-  - ايش غرفة ضوء
+  - ايش ضوء غرفةmaster
+  - ايش غرفةmaster ضوء
 - name: query_light.master_bath_light
   conditions:
   - type: query

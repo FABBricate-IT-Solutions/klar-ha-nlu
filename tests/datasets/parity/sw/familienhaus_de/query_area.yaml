@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - nini kufuli kiingilio
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- nini taa sefula na nini taa jikonini
+- nini taa sefula then nini taa jikonini
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- nini taa sefula na nini taa jikonini
+- nini taa sefula then nini taa jikonini
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- nini taa sefula na nini taa jikonini
+- nini taa sefula then nini taa jikonini
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- nini taa sefula na nini taa jikonini
+- nini taa sefula then nini taa jikonini
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - nini feni sefula
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - nini kufuli garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- nini taa kiingiliogang na nini taa choo
+- nini taa kiingiliogang then nini taa choo
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- nini taa kiingiliogang na nini taa choo
+- nini taa kiingiliogang then nini taa choo
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- nini taa kiingiliogang na nini taa choo
+- nini taa kiingiliogang then nini taa choo
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- nini taa kiingiliogang na nini taa choo
+- nini taa kiingiliogang then nini taa choo
 query_area/hallway_lights::hallway_lights_get_brightness:
 - nini taa kiingiliogang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - nini kifaa bafumaster
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- nini pazia chumbakulala na nini pazia sebuleni
+- nini pazia chumbakulalamaster then nini pazia sebuleni
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- nini pazia chumbakulala na nini pazia sebuleni
+- nini pazia chumbakulalamaster then nini pazia sebuleni
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- nini pazia chumbakulala na nini pazia sebuleni
+- nini pazia chumbakulalamaster then nini pazia sebuleni
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- nini pazia chumbakulala na nini pazia sebuleni
+- nini pazia chumbakulalamaster then nini pazia sebuleni
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- nini joto chumbakulala
+- nini joto chumbakulalamaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- nini pazia chumbakulala
+- nini pazia chumbakulalamaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- nini pazia chumbakulala
+- nini pazia chumbakulalamaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- nini pazia chumbakulala
+- nini pazia chumbakulalamaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- nini pazia chumbakulala
+- nini pazia chumbakulalamaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- nini feni chumbakulala
+- nini feni chumbakulalamaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- nini feni chumbakulala
+- nini feni chumbakulalamaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- nini feni chumbakulala
+- nini feni chumbakulalamaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- nini feni chumbakulala
+- nini feni chumbakulalamaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- nini taa chumbakulala
+- nini taa chumbakulalamaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- nini taa chumbakulala
+- nini taa chumbakulalamaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- nini taa chumbakulala
+- nini taa chumbakulalamaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- nini taa chumbakulala
+- nini taa chumbakulalamaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - nini taa choo
 query_area/powder_room_lights::powder_room_lights_get_state:

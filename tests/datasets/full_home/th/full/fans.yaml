@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - phat hongkhropkhrua poetfai
-  - poetfai phat hongkhropkhrua
+  - พัดลม hongkhropkhrua เปิด
+  - เปิด พัดลม hongkhropkhrua
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - pitfai phat hongkhropkhrua
-  - phat hongkhropkhrua pitfai
+  - ปิด พัดลม hongkhropkhrua
+  - พัดลม hongkhropkhrua ปิด
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - tang phat hongkhropkhrua 40
-  - phat hongkhropkhrua 40
+  - ตั้ง พัดลม hongkhropkhrua 40
+  - พัดลม hongkhropkhrua 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - phat hongnon poetfai
-  - poetfai phat hongnon
+  - พัดลม hongnonmaster เปิด
+  - เปิด พัดลม hongnonmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - pitfai phat hongnon
-  - phat hongnon pitfai
+  - ปิด พัดลม hongnonmaster
+  - พัดลม hongnonmaster ปิด
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - tang phat hongnon 40
-  - phat hongnon 40
+  - ตั้ง พัดลม hongnonmaster 40
+  - พัดลม hongnonmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - phat hongnon2 poetfai
-  - poetfai phat hongnon2
+  - พัดลม hongnon2 เปิด
+  - เปิด พัดลม hongnon2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - pitfai phat hongnon2
-  - phat hongnon2 pitfai
+  - ปิด พัดลม hongnon2
+  - พัดลม hongnon2 ปิด
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - tang phat hongnon2 40
-  - phat hongnon2 40
+  - ตั้ง พัดลม hongnon2 40
+  - พัดลม hongnon2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - tang phat hongkhropkhrua 20
-  - phat hongkhropkhrua 20
+  - ตั้ง พัดลม hongkhropkhrua 20
+  - พัดลม hongkhropkhrua 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - tang phat hongkhropkhrua 60
-  - phat hongkhropkhrua 60
+  - ตั้ง พัดลม hongkhropkhrua 60
+  - พัดลม hongkhropkhrua 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - tang phat hongkhropkhrua 80
-  - phat hongkhropkhrua 80
+  - ตั้ง พัดลม hongkhropkhrua 80
+  - พัดลม hongkhropkhrua 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - tang phat hongnon 20
-  - phat hongnon 20
+  - ตั้ง พัดลม hongnonmaster 20
+  - พัดลม hongnonmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - tang phat hongnon 60
-  - phat hongnon 60
+  - ตั้ง พัดลม hongnonmaster 60
+  - พัดลม hongnonmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - tang phat hongnon 80
-  - phat hongnon 80
+  - ตั้ง พัดลม hongnonmaster 80
+  - พัดลม hongnonmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - tang phat hongnon2 20
-  - phat hongnon2 20
+  - ตั้ง พัดลม hongnon2 20
+  - พัดลม hongnon2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - tang phat hongnon2 60
-  - phat hongnon2 60
+  - ตั้ง พัดลม hongnon2 60
+  - พัดลม hongnon2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - tang phat hongnon2 80
-  - phat hongnon2 80
+  - ตั้ง พัดลม hongnon2 80
+  - พัดลม hongnon2 80

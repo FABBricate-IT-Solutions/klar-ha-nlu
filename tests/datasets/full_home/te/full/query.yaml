@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - emi velugu gadi
-  - emi gadi velugu
+  - ఏమి వెలుగు గది
+  - ఏమి గది వెలుగు
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - emi thera gadi
-  - emi gadi thera
+  - ఏమి తెర గది
+  - ఏమి గది తెర
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - emi talam pravesham
-  - emi pravesham talam
+  - ఏమి తాళం pravesham
+  - ఏమి pravesham తాళం
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - emi vedi gadi
-  - emi gadi vedi
+  - ఏమి వేడి గది
+  - ఏమి గది వేడి
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - emi tv gadi
-  - emi gadi tv
+  - ఏమి tv గది
+  - ఏమి గది tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - emi doorsensor pravesham
-  - emi pravesham doorsensor
+  - ఏమి doorsensor pravesham
+  - ఏమి pravesham doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - emi windowsensor gadi
-  - emi gadi windowsensor
+  - ఏమి windowsensor గది
+  - ఏమి గది windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - emi tempsensor gadi
-  - emi gadi tempsensor
+  - ఏమి tempsensor గది
+  - ఏమి గది tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - emi velugu vantagadi
-  - emi vantagadi velugu
+  - ఏమి వెలుగు వంటగది
+  - ఏమి వంటగది వెలుగు
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - emi velugu office
-  - emi office velugu
+  - ఏమి వెలుగు office
+  - ఏమి office వెలుగు
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - emi velugu garden
-  - emi garden velugu
+  - ఏమి వెలుగు garden
+  - ఏమి garden వెలుగు
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - emi velugu basement
-  - emi basement velugu
+  - ఏమి వెలుగు basement
+  - ఏమి basement వెలుగు
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - emi thera padakagadi
-  - emi padakagadi thera
+  - ఏమి తెర padakagadimaster
+  - ఏమి padakagadimaster తెర
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - emi thera garage
-  - emi garage thera
+  - ఏమి తెర garage
+  - ఏమి garage తెర
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - emi talam garage
-  - emi garage talam
+  - ఏమి తాళం garage
+  - ఏమి garage తాళం
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - emi vedi padakagadi
-  - emi padakagadi vedi
+  - ఏమి వేడి padakagadimaster
+  - ఏమి padakagadimaster వేడి
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - emi vedi padakagadi
-  - emi padakagadi vedi
+  - ఏమి vedi padakagadimaster
+  - ఏమి padakagadimaster vedi
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - emi tv kutumbam
-  - emi kutumbam tv
+  - ఏమి tv kutumbam
+  - ఏమి kutumbam tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - emi tivi gadi
-  - emi gadi tivi
+  - ఏమి టీవీ గది
+  - ఏమి గది టీవీ
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - emi motion vantagadi
-  - emi vantagadi motion
+  - ఏమి motion వంటగది
+  - ఏమి వంటగది motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - emi humidity gadi
-  - emi gadi humidity
+  - ఏమి humidity గది
+  - ఏమి గది humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - emi fanu padakagadi
-  - emi padakagadi fanu
+  - ఏమి ఫ్యాన్ padakagadimaster
+  - ఏమి padakagadimaster ఫ్యాన్
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - emi udchu gadi
-  - emi gadi udchu
+  - ఏమి ఊడ్చు గది
+  - ఏమి గది ఊడ్చు
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - emi velugu gadi
-  - emi gadi velugu
+  - ఏమి వెలుగు గది
+  - ఏమి గది వెలుగు
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - emi velugu vantagadi
-  - emi vantagadi velugu
+  - ఏమి వెలుగు వంటగది
+  - ఏమి వంటగది వెలుగు
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - emi velugu padakagadi
-  - emi padakagadi velugu
+  - ఏమి వెలుగు padakagadimaster
+  - ఏమి padakagadimaster వెలుగు
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - emi velugu padakagadi
-  - emi padakagadi velugu
+  - ఏమి వెలుగు padakagadimaster
+  - ఏమి padakagadimaster వెలుగు
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - emi velugu hallway
-  - emi hallway velugu
+  - ఏమి వెలుగు hallway
+  - ఏమి hallway వెలుగు
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - emi velugu kutumbam
-  - emi kutumbam velugu
+  - ఏమి వెలుగు kutumbam
+  - ఏమి kutumbam వెలుగు
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - emi velugu kutumbamess
-  - emi kutumbamess velugu
+  - ఏమి వెలుగు kutumbamess
+  - ఏమి kutumbamess వెలుగు
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - emi velugu garage
-  - emi garage velugu
+  - ఏమి వెలుగు garage
+  - ఏమి garage వెలుగు
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - emi velugu padakagadi2
-  - emi padakagadi2 velugu
+  - ఏమి వెలుగు padakagadi2
+  - ఏమి padakagadi2 వెలుగు
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - emi velugu padakagadi3
-  - emi padakagadi3 velugu
+  - ఏమి వెలుగు padakagadi3
+  - ఏమి padakagadi3 వెలుగు
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - emi velugu padakagadi4
-  - emi padakagadi4 velugu
+  - ఏమి వెలుగు padakagadi4
+  - ఏమి padakagadi4 వెలుగు
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - emi velugu pravesham
-  - emi pravesham velugu
+  - ఏమి వెలుగు pravesham
+  - ఏమి pravesham వెలుగు
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - emi velugu laundry
-  - emi laundry velugu
+  - ఏమి వెలుగు laundry
+  - ఏమి laundry వెలుగు
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - emi velugu main bath
-  - emi main bath velugu
+  - ఏమి వెలుగు main bath
+  - ఏమి main bath వెలుగు
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - emi velugu toilet
-  - emi toilet velugu
+  - ఏమి వెలుగు toilet
+  - ఏమి toilet వెలుగు
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - emi ensuite padakagadi
-  - emi padakagadi ensuite
+  - ఏమి ensuite padakagadimaster
+  - ఏమి padakagadimaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - emi velugu padakagadi
-  - emi padakagadi velugu
+  - ఏమి వెలుగు padakagadimaster
+  - ఏమి padakagadimaster వెలుగు
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - emi velugu masterbath
-  - emi masterbath velugu
+  - ఏమి వెలుగు masterbath
+  - ఏమి masterbath వెలుగు

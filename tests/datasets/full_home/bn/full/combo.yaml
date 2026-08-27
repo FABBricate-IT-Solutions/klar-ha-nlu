@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - jalao bosar chhad ebong bosar lamp
-  - bosar chhad ebong bosar lamp jalao
+  - জ্বালাও বসার chhad এবং বসার alo
+  - বসার chhad এবং বসার alo জ্বালাও
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - nibhao bosar chhad ebong bosar lamp
-  - bosar chhad ebong bosar lamp nibhao
+  - নিভাও বসার chhad এবং বসার alo
+  - বসার chhad এবং বসার alo নিভাও
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao ranna chhad ebong ranna dip
-  - ranna chhad ebong ranna dip jalao
+  - জ্বালাও রান্না chhad এবং রান্না dip
+  - রান্না chhad এবং রান্না dip জ্বালাও
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - nibhao ranna chhad ebong ranna dip
-  - ranna chhad ebong ranna dip nibhao
+  - নিভাও রান্না chhad এবং রান্না dip
+  - রান্না chhad এবং রান্না dip নিভাও
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao bosar chhad ebong ranna dip
-  - bosar chhad ebong ranna dip jalao
+  - জ্বালাও বসার chhad এবং রান্না dip
+  - বসার chhad এবং রান্না dip জ্বালাও
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - nibhao bosar chhad ebong ranna dip
-  - bosar chhad ebong ranna dip nibhao
+  - নিভাও বসার chhad এবং রান্না dip
+  - বসার chhad এবং রান্না dip নিভাও
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - jalao office chhad ebong hallway alo
-  - office chhad ebong hallway alo jalao
+  - জ্বালাও office chhad এবং hallway আলো
+  - office chhad এবং hallway আলো জ্বালাও
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - nibhao office chhad ebong hallway alo
-  - office chhad ebong hallway alo nibhao
+  - নিভাও office chhad এবং hallway আলো
+  - office chhad এবং hallway আলো নিভাও
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - jalao garden alo ebong garage alo
-  - garden alo ebong garage alo jalao
+  - জ্বালাও garden আলো এবং garage আলো
+  - garden আলো এবং garage আলো জ্বালাও
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - nibhao garden alo ebong garage alo
-  - garden alo ebong garage alo nibhao
+  - নিভাও garden আলো এবং garage আলো
+  - garden আলো এবং garage আলো নিভাও
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - jalao shobarghor chhad ebong shobarghor bichana
-  - shobarghor chhad ebong shobarghor bichana jalao
+  - জ্বালাও shobarghormaster chhad এবং shobarghormaster bichana
+  - shobarghormaster chhad এবং shobarghormaster bichana জ্বালাও
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - nibhao shobarghor chhad ebong shobarghor bichana
-  - shobarghor chhad ebong shobarghor bichana nibhao
+  - নিভাও shobarghormaster chhad এবং shobarghormaster bichana
+  - shobarghormaster chhad এবং shobarghormaster bichana নিভাও
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - jalao paribarik chhad ebong paribarikess alo
-  - paribarik chhad ebong paribarikess alo jalao
+  - জ্বালাও paribarik chhad এবং paribarikess আলো
+  - paribarik chhad এবং paribarikess আলো জ্বালাও
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - nibhao paribarik chhad ebong paribarikess alo
-  - paribarik chhad ebong paribarikess alo nibhao
+  - নিভাও paribarik chhad এবং paribarikess আলো
+  - paribarik chhad এবং paribarikess আলো নিভাও
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - jalao basement alo ebong dhoa alo
-  - basement alo ebong dhoa alo jalao
+  - জ্বালাও basement আলো এবং dhoa আলো
+  - basement আলো এবং dhoa আলো জ্বালাও
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - nibhao basement alo ebong dhoa alo
-  - basement alo ebong dhoa alo nibhao
+  - নিভাও basement আলো এবং dhoa আলো
+  - basement আলো এবং dhoa আলো নিভাও
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao shobarghor pakha ebong ranna dip
-  - shobarghor pakha ebong ranna dip jalao
+  - জ্বালাও shobarghormaster পাখা এবং রান্না dip
+  - shobarghormaster পাখা এবং রান্না dip জ্বালাও
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - jalao bosar porda ebong bosar chhad
-  - bosar porda ebong bosar chhad jalao
+  - জ্বালাও বসার পর্দা এবং বসার chhad
+  - বসার পর্দা এবং বসার chhad জ্বালাও
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - jalao dhoa washing ebong dhoa dryer
-  - dhoa washing ebong dhoa dryer jalao
+  - জ্বালাও dhoa washing এবং dhoa dryer
+  - dhoa washing এবং dhoa dryer জ্বালাও
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo bosar ebong ranna
-  - alo bosar ebong ranna nibhao
+  - নিভাও আলো বসার এবং রান্না
+  - আলো বসার এবং রান্না নিভাও
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo office ebong hallway
-  - alo office ebong hallway nibhao
+  - নিভাও আলো office এবং hallway
+  - আলো office এবং hallway নিভাও
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo garage ebong garden
-  - alo garage ebong garden nibhao
+  - নিভাও আলো garage এবং garden
+  - আলো garage এবং garden নিভাও
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo shobarghor ebong main bath
-  - alo shobarghor ebong main bath nibhao
+  - নিভাও আলো shobarghormaster এবং main bath
+  - আলো shobarghormaster এবং main bath নিভাও
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo paribarik ebong paribarikess
-  - alo paribarik ebong paribarikess nibhao
+  - নিভাও আলো paribarik এবং paribarikess
+  - আলো paribarik এবং paribarikess নিভাও
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo bosar ebong paribarikess ebong ranna
-  - alo bosar paribarikess ebong ranna nibhao
+  - নিভাও আলো বসার এবং paribarikess এবং রান্না
+  - আলো বসার paribarikess এবং রান্না নিভাও
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo office ebong hallway ebong garage
-  - alo office hallway ebong garage jalao
+  - জ্বালাও আলো office এবং hallway এবং garage
+  - আলো office hallway এবং garage জ্বালাও
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo garden ebong basement ebong dhoa
-  - alo garden basement ebong dhoa nibhao
+  - নিভাও আলো garden এবং basement এবং dhoa
+  - আলো garden basement এবং dhoa নিভাও
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - nibhao sob alo chara dip ranna
-  - sob alo nibhao chara dip ranna
+  - নিভাও সব আলো chara dip রান্না
+  - সব আলো নিভাও chara dip রান্না
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - nibhao sob alo chara lamp bosar
-  - sob alo nibhao chara lamp bosar
+  - নিভাও সব আলো chara alo বসার
+  - সব আলো নিভাও chara alo বসার
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara garden
-  - sob alo nibhao chara garden
+  - নিভাও সব আলো chara garden
+  - সব আলো নিভাও chara garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara chhad office
-  - sob alo nibhao chara chhad office
+  - নিভাও সব আলো chara chhad office
+  - সব আলো নিভাও chara chhad office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara basement
-  - sob alo nibhao chara basement
+  - নিভাও সব আলো chara basement
+  - সব আলো নিভাও chara basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo chara ranna
-  - sob alo jalao chara ranna
+  - জ্বালাও সব আলো chara রান্না
+  - সব আলো জ্বালাও chara রান্না
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo chara office
-  - sob alo jalao chara office
+  - জ্বালাও সব আলো chara office
+  - সব আলো জ্বালাও chara office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo chara garden
-  - sob alo jalao chara garden
+  - জ্বালাও সব আলো chara garden
+  - সব আলো জ্বালাও chara garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo chara bosar
-  - sob alo jalao chara bosar
+  - জ্বালাও সব আলো chara বসার
+  - সব আলো জ্বালাও chara বসার
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo chara garage
-  - sob alo jalao chara garage
+  - জ্বালাও সব আলো chara garage
+  - সব আলো জ্বালাও chara garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - nibhao sob alo ranna chara dip
-  - sob alo ranna nibhao chara dip
+  - নিভাও সব আলো রান্না chara dip
+  - সব আলো রান্না নিভাও chara dip
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - nibhao sob alo bosar chara lamp
-  - sob alo bosar nibhao chara lamp
+  - নিভাও সব আলো বসার chara alo
+  - সব আলো বসার নিভাও chara alo
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - jalao sob alo chara dip ranna
-  - sob alo jalao chara dip ranna
+  - জ্বালাও সব আলো chara dip রান্না
+  - সব আলো জ্বালাও chara dip রান্না
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara ranna ebong office
-  - sob alo nibhao chara ranna ebong office
+  - নিভাও সব আলো chara রান্না এবং office
+  - সব আলো নিভাও chara রান্না এবং office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara bosar ebong shobarghor
-  - sob alo nibhao chara bosar ebong shobarghor
+  - নিভাও সব আলো chara বসার এবং shobarghormaster
+  - সব আলো নিভাও chara বসার এবং shobarghormaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara garage ebong garden
-  - sob alo nibhao chara garage ebong garden
+  - নিভাও সব আলো chara garage এবং garden
+  - সব আলো নিভাও chara garage এবং garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo nich chara ranna
-  - sob alo nich nibhao chara ranna
+  - নিভাও সব আলো nich chara রান্না
+  - সব আলো nich নিভাও chara রান্না
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo upor chara shobarghor
-  - sob alo upor nibhao chara shobarghor
+  - নিভাও সব আলো upor chara shobarghormaster
+  - সব আলো upor নিভাও chara shobarghormaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo nich chara office
-  - sob alo nich nibhao chara office
+  - নিভাও সব আলো nich chara office
+  - সব আলো nich নিভাও chara office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - khol porda bosar ebong shobarghor
-  - porda bosar ebong shobarghor khol
+  - খোল পর্দা বসার এবং shobarghormaster
+  - পর্দা বসার এবং shobarghormaster খোল
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - bondho porda bosar ebong shobarghor
-  - porda bosar ebong shobarghor bondho
+  - বন্ধ পর্দা বসার এবং shobarghormaster
+  - পর্দা বসার এবং shobarghormaster বন্ধ
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set gorom bosar ebong shobarghor 21
-  - gorom bosar ebong shobarghor 21
+  - সেট গরম বসার এবং shobarghormaster 21
+  - গরম বসার এবং shobarghormaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo bosar ebong ranna 50
-  - alo bosar ebong ranna 50
+  - সেট আলো বসার এবং রান্না 50
+  - আলো বসার এবং রান্না 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - set alo bosar ebong ranna red
-  - alo bosar ebong ranna red
+  - সেট আলো বসার এবং রান্না red
+  - আলো বসার এবং রান্না red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - ki alo bosar ebong ranna
-  - alo bosar ebong ranna
+  - কি আলো বসার এবং রান্না
+  - আলো বসার এবং রান্না
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - ki gorom bosar ebong nibhao alo ranna
-  - nibhao alo ranna ebong ki gorom bosar
+  - কি গরম বসার এবং নিভাও আলো রান্না
+  - নিভাও আলো রান্না এবং কি গরম বসার
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tala front dorja ebong garage dorja
-  - tala tala prabesh ebong garage
+  - তালা front দরজা এবং garage দরজা
+  - তালা তালা prabesh এবং garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - jalao chobi ebong nibhao alo shauchagar
-  - nibhao alo shauchagar ebong jalao chobi
+  - জ্বালাও chobi এবং নিভাও আলো shauchagar
+  - নিভাও আলো shauchagar এবং জ্বালাও chobi

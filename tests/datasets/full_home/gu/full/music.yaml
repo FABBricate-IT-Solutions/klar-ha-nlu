@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vagad queen orado
-  - vagad queen tivi orado
+  - ચલાવો queen ઓરડો
+  - ચલાવો queen ટીવી ઓરડો
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - vagad album rumours by fleetwood mac orado
+  - ચલાવો album rumours by fleetwood mac ઓરડો
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vagad queen radio mode orado
+  - ચલાવો queen radio mode ઓરડો
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - vagad bohemian rhapsody queue orado
+  - ચલાવો bohemian rhapsody queue ઓરડો
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - shu tivi orado
-  - shu track orado
+  - શું ટીવી ઓરડો
+  - શું track ઓરડો
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi orado 10
-  - tivi orado 10
+  - સેટ ટીવી ઓરડો 10
+  - ટીવી ઓરડો 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi orado 20
-  - tivi orado 20
+  - સેટ ટીવી ઓરડો 20
+  - ટીવી ઓરડો 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi orado 30
-  - tivi orado 30
+  - સેટ ટીવી ઓરડો 30
+  - ટીવી ઓરડો 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi orado 50
-  - tivi orado 50
+  - સેટ ટીવી ઓરડો 50
+  - ટીવી ઓરડો 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi orado 80
-  - tivi orado 80
+  - સેટ ટીવી ઓરડો 80
+  - ટીવી ઓરડો 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track orado
+  - next track ઓરડો
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track orado
+  - previous track ઓરડો
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vagad queen rasodu
-  - vagad queen tivi rasodu
+  - ચલાવો queen રસોડું
+  - ચલાવો queen ટીવી રસોડું
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vagad beatles orado
-  - vagad beatles tivi orado
+  - ચલાવો beatles ઓરડો
+  - ચલાવો beatles ટીવી ઓરડો
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vagad radiohead orado
-  - vagad radiohead tivi orado
+  - ચલાવો radiohead ઓરડો
+  - ચલાવો radiohead ટીવી ઓરડો
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vagad abba orado
-  - vagad abba tivi orado
+  - ચલાવો abba ઓરડો
+  - ચલાવો abba ટીવી ઓરડો
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vagad coldplay orado
-  - vagad coldplay tivi orado
+  - ચલાવો coldplay ઓરડો
+  - ચલાવો coldplay ટીવી ઓરડો
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vagad adele orado
-  - vagad adele tivi orado
+  - ચલાવો adele ઓરડો
+  - ચલાવો adele ટીવી ઓરડો
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vagad prince orado
-  - vagad prince tivi orado
+  - ચલાવો prince ઓરડો
+  - ચલાવો prince ટીવી ઓરડો
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vagad bowie orado
-  - vagad bowie tivi orado
+  - ચલાવો bowie ઓરડો
+  - ચલાવો bowie ટીવી ઓરડો
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vagad nirvana orado
-  - vagad nirvana tivi orado
+  - ચલાવો nirvana ઓરડો
+  - ચલાવો nirvana ટીવી ઓરડો
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vagad eagles orado
-  - vagad eagles tivi orado
+  - ચલાવો eagles ઓરડો
+  - ચલાવો eagles ટીવી ઓરડો
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vagad madonna orado
-  - vagad madonna tivi orado
+  - ચલાવો madonna ઓરડો
+  - ચલાવો madonna ટીવી ઓરડો
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vagad mozart orado
-  - vagad mozart tivi orado
+  - ચલાવો mozart ઓરડો
+  - ચલાવો mozart ટીવી ઓરડો
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vagad daft punk orado
-  - vagad daft punk tivi orado
+  - ચલાવો daft punk ઓરડો
+  - ચલાવો daft punk ટીવી ઓરડો
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vagad biafra orado
-  - vagad biafra tivi orado
+  - ચલાવો biafra ઓરડો
+  - ચલાવો biafra ટીવી ઓરડો
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vagad queen rasodu
-  - vagad queen tivi rasodu
+  - ચલાવો queen રસોડું
+  - ચલાવો queen ટીવી રસોડું
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vagad beatles rasodu
-  - vagad beatles tivi rasodu
+  - ચલાવો beatles રસોડું
+  - ચલાવો beatles ટીવી રસોડું
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vagad radiohead rasodu
-  - vagad radiohead tivi rasodu
+  - ચલાવો radiohead રસોડું
+  - ચલાવો radiohead ટીવી રસોડું
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vagad abba rasodu
-  - vagad abba tivi rasodu
+  - ચલાવો abba રસોડું
+  - ચલાવો abba ટીવી રસોડું
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vagad coldplay rasodu
-  - vagad coldplay tivi rasodu
+  - ચલાવો coldplay રસોડું
+  - ચલાવો coldplay ટીવી રસોડું
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vagad adele rasodu
-  - vagad adele tivi rasodu
+  - ચલાવો adele રસોડું
+  - ચલાવો adele ટીવી રસોડું
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vagad prince rasodu
-  - vagad prince tivi rasodu
+  - ચલાવો prince રસોડું
+  - ચલાવો prince ટીવી રસોડું
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vagad bowie rasodu
-  - vagad bowie tivi rasodu
+  - ચલાવો bowie રસોડું
+  - ચલાવો bowie ટીવી રસોડું
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vagad nirvana rasodu
-  - vagad nirvana tivi rasodu
+  - ચલાવો nirvana રસોડું
+  - ચલાવો nirvana ટીવી રસોડું
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vagad eagles rasodu
-  - vagad eagles tivi rasodu
+  - ચલાવો eagles રસોડું
+  - ચલાવો eagles ટીવી રસોડું
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vagad madonna rasodu
-  - vagad madonna tivi rasodu
+  - ચલાવો madonna રસોડું
+  - ચલાવો madonna ટીવી રસોડું
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vagad mozart rasodu
-  - vagad mozart tivi rasodu
+  - ચલાવો mozart રસોડું
+  - ચલાવો mozart ટીવી રસોડું
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vagad daft punk rasodu
-  - vagad daft punk tivi rasodu
+  - ચલાવો daft punk રસોડું
+  - ચલાવો daft punk ટીવી રસોડું
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vagad biafra rasodu
-  - vagad biafra tivi rasodu
+  - ચલાવો biafra રસોડું
+  - ચલાવો biafra ટીવી રસોડું
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vagad queen office
-  - vagad queen tivi office
+  - ચલાવો queen office
+  - ચલાવો queen ટીવી office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vagad beatles office
-  - vagad beatles tivi office
+  - ચલાવો beatles office
+  - ચલાવો beatles ટીવી office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vagad radiohead office
-  - vagad radiohead tivi office
+  - ચલાવો radiohead office
+  - ચલાવો radiohead ટીવી office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vagad abba office
-  - vagad abba tivi office
+  - ચલાવો abba office
+  - ચલાવો abba ટીવી office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vagad coldplay office
-  - vagad coldplay tivi office
+  - ચલાવો coldplay office
+  - ચલાવો coldplay ટીવી office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vagad adele office
-  - vagad adele tivi office
+  - ચલાવો adele office
+  - ચલાવો adele ટીવી office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vagad prince office
-  - vagad prince tivi office
+  - ચલાવો prince office
+  - ચલાવો prince ટીવી office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vagad bowie office
-  - vagad bowie tivi office
+  - ચલાવો bowie office
+  - ચલાવો bowie ટીવી office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vagad nirvana office
-  - vagad nirvana tivi office
+  - ચલાવો nirvana office
+  - ચલાવો nirvana ટીવી office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vagad eagles office
-  - vagad eagles tivi office
+  - ચલાવો eagles office
+  - ચલાવો eagles ટીવી office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vagad madonna office
-  - vagad madonna tivi office
+  - ચલાવો madonna office
+  - ચલાવો madonna ટીવી office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vagad mozart office
-  - vagad mozart tivi office
+  - ચલાવો mozart office
+  - ચલાવો mozart ટીવી office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vagad daft punk office
-  - vagad daft punk tivi office
+  - ચલાવો daft punk office
+  - ચલાવો daft punk ટીવી office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vagad biafra office
-  - vagad biafra tivi office
+  - ચલાવો biafra office
+  - ચલાવો biafra ટીવી office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vagad queen radio mode orado
+  - ચલાવો queen radio mode ઓરડો
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - shu tivi orado
-  - shu track orado
+  - શું ટીવી ઓરડો
+  - શું track ઓરડો
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vagad queen radio mode rasodu
+  - ચલાવો queen radio mode રસોડું
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - shu tivi rasodu
-  - shu track rasodu
+  - શું ટીવી રસોડું
+  - શું track રસોડું
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vagad queen radio mode office
+  - ચલાવો queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - shu tivi office
-  - shu track office
+  - શું ટીવી office
+  - શું track office

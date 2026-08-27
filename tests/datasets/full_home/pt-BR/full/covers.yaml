@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - abre cortina quarto
-  - cortina quarto abre
+  - abre cortina quartomaster
+  - cortina quartomaster abre
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - fecha cortina quarto
-  - cortina quarto fecha
+  - fecha cortina quartomaster
+  - cortina quartomaster fecha
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - poe cortina quarto 0
-  - cortina quarto 0
+  - poe cortina quartomaster 0
+  - cortina quartomaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - poe cortina quarto 25
-  - cortina quarto 25
+  - poe cortina quartomaster 25
+  - cortina quartomaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - poe cortina quarto 40
-  - cortina quarto 40
+  - poe cortina quartomaster 40
+  - cortina quartomaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - poe cortina quarto 75
-  - cortina quarto 75
+  - poe cortina quartomaster 75
+  - cortina quartomaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - poe cortina quarto 100
-  - cortina quarto 100
+  - poe cortina quartomaster 100
+  - cortina quartomaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - abre cortina quarto
-  - cortina quarto abre
+  - abre cortina quartomaster
+  - cortina quartomaster abre

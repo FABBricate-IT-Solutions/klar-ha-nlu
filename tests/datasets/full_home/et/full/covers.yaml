@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ava kardin magamistuba
-  - kardin magamistuba ava
+  - ava kardin magamistubamaster
+  - kardin magamistubamaster ava
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - sulge kardin magamistuba
-  - kardin magamistuba sulge
+  - sulge kardin magamistubamaster
+  - kardin magamistubamaster sulge
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - sea kardin magamistuba 0
-  - kardin magamistuba 0
+  - sea kardin magamistubamaster 0
+  - kardin magamistubamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - sea kardin magamistuba 25
-  - kardin magamistuba 25
+  - sea kardin magamistubamaster 25
+  - kardin magamistubamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - sea kardin magamistuba 40
-  - kardin magamistuba 40
+  - sea kardin magamistubamaster 40
+  - kardin magamistubamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - sea kardin magamistuba 75
-  - kardin magamistuba 75
+  - sea kardin magamistubamaster 75
+  - kardin magamistubamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - sea kardin magamistuba 100
-  - kardin magamistuba 100
+  - sea kardin magamistubamaster 100
+  - kardin magamistubamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ava kardin magamistuba
-  - kardin magamistuba ava
+  - ava kardin magamistubamaster
+  - kardin magamistubamaster ava

@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen baithak
-  - bajao queen tivi baithak
+  - चलाओ queen बैठक
+  - चलाओ queen टीवी बैठक
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - bajao album rumours by fleetwood mac baithak
+  - चलाओ album rumours by fleetwood mac बैठक
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode baithak
+  - चलाओ queen radio mode बैठक
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - bajao bohemian rhapsody queue baithak
+  - चलाओ bohemian rhapsody queue बैठक
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - kya tivi baithak
-  - kya track baithak
+  - क्या टीवी बैठक
+  - क्या track बैठक
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi baithak 10
-  - tivi baithak 10
+  - सेट टीवी बैठक 10
+  - टीवी बैठक 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi baithak 20
-  - tivi baithak 20
+  - सेट टीवी बैठक 20
+  - टीवी बैठक 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi baithak 30
-  - tivi baithak 30
+  - सेट टीवी बैठक 30
+  - टीवी बैठक 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi baithak 50
-  - tivi baithak 50
+  - सेट टीवी बैठक 50
+  - टीवी बैठक 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi baithak 80
-  - tivi baithak 80
+  - सेट टीवी बैठक 80
+  - टीवी बैठक 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track baithak
+  - next track बैठक
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track baithak
+  - previous track बैठक
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen rasoi
-  - bajao queen tivi rasoi
+  - चलाओ queen रसोई
+  - चलाओ queen टीवी रसोई
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajao beatles baithak
-  - bajao beatles tivi baithak
+  - चलाओ beatles बैठक
+  - चलाओ beatles टीवी बैठक
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajao radiohead baithak
-  - bajao radiohead tivi baithak
+  - चलाओ radiohead बैठक
+  - चलाओ radiohead टीवी बैठक
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajao abba baithak
-  - bajao abba tivi baithak
+  - चलाओ abba बैठक
+  - चलाओ abba टीवी बैठक
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajao coldplay baithak
-  - bajao coldplay tivi baithak
+  - चलाओ coldplay बैठक
+  - चलाओ coldplay टीवी बैठक
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajao adele baithak
-  - bajao adele tivi baithak
+  - चलाओ adele बैठक
+  - चलाओ adele टीवी बैठक
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajao prince baithak
-  - bajao prince tivi baithak
+  - चलाओ prince बैठक
+  - चलाओ prince टीवी बैठक
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajao bowie baithak
-  - bajao bowie tivi baithak
+  - चलाओ bowie बैठक
+  - चलाओ bowie टीवी बैठक
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajao nirvana baithak
-  - bajao nirvana tivi baithak
+  - चलाओ nirvana बैठक
+  - चलाओ nirvana टीवी बैठक
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajao eagles baithak
-  - bajao eagles tivi baithak
+  - चलाओ eagles बैठक
+  - चलाओ eagles टीवी बैठक
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajao madonna baithak
-  - bajao madonna tivi baithak
+  - चलाओ madonna बैठक
+  - चलाओ madonna टीवी बैठक
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajao mozart baithak
-  - bajao mozart tivi baithak
+  - चलाओ mozart बैठक
+  - चलाओ mozart टीवी बैठक
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajao daft punk baithak
-  - bajao daft punk tivi baithak
+  - चलाओ daft punk बैठक
+  - चलाओ daft punk टीवी बैठक
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajao biafra baithak
-  - bajao biafra tivi baithak
+  - चलाओ biafra बैठक
+  - चलाओ biafra टीवी बैठक
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen rasoi
-  - bajao queen tivi rasoi
+  - चलाओ queen रसोई
+  - चलाओ queen टीवी रसोई
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajao beatles rasoi
-  - bajao beatles tivi rasoi
+  - चलाओ beatles रसोई
+  - चलाओ beatles टीवी रसोई
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajao radiohead rasoi
-  - bajao radiohead tivi rasoi
+  - चलाओ radiohead रसोई
+  - चलाओ radiohead टीवी रसोई
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajao abba rasoi
-  - bajao abba tivi rasoi
+  - चलाओ abba रसोई
+  - चलाओ abba टीवी रसोई
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajao coldplay rasoi
-  - bajao coldplay tivi rasoi
+  - चलाओ coldplay रसोई
+  - चलाओ coldplay टीवी रसोई
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajao adele rasoi
-  - bajao adele tivi rasoi
+  - चलाओ adele रसोई
+  - चलाओ adele टीवी रसोई
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajao prince rasoi
-  - bajao prince tivi rasoi
+  - चलाओ prince रसोई
+  - चलाओ prince टीवी रसोई
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajao bowie rasoi
-  - bajao bowie tivi rasoi
+  - चलाओ bowie रसोई
+  - चलाओ bowie टीवी रसोई
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajao nirvana rasoi
-  - bajao nirvana tivi rasoi
+  - चलाओ nirvana रसोई
+  - चलाओ nirvana टीवी रसोई
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajao eagles rasoi
-  - bajao eagles tivi rasoi
+  - चलाओ eagles रसोई
+  - चलाओ eagles टीवी रसोई
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajao madonna rasoi
-  - bajao madonna tivi rasoi
+  - चलाओ madonna रसोई
+  - चलाओ madonna टीवी रसोई
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajao mozart rasoi
-  - bajao mozart tivi rasoi
+  - चलाओ mozart रसोई
+  - चलाओ mozart टीवी रसोई
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajao daft punk rasoi
-  - bajao daft punk tivi rasoi
+  - चलाओ daft punk रसोई
+  - चलाओ daft punk टीवी रसोई
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajao biafra rasoi
-  - bajao biafra tivi rasoi
+  - चलाओ biafra रसोई
+  - चलाओ biafra टीवी रसोई
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen office
-  - bajao queen tivi office
+  - चलाओ queen office
+  - चलाओ queen टीवी office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajao beatles office
-  - bajao beatles tivi office
+  - चलाओ beatles office
+  - चलाओ beatles टीवी office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajao radiohead office
-  - bajao radiohead tivi office
+  - चलाओ radiohead office
+  - चलाओ radiohead टीवी office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajao abba office
-  - bajao abba tivi office
+  - चलाओ abba office
+  - चलाओ abba टीवी office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajao coldplay office
-  - bajao coldplay tivi office
+  - चलाओ coldplay office
+  - चलाओ coldplay टीवी office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajao adele office
-  - bajao adele tivi office
+  - चलाओ adele office
+  - चलाओ adele टीवी office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajao prince office
-  - bajao prince tivi office
+  - चलाओ prince office
+  - चलाओ prince टीवी office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajao bowie office
-  - bajao bowie tivi office
+  - चलाओ bowie office
+  - चलाओ bowie टीवी office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajao nirvana office
-  - bajao nirvana tivi office
+  - चलाओ nirvana office
+  - चलाओ nirvana टीवी office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajao eagles office
-  - bajao eagles tivi office
+  - चलाओ eagles office
+  - चलाओ eagles टीवी office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajao madonna office
-  - bajao madonna tivi office
+  - चलाओ madonna office
+  - चलाओ madonna टीवी office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajao mozart office
-  - bajao mozart tivi office
+  - चलाओ mozart office
+  - चलाओ mozart टीवी office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajao daft punk office
-  - bajao daft punk tivi office
+  - चलाओ daft punk office
+  - चलाओ daft punk टीवी office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajao biafra office
-  - bajao biafra tivi office
+  - चलाओ biafra office
+  - चलाओ biafra टीवी office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode baithak
+  - चलाओ queen radio mode बैठक
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - kya tivi baithak
-  - kya track baithak
+  - क्या टीवी बैठक
+  - क्या track बैठक
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode rasoi
+  - चलाओ queen radio mode रसोई
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - kya tivi rasoi
-  - kya track rasoi
+  - क्या टीवी रसोई
+  - क्या track रसोई
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode office
+  - चलाओ queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - kya tivi office
-  - kya track office
+  - क्या टीवी office
+  - क्या track office

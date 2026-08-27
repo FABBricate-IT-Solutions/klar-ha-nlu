@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - jalao bartan rasoi
-  - bartan rasoi jalao
+  - जलाओ bartan रसोई
+  - bartan रसोई जलाओ
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - bujhao bartan rasoi
-  - bartan rasoi bujhao
+  - बुझाओ bartan रसोई
+  - bartan रसोई बुझाओ
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - jalao washing dhobi
-  - washing dhobi jalao
+  - जलाओ washing dhobi
+  - washing dhobi जलाओ
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - bujhao washing dhobi
-  - washing dhobi bujhao
+  - बुझाओ washing dhobi
+  - washing dhobi बुझाओ
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - jalao dryer dhobi
-  - dryer dhobi jalao
+  - जलाओ dryer dhobi
+  - dryer dhobi जलाओ
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - bujhao dryer dhobi
-  - dryer dhobi bujhao
+  - बुझाओ dryer dhobi
+  - dryer dhobi बुझाओ
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - jalao rangehood rasoi
-  - rangehood rasoi jalao
+  - जलाओ rangehood रसोई
+  - rangehood रसोई जलाओ
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - bujhao rangehood rasoi
-  - rangehood rasoi bujhao
+  - बुझाओ rangehood रसोई
+  - rangehood रसोई बुझाओ
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - jalao pankhabad mukhyasnan
-  - pankhabad mukhyasnan jalao
+  - जलाओ पंखाbad mukhyasnan
+  - पंखाbad mukhyasnan जलाओ
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - bujhao pankhabad mukhyasnan
-  - pankhabad mukhyasnan bujhao
+  - बुझाओ पंखाbad mukhyasnan
+  - पंखाbad mukhyasnan बुझाओ
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - jalao pankhabad main bath
-  - pankhabad main bath jalao
+  - जलाओ पंखाbad main bath
+  - पंखाbad main bath जलाओ
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - bujhao pankhabad main bath
-  - pankhabad main bath bujhao
+  - बुझाओ पंखाbad main bath
+  - पंखाbad main bath बुझाओ

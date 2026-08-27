@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- vad ljus entre
+- vad sensor dorr entre
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
 - vad varme vardagsrum
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- vad varme sovrum
+- vad varme sovrummaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - vad gardin sovrum2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -21,9 +21,9 @@ query_devices/cover_living_blinds::cover_living_blinds_get_position:
 query_devices/cover_living_blinds::cover_living_blinds_get_status:
 - vad gardin vardagsrum
 query_devices/cover_master_blinds::cover_master_blinds_get_position:
-- vad gardin sovrum
+- vad gardin sovrummaster
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
-- vad gardin sovrum
+- vad gardin sovrummaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
 - vad flakt sovrum2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
@@ -33,9 +33,9 @@ query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
 query_devices/fan_family_fan::fan_family_fan_get_status:
 - vad flakt allrum
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- vad flakt sovrum
+- vad flakt sovrummaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- vad flakt sovrum
+- vad flakt sovrummaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - vad tak sovrum2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -73,9 +73,9 @@ query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
 - vad tak kok
 query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
-- vad ljus kok
+- vad o kok
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
-- vad ljus kok
+- vad o kok
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
 - vad ljus tvattstuga
 query_devices/light_laundry_light::light_laundry_light_get_status:
@@ -85,9 +85,9 @@ query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
 - vad tak vardagsrum
 query_devices/light_living_lamp::light_living_lamp_get_brightness:
-- vad ljus vardagsrum
+- vad lamp vardagsrum
 query_devices/light_living_lamp::light_living_lamp_get_status:
-- vad ljus vardagsrum
+- vad lamp vardagsrum
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
 - vad ljus main bath
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
@@ -97,21 +97,21 @@ query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
 - vad ljus badmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
-- vad sanglampa sovrum
+- vad sanglampa sovrummaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
-- vad sanglampa sovrum
+- vad sanglampa sovrummaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
-- vad sanglampa sovrum
+- vad sanglampa sovrummaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
-- vad sanglampa sovrum
+- vad sanglampa sovrummaster
 query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
-- vad tak sovrum
+- vad tak sovrummaster
 query_devices/light_master_ceiling::light_master_ceiling_get_status:
-- vad tak sovrum
+- vad tak sovrummaster
 query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
-- vad ljus sovrum
+- vad ankleide sovrummaster
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
-- vad ljus sovrum
+- vad ankleide sovrummaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
 - vad ljus toalett
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
@@ -127,6 +127,6 @@ query_devices/media_player_living_tv::media_player_living_tv_get_status:
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - vad disk
 query_devices/switch_dryer::switch_dryer_get_status:
-- vad tvattmaskin
+- vad dryer
 query_devices/switch_washing_machine::switch_washing_machine_get_status:
 - vad tvattmaskin

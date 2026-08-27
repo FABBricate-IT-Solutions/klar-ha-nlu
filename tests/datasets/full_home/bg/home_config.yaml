@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: спалня
+  name: спалняmaster
   floor: upper
   aliases:
+  - спалняmaster
   - спалня
 - id: bedroom_2
   name: спалня2
@@ -130,10 +131,10 @@ devices:
   - таван
 - id: light.living_lamp
   area_id: living
-  name: хол светлина
+  name: хол lamp
   aliases:
-  - хол светлина
-  - светлина
+  - хол lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: дневнаfamess светлина
@@ -190,29 +191,29 @@ devices:
   - светлина
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: спалня таван
+  name: спалняmaster таван
   aliases:
-  - спалня таван
+  - спалняmaster таван
   - таван
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: спалня ensuite
+  name: спалняmaster ensuite
   aliases:
-  - спалня ensuite
+  - спалняmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: спалня left нощно
+  name: спалняmaster left нощно
   aliases:
-  - спалня left нощно
+  - спалняmaster left нощно
   - нощно
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: спалня right нощно
+  name: спалняmaster right нощно
   aliases:
-  - спалня right нощно
+  - спалняmaster right нощно
   - нощно
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - завеса
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: спалня завеса
+  name: спалняmaster завеса
   aliases:
-  - спалня завеса
+  - спалняmaster завеса
   - завеса
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - парно
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: спалня парно
+  name: спалняmaster парно
   aliases:
-  - спалня парно
+  - спалняmaster парно
   - парно
 - id: climate.master_ac
   area_id: master_bedroom
-  name: температура спалня
+  name: температура спалняmaster
   aliases:
-  - температура спалня
+  - температура спалняmaster
   - температура
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - вентилатор
 - id: fan.master_fan
   area_id: master_bedroom
-  name: спалня вентилатор
+  name: спалняmaster вентилатор
   aliases:
-  - спалня вентилатор
+  - спалняmaster вентилатор
   - вентилатор
 - id: fan.bedroom2_fan
   area_id: bedroom_2

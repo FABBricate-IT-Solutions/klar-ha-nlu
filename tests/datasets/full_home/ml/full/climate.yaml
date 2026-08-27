@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set chudu muriyil 18
-  - chudu muriyil 18
+  - സെറ്റ് ചൂട് ഹാൾ 18
+  - ചൂട് ഹാൾ 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set chudu muriyil 19
-  - chudu muriyil 19
+  - സെറ്റ് ചൂട് ഹാൾ 19
+  - ചൂട് ഹാൾ 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set chudu muriyil 20
-  - chudu muriyil 20
+  - സെറ്റ് ചൂട് ഹാൾ 20
+  - ചൂട് ഹാൾ 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set chudu muriyil 21
-  - chudu muriyil 21
+  - സെറ്റ് ചൂട് ഹാൾ 21
+  - ചൂട് ഹാൾ 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set chudu muriyil 22
-  - chudu muriyil 22
+  - സെറ്റ് ചൂട് ഹാൾ 22
+  - ചൂട് ഹാൾ 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set chudu muriyil 23
-  - chudu muriyil 23
+  - സെറ്റ് ചൂട് ഹാൾ 23
+  - ചൂട് ഹാൾ 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set chudu muriyil 24
-  - chudu muriyil 24
+  - സെറ്റ് ചൂട് ഹാൾ 24
+  - ചൂട് ഹാൾ 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - enth chudu muriyil
-  - chudu muriyil
+  - എന്ത് ചൂട് ഹാൾ
+  - ചൂട് ഹാൾ
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set chudu kitappumuri 18
-  - chudu kitappumuri 18
+  - സെറ്റ് ചൂട് kitappumurimaster 18
+  - ചൂട് kitappumurimaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set chudu kitappumuri 19
-  - chudu kitappumuri 19
+  - സെറ്റ് ചൂട് kitappumurimaster 19
+  - ചൂട് kitappumurimaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set chudu kitappumuri 20
-  - chudu kitappumuri 20
+  - സെറ്റ് ചൂട് kitappumurimaster 20
+  - ചൂട് kitappumurimaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set chudu kitappumuri 21
-  - chudu kitappumuri 21
+  - സെറ്റ് ചൂട് kitappumurimaster 21
+  - ചൂട് kitappumurimaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set chudu kitappumuri 22
-  - chudu kitappumuri 22
+  - സെറ്റ് ചൂട് kitappumurimaster 22
+  - ചൂട് kitappumurimaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set chudu kitappumuri 23
-  - chudu kitappumuri 23
+  - സെറ്റ് ചൂട് kitappumurimaster 23
+  - ചൂട് kitappumurimaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set chudu kitappumuri 24
-  - chudu kitappumuri 24
+  - സെറ്റ് ചൂട് kitappumurimaster 24
+  - ചൂട് kitappumurimaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - enth chudu kitappumuri
-  - chudu kitappumuri
+  - എന്ത് ചൂട് kitappumurimaster
+  - ചൂട് kitappumurimaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set chudu kitappumuri 18
-  - chudu kitappumuri 18
+  - സെറ്റ് chudu kitappumurimaster 18
+  - chudu kitappumurimaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set chudu kitappumuri 19
-  - chudu kitappumuri 19
+  - സെറ്റ് chudu kitappumurimaster 19
+  - chudu kitappumurimaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set chudu kitappumuri 20
-  - chudu kitappumuri 20
+  - സെറ്റ് chudu kitappumurimaster 20
+  - chudu kitappumurimaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set chudu kitappumuri 21
-  - chudu kitappumuri 21
+  - സെറ്റ് chudu kitappumurimaster 21
+  - chudu kitappumurimaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set chudu kitappumuri 22
-  - chudu kitappumuri 22
+  - സെറ്റ് chudu kitappumurimaster 22
+  - chudu kitappumurimaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set chudu kitappumuri 23
-  - chudu kitappumuri 23
+  - സെറ്റ് chudu kitappumurimaster 23
+  - chudu kitappumurimaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - set chudu kitappumuri 24
-  - chudu kitappumuri 24
+  - സെറ്റ് chudu kitappumurimaster 24
+  - chudu kitappumurimaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - enth chudu kitappumuri
-  - chudu kitappumuri
+  - എന്ത് chudu kitappumurimaster
+  - chudu kitappumurimaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - enth chudu muriyil
-  - chudu muriyil
+  - എന്ത് ചൂട് ഹാൾ
+  - ചൂട് ഹാൾ
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - enth chudu kitappumuri
-  - chudu kitappumuri
+  - എന്ത് ചൂട് kitappumurimaster
+  - ചൂട് kitappumurimaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - enth chudu kitappumuri
-  - chudu kitappumuri
+  - എന്ത് chudu kitappumurimaster
+  - chudu kitappumurimaster

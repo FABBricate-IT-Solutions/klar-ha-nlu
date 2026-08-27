@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - dat dieuhoa phongkhach 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- dat dieuhoa phongngu 19
+- dat dieuhoa phongngumaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - dat rem phongngu2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - mo rem phongkhach
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- dat rem phongngu 19
+- dat rem phongngumaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- dong rem phongngu
+- dong rem phongngumaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- mo rem phongngu
+- mo rem phongngumaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - dat quat phongngu2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - bat quat phonggiadinh
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- dat quat phongngu 28
+- dat quat phongngumaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- tat quat phongngu
+- tat quat phongngumaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- bat quat phongngu
+- bat quat phongngumaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- tat quat phongngu va tat bongden bep
+- tat quat phongngumaster then tat dao bep
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- bat quat phongngu va bat bongden bep
+- bat quat phongngumaster then bat dao bep
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - dat tran phongngu2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - bat tran bep
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- dat bongden bep 99
+- dat dao bep 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- dat bongden bep green
+- dat dao bep green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- tat bongden bep
+- tat dao bep
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- bat bongden bep
+- bat dao bep
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - dat bongden phonggiat 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - bat tran phongkhach
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- dat bongden phongkhach 72
+- dat lamp phongkhach 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- dat bongden phongkhach red
+- dat lamp phongkhach red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- tat bongden phongkhach
+- tat lamp phongkhach
 devices/light_living_lamp::light_living_lamp_turn_on:
-- bat bongden phongkhach
+- bat lamp phongkhach
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - dat bongden main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - bat bongden phongtamchinh
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- dat dau giuong phongngu 25
+- dat dau giuong phongngumaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- dat dau giuong phongngu red
+- dat dau giuong phongngumaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- tat dau giuong phongngu
+- tat dau giuong phongngumaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- bat dau giuong phongngu
+- bat dau giuong phongngumaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- dat tran phongngu 77
+- dat tran phongngumaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- dat tran phongngu blue
+- dat tran phongngumaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- tat tran phongngu
+- tat tran phongngumaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- bat tran phongngu
+- bat tran phongngumaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- dat bongden phongngu 55
+- dat ankleide phongngumaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- dat bongden phongngu black
+- dat ankleide phongngumaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- tat bongden phongngu
+- tat ankleide phongngumaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- bat bongden phongngu
+- bat ankleide phongngumaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - dat bongden wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - bat tivi phonggiadinh
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tivi phonggiadinh
+- pause tv phonggiadinh
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - tat tivi phonggiadinh
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - bat tivi phongkhach
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tivi phongkhach
+- pause tv phongkhach
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - tat tivi phongkhach
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,27 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - bat tivi phongkhach
 devices/scenes::dinner_time:
-- dat bongden phonggiadinhess 90 va bat tran bep va dat bongden bep 80
+- dat bongden phonggiadinhess 90 then bat tran bep then dat dao bep 80
 devices/scenes::good_morning:
-- bat tran bep va dat bongden phonggiadinhess 100 va mo rem phongkhach va mo rem phongngu
+- bat tran bep then dat bongden phonggiadinhess 100 then mo rem phongkhach then mo
+  rem phongngumaster
 devices/scenes::kids_bedtime:
-- tat tran phongngu2 va tat tran phongngu3 va tat tran phongngu4 va dat bongden loivaogang
-  15
+- tat tran phongngu2 then tat tran phongngu3 then tat tran phongngu4 then dat bongden
+  loivaogang 15
 devices/scenes::movie_night:
-- tat tran phongkhach va dat bongden phongkhach 20 va bat tivi phongkhach va dong
+- tat tran phongkhach then dat lamp phongkhach 20 then bat tivi phongkhach then dong
   rem phongkhach
 devices/scripts::good_night:
-- bat canh dem
+- tat tran phongkhach then tat lamp phongkhach then tat bongden phonggiadinhess then
+  tat tran bep then tat dao bep then tat tran phonggiadinh then tat bongden loivao
+  then tat bongden loivaogang then khoa khoa loivao then khoa khoa garage then dat
+  dieuhoa phongngumaster 20
 devices/scripts::leaving_home:
-- bat canh ra ve
+- tat tran phongkhach then tat lamp phongkhach then tat tran bep then tat tran phonggiadinh
+  then tat bongden loivao then khoa khoa loivao then khoa khoa garage then dong rem
+  garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - tat chen
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - bat chen
 devices/switch_dryer::switch_dryer_turn_off:
-- tat maygiat
+- tat dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- bat maygiat
+- bat dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - tat maygiat
 devices/switch_washing_machine::switch_washing_machine_turn_on:

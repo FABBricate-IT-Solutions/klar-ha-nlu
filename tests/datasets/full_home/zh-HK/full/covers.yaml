@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - kaiqi lianzi keting
-  - lianzi keting kaiqi
+  - 開啟 簾子 客廳
+  - 簾子 客廳 開啟
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - heshang lianzi keting
-  - lianzi keting heshang
+  - 合上 簾子 客廳
+  - 簾子 客廳 合上
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - shezhi lianzi keting 0
-  - lianzi keting 0
+  - 設置 簾子 客廳 0
+  - 簾子 客廳 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - shezhi lianzi keting 25
-  - lianzi keting 25
+  - 設置 簾子 客廳 25
+  - 簾子 客廳 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - shezhi lianzi keting 40
-  - lianzi keting 40
+  - 設置 簾子 客廳 40
+  - 簾子 客廳 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - shezhi lianzi keting 75
-  - lianzi keting 75
+  - 設置 簾子 客廳 75
+  - 簾子 客廳 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - shezhi lianzi keting 100
-  - lianzi keting 100
+  - 設置 簾子 客廳 100
+  - 簾子 客廳 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - kaiqi lianzi woshi
-  - lianzi woshi kaiqi
+  - 開啟 簾子 woshimaster
+  - 簾子 woshimaster 開啟
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - heshang lianzi woshi
-  - lianzi woshi heshang
+  - 合上 簾子 woshimaster
+  - 簾子 woshimaster 合上
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - shezhi lianzi woshi 0
-  - lianzi woshi 0
+  - 設置 簾子 woshimaster 0
+  - 簾子 woshimaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - shezhi lianzi woshi 25
-  - lianzi woshi 25
+  - 設置 簾子 woshimaster 25
+  - 簾子 woshimaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - shezhi lianzi woshi 40
-  - lianzi woshi 40
+  - 設置 簾子 woshimaster 40
+  - 簾子 woshimaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - shezhi lianzi woshi 75
-  - lianzi woshi 75
+  - 設置 簾子 woshimaster 75
+  - 簾子 woshimaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - shezhi lianzi woshi 100
-  - lianzi woshi 100
+  - 設置 簾子 woshimaster 100
+  - 簾子 woshimaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - kaiqi lianzi woshi2
-  - lianzi woshi2 kaiqi
+  - 開啟 簾子 woshi2
+  - 簾子 woshi2 開啟
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - heshang lianzi woshi2
-  - lianzi woshi2 heshang
+  - 合上 簾子 woshi2
+  - 簾子 woshi2 合上
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - shezhi lianzi woshi2 0
-  - lianzi woshi2 0
+  - 設置 簾子 woshi2 0
+  - 簾子 woshi2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - shezhi lianzi woshi2 25
-  - lianzi woshi2 25
+  - 設置 簾子 woshi2 25
+  - 簾子 woshi2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - shezhi lianzi woshi2 40
-  - lianzi woshi2 40
+  - 設置 簾子 woshi2 40
+  - 簾子 woshi2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - shezhi lianzi woshi2 75
-  - lianzi woshi2 75
+  - 設置 簾子 woshi2 75
+  - 簾子 woshi2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - shezhi lianzi woshi2 100
-  - lianzi woshi2 100
+  - 設置 簾子 woshi2 100
+  - 簾子 woshi2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - kaiqi lianzi woshi3
-  - lianzi woshi3 kaiqi
+  - 開啟 簾子 woshi3
+  - 簾子 woshi3 開啟
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - heshang lianzi woshi3
-  - lianzi woshi3 heshang
+  - 合上 簾子 woshi3
+  - 簾子 woshi3 合上
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - shezhi lianzi woshi3 0
-  - lianzi woshi3 0
+  - 設置 簾子 woshi3 0
+  - 簾子 woshi3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - shezhi lianzi woshi3 25
-  - lianzi woshi3 25
+  - 設置 簾子 woshi3 25
+  - 簾子 woshi3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - shezhi lianzi woshi3 40
-  - lianzi woshi3 40
+  - 設置 簾子 woshi3 40
+  - 簾子 woshi3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - shezhi lianzi woshi3 75
-  - lianzi woshi3 75
+  - 設置 簾子 woshi3 75
+  - 簾子 woshi3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - shezhi lianzi woshi3 100
-  - lianzi woshi3 100
+  - 設置 簾子 woshi3 100
+  - 簾子 woshi3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - kaiqi lianzi garage
-  - lianzi garage kaiqi
+  - 開啟 簾子 garage
+  - 簾子 garage 開啟
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - heshang lianzi garage
-  - lianzi garage heshang
+  - 合上 簾子 garage
+  - 簾子 garage 合上
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - shezhi lianzi garage 0
-  - lianzi garage 0
+  - 設置 簾子 garage 0
+  - 簾子 garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - shezhi lianzi garage 25
-  - lianzi garage 25
+  - 設置 簾子 garage 25
+  - 簾子 garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - shezhi lianzi garage 40
-  - lianzi garage 40
+  - 設置 簾子 garage 40
+  - 簾子 garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - shezhi lianzi garage 75
-  - lianzi garage 75
+  - 設置 簾子 garage 75
+  - 簾子 garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - shezhi lianzi garage 100
-  - lianzi garage 100
+  - 設置 簾子 garage 100
+  - 簾子 garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - kaiqi lianzi keting
-  - lianzi keting kaiqi
+  - 開啟 簾子 客廳
+  - 簾子 客廳 開啟
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - kaiqi lianzi woshi
-  - lianzi woshi kaiqi
+  - 開啟 簾子 woshimaster
+  - 簾子 woshimaster 開啟

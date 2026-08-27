@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Dormitor
+  name: Dormitormaster
   floor: upper
   aliases:
+  - dormitormaster
   - dormitor
 - id: bedroom_2
   name: Dormitor2
@@ -190,29 +191,29 @@ devices:
   - lumina
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: dormitor tavan
+  name: dormitormaster tavan
   aliases:
-  - dormitor tavan
+  - dormitormaster tavan
   - tavan
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: dormitor ensuite
+  name: dormitormaster ensuite
   aliases:
-  - dormitor ensuite
+  - dormitormaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: dormitor left noptiera
+  name: dormitormaster left noptiera
   aliases:
-  - dormitor left noptiera
+  - dormitormaster left noptiera
   - noptiera
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: dormitor right noptiera
+  name: dormitormaster right noptiera
   aliases:
-  - dormitor right noptiera
+  - dormitormaster right noptiera
   - noptiera
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - perdea
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: dormitor perdea
+  name: dormitormaster perdea
   aliases:
-  - dormitor perdea
+  - dormitormaster perdea
   - perdea
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - incalzire
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: dormitor incalzire
+  name: dormitormaster incalzire
   aliases:
-  - dormitor incalzire
+  - dormitormaster incalzire
   - incalzire
 - id: climate.master_ac
   area_id: master_bedroom
-  name: aer dormitor
+  name: aer dormitormaster
   aliases:
-  - aer dormitor
+  - aer dormitormaster
   - aer
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: dormitor ventilator
+  name: dormitormaster ventilator
   aliases:
-  - dormitor ventilator
+  - dormitormaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

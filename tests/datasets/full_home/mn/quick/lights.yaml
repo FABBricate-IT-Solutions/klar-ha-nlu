@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel zochny
+  - асаа гэрэл зочны
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel zochny
+  - унтраа гэрэл зочны
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel galtogoo
+  - асаа гэрэл галтогоо
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel galtogoo
+  - унтраа гэрэл галтогоо
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel garage
+  - асаа гэрэл garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel garage
+  - унтраа гэрэл garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel office
+  - асаа гэрэл office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel office
+  - унтраа гэрэл office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel garden
+  - асаа гэрэл garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel garden
+  - унтраа гэрэл garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel untlagiin
+  - асаа гэрэл untlagiinmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel untlagiin
+  - унтраа гэрэл untlagiinmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel hallway
+  - асаа гэрэл hallway
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel hallway
+  - унтраа гэрэл hallway
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel basement
+  - асаа гэрэл basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,21 +125,21 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel basement
+  - унтраа гэрэл basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - asaa taaz zochny
+  - асаа taaz зочны
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - untraa taaz zochny
+  - унтраа taaz зочны
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -147,105 +147,105 @@
     attributes:
       brightness: 50
   sentences:
-  - tokhiruul taaz zochny 50
+  - тохируул taaz зочны 50
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - asaa lamp zochny
+  - асаа gerel зочны
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - untraa lamp zochny
+  - унтраа gerel зочны
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - asaa taaz galtogoo
+  - асаа taaz галтогоо
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - untraa taaz galtogoo
+  - унтраа taaz галтогоо
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - asaa aran galtogoo
+  - асаа aran галтогоо
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - untraa aran galtogoo
+  - унтраа aran галтогоо
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - asaa taaz untlagiin
+  - асаа taaz untlagiinmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - untraa taaz untlagiin
+  - унтраа taaz untlagiinmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - asaa oronii untlagiin
+  - асаа oronii untlagiinmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - untraa oronii untlagiin
+  - унтраа oronii untlagiinmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - asaa taaz office
+  - асаа taaz office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - untraa taaz office
+  - унтраа taaz office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - asaa gerel garden
+  - асаа гэрэл garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - untraa gerel garden
+  - унтраа гэрэл garden
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -253,4 +253,4 @@
     attributes:
       color: red
   sentences:
-  - tokhiruul taaz zochny red
+  - тохируул taaz зочны red

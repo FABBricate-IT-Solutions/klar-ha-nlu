@@ -31,9 +31,10 @@ areas:
   aliases:
   - nuzhaivu
 - id: living
-  name: Arai
+  name: அறை
   floor: ground
   aliases:
+  - அறை
   - arai
 - id: dining
   name: Kutumbamess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - kutumbamess
 - id: kitchen
-  name: Samaiyal
+  name: சமையல்
   floor: ground
   aliases:
+  - சமையல்
   - samaiyal
 - id: family_room
   name: Kutumbam
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Padukkaiyarai
+  name: Padukkaiyaraimaster
   floor: upper
   aliases:
+  - padukkaiyaraimaster
   - padukkaiyarai
 - id: bedroom_2
   name: Padukkaiyarai2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: nuzhaivu vilakku
+  name: nuzhaivu விளக்கு
   aliases:
-  - nuzhaivu vilakku
-  - vilakku
+  - nuzhaivu விளக்கு
+  - விளக்கு
 - id: light.living_ceiling
   area_id: living
-  name: arai meetai
+  name: அறை meetai
   aliases:
-  - arai meetai
+  - அறை meetai
   - meetai
 - id: light.living_lamp
   area_id: living
-  name: arai vilakku
+  name: அறை vilakku
   aliases:
-  - arai vilakku
+  - அறை vilakku
   - vilakku
 - id: light.dining_pendant
   area_id: dining
-  name: kutumbamess vilakku
+  name: kutumbamess விளக்கு
   aliases:
-  - kutumbamess vilakku
-  - vilakku
+  - kutumbamess விளக்கு
+  - விளக்கு
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: samaiyal meetai
+  name: சமையல் meetai
   aliases:
-  - samaiyal meetai
+  - சமையல் meetai
   - meetai
 - id: light.kitchen_island
   area_id: kitchen
-  name: samaiyal theevu
+  name: சமையல் theevu
   aliases:
-  - samaiyal theevu
+  - சமையல் theevu
   - theevu
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - meetai
 - id: light.laundry_light
   area_id: laundry
-  name: salavai vilakku
+  name: salavai விளக்கு
   aliases:
-  - salavai vilakku
-  - vilakku
+  - salavai விளக்கு
+  - விளக்கு
 - id: light.powder_room_light
   area_id: powder_room
-  name: kazhivarai vilakku
+  name: kazhivarai விளக்கு
   aliases:
-  - kazhivarai vilakku
-  - vilakku
+  - kazhivarai விளக்கு
+  - விளக்கு
 - id: light.garage_light
   area_id: garage
-  name: garage vilakku
+  name: garage விளக்கு
   aliases:
-  - garage vilakku
-  - vilakku
+  - garage விளக்கு
+  - விளக்கு
 - id: light.office_ceiling
   area_id: office
   name: office meetai
@@ -184,35 +187,35 @@ devices:
   - meetai
 - id: light.garden
   area_id: garden
-  name: garden vilakku
+  name: garden விளக்கு
   aliases:
-  - garden vilakku
-  - vilakku
+  - garden விளக்கு
+  - விளக்கு
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: padukkaiyarai meetai
+  name: padukkaiyaraimaster meetai
   aliases:
-  - padukkaiyarai meetai
+  - padukkaiyaraimaster meetai
   - meetai
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: padukkaiyarai ensuite
+  name: padukkaiyaraimaster ensuite
   aliases:
-  - padukkaiyarai ensuite
+  - padukkaiyaraimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: padukkaiyarai left kattil
+  name: padukkaiyaraimaster left kattil
   aliases:
-  - padukkaiyarai left kattil
+  - padukkaiyaraimaster left kattil
   - kattil
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: padukkaiyarai right kattil
+  name: padukkaiyaraimaster right kattil
   aliases:
-  - padukkaiyarai right kattil
+  - padukkaiyaraimaster right kattil
   - kattil
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - meetai
 - id: light.master_bath_light
   area_id: master_bath
-  name: muthanmaikuliyal vilakku
+  name: muthanmaikuliyal விளக்கு
   aliases:
-  - muthanmaikuliyal vilakku
-  - vilakku
+  - muthanmaikuliyal விளக்கு
+  - விளக்கு
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath vilakku
+  name: main bath விளக்கு
   aliases:
-  - main bath vilakku
-  - vilakku
+  - main bath விளக்கு
+  - விளக்கு
 - id: light.hallway_light
   area_id: hallway
-  name: hallway vilakku
+  name: hallway விளக்கு
   aliases:
-  - hallway vilakku
-  - vilakku
+  - hallway விளக்கு
+  - விளக்கு
 - id: light.basement
   area_id: basement
-  name: basement vilakku
+  name: basement விளக்கு
   aliases:
-  - basement vilakku
-  - vilakku
+  - basement விளக்கு
+  - விளக்கு
 - id: cover.living_blinds
   area_id: living
-  name: arai thirai
+  name: அறை திரை
   aliases:
-  - arai thirai
-  - thirai
+  - அறை திரை
+  - திரை
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: padukkaiyarai thirai
+  name: padukkaiyaraimaster திரை
   aliases:
-  - padukkaiyarai thirai
-  - thirai
+  - padukkaiyaraimaster திரை
+  - திரை
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: padukkaiyarai2 thirai
+  name: padukkaiyarai2 திரை
   aliases:
-  - padukkaiyarai2 thirai
-  - thirai
+  - padukkaiyarai2 திரை
+  - திரை
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: padukkaiyarai3 thirai
+  name: padukkaiyarai3 திரை
   aliases:
-  - padukkaiyarai3 thirai
-  - thirai
+  - padukkaiyarai3 திரை
+  - திரை
 - id: cover.garage_door
   area_id: garage
-  name: garage thirai
+  name: garage திரை
   aliases:
-  - garage thirai
-  - thirai
+  - garage திரை
+  - திரை
 - id: climate.ground_thermostat
   area_id: living
-  name: arai veppam
+  name: அறை வெப்பம்
   aliases:
-  - arai veppam
-  - veppam
+  - அறை வெப்பம்
+  - வெப்பம்
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: padukkaiyarai veppam
+  name: padukkaiyaraimaster வெப்பம்
   aliases:
-  - padukkaiyarai veppam
-  - veppam
+  - padukkaiyaraimaster வெப்பம்
+  - வெப்பம்
 - id: climate.master_ac
   area_id: master_bedroom
-  name: veppam padukkaiyarai
+  name: veppam padukkaiyaraimaster
   aliases:
-  - veppam padukkaiyarai
+  - veppam padukkaiyaraimaster
   - veppam
   - ac
   tags:
   - veppam
 - id: fan.family_fan
   area_id: family_room
-  name: kutumbam visiri
+  name: kutumbam விசிறி
   aliases:
-  - kutumbam visiri
-  - visiri
+  - kutumbam விசிறி
+  - விசிறி
 - id: fan.master_fan
   area_id: master_bedroom
-  name: padukkaiyarai visiri
+  name: padukkaiyaraimaster விசிறி
   aliases:
-  - padukkaiyarai visiri
-  - visiri
+  - padukkaiyaraimaster விசிறி
+  - விசிறி
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: padukkaiyarai2 visiri
+  name: padukkaiyarai2 விசிறி
   aliases:
-  - padukkaiyarai2 visiri
-  - visiri
+  - padukkaiyarai2 விசிறி
+  - விசிறி
 - id: lock.front_door
   area_id: entryway
-  name: front kathavu
+  name: front கதவு
   aliases:
-  - front kathavu
+  - front கதவு
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage kathavu
+  name: garage கதவு
   aliases:
-  - garage kathavu
+  - garage கதவு
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: samaiyal pattiram
+  name: சமையல் pattiram
   aliases:
-  - samaiyal pattiram
+  - சமையல் pattiram
   - pattiram
 - id: switch.rangehood
   area_id: kitchen
-  name: samaiyal rangehood
+  name: சமையல் rangehood
   aliases:
-  - samaiyal rangehood
+  - சமையல் rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: muthanmaikuliyal visiribad
+  name: muthanmaikuliyal விசிறிbad
   aliases:
-  - muthanmaikuliyal visiribad
-  - visiribad
+  - muthanmaikuliyal விசிறிbad
+  - விசிறிbad
   tags:
-  - visiribad
+  - விசிறிbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath visiribad
+  name: main bath விசிறிbad
   aliases:
-  - main bath visiribad
-  - visiribad
+  - main bath விசிறிbad
+  - விசிறிbad
   tags:
-  - visiribad
+  - விசிறிbad
 - id: media_player.living_tv
   area_id: living
-  name: arai tv
+  name: அறை tv
   aliases:
-  - arai tv
+  - அறை tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: arai tivi
+  name: அறை டிவி
   aliases:
-  - arai tivi
-  - tivi
+  - அறை டிவி
+  - டிவி
   platform: music_assistant
   tags:
-  - tivi
+  - டிவி
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: samaiyal tivi
+  name: சமையல் டிவி
   aliases:
-  - samaiyal tivi
-  - tivi
+  - சமையல் டிவி
+  - டிவி
   platform: music_assistant
   tags:
-  - tivi
+  - டிவி
 - id: media_player.office_music
   area_id: office
-  name: office tivi
+  name: office டிவி
   aliases:
-  - office tivi
-  - tivi
+  - office டிவி
+  - டிவி
   platform: music_assistant
   tags:
-  - tivi
+  - டிவி
 - id: vacuum.robot
   area_id: living
-  name: arai thudaippu
+  name: அறை துடைப்பு
   aliases:
-  - arai thudaippu
-  - thudaippu
+  - அறை துடைப்பு
+  - துடைப்பு
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: nuzhaivu doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: arai windowsensor
+  name: அறை windowsensor
   aliases:
-  - arai windowsensor
+  - அறை windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: samaiyal motion
+  name: சமையல் motion
   aliases:
-  - samaiyal motion
+  - சமையல் motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: arai tempsensor
+  name: அறை tempsensor
   aliases:
-  - arai tempsensor
+  - அறை tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: arai humidity
+  name: அறை humidity
   aliases:
-  - arai humidity
+  - அறை humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: veli
 timers:
 - id: oven
-  name: oven timer
+  name: oven டைமர்
 - id: laundry
-  name: laundry timer
+  name: laundry டைமர்
 - id: abstract
-  name: abstract timer
+  name: abstract டைமர்
 lists:
 - id: shopping
-  name: pattiyal
+  name: பட்டியல்

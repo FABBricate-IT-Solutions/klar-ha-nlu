@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - miatsu luys hyurasenyak
+    - միացրու լույս հյուրասենյակ
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - anjatir luys khohanots
+    - անջատիր լույս խոհանոց
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - inch ka oracuycum
+    - օրացույց ինչ կա
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - avelacnel atamnabuzh vaghy 15 oracuyc
+    - ավելացնել ատամնաբուժ վաղչ 15 օրացույց
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - jnjel atamnabuzh oracuyc
+    - ջնջել ատամնաբուժ օրացույց
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - teghapoxel atamnabuzh vaghy 16 oracuyc
+    - տեղափոխել ատամնաբուժ վաղչ 16 օրացույց
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - nvarel depeche
+    - նվագիր depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

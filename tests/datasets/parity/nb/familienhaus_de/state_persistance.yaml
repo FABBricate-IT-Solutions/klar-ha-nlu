@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - hva lys garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - hva lys entreegang og hva lys toalett
+- - hva lys entreegang then hva lys toalett
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - hva lys entreegang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - hva lys badmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - hva varme soverom og hva varme stue
+- - hva varme soverommaster then hva varme stue
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - hva gardin soverom og hva gardin stue
+- - hva gardin soverommaster then hva gardin stue
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - hva varme soverom
+- - hva varme soverommaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - hva gardin soverom
+- - hva gardin soverommaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - hva lys toalett

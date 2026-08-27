@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - dakai dianying
-  - dianying dakai
+  - 打開 dianying
+  - dianying 打開
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - dakai wanshang
-  - wanshang dakai
+  - 打開 wanshang
+  - wanshang 打開
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - dakai likai
-  - likai dakai
+  - 打開 likai
+  - likai 打開
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - dakai dinner
-  - dinner dakai
+  - 打開 dinner
+  - dinner 打開
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - dakai morning
-  - morning dakai
+  - 打開 morning
+  - morning 打開
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - dakai kids
-  - kids dakai
+  - 打開 kids
+  - kids 打開

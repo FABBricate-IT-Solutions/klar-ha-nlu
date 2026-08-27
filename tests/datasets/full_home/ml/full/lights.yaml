@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku praveshanam
-  - vilakku praveshanam theli
+  - തെളി വിളക്ക് praveshanam
+  - വിളക്ക് praveshanam തെളി
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku praveshanam
-  - vilakku praveshanam anaykku
+  - അണയ്ക്ക് വിളക്ക് praveshanam
+  - വിളക്ക് praveshanam അണയ്ക്ക്
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku muriyil
-  - vilakku muriyil theli
+  - തെളി വിളക്ക് ഹാൾ
+  - വിളക്ക് ഹാൾ തെളി
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku muriyil
-  - vilakku muriyil anaykku
+  - അണയ്ക്ക് വിളക്ക് ഹാൾ
+  - വിളക്ക് ഹാൾ അണയ്ക്ക്
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kutumbamess
-  - vilakku kutumbamess theli
+  - തെളി വിളക്ക് kutumbamess
+  - വിളക്ക് kutumbamess തെളി
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kutumbamess
-  - vilakku kutumbamess anaykku
+  - അണയ്ക്ക് വിളക്ക് kutumbamess
+  - വിളക്ക് kutumbamess അണയ്ക്ക്
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku adukkala
-  - vilakku adukkala theli
+  - തെളി വിളക്ക് അടുക്കള
+  - വിളക്ക് അടുക്കള തെളി
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku adukkala
-  - vilakku adukkala anaykku
+  - അണയ്ക്ക് വിളക്ക് അടുക്കള
+  - വിളക്ക് അടുക്കള അണയ്ക്ക്
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kutumbam
-  - vilakku kutumbam theli
+  - തെളി വിളക്ക് kutumbam
+  - വിളക്ക് kutumbam തെളി
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kutumbam
-  - vilakku kutumbam anaykku
+  - അണയ്ക്ക് വിളക്ക് kutumbam
+  - വിളക്ക് kutumbam അണയ്ക്ക്
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku alakku
-  - vilakku alakku theli
+  - തെളി വിളക്ക് alakku
+  - വിളക്ക് alakku തെളി
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku alakku
-  - vilakku alakku anaykku
+  - അണയ്ക്ക് വിളക്ക് alakku
+  - വിളക്ക് alakku അണയ്ക്ക്
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku toilet
-  - vilakku toilet theli
+  - തെളി വിളക്ക് toilet
+  - വിളക്ക് toilet തെളി
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku toilet
-  - vilakku toilet anaykku
+  - അണയ്ക്ക് വിളക്ക് toilet
+  - വിളക്ക് toilet അണയ്ക്ക്
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku garage
-  - vilakku garage theli
+  - തെളി വിളക്ക് garage
+  - വിളക്ക് garage തെളി
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku garage
-  - vilakku garage anaykku
+  - അണയ്ക്ക് വിളക്ക് garage
+  - വിളക്ക് garage അണയ്ക്ക്
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku office
-  - vilakku office theli
+  - തെളി വിളക്ക് office
+  - വിളക്ക് office തെളി
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku office
-  - vilakku office anaykku
+  - അണയ്ക്ക് വിളക്ക് office
+  - വിളക്ക് office അണയ്ക്ക്
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku garden
-  - vilakku garden theli
+  - തെളി വിളക്ക് garden
+  - വിളക്ക് garden തെളി
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku garden
-  - vilakku garden anaykku
+  - അണയ്ക്ക് വിളക്ക് garden
+  - വിളക്ക് garden അണയ്ക്ക്
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kitappumuri
-  - vilakku kitappumuri theli
+  - തെളി വിളക്ക് kitappumurimaster
+  - വിളക്ക് kitappumurimaster തെളി
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kitappumuri
-  - vilakku kitappumuri anaykku
+  - അണയ്ക്ക് വിളക്ക് kitappumurimaster
+  - വിളക്ക് kitappumurimaster അണയ്ക്ക്
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kitappumuri2
-  - vilakku kitappumuri2 theli
+  - തെളി വിളക്ക് kitappumuri2
+  - വിളക്ക് kitappumuri2 തെളി
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kitappumuri2
-  - vilakku kitappumuri2 anaykku
+  - അണയ്ക്ക് വിളക്ക് kitappumuri2
+  - വിളക്ക് kitappumuri2 അണയ്ക്ക്
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kitappumuri3
-  - vilakku kitappumuri3 theli
+  - തെളി വിളക്ക് kitappumuri3
+  - വിളക്ക് kitappumuri3 തെളി
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kitappumuri3
-  - vilakku kitappumuri3 anaykku
+  - അണയ്ക്ക് വിളക്ക് kitappumuri3
+  - വിളക്ക് kitappumuri3 അണയ്ക്ക്
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku kitappumuri4
-  - vilakku kitappumuri4 theli
+  - തെളി വിളക്ക് kitappumuri4
+  - വിളക്ക് kitappumuri4 തെളി
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kitappumuri4
-  - vilakku kitappumuri4 anaykku
+  - അണയ്ക്ക് വിളക്ക് kitappumuri4
+  - വിളക്ക് kitappumuri4 അണയ്ക്ക്
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku masterbath
-  - vilakku masterbath theli
+  - തെളി വിളക്ക് masterbath
+  - വിളക്ക് masterbath തെളി
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku masterbath
-  - vilakku masterbath anaykku
+  - അണയ്ക്ക് വിളക്ക് masterbath
+  - വിളക്ക് masterbath അണയ്ക്ക്
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku main bath
-  - vilakku main bath theli
+  - തെളി വിളക്ക് main bath
+  - വിളക്ക് main bath തെളി
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku main bath
-  - vilakku main bath anaykku
+  - അണയ്ക്ക് വിളക്ക് main bath
+  - വിളക്ക് main bath അണയ്ക്ക്
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku hallway
-  - vilakku hallway theli
+  - തെളി വിളക്ക് hallway
+  - വിളക്ക് hallway തെളി
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku hallway
-  - vilakku hallway anaykku
+  - അണയ്ക്ക് വിളക്ക് hallway
+  - വിളക്ക് hallway അണയ്ക്ക്
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku basement
-  - vilakku basement theli
+  - തെളി വിളക്ക് basement
+  - വിളക്ക് basement തെളി
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku basement
-  - vilakku basement anaykku
+  - അണയ്ക്ക് വിളക്ക് basement
+  - വിളക്ക് basement അണയ്ക്ക്
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - theli tosh muriyil
-  - tosh muriyil theli
+  - തെളി tosh ഹാൾ
+  - tosh ഹാൾ തെളി
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh muriyil
-  - tosh muriyil anaykku
+  - അണയ്ക്ക് tosh ഹാൾ
+  - tosh ഹാൾ അണയ്ക്ക്
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh muriyil 20
-  - tosh muriyil 20
+  - സെറ്റ് tosh ഹാൾ 20
+  - tosh ഹാൾ 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh muriyil 40
-  - tosh muriyil 40
+  - സെറ്റ് tosh ഹാൾ 40
+  - tosh ഹാൾ 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh muriyil 50
-  - tosh muriyil 50
+  - സെറ്റ് tosh ഹാൾ 50
+  - tosh ഹാൾ 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh muriyil 60
-  - tosh muriyil 60
+  - സെറ്റ് tosh ഹാൾ 60
+  - tosh ഹാൾ 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh muriyil 80
-  - tosh muriyil 80
+  - സെറ്റ് tosh ഹാൾ 80
+  - tosh ഹാൾ 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh muriyil 100
-  - tosh muriyil 100
+  - സെറ്റ് tosh ഹാൾ 100
+  - tosh ഹാൾ 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - theli lamp muriyil
-  - lamp muriyil theli
+  - തെളി vilakku ഹാൾ
+  - vilakku ഹാൾ തെളി
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - anaykku lamp muriyil
-  - lamp muriyil anaykku
+  - അണയ്ക്ക് vilakku ഹാൾ
+  - vilakku ഹാൾ അണയ്ക്ക്
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set lamp muriyil 20
-  - lamp muriyil 20
+  - സെറ്റ് vilakku ഹാൾ 20
+  - vilakku ഹാൾ 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set lamp muriyil 40
-  - lamp muriyil 40
+  - സെറ്റ് vilakku ഹാൾ 40
+  - vilakku ഹാൾ 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set lamp muriyil 50
-  - lamp muriyil 50
+  - സെറ്റ് vilakku ഹാൾ 50
+  - vilakku ഹാൾ 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set lamp muriyil 60
-  - lamp muriyil 60
+  - സെറ്റ് vilakku ഹാൾ 60
+  - vilakku ഹാൾ 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set lamp muriyil 80
-  - lamp muriyil 80
+  - സെറ്റ് vilakku ഹാൾ 80
+  - vilakku ഹാൾ 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set lamp muriyil 100
-  - lamp muriyil 100
+  - സെറ്റ് vilakku ഹാൾ 100
+  - vilakku ഹാൾ 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - theli tosh adukkala
-  - tosh adukkala theli
+  - തെളി tosh അടുക്കള
+  - tosh അടുക്കള തെളി
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh adukkala
-  - tosh adukkala anaykku
+  - അണയ്ക്ക് tosh അടുക്കള
+  - tosh അടുക്കള അണയ്ക്ക്
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh adukkala 20
-  - tosh adukkala 20
+  - സെറ്റ് tosh അടുക്കള 20
+  - tosh അടുക്കള 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh adukkala 40
-  - tosh adukkala 40
+  - സെറ്റ് tosh അടുക്കള 40
+  - tosh അടുക്കള 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh adukkala 50
-  - tosh adukkala 50
+  - സെറ്റ് tosh അടുക്കള 50
+  - tosh അടുക്കള 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh adukkala 60
-  - tosh adukkala 60
+  - സെറ്റ് tosh അടുക്കള 60
+  - tosh അടുക്കള 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh adukkala 80
-  - tosh adukkala 80
+  - സെറ്റ് tosh അടുക്കള 80
+  - tosh അടുക്കള 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh adukkala 100
-  - tosh adukkala 100
+  - സെറ്റ് tosh അടുക്കള 100
+  - tosh അടുക്കള 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - theli dweep adukkala
-  - dweep adukkala theli
+  - തെളി dweep അടുക്കള
+  - dweep അടുക്കള തെളി
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - anaykku dweep adukkala
-  - dweep adukkala anaykku
+  - അണയ്ക്ക് dweep അടുക്കള
+  - dweep അടുക്കള അണയ്ക്ക്
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set dweep adukkala 20
-  - dweep adukkala 20
+  - സെറ്റ് dweep അടുക്കള 20
+  - dweep അടുക്കള 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set dweep adukkala 40
-  - dweep adukkala 40
+  - സെറ്റ് dweep അടുക്കള 40
+  - dweep അടുക്കള 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set dweep adukkala 50
-  - dweep adukkala 50
+  - സെറ്റ് dweep അടുക്കള 50
+  - dweep അടുക്കള 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set dweep adukkala 60
-  - dweep adukkala 60
+  - സെറ്റ് dweep അടുക്കള 60
+  - dweep അടുക്കള 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set dweep adukkala 80
-  - dweep adukkala 80
+  - സെറ്റ് dweep അടുക്കള 80
+  - dweep അടുക്കള 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set dweep adukkala 100
-  - dweep adukkala 100
+  - സെറ്റ് dweep അടുക്കള 100
+  - dweep അടുക്കള 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - theli tosh kitappumuri
-  - tosh kitappumuri theli
+  - തെളി tosh kitappumurimaster
+  - tosh kitappumurimaster തെളി
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh kitappumuri
-  - tosh kitappumuri anaykku
+  - അണയ്ക്ക് tosh kitappumurimaster
+  - tosh kitappumurimaster അണയ്ക്ക്
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh kitappumuri 20
-  - tosh kitappumuri 20
+  - സെറ്റ് tosh kitappumurimaster 20
+  - tosh kitappumurimaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh kitappumuri 40
-  - tosh kitappumuri 40
+  - സെറ്റ് tosh kitappumurimaster 40
+  - tosh kitappumurimaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh kitappumuri 50
-  - tosh kitappumuri 50
+  - സെറ്റ് tosh kitappumurimaster 50
+  - tosh kitappumurimaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh kitappumuri 60
-  - tosh kitappumuri 60
+  - സെറ്റ് tosh kitappumurimaster 60
+  - tosh kitappumurimaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh kitappumuri 80
-  - tosh kitappumuri 80
+  - സെറ്റ് tosh kitappumurimaster 80
+  - tosh kitappumurimaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh kitappumuri 100
-  - tosh kitappumuri 100
+  - സെറ്റ് tosh kitappumurimaster 100
+  - tosh kitappumurimaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - theli kattil kitappumuri
-  - kattil kitappumuri theli
+  - തെളി kattil kitappumurimaster
+  - kattil kitappumurimaster തെളി
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - anaykku kattil kitappumuri
-  - kattil kitappumuri anaykku
+  - അണയ്ക്ക് kattil kitappumurimaster
+  - kattil kitappumurimaster അണയ്ക്ക്
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set kattil kitappumuri 20
-  - kattil kitappumuri 20
+  - സെറ്റ് kattil kitappumurimaster 20
+  - kattil kitappumurimaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set kattil kitappumuri 40
-  - kattil kitappumuri 40
+  - സെറ്റ് kattil kitappumurimaster 40
+  - kattil kitappumurimaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set kattil kitappumuri 50
-  - kattil kitappumuri 50
+  - സെറ്റ് kattil kitappumurimaster 50
+  - kattil kitappumurimaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set kattil kitappumuri 60
-  - kattil kitappumuri 60
+  - സെറ്റ് kattil kitappumurimaster 60
+  - kattil kitappumurimaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set kattil kitappumuri 80
-  - kattil kitappumuri 80
+  - സെറ്റ് kattil kitappumurimaster 80
+  - kattil kitappumurimaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set kattil kitappumuri 100
-  - kattil kitappumuri 100
+  - സെറ്റ് kattil kitappumurimaster 100
+  - kattil kitappumurimaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - theli tosh office
-  - tosh office theli
+  - തെളി tosh office
+  - tosh office തെളി
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh office
-  - tosh office anaykku
+  - അണയ്ക്ക് tosh office
+  - tosh office അണയ്ക്ക്
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh office 20
+  - സെറ്റ് tosh office 20
   - tosh office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh office 40
+  - സെറ്റ് tosh office 40
   - tosh office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh office 50
+  - സെറ്റ് tosh office 50
   - tosh office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh office 60
+  - സെറ്റ് tosh office 60
   - tosh office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh office 80
+  - സെറ്റ് tosh office 80
   - tosh office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh office 100
+  - സെറ്റ് tosh office 100
   - tosh office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - theli vilakku garden
-  - vilakku garden theli
+  - തെളി വിളക്ക് garden
+  - വിളക്ക് garden തെളി
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - anaykku vilakku garden
-  - vilakku garden anaykku
+  - അണയ്ക്ക് വിളക്ക് garden
+  - വിളക്ക് garden അണയ്ക്ക്
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku garden 20
-  - vilakku garden 20
+  - സെറ്റ് വിളക്ക് garden 20
+  - വിളക്ക് garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku garden 40
-  - vilakku garden 40
+  - സെറ്റ് വിളക്ക് garden 40
+  - വിളക്ക് garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku garden 50
-  - vilakku garden 50
+  - സെറ്റ് വിളക്ക് garden 50
+  - വിളക്ക് garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku garden 60
-  - vilakku garden 60
+  - സെറ്റ് വിളക്ക് garden 60
+  - വിളക്ക് garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku garden 80
-  - vilakku garden 80
+  - സെറ്റ് വിളക്ക് garden 80
+  - വിളക്ക് garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku garden 100
-  - vilakku garden 100
+  - സെറ്റ് വിളക്ക് garden 100
+  - വിളക്ക് garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - theli vilakku basement
-  - vilakku basement theli
+  - തെളി വിളക്ക് basement
+  - വിളക്ക് basement തെളി
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - anaykku vilakku basement
-  - vilakku basement anaykku
+  - അണയ്ക്ക് വിളക്ക് basement
+  - വിളക്ക് basement അണയ്ക്ക്
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku basement 20
-  - vilakku basement 20
+  - സെറ്റ് വിളക്ക് basement 20
+  - വിളക്ക് basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku basement 40
-  - vilakku basement 40
+  - സെറ്റ് വിളക്ക് basement 40
+  - വിളക്ക് basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku basement 50
-  - vilakku basement 50
+  - സെറ്റ് വിളക്ക് basement 50
+  - വിളക്ക് basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku basement 60
-  - vilakku basement 60
+  - സെറ്റ് വിളക്ക് basement 60
+  - വിളക്ക് basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku basement 80
-  - vilakku basement 80
+  - സെറ്റ് വിളക്ക് basement 80
+  - വിളക്ക് basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku basement 100
-  - vilakku basement 100
+  - സെറ്റ് വിളക്ക് basement 100
+  - വിളക്ക് basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - theli vilakku hallway
-  - vilakku hallway theli
+  - തെളി വിളക്ക് hallway
+  - വിളക്ക് hallway തെളി
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - anaykku vilakku hallway
-  - vilakku hallway anaykku
+  - അണയ്ക്ക് വിളക്ക് hallway
+  - വിളക്ക് hallway അണയ്ക്ക്
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku hallway 20
-  - vilakku hallway 20
+  - സെറ്റ് വിളക്ക് hallway 20
+  - വിളക്ക് hallway 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku hallway 40
-  - vilakku hallway 40
+  - സെറ്റ് വിളക്ക് hallway 40
+  - വിളക്ക് hallway 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku hallway 50
-  - vilakku hallway 50
+  - സെറ്റ് വിളക്ക് hallway 50
+  - വിളക്ക് hallway 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku hallway 60
-  - vilakku hallway 60
+  - സെറ്റ് വിളക്ക് hallway 60
+  - വിളക്ക് hallway 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku hallway 80
-  - vilakku hallway 80
+  - സെറ്റ് വിളക്ക് hallway 80
+  - വിളക്ക് hallway 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku hallway 100
-  - vilakku hallway 100
+  - സെറ്റ് വിളക്ക് hallway 100
+  - വിളക്ക് hallway 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - theli tosh kutumbam
-  - tosh kutumbam theli
+  - തെളി tosh kutumbam
+  - tosh kutumbam തെളി
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh kutumbam
-  - tosh kutumbam anaykku
+  - അണയ്ക്ക് tosh kutumbam
+  - tosh kutumbam അണയ്ക്ക്
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh kutumbam 20
+  - സെറ്റ് tosh kutumbam 20
   - tosh kutumbam 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh kutumbam 40
+  - സെറ്റ് tosh kutumbam 40
   - tosh kutumbam 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh kutumbam 50
+  - സെറ്റ് tosh kutumbam 50
   - tosh kutumbam 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh kutumbam 60
+  - സെറ്റ് tosh kutumbam 60
   - tosh kutumbam 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh kutumbam 80
+  - സെറ്റ് tosh kutumbam 80
   - tosh kutumbam 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh kutumbam 100
+  - സെറ്റ് tosh kutumbam 100
   - tosh kutumbam 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - theli vilakku kutumbamess
-  - vilakku kutumbamess theli
+  - തെളി വിളക്ക് kutumbamess
+  - വിളക്ക് kutumbamess തെളി
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - anaykku vilakku kutumbamess
-  - vilakku kutumbamess anaykku
+  - അണയ്ക്ക് വിളക്ക് kutumbamess
+  - വിളക്ക് kutumbamess അണയ്ക്ക്
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku kutumbamess 20
-  - vilakku kutumbamess 20
+  - സെറ്റ് വിളക്ക് kutumbamess 20
+  - വിളക്ക് kutumbamess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku kutumbamess 40
-  - vilakku kutumbamess 40
+  - സെറ്റ് വിളക്ക് kutumbamess 40
+  - വിളക്ക് kutumbamess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku kutumbamess 50
-  - vilakku kutumbamess 50
+  - സെറ്റ് വിളക്ക് kutumbamess 50
+  - വിളക്ക് kutumbamess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku kutumbamess 60
-  - vilakku kutumbamess 60
+  - സെറ്റ് വിളക്ക് kutumbamess 60
+  - വിളക്ക് kutumbamess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku kutumbamess 80
-  - vilakku kutumbamess 80
+  - സെറ്റ് വിളക്ക് kutumbamess 80
+  - വിളക്ക് kutumbamess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku kutumbamess 100
-  - vilakku kutumbamess 100
+  - സെറ്റ് വിളക്ക് kutumbamess 100
+  - വിളക്ക് kutumbamess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - theli vilakku garage
-  - vilakku garage theli
+  - തെളി വിളക്ക് garage
+  - വിളക്ക് garage തെളി
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - anaykku vilakku garage
-  - vilakku garage anaykku
+  - അണയ്ക്ക് വിളക്ക് garage
+  - വിളക്ക് garage അണയ്ക്ക്
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku garage 20
-  - vilakku garage 20
+  - സെറ്റ് വിളക്ക് garage 20
+  - വിളക്ക് garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku garage 40
-  - vilakku garage 40
+  - സെറ്റ് വിളക്ക് garage 40
+  - വിളക്ക് garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku garage 50
-  - vilakku garage 50
+  - സെറ്റ് വിളക്ക് garage 50
+  - വിളക്ക് garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku garage 60
-  - vilakku garage 60
+  - സെറ്റ് വിളക്ക് garage 60
+  - വിളക്ക് garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku garage 80
-  - vilakku garage 80
+  - സെറ്റ് വിളക്ക് garage 80
+  - വിളക്ക് garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku garage 100
-  - vilakku garage 100
+  - സെറ്റ് വിളക്ക് garage 100
+  - വിളക്ക് garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - theli tosh kitappumuri2
-  - tosh kitappumuri2 theli
+  - തെളി tosh kitappumuri2
+  - tosh kitappumuri2 തെളി
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh kitappumuri2
-  - tosh kitappumuri2 anaykku
+  - അണയ്ക്ക് tosh kitappumuri2
+  - tosh kitappumuri2 അണയ്ക്ക്
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh kitappumuri2 20
+  - സെറ്റ് tosh kitappumuri2 20
   - tosh kitappumuri2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh kitappumuri2 40
+  - സെറ്റ് tosh kitappumuri2 40
   - tosh kitappumuri2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh kitappumuri2 50
+  - സെറ്റ് tosh kitappumuri2 50
   - tosh kitappumuri2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh kitappumuri2 60
+  - സെറ്റ് tosh kitappumuri2 60
   - tosh kitappumuri2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh kitappumuri2 80
+  - സെറ്റ് tosh kitappumuri2 80
   - tosh kitappumuri2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh kitappumuri2 100
+  - സെറ്റ് tosh kitappumuri2 100
   - tosh kitappumuri2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - theli tosh kitappumuri3
-  - tosh kitappumuri3 theli
+  - തെളി tosh kitappumuri3
+  - tosh kitappumuri3 തെളി
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh kitappumuri3
-  - tosh kitappumuri3 anaykku
+  - അണയ്ക്ക് tosh kitappumuri3
+  - tosh kitappumuri3 അണയ്ക്ക്
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh kitappumuri3 20
+  - സെറ്റ് tosh kitappumuri3 20
   - tosh kitappumuri3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh kitappumuri3 40
+  - സെറ്റ് tosh kitappumuri3 40
   - tosh kitappumuri3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh kitappumuri3 50
+  - സെറ്റ് tosh kitappumuri3 50
   - tosh kitappumuri3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh kitappumuri3 60
+  - സെറ്റ് tosh kitappumuri3 60
   - tosh kitappumuri3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh kitappumuri3 80
+  - സെറ്റ് tosh kitappumuri3 80
   - tosh kitappumuri3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh kitappumuri3 100
+  - സെറ്റ് tosh kitappumuri3 100
   - tosh kitappumuri3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - theli tosh kitappumuri4
-  - tosh kitappumuri4 theli
+  - തെളി tosh kitappumuri4
+  - tosh kitappumuri4 തെളി
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - anaykku tosh kitappumuri4
-  - tosh kitappumuri4 anaykku
+  - അണയ്ക്ക് tosh kitappumuri4
+  - tosh kitappumuri4 അണയ്ക്ക്
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set tosh kitappumuri4 20
+  - സെറ്റ് tosh kitappumuri4 20
   - tosh kitappumuri4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set tosh kitappumuri4 40
+  - സെറ്റ് tosh kitappumuri4 40
   - tosh kitappumuri4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set tosh kitappumuri4 50
+  - സെറ്റ് tosh kitappumuri4 50
   - tosh kitappumuri4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set tosh kitappumuri4 60
+  - സെറ്റ് tosh kitappumuri4 60
   - tosh kitappumuri4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set tosh kitappumuri4 80
+  - സെറ്റ് tosh kitappumuri4 80
   - tosh kitappumuri4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set tosh kitappumuri4 100
+  - സെറ്റ് tosh kitappumuri4 100
   - tosh kitappumuri4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - theli vilakku praveshanam
-  - vilakku praveshanam theli
+  - തെളി വിളക്ക് praveshanam
+  - വിളക്ക് praveshanam തെളി
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - anaykku vilakku praveshanam
-  - vilakku praveshanam anaykku
+  - അണയ്ക്ക് വിളക്ക് praveshanam
+  - വിളക്ക് praveshanam അണയ്ക്ക്
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku praveshanam 20
-  - vilakku praveshanam 20
+  - സെറ്റ് വിളക്ക് praveshanam 20
+  - വിളക്ക് praveshanam 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku praveshanam 40
-  - vilakku praveshanam 40
+  - സെറ്റ് വിളക്ക് praveshanam 40
+  - വിളക്ക് praveshanam 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku praveshanam 50
-  - vilakku praveshanam 50
+  - സെറ്റ് വിളക്ക് praveshanam 50
+  - വിളക്ക് praveshanam 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku praveshanam 60
-  - vilakku praveshanam 60
+  - സെറ്റ് വിളക്ക് praveshanam 60
+  - വിളക്ക് praveshanam 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku praveshanam 80
-  - vilakku praveshanam 80
+  - സെറ്റ് വിളക്ക് praveshanam 80
+  - വിളക്ക് praveshanam 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku praveshanam 100
-  - vilakku praveshanam 100
+  - സെറ്റ് വിളക്ക് praveshanam 100
+  - വിളക്ക് praveshanam 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - theli vilakku alakku
-  - vilakku alakku theli
+  - തെളി വിളക്ക് alakku
+  - വിളക്ക് alakku തെളി
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - anaykku vilakku alakku
-  - vilakku alakku anaykku
+  - അണയ്ക്ക് വിളക്ക് alakku
+  - വിളക്ക് alakku അണയ്ക്ക്
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku alakku 20
-  - vilakku alakku 20
+  - സെറ്റ് വിളക്ക് alakku 20
+  - വിളക്ക് alakku 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku alakku 40
-  - vilakku alakku 40
+  - സെറ്റ് വിളക്ക് alakku 40
+  - വിളക്ക് alakku 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku alakku 50
-  - vilakku alakku 50
+  - സെറ്റ് വിളക്ക് alakku 50
+  - വിളക്ക് alakku 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku alakku 60
-  - vilakku alakku 60
+  - സെറ്റ് വിളക്ക് alakku 60
+  - വിളക്ക് alakku 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku alakku 80
-  - vilakku alakku 80
+  - സെറ്റ് വിളക്ക് alakku 80
+  - വിളക്ക് alakku 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku alakku 100
-  - vilakku alakku 100
+  - സെറ്റ് വിളക്ക് alakku 100
+  - വിളക്ക് alakku 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - theli vilakku main bath
-  - vilakku main bath theli
+  - തെളി വിളക്ക് main bath
+  - വിളക്ക് main bath തെളി
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - anaykku vilakku main bath
-  - vilakku main bath anaykku
+  - അണയ്ക്ക് വിളക്ക് main bath
+  - വിളക്ക് main bath അണയ്ക്ക്
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku main bath 20
-  - vilakku main bath 20
+  - സെറ്റ് വിളക്ക് main bath 20
+  - വിളക്ക് main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku main bath 40
-  - vilakku main bath 40
+  - സെറ്റ് വിളക്ക് main bath 40
+  - വിളക്ക് main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku main bath 50
-  - vilakku main bath 50
+  - സെറ്റ് വിളക്ക് main bath 50
+  - വിളക്ക് main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku main bath 60
-  - vilakku main bath 60
+  - സെറ്റ് വിളക്ക് main bath 60
+  - വിളക്ക് main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku main bath 80
-  - vilakku main bath 80
+  - സെറ്റ് വിളക്ക് main bath 80
+  - വിളക്ക് main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku main bath 100
-  - vilakku main bath 100
+  - സെറ്റ് വിളക്ക് main bath 100
+  - വിളക്ക് main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - theli vilakku toilet
-  - vilakku toilet theli
+  - തെളി വിളക്ക് toilet
+  - വിളക്ക് toilet തെളി
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - anaykku vilakku toilet
-  - vilakku toilet anaykku
+  - അണയ്ക്ക് വിളക്ക് toilet
+  - വിളക്ക് toilet അണയ്ക്ക്
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku toilet 20
-  - vilakku toilet 20
+  - സെറ്റ് വിളക്ക് toilet 20
+  - വിളക്ക് toilet 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku toilet 40
-  - vilakku toilet 40
+  - സെറ്റ് വിളക്ക് toilet 40
+  - വിളക്ക് toilet 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku toilet 50
-  - vilakku toilet 50
+  - സെറ്റ് വിളക്ക് toilet 50
+  - വിളക്ക് toilet 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku toilet 60
-  - vilakku toilet 60
+  - സെറ്റ് വിളക്ക് toilet 60
+  - വിളക്ക് toilet 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku toilet 80
-  - vilakku toilet 80
+  - സെറ്റ് വിളക്ക് toilet 80
+  - വിളക്ക് toilet 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku toilet 100
-  - vilakku toilet 100
+  - സെറ്റ് വിളക്ക് toilet 100
+  - വിളക്ക് toilet 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - theli ensuite kitappumuri
-  - ensuite kitappumuri theli
+  - തെളി ensuite kitappumurimaster
+  - ensuite kitappumurimaster തെളി
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - anaykku ensuite kitappumuri
-  - ensuite kitappumuri anaykku
+  - അണയ്ക്ക് ensuite kitappumurimaster
+  - ensuite kitappumurimaster അണയ്ക്ക്
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set ensuite kitappumuri 20
-  - ensuite kitappumuri 20
+  - സെറ്റ് ensuite kitappumurimaster 20
+  - ensuite kitappumurimaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set ensuite kitappumuri 40
-  - ensuite kitappumuri 40
+  - സെറ്റ് ensuite kitappumurimaster 40
+  - ensuite kitappumurimaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set ensuite kitappumuri 50
-  - ensuite kitappumuri 50
+  - സെറ്റ് ensuite kitappumurimaster 50
+  - ensuite kitappumurimaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set ensuite kitappumuri 60
-  - ensuite kitappumuri 60
+  - സെറ്റ് ensuite kitappumurimaster 60
+  - ensuite kitappumurimaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set ensuite kitappumuri 80
-  - ensuite kitappumuri 80
+  - സെറ്റ് ensuite kitappumurimaster 80
+  - ensuite kitappumurimaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set ensuite kitappumuri 100
-  - ensuite kitappumuri 100
+  - സെറ്റ് ensuite kitappumurimaster 100
+  - ensuite kitappumurimaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - theli kattil kitappumuri
-  - kattil kitappumuri theli
+  - തെളി kattil kitappumurimaster
+  - kattil kitappumurimaster തെളി
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - anaykku kattil kitappumuri
-  - kattil kitappumuri anaykku
+  - അണയ്ക്ക് kattil kitappumurimaster
+  - kattil kitappumurimaster അണയ്ക്ക്
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set kattil kitappumuri 20
-  - kattil kitappumuri 20
+  - സെറ്റ് kattil kitappumurimaster 20
+  - kattil kitappumurimaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set kattil kitappumuri 40
-  - kattil kitappumuri 40
+  - സെറ്റ് kattil kitappumurimaster 40
+  - kattil kitappumurimaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set kattil kitappumuri 50
-  - kattil kitappumuri 50
+  - സെറ്റ് kattil kitappumurimaster 50
+  - kattil kitappumurimaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set kattil kitappumuri 60
-  - kattil kitappumuri 60
+  - സെറ്റ് kattil kitappumurimaster 60
+  - kattil kitappumurimaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set kattil kitappumuri 80
-  - kattil kitappumuri 80
+  - സെറ്റ് kattil kitappumurimaster 80
+  - kattil kitappumurimaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set kattil kitappumuri 100
-  - kattil kitappumuri 100
+  - സെറ്റ് kattil kitappumurimaster 100
+  - kattil kitappumurimaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - theli vilakku masterbath
-  - vilakku masterbath theli
+  - തെളി വിളക്ക് masterbath
+  - വിളക്ക് masterbath തെളി
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - anaykku vilakku masterbath
-  - vilakku masterbath anaykku
+  - അണയ്ക്ക് വിളക്ക് masterbath
+  - വിളക്ക് masterbath അണയ്ക്ക്
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set vilakku masterbath 20
-  - vilakku masterbath 20
+  - സെറ്റ് വിളക്ക് masterbath 20
+  - വിളക്ക് masterbath 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set vilakku masterbath 40
-  - vilakku masterbath 40
+  - സെറ്റ് വിളക്ക് masterbath 40
+  - വിളക്ക് masterbath 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku masterbath 50
-  - vilakku masterbath 50
+  - സെറ്റ് വിളക്ക് masterbath 50
+  - വിളക്ക് masterbath 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set vilakku masterbath 60
-  - vilakku masterbath 60
+  - സെറ്റ് വിളക്ക് masterbath 60
+  - വിളക്ക് masterbath 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set vilakku masterbath 80
-  - vilakku masterbath 80
+  - സെറ്റ് വിളക്ക് masterbath 80
+  - വിളക്ക് masterbath 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - set vilakku masterbath 100
-  - vilakku masterbath 100
+  - സെറ്റ് വിളക്ക് masterbath 100
+  - വിളക്ക് masterbath 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh muriyil red
-  - set vilakku muriyil red
+  - സെറ്റ് tosh ഹാൾ red
+  - സെറ്റ് വിളക്ക് ഹാൾ red
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh muriyil blue
-  - set vilakku muriyil blue
+  - സെറ്റ് tosh ഹാൾ blue
+  - സെറ്റ് വിളക്ക് ഹാൾ blue
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh muriyil green
-  - set vilakku muriyil green
+  - സെറ്റ് tosh ഹാൾ green
+  - സെറ്റ് വിളക്ക് ഹാൾ green
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh muriyil white
-  - set vilakku muriyil white
+  - സെറ്റ് tosh ഹാൾ white
+  - സെറ്റ് വിളക്ക് ഹാൾ white
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh muriyil yellow
-  - set vilakku muriyil yellow
+  - സെറ്റ് tosh ഹാൾ yellow
+  - സെറ്റ് വിളക്ക് ഹാൾ yellow
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh muriyil black
-  - set vilakku muriyil black
+  - സെറ്റ് tosh ഹാൾ black
+  - സെറ്റ് വിളക്ക് ഹാൾ black
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - set lamp muriyil red
-  - set vilakku muriyil red
+  - സെറ്റ് vilakku ഹാൾ red
+  - സെറ്റ് വിളക്ക് ഹാൾ red
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - set lamp muriyil blue
-  - set vilakku muriyil blue
+  - സെറ്റ് vilakku ഹാൾ blue
+  - സെറ്റ് വിളക്ക് ഹാൾ blue
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - set lamp muriyil green
-  - set vilakku muriyil green
+  - സെറ്റ് vilakku ഹാൾ green
+  - സെറ്റ് വിളക്ക് ഹാൾ green
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - set lamp muriyil white
-  - set vilakku muriyil white
+  - സെറ്റ് vilakku ഹാൾ white
+  - സെറ്റ് വിളക്ക് ഹാൾ white
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - set lamp muriyil yellow
-  - set vilakku muriyil yellow
+  - സെറ്റ് vilakku ഹാൾ yellow
+  - സെറ്റ് വിളക്ക് ഹാൾ yellow
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - set lamp muriyil black
-  - set vilakku muriyil black
+  - സെറ്റ് vilakku ഹാൾ black
+  - സെറ്റ് വിളക്ക് ഹാൾ black
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh adukkala red
-  - set vilakku adukkala red
+  - സെറ്റ് tosh അടുക്കള red
+  - സെറ്റ് വിളക്ക് അടുക്കള red
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh adukkala blue
-  - set vilakku adukkala blue
+  - സെറ്റ് tosh അടുക്കള blue
+  - സെറ്റ് വിളക്ക് അടുക്കള blue
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh adukkala green
-  - set vilakku adukkala green
+  - സെറ്റ് tosh അടുക്കള green
+  - സെറ്റ് വിളക്ക് അടുക്കള green
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh adukkala white
-  - set vilakku adukkala white
+  - സെറ്റ് tosh അടുക്കള white
+  - സെറ്റ് വിളക്ക് അടുക്കള white
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh adukkala yellow
-  - set vilakku adukkala yellow
+  - സെറ്റ് tosh അടുക്കള yellow
+  - സെറ്റ് വിളക്ക് അടുക്കള yellow
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh adukkala black
-  - set vilakku adukkala black
+  - സെറ്റ് tosh അടുക്കള black
+  - സെറ്റ് വിളക്ക് അടുക്കള black
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - set dweep adukkala red
-  - set vilakku adukkala red
+  - സെറ്റ് dweep അടുക്കള red
+  - സെറ്റ് വിളക്ക് അടുക്കള red
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - set dweep adukkala blue
-  - set vilakku adukkala blue
+  - സെറ്റ് dweep അടുക്കള blue
+  - സെറ്റ് വിളക്ക് അടുക്കള blue
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - set dweep adukkala green
-  - set vilakku adukkala green
+  - സെറ്റ് dweep അടുക്കള green
+  - സെറ്റ് വിളക്ക് അടുക്കള green
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - set dweep adukkala white
-  - set vilakku adukkala white
+  - സെറ്റ് dweep അടുക്കള white
+  - സെറ്റ് വിളക്ക് അടുക്കള white
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - set dweep adukkala yellow
-  - set vilakku adukkala yellow
+  - സെറ്റ് dweep അടുക്കള yellow
+  - സെറ്റ് വിളക്ക് അടുക്കള yellow
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - set dweep adukkala black
-  - set vilakku adukkala black
+  - സെറ്റ് dweep അടുക്കള black
+  - സെറ്റ് വിളക്ക് അടുക്കള black
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh kitappumuri red
-  - set vilakku kitappumuri red
+  - സെറ്റ് tosh kitappumurimaster red
+  - സെറ്റ് വിളക്ക് kitappumurimaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh kitappumuri blue
-  - set vilakku kitappumuri blue
+  - സെറ്റ് tosh kitappumurimaster blue
+  - സെറ്റ് വിളക്ക് kitappumurimaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh kitappumuri green
-  - set vilakku kitappumuri green
+  - സെറ്റ് tosh kitappumurimaster green
+  - സെറ്റ് വിളക്ക് kitappumurimaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh kitappumuri white
-  - set vilakku kitappumuri white
+  - സെറ്റ് tosh kitappumurimaster white
+  - സെറ്റ് വിളക്ക് kitappumurimaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh kitappumuri yellow
-  - set vilakku kitappumuri yellow
+  - സെറ്റ് tosh kitappumurimaster yellow
+  - സെറ്റ് വിളക്ക് kitappumurimaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh kitappumuri black
-  - set vilakku kitappumuri black
+  - സെറ്റ് tosh kitappumurimaster black
+  - സെറ്റ് വിളക്ക് kitappumurimaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - set kattil kitappumuri red
-  - set vilakku kitappumuri red
+  - സെറ്റ് kattil kitappumurimaster red
+  - സെറ്റ് വിളക്ക് kitappumurimaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - set kattil kitappumuri blue
-  - set vilakku kitappumuri blue
+  - സെറ്റ് kattil kitappumurimaster blue
+  - സെറ്റ് വിളക്ക് kitappumurimaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - set kattil kitappumuri green
-  - set vilakku kitappumuri green
+  - സെറ്റ് kattil kitappumurimaster green
+  - സെറ്റ് വിളക്ക് kitappumurimaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - set kattil kitappumuri white
-  - set vilakku kitappumuri white
+  - സെറ്റ് kattil kitappumurimaster white
+  - സെറ്റ് വിളക്ക് kitappumurimaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - set kattil kitappumuri yellow
-  - set vilakku kitappumuri yellow
+  - സെറ്റ് kattil kitappumurimaster yellow
+  - സെറ്റ് വിളക്ക് kitappumurimaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - set kattil kitappumuri black
-  - set vilakku kitappumuri black
+  - സെറ്റ് kattil kitappumurimaster black
+  - സെറ്റ് വിളക്ക് kitappumurimaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh office red
-  - set vilakku office red
+  - സെറ്റ് tosh office red
+  - സെറ്റ് വിളക്ക് office red
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh office blue
-  - set vilakku office blue
+  - സെറ്റ് tosh office blue
+  - സെറ്റ് വിളക്ക് office blue
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh office green
-  - set vilakku office green
+  - സെറ്റ് tosh office green
+  - സെറ്റ് വിളക്ക് office green
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh office white
-  - set vilakku office white
+  - സെറ്റ് tosh office white
+  - സെറ്റ് വിളക്ക് office white
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh office yellow
-  - set vilakku office yellow
+  - സെറ്റ് tosh office yellow
+  - സെറ്റ് വിളക്ക് office yellow
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh office black
-  - set vilakku office black
+  - സെറ്റ് tosh office black
+  - സെറ്റ് വിളക്ക് office black
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku garden red
-  - vilakku garden red
+  - സെറ്റ് വിളക്ക് garden red
+  - വിളക്ക് garden red
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku garden blue
-  - vilakku garden blue
+  - സെറ്റ് വിളക്ക് garden blue
+  - വിളക്ക് garden blue
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku garden green
-  - vilakku garden green
+  - സെറ്റ് വിളക്ക് garden green
+  - വിളക്ക് garden green
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku garden white
-  - vilakku garden white
+  - സെറ്റ് വിളക്ക് garden white
+  - വിളക്ക് garden white
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku garden yellow
-  - vilakku garden yellow
+  - സെറ്റ് വിളക്ക് garden yellow
+  - വിളക്ക് garden yellow
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku garden black
-  - vilakku garden black
+  - സെറ്റ് വിളക്ക് garden black
+  - വിളക്ക് garden black
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku basement red
-  - vilakku basement red
+  - സെറ്റ് വിളക്ക് basement red
+  - വിളക്ക് basement red
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku basement blue
-  - vilakku basement blue
+  - സെറ്റ് വിളക്ക് basement blue
+  - വിളക്ക് basement blue
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku basement green
-  - vilakku basement green
+  - സെറ്റ് വിളക്ക് basement green
+  - വിളക്ക് basement green
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku basement white
-  - vilakku basement white
+  - സെറ്റ് വിളക്ക് basement white
+  - വിളക്ക് basement white
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku basement yellow
-  - vilakku basement yellow
+  - സെറ്റ് വിളക്ക് basement yellow
+  - വിളക്ക് basement yellow
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku basement black
-  - vilakku basement black
+  - സെറ്റ് വിളക്ക് basement black
+  - വിളക്ക് basement black
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku hallway red
-  - vilakku hallway red
+  - സെറ്റ് വിളക്ക് hallway red
+  - വിളക്ക് hallway red
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku hallway blue
-  - vilakku hallway blue
+  - സെറ്റ് വിളക്ക് hallway blue
+  - വിളക്ക് hallway blue
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku hallway green
-  - vilakku hallway green
+  - സെറ്റ് വിളക്ക് hallway green
+  - വിളക്ക് hallway green
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku hallway white
-  - vilakku hallway white
+  - സെറ്റ് വിളക്ക് hallway white
+  - വിളക്ക് hallway white
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku hallway yellow
-  - vilakku hallway yellow
+  - സെറ്റ് വിളക്ക് hallway yellow
+  - വിളക്ക് hallway yellow
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku hallway black
-  - vilakku hallway black
+  - സെറ്റ് വിളക്ക് hallway black
+  - വിളക്ക് hallway black
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh kutumbam red
-  - set vilakku kutumbam red
+  - സെറ്റ് tosh kutumbam red
+  - സെറ്റ് വിളക്ക് kutumbam red
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh kutumbam blue
-  - set vilakku kutumbam blue
+  - സെറ്റ് tosh kutumbam blue
+  - സെറ്റ് വിളക്ക് kutumbam blue
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh kutumbam green
-  - set vilakku kutumbam green
+  - സെറ്റ് tosh kutumbam green
+  - സെറ്റ് വിളക്ക് kutumbam green
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh kutumbam white
-  - set vilakku kutumbam white
+  - സെറ്റ് tosh kutumbam white
+  - സെറ്റ് വിളക്ക് kutumbam white
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh kutumbam yellow
-  - set vilakku kutumbam yellow
+  - സെറ്റ് tosh kutumbam yellow
+  - സെറ്റ് വിളക്ക് kutumbam yellow
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh kutumbam black
-  - set vilakku kutumbam black
+  - സെറ്റ് tosh kutumbam black
+  - സെറ്റ് വിളക്ക് kutumbam black
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku kutumbamess red
-  - vilakku kutumbamess red
+  - സെറ്റ് വിളക്ക് kutumbamess red
+  - വിളക്ക് kutumbamess red
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku kutumbamess blue
-  - vilakku kutumbamess blue
+  - സെറ്റ് വിളക്ക് kutumbamess blue
+  - വിളക്ക് kutumbamess blue
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku kutumbamess green
-  - vilakku kutumbamess green
+  - സെറ്റ് വിളക്ക് kutumbamess green
+  - വിളക്ക് kutumbamess green
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku kutumbamess white
-  - vilakku kutumbamess white
+  - സെറ്റ് വിളക്ക് kutumbamess white
+  - വിളക്ക് kutumbamess white
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku kutumbamess yellow
-  - vilakku kutumbamess yellow
+  - സെറ്റ് വിളക്ക് kutumbamess yellow
+  - വിളക്ക് kutumbamess yellow
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku kutumbamess black
-  - vilakku kutumbamess black
+  - സെറ്റ് വിളക്ക് kutumbamess black
+  - വിളക്ക് kutumbamess black
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku garage red
-  - vilakku garage red
+  - സെറ്റ് വിളക്ക് garage red
+  - വിളക്ക് garage red
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku garage blue
-  - vilakku garage blue
+  - സെറ്റ് വിളക്ക് garage blue
+  - വിളക്ക് garage blue
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku garage green
-  - vilakku garage green
+  - സെറ്റ് വിളക്ക് garage green
+  - വിളക്ക് garage green
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku garage white
-  - vilakku garage white
+  - സെറ്റ് വിളക്ക് garage white
+  - വിളക്ക് garage white
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku garage yellow
-  - vilakku garage yellow
+  - സെറ്റ് വിളക്ക് garage yellow
+  - വിളക്ക് garage yellow
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku garage black
-  - vilakku garage black
+  - സെറ്റ് വിളക്ക് garage black
+  - വിളക്ക് garage black
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh kitappumuri2 red
-  - set vilakku kitappumuri2 red
+  - സെറ്റ് tosh kitappumuri2 red
+  - സെറ്റ് വിളക്ക് kitappumuri2 red
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh kitappumuri2 blue
-  - set vilakku kitappumuri2 blue
+  - സെറ്റ് tosh kitappumuri2 blue
+  - സെറ്റ് വിളക്ക് kitappumuri2 blue
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh kitappumuri2 green
-  - set vilakku kitappumuri2 green
+  - സെറ്റ് tosh kitappumuri2 green
+  - സെറ്റ് വിളക്ക് kitappumuri2 green
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh kitappumuri2 white
-  - set vilakku kitappumuri2 white
+  - സെറ്റ് tosh kitappumuri2 white
+  - സെറ്റ് വിളക്ക് kitappumuri2 white
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh kitappumuri2 yellow
-  - set vilakku kitappumuri2 yellow
+  - സെറ്റ് tosh kitappumuri2 yellow
+  - സെറ്റ് വിളക്ക് kitappumuri2 yellow
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh kitappumuri2 black
-  - set vilakku kitappumuri2 black
+  - സെറ്റ് tosh kitappumuri2 black
+  - സെറ്റ് വിളക്ക് kitappumuri2 black
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh kitappumuri3 red
-  - set vilakku kitappumuri3 red
+  - സെറ്റ് tosh kitappumuri3 red
+  - സെറ്റ് വിളക്ക് kitappumuri3 red
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh kitappumuri3 blue
-  - set vilakku kitappumuri3 blue
+  - സെറ്റ് tosh kitappumuri3 blue
+  - സെറ്റ് വിളക്ക് kitappumuri3 blue
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh kitappumuri3 green
-  - set vilakku kitappumuri3 green
+  - സെറ്റ് tosh kitappumuri3 green
+  - സെറ്റ് വിളക്ക് kitappumuri3 green
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh kitappumuri3 white
-  - set vilakku kitappumuri3 white
+  - സെറ്റ് tosh kitappumuri3 white
+  - സെറ്റ് വിളക്ക് kitappumuri3 white
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh kitappumuri3 yellow
-  - set vilakku kitappumuri3 yellow
+  - സെറ്റ് tosh kitappumuri3 yellow
+  - സെറ്റ് വിളക്ക് kitappumuri3 yellow
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh kitappumuri3 black
-  - set vilakku kitappumuri3 black
+  - സെറ്റ് tosh kitappumuri3 black
+  - സെറ്റ് വിളക്ക് kitappumuri3 black
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - set tosh kitappumuri4 red
-  - set vilakku kitappumuri4 red
+  - സെറ്റ് tosh kitappumuri4 red
+  - സെറ്റ് വിളക്ക് kitappumuri4 red
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - set tosh kitappumuri4 blue
-  - set vilakku kitappumuri4 blue
+  - സെറ്റ് tosh kitappumuri4 blue
+  - സെറ്റ് വിളക്ക് kitappumuri4 blue
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - set tosh kitappumuri4 green
-  - set vilakku kitappumuri4 green
+  - സെറ്റ് tosh kitappumuri4 green
+  - സെറ്റ് വിളക്ക് kitappumuri4 green
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - set tosh kitappumuri4 white
-  - set vilakku kitappumuri4 white
+  - സെറ്റ് tosh kitappumuri4 white
+  - സെറ്റ് വിളക്ക് kitappumuri4 white
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - set tosh kitappumuri4 yellow
-  - set vilakku kitappumuri4 yellow
+  - സെറ്റ് tosh kitappumuri4 yellow
+  - സെറ്റ് വിളക്ക് kitappumuri4 yellow
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - set tosh kitappumuri4 black
-  - set vilakku kitappumuri4 black
+  - സെറ്റ് tosh kitappumuri4 black
+  - സെറ്റ് വിളക്ക് kitappumuri4 black
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku praveshanam red
-  - vilakku praveshanam red
+  - സെറ്റ് വിളക്ക് praveshanam red
+  - വിളക്ക് praveshanam red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku praveshanam blue
-  - vilakku praveshanam blue
+  - സെറ്റ് വിളക്ക് praveshanam blue
+  - വിളക്ക് praveshanam blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku praveshanam green
-  - vilakku praveshanam green
+  - സെറ്റ് വിളക്ക് praveshanam green
+  - വിളക്ക് praveshanam green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku praveshanam white
-  - vilakku praveshanam white
+  - സെറ്റ് വിളക്ക് praveshanam white
+  - വിളക്ക് praveshanam white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku praveshanam yellow
-  - vilakku praveshanam yellow
+  - സെറ്റ് വിളക്ക് praveshanam yellow
+  - വിളക്ക് praveshanam yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku praveshanam black
-  - vilakku praveshanam black
+  - സെറ്റ് വിളക്ക് praveshanam black
+  - വിളക്ക് praveshanam black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku alakku red
-  - vilakku alakku red
+  - സെറ്റ് വിളക്ക് alakku red
+  - വിളക്ക് alakku red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku alakku blue
-  - vilakku alakku blue
+  - സെറ്റ് വിളക്ക് alakku blue
+  - വിളക്ക് alakku blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku alakku green
-  - vilakku alakku green
+  - സെറ്റ് വിളക്ക് alakku green
+  - വിളക്ക് alakku green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku alakku white
-  - vilakku alakku white
+  - സെറ്റ് വിളക്ക് alakku white
+  - വിളക്ക് alakku white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku alakku yellow
-  - vilakku alakku yellow
+  - സെറ്റ് വിളക്ക് alakku yellow
+  - വിളക്ക് alakku yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku alakku black
-  - vilakku alakku black
+  - സെറ്റ് വിളക്ക് alakku black
+  - വിളക്ക് alakku black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku main bath red
-  - vilakku main bath red
+  - സെറ്റ് വിളക്ക് main bath red
+  - വിളക്ക് main bath red
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku main bath blue
-  - vilakku main bath blue
+  - സെറ്റ് വിളക്ക് main bath blue
+  - വിളക്ക് main bath blue
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku main bath green
-  - vilakku main bath green
+  - സെറ്റ് വിളക്ക് main bath green
+  - വിളക്ക് main bath green
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku main bath white
-  - vilakku main bath white
+  - സെറ്റ് വിളക്ക് main bath white
+  - വിളക്ക് main bath white
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku main bath yellow
-  - vilakku main bath yellow
+  - സെറ്റ് വിളക്ക് main bath yellow
+  - വിളക്ക് main bath yellow
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku main bath black
-  - vilakku main bath black
+  - സെറ്റ് വിളക്ക് main bath black
+  - വിളക്ക് main bath black
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku toilet red
-  - vilakku toilet red
+  - സെറ്റ് വിളക്ക് toilet red
+  - വിളക്ക് toilet red
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku toilet blue
-  - vilakku toilet blue
+  - സെറ്റ് വിളക്ക് toilet blue
+  - വിളക്ക് toilet blue
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku toilet green
-  - vilakku toilet green
+  - സെറ്റ് വിളക്ക് toilet green
+  - വിളക്ക് toilet green
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku toilet white
-  - vilakku toilet white
+  - സെറ്റ് വിളക്ക് toilet white
+  - വിളക്ക് toilet white
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku toilet yellow
-  - vilakku toilet yellow
+  - സെറ്റ് വിളക്ക് toilet yellow
+  - വിളക്ക് toilet yellow
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku toilet black
-  - vilakku toilet black
+  - സെറ്റ് വിളക്ക് toilet black
+  - വിളക്ക് toilet black
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - set ensuite kitappumuri red
-  - set vilakku kitappumuri red
+  - സെറ്റ് ensuite kitappumurimaster red
+  - സെറ്റ് വിളക്ക് kitappumurimaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - set ensuite kitappumuri blue
-  - set vilakku kitappumuri blue
+  - സെറ്റ് ensuite kitappumurimaster blue
+  - സെറ്റ് വിളക്ക് kitappumurimaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - set ensuite kitappumuri green
-  - set vilakku kitappumuri green
+  - സെറ്റ് ensuite kitappumurimaster green
+  - സെറ്റ് വിളക്ക് kitappumurimaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - set ensuite kitappumuri white
-  - set vilakku kitappumuri white
+  - സെറ്റ് ensuite kitappumurimaster white
+  - സെറ്റ് വിളക്ക് kitappumurimaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - set ensuite kitappumuri yellow
-  - set vilakku kitappumuri yellow
+  - സെറ്റ് ensuite kitappumurimaster yellow
+  - സെറ്റ് വിളക്ക് kitappumurimaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - set ensuite kitappumuri black
-  - set vilakku kitappumuri black
+  - സെറ്റ് ensuite kitappumurimaster black
+  - സെറ്റ് വിളക്ക് kitappumurimaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - set kattil kitappumuri red
-  - set vilakku kitappumuri red
+  - സെറ്റ് kattil kitappumurimaster red
+  - സെറ്റ് വിളക്ക് kitappumurimaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - set kattil kitappumuri blue
-  - set vilakku kitappumuri blue
+  - സെറ്റ് kattil kitappumurimaster blue
+  - സെറ്റ് വിളക്ക് kitappumurimaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - set kattil kitappumuri green
-  - set vilakku kitappumuri green
+  - സെറ്റ് kattil kitappumurimaster green
+  - സെറ്റ് വിളക്ക് kitappumurimaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - set kattil kitappumuri white
-  - set vilakku kitappumuri white
+  - സെറ്റ് kattil kitappumurimaster white
+  - സെറ്റ് വിളക്ക് kitappumurimaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - set kattil kitappumuri yellow
-  - set vilakku kitappumuri yellow
+  - സെറ്റ് kattil kitappumurimaster yellow
+  - സെറ്റ് വിളക്ക് kitappumurimaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - set kattil kitappumuri black
-  - set vilakku kitappumuri black
+  - സെറ്റ് kattil kitappumurimaster black
+  - സെറ്റ് വിളക്ക് kitappumurimaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku masterbath red
-  - vilakku masterbath red
+  - സെറ്റ് വിളക്ക് masterbath red
+  - വിളക്ക് masterbath red
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - set vilakku masterbath blue
-  - vilakku masterbath blue
+  - സെറ്റ് വിളക്ക് masterbath blue
+  - വിളക്ക് masterbath blue
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - set vilakku masterbath green
-  - vilakku masterbath green
+  - സെറ്റ് വിളക്ക് masterbath green
+  - വിളക്ക് masterbath green
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - set vilakku masterbath white
-  - vilakku masterbath white
+  - സെറ്റ് വിളക്ക് masterbath white
+  - വിളക്ക് masterbath white
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - set vilakku masterbath yellow
-  - vilakku masterbath yellow
+  - സെറ്റ് വിളക്ക് masterbath yellow
+  - വിളക്ക് masterbath yellow
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - set vilakku masterbath black
-  - vilakku masterbath black
+  - സെറ്റ് വിളക്ക് masterbath black
+  - വിളക്ക് masterbath black
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike adukkala
-  - ellam vilakku anaykku ozhike adukkala
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike അടുക്കള
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike അടുക്കള
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike office
-  - ellam vilakku anaykku ozhike office
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike office
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike garage
-  - ellam vilakku anaykku ozhike garage
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike garage
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike kitappumuri
-  - ellam vilakku anaykku ozhike kitappumuri
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike kitappumurimaster
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike kitappumurimaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku thazhe
-  - vilakku thazhe theli
+  - തെളി എല്ലാം വിളക്ക് thazhe
+  - വിളക്ക് thazhe തെളി
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku thazhe
-  - vilakku thazhe anaykku
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് thazhe
+  - വിളക്ക് thazhe അണയ്ക്ക്
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku mukalil
-  - vilakku mukalil theli
+  - തെളി എല്ലാം വിളക്ക് mukalil
+  - വിളക്ക് mukalil തെളി
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku mukalil
-  - vilakku mukalil anaykku
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് mukalil
+  - വിളക്ക് mukalil അണയ്ക്ക്
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku basement
-  - vilakku basement theli
+  - തെളി എല്ലാം വിളക്ക് basement
+  - വിളക്ക് basement തെളി
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku basement
-  - vilakku basement anaykku
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് basement
+  - വിളക്ക് basement അണയ്ക്ക്
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike praveshanam
-  - ellam vilakku anaykku ozhike praveshanam
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike praveshanam
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike praveshanam
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike muriyil
-  - ellam vilakku anaykku ozhike muriyil
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike ഹാൾ
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike ഹാൾ
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike kutumbamess
-  - ellam vilakku anaykku ozhike kutumbamess
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike kutumbamess
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike kutumbamess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike kutumbam
-  - ellam vilakku anaykku ozhike kutumbam
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike kutumbam
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike kutumbam
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike alakku
-  - ellam vilakku anaykku ozhike alakku
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike alakku
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike alakku
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike toilet
-  - ellam vilakku anaykku ozhike toilet
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike toilet
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike toilet
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike garden
-  - ellam vilakku anaykku ozhike garden
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike garden
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike kitappumuri2
-  - ellam vilakku anaykku ozhike kitappumuri2
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike kitappumuri2
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike kitappumuri2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike kitappumuri3
-  - ellam vilakku anaykku ozhike kitappumuri3
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike kitappumuri3
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike kitappumuri3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike kitappumuri4
-  - ellam vilakku anaykku ozhike kitappumuri4
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike kitappumuri4
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike kitappumuri4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike masterbath
-  - ellam vilakku anaykku ozhike masterbath
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike masterbath
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike masterbath
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike main bath
-  - ellam vilakku anaykku ozhike main bath
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike main bath
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike hallway
-  - ellam vilakku anaykku ozhike hallway
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike hallway
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike hallway
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike basement
-  - ellam vilakku anaykku ozhike basement
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike basement
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - theli vilakku basement
-  - vilakku basement theli
+  - തെളി വിളക്ക് basement
+  - വിളക്ക് basement തെളി
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - theli vilakku hallway
-  - vilakku hallway theli
+  - തെളി വിളക്ക് hallway
+  - വിളക്ക് hallway തെളി
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - theli tosh kutumbam
-  - tosh kutumbam theli
+  - തെളി tosh kutumbam
+  - tosh kutumbam തെളി
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - theli vilakku kutumbamess
-  - vilakku kutumbamess theli
+  - തെളി വിളക്ക് kutumbamess
+  - വിളക്ക് kutumbamess തെളി

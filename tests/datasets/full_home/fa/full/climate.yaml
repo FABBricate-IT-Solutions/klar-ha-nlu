@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - بگذار سرما اتاقخواب 18
-  - سرما اتاقخواب 18
+  - بگذار سرما اتاقخوابmaster 18
+  - سرما اتاقخوابmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - بگذار سرما اتاقخواب 19
-  - سرما اتاقخواب 19
+  - بگذار سرما اتاقخوابmaster 19
+  - سرما اتاقخوابmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - بگذار سرما اتاقخواب 20
-  - سرما اتاقخواب 20
+  - بگذار سرما اتاقخوابmaster 20
+  - سرما اتاقخوابmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - بگذار سرما اتاقخواب 21
-  - سرما اتاقخواب 21
+  - بگذار سرما اتاقخوابmaster 21
+  - سرما اتاقخوابmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - بگذار سرما اتاقخواب 22
-  - سرما اتاقخواب 22
+  - بگذار سرما اتاقخوابmaster 22
+  - سرما اتاقخوابmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - بگذار سرما اتاقخواب 23
-  - سرما اتاقخواب 23
+  - بگذار سرما اتاقخوابmaster 23
+  - سرما اتاقخوابmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - بگذار سرما اتاقخواب 24
-  - سرما اتاقخواب 24
+  - بگذار سرما اتاقخوابmaster 24
+  - سرما اتاقخوابmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - چی سرما اتاقخواب
-  - سرما اتاقخواب
+  - چی سرما اتاقخوابmaster
+  - سرما اتاقخوابmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - بگذار دما اتاقخواب 18
-  - دما اتاقخواب 18
+  - بگذار دما اتاقخوابmaster 18
+  - دما اتاقخوابmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - بگذار دما اتاقخواب 19
-  - دما اتاقخواب 19
+  - بگذار دما اتاقخوابmaster 19
+  - دما اتاقخوابmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - بگذار دما اتاقخواب 20
-  - دما اتاقخواب 20
+  - بگذار دما اتاقخوابmaster 20
+  - دما اتاقخوابmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - بگذار دما اتاقخواب 21
-  - دما اتاقخواب 21
+  - بگذار دما اتاقخوابmaster 21
+  - دما اتاقخوابmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - بگذار دما اتاقخواب 22
-  - دما اتاقخواب 22
+  - بگذار دما اتاقخوابmaster 22
+  - دما اتاقخوابmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - بگذار دما اتاقخواب 23
-  - دما اتاقخواب 23
+  - بگذار دما اتاقخوابmaster 23
+  - دما اتاقخوابmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - بگذار دما اتاقخواب 24
-  - دما اتاقخواب 24
+  - بگذار دما اتاقخوابmaster 24
+  - دما اتاقخوابmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - چی دما اتاقخواب
-  - دما اتاقخواب
+  - چی دما اتاقخوابmaster
+  - دما اتاقخوابmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - چی سرما اتاقخواب
-  - سرما اتاقخواب
+  - چی سرما اتاقخوابmaster
+  - سرما اتاقخوابmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - چی دما اتاقخواب
-  - دما اتاقخواب
+  - چی دما اتاقخوابmaster
+  - دما اتاقخوابmaster

@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - حط تكييف غرفة 18
-  - تكييف غرفة 18
+  - حط تكييف غرفةmaster 18
+  - تكييف غرفةmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - حط تكييف غرفة 19
-  - تكييف غرفة 19
+  - حط تكييف غرفةmaster 19
+  - تكييف غرفةmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - حط تكييف غرفة 20
-  - تكييف غرفة 20
+  - حط تكييف غرفةmaster 20
+  - تكييف غرفةmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - حط تكييف غرفة 21
-  - تكييف غرفة 21
+  - حط تكييف غرفةmaster 21
+  - تكييف غرفةmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - حط تكييف غرفة 22
-  - تكييف غرفة 22
+  - حط تكييف غرفةmaster 22
+  - تكييف غرفةmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - حط تكييف غرفة 23
-  - تكييف غرفة 23
+  - حط تكييف غرفةmaster 23
+  - تكييف غرفةmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - حط تكييف غرفة 24
-  - تكييف غرفة 24
+  - حط تكييف غرفةmaster 24
+  - تكييف غرفةmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ايش تكييف غرفة
-  - تكييف غرفة
+  - ايش تكييف غرفةmaster
+  - تكييف غرفةmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - حط حرارة غرفة 18
-  - حرارة غرفة 18
+  - حط حرارة غرفةmaster 18
+  - حرارة غرفةmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - حط حرارة غرفة 19
-  - حرارة غرفة 19
+  - حط حرارة غرفةmaster 19
+  - حرارة غرفةmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - حط حرارة غرفة 20
-  - حرارة غرفة 20
+  - حط حرارة غرفةmaster 20
+  - حرارة غرفةmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - حط حرارة غرفة 21
-  - حرارة غرفة 21
+  - حط حرارة غرفةmaster 21
+  - حرارة غرفةmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - حط حرارة غرفة 22
-  - حرارة غرفة 22
+  - حط حرارة غرفةmaster 22
+  - حرارة غرفةmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - حط حرارة غرفة 23
-  - حرارة غرفة 23
+  - حط حرارة غرفةmaster 23
+  - حرارة غرفةmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - حط حرارة غرفة 24
-  - حرارة غرفة 24
+  - حط حرارة غرفةmaster 24
+  - حرارة غرفةmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ايش حرارة غرفة
-  - حرارة غرفة
+  - ايش حرارة غرفةmaster
+  - حرارة غرفةmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ايش تكييف غرفة
-  - تكييف غرفة
+  - ايش تكييف غرفةmaster
+  - تكييف غرفةmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ايش حرارة غرفة
-  - حرارة غرفة
+  - ايش حرارة غرفةmaster
+  - حرارة غرفةmaster

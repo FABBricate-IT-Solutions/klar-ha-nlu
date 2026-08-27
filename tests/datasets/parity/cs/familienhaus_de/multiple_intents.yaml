@@ -1,34 +1,34 @@
 multiple_intents/multiple_intents::multi_0:
-- vypni svetlo wc a zapni Guten Morgen
+- vypni svetlo wc then zapni scena good_morning
 multiple_intents/multiple_intents::multi_1:
-- co mycka a zapni Haus verlassen
+- co mycka then zapni scena leaving_home
 multiple_intents/multiple_intents::multi_10:
-- nastav ventilator loznice2 50 a co zaves loznice2 a co zaves loznice
+- nastav ventilator loznice2 50 then co zaves loznice2 then co zaves loznicemaster
 multiple_intents/multiple_intents::multi_12:
-- vypni nocnik loznice a zapni svetlo pradelna
+- vypni nocnik loznicemaster then zapni vse svetlo pradelna
 multiple_intents/multiple_intents::multi_14:
-- vypni svetlo kuchyne a co svetlo predsingang
+- vypni vse svetlo kuchyne then co svetlo predsingang
 multiple_intents/multiple_intents::multi_15:
-- co zaves loznice2 a vypni svetlo kuchyne
+- co zaves loznice2 then vypni vse svetlo kuchyne
 multiple_intents/multiple_intents::multi_16:
-- zapni strop kuchyne a co svetlo predsingang
+- zapni strop kuchyne then co svetlo predsingang
 multiple_intents/multiple_intents::multi_18:
-- vypni ventilator obyvakfam a nastav svetlo kuchyne 20
+- vypni ventilator obyvakfam then nastav ostrov kuchyne 20
 multiple_intents/multiple_intents::multi_19:
-- co ventilator loznice2 a zapni svetlo pradelna
+- co ventilator loznice2 then zapni svetlo pradelna
 multiple_intents/multiple_intents::multi_2:
-- co svetlo garage a zavri zaves obyvak
+- co svetlo garage then zavri zaves obyvak
 multiple_intents/multiple_intents::multi_3:
-- co topeni obyvak a vypni strop obyvak
+- co topeni obyvak then vypni strop obyvak
 multiple_intents/multiple_intents::multi_4:
-- zavri zaves loznice3 a zavri zaves garage a zapni strop loznice2
+- zavri zaves loznice3 then zavri zaves garage then zapni strop loznice2
 multiple_intents/multiple_intents::multi_5:
-- vypni svetlo obyvakfamess a nastav ventilator loznice2 50
+- vypni svetlo obyvakfamess then nastav ventilator loznice2 50
 multiple_intents/multiple_intents::multi_6:
-- zapni strop loznice3 a vypni svetlo predsin
+- zapni strop loznice3 then vypni svetlo predsin
 multiple_intents/multiple_intents::multi_7:
-- zapni Filmabend a vypni mycka
+- zapni scena movie_night then vypni mycka
 multiple_intents/multiple_intents::multi_8:
-- odemkni zamek garage a co svetlo garage
+- odemkni zamek garage then co svetlo garage
 multiple_intents/multiple_intents::multi_9:
-- pause televize obyvak a vypni strop obyvak
+- pause tv obyvak then vypni strop obyvak

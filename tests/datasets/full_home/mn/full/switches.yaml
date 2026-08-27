@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - asaa sav galtogoo
-  - sav galtogoo asaa
+  - асаа sav галтогоо
+  - sav галтогоо асаа
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - untraa sav galtogoo
-  - sav galtogoo untraa
+  - унтраа sav галтогоо
+  - sav галтогоо унтраа
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - asaa ugaalgyn ugaalga
-  - ugaalgyn ugaalga asaa
+  - асаа ugaalgyn ugaalga
+  - ugaalgyn ugaalga асаа
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - untraa ugaalgyn ugaalga
-  - ugaalgyn ugaalga untraa
+  - унтраа ugaalgyn ugaalga
+  - ugaalgyn ugaalga унтраа
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - asaa dryer ugaalga
-  - dryer ugaalga asaa
+  - асаа dryer ugaalga
+  - dryer ugaalga асаа
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - untraa dryer ugaalga
-  - dryer ugaalga untraa
+  - унтраа dryer ugaalga
+  - dryer ugaalga унтраа
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - asaa rangehood galtogoo
-  - rangehood galtogoo asaa
+  - асаа rangehood галтогоо
+  - rangehood галтогоо асаа
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - untraa rangehood galtogoo
-  - rangehood galtogoo untraa
+  - унтраа rangehood галтогоо
+  - rangehood галтогоо унтраа
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - asaa sensbad untlagiinugasalgach
-  - sensbad untlagiinugasalgach asaa
+  - асаа сэнсbad untlagiinugasalgach
+  - сэнсbad untlagiinugasalgach асаа
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - untraa sensbad untlagiinugasalgach
-  - sensbad untlagiinugasalgach untraa
+  - унтраа сэнсbad untlagiinugasalgach
+  - сэнсbad untlagiinugasalgach унтраа
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - asaa sensbad main bath
-  - sensbad main bath asaa
+  - асаа сэнсbad main bath
+  - сэнсbad main bath асаа
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - untraa sensbad main bath
-  - sensbad main bath untraa
+  - унтраа сэнсbad main bath
+  - сэнсbad main bath унтраа

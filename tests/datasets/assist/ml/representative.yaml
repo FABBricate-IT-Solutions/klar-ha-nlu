@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - theli vilakku muriyil
+    - തെളി വിളക്ക് ഹാൾ
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - anaykku vilakku adukkala
+    - അണയ്ക്ക് വിളക്ക് അടുക്കള
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - calendar il enthu
+    - കലണ്ടർ ഇല എന്തു
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - chertu dentist nale 15 calendar
+    - ചേർക്കു ദന്ത നാളെ 15 കലണ്ടർ
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - maattu dentist calendar
+    - മാറ്റു ദന്ത കലണ്ടർ
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - nivarthu dentist nale 16 calendar
+    - നീക്കു ദന്ത നാളെ 16 കലണ്ടർ
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - okke depeche
+    - പ്ലേ depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

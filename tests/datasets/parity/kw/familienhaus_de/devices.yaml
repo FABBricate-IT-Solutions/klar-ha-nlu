@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - settya tomder stafell 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- settya tomder chambour 19
+- settya tomder chambourmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - settya curtayn chambour2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - igeri curtayn stafell
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- settya curtayn chambour 19
+- settya curtayn chambourmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- degea curtayn chambour
+- degea curtayn chambourmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- igeri curtayn chambour
+- igeri curtayn chambourmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - settya gwyns chambour2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - enow gwyns stevellteylu
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- settya gwyns chambour 28
+- settya gwyns chambourmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- diffyg gwyns chambour
+- diffyg gwyns chambourmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- enow gwyns chambour
+- enow gwyns chambourmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- diffyg gwyns chambour ha diffyg golow kegin
+- diffyg gwyns chambourmaster then diffyg enys kegin
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- enow gwyns chambour ha enow golow kegin
+- enow gwyns chambourmaster then enow enys kegin
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - settya nen chambour2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - enow nen kegin
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- settya golow kegin 99
+- settya enys kegin 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- settya golow kegin green
+- settya enys kegin green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- diffyg golow kegin
+- diffyg enys kegin
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- enow golow kegin
+- enow enys kegin
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - settya golow stevellgolhi 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - enow nen stafell
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- settya golow stafell 72
+- settya lamp stafell 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- settya golow stafell red
+- settya lamp stafell red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- diffyg golow stafell
+- diffyg lamp stafell
 devices/light_living_lamp::light_living_lamp_turn_on:
-- enow golow stafell
+- enow lamp stafell
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - settya golow main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - enow golow kewndhavas
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- settya gweli chambour 25
+- settya gweli chambourmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- settya gweli chambour red
+- settya gweli chambourmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- diffyg gweli chambour
+- diffyg gweli chambourmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- enow gweli chambour
+- enow gweli chambourmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- settya nen chambour 77
+- settya nen chambourmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- settya nen chambour blue
+- settya nen chambourmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- diffyg nen chambour
+- diffyg nen chambourmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- enow nen chambour
+- enow nen chambourmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- settya golow chambour 55
+- settya ankleide chambourmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- settya golow chambour black
+- settya ankleide chambourmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- diffyg golow chambour
+- diffyg ankleide chambourmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- enow golow chambour
+- enow ankleide chambourmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - settya golow tybach 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - enow pellwolok stevellteylu
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause pellwolok stevellteylu
+- pause tv stevellteylu
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - diffyg pellwolok stevellteylu
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - enow pellwolok stafell
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause pellwolok stafell
+- pause tv stafell
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - diffyg pellwolok stafell
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - enow pellwolok stafell
 devices/scenes::dinner_time:
-- settya golow stevellteyluess 90 ha enow nen kegin ha settya golow kegin 80
+- settya golow stevellteyluess 90 then enow nen kegin then settya enys kegin 80
 devices/scenes::good_morning:
-- enow nen kegin ha settya golow stevellteyluess 100 ha igeri curtayn stafell ha igeri
-  curtayn chambour
+- enow nen kegin then settya golow stevellteyluess 100 then igeri curtayn stafell
+  then igeri curtayn chambourmaster
 devices/scenes::kids_bedtime:
-- diffyg nen chambour2 ha diffyg nen chambour3 ha diffyg nen chambour4 ha settya golow
-  porthgang 15
+- diffyg nen chambour2 then diffyg nen chambour3 then diffyg nen chambour4 then settya
+  golow porthgang 15
 devices/scenes::movie_night:
-- diffyg nen stafell ha settya golow stafell 20 ha enow pellwolok stafell ha degea
-  curtayn stafell
+- diffyg nen stafell then settya lamp stafell 20 then enow pellwolok stafell then
+  degea curtayn stafell
 devices/scripts::good_night:
-- enow gweles nos
+- diffyg nen stafell then diffyg lamp stafell then diffyg golow stevellteyluess then
+  diffyg nen kegin then diffyg enys kegin then diffyg nen stevellteylu then diffyg
+  golow porth then diffyg golow porthgang then alhwedh alhwedh porth then alhwedh
+  alhwedh garage then settya tomder chambourmaster 20
 devices/scripts::leaving_home:
-- enow gweles mos
+- diffyg nen stafell then diffyg lamp stafell then diffyg nen kegin then diffyg nen
+  stevellteylu then diffyg golow porth then alhwedh alhwedh porth then alhwedh alhwedh
+  garage then degea curtayn garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - diffyg lestri
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - enow lestri
 devices/switch_dryer::switch_dryer_turn_off:
-- diffyg jynnwolhi
+- diffyg dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- enow jynnwolhi
+- enow dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - diffyg jynnwolhi
 devices/switch_washing_machine::switch_washing_machine_turn_on:

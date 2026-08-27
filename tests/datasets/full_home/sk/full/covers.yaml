@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otvor zaves spalna
-  - zaves spalna otvor
+  - otvor zaves spalnamaster
+  - zaves spalnamaster otvor
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zatvor zaves spalna
-  - zaves spalna zatvor
+  - zatvor zaves spalnamaster
+  - zaves spalnamaster zatvor
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - nastav zaves spalna 0
-  - zaves spalna 0
+  - nastav zaves spalnamaster 0
+  - zaves spalnamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - nastav zaves spalna 25
-  - zaves spalna 25
+  - nastav zaves spalnamaster 25
+  - zaves spalnamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - nastav zaves spalna 40
-  - zaves spalna 40
+  - nastav zaves spalnamaster 40
+  - zaves spalnamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - nastav zaves spalna 75
-  - zaves spalna 75
+  - nastav zaves spalnamaster 75
+  - zaves spalnamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - nastav zaves spalna 100
-  - zaves spalna 100
+  - nastav zaves spalnamaster 100
+  - zaves spalnamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otvor zaves spalna
-  - zaves spalna otvor
+  - otvor zaves spalnamaster
+  - zaves spalnamaster otvor

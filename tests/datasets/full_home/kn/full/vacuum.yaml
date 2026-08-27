@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - hachchu gudisu
-  - gudisu hachchu
+  - ಹಚ್ಚು ಗುಡಿಸು
+  - ಗುಡಿಸು ಹಚ್ಚು
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - arisu gudisu
-  - gudisu arisu
+  - ಆರಿಸು ಗುಡಿಸು
+  - ಗುಡಿಸು ಆರಿಸು

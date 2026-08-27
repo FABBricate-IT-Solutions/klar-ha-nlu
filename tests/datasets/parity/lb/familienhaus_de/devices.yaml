@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - stell heizung wunnen 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- stell heizung schlofzëmmer 19
+- stell heizung schlofzëmmermaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - stell riddo schlofzëmmer2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - opmaachen riddo wunnen
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- stell riddo schlofzëmmer 19
+- stell riddo schlofzëmmermaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- zoumaachen riddo schlofzëmmer
+- zoumaachen riddo schlofzëmmermaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- opmaachen riddo schlofzëmmer
+- opmaachen riddo schlofzëmmermaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - stell ventilator schlofzëmmer2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - maach ventilator wunnsall
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- stell ventilator schlofzëmmer 28
+- stell ventilator schlofzëmmermaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- maachaus ventilator schlofzëmmer
+- maachaus ventilator schlofzëmmermaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- maach ventilator schlofzëmmer
+- maach ventilator schlofzëmmermaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- maachaus ventilator schlofzëmmer an maachaus luucht kichen
+- maachaus ventilator schlofzëmmermaster then maachaus eiland kichen
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- maach ventilator schlofzëmmer an maach luucht kichen
+- maach ventilator schlofzëmmermaster then maach eiland kichen
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - stell decken schlofzëmmer2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - maach decken kichen
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- stell luucht kichen 99
+- stell eiland kichen 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- stell luucht kichen green
+- stell eiland kichen green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- maachaus luucht kichen
+- maachaus eiland kichen
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- maach luucht kichen
+- maach eiland kichen
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - stell luucht waschraum 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - maach decken wunnen
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- stell luucht wunnen 72
+- stell lamp wunnen 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- stell luucht wunnen red
+- stell lamp wunnen red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- maachaus luucht wunnen
+- maachaus lamp wunnen
 devices/light_living_lamp::light_living_lamp_turn_on:
-- maach luucht wunnen
+- maach lamp wunnen
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - stell luucht main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - maach luucht bademaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stell nuettsdesch schlofzëmmer 25
+- stell nuettsdesch schlofzëmmermaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stell nuettsdesch schlofzëmmer red
+- stell nuettsdesch schlofzëmmermaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- maachaus nuettsdesch schlofzëmmer
+- maachaus nuettsdesch schlofzëmmermaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- maach nuettsdesch schlofzëmmer
+- maach nuettsdesch schlofzëmmermaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- stell decken schlofzëmmer 77
+- stell decken schlofzëmmermaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- stell decken schlofzëmmer blue
+- stell decken schlofzëmmermaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- maachaus decken schlofzëmmer
+- maachaus decken schlofzëmmermaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- maach decken schlofzëmmer
+- maach decken schlofzëmmermaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- stell luucht schlofzëmmer 55
+- stell ankleide schlofzëmmermaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- stell luucht schlofzëmmer black
+- stell ankleide schlofzëmmermaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- maachaus luucht schlofzëmmer
+- maachaus ankleide schlofzëmmermaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- maach luucht schlofzëmmer
+- maach ankleide schlofzëmmermaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - stell luucht toilette 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - maach tele wunnsall
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tele wunnsall
+- pause tv wunnsall
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - maachaus tele wunnsall
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - maach tele wunnen
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tele wunnen
+- pause tv wunnen
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - maachaus tele wunnen
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - maach tele wunnen
 devices/scenes::dinner_time:
-- stell luucht wunnsalless 90 an maach decken kichen an stell luucht kichen 80
+- stell luucht wunnsalless 90 then maach decken kichen then stell eiland kichen 80
 devices/scenes::good_morning:
-- maach decken kichen an stell luucht wunnsalless 100 an opmaachen riddo wunnen an
-  opmaachen riddo schlofzëmmer
+- maach decken kichen then stell luucht wunnsalless 100 then opmaachen riddo wunnen
+  then opmaachen riddo schlofzëmmermaster
 devices/scenes::kids_bedtime:
-- maachaus decken schlofzëmmer2 an maachaus decken schlofzëmmer3 an maachaus decken
-  schlofzëmmer4 an stell luucht entradagang 15
+- maachaus decken schlofzëmmer2 then maachaus decken schlofzëmmer3 then maachaus decken
+  schlofzëmmer4 then stell luucht entradagang 15
 devices/scenes::movie_night:
-- maachaus decken wunnen an stell luucht wunnen 20 an maach tele wunnen an zoumaachen
+- maachaus decken wunnen then stell lamp wunnen 20 then maach tele wunnen then zoumaachen
   riddo wunnen
 devices/scripts::good_night:
-- maach szen nuets
+- maachaus decken wunnen then maachaus lamp wunnen then maachaus luucht wunnsalless
+  then maachaus decken kichen then maachaus eiland kichen then maachaus decken wunnsall
+  then maachaus luucht entrada then maachaus luucht entradagang then schlass schlass
+  entrada then schlass schlass garage then stell heizung schlofzëmmermaster 20
 devices/scripts::leaving_home:
-- maach szen fortgoen
+- maachaus decken wunnen then maachaus lamp wunnen then maachaus decken kichen then
+  maachaus decken wunnsall then maachaus luucht entrada then schlass schlass entrada
+  then schlass schlass garage then zoumaachen riddo garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - maachaus spuelmaschinn
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - maach spuelmaschinn
 devices/switch_dryer::switch_dryer_turn_off:
-- maachaus waschmaschinn
+- maachaus dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- maach waschmaschinn
+- maach dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - maachaus waschmaschinn
 devices/switch_washing_machine::switch_washing_machine_turn_on:

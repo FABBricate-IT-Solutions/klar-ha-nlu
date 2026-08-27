@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - מה מנעול כניסה
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- מה אור משפחה ו מה אור מטבח
+- מה אור משפחה then מה אור מטבח
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- מה אור משפחה ו מה אור מטבח
+- מה אור משפחה then מה אור מטבח
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- מה אור משפחה ו מה אור מטבח
+- מה אור משפחה then מה אור מטבח
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- מה אור משפחה ו מה אור מטבח
+- מה אור משפחה then מה אור מטבח
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - מה מאוורר משפחה
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - מה מנעול garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- מה אור כניסהgang ו מה אור שירותים
+- מה אור כניסהgang then מה אור שירותים
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- מה אור כניסהgang ו מה אור שירותים
+- מה אור כניסהgang then מה אור שירותים
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- מה אור כניסהgang ו מה אור שירותים
+- מה אור כניסהgang then מה אור שירותים
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- מה אור כניסהgang ו מה אור שירותים
+- מה אור כניסהgang then מה אור שירותים
 query_area/hallway_lights::hallway_lights_get_brightness:
 - מה אור כניסהgang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - מה מכשיר חדררחצהראשי
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- מה וילון חדרשינה ו מה וילון סלון
+- מה וילון חדרשינהmaster then מה וילון סלון
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- מה וילון חדרשינה ו מה וילון סלון
+- מה וילון חדרשינהmaster then מה וילון סלון
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- מה וילון חדרשינה ו מה וילון סלון
+- מה וילון חדרשינהmaster then מה וילון סלון
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- מה וילון חדרשינה ו מה וילון סלון
+- מה וילון חדרשינהmaster then מה וילון סלון
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- מה חימום חדרשינה
+- מה חימום חדרשינהmaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- מה וילון חדרשינה
+- מה וילון חדרשינהmaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- מה וילון חדרשינה
+- מה וילון חדרשינהmaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- מה וילון חדרשינה
+- מה וילון חדרשינהmaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- מה וילון חדרשינה
+- מה וילון חדרשינהmaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- מה מאוורר חדרשינה
+- מה מאוורר חדרשינהmaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- מה מאוורר חדרשינה
+- מה מאוורר חדרשינהmaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- מה מאוורר חדרשינה
+- מה מאוורר חדרשינהmaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- מה מאוורר חדרשינה
+- מה מאוורר חדרשינהmaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- מה אור חדרשינה
+- מה אור חדרשינהmaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- מה אור חדרשינה
+- מה אור חדרשינהmaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- מה אור חדרשינה
+- מה אור חדרשינהmaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- מה אור חדרשינה
+- מה אור חדרשינהmaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - מה אור שירותים
 query_area/powder_room_lights::powder_room_lights_get_state:

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - pune incalzire sufragerie 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- pune incalzire dormitor 19
+- pune incalzire dormitormaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - pune perdea dormitor2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - deschide perdea sufragerie
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- pune perdea dormitor 19
+- pune perdea dormitormaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- inchide perdea dormitor
+- inchide perdea dormitormaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- deschide perdea dormitor
+- deschide perdea dormitormaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - pune ventilator dormitor2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - aprinde ventilator sufrageriefam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- pune ventilator dormitor 28
+- pune ventilator dormitormaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- stinge ventilator dormitor
+- stinge ventilator dormitormaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- aprinde ventilator dormitor
+- aprinde ventilator dormitormaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- stinge ventilator dormitor si stinge lumina bucatarie
+- stinge ventilator dormitormaster then stinge insula bucatarie
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- aprinde ventilator dormitor si aprinde lumina bucatarie
+- aprinde ventilator dormitormaster then aprinde insula bucatarie
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - pune tavan dormitor2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - aprinde tavan bucatarie
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- pune lumina bucatarie 99
+- pune insula bucatarie 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- pune lumina bucatarie verde
+- pune insula bucatarie verde
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- stinge lumina bucatarie
+- stinge insula bucatarie
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- aprinde lumina bucatarie
+- aprinde insula bucatarie
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - pune lumina spalatorie 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - aprinde tavan sufragerie
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- pune lumina sufragerie 72
+- pune lampa sufragerie 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- pune lumina sufragerie rosu
+- pune lampa sufragerie rosu
 devices/light_living_lamp::light_living_lamp_turn_off:
-- stinge lumina sufragerie
+- stinge lampa sufragerie
 devices/light_living_lamp::light_living_lamp_turn_on:
-- aprinde lumina sufragerie
+- aprinde lampa sufragerie
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - pune lumina main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - aprinde lumina baiemaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- pune noptiera dormitor 25
+- pune noptiera dormitormaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- pune noptiera dormitor rosu
+- pune noptiera dormitormaster rosu
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- stinge noptiera dormitor
+- stinge noptiera dormitormaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- aprinde noptiera dormitor
+- aprinde noptiera dormitormaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- pune tavan dormitor 77
+- pune tavan dormitormaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- pune tavan dormitor albastru
+- pune tavan dormitormaster albastru
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- stinge tavan dormitor
+- stinge tavan dormitormaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- aprinde tavan dormitor
+- aprinde tavan dormitormaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- pune lumina dormitor 55
+- pune ankleide dormitormaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- pune lumina dormitor negru
+- pune ankleide dormitormaster negru
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- stinge lumina dormitor
+- stinge ankleide dormitormaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- aprinde lumina dormitor
+- aprinde ankleide dormitormaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - pune lumina toaleta 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,29 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - aprinde tv sufragerie
 devices/scenes::dinner_time:
-- pune lumina sufrageriefamess 90 si aprinde tavan bucatarie si pune lumina bucatarie
+- pune lumina sufrageriefamess 90 then aprinde tavan bucatarie then pune insula bucatarie
   80
 devices/scenes::good_morning:
-- aprinde tavan bucatarie si pune lumina sufrageriefamess 100 si deschide perdea sufragerie
-  si deschide perdea dormitor
+- aprinde tavan bucatarie then pune lumina sufrageriefamess 100 then deschide perdea
+  sufragerie then deschide perdea dormitormaster
 devices/scenes::kids_bedtime:
-- stinge tavan dormitor2 si stinge tavan dormitor3 si stinge tavan dormitor4 si pune
-  lumina holgang 15
+- stinge tavan dormitor2 then stinge tavan dormitor3 then stinge tavan dormitor4 then
+  pune lumina holgang 15
 devices/scenes::movie_night:
-- stinge tavan sufragerie si pune lumina sufragerie 20 si aprinde tv sufragerie si
-  inchide perdea sufragerie
+- stinge tavan sufragerie then pune lampa sufragerie 20 then aprinde tv sufragerie
+  then inchide perdea sufragerie
 devices/scripts::good_night:
-- aprinde scena noapte
+- stinge tavan sufragerie then stinge lampa sufragerie then stinge lumina sufrageriefamess
+  then stinge tavan bucatarie then stinge insula bucatarie then stinge tavan sufrageriefam
+  then stinge lumina hol then stinge lumina holgang then blocheaza yala hol then blocheaza
+  yala garage then pune incalzire dormitormaster 20
 devices/scripts::leaving_home:
-- aprinde scena plecare
+- stinge tavan sufragerie then stinge lampa sufragerie then stinge tavan bucatarie
+  then stinge tavan sufrageriefam then stinge lumina hol then blocheaza yala hol then
+  blocheaza yala garage then inchide perdea garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - stinge vase
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - aprinde vase
 devices/switch_dryer::switch_dryer_turn_off:
-- stinge masina
+- stinge dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- aprinde masina
+- aprinde dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - stinge masina
 devices/switch_washing_machine::switch_washing_machine_turn_on:

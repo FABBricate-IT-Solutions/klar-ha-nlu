@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - sett varme stue 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- sett varme soverom 19
+- sett varme soverommaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - sett gardin soverom2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - apne gardin stue
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- sett gardin soverom 19
+- sett gardin soverommaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- lukk gardin soverom
+- lukk gardin soverommaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- apne gardin soverom
+- apne gardin soverommaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - sett vifte soverom2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - skru vifte stuefam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- sett vifte soverom 28
+- sett vifte soverommaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- slaa vifte soverom
+- slaa vifte soverommaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- skru vifte soverom
+- skru vifte soverommaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- slaa vifte soverom og slaa lys kjokken
+- slaa vifte soverommaster then slaa oy kjokken
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- skru vifte soverom og skru lys kjokken
+- skru vifte soverommaster then skru oy kjokken
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - sett tak soverom2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - skru tak kjokken
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- sett lys kjokken 99
+- sett oy kjokken 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- sett lys kjokken gronn
+- sett oy kjokken gronn
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- slaa lys kjokken
+- slaa oy kjokken
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- skru lys kjokken
+- skru oy kjokken
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - sett lys vaskerom 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - skru tak stue
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- sett lys stue 72
+- sett lamp stue 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- sett lys stue rod
+- sett lamp stue rod
 devices/light_living_lamp::light_living_lamp_turn_off:
-- slaa lys stue
+- slaa lamp stue
 devices/light_living_lamp::light_living_lamp_turn_on:
-- skru lys stue
+- skru lamp stue
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - sett lys main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - skru lys badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- sett nattbord soverom 25
+- sett nattbord soverommaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- sett nattbord soverom rod
+- sett nattbord soverommaster rod
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- slaa nattbord soverom
+- slaa nattbord soverommaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- skru nattbord soverom
+- skru nattbord soverommaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- sett tak soverom 77
+- sett tak soverommaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- sett tak soverom bla
+- sett tak soverommaster bla
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- slaa tak soverom
+- slaa tak soverommaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- skru tak soverom
+- skru tak soverommaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- sett lys soverom 55
+- sett ankleide soverommaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- sett lys soverom svart
+- sett ankleide soverommaster svart
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- slaa lys soverom
+- slaa ankleide soverommaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- skru lys soverom
+- skru ankleide soverommaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - sett lys toalett 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,26 +239,30 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - skru tv stue
 devices/scenes::dinner_time:
-- sett lys stuefamess 90 og skru tak kjokken og sett lys kjokken 80
+- sett lys stuefamess 90 then skru tak kjokken then sett oy kjokken 80
 devices/scenes::good_morning:
-- skru tak kjokken og sett lys stuefamess 100 og apne gardin stue og apne gardin soverom
+- skru tak kjokken then sett lys stuefamess 100 then apne gardin stue then apne gardin
+  soverommaster
 devices/scenes::kids_bedtime:
-- slaa tak soverom2 og slaa tak soverom3 og slaa tak soverom4 og sett lys entreegang
+- slaa tak soverom2 then slaa tak soverom3 then slaa tak soverom4 then sett lys entreegang
   15
 devices/scenes::movie_night:
-- slaa tak stue og sett lys stue 20 og skru tv stue og lukk gardin stue
+- slaa tak stue then sett lamp stue 20 then skru tv stue then lukk gardin stue
 devices/scripts::good_night:
-- skru scene natt
+- slaa tak stue then slaa lamp stue then slaa lys stuefamess then slaa tak kjokken
+  then slaa oy kjokken then slaa tak stuefam then slaa lys entree then slaa lys entreegang
+  then laas laas entree then laas laas garage then sett varme soverommaster 20
 devices/scripts::leaving_home:
-- skru scene avgang
+- slaa tak stue then slaa lamp stue then slaa tak kjokken then slaa tak stuefam then
+  slaa lys entree then laas laas entree then laas laas garage then lukk gardin garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - slaa oppvask
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - skru oppvask
 devices/switch_dryer::switch_dryer_turn_off:
-- slaa vaskemaskin
+- slaa dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- skru vaskemaskin
+- skru dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - slaa vaskemaskin
 devices/switch_washing_machine::switch_washing_machine_turn_on:

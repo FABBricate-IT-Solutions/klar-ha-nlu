@@ -36,16 +36,16 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - zapni dryer pradelna
-  - dryer pradelna zapni
+  - zapni susicka pradelna
+  - susicka pradelna zapni
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - vypni dryer pradelna
-  - dryer pradelna vypni
+  - vypni susicka pradelna
+  - susicka pradelna vypni
 - name: switch.rangehood_on
   conditions:
   - type: action

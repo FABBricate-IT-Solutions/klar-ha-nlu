@@ -113,6 +113,7 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         self.assertIn(config_flow.CONF_ASSIST_FILTER, keys)
         self.assertIn(config_flow.CONF_NLU_RAG, keys)
         self.assertIn(config_flow.CONF_QUIET_ACK, keys)
+        self.assertIn(config_flow.CONF_CALENDAR_LLM, keys)
         self.assertIn(config_flow.CONF_CHANNEL, keys)
         self.assertIn(config_flow.CONF_MODE, keys)
 

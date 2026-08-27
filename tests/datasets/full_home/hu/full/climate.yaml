@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - allitsd futes haloszoba 18
-  - futes haloszoba 18
+  - allitsd futes haloszobamaster 18
+  - futes haloszobamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - allitsd futes haloszoba 19
-  - futes haloszoba 19
+  - allitsd futes haloszobamaster 19
+  - futes haloszobamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - allitsd futes haloszoba 20
-  - futes haloszoba 20
+  - allitsd futes haloszobamaster 20
+  - futes haloszobamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - allitsd futes haloszoba 21
-  - futes haloszoba 21
+  - allitsd futes haloszobamaster 21
+  - futes haloszobamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - allitsd futes haloszoba 22
-  - futes haloszoba 22
+  - allitsd futes haloszobamaster 22
+  - futes haloszobamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - allitsd futes haloszoba 23
-  - futes haloszoba 23
+  - allitsd futes haloszobamaster 23
+  - futes haloszobamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - allitsd futes haloszoba 24
-  - futes haloszoba 24
+  - allitsd futes haloszobamaster 24
+  - futes haloszobamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mi futes haloszoba
-  - futes haloszoba
+  - mi futes haloszobamaster
+  - futes haloszobamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - allitsd homerseklet haloszoba 18
-  - homerseklet haloszoba 18
+  - allitsd homerseklet haloszobamaster 18
+  - homerseklet haloszobamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - allitsd homerseklet haloszoba 19
-  - homerseklet haloszoba 19
+  - allitsd homerseklet haloszobamaster 19
+  - homerseklet haloszobamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - allitsd homerseklet haloszoba 20
-  - homerseklet haloszoba 20
+  - allitsd homerseklet haloszobamaster 20
+  - homerseklet haloszobamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - allitsd homerseklet haloszoba 21
-  - homerseklet haloszoba 21
+  - allitsd homerseklet haloszobamaster 21
+  - homerseklet haloszobamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - allitsd homerseklet haloszoba 22
-  - homerseklet haloszoba 22
+  - allitsd homerseklet haloszobamaster 22
+  - homerseklet haloszobamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - allitsd homerseklet haloszoba 23
-  - homerseklet haloszoba 23
+  - allitsd homerseklet haloszobamaster 23
+  - homerseklet haloszobamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - allitsd homerseklet haloszoba 24
-  - homerseklet haloszoba 24
+  - allitsd homerseklet haloszobamaster 24
+  - homerseklet haloszobamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mi homerseklet haloszoba
-  - homerseklet haloszoba
+  - mi homerseklet haloszobamaster
+  - homerseklet haloszobamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mi futes haloszoba
-  - futes haloszoba
+  - mi futes haloszobamaster
+  - futes haloszobamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mi homerseklet haloszoba
-  - homerseklet haloszoba
+  - mi homerseklet haloszobamaster
+  - homerseklet haloszobamaster

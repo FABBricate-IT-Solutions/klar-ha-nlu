@@ -14,7 +14,6 @@ PAIRS = [
     ("wohnzimmer", "living"),
     ("kuche", "kitchen"),
     ("esszimmer", "dining"),
-    ("schlafzimmer", "master_bedroom"),
     ("badezimmer", "main_bath"),
     ("flur", "hallway"),
     ("arbeitszimmer", "office"),
@@ -73,7 +72,7 @@ def lex_of(core: dict) -> dict:
     stem = extra.get("bedroom_2", [compact])[0]
     stem = stem[:-1] if stem[-1:].isdigit() else stem
     rooms.setdefault("schlafzimmer", []).append(stem)
-    rooms.setdefault("master_bedroom", []).append(stem)
+    rooms["master_bedroom"] = [f"{stem}master"]
     rooms.setdefault("esszimmer", []).append((rooms.get("esszimmer") or rooms.get("dining") or [living])[0])
     rooms.setdefault("dining", []).append((rooms.get("esszimmer") or [living])[0])
     hall = (rooms.get("flur") or rooms.get("hallway") or extra.get("hallway") or [f"{(extra.get('entryway') or [living])[0]}gang"])[0]
@@ -82,9 +81,16 @@ def lex_of(core: dict) -> dict:
     rooms.setdefault("flur", []).append(hall)
     rooms.setdefault("hallway", []).append(hall)
     rooms.setdefault("badezimmer", []).append((rooms.get("badezimmer") or extra.get("master_bath") or [kitchen])[0])
-    rooms.setdefault("arbeitszimmer", []).append((rooms.get("arbeitszimmer") or rooms.get("office") or [living])[0])
+    office = rooms.get("arbeitszimmer") or rooms.get("office") or []
+    if not office or office[0] == living:
+        rooms["arbeitszimmer"] = ["office"]
+        rooms.setdefault("office", ["office"])
+    else:
+        rooms.setdefault("arbeitszimmer", []).append(office[0])
     first = lambda key, fallback=None: (w.get(key) or fallback or w["set"])[0]
     ands = w.get("and") or ["and"]
+    lights = w.get("light") or ["light"]
+    lamp = (w.get("lamp") or [None])[0] or (lights[1] if len(lights) > 1 else "lamp")
     lex = {key: w[key][0] for key in ("on", "off", "open", "close", "query", "set", "light", "cover", "climate", "media", "lock", "door", "timer", "list", "fan", "vacuum", "scene", "and", "yes")}
     lex.update(
         {
@@ -109,10 +115,12 @@ def lex_of(core: dict) -> dict:
             "switch": first("switch", w.get("device") or ["switch"]),
             "dishwasher": first("dishwasher", w.get("device") or ["switch"]),
             "washer": first("washer", w.get("device") or ["switch"]),
+            "dryer": first("dryer", ["dryer"]),
             "tv": first("tv", w.get("media") or ["tv"]),
-            "lamp": (w.get("light") or ["light"])[min(1, len(w.get("light") or ["light"]) - 1)],
+            "lamp": lamp,
+            "light_one": lights[2] if len(lights) > 2 else lights[0],
             "on2": w["on"][1] if len(w["on"]) > 1 else w["on"][0],
-            "then": ands[-1] if len(ands) > 1 else ands[0],
+            "then": ands[1] if len(ands) > 1 else "then",
             "colors": {canon: native for native, canon in core.get("colors") or []},
             "rooms": {key: unique(vals) for key, vals in rooms.items()},
             "floors": floors(core["code"]),

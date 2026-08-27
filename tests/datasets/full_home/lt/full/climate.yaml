@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nustatyk sildymas miegamasis 18
-  - sildymas miegamasis 18
+  - nustatyk sildymas miegamasismaster 18
+  - sildymas miegamasismaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nustatyk sildymas miegamasis 19
-  - sildymas miegamasis 19
+  - nustatyk sildymas miegamasismaster 19
+  - sildymas miegamasismaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nustatyk sildymas miegamasis 20
-  - sildymas miegamasis 20
+  - nustatyk sildymas miegamasismaster 20
+  - sildymas miegamasismaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nustatyk sildymas miegamasis 21
-  - sildymas miegamasis 21
+  - nustatyk sildymas miegamasismaster 21
+  - sildymas miegamasismaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nustatyk sildymas miegamasis 22
-  - sildymas miegamasis 22
+  - nustatyk sildymas miegamasismaster 22
+  - sildymas miegamasismaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nustatyk sildymas miegamasis 23
-  - sildymas miegamasis 23
+  - nustatyk sildymas miegamasismaster 23
+  - sildymas miegamasismaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nustatyk sildymas miegamasis 24
-  - sildymas miegamasis 24
+  - nustatyk sildymas miegamasismaster 24
+  - sildymas miegamasismaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kas sildymas miegamasis
-  - sildymas miegamasis
+  - kas sildymas miegamasismaster
+  - sildymas miegamasismaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nustatyk sildymas miegamasis 18
-  - sildymas miegamasis 18
+  - nustatyk sildymas miegamasismaster 18
+  - sildymas miegamasismaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nustatyk sildymas miegamasis 19
-  - sildymas miegamasis 19
+  - nustatyk sildymas miegamasismaster 19
+  - sildymas miegamasismaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nustatyk sildymas miegamasis 20
-  - sildymas miegamasis 20
+  - nustatyk sildymas miegamasismaster 20
+  - sildymas miegamasismaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nustatyk sildymas miegamasis 21
-  - sildymas miegamasis 21
+  - nustatyk sildymas miegamasismaster 21
+  - sildymas miegamasismaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nustatyk sildymas miegamasis 22
-  - sildymas miegamasis 22
+  - nustatyk sildymas miegamasismaster 22
+  - sildymas miegamasismaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nustatyk sildymas miegamasis 23
-  - sildymas miegamasis 23
+  - nustatyk sildymas miegamasismaster 23
+  - sildymas miegamasismaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nustatyk sildymas miegamasis 24
-  - sildymas miegamasis 24
+  - nustatyk sildymas miegamasismaster 24
+  - sildymas miegamasismaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kas sildymas miegamasis
-  - sildymas miegamasis
+  - kas sildymas miegamasismaster
+  - sildymas miegamasismaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kas sildymas miegamasis
-  - sildymas miegamasis
+  - kas sildymas miegamasismaster
+  - sildymas miegamasismaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kas sildymas miegamasis
-  - sildymas miegamasis
+  - kas sildymas miegamasismaster
+  - sildymas miegamasismaster

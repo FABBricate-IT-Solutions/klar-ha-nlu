@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - theli cinema
-  - cinema theli
+  - തെളി cinema
+  - cinema തെളി
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - theli rathri
-  - rathri theli
+  - തെളി rathri
+  - rathri തെളി
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - theli poku
-  - poku theli
+  - തെളി poku
+  - poku തെളി
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - theli dinner
-  - dinner theli
+  - തെളി dinner
+  - dinner തെളി
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - theli morning
-  - morning theli
+  - തെളി morning
+  - morning തെളി
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - theli kids
-  - kids theli
+  - തെളി kids
+  - kids തെളി

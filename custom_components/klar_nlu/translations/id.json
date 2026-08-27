@@ -36,6 +36,7 @@
           "assist_filter": "Hanya kendalikan entitas yang terlihat Assist",
           "nlu_rag": "NLU-RAG (opsional)",
           "quiet_ack": "Konfirmasi singkat (lonceng)",
+          "calendar_llm": "Kirim pertanyaan kalender ke LLM",
           "channel": "Saluran rilis"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Nyala: hanya yang Assist boleh lihat. Mati: termasuk yang tersembunyi.",
           "nlu_rag": "Default mati. Saat ngobrol hanya potongan yang cocok dikirim ke model cadangan.",
           "quiet_ack": "Untuk nyala/mati lampu sederhana, tidak berbicara, hanya bunyi singkat di satelit.",
+          "calendar_llm": "Default nonaktif. Aktif: Klar membaca kalender, LLM cadangan mengucapkan acara. Nonaktif: Klar mengucapkan daftar. Buat, hapus, pindah tetap di Klar.",
           "languages": "Default mengikuti bahasa sistem Home Assistant.",
           "channel": "Bisa kapan saja. Staging mengarah ke Klar NLU (Staging)."
         }

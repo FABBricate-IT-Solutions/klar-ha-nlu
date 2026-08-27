@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Samajh nahi aaya.",
-    need_on: "Kya jalana hai?",
-    need_off: "Kya bujhana hai?",
+    need_on: "क्या जलाना है?",
+    need_off: "क्या बुझाना है?",
     need_which: "Kya jalana hai?",
     correction: "Theek hai, aakhri vakya chhod raha hoon.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " aur ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} jal raha hai.",
+    turn_on: "{target} जल रहा है।",
     turn_on_scene: "{target}.",
-    turn_off: "{target} band hai.",
+    turn_off: "{target} बंद है।",
     toggle: "{target} badal raha hai.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Kya jalana hai?",
     or_home: "Kya jalana hai?",
-    room_names: &[("wohnzimmer", "baithak"), ("kuche", "rasoi")],
-    loc_der_rooms: &["baithak", "rasoi"],
+    room_names: &[("wohnzimmer", "बैठक"), ("kuche", "रसोई")],
+    loc_der_rooms: &["बैठक", "रसोई"],
     personality: &[
         ("butler", &["Theek. ", "Khushi se. ", ""]),
         ("locker", &["Samajh gaya. ", "Ho gaya. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Haan. ", "Haan, mere khazane. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Sach mein?",
+    confirm: "सच में?",
 };

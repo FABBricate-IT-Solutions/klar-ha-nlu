@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - enna vilakku arai
-  - enna arai vilakku
+  - என்ன விளக்கு அறை
+  - என்ன அறை விளக்கு
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - enna thirai arai
-  - enna arai thirai
+  - என்ன திரை அறை
+  - என்ன அறை திரை
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - enna poottu nuzhaivu
-  - enna nuzhaivu poottu
+  - என்ன பூட்டு nuzhaivu
+  - என்ன nuzhaivu பூட்டு
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - enna veppam arai
-  - enna arai veppam
+  - என்ன வெப்பம் அறை
+  - என்ன அறை வெப்பம்
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - enna tv arai
-  - enna arai tv
+  - என்ன tv அறை
+  - என்ன அறை tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - enna doorsensor nuzhaivu
-  - enna nuzhaivu doorsensor
+  - என்ன doorsensor nuzhaivu
+  - என்ன nuzhaivu doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - enna windowsensor arai
-  - enna arai windowsensor
+  - என்ன windowsensor அறை
+  - என்ன அறை windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - enna tempsensor arai
-  - enna arai tempsensor
+  - என்ன tempsensor அறை
+  - என்ன அறை tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - enna vilakku samaiyal
-  - enna samaiyal vilakku
+  - என்ன விளக்கு சமையல்
+  - என்ன சமையல் விளக்கு
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - enna vilakku office
-  - enna office vilakku
+  - என்ன விளக்கு office
+  - என்ன office விளக்கு
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - enna vilakku garden
-  - enna garden vilakku
+  - என்ன விளக்கு garden
+  - என்ன garden விளக்கு
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - enna vilakku basement
-  - enna basement vilakku
+  - என்ன விளக்கு basement
+  - என்ன basement விளக்கு
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - enna thirai padukkaiyarai
-  - enna padukkaiyarai thirai
+  - என்ன திரை padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster திரை
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - enna thirai garage
-  - enna garage thirai
+  - என்ன திரை garage
+  - என்ன garage திரை
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - enna poottu garage
-  - enna garage poottu
+  - என்ன பூட்டு garage
+  - என்ன garage பூட்டு
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - enna veppam padukkaiyarai
-  - enna padukkaiyarai veppam
+  - என்ன வெப்பம் padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster வெப்பம்
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - enna veppam padukkaiyarai
-  - enna padukkaiyarai veppam
+  - என்ன veppam padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster veppam
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - enna tv kutumbam
-  - enna kutumbam tv
+  - என்ன tv kutumbam
+  - என்ன kutumbam tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enna tivi arai
-  - enna arai tivi
+  - என்ன டிவி அறை
+  - என்ன அறை டிவி
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - enna motion samaiyal
-  - enna samaiyal motion
+  - என்ன motion சமையல்
+  - என்ன சமையல் motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - enna humidity arai
-  - enna arai humidity
+  - என்ன humidity அறை
+  - என்ன அறை humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - enna visiri padukkaiyarai
-  - enna padukkaiyarai visiri
+  - என்ன விசிறி padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster விசிறி
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - enna thudaippu arai
-  - enna arai thudaippu
+  - என்ன துடைப்பு அறை
+  - என்ன அறை துடைப்பு
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - enna vilakku arai
-  - enna arai vilakku
+  - என்ன விளக்கு அறை
+  - என்ன அறை விளக்கு
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - enna vilakku samaiyal
-  - enna samaiyal vilakku
+  - என்ன விளக்கு சமையல்
+  - என்ன சமையல் விளக்கு
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - enna vilakku padukkaiyarai
-  - enna padukkaiyarai vilakku
+  - என்ன விளக்கு padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster விளக்கு
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - enna vilakku padukkaiyarai
-  - enna padukkaiyarai vilakku
+  - என்ன விளக்கு padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster விளக்கு
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - enna vilakku hallway
-  - enna hallway vilakku
+  - என்ன விளக்கு hallway
+  - என்ன hallway விளக்கு
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - enna vilakku kutumbam
-  - enna kutumbam vilakku
+  - என்ன விளக்கு kutumbam
+  - என்ன kutumbam விளக்கு
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - enna vilakku kutumbamess
-  - enna kutumbamess vilakku
+  - என்ன விளக்கு kutumbamess
+  - என்ன kutumbamess விளக்கு
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - enna vilakku garage
-  - enna garage vilakku
+  - என்ன விளக்கு garage
+  - என்ன garage விளக்கு
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - enna vilakku padukkaiyarai2
-  - enna padukkaiyarai2 vilakku
+  - என்ன விளக்கு padukkaiyarai2
+  - என்ன padukkaiyarai2 விளக்கு
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - enna vilakku padukkaiyarai3
-  - enna padukkaiyarai3 vilakku
+  - என்ன விளக்கு padukkaiyarai3
+  - என்ன padukkaiyarai3 விளக்கு
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - enna vilakku padukkaiyarai4
-  - enna padukkaiyarai4 vilakku
+  - என்ன விளக்கு padukkaiyarai4
+  - என்ன padukkaiyarai4 விளக்கு
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - enna vilakku nuzhaivu
-  - enna nuzhaivu vilakku
+  - என்ன விளக்கு nuzhaivu
+  - என்ன nuzhaivu விளக்கு
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - enna vilakku salavai
-  - enna salavai vilakku
+  - என்ன விளக்கு salavai
+  - என்ன salavai விளக்கு
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - enna vilakku main bath
-  - enna main bath vilakku
+  - என்ன விளக்கு main bath
+  - என்ன main bath விளக்கு
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - enna vilakku kazhivarai
-  - enna kazhivarai vilakku
+  - என்ன விளக்கு kazhivarai
+  - என்ன kazhivarai விளக்கு
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - enna ensuite padukkaiyarai
-  - enna padukkaiyarai ensuite
+  - என்ன ensuite padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - enna vilakku padukkaiyarai
-  - enna padukkaiyarai vilakku
+  - என்ன விளக்கு padukkaiyaraimaster
+  - என்ன padukkaiyaraimaster விளக்கு
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - enna vilakku muthanmaikuliyal
-  - enna muthanmaikuliyal vilakku
+  - என்ன விளக்கு muthanmaikuliyal
+  - என்ன muthanmaikuliyal விளக்கு

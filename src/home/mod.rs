@@ -4,6 +4,7 @@ pub mod expose;
 pub mod gaps;
 pub mod load;
 pub mod overlay;
+pub(crate) mod paths;
 pub mod policy;
 pub mod registry;
 pub(crate) mod registry_yaml;

@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - asaa toos
-  - toos asaa
+  - асаа тоос
+  - тоос асаа
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - untraa toos
-  - toos untraa
+  - унтраа тоос
+  - тоос унтраа

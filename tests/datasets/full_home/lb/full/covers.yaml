@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - opmaachen riddo schlofzëmmer
-  - riddo schlofzëmmer opmaachen
+  - opmaachen riddo schlofzëmmermaster
+  - riddo schlofzëmmermaster opmaachen
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zoumaachen riddo schlofzëmmer
-  - riddo schlofzëmmer zoumaachen
+  - zoumaachen riddo schlofzëmmermaster
+  - riddo schlofzëmmermaster zoumaachen
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - stell riddo schlofzëmmer 0
-  - riddo schlofzëmmer 0
+  - stell riddo schlofzëmmermaster 0
+  - riddo schlofzëmmermaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - stell riddo schlofzëmmer 25
-  - riddo schlofzëmmer 25
+  - stell riddo schlofzëmmermaster 25
+  - riddo schlofzëmmermaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - stell riddo schlofzëmmer 40
-  - riddo schlofzëmmer 40
+  - stell riddo schlofzëmmermaster 40
+  - riddo schlofzëmmermaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - stell riddo schlofzëmmer 75
-  - riddo schlofzëmmer 75
+  - stell riddo schlofzëmmermaster 75
+  - riddo schlofzëmmermaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - stell riddo schlofzëmmer 100
-  - riddo schlofzëmmer 100
+  - stell riddo schlofzëmmermaster 100
+  - riddo schlofzëmmermaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - opmaachen riddo schlofzëmmer
-  - riddo schlofzëmmer opmaachen
+  - opmaachen riddo schlofzëmmermaster
+  - riddo schlofzëmmermaster opmaachen

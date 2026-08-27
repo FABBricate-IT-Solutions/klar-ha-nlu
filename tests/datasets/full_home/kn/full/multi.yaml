@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku hallige mattu aduge
-  - belaku hallige mattu aduge hachchu
+  - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ
+  - ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ ಹಚ್ಚು
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - arisu belaku hallige mattu biga bagilu
-  - arisu hallige mattu biga bagilu
+  - ಆರಿಸು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಬೀಗ ಬಾಗಿಲು
+  - ಆರಿಸು ಹಾಲ್ ಮತ್ತು ಬೀಗ ಬಾಗಿಲು
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku aduge mattu kutumbaess
-  - belaku aduge mattu kutumbaess hachchu
+  - ಹಚ್ಚು ಬೆಳಕು ಅಡುಗೆ ಮತ್ತು kutumbaess
+  - ಬೆಳಕು ಅಡುಗೆ ಮತ್ತು kutumbaess ಹಚ್ಚು
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku office mattu hallway
-  - belaku office mattu hallway hachchu
+  - ಹಚ್ಚು ಬೆಳಕು office ಮತ್ತು hallway
+  - ಬೆಳಕು office ಮತ್ತು hallway ಹಚ್ಚು
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku garage mattu garden
-  - belaku garage mattu garden hachchu
+  - ಹಚ್ಚು ಬೆಳಕು garage ಮತ್ತು garden
+  - ಬೆಳಕು garage ಮತ್ತು garden ಹಚ್ಚು
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone mattu main bath
-  - belaku shayanakone mattu main bath hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shayanakonemaster ಮತ್ತು main bath
+  - ಬೆಳಕು shayanakonemaster ಮತ್ತು main bath ಹಚ್ಚು
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku kutumba mattu hallige
-  - belaku kutumba mattu hallige hachchu
+  - ಹಚ್ಚು ಬೆಳಕು kutumba ಮತ್ತು ಹಾಲ್
+  - ಬೆಳಕು kutumba ಮತ್ತು ಹಾಲ್ ಹಚ್ಚು
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku basement mattu garden
-  - belaku basement mattu garden hachchu
+  - ಹಚ್ಚು ಬೆಳಕು basement ಮತ್ತು garden
+  - ಬೆಳಕು basement ಮತ್ತು garden ಹಚ್ಚು
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku hallway mattu office
-  - belaku hallway mattu office hachchu
+  - ಹಚ್ಚು ಬೆಳಕು hallway ಮತ್ತು office
+  - ಬೆಳಕು hallway ಮತ್ತು office ಹಚ್ಚು
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku kutumbaess mattu aduge
-  - belaku kutumbaess mattu aduge hachchu
+  - ಹಚ್ಚು ಬೆಳಕು kutumbaess ಮತ್ತು ಅಡುಗೆ
+  - ಬೆಳಕು kutumbaess ಮತ್ತು ಅಡುಗೆ ಹಚ್ಚು
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone2 mattu shayanakone3
-  - belaku shayanakone2 mattu shayanakone3 hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shayanakone2 ಮತ್ತು shayanakone3
+  - ಬೆಳಕು shayanakone2 ಮತ್ತು shayanakone3 ಹಚ್ಚು

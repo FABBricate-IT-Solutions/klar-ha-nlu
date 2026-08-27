@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - stell heizung wohnzimmer 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- stell heizung schlafzimmer 19
+- stell heizung schlafzimmermaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - stell vorhang schlafzimmer2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - oeffne vorhang wohnzimmer
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- stell vorhang schlafzimmer 19
+- stell vorhang schlafzimmermaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- schliesse vorhang schlafzimmer
+- schliesse vorhang schlafzimmermaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- oeffne vorhang schlafzimmer
+- oeffne vorhang schlafzimmermaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - stell ventilator schlafzimmer2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - mach ventilator wohnstube
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- stell ventilator schlafzimmer 28
+- stell ventilator schlafzimmermaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- schalt ventilator schlafzimmer
+- schalt ventilator schlafzimmermaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- mach ventilator schlafzimmer
+- mach ventilator schlafzimmermaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- schalt ventilator schlafzimmer und schalt licht kuche
+- schalt ventilator schlafzimmermaster then schalt insel kuche
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- mach ventilator schlafzimmer und mach licht kuche
+- mach ventilator schlafzimmermaster then mach insel kuche
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - stell decke schlafzimmer2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - mach decke kuche
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- stell licht kuche 99
+- stell insel kuche 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- stell licht kuche gruen
+- stell insel kuche gruen
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- schalt licht kuche
+- schalt insel kuche
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- mach licht kuche
+- mach insel kuche
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - stell licht waschraum 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - mach decke wohnzimmer
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- stell licht wohnzimmer 72
+- stell leuchte wohnzimmer 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- stell licht wohnzimmer rot
+- stell leuchte wohnzimmer rot
 devices/light_living_lamp::light_living_lamp_turn_off:
-- schalt licht wohnzimmer
+- schalt leuchte wohnzimmer
 devices/light_living_lamp::light_living_lamp_turn_on:
-- mach licht wohnzimmer
+- mach leuchte wohnzimmer
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - stell licht badmastermain 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - mach licht badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stell nachttisch schlafzimmer 25
+- stell nachttisch schlafzimmermaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stell nachttisch schlafzimmer rot
+- stell nachttisch schlafzimmermaster rot
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- schalt nachttisch schlafzimmer
+- schalt nachttisch schlafzimmermaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- mach nachttisch schlafzimmer
+- mach nachttisch schlafzimmermaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- stell decke schlafzimmer 77
+- stell decke schlafzimmermaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- stell decke schlafzimmer blau
+- stell decke schlafzimmermaster blau
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- schalt decke schlafzimmer
+- schalt decke schlafzimmermaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- mach decke schlafzimmer
+- mach decke schlafzimmermaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- stell licht schlafzimmer 55
+- stell ankleide schlafzimmermaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- stell licht schlafzimmer schwarz
+- stell ankleide schlafzimmermaster schwarz
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- schalt licht schlafzimmer
+- schalt ankleide schlafzimmermaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- mach licht schlafzimmer
+- mach ankleide schlafzimmermaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - stell licht klosett 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - mach fernseher wohnstube
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause fernseher wohnstube
+- pause tv wohnstube
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - schalt fernseher wohnstube
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - mach fernseher wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause fernseher wohnzimmer
+- pause tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - schalt fernseher wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - mach fernseher wohnzimmer
 devices/scenes::dinner_time:
-- stell licht wohnstubeess 90 und mach decke kuche und stell licht kuche 80
+- stell licht wohnstubeess 90 then mach decke kuche then stell insel kuche 80
 devices/scenes::good_morning:
-- mach decke kuche und stell licht wohnstubeess 100 und oeffne vorhang wohnzimmer
-  und oeffne vorhang schlafzimmer
+- mach decke kuche then stell licht wohnstubeess 100 then oeffne vorhang wohnzimmer
+  then oeffne vorhang schlafzimmermaster
 devices/scenes::kids_bedtime:
-- schalt decke schlafzimmer2 und schalt decke schlafzimmer3 und schalt decke schlafzimmer4
-  und stell licht vorzimmergang 15
+- schalt decke schlafzimmer2 then schalt decke schlafzimmer3 then schalt decke schlafzimmer4
+  then stell licht vorzimmergang 15
 devices/scenes::movie_night:
-- schalt decke wohnzimmer und stell licht wohnzimmer 20 und mach fernseher wohnzimmer
-  und schliesse vorhang wohnzimmer
+- schalt decke wohnzimmer then stell leuchte wohnzimmer 20 then mach fernseher wohnzimmer
+  then schliesse vorhang wohnzimmer
 devices/scripts::good_night:
-- mach szene nacht
+- schalt decke wohnzimmer then schalt leuchte wohnzimmer then schalt licht wohnstubeess
+  then schalt decke kuche then schalt insel kuche then schalt decke wohnstube then
+  schalt licht vorzimmer then schalt licht vorzimmergang then schloss schloss vorzimmer
+  then schloss schloss garage then stell heizung schlafzimmermaster 20
 devices/scripts::leaving_home:
-- mach szene verlassen
+- schalt decke wohnzimmer then schalt leuchte wohnzimmer then schalt decke kuche then
+  schalt decke wohnstube then schalt licht vorzimmer then schloss schloss vorzimmer
+  then schloss schloss garage then schliesse vorhang garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - schalt spuelmaschine
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - mach spuelmaschine
 devices/switch_dryer::switch_dryer_turn_off:
-- schalt waschmaschine
+- schalt trockner
 devices/switch_dryer::switch_dryer_turn_on:
-- mach waschmaschine
+- mach trockner
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - schalt waschmaschine
 devices/switch_washing_machine::switch_washing_machine_turn_on:

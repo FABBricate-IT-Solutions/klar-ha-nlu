@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - veliginchu timer 10 min
-  - timer 10 min
+  - వెలిగించు టైమర్ 10 min
+  - టైమర్ 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - veliginchu timer 45 min
-  - timer 45 min
+  - వెలిగించు టైమర్ 45 min
+  - టైమర్ 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - arpu timer
-  - timer arpu
+  - ఆర్పు టైమర్
+  - టైమర్ ఆర్పు
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - veliginchu timer 5 min
-  - timer 5 min
+  - వెలిగించు టైమర్ 5 min
+  - టైమర్ 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - veliginchu timer 15 min
-  - timer 15 min
+  - వెలిగించు టైమర్ 15 min
+  - టైమర్ 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - veliginchu timer 20 min
-  - timer 20 min
+  - వెలిగించు టైమర్ 20 min
+  - టైమర్ 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - veliginchu timer 30 min
-  - timer 30 min
+  - వెలిగించు టైమర్ 30 min
+  - టైమర్ 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - veliginchu timer 60 min
-  - timer 60 min
+  - వెలిగించు టైమర్ 60 min
+  - టైమర్ 60 min

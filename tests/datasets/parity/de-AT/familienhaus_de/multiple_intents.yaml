@@ -1,35 +1,35 @@
 multiple_intents/multiple_intents::multi_0:
-- schalt licht klosett und mach Guten Morgen
+- schalt licht klosett then mach szene good_morning
 multiple_intents/multiple_intents::multi_1:
-- was spuelmaschine und mach Haus verlassen
+- was spuelmaschine then mach szene leaving_home
 multiple_intents/multiple_intents::multi_10:
-- stell ventilator schlafzimmer2 50 und was vorhang schlafzimmer2 und was vorhang
-  schlafzimmer
+- stell ventilator schlafzimmer2 50 then was vorhang schlafzimmer2 then was vorhang
+  schlafzimmermaster
 multiple_intents/multiple_intents::multi_12:
-- schalt nachttisch schlafzimmer und mach licht waschraum
+- schalt nachttisch schlafzimmermaster then mach alle licht waschraum
 multiple_intents/multiple_intents::multi_14:
-- schalt licht kuche und was licht vorzimmergang
+- schalt alle licht kuche then was licht vorzimmergang
 multiple_intents/multiple_intents::multi_15:
-- was vorhang schlafzimmer2 und schalt licht kuche
+- was vorhang schlafzimmer2 then schalt alle licht kuche
 multiple_intents/multiple_intents::multi_16:
-- mach decke kuche und was licht vorzimmergang
+- mach decke kuche then was licht vorzimmergang
 multiple_intents/multiple_intents::multi_18:
-- schalt ventilator wohnstube und stell licht kuche 20
+- schalt ventilator wohnstube then stell insel kuche 20
 multiple_intents/multiple_intents::multi_19:
-- was ventilator schlafzimmer2 und mach licht waschraum
+- was ventilator schlafzimmer2 then mach licht waschraum
 multiple_intents/multiple_intents::multi_2:
-- was licht garage und schliesse vorhang wohnzimmer
+- was licht garage then schliesse vorhang wohnzimmer
 multiple_intents/multiple_intents::multi_3:
-- was heizung wohnzimmer und schalt decke wohnzimmer
+- was heizung wohnzimmer then schalt decke wohnzimmer
 multiple_intents/multiple_intents::multi_4:
-- schliesse vorhang schlafzimmer3 und schliesse vorhang garage und mach decke schlafzimmer2
+- schliesse vorhang schlafzimmer3 then schliesse vorhang garage then mach decke schlafzimmer2
 multiple_intents/multiple_intents::multi_5:
-- schalt licht wohnstubeess und stell ventilator schlafzimmer2 50
+- schalt licht wohnstubeess then stell ventilator schlafzimmer2 50
 multiple_intents/multiple_intents::multi_6:
-- mach decke schlafzimmer3 und schalt licht vorzimmer
+- mach decke schlafzimmer3 then schalt licht vorzimmer
 multiple_intents/multiple_intents::multi_7:
-- mach Filmabend und schalt spuelmaschine
+- mach szene movie_night then schalt spuelmaschine
 multiple_intents/multiple_intents::multi_8:
-- oeffne schloss garage und was licht garage
+- oeffne schloss garage then was licht garage
 multiple_intents/multiple_intents::multi_9:
-- pause fernseher wohnzimmer und schalt decke wohnzimmer
+- pause tv wohnzimmer then schalt decke wohnzimmer

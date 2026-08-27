@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - agor llen llofft
-  - llen llofft agor
+  - agor llen llofftmaster
+  - llen llofftmaster agor
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - cau llen llofft
-  - llen llofft cau
+  - cau llen llofftmaster
+  - llen llofftmaster cau
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - gosod llen llofft 0
-  - llen llofft 0
+  - gosod llen llofftmaster 0
+  - llen llofftmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - gosod llen llofft 25
-  - llen llofft 25
+  - gosod llen llofftmaster 25
+  - llen llofftmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - gosod llen llofft 40
-  - llen llofft 40
+  - gosod llen llofftmaster 40
+  - llen llofftmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - gosod llen llofft 75
-  - llen llofft 75
+  - gosod llen llofftmaster 75
+  - llen llofftmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - gosod llen llofft 100
-  - llen llofft 100
+  - gosod llen llofftmaster 100
+  - llen llofftmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - agor llen llofft
-  - llen llofft agor
+  - agor llen llofftmaster
+  - llen llofftmaster agor

@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti baithak aur rasoi
-  - batti baithak aur rasoi jalao
+  - जलाओ बत्ती बैठक और रसोई
+  - बत्ती बैठक और रसोई जलाओ
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - bujhao batti baithak aur tala darwaza
-  - bujhao baithak aur tala darwaza
+  - बुझाओ बत्ती बैठक और ताला दरवाज़ा
+  - बुझाओ बैठक और ताला दरवाज़ा
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti rasoi aur parivarikess
-  - batti rasoi aur parivarikess jalao
+  - जलाओ बत्ती रसोई और parivarikess
+  - बत्ती रसोई और parivarikess जलाओ
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti office aur hallway
-  - batti office aur hallway jalao
+  - जलाओ बत्ती office और hallway
+  - बत्ती office और hallway जलाओ
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti garage aur garden
-  - batti garage aur garden jalao
+  - जलाओ बत्ती garage और garden
+  - बत्ती garage और garden जलाओ
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti shayankaksh aur main bath
-  - batti shayankaksh aur main bath jalao
+  - जलाओ बत्ती shayankakshmaster और main bath
+  - बत्ती shayankakshmaster और main bath जलाओ
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti parivarik aur baithak
-  - batti parivarik aur baithak jalao
+  - जलाओ बत्ती parivarik और बैठक
+  - बत्ती parivarik और बैठक जलाओ
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti basement aur garden
-  - batti basement aur garden jalao
+  - जलाओ बत्ती basement और garden
+  - बत्ती basement और garden जलाओ
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti hallway aur office
-  - batti hallway aur office jalao
+  - जलाओ बत्ती hallway और office
+  - बत्ती hallway और office जलाओ
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti parivarikess aur rasoi
-  - batti parivarikess aur rasoi jalao
+  - जलाओ बत्ती parivarikess और रसोई
+  - बत्ती parivarikess और रसोई जलाओ
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti shayankaksh2 aur shayankaksh3
-  - batti shayankaksh2 aur shayankaksh3 jalao
+  - जलाओ बत्ती shayankaksh2 और shayankaksh3
+  - बत्ती shayankaksh2 और shayankaksh3 जलाओ

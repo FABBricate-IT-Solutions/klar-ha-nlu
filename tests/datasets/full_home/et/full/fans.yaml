@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilaator magamistuba lulita
-  - lulita ventilaator magamistuba
+  - ventilaator magamistubamaster lulita
+  - lulita ventilaator magamistubamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - kustuta ventilaator magamistuba
-  - ventilaator magamistuba kustuta
+  - kustuta ventilaator magamistubamaster
+  - ventilaator magamistubamaster kustuta
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - sea ventilaator magamistuba 40
-  - ventilaator magamistuba 40
+  - sea ventilaator magamistubamaster 40
+  - ventilaator magamistubamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - sea ventilaator magamistuba 20
-  - ventilaator magamistuba 20
+  - sea ventilaator magamistubamaster 20
+  - ventilaator magamistubamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - sea ventilaator magamistuba 60
-  - ventilaator magamistuba 60
+  - sea ventilaator magamistubamaster 60
+  - ventilaator magamistubamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - sea ventilaator magamistuba 80
-  - ventilaator magamistuba 80
+  - sea ventilaator magamistubamaster 80
+  - ventilaator magamistubamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

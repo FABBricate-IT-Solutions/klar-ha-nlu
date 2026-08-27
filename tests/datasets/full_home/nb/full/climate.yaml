@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - sett varme soverom 18
-  - varme soverom 18
+  - sett varme soverommaster 18
+  - varme soverommaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - sett varme soverom 19
-  - varme soverom 19
+  - sett varme soverommaster 19
+  - varme soverommaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - sett varme soverom 20
-  - varme soverom 20
+  - sett varme soverommaster 20
+  - varme soverommaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - sett varme soverom 21
-  - varme soverom 21
+  - sett varme soverommaster 21
+  - varme soverommaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - sett varme soverom 22
-  - varme soverom 22
+  - sett varme soverommaster 22
+  - varme soverommaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - sett varme soverom 23
-  - varme soverom 23
+  - sett varme soverommaster 23
+  - varme soverommaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - sett varme soverom 24
-  - varme soverom 24
+  - sett varme soverommaster 24
+  - varme soverommaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hva varme soverom
-  - varme soverom
+  - hva varme soverommaster
+  - varme soverommaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - sett temperatur soverom 18
-  - temperatur soverom 18
+  - sett temperatur soverommaster 18
+  - temperatur soverommaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - sett temperatur soverom 19
-  - temperatur soverom 19
+  - sett temperatur soverommaster 19
+  - temperatur soverommaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - sett temperatur soverom 20
-  - temperatur soverom 20
+  - sett temperatur soverommaster 20
+  - temperatur soverommaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - sett temperatur soverom 21
-  - temperatur soverom 21
+  - sett temperatur soverommaster 21
+  - temperatur soverommaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - sett temperatur soverom 22
-  - temperatur soverom 22
+  - sett temperatur soverommaster 22
+  - temperatur soverommaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - sett temperatur soverom 23
-  - temperatur soverom 23
+  - sett temperatur soverommaster 23
+  - temperatur soverommaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - sett temperatur soverom 24
-  - temperatur soverom 24
+  - sett temperatur soverommaster 24
+  - temperatur soverommaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hva temperatur soverom
-  - temperatur soverom
+  - hva temperatur soverommaster
+  - temperatur soverommaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hva varme soverom
-  - varme soverom
+  - hva varme soverommaster
+  - varme soverommaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hva temperatur soverom
-  - temperatur soverom
+  - hva temperatur soverommaster
+  - temperatur soverommaster

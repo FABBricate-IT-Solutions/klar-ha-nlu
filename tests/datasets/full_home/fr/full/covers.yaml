@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ouvre store chambre
-  - store chambre ouvre
+  - ouvre store chambremaster
+  - store chambremaster ouvre
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - ferme store chambre
-  - store chambre ferme
+  - ferme store chambremaster
+  - store chambremaster ferme
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - mets store chambre 0
-  - store chambre 0
+  - mets store chambremaster 0
+  - store chambremaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - mets store chambre 25
-  - store chambre 25
+  - mets store chambremaster 25
+  - store chambremaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - mets store chambre 40
-  - store chambre 40
+  - mets store chambremaster 40
+  - store chambremaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - mets store chambre 75
-  - store chambre 75
+  - mets store chambremaster 75
+  - store chambremaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - mets store chambre 100
-  - store chambre 100
+  - mets store chambremaster 100
+  - store chambremaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ouvre store chambre
-  - store chambre ouvre
+  - ouvre store chambremaster
+  - store chambremaster ouvre

@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Oilgosongui.",
-    need_on: "Yuu asaakh ve?",
-    need_off: "Yuu untraakh ve?",
+    need_on: "Юу асаах вэ?",
+    need_off: "Юу унтраах вэ?",
     need_which: "Yuu asaakh ve?",
     correction: "Za, suuliin ogulberiig orkhiy.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " ba ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} asaa.",
+    turn_on: "{target} асаа.",
     turn_on_scene: "{target}.",
-    turn_off: "{target} untraa.",
+    turn_off: "{target} унтраа.",
     toggle: "{target} soligdono.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Yuu asaakh ve?",
     or_home: "Yuu asaakh ve?",
-    room_names: &[("wohnzimmer", "zochny"), ("kuche", "galtogoo")],
-    loc_der_rooms: &["galtogoo", "zochny"],
+    room_names: &[("wohnzimmer", "зочны"), ("kuche", "галтогоо")],
+    loc_der_rooms: &["галтогоо", "зочны"],
     personality: &[
         ("butler", &["Za saikhan. ", "Bayartai. ", ""]),
         ("locker", &["Oilgoloo. ", "Hiilee. ", ""]),
@@ -74,5 +74,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Tiim. ", "Tiim, minii erdene. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Uneheer uu?",
+    confirm: "Үнэхээр үү?",
 };

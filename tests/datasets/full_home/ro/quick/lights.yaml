@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - aprinde lumina dormitor
+  - aprinde lumina dormitormaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - stinge lumina dormitor
+  - stinge lumina dormitormaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - aprinde tavan dormitor
+  - aprinde tavan dormitormaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - stinge tavan dormitor
+  - stinge tavan dormitormaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - aprinde noptiera dormitor
+  - aprinde noptiera dormitormaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - stinge noptiera dormitor
+  - stinge noptiera dormitormaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

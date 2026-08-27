@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - hachchu patre aduge
-  - patre aduge hachchu
+  - ಹಚ್ಚು patre ಅಡುಗೆ
+  - patre ಅಡುಗೆ ಹಚ್ಚು
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - arisu patre aduge
-  - patre aduge arisu
+  - ಆರಿಸು patre ಅಡುಗೆ
+  - patre ಅಡುಗೆ ಆರಿಸು
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - hachchu washing ogeyuva
-  - washing ogeyuva hachchu
+  - ಹಚ್ಚು washing ogeyuva
+  - washing ogeyuva ಹಚ್ಚು
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - arisu washing ogeyuva
-  - washing ogeyuva arisu
+  - ಆರಿಸು washing ogeyuva
+  - washing ogeyuva ಆರಿಸು
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - hachchu dryer ogeyuva
-  - dryer ogeyuva hachchu
+  - ಹಚ್ಚು dryer ogeyuva
+  - dryer ogeyuva ಹಚ್ಚು
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - arisu dryer ogeyuva
-  - dryer ogeyuva arisu
+  - ಆರಿಸು dryer ogeyuva
+  - dryer ogeyuva ಆರಿಸು
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - hachchu rangehood aduge
-  - rangehood aduge hachchu
+  - ಹಚ್ಚು rangehood ಅಡುಗೆ
+  - rangehood ಅಡುಗೆ ಹಚ್ಚು
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - arisu rangehood aduge
-  - rangehood aduge arisu
+  - ಆರಿಸು rangehood ಅಡುಗೆ
+  - rangehood ಅಡುಗೆ ಆರಿಸು
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - hachchu fanubad mukhyasnana
-  - fanubad mukhyasnana hachchu
+  - ಹಚ್ಚು ಫ್ಯಾನ್bad mukhyasnana
+  - ಫ್ಯಾನ್bad mukhyasnana ಹಚ್ಚು
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - arisu fanubad mukhyasnana
-  - fanubad mukhyasnana arisu
+  - ಆರಿಸು ಫ್ಯಾನ್bad mukhyasnana
+  - ಫ್ಯಾನ್bad mukhyasnana ಆರಿಸು
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - hachchu fanubad main bath
-  - fanubad main bath hachchu
+  - ಹಚ್ಚು ಫ್ಯಾನ್bad main bath
+  - ಫ್ಯಾನ್bad main bath ಹಚ್ಚು
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - arisu fanubad main bath
-  - fanubad main bath arisu
+  - ಆರಿಸು ಫ್ಯಾನ್bad main bath
+  - ಫ್ಯಾನ್bad main bath ಆರಿಸು

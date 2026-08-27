@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - jarri berogailu logela 18
-  - berogailu logela 18
+  - jarri berogailu logelamaster 18
+  - berogailu logelamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - jarri berogailu logela 19
-  - berogailu logela 19
+  - jarri berogailu logelamaster 19
+  - berogailu logelamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - jarri berogailu logela 20
-  - berogailu logela 20
+  - jarri berogailu logelamaster 20
+  - berogailu logelamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - jarri berogailu logela 21
-  - berogailu logela 21
+  - jarri berogailu logelamaster 21
+  - berogailu logelamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - jarri berogailu logela 22
-  - berogailu logela 22
+  - jarri berogailu logelamaster 22
+  - berogailu logelamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - jarri berogailu logela 23
-  - berogailu logela 23
+  - jarri berogailu logelamaster 23
+  - berogailu logelamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - jarri berogailu logela 24
-  - berogailu logela 24
+  - jarri berogailu logelamaster 24
+  - berogailu logelamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - zer berogailu logela
-  - berogailu logela
+  - zer berogailu logelamaster
+  - berogailu logelamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - jarri berogailu logela 18
-  - berogailu logela 18
+  - jarri berogailu logelamaster 18
+  - berogailu logelamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - jarri berogailu logela 19
-  - berogailu logela 19
+  - jarri berogailu logelamaster 19
+  - berogailu logelamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - jarri berogailu logela 20
-  - berogailu logela 20
+  - jarri berogailu logelamaster 20
+  - berogailu logelamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - jarri berogailu logela 21
-  - berogailu logela 21
+  - jarri berogailu logelamaster 21
+  - berogailu logelamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - jarri berogailu logela 22
-  - berogailu logela 22
+  - jarri berogailu logelamaster 22
+  - berogailu logelamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - jarri berogailu logela 23
-  - berogailu logela 23
+  - jarri berogailu logelamaster 23
+  - berogailu logelamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - jarri berogailu logela 24
-  - berogailu logela 24
+  - jarri berogailu logelamaster 24
+  - berogailu logelamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - zer berogailu logela
-  - berogailu logela
+  - zer berogailu logelamaster
+  - berogailu logelamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - zer berogailu logela
-  - berogailu logela
+  - zer berogailu logelamaster
+  - berogailu logelamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - zer berogailu logela
-  - berogailu logela
+  - zer berogailu logelamaster
+  - berogailu logelamaster

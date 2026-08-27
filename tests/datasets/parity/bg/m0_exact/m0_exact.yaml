@@ -1,9 +1,9 @@
 m0_exact/representative::exact_clarify:
 - включи светлина хол
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread списък
+- done bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- включи таван спалня3 и изключи светлина антре
+- включи таван спалня3 then изключи светлина антре
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - включи таймер oven
 m0_exact/representative::exact_todo_list:
-- add apples списък
+- add apples aufgabenliste

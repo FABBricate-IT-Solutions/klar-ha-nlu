@@ -36,6 +36,7 @@
           "assist_filter": "Vadīt tikai Assist redzamās entītijas",
           "nlu_rag": "NLU-RAG (pēc izvēles)",
           "quiet_ack": "Īsa apstiprināšana (zvans)",
+          "calendar_llm": "Sūtīt kalendāra vaicājumus uz LLM",
           "channel": "Izlaides kanāls"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Ieslēgts: tikai to, ko redz Assist. Izslēgts: arī slēptās entītijas.",
           "nlu_rag": "Pēc noklusējuma izslēgts. Tērzēšanā rezerves modelim iet tikai atpazītais fragments.",
           "quiet_ack": "Vienkāršai gaismas ieslēgšanai/izslēgšanai nav teikuma, tikai īss skaņa uz satelīta.",
+          "calendar_llm": "Pēc noklusējuma izslēgts. Ieslēgts: Klar lasa kalendāru, rezerves LLM saka notikumus. Izslēgts: Klar saka sarakstu. Izveide, dzēšana un pārvietošana paliek Klar.",
           "languages": "Pēc noklusējuma seko Home Assistant sistēmas valodai.",
           "channel": "Jebkurā laikā. Staging norāda uz Klar NLU (Staging)."
         }

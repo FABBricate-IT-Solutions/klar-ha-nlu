@@ -36,6 +36,7 @@
           "assist_filter": "Assistಗೆ ಕಾಣುವ ಘಟಕಗಳನ್ನು ಮಾತ್ರ ನಿಯಂತ್ರಿಸಿ",
           "nlu_rag": "NLU-RAG (ಐಚ್ಛಿಕ)",
           "quiet_ack": "ಚಿಕ್ಕ ದೃಢೀಕರಣ (ಗಂಟೆ)",
+          "calendar_llm": "ಕ್ಯಾಲೆಂಡರ್ ಪ್ರಶ್ನೆಗಳನ್ನು LLM ಗೆ ಕಳುಹಿಸಿ",
           "channel": "ಬಿಡುಗಡೆ ಚಾನಲ್"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "On: only what Assist may see. Off: hidden entities too.",
           "nlu_rag": "ಡೀಫಾಲ್ಟ್ ಆಫ್. ಮಾತಿನಲ್ಲಿ ಹೊಂದಿದ ತುಣುಕು ಮಾತ್ರ ಬ್ಯಾಕಪ್ ಮಾದರಿಗೆ ಹೋಗುತ್ತದೆ.",
           "quiet_ack": "ಸರಳ ಬೆಳಕು ಆನ್/ಆಫ್‌ನಲ್ಲಿ ವಾಕ್ಯವಿಲ್ಲ, ಉಪಗ್ರಹದಲ್ಲಿ ಚಿಕ್ಕ ಧ್ವನಿ.",
+          "calendar_llm": "ಡೀಫಾಲ್ಟ್ ಆಫ್. ಮಾತಿನಲ್ಲಿ ಹೊಂದಿದ ತುಣುಕು ಮಾತ್ರ ಬ್ಯಾಕಪ್ ಮಾದರಿಗೆ ಹೋಗುತ್ತದೆ. ಕ್ಯಾಲೆಂಡರ್ ಪ್ರಶ್ನೆಗಳನ್ನು LLM ಗೆ ಕಳುಹಿಸಿ.",
           "languages": "ಡೀಫಾಲ್ಟ್ Home Assistant ಸಿಸ್ಟಂ ಭಾಷೆ.",
           "channel": "ಯಾವಾಗ ಬೇಕಾದರೂ. Staging Klar NLU (Staging) ಕಡೆಗೆ."
         }

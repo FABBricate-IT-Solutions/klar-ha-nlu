@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - gakhseni parda misagebi
-  - parda misagebi gakhseni
+  - გახსენი ფარდა მისაღები
+  - ფარდა მისაღები გახსენი
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - dakhure parda misagebi
-  - parda misagebi dakhure
+  - დახურე ფარდა მისაღები
+  - ფარდა მისაღები დახურე
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - daayene parda misagebi 0
-  - parda misagebi 0
+  - დააყენე ფარდა მისაღები 0
+  - ფარდა მისაღები 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - daayene parda misagebi 25
-  - parda misagebi 25
+  - დააყენე ფარდა მისაღები 25
+  - ფარდა მისაღები 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - daayene parda misagebi 40
-  - parda misagebi 40
+  - დააყენე ფარდა მისაღები 40
+  - ფარდა მისაღები 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - daayene parda misagebi 75
-  - parda misagebi 75
+  - დააყენე ფარდა მისაღები 75
+  - ფარდა მისაღები 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - daayene parda misagebi 100
-  - parda misagebi 100
+  - დააყენე ფარდა მისაღები 100
+  - ფარდა მისაღები 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - gakhseni parda sadzinebeli
-  - parda sadzinebeli gakhseni
+  - გახსენი ფარდა sadzinebelimaster
+  - ფარდა sadzinebelimaster გახსენი
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - dakhure parda sadzinebeli
-  - parda sadzinebeli dakhure
+  - დახურე ფარდა sadzinebelimaster
+  - ფარდა sadzinebelimaster დახურე
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - daayene parda sadzinebeli 0
-  - parda sadzinebeli 0
+  - დააყენე ფარდა sadzinebelimaster 0
+  - ფარდა sadzinebelimaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - daayene parda sadzinebeli 25
-  - parda sadzinebeli 25
+  - დააყენე ფარდა sadzinebelimaster 25
+  - ფარდა sadzinebelimaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - daayene parda sadzinebeli 40
-  - parda sadzinebeli 40
+  - დააყენე ფარდა sadzinebelimaster 40
+  - ფარდა sadzinebelimaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - daayene parda sadzinebeli 75
-  - parda sadzinebeli 75
+  - დააყენე ფარდა sadzinebelimaster 75
+  - ფარდა sadzinebelimaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - daayene parda sadzinebeli 100
-  - parda sadzinebeli 100
+  - დააყენე ფარდა sadzinebelimaster 100
+  - ფარდა sadzinebelimaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - gakhseni parda sadzinebeli2
-  - parda sadzinebeli2 gakhseni
+  - გახსენი ფარდა sadzinebeli2
+  - ფარდა sadzinebeli2 გახსენი
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - dakhure parda sadzinebeli2
-  - parda sadzinebeli2 dakhure
+  - დახურე ფარდა sadzinebeli2
+  - ფარდა sadzinebeli2 დახურე
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - daayene parda sadzinebeli2 0
-  - parda sadzinebeli2 0
+  - დააყენე ფარდა sadzinebeli2 0
+  - ფარდა sadzinebeli2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - daayene parda sadzinebeli2 25
-  - parda sadzinebeli2 25
+  - დააყენე ფარდა sadzinebeli2 25
+  - ფარდა sadzinebeli2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - daayene parda sadzinebeli2 40
-  - parda sadzinebeli2 40
+  - დააყენე ფარდა sadzinebeli2 40
+  - ფარდა sadzinebeli2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - daayene parda sadzinebeli2 75
-  - parda sadzinebeli2 75
+  - დააყენე ფარდა sadzinebeli2 75
+  - ფარდა sadzinebeli2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - daayene parda sadzinebeli2 100
-  - parda sadzinebeli2 100
+  - დააყენე ფარდა sadzinebeli2 100
+  - ფარდა sadzinebeli2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - gakhseni parda sadzinebeli3
-  - parda sadzinebeli3 gakhseni
+  - გახსენი ფარდა sadzinebeli3
+  - ფარდა sadzinebeli3 გახსენი
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - dakhure parda sadzinebeli3
-  - parda sadzinebeli3 dakhure
+  - დახურე ფარდა sadzinebeli3
+  - ფარდა sadzinebeli3 დახურე
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - daayene parda sadzinebeli3 0
-  - parda sadzinebeli3 0
+  - დააყენე ფარდა sadzinebeli3 0
+  - ფარდა sadzinebeli3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - daayene parda sadzinebeli3 25
-  - parda sadzinebeli3 25
+  - დააყენე ფარდა sadzinebeli3 25
+  - ფარდა sadzinebeli3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - daayene parda sadzinebeli3 40
-  - parda sadzinebeli3 40
+  - დააყენე ფარდა sadzinebeli3 40
+  - ფარდა sadzinebeli3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - daayene parda sadzinebeli3 75
-  - parda sadzinebeli3 75
+  - დააყენე ფარდა sadzinebeli3 75
+  - ფარდა sadzinebeli3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - daayene parda sadzinebeli3 100
-  - parda sadzinebeli3 100
+  - დააყენე ფარდა sadzinebeli3 100
+  - ფარდა sadzinebeli3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - gakhseni parda garage
-  - parda garage gakhseni
+  - გახსენი ფარდა garage
+  - ფარდა garage გახსენი
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - dakhure parda garage
-  - parda garage dakhure
+  - დახურე ფარდა garage
+  - ფარდა garage დახურე
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - daayene parda garage 0
-  - parda garage 0
+  - დააყენე ფარდა garage 0
+  - ფარდა garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - daayene parda garage 25
-  - parda garage 25
+  - დააყენე ფარდა garage 25
+  - ფარდა garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - daayene parda garage 40
-  - parda garage 40
+  - დააყენე ფარდა garage 40
+  - ფარდა garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - daayene parda garage 75
-  - parda garage 75
+  - დააყენე ფარდა garage 75
+  - ფარდა garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - daayene parda garage 100
-  - parda garage 100
+  - დააყენე ფარდა garage 100
+  - ფარდა garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - gakhseni parda misagebi
-  - parda misagebi gakhseni
+  - გახსენი ფარდა მისაღები
+  - ფარდა მისაღები გახსენი
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - gakhseni parda sadzinebeli
-  - parda sadzinebeli gakhseni
+  - გახსენი ფარდა sadzinebelimaster
+  - ფარდა sadzinebelimaster გახსენი

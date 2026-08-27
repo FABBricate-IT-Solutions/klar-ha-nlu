@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - بگذار سرما پذیرایی 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- بگذار سرما اتاقخواب 19
+- بگذار سرما اتاقخوابmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - بگذار پرده اتاقخواب2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - باز پرده پذیرایی
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- بگذار پرده اتاقخواب 19
+- بگذار پرده اتاقخوابmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- بسته پرده اتاقخواب
+- بسته پرده اتاقخوابmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- باز پرده اتاقخواب
+- باز پرده اتاقخوابmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - بگذار پنکه اتاقخواب2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - روشن پنکه خانواده
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- بگذار پنکه اتاقخواب 28
+- بگذار پنکه اتاقخوابmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- خاموش پنکه اتاقخواب
+- خاموش پنکه اتاقخوابmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- روشن پنکه اتاقخواب
+- روشن پنکه اتاقخوابmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- خاموش پنکه اتاقخواب و خاموش چراغ آشپزخانه
+- خاموش پنکه اتاقخوابmaster then خاموش جزیره آشپزخانه
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- روشن پنکه اتاقخواب و روشن چراغ آشپزخانه
+- روشن پنکه اتاقخوابmaster then روشن جزیره آشپزخانه
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - بگذار سقف اتاقخواب2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - روشن سقف آشپزخانه
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- بگذار چراغ آشپزخانه 99
+- بگذار جزیره آشپزخانه 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- بگذار چراغ آشپزخانه green
+- بگذار جزیره آشپزخانه green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- خاموش چراغ آشپزخانه
+- خاموش جزیره آشپزخانه
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- روشن چراغ آشپزخانه
+- روشن جزیره آشپزخانه
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - بگذار چراغ رختشویی 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - روشن سقف پذیرایی
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- بگذار چراغ پذیرایی 72
+- بگذار lamp پذیرایی 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- بگذار چراغ پذیرایی red
+- بگذار lamp پذیرایی red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- خاموش چراغ پذیرایی
+- خاموش lamp پذیرایی
 devices/light_living_lamp::light_living_lamp_turn_on:
-- روشن چراغ پذیرایی
+- روشن lamp پذیرایی
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - بگذار چراغ main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - روشن چراغ حماماصلی
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- بگذار کنارتخت اتاقخواب 25
+- بگذار کنارتخت اتاقخوابmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- بگذار کنارتخت اتاقخواب red
+- بگذار کنارتخت اتاقخوابmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- خاموش کنارتخت اتاقخواب
+- خاموش کنارتخت اتاقخوابmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- روشن کنارتخت اتاقخواب
+- روشن کنارتخت اتاقخوابmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- بگذار سقف اتاقخواب 77
+- بگذار سقف اتاقخوابmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- بگذار سقف اتاقخواب blue
+- بگذار سقف اتاقخوابmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- خاموش سقف اتاقخواب
+- خاموش سقف اتاقخوابmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- روشن سقف اتاقخواب
+- روشن سقف اتاقخوابmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- بگذار چراغ اتاقخواب 55
+- بگذار ankleide اتاقخوابmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- بگذار چراغ اتاقخواب black
+- بگذار ankleide اتاقخوابmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- خاموش چراغ اتاقخواب
+- خاموش ankleide اتاقخوابmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- روشن چراغ اتاقخواب
+- روشن ankleide اتاقخوابmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - بگذار چراغ سرویس 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - روشن تلویزیون خانواده
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause تلویزیون خانواده
+- pause tv خانواده
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - خاموش تلویزیون خانواده
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - روشن تلویزیون پذیرایی
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause تلویزیون پذیرایی
+- pause tv پذیرایی
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - خاموش تلویزیون پذیرایی
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,26 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - روشن تلویزیون پذیرایی
 devices/scenes::dinner_time:
-- بگذار چراغ خانوادهess 90 و روشن سقف آشپزخانه و بگذار چراغ آشپزخانه 80
+- بگذار چراغ خانوادهess 90 then روشن سقف آشپزخانه then بگذار جزیره آشپزخانه 80
 devices/scenes::good_morning:
-- روشن سقف آشپزخانه و بگذار چراغ خانوادهess 100 و باز پرده پذیرایی و باز پرده اتاقخواب
+- روشن سقف آشپزخانه then بگذار چراغ خانوادهess 100 then باز پرده پذیرایی then باز
+  پرده اتاقخوابmaster
 devices/scenes::kids_bedtime:
-- خاموش سقف اتاقخواب2 و خاموش سقف اتاقخواب3 و خاموش سقف اتاقخواب4 و بگذار چراغ ورودیgang
-  15
+- خاموش سقف اتاقخواب2 then خاموش سقف اتاقخواب3 then خاموش سقف اتاقخواب4 then بگذار
+  چراغ ورودیgang 15
 devices/scenes::movie_night:
-- خاموش سقف پذیرایی و بگذار چراغ پذیرایی 20 و روشن تلویزیون پذیرایی و بسته پرده پذیرایی
+- خاموش سقف پذیرایی then بگذار lamp پذیرایی 20 then روشن تلویزیون پذیرایی then بسته
+  پرده پذیرایی
 devices/scripts::good_night:
-- روشن صحنه شب
+- خاموش سقف پذیرایی then خاموش lamp پذیرایی then خاموش چراغ خانوادهess then خاموش
+  سقف آشپزخانه then خاموش جزیره آشپزخانه then خاموش سقف خانواده then خاموش چراغ ورودی
+  then خاموش چراغ ورودیgang then قفل قفل ورودی then قفل قفل garage then بگذار سرما
+  اتاقخوابmaster 20
 devices/scripts::leaving_home:
-- روشن صحنه خروج
+- خاموش سقف پذیرایی then خاموش lamp پذیرایی then خاموش سقف آشپزخانه then خاموش سقف
+  خانواده then خاموش چراغ ورودی then قفل قفل ورودی then قفل قفل garage then بسته پرده
+  garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - خاموش ظرفشویی
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - روشن ظرفشویی
 devices/switch_dryer::switch_dryer_turn_off:
-- خاموش لباسشویی
+- خاموش dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- روشن لباسشویی
+- روشن dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - خاموش لباسشویی
 devices/switch_washing_machine::switch_washing_machine_turn_on:

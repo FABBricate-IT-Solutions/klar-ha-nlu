@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - pon calefaccion salon 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- pon calefaccion cuarto 19
+- pon calefaccion cuartomaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - pon cortina cuarto2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - abre cortina salon
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- pon cortina cuarto 19
+- pon cortina cuartomaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- pecha cortina cuarto
+- pecha cortina cuartomaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- abre cortina cuarto
+- abre cortina cuartomaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - pon ventilador cuarto2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - acende ventilador salafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- pon ventilador cuarto 28
+- pon ventilador cuartomaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- apaga ventilador cuarto
+- apaga ventilador cuartomaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- acende ventilador cuarto
+- acende ventilador cuartomaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- apaga ventilador cuarto e apaga luz cociña
+- apaga ventilador cuartomaster then apaga illa cociña
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- acende ventilador cuarto e acende luz cociña
+- acende ventilador cuartomaster then acende illa cociña
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - pon teito cuarto2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - acende teito cociña
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- pon luz cociña 99
+- pon illa cociña 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- pon luz cociña green
+- pon illa cociña green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- apaga luz cociña
+- apaga illa cociña
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- acende luz cociña
+- acende illa cociña
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - pon luz lavandaria 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - acende teito salon
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- pon luz salon 72
+- pon lamp salon 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- pon luz salon red
+- pon lamp salon red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- apaga luz salon
+- apaga lamp salon
 devices/light_living_lamp::light_living_lamp_turn_on:
-- acende luz salon
+- acende lamp salon
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - pon luz main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - acende luz banomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- pon mesilla cuarto 25
+- pon mesilla cuartomaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- pon mesilla cuarto red
+- pon mesilla cuartomaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- apaga mesilla cuarto
+- apaga mesilla cuartomaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- acende mesilla cuarto
+- acende mesilla cuartomaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- pon teito cuarto 77
+- pon teito cuartomaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- pon teito cuarto blue
+- pon teito cuartomaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- apaga teito cuarto
+- apaga teito cuartomaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- acende teito cuarto
+- acende teito cuartomaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- pon luz cuarto 55
+- pon ankleide cuartomaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- pon luz cuarto black
+- pon ankleide cuartomaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- apaga luz cuarto
+- apaga ankleide cuartomaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- acende luz cuarto
+- acende ankleide cuartomaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - pon luz aseo 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - acende tele salafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tele salafam
+- pause tv salafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - apaga tele salafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - acende tele salon
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tele salon
+- pause tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - apaga tele salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,27 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - acende tele salon
 devices/scenes::dinner_time:
-- pon luz salafamess 90 e acende teito cociña e pon luz cociña 80
+- pon luz salafamess 90 then acende teito cociña then pon illa cociña 80
 devices/scenes::good_morning:
-- acende teito cociña e pon luz salafamess 100 e abre cortina salon e abre cortina
-  cuarto
+- acende teito cociña then pon luz salafamess 100 then abre cortina salon then abre
+  cortina cuartomaster
 devices/scenes::kids_bedtime:
-- apaga teito cuarto2 e apaga teito cuarto3 e apaga teito cuarto4 e pon luz entradagang
-  15
+- apaga teito cuarto2 then apaga teito cuarto3 then apaga teito cuarto4 then pon luz
+  entradagang 15
 devices/scenes::movie_night:
-- apaga teito salon e pon luz salon 20 e acende tele salon e pecha cortina salon
+- apaga teito salon then pon lamp salon 20 then acende tele salon then pecha cortina
+  salon
 devices/scripts::good_night:
-- acende escena noite
+- apaga teito salon then apaga lamp salon then apaga luz salafamess then apaga teito
+  cociña then apaga illa cociña then apaga teito salafam then apaga luz entrada then
+  apaga luz entradagang then pechadura pechadura entrada then pechadura pechadura
+  garage then pon calefaccion cuartomaster 20
 devices/scripts::leaving_home:
-- acende escena saida
+- apaga teito salon then apaga lamp salon then apaga teito cociña then apaga teito
+  salafam then apaga luz entrada then pechadura pechadura entrada then pechadura pechadura
+  garage then pecha cortina garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - apaga lavavajillas
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - acende lavavajillas
 devices/switch_dryer::switch_dryer_turn_off:
-- apaga lavadora
+- apaga dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- acende lavadora
+- acende dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - apaga lavadora
 devices/switch_washing_machine::switch_washing_machine_turn_on:

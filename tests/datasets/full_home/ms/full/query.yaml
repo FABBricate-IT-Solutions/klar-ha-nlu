@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - apa langsir bilik
-  - apa bilik langsir
+  - apa langsir bilikmaster
+  - apa bilikmaster langsir
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - apa pendingin bilik
-  - apa bilik pendingin
+  - apa pendingin bilikmaster
+  - apa bilikmaster pendingin
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - apa pendingin bilik
-  - apa bilik pendingin
+  - apa pendingin bilikmaster
+  - apa bilikmaster pendingin
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - apa kipas bilik
-  - apa bilik kipas
+  - apa kipas bilikmaster
+  - apa bilikmaster kipas
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - apa lampu bilik
-  - apa bilik lampu
+  - apa lampu bilikmaster
+  - apa bilikmaster lampu
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - apa lampu bilik
-  - apa bilik lampu
+  - apa lampu bilikmaster
+  - apa bilikmaster lampu
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - apa ensuite bilik
-  - apa bilik ensuite
+  - apa ensuite bilikmaster
+  - apa bilikmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - apa lampu bilik
-  - apa bilik lampu
+  - apa lampu bilikmaster
+  - apa bilikmaster lampu
 - name: query_light.master_bath_light
   conditions:
   - type: query

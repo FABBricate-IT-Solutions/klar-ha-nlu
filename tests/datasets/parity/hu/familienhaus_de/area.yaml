@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - kapcsold ventilator haloszoba2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- allitsd villany haloszoba2 65
+- allitsd mind villany haloszoba2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- allitsd villany haloszoba2 pink
+- allitsd mind villany haloszoba2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- oltsd villany haloszoba2
+- oltsd mind villany haloszoba2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- kapcsold villany haloszoba2
+- kapcsold mind villany haloszoba2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - csukd fuggony haloszoba3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - allitsd fuggony haloszoba3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- allitsd villany haloszoba3 76
+- allitsd mind villany haloszoba3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- allitsd villany haloszoba3 blue
+- allitsd mind villany haloszoba3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- oltsd villany haloszoba3
+- oltsd mind villany haloszoba3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- kapcsold villany haloszoba3
+- kapcsold mind villany haloszoba3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- allitsd villany haloszoba4 69
+- allitsd mind villany haloszoba4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- allitsd villany haloszoba4 green
+- allitsd mind villany haloszoba4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- oltsd villany haloszoba4
+- oltsd mind villany haloszoba4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- kapcsold villany haloszoba4
+- kapcsold mind villany haloszoba4
 area/dining_lights::dining_lights_change_brightness:
-- allitsd villany nappalifamess 54
+- allitsd mind villany nappalifamess 54
 area/dining_lights::dining_lights_change_color:
-- allitsd villany nappalifamess blue
+- allitsd mind villany nappalifamess blue
 area/dining_lights::dining_lights_turn_off:
-- oltsd villany nappalifamess
+- oltsd mind villany nappalifamess
 area/dining_lights::dining_lights_turn_on:
-- kapcsold villany nappalifamess
+- kapcsold mind villany nappalifamess
 area/entryway_lights::entryway_lights_change_brightness:
-- allitsd villany eloter 72
+- allitsd mind villany eloter 72
 area/entryway_lights::entryway_lights_change_color:
-- allitsd villany eloter black
+- allitsd mind villany eloter black
 area/entryway_lights::entryway_lights_turn_off:
-- oltsd villany eloter
+- oltsd mind villany eloter
 area/entryway_lights::entryway_lights_turn_on:
-- kapcsold villany eloter
+- kapcsold mind villany eloter
 area/entryway_locks::entryway_locks_lock:
 - zar zar eloter
 area/entryway_locks::entryway_locks_unlock:
 - nyisd zar eloter
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- allitsd villany nappalifam 39 es allitsd villany konyha 39
+- allitsd mind villany nappalifam 39 then allitsd mind villany konyha 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- allitsd villany nappalifam purple es allitsd villany konyha purple
+- allitsd mind villany nappalifam purple then allitsd mind villany konyha purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- oltsd villany nappalifam es oltsd villany konyha
+- oltsd mind villany nappalifam then oltsd mind villany konyha
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- kapcsold villany nappalifam es kapcsold villany konyha
+- kapcsold mind villany nappalifam then kapcsold mind villany konyha
 area/family_room_fans::family_room_fans_set_fan_speed:
 - allitsd ventilator nappalifam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - kapcsold ventilator nappalifam
 area/family_room_lights::family_room_lights_change_brightness:
-- allitsd villany nappalifam 44
+- allitsd mind villany nappalifam 44
 area/family_room_lights::family_room_lights_change_color:
-- allitsd villany nappalifam green
+- allitsd mind villany nappalifam green
 area/family_room_lights::family_room_lights_turn_off:
-- oltsd villany nappalifam
+- oltsd mind villany nappalifam
 area/family_room_lights::family_room_lights_turn_on:
-- kapcsold villany nappalifam
+- kapcsold mind villany nappalifam
 area/garage_covers::garage_covers_close:
 - csukd fuggony garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - allitsd fuggony garage 86
 area/garage_lights::garage_lights_change_brightness:
-- allitsd villany garage 16
+- allitsd mind villany garage 16
 area/garage_lights::garage_lights_change_color:
-- allitsd villany garage blue
+- allitsd mind villany garage blue
 area/garage_lights::garage_lights_turn_off:
-- oltsd villany garage
+- oltsd mind villany garage
 area/garage_lights::garage_lights_turn_on:
-- kapcsold villany garage
+- kapcsold mind villany garage
 area/garage_locks::garage_locks_lock:
 - zar zar garage
 area/garage_locks::garage_locks_unlock:
 - nyisd zar garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- allitsd villany elotergang 26 es allitsd villany wc 26
+- allitsd mind villany elotergang 26 then allitsd mind villany wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- allitsd villany elotergang purple es allitsd villany wc purple
+- allitsd mind villany elotergang purple then allitsd mind villany wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- oltsd villany elotergang es oltsd villany wc
+- oltsd mind villany elotergang then oltsd mind villany wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- kapcsold villany elotergang es kapcsold villany wc
+- kapcsold mind villany elotergang then kapcsold mind villany wc
 area/hallway_lights::hallway_lights_change_brightness:
-- allitsd villany elotergang 61
+- allitsd mind villany elotergang 61
 area/hallway_lights::hallway_lights_change_color:
-- allitsd villany elotergang orange
+- allitsd mind villany elotergang orange
 area/hallway_lights::hallway_lights_turn_off:
-- oltsd villany elotergang
+- oltsd mind villany elotergang
 area/hallway_lights::hallway_lights_turn_on:
-- kapcsold villany elotergang
+- kapcsold mind villany elotergang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- allitsd villany konyha 45
+- allitsd mind villany konyha 45
 area/kitchen_lights::kitchen_lights_change_color:
-- allitsd villany konyha pink
+- allitsd mind villany konyha pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- oltsd villany konyha
+- oltsd mind villany konyha
 area/kitchen_lights::kitchen_lights_turn_on:
-- kapcsold villany konyha
+- kapcsold mind villany konyha
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- oltsd keszulek konyha
+- oltsd mind keszulek konyha
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- kapcsold keszulek konyha
+- kapcsold mind keszulek konyha
 area/laundry_lights::laundry_lights_change_brightness:
-- allitsd villany mosokonyha 62
+- allitsd mind villany mosokonyha 62
 area/laundry_lights::laundry_lights_change_color:
-- allitsd villany mosokonyha yellow
+- allitsd mind villany mosokonyha yellow
 area/laundry_lights::laundry_lights_turn_off:
-- oltsd villany mosokonyha
+- oltsd mind villany mosokonyha
 area/laundry_lights::laundry_lights_turn_on:
-- kapcsold villany mosokonyha
+- kapcsold mind villany mosokonyha
 area/laundry_switchs::laundry_switchs_turn_off:
-- oltsd keszulek mosokonyha
+- oltsd mind keszulek mosokonyha
 area/laundry_switchs::laundry_switchs_turn_on:
-- kapcsold keszulek mosokonyha
+- kapcsold mind keszulek mosokonyha
 area/living_climates::living_climates_set_temperature:
 - allitsd futes nappali 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - allitsd fuggony nappali 46
 area/living_lights::living_lights_change_brightness:
-- allitsd villany nappali 84
+- allitsd mind villany nappali 84
 area/living_lights::living_lights_change_color:
-- allitsd villany nappali blue
+- allitsd mind villany nappali blue
 area/living_lights::living_lights_turn_off:
-- oltsd villany nappali
+- oltsd mind villany nappali
 area/living_lights::living_lights_turn_on:
-- kapcsold villany nappali
+- kapcsold mind villany nappali
 area/main_bath_lights::main_bath_lights_change_brightness:
-- allitsd villany main bath 73
+- allitsd mind villany main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- allitsd villany main bath pink
+- allitsd mind villany main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- oltsd villany main bath
+- oltsd mind villany main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- kapcsold villany main bath
+- kapcsold mind villany main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- oltsd keszulek main bath
+- oltsd mind keszulek main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- kapcsold keszulek main bath
+- kapcsold mind keszulek main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- allitsd villany furdomaster 60
+- allitsd mind villany furdomaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- allitsd villany furdomaster black
+- allitsd mind villany furdomaster black
 area/master_bath_lights::master_bath_lights_turn_off:
-- oltsd villany furdomaster
+- oltsd mind villany furdomaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- kapcsold villany furdomaster
+- kapcsold mind villany furdomaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- oltsd keszulek furdomaster
+- oltsd mind keszulek furdomaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- kapcsold keszulek furdomaster
+- kapcsold mind keszulek furdomaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- allitsd futes haloszoba 20 es allitsd futes nappali 20
+- allitsd futes haloszobamaster 20 then allitsd futes nappali 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- csukd fuggony haloszoba es csukd fuggony nappali
+- csukd fuggony haloszobamaster then csukd fuggony nappali
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- nyisd fuggony haloszoba es nyisd fuggony nappali
+- nyisd fuggony haloszobamaster then nyisd fuggony nappali
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- allitsd fuggony haloszoba 19 es allitsd fuggony nappali 19
+- allitsd fuggony haloszobamaster 19 then allitsd fuggony nappali 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- allitsd villany haloszoba 25 es allitsd villany nappali 25
+- allitsd mind villany haloszobamaster 25 then allitsd mind villany nappali 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- allitsd villany haloszoba white es allitsd villany nappali white
+- allitsd mind villany haloszobamaster white then allitsd mind villany nappali white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- oltsd villany haloszoba es oltsd villany nappali
+- oltsd mind villany haloszobamaster then oltsd mind villany nappali
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- kapcsold villany haloszoba es kapcsold villany nappali
+- kapcsold mind villany haloszobamaster then kapcsold mind villany nappali
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- allitsd villany haloszoba 57 es allitsd villany main bath 57
+- allitsd mind villany haloszobamaster 57 then allitsd mind villany main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- allitsd villany haloszoba pink es allitsd villany main bath pink
+- allitsd mind villany haloszobamaster pink then allitsd mind villany main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- oltsd villany haloszoba es oltsd villany main bath
+- oltsd mind villany haloszobamaster then oltsd mind villany main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- kapcsold villany haloszoba es kapcsold villany main bath
+- kapcsold mind villany haloszobamaster then kapcsold mind villany main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- allitsd futes haloszoba 20
+- allitsd futes haloszobamaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- csukd fuggony haloszoba
+- csukd fuggony haloszobamaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- nyisd fuggony haloszoba
+- nyisd fuggony haloszobamaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- allitsd fuggony haloszoba 38
+- allitsd fuggony haloszobamaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- allitsd ventilator haloszoba 79
+- allitsd ventilator haloszobamaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- oltsd ventilator haloszoba
+- oltsd ventilator haloszobamaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- kapcsold ventilator haloszoba
+- kapcsold ventilator haloszobamaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- allitsd villany haloszoba 73
+- allitsd mind villany haloszobamaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- allitsd villany haloszoba pink
+- allitsd mind villany haloszobamaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- oltsd villany haloszoba
+- oltsd mind villany haloszobamaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- kapcsold villany haloszoba
+- kapcsold mind villany haloszobamaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- allitsd villany wc 52
+- allitsd mind villany wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- allitsd villany wc purple
+- allitsd mind villany wc purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- oltsd villany wc
+- oltsd mind villany wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- kapcsold villany wc
+- kapcsold mind villany wc
 area/spoken_lights::spoken_bedroom_inflection:
-- allitsd villany haloszoba red
+- allitsd mind villany haloszobamaster red
 area/spoken_lights::spoken_except_island:
 - oltsd mind villany kiveve sziget
 area/spoken_lights::spoken_except_kitchen:
-- oltsd mind villany kiveve konyha kiveve sziget
+- oltsd mind villany kiveve konyha
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- oltsd villany nappali es oltsd villany nappalifamess es oltsd villany konyha
+- oltsd mind villany nappali then oltsd mind villany nappalifamess then oltsd mind
+  villany konyha
 area/spoken_lights::spoken_stt_kitchen_off:
-- oltsd villany konyha
+- oltsd mind villany konyha
 area/spoken_lights::spoken_stt_living_off:
-- oltsd villany nappali
+- oltsd mind villany nappali

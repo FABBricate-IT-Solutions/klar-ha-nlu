@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - ne kilit giris
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- ne isik aile ve ne isik mutfak
+- ne isik aile then ne isik mutfak
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- ne isik aile ve ne isik mutfak
+- ne isik aile then ne isik mutfak
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- ne isik aile ve ne isik mutfak
+- ne isik aile then ne isik mutfak
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- ne isik aile ve ne isik mutfak
+- ne isik aile then ne isik mutfak
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - ne vantilator aile
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - ne kilit garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- ne isik girisgang ve ne isik wc
+- ne isik girisgang then ne isik wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- ne isik girisgang ve ne isik wc
+- ne isik girisgang then ne isik wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- ne isik girisgang ve ne isik wc
+- ne isik girisgang then ne isik wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- ne isik girisgang ve ne isik wc
+- ne isik girisgang then ne isik wc
 query_area/hallway_lights::hallway_lights_get_brightness:
 - ne isik girisgang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - ne cihaz ebatmaster
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- ne perde yatakodasi ve ne perde salon
+- ne perde yatakodasimaster then ne perde salon
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- ne perde yatakodasi ve ne perde salon
+- ne perde yatakodasimaster then ne perde salon
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- ne perde yatakodasi ve ne perde salon
+- ne perde yatakodasimaster then ne perde salon
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- ne perde yatakodasi ve ne perde salon
+- ne perde yatakodasimaster then ne perde salon
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- ne klima yatakodasi
+- ne klima yatakodasimaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- ne perde yatakodasi
+- ne perde yatakodasimaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- ne perde yatakodasi
+- ne perde yatakodasimaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- ne perde yatakodasi
+- ne perde yatakodasimaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- ne perde yatakodasi
+- ne perde yatakodasimaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- ne vantilator yatakodasi
+- ne vantilator yatakodasimaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- ne vantilator yatakodasi
+- ne vantilator yatakodasimaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- ne vantilator yatakodasi
+- ne vantilator yatakodasimaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- ne vantilator yatakodasi
+- ne vantilator yatakodasimaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- ne isik yatakodasi
+- ne isik yatakodasimaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- ne isik yatakodasi
+- ne isik yatakodasimaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- ne isik yatakodasi
+- ne isik yatakodasimaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- ne isik yatakodasi
+- ne isik yatakodasimaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - ne isik wc
 query_area/powder_room_lights::powder_room_lights_get_state:

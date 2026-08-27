@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - kapcsold haloszoba mennyezet es haloszoba ejjeliszekreny
-  - haloszoba mennyezet es haloszoba ejjeliszekreny kapcsold
+  - kapcsold haloszobamaster mennyezet es haloszobamaster ejjeliszekreny
+  - haloszobamaster mennyezet es haloszobamaster ejjeliszekreny kapcsold
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - oltsd haloszoba mennyezet es haloszoba ejjeliszekreny
-  - haloszoba mennyezet es haloszoba ejjeliszekreny oltsd
+  - oltsd haloszobamaster mennyezet es haloszobamaster ejjeliszekreny
+  - haloszobamaster mennyezet es haloszobamaster ejjeliszekreny oltsd
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kapcsold haloszoba ventilator es konyha sziget
-  - haloszoba ventilator es konyha sziget kapcsold
+  - kapcsold haloszobamaster ventilator es konyha sziget
+  - haloszobamaster ventilator es konyha sziget kapcsold
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany haloszoba es main bath
-  - villany haloszoba es main bath oltsd
+  - oltsd villany haloszobamaster es main bath
+  - villany haloszobamaster es main bath oltsd
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd mind villany kiveve nappali es haloszoba
-  - mind villany oltsd kiveve nappali es haloszoba
+  - oltsd mind villany kiveve nappali es haloszobamaster
+  - mind villany oltsd kiveve nappali es haloszobamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd mind villany emelet kiveve haloszoba
-  - mind villany emelet oltsd kiveve haloszoba
+  - oltsd mind villany emelet kiveve haloszobamaster
+  - mind villany emelet oltsd kiveve haloszobamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - nyisd fuggony nappali es haloszoba
-  - fuggony nappali es haloszoba nyisd
+  - nyisd fuggony nappali es haloszobamaster
+  - fuggony nappali es haloszobamaster nyisd
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - csukd fuggony nappali es haloszoba
-  - fuggony nappali es haloszoba csukd
+  - csukd fuggony nappali es haloszobamaster
+  - fuggony nappali es haloszobamaster csukd
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - allitsd futes nappali es haloszoba 21
-  - futes nappali es haloszoba 21
+  - allitsd futes nappali es haloszobamaster 21
+  - futes nappali es haloszobamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

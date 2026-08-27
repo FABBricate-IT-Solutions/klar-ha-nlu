@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from lang_packs.calendar_lex import calendar_for
 from lang_packs.extras import pack_extras
+from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.voices import normalize_personality
 
 ROOMS = (
@@ -25,6 +26,7 @@ ROOMS = (
 )
 
 def expand(core: dict) -> dict:
+    apply_native(core)
     w = core["w"]
     for key, val in pack_extras(core["code"]).items():
         w.setdefault(key, val)
@@ -51,6 +53,7 @@ def expand(core: dict) -> dict:
     rooms = list(core.get("rooms", []))
     synonyms = [(native, canon) for native, canon in rooms]
     synonyms += list(core.get("synonyms", []))
+    synonyms += device_synonym_rows(w, core["code"])
     on = w["on"]
     off = w["off"]
     light = w["light"]
@@ -69,7 +72,10 @@ def expand(core: dict) -> dict:
     opn = w["open"]
     close = w["close"]
     verbs = []
-    for word in unique(on + ["active"]):
+    extra_on = ["active"] if not is_script_pack(core) else []
+    extra_play = ["play"] if not is_script_pack(core) else []
+    extra_next = ["next"] if not is_script_pack(core) else []
+    for word in unique(on + extra_on):
         verbs.append((word, "On"))
     for word in off:
         verbs.append((word, "Off"))
@@ -91,7 +97,7 @@ def expand(core: dict) -> dict:
         verbs.append((word, "List"))
     for word in w.get("add", []):
         verbs.append((word, "Add"))
-    for word in w.get("done", []):
+    for word in lexemes(w.get("done", [])):
         verbs.append((word, "ListComplete"))
     for word in fan:
         verbs.append((word, "FanNoun"))
@@ -107,9 +113,9 @@ def expand(core: dict) -> dict:
         verbs.append((word, "Percent"))
     for word in w.get("stop", off[:1]):
         verbs.append((word, "Stop"))
-    for word in unique(list(w.get("play") or []) + ["play"]):
+    for word in unique(list(w.get("play") or []) + extra_play):
         verbs.append((word, "Play"))
-    for word in unique(list(w.get("next") or []) + ["next"]):
+    for word in unique(list(w.get("next") or []) + extra_next):
         verbs.append((word, "Next"))
     for word in w.get("pause", []):
         verbs.append((word, "Pause"))
@@ -180,8 +186,8 @@ def expand(core: dict) -> dict:
         },
         "nouns": {
             "light_nouns": light,
-            "light_singular": unique(light[2:3] or light[:1]),
-            "light_plural": unique(light[:1] + light[3:]),
+            "light_singular": unique(light[:3]),
+            "light_plural": unique(light[3:]),
             "cover_nouns": cover,
             "curtain_nouns": cover[:2],
             "fan_nouns": fan,
@@ -197,7 +203,7 @@ def expand(core: dict) -> dict:
             "vacuum_nouns": vacuum,
             "scene_nouns": scene,
             "script_words": w.get("script", scene[:1]),
-            "switch_plural": unique(w.get("switch", [])),
+            "switch_plural": unique([word for word in w.get("switch", []) if word not in (w.get("device") or [])]),
             "device_side": unique(light + fan + media[:1] + cover[:1] + lock[:1] + scene[:1] + w.get("washer", []) + w.get("dryer", [])),
             "named_device": unique(w.get("named", []) + w.get("globe", [])),
         },
@@ -215,11 +221,23 @@ def expand(core: dict) -> dict:
             "singular_lamp": [],
             "singular_lamp_block": unique(light[:2]),
         },
-        "fixture_aliases": fixture_alias_rows(w),
+            "fixture_aliases": fixture_alias_rows(w, core["code"]),
         "cues": {
             "power_words": unique(on + off + w.get("stop", [])),
             "command_hedges": w.get("hedge", []),
-            "skip_light": unique([word for word in fan + media[:1] + w.get("switch", []) if word not in light]),
+            "skip_light": unique(
+                [
+                    word
+                    for word in fan
+                    + media[:1]
+                    + w.get("switch", [])
+                    + w.get("washer", [])
+                    + w.get("dishwasher", [])
+                    + w.get("dryer", [])
+                    + w.get("tv", [])
+                    if word not in light
+                ]
+            ),
             "laundry_area": w.get("laundry", []),
             "laundry_machines": unique(w.get("washer", []) + w.get("dryer", [])),
             "kitchen": kitchen,
@@ -238,10 +256,10 @@ def expand(core: dict) -> dict:
             "start_words": on[:1],
             "replay_on_off": unique(on[:1] + off[:1]),
             "replay_off": off[:1],
-            "sensor_words": w.get("sensor", []),
+            "sensor_words": unique(w.get("sensor", []) + ["sensor"]),
             "lock_verbs": unique(list(w.get("lock_v") or []) + lock + w.get("unlock", [])),
             "entry_words": w.get("entry", []),
-            "oven": unique(w.get("oven", [])),
+            "oven": unique(w.get("oven", []) + ["oven"]),
             "laundry_timer": unique(w.get("laundry", [])),
             "illuminate": [],
             "list_down": lst,
@@ -250,7 +268,7 @@ def expand(core: dict) -> dict:
             "timer_cancel": unique(off[:1] + w.get("stop", [])),
             "timer_pause": w.get("pause", []),
             "timer_add": w.get("add", []),
-            "list_complete": w.get("done", []),
+            "list_complete": lexemes(w.get("done", [])),
             "playback_resume": unique(list(w.get("play") or []) + list(w.get("resume") or [])),
             "calendar_query": unique(w.get("calendar_query", [])),
             "calendar_create": unique(w.get("calendar_create", [])),
@@ -263,13 +281,18 @@ def expand(core: dict) -> dict:
             "hours": w.get("hours", []),
             "minutes": w.get("minutes", []),
             "seconds": w.get("seconds", []),
-            "list_skip": unique(w["fillers"][:4] + w.get("add", []) + w.get("done", [])),
+            "list_skip": unique(
+                w["fillers"][:4]
+                + w.get("add", [])
+                + lexemes(w.get("done", []))
+                + ["add", "done", "fuege", "hinzu", "erledigt", "fertig"]
+            ),
             "shopping_names": lst[1:2] or lst[:1],
             "status_words": w.get("status", query[:1]),
             "window_words": w.get("window", cover[:1]),
             "open_close": unique(opn[:1] + close[:1]),
             "laundry_hint": w.get("laundry", []),
-            "bare_switch": unique(w.get("switch", [])),
+            "bare_switch": unique(w.get("washer", []) + w.get("dryer", []) + ["machine", "appliance"]),
             "outlet_words": w.get("outlet", []),
             "tv_words": media[:1],
             "climate_cool": climate[-1:],
@@ -280,7 +303,16 @@ def expand(core: dict) -> dict:
             "role_fan": fan[:1],
             "generic": generic,
             "room_level": light[:1],
-            "extra_device_nouns": unique(w.get("device", []) + w.get("switch", []) + w.get("washer", []) + w.get("dishwasher", []) + w.get("tv", [])),
+            "extra_device_nouns": unique(
+                w.get("device", [])
+                + w.get("switch", [])
+                + w.get("washer", [])
+                + w.get("dishwasher", [])
+                + w.get("dryer", [])
+                + w.get("tv", [])
+                + w.get("globe", [])
+                + w.get("named", [])
+            ),
             "synonym_pairs": synonyms,
             "scene_synonyms": scene_synonym_rows(core, w),
             "article_one": w.get("one", []),
@@ -373,11 +405,44 @@ def music_smokes(w: dict) -> list[tuple[str, str]]:
     return [(f"{play} {search}", "MassPlayMedia")]
 
 
-def fixture_alias_rows(w: dict) -> list[tuple[str, list[str]]]:
+DEVICE_STEMS = {
+    "island": ["island", "insel"],
+    "ceiling": ["ceiling", "decke", "deckenlampe"],
+    "globe": ["globe", "kugel"],
+    "bedside": ["bedside", "nacht", "nachttisch"],
+    "pendant": ["pendant", "pendel"],
+    "dishwasher": ["dishwasher", "spuelmaschine", "spulmaschine"],
+    "washer": ["washer", "waschmaschine", "washing"],
+    "tv": ["tv", "fernseher"],
+    "dryer": ["dryer", "trockner"],
+    "left": ["left", "links"],
+    "right": ["right", "rechts"],
+}
+GERMAN_HOME = {"aufgabenliste", "klimaanlage", "insel", "filmabend", "verlassen"}
+GERMAN_OK = {"de", "en", "de-CH", "de-AT"}
+
+
+def device_stems(code: str, stems: list[str]) -> list[str]:
+    if code in GERMAN_OK:
+        return stems
+    return [stem for stem in stems if stem not in GERMAN_HOME]
+
+
+def fixture_alias_rows(w: dict, code: str) -> list[tuple[str, list[str]]]:
     rows: list[tuple[str, list[str]]] = []
-    for key in ("island", "ceiling", "globe", "bedside", "pendant", "dishwasher", "washer", "tv", "left", "right"):
+    for key, stems in DEVICE_STEMS.items():
         for native in w.get(key, []):
-            rows.append((native, unique([native])))
+            rows.append((native, unique([native, *device_stems(code, stems)])))
+    return rows
+
+
+def device_synonym_rows(w: dict, code: str) -> list[tuple[str, str]]:
+    rows: list[tuple[str, str]] = []
+    for key, stems in DEVICE_STEMS.items():
+        for native in unique(w.get(key, [])):
+            for stem in device_stems(code, stems):
+                if native and native != stem:
+                    rows.append((native, stem))
     return rows
 
 
@@ -386,6 +451,14 @@ def scene_synonym_rows(core: dict, w: dict) -> list[tuple[str, str]]:
     for native in w.get("scenes", []) + w.get("good_night", []) + w.get("leaving", []):
         if native:
             rows.append((native, native))
+    rows.extend(
+        [
+            ("good_morning", "good_morning"),
+            ("leaving_home", "leaving_home"),
+            ("movie_night", "movie_night"),
+            ("dinner_time", "dinner_time"),
+        ]
+    )
     return rows
 
 
@@ -423,3 +496,7 @@ def unique(values: list[str]) -> list[str]:
             seen.add(item)
             out.append(item)
     return out
+
+
+def lexemes(values: list[str] | None) -> list[str]:
+    return unique(part for word in (values or []) for part in word.split())

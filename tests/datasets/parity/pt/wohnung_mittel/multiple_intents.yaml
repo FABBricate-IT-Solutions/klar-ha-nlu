@@ -1,26 +1,26 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - desliga tudo luz exceto quarto exceto cozinha
 multiple_intents/multi::licht_und_heizung:
-- liga luz sala e poe aquecimento sala 23
+- liga tudo luz sala then poe aquecimento sala 23
 multiple_intents/multi::wohn_und_ess_aus:
-- desliga luz sala e desliga luz salaestaress
+- desliga tudo luz sala then desliga tudo luz salaestaress
 multiple_intents/multi::wohn_und_ess_rot:
-- poe luz sala vermelho e poe luz salaestaress vermelho
+- poe tudo luz sala vermelho then poe tudo luz salaestaress vermelho
 multiple_intents/multi::wz_und_kuche_licht:
-- liga luz sala e liga luz cozinha
+- liga tudo luz sala then liga tudo luz cozinha
 multiple_intents/multi::zwei_raeume_und_heizung:
-- liga luz sala e liga luz cozinha e poe aquecimento sala 23
+- liga tudo luz sala then liga tudo luz cozinha then poe aquecimento sala 23
 multiple_intents/spoken::drei_raeume_an:
-- liga luz sala e liga luz salaestaress e liga luz cozinha
+- liga tudo luz sala then liga tudo luz salaestaress then liga tudo luz cozinha
 multiple_intents/spoken::drei_raeume_aus:
-- desliga luz sala e desliga luz salaestaress e desliga luz cozinha
+- desliga tudo luz sala then desliga tudo luz salaestaress then desliga tudo luz cozinha
 multiple_intents/spoken::ess_und_wohn_aus:
-- desliga luz sala e desliga luz salaestaress
+- desliga tudo luz sala then desliga tudo luz salaestaress
 multiple_intents/spoken::kugel_und_decke_aus:
-- desliga globo e desliga teto
+- globo e teto quarto desliga
 multiple_intents/spoken_more::kuche_und_ess_an:
-- liga luz cozinha e liga luz salaestaress
+- liga tudo luz cozinha then liga tudo luz salaestaress
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- desliga luz sala e desliga luz salaestaress
+- desliga tudo luz sala then desliga tudo luz salaestaress then desliga tudo luz office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- desliga luz sala
+- desliga tudo luz sala then desliga tudo luz office

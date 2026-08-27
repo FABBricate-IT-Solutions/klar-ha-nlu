@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - atver aizkars gulamistaba
-  - aizkars gulamistaba atver
+  - atver aizkars gulamistabamaster
+  - aizkars gulamistabamaster atver
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - aizver aizkars gulamistaba
-  - aizkars gulamistaba aizver
+  - aizver aizkars gulamistabamaster
+  - aizkars gulamistabamaster aizver
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - iestati aizkars gulamistaba 0
-  - aizkars gulamistaba 0
+  - iestati aizkars gulamistabamaster 0
+  - aizkars gulamistabamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - iestati aizkars gulamistaba 25
-  - aizkars gulamistaba 25
+  - iestati aizkars gulamistabamaster 25
+  - aizkars gulamistabamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - iestati aizkars gulamistaba 40
-  - aizkars gulamistaba 40
+  - iestati aizkars gulamistabamaster 40
+  - aizkars gulamistabamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - iestati aizkars gulamistaba 75
-  - aizkars gulamistaba 75
+  - iestati aizkars gulamistabamaster 75
+  - aizkars gulamistabamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - iestati aizkars gulamistaba 100
-  - aizkars gulamistaba 100
+  - iestati aizkars gulamistabamaster 100
+  - aizkars gulamistabamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - atver aizkars gulamistaba
-  - aizkars gulamistaba atver
+  - atver aizkars gulamistabamaster
+  - aizkars gulamistabamaster atver

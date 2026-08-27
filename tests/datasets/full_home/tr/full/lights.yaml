@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik yatakodasi
-  - isik yatakodasi yak
+  - yak isik yatakodasimaster
+  - isik yatakodasimaster yak
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasi
-  - isik yatakodasi sondur
+  - sondur isik yatakodasimaster
+  - isik yatakodasimaster sondur
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - yak tavan yatakodasi
-  - tavan yatakodasi yak
+  - yak tavan yatakodasimaster
+  - tavan yatakodasimaster yak
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - sondur tavan yatakodasi
-  - tavan yatakodasi sondur
+  - sondur tavan yatakodasimaster
+  - tavan yatakodasimaster sondur
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla tavan yatakodasi 20
-  - tavan yatakodasi 20
+  - ayarla tavan yatakodasimaster 20
+  - tavan yatakodasimaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla tavan yatakodasi 40
-  - tavan yatakodasi 40
+  - ayarla tavan yatakodasimaster 40
+  - tavan yatakodasimaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla tavan yatakodasi 50
-  - tavan yatakodasi 50
+  - ayarla tavan yatakodasimaster 50
+  - tavan yatakodasimaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla tavan yatakodasi 60
-  - tavan yatakodasi 60
+  - ayarla tavan yatakodasimaster 60
+  - tavan yatakodasimaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla tavan yatakodasi 80
-  - tavan yatakodasi 80
+  - ayarla tavan yatakodasimaster 80
+  - tavan yatakodasimaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla tavan yatakodasi 100
-  - tavan yatakodasi 100
+  - ayarla tavan yatakodasimaster 100
+  - tavan yatakodasimaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - yak komodin yatakodasi
-  - komodin yatakodasi yak
+  - yak komodin yatakodasimaster
+  - komodin yatakodasimaster yak
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sondur komodin yatakodasi
-  - komodin yatakodasi sondur
+  - sondur komodin yatakodasimaster
+  - komodin yatakodasimaster sondur
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla komodin yatakodasi 20
-  - komodin yatakodasi 20
+  - ayarla komodin yatakodasimaster 20
+  - komodin yatakodasimaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla komodin yatakodasi 40
-  - komodin yatakodasi 40
+  - ayarla komodin yatakodasimaster 40
+  - komodin yatakodasimaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla komodin yatakodasi 50
-  - komodin yatakodasi 50
+  - ayarla komodin yatakodasimaster 50
+  - komodin yatakodasimaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla komodin yatakodasi 60
-  - komodin yatakodasi 60
+  - ayarla komodin yatakodasimaster 60
+  - komodin yatakodasimaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla komodin yatakodasi 80
-  - komodin yatakodasi 80
+  - ayarla komodin yatakodasimaster 80
+  - komodin yatakodasimaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla komodin yatakodasi 100
-  - komodin yatakodasi 100
+  - ayarla komodin yatakodasimaster 100
+  - komodin yatakodasimaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - yak ensuite yatakodasi
-  - ensuite yatakodasi yak
+  - yak ensuite yatakodasimaster
+  - ensuite yatakodasimaster yak
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - sondur ensuite yatakodasi
-  - ensuite yatakodasi sondur
+  - sondur ensuite yatakodasimaster
+  - ensuite yatakodasimaster sondur
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla ensuite yatakodasi 20
-  - ensuite yatakodasi 20
+  - ayarla ensuite yatakodasimaster 20
+  - ensuite yatakodasimaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla ensuite yatakodasi 40
-  - ensuite yatakodasi 40
+  - ayarla ensuite yatakodasimaster 40
+  - ensuite yatakodasimaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla ensuite yatakodasi 50
-  - ensuite yatakodasi 50
+  - ayarla ensuite yatakodasimaster 50
+  - ensuite yatakodasimaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla ensuite yatakodasi 60
-  - ensuite yatakodasi 60
+  - ayarla ensuite yatakodasimaster 60
+  - ensuite yatakodasimaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla ensuite yatakodasi 80
-  - ensuite yatakodasi 80
+  - ayarla ensuite yatakodasimaster 80
+  - ensuite yatakodasimaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla ensuite yatakodasi 100
-  - ensuite yatakodasi 100
+  - ayarla ensuite yatakodasimaster 100
+  - ensuite yatakodasimaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - yak komodin yatakodasi
-  - komodin yatakodasi yak
+  - yak komodin yatakodasimaster
+  - komodin yatakodasimaster yak
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - sondur komodin yatakodasi
-  - komodin yatakodasi sondur
+  - sondur komodin yatakodasimaster
+  - komodin yatakodasimaster sondur
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla komodin yatakodasi 20
-  - komodin yatakodasi 20
+  - ayarla komodin yatakodasimaster 20
+  - komodin yatakodasimaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla komodin yatakodasi 40
-  - komodin yatakodasi 40
+  - ayarla komodin yatakodasimaster 40
+  - komodin yatakodasimaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla komodin yatakodasi 50
-  - komodin yatakodasi 50
+  - ayarla komodin yatakodasimaster 50
+  - komodin yatakodasimaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla komodin yatakodasi 60
-  - komodin yatakodasi 60
+  - ayarla komodin yatakodasimaster 60
+  - komodin yatakodasimaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla komodin yatakodasi 80
-  - komodin yatakodasi 80
+  - ayarla komodin yatakodasimaster 80
+  - komodin yatakodasimaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla komodin yatakodasi 100
-  - komodin yatakodasi 100
+  - ayarla komodin yatakodasimaster 100
+  - komodin yatakodasimaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla tavan yatakodasi red
-  - ayarla isik yatakodasi red
+  - ayarla tavan yatakodasimaster red
+  - ayarla isik yatakodasimaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla tavan yatakodasi blue
-  - ayarla isik yatakodasi blue
+  - ayarla tavan yatakodasimaster blue
+  - ayarla isik yatakodasimaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla tavan yatakodasi green
-  - ayarla isik yatakodasi green
+  - ayarla tavan yatakodasimaster green
+  - ayarla isik yatakodasimaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla tavan yatakodasi white
-  - ayarla isik yatakodasi white
+  - ayarla tavan yatakodasimaster white
+  - ayarla isik yatakodasimaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla tavan yatakodasi yellow
-  - ayarla isik yatakodasi yellow
+  - ayarla tavan yatakodasimaster yellow
+  - ayarla isik yatakodasimaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla tavan yatakodasi black
-  - ayarla isik yatakodasi black
+  - ayarla tavan yatakodasimaster black
+  - ayarla isik yatakodasimaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla komodin yatakodasi red
-  - ayarla isik yatakodasi red
+  - ayarla komodin yatakodasimaster red
+  - ayarla isik yatakodasimaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla komodin yatakodasi blue
-  - ayarla isik yatakodasi blue
+  - ayarla komodin yatakodasimaster blue
+  - ayarla isik yatakodasimaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla komodin yatakodasi green
-  - ayarla isik yatakodasi green
+  - ayarla komodin yatakodasimaster green
+  - ayarla isik yatakodasimaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla komodin yatakodasi white
-  - ayarla isik yatakodasi white
+  - ayarla komodin yatakodasimaster white
+  - ayarla isik yatakodasimaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla komodin yatakodasi yellow
-  - ayarla isik yatakodasi yellow
+  - ayarla komodin yatakodasimaster yellow
+  - ayarla isik yatakodasimaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla komodin yatakodasi black
-  - ayarla isik yatakodasi black
+  - ayarla komodin yatakodasimaster black
+  - ayarla isik yatakodasimaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla ensuite yatakodasi red
-  - ayarla isik yatakodasi red
+  - ayarla ensuite yatakodasimaster red
+  - ayarla isik yatakodasimaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla ensuite yatakodasi blue
-  - ayarla isik yatakodasi blue
+  - ayarla ensuite yatakodasimaster blue
+  - ayarla isik yatakodasimaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla ensuite yatakodasi green
-  - ayarla isik yatakodasi green
+  - ayarla ensuite yatakodasimaster green
+  - ayarla isik yatakodasimaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla ensuite yatakodasi white
-  - ayarla isik yatakodasi white
+  - ayarla ensuite yatakodasimaster white
+  - ayarla isik yatakodasimaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla ensuite yatakodasi yellow
-  - ayarla isik yatakodasi yellow
+  - ayarla ensuite yatakodasimaster yellow
+  - ayarla isik yatakodasimaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla ensuite yatakodasi black
-  - ayarla isik yatakodasi black
+  - ayarla ensuite yatakodasimaster black
+  - ayarla isik yatakodasimaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla komodin yatakodasi red
-  - ayarla isik yatakodasi red
+  - ayarla komodin yatakodasimaster red
+  - ayarla isik yatakodasimaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla komodin yatakodasi blue
-  - ayarla isik yatakodasi blue
+  - ayarla komodin yatakodasimaster blue
+  - ayarla isik yatakodasimaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla komodin yatakodasi green
-  - ayarla isik yatakodasi green
+  - ayarla komodin yatakodasimaster green
+  - ayarla isik yatakodasimaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla komodin yatakodasi white
-  - ayarla isik yatakodasi white
+  - ayarla komodin yatakodasimaster white
+  - ayarla isik yatakodasimaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla komodin yatakodasi yellow
-  - ayarla isik yatakodasi yellow
+  - ayarla komodin yatakodasimaster yellow
+  - ayarla isik yatakodasimaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla komodin yatakodasi black
-  - ayarla isik yatakodasi black
+  - ayarla komodin yatakodasimaster black
+  - ayarla isik yatakodasimaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric yatakodasi
-  - hepsi isik sondur haric yatakodasi
+  - sondur hepsi isik haric yatakodasimaster
+  - hepsi isik sondur haric yatakodasimaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

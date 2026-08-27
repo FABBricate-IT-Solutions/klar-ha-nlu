@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - kveiktu viftu svefnherbergi2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- settu ljos svefnherbergi2 65
+- settu allt ljos svefnherbergi2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- settu ljos svefnherbergi2 pink
+- settu allt ljos svefnherbergi2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- slokktu ljos svefnherbergi2
+- slokktu allt ljos svefnherbergi2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- kveiktu ljos svefnherbergi2
+- kveiktu allt ljos svefnherbergi2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - lokadu gardina svefnherbergi3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - settu gardina svefnherbergi3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- settu ljos svefnherbergi3 76
+- settu allt ljos svefnherbergi3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- settu ljos svefnherbergi3 blue
+- settu allt ljos svefnherbergi3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- slokktu ljos svefnherbergi3
+- slokktu allt ljos svefnherbergi3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- kveiktu ljos svefnherbergi3
+- kveiktu allt ljos svefnherbergi3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- settu ljos svefnherbergi4 69
+- settu allt ljos svefnherbergi4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- settu ljos svefnherbergi4 green
+- settu allt ljos svefnherbergi4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- slokktu ljos svefnherbergi4
+- slokktu allt ljos svefnherbergi4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- kveiktu ljos svefnherbergi4
+- kveiktu allt ljos svefnherbergi4
 area/dining_lights::dining_lights_change_brightness:
-- settu ljos stofafamess 54
+- settu allt ljos stofafamess 54
 area/dining_lights::dining_lights_change_color:
-- settu ljos stofafamess blue
+- settu allt ljos stofafamess blue
 area/dining_lights::dining_lights_turn_off:
-- slokktu ljos stofafamess
+- slokktu allt ljos stofafamess
 area/dining_lights::dining_lights_turn_on:
-- kveiktu ljos stofafamess
+- kveiktu allt ljos stofafamess
 area/entryway_lights::entryway_lights_change_brightness:
-- settu ljos anddyri 72
+- settu allt ljos anddyri 72
 area/entryway_lights::entryway_lights_change_color:
-- settu ljos anddyri black
+- settu allt ljos anddyri black
 area/entryway_lights::entryway_lights_turn_off:
-- slokktu ljos anddyri
+- slokktu allt ljos anddyri
 area/entryway_lights::entryway_lights_turn_on:
-- kveiktu ljos anddyri
+- kveiktu allt ljos anddyri
 area/entryway_locks::entryway_locks_lock:
 - las las anddyri
 area/entryway_locks::entryway_locks_unlock:
 - opnadu las anddyri
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- settu ljos stofafam 39 og settu ljos eldhus 39
+- settu allt ljos stofafam 39 then settu allt ljos eldhus 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- settu ljos stofafam purple og settu ljos eldhus purple
+- settu allt ljos stofafam purple then settu allt ljos eldhus purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- slokktu ljos stofafam og slokktu ljos eldhus
+- slokktu allt ljos stofafam then slokktu allt ljos eldhus
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- kveiktu ljos stofafam og kveiktu ljos eldhus
+- kveiktu allt ljos stofafam then kveiktu allt ljos eldhus
 area/family_room_fans::family_room_fans_set_fan_speed:
 - settu viftu stofafam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - kveiktu viftu stofafam
 area/family_room_lights::family_room_lights_change_brightness:
-- settu ljos stofafam 44
+- settu allt ljos stofafam 44
 area/family_room_lights::family_room_lights_change_color:
-- settu ljos stofafam green
+- settu allt ljos stofafam green
 area/family_room_lights::family_room_lights_turn_off:
-- slokktu ljos stofafam
+- slokktu allt ljos stofafam
 area/family_room_lights::family_room_lights_turn_on:
-- kveiktu ljos stofafam
+- kveiktu allt ljos stofafam
 area/garage_covers::garage_covers_close:
 - lokadu gardina garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - settu gardina garage 86
 area/garage_lights::garage_lights_change_brightness:
-- settu ljos garage 16
+- settu allt ljos garage 16
 area/garage_lights::garage_lights_change_color:
-- settu ljos garage blue
+- settu allt ljos garage blue
 area/garage_lights::garage_lights_turn_off:
-- slokktu ljos garage
+- slokktu allt ljos garage
 area/garage_lights::garage_lights_turn_on:
-- kveiktu ljos garage
+- kveiktu allt ljos garage
 area/garage_locks::garage_locks_lock:
 - las las garage
 area/garage_locks::garage_locks_unlock:
 - opnadu las garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- settu ljos anddyrigang 26 og settu ljos klósett 26
+- settu allt ljos anddyrigang 26 then settu allt ljos klósett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- settu ljos anddyrigang purple og settu ljos klósett purple
+- settu allt ljos anddyrigang purple then settu allt ljos klósett purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- slokktu ljos anddyrigang og slokktu ljos klósett
+- slokktu allt ljos anddyrigang then slokktu allt ljos klósett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- kveiktu ljos anddyrigang og kveiktu ljos klósett
+- kveiktu allt ljos anddyrigang then kveiktu allt ljos klósett
 area/hallway_lights::hallway_lights_change_brightness:
-- settu ljos anddyrigang 61
+- settu allt ljos anddyrigang 61
 area/hallway_lights::hallway_lights_change_color:
-- settu ljos anddyrigang orange
+- settu allt ljos anddyrigang orange
 area/hallway_lights::hallway_lights_turn_off:
-- slokktu ljos anddyrigang
+- slokktu allt ljos anddyrigang
 area/hallway_lights::hallway_lights_turn_on:
-- kveiktu ljos anddyrigang
+- kveiktu allt ljos anddyrigang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- settu ljos eldhus 45
+- settu allt ljos eldhus 45
 area/kitchen_lights::kitchen_lights_change_color:
-- settu ljos eldhus pink
+- settu allt ljos eldhus pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- slokktu ljos eldhus
+- slokktu allt ljos eldhus
 area/kitchen_lights::kitchen_lights_turn_on:
-- kveiktu ljos eldhus
+- kveiktu allt ljos eldhus
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- slokktu taeki eldhus
+- slokktu allt taeki eldhus
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- kveiktu taeki eldhus
+- kveiktu allt taeki eldhus
 area/laundry_lights::laundry_lights_change_brightness:
-- settu ljos thvottahus 62
+- settu allt ljos thvottahus 62
 area/laundry_lights::laundry_lights_change_color:
-- settu ljos thvottahus yellow
+- settu allt ljos thvottahus yellow
 area/laundry_lights::laundry_lights_turn_off:
-- slokktu ljos thvottahus
+- slokktu allt ljos thvottahus
 area/laundry_lights::laundry_lights_turn_on:
-- kveiktu ljos thvottahus
+- kveiktu allt ljos thvottahus
 area/laundry_switchs::laundry_switchs_turn_off:
-- slokktu taeki thvottahus
+- slokktu allt taeki thvottahus
 area/laundry_switchs::laundry_switchs_turn_on:
-- kveiktu taeki thvottahus
+- kveiktu allt taeki thvottahus
 area/living_climates::living_climates_set_temperature:
 - settu hiti stofa 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - settu gardina stofa 46
 area/living_lights::living_lights_change_brightness:
-- settu ljos stofa 84
+- settu allt ljos stofa 84
 area/living_lights::living_lights_change_color:
-- settu ljos stofa blue
+- settu allt ljos stofa blue
 area/living_lights::living_lights_turn_off:
-- slokktu ljos stofa
+- slokktu allt ljos stofa
 area/living_lights::living_lights_turn_on:
-- kveiktu ljos stofa
+- kveiktu allt ljos stofa
 area/main_bath_lights::main_bath_lights_change_brightness:
-- settu ljos main bath 73
+- settu allt ljos main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- settu ljos main bath pink
+- settu allt ljos main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- slokktu ljos main bath
+- slokktu allt ljos main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- kveiktu ljos main bath
+- kveiktu allt ljos main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- slokktu taeki main bath
+- slokktu allt taeki main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- kveiktu taeki main bath
+- kveiktu allt taeki main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- settu ljos badmaster 60
+- settu allt ljos badmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- settu ljos badmaster black
+- settu allt ljos badmaster black
 area/master_bath_lights::master_bath_lights_turn_off:
-- slokktu ljos badmaster
+- slokktu allt ljos badmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- kveiktu ljos badmaster
+- kveiktu allt ljos badmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- slokktu taeki badmaster
+- slokktu allt taeki badmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- kveiktu taeki badmaster
+- kveiktu allt taeki badmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- settu hiti svefnherbergi 20 og settu hiti stofa 20
+- settu hiti svefnherbergimaster 20 then settu hiti stofa 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- lokadu gardina svefnherbergi og lokadu gardina stofa
+- lokadu gardina svefnherbergimaster then lokadu gardina stofa
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- opnadu gardina svefnherbergi og opnadu gardina stofa
+- opnadu gardina svefnherbergimaster then opnadu gardina stofa
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- settu gardina svefnherbergi 19 og settu gardina stofa 19
+- settu gardina svefnherbergimaster 19 then settu gardina stofa 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- settu ljos svefnherbergi 25 og settu ljos stofa 25
+- settu allt ljos svefnherbergimaster 25 then settu allt ljos stofa 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- settu ljos svefnherbergi white og settu ljos stofa white
+- settu allt ljos svefnherbergimaster white then settu allt ljos stofa white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- slokktu ljos svefnherbergi og slokktu ljos stofa
+- slokktu allt ljos svefnherbergimaster then slokktu allt ljos stofa
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- kveiktu ljos svefnherbergi og kveiktu ljos stofa
+- kveiktu allt ljos svefnherbergimaster then kveiktu allt ljos stofa
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- settu ljos svefnherbergi 57 og settu ljos main bath 57
+- settu allt ljos svefnherbergimaster 57 then settu allt ljos main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- settu ljos svefnherbergi pink og settu ljos main bath pink
+- settu allt ljos svefnherbergimaster pink then settu allt ljos main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- slokktu ljos svefnherbergi og slokktu ljos main bath
+- slokktu allt ljos svefnherbergimaster then slokktu allt ljos main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- kveiktu ljos svefnherbergi og kveiktu ljos main bath
+- kveiktu allt ljos svefnherbergimaster then kveiktu allt ljos main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- settu hiti svefnherbergi 20
+- settu hiti svefnherbergimaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- lokadu gardina svefnherbergi
+- lokadu gardina svefnherbergimaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- opnadu gardina svefnherbergi
+- opnadu gardina svefnherbergimaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- settu gardina svefnherbergi 38
+- settu gardina svefnherbergimaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- settu viftu svefnherbergi 79
+- settu viftu svefnherbergimaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- slokktu viftu svefnherbergi
+- slokktu viftu svefnherbergimaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- kveiktu viftu svefnherbergi
+- kveiktu viftu svefnherbergimaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- settu ljos svefnherbergi 73
+- settu allt ljos svefnherbergimaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- settu ljos svefnherbergi pink
+- settu allt ljos svefnherbergimaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- slokktu ljos svefnherbergi
+- slokktu allt ljos svefnherbergimaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- kveiktu ljos svefnherbergi
+- kveiktu allt ljos svefnherbergimaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- settu ljos klósett 52
+- settu allt ljos klósett 52
 area/powder_room_lights::powder_room_lights_change_color:
-- settu ljos klósett purple
+- settu allt ljos klósett purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- slokktu ljos klósett
+- slokktu allt ljos klósett
 area/powder_room_lights::powder_room_lights_turn_on:
-- kveiktu ljos klósett
+- kveiktu allt ljos klósett
 area/spoken_lights::spoken_bedroom_inflection:
-- settu ljos svefnherbergi red
+- settu allt ljos svefnherbergimaster red
 area/spoken_lights::spoken_except_island:
 - slokktu allt ljos nema eyja
 area/spoken_lights::spoken_except_kitchen:
-- slokktu allt ljos nema eldhus nema eyja
+- slokktu allt ljos nema eldhus
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- slokktu ljos stofa og slokktu ljos stofafamess og slokktu ljos eldhus
+- slokktu allt ljos stofa then slokktu allt ljos stofafamess then slokktu allt ljos
+  eldhus
 area/spoken_lights::spoken_stt_kitchen_off:
-- slokktu ljos eldhus
+- slokktu allt ljos eldhus
 area/spoken_lights::spoken_stt_living_off:
-- slokktu ljos stofa
+- slokktu allt ljos stofa

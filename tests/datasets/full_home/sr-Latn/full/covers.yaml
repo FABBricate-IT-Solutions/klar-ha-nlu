@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otvori zavesa spavaca
-  - zavesa spavaca otvori
+  - otvori zavesa spavacamaster
+  - zavesa spavacamaster otvori
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zatvori zavesa spavaca
-  - zavesa spavaca zatvori
+  - zatvori zavesa spavacamaster
+  - zavesa spavacamaster zatvori
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - stavi zavesa spavaca 0
-  - zavesa spavaca 0
+  - stavi zavesa spavacamaster 0
+  - zavesa spavacamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - stavi zavesa spavaca 25
-  - zavesa spavaca 25
+  - stavi zavesa spavacamaster 25
+  - zavesa spavacamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - stavi zavesa spavaca 40
-  - zavesa spavaca 40
+  - stavi zavesa spavacamaster 40
+  - zavesa spavacamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - stavi zavesa spavaca 75
-  - zavesa spavaca 75
+  - stavi zavesa spavacamaster 75
+  - zavesa spavacamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - stavi zavesa spavaca 100
-  - zavesa spavaca 100
+  - stavi zavesa spavacamaster 100
+  - zavesa spavacamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otvori zavesa spavaca
-  - zavesa spavaca otvori
+  - otvori zavesa spavacamaster
+  - zavesa spavacamaster otvori

@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - kas gaisma garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - kas gaisma prieksnamsgang un kas gaisma wc
+- - kas gaisma prieksnamsgang then kas gaisma wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - kas gaisma prieksnamsgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - kas gaisma vannamaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - kas apkure gulamistaba un kas apkure istaba
+- - kas apkure gulamistabamaster then kas apkure istaba
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - kas aizkars gulamistaba un kas aizkars istaba
+- - kas aizkars gulamistabamaster then kas aizkars istaba
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - kas apkure gulamistaba
+- - kas apkure gulamistabamaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - kas aizkars gulamistaba
+- - kas aizkars gulamistabamaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - kas gaisma wc

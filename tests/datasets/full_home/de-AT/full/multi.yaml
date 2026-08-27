@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht arbeitszimmer und hallway
-  - licht arbeitszimmer und hallway mach
+  - mach licht office und hallway
+  - licht office und hallway mach
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht schlafzimmer und badmastermain
-  - licht schlafzimmer und badmastermain mach
+  - mach licht schlafzimmermaster und badmastermain
+  - licht schlafzimmermaster und badmastermain mach
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht hallway und arbeitszimmer
-  - licht hallway und arbeitszimmer mach
+  - mach licht hallway und office
+  - licht hallway und office mach
 - name: multi_dining_kitchen
   conditions:
   - type: action

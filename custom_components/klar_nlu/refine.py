@@ -191,12 +191,44 @@ def refine_prompt(pack: str, personality: str, extra: str | None) -> str:
     if personality not in _PERSONALITY:
         personality = "default"
     custom = (extra or "").strip()
-    voice = custom or voice_block(pack, personality)
-    if pack == "en":
-        return f"{_RULES['en']}\n\n{voice}"
-    if pack == "de":
-        return f"{_RULES['de']}\n\n{voice}"
-    return f"{_RULES['meta']}\n\n{voice}"
+    stock = voice_block(pack, personality)
+    voice = custom if _usable_extra(custom, pack) else stock
+    if pack == "en" or pack.startswith("en-"):
+        rules = _RULES["en"]
+    elif pack == "de" or pack.startswith("de-"):
+        rules = _RULES["de"]
+    else:
+        rules = _RULES["meta"]
+    lock = _language_lock(pack)
+    return f"{lock}\n\n{rules}\n\n{voice}\n\n{lock}"
+
+
+def _usable_extra(custom: str, pack: str) -> bool:
+    if not custom:
+        return False
+    german = pack == "de" or pack.startswith("de-")
+    if not german and any(marker in custom for marker in ("Stimme:", "Schalt-Bestätigungen", "Antworte nur auf Deutsch")):
+        return False
+    return True
+
+
+def _language_lock(pack: str) -> str:
+    try:
+        from .lang_select import language_lock
+
+        return language_lock(pack)
+    except ImportError:
+        pass
+    try:
+        from lang_select import language_lock
+
+        return language_lock(pack)
+    except ImportError:
+        if pack == "de" or pack.startswith("de-"):
+            return "Antworte nur auf Deutsch. Übersetze nicht in eine andere Sprache."
+        if pack == "en" or pack.startswith("en-"):
+            return "Answer only in English. Do not translate into German or any other language."
+        return f"Answer only in the Klar NLU language ({pack}). Do not translate into German."
 
 
 def refine_input(speech: str, pack: str) -> str:

@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - hachchu timer 10 min
-  - timer 10 min
+  - ಹಚ್ಚು ಟೈಮರ್ 10 min
+  - ಟೈಮರ್ 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - hachchu timer 45 min
-  - timer 45 min
+  - ಹಚ್ಚು ಟೈಮರ್ 45 min
+  - ಟೈಮರ್ 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - arisu timer
-  - timer arisu
+  - ಆರಿಸು ಟೈಮರ್
+  - ಟೈಮರ್ ಆರಿಸು
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - hachchu timer 5 min
-  - timer 5 min
+  - ಹಚ್ಚು ಟೈಮರ್ 5 min
+  - ಟೈಮರ್ 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - hachchu timer 15 min
-  - timer 15 min
+  - ಹಚ್ಚು ಟೈಮರ್ 15 min
+  - ಟೈಮರ್ 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - hachchu timer 20 min
-  - timer 20 min
+  - ಹಚ್ಚು ಟೈಮರ್ 20 min
+  - ಟೈಮರ್ 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - hachchu timer 30 min
-  - timer 30 min
+  - ಹಚ್ಚು ಟೈಮರ್ 30 min
+  - ಟೈಮರ್ 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - hachchu timer 60 min
-  - timer 60 min
+  - ಹಚ್ಚು ಟೈಮರ್ 60 min
+  - ಟೈಮರ್ 60 min

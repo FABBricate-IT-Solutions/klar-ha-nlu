@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - tro llofft nenfwd a llofft gwely
-  - llofft nenfwd a llofft gwely tro
+  - tro llofftmaster nenfwd a llofftmaster gwely
+  - llofftmaster nenfwd a llofftmaster gwely tro
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - diffodd llofft nenfwd a llofft gwely
-  - llofft nenfwd a llofft gwely diffodd
+  - diffodd llofftmaster nenfwd a llofftmaster gwely
+  - llofftmaster nenfwd a llofftmaster gwely diffodd
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tro llofft gwyntyll a cegin ynys
-  - llofft gwyntyll a cegin ynys tro
+  - tro llofftmaster gwyntyll a cegin ynys
+  - llofftmaster gwyntyll a cegin ynys tro
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffodd golau llofft a main bath
-  - golau llofft a main bath diffodd
+  - diffodd golau llofftmaster a main bath
+  - golau llofftmaster a main bath diffodd
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffodd pob golau heblaw ystafell a llofft
-  - pob golau diffodd heblaw ystafell a llofft
+  - diffodd pob golau heblaw ystafell a llofftmaster
+  - pob golau diffodd heblaw ystafell a llofftmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffodd pob golau llawr heblaw llofft
-  - pob golau llawr diffodd heblaw llofft
+  - diffodd pob golau llawr heblaw llofftmaster
+  - pob golau llawr diffodd heblaw llofftmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - agor llen ystafell a llofft
-  - llen ystafell a llofft agor
+  - agor llen ystafell a llofftmaster
+  - llen ystafell a llofftmaster agor
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - cau llen ystafell a llofft
-  - llen ystafell a llofft cau
+  - cau llen ystafell a llofftmaster
+  - llen ystafell a llofftmaster cau
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - gosod gwres ystafell a llofft 21
-  - gwres ystafell a llofft 21
+  - gosod gwres ystafell a llofftmaster 21
+  - gwres ystafell a llofftmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

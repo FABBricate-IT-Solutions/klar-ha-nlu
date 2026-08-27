@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - hva gardin soverom
-  - hva soverom gardin
+  - hva gardin soverommaster
+  - hva soverommaster gardin
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hva varme soverom
-  - hva soverom varme
+  - hva varme soverommaster
+  - hva soverommaster varme
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hva temperatur soverom
-  - hva soverom temperatur
+  - hva temperatur soverommaster
+  - hva soverommaster temperatur
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - hva vifte soverom
-  - hva soverom vifte
+  - hva vifte soverommaster
+  - hva soverommaster vifte
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - hva lys soverom
-  - hva soverom lys
+  - hva lys soverommaster
+  - hva soverommaster lys
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - hva lys soverom
-  - hva soverom lys
+  - hva lys soverommaster
+  - hva soverommaster lys
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - hva ensuite soverom
-  - hva soverom ensuite
+  - hva ensuite soverommaster
+  - hva soverommaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - hva lys soverom
-  - hva soverom lys
+  - hva lys soverommaster
+  - hva soverommaster lys
 - name: query_light.master_bath_light
   conditions:
   - type: query

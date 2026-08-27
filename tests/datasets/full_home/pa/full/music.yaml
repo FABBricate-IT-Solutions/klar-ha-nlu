@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajao queen vithak
-  - vajao queen tivi vithak
+  - ਚਲਾਓ queen ਬੈਠਕ
+  - ਚਲਾਓ queen ਟੀਵੀ ਬੈਠਕ
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - vajao album rumours by fleetwood mac vithak
+  - ਚਲਾਓ album rumours by fleetwood mac ਬੈਠਕ
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajao queen radio mode vithak
+  - ਚਲਾਓ queen radio mode ਬੈਠਕ
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - vajao bohemian rhapsody queue vithak
+  - ਚਲਾਓ bohemian rhapsody queue ਬੈਠਕ
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ki tivi vithak
-  - ki track vithak
+  - ਕੀ ਟੀਵੀ ਬੈਠਕ
+  - ਕੀ track ਬੈਠਕ
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi vithak 10
-  - tivi vithak 10
+  - ਸੈੱਟ ਟੀਵੀ ਬੈਠਕ 10
+  - ਟੀਵੀ ਬੈਠਕ 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi vithak 20
-  - tivi vithak 20
+  - ਸੈੱਟ ਟੀਵੀ ਬੈਠਕ 20
+  - ਟੀਵੀ ਬੈਠਕ 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi vithak 30
-  - tivi vithak 30
+  - ਸੈੱਟ ਟੀਵੀ ਬੈਠਕ 30
+  - ਟੀਵੀ ਬੈਠਕ 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi vithak 50
-  - tivi vithak 50
+  - ਸੈੱਟ ਟੀਵੀ ਬੈਠਕ 50
+  - ਟੀਵੀ ਬੈਠਕ 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi vithak 80
-  - tivi vithak 80
+  - ਸੈੱਟ ਟੀਵੀ ਬੈਠਕ 80
+  - ਟੀਵੀ ਬੈਠਕ 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track vithak
+  - next track ਬੈਠਕ
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track vithak
+  - previous track ਬੈਠਕ
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajao queen rasoi
-  - vajao queen tivi rasoi
+  - ਚਲਾਓ queen ਰਸੋਈ
+  - ਚਲਾਓ queen ਟੀਵੀ ਰਸੋਈ
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vajao beatles vithak
-  - vajao beatles tivi vithak
+  - ਚਲਾਓ beatles ਬੈਠਕ
+  - ਚਲਾਓ beatles ਟੀਵੀ ਬੈਠਕ
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vajao radiohead vithak
-  - vajao radiohead tivi vithak
+  - ਚਲਾਓ radiohead ਬੈਠਕ
+  - ਚਲਾਓ radiohead ਟੀਵੀ ਬੈਠਕ
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vajao abba vithak
-  - vajao abba tivi vithak
+  - ਚਲਾਓ abba ਬੈਠਕ
+  - ਚਲਾਓ abba ਟੀਵੀ ਬੈਠਕ
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vajao coldplay vithak
-  - vajao coldplay tivi vithak
+  - ਚਲਾਓ coldplay ਬੈਠਕ
+  - ਚਲਾਓ coldplay ਟੀਵੀ ਬੈਠਕ
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vajao adele vithak
-  - vajao adele tivi vithak
+  - ਚਲਾਓ adele ਬੈਠਕ
+  - ਚਲਾਓ adele ਟੀਵੀ ਬੈਠਕ
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vajao prince vithak
-  - vajao prince tivi vithak
+  - ਚਲਾਓ prince ਬੈਠਕ
+  - ਚਲਾਓ prince ਟੀਵੀ ਬੈਠਕ
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vajao bowie vithak
-  - vajao bowie tivi vithak
+  - ਚਲਾਓ bowie ਬੈਠਕ
+  - ਚਲਾਓ bowie ਟੀਵੀ ਬੈਠਕ
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vajao nirvana vithak
-  - vajao nirvana tivi vithak
+  - ਚਲਾਓ nirvana ਬੈਠਕ
+  - ਚਲਾਓ nirvana ਟੀਵੀ ਬੈਠਕ
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vajao eagles vithak
-  - vajao eagles tivi vithak
+  - ਚਲਾਓ eagles ਬੈਠਕ
+  - ਚਲਾਓ eagles ਟੀਵੀ ਬੈਠਕ
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vajao madonna vithak
-  - vajao madonna tivi vithak
+  - ਚਲਾਓ madonna ਬੈਠਕ
+  - ਚਲਾਓ madonna ਟੀਵੀ ਬੈਠਕ
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vajao mozart vithak
-  - vajao mozart tivi vithak
+  - ਚਲਾਓ mozart ਬੈਠਕ
+  - ਚਲਾਓ mozart ਟੀਵੀ ਬੈਠਕ
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vajao daft punk vithak
-  - vajao daft punk tivi vithak
+  - ਚਲਾਓ daft punk ਬੈਠਕ
+  - ਚਲਾਓ daft punk ਟੀਵੀ ਬੈਠਕ
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vajao biafra vithak
-  - vajao biafra tivi vithak
+  - ਚਲਾਓ biafra ਬੈਠਕ
+  - ਚਲਾਓ biafra ਟੀਵੀ ਬੈਠਕ
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajao queen rasoi
-  - vajao queen tivi rasoi
+  - ਚਲਾਓ queen ਰਸੋਈ
+  - ਚਲਾਓ queen ਟੀਵੀ ਰਸੋਈ
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vajao beatles rasoi
-  - vajao beatles tivi rasoi
+  - ਚਲਾਓ beatles ਰਸੋਈ
+  - ਚਲਾਓ beatles ਟੀਵੀ ਰਸੋਈ
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vajao radiohead rasoi
-  - vajao radiohead tivi rasoi
+  - ਚਲਾਓ radiohead ਰਸੋਈ
+  - ਚਲਾਓ radiohead ਟੀਵੀ ਰਸੋਈ
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vajao abba rasoi
-  - vajao abba tivi rasoi
+  - ਚਲਾਓ abba ਰਸੋਈ
+  - ਚਲਾਓ abba ਟੀਵੀ ਰਸੋਈ
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vajao coldplay rasoi
-  - vajao coldplay tivi rasoi
+  - ਚਲਾਓ coldplay ਰਸੋਈ
+  - ਚਲਾਓ coldplay ਟੀਵੀ ਰਸੋਈ
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vajao adele rasoi
-  - vajao adele tivi rasoi
+  - ਚਲਾਓ adele ਰਸੋਈ
+  - ਚਲਾਓ adele ਟੀਵੀ ਰਸੋਈ
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vajao prince rasoi
-  - vajao prince tivi rasoi
+  - ਚਲਾਓ prince ਰਸੋਈ
+  - ਚਲਾਓ prince ਟੀਵੀ ਰਸੋਈ
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vajao bowie rasoi
-  - vajao bowie tivi rasoi
+  - ਚਲਾਓ bowie ਰਸੋਈ
+  - ਚਲਾਓ bowie ਟੀਵੀ ਰਸੋਈ
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vajao nirvana rasoi
-  - vajao nirvana tivi rasoi
+  - ਚਲਾਓ nirvana ਰਸੋਈ
+  - ਚਲਾਓ nirvana ਟੀਵੀ ਰਸੋਈ
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vajao eagles rasoi
-  - vajao eagles tivi rasoi
+  - ਚਲਾਓ eagles ਰਸੋਈ
+  - ਚਲਾਓ eagles ਟੀਵੀ ਰਸੋਈ
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vajao madonna rasoi
-  - vajao madonna tivi rasoi
+  - ਚਲਾਓ madonna ਰਸੋਈ
+  - ਚਲਾਓ madonna ਟੀਵੀ ਰਸੋਈ
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vajao mozart rasoi
-  - vajao mozart tivi rasoi
+  - ਚਲਾਓ mozart ਰਸੋਈ
+  - ਚਲਾਓ mozart ਟੀਵੀ ਰਸੋਈ
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vajao daft punk rasoi
-  - vajao daft punk tivi rasoi
+  - ਚਲਾਓ daft punk ਰਸੋਈ
+  - ਚਲਾਓ daft punk ਟੀਵੀ ਰਸੋਈ
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vajao biafra rasoi
-  - vajao biafra tivi rasoi
+  - ਚਲਾਓ biafra ਰਸੋਈ
+  - ਚਲਾਓ biafra ਟੀਵੀ ਰਸੋਈ
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajao queen office
-  - vajao queen tivi office
+  - ਚਲਾਓ queen office
+  - ਚਲਾਓ queen ਟੀਵੀ office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vajao beatles office
-  - vajao beatles tivi office
+  - ਚਲਾਓ beatles office
+  - ਚਲਾਓ beatles ਟੀਵੀ office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vajao radiohead office
-  - vajao radiohead tivi office
+  - ਚਲਾਓ radiohead office
+  - ਚਲਾਓ radiohead ਟੀਵੀ office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vajao abba office
-  - vajao abba tivi office
+  - ਚਲਾਓ abba office
+  - ਚਲਾਓ abba ਟੀਵੀ office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vajao coldplay office
-  - vajao coldplay tivi office
+  - ਚਲਾਓ coldplay office
+  - ਚਲਾਓ coldplay ਟੀਵੀ office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vajao adele office
-  - vajao adele tivi office
+  - ਚਲਾਓ adele office
+  - ਚਲਾਓ adele ਟੀਵੀ office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vajao prince office
-  - vajao prince tivi office
+  - ਚਲਾਓ prince office
+  - ਚਲਾਓ prince ਟੀਵੀ office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vajao bowie office
-  - vajao bowie tivi office
+  - ਚਲਾਓ bowie office
+  - ਚਲਾਓ bowie ਟੀਵੀ office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vajao nirvana office
-  - vajao nirvana tivi office
+  - ਚਲਾਓ nirvana office
+  - ਚਲਾਓ nirvana ਟੀਵੀ office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vajao eagles office
-  - vajao eagles tivi office
+  - ਚਲਾਓ eagles office
+  - ਚਲਾਓ eagles ਟੀਵੀ office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vajao madonna office
-  - vajao madonna tivi office
+  - ਚਲਾਓ madonna office
+  - ਚਲਾਓ madonna ਟੀਵੀ office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vajao mozart office
-  - vajao mozart tivi office
+  - ਚਲਾਓ mozart office
+  - ਚਲਾਓ mozart ਟੀਵੀ office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vajao daft punk office
-  - vajao daft punk tivi office
+  - ਚਲਾਓ daft punk office
+  - ਚਲਾਓ daft punk ਟੀਵੀ office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vajao biafra office
-  - vajao biafra tivi office
+  - ਚਲਾਓ biafra office
+  - ਚਲਾਓ biafra ਟੀਵੀ office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajao queen radio mode vithak
+  - ਚਲਾਓ queen radio mode ਬੈਠਕ
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ki tivi vithak
-  - ki track vithak
+  - ਕੀ ਟੀਵੀ ਬੈਠਕ
+  - ਕੀ track ਬੈਠਕ
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajao queen radio mode rasoi
+  - ਚਲਾਓ queen radio mode ਰਸੋਈ
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - ki tivi rasoi
-  - ki track rasoi
+  - ਕੀ ਟੀਵੀ ਰਸੋਈ
+  - ਕੀ track ਰਸੋਈ
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajao queen radio mode office
+  - ਚਲਾਓ queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - ki tivi office
-  - ki track office
+  - ਕੀ ਟੀਵੀ office
+  - ਕੀ track office

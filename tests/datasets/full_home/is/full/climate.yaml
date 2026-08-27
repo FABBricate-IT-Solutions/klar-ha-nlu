@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - settu hiti svefnherbergi 18
-  - hiti svefnherbergi 18
+  - settu hiti svefnherbergimaster 18
+  - hiti svefnherbergimaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - settu hiti svefnherbergi 19
-  - hiti svefnherbergi 19
+  - settu hiti svefnherbergimaster 19
+  - hiti svefnherbergimaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - settu hiti svefnherbergi 20
-  - hiti svefnherbergi 20
+  - settu hiti svefnherbergimaster 20
+  - hiti svefnherbergimaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - settu hiti svefnherbergi 21
-  - hiti svefnherbergi 21
+  - settu hiti svefnherbergimaster 21
+  - hiti svefnherbergimaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - settu hiti svefnherbergi 22
-  - hiti svefnherbergi 22
+  - settu hiti svefnherbergimaster 22
+  - hiti svefnherbergimaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - settu hiti svefnherbergi 23
-  - hiti svefnherbergi 23
+  - settu hiti svefnherbergimaster 23
+  - hiti svefnherbergimaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - settu hiti svefnherbergi 24
-  - hiti svefnherbergi 24
+  - settu hiti svefnherbergimaster 24
+  - hiti svefnherbergimaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hvad hiti svefnherbergi
-  - hiti svefnherbergi
+  - hvad hiti svefnherbergimaster
+  - hiti svefnherbergimaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - settu hiti svefnherbergi 18
-  - hiti svefnherbergi 18
+  - settu hiti svefnherbergimaster 18
+  - hiti svefnherbergimaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - settu hiti svefnherbergi 19
-  - hiti svefnherbergi 19
+  - settu hiti svefnherbergimaster 19
+  - hiti svefnherbergimaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - settu hiti svefnherbergi 20
-  - hiti svefnherbergi 20
+  - settu hiti svefnherbergimaster 20
+  - hiti svefnherbergimaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - settu hiti svefnherbergi 21
-  - hiti svefnherbergi 21
+  - settu hiti svefnherbergimaster 21
+  - hiti svefnherbergimaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - settu hiti svefnherbergi 22
-  - hiti svefnherbergi 22
+  - settu hiti svefnherbergimaster 22
+  - hiti svefnherbergimaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - settu hiti svefnherbergi 23
-  - hiti svefnherbergi 23
+  - settu hiti svefnherbergimaster 23
+  - hiti svefnherbergimaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - settu hiti svefnherbergi 24
-  - hiti svefnherbergi 24
+  - settu hiti svefnherbergimaster 24
+  - hiti svefnherbergimaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hvad hiti svefnherbergi
-  - hiti svefnherbergi
+  - hvad hiti svefnherbergimaster
+  - hiti svefnherbergimaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hvad hiti svefnherbergi
-  - hiti svefnherbergi
+  - hvad hiti svefnherbergimaster
+  - hiti svefnherbergimaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hvad hiti svefnherbergi
-  - hiti svefnherbergi
+  - hvad hiti svefnherbergimaster
+  - hiti svefnherbergimaster

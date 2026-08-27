@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Spalna
+  name: Spalnamaster
   floor: upper
   aliases:
+  - spalnamaster
   - spalna
 - id: bedroom_2
   name: Spalna2
@@ -130,10 +131,10 @@ devices:
   - strop
 - id: light.living_lamp
   area_id: living
-  name: obyvacka svetlo
+  name: obyvacka lamp
   aliases:
-  - obyvacka svetlo
-  - svetlo
+  - obyvacka lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: obyvackafamess svetlo
@@ -190,29 +191,29 @@ devices:
   - svetlo
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: spalna strop
+  name: spalnamaster strop
   aliases:
-  - spalna strop
+  - spalnamaster strop
   - strop
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: spalna ensuite
+  name: spalnamaster ensuite
   aliases:
-  - spalna ensuite
+  - spalnamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: spalna left nocny
+  name: spalnamaster left nocny
   aliases:
-  - spalna left nocny
+  - spalnamaster left nocny
   - nocny
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: spalna right nocny
+  name: spalnamaster right nocny
   aliases:
-  - spalna right nocny
+  - spalnamaster right nocny
   - nocny
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - zaves
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: spalna zaves
+  name: spalnamaster zaves
   aliases:
-  - spalna zaves
+  - spalnamaster zaves
   - zaves
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - kurenie
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: spalna kurenie
+  name: spalnamaster kurenie
   aliases:
-  - spalna kurenie
+  - spalnamaster kurenie
   - kurenie
 - id: climate.master_ac
   area_id: master_bedroom
-  name: teplota spalna
+  name: teplota spalnamaster
   aliases:
-  - teplota spalna
+  - teplota spalnamaster
   - teplota
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: spalna ventilator
+  name: spalnamaster ventilator
   aliases:
-  - spalna ventilator
+  - spalnamaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2
@@ -365,12 +366,14 @@ devices:
   - pracka
 - id: switch.dryer
   area_id: laundry
-  name: pradelna dryer
+  name: pradelna susicka
   aliases:
-  - pradelna dryer
+  - pradelna susicka
+  - susicka
   - dryer
   tags:
   - dryer
+  - susicka
 - id: switch.master_bath_fan
   area_id: master_bath
   name: kupelmaster ventilatorbad

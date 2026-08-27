@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilador cuarto acende
-  - acende ventilador cuarto
+  - ventilador cuartomaster acende
+  - acende ventilador cuartomaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - apaga ventilador cuarto
-  - ventilador cuarto apaga
+  - apaga ventilador cuartomaster
+  - ventilador cuartomaster apaga
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - pon ventilador cuarto 40
-  - ventilador cuarto 40
+  - pon ventilador cuartomaster 40
+  - ventilador cuartomaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - pon ventilador cuarto 20
-  - ventilador cuarto 20
+  - pon ventilador cuartomaster 20
+  - ventilador cuartomaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - pon ventilador cuarto 60
-  - ventilador cuarto 60
+  - pon ventilador cuartomaster 60
+  - ventilador cuartomaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - pon ventilador cuarto 80
-  - ventilador cuarto 80
+  - pon ventilador cuartomaster 80
+  - ventilador cuartomaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

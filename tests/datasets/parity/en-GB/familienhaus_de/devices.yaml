@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - set heating lounge 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- set heating bedroom 19
+- set heating bedroommaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - set curtain bedroom2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - open curtain lounge
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- set curtain bedroom 19
+- set curtain bedroommaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- close curtain bedroom
+- close curtain bedroommaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- open curtain bedroom
+- open curtain bedroommaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - set fan bedroom2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - enable fan loungefam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- set fan bedroom 28
+- set fan bedroommaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- extinguish fan bedroom
+- extinguish fan bedroommaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- enable fan bedroom
+- enable fan bedroommaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- extinguish fan bedroom and extinguish light kitchen
+- extinguish fan bedroommaster then extinguish island kitchen
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- enable fan bedroom and enable light kitchen
+- enable fan bedroommaster then enable island kitchen
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - set ceiling bedroom2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - enable ceiling kitchen
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- set light kitchen 99
+- set island kitchen 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- set light kitchen green
+- set island kitchen green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- extinguish light kitchen
+- extinguish island kitchen
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- enable light kitchen
+- enable island kitchen
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - set light utility 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - enable ceiling lounge
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- set light lounge 72
+- set bulb lounge 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- set light lounge red
+- set bulb lounge red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- extinguish light lounge
+- extinguish bulb lounge
 devices/light_living_lamp::light_living_lamp_turn_on:
-- enable light lounge
+- enable bulb lounge
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - set light main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - enable light ensuite
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- set bedside bedroom 25
+- set bedside bedroommaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- set bedside bedroom red
+- set bedside bedroommaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- extinguish bedside bedroom
+- extinguish bedside bedroommaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- enable bedside bedroom
+- enable bedside bedroommaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- set ceiling bedroom 77
+- set ceiling bedroommaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- set ceiling bedroom blue
+- set ceiling bedroommaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- extinguish ceiling bedroom
+- extinguish ceiling bedroommaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- enable ceiling bedroom
+- enable ceiling bedroommaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- set light bedroom 55
+- set ankleide bedroommaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- set light bedroom black
+- set ankleide bedroommaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- extinguish light bedroom
+- extinguish ankleide bedroommaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- enable light bedroom
+- enable ankleide bedroommaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - set light loo 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - enable telly loungefam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause telly loungefam
+- pause tv loungefam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - extinguish telly loungefam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - enable telly lounge
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause telly lounge
+- pause tv lounge
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - extinguish telly lounge
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - enable telly lounge
 devices/scenes::dinner_time:
-- set light loungefamess 90 and enable ceiling kitchen and set light kitchen 80
+- set light loungefamess 90 then enable ceiling kitchen then set island kitchen 80
 devices/scenes::good_morning:
-- enable ceiling kitchen and set light loungefamess 100 and open curtain lounge and
-  open curtain bedroom
+- enable ceiling kitchen then set light loungefamess 100 then open curtain lounge
+  then open curtain bedroommaster
 devices/scenes::kids_bedtime:
-- extinguish ceiling bedroom2 and extinguish ceiling bedroom3 and extinguish ceiling
-  bedroom4 and set light porchgang 15
+- extinguish ceiling bedroom2 then extinguish ceiling bedroom3 then extinguish ceiling
+  bedroom4 then set light porchgang 15
 devices/scenes::movie_night:
-- extinguish ceiling lounge and set light lounge 20 and enable telly lounge and close
-  curtain lounge
+- extinguish ceiling lounge then set bulb lounge 20 then enable telly lounge then
+  close curtain lounge
 devices/scripts::good_night:
-- enable scene night
+- extinguish ceiling lounge then extinguish bulb lounge then extinguish light loungefamess
+  then extinguish ceiling kitchen then extinguish island kitchen then extinguish ceiling
+  loungefam then extinguish light porch then extinguish light porchgang then lock
+  lock porch then lock lock garage then set heating bedroommaster 20
 devices/scripts::leaving_home:
-- enable scene leaving
+- extinguish ceiling lounge then extinguish bulb lounge then extinguish ceiling kitchen
+  then extinguish ceiling loungefam then extinguish light porch then lock lock porch
+  then lock lock garage then close curtain garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - extinguish dishwasher
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - enable dishwasher
 devices/switch_dryer::switch_dryer_turn_off:
-- extinguish washer
+- extinguish dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- enable washer
+- enable dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - extinguish washer
 devices/switch_washing_machine::switch_washing_machine_turn_on:

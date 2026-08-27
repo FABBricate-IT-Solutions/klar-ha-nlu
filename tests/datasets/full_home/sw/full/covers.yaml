@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - fungua pazia chumbakulala
-  - pazia chumbakulala fungua
+  - fungua pazia chumbakulalamaster
+  - pazia chumbakulalamaster fungua
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - funga pazia chumbakulala
-  - pazia chumbakulala funga
+  - funga pazia chumbakulalamaster
+  - pazia chumbakulalamaster funga
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - weka pazia chumbakulala 0
-  - pazia chumbakulala 0
+  - weka pazia chumbakulalamaster 0
+  - pazia chumbakulalamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - weka pazia chumbakulala 25
-  - pazia chumbakulala 25
+  - weka pazia chumbakulalamaster 25
+  - pazia chumbakulalamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - weka pazia chumbakulala 40
-  - pazia chumbakulala 40
+  - weka pazia chumbakulalamaster 40
+  - pazia chumbakulalamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - weka pazia chumbakulala 75
-  - pazia chumbakulala 75
+  - weka pazia chumbakulalamaster 75
+  - pazia chumbakulalamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - weka pazia chumbakulala 100
-  - pazia chumbakulala 100
+  - weka pazia chumbakulalamaster 100
+  - pazia chumbakulalamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - fungua pazia chumbakulala
-  - pazia chumbakulala fungua
+  - fungua pazia chumbakulalamaster
+  - pazia chumbakulalamaster fungua

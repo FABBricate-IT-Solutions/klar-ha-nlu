@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - hvad gardina svefnherbergi
-  - hvad svefnherbergi gardina
+  - hvad gardina svefnherbergimaster
+  - hvad svefnherbergimaster gardina
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hvad hiti svefnherbergi
-  - hvad svefnherbergi hiti
+  - hvad hiti svefnherbergimaster
+  - hvad svefnherbergimaster hiti
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hvad hiti svefnherbergi
-  - hvad svefnherbergi hiti
+  - hvad hiti svefnherbergimaster
+  - hvad svefnherbergimaster hiti
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - hvad viftu svefnherbergi
-  - hvad svefnherbergi viftu
+  - hvad viftu svefnherbergimaster
+  - hvad svefnherbergimaster viftu
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - hvad ljos svefnherbergi
-  - hvad svefnherbergi ljos
+  - hvad ljos svefnherbergimaster
+  - hvad svefnherbergimaster ljos
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - hvad ljos svefnherbergi
-  - hvad svefnherbergi ljos
+  - hvad ljos svefnherbergimaster
+  - hvad svefnherbergimaster ljos
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - hvad ensuite svefnherbergi
-  - hvad svefnherbergi ensuite
+  - hvad ensuite svefnherbergimaster
+  - hvad svefnherbergimaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - hvad ljos svefnherbergi
-  - hvad svefnherbergi ljos
+  - hvad ljos svefnherbergimaster
+  - hvad svefnherbergimaster ljos
 - name: query_light.master_bath_light
   conditions:
   - type: query

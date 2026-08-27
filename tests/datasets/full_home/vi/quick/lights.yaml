@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bat bongden phongngu
+  - bat bongden phongngumaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - tat bongden phongngu
+  - tat bongden phongngumaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - bat tran phongngu
+  - bat tran phongngumaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - tat tran phongngu
+  - tat tran phongngumaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - bat dau giuong phongngu
+  - bat dau giuong phongngumaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - tat dau giuong phongngu
+  - tat dau giuong phongngumaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

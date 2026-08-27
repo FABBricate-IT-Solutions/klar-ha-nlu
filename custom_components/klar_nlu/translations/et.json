@@ -36,6 +36,7 @@
           "assist_filter": "Juhi ainult Assistile nähtavaid olemeid",
           "nlu_rag": "NLU-RAG (valikuline)",
           "quiet_ack": "Lühike kinnitus (kelluke)",
+          "calendar_llm": "Saada kalendripäringud LLM-ile",
           "channel": "Väljalaskekanal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Sees: ainult see, mida Assist näeb. Väljas: ka peidetud olemid.",
           "nlu_rag": "Vaikimisi väljas. Vestluses läheb varumudelile ainult vastav lõik.",
           "quiet_ack": "Lihtsa tule sisse/välja korral ei räägi, ainult lühike heli satelliidil.",
+          "calendar_llm": "Vaikimisi väljas. Sees: Klar loeb kalendrit, varumudel ütleb sündmused. Väljas: Klar ütleb loendi ise. Loomine, kustutamine ja teisaldamine jäävad Klari juurde.",
           "languages": "Vaikimisi järgib Home Assistanti süsteemikeelt.",
           "channel": "Igal ajal. Staging osutab Klar NLU (Staging)."
         }

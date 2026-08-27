@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - accendi camera soffitto e camera comodino
-  - camera soffitto e camera comodino accendi
+  - accendi cameramaster soffitto e cameramaster comodino
+  - cameramaster soffitto e cameramaster comodino accendi
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - spegni camera soffitto e camera comodino
-  - camera soffitto e camera comodino spegni
+  - spegni cameramaster soffitto e cameramaster comodino
+  - cameramaster soffitto e cameramaster comodino spegni
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - accendi camera ventola e cucina isola
-  - camera ventola e cucina isola accendi
+  - accendi cameramaster ventola e cucina isola
+  - cameramaster ventola e cucina isola accendi
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - accendi lavanderia lavatrice e lavanderia dryer
-  - lavanderia lavatrice e lavanderia dryer accendi
+  - accendi lavanderia lavatrice e lavanderia asciugatrice
+  - lavanderia lavatrice e lavanderia asciugatrice accendi
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - spegni luce camera e main bath
-  - luce camera e main bath spegni
+  - spegni luce cameramaster e main bath
+  - luce cameramaster e main bath spegni
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - spegni tutti luce eccetto soggiorno e camera
-  - tutti luce spegni eccetto soggiorno e camera
+  - spegni tutti luce eccetto soggiorno e cameramaster
+  - tutti luce spegni eccetto soggiorno e cameramaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - spegni tutti luce piano eccetto camera
-  - tutti luce piano spegni eccetto camera
+  - spegni tutti luce piano eccetto cameramaster
+  - tutti luce piano spegni eccetto cameramaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - apri tenda soggiorno e camera
-  - tenda soggiorno e camera apri
+  - apri tenda soggiorno e cameramaster
+  - tenda soggiorno e cameramaster apri
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - chiudi tenda soggiorno e camera
-  - tenda soggiorno e camera chiudi
+  - chiudi tenda soggiorno e cameramaster
+  - tenda soggiorno e cameramaster chiudi
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - metti riscaldamento soggiorno e camera 21
-  - riscaldamento soggiorno e camera 21
+  - metti riscaldamento soggiorno e cameramaster 21
+  - riscaldamento soggiorno e cameramaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

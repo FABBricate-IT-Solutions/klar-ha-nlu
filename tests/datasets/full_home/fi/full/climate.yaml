@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - aseta lampo makuuhuone 18
-  - lampo makuuhuone 18
+  - aseta lampo makuuhuonemaster 18
+  - lampo makuuhuonemaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - aseta lampo makuuhuone 19
-  - lampo makuuhuone 19
+  - aseta lampo makuuhuonemaster 19
+  - lampo makuuhuonemaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - aseta lampo makuuhuone 20
-  - lampo makuuhuone 20
+  - aseta lampo makuuhuonemaster 20
+  - lampo makuuhuonemaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - aseta lampo makuuhuone 21
-  - lampo makuuhuone 21
+  - aseta lampo makuuhuonemaster 21
+  - lampo makuuhuonemaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - aseta lampo makuuhuone 22
-  - lampo makuuhuone 22
+  - aseta lampo makuuhuonemaster 22
+  - lampo makuuhuonemaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - aseta lampo makuuhuone 23
-  - lampo makuuhuone 23
+  - aseta lampo makuuhuonemaster 23
+  - lampo makuuhuonemaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - aseta lampo makuuhuone 24
-  - lampo makuuhuone 24
+  - aseta lampo makuuhuonemaster 24
+  - lampo makuuhuonemaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mika lampo makuuhuone
-  - lampo makuuhuone
+  - mika lampo makuuhuonemaster
+  - lampo makuuhuonemaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - aseta lammitys makuuhuone 18
-  - lammitys makuuhuone 18
+  - aseta lammitys makuuhuonemaster 18
+  - lammitys makuuhuonemaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - aseta lammitys makuuhuone 19
-  - lammitys makuuhuone 19
+  - aseta lammitys makuuhuonemaster 19
+  - lammitys makuuhuonemaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - aseta lammitys makuuhuone 20
-  - lammitys makuuhuone 20
+  - aseta lammitys makuuhuonemaster 20
+  - lammitys makuuhuonemaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - aseta lammitys makuuhuone 21
-  - lammitys makuuhuone 21
+  - aseta lammitys makuuhuonemaster 21
+  - lammitys makuuhuonemaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - aseta lammitys makuuhuone 22
-  - lammitys makuuhuone 22
+  - aseta lammitys makuuhuonemaster 22
+  - lammitys makuuhuonemaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - aseta lammitys makuuhuone 23
-  - lammitys makuuhuone 23
+  - aseta lammitys makuuhuonemaster 23
+  - lammitys makuuhuonemaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - aseta lammitys makuuhuone 24
-  - lammitys makuuhuone 24
+  - aseta lammitys makuuhuonemaster 24
+  - lammitys makuuhuonemaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mika lammitys makuuhuone
-  - lammitys makuuhuone
+  - mika lammitys makuuhuonemaster
+  - lammitys makuuhuonemaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mika lampo makuuhuone
-  - lampo makuuhuone
+  - mika lampo makuuhuonemaster
+  - lampo makuuhuonemaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mika lammitys makuuhuone
-  - lammitys makuuhuone
+  - mika lammitys makuuhuonemaster
+  - lammitys makuuhuonemaster

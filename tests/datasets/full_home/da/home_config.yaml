@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Sovevaerelse
+  name: Sovevaerelsemaster
   floor: upper
   aliases:
+  - sovevaerelsemaster
   - sovevaerelse
 - id: bedroom_2
   name: Sovevaerelse2
@@ -130,10 +131,10 @@ devices:
   - loft
 - id: light.living_lamp
   area_id: living
-  name: stue lys
+  name: stue lamp
   aliases:
-  - stue lys
-  - lys
+  - stue lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: alrumess lys
@@ -190,29 +191,29 @@ devices:
   - lys
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: sovevaerelse loft
+  name: sovevaerelsemaster loft
   aliases:
-  - sovevaerelse loft
+  - sovevaerelsemaster loft
   - loft
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: sovevaerelse ensuite
+  name: sovevaerelsemaster ensuite
   aliases:
-  - sovevaerelse ensuite
+  - sovevaerelsemaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: sovevaerelse left natbord
+  name: sovevaerelsemaster left natbord
   aliases:
-  - sovevaerelse left natbord
+  - sovevaerelsemaster left natbord
   - natbord
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: sovevaerelse right natbord
+  name: sovevaerelsemaster right natbord
   aliases:
-  - sovevaerelse right natbord
+  - sovevaerelsemaster right natbord
   - natbord
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - gardin
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: sovevaerelse gardin
+  name: sovevaerelsemaster gardin
   aliases:
-  - sovevaerelse gardin
+  - sovevaerelsemaster gardin
   - gardin
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - varme
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: sovevaerelse varme
+  name: sovevaerelsemaster varme
   aliases:
-  - sovevaerelse varme
+  - sovevaerelsemaster varme
   - varme
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatur sovevaerelse
+  name: temperatur sovevaerelsemaster
   aliases:
-  - temperatur sovevaerelse
+  - temperatur sovevaerelsemaster
   - temperatur
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: sovevaerelse ventilator
+  name: sovevaerelsemaster ventilator
   aliases:
-  - sovevaerelse ventilator
+  - sovevaerelsemaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

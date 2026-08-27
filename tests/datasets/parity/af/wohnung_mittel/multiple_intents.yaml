@@ -1,26 +1,28 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - doof almal lig behalwe slaapkamer behalwe kombuis
 multiple_intents/multi::licht_und_heizung:
-- skakel lig sitkamer en stel verwarming sitkamer 23
+- skakel almal lig sitkamer then stel verwarming sitkamer 23
 multiple_intents/multi::wohn_und_ess_aus:
-- doof lig sitkamer en doof lig sitkamerfamess
+- doof almal lig sitkamer then doof almal lig sitkamerfamess
 multiple_intents/multi::wohn_und_ess_rot:
-- stel lig sitkamer rooi en stel lig sitkamerfamess rooi
+- stel almal lig sitkamer rooi then stel almal lig sitkamerfamess rooi
 multiple_intents/multi::wz_und_kuche_licht:
-- skakel lig sitkamer en skakel lig kombuis
+- skakel almal lig sitkamer then skakel almal lig kombuis
 multiple_intents/multi::zwei_raeume_und_heizung:
-- skakel lig sitkamer en skakel lig kombuis en stel verwarming sitkamer 23
+- skakel almal lig sitkamer then skakel almal lig kombuis then stel verwarming sitkamer
+  23
 multiple_intents/spoken::drei_raeume_an:
-- skakel lig sitkamer en skakel lig sitkamerfamess en skakel lig kombuis
+- skakel almal lig sitkamer then skakel almal lig sitkamerfamess then skakel almal
+  lig kombuis
 multiple_intents/spoken::drei_raeume_aus:
-- doof lig sitkamer en doof lig sitkamerfamess en doof lig kombuis
+- doof almal lig sitkamer then doof almal lig sitkamerfamess then doof almal lig kombuis
 multiple_intents/spoken::ess_und_wohn_aus:
-- doof lig sitkamer en doof lig sitkamerfamess
+- doof almal lig sitkamer then doof almal lig sitkamerfamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- doof bol en doof plafon
+- bol en plafon slaapkamer doof
 multiple_intents/spoken_more::kuche_und_ess_an:
-- skakel lig kombuis en skakel lig sitkamerfamess
+- skakel almal lig kombuis then skakel almal lig sitkamerfamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- doof lig sitkamer en doof lig sitkamerfamess
+- doof almal lig sitkamer then doof almal lig sitkamerfamess then doof almal lig office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- doof lig sitkamer
+- doof almal lig sitkamer then doof almal lig office

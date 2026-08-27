@@ -31,9 +31,10 @@ areas:
   aliases:
   - hyeongwan
 - id: living
-  name: Geosil
+  name: 거실
   floor: ground
   aliases:
+  - 거실
   - geosil
 - id: dining
   name: Gajoksiless
@@ -41,9 +42,10 @@ areas:
   aliases:
   - gajoksiless
 - id: kitchen
-  name: Bueok
+  name: 부엌
   floor: ground
   aliases:
+  - 부엌
   - bueok
 - id: family_room
   name: Gajoksil
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Chimsil
+  name: Chimsilmaster
   floor: upper
   aliases:
+  - chimsilmaster
   - chimsil
 - id: bedroom_2
   name: Chimsil2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: hyeongwan bul
+  name: hyeongwan 불
   aliases:
-  - hyeongwan bul
-  - bul
+  - hyeongwan 불
+  - 불
 - id: light.living_ceiling
   area_id: living
-  name: geosil cheonjang
+  name: 거실 cheonjang
   aliases:
-  - geosil cheonjang
+  - 거실 cheonjang
   - cheonjang
 - id: light.living_lamp
   area_id: living
-  name: geosil bul
+  name: 거실 조명
   aliases:
-  - geosil bul
-  - bul
+  - 거실 조명
+  - 조명
 - id: light.dining_pendant
   area_id: dining
-  name: gajoksiless bul
+  name: gajoksiless 불
   aliases:
-  - gajoksiless bul
-  - bul
+  - gajoksiless 불
+  - 불
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: bueok cheonjang
+  name: 부엌 cheonjang
   aliases:
-  - bueok cheonjang
+  - 부엌 cheonjang
   - cheonjang
 - id: light.kitchen_island
   area_id: kitchen
-  name: bueok seom
+  name: 부엌 seom
   aliases:
-  - bueok seom
+  - 부엌 seom
   - seom
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - cheonjang
 - id: light.laundry_light
   area_id: laundry
-  name: setaksil bul
+  name: setaksil 불
   aliases:
-  - setaksil bul
-  - bul
+  - setaksil 불
+  - 불
 - id: light.powder_room_light
   area_id: powder_room
-  name: hwajangsil bul
+  name: hwajangsil 불
   aliases:
-  - hwajangsil bul
-  - bul
+  - hwajangsil 불
+  - 불
 - id: light.garage_light
   area_id: garage
-  name: garage bul
+  name: garage 불
   aliases:
-  - garage bul
-  - bul
+  - garage 불
+  - 불
 - id: light.office_ceiling
   area_id: office
   name: office cheonjang
@@ -184,35 +187,35 @@ devices:
   - cheonjang
 - id: light.garden
   area_id: garden
-  name: garden bul
+  name: garden 불
   aliases:
-  - garden bul
-  - bul
+  - garden 불
+  - 불
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: chimsil cheonjang
+  name: chimsilmaster cheonjang
   aliases:
-  - chimsil cheonjang
+  - chimsilmaster cheonjang
   - cheonjang
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: chimsil ensuite
+  name: chimsilmaster ensuite
   aliases:
-  - chimsil ensuite
+  - chimsilmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: chimsil left chimdae
+  name: chimsilmaster left chimdae
   aliases:
-  - chimsil left chimdae
+  - chimsilmaster left chimdae
   - chimdae
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: chimsil right chimdae
+  name: chimsilmaster right chimdae
   aliases:
-  - chimsil right chimdae
+  - chimsilmaster right chimdae
   - chimdae
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - cheonjang
 - id: light.master_bath_light
   area_id: master_bath
-  name: anbangyoksil bul
+  name: anbangyoksil 불
   aliases:
-  - anbangyoksil bul
-  - bul
+  - anbangyoksil 불
+  - 불
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath bul
+  name: main bath 불
   aliases:
-  - main bath bul
-  - bul
+  - main bath 불
+  - 불
 - id: light.hallway_light
   area_id: hallway
-  name: bokdo bul
+  name: bokdo 불
   aliases:
-  - bokdo bul
-  - bul
+  - bokdo 불
+  - 불
 - id: light.basement
   area_id: basement
-  name: basement bul
+  name: basement 불
   aliases:
-  - basement bul
-  - bul
+  - basement 불
+  - 불
 - id: cover.living_blinds
   area_id: living
-  name: geosil keoteun
+  name: 거실 커튼
   aliases:
-  - geosil keoteun
-  - keoteun
+  - 거실 커튼
+  - 커튼
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: chimsil keoteun
+  name: chimsilmaster 커튼
   aliases:
-  - chimsil keoteun
-  - keoteun
+  - chimsilmaster 커튼
+  - 커튼
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: chimsil2 keoteun
+  name: chimsil2 커튼
   aliases:
-  - chimsil2 keoteun
-  - keoteun
+  - chimsil2 커튼
+  - 커튼
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: chimsil3 keoteun
+  name: chimsil3 커튼
   aliases:
-  - chimsil3 keoteun
-  - keoteun
+  - chimsil3 커튼
+  - 커튼
 - id: cover.garage_door
   area_id: garage
-  name: garage keoteun
+  name: garage 커튼
   aliases:
-  - garage keoteun
-  - keoteun
+  - garage 커튼
+  - 커튼
 - id: climate.ground_thermostat
   area_id: living
-  name: geosil nanbang
+  name: 거실 난방
   aliases:
-  - geosil nanbang
-  - nanbang
+  - 거실 난방
+  - 난방
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: chimsil nanbang
+  name: chimsilmaster 난방
   aliases:
-  - chimsil nanbang
-  - nanbang
+  - chimsilmaster 난방
+  - 난방
 - id: climate.master_ac
   area_id: master_bedroom
-  name: nanbang chimsil
+  name: nanbang chimsilmaster
   aliases:
-  - nanbang chimsil
+  - nanbang chimsilmaster
   - nanbang
   - ac
   tags:
   - nanbang
 - id: fan.family_fan
   area_id: family_room
-  name: gajoksil seonpunggi
+  name: gajoksil 선풍기
   aliases:
-  - gajoksil seonpunggi
-  - seonpunggi
+  - gajoksil 선풍기
+  - 선풍기
 - id: fan.master_fan
   area_id: master_bedroom
-  name: chimsil seonpunggi
+  name: chimsilmaster 선풍기
   aliases:
-  - chimsil seonpunggi
-  - seonpunggi
+  - chimsilmaster 선풍기
+  - 선풍기
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: chimsil2 seonpunggi
+  name: chimsil2 선풍기
   aliases:
-  - chimsil2 seonpunggi
-  - seonpunggi
+  - chimsil2 선풍기
+  - 선풍기
 - id: lock.front_door
   area_id: entryway
-  name: front mun
+  name: front 문
   aliases:
-  - front mun
+  - front 문
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage mun
+  name: garage 문
   aliases:
-  - garage mun
+  - garage 문
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: bueok sikgi
+  name: 부엌 sikgi
   aliases:
-  - bueok sikgi
+  - 부엌 sikgi
   - sikgi
 - id: switch.rangehood
   area_id: kitchen
-  name: bueok rangehood
+  name: 부엌 rangehood
   aliases:
-  - bueok rangehood
+  - 부엌 rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: anbangyoksil seonpunggibad
+  name: anbangyoksil 선풍기bad
   aliases:
-  - anbangyoksil seonpunggibad
-  - seonpunggibad
+  - anbangyoksil 선풍기bad
+  - 선풍기bad
   tags:
-  - seonpunggibad
+  - 선풍기bad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath seonpunggibad
+  name: main bath 선풍기bad
   aliases:
-  - main bath seonpunggibad
-  - seonpunggibad
+  - main bath 선풍기bad
+  - 선풍기bad
   tags:
-  - seonpunggibad
+  - 선풍기bad
 - id: media_player.living_tv
   area_id: living
-  name: geosil tv
+  name: 거실 tv
   aliases:
-  - geosil tv
+  - 거실 tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: geosil eumak
+  name: 거실 티비
   aliases:
-  - geosil eumak
-  - eumak
+  - 거실 티비
+  - 티비
   platform: music_assistant
   tags:
-  - eumak
+  - 티비
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: bueok eumak
+  name: 부엌 티비
   aliases:
-  - bueok eumak
-  - eumak
+  - 부엌 티비
+  - 티비
   platform: music_assistant
   tags:
-  - eumak
+  - 티비
 - id: media_player.office_music
   area_id: office
-  name: office eumak
+  name: office 티비
   aliases:
-  - office eumak
-  - eumak
+  - office 티비
+  - 티비
   platform: music_assistant
   tags:
-  - eumak
+  - 티비
 - id: vacuum.robot
   area_id: living
-  name: geosil cheongsogi
+  name: 거실 청소기
   aliases:
-  - geosil cheongsogi
-  - cheongsogi
+  - 거실 청소기
+  - 청소기
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: hyeongwan doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: geosil windowsensor
+  name: 거실 windowsensor
   aliases:
-  - geosil windowsensor
+  - 거실 windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: bueok motion
+  name: 부엌 motion
   aliases:
-  - bueok motion
+  - 부엌 motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: geosil tempsensor
+  name: 거실 tempsensor
   aliases:
-  - geosil tempsensor
+  - 거실 tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: geosil humidity
+  name: 거실 humidity
   aliases:
-  - geosil humidity
+  - 거실 humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: chulbal
 timers:
 - id: oven
-  name: oven taimeo
+  name: oven 타이머
 - id: laundry
-  name: laundry taimeo
+  name: laundry 타이머
 - id: abstract
-  name: abstract taimeo
+  name: abstract 타이머
 lists:
 - id: shopping
-  name: mongnok
+  name: 목록

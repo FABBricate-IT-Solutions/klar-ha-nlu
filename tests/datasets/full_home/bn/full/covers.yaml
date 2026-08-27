@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - khol porda bosar
-  - porda bosar khol
+  - খোল পর্দা বসার
+  - পর্দা বসার খোল
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - bondho porda bosar
-  - porda bosar bondho
+  - বন্ধ পর্দা বসার
+  - পর্দা বসার বন্ধ
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set porda bosar 0
-  - porda bosar 0
+  - সেট পর্দা বসার 0
+  - পর্দা বসার 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set porda bosar 25
-  - porda bosar 25
+  - সেট পর্দা বসার 25
+  - পর্দা বসার 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set porda bosar 40
-  - porda bosar 40
+  - সেট পর্দা বসার 40
+  - পর্দা বসার 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set porda bosar 75
-  - porda bosar 75
+  - সেট পর্দা বসার 75
+  - পর্দা বসার 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set porda bosar 100
-  - porda bosar 100
+  - সেট পর্দা বসার 100
+  - পর্দা বসার 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - khol porda shobarghor
-  - porda shobarghor khol
+  - খোল পর্দা shobarghormaster
+  - পর্দা shobarghormaster খোল
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - bondho porda shobarghor
-  - porda shobarghor bondho
+  - বন্ধ পর্দা shobarghormaster
+  - পর্দা shobarghormaster বন্ধ
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set porda shobarghor 0
-  - porda shobarghor 0
+  - সেট পর্দা shobarghormaster 0
+  - পর্দা shobarghormaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set porda shobarghor 25
-  - porda shobarghor 25
+  - সেট পর্দা shobarghormaster 25
+  - পর্দা shobarghormaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set porda shobarghor 40
-  - porda shobarghor 40
+  - সেট পর্দা shobarghormaster 40
+  - পর্দা shobarghormaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set porda shobarghor 75
-  - porda shobarghor 75
+  - সেট পর্দা shobarghormaster 75
+  - পর্দা shobarghormaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set porda shobarghor 100
-  - porda shobarghor 100
+  - সেট পর্দা shobarghormaster 100
+  - পর্দা shobarghormaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - khol porda shobarghor2
-  - porda shobarghor2 khol
+  - খোল পর্দা shobarghor2
+  - পর্দা shobarghor2 খোল
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - bondho porda shobarghor2
-  - porda shobarghor2 bondho
+  - বন্ধ পর্দা shobarghor2
+  - পর্দা shobarghor2 বন্ধ
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set porda shobarghor2 0
-  - porda shobarghor2 0
+  - সেট পর্দা shobarghor2 0
+  - পর্দা shobarghor2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set porda shobarghor2 25
-  - porda shobarghor2 25
+  - সেট পর্দা shobarghor2 25
+  - পর্দা shobarghor2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set porda shobarghor2 40
-  - porda shobarghor2 40
+  - সেট পর্দা shobarghor2 40
+  - পর্দা shobarghor2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set porda shobarghor2 75
-  - porda shobarghor2 75
+  - সেট পর্দা shobarghor2 75
+  - পর্দা shobarghor2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set porda shobarghor2 100
-  - porda shobarghor2 100
+  - সেট পর্দা shobarghor2 100
+  - পর্দা shobarghor2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - khol porda shobarghor3
-  - porda shobarghor3 khol
+  - খোল পর্দা shobarghor3
+  - পর্দা shobarghor3 খোল
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - bondho porda shobarghor3
-  - porda shobarghor3 bondho
+  - বন্ধ পর্দা shobarghor3
+  - পর্দা shobarghor3 বন্ধ
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set porda shobarghor3 0
-  - porda shobarghor3 0
+  - সেট পর্দা shobarghor3 0
+  - পর্দা shobarghor3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set porda shobarghor3 25
-  - porda shobarghor3 25
+  - সেট পর্দা shobarghor3 25
+  - পর্দা shobarghor3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set porda shobarghor3 40
-  - porda shobarghor3 40
+  - সেট পর্দা shobarghor3 40
+  - পর্দা shobarghor3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set porda shobarghor3 75
-  - porda shobarghor3 75
+  - সেট পর্দা shobarghor3 75
+  - পর্দা shobarghor3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set porda shobarghor3 100
-  - porda shobarghor3 100
+  - সেট পর্দা shobarghor3 100
+  - পর্দা shobarghor3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - khol porda garage
-  - porda garage khol
+  - খোল পর্দা garage
+  - পর্দা garage খোল
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - bondho porda garage
-  - porda garage bondho
+  - বন্ধ পর্দা garage
+  - পর্দা garage বন্ধ
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set porda garage 0
-  - porda garage 0
+  - সেট পর্দা garage 0
+  - পর্দা garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set porda garage 25
-  - porda garage 25
+  - সেট পর্দা garage 25
+  - পর্দা garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set porda garage 40
-  - porda garage 40
+  - সেট পর্দা garage 40
+  - পর্দা garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set porda garage 75
-  - porda garage 75
+  - সেট পর্দা garage 75
+  - পর্দা garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set porda garage 100
-  - porda garage 100
+  - সেট পর্দা garage 100
+  - পর্দা garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - khol porda bosar
-  - porda bosar khol
+  - খোল পর্দা বসার
+  - পর্দা বসার খোল
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - khol porda shobarghor
-  - porda shobarghor khol
+  - খোল পর্দা shobarghormaster
+  - পর্দা shobarghormaster খোল

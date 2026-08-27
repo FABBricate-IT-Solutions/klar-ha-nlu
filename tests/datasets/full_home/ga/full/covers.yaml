@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - oscail cuirtin seomraleong
-  - cuirtin seomraleong oscail
+  - oscail cuirtin seomraleongmaster
+  - cuirtin seomraleongmaster oscail
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - dun cuirtin seomraleong
-  - cuirtin seomraleong dun
+  - dun cuirtin seomraleongmaster
+  - cuirtin seomraleongmaster dun
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - socraigh cuirtin seomraleong 0
-  - cuirtin seomraleong 0
+  - socraigh cuirtin seomraleongmaster 0
+  - cuirtin seomraleongmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - socraigh cuirtin seomraleong 25
-  - cuirtin seomraleong 25
+  - socraigh cuirtin seomraleongmaster 25
+  - cuirtin seomraleongmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - socraigh cuirtin seomraleong 40
-  - cuirtin seomraleong 40
+  - socraigh cuirtin seomraleongmaster 40
+  - cuirtin seomraleongmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - socraigh cuirtin seomraleong 75
-  - cuirtin seomraleong 75
+  - socraigh cuirtin seomraleongmaster 75
+  - cuirtin seomraleongmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - socraigh cuirtin seomraleong 100
-  - cuirtin seomraleong 100
+  - socraigh cuirtin seomraleongmaster 100
+  - cuirtin seomraleongmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - oscail cuirtin seomraleong
-  - cuirtin seomraleong oscail
+  - oscail cuirtin seomraleongmaster
+  - cuirtin seomraleongmaster oscail

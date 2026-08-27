@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - kay diva baithak
-  - kay baithak diva
+  - काय दिवा बैठक
+  - काय बैठक दिवा
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - kay padda baithak
-  - kay baithak padda
+  - काय पडदा बैठक
+  - काय बैठक पडदा
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - kay kulup pravesh
-  - kay pravesh kulup
+  - काय कुलूप pravesh
+  - काय pravesh कुलूप
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - kay ushnata baithak
-  - kay baithak ushnata
+  - काय उष्णता बैठक
+  - काय बैठक उष्णता
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - kay tv baithak
-  - kay baithak tv
+  - काय tv बैठक
+  - काय बैठक tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - kay doorsensor pravesh
-  - kay pravesh doorsensor
+  - काय doorsensor pravesh
+  - काय pravesh doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - kay windowsensor baithak
-  - kay baithak windowsensor
+  - काय windowsensor बैठक
+  - काय बैठक windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - kay tempsensor baithak
-  - kay baithak tempsensor
+  - काय tempsensor बैठक
+  - काय बैठक tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - kay diva svayampak
-  - kay svayampak diva
+  - काय दिवा स्वयंपाक
+  - काय स्वयंपाक दिवा
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - kay diva office
-  - kay office diva
+  - काय दिवा office
+  - काय office दिवा
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - kay diva garden
-  - kay garden diva
+  - काय दिवा garden
+  - काय garden दिवा
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - kay diva basement
-  - kay basement diva
+  - काय दिवा basement
+  - काय basement दिवा
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - kay padda shayankaksh
-  - kay shayankaksh padda
+  - काय पडदा shayankakshmaster
+  - काय shayankakshmaster पडदा
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - kay padda garage
-  - kay garage padda
+  - काय पडदा garage
+  - काय garage पडदा
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - kay kulup garage
-  - kay garage kulup
+  - काय कुलूप garage
+  - काय garage कुलूप
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kay ushnata shayankaksh
-  - kay shayankaksh ushnata
+  - काय उष्णता shayankakshmaster
+  - काय shayankakshmaster उष्णता
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kay ushnata shayankaksh
-  - kay shayankaksh ushnata
+  - काय ushnata shayankakshmaster
+  - काय shayankakshmaster ushnata
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - kay tv kutumb
-  - kay kutumb tv
+  - काय tv kutumb
+  - काय kutumb tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - kay tivi baithak
-  - kay baithak tivi
+  - काय टीव्ही बैठक
+  - काय बैठक टीव्ही
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - kay motion svayampak
-  - kay svayampak motion
+  - काय motion स्वयंपाक
+  - काय स्वयंपाक motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - kay humidity baithak
-  - kay baithak humidity
+  - काय humidity बैठक
+  - काय बैठक humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - kay pankha shayankaksh
-  - kay shayankaksh pankha
+  - काय पंखा shayankakshmaster
+  - काय shayankakshmaster पंखा
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - kay jhadu baithak
-  - kay baithak jhadu
+  - काय झाडू बैठक
+  - काय बैठक झाडू
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - kay diva baithak
-  - kay baithak diva
+  - काय दिवा बैठक
+  - काय बैठक दिवा
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - kay diva svayampak
-  - kay svayampak diva
+  - काय दिवा स्वयंपाक
+  - काय स्वयंपाक दिवा
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - kay diva shayankaksh
-  - kay shayankaksh diva
+  - काय दिवा shayankakshmaster
+  - काय shayankakshmaster दिवा
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - kay diva shayankaksh
-  - kay shayankaksh diva
+  - काय दिवा shayankakshmaster
+  - काय shayankakshmaster दिवा
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - kay diva hallway
-  - kay hallway diva
+  - काय दिवा hallway
+  - काय hallway दिवा
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - kay diva kutumb
-  - kay kutumb diva
+  - काय दिवा kutumb
+  - काय kutumb दिवा
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - kay diva kutumbess
-  - kay kutumbess diva
+  - काय दिवा kutumbess
+  - काय kutumbess दिवा
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - kay diva garage
-  - kay garage diva
+  - काय दिवा garage
+  - काय garage दिवा
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - kay diva shayankaksh2
-  - kay shayankaksh2 diva
+  - काय दिवा shayankaksh2
+  - काय shayankaksh2 दिवा
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - kay diva shayankaksh3
-  - kay shayankaksh3 diva
+  - काय दिवा shayankaksh3
+  - काय shayankaksh3 दिवा
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - kay diva shayankaksh4
-  - kay shayankaksh4 diva
+  - काय दिवा shayankaksh4
+  - काय shayankaksh4 दिवा
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - kay diva pravesh
-  - kay pravesh diva
+  - काय दिवा pravesh
+  - काय pravesh दिवा
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - kay diva dhune
-  - kay dhune diva
+  - काय दिवा dhune
+  - काय dhune दिवा
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - kay diva main bath
-  - kay main bath diva
+  - काय दिवा main bath
+  - काय main bath दिवा
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - kay diva swachhata
-  - kay swachhata diva
+  - काय दिवा swachhata
+  - काय swachhata दिवा
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - kay ensuite shayankaksh
-  - kay shayankaksh ensuite
+  - काय ensuite shayankakshmaster
+  - काय shayankakshmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - kay diva shayankaksh
-  - kay shayankaksh diva
+  - काय दिवा shayankakshmaster
+  - काय shayankakshmaster दिवा
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - kay diva mukhyasnan
-  - kay mukhyasnan diva
+  - काय दिवा mukhyasnan
+  - काय mukhyasnan दिवा

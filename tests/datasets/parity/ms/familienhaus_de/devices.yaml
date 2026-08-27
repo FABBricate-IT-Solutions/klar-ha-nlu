@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - tetapkan pendingin ruang 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- tetapkan pendingin bilik 19
+- tetapkan pendingin bilikmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - tetapkan langsir bilik2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - buka langsir ruang
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- tetapkan langsir bilik 19
+- tetapkan langsir bilikmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- tutup langsir bilik
+- tutup langsir bilikmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- buka langsir bilik
+- buka langsir bilikmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - tetapkan kipas bilik2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - hidupkan kipas ruankeluarga
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- tetapkan kipas bilik 28
+- tetapkan kipas bilikmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- matikan kipas bilik
+- matikan kipas bilikmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- hidupkan kipas bilik
+- hidupkan kipas bilikmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- matikan kipas bilik dan matikan lampu dapur
+- matikan kipas bilikmaster then matikan pulau dapur
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- hidupkan kipas bilik dan hidupkan lampu dapur
+- hidupkan kipas bilikmaster then hidupkan pulau dapur
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - tetapkan siling bilik2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - hidupkan siling dapur
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- tetapkan lampu dapur 99
+- tetapkan pulau dapur 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- tetapkan lampu dapur green
+- tetapkan pulau dapur green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- matikan lampu dapur
+- matikan pulau dapur
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- hidupkan lampu dapur
+- hidupkan pulau dapur
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - tetapkan lampu dobi 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - hidupkan siling ruang
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- tetapkan lampu ruang 72
+- tetapkan lamp ruang 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- tetapkan lampu ruang red
+- tetapkan lamp ruang red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- matikan lampu ruang
+- matikan lamp ruang
 devices/light_living_lamp::light_living_lamp_turn_on:
-- hidupkan lampu ruang
+- hidupkan lamp ruang
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - tetapkan lampu main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - hidupkan lampu bilikmandimaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- tetapkan katil bilik 25
+- tetapkan katil bilikmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- tetapkan katil bilik red
+- tetapkan katil bilikmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- matikan katil bilik
+- matikan katil bilikmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- hidupkan katil bilik
+- hidupkan katil bilikmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- tetapkan siling bilik 77
+- tetapkan siling bilikmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- tetapkan siling bilik blue
+- tetapkan siling bilikmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- matikan siling bilik
+- matikan siling bilikmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- hidupkan siling bilik
+- hidupkan siling bilikmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- tetapkan lampu bilik 55
+- tetapkan ankleide bilikmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- tetapkan lampu bilik black
+- tetapkan ankleide bilikmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- matikan lampu bilik
+- matikan ankleide bilikmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- hidupkan lampu bilik
+- hidupkan ankleide bilikmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - tetapkan lampu wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,29 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - hidupkan tv ruang
 devices/scenes::dinner_time:
-- tetapkan lampu ruankeluargaess 90 dan hidupkan siling dapur dan tetapkan lampu dapur
-  80
+- tetapkan lampu ruankeluargaess 90 then hidupkan siling dapur then tetapkan pulau
+  dapur 80
 devices/scenes::good_morning:
-- hidupkan siling dapur dan tetapkan lampu ruankeluargaess 100 dan buka langsir ruang
-  dan buka langsir bilik
+- hidupkan siling dapur then tetapkan lampu ruankeluargaess 100 then buka langsir
+  ruang then buka langsir bilikmaster
 devices/scenes::kids_bedtime:
-- matikan siling bilik2 dan matikan siling bilik3 dan matikan siling bilik4 dan tetapkan
-  lampu loronggang 15
+- matikan siling bilik2 then matikan siling bilik3 then matikan siling bilik4 then
+  tetapkan lampu loronggang 15
 devices/scenes::movie_night:
-- matikan siling ruang dan tetapkan lampu ruang 20 dan hidupkan tv ruang dan tutup
+- matikan siling ruang then tetapkan lamp ruang 20 then hidupkan tv ruang then tutup
   langsir ruang
 devices/scripts::good_night:
-- hidupkan adegan malam
+- matikan siling ruang then matikan lamp ruang then matikan lampu ruankeluargaess
+  then matikan siling dapur then matikan pulau dapur then matikan siling ruankeluarga
+  then matikan lampu lorong then matikan lampu loronggang then kunci kunci lorong
+  then kunci kunci garage then tetapkan pendingin bilikmaster 20
 devices/scripts::leaving_home:
-- hidupkan adegan pergi
+- matikan siling ruang then matikan lamp ruang then matikan siling dapur then matikan
+  siling ruankeluarga then matikan lampu lorong then kunci kunci lorong then kunci
+  kunci garage then tutup langsir garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - matikan pinggan
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - hidupkan pinggan
 devices/switch_dryer::switch_dryer_turn_off:
-- matikan mesinbasuh
+- matikan dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- hidupkan mesinbasuh
+- hidupkan dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - matikan mesinbasuh
 devices/switch_washing_machine::switch_washing_machine_turn_on:

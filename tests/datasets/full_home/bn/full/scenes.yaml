@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - jalao chobi
-  - chobi jalao
+  - জ্বালাও chobi
+  - chobi জ্বালাও
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - jalao rat
-  - rat jalao
+  - জ্বালাও rat
+  - rat জ্বালাও
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - jalao ber
-  - ber jalao
+  - জ্বালাও ber
+  - ber জ্বালাও
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - jalao dinner
-  - dinner jalao
+  - জ্বালাও dinner
+  - dinner জ্বালাও
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - jalao morning
-  - morning jalao
+  - জ্বালাও morning
+  - morning জ্বালাও
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - jalao kids
-  - kids jalao
+  - জ্বালাও kids
+  - kids জ্বালাও

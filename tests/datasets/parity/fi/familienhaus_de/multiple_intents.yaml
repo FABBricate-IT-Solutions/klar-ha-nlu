@@ -1,34 +1,34 @@
 multiple_intents/multiple_intents::multi_0:
-- sammuta valo wc ja sytyta Guten Morgen
+- sammuta valo wc then sytyta kohtaus good_morning
 multiple_intents/multiple_intents::multi_1:
-- mika astianpesu ja sytyta Haus verlassen
+- mika astianpesu then sytyta kohtaus leaving_home
 multiple_intents/multiple_intents::multi_10:
-- aseta tuuletin makuuhuone2 50 ja mika verho makuuhuone2 ja mika verho makuuhuone
+- aseta tuuletin makuuhuone2 50 then mika verho makuuhuone2 then mika verho makuuhuonemaster
 multiple_intents/multiple_intents::multi_12:
-- sammuta yopoyta makuuhuone ja sytyta valo kodinhoito
+- sammuta yopoyta makuuhuonemaster then sytyta kaikki valo kodinhoito
 multiple_intents/multiple_intents::multi_14:
-- sammuta valo keittio ja mika valo eteinengang
+- sammuta kaikki valo keittio then mika valo eteinengang
 multiple_intents/multiple_intents::multi_15:
-- mika verho makuuhuone2 ja sammuta valo keittio
+- mika verho makuuhuone2 then sammuta kaikki valo keittio
 multiple_intents/multiple_intents::multi_16:
-- sytyta katto keittio ja mika valo eteinengang
+- sytyta katto keittio then mika valo eteinengang
 multiple_intents/multiple_intents::multi_18:
-- sammuta tuuletin olohuonefam ja aseta valo keittio 20
+- sammuta tuuletin olohuonefam then aseta saareke keittio 20
 multiple_intents/multiple_intents::multi_19:
-- mika tuuletin makuuhuone2 ja sytyta valo kodinhoito
+- mika tuuletin makuuhuone2 then sytyta valo kodinhoito
 multiple_intents/multiple_intents::multi_2:
-- mika valo garage ja sulje verho olohuone
+- mika valo garage then sulje verho olohuone
 multiple_intents/multiple_intents::multi_3:
-- mika lampo olohuone ja sammuta katto olohuone
+- mika lampo olohuone then sammuta katto olohuone
 multiple_intents/multiple_intents::multi_4:
-- sulje verho makuuhuone3 ja sulje verho garage ja sytyta katto makuuhuone2
+- sulje verho makuuhuone3 then sulje verho garage then sytyta katto makuuhuone2
 multiple_intents/multiple_intents::multi_5:
-- sammuta valo olohuonefamess ja aseta tuuletin makuuhuone2 50
+- sammuta valo olohuonefamess then aseta tuuletin makuuhuone2 50
 multiple_intents/multiple_intents::multi_6:
-- sytyta katto makuuhuone3 ja sammuta valo eteinen
+- sytyta katto makuuhuone3 then sammuta valo eteinen
 multiple_intents/multiple_intents::multi_7:
-- sytyta Filmabend ja sammuta astianpesu
+- sytyta kohtaus movie_night then sammuta astianpesu
 multiple_intents/multiple_intents::multi_8:
-- avaa lukko garage ja mika valo garage
+- avaa lukko garage then mika valo garage
 multiple_intents/multiple_intents::multi_9:
-- pause tv olohuone ja sammuta katto olohuone
+- pause tv olohuone then sammuta katto olohuone

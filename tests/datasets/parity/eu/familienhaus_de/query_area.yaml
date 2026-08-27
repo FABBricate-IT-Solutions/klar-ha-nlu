@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - zer sarraila sarrera
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- zer argia familiagela eta zer argia sukaldea
+- zer argia familiagela then zer argia sukaldea
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- zer argia familiagela eta zer argia sukaldea
+- zer argia familiagela then zer argia sukaldea
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- zer argia familiagela eta zer argia sukaldea
+- zer argia familiagela then zer argia sukaldea
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- zer argia familiagela eta zer argia sukaldea
+- zer argia familiagela then zer argia sukaldea
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - zer haizagailua familiagela
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - zer sarraila garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- zer argia sarreragang eta zer argia wc
+- zer argia sarreragang then zer argia wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- zer argia sarreragang eta zer argia wc
+- zer argia sarreragang then zer argia wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- zer argia sarreragang eta zer argia wc
+- zer argia sarreragang then zer argia wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- zer argia sarreragang eta zer argia wc
+- zer argia sarreragang then zer argia wc
 query_area/hallway_lights::hallway_lights_get_brightness:
 - zer argia sarreragang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - zer gailu bainumaster
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- zer gortina logela eta zer gortina egongela
+- zer gortina logelamaster then zer gortina egongela
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- zer gortina logela eta zer gortina egongela
+- zer gortina logelamaster then zer gortina egongela
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- zer gortina logela eta zer gortina egongela
+- zer gortina logelamaster then zer gortina egongela
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- zer gortina logela eta zer gortina egongela
+- zer gortina logelamaster then zer gortina egongela
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- zer berogailu logela
+- zer berogailu logelamaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- zer gortina logela
+- zer gortina logelamaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- zer gortina logela
+- zer gortina logelamaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- zer gortina logela
+- zer gortina logelamaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- zer gortina logela
+- zer gortina logelamaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- zer haizagailua logela
+- zer haizagailua logelamaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- zer haizagailua logela
+- zer haizagailua logelamaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- zer haizagailua logela
+- zer haizagailua logelamaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- zer haizagailua logela
+- zer haizagailua logelamaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- zer argia logela
+- zer argia logelamaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- zer argia logela
+- zer argia logelamaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- zer argia logela
+- zer argia logelamaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- zer argia logela
+- zer argia logelamaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - zer argia wc
 query_area/powder_room_lights::powder_room_lights_get_state:

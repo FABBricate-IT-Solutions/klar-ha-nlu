@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- hvad ljos anddyri
+- hvad sensor hurd anddyri
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
 - hvad hiti stofa
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- hvad hiti svefnherbergi
+- hvad hiti svefnherbergimaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - hvad gardina svefnherbergi2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -21,9 +21,9 @@ query_devices/cover_living_blinds::cover_living_blinds_get_position:
 query_devices/cover_living_blinds::cover_living_blinds_get_status:
 - hvad gardina stofa
 query_devices/cover_master_blinds::cover_master_blinds_get_position:
-- hvad gardina svefnherbergi
+- hvad gardina svefnherbergimaster
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
-- hvad gardina svefnherbergi
+- hvad gardina svefnherbergimaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
 - hvad viftu svefnherbergi2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
@@ -33,9 +33,9 @@ query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
 query_devices/fan_family_fan::fan_family_fan_get_status:
 - hvad viftu stofafam
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- hvad viftu svefnherbergi
+- hvad viftu svefnherbergimaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- hvad viftu svefnherbergi
+- hvad viftu svefnherbergimaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - hvad loft svefnherbergi2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -73,9 +73,9 @@ query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
 - hvad loft eldhus
 query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
-- hvad ljos eldhus
+- hvad eyja eldhus
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
-- hvad ljos eldhus
+- hvad eyja eldhus
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
 - hvad ljos thvottahus
 query_devices/light_laundry_light::light_laundry_light_get_status:
@@ -85,9 +85,9 @@ query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
 - hvad loft stofa
 query_devices/light_living_lamp::light_living_lamp_get_brightness:
-- hvad ljos stofa
+- hvad lamp stofa
 query_devices/light_living_lamp::light_living_lamp_get_status:
-- hvad ljos stofa
+- hvad lamp stofa
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
 - hvad ljos main bath
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
@@ -97,21 +97,21 @@ query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
 - hvad ljos badmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
-- hvad nattbord svefnherbergi
+- hvad nattbord svefnherbergimaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
-- hvad nattbord svefnherbergi
+- hvad nattbord svefnherbergimaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
-- hvad nattbord svefnherbergi
+- hvad nattbord svefnherbergimaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
-- hvad nattbord svefnherbergi
+- hvad nattbord svefnherbergimaster
 query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
-- hvad loft svefnherbergi
+- hvad loft svefnherbergimaster
 query_devices/light_master_ceiling::light_master_ceiling_get_status:
-- hvad loft svefnherbergi
+- hvad loft svefnherbergimaster
 query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
-- hvad ljos svefnherbergi
+- hvad ankleide svefnherbergimaster
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
-- hvad ljos svefnherbergi
+- hvad ankleide svefnherbergimaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
 - hvad ljos klósett
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
@@ -127,6 +127,6 @@ query_devices/media_player_living_tv::media_player_living_tv_get_status:
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - hvad uppvthvott
 query_devices/switch_dryer::switch_dryer_get_status:
-- hvad thvottavel
+- hvad dryer
 query_devices/switch_washing_machine::switch_washing_machine_get_status:
 - hvad thvottavel

@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - seoljeong nanbang geosil 18
-  - nanbang geosil 18
+  - 설정 난방 거실 18
+  - 난방 거실 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - seoljeong nanbang geosil 19
-  - nanbang geosil 19
+  - 설정 난방 거실 19
+  - 난방 거실 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - seoljeong nanbang geosil 20
-  - nanbang geosil 20
+  - 설정 난방 거실 20
+  - 난방 거실 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - seoljeong nanbang geosil 21
-  - nanbang geosil 21
+  - 설정 난방 거실 21
+  - 난방 거실 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - seoljeong nanbang geosil 22
-  - nanbang geosil 22
+  - 설정 난방 거실 22
+  - 난방 거실 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - seoljeong nanbang geosil 23
-  - nanbang geosil 23
+  - 설정 난방 거실 23
+  - 난방 거실 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - seoljeong nanbang geosil 24
-  - nanbang geosil 24
+  - 설정 난방 거실 24
+  - 난방 거실 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - mwo nanbang geosil
-  - nanbang geosil
+  - 뭔 난방 거실
+  - 난방 거실
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - seoljeong nanbang chimsil 18
-  - nanbang chimsil 18
+  - 설정 난방 chimsilmaster 18
+  - 난방 chimsilmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - seoljeong nanbang chimsil 19
-  - nanbang chimsil 19
+  - 설정 난방 chimsilmaster 19
+  - 난방 chimsilmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - seoljeong nanbang chimsil 20
-  - nanbang chimsil 20
+  - 설정 난방 chimsilmaster 20
+  - 난방 chimsilmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - seoljeong nanbang chimsil 21
-  - nanbang chimsil 21
+  - 설정 난방 chimsilmaster 21
+  - 난방 chimsilmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - seoljeong nanbang chimsil 22
-  - nanbang chimsil 22
+  - 설정 난방 chimsilmaster 22
+  - 난방 chimsilmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - seoljeong nanbang chimsil 23
-  - nanbang chimsil 23
+  - 설정 난방 chimsilmaster 23
+  - 난방 chimsilmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - seoljeong nanbang chimsil 24
-  - nanbang chimsil 24
+  - 설정 난방 chimsilmaster 24
+  - 난방 chimsilmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mwo nanbang chimsil
-  - nanbang chimsil
+  - 뭔 난방 chimsilmaster
+  - 난방 chimsilmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - seoljeong nanbang chimsil 18
-  - nanbang chimsil 18
+  - 설정 nanbang chimsilmaster 18
+  - nanbang chimsilmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - seoljeong nanbang chimsil 19
-  - nanbang chimsil 19
+  - 설정 nanbang chimsilmaster 19
+  - nanbang chimsilmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - seoljeong nanbang chimsil 20
-  - nanbang chimsil 20
+  - 설정 nanbang chimsilmaster 20
+  - nanbang chimsilmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - seoljeong nanbang chimsil 21
-  - nanbang chimsil 21
+  - 설정 nanbang chimsilmaster 21
+  - nanbang chimsilmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - seoljeong nanbang chimsil 22
-  - nanbang chimsil 22
+  - 설정 nanbang chimsilmaster 22
+  - nanbang chimsilmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - seoljeong nanbang chimsil 23
-  - nanbang chimsil 23
+  - 설정 nanbang chimsilmaster 23
+  - nanbang chimsilmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - seoljeong nanbang chimsil 24
-  - nanbang chimsil 24
+  - 설정 nanbang chimsilmaster 24
+  - nanbang chimsilmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mwo nanbang chimsil
-  - nanbang chimsil
+  - 뭔 nanbang chimsilmaster
+  - nanbang chimsilmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - mwo nanbang geosil
-  - nanbang geosil
+  - 뭔 난방 거실
+  - 난방 거실
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mwo nanbang chimsil
-  - nanbang chimsil
+  - 뭔 난방 chimsilmaster
+  - 난방 chimsilmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mwo nanbang chimsil
-  - nanbang chimsil
+  - 뭔 nanbang chimsilmaster
+  - nanbang chimsilmaster

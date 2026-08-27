@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - miatsu zhamachap 10 min
-  - zhamachap 10 min
+  - միացրու ժամաչափ 10 min
+  - ժամաչափ 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - miatsu zhamachap 45 min
-  - zhamachap 45 min
+  - միացրու ժամաչափ 45 min
+  - ժամաչափ 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - anjatir zhamachap
-  - zhamachap anjatir
+  - անջատիր ժամաչափ
+  - ժամաչափ անջատիր
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - miatsu zhamachap 5 min
-  - zhamachap 5 min
+  - միացրու ժամաչափ 5 min
+  - ժամաչափ 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - miatsu zhamachap 15 min
-  - zhamachap 15 min
+  - միացրու ժամաչափ 15 min
+  - ժամաչափ 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - miatsu zhamachap 20 min
-  - zhamachap 20 min
+  - միացրու ժամաչափ 20 min
+  - ժամաչափ 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - miatsu zhamachap 30 min
-  - zhamachap 30 min
+  - միացրու ժամաչափ 30 min
+  - ժամաչափ 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - miatsu zhamachap 60 min
-  - zhamachap 60 min
+  - միացրու ժամաչափ 60 min
+  - ժամաչափ 60 min

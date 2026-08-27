@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - iesledz ventilators gulamistaba2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- iestati gaisma gulamistaba2 65
+- iestati viss gaisma gulamistaba2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- iestati gaisma gulamistaba2 pink
+- iestati viss gaisma gulamistaba2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- izsledz gaisma gulamistaba2
+- izsledz viss gaisma gulamistaba2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- iesledz gaisma gulamistaba2
+- iesledz viss gaisma gulamistaba2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - aizver aizkars gulamistaba3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - iestati aizkars gulamistaba3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- iestati gaisma gulamistaba3 76
+- iestati viss gaisma gulamistaba3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- iestati gaisma gulamistaba3 blue
+- iestati viss gaisma gulamistaba3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- izsledz gaisma gulamistaba3
+- izsledz viss gaisma gulamistaba3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- iesledz gaisma gulamistaba3
+- iesledz viss gaisma gulamistaba3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- iestati gaisma gulamistaba4 69
+- iestati viss gaisma gulamistaba4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- iestati gaisma gulamistaba4 green
+- iestati viss gaisma gulamistaba4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- izsledz gaisma gulamistaba4
+- izsledz viss gaisma gulamistaba4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- iesledz gaisma gulamistaba4
+- iesledz viss gaisma gulamistaba4
 area/dining_lights::dining_lights_change_brightness:
-- iestati gaisma dzivojamafamess 54
+- iestati viss gaisma dzivojamafamess 54
 area/dining_lights::dining_lights_change_color:
-- iestati gaisma dzivojamafamess blue
+- iestati viss gaisma dzivojamafamess blue
 area/dining_lights::dining_lights_turn_off:
-- izsledz gaisma dzivojamafamess
+- izsledz viss gaisma dzivojamafamess
 area/dining_lights::dining_lights_turn_on:
-- iesledz gaisma dzivojamafamess
+- iesledz viss gaisma dzivojamafamess
 area/entryway_lights::entryway_lights_change_brightness:
-- iestati gaisma prieksnams 72
+- iestati viss gaisma prieksnams 72
 area/entryway_lights::entryway_lights_change_color:
-- iestati gaisma prieksnams black
+- iestati viss gaisma prieksnams black
 area/entryway_lights::entryway_lights_turn_off:
-- izsledz gaisma prieksnams
+- izsledz viss gaisma prieksnams
 area/entryway_lights::entryway_lights_turn_on:
-- iesledz gaisma prieksnams
+- iesledz viss gaisma prieksnams
 area/entryway_locks::entryway_locks_lock:
 - sledzene sledzene prieksnams
 area/entryway_locks::entryway_locks_unlock:
 - atver sledzene prieksnams
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- iestati gaisma dzivojamafam 39 un iestati gaisma virtuve 39
+- iestati viss gaisma dzivojamafam 39 then iestati viss gaisma virtuve 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- iestati gaisma dzivojamafam purple un iestati gaisma virtuve purple
+- iestati viss gaisma dzivojamafam purple then iestati viss gaisma virtuve purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- izsledz gaisma dzivojamafam un izsledz gaisma virtuve
+- izsledz viss gaisma dzivojamafam then izsledz viss gaisma virtuve
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- iesledz gaisma dzivojamafam un iesledz gaisma virtuve
+- iesledz viss gaisma dzivojamafam then iesledz viss gaisma virtuve
 area/family_room_fans::family_room_fans_set_fan_speed:
 - iestati ventilators dzivojamafam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - iesledz ventilators dzivojamafam
 area/family_room_lights::family_room_lights_change_brightness:
-- iestati gaisma dzivojamafam 44
+- iestati viss gaisma dzivojamafam 44
 area/family_room_lights::family_room_lights_change_color:
-- iestati gaisma dzivojamafam green
+- iestati viss gaisma dzivojamafam green
 area/family_room_lights::family_room_lights_turn_off:
-- izsledz gaisma dzivojamafam
+- izsledz viss gaisma dzivojamafam
 area/family_room_lights::family_room_lights_turn_on:
-- iesledz gaisma dzivojamafam
+- iesledz viss gaisma dzivojamafam
 area/garage_covers::garage_covers_close:
 - aizver aizkars garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - iestati aizkars garage 86
 area/garage_lights::garage_lights_change_brightness:
-- iestati gaisma garage 16
+- iestati viss gaisma garage 16
 area/garage_lights::garage_lights_change_color:
-- iestati gaisma garage blue
+- iestati viss gaisma garage blue
 area/garage_lights::garage_lights_turn_off:
-- izsledz gaisma garage
+- izsledz viss gaisma garage
 area/garage_lights::garage_lights_turn_on:
-- iesledz gaisma garage
+- iesledz viss gaisma garage
 area/garage_locks::garage_locks_lock:
 - sledzene sledzene garage
 area/garage_locks::garage_locks_unlock:
 - atver sledzene garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- iestati gaisma prieksnamsgang 26 un iestati gaisma wc 26
+- iestati viss gaisma prieksnamsgang 26 then iestati viss gaisma wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- iestati gaisma prieksnamsgang purple un iestati gaisma wc purple
+- iestati viss gaisma prieksnamsgang purple then iestati viss gaisma wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- izsledz gaisma prieksnamsgang un izsledz gaisma wc
+- izsledz viss gaisma prieksnamsgang then izsledz viss gaisma wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- iesledz gaisma prieksnamsgang un iesledz gaisma wc
+- iesledz viss gaisma prieksnamsgang then iesledz viss gaisma wc
 area/hallway_lights::hallway_lights_change_brightness:
-- iestati gaisma prieksnamsgang 61
+- iestati viss gaisma prieksnamsgang 61
 area/hallway_lights::hallway_lights_change_color:
-- iestati gaisma prieksnamsgang orange
+- iestati viss gaisma prieksnamsgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- izsledz gaisma prieksnamsgang
+- izsledz viss gaisma prieksnamsgang
 area/hallway_lights::hallway_lights_turn_on:
-- iesledz gaisma prieksnamsgang
+- iesledz viss gaisma prieksnamsgang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- iestati gaisma virtuve 45
+- iestati viss gaisma virtuve 45
 area/kitchen_lights::kitchen_lights_change_color:
-- iestati gaisma virtuve pink
+- iestati viss gaisma virtuve pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- izsledz gaisma virtuve
+- izsledz viss gaisma virtuve
 area/kitchen_lights::kitchen_lights_turn_on:
-- iesledz gaisma virtuve
+- iesledz viss gaisma virtuve
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- izsledz ierice virtuve
+- izsledz viss ierice virtuve
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- iesledz ierice virtuve
+- iesledz viss ierice virtuve
 area/laundry_lights::laundry_lights_change_brightness:
-- iestati gaisma velas 62
+- iestati viss gaisma velas 62
 area/laundry_lights::laundry_lights_change_color:
-- iestati gaisma velas yellow
+- iestati viss gaisma velas yellow
 area/laundry_lights::laundry_lights_turn_off:
-- izsledz gaisma velas
+- izsledz viss gaisma velas
 area/laundry_lights::laundry_lights_turn_on:
-- iesledz gaisma velas
+- iesledz viss gaisma velas
 area/laundry_switchs::laundry_switchs_turn_off:
-- izsledz ierice velas
+- izsledz viss ierice velas
 area/laundry_switchs::laundry_switchs_turn_on:
-- iesledz ierice velas
+- iesledz viss ierice velas
 area/living_climates::living_climates_set_temperature:
 - iestati apkure istaba 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - iestati aizkars istaba 46
 area/living_lights::living_lights_change_brightness:
-- iestati gaisma istaba 84
+- iestati viss gaisma istaba 84
 area/living_lights::living_lights_change_color:
-- iestati gaisma istaba blue
+- iestati viss gaisma istaba blue
 area/living_lights::living_lights_turn_off:
-- izsledz gaisma istaba
+- izsledz viss gaisma istaba
 area/living_lights::living_lights_turn_on:
-- iesledz gaisma istaba
+- iesledz viss gaisma istaba
 area/main_bath_lights::main_bath_lights_change_brightness:
-- iestati gaisma main bath 73
+- iestati viss gaisma main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- iestati gaisma main bath pink
+- iestati viss gaisma main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- izsledz gaisma main bath
+- izsledz viss gaisma main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- iesledz gaisma main bath
+- iesledz viss gaisma main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- izsledz ierice main bath
+- izsledz viss ierice main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- iesledz ierice main bath
+- iesledz viss ierice main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- iestati gaisma vannamaster 60
+- iestati viss gaisma vannamaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- iestati gaisma vannamaster black
+- iestati viss gaisma vannamaster black
 area/master_bath_lights::master_bath_lights_turn_off:
-- izsledz gaisma vannamaster
+- izsledz viss gaisma vannamaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- iesledz gaisma vannamaster
+- iesledz viss gaisma vannamaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- izsledz ierice vannamaster
+- izsledz viss ierice vannamaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- iesledz ierice vannamaster
+- iesledz viss ierice vannamaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- iestati apkure gulamistaba 20 un iestati apkure istaba 20
+- iestati apkure gulamistabamaster 20 then iestati apkure istaba 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- aizver aizkars gulamistaba un aizver aizkars istaba
+- aizver aizkars gulamistabamaster then aizver aizkars istaba
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- atver aizkars gulamistaba un atver aizkars istaba
+- atver aizkars gulamistabamaster then atver aizkars istaba
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- iestati aizkars gulamistaba 19 un iestati aizkars istaba 19
+- iestati aizkars gulamistabamaster 19 then iestati aizkars istaba 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- iestati gaisma gulamistaba 25 un iestati gaisma istaba 25
+- iestati viss gaisma gulamistabamaster 25 then iestati viss gaisma istaba 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- iestati gaisma gulamistaba white un iestati gaisma istaba white
+- iestati viss gaisma gulamistabamaster white then iestati viss gaisma istaba white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- izsledz gaisma gulamistaba un izsledz gaisma istaba
+- izsledz viss gaisma gulamistabamaster then izsledz viss gaisma istaba
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- iesledz gaisma gulamistaba un iesledz gaisma istaba
+- iesledz viss gaisma gulamistabamaster then iesledz viss gaisma istaba
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- iestati gaisma gulamistaba 57 un iestati gaisma main bath 57
+- iestati viss gaisma gulamistabamaster 57 then iestati viss gaisma main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- iestati gaisma gulamistaba pink un iestati gaisma main bath pink
+- iestati viss gaisma gulamistabamaster pink then iestati viss gaisma main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- izsledz gaisma gulamistaba un izsledz gaisma main bath
+- izsledz viss gaisma gulamistabamaster then izsledz viss gaisma main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- iesledz gaisma gulamistaba un iesledz gaisma main bath
+- iesledz viss gaisma gulamistabamaster then iesledz viss gaisma main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- iestati apkure gulamistaba 20
+- iestati apkure gulamistabamaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- aizver aizkars gulamistaba
+- aizver aizkars gulamistabamaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- atver aizkars gulamistaba
+- atver aizkars gulamistabamaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- iestati aizkars gulamistaba 38
+- iestati aizkars gulamistabamaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- iestati ventilators gulamistaba 79
+- iestati ventilators gulamistabamaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- izsledz ventilators gulamistaba
+- izsledz ventilators gulamistabamaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- iesledz ventilators gulamistaba
+- iesledz ventilators gulamistabamaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- iestati gaisma gulamistaba 73
+- iestati viss gaisma gulamistabamaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- iestati gaisma gulamistaba pink
+- iestati viss gaisma gulamistabamaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- izsledz gaisma gulamistaba
+- izsledz viss gaisma gulamistabamaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- iesledz gaisma gulamistaba
+- iesledz viss gaisma gulamistabamaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- iestati gaisma wc 52
+- iestati viss gaisma wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- iestati gaisma wc purple
+- iestati viss gaisma wc purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- izsledz gaisma wc
+- izsledz viss gaisma wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- iesledz gaisma wc
+- iesledz viss gaisma wc
 area/spoken_lights::spoken_bedroom_inflection:
-- iestati gaisma gulamistaba red
+- iestati viss gaisma gulamistabamaster red
 area/spoken_lights::spoken_except_island:
 - izsledz viss gaisma iznemot sala
 area/spoken_lights::spoken_except_kitchen:
-- izsledz viss gaisma iznemot virtuve iznemot sala
+- izsledz viss gaisma iznemot virtuve
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- izsledz gaisma istaba un izsledz gaisma dzivojamafamess un izsledz gaisma virtuve
+- izsledz viss gaisma istaba then izsledz viss gaisma dzivojamafamess then izsledz
+  viss gaisma virtuve
 area/spoken_lights::spoken_stt_kitchen_off:
-- izsledz gaisma virtuve
+- izsledz viss gaisma virtuve
 area/spoken_lights::spoken_stt_living_off:
-- izsledz gaisma istaba
+- izsledz viss gaisma istaba

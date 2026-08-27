@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - enow chambour nen ha chambour gweli
-  - chambour nen ha chambour gweli enow
+  - enow chambourmaster nen ha chambourmaster gweli
+  - chambourmaster nen ha chambourmaster gweli enow
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - diffyg chambour nen ha chambour gweli
-  - chambour nen ha chambour gweli diffyg
+  - diffyg chambourmaster nen ha chambourmaster gweli
+  - chambourmaster nen ha chambourmaster gweli diffyg
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - enow chambour gwyns ha kegin enys
-  - chambour gwyns ha kegin enys enow
+  - enow chambourmaster gwyns ha kegin enys
+  - chambourmaster gwyns ha kegin enys enow
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffyg golow chambour ha main bath
-  - golow chambour ha main bath diffyg
+  - diffyg golow chambourmaster ha main bath
+  - golow chambourmaster ha main bath diffyg
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffyg oll golow marnas stafell ha chambour
-  - oll golow diffyg marnas stafell ha chambour
+  - diffyg oll golow marnas stafell ha chambourmaster
+  - oll golow diffyg marnas stafell ha chambourmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffyg oll golow leur marnas chambour
-  - oll golow leur diffyg marnas chambour
+  - diffyg oll golow leur marnas chambourmaster
+  - oll golow leur diffyg marnas chambourmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - igeri curtayn stafell ha chambour
-  - curtayn stafell ha chambour igeri
+  - igeri curtayn stafell ha chambourmaster
+  - curtayn stafell ha chambourmaster igeri
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - degea curtayn stafell ha chambour
-  - curtayn stafell ha chambour degea
+  - degea curtayn stafell ha chambourmaster
+  - curtayn stafell ha chambourmaster degea
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - settya tomder stafell ha chambour 21
-  - tomder stafell ha chambour 21
+  - settya tomder stafell ha chambourmaster 21
+  - tomder stafell ha chambourmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

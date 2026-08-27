@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - nee khoshig zochny
-  - khoshig zochny nee
+  - нээ хөшиг зочны
+  - хөшиг зочны нээ
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - khaa khoshig zochny
-  - khoshig zochny khaa
+  - хаа хөшиг зочны
+  - хөшиг зочны хаа
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - tokhiruul khoshig zochny 0
-  - khoshig zochny 0
+  - тохируул хөшиг зочны 0
+  - хөшиг зочны 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - tokhiruul khoshig zochny 25
-  - khoshig zochny 25
+  - тохируул хөшиг зочны 25
+  - хөшиг зочны 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - tokhiruul khoshig zochny 40
-  - khoshig zochny 40
+  - тохируул хөшиг зочны 40
+  - хөшиг зочны 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - tokhiruul khoshig zochny 75
-  - khoshig zochny 75
+  - тохируул хөшиг зочны 75
+  - хөшиг зочны 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - tokhiruul khoshig zochny 100
-  - khoshig zochny 100
+  - тохируул хөшиг зочны 100
+  - хөшиг зочны 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - nee khoshig untlagiin
-  - khoshig untlagiin nee
+  - нээ хөшиг untlagiinmaster
+  - хөшиг untlagiinmaster нээ
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - khaa khoshig untlagiin
-  - khoshig untlagiin khaa
+  - хаа хөшиг untlagiinmaster
+  - хөшиг untlagiinmaster хаа
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - tokhiruul khoshig untlagiin 0
-  - khoshig untlagiin 0
+  - тохируул хөшиг untlagiinmaster 0
+  - хөшиг untlagiinmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - tokhiruul khoshig untlagiin 25
-  - khoshig untlagiin 25
+  - тохируул хөшиг untlagiinmaster 25
+  - хөшиг untlagiinmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - tokhiruul khoshig untlagiin 40
-  - khoshig untlagiin 40
+  - тохируул хөшиг untlagiinmaster 40
+  - хөшиг untlagiinmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - tokhiruul khoshig untlagiin 75
-  - khoshig untlagiin 75
+  - тохируул хөшиг untlagiinmaster 75
+  - хөшиг untlagiinmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - tokhiruul khoshig untlagiin 100
-  - khoshig untlagiin 100
+  - тохируул хөшиг untlagiinmaster 100
+  - хөшиг untlagiinmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - nee khoshig untlagiin2
-  - khoshig untlagiin2 nee
+  - нээ хөшиг untlagiin2
+  - хөшиг untlagiin2 нээ
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - khaa khoshig untlagiin2
-  - khoshig untlagiin2 khaa
+  - хаа хөшиг untlagiin2
+  - хөшиг untlagiin2 хаа
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - tokhiruul khoshig untlagiin2 0
-  - khoshig untlagiin2 0
+  - тохируул хөшиг untlagiin2 0
+  - хөшиг untlagiin2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - tokhiruul khoshig untlagiin2 25
-  - khoshig untlagiin2 25
+  - тохируул хөшиг untlagiin2 25
+  - хөшиг untlagiin2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - tokhiruul khoshig untlagiin2 40
-  - khoshig untlagiin2 40
+  - тохируул хөшиг untlagiin2 40
+  - хөшиг untlagiin2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - tokhiruul khoshig untlagiin2 75
-  - khoshig untlagiin2 75
+  - тохируул хөшиг untlagiin2 75
+  - хөшиг untlagiin2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - tokhiruul khoshig untlagiin2 100
-  - khoshig untlagiin2 100
+  - тохируул хөшиг untlagiin2 100
+  - хөшиг untlagiin2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - nee khoshig untlagiin3
-  - khoshig untlagiin3 nee
+  - нээ хөшиг untlagiin3
+  - хөшиг untlagiin3 нээ
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - khaa khoshig untlagiin3
-  - khoshig untlagiin3 khaa
+  - хаа хөшиг untlagiin3
+  - хөшиг untlagiin3 хаа
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - tokhiruul khoshig untlagiin3 0
-  - khoshig untlagiin3 0
+  - тохируул хөшиг untlagiin3 0
+  - хөшиг untlagiin3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - tokhiruul khoshig untlagiin3 25
-  - khoshig untlagiin3 25
+  - тохируул хөшиг untlagiin3 25
+  - хөшиг untlagiin3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - tokhiruul khoshig untlagiin3 40
-  - khoshig untlagiin3 40
+  - тохируул хөшиг untlagiin3 40
+  - хөшиг untlagiin3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - tokhiruul khoshig untlagiin3 75
-  - khoshig untlagiin3 75
+  - тохируул хөшиг untlagiin3 75
+  - хөшиг untlagiin3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - tokhiruul khoshig untlagiin3 100
-  - khoshig untlagiin3 100
+  - тохируул хөшиг untlagiin3 100
+  - хөшиг untlagiin3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - nee khoshig garage
-  - khoshig garage nee
+  - нээ хөшиг garage
+  - хөшиг garage нээ
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - khaa khoshig garage
-  - khoshig garage khaa
+  - хаа хөшиг garage
+  - хөшиг garage хаа
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - tokhiruul khoshig garage 0
-  - khoshig garage 0
+  - тохируул хөшиг garage 0
+  - хөшиг garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - tokhiruul khoshig garage 25
-  - khoshig garage 25
+  - тохируул хөшиг garage 25
+  - хөшиг garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - tokhiruul khoshig garage 40
-  - khoshig garage 40
+  - тохируул хөшиг garage 40
+  - хөшиг garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - tokhiruul khoshig garage 75
-  - khoshig garage 75
+  - тохируул хөшиг garage 75
+  - хөшиг garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - tokhiruul khoshig garage 100
-  - khoshig garage 100
+  - тохируул хөшиг garage 100
+  - хөшиг garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - nee khoshig zochny
-  - khoshig zochny nee
+  - нээ хөшиг зочны
+  - хөшиг зочны нээ
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - nee khoshig untlagiin
-  - khoshig untlagiin nee
+  - нээ хөшиг untlagiinmaster
+  - хөшиг untlagiinmaster нээ

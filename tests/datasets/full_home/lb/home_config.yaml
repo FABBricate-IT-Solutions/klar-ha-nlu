@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: schlofzëmmer
+  name: schlofzëmmermaster
   floor: upper
   aliases:
+  - schlofzëmmermaster
   - schlofzëmmer
 - id: bedroom_2
   name: schlofzëmmer2
@@ -130,10 +131,10 @@ devices:
   - decken
 - id: light.living_lamp
   area_id: living
-  name: wunnen luucht
+  name: wunnen lamp
   aliases:
-  - wunnen luucht
-  - luucht
+  - wunnen lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: wunnsalless luucht
@@ -190,29 +191,29 @@ devices:
   - luucht
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: schlofzëmmer decken
+  name: schlofzëmmermaster decken
   aliases:
-  - schlofzëmmer decken
+  - schlofzëmmermaster decken
   - decken
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: schlofzëmmer ensuite
+  name: schlofzëmmermaster ensuite
   aliases:
-  - schlofzëmmer ensuite
+  - schlofzëmmermaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: schlofzëmmer left nuettsdesch
+  name: schlofzëmmermaster left nuettsdesch
   aliases:
-  - schlofzëmmer left nuettsdesch
+  - schlofzëmmermaster left nuettsdesch
   - nuettsdesch
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: schlofzëmmer right nuettsdesch
+  name: schlofzëmmermaster right nuettsdesch
   aliases:
-  - schlofzëmmer right nuettsdesch
+  - schlofzëmmermaster right nuettsdesch
   - nuettsdesch
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - riddo
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: schlofzëmmer riddo
+  name: schlofzëmmermaster riddo
   aliases:
-  - schlofzëmmer riddo
+  - schlofzëmmermaster riddo
   - riddo
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - heizung
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: schlofzëmmer heizung
+  name: schlofzëmmermaster heizung
   aliases:
-  - schlofzëmmer heizung
+  - schlofzëmmermaster heizung
   - heizung
 - id: climate.master_ac
   area_id: master_bedroom
-  name: heizung schlofzëmmer
+  name: heizung schlofzëmmermaster
   aliases:
-  - heizung schlofzëmmer
+  - heizung schlofzëmmermaster
   - heizung
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: schlofzëmmer ventilator
+  name: schlofzëmmermaster ventilator
   aliases:
-  - schlofzëmmer ventilator
+  - schlofzëmmermaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

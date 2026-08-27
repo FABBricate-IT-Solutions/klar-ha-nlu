@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - slack alla ljus
 area/lichter::arbeitszimmer_lichter_an:
-- tand ljus vardagsrum
+- tand alla ljus office
 area/lichter::arbeitszimmer_lichter_aus:
-- slack ljus vardagsrum
+- slack alla ljus office
 area/lichter::esszimmer_lichter_an:
-- tand ljus allrumess
+- tand alla ljus allrumess
 area/lichter::esszimmer_lichter_aus:
-- slack ljus allrumess
+- slack alla ljus allrumess
 area/lichter::kuche_lichter_an:
-- tand ljus kok
+- tand alla ljus kok
 area/lichter::kuche_lichter_aus:
-- slack ljus kok
+- slack alla ljus kok
 area/lichter::schlafzimmer_auf_blau:
-- satt ljus sovrum bla
+- satt alla ljus sovrum bla
 area/lichter::schlafzimmer_auf_rot:
-- satt ljus sovrum rod
+- satt alla ljus sovrum rod
 area/lichter::wohnzimmer_helligkeit:
-- satt ljus vardagsrum 45
+- satt alla ljus vardagsrum 45
 area/lichter::wohnzimmer_lichter_an:
-- tand ljus vardagsrum
+- tand alla ljus vardagsrum
 area/lichter::wohnzimmer_lichter_aus:
-- slack ljus vardagsrum
+- slack alla ljus vardagsrum
 area/spoken::alle_ausser_kugel_stt:
 - slack alla ljus utom kula
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - slack alla ljus
 area/spoken::esszimmer_weiss:
-- satt ljus allrumess vit
+- satt alla ljus allrumess vit
 area/spoken::stt_kuche_lichte:
-- slack ljus kok
+- slack alla ljus kok
 area/spoken::stt_licht_wohnzimmer_an:
-- tand ljus vardagsrum
+- tand alla ljus vardagsrum
 area/spoken::stt_licht_wohnzimmer_aus:
-- slack ljus vardagsrum
+- slack alla ljus vardagsrum
 area/spoken::stt_schlafzimmer_dativ:
-- slack ljus sovrum
+- slack alla ljus sovrum
 area/spoken::wohnzimmer_gruen:
-- satt ljus vardagsrum gron
+- satt alla ljus vardagsrum gron
 area/spoken_more::alle_ausser_arbeitszimmer:
-- slack alla ljus utom vardagsrum
+- slack alla ljus utom office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- slack ljus vardagsrum
+- slack alla ljus office
 area/spoken_more::esszimmer_30:
-- satt ljus allrumess 30
+- satt alla ljus allrumess 30
 area/spoken_more::esszimmer_lichte_an:
-- tand ljus allrumess
+- tand alla ljus allrumess
 area/spoken_more::kuche_80:
-- satt ljus kok 80
+- satt alla ljus kok 80
 area/spoken_more::kuche_blau:
-- satt ljus kok bla
+- satt alla ljus kok bla
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - slack alla ljus utom sovrum
 area/spoken_more::wohnzimmer_gelb:
-- satt ljus vardagsrum gul
+- satt alla ljus vardagsrum gul
