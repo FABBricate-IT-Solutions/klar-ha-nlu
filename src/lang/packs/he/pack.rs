@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["דלת"],
         timer_nouns: &["טיימר"],
-        list_nouns: &["aufgabenliste", "liste", "רשימה"],
+        list_nouns: &["רשימה"],
         calendar_nouns: &["יומן", "לוח", "פגישה"],
         vacuum_nouns: &["שואב"],
         scene_nouns: &["סצנה"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("אי", &["insel", "island", "אי"]),
+            ("אי", &["island", "אי"]),
             ("תקרה", &["ceiling", "decke", "deckenlampe", "תקרה"]),
             ("כדור", &["globe", "kugel", "כדור"]),
             ("לידמיטה", &["bedside", "nacht", "nachttisch", "לידמיטה"]),

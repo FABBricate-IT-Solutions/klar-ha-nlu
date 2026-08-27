@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["ドア"],
         timer_nouns: &["taimaa", "タイマー"],
-        list_nouns: &["aufgabenliste", "liste", "risuto", "リスト"],
+        list_nouns: &["risuto", "リスト"],
         calendar_nouns: &["karendaa", "yotei", "カレンダー", "予定"],
         vacuum_nouns: &["soujiki", "掃除機"],
         scene_nouns: &["shiin", "シーン"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("shima", &["insel", "island", "shima"]),
+            ("shima", &["island", "shima"]),
             ("tenjo", &["ceiling", "decke", "deckenlampe", "tenjo"]),
             ("tama", &["globe", "kugel", "tama"]),
             ("beddowaki", &["beddowaki", "bedside", "nacht", "nachttisch"]),

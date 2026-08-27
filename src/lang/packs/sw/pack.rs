@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["mlango"],
         timer_nouns: &["kipima"],
-        list_nouns: &["aufgabenliste", "liste", "orodha"],
+        list_nouns: &["orodha"],
         calendar_nouns: &["kalenda", "miadi"],
         vacuum_nouns: &["kifagio"],
         scene_nouns: &["tukio"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("kisiwa", &["insel", "island", "kisiwa"]),
+            ("kisiwa", &["island", "kisiwa"]),
             ("dari", &["ceiling", "dari", "decke", "deckenlampe"]),
             ("tufe", &["globe", "kugel", "tufe"]),
             ("kitanda", &["bedside", "kitanda", "nacht", "nachttisch"]),

@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["drws"],
         timer_nouns: &["amserydd"],
-        list_nouns: &["aufgabenliste", "liste", "rhestr"],
+        list_nouns: &["rhestr"],
         calendar_nouns: &["apwyntiad", "calendr"],
         vacuum_nouns: &["sugnwr"],
         scene_nouns: &["golygfa"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("ynys", &["insel", "island", "ynys"]),
+            ("ynys", &["island", "ynys"]),
             ("nenfwd", &["ceiling", "decke", "deckenlampe", "nenfwd"]),
             ("pelen", &["globe", "kugel", "pelen"]),
             ("gwely", &["bedside", "gwely", "nacht", "nachttisch"]),

@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["врата"],
         timer_nouns: &["тајмер"],
-        list_nouns: &["aufgabenliste", "liste", "листа"],
+        list_nouns: &["листа"],
         calendar_nouns: &["календар", "састанак"],
         vacuum_nouns: &["усисивач"],
         scene_nouns: &["сцена"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("острво", &["insel", "island", "острво"]),
+            ("острво", &["island", "острво"]),
             ("плафон", &["ceiling", "decke", "deckenlampe", "плафон"]),
             ("кугла", &["globe", "kugel", "кугла"]),
             ("ноћни", &["bedside", "nacht", "nachttisch", "ноћни"]),

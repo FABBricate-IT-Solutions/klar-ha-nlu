@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["ประตู"],
         timer_nouns: &["tangwela", "ตั้งเวลา"],
-        list_nouns: &["aufgabenliste", "liste", "raikan", "รายการ"],
+        list_nouns: &["raikan", "รายการ"],
         calendar_nouns: &["นัด", "ปฏิทิน"],
         vacuum_nouns: &["dutfun", "ดูดฝุ่น"],
         scene_nouns: &["chak", "ฉาก"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("ko", &["insel", "island", "ko"]),
+            ("ko", &["island", "ko"]),
             ("phalang", &["ceiling", "decke", "deckenlampe", "phalang"]),
             ("luk", &["globe", "kugel", "luk"]),
             ("khangtiang", &["bedside", "khangtiang", "nacht", "nachttisch"]),

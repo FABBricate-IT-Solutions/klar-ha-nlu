@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["drzwi"],
         timer_nouns: &["minutnik"],
-        list_nouns: &["aufgabenliste", "lista", "liste"],
+        list_nouns: &["lista"],
         calendar_nouns: &["kalendarz", "spotkanie", "wydarzenie"],
         vacuum_nouns: &["odkurzacz"],
         scene_nouns: &["scena"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("wyspa", &["insel", "island", "wyspa"]),
+            ("wyspa", &["island", "wyspa"]),
             ("sufit", &["ceiling", "decke", "deckenlampe", "sufit"]),
             ("kula", &["globe", "kugel", "kula"]),
             ("noca", &["bedside", "nacht", "nachttisch", "noca"]),

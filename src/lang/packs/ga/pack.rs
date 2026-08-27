@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["doras"],
         timer_nouns: &["amadoir"],
-        list_nouns: &["aufgabenliste", "liosta", "liste"],
+        list_nouns: &["liosta"],
         calendar_nouns: &["coinne", "feilire"],
         vacuum_nouns: &["folusaire"],
         scene_nouns: &["radharc"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("oilean", &["insel", "island", "oilean"]),
+            ("oilean", &["island", "oilean"]),
             ("uasteorainn", &["ceiling", "decke", "deckenlampe", "uasteorainn"]),
             ("liathroid", &["globe", "kugel", "liathroid"]),
             ("leaba", &["bedside", "leaba", "nacht", "nachttisch"]),

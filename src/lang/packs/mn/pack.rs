@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["хаалга"],
         timer_nouns: &["timer", "таймер"],
-        list_nouns: &["aufgabenliste", "jagsaalt", "liste", "жагсаалт"],
+        list_nouns: &["jagsaalt", "жагсаалт"],
         calendar_nouns: &["tsag", "uulzalt", "хуанли"],
         vacuum_nouns: &["toos", "тоос"],
         scene_nouns: &["uzegdel", "үзэгдэл"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("aran", &["aran", "insel", "island"]),
+            ("aran", &["aran", "island"]),
             ("taaz", &["ceiling", "decke", "deckenlampe", "taaz"]),
             ("bomboo", &["bomboo", "globe", "kugel"]),
             ("oronii", &["bedside", "nacht", "nachttisch", "oronii"]),

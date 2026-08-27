@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["తలుపు"],
         timer_nouns: &["timer", "టైమర్"],
-        list_nouns: &["aufgabenliste", "jabita", "liste", "జాబితా"],
+        list_nouns: &["jabita", "జాబితా"],
         calendar_nouns: &["calendar", "kalayika", "క్యాలెండర్"],
         vacuum_nouns: &["udchu", "ఊడ్చు"],
         scene_nouns: &["drishyam", "దృశ్యం"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("dweepam", &["dweepam", "insel", "island"]),
+            ("dweepam", &["dweepam", "island"]),
             ("kappu", &["ceiling", "decke", "deckenlampe", "kappu"]),
             ("burra", &["burra", "globe", "kugel"]),
             ("mancham", &["bedside", "mancham", "nacht", "nachttisch"]),

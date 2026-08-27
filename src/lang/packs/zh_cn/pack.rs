@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["门"],
         timer_nouns: &["dingshi", "定时"],
-        list_nouns: &["aufgabenliste", "liste", "qingdan", "清单"],
+        list_nouns: &["qingdan", "清单"],
         calendar_nouns: &["richeng", "rili", "日历", "日程"],
         vacuum_nouns: &["saodi", "扫地"],
         scene_nouns: &["changjing", "场景"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("daotai", &["daotai", "insel", "island"]),
+            ("daotai", &["daotai", "island"]),
             ("tianhuaban", &["ceiling", "decke", "deckenlampe", "tianhuaban"]),
             ("qiudeng", &["globe", "kugel", "qiudeng"]),
             ("chuangtoudeng", &["bedside", "chuangtoudeng", "nacht", "nachttisch"]),

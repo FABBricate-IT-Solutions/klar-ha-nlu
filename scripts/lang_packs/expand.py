@@ -53,7 +53,7 @@ def expand(core: dict) -> dict:
     rooms = list(core.get("rooms", []))
     synonyms = [(native, canon) for native, canon in rooms]
     synonyms += list(core.get("synonyms", []))
-    synonyms += device_synonym_rows(w)
+    synonyms += device_synonym_rows(w, core["code"])
     on = w["on"]
     off = w["off"]
     light = w["light"]
@@ -198,7 +198,7 @@ def expand(core: dict) -> dict:
             "garage_words": w.get("garage", []),
             "garage_cover": door[:1],
             "timer_nouns": timer,
-            "list_nouns": unique(lst + ["aufgabenliste", "liste"]),
+            "list_nouns": unique(lst),
             "calendar_nouns": unique(w.get("calendar", [])),
             "vacuum_nouns": vacuum,
             "scene_nouns": scene,
@@ -221,7 +221,7 @@ def expand(core: dict) -> dict:
             "singular_lamp": [],
             "singular_lamp_block": unique(light[:2]),
         },
-        "fixture_aliases": fixture_alias_rows(w),
+            "fixture_aliases": fixture_alias_rows(w, core["code"]),
         "cues": {
             "power_words": unique(on + off + w.get("stop", [])),
             "command_hedges": w.get("hedge", []),
@@ -418,21 +418,29 @@ DEVICE_STEMS = {
     "left": ["left", "links"],
     "right": ["right", "rechts"],
 }
+GERMAN_HOME = {"aufgabenliste", "klimaanlage", "insel", "filmabend", "verlassen"}
+GERMAN_OK = {"de", "en", "de-CH", "de-AT"}
 
 
-def fixture_alias_rows(w: dict) -> list[tuple[str, list[str]]]:
+def device_stems(code: str, stems: list[str]) -> list[str]:
+    if code in GERMAN_OK:
+        return stems
+    return [stem for stem in stems if stem not in GERMAN_HOME]
+
+
+def fixture_alias_rows(w: dict, code: str) -> list[tuple[str, list[str]]]:
     rows: list[tuple[str, list[str]]] = []
     for key, stems in DEVICE_STEMS.items():
         for native in w.get(key, []):
-            rows.append((native, unique([native, *stems])))
+            rows.append((native, unique([native, *device_stems(code, stems)])))
     return rows
 
 
-def device_synonym_rows(w: dict) -> list[tuple[str, str]]:
+def device_synonym_rows(w: dict, code: str) -> list[tuple[str, str]]:
     rows: list[tuple[str, str]] = []
     for key, stems in DEVICE_STEMS.items():
         for native in unique(w.get(key, [])):
-            for stem in stems:
+            for stem in device_stems(code, stems):
                 if native and native != stem:
                     rows.append((native, stem))
     return rows

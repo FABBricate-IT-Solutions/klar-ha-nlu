@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["atea"],
         timer_nouns: &["tenporizadorea"],
-        list_nouns: &["aufgabenliste", "liste", "zerrenda"],
+        list_nouns: &["zerrenda"],
         calendar_nouns: &["egutegi", "hitzordu"],
         vacuum_nouns: &["xurgagailua"],
         scene_nouns: &["eszena"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("uharte", &["insel", "island", "uharte"]),
+            ("uharte", &["island", "uharte"]),
             ("sabai", &["ceiling", "decke", "deckenlampe", "sabai"]),
             ("bola", &["bola", "globe", "kugel"]),
             ("gaua", &["bedside", "gaua", "nacht", "nachttisch"]),

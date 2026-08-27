@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["باب"],
         timer_nouns: &["مؤقت"],
-        list_nouns: &["aufgabenliste", "liste", "قائمة"],
+        list_nouns: &["قائمة"],
         calendar_nouns: &["أجندة", "تقويم", "مواعيد", "موعد"],
         vacuum_nouns: &["مكنسة"],
         scene_nouns: &["مشهد"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("جزيرة", &["insel", "island", "جزيرة"]),
+            ("جزيرة", &["island", "جزيرة"]),
             ("سقف", &["ceiling", "decke", "deckenlampe", "سقف"]),
             ("كرة", &["globe", "kugel", "كرة"]),
             ("جانبسرير", &["bedside", "nacht", "nachttisch", "جانبسرير"]),

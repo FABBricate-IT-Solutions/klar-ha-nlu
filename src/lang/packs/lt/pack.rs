@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["durys"],
         timer_nouns: &["laikmatis"],
-        list_nouns: &["aufgabenliste", "liste", "sarasas"],
+        list_nouns: &["sarasas"],
         calendar_nouns: &["kalendorius", "susitikimas"],
         vacuum_nouns: &["siurblys"],
         scene_nouns: &["scena"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("sala", &["insel", "island", "sala"]),
+            ("sala", &["island", "sala"]),
             ("lubos", &["ceiling", "decke", "deckenlampe", "lubos"]),
             ("rutulys", &["globe", "kugel", "rutulys"]),
             ("naktinis", &["bedside", "nacht", "nachttisch", "naktinis"]),

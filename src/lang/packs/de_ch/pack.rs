@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["tuer"],
         timer_nouns: &["timer"],
-        list_nouns: &["aufgabenliste", "liste"],
+        list_nouns: &["liste"],
         calendar_nouns: &["kalender", "termin", "traeff"],
         vacuum_nouns: &["staubsauger"],
         scene_nouns: &["szene"],

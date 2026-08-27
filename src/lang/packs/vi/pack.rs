@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["cua"],
         timer_nouns: &["hen"],
-        list_nouns: &["aufgabenliste", "danhsach", "liste"],
+        list_nouns: &["danhsach"],
         calendar_nouns: &["cuochen", "lich"],
         vacuum_nouns: &["hutbui"],
         scene_nouns: &["canh"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("dao", &["dao", "insel", "island"]),
+            ("dao", &["dao", "island"]),
             ("tran", &["ceiling", "decke", "deckenlampe", "tran"]),
             ("cau", &["cau", "globe", "kugel"]),
             ("dau giuong", &["bedside", "dau giuong", "nacht", "nachttisch"]),

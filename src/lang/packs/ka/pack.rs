@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["კარი"],
         timer_nouns: &["taimeri", "ტაიმერი"],
-        list_nouns: &["aufgabenliste", "liste", "sia", "სია"],
+        list_nouns: &["sia", "სია"],
         calendar_nouns: &["kalendari", "shekhvedra", "კალენდარი"],
         vacuum_nouns: &["mtversasruti", "მტვერსასრუტი"],
         scene_nouns: &["stsena", "სⴊენა"],
@@ -69,7 +69,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("kuntkhuli", &["insel", "island", "kuntkhuli"]),
+            ("kuntkhuli", &["island", "kuntkhuli"]),
             ("potoloni", &["ceiling", "decke", "deckenlampe", "potoloni"]),
             ("burtuli", &["burtuli", "globe", "kugel"]),
             ("sagamise", &["bedside", "nacht", "nachttisch", "sagamise"]),

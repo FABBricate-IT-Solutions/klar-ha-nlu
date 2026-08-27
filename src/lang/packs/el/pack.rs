@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["πορτα"],
         timer_nouns: &["χρονομετρο"],
-        list_nouns: &["aufgabenliste", "liste", "λιστα"],
+        list_nouns: &["λιστα"],
         calendar_nouns: &["ημερολογιο", "ραντεβου"],
         vacuum_nouns: &["σκουπα"],
         scene_nouns: &["σκηνη"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("νησι", &["insel", "island", "νησι"]),
+            ("νησι", &["island", "νησι"]),
             ("ταβανι", &["ceiling", "decke", "deckenlampe", "ταβανι"]),
             ("σφαιρα", &["globe", "kugel", "σφαιρα"]),
             ("κομοδινο", &["bedside", "nacht", "nachttisch", "κομοδινο"]),

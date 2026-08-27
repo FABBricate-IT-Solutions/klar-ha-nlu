@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["문"],
         timer_nouns: &["taimeo", "타이머"],
-        list_nouns: &["aufgabenliste", "liste", "mongnok", "목록"],
+        list_nouns: &["mongnok", "목록"],
         calendar_nouns: &["dallyeok", "iljeong", "일정", "캘린더"],
         vacuum_nouns: &["cheongsogi", "청소기"],
         scene_nouns: &["jangmyeon", "장면"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("seom", &["insel", "island", "seom"]),
+            ("seom", &["island", "seom"]),
             ("cheonjang", &["ceiling", "cheonjang", "decke", "deckenlampe"]),
             ("gong", &["globe", "gong", "kugel"]),
             ("chimdae", &["bedside", "chimdae", "nacht", "nachttisch"]),

@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["ovi"],
         timer_nouns: &["ajastin"],
-        list_nouns: &["aufgabenliste", "lista", "liste"],
+        list_nouns: &["lista"],
         calendar_nouns: &["ajat", "kalenteri", "tapaaminen"],
         vacuum_nouns: &["imuri"],
         scene_nouns: &["kohtaus"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("saareke", &["insel", "island", "saareke"]),
+            ("saareke", &["island", "saareke"]),
             ("katto", &["ceiling", "decke", "deckenlampe", "katto"]),
             ("pallo", &["globe", "kugel", "pallo"]),
             ("yopoyta", &["bedside", "nacht", "nachttisch", "yopoyta"]),

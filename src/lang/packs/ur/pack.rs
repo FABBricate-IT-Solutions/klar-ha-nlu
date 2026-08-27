@@ -39,7 +39,7 @@ pub const PACK: LanguagePack = LanguagePack {
         garage_words: &[],
         garage_cover: &["دروازہ"],
         timer_nouns: &["ٹائمر"],
-        list_nouns: &["aufgabenliste", "liste", "فہرست"],
+        list_nouns: &["فہرست"],
         calendar_nouns: &["ملاقات", "کیلنڈر"],
         vacuum_nouns: &["جھاڑو"],
         scene_nouns: &["منظر"],
@@ -58,7 +58,7 @@ pub const PACK: LanguagePack = LanguagePack {
         right: &[],
         sides: &[],
         fixture_aliases: &[
-            ("جزیرہ", &["insel", "island", "جزیرہ"]),
+            ("جزیرہ", &["island", "جزیرہ"]),
             ("چھت", &["ceiling", "decke", "deckenlampe", "چھت"]),
             ("گولا", &["globe", "kugel", "گولا"]),
             ("بسترکنار", &["bedside", "nacht", "nachttisch", "بسترکنار"]),
