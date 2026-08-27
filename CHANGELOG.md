@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.47](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.46...2026.8.47) - 2026-08-28
+
+
+
+### Features
+
+- parse Assist STT native script and keep LLM replies in-pack ([#131](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/131))([082296a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/082296a6042aa68ee6f1f79e1dc0100393de8861))
+
+
+### Bug Fixes
+
+- treat ac as cooling and label parity fixtures more precisely ([e4ab033](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e4ab033fce3c3d951ec2a4fc73011def761b21b7))
+- close native-script parity gaps for laundry, unlock, and lists ([4896458](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4896458ce112d8d598958d063b96992e75b05151))
+- keep German home-graph tokens out of generated packs ([bed41bb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bed41bb5238d79a9d4d8e862cd104bc2285fb27e))
+- keep music nouns off the TV pool and recover island ASR ([94f57d6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/94f57d66526a321a8d177586a38992909bb7c407))
+- confine overlay, bundle, and journal files under the data dir ([84e7355](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/84e7355d38d215961546360dd31280422027bc38))
+
+
+### Other
+
+- require a green pipeline before any PR merge ([#130](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/130))([4975f62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4975f620fa2d6429ffca2be5c2298fdb1b7caf78))
+
 ## [2026.8.46](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.45...2026.8.46) - 2026-08-27
 
 
