@@ -30,6 +30,9 @@ pub fn role_of_tag(tag: &str, cat: &Catalog) -> Option<&'static str> {
 }
 
 pub fn wanted_climate_kind(tokens: &[String], cat: &Catalog) -> Option<ClimateKind> {
+    if tokens.iter().any(|token| matches!(token.as_str(), "ac" | "klima" | "klimaanlage")) {
+        return Some(ClimateKind::Cool);
+    }
     let cool = cat.any(tokens, cat.climate_cool());
     let heat = cat.any(tokens, cat.climate_heat());
     match (cool, heat) {
@@ -205,6 +208,7 @@ mod tests {
         assert_eq!(climate_kind(&ac, cat), Some(ClimateKind::Cool));
         assert_eq!(climate_kind(&heat, cat), Some(ClimateKind::Heat));
         assert_eq!(wanted_climate_kind(&["klimaanlage".into(), "20".into()], cat), Some(ClimateKind::Cool));
+        assert_eq!(wanted_climate_kind(&["ac".into(), "20".into()], cat), Some(ClimateKind::Cool));
         assert_eq!(wanted_climate_kind(&["heizung".into(), "20".into()], cat), Some(ClimateKind::Heat));
         assert_eq!(role_of_tag("wichtig", cat), None);
         assert_eq!(role_of_tag("og", cat), None);
