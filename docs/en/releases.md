@@ -68,7 +68,7 @@ Build compiles linux-x86_64 and linux-aarch64 and attaches the tarballs to the G
 
 A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-The cut uses only the job-scoped `GITHUB_TOKEN`. `main` still blocks deletion and force-push; required checks are not enforced on the version commit (that would need a long-lived admin PAT). PR CI remains the quality gate before merge.
+The cut uses only the job-scoped `GITHUB_TOKEN`. `main` and `staging` require the status checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) before any PR merge, including admins. The version commit is still a direct push from the Release job and does not go through those merge checks.
 
 ## Local changelog
 
