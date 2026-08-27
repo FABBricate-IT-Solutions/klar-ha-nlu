@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.45](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.44...2026.8.45) - 2026-08-27
+
+
+
+### Documentation
+
+- bump rust from 1.97-bookworm to 1.98-bookworm (#125)([af96514](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/af9651497d102188391f16aa7246f6e5af380638))
+
+
+### Other
+
+- bump vite from 8.2.1 to 8.2.2 in /web in the npm-patch group (#127)([ce2e05d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ce2e05d1f07ab98ffdb3abd0fe78101ab9eac2e4))
+
 ## [2026.8.44](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.43...2026.8.44) - 2026-08-22
 
 
