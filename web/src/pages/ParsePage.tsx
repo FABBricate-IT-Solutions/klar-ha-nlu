@@ -23,16 +23,44 @@ export function ParsePage({
   const [raw, setRaw] = useState(false);
   const [conversationId, setConversationId] = useState<string | undefined>();
   const [area, setArea] = useState("");
+  const [teachStatus, setTeachStatus] = useState("");
+  const [knownIntents, setKnownIntents] = useState<string[]>([]);
+  const [teachIntent, setTeachIntent] = useState("KlarGetCalendarEvents");
   const intents = result?.plan?.steps.map((step) => step.intent) ?? [];
   const heardIn = result?.evidence.find((item) => item.kind === "preferred_area")?.value || area;
+  const boundEntity = intents.flatMap((intent) => intent.slots).find((slot) => slot.name === "entity_id")?.value || "";
   useEffect(() => {
     if (replayText) setText(replayText);
   }, [replayText]);
+  useEffect(() => {
+    api.intents().then((names) => { if (names.length) setKnownIntents(names); }).catch(() => undefined);
+  }, []);
 
   const submit = async () => {
     const data = await api.parse(text, locale, conversationId, nluRag || undefined, area || undefined);
     setConversationId(data.conversation_id);
     setResult(data);
+    setTeachStatus("");
+    const first = data.plan?.steps[0]?.intent.name;
+    if (first) setTeachIntent(first);
+  };
+
+  const savePhrase = async () => {
+    const phrase = text.trim();
+    if (phrase.length < 4) return;
+    const overlay = await api.langOverlay();
+    await api.saveLangOverlay({
+      custom: [...overlay.custom, { phrase, intent: teachIntent, slots: {} }],
+      language: overlay.language,
+      label: phrase,
+    });
+    setTeachStatus(t.teachSaved);
+  };
+
+  const ignoreTarget = async () => {
+    if (!boundEntity) return;
+    await api.tagEntity({ entity_id: boundEntity, nlu_ignore: true });
+    setTeachStatus(t.teachSaved);
   };
 
   const band = result?.decision.type;
@@ -103,6 +131,15 @@ export function ParsePage({
                 </div>
               ))}
               {intents.length === 0 && <p className="muted">{t.noIntent}</p>}
+              <label style={{ marginTop: 16 }}>{t.intent}</label>
+              <select value={teachIntent} onChange={(ev) => setTeachIntent(ev.target.value)}>
+                {(knownIntents.length ? knownIntents : [teachIntent]).map((name) => <option key={name} value={name}>{name}</option>)}
+              </select>
+              <div className="row" style={{ marginTop: 12 }}>
+                <button className="secondary" onClick={savePhrase}>{t.savePhrase}</button>
+                <button className="ghost" onClick={ignoreTarget} disabled={!boundEntity}>{t.ignoreTarget}</button>
+              </div>
+              {teachStatus && <p className="muted">{teachStatus}</p>}
             </div>
             <div className="card" style={{ gridColumn: "1 / -1" }}>
               <button className="ghost" onClick={() => setRaw(!raw)}>{t.raw}</button>

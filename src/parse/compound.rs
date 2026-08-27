@@ -291,7 +291,7 @@ fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
         return false;
     }
     let folded = compact(part);
-    !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
+    !folded.is_empty() && !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
 }
 
 /// Room-level light bind. `light.{area}` is a room group when named as the room

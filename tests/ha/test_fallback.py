@@ -39,6 +39,13 @@ class FallbackTests(unittest.TestCase):
         self.assertIn("Sei kurz.", prompt)
         self.assertIn("keine Home-Assistant-Werkzeuge", prompt)
 
+    def test_unknown_pack_does_not_default_to_german(self) -> None:
+        prompt = fallback.chat_only_prompt("ja", None)
+        self.assertNotIn("Steuere keine Geräte", prompt)
+        self.assertIn("Assist pack code: ja", prompt)
+        news = fallback.news_prompt("ja", ["One"], None)
+        self.assertNotIn("Schlagzeilen", news)
+
     def test_personality_leads_open_chat_system_prompt(self) -> None:
         prompt = fallback.with_personality(
             "Du antwortest nur im Gespräch.",

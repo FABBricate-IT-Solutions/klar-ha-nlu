@@ -37,7 +37,12 @@ pub(crate) fn media_clause(
     }
     let allow_session_media = !matches!(intent.name.as_str(), "HassMediaSearchAndPlay" | "MassPlayMedia" | "MassTransferQueue");
     let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only) else {
-        return Some(ClauseOut::Intents(Vec::new()));
+        let any_player =
+            home.entities.iter().any(|entity| entity.domain == "media_player" && assist_visible(entity, home) && !is_infra(entity));
+        if any_player {
+            return Some(ClauseOut::Intents(Vec::new()));
+        }
+        return Some(ClauseOut::Intents(vec![Intent::new("KlarNoMusicPlayer")]));
     };
     if transfer && intent.slot("source_player") == Some(target.entity_id.as_str()) {
         return Some(ClauseOut::Intents(Vec::new()));
@@ -107,7 +112,7 @@ fn transport_intent(tokens: &[String], action: Action, home: &HomeGraph, resolve
         "HassMediaNext"
     } else if (matches!(action, Action::MediaPlay) && !has_search_tail(tokens, home, resolved))
         || (matches!(action, Action::On) && music_resume(tokens))
-        || any(tokens, &["resume", "unpause", "weiter", "fortsetzen"]) && !has_search_tail(tokens, home, resolved)
+        || (catalog().any(tokens, catalog().playback_resume()) && music_context(tokens) && !has_search_tail(tokens, home, resolved))
     {
         "HassMediaUnpause"
     } else {

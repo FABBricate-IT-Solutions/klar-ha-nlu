@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Ny gonvedhis. Lever un golow dhe enowi, rag ensampel.",
+    unknown: "Ny gonvedhis.",
     need_on: "Pandra enowi?",
     need_off: "Pandra dhiffygi?",
     need_which: "Pandra enowi?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Pandra dhiffygi?",
     timer_pause: "Pandra dhiffygi?",
     list_add: "War an rol.",
+    calendar_list: "{items}",
+    calendar_empty: "Ny gonvedhis.",
+    calendar_none: "Ny gonvedhis.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Ny gonvedhis.",
+    calendar_need_when: "Ny gonvedhis.",
+    calendar_readonly: "Ny gonvedhis.",
+    calendar_deleted: "Diles.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Py hwarvos?",
+    calendar_no_uid: "Heb id.",
+    no_music_player: "Ny gonvedhis.",
     done: "{name}",
     light_suffix: " golow",
     area_light: "golow {loc}",

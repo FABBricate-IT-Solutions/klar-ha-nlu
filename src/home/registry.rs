@@ -316,6 +316,7 @@ pub(crate) fn keep_domain(entity_id: &str) -> bool {
             | Some("lock")
             | Some("timer")
             | Some("todo")
+            | Some("calendar")
     )
 }
 

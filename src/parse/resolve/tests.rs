@@ -29,3 +29,17 @@ fn resolve_skips_entities_not_exposed_to_assist() {
     home.assist = Some(["light.kuche_kuche".into()].into());
     assert_eq!(crate::parse::compound::room_light_id(&home, "kuche"), None);
 }
+
+#[test]
+fn resolve_skips_nlu_ignored_entities() {
+    let mut ignored = lamp("switch.create_calendar_event", "Create Calendar Event", "wohnung");
+    ignored.domain = "switch".into();
+    ignored.tags = vec!["nlu_ignore".into()];
+    let home = HomeGraph {
+        areas: vec![AreaRec { area_id: "wohnung".into(), name: "Wohnung".into(), aliases: Vec::new(), floor_id: None }],
+        entities: vec![ignored, lamp("light.wohnzimmer", "Wohnzimmer Licht", "wohnung")],
+        ..Default::default()
+    };
+    let hit = resolve(&["calendar".into(), "event".into()], &home, None);
+    assert!(!hit.entities.iter().any(|entity| entity.entity_id == "switch.create_calendar_event"), "{hit:?}");
+}

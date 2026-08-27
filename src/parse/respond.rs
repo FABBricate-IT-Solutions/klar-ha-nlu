@@ -119,6 +119,22 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassCancelTimer" => pack.timer_cancel.to_string(),
         "HassPauseTimer" => pack.timer_pause.to_string(),
         "HassListAddItem" | "HassShoppingListAddItem" => pack.list_add.to_string(),
+        "KlarGetCalendarEvents" => pack.calendar_list.replace("{items}", "").replace("{count}", "0"),
+        "KlarCreateCalendarEvent" if intent.slot("need") == Some("title") => pack.calendar_need_title.to_string(),
+        "KlarCreateCalendarEvent" if intent.slot("need") == Some("when") => pack.calendar_need_when.to_string(),
+        "KlarCreateCalendarEvent" => pack
+            .calendar_created
+            .replace("{summary}", intent.slot("summary").unwrap_or(""))
+            .replace("{when}", intent.slot("day").unwrap_or("")),
+        "KlarDeleteCalendarEvent" if intent.slot("need") == Some("which") => pack.calendar_which.to_string(),
+        "KlarDeleteCalendarEvent" => pack.calendar_deleted.replace("{summary}", intent.slot("summary").unwrap_or("")),
+        "KlarMoveCalendarEvent" if intent.slot("need") == Some("when") => pack.calendar_need_when.to_string(),
+        "KlarMoveCalendarEvent" if intent.slot("need") == Some("which") => pack.calendar_which.to_string(),
+        "KlarMoveCalendarEvent" => pack
+            .calendar_moved
+            .replace("{summary}", intent.slot("summary").unwrap_or(""))
+            .replace("{when}", intent.slot("day").unwrap_or("")),
+        "KlarNoMusicPlayer" => pack.no_music_player.to_string(),
         other => pack.done.replace("{name}", other),
     }
 }

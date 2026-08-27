@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Manasilayilla. Udaharanathinu ethu vilakku thelikkanam ennu parayu.",
+    unknown: "Manasilayilla.",
     need_on: "Enth thelikkanam?",
     need_off: "Enth anaykkanam?",
     need_which: "Enth thelikkanam?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Enth anaykkanam?",
     timer_pause: "Enth anaykkanam?",
     list_add: "Pattikayil undu.",
+    calendar_list: "{items}",
+    calendar_empty: "Manasilayilla.",
+    calendar_none: "Manasilayilla.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Manasilayilla.",
+    calendar_need_when: "Manasilayilla.",
+    calendar_readonly: "Manasilayilla.",
+    calendar_deleted: "Maatti.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Ethu event?",
+    calendar_no_uid: "Id illa.",
+    no_music_player: "Manasilayilla.",
     done: "{name}",
     light_suffix: " vilakku",
     area_light: "vilakku {loc}",

@@ -3,15 +3,17 @@ import { api, type CustomRule, type LangExplain, type LangOverlay } from "../api
 import type { Messages } from "../i18n";
 import type { Locale } from "../types";
 
-const intents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
+const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
 export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Locale; embedded?: boolean }) {
+  const [intents, setIntents] = useState<string[]>(fallbackIntents);
   const [rules, setRules] = useState<CustomRule[]>([]);
   const [language, setLanguage] = useState<unknown>({});
   const [history, setHistory] = useState<LangOverlay["history"]>([]);
   const [phrase, setPhrase] = useState("");
   const [intent, setIntent] = useState(intents[0]);
   const [entityId, setEntityId] = useState("");
+  const [summary, setSummary] = useState("");
   const [previewText, setPreviewText] = useState("");
   const [explain, setExplain] = useState<LangExplain | null>(null);
   const [jsonMode, setJsonMode] = useState(false);
@@ -27,6 +29,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
 
   useEffect(() => {
     api.langOverlay().then(load).catch((err) => setStatus(String(err)));
+    api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
   }, []);
 
   const persist = async (next: CustomRule[], label: string) => {
@@ -35,9 +38,13 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   };
 
   const add = async () => {
-    const next = [...rules, { phrase: phrase.trim(), intent, slots: entityId.trim() ? { entity_id: entityId.trim() } : {} }];
+    const slots: Record<string, string> = {};
+    if (entityId.trim()) slots.entity_id = entityId.trim();
+    if (summary.trim()) slots.summary = summary.trim();
+    const next = [...rules, { phrase: phrase.trim(), intent, slots }];
     setPhrase("");
     setEntityId("");
+    setSummary("");
     await persist(next, phrase.trim() || "add");
   };
 
@@ -93,6 +100,8 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
             </select>
             <label>{t.entityId}</label>
             <input value={entityId} onChange={(ev) => setEntityId(ev.target.value)} placeholder="light.wohnzimmer" />
+            <label>{t.slots}</label>
+            <input value={summary} onChange={(ev) => setSummary(ev.target.value)} placeholder="summary" />
           </div>
           <div className="card">
             <label>{t.previewRule}</label>
@@ -116,6 +125,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
             <strong>{rule.phrase}</strong>
             <span className="chip">{rule.intent}</span>
             {rule.slots.entity_id && <span className="chip">{rule.slots.entity_id}</span>}
+            {rule.slots.summary && <span className="chip">{rule.slots.summary}</span>}
             <button className="ghost danger" onClick={() => remove(index)}>{t.deleteSelected}</button>
           </div>
         ))}

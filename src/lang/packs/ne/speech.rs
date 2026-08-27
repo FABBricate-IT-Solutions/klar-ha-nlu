@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Bujhina. Udahran ko lagi kun batti balne ho bhanides.",
+    unknown: "Bujhina.",
     need_on: "Ke balne?",
     need_off: "Ke nibhaune?",
     need_which: "Ke balne?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Ke nibhaune?",
     timer_pause: "Ke nibhaune?",
     list_add: "Suchima cha.",
+    calendar_list: "{items}",
+    calendar_empty: "Bujhina.",
+    calendar_none: "Bujhina.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Bujhina.",
+    calendar_need_when: "Bujhina.",
+    calendar_readonly: "Bujhina.",
+    calendar_deleted: "Hatayo.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Kun event?",
+    calendar_no_uid: "Id chaina.",
+    no_music_player: "Bujhina.",
     done: "{name}",
     light_suffix: " batti",
     area_light: "batti {loc}",

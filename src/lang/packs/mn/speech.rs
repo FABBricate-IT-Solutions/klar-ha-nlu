@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Oilgosongui. Jishee n yamar gerel asaah ve gej khel.",
+    unknown: "Oilgosongui.",
     need_on: "Yuu asaakh ve?",
     need_off: "Yuu untraakh ve?",
     need_which: "Yuu asaakh ve?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Yuu untraakh ve?",
     timer_pause: "Yuu untraakh ve?",
     list_add: "Jagsaaltad baina.",
+    calendar_list: "{items}",
+    calendar_empty: "Oilgosongui.",
+    calendar_none: "Oilgosongui.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Oilgosongui.",
+    calendar_need_when: "Oilgosongui.",
+    calendar_readonly: "Oilgosongui.",
+    calendar_deleted: "Ustgasan.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Ali uulzalt?",
+    calendar_no_uid: "Id baihgui.",
+    no_music_player: "Oilgosongui.",
     done: "{name}",
     light_suffix: " gerel",
     area_light: "gerel {loc}",

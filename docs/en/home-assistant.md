@@ -38,15 +38,17 @@ Do not set the LLM agent as the engine. Assist would skip Klar and the LLM could
 
 Settings → Devices & services → Klar NLU → Configure → **Conversation agent for chit-chat**.
 
+There is no user phrase such as “Ask the LLM”. If a fallback agent is set, unhandled speech (reject or empty intents) goes to that agent in the Assist language pack. Refine is only tone on an already-spoken NLU line.
+
 Flow:
 
 1. Klar parses.
 2. Home intents run through `intent.async_handle`.
 3. Clarifications (`clarify`) stay with Klar.
-4. No intents → forward to the chosen agent.
+4. No intents, including reject → forward to the chosen agent. NLU-RAG is not required.
 5. Klar itself and an unreachable engine do not trigger fallback.
 
-The agent is told not to control devices. If that agent still has HA tools in its own integration, they can still fire — turn tools off there if chit-chat should only talk.
+The agent is told not to control devices and to answer in the user’s Assist language. If that agent still has HA tools in its own integration, they can still fire — turn tools off there if chit-chat should only talk.
 
 ## Personality
 
@@ -196,7 +198,7 @@ The integration executes only `decision.type == execute`. Confirm, clarify, and 
 
 ## Media and Music Assistant
 
-Pause, next, previous, mute, and volume use the named `media_player` or the one in that room. Expose the player.
+Pause, next, previous, mute, and volume use the named `media_player` or the one in that room. The player must be Assist-exposed and either a Music Assistant player or tagged for music. Without that player the miss is setup, not a missing English lexicon.
 
 | Phrase | Notes |
 |--------|--------|

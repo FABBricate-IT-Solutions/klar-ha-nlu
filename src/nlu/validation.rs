@@ -154,7 +154,8 @@ fn validate_numeric(intent: &Intent) -> Result<(), PlanInvalid> {
         let range = match slot.name.as_str() {
             "brightness" | "percentage" | "position" | "volume_level" => Some((0.0, 100.0)),
             "temperature" => Some((-50.0, 100.0)),
-            "hours" => Some((0.0, 24.0)),
+            "hours" | "hour" => Some((0.0, 24.0)),
+            "in_days" => Some((1.0, 14.0)),
             "minutes" | "seconds" => Some((0.0, 86_400.0)),
             _ => None,
         };
@@ -180,6 +181,11 @@ pub(super) fn requires_target(name: &str) -> bool {
             | "HassListCompleteItem"
             | "HassShoppingListAddItem"
             | "HassShoppingListCompleteItem"
+            | "KlarGetCalendarEvents"
+            | "KlarCreateCalendarEvent"
+            | "KlarDeleteCalendarEvent"
+            | "KlarMoveCalendarEvent"
+            | "KlarNoMusicPlayer"
     )
 }
 
@@ -210,7 +216,18 @@ fn required_domain(name: &str) -> Option<&'static str> {
 fn allowed_domain(domain: &str) -> bool {
     matches!(
         domain,
-        "light" | "switch" | "lock" | "cover" | "climate" | "fan" | "vacuum" | "media_player" | "scene" | "script" | "input_boolean"
+        "light"
+            | "switch"
+            | "lock"
+            | "cover"
+            | "climate"
+            | "fan"
+            | "vacuum"
+            | "media_player"
+            | "scene"
+            | "script"
+            | "input_boolean"
+            | "calendar"
     )
 }
 
@@ -241,6 +258,11 @@ fn allowed_slots(name: &str) -> &'static [&'static str] {
         "HassListAddItem" | "HassListCompleteItem" | "HassShoppingListAddItem" | "HassShoppingListCompleteItem" => {
             &["entity_id", "name", "item"]
         }
+        "KlarGetCalendarEvents" => &["entity_id", "domain"],
+        "KlarCreateCalendarEvent" | "KlarDeleteCalendarEvent" | "KlarMoveCalendarEvent" => {
+            &["entity_id", "domain", "summary", "day", "hour", "in_days", "need"]
+        }
+        "KlarNoMusicPlayer" => &[],
         _ => &[],
     }
 }
@@ -254,7 +276,10 @@ fn conflicting_slots(intent: &Intent) -> bool {
 }
 
 fn risky_intent(intent: &Intent) -> bool {
-    if matches!(intent.name.as_str(), "HassGetState" | "HassClimateGetTemperature" | "HassTimerStatus" | "MassGetQueue") {
+    if matches!(
+        intent.name.as_str(),
+        "HassGetState" | "HassClimateGetTemperature" | "HassTimerStatus" | "MassGetQueue" | "KlarGetCalendarEvents" | "KlarNoMusicPlayer"
+    ) {
         return false;
     }
     let entity = intent.slot("entity_id").unwrap_or("");

@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Nerozumel jsem. Rekněte treba, ktere svetlo zapnout.",
+    unknown: "Nerozumel jsem.",
     need_on: "Co zapnout?",
     need_off: "Co vypnout?",
     need_which: "Co zapnout?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Co vypnout?",
     timer_pause: "Co vypnout?",
     list_add: "Je na seznamu.",
+    calendar_list: "{items}",
+    calendar_empty: "Zadne udalosti.",
+    calendar_none: "Zadny kalendar.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Jaky nazev?",
+    calendar_need_when: "Kdy?",
+    calendar_readonly: "Jen pro cteni.",
+    calendar_deleted: "Smazano.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Ktera udalost?",
+    calendar_no_uid: "Bez id.",
+    no_music_player: "Zadny prehravac.",
     done: "{name}",
     light_suffix: " svetlo",
     area_light: "svetlo {loc}",

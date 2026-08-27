@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "No ho he entes. Digues per exemple quin llum encendre.",
+    unknown: "No ho he entes.",
     need_on: "Que encenc?",
     need_off: "Que apago?",
     need_which: "Que encenc?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Que apago?",
     timer_pause: "Que apago?",
     list_add: "A la llista.",
+    calendar_list: "{items}",
+    calendar_empty: "Cap cita.",
+    calendar_none: "Cap calendari.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Quin titol?",
+    calendar_need_when: "Quan?",
+    calendar_readonly: "Nomes lectura.",
+    calendar_deleted: "Cita esborrada.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Quina cita?",
+    calendar_no_uid: "Sense identificador.",
+    no_music_player: "Cap reproductor.",
     done: "{name}",
     light_suffix: " llum",
     area_light: "llum {loc}",

@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Sikuelewa. Sema kwa mfano taa gani iwaka.",
+    unknown: "Sikuelewa.",
     need_on: "Niwasha nini?",
     need_off: "Nizime nini?",
     need_which: "Niwasha nini?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Nizime nini?",
     timer_pause: "Nizime nini?",
     list_add: "Iko kwenye orodha.",
+    calendar_list: "{items}",
+    calendar_empty: "Sikuelewa.",
+    calendar_none: "Sikuelewa.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Sikuelewa.",
+    calendar_need_when: "Sikuelewa.",
+    calendar_readonly: "Sikuelewa.",
+    calendar_deleted: "Imefutwa.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Tukio lipi?",
+    calendar_no_uid: "Hakuna id.",
+    no_music_player: "Sikuelewa.",
     done: "{name}",
     light_suffix: " taa",
     area_light: "taa {loc}",

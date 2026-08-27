@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "ฟังไม่ทัน บอกได้ไหมว่าจะเปิดไฟดวงไหน เช่น",
+    unknown: "ฟังไม่ทัน",
     need_on: "เปิดอะไร",
     need_off: "ปิดอะไร",
     need_which: "เปิดอะไร",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "ปิดอะไร",
     timer_pause: "ปิดอะไร",
     list_add: "ใส่ในรายการแล้ว.",
+    calendar_list: "{items}",
+    calendar_empty: "ไม่มีนัด",
+    calendar_none: "ไม่มีปฏิทิน",
+    calendar_created: "{summary} {when}",
+    calendar_need_title: "ชื่ออะไร",
+    calendar_need_when: "เมื่อไหร่",
+    calendar_readonly: "อ่านอย่างเดียว",
+    calendar_deleted: "ลบแล้ว",
+    calendar_moved: "{summary} {when}",
+    calendar_which: "นัดไหน",
+    calendar_no_uid: "ไม่มีรหัส",
+    no_music_player: "ไม่มีเครื่องเล่น",
     done: "{name}",
     light_suffix: " fai",
     area_light: "fai {loc}",

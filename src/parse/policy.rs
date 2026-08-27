@@ -5,6 +5,7 @@ use crate::parse::slots::ClauseOut;
 pub(crate) enum PolicyId {
     LaundrySwitch,
     Timer,
+    Calendar,
     List,
     Media,
     NamedScene,
@@ -42,6 +43,7 @@ impl PolicyId {
         match self {
             Self::LaundrySwitch => "laundry_switch",
             Self::Timer => "timer",
+            Self::Calendar => "calendar",
             Self::List => "list",
             Self::Media => "media",
             Self::NamedScene => "named_scene",
@@ -70,6 +72,7 @@ impl PolicyId {
         match self {
             Self::LaundrySwitch => 0,
             Self::Timer => 1,
+            Self::Calendar => 1,
             Self::List => 2,
             Self::Media => 3,
             Self::NamedScene => 4,
@@ -118,6 +121,7 @@ pub(crate) fn media_fallback_allowed(policy: PolicyId) -> bool {
         PolicyId::Media
             | PolicyId::LaundrySwitch
             | PolicyId::Timer
+            | PolicyId::Calendar
             | PolicyId::List
             | PolicyId::FollowNamed
             | PolicyId::GroundedEntities
