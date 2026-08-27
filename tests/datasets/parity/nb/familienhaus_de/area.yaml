@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - skru vifte soverom2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- sett lys soverom2 65
+- sett alle lys soverom2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- sett lys soverom2 rosa
+- sett alle lys soverom2 rosa
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- slaa lys soverom2
+- slaa alle lys soverom2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- skru lys soverom2
+- skru alle lys soverom2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - lukk gardin soverom3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - sett gardin soverom3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- sett lys soverom3 76
+- sett alle lys soverom3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- sett lys soverom3 bla
+- sett alle lys soverom3 bla
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- slaa lys soverom3
+- slaa alle lys soverom3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- skru lys soverom3
+- skru alle lys soverom3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- sett lys soverom4 69
+- sett alle lys soverom4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- sett lys soverom4 gronn
+- sett alle lys soverom4 gronn
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- slaa lys soverom4
+- slaa alle lys soverom4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- skru lys soverom4
+- skru alle lys soverom4
 area/dining_lights::dining_lights_change_brightness:
-- sett lys stuefamess 54
+- sett alle lys stuefamess 54
 area/dining_lights::dining_lights_change_color:
-- sett lys stuefamess bla
+- sett alle lys stuefamess bla
 area/dining_lights::dining_lights_turn_off:
-- slaa lys stuefamess
+- slaa alle lys stuefamess
 area/dining_lights::dining_lights_turn_on:
-- skru lys stuefamess
+- skru alle lys stuefamess
 area/entryway_lights::entryway_lights_change_brightness:
-- sett lys entree 72
+- sett alle lys entree 72
 area/entryway_lights::entryway_lights_change_color:
-- sett lys entree svart
+- sett alle lys entree svart
 area/entryway_lights::entryway_lights_turn_off:
-- slaa lys entree
+- slaa alle lys entree
 area/entryway_lights::entryway_lights_turn_on:
-- skru lys entree
+- skru alle lys entree
 area/entryway_locks::entryway_locks_lock:
 - laas laas entree
 area/entryway_locks::entryway_locks_unlock:
 - apne laas entree
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- sett lys stuefam 39 og sett lys kjokken 39
+- sett alle lys stuefam 39 then sett alle lys kjokken 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- sett lys stuefam lilla og sett lys kjokken lilla
+- sett alle lys stuefam lilla then sett alle lys kjokken lilla
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- slaa lys stuefam og slaa lys kjokken
+- slaa alle lys stuefam then slaa alle lys kjokken
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- skru lys stuefam og skru lys kjokken
+- skru alle lys stuefam then skru alle lys kjokken
 area/family_room_fans::family_room_fans_set_fan_speed:
 - sett vifte stuefam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - skru vifte stuefam
 area/family_room_lights::family_room_lights_change_brightness:
-- sett lys stuefam 44
+- sett alle lys stuefam 44
 area/family_room_lights::family_room_lights_change_color:
-- sett lys stuefam gronn
+- sett alle lys stuefam gronn
 area/family_room_lights::family_room_lights_turn_off:
-- slaa lys stuefam
+- slaa alle lys stuefam
 area/family_room_lights::family_room_lights_turn_on:
-- skru lys stuefam
+- skru alle lys stuefam
 area/garage_covers::garage_covers_close:
 - lukk gardin garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - sett gardin garage 86
 area/garage_lights::garage_lights_change_brightness:
-- sett lys garage 16
+- sett alle lys garage 16
 area/garage_lights::garage_lights_change_color:
-- sett lys garage bla
+- sett alle lys garage bla
 area/garage_lights::garage_lights_turn_off:
-- slaa lys garage
+- slaa alle lys garage
 area/garage_lights::garage_lights_turn_on:
-- skru lys garage
+- skru alle lys garage
 area/garage_locks::garage_locks_lock:
 - laas laas garage
 area/garage_locks::garage_locks_unlock:
 - apne laas garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- sett lys entreegang 26 og sett lys toalett 26
+- sett alle lys entreegang 26 then sett alle lys toalett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- sett lys entreegang lilla og sett lys toalett lilla
+- sett alle lys entreegang lilla then sett alle lys toalett lilla
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- slaa lys entreegang og slaa lys toalett
+- slaa alle lys entreegang then slaa alle lys toalett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- skru lys entreegang og skru lys toalett
+- skru alle lys entreegang then skru alle lys toalett
 area/hallway_lights::hallway_lights_change_brightness:
-- sett lys entreegang 61
+- sett alle lys entreegang 61
 area/hallway_lights::hallway_lights_change_color:
-- sett lys entreegang oransje
+- sett alle lys entreegang oransje
 area/hallway_lights::hallway_lights_turn_off:
-- slaa lys entreegang
+- slaa alle lys entreegang
 area/hallway_lights::hallway_lights_turn_on:
-- skru lys entreegang
+- skru alle lys entreegang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- sett lys kjokken 45
+- sett alle lys kjokken 45
 area/kitchen_lights::kitchen_lights_change_color:
-- sett lys kjokken rosa
+- sett alle lys kjokken rosa
 area/kitchen_lights::kitchen_lights_turn_off:
-- slaa lys kjokken
+- slaa alle lys kjokken
 area/kitchen_lights::kitchen_lights_turn_on:
-- skru lys kjokken
+- skru alle lys kjokken
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- slaa apparat kjokken
+- slaa alle apparat kjokken
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- skru apparat kjokken
+- skru alle apparat kjokken
 area/laundry_lights::laundry_lights_change_brightness:
-- sett lys vaskerom 62
+- sett alle lys vaskerom 62
 area/laundry_lights::laundry_lights_change_color:
-- sett lys vaskerom gul
+- sett alle lys vaskerom gul
 area/laundry_lights::laundry_lights_turn_off:
-- slaa lys vaskerom
+- slaa alle lys vaskerom
 area/laundry_lights::laundry_lights_turn_on:
-- skru lys vaskerom
+- skru alle lys vaskerom
 area/laundry_switchs::laundry_switchs_turn_off:
-- slaa apparat vaskerom
+- slaa alle apparat vaskerom
 area/laundry_switchs::laundry_switchs_turn_on:
-- skru apparat vaskerom
+- skru alle apparat vaskerom
 area/living_climates::living_climates_set_temperature:
 - sett varme stue 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,100 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - sett gardin stue 46
 area/living_lights::living_lights_change_brightness:
-- sett lys stue 84
+- sett alle lys stue 84
 area/living_lights::living_lights_change_color:
-- sett lys stue bla
+- sett alle lys stue bla
 area/living_lights::living_lights_turn_off:
-- slaa lys stue
+- slaa alle lys stue
 area/living_lights::living_lights_turn_on:
-- skru lys stue
+- skru alle lys stue
 area/main_bath_lights::main_bath_lights_change_brightness:
-- sett lys main bath 73
+- sett alle lys main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- sett lys main bath rosa
+- sett alle lys main bath rosa
 area/main_bath_lights::main_bath_lights_turn_off:
-- slaa lys main bath
+- slaa alle lys main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- skru lys main bath
+- skru alle lys main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- slaa apparat main bath
+- slaa alle apparat main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- skru apparat main bath
+- skru alle apparat main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- sett lys badmaster 60
+- sett alle lys badmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- sett lys badmaster svart
+- sett alle lys badmaster svart
 area/master_bath_lights::master_bath_lights_turn_off:
-- slaa lys badmaster
+- slaa alle lys badmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- skru lys badmaster
+- skru alle lys badmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- slaa apparat badmaster
+- slaa alle apparat badmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- skru apparat badmaster
+- skru alle apparat badmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- sett varme soverom 20 og sett varme stue 20
+- sett varme soverommaster 20 then sett varme stue 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- lukk gardin soverom og lukk gardin stue
+- lukk gardin soverommaster then lukk gardin stue
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- apne gardin soverom og apne gardin stue
+- apne gardin soverommaster then apne gardin stue
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- sett gardin soverom 19 og sett gardin stue 19
+- sett gardin soverommaster 19 then sett gardin stue 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- sett lys soverom 25 og sett lys stue 25
+- sett alle lys soverommaster 25 then sett alle lys stue 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- sett lys soverom hvit og sett lys stue hvit
+- sett alle lys soverommaster hvit then sett alle lys stue hvit
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- slaa lys soverom og slaa lys stue
+- slaa alle lys soverommaster then slaa alle lys stue
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- skru lys soverom og skru lys stue
+- skru alle lys soverommaster then skru alle lys stue
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- sett lys soverom 57 og sett lys main bath 57
+- sett alle lys soverommaster 57 then sett alle lys main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- sett lys soverom rosa og sett lys main bath rosa
+- sett alle lys soverommaster rosa then sett alle lys main bath rosa
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- slaa lys soverom og slaa lys main bath
+- slaa alle lys soverommaster then slaa alle lys main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- skru lys soverom og skru lys main bath
+- skru alle lys soverommaster then skru alle lys main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- sett varme soverom 20
+- sett varme soverommaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- lukk gardin soverom
+- lukk gardin soverommaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- apne gardin soverom
+- apne gardin soverommaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- sett gardin soverom 38
+- sett gardin soverommaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- sett vifte soverom 79
+- sett vifte soverommaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- slaa vifte soverom
+- slaa vifte soverommaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- skru vifte soverom
+- skru vifte soverommaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- sett lys soverom 73
+- sett alle lys soverommaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- sett lys soverom rosa
+- sett alle lys soverommaster rosa
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- slaa lys soverom
+- slaa alle lys soverommaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- skru lys soverom
+- skru alle lys soverommaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- sett lys toalett 52
+- sett alle lys toalett 52
 area/powder_room_lights::powder_room_lights_change_color:
-- sett lys toalett lilla
+- sett alle lys toalett lilla
 area/powder_room_lights::powder_room_lights_turn_off:
-- slaa lys toalett
+- slaa alle lys toalett
 area/powder_room_lights::powder_room_lights_turn_on:
-- skru lys toalett
+- skru alle lys toalett
 area/spoken_lights::spoken_bedroom_inflection:
-- sett lys soverom rod
+- sett alle lys soverommaster rod
 area/spoken_lights::spoken_except_island:
 - slaa alle lys unntatt oy
 area/spoken_lights::spoken_except_kitchen:
-- slaa alle lys unntatt kjokken unntatt oy
+- slaa alle lys unntatt kjokken
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- slaa lys stue og slaa lys stuefamess og slaa lys kjokken
+- slaa alle lys stue then slaa alle lys stuefamess then slaa alle lys kjokken
 area/spoken_lights::spoken_stt_kitchen_off:
-- slaa lys kjokken
+- slaa alle lys kjokken
 area/spoken_lights::spoken_stt_living_off:
-- slaa lys stue
+- slaa alle lys stue

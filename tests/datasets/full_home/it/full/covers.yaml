@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - apri tenda camera
-  - tenda camera apri
+  - apri tenda cameramaster
+  - tenda cameramaster apri
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - chiudi tenda camera
-  - tenda camera chiudi
+  - chiudi tenda cameramaster
+  - tenda cameramaster chiudi
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - metti tenda camera 0
-  - tenda camera 0
+  - metti tenda cameramaster 0
+  - tenda cameramaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - metti tenda camera 25
-  - tenda camera 25
+  - metti tenda cameramaster 25
+  - tenda cameramaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - metti tenda camera 40
-  - tenda camera 40
+  - metti tenda cameramaster 40
+  - tenda cameramaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - metti tenda camera 75
-  - tenda camera 75
+  - metti tenda cameramaster 75
+  - tenda cameramaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - metti tenda camera 100
-  - tenda camera 100
+  - metti tenda cameramaster 100
+  - tenda cameramaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - apri tenda camera
-  - tenda camera apri
+  - apri tenda cameramaster
+  - tenda cameramaster apri

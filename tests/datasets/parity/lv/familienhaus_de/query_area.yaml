@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - kas sledzene prieksnams
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- kas gaisma dzivojamafam un kas gaisma virtuve
+- kas gaisma dzivojamafam then kas gaisma virtuve
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- kas gaisma dzivojamafam un kas gaisma virtuve
+- kas gaisma dzivojamafam then kas gaisma virtuve
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- kas gaisma dzivojamafam un kas gaisma virtuve
+- kas gaisma dzivojamafam then kas gaisma virtuve
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- kas gaisma dzivojamafam un kas gaisma virtuve
+- kas gaisma dzivojamafam then kas gaisma virtuve
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - kas ventilators dzivojamafam
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - kas sledzene garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- kas gaisma prieksnamsgang un kas gaisma wc
+- kas gaisma prieksnamsgang then kas gaisma wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- kas gaisma prieksnamsgang un kas gaisma wc
+- kas gaisma prieksnamsgang then kas gaisma wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- kas gaisma prieksnamsgang un kas gaisma wc
+- kas gaisma prieksnamsgang then kas gaisma wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- kas gaisma prieksnamsgang un kas gaisma wc
+- kas gaisma prieksnamsgang then kas gaisma wc
 query_area/hallway_lights::hallway_lights_get_brightness:
 - kas gaisma prieksnamsgang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - kas ierice vannamaster
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- kas aizkars gulamistaba un kas aizkars istaba
+- kas aizkars gulamistabamaster then kas aizkars istaba
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- kas aizkars gulamistaba un kas aizkars istaba
+- kas aizkars gulamistabamaster then kas aizkars istaba
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- kas aizkars gulamistaba un kas aizkars istaba
+- kas aizkars gulamistabamaster then kas aizkars istaba
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- kas aizkars gulamistaba un kas aizkars istaba
+- kas aizkars gulamistabamaster then kas aizkars istaba
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- kas apkure gulamistaba
+- kas apkure gulamistabamaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- kas aizkars gulamistaba
+- kas aizkars gulamistabamaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- kas aizkars gulamistaba
+- kas aizkars gulamistabamaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- kas aizkars gulamistaba
+- kas aizkars gulamistabamaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- kas aizkars gulamistaba
+- kas aizkars gulamistabamaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- kas ventilators gulamistaba
+- kas ventilators gulamistabamaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- kas ventilators gulamistaba
+- kas ventilators gulamistabamaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- kas ventilators gulamistaba
+- kas ventilators gulamistabamaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- kas ventilators gulamistaba
+- kas ventilators gulamistabamaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- kas gaisma gulamistaba
+- kas gaisma gulamistabamaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- kas gaisma gulamistaba
+- kas gaisma gulamistabamaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- kas gaisma gulamistaba
+- kas gaisma gulamistabamaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- kas gaisma gulamistaba
+- kas gaisma gulamistabamaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - kas gaisma wc
 query_area/powder_room_lights::powder_room_lights_get_state:

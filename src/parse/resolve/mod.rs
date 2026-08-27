@@ -94,7 +94,28 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .map(|(_, e)| e.clone())
             .collect();
         if *best >= 0.86 && peers.is_empty() {
-            entities.push(rec.clone());
+            let generic_light = rec.domain == "light"
+                && catalog().any(tokens, catalog().light_nouns())
+                && !catalog().any(tokens, catalog().named_device())
+                && !catalog().any(tokens, catalog().ceiling())
+                && !catalog().any(tokens, catalog().island())
+                && !catalog().any(tokens, catalog().bedside())
+                && !catalog().any(tokens, catalog().lamp_fixture());
+            let crowded = rec.area.as_deref().is_some_and(|area| {
+                home.entities
+                    .iter()
+                    .filter(|entity| {
+                        assist_visible(entity, home)
+                            && entity.domain == "light"
+                            && !is_infra(entity)
+                            && entity.area.as_deref() == Some(area)
+                    })
+                    .count()
+                    > 1
+            });
+            if distinctive_light_name(tokens, rec, home) || !(generic_light && crowded) {
+                entities.push(rec.clone());
+            }
         } else if *best >= 0.86 && !peers.is_empty() {
             ambiguous.push(rec.clone());
             ambiguous.extend(peers);
@@ -169,6 +190,28 @@ pub(crate) fn entity_has_name_evidence(tokens: &[String], entity: &EntityRec, ho
 
 pub(crate) fn entity_name_is_mentioned(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
     score::entity_name_evidence(tokens, entity, home)
+}
+
+fn distinctive_light_name(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    let cat = catalog();
+    let area = entity.area.as_deref().and_then(|id| home.areas.iter().find(|area| area.area_id == id));
+    let room = area.map(|area| {
+        std::iter::once(area.area_id.as_str())
+            .chain(std::iter::once(area.name.as_str()))
+            .chain(area.aliases.iter().map(String::as_str))
+            .map(compact)
+            .collect::<Vec<_>>()
+    });
+    let room = room.unwrap_or_default();
+    let blob = compact(&format!("{} {}", entity.name, entity.aliases.join(" ")));
+    tokens.iter().any(|token| {
+        let folded = compact(token);
+        folded.len() >= 4
+            && !cat.light_nouns().contains(token.as_str())
+            && !cat.light_singular().contains(token.as_str())
+            && !room.iter().any(|name| name == &folded || name.contains(&folded) || folded.contains(name.as_str()))
+            && (blob.contains(&folded) || entity.entity_id.contains(&folded))
+    })
 }
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {

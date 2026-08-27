@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito genkan
-  - raito genkan tsukete
+  - つけて 電気 genkan
+  - 電気 genkan つけて
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito genkan
-  - raito genkan keshite
+  - 消して 電気 genkan
+  - 電気 genkan 消して
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito ribingu
-  - raito ribingu tsukete
+  - つけて 電気 リビング
+  - 電気 リビング つけて
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito ribingu
-  - raito ribingu keshite
+  - 消して 電気 リビング
+  - 電気 リビング 消して
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito famiriiess
-  - raito famiriiess tsukete
+  - つけて 電気 famiriiess
+  - 電気 famiriiess つけて
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito famiriiess
-  - raito famiriiess keshite
+  - 消して 電気 famiriiess
+  - 電気 famiriiess 消して
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito kitchin
-  - raito kitchin tsukete
+  - つけて 電気 キッチン
+  - 電気 キッチン つけて
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito kitchin
-  - raito kitchin keshite
+  - 消して 電気 キッチン
+  - 電気 キッチン 消して
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito famirii
-  - raito famirii tsukete
+  - つけて 電気 famirii
+  - 電気 famirii つけて
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito famirii
-  - raito famirii keshite
+  - 消して 電気 famirii
+  - 電気 famirii 消して
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito sentakushitsu
-  - raito sentakushitsu tsukete
+  - つけて 電気 sentakushitsu
+  - 電気 sentakushitsu つけて
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito sentakushitsu
-  - raito sentakushitsu keshite
+  - 消して 電気 sentakushitsu
+  - 電気 sentakushitsu 消して
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito toire
-  - raito toire tsukete
+  - つけて 電気 toire
+  - 電気 toire つけて
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito toire
-  - raito toire keshite
+  - 消して 電気 toire
+  - 電気 toire 消して
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito garage
-  - raito garage tsukete
+  - つけて 電気 garage
+  - 電気 garage つけて
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito garage
-  - raito garage keshite
+  - 消して 電気 garage
+  - 電気 garage 消して
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito office
-  - raito office tsukete
+  - つけて 電気 office
+  - 電気 office つけて
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito office
-  - raito office keshite
+  - 消して 電気 office
+  - 電気 office 消して
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito garden
-  - raito garden tsukete
+  - つけて 電気 garden
+  - 電気 garden つけて
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito garden
-  - raito garden keshite
+  - 消して 電気 garden
+  - 電気 garden 消して
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito shinshitsu
-  - raito shinshitsu tsukete
+  - つけて 電気 shinshitsumaster
+  - 電気 shinshitsumaster つけて
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito shinshitsu
-  - raito shinshitsu keshite
+  - 消して 電気 shinshitsumaster
+  - 電気 shinshitsumaster 消して
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito shinshitsu2
-  - raito shinshitsu2 tsukete
+  - つけて 電気 shinshitsu2
+  - 電気 shinshitsu2 つけて
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito shinshitsu2
-  - raito shinshitsu2 keshite
+  - 消して 電気 shinshitsu2
+  - 電気 shinshitsu2 消して
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito shinshitsu3
-  - raito shinshitsu3 tsukete
+  - つけて 電気 shinshitsu3
+  - 電気 shinshitsu3 つけて
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito shinshitsu3
-  - raito shinshitsu3 keshite
+  - 消して 電気 shinshitsu3
+  - 電気 shinshitsu3 消して
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito shinshitsu4
-  - raito shinshitsu4 tsukete
+  - つけて 電気 shinshitsu4
+  - 電気 shinshitsu4 つけて
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito shinshitsu4
-  - raito shinshitsu4 keshite
+  - 消して 電気 shinshitsu4
+  - 電気 shinshitsu4 消して
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito shuyokushitsu
-  - raito shuyokushitsu tsukete
+  - つけて 電気 shuyokushitsu
+  - 電気 shuyokushitsu つけて
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito shuyokushitsu
-  - raito shuyokushitsu keshite
+  - 消して 電気 shuyokushitsu
+  - 電気 shuyokushitsu 消して
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito main bath
-  - raito main bath tsukete
+  - つけて 電気 main bath
+  - 電気 main bath つけて
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito main bath
-  - raito main bath keshite
+  - 消して 電気 main bath
+  - 電気 main bath 消して
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito roka
-  - raito roka tsukete
+  - つけて 電気 roka
+  - 電気 roka つけて
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito roka
-  - raito roka keshite
+  - 消して 電気 roka
+  - 電気 roka 消して
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito chika
-  - raito chika tsukete
+  - つけて 電気 chika
+  - 電気 chika つけて
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito chika
-  - raito chika keshite
+  - 消して 電気 chika
+  - 電気 chika 消して
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo ribingu
-  - tenjo ribingu tsukete
+  - つけて tenjo リビング
+  - tenjo リビング つけて
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo ribingu
-  - tenjo ribingu keshite
+  - 消して tenjo リビング
+  - tenjo リビング 消して
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo ribingu 20
-  - tenjo ribingu 20
+  - セット tenjo リビング 20
+  - tenjo リビング 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo ribingu 40
-  - tenjo ribingu 40
+  - セット tenjo リビング 40
+  - tenjo リビング 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo ribingu 50
-  - tenjo ribingu 50
+  - セット tenjo リビング 50
+  - tenjo リビング 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo ribingu 60
-  - tenjo ribingu 60
+  - セット tenjo リビング 60
+  - tenjo リビング 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo ribingu 80
-  - tenjo ribingu 80
+  - セット tenjo リビング 80
+  - tenjo リビング 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo ribingu 100
-  - tenjo ribingu 100
+  - セット tenjo リビング 100
+  - tenjo リビング 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - tsukete lamp ribingu
-  - lamp ribingu tsukete
+  - つけて ライト リビング
+  - ライト リビング つけて
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - keshite lamp ribingu
-  - lamp ribingu keshite
+  - 消して ライト リビング
+  - ライト リビング 消して
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto lamp ribingu 20
-  - lamp ribingu 20
+  - セット ライト リビング 20
+  - ライト リビング 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto lamp ribingu 40
-  - lamp ribingu 40
+  - セット ライト リビング 40
+  - ライト リビング 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto lamp ribingu 50
-  - lamp ribingu 50
+  - セット ライト リビング 50
+  - ライト リビング 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto lamp ribingu 60
-  - lamp ribingu 60
+  - セット ライト リビング 60
+  - ライト リビング 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto lamp ribingu 80
-  - lamp ribingu 80
+  - セット ライト リビング 80
+  - ライト リビング 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto lamp ribingu 100
-  - lamp ribingu 100
+  - セット ライト リビング 100
+  - ライト リビング 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo kitchin
-  - tenjo kitchin tsukete
+  - つけて tenjo キッチン
+  - tenjo キッチン つけて
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo kitchin
-  - tenjo kitchin keshite
+  - 消して tenjo キッチン
+  - tenjo キッチン 消して
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo kitchin 20
-  - tenjo kitchin 20
+  - セット tenjo キッチン 20
+  - tenjo キッチン 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo kitchin 40
-  - tenjo kitchin 40
+  - セット tenjo キッチン 40
+  - tenjo キッチン 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo kitchin 50
-  - tenjo kitchin 50
+  - セット tenjo キッチン 50
+  - tenjo キッチン 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo kitchin 60
-  - tenjo kitchin 60
+  - セット tenjo キッチン 60
+  - tenjo キッチン 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo kitchin 80
-  - tenjo kitchin 80
+  - セット tenjo キッチン 80
+  - tenjo キッチン 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo kitchin 100
-  - tenjo kitchin 100
+  - セット tenjo キッチン 100
+  - tenjo キッチン 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tsukete shima kitchin
-  - shima kitchin tsukete
+  - つけて shima キッチン
+  - shima キッチン つけて
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - keshite shima kitchin
-  - shima kitchin keshite
+  - 消して shima キッチン
+  - shima キッチン 消して
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto shima kitchin 20
-  - shima kitchin 20
+  - セット shima キッチン 20
+  - shima キッチン 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto shima kitchin 40
-  - shima kitchin 40
+  - セット shima キッチン 40
+  - shima キッチン 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto shima kitchin 50
-  - shima kitchin 50
+  - セット shima キッチン 50
+  - shima キッチン 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto shima kitchin 60
-  - shima kitchin 60
+  - セット shima キッチン 60
+  - shima キッチン 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto shima kitchin 80
-  - shima kitchin 80
+  - セット shima キッチン 80
+  - shima キッチン 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto shima kitchin 100
-  - shima kitchin 100
+  - セット shima キッチン 100
+  - shima キッチン 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo shinshitsu
-  - tenjo shinshitsu tsukete
+  - つけて tenjo shinshitsumaster
+  - tenjo shinshitsumaster つけて
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo shinshitsu
-  - tenjo shinshitsu keshite
+  - 消して tenjo shinshitsumaster
+  - tenjo shinshitsumaster 消して
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo shinshitsu 20
-  - tenjo shinshitsu 20
+  - セット tenjo shinshitsumaster 20
+  - tenjo shinshitsumaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo shinshitsu 40
-  - tenjo shinshitsu 40
+  - セット tenjo shinshitsumaster 40
+  - tenjo shinshitsumaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo shinshitsu 50
-  - tenjo shinshitsu 50
+  - セット tenjo shinshitsumaster 50
+  - tenjo shinshitsumaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo shinshitsu 60
-  - tenjo shinshitsu 60
+  - セット tenjo shinshitsumaster 60
+  - tenjo shinshitsumaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo shinshitsu 80
-  - tenjo shinshitsu 80
+  - セット tenjo shinshitsumaster 80
+  - tenjo shinshitsumaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo shinshitsu 100
-  - tenjo shinshitsu 100
+  - セット tenjo shinshitsumaster 100
+  - tenjo shinshitsumaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - tsukete beddowaki shinshitsu
-  - beddowaki shinshitsu tsukete
+  - つけて beddowaki shinshitsumaster
+  - beddowaki shinshitsumaster つけて
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - keshite beddowaki shinshitsu
-  - beddowaki shinshitsu keshite
+  - 消して beddowaki shinshitsumaster
+  - beddowaki shinshitsumaster 消して
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto beddowaki shinshitsu 20
-  - beddowaki shinshitsu 20
+  - セット beddowaki shinshitsumaster 20
+  - beddowaki shinshitsumaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto beddowaki shinshitsu 40
-  - beddowaki shinshitsu 40
+  - セット beddowaki shinshitsumaster 40
+  - beddowaki shinshitsumaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto beddowaki shinshitsu 50
-  - beddowaki shinshitsu 50
+  - セット beddowaki shinshitsumaster 50
+  - beddowaki shinshitsumaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto beddowaki shinshitsu 60
-  - beddowaki shinshitsu 60
+  - セット beddowaki shinshitsumaster 60
+  - beddowaki shinshitsumaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto beddowaki shinshitsu 80
-  - beddowaki shinshitsu 80
+  - セット beddowaki shinshitsumaster 80
+  - beddowaki shinshitsumaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto beddowaki shinshitsu 100
-  - beddowaki shinshitsu 100
+  - セット beddowaki shinshitsumaster 100
+  - beddowaki shinshitsumaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo office
-  - tenjo office tsukete
+  - つけて tenjo office
+  - tenjo office つけて
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo office
-  - tenjo office keshite
+  - 消して tenjo office
+  - tenjo office 消して
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo office 20
+  - セット tenjo office 20
   - tenjo office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo office 40
+  - セット tenjo office 40
   - tenjo office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo office 50
+  - セット tenjo office 50
   - tenjo office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo office 60
+  - セット tenjo office 60
   - tenjo office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo office 80
+  - セット tenjo office 80
   - tenjo office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo office 100
+  - セット tenjo office 100
   - tenjo office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - tsukete raito garden
-  - raito garden tsukete
+  - つけて 電気 garden
+  - 電気 garden つけて
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - keshite raito garden
-  - raito garden keshite
+  - 消して 電気 garden
+  - 電気 garden 消して
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito garden 20
-  - raito garden 20
+  - セット 電気 garden 20
+  - 電気 garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito garden 40
-  - raito garden 40
+  - セット 電気 garden 40
+  - 電気 garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito garden 50
-  - raito garden 50
+  - セット 電気 garden 50
+  - 電気 garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito garden 60
-  - raito garden 60
+  - セット 電気 garden 60
+  - 電気 garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito garden 80
-  - raito garden 80
+  - セット 電気 garden 80
+  - 電気 garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito garden 100
-  - raito garden 100
+  - セット 電気 garden 100
+  - 電気 garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - tsukete raito chika
-  - raito chika tsukete
+  - つけて 電気 chika
+  - 電気 chika つけて
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - keshite raito chika
-  - raito chika keshite
+  - 消して 電気 chika
+  - 電気 chika 消して
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito chika 20
-  - raito chika 20
+  - セット 電気 chika 20
+  - 電気 chika 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito chika 40
-  - raito chika 40
+  - セット 電気 chika 40
+  - 電気 chika 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito chika 50
-  - raito chika 50
+  - セット 電気 chika 50
+  - 電気 chika 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito chika 60
-  - raito chika 60
+  - セット 電気 chika 60
+  - 電気 chika 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito chika 80
-  - raito chika 80
+  - セット 電気 chika 80
+  - 電気 chika 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito chika 100
-  - raito chika 100
+  - セット 電気 chika 100
+  - 電気 chika 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - tsukete raito roka
-  - raito roka tsukete
+  - つけて 電気 roka
+  - 電気 roka つけて
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - keshite raito roka
-  - raito roka keshite
+  - 消して 電気 roka
+  - 電気 roka 消して
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito roka 20
-  - raito roka 20
+  - セット 電気 roka 20
+  - 電気 roka 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito roka 40
-  - raito roka 40
+  - セット 電気 roka 40
+  - 電気 roka 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito roka 50
-  - raito roka 50
+  - セット 電気 roka 50
+  - 電気 roka 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito roka 60
-  - raito roka 60
+  - セット 電気 roka 60
+  - 電気 roka 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito roka 80
-  - raito roka 80
+  - セット 電気 roka 80
+  - 電気 roka 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito roka 100
-  - raito roka 100
+  - セット 電気 roka 100
+  - 電気 roka 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo famirii
-  - tenjo famirii tsukete
+  - つけて tenjo famirii
+  - tenjo famirii つけて
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo famirii
-  - tenjo famirii keshite
+  - 消して tenjo famirii
+  - tenjo famirii 消して
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo famirii 20
+  - セット tenjo famirii 20
   - tenjo famirii 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo famirii 40
+  - セット tenjo famirii 40
   - tenjo famirii 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo famirii 50
+  - セット tenjo famirii 50
   - tenjo famirii 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo famirii 60
+  - セット tenjo famirii 60
   - tenjo famirii 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo famirii 80
+  - セット tenjo famirii 80
   - tenjo famirii 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo famirii 100
+  - セット tenjo famirii 100
   - tenjo famirii 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - tsukete raito famiriiess
-  - raito famiriiess tsukete
+  - つけて 電気 famiriiess
+  - 電気 famiriiess つけて
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - keshite raito famiriiess
-  - raito famiriiess keshite
+  - 消して 電気 famiriiess
+  - 電気 famiriiess 消して
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito famiriiess 20
-  - raito famiriiess 20
+  - セット 電気 famiriiess 20
+  - 電気 famiriiess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito famiriiess 40
-  - raito famiriiess 40
+  - セット 電気 famiriiess 40
+  - 電気 famiriiess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito famiriiess 50
-  - raito famiriiess 50
+  - セット 電気 famiriiess 50
+  - 電気 famiriiess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito famiriiess 60
-  - raito famiriiess 60
+  - セット 電気 famiriiess 60
+  - 電気 famiriiess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito famiriiess 80
-  - raito famiriiess 80
+  - セット 電気 famiriiess 80
+  - 電気 famiriiess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito famiriiess 100
-  - raito famiriiess 100
+  - セット 電気 famiriiess 100
+  - 電気 famiriiess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - tsukete raito garage
-  - raito garage tsukete
+  - つけて 電気 garage
+  - 電気 garage つけて
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - keshite raito garage
-  - raito garage keshite
+  - 消して 電気 garage
+  - 電気 garage 消して
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito garage 20
-  - raito garage 20
+  - セット 電気 garage 20
+  - 電気 garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito garage 40
-  - raito garage 40
+  - セット 電気 garage 40
+  - 電気 garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito garage 50
-  - raito garage 50
+  - セット 電気 garage 50
+  - 電気 garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito garage 60
-  - raito garage 60
+  - セット 電気 garage 60
+  - 電気 garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito garage 80
-  - raito garage 80
+  - セット 電気 garage 80
+  - 電気 garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito garage 100
-  - raito garage 100
+  - セット 電気 garage 100
+  - 電気 garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo shinshitsu2
-  - tenjo shinshitsu2 tsukete
+  - つけて tenjo shinshitsu2
+  - tenjo shinshitsu2 つけて
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo shinshitsu2
-  - tenjo shinshitsu2 keshite
+  - 消して tenjo shinshitsu2
+  - tenjo shinshitsu2 消して
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo shinshitsu2 20
+  - セット tenjo shinshitsu2 20
   - tenjo shinshitsu2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo shinshitsu2 40
+  - セット tenjo shinshitsu2 40
   - tenjo shinshitsu2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo shinshitsu2 50
+  - セット tenjo shinshitsu2 50
   - tenjo shinshitsu2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo shinshitsu2 60
+  - セット tenjo shinshitsu2 60
   - tenjo shinshitsu2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo shinshitsu2 80
+  - セット tenjo shinshitsu2 80
   - tenjo shinshitsu2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo shinshitsu2 100
+  - セット tenjo shinshitsu2 100
   - tenjo shinshitsu2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo shinshitsu3
-  - tenjo shinshitsu3 tsukete
+  - つけて tenjo shinshitsu3
+  - tenjo shinshitsu3 つけて
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo shinshitsu3
-  - tenjo shinshitsu3 keshite
+  - 消して tenjo shinshitsu3
+  - tenjo shinshitsu3 消して
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo shinshitsu3 20
+  - セット tenjo shinshitsu3 20
   - tenjo shinshitsu3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo shinshitsu3 40
+  - セット tenjo shinshitsu3 40
   - tenjo shinshitsu3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo shinshitsu3 50
+  - セット tenjo shinshitsu3 50
   - tenjo shinshitsu3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo shinshitsu3 60
+  - セット tenjo shinshitsu3 60
   - tenjo shinshitsu3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo shinshitsu3 80
+  - セット tenjo shinshitsu3 80
   - tenjo shinshitsu3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo shinshitsu3 100
+  - セット tenjo shinshitsu3 100
   - tenjo shinshitsu3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo shinshitsu4
-  - tenjo shinshitsu4 tsukete
+  - つけて tenjo shinshitsu4
+  - tenjo shinshitsu4 つけて
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - keshite tenjo shinshitsu4
-  - tenjo shinshitsu4 keshite
+  - 消して tenjo shinshitsu4
+  - tenjo shinshitsu4 消して
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - setto tenjo shinshitsu4 20
+  - セット tenjo shinshitsu4 20
   - tenjo shinshitsu4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - setto tenjo shinshitsu4 40
+  - セット tenjo shinshitsu4 40
   - tenjo shinshitsu4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - setto tenjo shinshitsu4 50
+  - セット tenjo shinshitsu4 50
   - tenjo shinshitsu4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - setto tenjo shinshitsu4 60
+  - セット tenjo shinshitsu4 60
   - tenjo shinshitsu4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - setto tenjo shinshitsu4 80
+  - セット tenjo shinshitsu4 80
   - tenjo shinshitsu4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - setto tenjo shinshitsu4 100
+  - セット tenjo shinshitsu4 100
   - tenjo shinshitsu4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - tsukete raito genkan
-  - raito genkan tsukete
+  - つけて 電気 genkan
+  - 電気 genkan つけて
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - keshite raito genkan
-  - raito genkan keshite
+  - 消して 電気 genkan
+  - 電気 genkan 消して
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito genkan 20
-  - raito genkan 20
+  - セット 電気 genkan 20
+  - 電気 genkan 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito genkan 40
-  - raito genkan 40
+  - セット 電気 genkan 40
+  - 電気 genkan 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito genkan 50
-  - raito genkan 50
+  - セット 電気 genkan 50
+  - 電気 genkan 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito genkan 60
-  - raito genkan 60
+  - セット 電気 genkan 60
+  - 電気 genkan 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito genkan 80
-  - raito genkan 80
+  - セット 電気 genkan 80
+  - 電気 genkan 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito genkan 100
-  - raito genkan 100
+  - セット 電気 genkan 100
+  - 電気 genkan 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - tsukete raito sentakushitsu
-  - raito sentakushitsu tsukete
+  - つけて 電気 sentakushitsu
+  - 電気 sentakushitsu つけて
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - keshite raito sentakushitsu
-  - raito sentakushitsu keshite
+  - 消して 電気 sentakushitsu
+  - 電気 sentakushitsu 消して
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito sentakushitsu 20
-  - raito sentakushitsu 20
+  - セット 電気 sentakushitsu 20
+  - 電気 sentakushitsu 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito sentakushitsu 40
-  - raito sentakushitsu 40
+  - セット 電気 sentakushitsu 40
+  - 電気 sentakushitsu 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito sentakushitsu 50
-  - raito sentakushitsu 50
+  - セット 電気 sentakushitsu 50
+  - 電気 sentakushitsu 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito sentakushitsu 60
-  - raito sentakushitsu 60
+  - セット 電気 sentakushitsu 60
+  - 電気 sentakushitsu 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito sentakushitsu 80
-  - raito sentakushitsu 80
+  - セット 電気 sentakushitsu 80
+  - 電気 sentakushitsu 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito sentakushitsu 100
-  - raito sentakushitsu 100
+  - セット 電気 sentakushitsu 100
+  - 電気 sentakushitsu 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - tsukete raito main bath
-  - raito main bath tsukete
+  - つけて 電気 main bath
+  - 電気 main bath つけて
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - keshite raito main bath
-  - raito main bath keshite
+  - 消して 電気 main bath
+  - 電気 main bath 消して
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito main bath 20
-  - raito main bath 20
+  - セット 電気 main bath 20
+  - 電気 main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito main bath 40
-  - raito main bath 40
+  - セット 電気 main bath 40
+  - 電気 main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito main bath 50
-  - raito main bath 50
+  - セット 電気 main bath 50
+  - 電気 main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito main bath 60
-  - raito main bath 60
+  - セット 電気 main bath 60
+  - 電気 main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito main bath 80
-  - raito main bath 80
+  - セット 電気 main bath 80
+  - 電気 main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito main bath 100
-  - raito main bath 100
+  - セット 電気 main bath 100
+  - 電気 main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - tsukete raito toire
-  - raito toire tsukete
+  - つけて 電気 toire
+  - 電気 toire つけて
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - keshite raito toire
-  - raito toire keshite
+  - 消して 電気 toire
+  - 電気 toire 消して
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito toire 20
-  - raito toire 20
+  - セット 電気 toire 20
+  - 電気 toire 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito toire 40
-  - raito toire 40
+  - セット 電気 toire 40
+  - 電気 toire 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito toire 50
-  - raito toire 50
+  - セット 電気 toire 50
+  - 電気 toire 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito toire 60
-  - raito toire 60
+  - セット 電気 toire 60
+  - 電気 toire 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito toire 80
-  - raito toire 80
+  - セット 電気 toire 80
+  - 電気 toire 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito toire 100
-  - raito toire 100
+  - セット 電気 toire 100
+  - 電気 toire 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - tsukete ensuite shinshitsu
-  - ensuite shinshitsu tsukete
+  - つけて ensuite shinshitsumaster
+  - ensuite shinshitsumaster つけて
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - keshite ensuite shinshitsu
-  - ensuite shinshitsu keshite
+  - 消して ensuite shinshitsumaster
+  - ensuite shinshitsumaster 消して
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto ensuite shinshitsu 20
-  - ensuite shinshitsu 20
+  - セット ensuite shinshitsumaster 20
+  - ensuite shinshitsumaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto ensuite shinshitsu 40
-  - ensuite shinshitsu 40
+  - セット ensuite shinshitsumaster 40
+  - ensuite shinshitsumaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto ensuite shinshitsu 50
-  - ensuite shinshitsu 50
+  - セット ensuite shinshitsumaster 50
+  - ensuite shinshitsumaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto ensuite shinshitsu 60
-  - ensuite shinshitsu 60
+  - セット ensuite shinshitsumaster 60
+  - ensuite shinshitsumaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto ensuite shinshitsu 80
-  - ensuite shinshitsu 80
+  - セット ensuite shinshitsumaster 80
+  - ensuite shinshitsumaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto ensuite shinshitsu 100
-  - ensuite shinshitsu 100
+  - セット ensuite shinshitsumaster 100
+  - ensuite shinshitsumaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - tsukete beddowaki shinshitsu
-  - beddowaki shinshitsu tsukete
+  - つけて beddowaki shinshitsumaster
+  - beddowaki shinshitsumaster つけて
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - keshite beddowaki shinshitsu
-  - beddowaki shinshitsu keshite
+  - 消して beddowaki shinshitsumaster
+  - beddowaki shinshitsumaster 消して
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto beddowaki shinshitsu 20
-  - beddowaki shinshitsu 20
+  - セット beddowaki shinshitsumaster 20
+  - beddowaki shinshitsumaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto beddowaki shinshitsu 40
-  - beddowaki shinshitsu 40
+  - セット beddowaki shinshitsumaster 40
+  - beddowaki shinshitsumaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto beddowaki shinshitsu 50
-  - beddowaki shinshitsu 50
+  - セット beddowaki shinshitsumaster 50
+  - beddowaki shinshitsumaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto beddowaki shinshitsu 60
-  - beddowaki shinshitsu 60
+  - セット beddowaki shinshitsumaster 60
+  - beddowaki shinshitsumaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto beddowaki shinshitsu 80
-  - beddowaki shinshitsu 80
+  - セット beddowaki shinshitsumaster 80
+  - beddowaki shinshitsumaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - setto beddowaki shinshitsu 100
-  - beddowaki shinshitsu 100
+  - セット beddowaki shinshitsumaster 100
+  - beddowaki shinshitsumaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - tsukete raito shuyokushitsu
-  - raito shuyokushitsu tsukete
+  - つけて 電気 shuyokushitsu
+  - 電気 shuyokushitsu つけて
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - keshite raito shuyokushitsu
-  - raito shuyokushitsu keshite
+  - 消して 電気 shuyokushitsu
+  - 電気 shuyokushitsu 消して
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - setto raito shuyokushitsu 20
-  - raito shuyokushitsu 20
+  - セット 電気 shuyokushitsu 20
+  - 電気 shuyokushitsu 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - setto raito shuyokushitsu 40
-  - raito shuyokushitsu 40
+  - セット 電気 shuyokushitsu 40
+  - 電気 shuyokushitsu 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito shuyokushitsu 50
-  - raito shuyokushitsu 50
+  - セット 電気 shuyokushitsu 50
+  - 電気 shuyokushitsu 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - setto raito shuyokushitsu 60
-  - raito shuyokushitsu 60
+  - セット 電気 shuyokushitsu 60
+  - 電気 shuyokushitsu 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - setto raito shuyokushitsu 80
-  - raito shuyokushitsu 80
+  - セット 電気 shuyokushitsu 80
+  - 電気 shuyokushitsu 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - setto raito shuyokushitsu 100
-  - raito shuyokushitsu 100
+  - セット 電気 shuyokushitsu 100
+  - 電気 shuyokushitsu 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo ribingu red
-  - setto raito ribingu red
+  - セット tenjo リビング 赤
+  - セット 電気 リビング 赤
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo ribingu blue
-  - setto raito ribingu blue
+  - セット tenjo リビング 青
+  - セット 電気 リビング 青
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo ribingu green
-  - setto raito ribingu green
+  - セット tenjo リビング 緑
+  - セット 電気 リビング 緑
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo ribingu white
-  - setto raito ribingu white
+  - セット tenjo リビング 白
+  - セット 電気 リビング 白
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo ribingu yellow
-  - setto raito ribingu yellow
+  - セット tenjo リビング 黄
+  - セット 電気 リビング 黄
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo ribingu black
-  - setto raito ribingu black
+  - セット tenjo リビング 黒
+  - セット 電気 リビング 黒
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - setto lamp ribingu red
-  - setto raito ribingu red
+  - セット ライト リビング 赤
+  - セット 電気 リビング 赤
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - setto lamp ribingu blue
-  - setto raito ribingu blue
+  - セット ライト リビング 青
+  - セット 電気 リビング 青
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - setto lamp ribingu green
-  - setto raito ribingu green
+  - セット ライト リビング 緑
+  - セット 電気 リビング 緑
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - setto lamp ribingu white
-  - setto raito ribingu white
+  - セット ライト リビング 白
+  - セット 電気 リビング 白
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto lamp ribingu yellow
-  - setto raito ribingu yellow
+  - セット ライト リビング 黄
+  - セット 電気 リビング 黄
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - setto lamp ribingu black
-  - setto raito ribingu black
+  - セット ライト リビング 黒
+  - セット 電気 リビング 黒
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo kitchin red
-  - setto raito kitchin red
+  - セット tenjo キッチン 赤
+  - セット 電気 キッチン 赤
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo kitchin blue
-  - setto raito kitchin blue
+  - セット tenjo キッチン 青
+  - セット 電気 キッチン 青
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo kitchin green
-  - setto raito kitchin green
+  - セット tenjo キッチン 緑
+  - セット 電気 キッチン 緑
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo kitchin white
-  - setto raito kitchin white
+  - セット tenjo キッチン 白
+  - セット 電気 キッチン 白
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo kitchin yellow
-  - setto raito kitchin yellow
+  - セット tenjo キッチン 黄
+  - セット 電気 キッチン 黄
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo kitchin black
-  - setto raito kitchin black
+  - セット tenjo キッチン 黒
+  - セット 電気 キッチン 黒
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - setto shima kitchin red
-  - setto raito kitchin red
+  - セット shima キッチン 赤
+  - セット 電気 キッチン 赤
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - setto shima kitchin blue
-  - setto raito kitchin blue
+  - セット shima キッチン 青
+  - セット 電気 キッチン 青
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - setto shima kitchin green
-  - setto raito kitchin green
+  - セット shima キッチン 緑
+  - セット 電気 キッチン 緑
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - setto shima kitchin white
-  - setto raito kitchin white
+  - セット shima キッチン 白
+  - セット 電気 キッチン 白
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto shima kitchin yellow
-  - setto raito kitchin yellow
+  - セット shima キッチン 黄
+  - セット 電気 キッチン 黄
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - setto shima kitchin black
-  - setto raito kitchin black
+  - セット shima キッチン 黒
+  - セット 電気 キッチン 黒
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo shinshitsu red
-  - setto raito shinshitsu red
+  - セット tenjo shinshitsumaster 赤
+  - セット 電気 shinshitsumaster 赤
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo shinshitsu blue
-  - setto raito shinshitsu blue
+  - セット tenjo shinshitsumaster 青
+  - セット 電気 shinshitsumaster 青
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo shinshitsu green
-  - setto raito shinshitsu green
+  - セット tenjo shinshitsumaster 緑
+  - セット 電気 shinshitsumaster 緑
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo shinshitsu white
-  - setto raito shinshitsu white
+  - セット tenjo shinshitsumaster 白
+  - セット 電気 shinshitsumaster 白
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo shinshitsu yellow
-  - setto raito shinshitsu yellow
+  - セット tenjo shinshitsumaster 黄
+  - セット 電気 shinshitsumaster 黄
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo shinshitsu black
-  - setto raito shinshitsu black
+  - セット tenjo shinshitsumaster 黒
+  - セット 電気 shinshitsumaster 黒
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - setto beddowaki shinshitsu red
-  - setto raito shinshitsu red
+  - セット beddowaki shinshitsumaster 赤
+  - セット 電気 shinshitsumaster 赤
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - setto beddowaki shinshitsu blue
-  - setto raito shinshitsu blue
+  - セット beddowaki shinshitsumaster 青
+  - セット 電気 shinshitsumaster 青
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - setto beddowaki shinshitsu green
-  - setto raito shinshitsu green
+  - セット beddowaki shinshitsumaster 緑
+  - セット 電気 shinshitsumaster 緑
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - setto beddowaki shinshitsu white
-  - setto raito shinshitsu white
+  - セット beddowaki shinshitsumaster 白
+  - セット 電気 shinshitsumaster 白
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto beddowaki shinshitsu yellow
-  - setto raito shinshitsu yellow
+  - セット beddowaki shinshitsumaster 黄
+  - セット 電気 shinshitsumaster 黄
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - setto beddowaki shinshitsu black
-  - setto raito shinshitsu black
+  - セット beddowaki shinshitsumaster 黒
+  - セット 電気 shinshitsumaster 黒
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo office red
-  - setto raito office red
+  - セット tenjo office 赤
+  - セット 電気 office 赤
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo office blue
-  - setto raito office blue
+  - セット tenjo office 青
+  - セット 電気 office 青
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo office green
-  - setto raito office green
+  - セット tenjo office 緑
+  - セット 電気 office 緑
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo office white
-  - setto raito office white
+  - セット tenjo office 白
+  - セット 電気 office 白
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo office yellow
-  - setto raito office yellow
+  - セット tenjo office 黄
+  - セット 電気 office 黄
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo office black
-  - setto raito office black
+  - セット tenjo office 黒
+  - セット 電気 office 黒
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito garden red
-  - raito garden red
+  - セット 電気 garden 赤
+  - 電気 garden 赤
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito garden blue
-  - raito garden blue
+  - セット 電気 garden 青
+  - 電気 garden 青
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito garden green
-  - raito garden green
+  - セット 電気 garden 緑
+  - 電気 garden 緑
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito garden white
-  - raito garden white
+  - セット 電気 garden 白
+  - 電気 garden 白
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito garden yellow
-  - raito garden yellow
+  - セット 電気 garden 黄
+  - 電気 garden 黄
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito garden black
-  - raito garden black
+  - セット 電気 garden 黒
+  - 電気 garden 黒
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito chika red
-  - raito chika red
+  - セット 電気 chika 赤
+  - 電気 chika 赤
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito chika blue
-  - raito chika blue
+  - セット 電気 chika 青
+  - 電気 chika 青
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito chika green
-  - raito chika green
+  - セット 電気 chika 緑
+  - 電気 chika 緑
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito chika white
-  - raito chika white
+  - セット 電気 chika 白
+  - 電気 chika 白
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito chika yellow
-  - raito chika yellow
+  - セット 電気 chika 黄
+  - 電気 chika 黄
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito chika black
-  - raito chika black
+  - セット 電気 chika 黒
+  - 電気 chika 黒
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito roka red
-  - raito roka red
+  - セット 電気 roka 赤
+  - 電気 roka 赤
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito roka blue
-  - raito roka blue
+  - セット 電気 roka 青
+  - 電気 roka 青
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito roka green
-  - raito roka green
+  - セット 電気 roka 緑
+  - 電気 roka 緑
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito roka white
-  - raito roka white
+  - セット 電気 roka 白
+  - 電気 roka 白
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito roka yellow
-  - raito roka yellow
+  - セット 電気 roka 黄
+  - 電気 roka 黄
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito roka black
-  - raito roka black
+  - セット 電気 roka 黒
+  - 電気 roka 黒
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo famirii red
-  - setto raito famirii red
+  - セット tenjo famirii 赤
+  - セット 電気 famirii 赤
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo famirii blue
-  - setto raito famirii blue
+  - セット tenjo famirii 青
+  - セット 電気 famirii 青
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo famirii green
-  - setto raito famirii green
+  - セット tenjo famirii 緑
+  - セット 電気 famirii 緑
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo famirii white
-  - setto raito famirii white
+  - セット tenjo famirii 白
+  - セット 電気 famirii 白
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo famirii yellow
-  - setto raito famirii yellow
+  - セット tenjo famirii 黄
+  - セット 電気 famirii 黄
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo famirii black
-  - setto raito famirii black
+  - セット tenjo famirii 黒
+  - セット 電気 famirii 黒
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito famiriiess red
-  - raito famiriiess red
+  - セット 電気 famiriiess 赤
+  - 電気 famiriiess 赤
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito famiriiess blue
-  - raito famiriiess blue
+  - セット 電気 famiriiess 青
+  - 電気 famiriiess 青
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito famiriiess green
-  - raito famiriiess green
+  - セット 電気 famiriiess 緑
+  - 電気 famiriiess 緑
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito famiriiess white
-  - raito famiriiess white
+  - セット 電気 famiriiess 白
+  - 電気 famiriiess 白
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito famiriiess yellow
-  - raito famiriiess yellow
+  - セット 電気 famiriiess 黄
+  - 電気 famiriiess 黄
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito famiriiess black
-  - raito famiriiess black
+  - セット 電気 famiriiess 黒
+  - 電気 famiriiess 黒
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito garage red
-  - raito garage red
+  - セット 電気 garage 赤
+  - 電気 garage 赤
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito garage blue
-  - raito garage blue
+  - セット 電気 garage 青
+  - 電気 garage 青
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito garage green
-  - raito garage green
+  - セット 電気 garage 緑
+  - 電気 garage 緑
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito garage white
-  - raito garage white
+  - セット 電気 garage 白
+  - 電気 garage 白
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito garage yellow
-  - raito garage yellow
+  - セット 電気 garage 黄
+  - 電気 garage 黄
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito garage black
-  - raito garage black
+  - セット 電気 garage 黒
+  - 電気 garage 黒
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo shinshitsu2 red
-  - setto raito shinshitsu2 red
+  - セット tenjo shinshitsu2 赤
+  - セット 電気 shinshitsu2 赤
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo shinshitsu2 blue
-  - setto raito shinshitsu2 blue
+  - セット tenjo shinshitsu2 青
+  - セット 電気 shinshitsu2 青
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo shinshitsu2 green
-  - setto raito shinshitsu2 green
+  - セット tenjo shinshitsu2 緑
+  - セット 電気 shinshitsu2 緑
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo shinshitsu2 white
-  - setto raito shinshitsu2 white
+  - セット tenjo shinshitsu2 白
+  - セット 電気 shinshitsu2 白
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo shinshitsu2 yellow
-  - setto raito shinshitsu2 yellow
+  - セット tenjo shinshitsu2 黄
+  - セット 電気 shinshitsu2 黄
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo shinshitsu2 black
-  - setto raito shinshitsu2 black
+  - セット tenjo shinshitsu2 黒
+  - セット 電気 shinshitsu2 黒
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo shinshitsu3 red
-  - setto raito shinshitsu3 red
+  - セット tenjo shinshitsu3 赤
+  - セット 電気 shinshitsu3 赤
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo shinshitsu3 blue
-  - setto raito shinshitsu3 blue
+  - セット tenjo shinshitsu3 青
+  - セット 電気 shinshitsu3 青
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo shinshitsu3 green
-  - setto raito shinshitsu3 green
+  - セット tenjo shinshitsu3 緑
+  - セット 電気 shinshitsu3 緑
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo shinshitsu3 white
-  - setto raito shinshitsu3 white
+  - セット tenjo shinshitsu3 白
+  - セット 電気 shinshitsu3 白
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo shinshitsu3 yellow
-  - setto raito shinshitsu3 yellow
+  - セット tenjo shinshitsu3 黄
+  - セット 電気 shinshitsu3 黄
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo shinshitsu3 black
-  - setto raito shinshitsu3 black
+  - セット tenjo shinshitsu3 黒
+  - セット 電気 shinshitsu3 黒
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - setto tenjo shinshitsu4 red
-  - setto raito shinshitsu4 red
+  - セット tenjo shinshitsu4 赤
+  - セット 電気 shinshitsu4 赤
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - setto tenjo shinshitsu4 blue
-  - setto raito shinshitsu4 blue
+  - セット tenjo shinshitsu4 青
+  - セット 電気 shinshitsu4 青
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - setto tenjo shinshitsu4 green
-  - setto raito shinshitsu4 green
+  - セット tenjo shinshitsu4 緑
+  - セット 電気 shinshitsu4 緑
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - setto tenjo shinshitsu4 white
-  - setto raito shinshitsu4 white
+  - セット tenjo shinshitsu4 白
+  - セット 電気 shinshitsu4 白
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto tenjo shinshitsu4 yellow
-  - setto raito shinshitsu4 yellow
+  - セット tenjo shinshitsu4 黄
+  - セット 電気 shinshitsu4 黄
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - setto tenjo shinshitsu4 black
-  - setto raito shinshitsu4 black
+  - セット tenjo shinshitsu4 黒
+  - セット 電気 shinshitsu4 黒
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito genkan red
-  - raito genkan red
+  - セット 電気 genkan 赤
+  - 電気 genkan 赤
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito genkan blue
-  - raito genkan blue
+  - セット 電気 genkan 青
+  - 電気 genkan 青
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito genkan green
-  - raito genkan green
+  - セット 電気 genkan 緑
+  - 電気 genkan 緑
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito genkan white
-  - raito genkan white
+  - セット 電気 genkan 白
+  - 電気 genkan 白
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito genkan yellow
-  - raito genkan yellow
+  - セット 電気 genkan 黄
+  - 電気 genkan 黄
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito genkan black
-  - raito genkan black
+  - セット 電気 genkan 黒
+  - 電気 genkan 黒
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito sentakushitsu red
-  - raito sentakushitsu red
+  - セット 電気 sentakushitsu 赤
+  - 電気 sentakushitsu 赤
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito sentakushitsu blue
-  - raito sentakushitsu blue
+  - セット 電気 sentakushitsu 青
+  - 電気 sentakushitsu 青
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito sentakushitsu green
-  - raito sentakushitsu green
+  - セット 電気 sentakushitsu 緑
+  - 電気 sentakushitsu 緑
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito sentakushitsu white
-  - raito sentakushitsu white
+  - セット 電気 sentakushitsu 白
+  - 電気 sentakushitsu 白
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito sentakushitsu yellow
-  - raito sentakushitsu yellow
+  - セット 電気 sentakushitsu 黄
+  - 電気 sentakushitsu 黄
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito sentakushitsu black
-  - raito sentakushitsu black
+  - セット 電気 sentakushitsu 黒
+  - 電気 sentakushitsu 黒
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito main bath red
-  - raito main bath red
+  - セット 電気 main bath 赤
+  - 電気 main bath 赤
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito main bath blue
-  - raito main bath blue
+  - セット 電気 main bath 青
+  - 電気 main bath 青
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito main bath green
-  - raito main bath green
+  - セット 電気 main bath 緑
+  - 電気 main bath 緑
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito main bath white
-  - raito main bath white
+  - セット 電気 main bath 白
+  - 電気 main bath 白
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito main bath yellow
-  - raito main bath yellow
+  - セット 電気 main bath 黄
+  - 電気 main bath 黄
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito main bath black
-  - raito main bath black
+  - セット 電気 main bath 黒
+  - 電気 main bath 黒
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito toire red
-  - raito toire red
+  - セット 電気 toire 赤
+  - 電気 toire 赤
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito toire blue
-  - raito toire blue
+  - セット 電気 toire 青
+  - 電気 toire 青
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito toire green
-  - raito toire green
+  - セット 電気 toire 緑
+  - 電気 toire 緑
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito toire white
-  - raito toire white
+  - セット 電気 toire 白
+  - 電気 toire 白
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito toire yellow
-  - raito toire yellow
+  - セット 電気 toire 黄
+  - 電気 toire 黄
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito toire black
-  - raito toire black
+  - セット 電気 toire 黒
+  - 電気 toire 黒
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - setto ensuite shinshitsu red
-  - setto raito shinshitsu red
+  - セット ensuite shinshitsumaster 赤
+  - セット 電気 shinshitsumaster 赤
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - setto ensuite shinshitsu blue
-  - setto raito shinshitsu blue
+  - セット ensuite shinshitsumaster 青
+  - セット 電気 shinshitsumaster 青
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - setto ensuite shinshitsu green
-  - setto raito shinshitsu green
+  - セット ensuite shinshitsumaster 緑
+  - セット 電気 shinshitsumaster 緑
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - setto ensuite shinshitsu white
-  - setto raito shinshitsu white
+  - セット ensuite shinshitsumaster 白
+  - セット 電気 shinshitsumaster 白
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto ensuite shinshitsu yellow
-  - setto raito shinshitsu yellow
+  - セット ensuite shinshitsumaster 黄
+  - セット 電気 shinshitsumaster 黄
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - setto ensuite shinshitsu black
-  - setto raito shinshitsu black
+  - セット ensuite shinshitsumaster 黒
+  - セット 電気 shinshitsumaster 黒
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - setto beddowaki shinshitsu red
-  - setto raito shinshitsu red
+  - セット beddowaki shinshitsumaster 赤
+  - セット 電気 shinshitsumaster 赤
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - setto beddowaki shinshitsu blue
-  - setto raito shinshitsu blue
+  - セット beddowaki shinshitsumaster 青
+  - セット 電気 shinshitsumaster 青
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - setto beddowaki shinshitsu green
-  - setto raito shinshitsu green
+  - セット beddowaki shinshitsumaster 緑
+  - セット 電気 shinshitsumaster 緑
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - setto beddowaki shinshitsu white
-  - setto raito shinshitsu white
+  - セット beddowaki shinshitsumaster 白
+  - セット 電気 shinshitsumaster 白
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto beddowaki shinshitsu yellow
-  - setto raito shinshitsu yellow
+  - セット beddowaki shinshitsumaster 黄
+  - セット 電気 shinshitsumaster 黄
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - setto beddowaki shinshitsu black
-  - setto raito shinshitsu black
+  - セット beddowaki shinshitsumaster 黒
+  - セット 電気 shinshitsumaster 黒
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito shuyokushitsu red
-  - raito shuyokushitsu red
+  - セット 電気 shuyokushitsu 赤
+  - 電気 shuyokushitsu 赤
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - setto raito shuyokushitsu blue
-  - raito shuyokushitsu blue
+  - セット 電気 shuyokushitsu 青
+  - 電気 shuyokushitsu 青
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - setto raito shuyokushitsu green
-  - raito shuyokushitsu green
+  - セット 電気 shuyokushitsu 緑
+  - 電気 shuyokushitsu 緑
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - setto raito shuyokushitsu white
-  - raito shuyokushitsu white
+  - セット 電気 shuyokushitsu 白
+  - 電気 shuyokushitsu 白
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - setto raito shuyokushitsu yellow
-  - raito shuyokushitsu yellow
+  - セット 電気 shuyokushitsu 黄
+  - 電気 shuyokushitsu 黄
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - setto raito shuyokushitsu black
-  - raito shuyokushitsu black
+  - セット 電気 shuyokushitsu 黒
+  - 電気 shuyokushitsu 黒
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 kitchin
-  - 全部 raito keshite 以外 kitchin
+  - 消して 全部 電気 以外 キッチン
+  - 全部 電気 消して 以外 キッチン
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 office
-  - 全部 raito keshite 以外 office
+  - 消して 全部 電気 以外 office
+  - 全部 電気 消して 以外 office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 garage
-  - 全部 raito keshite 以外 garage
+  - 消して 全部 電気 以外 garage
+  - 全部 電気 消して 以外 garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 shinshitsu
-  - 全部 raito keshite 以外 shinshitsu
+  - 消して 全部 電気 以外 shinshitsumaster
+  - 全部 電気 消して 以外 shinshitsumaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito kakai
-  - raito kakai tsukete
+  - つけて 全部 電気 kakai
+  - 電気 kakai つけて
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito kakai
-  - raito kakai keshite
+  - 消して 全部 電気 kakai
+  - 電気 kakai 消して
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito joukai
-  - raito joukai tsukete
+  - つけて 全部 電気 joukai
+  - 電気 joukai つけて
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito joukai
-  - raito joukai keshite
+  - 消して 全部 電気 joukai
+  - 電気 joukai 消して
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito basement
-  - raito basement tsukete
+  - つけて 全部 電気 basement
+  - 電気 basement つけて
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito basement
-  - raito basement keshite
+  - 消して 全部 電気 basement
+  - 電気 basement 消して
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 genkan
-  - 全部 raito keshite 以外 genkan
+  - 消して 全部 電気 以外 genkan
+  - 全部 電気 消して 以外 genkan
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 ribingu
-  - 全部 raito keshite 以外 ribingu
+  - 消して 全部 電気 以外 リビング
+  - 全部 電気 消して 以外 リビング
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 famiriiess
-  - 全部 raito keshite 以外 famiriiess
+  - 消して 全部 電気 以外 famiriiess
+  - 全部 電気 消して 以外 famiriiess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 famirii
-  - 全部 raito keshite 以外 famirii
+  - 消して 全部 電気 以外 famirii
+  - 全部 電気 消して 以外 famirii
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 sentakushitsu
-  - 全部 raito keshite 以外 sentakushitsu
+  - 消して 全部 電気 以外 sentakushitsu
+  - 全部 電気 消して 以外 sentakushitsu
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 toire
-  - 全部 raito keshite 以外 toire
+  - 消して 全部 電気 以外 toire
+  - 全部 電気 消して 以外 toire
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 garden
-  - 全部 raito keshite 以外 garden
+  - 消して 全部 電気 以外 garden
+  - 全部 電気 消して 以外 garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 shinshitsu2
-  - 全部 raito keshite 以外 shinshitsu2
+  - 消して 全部 電気 以外 shinshitsu2
+  - 全部 電気 消して 以外 shinshitsu2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 shinshitsu3
-  - 全部 raito keshite 以外 shinshitsu3
+  - 消して 全部 電気 以外 shinshitsu3
+  - 全部 電気 消して 以外 shinshitsu3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 shinshitsu4
-  - 全部 raito keshite 以外 shinshitsu4
+  - 消して 全部 電気 以外 shinshitsu4
+  - 全部 電気 消して 以外 shinshitsu4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 shuyokushitsu
-  - 全部 raito keshite 以外 shuyokushitsu
+  - 消して 全部 電気 以外 shuyokushitsu
+  - 全部 電気 消して 以外 shuyokushitsu
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 main bath
-  - 全部 raito keshite 以外 main bath
+  - 消して 全部 電気 以外 main bath
+  - 全部 電気 消して 以外 main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 roka
-  - 全部 raito keshite 以外 roka
+  - 消して 全部 電気 以外 roka
+  - 全部 電気 消して 以外 roka
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 chika
-  - 全部 raito keshite 以外 chika
+  - 消して 全部 電気 以外 chika
+  - 全部 電気 消して 以外 chika
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - tsukete raito chika
-  - raito chika tsukete
+  - つけて 電気 chika
+  - 電気 chika つけて
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - tsukete raito roka
-  - raito roka tsukete
+  - つけて 電気 roka
+  - 電気 roka つけて
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - tsukete tenjo famirii
-  - tenjo famirii tsukete
+  - つけて tenjo famirii
+  - tenjo famirii つけて
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - tsukete raito famiriiess
-  - raito famiriiess tsukete
+  - つけて 電気 famiriiess
+  - 電気 famiriiess つけて

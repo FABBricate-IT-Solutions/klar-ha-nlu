@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - buka langsir bilik
-  - langsir bilik buka
+  - buka langsir bilikmaster
+  - langsir bilikmaster buka
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - tutup langsir bilik
-  - langsir bilik tutup
+  - tutup langsir bilikmaster
+  - langsir bilikmaster tutup
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - tetapkan langsir bilik 0
-  - langsir bilik 0
+  - tetapkan langsir bilikmaster 0
+  - langsir bilikmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - tetapkan langsir bilik 25
-  - langsir bilik 25
+  - tetapkan langsir bilikmaster 25
+  - langsir bilikmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - tetapkan langsir bilik 40
-  - langsir bilik 40
+  - tetapkan langsir bilikmaster 40
+  - langsir bilikmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - tetapkan langsir bilik 75
-  - langsir bilik 75
+  - tetapkan langsir bilikmaster 75
+  - langsir bilikmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - tetapkan langsir bilik 100
-  - langsir bilik 100
+  - tetapkan langsir bilikmaster 100
+  - langsir bilikmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - buka langsir bilik
-  - langsir bilik buka
+  - buka langsir bilikmaster
+  - langsir bilikmaster buka

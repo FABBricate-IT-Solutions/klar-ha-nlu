@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - باز پرده اتاقخواب
-  - پرده اتاقخواب باز
+  - باز پرده اتاقخوابmaster
+  - پرده اتاقخوابmaster باز
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - بسته پرده اتاقخواب
-  - پرده اتاقخواب بسته
+  - بسته پرده اتاقخوابmaster
+  - پرده اتاقخوابmaster بسته
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - بگذار پرده اتاقخواب 0
-  - پرده اتاقخواب 0
+  - بگذار پرده اتاقخوابmaster 0
+  - پرده اتاقخوابmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - بگذار پرده اتاقخواب 25
-  - پرده اتاقخواب 25
+  - بگذار پرده اتاقخوابmaster 25
+  - پرده اتاقخوابmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - بگذار پرده اتاقخواب 40
-  - پرده اتاقخواب 40
+  - بگذار پرده اتاقخوابmaster 40
+  - پرده اتاقخوابmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - بگذار پرده اتاقخواب 75
-  - پرده اتاقخواب 75
+  - بگذار پرده اتاقخوابmaster 75
+  - پرده اتاقخوابmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - بگذار پرده اتاقخواب 100
-  - پرده اتاقخواب 100
+  - بگذار پرده اتاقخوابmaster 100
+  - پرده اتاقخوابmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - باز پرده اتاقخواب
-  - پرده اتاقخواب باز
+  - باز پرده اتاقخوابmaster
+  - پرده اتاقخوابmaster باز

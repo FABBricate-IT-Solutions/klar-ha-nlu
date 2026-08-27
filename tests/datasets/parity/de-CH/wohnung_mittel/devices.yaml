@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - loesch decke schlafzimmer
 devices/geraete::device_arbeitszimmer_an:
-- mach liecht wohnzimmer
+- mach liecht office
 devices/geraete::device_esszimmer_an:
 - mach liecht stubeess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - mach liecht wohnzimmer
 devices/geraete::filmabend:
-- mach Filmabend
+- mach szene filmabend
 devices/geraete::kugel_an:
-- mach kugel schlafzimmer
+- mach kugel
 devices/geraete::luefter_50:
-- stell ventilator wohnzimmer 50
+- stell ventilator office 50
 devices/geraete::pc_an:
-- mach geraet
+- mach pc
 devices/geraete::r2d2_saugen:
 - mach staubsauger wohnzimmer
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - mach waschmaschine
 devices/klima::klima_schlaf_21:
-- stell heizig schlafzimmer 21
+- stell ac schlafzimmer 21
 devices/spoken::deckenlampe_an:
 - mach decke schlafzimmer
 devices/spoken::kugel_aus:
-- loesch kugel schlafzimmer
+- loesch kugel
 devices/spoken::luefter_aus:
-- loesch ventilator wohnzimmer
+- loesch ventilator office
 devices/spoken::rollo_auf:
 - ufmache store wohnzimmer
 devices/spoken::trockner_an:
-- mach waschmaschine
+- mach trockner
 devices/spoken::tv_aus:
 - loesch tv
 devices/spoken_more::decke_aus_casual:
 - loesch decke schlafzimmer
 devices/spoken_more::kugel_casual:
-- mach kugel schlafzimmer
+- mach kugel
 devices/spoken_more::pc_aus:
-- loesch geraet
+- loesch pc
 devices/spoken_more::spuelmaschine_an:
 - mach spuelmaschine
 devices/spoken_more::waschmaschine_aus:

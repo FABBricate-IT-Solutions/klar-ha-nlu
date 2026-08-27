@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - stavi grejanje dnevna 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- stavi grejanje spavaca 19
+- stavi grejanje spavacamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - stavi zavesa spavaca2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - otvori zavesa dnevna
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- stavi zavesa spavaca 19
+- stavi zavesa spavacamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- zatvori zavesa spavaca
+- zatvori zavesa spavacamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- otvori zavesa spavaca
+- otvori zavesa spavacamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - stavi ventilator spavaca2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - ukljuci ventilator dnevnafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- stavi ventilator spavaca 28
+- stavi ventilator spavacamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- iskljuci ventilator spavaca
+- iskljuci ventilator spavacamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- ukljuci ventilator spavaca
+- ukljuci ventilator spavacamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- iskljuci ventilator spavaca i iskljuci svetlo kuhinja
+- iskljuci ventilator spavacamaster then iskljuci ostrvo kuhinja
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- ukljuci ventilator spavaca i ukljuci svetlo kuhinja
+- ukljuci ventilator spavacamaster then ukljuci ostrvo kuhinja
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - stavi plafon spavaca2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - ukljuci plafon kuhinja
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- stavi svetlo kuhinja 99
+- stavi ostrvo kuhinja 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- stavi svetlo kuhinja green
+- stavi ostrvo kuhinja green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- iskljuci svetlo kuhinja
+- iskljuci ostrvo kuhinja
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- ukljuci svetlo kuhinja
+- ukljuci ostrvo kuhinja
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - stavi svetlo vesernica 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - ukljuci plafon dnevna
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- stavi svetlo dnevna 72
+- stavi lamp dnevna 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- stavi svetlo dnevna red
+- stavi lamp dnevna red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- iskljuci svetlo dnevna
+- iskljuci lamp dnevna
 devices/light_living_lamp::light_living_lamp_turn_on:
-- ukljuci svetlo dnevna
+- ukljuci lamp dnevna
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - stavi svetlo main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - ukljuci svetlo kupatilomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stavi nocni spavaca 25
+- stavi nocni spavacamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stavi nocni spavaca red
+- stavi nocni spavacamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- iskljuci nocni spavaca
+- iskljuci nocni spavacamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- ukljuci nocni spavaca
+- ukljuci nocni spavacamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- stavi plafon spavaca 77
+- stavi plafon spavacamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- stavi plafon spavaca blue
+- stavi plafon spavacamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- iskljuci plafon spavaca
+- iskljuci plafon spavacamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- ukljuci plafon spavaca
+- ukljuci plafon spavacamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- stavi svetlo spavaca 55
+- stavi ankleide spavacamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- stavi svetlo spavaca black
+- stavi ankleide spavacamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- iskljuci svetlo spavaca
+- iskljuci ankleide spavacamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- ukljuci svetlo spavaca
+- ukljuci ankleide spavacamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - stavi svetlo wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - ukljuci televizor dnevnafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause televizor dnevnafam
+- pause tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - iskljuci televizor dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - ukljuci televizor dnevna
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause televizor dnevna
+- pause tv dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - iskljuci televizor dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - ukljuci televizor dnevna
 devices/scenes::dinner_time:
-- stavi svetlo dnevnafamess 90 i ukljuci plafon kuhinja i stavi svetlo kuhinja 80
+- stavi svetlo dnevnafamess 90 then ukljuci plafon kuhinja then stavi ostrvo kuhinja
+  80
 devices/scenes::good_morning:
-- ukljuci plafon kuhinja i stavi svetlo dnevnafamess 100 i otvori zavesa dnevna i
-  otvori zavesa spavaca
+- ukljuci plafon kuhinja then stavi svetlo dnevnafamess 100 then otvori zavesa dnevna
+  then otvori zavesa spavacamaster
 devices/scenes::kids_bedtime:
-- iskljuci plafon spavaca2 i iskljuci plafon spavaca3 i iskljuci plafon spavaca4 i
-  stavi svetlo ulazgang 15
+- iskljuci plafon spavaca2 then iskljuci plafon spavaca3 then iskljuci plafon spavaca4
+  then stavi svetlo ulazgang 15
 devices/scenes::movie_night:
-- iskljuci plafon dnevna i stavi svetlo dnevna 20 i ukljuci televizor dnevna i zatvori
-  zavesa dnevna
+- iskljuci plafon dnevna then stavi lamp dnevna 20 then ukljuci televizor dnevna then
+  zatvori zavesa dnevna
 devices/scripts::good_night:
-- ukljuci scena noc
+- iskljuci plafon dnevna then iskljuci lamp dnevna then iskljuci svetlo dnevnafamess
+  then iskljuci plafon kuhinja then iskljuci ostrvo kuhinja then iskljuci plafon dnevnafam
+  then iskljuci svetlo ulaz then iskljuci svetlo ulazgang then brava brava ulaz then
+  brava brava garage then stavi grejanje spavacamaster 20
 devices/scripts::leaving_home:
-- ukljuci scena izlazak
+- iskljuci plafon dnevna then iskljuci lamp dnevna then iskljuci plafon kuhinja then
+  iskljuci plafon dnevnafam then iskljuci svetlo ulaz then brava brava ulaz then brava
+  brava garage then zatvori zavesa garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - iskljuci sudovi
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - ukljuci sudovi
 devices/switch_dryer::switch_dryer_turn_off:
-- iskljuci ves
+- iskljuci dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- ukljuci ves
+- ukljuci dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - iskljuci ves
 devices/switch_washing_machine::switch_washing_machine_turn_on:

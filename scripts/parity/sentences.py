@@ -25,7 +25,7 @@ def switch_label(lex: dict, ident: str, info: dict) -> str:
     if "pc" in blob or "steck" in blob:
         return "pc"
     if "tv" in blob:
-        return lex.get("tv") or lex["media"]
+        return "tv"
     area = info.get("area") or ""
     return f"{lex['switch']} {room(lex, area)}" if area else lex["switch"]
 
@@ -36,14 +36,7 @@ def scene_title(lex: dict, name: str) -> str:
 
 
 def script_label(lex: dict, ident: str) -> str:
-    tail = ident.split(".")[-1]
-    if "film" in tail or "movie" in tail:
-        return f"{lex['scene']} {lex['film']}"
-    if "leav" in tail or "verlass" in tail:
-        return f"{lex['scene']} {lex['leaving']}"
-    if "night" in tail or "nacht" in tail:
-        return f"{lex['scene']} {lex['good_night']}"
-    return f"{lex['scene']} {tail.replace('_', ' ')}"
+    return f"{lex['scene']} {ident.split('.')[-1]}"
 
 
 def action_verb(lex: dict, cond: dict) -> str:
@@ -85,17 +78,20 @@ def target_words(lex: dict, cond: dict, suite: str) -> str:
         if ident.startswith("scene.") or ident.startswith("script."):
             return script_label(lex, ident)
         if domain == "climate" and ("ac" in ident or "klima" in f"{ident} {info['name']}".lower()):
-            return "ac"
+            where = room(lex, str(area or info["area"]))
+            return f"ac {where}".strip()
         if domain == "binary_sensor":
-            return room(lex, str(area or info["area"]))
+            return f"sensor {lex['door']} {room(lex, str(area or info['area']))}".strip()
+        if domain == "media_player" and cond.get("state") == "paused":
+            return f"tv {room(lex, str(area or info['area']))}".strip()
         if domain in {"climate", "fan", "cover"} and (area or info["area"]):
             return f"{domain_noun(lex, domain)} {room(lex, str(area or info['area']))}"
         if "alle" in ident:
             return f"{lex['all']} {lex['light']}"
         if "wohn_und" in ident:
-            return f"{room(lex, 'wohnzimmer')} {lex['and']} {room(lex, 'esszimmer')}"
-        if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("kugel", "globe")):
-            return f"{lex['globe']} {room(lex, info['area'])}"
+            return "wohn und esszimmer"
+        if domain == "light" and any(key in ident or key in info["name"].lower() for key in ("kugel", "globe")):
+            return lex["globe"]
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("decke", "ceiling")):
             return f"{lex['ceiling']} {room(lex, info['area'])}"
         if domain == "light" and info["area"] and any(key in ident or key in info["name"].lower() for key in ("lampe", "lamp")):
@@ -129,7 +125,7 @@ def area_noun(lex: dict, domain: str | None, cond: dict | None = None) -> str:
         return noun
     if domain == "switch":
         return f"{lex['all']} {lex['switch']}"
-    if domain == "light" and lex.get("light_one") == lex["light"]:
+    if domain == "light":
         return f"{lex['all']} {noun}"
     return noun
 
@@ -229,7 +225,7 @@ def sentence_for(case: dict, lex: dict, suite: str) -> list[str] | list[list[str
     if expect.get("reject"):
         return [lex["reject"]]
     if expect.get("clarify") and not expect.get("intents"):
-        return [f"{lex['on']} {lex.get('light_one', lex['light'])} {room(lex, 'wohnzimmer')}"]
+        return [f"{lex['on']} {lex['light']} {room(lex, 'wohnzimmer')}"]
     if multi and ("vs" in name or "lampe" in name):
         return [clarify_turns(case, lex, suite)]
     if multi:
@@ -247,8 +243,6 @@ def sentence_for(case: dict, lex: dict, suite: str) -> list[str] | list[list[str
         chores = any(c.get("type") == "todo_list" or "chore" in str(c.get("list_name") or "").lower() for c in conds)
         verb = lex["done"] if any(c.get("complete") for c in conds) else lex["add"]
         return [f"{verb} {item} {'aufgabenliste' if chores else lex['list']}"]
-    if name in SCENES:
-        return [f"{lex['on']} {lex['scene']} {scene_title(lex, name)}"]
     if name == "cancel_all_timers":
         return [f"{lex['off']} {lex['all']} {lex['timer']}"]
     if "kugel_und_decke" in name:
@@ -267,7 +261,7 @@ def clarify_turns(case: dict, lex: dict, suite: str) -> list[str]:
     where = room(lex, area)
     left = name.split("_vs_")[0]
     if "wash" in name:
-        return [f"{lex['on']} {lex['device']} {room(lex, area)}", lex["yes"]]
+        return [f"{lex.get('on2', lex['on'])} {lex['device']} {room(lex, area)}", lex["yes"]]
     if "island" in left:
         pick = lex["island"]
     elif "kugel" in left or "kugel" in name:
@@ -280,8 +274,7 @@ def clarify_turns(case: dict, lex: dict, suite: str) -> list[str]:
         pick = lex["bedside"]
     else:
         pick = lex["yes"]
-    noun = lex["lamp"] if area not in {"wohnzimmer", "living"} and "wohn" not in area else lex.get("light_one", lex["light"])
-    return [f"{lex['on']} {noun} {where}", pick]
+    return [f"{lex['on']} {lex['light']} {where}", pick]
 
 
 def multi_turn(case: dict, lex: dict, suite: str) -> list[str]:

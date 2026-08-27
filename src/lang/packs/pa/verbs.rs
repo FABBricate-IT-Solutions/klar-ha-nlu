@@ -27,6 +27,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("yellow", VerbKind::Color),
     ("ਕੀ", VerbKind::Query),
     ("ਖੋਲ੍ਹ", VerbKind::Open),
+    ("ਗਿਆ", VerbKind::ListComplete),
     ("ਚਲਾਓ", VerbKind::Play),
     ("ਚਾਲੂ", VerbKind::On),
     ("ਝਾੜੂ", VerbKind::VacuumNoun),
@@ -39,5 +40,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("ਰੋਕੋ", VerbKind::Pause),
     ("ਸੂਚੀ", VerbKind::List),
     ("ਸੈੱਟ", VerbKind::Set),
-    ("ਹੋ ਗਿਆ", VerbKind::ListComplete),
+    ("ਹੋ", VerbKind::ListComplete),
 ];

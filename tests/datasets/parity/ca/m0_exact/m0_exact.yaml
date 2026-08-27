@@ -1,9 +1,9 @@
 m0_exact/representative::exact_clarify:
-- encen lampada sala
+- encen llum sala
 m0_exact/representative::exact_list_complete_from_setup:
-- fet bread llista
+- fet bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- encen sostre habitacio3 i apaga llum entrada
+- encen sostre habitacio3 then apaga llum entrada
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - encen temporitzador oven
 m0_exact/representative::exact_todo_list:
-- afegeix apples llista
+- afegeix apples aufgabenliste

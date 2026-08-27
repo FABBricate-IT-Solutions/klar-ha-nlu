@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - accendi luce camera
+  - accendi luce cameramaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - spegni luce camera
+  - spegni luce cameramaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - accendi soffitto camera
+  - accendi soffitto cameramaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - spegni soffitto camera
+  - spegni soffitto cameramaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - accendi comodino camera
+  - accendi comodino cameramaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - spegni comodino camera
+  - spegni comodino cameramaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

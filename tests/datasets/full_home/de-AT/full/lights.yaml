@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht arbeitszimmer
-  - licht arbeitszimmer mach
+  - mach licht office
+  - licht office mach
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt licht arbeitszimmer
-  - licht arbeitszimmer schalt
+  - schalt licht office
+  - licht office schalt
 - name: lights_garden_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht schlafzimmer
-  - licht schlafzimmer mach
+  - mach licht schlafzimmermaster
+  - licht schlafzimmermaster mach
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt licht schlafzimmer
-  - licht schlafzimmer schalt
+  - schalt licht schlafzimmermaster
+  - licht schlafzimmermaster schalt
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - mach decke schlafzimmer
-  - decke schlafzimmer mach
+  - mach decke schlafzimmermaster
+  - decke schlafzimmermaster mach
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - schalt decke schlafzimmer
-  - decke schlafzimmer schalt
+  - schalt decke schlafzimmermaster
+  - decke schlafzimmermaster schalt
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stell decke schlafzimmer 20
-  - decke schlafzimmer 20
+  - stell decke schlafzimmermaster 20
+  - decke schlafzimmermaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stell decke schlafzimmer 40
-  - decke schlafzimmer 40
+  - stell decke schlafzimmermaster 40
+  - decke schlafzimmermaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stell decke schlafzimmer 50
-  - decke schlafzimmer 50
+  - stell decke schlafzimmermaster 50
+  - decke schlafzimmermaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stell decke schlafzimmer 60
-  - decke schlafzimmer 60
+  - stell decke schlafzimmermaster 60
+  - decke schlafzimmermaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stell decke schlafzimmer 80
-  - decke schlafzimmer 80
+  - stell decke schlafzimmermaster 80
+  - decke schlafzimmermaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - stell decke schlafzimmer 100
-  - decke schlafzimmer 100
+  - stell decke schlafzimmermaster 100
+  - decke schlafzimmermaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - mach nachttisch schlafzimmer
-  - nachttisch schlafzimmer mach
+  - mach nachttisch schlafzimmermaster
+  - nachttisch schlafzimmermaster mach
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - schalt nachttisch schlafzimmer
-  - nachttisch schlafzimmer schalt
+  - schalt nachttisch schlafzimmermaster
+  - nachttisch schlafzimmermaster schalt
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stell nachttisch schlafzimmer 20
-  - nachttisch schlafzimmer 20
+  - stell nachttisch schlafzimmermaster 20
+  - nachttisch schlafzimmermaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stell nachttisch schlafzimmer 40
-  - nachttisch schlafzimmer 40
+  - stell nachttisch schlafzimmermaster 40
+  - nachttisch schlafzimmermaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stell nachttisch schlafzimmer 50
-  - nachttisch schlafzimmer 50
+  - stell nachttisch schlafzimmermaster 50
+  - nachttisch schlafzimmermaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stell nachttisch schlafzimmer 60
-  - nachttisch schlafzimmer 60
+  - stell nachttisch schlafzimmermaster 60
+  - nachttisch schlafzimmermaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stell nachttisch schlafzimmer 80
-  - nachttisch schlafzimmer 80
+  - stell nachttisch schlafzimmermaster 80
+  - nachttisch schlafzimmermaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - stell nachttisch schlafzimmer 100
-  - nachttisch schlafzimmer 100
+  - stell nachttisch schlafzimmermaster 100
+  - nachttisch schlafzimmermaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - mach decke arbeitszimmer
-  - decke arbeitszimmer mach
+  - mach decke office
+  - decke office mach
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - schalt decke arbeitszimmer
-  - decke arbeitszimmer schalt
+  - schalt decke office
+  - decke office schalt
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,8 +765,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stell decke arbeitszimmer 20
-  - decke arbeitszimmer 20
+  - stell decke office 20
+  - decke office 20
 - name: light.office_ceiling_bright_40
   conditions:
   - type: action
@@ -774,8 +774,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stell decke arbeitszimmer 40
-  - decke arbeitszimmer 40
+  - stell decke office 40
+  - decke office 40
 - name: light.office_ceiling_bright_50
   conditions:
   - type: action
@@ -783,8 +783,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stell decke arbeitszimmer 50
-  - decke arbeitszimmer 50
+  - stell decke office 50
+  - decke office 50
 - name: light.office_ceiling_bright_60
   conditions:
   - type: action
@@ -792,8 +792,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stell decke arbeitszimmer 60
-  - decke arbeitszimmer 60
+  - stell decke office 60
+  - decke office 60
 - name: light.office_ceiling_bright_80
   conditions:
   - type: action
@@ -801,8 +801,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stell decke arbeitszimmer 80
-  - decke arbeitszimmer 80
+  - stell decke office 80
+  - decke office 80
 - name: light.office_ceiling_bright_100
   conditions:
   - type: action
@@ -810,8 +810,8 @@
     attributes:
       brightness: 100
   sentences:
-  - stell decke arbeitszimmer 100
-  - decke arbeitszimmer 100
+  - stell decke office 100
+  - decke office 100
 - name: light.garden_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - mach ensuite schlafzimmer
-  - ensuite schlafzimmer mach
+  - mach ensuite schlafzimmermaster
+  - ensuite schlafzimmermaster mach
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - schalt ensuite schlafzimmer
-  - ensuite schlafzimmer schalt
+  - schalt ensuite schlafzimmermaster
+  - ensuite schlafzimmermaster schalt
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stell ensuite schlafzimmer 20
-  - ensuite schlafzimmer 20
+  - stell ensuite schlafzimmermaster 20
+  - ensuite schlafzimmermaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stell ensuite schlafzimmer 40
-  - ensuite schlafzimmer 40
+  - stell ensuite schlafzimmermaster 40
+  - ensuite schlafzimmermaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stell ensuite schlafzimmer 50
-  - ensuite schlafzimmer 50
+  - stell ensuite schlafzimmermaster 50
+  - ensuite schlafzimmermaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stell ensuite schlafzimmer 60
-  - ensuite schlafzimmer 60
+  - stell ensuite schlafzimmermaster 60
+  - ensuite schlafzimmermaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stell ensuite schlafzimmer 80
-  - ensuite schlafzimmer 80
+  - stell ensuite schlafzimmermaster 80
+  - ensuite schlafzimmermaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - stell ensuite schlafzimmer 100
-  - ensuite schlafzimmer 100
+  - stell ensuite schlafzimmermaster 100
+  - ensuite schlafzimmermaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - mach nachttisch schlafzimmer
-  - nachttisch schlafzimmer mach
+  - mach nachttisch schlafzimmermaster
+  - nachttisch schlafzimmermaster mach
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - schalt nachttisch schlafzimmer
-  - nachttisch schlafzimmer schalt
+  - schalt nachttisch schlafzimmermaster
+  - nachttisch schlafzimmermaster schalt
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stell nachttisch schlafzimmer 20
-  - nachttisch schlafzimmer 20
+  - stell nachttisch schlafzimmermaster 20
+  - nachttisch schlafzimmermaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stell nachttisch schlafzimmer 40
-  - nachttisch schlafzimmer 40
+  - stell nachttisch schlafzimmermaster 40
+  - nachttisch schlafzimmermaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stell nachttisch schlafzimmer 50
-  - nachttisch schlafzimmer 50
+  - stell nachttisch schlafzimmermaster 50
+  - nachttisch schlafzimmermaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stell nachttisch schlafzimmer 60
-  - nachttisch schlafzimmer 60
+  - stell nachttisch schlafzimmermaster 60
+  - nachttisch schlafzimmermaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stell nachttisch schlafzimmer 80
-  - nachttisch schlafzimmer 80
+  - stell nachttisch schlafzimmermaster 80
+  - nachttisch schlafzimmermaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - stell nachttisch schlafzimmer 100
-  - nachttisch schlafzimmer 100
+  - stell nachttisch schlafzimmermaster 100
+  - nachttisch schlafzimmermaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - stell decke schlafzimmer rot
-  - stell licht schlafzimmer rot
+  - stell decke schlafzimmermaster rot
+  - stell licht schlafzimmermaster rot
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - stell decke schlafzimmer blau
-  - stell licht schlafzimmer blau
+  - stell decke schlafzimmermaster blau
+  - stell licht schlafzimmermaster blau
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - stell decke schlafzimmer gruen
-  - stell licht schlafzimmer gruen
+  - stell decke schlafzimmermaster gruen
+  - stell licht schlafzimmermaster gruen
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - stell decke schlafzimmer weiss
-  - stell licht schlafzimmer weiss
+  - stell decke schlafzimmermaster weiss
+  - stell licht schlafzimmermaster weiss
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - stell decke schlafzimmer gelb
-  - stell licht schlafzimmer gelb
+  - stell decke schlafzimmermaster gelb
+  - stell licht schlafzimmermaster gelb
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - stell decke schlafzimmer schwarz
-  - stell licht schlafzimmer schwarz
+  - stell decke schlafzimmermaster schwarz
+  - stell licht schlafzimmermaster schwarz
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - stell nachttisch schlafzimmer rot
-  - stell licht schlafzimmer rot
+  - stell nachttisch schlafzimmermaster rot
+  - stell licht schlafzimmermaster rot
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - stell nachttisch schlafzimmer blau
-  - stell licht schlafzimmer blau
+  - stell nachttisch schlafzimmermaster blau
+  - stell licht schlafzimmermaster blau
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - stell nachttisch schlafzimmer gruen
-  - stell licht schlafzimmer gruen
+  - stell nachttisch schlafzimmermaster gruen
+  - stell licht schlafzimmermaster gruen
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - stell nachttisch schlafzimmer weiss
-  - stell licht schlafzimmer weiss
+  - stell nachttisch schlafzimmermaster weiss
+  - stell licht schlafzimmermaster weiss
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - stell nachttisch schlafzimmer gelb
-  - stell licht schlafzimmer gelb
+  - stell nachttisch schlafzimmermaster gelb
+  - stell licht schlafzimmermaster gelb
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - stell nachttisch schlafzimmer schwarz
-  - stell licht schlafzimmer schwarz
+  - stell nachttisch schlafzimmermaster schwarz
+  - stell licht schlafzimmermaster schwarz
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - stell decke arbeitszimmer rot
-  - stell licht arbeitszimmer rot
+  - stell decke office rot
+  - stell licht office rot
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - stell decke arbeitszimmer blau
-  - stell licht arbeitszimmer blau
+  - stell decke office blau
+  - stell licht office blau
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - stell decke arbeitszimmer gruen
-  - stell licht arbeitszimmer gruen
+  - stell decke office gruen
+  - stell licht office gruen
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - stell decke arbeitszimmer weiss
-  - stell licht arbeitszimmer weiss
+  - stell decke office weiss
+  - stell licht office weiss
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - stell decke arbeitszimmer gelb
-  - stell licht arbeitszimmer gelb
+  - stell decke office gelb
+  - stell licht office gelb
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - stell decke arbeitszimmer schwarz
-  - stell licht arbeitszimmer schwarz
+  - stell decke office schwarz
+  - stell licht office schwarz
 - name: light.garden_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - stell ensuite schlafzimmer rot
-  - stell licht schlafzimmer rot
+  - stell ensuite schlafzimmermaster rot
+  - stell licht schlafzimmermaster rot
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - stell ensuite schlafzimmer blau
-  - stell licht schlafzimmer blau
+  - stell ensuite schlafzimmermaster blau
+  - stell licht schlafzimmermaster blau
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - stell ensuite schlafzimmer gruen
-  - stell licht schlafzimmer gruen
+  - stell ensuite schlafzimmermaster gruen
+  - stell licht schlafzimmermaster gruen
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - stell ensuite schlafzimmer weiss
-  - stell licht schlafzimmer weiss
+  - stell ensuite schlafzimmermaster weiss
+  - stell licht schlafzimmermaster weiss
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - stell ensuite schlafzimmer gelb
-  - stell licht schlafzimmer gelb
+  - stell ensuite schlafzimmermaster gelb
+  - stell licht schlafzimmermaster gelb
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - stell ensuite schlafzimmer schwarz
-  - stell licht schlafzimmer schwarz
+  - stell ensuite schlafzimmermaster schwarz
+  - stell licht schlafzimmermaster schwarz
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - stell nachttisch schlafzimmer rot
-  - stell licht schlafzimmer rot
+  - stell nachttisch schlafzimmermaster rot
+  - stell licht schlafzimmermaster rot
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - stell nachttisch schlafzimmer blau
-  - stell licht schlafzimmer blau
+  - stell nachttisch schlafzimmermaster blau
+  - stell licht schlafzimmermaster blau
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - stell nachttisch schlafzimmer gruen
-  - stell licht schlafzimmer gruen
+  - stell nachttisch schlafzimmermaster gruen
+  - stell licht schlafzimmermaster gruen
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - stell nachttisch schlafzimmer weiss
-  - stell licht schlafzimmer weiss
+  - stell nachttisch schlafzimmermaster weiss
+  - stell licht schlafzimmermaster weiss
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - stell nachttisch schlafzimmer gelb
-  - stell licht schlafzimmer gelb
+  - stell nachttisch schlafzimmermaster gelb
+  - stell licht schlafzimmermaster gelb
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - stell nachttisch schlafzimmer schwarz
-  - stell licht schlafzimmer schwarz
+  - stell nachttisch schlafzimmermaster schwarz
+  - stell licht schlafzimmermaster schwarz
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht ausser arbeitszimmer
-  - alle licht schalt ausser arbeitszimmer
+  - schalt alle licht ausser office
+  - alle licht schalt ausser office
   forbid:
   - office
 - name: all_except_garage
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht ausser schlafzimmer
-  - alle licht schalt ausser schlafzimmer
+  - schalt alle licht ausser schlafzimmermaster
+  - alle licht schalt ausser schlafzimmermaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

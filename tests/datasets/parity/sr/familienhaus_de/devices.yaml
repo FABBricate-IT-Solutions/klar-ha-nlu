@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - стави грејање дневна 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- стави грејање спавача 19
+- стави грејање спавачаmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - стави завеса спавача2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - отвори завеса дневна
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- стави завеса спавача 19
+- стави завеса спавачаmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- затвори завеса спавача
+- затвори завеса спавачаmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- отвори завеса спавача
+- отвори завеса спавачаmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - стави вентилатор спавача2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - укључи вентилатор дневнаfam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- стави вентилатор спавача 28
+- стави вентилатор спавачаmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- искључи вентилатор спавача
+- искључи вентилатор спавачаmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- укључи вентилатор спавача
+- укључи вентилатор спавачаmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- искључи вентилатор спавача и искључи светло кухиња
+- искључи вентилатор спавачаmaster then искључи острво кухиња
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- укључи вентилатор спавача и укључи светло кухиња
+- укључи вентилатор спавачаmaster then укључи острво кухиња
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - стави плафон спавача2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - укључи плафон кухиња
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- стави светло кухиња 99
+- стави острво кухиња 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- стави светло кухиња green
+- стави острво кухиња green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- искључи светло кухиња
+- искључи острво кухиња
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- укључи светло кухиња
+- укључи острво кухиња
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - стави светло вешерница 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - укључи плафон дневна
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- стави светло дневна 72
+- стави lamp дневна 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- стави светло дневна red
+- стави lamp дневна red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- искључи светло дневна
+- искључи lamp дневна
 devices/light_living_lamp::light_living_lamp_turn_on:
-- укључи светло дневна
+- укључи lamp дневна
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - стави светло main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - укључи светло купатилоmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- стави ноћни спавача 25
+- стави ноћни спавачаmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- стави ноћни спавача red
+- стави ноћни спавачаmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- искључи ноћни спавача
+- искључи ноћни спавачаmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- укључи ноћни спавача
+- укључи ноћни спавачаmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- стави плафон спавача 77
+- стави плафон спавачаmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- стави плафон спавача blue
+- стави плафон спавачаmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- искључи плафон спавача
+- искључи плафон спавачаmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- укључи плафон спавача
+- укључи плафон спавачаmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- стави светло спавача 55
+- стави ankleide спавачаmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- стави светло спавача black
+- стави ankleide спавачаmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- искључи светло спавача
+- искључи ankleide спавачаmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- укључи светло спавача
+- укључи ankleide спавачаmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - стави светло wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - укључи телевизор дневнаfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause телевизор дневнаfam
+- pause tv дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - искључи телевизор дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - укључи телевизор дневна
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause телевизор дневна
+- pause tv дневна
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - искључи телевизор дневна
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - укључи телевизор дневна
 devices/scenes::dinner_time:
-- стави светло дневнаfamess 90 и укључи плафон кухиња и стави светло кухиња 80
+- стави светло дневнаfamess 90 then укључи плафон кухиња then стави острво кухиња
+  80
 devices/scenes::good_morning:
-- укључи плафон кухиња и стави светло дневнаfamess 100 и отвори завеса дневна и отвори
-  завеса спавача
+- укључи плафон кухиња then стави светло дневнаfamess 100 then отвори завеса дневна
+  then отвори завеса спавачаmaster
 devices/scenes::kids_bedtime:
-- искључи плафон спавача2 и искључи плафон спавача3 и искључи плафон спавача4 и стави
-  светло улазgang 15
+- искључи плафон спавача2 then искључи плафон спавача3 then искључи плафон спавача4
+  then стави светло улазgang 15
 devices/scenes::movie_night:
-- искључи плафон дневна и стави светло дневна 20 и укључи телевизор дневна и затвори
-  завеса дневна
+- искључи плафон дневна then стави lamp дневна 20 then укључи телевизор дневна then
+  затвори завеса дневна
 devices/scripts::good_night:
-- укључи сцена ноћ
+- искључи плафон дневна then искључи lamp дневна then искључи светло дневнаfamess
+  then искључи плафон кухиња then искључи острво кухиња then искључи плафон дневнаfam
+  then искључи светло улаз then искључи светло улазgang then брава брава улаз then
+  брава брава garage then стави грејање спавачаmaster 20
 devices/scripts::leaving_home:
-- укључи сцена излазак
+- искључи плафон дневна then искључи lamp дневна then искључи плафон кухиња then искључи
+  плафон дневнаfam then искључи светло улаз then брава брава улаз then брава брава
+  garage then затвори завеса garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - искључи судови
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - укључи судови
 devices/switch_dryer::switch_dryer_turn_off:
-- искључи веш
+- искључи dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- укључи веш
+- укључи dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - искључи веш
 devices/switch_washing_machine::switch_washing_machine_turn_on:

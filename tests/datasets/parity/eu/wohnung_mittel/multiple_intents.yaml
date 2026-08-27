@@ -1,26 +1,30 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - itzali denak argia izan logela izan sukaldea
 multiple_intents/multi::licht_und_heizung:
-- piztu argia egongela eta jarri berogailu egongela 23
+- piztu denak argia egongela then jarri berogailu egongela 23
 multiple_intents/multi::wohn_und_ess_aus:
-- itzali argia egongela eta itzali argia familiagelaess
+- itzali denak argia egongela then itzali denak argia familiagelaess
 multiple_intents/multi::wohn_und_ess_rot:
-- jarri argia egongela red eta jarri argia familiagelaess red
+- jarri denak argia egongela red then jarri denak argia familiagelaess red
 multiple_intents/multi::wz_und_kuche_licht:
-- piztu argia egongela eta piztu argia sukaldea
+- piztu denak argia egongela then piztu denak argia sukaldea
 multiple_intents/multi::zwei_raeume_und_heizung:
-- piztu argia egongela eta piztu argia sukaldea eta jarri berogailu egongela 23
+- piztu denak argia egongela then piztu denak argia sukaldea then jarri berogailu
+  egongela 23
 multiple_intents/spoken::drei_raeume_an:
-- piztu argia egongela eta piztu argia familiagelaess eta piztu argia sukaldea
+- piztu denak argia egongela then piztu denak argia familiagelaess then piztu denak
+  argia sukaldea
 multiple_intents/spoken::drei_raeume_aus:
-- itzali argia egongela eta itzali argia familiagelaess eta itzali argia sukaldea
+- itzali denak argia egongela then itzali denak argia familiagelaess then itzali denak
+  argia sukaldea
 multiple_intents/spoken::ess_und_wohn_aus:
-- itzali argia egongela eta itzali argia familiagelaess
+- itzali denak argia egongela then itzali denak argia familiagelaess
 multiple_intents/spoken::kugel_und_decke_aus:
-- itzali bola eta itzali sabai
+- bola eta sabai logela itzali
 multiple_intents/spoken_more::kuche_und_ess_an:
-- piztu argia sukaldea eta piztu argia familiagelaess
+- piztu denak argia sukaldea then piztu denak argia familiagelaess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- itzali argia egongela eta itzali argia familiagelaess
+- itzali denak argia egongela then itzali denak argia familiagelaess then itzali denak
+  argia office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- itzali argia egongela
+- itzali denak argia egongela then itzali denak argia office

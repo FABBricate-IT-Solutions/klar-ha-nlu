@@ -77,9 +77,10 @@ areas:
   aliases:
   - balcon
 - id: master_bedroom
-  name: Chambre
+  name: Chambremaster
   floor: upper
   aliases:
+  - chambremaster
   - chambre
 - id: bedroom_2
   name: Chambre2
@@ -191,29 +192,29 @@ devices:
   - lumiere
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: chambre plafond
+  name: chambremaster plafond
   aliases:
-  - chambre plafond
+  - chambremaster plafond
   - plafond
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: chambre ensuite
+  name: chambremaster ensuite
   aliases:
-  - chambre ensuite
+  - chambremaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: chambre left chevet
+  name: chambremaster left chevet
   aliases:
-  - chambre left chevet
+  - chambremaster left chevet
   - chevet
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: chambre right chevet
+  name: chambremaster right chevet
   aliases:
-  - chambre right chevet
+  - chambremaster right chevet
   - chevet
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -265,9 +266,9 @@ devices:
   - store
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: chambre store
+  name: chambremaster store
   aliases:
-  - chambre store
+  - chambremaster store
   - store
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -295,15 +296,15 @@ devices:
   - chauffage
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: chambre chauffage
+  name: chambremaster chauffage
   aliases:
-  - chambre chauffage
+  - chambremaster chauffage
   - chauffage
 - id: climate.master_ac
   area_id: master_bedroom
-  name: clim chambre
+  name: clim chambremaster
   aliases:
-  - clim chambre
+  - clim chambremaster
   - clim
   - ac
   tags:
@@ -316,9 +317,9 @@ devices:
   - ventilateur
 - id: fan.master_fan
   area_id: master_bedroom
-  name: chambre ventilateur
+  name: chambremaster ventilateur
   aliases:
-  - chambre ventilateur
+  - chambremaster ventilateur
   - ventilateur
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - укључи спавача плафон и спавача ноћни
-  - спавача плафон и спавача ноћни укључи
+  - укључи спавачаmaster плафон и спавачаmaster ноћни
+  - спавачаmaster плафон и спавачаmaster ноћни укључи
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - искључи спавача плафон и спавача ноћни
-  - спавача плафон и спавача ноћни искључи
+  - искључи спавачаmaster плафон и спавачаmaster ноћни
+  - спавачаmaster плафон и спавачаmaster ноћни искључи
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - укључи спавача вентилатор и кухиња острво
-  - спавача вентилатор и кухиња острво укључи
+  - укључи спавачаmaster вентилатор и кухиња острво
+  - спавачаmaster вентилатор и кухиња острво укључи
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - искључи светло спавача и main bath
-  - светло спавача и main bath искључи
+  - искључи светло спавачаmaster и main bath
+  - светло спавачаmaster и main bath искључи
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - искључи све светло осим дневна и спавача
-  - све светло искључи осим дневна и спавача
+  - искључи све светло осим дневна и спавачаmaster
+  - све светло искључи осим дневна и спавачаmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - искључи све светло спрат осим спавача
-  - све светло спрат искључи осим спавача
+  - искључи све светло спрат осим спавачаmaster
+  - све светло спрат искључи осим спавачаmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - отвори завеса дневна и спавача
-  - завеса дневна и спавача отвори
+  - отвори завеса дневна и спавачаmaster
+  - завеса дневна и спавачаmaster отвори
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - затвори завеса дневна и спавача
-  - завеса дневна и спавача затвори
+  - затвори завеса дневна и спавачаmaster
+  - завеса дневна и спавачаmaster затвори
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - стави грејање дневна и спавача 21
-  - грејање дневна и спавача 21
+  - стави грејање дневна и спавачаmaster 21
+  - грејање дневна и спавачаmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

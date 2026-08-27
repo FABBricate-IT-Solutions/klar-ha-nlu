@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - desliga tudo luz
 area/lichter::arbeitszimmer_lichter_an:
-- liga luz sala
+- liga tudo luz office
 area/lichter::arbeitszimmer_lichter_aus:
-- desliga luz sala
+- desliga tudo luz office
 area/lichter::esszimmer_lichter_an:
-- liga luz salafamess
+- liga tudo luz salafamess
 area/lichter::esszimmer_lichter_aus:
-- desliga luz salafamess
+- desliga tudo luz salafamess
 area/lichter::kuche_lichter_an:
-- liga luz cozinha
+- liga tudo luz cozinha
 area/lichter::kuche_lichter_aus:
-- desliga luz cozinha
+- desliga tudo luz cozinha
 area/lichter::schlafzimmer_auf_blau:
-- poe luz quarto azul
+- poe tudo luz quarto azul
 area/lichter::schlafzimmer_auf_rot:
-- poe luz quarto vermelho
+- poe tudo luz quarto vermelho
 area/lichter::wohnzimmer_helligkeit:
-- poe luz sala 45
+- poe tudo luz sala 45
 area/lichter::wohnzimmer_lichter_an:
-- liga luz sala
+- liga tudo luz sala
 area/lichter::wohnzimmer_lichter_aus:
-- desliga luz sala
+- desliga tudo luz sala
 area/spoken::alle_ausser_kugel_stt:
 - desliga tudo luz exceto globo
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - desliga tudo luz
 area/spoken::esszimmer_weiss:
-- poe luz salafamess branco
+- poe tudo luz salafamess branco
 area/spoken::stt_kuche_lichte:
-- desliga luz cozinha
+- desliga tudo luz cozinha
 area/spoken::stt_licht_wohnzimmer_an:
-- liga luz sala
+- liga tudo luz sala
 area/spoken::stt_licht_wohnzimmer_aus:
-- desliga luz sala
+- desliga tudo luz sala
 area/spoken::stt_schlafzimmer_dativ:
-- desliga luz quarto
+- desliga tudo luz quarto
 area/spoken::wohnzimmer_gruen:
-- poe luz sala verde
+- poe tudo luz sala verde
 area/spoken_more::alle_ausser_arbeitszimmer:
-- desliga tudo luz exceto sala
+- desliga tudo luz exceto office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- desliga luz sala
+- desliga tudo luz office
 area/spoken_more::esszimmer_30:
-- poe luz salafamess 30
+- poe tudo luz salafamess 30
 area/spoken_more::esszimmer_lichte_an:
-- liga luz salafamess
+- liga tudo luz salafamess
 area/spoken_more::kuche_80:
-- poe luz cozinha 80
+- poe tudo luz cozinha 80
 area/spoken_more::kuche_blau:
-- poe luz cozinha azul
+- poe tudo luz cozinha azul
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - desliga tudo luz exceto quarto
 area/spoken_more::wohnzimmer_gelb:
-- poe luz sala amarelo
+- poe tudo luz sala amarelo

@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - gwyntyll llofft tro
-  - tro gwyntyll llofft
+  - gwyntyll llofftmaster tro
+  - tro gwyntyll llofftmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - diffodd gwyntyll llofft
-  - gwyntyll llofft diffodd
+  - diffodd gwyntyll llofftmaster
+  - gwyntyll llofftmaster diffodd
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - gosod gwyntyll llofft 40
-  - gwyntyll llofft 40
+  - gosod gwyntyll llofftmaster 40
+  - gwyntyll llofftmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - gosod gwyntyll llofft 20
-  - gwyntyll llofft 20
+  - gosod gwyntyll llofftmaster 20
+  - gwyntyll llofftmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - gosod gwyntyll llofft 60
-  - gwyntyll llofft 60
+  - gosod gwyntyll llofftmaster 60
+  - gwyntyll llofftmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - gosod gwyntyll llofft 80
-  - gwyntyll llofft 80
+  - gosod gwyntyll llofftmaster 80
+  - gwyntyll llofftmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

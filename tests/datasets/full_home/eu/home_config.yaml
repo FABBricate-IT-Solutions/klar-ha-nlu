@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Logela
+  name: Logelamaster
   floor: upper
   aliases:
+  - logelamaster
   - logela
 - id: bedroom_2
   name: Logela2
@@ -130,10 +131,10 @@ devices:
   - sabai
 - id: light.living_lamp
   area_id: living
-  name: egongela argia
+  name: egongela lamp
   aliases:
-  - egongela argia
-  - argia
+  - egongela lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: familiagelaess argia
@@ -190,29 +191,29 @@ devices:
   - argia
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: logela sabai
+  name: logelamaster sabai
   aliases:
-  - logela sabai
+  - logelamaster sabai
   - sabai
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: logela ensuite
+  name: logelamaster ensuite
   aliases:
-  - logela ensuite
+  - logelamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: logela left gaua
+  name: logelamaster left gaua
   aliases:
-  - logela left gaua
+  - logelamaster left gaua
   - gaua
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: logela right gaua
+  name: logelamaster right gaua
   aliases:
-  - logela right gaua
+  - logelamaster right gaua
   - gaua
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - gortina
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: logela gortina
+  name: logelamaster gortina
   aliases:
-  - logela gortina
+  - logelamaster gortina
   - gortina
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - berogailu
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: logela berogailu
+  name: logelamaster berogailu
   aliases:
-  - logela berogailu
+  - logelamaster berogailu
   - berogailu
 - id: climate.master_ac
   area_id: master_bedroom
-  name: berogailu logela
+  name: berogailu logelamaster
   aliases:
-  - berogailu logela
+  - berogailu logelamaster
   - berogailu
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - haizagailua
 - id: fan.master_fan
   area_id: master_bedroom
-  name: logela haizagailua
+  name: logelamaster haizagailua
   aliases:
-  - logela haizagailua
+  - logelamaster haizagailua
   - haizagailua
 - id: fan.bedroom2_fan
   area_id: bedroom_2

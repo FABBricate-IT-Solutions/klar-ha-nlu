@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - buka tirai kamar
-  - tirai kamar buka
+  - buka tirai kamarmaster
+  - tirai kamarmaster buka
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - tutup tirai kamar
-  - tirai kamar tutup
+  - tutup tirai kamarmaster
+  - tirai kamarmaster tutup
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - setel tirai kamar 0
-  - tirai kamar 0
+  - setel tirai kamarmaster 0
+  - tirai kamarmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - setel tirai kamar 25
-  - tirai kamar 25
+  - setel tirai kamarmaster 25
+  - tirai kamarmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - setel tirai kamar 40
-  - tirai kamar 40
+  - setel tirai kamarmaster 40
+  - tirai kamarmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - setel tirai kamar 75
-  - tirai kamar 75
+  - setel tirai kamarmaster 75
+  - tirai kamarmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - setel tirai kamar 100
-  - tirai kamar 100
+  - setel tirai kamarmaster 100
+  - tirai kamarmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - buka tirai kamar
-  - tirai kamar buka
+  - buka tirai kamarmaster
+  - tirai kamarmaster buka

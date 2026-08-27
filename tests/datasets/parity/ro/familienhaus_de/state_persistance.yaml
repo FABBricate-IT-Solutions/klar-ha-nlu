@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - ce lumina garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - ce lumina holgang si ce lumina toaleta
+- - ce lumina holgang then ce lumina toaleta
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - ce lumina holgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - ce lumina baiemaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - ce incalzire dormitor si ce incalzire sufragerie
+- - ce incalzire dormitormaster then ce incalzire sufragerie
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - ce perdea dormitor si ce perdea sufragerie
+- - ce perdea dormitormaster then ce perdea sufragerie
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - ce incalzire dormitor
+- - ce incalzire dormitormaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - ce perdea dormitor
+- - ce perdea dormitormaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - ce lumina toaleta

@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - bal kucho
-  - kucho bal
+  - बाल कुचो
+  - कुचो बाल
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - nibhau kucho
-  - kucho nibhau
+  - निभाऊ कुचो
+  - कुचो निभाऊ

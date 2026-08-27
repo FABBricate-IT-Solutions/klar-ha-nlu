@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - weka joto chumbakulala 18
-  - joto chumbakulala 18
+  - weka joto chumbakulalamaster 18
+  - joto chumbakulalamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - weka joto chumbakulala 19
-  - joto chumbakulala 19
+  - weka joto chumbakulalamaster 19
+  - joto chumbakulalamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - weka joto chumbakulala 20
-  - joto chumbakulala 20
+  - weka joto chumbakulalamaster 20
+  - joto chumbakulalamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - weka joto chumbakulala 21
-  - joto chumbakulala 21
+  - weka joto chumbakulalamaster 21
+  - joto chumbakulalamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - weka joto chumbakulala 22
-  - joto chumbakulala 22
+  - weka joto chumbakulalamaster 22
+  - joto chumbakulalamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - weka joto chumbakulala 23
-  - joto chumbakulala 23
+  - weka joto chumbakulalamaster 23
+  - joto chumbakulalamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - weka joto chumbakulala 24
-  - joto chumbakulala 24
+  - weka joto chumbakulalamaster 24
+  - joto chumbakulalamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - nini joto chumbakulala
-  - joto chumbakulala
+  - nini joto chumbakulalamaster
+  - joto chumbakulalamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - weka joto chumbakulala 18
-  - joto chumbakulala 18
+  - weka joto chumbakulalamaster 18
+  - joto chumbakulalamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - weka joto chumbakulala 19
-  - joto chumbakulala 19
+  - weka joto chumbakulalamaster 19
+  - joto chumbakulalamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - weka joto chumbakulala 20
-  - joto chumbakulala 20
+  - weka joto chumbakulalamaster 20
+  - joto chumbakulalamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - weka joto chumbakulala 21
-  - joto chumbakulala 21
+  - weka joto chumbakulalamaster 21
+  - joto chumbakulalamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - weka joto chumbakulala 22
-  - joto chumbakulala 22
+  - weka joto chumbakulalamaster 22
+  - joto chumbakulalamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - weka joto chumbakulala 23
-  - joto chumbakulala 23
+  - weka joto chumbakulalamaster 23
+  - joto chumbakulalamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - weka joto chumbakulala 24
-  - joto chumbakulala 24
+  - weka joto chumbakulalamaster 24
+  - joto chumbakulalamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - nini joto chumbakulala
-  - joto chumbakulala
+  - nini joto chumbakulalamaster
+  - joto chumbakulalamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - nini joto chumbakulala
-  - joto chumbakulala
+  - nini joto chumbakulalamaster
+  - joto chumbakulalamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - nini joto chumbakulala
-  - joto chumbakulala
+  - nini joto chumbakulalamaster
+  - joto chumbakulalamaster

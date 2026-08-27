@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Sovrum
+  name: Sovrummaster
   floor: upper
   aliases:
+  - sovrummaster
   - sovrum
 - id: bedroom_2
   name: Sovrum2
@@ -130,10 +131,10 @@ devices:
   - tak
 - id: light.living_lamp
   area_id: living
-  name: vardagsrum ljus
+  name: vardagsrum lamp
   aliases:
-  - vardagsrum ljus
-  - ljus
+  - vardagsrum lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: allrumess ljus
@@ -190,29 +191,29 @@ devices:
   - ljus
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: sovrum tak
+  name: sovrummaster tak
   aliases:
-  - sovrum tak
+  - sovrummaster tak
   - tak
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: sovrum ensuite
+  name: sovrummaster ensuite
   aliases:
-  - sovrum ensuite
+  - sovrummaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: sovrum left sanglampa
+  name: sovrummaster left sanglampa
   aliases:
-  - sovrum left sanglampa
+  - sovrummaster left sanglampa
   - sanglampa
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: sovrum right sanglampa
+  name: sovrummaster right sanglampa
   aliases:
-  - sovrum right sanglampa
+  - sovrummaster right sanglampa
   - sanglampa
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - gardin
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: sovrum gardin
+  name: sovrummaster gardin
   aliases:
-  - sovrum gardin
+  - sovrummaster gardin
   - gardin
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - varme
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: sovrum varme
+  name: sovrummaster varme
   aliases:
-  - sovrum varme
+  - sovrummaster varme
   - varme
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatur sovrum
+  name: temperatur sovrummaster
   aliases:
-  - temperatur sovrum
+  - temperatur sovrummaster
   - temperatur
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - flakt
 - id: fan.master_fan
   area_id: master_bedroom
-  name: sovrum flakt
+  name: sovrummaster flakt
   aliases:
-  - sovrum flakt
+  - sovrummaster flakt
   - flakt
 - id: fan.bedroom2_fan
   area_id: bedroom_2

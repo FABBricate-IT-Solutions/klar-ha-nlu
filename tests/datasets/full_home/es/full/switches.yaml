@@ -36,16 +36,16 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - enciende dryer lavadero
-  - dryer lavadero enciende
+  - enciende secadora lavadero
+  - secadora lavadero enciende
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - apaga dryer lavadero
-  - dryer lavadero apaga
+  - apaga secadora lavadero
+  - secadora lavadero apaga
 - name: switch.rangehood_on
   conditions:
   - type: action

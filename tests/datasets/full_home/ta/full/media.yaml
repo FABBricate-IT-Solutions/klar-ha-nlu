@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv arai eru
-  - eru tv arai
+  - tv அறை ஏற்று
+  - ஏற்று tv அறை
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - anai tv arai
-  - tv arai anai
+  - அணை tv அறை
+  - tv அறை அணை
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv arai
-  - tv arai pause
+  - நிறுத்து tv அறை
+  - tv அறை நிறுத்து
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv kutumbam eru
-  - eru tv kutumbam
+  - tv kutumbam ஏற்று
+  - ஏற்று tv kutumbam
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - anai tv kutumbam
-  - tv kutumbam anai
+  - அணை tv kutumbam
+  - tv kutumbam அணை
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv kutumbam
-  - tv kutumbam pause
+  - நிறுத்து tv kutumbam
+  - tv kutumbam நிறுத்து

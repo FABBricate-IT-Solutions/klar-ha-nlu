@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - eru arai meetai matrum arai lamp
-  - arai meetai matrum arai lamp eru
+  - ஏற்று அறை meetai மற்றும் அறை vilakku
+  - அறை meetai மற்றும் அறை vilakku ஏற்று
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - anai arai meetai matrum arai lamp
-  - arai meetai matrum arai lamp anai
+  - அணை அறை meetai மற்றும் அறை vilakku
+  - அறை meetai மற்றும் அறை vilakku அணை
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - eru samaiyal meetai matrum samaiyal theevu
-  - samaiyal meetai matrum samaiyal theevu eru
+  - ஏற்று சமையல் meetai மற்றும் சமையல் theevu
+  - சமையல் meetai மற்றும் சமையல் theevu ஏற்று
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - anai samaiyal meetai matrum samaiyal theevu
-  - samaiyal meetai matrum samaiyal theevu anai
+  - அணை சமையல் meetai மற்றும் சமையல் theevu
+  - சமையல் meetai மற்றும் சமையல் theevu அணை
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - eru arai meetai matrum samaiyal theevu
-  - arai meetai matrum samaiyal theevu eru
+  - ஏற்று அறை meetai மற்றும் சமையல் theevu
+  - அறை meetai மற்றும் சமையல் theevu ஏற்று
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - anai arai meetai matrum samaiyal theevu
-  - arai meetai matrum samaiyal theevu anai
+  - அணை அறை meetai மற்றும் சமையல் theevu
+  - அறை meetai மற்றும் சமையல் theevu அணை
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - eru office meetai matrum hallway vilakku
-  - office meetai matrum hallway vilakku eru
+  - ஏற்று office meetai மற்றும் hallway விளக்கு
+  - office meetai மற்றும் hallway விளக்கு ஏற்று
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - anai office meetai matrum hallway vilakku
-  - office meetai matrum hallway vilakku anai
+  - அணை office meetai மற்றும் hallway விளக்கு
+  - office meetai மற்றும் hallway விளக்கு அணை
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - eru garden vilakku matrum garage vilakku
-  - garden vilakku matrum garage vilakku eru
+  - ஏற்று garden விளக்கு மற்றும் garage விளக்கு
+  - garden விளக்கு மற்றும் garage விளக்கு ஏற்று
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - anai garden vilakku matrum garage vilakku
-  - garden vilakku matrum garage vilakku anai
+  - அணை garden விளக்கு மற்றும் garage விளக்கு
+  - garden விளக்கு மற்றும் garage விளக்கு அணை
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - eru padukkaiyarai meetai matrum padukkaiyarai kattil
-  - padukkaiyarai meetai matrum padukkaiyarai kattil eru
+  - ஏற்று padukkaiyaraimaster meetai மற்றும் padukkaiyaraimaster kattil
+  - padukkaiyaraimaster meetai மற்றும் padukkaiyaraimaster kattil ஏற்று
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - anai padukkaiyarai meetai matrum padukkaiyarai kattil
-  - padukkaiyarai meetai matrum padukkaiyarai kattil anai
+  - அணை padukkaiyaraimaster meetai மற்றும் padukkaiyaraimaster kattil
+  - padukkaiyaraimaster meetai மற்றும் padukkaiyaraimaster kattil அணை
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - eru kutumbam meetai matrum kutumbamess vilakku
-  - kutumbam meetai matrum kutumbamess vilakku eru
+  - ஏற்று kutumbam meetai மற்றும் kutumbamess விளக்கு
+  - kutumbam meetai மற்றும் kutumbamess விளக்கு ஏற்று
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - anai kutumbam meetai matrum kutumbamess vilakku
-  - kutumbam meetai matrum kutumbamess vilakku anai
+  - அணை kutumbam meetai மற்றும் kutumbamess விளக்கு
+  - kutumbam meetai மற்றும் kutumbamess விளக்கு அணை
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - eru basement vilakku matrum salavai vilakku
-  - basement vilakku matrum salavai vilakku eru
+  - ஏற்று basement விளக்கு மற்றும் salavai விளக்கு
+  - basement விளக்கு மற்றும் salavai விளக்கு ஏற்று
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - anai basement vilakku matrum salavai vilakku
-  - basement vilakku matrum salavai vilakku anai
+  - அணை basement விளக்கு மற்றும் salavai விளக்கு
+  - basement விளக்கு மற்றும் salavai விளக்கு அணை
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - eru padukkaiyarai visiri matrum samaiyal theevu
-  - padukkaiyarai visiri matrum samaiyal theevu eru
+  - ஏற்று padukkaiyaraimaster விசிறி மற்றும் சமையல் theevu
+  - padukkaiyaraimaster விசிறி மற்றும் சமையல் theevu ஏற்று
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - eru arai thirai matrum arai meetai
-  - arai thirai matrum arai meetai eru
+  - ஏற்று அறை திரை மற்றும் அறை meetai
+  - அறை திரை மற்றும் அறை meetai ஏற்று
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - eru salavai washing matrum salavai dryer
-  - salavai washing matrum salavai dryer eru
+  - ஏற்று salavai washing மற்றும் salavai dryer
+  - salavai washing மற்றும் salavai dryer ஏற்று
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku arai matrum samaiyal
-  - vilakku arai matrum samaiyal anai
+  - அணை விளக்கு அறை மற்றும் சமையல்
+  - விளக்கு அறை மற்றும் சமையல் அணை
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku office matrum hallway
-  - vilakku office matrum hallway anai
+  - அணை விளக்கு office மற்றும் hallway
+  - விளக்கு office மற்றும் hallway அணை
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku garage matrum garden
-  - vilakku garage matrum garden anai
+  - அணை விளக்கு garage மற்றும் garden
+  - விளக்கு garage மற்றும் garden அணை
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku padukkaiyarai matrum main bath
-  - vilakku padukkaiyarai matrum main bath anai
+  - அணை விளக்கு padukkaiyaraimaster மற்றும் main bath
+  - விளக்கு padukkaiyaraimaster மற்றும் main bath அணை
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku kutumbam matrum kutumbamess
-  - vilakku kutumbam matrum kutumbamess anai
+  - அணை விளக்கு kutumbam மற்றும் kutumbamess
+  - விளக்கு kutumbam மற்றும் kutumbamess அணை
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku arai matrum kutumbamess matrum samaiyal
-  - vilakku arai kutumbamess matrum samaiyal anai
+  - அணை விளக்கு அறை மற்றும் kutumbamess மற்றும் சமையல்
+  - விளக்கு அறை kutumbamess மற்றும் சமையல் அணை
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku office matrum hallway matrum garage
-  - vilakku office hallway matrum garage eru
+  - ஏற்று விளக்கு office மற்றும் hallway மற்றும் garage
+  - விளக்கு office hallway மற்றும் garage ஏற்று
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai vilakku garden matrum basement matrum salavai
-  - vilakku garden basement matrum salavai anai
+  - அணை விளக்கு garden மற்றும் basement மற்றும் salavai
+  - விளக்கு garden basement மற்றும் salavai அணை
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira theevu samaiyal
-  - ellam vilakku anai thavira theevu samaiyal
+  - அணை எல்லாம் விளக்கு thavira theevu சமையல்
+  - எல்லாம் விளக்கு அணை thavira theevu சமையல்
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira lamp arai
-  - ellam vilakku anai thavira lamp arai
+  - அணை எல்லாம் விளக்கு thavira vilakku அறை
+  - எல்லாம் விளக்கு அணை thavira vilakku அறை
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira garden
-  - ellam vilakku anai thavira garden
+  - அணை எல்லாம் விளக்கு thavira garden
+  - எல்லாம் விளக்கு அணை thavira garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira meetai office
-  - ellam vilakku anai thavira meetai office
+  - அணை எல்லாம் விளக்கு thavira meetai office
+  - எல்லாம் விளக்கு அணை thavira meetai office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira basement
-  - ellam vilakku anai thavira basement
+  - அணை எல்லாம் விளக்கு thavira basement
+  - எல்லாம் விளக்கு அணை thavira basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru ellam vilakku thavira samaiyal
-  - ellam vilakku eru thavira samaiyal
+  - ஏற்று எல்லாம் விளக்கு thavira சமையல்
+  - எல்லாம் விளக்கு ஏற்று thavira சமையல்
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru ellam vilakku thavira office
-  - ellam vilakku eru thavira office
+  - ஏற்று எல்லாம் விளக்கு thavira office
+  - எல்லாம் விளக்கு ஏற்று thavira office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru ellam vilakku thavira garden
-  - ellam vilakku eru thavira garden
+  - ஏற்று எல்லாம் விளக்கு thavira garden
+  - எல்லாம் விளக்கு ஏற்று thavira garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru ellam vilakku thavira arai
-  - ellam vilakku eru thavira arai
+  - ஏற்று எல்லாம் விளக்கு thavira அறை
+  - எல்லாம் விளக்கு ஏற்று thavira அறை
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru ellam vilakku thavira garage
-  - ellam vilakku eru thavira garage
+  - ஏற்று எல்லாம் விளக்கு thavira garage
+  - எல்லாம் விளக்கு ஏற்று thavira garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - anai ellam vilakku samaiyal thavira theevu
-  - ellam vilakku samaiyal anai thavira theevu
+  - அணை எல்லாம் விளக்கு சமையல் thavira theevu
+  - எல்லாம் விளக்கு சமையல் அணை thavira theevu
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - anai ellam vilakku arai thavira lamp
-  - ellam vilakku arai anai thavira lamp
+  - அணை எல்லாம் விளக்கு அறை thavira vilakku
+  - எல்லாம் விளக்கு அறை அணை thavira vilakku
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - eru ellam vilakku thavira theevu samaiyal
-  - ellam vilakku eru thavira theevu samaiyal
+  - ஏற்று எல்லாம் விளக்கு thavira theevu சமையல்
+  - எல்லாம் விளக்கு ஏற்று thavira theevu சமையல்
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira samaiyal matrum office
-  - ellam vilakku anai thavira samaiyal matrum office
+  - அணை எல்லாம் விளக்கு thavira சமையல் மற்றும் office
+  - எல்லாம் விளக்கு அணை thavira சமையல் மற்றும் office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira arai matrum padukkaiyarai
-  - ellam vilakku anai thavira arai matrum padukkaiyarai
+  - அணை எல்லாம் விளக்கு thavira அறை மற்றும் padukkaiyaraimaster
+  - எல்லாம் விளக்கு அணை thavira அறை மற்றும் padukkaiyaraimaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku thavira garage matrum garden
-  - ellam vilakku anai thavira garage matrum garden
+  - அணை எல்லாம் விளக்கு thavira garage மற்றும் garden
+  - எல்லாம் விளக்கு அணை thavira garage மற்றும் garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku kizh thavira samaiyal
-  - ellam vilakku kizh anai thavira samaiyal
+  - அணை எல்லாம் விளக்கு kizh thavira சமையல்
+  - எல்லாம் விளக்கு kizh அணை thavira சமையல்
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku mel thavira padukkaiyarai
-  - ellam vilakku mel anai thavira padukkaiyarai
+  - அணை எல்லாம் விளக்கு mel thavira padukkaiyaraimaster
+  - எல்லாம் விளக்கு mel அணை thavira padukkaiyaraimaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anai ellam vilakku kizh thavira office
-  - ellam vilakku kizh anai thavira office
+  - அணை எல்லாம் விளக்கு kizh thavira office
+  - எல்லாம் விளக்கு kizh அணை thavira office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - thira thirai arai matrum padukkaiyarai
-  - thirai arai matrum padukkaiyarai thira
+  - திற திரை அறை மற்றும் padukkaiyaraimaster
+  - திரை அறை மற்றும் padukkaiyaraimaster திற
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - moodu thirai arai matrum padukkaiyarai
-  - thirai arai matrum padukkaiyarai moodu
+  - மூடு திரை அறை மற்றும் padukkaiyaraimaster
+  - திரை அறை மற்றும் padukkaiyaraimaster மூடு
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - amai veppam arai matrum padukkaiyarai 21
-  - veppam arai matrum padukkaiyarai 21
+  - அமை வெப்பம் அறை மற்றும் padukkaiyaraimaster 21
+  - வெப்பம் அறை மற்றும் padukkaiyaraimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - amai vilakku arai matrum samaiyal 50
-  - vilakku arai matrum samaiyal 50
+  - அமை விளக்கு அறை மற்றும் சமையல் 50
+  - விளக்கு அறை மற்றும் சமையல் 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - amai vilakku arai matrum samaiyal red
-  - vilakku arai matrum samaiyal red
+  - அமை விளக்கு அறை மற்றும் சமையல் red
+  - விளக்கு அறை மற்றும் சமையல் red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - enna vilakku arai matrum samaiyal
-  - vilakku arai matrum samaiyal
+  - என்ன விளக்கு அறை மற்றும் சமையல்
+  - விளக்கு அறை மற்றும் சமையல்
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - enna veppam arai matrum anai vilakku samaiyal
-  - anai vilakku samaiyal matrum enna veppam arai
+  - என்ன வெப்பம் அறை மற்றும் அணை விளக்கு சமையல்
+  - அணை விளக்கு சமையல் மற்றும் என்ன வெப்பம் அறை
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - poottu front kathavu matrum garage kathavu
-  - poottu poottu nuzhaivu matrum garage
+  - பூட்டு front கதவு மற்றும் garage கதவு
+  - பூட்டு பூட்டு nuzhaivu மற்றும் garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - eru padam matrum anai vilakku kazhivarai
-  - anai vilakku kazhivarai matrum eru padam
+  - ஏற்று padam மற்றும் அணை விளக்கு kazhivarai
+  - அணை விளக்கு kazhivarai மற்றும் ஏற்று padam

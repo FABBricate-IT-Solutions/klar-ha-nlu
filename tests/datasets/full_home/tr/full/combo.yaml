@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - yak yatakodasi tavan ve yatakodasi komodin
-  - yatakodasi tavan ve yatakodasi komodin yak
+  - yak yatakodasimaster tavan ve yatakodasimaster komodin
+  - yatakodasimaster tavan ve yatakodasimaster komodin yak
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sondur yatakodasi tavan ve yatakodasi komodin
-  - yatakodasi tavan ve yatakodasi komodin sondur
+  - sondur yatakodasimaster tavan ve yatakodasimaster komodin
+  - yatakodasimaster tavan ve yatakodasimaster komodin sondur
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - yak yatakodasi vantilator ve mutfak ada
-  - yatakodasi vantilator ve mutfak ada yak
+  - yak yatakodasimaster vantilator ve mutfak ada
+  - yatakodasimaster vantilator ve mutfak ada yak
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik yatakodasi ve main bath
-  - isik yatakodasi ve main bath sondur
+  - sondur isik yatakodasimaster ve main bath
+  - isik yatakodasimaster ve main bath sondur
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric salon ve yatakodasi
-  - hepsi isik sondur haric salon ve yatakodasi
+  - sondur hepsi isik haric salon ve yatakodasimaster
+  - hepsi isik sondur haric salon ve yatakodasimaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik ust haric yatakodasi
-  - hepsi isik ust sondur haric yatakodasi
+  - sondur hepsi isik ust haric yatakodasimaster
+  - hepsi isik ust sondur haric yatakodasimaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - ac perde salon ve yatakodasi
-  - perde salon ve yatakodasi ac
+  - ac perde salon ve yatakodasimaster
+  - perde salon ve yatakodasimaster ac
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - kapat perde salon ve yatakodasi
-  - perde salon ve yatakodasi kapat
+  - kapat perde salon ve yatakodasimaster
+  - perde salon ve yatakodasimaster kapat
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - ayarla klima salon ve yatakodasi 21
-  - klima salon ve yatakodasi 21
+  - ayarla klima salon ve yatakodasimaster 21
+  - klima salon ve yatakodasimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

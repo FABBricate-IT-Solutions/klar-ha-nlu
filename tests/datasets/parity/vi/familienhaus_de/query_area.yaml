@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - gi khoa loivao
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- gi bongden phonggiadinh va gi bongden bep
+- gi bongden phonggiadinh then gi bongden bep
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- gi bongden phonggiadinh va gi bongden bep
+- gi bongden phonggiadinh then gi bongden bep
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- gi bongden phonggiadinh va gi bongden bep
+- gi bongden phonggiadinh then gi bongden bep
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- gi bongden phonggiadinh va gi bongden bep
+- gi bongden phonggiadinh then gi bongden bep
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - gi quat phonggiadinh
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - gi khoa garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- gi bongden loivaogang va gi bongden wc
+- gi bongden loivaogang then gi bongden wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- gi bongden loivaogang va gi bongden wc
+- gi bongden loivaogang then gi bongden wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- gi bongden loivaogang va gi bongden wc
+- gi bongden loivaogang then gi bongden wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- gi bongden loivaogang va gi bongden wc
+- gi bongden loivaogang then gi bongden wc
 query_area/hallway_lights::hallway_lights_get_brightness:
 - gi bongden loivaogang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - gi thietbi phongtamchinh
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- gi rem phongngu va gi rem phongkhach
+- gi rem phongngumaster then gi rem phongkhach
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- gi rem phongngu va gi rem phongkhach
+- gi rem phongngumaster then gi rem phongkhach
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- gi rem phongngu va gi rem phongkhach
+- gi rem phongngumaster then gi rem phongkhach
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- gi rem phongngu va gi rem phongkhach
+- gi rem phongngumaster then gi rem phongkhach
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- gi dieuhoa phongngu
+- gi dieuhoa phongngumaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- gi rem phongngu
+- gi rem phongngumaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- gi rem phongngu
+- gi rem phongngumaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- gi rem phongngu
+- gi rem phongngumaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- gi rem phongngu
+- gi rem phongngumaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- gi quat phongngu
+- gi quat phongngumaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- gi quat phongngu
+- gi quat phongngumaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- gi quat phongngu
+- gi quat phongngumaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- gi quat phongngu
+- gi quat phongngumaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- gi bongden phongngu
+- gi bongden phongngumaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- gi bongden phongngu
+- gi bongden phongngumaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- gi bongden phongngu
+- gi bongden phongngumaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- gi bongden phongngu
+- gi bongden phongngumaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - gi bongden wc
 query_area/powder_room_lights::powder_room_lights_get_state:

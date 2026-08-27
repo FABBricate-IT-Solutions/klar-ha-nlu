@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - вентилятор спальня увімкни
-  - увімкни вентилятор спальня
+  - вентилятор спальняmaster увімкни
+  - увімкни вентилятор спальняmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - вимкни вентилятор спальня
-  - вентилятор спальня вимкни
+  - вимкни вентилятор спальняmaster
+  - вентилятор спальняmaster вимкни
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - постав вентилятор спальня 40
-  - вентилятор спальня 40
+  - постав вентилятор спальняmaster 40
+  - вентилятор спальняmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - постав вентилятор спальня 20
-  - вентилятор спальня 20
+  - постав вентилятор спальняmaster 20
+  - вентилятор спальняmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - постав вентилятор спальня 60
-  - вентилятор спальня 60
+  - постав вентилятор спальняmaster 60
+  - вентилятор спальняmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - постав вентилятор спальня 80
-  - вентилятор спальня 80
+  - постав вентилятор спальняmaster 80
+  - вентилятор спальняmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - αναψε φως υπνοδωματο
+  - αναψε φως υπνοδωματοmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - σβησε φως υπνοδωματο
+  - σβησε φως υπνοδωματοmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - αναψε ταβανι υπνοδωματο
+  - αναψε ταβανι υπνοδωματοmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - σβησε ταβανι υπνοδωματο
+  - σβησε ταβανι υπνοδωματοmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - αναψε κομοδινο υπνοδωματο
+  - αναψε κομοδινο υπνοδωματοmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - σβησε κομοδινο υπνοδωματο
+  - σβησε κομοδινο υπνοδωματοmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

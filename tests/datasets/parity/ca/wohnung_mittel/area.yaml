@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - apaga tot llum
 area/lichter::arbeitszimmer_lichter_an:
-- encen llum sala
+- encen tot llum office
 area/lichter::arbeitszimmer_lichter_aus:
-- apaga llum sala
+- apaga tot llum office
 area/lichter::esszimmer_lichter_an:
-- encen llum salaestaress
+- encen tot llum salaestaress
 area/lichter::esszimmer_lichter_aus:
-- apaga llum salaestaress
+- apaga tot llum salaestaress
 area/lichter::kuche_lichter_an:
-- encen llum cuina
+- encen tot llum cuina
 area/lichter::kuche_lichter_aus:
-- apaga llum cuina
+- apaga tot llum cuina
 area/lichter::schlafzimmer_auf_blau:
-- posa llum habitacio blau
+- posa tot llum habitacio blau
 area/lichter::schlafzimmer_auf_rot:
-- posa llum habitacio vermell
+- posa tot llum habitacio vermell
 area/lichter::wohnzimmer_helligkeit:
-- posa llum sala 45
+- posa tot llum sala 45
 area/lichter::wohnzimmer_lichter_an:
-- encen llum sala
+- encen tot llum sala
 area/lichter::wohnzimmer_lichter_aus:
-- apaga llum sala
+- apaga tot llum sala
 area/spoken::alle_ausser_kugel_stt:
 - apaga tot llum excepte bola
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - apaga tot llum
 area/spoken::esszimmer_weiss:
-- posa llum salaestaress blanc
+- posa tot llum salaestaress blanc
 area/spoken::stt_kuche_lichte:
-- apaga llum cuina
+- apaga tot llum cuina
 area/spoken::stt_licht_wohnzimmer_an:
-- encen llum sala
+- encen tot llum sala
 area/spoken::stt_licht_wohnzimmer_aus:
-- apaga llum sala
+- apaga tot llum sala
 area/spoken::stt_schlafzimmer_dativ:
-- apaga llum habitacio
+- apaga tot llum habitacio
 area/spoken::wohnzimmer_gruen:
-- posa llum sala verd
+- posa tot llum sala verd
 area/spoken_more::alle_ausser_arbeitszimmer:
-- apaga tot llum excepte sala
+- apaga tot llum excepte office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- apaga llum sala
+- apaga tot llum office
 area/spoken_more::esszimmer_30:
-- posa llum salaestaress 30
+- posa tot llum salaestaress 30
 area/spoken_more::esszimmer_lichte_an:
-- encen llum salaestaress
+- encen tot llum salaestaress
 area/spoken_more::kuche_80:
-- posa llum cuina 80
+- posa tot llum cuina 80
 area/spoken_more::kuche_blau:
-- posa llum cuina blau
+- posa tot llum cuina blau
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - apaga tot llum excepte habitacio
 area/spoken_more::wohnzimmer_gelb:
-- posa llum sala groc
+- posa tot llum sala groc

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - pon calefaccion salon 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- pon calefaccion dormitorio 19
+- pon calefaccion dormitoriomaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - pon cortina dormitorio2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - abre cortina salon
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- pon cortina dormitorio 19
+- pon cortina dormitoriomaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- cierra cortina dormitorio
+- cierra cortina dormitoriomaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- abre cortina dormitorio
+- abre cortina dormitoriomaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - pon ventilador dormitorio2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - enciende ventilador estancia
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- pon ventilador dormitorio 28
+- pon ventilador dormitoriomaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- apaga ventilador dormitorio
+- apaga ventilador dormitoriomaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- enciende ventilador dormitorio
+- enciende ventilador dormitoriomaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- apaga ventilador dormitorio y apaga luz cocina
+- apaga ventilador dormitoriomaster then apaga isla cocina
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- enciende ventilador dormitorio y enciende luz cocina
+- enciende ventilador dormitoriomaster then enciende isla cocina
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - pon techo dormitorio2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - enciende techo cocina
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- pon luz cocina 99
+- pon isla cocina 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- pon luz cocina verde
+- pon isla cocina verde
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- apaga luz cocina
+- apaga isla cocina
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- enciende luz cocina
+- enciende isla cocina
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - pon luz lavadero 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - enciende techo salon
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- pon luz salon 72
+- pon lampara salon 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- pon luz salon rojo
+- pon lampara salon rojo
 devices/light_living_lamp::light_living_lamp_turn_off:
-- apaga luz salon
+- apaga lampara salon
 devices/light_living_lamp::light_living_lamp_turn_on:
-- enciende luz salon
+- enciende lampara salon
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - pon luz main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - enciende luz banomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- pon mesilla dormitorio 25
+- pon mesilla dormitoriomaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- pon mesilla dormitorio rojo
+- pon mesilla dormitoriomaster rojo
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- apaga mesilla dormitorio
+- apaga mesilla dormitoriomaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- enciende mesilla dormitorio
+- enciende mesilla dormitoriomaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- pon techo dormitorio 77
+- pon techo dormitoriomaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- pon techo dormitorio azul
+- pon techo dormitoriomaster azul
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- apaga techo dormitorio
+- apaga techo dormitoriomaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- enciende techo dormitorio
+- enciende techo dormitoriomaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- pon luz dormitorio 55
+- pon ankleide dormitoriomaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- pon luz dormitorio negro
+- pon ankleide dormitoriomaster negro
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- apaga luz dormitorio
+- apaga ankleide dormitoriomaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- enciende luz dormitorio
+- enciende ankleide dormitoriomaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - pon luz aseo 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,27 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - enciende tv salon
 devices/scenes::dinner_time:
-- pon luz estanciaess 90 y enciende techo cocina y pon luz cocina 80
+- pon luz estanciaess 90 then enciende techo cocina then pon isla cocina 80
 devices/scenes::good_morning:
-- enciende techo cocina y pon luz estanciaess 100 y abre cortina salon y abre cortina
-  dormitorio
+- enciende techo cocina then pon luz estanciaess 100 then abre cortina salon then
+  abre cortina dormitoriomaster
 devices/scenes::kids_bedtime:
-- apaga techo dormitorio2 y apaga techo dormitorio3 y apaga techo dormitorio4 y pon
-  luz entradagang 15
+- apaga techo dormitorio2 then apaga techo dormitorio3 then apaga techo dormitorio4
+  then pon luz entradagang 15
 devices/scenes::movie_night:
-- apaga techo salon y pon luz salon 20 y enciende tv salon y cierra cortina salon
+- apaga techo salon then pon lampara salon 20 then enciende tv salon then cierra cortina
+  salon
 devices/scripts::good_night:
-- enciende escena noche
+- apaga techo salon then apaga lampara salon then apaga luz estanciaess then apaga
+  techo cocina then apaga isla cocina then apaga techo estancia then apaga luz entrada
+  then apaga luz entradagang then bloquea cerradura entrada then bloquea cerradura
+  garage then pon calefaccion dormitoriomaster 20
 devices/scripts::leaving_home:
-- enciende escena salida
+- apaga techo salon then apaga lampara salon then apaga techo cocina then apaga techo
+  estancia then apaga luz entrada then bloquea cerradura entrada then bloquea cerradura
+  garage then cierra cortina garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - apaga lavavajillas
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - enciende lavavajillas
 devices/switch_dryer::switch_dryer_turn_off:
-- apaga lavadora
+- apaga secadora
 devices/switch_dryer::switch_dryer_turn_on:
-- enciende lavadora
+- enciende secadora
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - apaga lavadora
 devices/switch_washing_machine::switch_washing_machine_turn_on:

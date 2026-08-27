@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - theruvu thera gadi
-  - thera gadi theruvu
+  - తెరువు తెర గది
+  - తెర గది తెరువు
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - mooyi thera gadi
-  - thera gadi mooyi
+  - మూయి తెర గది
+  - తెర గది మూయి
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set thera gadi 0
-  - thera gadi 0
+  - సెట్ తెర గది 0
+  - తెర గది 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set thera gadi 25
-  - thera gadi 25
+  - సెట్ తెర గది 25
+  - తెర గది 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set thera gadi 40
-  - thera gadi 40
+  - సెట్ తెర గది 40
+  - తెర గది 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set thera gadi 75
-  - thera gadi 75
+  - సెట్ తెర గది 75
+  - తెర గది 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set thera gadi 100
-  - thera gadi 100
+  - సెట్ తెర గది 100
+  - తెర గది 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - theruvu thera padakagadi
-  - thera padakagadi theruvu
+  - తెరువు తెర padakagadimaster
+  - తెర padakagadimaster తెరువు
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - mooyi thera padakagadi
-  - thera padakagadi mooyi
+  - మూయి తెర padakagadimaster
+  - తెర padakagadimaster మూయి
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set thera padakagadi 0
-  - thera padakagadi 0
+  - సెట్ తెర padakagadimaster 0
+  - తెర padakagadimaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set thera padakagadi 25
-  - thera padakagadi 25
+  - సెట్ తెర padakagadimaster 25
+  - తెర padakagadimaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set thera padakagadi 40
-  - thera padakagadi 40
+  - సెట్ తెర padakagadimaster 40
+  - తెర padakagadimaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set thera padakagadi 75
-  - thera padakagadi 75
+  - సెట్ తెర padakagadimaster 75
+  - తెర padakagadimaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set thera padakagadi 100
-  - thera padakagadi 100
+  - సెట్ తెర padakagadimaster 100
+  - తెర padakagadimaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - theruvu thera padakagadi2
-  - thera padakagadi2 theruvu
+  - తెరువు తెర padakagadi2
+  - తెర padakagadi2 తెరువు
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - mooyi thera padakagadi2
-  - thera padakagadi2 mooyi
+  - మూయి తెర padakagadi2
+  - తెర padakagadi2 మూయి
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set thera padakagadi2 0
-  - thera padakagadi2 0
+  - సెట్ తెర padakagadi2 0
+  - తెర padakagadi2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set thera padakagadi2 25
-  - thera padakagadi2 25
+  - సెట్ తెర padakagadi2 25
+  - తెర padakagadi2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set thera padakagadi2 40
-  - thera padakagadi2 40
+  - సెట్ తెర padakagadi2 40
+  - తెర padakagadi2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set thera padakagadi2 75
-  - thera padakagadi2 75
+  - సెట్ తెర padakagadi2 75
+  - తెర padakagadi2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set thera padakagadi2 100
-  - thera padakagadi2 100
+  - సెట్ తెర padakagadi2 100
+  - తెర padakagadi2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - theruvu thera padakagadi3
-  - thera padakagadi3 theruvu
+  - తెరువు తెర padakagadi3
+  - తెర padakagadi3 తెరువు
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - mooyi thera padakagadi3
-  - thera padakagadi3 mooyi
+  - మూయి తెర padakagadi3
+  - తెర padakagadi3 మూయి
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set thera padakagadi3 0
-  - thera padakagadi3 0
+  - సెట్ తెర padakagadi3 0
+  - తెర padakagadi3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set thera padakagadi3 25
-  - thera padakagadi3 25
+  - సెట్ తెర padakagadi3 25
+  - తెర padakagadi3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set thera padakagadi3 40
-  - thera padakagadi3 40
+  - సెట్ తెర padakagadi3 40
+  - తెర padakagadi3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set thera padakagadi3 75
-  - thera padakagadi3 75
+  - సెట్ తెర padakagadi3 75
+  - తెర padakagadi3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set thera padakagadi3 100
-  - thera padakagadi3 100
+  - సెట్ తెర padakagadi3 100
+  - తెర padakagadi3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - theruvu thera garage
-  - thera garage theruvu
+  - తెరువు తెర garage
+  - తెర garage తెరువు
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - mooyi thera garage
-  - thera garage mooyi
+  - మూయి తెర garage
+  - తెర garage మూయి
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set thera garage 0
-  - thera garage 0
+  - సెట్ తెర garage 0
+  - తెర garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set thera garage 25
-  - thera garage 25
+  - సెట్ తెర garage 25
+  - తెర garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set thera garage 40
-  - thera garage 40
+  - సెట్ తెర garage 40
+  - తెర garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set thera garage 75
-  - thera garage 75
+  - సెట్ తెర garage 75
+  - తెర garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set thera garage 100
-  - thera garage 100
+  - సెట్ తెర garage 100
+  - తెర garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - theruvu thera gadi
-  - thera gadi theruvu
+  - తెరువు తెర గది
+  - తెర గది తెరువు
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - theruvu thera padakagadi
-  - thera padakagadi theruvu
+  - తెరువు తెర padakagadimaster
+  - తెర padakagadimaster తెరువు

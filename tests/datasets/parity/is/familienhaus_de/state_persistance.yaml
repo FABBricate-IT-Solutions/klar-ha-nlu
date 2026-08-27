@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - hvad ljos garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - hvad ljos anddyrigang og hvad ljos klósett
+- - hvad ljos anddyrigang then hvad ljos klósett
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - hvad ljos anddyrigang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - hvad ljos badmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - hvad hiti svefnherbergi og hvad hiti stofa
+- - hvad hiti svefnherbergimaster then hvad hiti stofa
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - hvad gardina svefnherbergi og hvad gardina stofa
+- - hvad gardina svefnherbergimaster then hvad gardina stofa
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - hvad hiti svefnherbergi
+- - hvad hiti svefnherbergimaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - hvad gardina svefnherbergi
+- - hvad gardina svefnherbergimaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - hvad ljos klósett

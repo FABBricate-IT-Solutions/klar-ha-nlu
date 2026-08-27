@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Sypialnia
+  name: Sypialniamaster
   floor: upper
   aliases:
+  - sypialniamaster
   - sypialnia
 - id: bedroom_2
   name: Sypialnia2
@@ -130,10 +131,10 @@ devices:
   - sufit
 - id: light.living_lamp
   area_id: living
-  name: salon swiatlo
+  name: salon lamp
   aliases:
-  - salon swiatlo
-  - swiatlo
+  - salon lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: salonfamess swiatlo
@@ -190,29 +191,29 @@ devices:
   - swiatlo
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: sypialnia sufit
+  name: sypialniamaster sufit
   aliases:
-  - sypialnia sufit
+  - sypialniamaster sufit
   - sufit
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: sypialnia ensuite
+  name: sypialniamaster ensuite
   aliases:
-  - sypialnia ensuite
+  - sypialniamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: sypialnia left noca
+  name: sypialniamaster left noca
   aliases:
-  - sypialnia left noca
+  - sypialniamaster left noca
   - noca
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: sypialnia right noca
+  name: sypialniamaster right noca
   aliases:
-  - sypialnia right noca
+  - sypialniamaster right noca
   - noca
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - zaslona
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: sypialnia zaslona
+  name: sypialniamaster zaslona
   aliases:
-  - sypialnia zaslona
+  - sypialniamaster zaslona
   - zaslona
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - ogrzewanie
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: sypialnia ogrzewanie
+  name: sypialniamaster ogrzewanie
   aliases:
-  - sypialnia ogrzewanie
+  - sypialniamaster ogrzewanie
   - ogrzewanie
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatura sypialnia
+  name: temperatura sypialniamaster
   aliases:
-  - temperatura sypialnia
+  - temperatura sypialniamaster
   - temperatura
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - wentylator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: sypialnia wentylator
+  name: sypialniamaster wentylator
   aliases:
-  - sypialnia wentylator
+  - sypialniamaster wentylator
   - wentylator
 - id: fan.bedroom2_fan
   area_id: bedroom_2
@@ -365,12 +366,14 @@ devices:
   - pralka
 - id: switch.dryer
   area_id: laundry
-  name: pralnia dryer
+  name: pralnia suszarka
   aliases:
-  - pralnia dryer
+  - pralnia suszarka
+  - suszarka
   - dryer
   tags:
   - dryer
+  - suszarka
 - id: switch.master_bath_fan
   area_id: master_bath
   name: lazmaster wentylatorbad

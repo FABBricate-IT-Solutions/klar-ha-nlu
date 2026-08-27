@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stavi grejanje spavaca 18
-  - grejanje spavaca 18
+  - stavi grejanje spavacamaster 18
+  - grejanje spavacamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stavi grejanje spavaca 19
-  - grejanje spavaca 19
+  - stavi grejanje spavacamaster 19
+  - grejanje spavacamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stavi grejanje spavaca 20
-  - grejanje spavaca 20
+  - stavi grejanje spavacamaster 20
+  - grejanje spavacamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stavi grejanje spavaca 21
-  - grejanje spavaca 21
+  - stavi grejanje spavacamaster 21
+  - grejanje spavacamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stavi grejanje spavaca 22
-  - grejanje spavaca 22
+  - stavi grejanje spavacamaster 22
+  - grejanje spavacamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stavi grejanje spavaca 23
-  - grejanje spavaca 23
+  - stavi grejanje spavacamaster 23
+  - grejanje spavacamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stavi grejanje spavaca 24
-  - grejanje spavaca 24
+  - stavi grejanje spavacamaster 24
+  - grejanje spavacamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - sta grejanje spavaca
-  - grejanje spavaca
+  - sta grejanje spavacamaster
+  - grejanje spavacamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stavi temperatura spavaca 18
-  - temperatura spavaca 18
+  - stavi temperatura spavacamaster 18
+  - temperatura spavacamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stavi temperatura spavaca 19
-  - temperatura spavaca 19
+  - stavi temperatura spavacamaster 19
+  - temperatura spavacamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stavi temperatura spavaca 20
-  - temperatura spavaca 20
+  - stavi temperatura spavacamaster 20
+  - temperatura spavacamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stavi temperatura spavaca 21
-  - temperatura spavaca 21
+  - stavi temperatura spavacamaster 21
+  - temperatura spavacamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stavi temperatura spavaca 22
-  - temperatura spavaca 22
+  - stavi temperatura spavacamaster 22
+  - temperatura spavacamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stavi temperatura spavaca 23
-  - temperatura spavaca 23
+  - stavi temperatura spavacamaster 23
+  - temperatura spavacamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stavi temperatura spavaca 24
-  - temperatura spavaca 24
+  - stavi temperatura spavacamaster 24
+  - temperatura spavacamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - sta temperatura spavaca
-  - temperatura spavaca
+  - sta temperatura spavacamaster
+  - temperatura spavacamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - sta grejanje spavaca
-  - grejanje spavaca
+  - sta grejanje spavacamaster
+  - grejanje spavacamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - sta temperatura spavaca
-  - temperatura spavaca
+  - sta temperatura spavacamaster
+  - temperatura spavacamaster

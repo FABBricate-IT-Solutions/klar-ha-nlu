@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilador dormitorio enciende
-  - enciende ventilador dormitorio
+  - ventilador dormitoriomaster enciende
+  - enciende ventilador dormitoriomaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - apaga ventilador dormitorio
-  - ventilador dormitorio apaga
+  - apaga ventilador dormitoriomaster
+  - ventilador dormitoriomaster apaga
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - pon ventilador dormitorio 40
-  - ventilador dormitorio 40
+  - pon ventilador dormitoriomaster 40
+  - ventilador dormitoriomaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - pon ventilador dormitorio 20
-  - ventilador dormitorio 20
+  - pon ventilador dormitoriomaster 20
+  - ventilador dormitoriomaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - pon ventilador dormitorio 60
-  - ventilador dormitorio 60
+  - pon ventilador dormitoriomaster 60
+  - ventilador dormitoriomaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - pon ventilador dormitorio 80
-  - ventilador dormitorio 80
+  - pon ventilador dormitoriomaster 80
+  - ventilador dormitoriomaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

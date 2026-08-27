@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Loznice
+  name: Loznicemaster
   floor: upper
   aliases:
+  - loznicemaster
   - loznice
 - id: bedroom_2
   name: Loznice2
@@ -130,10 +131,10 @@ devices:
   - strop
 - id: light.living_lamp
   area_id: living
-  name: obyvak svetlo
+  name: obyvak lamp
   aliases:
-  - obyvak svetlo
-  - svetlo
+  - obyvak lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: obyvakfamess svetlo
@@ -190,29 +191,29 @@ devices:
   - svetlo
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: loznice strop
+  name: loznicemaster strop
   aliases:
-  - loznice strop
+  - loznicemaster strop
   - strop
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: loznice ensuite
+  name: loznicemaster ensuite
   aliases:
-  - loznice ensuite
+  - loznicemaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: loznice left nocnik
+  name: loznicemaster left nocnik
   aliases:
-  - loznice left nocnik
+  - loznicemaster left nocnik
   - nocnik
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: loznice right nocnik
+  name: loznicemaster right nocnik
   aliases:
-  - loznice right nocnik
+  - loznicemaster right nocnik
   - nocnik
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - zaves
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: loznice zaves
+  name: loznicemaster zaves
   aliases:
-  - loznice zaves
+  - loznicemaster zaves
   - zaves
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - topeni
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: loznice topeni
+  name: loznicemaster topeni
   aliases:
-  - loznice topeni
+  - loznicemaster topeni
   - topeni
 - id: climate.master_ac
   area_id: master_bedroom
-  name: klima loznice
+  name: klima loznicemaster
   aliases:
-  - klima loznice
+  - klima loznicemaster
   - klima
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: loznice ventilator
+  name: loznicemaster ventilator
   aliases:
-  - loznice ventilator
+  - loznicemaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

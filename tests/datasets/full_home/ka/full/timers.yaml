@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - charte taimeri 10 min
-  - taimeri 10 min
+  - ჩართე ტაიმერი 10 min
+  - ტაიმერი 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - charte taimeri 45 min
-  - taimeri 45 min
+  - ჩართე ტაიმერი 45 min
+  - ტაიმერი 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - gamorte taimeri
-  - taimeri gamorte
+  - გამორთე ტაიმერი
+  - ტაიმერი გამორთე
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - charte taimeri 5 min
-  - taimeri 5 min
+  - ჩართე ტაიმერი 5 min
+  - ტაიმერი 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - charte taimeri 15 min
-  - taimeri 15 min
+  - ჩართე ტაიმერი 15 min
+  - ტაიმერი 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - charte taimeri 20 min
-  - taimeri 20 min
+  - ჩართე ტაიმერი 20 min
+  - ტაიმერი 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - charte taimeri 30 min
-  - taimeri 30 min
+  - ჩართე ტაიმერი 30 min
+  - ტაიმერი 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - charte taimeri 60 min
-  - taimeri 60 min
+  - ჩართე ტაიმერი 60 min
+  - ტაიმერი 60 min

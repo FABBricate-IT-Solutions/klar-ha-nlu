@@ -3,75 +3,75 @@
   - type: todo_list
     item: milk
   sentences:
-  - add milk qingdan
-  - milk add qingdan
+  - add milk 清單
+  - milk add 清單
 - name: list_done
   conditions:
   - type: todo_list
     item: milk
   sentences:
-  - wancheng milk
-  - milk wancheng
+  - 完成 milk
+  - milk 完成
 - name: list_done_milk
   conditions:
   - type: todo_list
     item: milk
   sentences:
-  - wancheng milk
-  - milk wancheng
+  - 完成 milk
+  - milk 完成
 - name: list_add_bread
   conditions:
   - type: todo_list
     item: bread
   sentences:
-  - add bread qingdan
-  - bread add qingdan
+  - add bread 清單
+  - bread add 清單
 - name: list_done_bread
   conditions:
   - type: todo_list
     item: bread
   sentences:
-  - wancheng bread
-  - bread wancheng
+  - 完成 bread
+  - bread 完成
 - name: list_add_eggs
   conditions:
   - type: todo_list
     item: eggs
   sentences:
-  - add eggs qingdan
-  - eggs add qingdan
+  - add eggs 清單
+  - eggs add 清單
 - name: list_done_eggs
   conditions:
   - type: todo_list
     item: eggs
   sentences:
-  - wancheng eggs
-  - eggs wancheng
+  - 完成 eggs
+  - eggs 完成
 - name: list_add_apples
   conditions:
   - type: todo_list
     item: apples
   sentences:
-  - add apples qingdan
-  - apples add qingdan
+  - add apples 清單
+  - apples add 清單
 - name: list_done_apples
   conditions:
   - type: todo_list
     item: apples
   sentences:
-  - wancheng apples
-  - apples wancheng
+  - 完成 apples
+  - apples 完成
 - name: list_add_coffee
   conditions:
   - type: todo_list
     item: coffee
   sentences:
-  - add coffee qingdan
-  - coffee add qingdan
+  - add coffee 清單
+  - coffee add 清單
 - name: list_done_coffee
   conditions:
   - type: todo_list
     item: coffee
   sentences:
-  - wancheng coffee
-  - coffee wancheng
+  - 完成 coffee
+  - coffee 完成

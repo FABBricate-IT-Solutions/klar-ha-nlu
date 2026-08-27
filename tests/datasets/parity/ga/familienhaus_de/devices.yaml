@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - socraigh teas seomra 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- socraigh teas seomraleong 19
+- socraigh teas seomraleongmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - socraigh cuirtin seomraleong2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - oscail cuirtin seomra
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- socraigh cuirtin seomraleong 19
+- socraigh cuirtin seomraleongmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- dun cuirtin seomraleong
+- dun cuirtin seomraleongmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- oscail cuirtin seomraleong
+- oscail cuirtin seomraleongmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - socraigh fean seomraleong2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - cas fean seomrateaghlaigh
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- socraigh fean seomraleong 28
+- socraigh fean seomraleongmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- much fean seomraleong
+- much fean seomraleongmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- cas fean seomraleong
+- cas fean seomraleongmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- much fean seomraleong agus much solas cistin
+- much fean seomraleongmaster then much oilean cistin
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- cas fean seomraleong agus cas solas cistin
+- cas fean seomraleongmaster then cas oilean cistin
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - socraigh uasteorainn seomraleong2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - cas uasteorainn cistin
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- socraigh solas cistin 99
+- socraigh oilean cistin 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- socraigh solas cistin green
+- socraigh oilean cistin green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- much solas cistin
+- much oilean cistin
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- cas solas cistin
+- cas oilean cistin
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - socraigh solas seomraniochta 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - cas uasteorainn seomra
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- socraigh solas seomra 72
+- socraigh lamp seomra 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- socraigh solas seomra red
+- socraigh lamp seomra red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- much solas seomra
+- much lamp seomra
 devices/light_living_lamp::light_living_lamp_turn_on:
-- cas solas seomra
+- cas lamp seomra
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - socraigh solas main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - cas solas folcadanmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- socraigh leaba seomraleong 25
+- socraigh leaba seomraleongmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- socraigh leaba seomraleong red
+- socraigh leaba seomraleongmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- much leaba seomraleong
+- much leaba seomraleongmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- cas leaba seomraleong
+- cas leaba seomraleongmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- socraigh uasteorainn seomraleong 77
+- socraigh uasteorainn seomraleongmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- socraigh uasteorainn seomraleong blue
+- socraigh uasteorainn seomraleongmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- much uasteorainn seomraleong
+- much uasteorainn seomraleongmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- cas uasteorainn seomraleong
+- cas uasteorainn seomraleongmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- socraigh solas seomraleong 55
+- socraigh ankleide seomraleongmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- socraigh solas seomraleong black
+- socraigh ankleide seomraleongmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- much solas seomraleong
+- much ankleide seomraleongmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- cas solas seomraleong
+- cas ankleide seomraleongmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - socraigh solas leithreas 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - cas teilifis seomrateaghlaigh
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause teilifis seomrateaghlaigh
+- pause tv seomrateaghlaigh
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - much teilifis seomrateaghlaigh
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - cas teilifis seomra
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause teilifis seomra
+- pause tv seomra
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - much teilifis seomra
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,29 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - cas teilifis seomra
 devices/scenes::dinner_time:
-- socraigh solas seomrateaghlaighess 90 agus cas uasteorainn cistin agus socraigh
-  solas cistin 80
+- socraigh solas seomrateaghlaighess 90 then cas uasteorainn cistin then socraigh
+  oilean cistin 80
 devices/scenes::good_morning:
-- cas uasteorainn cistin agus socraigh solas seomrateaghlaighess 100 agus oscail cuirtin
-  seomra agus oscail cuirtin seomraleong
+- cas uasteorainn cistin then socraigh solas seomrateaghlaighess 100 then oscail cuirtin
+  seomra then oscail cuirtin seomraleongmaster
 devices/scenes::kids_bedtime:
-- much uasteorainn seomraleong2 agus much uasteorainn seomraleong3 agus much uasteorainn
-  seomraleong4 agus socraigh solas hallagang 15
+- much uasteorainn seomraleong2 then much uasteorainn seomraleong3 then much uasteorainn
+  seomraleong4 then socraigh solas hallagang 15
 devices/scenes::movie_night:
-- much uasteorainn seomra agus socraigh solas seomra 20 agus cas teilifis seomra agus
+- much uasteorainn seomra then socraigh lamp seomra 20 then cas teilifis seomra then
   dun cuirtin seomra
 devices/scripts::good_night:
-- cas radharc oiche
+- much uasteorainn seomra then much lamp seomra then much solas seomrateaghlaighess
+  then much uasteorainn cistin then much oilean cistin then much uasteorainn seomrateaghlaigh
+  then much solas halla then much solas hallagang then glas glas halla then glas glas
+  garage then socraigh teas seomraleongmaster 20
 devices/scripts::leaving_home:
-- cas radharc imeacht
+- much uasteorainn seomra then much lamp seomra then much uasteorainn cistin then
+  much uasteorainn seomrateaghlaigh then much solas halla then glas glas halla then
+  glas glas garage then dun cuirtin garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - much soitheach
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - cas soitheach
 devices/switch_dryer::switch_dryer_turn_off:
-- much meaisinniocadh
+- much dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- cas meaisinniocadh
+- cas dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - much meaisinniocadh
 devices/switch_washing_machine::switch_washing_machine_turn_on:

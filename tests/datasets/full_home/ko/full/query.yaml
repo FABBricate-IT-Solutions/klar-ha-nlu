@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - mwo bul geosil
-  - mwo geosil bul
+  - 뭔 불 거실
+  - 뭔 거실 불
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - mwo keoteun geosil
-  - mwo geosil keoteun
+  - 뭔 커튼 거실
+  - 뭔 거실 커튼
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - mwo jamulsoe hyeongwan
-  - mwo hyeongwan jamulsoe
+  - 뭔 자물쇠 hyeongwan
+  - 뭔 hyeongwan 자물쇠
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - mwo nanbang geosil
-  - mwo geosil nanbang
+  - 뭔 난방 거실
+  - 뭔 거실 난방
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - mwo tv geosil
-  - mwo geosil tv
+  - 뭔 tv 거실
+  - 뭔 거실 tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - mwo doorsensor hyeongwan
-  - mwo hyeongwan doorsensor
+  - 뭔 doorsensor hyeongwan
+  - 뭔 hyeongwan doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - mwo windowsensor geosil
-  - mwo geosil windowsensor
+  - 뭔 windowsensor 거실
+  - 뭔 거실 windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - mwo tempsensor geosil
-  - mwo geosil tempsensor
+  - 뭔 tempsensor 거실
+  - 뭔 거실 tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - mwo bul bueok
-  - mwo bueok bul
+  - 뭔 불 부엌
+  - 뭔 부엌 불
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - mwo bul office
-  - mwo office bul
+  - 뭔 불 office
+  - 뭔 office 불
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - mwo bul garden
-  - mwo garden bul
+  - 뭔 불 garden
+  - 뭔 garden 불
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - mwo bul basement
-  - mwo basement bul
+  - 뭔 불 basement
+  - 뭔 basement 불
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - mwo keoteun chimsil
-  - mwo chimsil keoteun
+  - 뭔 커튼 chimsilmaster
+  - 뭔 chimsilmaster 커튼
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - mwo keoteun garage
-  - mwo garage keoteun
+  - 뭔 커튼 garage
+  - 뭔 garage 커튼
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - mwo jamulsoe garage
-  - mwo garage jamulsoe
+  - 뭔 자물쇠 garage
+  - 뭔 garage 자물쇠
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mwo nanbang chimsil
-  - mwo chimsil nanbang
+  - 뭔 난방 chimsilmaster
+  - 뭔 chimsilmaster 난방
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mwo nanbang chimsil
-  - mwo chimsil nanbang
+  - 뭔 nanbang chimsilmaster
+  - 뭔 chimsilmaster nanbang
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - mwo tv gajoksil
-  - mwo gajoksil tv
+  - 뭔 tv gajoksil
+  - 뭔 gajoksil tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - mwo eumak geosil
-  - mwo geosil eumak
+  - 뭔 티비 거실
+  - 뭔 거실 티비
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - mwo motion bueok
-  - mwo bueok motion
+  - 뭔 motion 부엌
+  - 뭔 부엌 motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - mwo humidity geosil
-  - mwo geosil humidity
+  - 뭔 humidity 거실
+  - 뭔 거실 humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - mwo seonpunggi chimsil
-  - mwo chimsil seonpunggi
+  - 뭔 선풍기 chimsilmaster
+  - 뭔 chimsilmaster 선풍기
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - mwo cheongsogi geosil
-  - mwo geosil cheongsogi
+  - 뭔 청소기 거실
+  - 뭔 거실 청소기
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - mwo bul geosil
-  - mwo geosil bul
+  - 뭔 불 거실
+  - 뭔 거실 불
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - mwo bul bueok
-  - mwo bueok bul
+  - 뭔 불 부엌
+  - 뭔 부엌 불
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - mwo bul chimsil
-  - mwo chimsil bul
+  - 뭔 불 chimsilmaster
+  - 뭔 chimsilmaster 불
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - mwo bul chimsil
-  - mwo chimsil bul
+  - 뭔 불 chimsilmaster
+  - 뭔 chimsilmaster 불
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - mwo bul bokdo
-  - mwo bokdo bul
+  - 뭔 불 bokdo
+  - 뭔 bokdo 불
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - mwo bul gajoksil
-  - mwo gajoksil bul
+  - 뭔 불 gajoksil
+  - 뭔 gajoksil 불
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - mwo bul gajoksiless
-  - mwo gajoksiless bul
+  - 뭔 불 gajoksiless
+  - 뭔 gajoksiless 불
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - mwo bul garage
-  - mwo garage bul
+  - 뭔 불 garage
+  - 뭔 garage 불
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - mwo bul chimsil2
-  - mwo chimsil2 bul
+  - 뭔 불 chimsil2
+  - 뭔 chimsil2 불
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - mwo bul chimsil3
-  - mwo chimsil3 bul
+  - 뭔 불 chimsil3
+  - 뭔 chimsil3 불
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - mwo bul chimsil4
-  - mwo chimsil4 bul
+  - 뭔 불 chimsil4
+  - 뭔 chimsil4 불
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - mwo bul hyeongwan
-  - mwo hyeongwan bul
+  - 뭔 불 hyeongwan
+  - 뭔 hyeongwan 불
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - mwo bul setaksil
-  - mwo setaksil bul
+  - 뭔 불 setaksil
+  - 뭔 setaksil 불
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - mwo bul main bath
-  - mwo main bath bul
+  - 뭔 불 main bath
+  - 뭔 main bath 불
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - mwo bul hwajangsil
-  - mwo hwajangsil bul
+  - 뭔 불 hwajangsil
+  - 뭔 hwajangsil 불
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - mwo ensuite chimsil
-  - mwo chimsil ensuite
+  - 뭔 ensuite chimsilmaster
+  - 뭔 chimsilmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - mwo bul chimsil
-  - mwo chimsil bul
+  - 뭔 불 chimsilmaster
+  - 뭔 chimsilmaster 불
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - mwo bul anbangyoksil
-  - mwo anbangyoksil bul
+  - 뭔 불 anbangyoksil
+  - 뭔 anbangyoksil 불

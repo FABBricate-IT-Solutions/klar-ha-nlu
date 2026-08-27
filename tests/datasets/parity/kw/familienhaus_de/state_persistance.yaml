@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - pyth golow garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - pyth golow porthgang ha pyth golow tybach
+- - pyth golow porthgang then pyth golow tybach
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - pyth golow porthgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - pyth golow kewndhavas
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - pyth tomder chambour ha pyth tomder stafell
+- - pyth tomder chambourmaster then pyth tomder stafell
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - pyth curtayn chambour ha pyth curtayn stafell
+- - pyth curtayn chambourmaster then pyth curtayn stafell
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - pyth tomder chambour
+- - pyth tomder chambourmaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - pyth curtayn chambour
+- - pyth curtayn chambourmaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - pyth golow tybach

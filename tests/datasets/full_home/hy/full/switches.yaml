@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - miatsu aman khohanots
-  - aman khohanots miatsu
+  - միացրու aman խոհանոց
+  - aman խոհանոց միացրու
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - anjatir aman khohanots
-  - aman khohanots anjatir
+  - անջատիր aman խոհանոց
+  - aman խոհանոց անջատիր
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - miatsu lvacqimekena lvacqaran
-  - lvacqimekena lvacqaran miatsu
+  - միացրու lvacqimekena lvacqaran
+  - lvacqimekena lvacqaran միացրու
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - anjatir lvacqimekena lvacqaran
-  - lvacqimekena lvacqaran anjatir
+  - անջատիր lvacqimekena lvacqaran
+  - lvacqimekena lvacqaran անջատիր
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - miatsu dryer lvacqaran
-  - dryer lvacqaran miatsu
+  - միացրու dryer lvacqaran
+  - dryer lvacqaran միացրու
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - anjatir dryer lvacqaran
-  - dryer lvacqaran anjatir
+  - անջատիր dryer lvacqaran
+  - dryer lvacqaran անջատիր
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - miatsu rangehood khohanots
-  - rangehood khohanots miatsu
+  - միացրու rangehood խոհանոց
+  - rangehood խոհանոց միացրու
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - anjatir rangehood khohanots
-  - rangehood khohanots anjatir
+  - անջատիր rangehood խոհանոց
+  - rangehood խոհանոց անջատիր
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - miatsu odapokhichbad lvacaranmaster
-  - odapokhichbad lvacaranmaster miatsu
+  - միացրու օդափոխիչbad lvacaranmaster
+  - օդափոխիչbad lvacaranmaster միացրու
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - anjatir odapokhichbad lvacaranmaster
-  - odapokhichbad lvacaranmaster anjatir
+  - անջատիր օդափոխիչbad lvacaranmaster
+  - օդափոխիչbad lvacaranmaster անջատիր
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - miatsu odapokhichbad main bath
-  - odapokhichbad main bath miatsu
+  - միացրու օդափոխիչbad main bath
+  - օդափոխիչbad main bath միացրու
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - anjatir odapokhichbad main bath
-  - odapokhichbad main bath anjatir
+  - անջատիր օդափոխիչbad main bath
+  - օդափոխիչbad main bath անջատիր

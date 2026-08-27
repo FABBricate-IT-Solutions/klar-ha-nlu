@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys mutq
-  - luys mutq miatsu
+  - միացրու լույս mutq
+  - լույս mutq միացրու
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys mutq
-  - luys mutq anjatir
+  - անջատիր լույս mutq
+  - լույս mutq անջատիր
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys hyurasenyak
-  - luys hyurasenyak miatsu
+  - միացրու լույս հյուրասենյակ
+  - լույս հյուրասենյակ միացրու
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys hyurasenyak
-  - luys hyurasenyak anjatir
+  - անջատիր լույս հյուրասենյակ
+  - լույս հյուրասենյակ անջատիր
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys yntaniqess
-  - luys yntaniqess miatsu
+  - միացրու լույս yntaniqess
+  - լույս yntaniqess միացրու
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys yntaniqess
-  - luys yntaniqess anjatir
+  - անջատիր լույս yntaniqess
+  - լույս yntaniqess անջատիր
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys khohanots
-  - luys khohanots miatsu
+  - միացրու լույս խոհանոց
+  - լույս խոհանոց միացրու
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys khohanots
-  - luys khohanots anjatir
+  - անջատիր լույս խոհանոց
+  - լույս խոհանոց անջատիր
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys yntaniq
-  - luys yntaniq miatsu
+  - միացրու լույս yntaniq
+  - լույս yntaniq միացրու
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys yntaniq
-  - luys yntaniq anjatir
+  - անջատիր լույս yntaniq
+  - լույս yntaniq անջատիր
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys lvacqaran
-  - luys lvacqaran miatsu
+  - միացրու լույս lvacqaran
+  - լույս lvacqaran միացրու
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys lvacqaran
-  - luys lvacqaran anjatir
+  - անջատիր լույս lvacqaran
+  - լույս lvacqaran անջատիր
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys wc
-  - luys wc miatsu
+  - միացրու լույս wc
+  - լույս wc միացրու
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys wc
-  - luys wc anjatir
+  - անջատիր լույս wc
+  - լույս wc անջատիր
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys garage
-  - luys garage miatsu
+  - միացրու լույս garage
+  - լույս garage միացրու
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys garage
-  - luys garage anjatir
+  - անջատիր լույս garage
+  - լույս garage անջատիր
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys office
-  - luys office miatsu
+  - միացրու լույս office
+  - լույս office միացրու
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys office
-  - luys office anjatir
+  - անջատիր լույս office
+  - լույս office անջատիր
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys garden
-  - luys garden miatsu
+  - միացրու լույս garden
+  - լույս garden միացրու
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys garden
-  - luys garden anjatir
+  - անջատիր լույս garden
+  - լույս garden անջատիր
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys qnakaran
-  - luys qnakaran miatsu
+  - միացրու լույս qnakaranmaster
+  - լույս qnakaranmaster միացրու
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys qnakaran
-  - luys qnakaran anjatir
+  - անջատիր լույս qnakaranmaster
+  - լույս qnakaranmaster անջատիր
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys qnakaran2
-  - luys qnakaran2 miatsu
+  - միացրու լույս qnakaran2
+  - լույս qnakaran2 միացրու
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys qnakaran2
-  - luys qnakaran2 anjatir
+  - անջատիր լույս qnakaran2
+  - լույս qnakaran2 անջատիր
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys qnakaran3
-  - luys qnakaran3 miatsu
+  - միացրու լույս qnakaran3
+  - լույս qnakaran3 միացրու
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys qnakaran3
-  - luys qnakaran3 anjatir
+  - անջատիր լույս qnakaran3
+  - լույս qnakaran3 անջատիր
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys qnakaran4
-  - luys qnakaran4 miatsu
+  - միացրու լույս qnakaran4
+  - լույս qnakaran4 միացրու
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys qnakaran4
-  - luys qnakaran4 anjatir
+  - անջատիր լույս qnakaran4
+  - լույս qnakaran4 անջատիր
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys lvacaranmaster
-  - luys lvacaranmaster miatsu
+  - միացրու լույս lvacaranmaster
+  - լույս lvacaranmaster միացրու
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys lvacaranmaster
-  - luys lvacaranmaster anjatir
+  - անջատիր լույս lvacaranmaster
+  - լույս lvacaranmaster անջատիր
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys main bath
-  - luys main bath miatsu
+  - միացրու լույս main bath
+  - լույս main bath միացրու
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys main bath
-  - luys main bath anjatir
+  - անջատիր լույս main bath
+  - լույս main bath անջատիր
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys hallway
-  - luys hallway miatsu
+  - միացրու լույս hallway
+  - լույս hallway միացրու
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys hallway
-  - luys hallway anjatir
+  - անջատիր լույս hallway
+  - լույս hallway անջատիր
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys basement
-  - luys basement miatsu
+  - միացրու լույս basement
+  - լույս basement միացրու
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir luys basement
-  - luys basement anjatir
+  - անջատիր լույս basement
+  - լույս basement անջատիր
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat hyurasenyak
-  - stalat hyurasenyak miatsu
+  - միացրու stalat հյուրասենյակ
+  - stalat հյուրասենյակ միացրու
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat hyurasenyak
-  - stalat hyurasenyak anjatir
+  - անջատիր stalat հյուրասենյակ
+  - stalat հյուրասենյակ անջատիր
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat hyurasenyak 20
-  - stalat hyurasenyak 20
+  - դիր stalat հյուրասենյակ 20
+  - stalat հյուրասենյակ 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat hyurasenyak 40
-  - stalat hyurasenyak 40
+  - դիր stalat հյուրասենյակ 40
+  - stalat հյուրասենյակ 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat hyurasenyak 50
-  - stalat hyurasenyak 50
+  - դիր stalat հյուրասենյակ 50
+  - stalat հյուրասենյակ 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat hyurasenyak 60
-  - stalat hyurasenyak 60
+  - դիր stalat հյուրասենյակ 60
+  - stalat հյուրասենյակ 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat hyurasenyak 80
-  - stalat hyurasenyak 80
+  - դիր stalat հյուրասենյակ 80
+  - stalat հյուրասենյակ 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat hyurasenyak 100
-  - stalat hyurasenyak 100
+  - դիր stalat հյուրասենյակ 100
+  - stalat հյուրասենյակ 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - miatsu lamp hyurasenyak
-  - lamp hyurasenyak miatsu
+  - միացրու luys հյուրասենյակ
+  - luys հյուրասենյակ միացրու
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - anjatir lamp hyurasenyak
-  - lamp hyurasenyak anjatir
+  - անջատիր luys հյուրասենյակ
+  - luys հյուրասենյակ անջատիր
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir lamp hyurasenyak 20
-  - lamp hyurasenyak 20
+  - դիր luys հյուրասենյակ 20
+  - luys հյուրասենյակ 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir lamp hyurasenyak 40
-  - lamp hyurasenyak 40
+  - դիր luys հյուրասենյակ 40
+  - luys հյուրասենյակ 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir lamp hyurasenyak 50
-  - lamp hyurasenyak 50
+  - դիր luys հյուրասենյակ 50
+  - luys հյուրասենյակ 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir lamp hyurasenyak 60
-  - lamp hyurasenyak 60
+  - դիր luys հյուրասենյակ 60
+  - luys հյուրասենյակ 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir lamp hyurasenyak 80
-  - lamp hyurasenyak 80
+  - դիր luys հյուրասենյակ 80
+  - luys հյուրասենյակ 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir lamp hyurasenyak 100
-  - lamp hyurasenyak 100
+  - դիր luys հյուրասենյակ 100
+  - luys հյուրասենյակ 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat khohanots
-  - stalat khohanots miatsu
+  - միացրու stalat խոհանոց
+  - stalat խոհանոց միացրու
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat khohanots
-  - stalat khohanots anjatir
+  - անջատիր stalat խոհանոց
+  - stalat խոհանոց անջատիր
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat khohanots 20
-  - stalat khohanots 20
+  - դիր stalat խոհանոց 20
+  - stalat խոհանոց 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat khohanots 40
-  - stalat khohanots 40
+  - դիր stalat խոհանոց 40
+  - stalat խոհանոց 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat khohanots 50
-  - stalat khohanots 50
+  - դիր stalat խոհանոց 50
+  - stalat խոհանոց 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat khohanots 60
-  - stalat khohanots 60
+  - դիր stalat խոհանոց 60
+  - stalat խոհանոց 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat khohanots 80
-  - stalat khohanots 80
+  - դիր stalat խոհանոց 80
+  - stalat խոհանոց 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat khohanots 100
-  - stalat khohanots 100
+  - դիր stalat խոհանոց 100
+  - stalat խոհանոց 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - miatsu kghzi khohanots
-  - kghzi khohanots miatsu
+  - միացրու kghzi խոհանոց
+  - kghzi խոհանոց միացրու
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - anjatir kghzi khohanots
-  - kghzi khohanots anjatir
+  - անջատիր kghzi խոհանոց
+  - kghzi խոհանոց անջատիր
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir kghzi khohanots 20
-  - kghzi khohanots 20
+  - դիր kghzi խոհանոց 20
+  - kghzi խոհանոց 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir kghzi khohanots 40
-  - kghzi khohanots 40
+  - դիր kghzi խոհանոց 40
+  - kghzi խոհանոց 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir kghzi khohanots 50
-  - kghzi khohanots 50
+  - դիր kghzi խոհանոց 50
+  - kghzi խոհանոց 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir kghzi khohanots 60
-  - kghzi khohanots 60
+  - դիր kghzi խոհանոց 60
+  - kghzi խոհանոց 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir kghzi khohanots 80
-  - kghzi khohanots 80
+  - դիր kghzi խոհանոց 80
+  - kghzi խոհանոց 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir kghzi khohanots 100
-  - kghzi khohanots 100
+  - դիր kghzi խոհանոց 100
+  - kghzi խոհանոց 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat qnakaran
-  - stalat qnakaran miatsu
+  - միացրու stalat qnakaranmaster
+  - stalat qnakaranmaster միացրու
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat qnakaran
-  - stalat qnakaran anjatir
+  - անջատիր stalat qnakaranmaster
+  - stalat qnakaranmaster անջատիր
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat qnakaran 20
-  - stalat qnakaran 20
+  - դիր stalat qnakaranmaster 20
+  - stalat qnakaranmaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat qnakaran 40
-  - stalat qnakaran 40
+  - դիր stalat qnakaranmaster 40
+  - stalat qnakaranmaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat qnakaran 50
-  - stalat qnakaran 50
+  - դիր stalat qnakaranmaster 50
+  - stalat qnakaranmaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat qnakaran 60
-  - stalat qnakaran 60
+  - դիր stalat qnakaranmaster 60
+  - stalat qnakaranmaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat qnakaran 80
-  - stalat qnakaran 80
+  - դիր stalat qnakaranmaster 80
+  - stalat qnakaranmaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat qnakaran 100
-  - stalat qnakaran 100
+  - դիր stalat qnakaranmaster 100
+  - stalat qnakaranmaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - miatsu gisherayin qnakaran
-  - gisherayin qnakaran miatsu
+  - միացրու gisherayin qnakaranmaster
+  - gisherayin qnakaranmaster միացրու
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - anjatir gisherayin qnakaran
-  - gisherayin qnakaran anjatir
+  - անջատիր gisherayin qnakaranmaster
+  - gisherayin qnakaranmaster անջատիր
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir gisherayin qnakaran 20
-  - gisherayin qnakaran 20
+  - դիր gisherayin qnakaranmaster 20
+  - gisherayin qnakaranmaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir gisherayin qnakaran 40
-  - gisherayin qnakaran 40
+  - դիր gisherayin qnakaranmaster 40
+  - gisherayin qnakaranmaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir gisherayin qnakaran 50
-  - gisherayin qnakaran 50
+  - դիր gisherayin qnakaranmaster 50
+  - gisherayin qnakaranmaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir gisherayin qnakaran 60
-  - gisherayin qnakaran 60
+  - դիր gisherayin qnakaranmaster 60
+  - gisherayin qnakaranmaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir gisherayin qnakaran 80
-  - gisherayin qnakaran 80
+  - դիր gisherayin qnakaranmaster 80
+  - gisherayin qnakaranmaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir gisherayin qnakaran 100
-  - gisherayin qnakaran 100
+  - դիր gisherayin qnakaranmaster 100
+  - gisherayin qnakaranmaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat office
-  - stalat office miatsu
+  - միացրու stalat office
+  - stalat office միացրու
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat office
-  - stalat office anjatir
+  - անջատիր stalat office
+  - stalat office անջատիր
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat office 20
+  - դիր stalat office 20
   - stalat office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat office 40
+  - դիր stalat office 40
   - stalat office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat office 50
+  - դիր stalat office 50
   - stalat office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat office 60
+  - դիր stalat office 60
   - stalat office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat office 80
+  - դիր stalat office 80
   - stalat office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat office 100
+  - դիր stalat office 100
   - stalat office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - miatsu luys garden
-  - luys garden miatsu
+  - միացրու լույս garden
+  - լույս garden միացրու
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - anjatir luys garden
-  - luys garden anjatir
+  - անջատիր լույս garden
+  - լույս garden անջատիր
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys garden 20
-  - luys garden 20
+  - դիր լույս garden 20
+  - լույս garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys garden 40
-  - luys garden 40
+  - դիր լույս garden 40
+  - լույս garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys garden 50
-  - luys garden 50
+  - դիր լույս garden 50
+  - լույս garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys garden 60
-  - luys garden 60
+  - դիր լույս garden 60
+  - լույս garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys garden 80
-  - luys garden 80
+  - դիր լույս garden 80
+  - լույս garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys garden 100
-  - luys garden 100
+  - դիր լույս garden 100
+  - լույս garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - miatsu luys basement
-  - luys basement miatsu
+  - միացրու լույս basement
+  - լույս basement միացրու
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - anjatir luys basement
-  - luys basement anjatir
+  - անջատիր լույս basement
+  - լույս basement անջատիր
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys basement 20
-  - luys basement 20
+  - դիր լույս basement 20
+  - լույս basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys basement 40
-  - luys basement 40
+  - դիր լույս basement 40
+  - լույս basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys basement 50
-  - luys basement 50
+  - դիր լույս basement 50
+  - լույս basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys basement 60
-  - luys basement 60
+  - դիր լույս basement 60
+  - լույս basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys basement 80
-  - luys basement 80
+  - դիր լույս basement 80
+  - լույս basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys basement 100
-  - luys basement 100
+  - դիր լույս basement 100
+  - լույս basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - miatsu luys hallway
-  - luys hallway miatsu
+  - միացրու լույս hallway
+  - լույս hallway միացրու
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - anjatir luys hallway
-  - luys hallway anjatir
+  - անջատիր լույս hallway
+  - լույս hallway անջատիր
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys hallway 20
-  - luys hallway 20
+  - դիր լույս hallway 20
+  - լույս hallway 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys hallway 40
-  - luys hallway 40
+  - դիր լույս hallway 40
+  - լույս hallway 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys hallway 50
-  - luys hallway 50
+  - դիր լույս hallway 50
+  - լույս hallway 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys hallway 60
-  - luys hallway 60
+  - դիր լույս hallway 60
+  - լույս hallway 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys hallway 80
-  - luys hallway 80
+  - դիր լույս hallway 80
+  - լույս hallway 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys hallway 100
-  - luys hallway 100
+  - դիր լույս hallway 100
+  - լույս hallway 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat yntaniq
-  - stalat yntaniq miatsu
+  - միացրու stalat yntaniq
+  - stalat yntaniq միացրու
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat yntaniq
-  - stalat yntaniq anjatir
+  - անջատիր stalat yntaniq
+  - stalat yntaniq անջատիր
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat yntaniq 20
+  - դիր stalat yntaniq 20
   - stalat yntaniq 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat yntaniq 40
+  - դիր stalat yntaniq 40
   - stalat yntaniq 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat yntaniq 50
+  - դիր stalat yntaniq 50
   - stalat yntaniq 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat yntaniq 60
+  - դիր stalat yntaniq 60
   - stalat yntaniq 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat yntaniq 80
+  - դիր stalat yntaniq 80
   - stalat yntaniq 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat yntaniq 100
+  - դիր stalat yntaniq 100
   - stalat yntaniq 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - miatsu luys yntaniqess
-  - luys yntaniqess miatsu
+  - միացրու լույս yntaniqess
+  - լույս yntaniqess միացրու
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - anjatir luys yntaniqess
-  - luys yntaniqess anjatir
+  - անջատիր լույս yntaniqess
+  - լույս yntaniqess անջատիր
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys yntaniqess 20
-  - luys yntaniqess 20
+  - դիր լույս yntaniqess 20
+  - լույս yntaniqess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys yntaniqess 40
-  - luys yntaniqess 40
+  - դիր լույս yntaniqess 40
+  - լույս yntaniqess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys yntaniqess 50
-  - luys yntaniqess 50
+  - դիր լույս yntaniqess 50
+  - լույս yntaniqess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys yntaniqess 60
-  - luys yntaniqess 60
+  - դիր լույս yntaniqess 60
+  - լույս yntaniqess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys yntaniqess 80
-  - luys yntaniqess 80
+  - դիր լույս yntaniqess 80
+  - լույս yntaniqess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys yntaniqess 100
-  - luys yntaniqess 100
+  - դիր լույս yntaniqess 100
+  - լույս yntaniqess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - miatsu luys garage
-  - luys garage miatsu
+  - միացրու լույս garage
+  - լույս garage միացրու
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - anjatir luys garage
-  - luys garage anjatir
+  - անջատիր լույս garage
+  - լույս garage անջատիր
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys garage 20
-  - luys garage 20
+  - դիր լույս garage 20
+  - լույս garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys garage 40
-  - luys garage 40
+  - դիր լույս garage 40
+  - լույս garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys garage 50
-  - luys garage 50
+  - դիր լույս garage 50
+  - լույս garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys garage 60
-  - luys garage 60
+  - դիր լույս garage 60
+  - լույս garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys garage 80
-  - luys garage 80
+  - դիր լույս garage 80
+  - լույս garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys garage 100
-  - luys garage 100
+  - դիր լույս garage 100
+  - լույս garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat qnakaran2
-  - stalat qnakaran2 miatsu
+  - միացրու stalat qnakaran2
+  - stalat qnakaran2 միացրու
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat qnakaran2
-  - stalat qnakaran2 anjatir
+  - անջատիր stalat qnakaran2
+  - stalat qnakaran2 անջատիր
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat qnakaran2 20
+  - դիր stalat qnakaran2 20
   - stalat qnakaran2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat qnakaran2 40
+  - դիր stalat qnakaran2 40
   - stalat qnakaran2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat qnakaran2 50
+  - դիր stalat qnakaran2 50
   - stalat qnakaran2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat qnakaran2 60
+  - դիր stalat qnakaran2 60
   - stalat qnakaran2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat qnakaran2 80
+  - դիր stalat qnakaran2 80
   - stalat qnakaran2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat qnakaran2 100
+  - դիր stalat qnakaran2 100
   - stalat qnakaran2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat qnakaran3
-  - stalat qnakaran3 miatsu
+  - միացրու stalat qnakaran3
+  - stalat qnakaran3 միացրու
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat qnakaran3
-  - stalat qnakaran3 anjatir
+  - անջատիր stalat qnakaran3
+  - stalat qnakaran3 անջատիր
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat qnakaran3 20
+  - դիր stalat qnakaran3 20
   - stalat qnakaran3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat qnakaran3 40
+  - դիր stalat qnakaran3 40
   - stalat qnakaran3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat qnakaran3 50
+  - դիր stalat qnakaran3 50
   - stalat qnakaran3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat qnakaran3 60
+  - դիր stalat qnakaran3 60
   - stalat qnakaran3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat qnakaran3 80
+  - դիր stalat qnakaran3 80
   - stalat qnakaran3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat qnakaran3 100
+  - դիր stalat qnakaran3 100
   - stalat qnakaran3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat qnakaran4
-  - stalat qnakaran4 miatsu
+  - միացրու stalat qnakaran4
+  - stalat qnakaran4 միացրու
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - anjatir stalat qnakaran4
-  - stalat qnakaran4 anjatir
+  - անջատիր stalat qnakaran4
+  - stalat qnakaran4 անջատիր
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - dir stalat qnakaran4 20
+  - դիր stalat qnakaran4 20
   - stalat qnakaran4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - dir stalat qnakaran4 40
+  - դիր stalat qnakaran4 40
   - stalat qnakaran4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - dir stalat qnakaran4 50
+  - դիր stalat qnakaran4 50
   - stalat qnakaran4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - dir stalat qnakaran4 60
+  - դիր stalat qnakaran4 60
   - stalat qnakaran4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - dir stalat qnakaran4 80
+  - դիր stalat qnakaran4 80
   - stalat qnakaran4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - dir stalat qnakaran4 100
+  - դիր stalat qnakaran4 100
   - stalat qnakaran4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - miatsu luys mutq
-  - luys mutq miatsu
+  - միացրու լույս mutq
+  - լույս mutq միացրու
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - anjatir luys mutq
-  - luys mutq anjatir
+  - անջատիր լույս mutq
+  - լույս mutq անջատիր
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys mutq 20
-  - luys mutq 20
+  - դիր լույս mutq 20
+  - լույս mutq 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys mutq 40
-  - luys mutq 40
+  - դիր լույս mutq 40
+  - լույս mutq 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys mutq 50
-  - luys mutq 50
+  - դիր լույս mutq 50
+  - լույս mutq 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys mutq 60
-  - luys mutq 60
+  - դիր լույս mutq 60
+  - լույս mutq 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys mutq 80
-  - luys mutq 80
+  - դիր լույս mutq 80
+  - լույս mutq 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys mutq 100
-  - luys mutq 100
+  - դիր լույս mutq 100
+  - լույս mutq 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - miatsu luys lvacqaran
-  - luys lvacqaran miatsu
+  - միացրու լույս lvacqaran
+  - լույս lvacqaran միացրու
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - anjatir luys lvacqaran
-  - luys lvacqaran anjatir
+  - անջատիր լույս lvacqaran
+  - լույս lvacqaran անջատիր
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys lvacqaran 20
-  - luys lvacqaran 20
+  - դիր լույս lvacqaran 20
+  - լույս lvacqaran 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys lvacqaran 40
-  - luys lvacqaran 40
+  - դիր լույս lvacqaran 40
+  - լույս lvacqaran 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys lvacqaran 50
-  - luys lvacqaran 50
+  - դիր լույս lvacqaran 50
+  - լույս lvacqaran 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys lvacqaran 60
-  - luys lvacqaran 60
+  - դիր լույս lvacqaran 60
+  - լույս lvacqaran 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys lvacqaran 80
-  - luys lvacqaran 80
+  - դիր լույս lvacqaran 80
+  - լույս lvacqaran 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys lvacqaran 100
-  - luys lvacqaran 100
+  - դիր լույս lvacqaran 100
+  - լույս lvacqaran 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - miatsu luys main bath
-  - luys main bath miatsu
+  - միացրու լույս main bath
+  - լույս main bath միացրու
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - anjatir luys main bath
-  - luys main bath anjatir
+  - անջատիր լույս main bath
+  - լույս main bath անջատիր
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys main bath 20
-  - luys main bath 20
+  - դիր լույս main bath 20
+  - լույս main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys main bath 40
-  - luys main bath 40
+  - դիր լույս main bath 40
+  - լույս main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys main bath 50
-  - luys main bath 50
+  - դիր լույս main bath 50
+  - լույս main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys main bath 60
-  - luys main bath 60
+  - դիր լույս main bath 60
+  - լույս main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys main bath 80
-  - luys main bath 80
+  - դիր լույս main bath 80
+  - լույս main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys main bath 100
-  - luys main bath 100
+  - դիր լույս main bath 100
+  - լույս main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - miatsu luys wc
-  - luys wc miatsu
+  - միացրու լույս wc
+  - լույս wc միացրու
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - anjatir luys wc
-  - luys wc anjatir
+  - անջատիր լույս wc
+  - լույս wc անջատիր
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys wc 20
-  - luys wc 20
+  - դիր լույս wc 20
+  - լույս wc 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys wc 40
-  - luys wc 40
+  - դիր լույս wc 40
+  - լույս wc 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys wc 50
-  - luys wc 50
+  - դիր լույս wc 50
+  - լույս wc 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys wc 60
-  - luys wc 60
+  - դիր լույս wc 60
+  - լույս wc 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys wc 80
-  - luys wc 80
+  - դիր լույս wc 80
+  - լույս wc 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys wc 100
-  - luys wc 100
+  - դիր լույս wc 100
+  - լույս wc 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - miatsu ensuite qnakaran
-  - ensuite qnakaran miatsu
+  - միացրու ensuite qnakaranmaster
+  - ensuite qnakaranmaster միացրու
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - anjatir ensuite qnakaran
-  - ensuite qnakaran anjatir
+  - անջատիր ensuite qnakaranmaster
+  - ensuite qnakaranmaster անջատիր
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir ensuite qnakaran 20
-  - ensuite qnakaran 20
+  - դիր ensuite qnakaranmaster 20
+  - ensuite qnakaranmaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir ensuite qnakaran 40
-  - ensuite qnakaran 40
+  - դիր ensuite qnakaranmaster 40
+  - ensuite qnakaranmaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir ensuite qnakaran 50
-  - ensuite qnakaran 50
+  - դիր ensuite qnakaranmaster 50
+  - ensuite qnakaranmaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir ensuite qnakaran 60
-  - ensuite qnakaran 60
+  - դիր ensuite qnakaranmaster 60
+  - ensuite qnakaranmaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir ensuite qnakaran 80
-  - ensuite qnakaran 80
+  - դիր ensuite qnakaranmaster 80
+  - ensuite qnakaranmaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir ensuite qnakaran 100
-  - ensuite qnakaran 100
+  - դիր ensuite qnakaranmaster 100
+  - ensuite qnakaranmaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - miatsu gisherayin qnakaran
-  - gisherayin qnakaran miatsu
+  - միացրու gisherayin qnakaranmaster
+  - gisherayin qnakaranmaster միացրու
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - anjatir gisherayin qnakaran
-  - gisherayin qnakaran anjatir
+  - անջատիր gisherayin qnakaranmaster
+  - gisherayin qnakaranmaster անջատիր
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir gisherayin qnakaran 20
-  - gisherayin qnakaran 20
+  - դիր gisherayin qnakaranmaster 20
+  - gisherayin qnakaranmaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir gisherayin qnakaran 40
-  - gisherayin qnakaran 40
+  - դիր gisherayin qnakaranmaster 40
+  - gisherayin qnakaranmaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir gisherayin qnakaran 50
-  - gisherayin qnakaran 50
+  - դիր gisherayin qnakaranmaster 50
+  - gisherayin qnakaranmaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir gisherayin qnakaran 60
-  - gisherayin qnakaran 60
+  - դիր gisherayin qnakaranmaster 60
+  - gisherayin qnakaranmaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir gisherayin qnakaran 80
-  - gisherayin qnakaran 80
+  - դիր gisherayin qnakaranmaster 80
+  - gisherayin qnakaranmaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - dir gisherayin qnakaran 100
-  - gisherayin qnakaran 100
+  - դիր gisherayin qnakaranmaster 100
+  - gisherayin qnakaranmaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - miatsu luys lvacaranmaster
-  - luys lvacaranmaster miatsu
+  - միացրու լույս lvacaranmaster
+  - լույս lvacaranmaster միացրու
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - anjatir luys lvacaranmaster
-  - luys lvacaranmaster anjatir
+  - անջատիր լույս lvacaranmaster
+  - լույս lvacaranmaster անջատիր
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - dir luys lvacaranmaster 20
-  - luys lvacaranmaster 20
+  - դիր լույս lvacaranmaster 20
+  - լույս lvacaranmaster 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - dir luys lvacaranmaster 40
-  - luys lvacaranmaster 40
+  - դիր լույս lvacaranmaster 40
+  - լույս lvacaranmaster 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - dir luys lvacaranmaster 50
-  - luys lvacaranmaster 50
+  - դիր լույս lvacaranmaster 50
+  - լույս lvacaranmaster 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - dir luys lvacaranmaster 60
-  - luys lvacaranmaster 60
+  - դիր լույս lvacaranmaster 60
+  - լույս lvacaranmaster 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - dir luys lvacaranmaster 80
-  - luys lvacaranmaster 80
+  - դիր լույս lvacaranmaster 80
+  - լույս lvacaranmaster 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - dir luys lvacaranmaster 100
-  - luys lvacaranmaster 100
+  - դիր լույս lvacaranmaster 100
+  - լույս lvacaranmaster 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat hyurasenyak red
-  - dir luys hyurasenyak red
+  - դիր stalat հյուրասենյակ red
+  - դիր լույս հյուրասենյակ red
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat hyurasenyak blue
-  - dir luys hyurasenyak blue
+  - դիր stalat հյուրասենյակ blue
+  - դիր լույս հյուրասենյակ blue
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat hyurasenyak green
-  - dir luys hyurasenyak green
+  - դիր stalat հյուրասենյակ green
+  - դիր լույս հյուրասենյակ green
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat hyurasenyak white
-  - dir luys hyurasenyak white
+  - դիր stalat հյուրասենյակ white
+  - դիր լույս հյուրասենյակ white
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat hyurasenyak yellow
-  - dir luys hyurasenyak yellow
+  - դիր stalat հյուրասենյակ yellow
+  - դիր լույս հյուրասենյակ yellow
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat hyurasenyak black
-  - dir luys hyurasenyak black
+  - դիր stalat հյուրասենյակ black
+  - դիր լույս հյուրասենյակ black
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - dir lamp hyurasenyak red
-  - dir luys hyurasenyak red
+  - դիր luys հյուրասենյակ red
+  - դիր լույս հյուրասենյակ red
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - dir lamp hyurasenyak blue
-  - dir luys hyurasenyak blue
+  - դիր luys հյուրասենյակ blue
+  - դիր լույս հյուրասենյակ blue
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - dir lamp hyurasenyak green
-  - dir luys hyurasenyak green
+  - դիր luys հյուրասենյակ green
+  - դիր լույս հյուրասենյակ green
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - dir lamp hyurasenyak white
-  - dir luys hyurasenyak white
+  - դիր luys հյուրասենյակ white
+  - դիր լույս հյուրասենյակ white
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir lamp hyurasenyak yellow
-  - dir luys hyurasenyak yellow
+  - դիր luys հյուրասենյակ yellow
+  - դիր լույս հյուրասենյակ yellow
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - dir lamp hyurasenyak black
-  - dir luys hyurasenyak black
+  - դիր luys հյուրասենյակ black
+  - դիր լույս հյուրասենյակ black
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat khohanots red
-  - dir luys khohanots red
+  - դիր stalat խոհանոց red
+  - դիր լույս խոհանոց red
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat khohanots blue
-  - dir luys khohanots blue
+  - դիր stalat խոհանոց blue
+  - դիր լույս խոհանոց blue
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat khohanots green
-  - dir luys khohanots green
+  - դիր stalat խոհանոց green
+  - դիր լույս խոհանոց green
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat khohanots white
-  - dir luys khohanots white
+  - դիր stalat խոհանոց white
+  - դիր լույս խոհանոց white
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat khohanots yellow
-  - dir luys khohanots yellow
+  - դիր stalat խոհանոց yellow
+  - դիր լույս խոհանոց yellow
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat khohanots black
-  - dir luys khohanots black
+  - դիր stalat խոհանոց black
+  - դիր լույս խոհանոց black
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - dir kghzi khohanots red
-  - dir luys khohanots red
+  - դիր kghzi խոհանոց red
+  - դիր լույս խոհանոց red
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - dir kghzi khohanots blue
-  - dir luys khohanots blue
+  - դիր kghzi խոհանոց blue
+  - դիր լույս խոհանոց blue
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - dir kghzi khohanots green
-  - dir luys khohanots green
+  - դիր kghzi խոհանոց green
+  - դիր լույս խոհանոց green
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - dir kghzi khohanots white
-  - dir luys khohanots white
+  - դիր kghzi խոհանոց white
+  - դիր լույս խոհանոց white
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir kghzi khohanots yellow
-  - dir luys khohanots yellow
+  - դիր kghzi խոհանոց yellow
+  - դիր լույս խոհանոց yellow
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - dir kghzi khohanots black
-  - dir luys khohanots black
+  - դիր kghzi խոհանոց black
+  - դիր լույս խոհանոց black
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat qnakaran red
-  - dir luys qnakaran red
+  - դիր stalat qnakaranmaster red
+  - դիր լույս qnakaranmaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat qnakaran blue
-  - dir luys qnakaran blue
+  - դիր stalat qnakaranmaster blue
+  - դիր լույս qnakaranmaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat qnakaran green
-  - dir luys qnakaran green
+  - դիր stalat qnakaranmaster green
+  - դիր լույս qnakaranmaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat qnakaran white
-  - dir luys qnakaran white
+  - դիր stalat qnakaranmaster white
+  - դիր լույս qnakaranmaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat qnakaran yellow
-  - dir luys qnakaran yellow
+  - դիր stalat qnakaranmaster yellow
+  - դիր լույս qnakaranmaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat qnakaran black
-  - dir luys qnakaran black
+  - դիր stalat qnakaranmaster black
+  - դիր լույս qnakaranmaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - dir gisherayin qnakaran red
-  - dir luys qnakaran red
+  - դիր gisherayin qnakaranmaster red
+  - դիր լույս qnakaranmaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - dir gisherayin qnakaran blue
-  - dir luys qnakaran blue
+  - դիր gisherayin qnakaranmaster blue
+  - դիր լույս qnakaranmaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - dir gisherayin qnakaran green
-  - dir luys qnakaran green
+  - դիր gisherayin qnakaranmaster green
+  - դիր լույս qnakaranmaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - dir gisherayin qnakaran white
-  - dir luys qnakaran white
+  - դիր gisherayin qnakaranmaster white
+  - դիր լույս qnakaranmaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir gisherayin qnakaran yellow
-  - dir luys qnakaran yellow
+  - դիր gisherayin qnakaranmaster yellow
+  - դիր լույս qnakaranmaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - dir gisherayin qnakaran black
-  - dir luys qnakaran black
+  - դիր gisherayin qnakaranmaster black
+  - դիր լույս qnakaranmaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat office red
-  - dir luys office red
+  - դիր stalat office red
+  - դիր լույս office red
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat office blue
-  - dir luys office blue
+  - դիր stalat office blue
+  - դիր լույս office blue
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat office green
-  - dir luys office green
+  - դիր stalat office green
+  - դիր լույս office green
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat office white
-  - dir luys office white
+  - դիր stalat office white
+  - դիր լույս office white
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat office yellow
-  - dir luys office yellow
+  - դիր stalat office yellow
+  - դիր լույս office yellow
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat office black
-  - dir luys office black
+  - դիր stalat office black
+  - դիր լույս office black
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys garden red
-  - luys garden red
+  - դիր լույս garden red
+  - լույս garden red
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys garden blue
-  - luys garden blue
+  - դիր լույս garden blue
+  - լույս garden blue
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys garden green
-  - luys garden green
+  - դիր լույս garden green
+  - լույս garden green
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys garden white
-  - luys garden white
+  - դիր լույս garden white
+  - լույս garden white
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys garden yellow
-  - luys garden yellow
+  - դիր լույս garden yellow
+  - լույս garden yellow
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys garden black
-  - luys garden black
+  - դիր լույս garden black
+  - լույս garden black
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys basement red
-  - luys basement red
+  - դիր լույս basement red
+  - լույս basement red
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys basement blue
-  - luys basement blue
+  - դիր լույս basement blue
+  - լույս basement blue
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys basement green
-  - luys basement green
+  - դիր լույս basement green
+  - լույս basement green
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys basement white
-  - luys basement white
+  - դիր լույս basement white
+  - լույս basement white
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys basement yellow
-  - luys basement yellow
+  - դիր լույս basement yellow
+  - լույս basement yellow
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys basement black
-  - luys basement black
+  - դիր լույս basement black
+  - լույս basement black
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys hallway red
-  - luys hallway red
+  - դիր լույս hallway red
+  - լույս hallway red
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys hallway blue
-  - luys hallway blue
+  - դիր լույս hallway blue
+  - լույս hallway blue
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys hallway green
-  - luys hallway green
+  - դիր լույս hallway green
+  - լույս hallway green
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys hallway white
-  - luys hallway white
+  - դիր լույս hallway white
+  - լույս hallway white
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys hallway yellow
-  - luys hallway yellow
+  - դիր լույս hallway yellow
+  - լույս hallway yellow
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys hallway black
-  - luys hallway black
+  - դիր լույս hallway black
+  - լույս hallway black
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat yntaniq red
-  - dir luys yntaniq red
+  - դիր stalat yntaniq red
+  - դիր լույս yntaniq red
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat yntaniq blue
-  - dir luys yntaniq blue
+  - դիր stalat yntaniq blue
+  - դիր լույս yntaniq blue
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat yntaniq green
-  - dir luys yntaniq green
+  - դիր stalat yntaniq green
+  - դիր լույս yntaniq green
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat yntaniq white
-  - dir luys yntaniq white
+  - դիր stalat yntaniq white
+  - դիր լույս yntaniq white
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat yntaniq yellow
-  - dir luys yntaniq yellow
+  - դիր stalat yntaniq yellow
+  - դիր լույս yntaniq yellow
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat yntaniq black
-  - dir luys yntaniq black
+  - դիր stalat yntaniq black
+  - դիր լույս yntaniq black
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys yntaniqess red
-  - luys yntaniqess red
+  - դիր լույս yntaniqess red
+  - լույս yntaniqess red
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys yntaniqess blue
-  - luys yntaniqess blue
+  - դիր լույս yntaniqess blue
+  - լույս yntaniqess blue
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys yntaniqess green
-  - luys yntaniqess green
+  - դիր լույս yntaniqess green
+  - լույս yntaniqess green
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys yntaniqess white
-  - luys yntaniqess white
+  - դիր լույս yntaniqess white
+  - լույս yntaniqess white
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys yntaniqess yellow
-  - luys yntaniqess yellow
+  - դիր լույս yntaniqess yellow
+  - լույս yntaniqess yellow
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys yntaniqess black
-  - luys yntaniqess black
+  - դիր լույս yntaniqess black
+  - լույս yntaniqess black
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys garage red
-  - luys garage red
+  - դիր լույս garage red
+  - լույս garage red
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys garage blue
-  - luys garage blue
+  - դիր լույս garage blue
+  - լույս garage blue
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys garage green
-  - luys garage green
+  - դիր լույս garage green
+  - լույս garage green
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys garage white
-  - luys garage white
+  - դիր լույս garage white
+  - լույս garage white
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys garage yellow
-  - luys garage yellow
+  - դիր լույս garage yellow
+  - լույս garage yellow
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys garage black
-  - luys garage black
+  - դիր լույս garage black
+  - լույս garage black
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat qnakaran2 red
-  - dir luys qnakaran2 red
+  - դիր stalat qnakaran2 red
+  - դիր լույս qnakaran2 red
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat qnakaran2 blue
-  - dir luys qnakaran2 blue
+  - դիր stalat qnakaran2 blue
+  - դիր լույս qnakaran2 blue
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat qnakaran2 green
-  - dir luys qnakaran2 green
+  - դիր stalat qnakaran2 green
+  - դիր լույս qnakaran2 green
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat qnakaran2 white
-  - dir luys qnakaran2 white
+  - դիր stalat qnakaran2 white
+  - դիր լույս qnakaran2 white
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat qnakaran2 yellow
-  - dir luys qnakaran2 yellow
+  - դիր stalat qnakaran2 yellow
+  - դիր լույս qnakaran2 yellow
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat qnakaran2 black
-  - dir luys qnakaran2 black
+  - դիր stalat qnakaran2 black
+  - դիր լույս qnakaran2 black
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat qnakaran3 red
-  - dir luys qnakaran3 red
+  - դիր stalat qnakaran3 red
+  - դիր լույս qnakaran3 red
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat qnakaran3 blue
-  - dir luys qnakaran3 blue
+  - դիր stalat qnakaran3 blue
+  - դիր լույս qnakaran3 blue
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat qnakaran3 green
-  - dir luys qnakaran3 green
+  - դիր stalat qnakaran3 green
+  - դիր լույս qnakaran3 green
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat qnakaran3 white
-  - dir luys qnakaran3 white
+  - դիր stalat qnakaran3 white
+  - դիր լույս qnakaran3 white
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat qnakaran3 yellow
-  - dir luys qnakaran3 yellow
+  - դիր stalat qnakaran3 yellow
+  - դիր լույս qnakaran3 yellow
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat qnakaran3 black
-  - dir luys qnakaran3 black
+  - դիր stalat qnakaran3 black
+  - դիր լույս qnakaran3 black
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - dir stalat qnakaran4 red
-  - dir luys qnakaran4 red
+  - դիր stalat qnakaran4 red
+  - դիր լույս qnakaran4 red
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - dir stalat qnakaran4 blue
-  - dir luys qnakaran4 blue
+  - դիր stalat qnakaran4 blue
+  - դիր լույս qnakaran4 blue
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - dir stalat qnakaran4 green
-  - dir luys qnakaran4 green
+  - դիր stalat qnakaran4 green
+  - դիր լույս qnakaran4 green
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - dir stalat qnakaran4 white
-  - dir luys qnakaran4 white
+  - դիր stalat qnakaran4 white
+  - դիր լույս qnakaran4 white
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir stalat qnakaran4 yellow
-  - dir luys qnakaran4 yellow
+  - դիր stalat qnakaran4 yellow
+  - դիր լույս qnakaran4 yellow
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - dir stalat qnakaran4 black
-  - dir luys qnakaran4 black
+  - դիր stalat qnakaran4 black
+  - դիր լույս qnakaran4 black
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys mutq red
-  - luys mutq red
+  - դիր լույս mutq red
+  - լույս mutq red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys mutq blue
-  - luys mutq blue
+  - դիր լույս mutq blue
+  - լույս mutq blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys mutq green
-  - luys mutq green
+  - դիր լույս mutq green
+  - լույս mutq green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys mutq white
-  - luys mutq white
+  - դիր լույս mutq white
+  - լույս mutq white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys mutq yellow
-  - luys mutq yellow
+  - դիր լույս mutq yellow
+  - լույս mutq yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys mutq black
-  - luys mutq black
+  - դիր լույս mutq black
+  - լույս mutq black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys lvacqaran red
-  - luys lvacqaran red
+  - դիր լույս lvacqaran red
+  - լույս lvacqaran red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys lvacqaran blue
-  - luys lvacqaran blue
+  - դիր լույս lvacqaran blue
+  - լույս lvacqaran blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys lvacqaran green
-  - luys lvacqaran green
+  - դիր լույս lvacqaran green
+  - լույս lvacqaran green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys lvacqaran white
-  - luys lvacqaran white
+  - դիր լույս lvacqaran white
+  - լույս lvacqaran white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys lvacqaran yellow
-  - luys lvacqaran yellow
+  - դիր լույս lvacqaran yellow
+  - լույս lvacqaran yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys lvacqaran black
-  - luys lvacqaran black
+  - դիր լույս lvacqaran black
+  - լույս lvacqaran black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys main bath red
-  - luys main bath red
+  - դիր լույս main bath red
+  - լույս main bath red
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys main bath blue
-  - luys main bath blue
+  - դիր լույս main bath blue
+  - լույս main bath blue
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys main bath green
-  - luys main bath green
+  - դիր լույս main bath green
+  - լույս main bath green
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys main bath white
-  - luys main bath white
+  - դիր լույս main bath white
+  - լույս main bath white
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys main bath yellow
-  - luys main bath yellow
+  - դիր լույս main bath yellow
+  - լույս main bath yellow
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys main bath black
-  - luys main bath black
+  - դիր լույս main bath black
+  - լույս main bath black
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys wc red
-  - luys wc red
+  - դիր լույս wc red
+  - լույս wc red
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys wc blue
-  - luys wc blue
+  - դիր լույս wc blue
+  - լույս wc blue
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys wc green
-  - luys wc green
+  - դիր լույս wc green
+  - լույս wc green
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys wc white
-  - luys wc white
+  - դիր լույս wc white
+  - լույս wc white
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys wc yellow
-  - luys wc yellow
+  - դիր լույս wc yellow
+  - լույս wc yellow
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys wc black
-  - luys wc black
+  - դիր լույս wc black
+  - լույս wc black
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - dir ensuite qnakaran red
-  - dir luys qnakaran red
+  - դիր ensuite qnakaranmaster red
+  - դիր լույս qnakaranmaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - dir ensuite qnakaran blue
-  - dir luys qnakaran blue
+  - դիր ensuite qnakaranmaster blue
+  - դիր լույս qnakaranmaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - dir ensuite qnakaran green
-  - dir luys qnakaran green
+  - դիր ensuite qnakaranmaster green
+  - դիր լույս qnakaranmaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - dir ensuite qnakaran white
-  - dir luys qnakaran white
+  - դիր ensuite qnakaranmaster white
+  - դիր լույս qnakaranmaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir ensuite qnakaran yellow
-  - dir luys qnakaran yellow
+  - դիր ensuite qnakaranmaster yellow
+  - դիր լույս qnakaranmaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - dir ensuite qnakaran black
-  - dir luys qnakaran black
+  - դիր ensuite qnakaranmaster black
+  - դիր լույս qnakaranmaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - dir gisherayin qnakaran red
-  - dir luys qnakaran red
+  - դիր gisherayin qnakaranmaster red
+  - դիր լույս qnakaranmaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - dir gisherayin qnakaran blue
-  - dir luys qnakaran blue
+  - դիր gisherayin qnakaranmaster blue
+  - դիր լույս qnakaranmaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - dir gisherayin qnakaran green
-  - dir luys qnakaran green
+  - դիր gisherayin qnakaranmaster green
+  - դիր լույս qnakaranmaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - dir gisherayin qnakaran white
-  - dir luys qnakaran white
+  - դիր gisherayin qnakaranmaster white
+  - դիր լույս qnakaranmaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir gisherayin qnakaran yellow
-  - dir luys qnakaran yellow
+  - դիր gisherayin qnakaranmaster yellow
+  - դիր լույս qnakaranmaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - dir gisherayin qnakaran black
-  - dir luys qnakaran black
+  - դիր gisherayin qnakaranmaster black
+  - դիր լույս qnakaranmaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - dir luys lvacaranmaster red
-  - luys lvacaranmaster red
+  - դիր լույս lvacaranmaster red
+  - լույս lvacaranmaster red
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - dir luys lvacaranmaster blue
-  - luys lvacaranmaster blue
+  - դիր լույս lvacaranmaster blue
+  - լույս lvacaranmaster blue
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - dir luys lvacaranmaster green
-  - luys lvacaranmaster green
+  - դիր լույս lvacaranmaster green
+  - լույս lvacaranmaster green
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - dir luys lvacaranmaster white
-  - luys lvacaranmaster white
+  - դիր լույս lvacaranmaster white
+  - լույս lvacaranmaster white
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - dir luys lvacaranmaster yellow
-  - luys lvacaranmaster yellow
+  - դիր լույս lvacaranmaster yellow
+  - լույս lvacaranmaster yellow
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - dir luys lvacaranmaster black
-  - luys lvacaranmaster black
+  - դիր լույս lvacaranmaster black
+  - լույս lvacaranmaster black
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi khohanots
-  - bolor luys anjatir batsi khohanots
+  - անջատիր բոլոր լույս batsi խոհանոց
+  - բոլոր լույս անջատիր batsi խոհանոց
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi office
-  - bolor luys anjatir batsi office
+  - անջատիր բոլոր լույս batsi office
+  - բոլոր լույս անջատիր batsi office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi garage
-  - bolor luys anjatir batsi garage
+  - անջատիր բոլոր լույս batsi garage
+  - բոլոր լույս անջատիր batsi garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi qnakaran
-  - bolor luys anjatir batsi qnakaran
+  - անջատիր բոլոր լույս batsi qnakaranmaster
+  - բոլոր լույս անջատիր batsi qnakaranmaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu bolor luys nerqev
-  - luys nerqev miatsu
+  - միացրու բոլոր լույս nerqev
+  - լույս nerqev միացրու
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys nerqev
-  - luys nerqev anjatir
+  - անջատիր բոլոր լույս nerqev
+  - լույս nerqev անջատիր
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - miatsu bolor luys verev
-  - luys verev miatsu
+  - միացրու բոլոր լույս verev
+  - լույս verev միացրու
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys verev
-  - luys verev anjatir
+  - անջատիր բոլոր լույս verev
+  - լույս verev անջատիր
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - miatsu bolor luys basement
-  - luys basement miatsu
+  - միացրու բոլոր լույս basement
+  - լույս basement միացրու
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys basement
-  - luys basement anjatir
+  - անջատիր բոլոր լույս basement
+  - լույս basement անջատիր
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi mutq
-  - bolor luys anjatir batsi mutq
+  - անջատիր բոլոր լույս batsi mutq
+  - բոլոր լույս անջատիր batsi mutq
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi hyurasenyak
-  - bolor luys anjatir batsi hyurasenyak
+  - անջատիր բոլոր լույս batsi հյուրասենյակ
+  - բոլոր լույս անջատիր batsi հյուրասենյակ
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi yntaniqess
-  - bolor luys anjatir batsi yntaniqess
+  - անջատիր բոլոր լույս batsi yntaniqess
+  - բոլոր լույս անջատիր batsi yntaniqess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi yntaniq
-  - bolor luys anjatir batsi yntaniq
+  - անջատիր բոլոր լույս batsi yntaniq
+  - բոլոր լույս անջատիր batsi yntaniq
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi lvacqaran
-  - bolor luys anjatir batsi lvacqaran
+  - անջատիր բոլոր լույս batsi lvacqaran
+  - բոլոր լույս անջատիր batsi lvacqaran
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi wc
-  - bolor luys anjatir batsi wc
+  - անջատիր բոլոր լույս batsi wc
+  - բոլոր լույս անջատիր batsi wc
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi garden
-  - bolor luys anjatir batsi garden
+  - անջատիր բոլոր լույս batsi garden
+  - բոլոր լույս անջատիր batsi garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi qnakaran2
-  - bolor luys anjatir batsi qnakaran2
+  - անջատիր բոլոր լույս batsi qnakaran2
+  - բոլոր լույս անջատիր batsi qnakaran2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi qnakaran3
-  - bolor luys anjatir batsi qnakaran3
+  - անջատիր բոլոր լույս batsi qnakaran3
+  - բոլոր լույս անջատիր batsi qnakaran3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi qnakaran4
-  - bolor luys anjatir batsi qnakaran4
+  - անջատիր բոլոր լույս batsi qnakaran4
+  - բոլոր լույս անջատիր batsi qnakaran4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi lvacaranmaster
-  - bolor luys anjatir batsi lvacaranmaster
+  - անջատիր բոլոր լույս batsi lvacaranmaster
+  - բոլոր լույս անջատիր batsi lvacaranmaster
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi main bath
-  - bolor luys anjatir batsi main bath
+  - անջատիր բոլոր լույս batsi main bath
+  - բոլոր լույս անջատիր batsi main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi hallway
-  - bolor luys anjatir batsi hallway
+  - անջատիր բոլոր լույս batsi hallway
+  - բոլոր լույս անջատիր batsi hallway
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anjatir bolor luys batsi basement
-  - bolor luys anjatir batsi basement
+  - անջատիր բոլոր լույս batsi basement
+  - բոլոր լույս անջատիր batsi basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - miatsu luys basement
-  - luys basement miatsu
+  - միացրու լույս basement
+  - լույս basement միացրու
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - miatsu luys hallway
-  - luys hallway miatsu
+  - միացրու լույս hallway
+  - լույս hallway միացրու
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - miatsu stalat yntaniq
-  - stalat yntaniq miatsu
+  - միացրու stalat yntaniq
+  - stalat yntaniq միացրու
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - miatsu luys yntaniqess
-  - luys yntaniqess miatsu
+  - միացրու լույս yntaniqess
+  - լույս yntaniqess միացրու

@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - искључи плафон спавача
 devices/geraete::device_arbeitszimmer_an:
-- укључи светло дневна
+- укључи светло office
 devices/geraete::device_esszimmer_an:
 - укључи светло дневнаfamess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - укључи светло дневна
 devices/geraete::filmabend:
-- укључи Filmabend
+- укључи сцена filmabend
 devices/geraete::kugel_an:
-- укључи кугла спавача
+- укључи кугла
 devices/geraete::luefter_50:
-- стави вентилатор дневна 50
+- стави вентилатор office 50
 devices/geraete::pc_an:
-- укључи уређај
+- укључи pc
 devices/geraete::r2d2_saugen:
 - укључи усисивач дневна
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - укључи веш
 devices/klima::klima_schlaf_21:
-- стави грејање спавача 21
+- стави ac спавача 21
 devices/spoken::deckenlampe_an:
 - укључи плафон спавача
 devices/spoken::kugel_aus:
-- искључи кугла спавача
+- искључи кугла
 devices/spoken::luefter_aus:
-- искључи вентилатор дневна
+- искључи вентилатор office
 devices/spoken::rollo_auf:
 - отвори завеса дневна
 devices/spoken::trockner_an:
-- укључи веш
+- укључи dryer
 devices/spoken::tv_aus:
-- искључи тв
+- искључи tv
 devices/spoken_more::decke_aus_casual:
 - искључи плафон спавача
 devices/spoken_more::kugel_casual:
-- укључи кугла спавача
+- укључи кугла
 devices/spoken_more::pc_aus:
-- искључи уређај
+- искључи pc
 devices/spoken_more::spuelmaschine_an:
 - укључи судови
 devices/spoken_more::waschmaschine_aus:

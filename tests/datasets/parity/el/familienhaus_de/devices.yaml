@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - βαλε θερμανση σαλονι 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- βαλε θερμανση υπνοδωματο 19
+- βαλε θερμανση υπνοδωματοmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - βαλε κουρτινα υπνοδωματο2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - ανοιξε κουρτινα σαλονι
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- βαλε κουρτινα υπνοδωματο 19
+- βαλε κουρτινα υπνοδωματοmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- κλεισε κουρτινα υπνοδωματο
+- κλεισε κουρτινα υπνοδωματοmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- ανοιξε κουρτινα υπνοδωματο
+- ανοιξε κουρτινα υπνοδωματοmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - βαλε ανεμιστηρας υπνοδωματο2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - αναψε ανεμιστηρας σαλονιfam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- βαλε ανεμιστηρας υπνοδωματο 28
+- βαλε ανεμιστηρας υπνοδωματοmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- σβησε ανεμιστηρας υπνοδωματο
+- σβησε ανεμιστηρας υπνοδωματοmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- αναψε ανεμιστηρας υπνοδωματο
+- αναψε ανεμιστηρας υπνοδωματοmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- σβησε ανεμιστηρας υπνοδωματο και σβησε φως κουζινα
+- σβησε ανεμιστηρας υπνοδωματοmaster then σβησε νησι κουζινα
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- αναψε ανεμιστηρας υπνοδωματο και αναψε φως κουζινα
+- αναψε ανεμιστηρας υπνοδωματοmaster then αναψε νησι κουζινα
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - βαλε ταβανι υπνοδωματο2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - αναψε ταβανι κουζινα
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- βαλε φως κουζινα 99
+- βαλε νησι κουζινα 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- βαλε φως κουζινα green
+- βαλε νησι κουζινα green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- σβησε φως κουζινα
+- σβησε νησι κουζινα
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- αναψε φως κουζινα
+- αναψε νησι κουζινα
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - βαλε φως πλυσταριο 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - αναψε ταβανι σαλονι
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- βαλε φως σαλονι 72
+- βαλε lamp σαλονι 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- βαλε φως σαλονι red
+- βαλε lamp σαλονι red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- σβησε φως σαλονι
+- σβησε lamp σαλονι
 devices/light_living_lamp::light_living_lamp_turn_on:
-- αναψε φως σαλονι
+- αναψε lamp σαλονι
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - βαλε φως main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - αναψε φως μπανιοmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- βαλε κομοδινο υπνοδωματο 25
+- βαλε κομοδινο υπνοδωματοmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- βαλε κομοδινο υπνοδωματο red
+- βαλε κομοδινο υπνοδωματοmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- σβησε κομοδινο υπνοδωματο
+- σβησε κομοδινο υπνοδωματοmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- αναψε κομοδινο υπνοδωματο
+- αναψε κομοδινο υπνοδωματοmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- βαλε ταβανι υπνοδωματο 77
+- βαλε ταβανι υπνοδωματοmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- βαλε ταβανι υπνοδωματο blue
+- βαλε ταβανι υπνοδωματοmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- σβησε ταβανι υπνοδωματο
+- σβησε ταβανι υπνοδωματοmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- αναψε ταβανι υπνοδωματο
+- αναψε ταβανι υπνοδωματοmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- βαλε φως υπνοδωματο 55
+- βαλε ankleide υπνοδωματοmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- βαλε φως υπνοδωματο black
+- βαλε ankleide υπνοδωματοmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- σβησε φως υπνοδωματο
+- σβησε ankleide υπνοδωματοmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- αναψε φως υπνοδωματο
+- αναψε ankleide υπνοδωματοmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - βαλε φως wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - αναψε τηλεοραση σαλονιfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause τηλεοραση σαλονιfam
+- pause tv σαλονιfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - σβησε τηλεοραση σαλονιfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - αναψε τηλεοραση σαλονι
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause τηλεοραση σαλονι
+- pause tv σαλονι
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - σβησε τηλεοραση σαλονι
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - αναψε τηλεοραση σαλονι
 devices/scenes::dinner_time:
-- βαλε φως σαλονιfamess 90 και αναψε ταβανι κουζινα και βαλε φως κουζινα 80
+- βαλε φως σαλονιfamess 90 then αναψε ταβανι κουζινα then βαλε νησι κουζινα 80
 devices/scenes::good_morning:
-- αναψε ταβανι κουζινα και βαλε φως σαλονιfamess 100 και ανοιξε κουρτινα σαλονι και
-  ανοιξε κουρτινα υπνοδωματο
+- αναψε ταβανι κουζινα then βαλε φως σαλονιfamess 100 then ανοιξε κουρτινα σαλονι
+  then ανοιξε κουρτινα υπνοδωματοmaster
 devices/scenes::kids_bedtime:
-- σβησε ταβανι υπνοδωματο2 και σβησε ταβανι υπνοδωματο3 και σβησε ταβανι υπνοδωματο4
-  και βαλε φως εισοδοςgang 15
+- σβησε ταβανι υπνοδωματο2 then σβησε ταβανι υπνοδωματο3 then σβησε ταβανι υπνοδωματο4
+  then βαλε φως εισοδοςgang 15
 devices/scenes::movie_night:
-- σβησε ταβανι σαλονι και βαλε φως σαλονι 20 και αναψε τηλεοραση σαλονι και κλεισε
+- σβησε ταβανι σαλονι then βαλε lamp σαλονι 20 then αναψε τηλεοραση σαλονι then κλεισε
   κουρτινα σαλονι
 devices/scripts::good_night:
-- αναψε σκηνη νυχτα
+- σβησε ταβανι σαλονι then σβησε lamp σαλονι then σβησε φως σαλονιfamess then σβησε
+  ταβανι κουζινα then σβησε νησι κουζινα then σβησε ταβανι σαλονιfam then σβησε φως
+  εισοδος then σβησε φως εισοδοςgang then κλειδωσε κλειδαρια εισοδος then κλειδωσε
+  κλειδαρια garage then βαλε θερμανση υπνοδωματοmaster 20
 devices/scripts::leaving_home:
-- αναψε σκηνη εξοδος
+- σβησε ταβανι σαλονι then σβησε lamp σαλονι then σβησε ταβανι κουζινα then σβησε
+  ταβανι σαλονιfam then σβησε φως εισοδος then κλειδωσε κλειδαρια εισοδος then κλειδωσε
+  κλειδαρια garage then κλεισε κουρτινα garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - σβησε πιατα
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - αναψε πιατα
 devices/switch_dryer::switch_dryer_turn_off:
-- σβησε πλυντηριο
+- σβησε dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- αναψε πλυντηριο
+- αναψε dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - σβησε πλυντηριο
 devices/switch_washing_machine::switch_washing_machine_turn_on:

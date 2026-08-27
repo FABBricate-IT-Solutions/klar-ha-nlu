@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator schlafzimmer mach
-  - mach ventilator schlafzimmer
+  - ventilator schlafzimmermaster mach
+  - mach ventilator schlafzimmermaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - loesch ventilator schlafzimmer
-  - ventilator schlafzimmer loesch
+  - loesch ventilator schlafzimmermaster
+  - ventilator schlafzimmermaster loesch
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - stell ventilator schlafzimmer 40
-  - ventilator schlafzimmer 40
+  - stell ventilator schlafzimmermaster 40
+  - ventilator schlafzimmermaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - stell ventilator schlafzimmer 20
-  - ventilator schlafzimmer 20
+  - stell ventilator schlafzimmermaster 20
+  - ventilator schlafzimmermaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - stell ventilator schlafzimmer 60
-  - ventilator schlafzimmer 60
+  - stell ventilator schlafzimmermaster 60
+  - ventilator schlafzimmermaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - stell ventilator schlafzimmer 80
-  - ventilator schlafzimmer 80
+  - stell ventilator schlafzimmermaster 80
+  - ventilator schlafzimmermaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

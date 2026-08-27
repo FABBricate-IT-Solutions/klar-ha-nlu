@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - mo rem phongngu
-  - rem phongngu mo
+  - mo rem phongngumaster
+  - rem phongngumaster mo
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - dong rem phongngu
-  - rem phongngu dong
+  - dong rem phongngumaster
+  - rem phongngumaster dong
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - dat rem phongngu 0
-  - rem phongngu 0
+  - dat rem phongngumaster 0
+  - rem phongngumaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - dat rem phongngu 25
-  - rem phongngu 25
+  - dat rem phongngumaster 25
+  - rem phongngumaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - dat rem phongngu 40
-  - rem phongngu 40
+  - dat rem phongngumaster 40
+  - rem phongngumaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - dat rem phongngu 75
-  - rem phongngu 75
+  - dat rem phongngumaster 75
+  - rem phongngumaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - dat rem phongngu 100
-  - rem phongngu 100
+  - dat rem phongngumaster 100
+  - rem phongngumaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - mo rem phongngu
-  - rem phongngu mo
+  - mo rem phongngumaster
+  - rem phongngumaster mo

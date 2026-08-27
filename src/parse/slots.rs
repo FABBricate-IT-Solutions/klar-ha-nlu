@@ -2,6 +2,7 @@ use crate::home::expose::assist_visible;
 use crate::home::policy::{is_infra, is_infra_light, is_whole_home};
 use crate::home::roles::is_light_like;
 use crate::lang::catalog;
+use crate::lang::VerbKind;
 use crate::parse::action::Action;
 use crate::parse::compound::area_slots;
 use crate::parse::infer::{bind_domain, color_word, except_focus, except_tail, mentions_lamp_fixture, wants_all_lights};
@@ -250,6 +251,7 @@ fn list_item(tokens: &[String], target: Option<&EntityRec>) -> Option<String> {
             !cat.list_skip().contains(token)
                 && !cat.list_nouns().contains(token)
                 && !cat.shopping_names().contains(token)
+                && !matches!(cat.verb(token), Some(VerbKind::Add | VerbKind::ListComplete | VerbKind::List))
                 && !target.is_some_and(|entity| target_label_token(token, entity))
         })
         .collect();
@@ -387,9 +389,11 @@ pub(crate) fn laundry_switch_clause(
     if switches.len() < 2 {
         return None;
     }
-    let plural = catalog().any(tokens, catalog().switch_plural());
-    let start = catalog().any(tokens, catalog().start_words());
-    let one = (tokens.iter().any(|t| t == "switch") && !plural) || start;
+    let plural = catalog().any(tokens, catalog().switch_plural()) || catalog().any(tokens, catalog().all_words());
+    let one = tokens.iter().any(|t| t == "switch") && !plural;
+    if !one && !plural && catalog().any(tokens, catalog().start_words()) && !catalog().any(tokens, catalog().on_words()) {
+        return None;
+    }
     if !one && !plural {
         return Some(ClauseOut::Clarify(switches, intent_from_action(action, tokens).with("area", area).with("domain", "switch")));
     }
@@ -458,6 +462,91 @@ mod tests {
     fn parse_with_home(sentence: &str, home: HomeGraph) -> crate::types::ParseResult {
         let lang = if sentence.starts_with("Füge") { "de" } else { "en" };
         parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned(lang))
+    }
+
+    #[test]
+    fn ja_yes_picks_laundry_switch_and_th_open_unlocks() {
+        use crate::types::AreaRec;
+        let laundry = HomeGraph {
+            areas: vec![AreaRec {
+                area_id: "laundry".into(),
+                name: "Laundry".into(),
+                aliases: vec!["sentakushitsu".into()],
+                floor_id: None,
+            }],
+            entities: vec![switch("switch.washing_machine", "laundry"), switch("switch.dryer", "laundry")],
+            ..HomeGraph::default()
+        };
+        let mut session = Session::new();
+        let first = parse("点ける kiki sentakushitsu", &laundry, &mut session, &[], &Settings::pinned("ja"));
+        assert!(first.clarify, "{first:?}");
+        let picked = parse("はい", &laundry, &mut session, &[], &Settings::pinned("ja"));
+        assert!(!picked.clarify, "{picked:?}");
+        assert_eq!(picked.intents[0].slot("entity_id"), Some("switch.washing_machine"), "{picked:?}");
+
+        let locks = HomeGraph {
+            areas: vec![AreaRec { area_id: "entryway".into(), name: "Entry".into(), aliases: vec!["thangkhau".into()], floor_id: None }],
+            entities: vec![EntityRec {
+                entity_id: "lock.front_door".into(),
+                name: "Front".into(),
+                domain: "lock".into(),
+                platform: None,
+                area: Some("entryway".into()),
+                aliases: vec![],
+                tags: vec![],
+            }],
+            ..HomeGraph::default()
+        };
+        let unlocked = parse("เปิด กุญแจ thangkhau", &locks, &mut Session::new(), &[], &Settings::pinned("th"));
+        assert_eq!(unlocked.intents[0].name, "HassTurnOff", "{unlocked:?}");
+        assert_eq!(unlocked.intents[0].slot("entity_id"), Some("lock.front_door"), "{unlocked:?}");
+
+        let garage = HomeGraph {
+            areas: vec![AreaRec { area_id: "garage".into(), name: "Garage".into(), aliases: vec!["garage".into()], floor_id: None }],
+            entities: vec![
+                EntityRec {
+                    entity_id: "lock.garage_entry".into(),
+                    name: "Garage lock".into(),
+                    domain: "lock".into(),
+                    platform: None,
+                    area: Some("garage".into()),
+                    aliases: vec![],
+                    tags: vec![],
+                },
+                EntityRec {
+                    entity_id: "cover.garage_door".into(),
+                    name: "Garage door".into(),
+                    domain: "cover".into(),
+                    platform: None,
+                    area: Some("garage".into()),
+                    aliases: vec![],
+                    tags: vec![],
+                },
+            ],
+            ..HomeGraph::default()
+        };
+        let mut after_lock = Session::new();
+        parse("กุญแจ กุญแจ garage", &garage, &mut after_lock, &[], &Settings::pinned("th"));
+        let cover = parse("ปิด ม่าน garage", &garage, &mut after_lock, &[], &Settings::pinned("th"));
+        assert_eq!(cover.intents[0].slot("entity_id"), Some("cover.garage_door"), "{cover:?}");
+        assert_eq!(cover.intents[0].name, "HassTurnOff", "{cover:?}");
+
+        let lists = HomeGraph { entities: vec![todo("todo.chores", "Aufgaben", &[], &[])], ..HomeGraph::default() };
+        let done = parse("हो गया bread aufgabenliste", &lists, &mut Session::new(), &[], &Settings::pinned("hi"));
+        assert_eq!(done.intents[0].name, "HassListCompleteItem", "{done:?}");
+        assert_eq!(done.intents[0].slot("item"), Some("bread"), "{done:?}");
+    }
+
+    fn switch(id: &str, area: &str) -> EntityRec {
+        EntityRec {
+            entity_id: id.into(),
+            name: id.into(),
+            domain: "switch".into(),
+            platform: None,
+            area: Some(area.into()),
+            aliases: vec![],
+            tags: vec![],
+        }
     }
 
     fn todo(id: &str, name: &str, aliases: &[&str], tags: &[&str]) -> EntityRec {

@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Haloszoba
+  name: Haloszobamaster
   floor: upper
   aliases:
+  - haloszobamaster
   - haloszoba
 - id: bedroom_2
   name: Haloszoba2
@@ -130,10 +131,10 @@ devices:
   - mennyezet
 - id: light.living_lamp
   area_id: living
-  name: nappali villany
+  name: nappali lamp
   aliases:
-  - nappali villany
-  - villany
+  - nappali lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: nappalifamess villany
@@ -190,29 +191,29 @@ devices:
   - villany
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: haloszoba mennyezet
+  name: haloszobamaster mennyezet
   aliases:
-  - haloszoba mennyezet
+  - haloszobamaster mennyezet
   - mennyezet
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: haloszoba ensuite
+  name: haloszobamaster ensuite
   aliases:
-  - haloszoba ensuite
+  - haloszobamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: haloszoba left ejjeliszekreny
+  name: haloszobamaster left ejjeliszekreny
   aliases:
-  - haloszoba left ejjeliszekreny
+  - haloszobamaster left ejjeliszekreny
   - ejjeliszekreny
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: haloszoba right ejjeliszekreny
+  name: haloszobamaster right ejjeliszekreny
   aliases:
-  - haloszoba right ejjeliszekreny
+  - haloszobamaster right ejjeliszekreny
   - ejjeliszekreny
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - fuggony
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: haloszoba fuggony
+  name: haloszobamaster fuggony
   aliases:
-  - haloszoba fuggony
+  - haloszobamaster fuggony
   - fuggony
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - futes
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: haloszoba futes
+  name: haloszobamaster futes
   aliases:
-  - haloszoba futes
+  - haloszobamaster futes
   - futes
 - id: climate.master_ac
   area_id: master_bedroom
-  name: homerseklet haloszoba
+  name: homerseklet haloszobamaster
   aliases:
-  - homerseklet haloszoba
+  - homerseklet haloszobamaster
   - homerseklet
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: haloszoba ventilator
+  name: haloszobamaster ventilator
   aliases:
-  - haloszoba ventilator
+  - haloszobamaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

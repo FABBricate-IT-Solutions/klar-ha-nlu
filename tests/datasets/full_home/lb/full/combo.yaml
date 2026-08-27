@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - maach schlofzëmmer decken an schlofzëmmer nuettsdesch
-  - schlofzëmmer decken an schlofzëmmer nuettsdesch maach
+  - maach schlofzëmmermaster decken an schlofzëmmermaster nuettsdesch
+  - schlofzëmmermaster decken an schlofzëmmermaster nuettsdesch maach
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - maachaus schlofzëmmer decken an schlofzëmmer nuettsdesch
-  - schlofzëmmer decken an schlofzëmmer nuettsdesch maachaus
+  - maachaus schlofzëmmermaster decken an schlofzëmmermaster nuettsdesch
+  - schlofzëmmermaster decken an schlofzëmmermaster nuettsdesch maachaus
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - maach schlofzëmmer ventilator an kichen eiland
-  - schlofzëmmer ventilator an kichen eiland maach
+  - maach schlofzëmmermaster ventilator an kichen eiland
+  - schlofzëmmermaster ventilator an kichen eiland maach
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - maachaus luucht schlofzëmmer an main bath
-  - luucht schlofzëmmer an main bath maachaus
+  - maachaus luucht schlofzëmmermaster an main bath
+  - luucht schlofzëmmermaster an main bath maachaus
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - maachaus all luucht ausser wunnen an schlofzëmmer
-  - all luucht maachaus ausser wunnen an schlofzëmmer
+  - maachaus all luucht ausser wunnen an schlofzëmmermaster
+  - all luucht maachaus ausser wunnen an schlofzëmmermaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - maachaus all luucht iwwer ausser schlofzëmmer
-  - all luucht iwwer maachaus ausser schlofzëmmer
+  - maachaus all luucht iwwer ausser schlofzëmmermaster
+  - all luucht iwwer maachaus ausser schlofzëmmermaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - opmaachen riddo wunnen an schlofzëmmer
-  - riddo wunnen an schlofzëmmer opmaachen
+  - opmaachen riddo wunnen an schlofzëmmermaster
+  - riddo wunnen an schlofzëmmermaster opmaachen
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - zoumaachen riddo wunnen an schlofzëmmer
-  - riddo wunnen an schlofzëmmer zoumaachen
+  - zoumaachen riddo wunnen an schlofzëmmermaster
+  - riddo wunnen an schlofzëmmermaster zoumaachen
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell heizung wunnen an schlofzëmmer 21
-  - heizung wunnen an schlofzëmmer 21
+  - stell heizung wunnen an schlofzëmmermaster 21
+  - heizung wunnen an schlofzëmmermaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

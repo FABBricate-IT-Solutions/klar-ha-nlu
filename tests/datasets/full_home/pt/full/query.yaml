@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - que cortina quarto
-  - que quarto cortina
+  - que cortina quartomaster
+  - que quartomaster cortina
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - que aquecimento quarto
-  - que quarto aquecimento
+  - que aquecimento quartomaster
+  - que quartomaster aquecimento
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - que ar quarto
-  - que quarto ar
+  - que ar quartomaster
+  - que quartomaster ar
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - que ventoinha quarto
-  - que quarto ventoinha
+  - que ventoinha quartomaster
+  - que quartomaster ventoinha
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - que luz quarto
-  - que quarto luz
+  - que luz quartomaster
+  - que quartomaster luz
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - que luz quarto
-  - que quarto luz
+  - que luz quartomaster
+  - que quartomaster luz
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - que ensuite quarto
-  - que quarto ensuite
+  - que ensuite quartomaster
+  - que quartomaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - que luz quarto
-  - que quarto luz
+  - que luz quartomaster
+  - que quartomaster luz
 - name: query_light.master_bath_light
   conditions:
   - type: query

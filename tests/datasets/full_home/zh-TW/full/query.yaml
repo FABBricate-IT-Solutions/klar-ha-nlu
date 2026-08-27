@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - shenme deng keting
-  - shenme keting deng
+  - 什麼 燈 客廳
+  - 什麼 客廳 燈
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - shenme lianzi keting
-  - shenme keting lianzi
+  - 什麼 簾子 客廳
+  - 什麼 客廳 簾子
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - shenme suo xuanguan
-  - shenme xuanguan suo
+  - 什麼 鎖 xuanguan
+  - 什麼 xuanguan 鎖
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - shenme kongtiao keting
-  - shenme keting kongtiao
+  - 什麼 空調 客廳
+  - 什麼 客廳 空調
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - shenme dianshi keting
-  - shenme keting dianshi
+  - 什麼 dianshi 客廳
+  - 什麼 客廳 dianshi
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - shenme doorsensor xuanguan
-  - shenme xuanguan doorsensor
+  - 什麼 doorsensor xuanguan
+  - 什麼 xuanguan doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - shenme windowsensor keting
-  - shenme keting windowsensor
+  - 什麼 windowsensor 客廳
+  - 什麼 客廳 windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - shenme tempsensor keting
-  - shenme keting tempsensor
+  - 什麼 tempsensor 客廳
+  - 什麼 客廳 tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - shenme deng chufang
-  - shenme chufang deng
+  - 什麼 燈 廚房
+  - 什麼 廚房 燈
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - shenme deng office
-  - shenme office deng
+  - 什麼 燈 office
+  - 什麼 office 燈
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - shenme deng garden
-  - shenme garden deng
+  - 什麼 燈 garden
+  - 什麼 garden 燈
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - shenme deng basement
-  - shenme basement deng
+  - 什麼 燈 basement
+  - 什麼 basement 燈
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - shenme lianzi woshi
-  - shenme woshi lianzi
+  - 什麼 簾子 woshimaster
+  - 什麼 woshimaster 簾子
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - shenme lianzi garage
-  - shenme garage lianzi
+  - 什麼 簾子 garage
+  - 什麼 garage 簾子
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - shenme suo garage
-  - shenme garage suo
+  - 什麼 鎖 garage
+  - 什麼 garage 鎖
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - shenme kongtiao woshi
-  - shenme woshi kongtiao
+  - 什麼 空調 woshimaster
+  - 什麼 woshimaster 空調
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - shenme kongtiao woshi
-  - shenme woshi kongtiao
+  - 什麼 kongtiao woshimaster
+  - 什麼 woshimaster kongtiao
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - shenme dianshi jiatingfang
-  - shenme jiatingfang dianshi
+  - 什麼 dianshi jiatingfang
+  - 什麼 jiatingfang dianshi
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - shenme yinyue keting
-  - shenme keting yinyue
+  - 什麼 電視 客廳
+  - 什麼 客廳 電視
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - shenme motion chufang
-  - shenme chufang motion
+  - 什麼 motion 廚房
+  - 什麼 廚房 motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - shenme humidity keting
-  - shenme keting humidity
+  - 什麼 humidity 客廳
+  - 什麼 客廳 humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - shenme fengshan woshi
-  - shenme woshi fengshan
+  - 什麼 風扇 woshimaster
+  - 什麼 woshimaster 風扇
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - shenme saodi keting
-  - shenme keting saodi
+  - 什麼 掃地 客廳
+  - 什麼 客廳 掃地
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - shenme deng keting
-  - shenme keting deng
+  - 什麼 燈 客廳
+  - 什麼 客廳 燈
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - shenme deng chufang
-  - shenme chufang deng
+  - 什麼 燈 廚房
+  - 什麼 廚房 燈
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - shenme deng woshi
-  - shenme woshi deng
+  - 什麼 燈 woshimaster
+  - 什麼 woshimaster 燈
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - shenme deng woshi
-  - shenme woshi deng
+  - 什麼 燈 woshimaster
+  - 什麼 woshimaster 燈
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - shenme deng zoulang
-  - shenme zoulang deng
+  - 什麼 燈 zoulang
+  - 什麼 zoulang 燈
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - shenme deng jiatingfang
-  - shenme jiatingfang deng
+  - 什麼 燈 jiatingfang
+  - 什麼 jiatingfang 燈
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - shenme deng jiatingfangess
-  - shenme jiatingfangess deng
+  - 什麼 燈 jiatingfangess
+  - 什麼 jiatingfangess 燈
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - shenme deng garage
-  - shenme garage deng
+  - 什麼 燈 garage
+  - 什麼 garage 燈
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - shenme deng woshi2
-  - shenme woshi2 deng
+  - 什麼 燈 woshi2
+  - 什麼 woshi2 燈
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - shenme deng woshi3
-  - shenme woshi3 deng
+  - 什麼 燈 woshi3
+  - 什麼 woshi3 燈
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - shenme deng woshi4
-  - shenme woshi4 deng
+  - 什麼 燈 woshi4
+  - 什麼 woshi4 燈
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - shenme deng xuanguan
-  - shenme xuanguan deng
+  - 什麼 燈 xuanguan
+  - 什麼 xuanguan 燈
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - shenme deng xiyifang
-  - shenme xiyifang deng
+  - 什麼 燈 xiyifang
+  - 什麼 xiyifang 燈
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - shenme deng main bath
-  - shenme main bath deng
+  - 什麼 燈 main bath
+  - 什麼 main bath 燈
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - shenme deng kewei
-  - shenme kewei deng
+  - 什麼 燈 kewei
+  - 什麼 kewei 燈
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - shenme ensuite woshi
-  - shenme woshi ensuite
+  - 什麼 ensuite woshimaster
+  - 什麼 woshimaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - shenme deng woshi
-  - shenme woshi deng
+  - 什麼 燈 woshimaster
+  - 什麼 woshimaster 燈
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - shenme deng zhuwei
-  - shenme zhuwei deng
+  - 什麼 燈 zhuwei
+  - 什麼 zhuwei 燈

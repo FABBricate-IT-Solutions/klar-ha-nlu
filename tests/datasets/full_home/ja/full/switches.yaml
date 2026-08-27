@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - tsukete shokkaiki kitchin
-  - shokkaiki kitchin tsukete
+  - つけて shokkaiki キッチン
+  - shokkaiki キッチン つけて
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - keshite shokkaiki kitchin
-  - shokkaiki kitchin keshite
+  - 消して shokkaiki キッチン
+  - shokkaiki キッチン 消して
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - tsukete sentakuki sentakushitsu
-  - sentakuki sentakushitsu tsukete
+  - つけて sentakuki sentakushitsu
+  - sentakuki sentakushitsu つけて
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - keshite sentakuki sentakushitsu
-  - sentakuki sentakushitsu keshite
+  - 消して sentakuki sentakushitsu
+  - sentakuki sentakushitsu 消して
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - tsukete kansouki sentakushitsu
-  - kansouki sentakushitsu tsukete
+  - つけて kansouki sentakushitsu
+  - kansouki sentakushitsu つけて
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - keshite kansouki sentakushitsu
-  - kansouki sentakushitsu keshite
+  - 消して kansouki sentakushitsu
+  - kansouki sentakushitsu 消して
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - tsukete renjifud kitchin
-  - renjifud kitchin tsukete
+  - つけて renjifud キッチン
+  - renjifud キッチン つけて
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - keshite renjifud kitchin
-  - renjifud kitchin keshite
+  - 消して renjifud キッチン
+  - renjifud キッチン 消して
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - tsukete yokusovent shuyokushitsu
-  - yokusovent shuyokushitsu tsukete
+  - つけて yokusovent shuyokushitsu
+  - yokusovent shuyokushitsu つけて
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - keshite yokusovent shuyokushitsu
-  - yokusovent shuyokushitsu keshite
+  - 消して yokusovent shuyokushitsu
+  - yokusovent shuyokushitsu 消して
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - tsukete yokusovent main bath
-  - yokusovent main bath tsukete
+  - つけて yokusovent main bath
+  - yokusovent main bath つけて
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - keshite yokusovent main bath
-  - yokusovent main bath keshite
+  - 消して yokusovent main bath
+  - yokusovent main bath 消して

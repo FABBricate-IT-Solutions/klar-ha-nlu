@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - aseta lampo olohuone 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- aseta lampo makuuhuone 19
+- aseta lampo makuuhuonemaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - aseta verho makuuhuone2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - avaa verho olohuone
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- aseta verho makuuhuone 19
+- aseta verho makuuhuonemaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- sulje verho makuuhuone
+- sulje verho makuuhuonemaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- avaa verho makuuhuone
+- avaa verho makuuhuonemaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - aseta tuuletin makuuhuone2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - sytyta tuuletin olohuonefam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- aseta tuuletin makuuhuone 28
+- aseta tuuletin makuuhuonemaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- sammuta tuuletin makuuhuone
+- sammuta tuuletin makuuhuonemaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- sytyta tuuletin makuuhuone
+- sytyta tuuletin makuuhuonemaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- sammuta tuuletin makuuhuone ja sammuta valo keittio
+- sammuta tuuletin makuuhuonemaster then sammuta saareke keittio
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- sytyta tuuletin makuuhuone ja sytyta valo keittio
+- sytyta tuuletin makuuhuonemaster then sytyta saareke keittio
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - aseta katto makuuhuone2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - sytyta katto keittio
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- aseta valo keittio 99
+- aseta saareke keittio 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- aseta valo keittio vihrea
+- aseta saareke keittio vihrea
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- sammuta valo keittio
+- sammuta saareke keittio
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- sytyta valo keittio
+- sytyta saareke keittio
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - aseta valo kodinhoito 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - sytyta katto olohuone
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- aseta valo olohuone 72
+- aseta lamp olohuone 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- aseta valo olohuone punainen
+- aseta lamp olohuone punainen
 devices/light_living_lamp::light_living_lamp_turn_off:
-- sammuta valo olohuone
+- sammuta lamp olohuone
 devices/light_living_lamp::light_living_lamp_turn_on:
-- sytyta valo olohuone
+- sytyta lamp olohuone
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - aseta valo main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - sytyta valo kylpymaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- aseta yopoyta makuuhuone 25
+- aseta yopoyta makuuhuonemaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- aseta yopoyta makuuhuone punainen
+- aseta yopoyta makuuhuonemaster punainen
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- sammuta yopoyta makuuhuone
+- sammuta yopoyta makuuhuonemaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- sytyta yopoyta makuuhuone
+- sytyta yopoyta makuuhuonemaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- aseta katto makuuhuone 77
+- aseta katto makuuhuonemaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- aseta katto makuuhuone sininen
+- aseta katto makuuhuonemaster sininen
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- sammuta katto makuuhuone
+- sammuta katto makuuhuonemaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- sytyta katto makuuhuone
+- sytyta katto makuuhuonemaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- aseta valo makuuhuone 55
+- aseta ankleide makuuhuonemaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- aseta valo makuuhuone musta
+- aseta ankleide makuuhuonemaster musta
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- sammuta valo makuuhuone
+- sammuta ankleide makuuhuonemaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- sytyta valo makuuhuone
+- sytyta ankleide makuuhuonemaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - aseta valo wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - sytyta tv olohuone
 devices/scenes::dinner_time:
-- aseta valo olohuonefamess 90 ja sytyta katto keittio ja aseta valo keittio 80
+- aseta valo olohuonefamess 90 then sytyta katto keittio then aseta saareke keittio
+  80
 devices/scenes::good_morning:
-- sytyta katto keittio ja aseta valo olohuonefamess 100 ja avaa verho olohuone ja
-  avaa verho makuuhuone
+- sytyta katto keittio then aseta valo olohuonefamess 100 then avaa verho olohuone
+  then avaa verho makuuhuonemaster
 devices/scenes::kids_bedtime:
-- sammuta katto makuuhuone2 ja sammuta katto makuuhuone3 ja sammuta katto makuuhuone4
-  ja aseta valo eteinengang 15
+- sammuta katto makuuhuone2 then sammuta katto makuuhuone3 then sammuta katto makuuhuone4
+  then aseta valo eteinengang 15
 devices/scenes::movie_night:
-- sammuta katto olohuone ja aseta valo olohuone 20 ja sytyta tv olohuone ja sulje
-  verho olohuone
+- sammuta katto olohuone then aseta lamp olohuone 20 then sytyta tv olohuone then
+  sulje verho olohuone
 devices/scripts::good_night:
-- sytyta kohtaus yo
+- sammuta katto olohuone then sammuta lamp olohuone then sammuta valo olohuonefamess
+  then sammuta katto keittio then sammuta saareke keittio then sammuta katto olohuonefam
+  then sammuta valo eteinen then sammuta valo eteinengang then lukko lukko eteinen
+  then lukko lukko garage then aseta lampo makuuhuonemaster 20
 devices/scripts::leaving_home:
-- sytyta kohtaus lahto
+- sammuta katto olohuone then sammuta lamp olohuone then sammuta katto keittio then
+  sammuta katto olohuonefam then sammuta valo eteinen then lukko lukko eteinen then
+  lukko lukko garage then sulje verho garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - sammuta astianpesu
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - sytyta astianpesu
 devices/switch_dryer::switch_dryer_turn_off:
-- sammuta pesukone
+- sammuta dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- sytyta pesukone
+- sytyta dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - sammuta pesukone
 devices/switch_washing_machine::switch_washing_machine_turn_on:

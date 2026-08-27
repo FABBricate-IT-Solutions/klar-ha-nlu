@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Quarto
+  name: Quartomaster
   floor: upper
   aliases:
+  - quartomaster
   - quarto
 - id: bedroom_2
   name: Quarto2
@@ -190,29 +191,29 @@ devices:
   - luz
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: quarto teto
+  name: quartomaster teto
   aliases:
-  - quarto teto
+  - quartomaster teto
   - teto
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: quarto ensuite
+  name: quartomaster ensuite
   aliases:
-  - quarto ensuite
+  - quartomaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: quarto left cabeceira
+  name: quartomaster left cabeceira
   aliases:
-  - quarto left cabeceira
+  - quartomaster left cabeceira
   - cabeceira
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: quarto right cabeceira
+  name: quartomaster right cabeceira
   aliases:
-  - quarto right cabeceira
+  - quartomaster right cabeceira
   - cabeceira
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - cortina
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: quarto cortina
+  name: quartomaster cortina
   aliases:
-  - quarto cortina
+  - quartomaster cortina
   - cortina
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - aquecimento
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: quarto aquecimento
+  name: quartomaster aquecimento
   aliases:
-  - quarto aquecimento
+  - quartomaster aquecimento
   - aquecimento
 - id: climate.master_ac
   area_id: master_bedroom
-  name: ar quarto
+  name: ar quartomaster
   aliases:
-  - ar quarto
+  - ar quartomaster
   - ar
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventoinha
 - id: fan.master_fan
   area_id: master_bedroom
-  name: quarto ventoinha
+  name: quartomaster ventoinha
   aliases:
-  - quarto ventoinha
+  - quartomaster ventoinha
   - ventoinha
 - id: fan.bedroom2_fan
   area_id: bedroom_2

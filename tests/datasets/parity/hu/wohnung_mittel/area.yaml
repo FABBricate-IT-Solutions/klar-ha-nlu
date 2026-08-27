@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - oltsd mind villany
 area/lichter::arbeitszimmer_lichter_an:
-- kapcsold villany nappali
+- kapcsold mind villany office
 area/lichter::arbeitszimmer_lichter_aus:
-- oltsd villany nappali
+- oltsd mind villany office
 area/lichter::esszimmer_lichter_an:
-- kapcsold villany nappalifamess
+- kapcsold mind villany nappalifamess
 area/lichter::esszimmer_lichter_aus:
-- oltsd villany nappalifamess
+- oltsd mind villany nappalifamess
 area/lichter::kuche_lichter_an:
-- kapcsold villany konyha
+- kapcsold mind villany konyha
 area/lichter::kuche_lichter_aus:
-- oltsd villany konyha
+- oltsd mind villany konyha
 area/lichter::schlafzimmer_auf_blau:
-- allitsd villany haloszoba blue
+- allitsd mind villany haloszoba blue
 area/lichter::schlafzimmer_auf_rot:
-- allitsd villany haloszoba red
+- allitsd mind villany haloszoba red
 area/lichter::wohnzimmer_helligkeit:
-- allitsd villany nappali 45
+- allitsd mind villany nappali 45
 area/lichter::wohnzimmer_lichter_an:
-- kapcsold villany nappali
+- kapcsold mind villany nappali
 area/lichter::wohnzimmer_lichter_aus:
-- oltsd villany nappali
+- oltsd mind villany nappali
 area/spoken::alle_ausser_kugel_stt:
 - oltsd mind villany kiveve gomb
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - oltsd mind villany
 area/spoken::esszimmer_weiss:
-- allitsd villany nappalifamess white
+- allitsd mind villany nappalifamess white
 area/spoken::stt_kuche_lichte:
-- oltsd villany konyha
+- oltsd mind villany konyha
 area/spoken::stt_licht_wohnzimmer_an:
-- kapcsold villany nappali
+- kapcsold mind villany nappali
 area/spoken::stt_licht_wohnzimmer_aus:
-- oltsd villany nappali
+- oltsd mind villany nappali
 area/spoken::stt_schlafzimmer_dativ:
-- oltsd villany haloszoba
+- oltsd mind villany haloszoba
 area/spoken::wohnzimmer_gruen:
-- allitsd villany nappali green
+- allitsd mind villany nappali green
 area/spoken_more::alle_ausser_arbeitszimmer:
-- oltsd mind villany kiveve nappali
+- oltsd mind villany kiveve office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- oltsd villany nappali
+- oltsd mind villany office
 area/spoken_more::esszimmer_30:
-- allitsd villany nappalifamess 30
+- allitsd mind villany nappalifamess 30
 area/spoken_more::esszimmer_lichte_an:
-- kapcsold villany nappalifamess
+- kapcsold mind villany nappalifamess
 area/spoken_more::kuche_80:
-- allitsd villany konyha 80
+- allitsd mind villany konyha 80
 area/spoken_more::kuche_blau:
-- allitsd villany konyha blue
+- allitsd mind villany konyha blue
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - oltsd mind villany kiveve haloszoba
 area/spoken_more::wohnzimmer_gelb:
-- allitsd villany nappali yellow
+- allitsd mind villany nappali yellow

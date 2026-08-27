@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Magamistuba
+  name: Magamistubamaster
   floor: upper
   aliases:
+  - magamistubamaster
   - magamistuba
 - id: bedroom_2
   name: Magamistuba2
@@ -130,10 +131,10 @@ devices:
   - lagi
 - id: light.living_lamp
   area_id: living
-  name: elutuba vali
+  name: elutuba lamp
   aliases:
-  - elutuba vali
-  - vali
+  - elutuba lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: peredetubaess vali
@@ -190,29 +191,29 @@ devices:
   - vali
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: magamistuba lagi
+  name: magamistubamaster lagi
   aliases:
-  - magamistuba lagi
+  - magamistubamaster lagi
   - lagi
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: magamistuba ensuite
+  name: magamistubamaster ensuite
   aliases:
-  - magamistuba ensuite
+  - magamistubamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: magamistuba left ooekapp
+  name: magamistubamaster left ooekapp
   aliases:
-  - magamistuba left ooekapp
+  - magamistubamaster left ooekapp
   - ooekapp
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: magamistuba right ooekapp
+  name: magamistubamaster right ooekapp
   aliases:
-  - magamistuba right ooekapp
+  - magamistubamaster right ooekapp
   - ooekapp
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - kardin
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: magamistuba kardin
+  name: magamistubamaster kardin
   aliases:
-  - magamistuba kardin
+  - magamistubamaster kardin
   - kardin
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - kyte
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: magamistuba kyte
+  name: magamistubamaster kyte
   aliases:
-  - magamistuba kyte
+  - magamistubamaster kyte
   - kyte
 - id: climate.master_ac
   area_id: master_bedroom
-  name: kyte magamistuba
+  name: kyte magamistubamaster
   aliases:
-  - kyte magamistuba
+  - kyte magamistubamaster
   - kyte
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilaator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: magamistuba ventilaator
+  name: magamistubamaster ventilaator
   aliases:
-  - magamistuba ventilaator
+  - magamistubamaster ventilaator
   - ventilaator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - mets chauffage chambre 18
-  - chauffage chambre 18
+  - mets chauffage chambremaster 18
+  - chauffage chambremaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - mets chauffage chambre 19
-  - chauffage chambre 19
+  - mets chauffage chambremaster 19
+  - chauffage chambremaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - mets chauffage chambre 20
-  - chauffage chambre 20
+  - mets chauffage chambremaster 20
+  - chauffage chambremaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - mets chauffage chambre 21
-  - chauffage chambre 21
+  - mets chauffage chambremaster 21
+  - chauffage chambremaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - mets chauffage chambre 22
-  - chauffage chambre 22
+  - mets chauffage chambremaster 22
+  - chauffage chambremaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - mets chauffage chambre 23
-  - chauffage chambre 23
+  - mets chauffage chambremaster 23
+  - chauffage chambremaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - mets chauffage chambre 24
-  - chauffage chambre 24
+  - mets chauffage chambremaster 24
+  - chauffage chambremaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - quel chauffage chambre
-  - chauffage chambre
+  - quel chauffage chambremaster
+  - chauffage chambremaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - mets clim chambre 18
-  - clim chambre 18
+  - mets clim chambremaster 18
+  - clim chambremaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - mets clim chambre 19
-  - clim chambre 19
+  - mets clim chambremaster 19
+  - clim chambremaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - mets clim chambre 20
-  - clim chambre 20
+  - mets clim chambremaster 20
+  - clim chambremaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - mets clim chambre 21
-  - clim chambre 21
+  - mets clim chambremaster 21
+  - clim chambremaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - mets clim chambre 22
-  - clim chambre 22
+  - mets clim chambremaster 22
+  - clim chambremaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - mets clim chambre 23
-  - clim chambre 23
+  - mets clim chambremaster 23
+  - clim chambremaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - mets clim chambre 24
-  - clim chambre 24
+  - mets clim chambremaster 24
+  - clim chambremaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - quel clim chambre
-  - clim chambre
+  - quel clim chambremaster
+  - clim chambremaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - quel chauffage chambre
-  - chauffage chambre
+  - quel chauffage chambremaster
+  - chauffage chambremaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - quel clim chambre
-  - clim chambre
+  - quel clim chambremaster
+  - clim chambremaster

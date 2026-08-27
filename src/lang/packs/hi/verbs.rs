@@ -19,6 +19,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("काला", VerbKind::Color),
     ("क्या", VerbKind::Query),
     ("खोलो", VerbKind::Open),
+    ("गया", VerbKind::ListComplete),
     ("गुलाबी", VerbKind::Color),
     ("चलाओ", VerbKind::Play),
     ("चालू", VerbKind::On),
@@ -40,5 +41,5 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("सूची", VerbKind::List),
     ("सेट", VerbKind::Set),
     ("हरा", VerbKind::Color),
-    ("हो गया", VerbKind::ListComplete),
+    ("हो", VerbKind::ListComplete),
 ];

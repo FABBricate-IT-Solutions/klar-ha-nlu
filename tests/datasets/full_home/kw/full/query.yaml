@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - pyth curtayn chambour
-  - pyth chambour curtayn
+  - pyth curtayn chambourmaster
+  - pyth chambourmaster curtayn
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - pyth tomder chambour
-  - pyth chambour tomder
+  - pyth tomder chambourmaster
+  - pyth chambourmaster tomder
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - pyth tomder chambour
-  - pyth chambour tomder
+  - pyth tomder chambourmaster
+  - pyth chambourmaster tomder
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - pyth gwyns chambour
-  - pyth chambour gwyns
+  - pyth gwyns chambourmaster
+  - pyth chambourmaster gwyns
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - pyth golow chambour
-  - pyth chambour golow
+  - pyth golow chambourmaster
+  - pyth chambourmaster golow
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - pyth golow chambour
-  - pyth chambour golow
+  - pyth golow chambourmaster
+  - pyth chambourmaster golow
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - pyth ensuite chambour
-  - pyth chambour ensuite
+  - pyth ensuite chambourmaster
+  - pyth chambourmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - pyth golow chambour
-  - pyth chambour golow
+  - pyth golow chambourmaster
+  - pyth chambourmaster golow
 - name: query_light.master_bath_light
   conditions:
   - type: query

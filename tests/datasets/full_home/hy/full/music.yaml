@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - nvarel queen hyurasenyak
-  - nvarel queen herustatsuyts hyurasenyak
+  - նվագիր queen հյուրասենյակ
+  - նվագիր queen հեռուստացույց հյուրասենյակ
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - nvarel album rumours by fleetwood mac hyurasenyak
+  - նվագիր album rumours by fleetwood mac հյուրասենյակ
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - nvarel queen radio mode hyurasenyak
+  - նվագիր queen radio mode հյուրասենյակ
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - nvarel bohemian rhapsody queue hyurasenyak
+  - նվագիր bohemian rhapsody queue հյուրասենյակ
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - inch herustatsuyts hyurasenyak
-  - inch track hyurasenyak
+  - ինչ հեռուստացույց հյուրասենյակ
+  - ինչ track հյուրասենյակ
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - dir herustatsuyts hyurasenyak 10
-  - herustatsuyts hyurasenyak 10
+  - դիր հեռուստացույց հյուրասենյակ 10
+  - հեռուստացույց հյուրասենյակ 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - dir herustatsuyts hyurasenyak 20
-  - herustatsuyts hyurasenyak 20
+  - դիր հեռուստացույց հյուրասենյակ 20
+  - հեռուստացույց հյուրասենյակ 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - dir herustatsuyts hyurasenyak 30
-  - herustatsuyts hyurasenyak 30
+  - դիր հեռուստացույց հյուրասենյակ 30
+  - հեռուստացույց հյուրասենյակ 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - dir herustatsuyts hyurasenyak 50
-  - herustatsuyts hyurasenyak 50
+  - դիր հեռուստացույց հյուրասենյակ 50
+  - հեռուստացույց հյուրասենյակ 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - dir herustatsuyts hyurasenyak 80
-  - herustatsuyts hyurasenyak 80
+  - դիր հեռուստացույց հյուրասենյակ 80
+  - հեռուստացույց հյուրասենյակ 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track hyurasenyak
+  - next track հյուրասենյակ
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track hyurasenyak
+  - previous track հյուրասենյակ
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - nvarel queen khohanots
-  - nvarel queen herustatsuyts khohanots
+  - նվագիր queen խոհանոց
+  - նվագիր queen հեռուստացույց խոհանոց
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - nvarel beatles hyurasenyak
-  - nvarel beatles herustatsuyts hyurasenyak
+  - նվագիր beatles հյուրասենյակ
+  - նվագիր beatles հեռուստացույց հյուրասենյակ
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - nvarel radiohead hyurasenyak
-  - nvarel radiohead herustatsuyts hyurasenyak
+  - նվագիր radiohead հյուրասենյակ
+  - նվագիր radiohead հեռուստացույց հյուրասենյակ
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - nvarel abba hyurasenyak
-  - nvarel abba herustatsuyts hyurasenyak
+  - նվագիր abba հյուրասենյակ
+  - նվագիր abba հեռուստացույց հյուրասենյակ
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - nvarel coldplay hyurasenyak
-  - nvarel coldplay herustatsuyts hyurasenyak
+  - նվագիր coldplay հյուրասենյակ
+  - նվագիր coldplay հեռուստացույց հյուրասենյակ
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - nvarel adele hyurasenyak
-  - nvarel adele herustatsuyts hyurasenyak
+  - նվագիր adele հյուրասենյակ
+  - նվագիր adele հեռուստացույց հյուրասենյակ
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - nvarel prince hyurasenyak
-  - nvarel prince herustatsuyts hyurasenyak
+  - նվագիր prince հյուրասենյակ
+  - նվագիր prince հեռուստացույց հյուրասենյակ
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - nvarel bowie hyurasenyak
-  - nvarel bowie herustatsuyts hyurasenyak
+  - նվագիր bowie հյուրասենյակ
+  - նվագիր bowie հեռուստացույց հյուրասենյակ
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - nvarel nirvana hyurasenyak
-  - nvarel nirvana herustatsuyts hyurasenyak
+  - նվագիր nirvana հյուրասենյակ
+  - նվագիր nirvana հեռուստացույց հյուրասենյակ
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - nvarel eagles hyurasenyak
-  - nvarel eagles herustatsuyts hyurasenyak
+  - նվագիր eagles հյուրասենյակ
+  - նվագիր eagles հեռուստացույց հյուրասենյակ
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - nvarel madonna hyurasenyak
-  - nvarel madonna herustatsuyts hyurasenyak
+  - նվագիր madonna հյուրասենյակ
+  - նվագիր madonna հեռուստացույց հյուրասենյակ
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - nvarel mozart hyurasenyak
-  - nvarel mozart herustatsuyts hyurasenyak
+  - նվագիր mozart հյուրասենյակ
+  - նվագիր mozart հեռուստացույց հյուրասենյակ
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - nvarel daft punk hyurasenyak
-  - nvarel daft punk herustatsuyts hyurasenyak
+  - նվագիր daft punk հյուրասենյակ
+  - նվագիր daft punk հեռուստացույց հյուրասենյակ
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - nvarel biafra hyurasenyak
-  - nvarel biafra herustatsuyts hyurasenyak
+  - նվագիր biafra հյուրասենյակ
+  - նվագիր biafra հեռուստացույց հյուրասենյակ
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - nvarel queen khohanots
-  - nvarel queen herustatsuyts khohanots
+  - նվագիր queen խոհանոց
+  - նվագիր queen հեռուստացույց խոհանոց
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - nvarel beatles khohanots
-  - nvarel beatles herustatsuyts khohanots
+  - նվագիր beatles խոհանոց
+  - նվագիր beatles հեռուստացույց խոհանոց
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - nvarel radiohead khohanots
-  - nvarel radiohead herustatsuyts khohanots
+  - նվագիր radiohead խոհանոց
+  - նվագիր radiohead հեռուստացույց խոհանոց
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - nvarel abba khohanots
-  - nvarel abba herustatsuyts khohanots
+  - նվագիր abba խոհանոց
+  - նվագիր abba հեռուստացույց խոհանոց
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - nvarel coldplay khohanots
-  - nvarel coldplay herustatsuyts khohanots
+  - նվագիր coldplay խոհանոց
+  - նվագիր coldplay հեռուստացույց խոհանոց
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - nvarel adele khohanots
-  - nvarel adele herustatsuyts khohanots
+  - նվագիր adele խոհանոց
+  - նվագիր adele հեռուստացույց խոհանոց
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - nvarel prince khohanots
-  - nvarel prince herustatsuyts khohanots
+  - նվագիր prince խոհանոց
+  - նվագիր prince հեռուստացույց խոհանոց
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - nvarel bowie khohanots
-  - nvarel bowie herustatsuyts khohanots
+  - նվագիր bowie խոհանոց
+  - նվագիր bowie հեռուստացույց խոհանոց
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - nvarel nirvana khohanots
-  - nvarel nirvana herustatsuyts khohanots
+  - նվագիր nirvana խոհանոց
+  - նվագիր nirvana հեռուստացույց խոհանոց
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - nvarel eagles khohanots
-  - nvarel eagles herustatsuyts khohanots
+  - նվագիր eagles խոհանոց
+  - նվագիր eagles հեռուստացույց խոհանոց
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - nvarel madonna khohanots
-  - nvarel madonna herustatsuyts khohanots
+  - նվագիր madonna խոհանոց
+  - նվագիր madonna հեռուստացույց խոհանոց
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - nvarel mozart khohanots
-  - nvarel mozart herustatsuyts khohanots
+  - նվագիր mozart խոհանոց
+  - նվագիր mozart հեռուստացույց խոհանոց
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - nvarel daft punk khohanots
-  - nvarel daft punk herustatsuyts khohanots
+  - նվագիր daft punk խոհանոց
+  - նվագիր daft punk հեռուստացույց խոհանոց
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - nvarel biafra khohanots
-  - nvarel biafra herustatsuyts khohanots
+  - նվագիր biafra խոհանոց
+  - նվագիր biafra հեռուստացույց խոհանոց
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - nvarel queen office
-  - nvarel queen herustatsuyts office
+  - նվագիր queen office
+  - նվագիր queen հեռուստացույց office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - nvarel beatles office
-  - nvarel beatles herustatsuyts office
+  - նվագիր beatles office
+  - նվագիր beatles հեռուստացույց office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - nvarel radiohead office
-  - nvarel radiohead herustatsuyts office
+  - նվագիր radiohead office
+  - նվագիր radiohead հեռուստացույց office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - nvarel abba office
-  - nvarel abba herustatsuyts office
+  - նվագիր abba office
+  - նվագիր abba հեռուստացույց office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - nvarel coldplay office
-  - nvarel coldplay herustatsuyts office
+  - նվագիր coldplay office
+  - նվագիր coldplay հեռուստացույց office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - nvarel adele office
-  - nvarel adele herustatsuyts office
+  - նվագիր adele office
+  - նվագիր adele հեռուստացույց office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - nvarel prince office
-  - nvarel prince herustatsuyts office
+  - նվագիր prince office
+  - նվագիր prince հեռուստացույց office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - nvarel bowie office
-  - nvarel bowie herustatsuyts office
+  - նվագիր bowie office
+  - նվագիր bowie հեռուստացույց office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - nvarel nirvana office
-  - nvarel nirvana herustatsuyts office
+  - նվագիր nirvana office
+  - նվագիր nirvana հեռուստացույց office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - nvarel eagles office
-  - nvarel eagles herustatsuyts office
+  - նվագիր eagles office
+  - նվագիր eagles հեռուստացույց office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - nvarel madonna office
-  - nvarel madonna herustatsuyts office
+  - նվագիր madonna office
+  - նվագիր madonna հեռուստացույց office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - nvarel mozart office
-  - nvarel mozart herustatsuyts office
+  - նվագիր mozart office
+  - նվագիր mozart հեռուստացույց office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - nvarel daft punk office
-  - nvarel daft punk herustatsuyts office
+  - նվագիր daft punk office
+  - նվագիր daft punk հեռուստացույց office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - nvarel biafra office
-  - nvarel biafra herustatsuyts office
+  - նվագիր biafra office
+  - նվագիր biafra հեռուստացույց office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - nvarel queen radio mode hyurasenyak
+  - նվագիր queen radio mode հյուրասենյակ
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - inch herustatsuyts hyurasenyak
-  - inch track hyurasenyak
+  - ինչ հեռուստացույց հյուրասենյակ
+  - ինչ track հյուրասենյակ
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - nvarel queen radio mode khohanots
+  - նվագիր queen radio mode խոհանոց
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - inch herustatsuyts khohanots
-  - inch track khohanots
+  - ինչ հեռուստացույց խոհանոց
+  - ինչ track խոհանոց
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - nvarel queen radio mode office
+  - նվագիր queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - inch herustatsuyts office
-  - inch track office
+  - ինչ հեռուստացույց office
+  - ինչ track office

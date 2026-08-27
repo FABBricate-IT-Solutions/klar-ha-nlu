@@ -1,19 +1,19 @@
 m0_exact/representative::exact_clarify:
-- tsukete raito ribingu
+- つけて 電気 リビング
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread risuto
+- 完了 bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- tsukete tenjo shinshitsu3 と keshite raito genkan
+- つけて tenjo shinshitsu3 then 消して 電気 genkan
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
-- add milk risuto
+- 追加 milk リスト
 m0_exact/representative::exact_state_persistence:
-- - nani raito genkan
+- - 何 電気 genkan
   - '12'
 m0_exact/representative::exact_timer:
-- tsukete taimaa oven 2 fun
+- つけて タイマー oven 2 分
 m0_exact/representative::exact_timer_resume_preserves_duration:
-- tsukete taimaa oven
+- つけて タイマー oven
 m0_exact/representative::exact_todo_list:
-- add apples risuto
+- 追加 apples aufgabenliste

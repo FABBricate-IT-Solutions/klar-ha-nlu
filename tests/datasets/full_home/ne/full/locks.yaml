@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - tala tala pravesh
-  - tala pravesh tala
+  - ताला ताला pravesh
+  - ताला pravesh ताला
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - khol tala pravesh
-  - tala pravesh khol
+  - खोल ताला pravesh
+  - ताला pravesh खोल
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tala tala garage
-  - tala garage tala
+  - ताला ताला garage
+  - ताला garage ताला
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - khol tala garage
-  - tala garage khol
+  - खोल ताला garage
+  - ताला garage खोल
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - tala tala pravesh
-  - tala pravesh tala
+  - ताला ताला pravesh
+  - ताला pravesh ताला
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tala tala garage
-  - tala garage tala
+  - ताला ताला garage
+  - ताला garage ताला

@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - nyalakan lampu kamar
+  - nyalakan lampu kamarmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan lampu kamar
+  - matikan lampu kamarmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - nyalakan langit kamar
+  - nyalakan langit kamarmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - matikan langit kamar
+  - matikan langit kamarmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - nyalakan nakas kamar
+  - nyalakan nakas kamarmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - matikan nakas kamar
+  - matikan nakas kamarmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

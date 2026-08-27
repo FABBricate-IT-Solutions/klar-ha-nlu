@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - hachchu hallige chavani mattu hallige lamp
-  - hallige chavani mattu hallige lamp hachchu
+  - ಹಚ್ಚು ಹಾಲ್ chavani ಮತ್ತು ಹಾಲ್ belaku
+  - ಹಾಲ್ chavani ಮತ್ತು ಹಾಲ್ belaku ಹಚ್ಚು
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - arisu hallige chavani mattu hallige lamp
-  - hallige chavani mattu hallige lamp arisu
+  - ಆರಿಸು ಹಾಲ್ chavani ಮತ್ತು ಹಾಲ್ belaku
+  - ಹಾಲ್ chavani ಮತ್ತು ಹಾಲ್ belaku ಆರಿಸು
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - hachchu aduge chavani mattu aduge dweepa
-  - aduge chavani mattu aduge dweepa hachchu
+  - ಹಚ್ಚು ಅಡುಗೆ chavani ಮತ್ತು ಅಡುಗೆ dweepa
+  - ಅಡುಗೆ chavani ಮತ್ತು ಅಡುಗೆ dweepa ಹಚ್ಚು
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - arisu aduge chavani mattu aduge dweepa
-  - aduge chavani mattu aduge dweepa arisu
+  - ಆರಿಸು ಅಡುಗೆ chavani ಮತ್ತು ಅಡುಗೆ dweepa
+  - ಅಡುಗೆ chavani ಮತ್ತು ಅಡುಗೆ dweepa ಆರಿಸು
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - hachchu hallige chavani mattu aduge dweepa
-  - hallige chavani mattu aduge dweepa hachchu
+  - ಹಚ್ಚು ಹಾಲ್ chavani ಮತ್ತು ಅಡುಗೆ dweepa
+  - ಹಾಲ್ chavani ಮತ್ತು ಅಡುಗೆ dweepa ಹಚ್ಚು
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - arisu hallige chavani mattu aduge dweepa
-  - hallige chavani mattu aduge dweepa arisu
+  - ಆರಿಸು ಹಾಲ್ chavani ಮತ್ತು ಅಡುಗೆ dweepa
+  - ಹಾಲ್ chavani ಮತ್ತು ಅಡುಗೆ dweepa ಆರಿಸು
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - hachchu office chavani mattu hallway belaku
-  - office chavani mattu hallway belaku hachchu
+  - ಹಚ್ಚು office chavani ಮತ್ತು hallway ಬೆಳಕು
+  - office chavani ಮತ್ತು hallway ಬೆಳಕು ಹಚ್ಚು
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - arisu office chavani mattu hallway belaku
-  - office chavani mattu hallway belaku arisu
+  - ಆರಿಸು office chavani ಮತ್ತು hallway ಬೆಳಕು
+  - office chavani ಮತ್ತು hallway ಬೆಳಕು ಆರಿಸು
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - hachchu garden belaku mattu garage belaku
-  - garden belaku mattu garage belaku hachchu
+  - ಹಚ್ಚು garden ಬೆಳಕು ಮತ್ತು garage ಬೆಳಕು
+  - garden ಬೆಳಕು ಮತ್ತು garage ಬೆಳಕು ಹಚ್ಚು
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - arisu garden belaku mattu garage belaku
-  - garden belaku mattu garage belaku arisu
+  - ಆರಿಸು garden ಬೆಳಕು ಮತ್ತು garage ಬೆಳಕು
+  - garden ಬೆಳಕು ಮತ್ತು garage ಬೆಳಕು ಆರಿಸು
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - hachchu shayanakone chavani mattu shayanakone mancha
-  - shayanakone chavani mattu shayanakone mancha hachchu
+  - ಹಚ್ಚು shayanakonemaster chavani ಮತ್ತು shayanakonemaster mancha
+  - shayanakonemaster chavani ಮತ್ತು shayanakonemaster mancha ಹಚ್ಚು
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - arisu shayanakone chavani mattu shayanakone mancha
-  - shayanakone chavani mattu shayanakone mancha arisu
+  - ಆರಿಸು shayanakonemaster chavani ಮತ್ತು shayanakonemaster mancha
+  - shayanakonemaster chavani ಮತ್ತು shayanakonemaster mancha ಆರಿಸು
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - hachchu kutumba chavani mattu kutumbaess belaku
-  - kutumba chavani mattu kutumbaess belaku hachchu
+  - ಹಚ್ಚು kutumba chavani ಮತ್ತು kutumbaess ಬೆಳಕು
+  - kutumba chavani ಮತ್ತು kutumbaess ಬೆಳಕು ಹಚ್ಚು
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - arisu kutumba chavani mattu kutumbaess belaku
-  - kutumba chavani mattu kutumbaess belaku arisu
+  - ಆರಿಸು kutumba chavani ಮತ್ತು kutumbaess ಬೆಳಕು
+  - kutumba chavani ಮತ್ತು kutumbaess ಬೆಳಕು ಆರಿಸು
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - hachchu basement belaku mattu ogeyuva belaku
-  - basement belaku mattu ogeyuva belaku hachchu
+  - ಹಚ್ಚು basement ಬೆಳಕು ಮತ್ತು ogeyuva ಬೆಳಕು
+  - basement ಬೆಳಕು ಮತ್ತು ogeyuva ಬೆಳಕು ಹಚ್ಚು
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - arisu basement belaku mattu ogeyuva belaku
-  - basement belaku mattu ogeyuva belaku arisu
+  - ಆರಿಸು basement ಬೆಳಕು ಮತ್ತು ogeyuva ಬೆಳಕು
+  - basement ಬೆಳಕು ಮತ್ತು ogeyuva ಬೆಳಕು ಆರಿಸು
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - hachchu shayanakone fanu mattu aduge dweepa
-  - shayanakone fanu mattu aduge dweepa hachchu
+  - ಹಚ್ಚು shayanakonemaster ಫ್ಯಾನ್ ಮತ್ತು ಅಡುಗೆ dweepa
+  - shayanakonemaster ಫ್ಯಾನ್ ಮತ್ತು ಅಡುಗೆ dweepa ಹಚ್ಚು
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - hachchu hallige parade mattu hallige chavani
-  - hallige parade mattu hallige chavani hachchu
+  - ಹಚ್ಚು ಹಾಲ್ ಪರದೆ ಮತ್ತು ಹಾಲ್ chavani
+  - ಹಾಲ್ ಪರದೆ ಮತ್ತು ಹಾಲ್ chavani ಹಚ್ಚು
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - hachchu ogeyuva washing mattu ogeyuva dryer
-  - ogeyuva washing mattu ogeyuva dryer hachchu
+  - ಹಚ್ಚು ogeyuva washing ಮತ್ತು ogeyuva dryer
+  - ogeyuva washing ಮತ್ತು ogeyuva dryer ಹಚ್ಚು
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku hallige mattu aduge
-  - belaku hallige mattu aduge arisu
+  - ಆರಿಸು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ
+  - ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ ಆರಿಸು
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku office mattu hallway
-  - belaku office mattu hallway arisu
+  - ಆರಿಸು ಬೆಳಕು office ಮತ್ತು hallway
+  - ಬೆಳಕು office ಮತ್ತು hallway ಆರಿಸು
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku garage mattu garden
-  - belaku garage mattu garden arisu
+  - ಆರಿಸು ಬೆಳಕು garage ಮತ್ತು garden
+  - ಬೆಳಕು garage ಮತ್ತು garden ಆರಿಸು
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shayanakone mattu main bath
-  - belaku shayanakone mattu main bath arisu
+  - ಆರಿಸು ಬೆಳಕು shayanakonemaster ಮತ್ತು main bath
+  - ಬೆಳಕು shayanakonemaster ಮತ್ತು main bath ಆರಿಸು
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku kutumba mattu kutumbaess
-  - belaku kutumba mattu kutumbaess arisu
+  - ಆರಿಸು ಬೆಳಕು kutumba ಮತ್ತು kutumbaess
+  - ಬೆಳಕು kutumba ಮತ್ತು kutumbaess ಆರಿಸು
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku hallige mattu kutumbaess mattu aduge
-  - belaku hallige kutumbaess mattu aduge arisu
+  - ಆರಿಸು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು kutumbaess ಮತ್ತು ಅಡುಗೆ
+  - ಬೆಳಕು ಹಾಲ್ kutumbaess ಮತ್ತು ಅಡುಗೆ ಆರಿಸು
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku office mattu hallway mattu garage
-  - belaku office hallway mattu garage hachchu
+  - ಹಚ್ಚು ಬೆಳಕು office ಮತ್ತು hallway ಮತ್ತು garage
+  - ಬೆಳಕು office hallway ಮತ್ತು garage ಹಚ್ಚು
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku garden mattu basement mattu ogeyuva
-  - belaku garden basement mattu ogeyuva arisu
+  - ಆರಿಸು ಬೆಳಕು garden ಮತ್ತು basement ಮತ್ತು ogeyuva
+  - ಬೆಳಕು garden basement ಮತ್ತು ogeyuva ಆರಿಸು
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - arisu ella belaku hodake dweepa aduge
-  - ella belaku arisu hodake dweepa aduge
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake dweepa ಅಡುಗೆ
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake dweepa ಅಡುಗೆ
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - arisu ella belaku hodake lamp hallige
-  - ella belaku arisu hodake lamp hallige
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake belaku ಹಾಲ್
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake belaku ಹಾಲ್
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake garden
-  - ella belaku arisu hodake garden
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake garden
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake chavani office
-  - ella belaku arisu hodake chavani office
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake chavani office
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake chavani office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake basement
-  - ella belaku arisu hodake basement
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake basement
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku hodake aduge
-  - ella belaku hachchu hodake aduge
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು hodake ಅಡುಗೆ
+  - ಎಲ್ಲ ಬೆಳಕು ಹಚ್ಚು hodake ಅಡುಗೆ
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku hodake office
-  - ella belaku hachchu hodake office
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು hodake office
+  - ಎಲ್ಲ ಬೆಳಕು ಹಚ್ಚು hodake office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku hodake garden
-  - ella belaku hachchu hodake garden
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು hodake garden
+  - ಎಲ್ಲ ಬೆಳಕು ಹಚ್ಚು hodake garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku hodake hallige
-  - ella belaku hachchu hodake hallige
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು hodake ಹಾಲ್
+  - ಎಲ್ಲ ಬೆಳಕು ಹಚ್ಚು hodake ಹಾಲ್
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku hodake garage
-  - ella belaku hachchu hodake garage
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು hodake garage
+  - ಎಲ್ಲ ಬೆಳಕು ಹಚ್ಚು hodake garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - arisu ella belaku aduge hodake dweepa
-  - ella belaku aduge arisu hodake dweepa
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು ಅಡುಗೆ hodake dweepa
+  - ಎಲ್ಲ ಬೆಳಕು ಅಡುಗೆ ಆರಿಸು hodake dweepa
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - arisu ella belaku hallige hodake lamp
-  - ella belaku hallige arisu hodake lamp
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು ಹಾಲ್ hodake belaku
+  - ಎಲ್ಲ ಬೆಳಕು ಹಾಲ್ ಆರಿಸು hodake belaku
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - hachchu ella belaku hodake dweepa aduge
-  - ella belaku hachchu hodake dweepa aduge
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು hodake dweepa ಅಡುಗೆ
+  - ಎಲ್ಲ ಬೆಳಕು ಹಚ್ಚು hodake dweepa ಅಡುಗೆ
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake aduge mattu office
-  - ella belaku arisu hodake aduge mattu office
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake ಅಡುಗೆ ಮತ್ತು office
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake ಅಡುಗೆ ಮತ್ತು office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake hallige mattu shayanakone
-  - ella belaku arisu hodake hallige mattu shayanakone
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake ಹಾಲ್ ಮತ್ತು shayanakonemaster
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake ಹಾಲ್ ಮತ್ತು shayanakonemaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake garage mattu garden
-  - ella belaku arisu hodake garage mattu garden
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake garage ಮತ್ತು garden
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake garage ಮತ್ತು garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku kelage hodake aduge
-  - ella belaku kelage arisu hodake aduge
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು kelage hodake ಅಡುಗೆ
+  - ಎಲ್ಲ ಬೆಳಕು kelage ಆರಿಸು hodake ಅಡುಗೆ
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku mele hodake shayanakone
-  - ella belaku mele arisu hodake shayanakone
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು mele hodake shayanakonemaster
+  - ಎಲ್ಲ ಬೆಳಕು mele ಆರಿಸು hodake shayanakonemaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku kelage hodake office
-  - ella belaku kelage arisu hodake office
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು kelage hodake office
+  - ಎಲ್ಲ ಬೆಳಕು kelage ಆರಿಸು hodake office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - tere parade hallige mattu shayanakone
-  - parade hallige mattu shayanakone tere
+  - ತೆರೆ ಪರದೆ ಹಾಲ್ ಮತ್ತು shayanakonemaster
+  - ಪರದೆ ಹಾಲ್ ಮತ್ತು shayanakonemaster ತೆರೆ
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - muchchu parade hallige mattu shayanakone
-  - parade hallige mattu shayanakone muchchu
+  - ಮುಚ್ಚು ಪರದೆ ಹಾಲ್ ಮತ್ತು shayanakonemaster
+  - ಪರದೆ ಹಾಲ್ ಮತ್ತು shayanakonemaster ಮುಚ್ಚು
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - hondisu bisi hallige mattu shayanakone 21
-  - bisi hallige mattu shayanakone 21
+  - ಹೊಂದಿಸು ಬಿಸಿ ಹಾಲ್ ಮತ್ತು shayanakonemaster 21
+  - ಬಿಸಿ ಹಾಲ್ ಮತ್ತು shayanakonemaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku hallige mattu aduge 50
-  - belaku hallige mattu aduge 50
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ 50
+  - ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku hallige mattu aduge red
-  - belaku hallige mattu aduge red
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ red
+  - ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - enu belaku hallige mattu aduge
-  - belaku hallige mattu aduge
+  - ಏನು ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ
+  - ಬೆಳಕು ಹಾಲ್ ಮತ್ತು ಅಡುಗೆ
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - enu bisi hallige mattu arisu belaku aduge
-  - arisu belaku aduge mattu enu bisi hallige
+  - ಏನು ಬಿಸಿ ಹಾಲ್ ಮತ್ತು ಆರಿಸು ಬೆಳಕು ಅಡುಗೆ
+  - ಆರಿಸು ಬೆಳಕು ಅಡುಗೆ ಮತ್ತು ಏನು ಬಿಸಿ ಹಾಲ್
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - biga front bagilu mattu garage bagilu
-  - biga biga pravesha mattu garage
+  - ಬೀಗ front ಬಾಗಿಲು ಮತ್ತು garage ಬಾಗಿಲು
+  - ಬೀಗ ಬೀಗ pravesha ಮತ್ತು garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - hachchu cinema mattu arisu belaku shauchalaya
-  - arisu belaku shauchalaya mattu hachchu cinema
+  - ಹಚ್ಚು cinema ಮತ್ತು ಆರಿಸು ಬೆಳಕು shauchalaya
+  - ಆರಿಸು ಬೆಳಕು shauchalaya ಮತ್ತು ಹಚ್ಚು cinema

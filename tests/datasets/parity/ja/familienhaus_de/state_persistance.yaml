@@ -1,138 +1,138 @@
 state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
-- - nani kaaten shinshitsu2
+- - 何 カーテン shinshitsu2
   - ' 51'
 state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
-- - nani tenjo shinshitsu2
+- - 何 tenjo shinshitsu2
   - ' 20'
 state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
-- - nani kaaten shinshitsu3
+- - 何 カーテン shinshitsu3
   - ' 67'
 state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
-- - nani tenjo shinshitsu3
+- - 何 tenjo shinshitsu3
   - ' 63'
 state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
-- - nani tenjo shinshitsu4
+- - 何 tenjo shinshitsu4
   - ' 80'
 state_persistance/area_dining_lights::dining_lights_set_brightness:
-- - nani raito famiriiess
+- - 何 電気 famiriiess
   - ' 68'
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - nani raito genkan
+- - 何 電気 genkan
   - ' 54'
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
-- - nani tenjo famirii
+- - 何 tenjo famirii
   - ' 94'
 state_persistance/area_garage_covers::garage_covers_set_position:
-- - nani kaaten garage
+- - 何 カーテン garage
   - ' 18'
 state_persistance/area_garage_lights::garage_lights_set_brightness:
-- - nani raito garage
+- - 何 電気 garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - nani raito genkangang と nani raito toire
+- - 何 電気 genkangang then 何 電気 toire
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - nani raito genkangang
+- - 何 電気 genkangang
   - ' 69'
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
-- - nani raito kitchin
+- - 何 電気 キッチン
   - ' 46'
 state_persistance/area_laundry_lights::laundry_lights_set_brightness:
-- - nani raito sentakushitsu
+- - 何 電気 sentakushitsu
   - ' 62'
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - nani eakon ribingu
+- - 何 エアコン リビング
   - ' 95'
 state_persistance/area_living_covers::living_covers_set_position:
-- - nani kaaten ribingu
+- - 何 カーテン リビング
   - ' 86'
 state_persistance/area_living_lights::living_lights_set_brightness:
-- - nani raito ribingu
+- - 何 電気 リビング
   - ' 55'
 state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
-- - nani raito main bath
+- - 何 電気 main bath
   - ' 96'
 state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
-- - nani raito shuyokushitsu
+- - 何 電気 shuyokushitsu
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - nani eakon shinshitsu と nani eakon ribingu
+- - 何 エアコン shinshitsumaster then 何 エアコン リビング
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - nani kaaten shinshitsu と nani kaaten ribingu
+- - 何 カーテン shinshitsumaster then 何 カーテン リビング
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - nani eakon shinshitsu
+- - 何 エアコン shinshitsumaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - nani kaaten shinshitsu
+- - 何 カーテン shinshitsumaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
-- - nani raito toire
+- - 何 電気 toire
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
-- - nani kaaten garage
-  - shimete
+- - 何 カーテン garage
+  - 閉めて
 state_persistance/device_cover_garage_door::cover_garage_door_open:
-- - nani kaaten garage
-  - akete
+- - 何 カーテン garage
+  - 開けて
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
-- - nani kaaten garage
+- - 何 カーテン garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
-- - nani kaaten ribingu
-  - shimete
+- - 何 カーテン リビング
+  - 閉めて
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
-- - nani kaaten ribingu
-  - akete
+- - 何 カーテン リビング
+  - 開けて
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
-- - nani kaaten ribingu
+- - 何 カーテン リビング
   - '85'
 state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
-- - nani fan famirii
+- - 何 ファン famirii
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
-- - nani fan famirii
-  - keshite
+- - 何 ファン famirii
+  - 消して
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
-- - nani fan famirii
-  - tsukete
+- - 何 ファン famirii
+  - つけて
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - nani raito genkan
+- - 何 電気 genkan
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - nani raito genkan
-  - keshite
+- - 何 電気 genkan
+  - 消して
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - nani raito genkan
-  - tsukete
+- - 何 電気 genkan
+  - つけて
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - nani kagi genkan
-  - kagi
+- - 何 鍵 genkan
+  - 鍵
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - nani kagi genkan
-  - akete
+- - 何 鍵 genkan
+  - 開けて
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
-- - nani kagi garage
-  - kagi
+- - 何 鍵 garage
+  - 鍵
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
-- - nani kagi garage
-  - akete
+- - 何 鍵 garage
+  - 開けて
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
-- - nani terebi famirii
+- - 何 テレビ famirii
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
-- - nani terebi famirii
-  - keshite
+- - 何 テレビ famirii
+  - 消して
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
-- - nani terebi famirii
-  - tsukete
+- - 何 テレビ famirii
+  - つけて
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
-- - nani terebi ribingu
+- - 何 テレビ リビング
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
-- - nani terebi ribingu
-  - keshite
+- - 何 テレビ リビング
+  - 消して
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
-- - nani terebi ribingu
-  - tsukete
+- - 何 テレビ リビング
+  - つけて

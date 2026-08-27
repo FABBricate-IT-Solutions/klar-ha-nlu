@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku pravesha
-  - belaku pravesha hachchu
+  - ಹಚ್ಚು ಬೆಳಕು pravesha
+  - ಬೆಳಕು pravesha ಹಚ್ಚು
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku pravesha
-  - belaku pravesha arisu
+  - ಆರಿಸು ಬೆಳಕು pravesha
+  - ಬೆಳಕು pravesha ಆರಿಸು
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku hallige
-  - belaku hallige hachchu
+  - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - ಬೆಳಕು ಹಾಲ್ ಹಚ್ಚು
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku hallige
-  - belaku hallige arisu
+  - ಆರಿಸು ಬೆಳಕು ಹಾಲ್
+  - ಬೆಳಕು ಹಾಲ್ ಆರಿಸು
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku kutumbaess
-  - belaku kutumbaess hachchu
+  - ಹಚ್ಚು ಬೆಳಕು kutumbaess
+  - ಬೆಳಕು kutumbaess ಹಚ್ಚು
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku kutumbaess
-  - belaku kutumbaess arisu
+  - ಆರಿಸು ಬೆಳಕು kutumbaess
+  - ಬೆಳಕು kutumbaess ಆರಿಸು
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku aduge
-  - belaku aduge hachchu
+  - ಹಚ್ಚು ಬೆಳಕು ಅಡುಗೆ
+  - ಬೆಳಕು ಅಡುಗೆ ಹಚ್ಚು
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku aduge
-  - belaku aduge arisu
+  - ಆರಿಸು ಬೆಳಕು ಅಡುಗೆ
+  - ಬೆಳಕು ಅಡುಗೆ ಆರಿಸು
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku kutumba
-  - belaku kutumba hachchu
+  - ಹಚ್ಚು ಬೆಳಕು kutumba
+  - ಬೆಳಕು kutumba ಹಚ್ಚು
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku kutumba
-  - belaku kutumba arisu
+  - ಆರಿಸು ಬೆಳಕು kutumba
+  - ಬೆಳಕು kutumba ಆರಿಸು
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku ogeyuva
-  - belaku ogeyuva hachchu
+  - ಹಚ್ಚು ಬೆಳಕು ogeyuva
+  - ಬೆಳಕು ogeyuva ಹಚ್ಚು
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku ogeyuva
-  - belaku ogeyuva arisu
+  - ಆರಿಸು ಬೆಳಕು ogeyuva
+  - ಬೆಳಕು ogeyuva ಆರಿಸು
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shauchalaya
-  - belaku shauchalaya hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shauchalaya
+  - ಬೆಳಕು shauchalaya ಹಚ್ಚು
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shauchalaya
-  - belaku shauchalaya arisu
+  - ಆರಿಸು ಬೆಳಕು shauchalaya
+  - ಬೆಳಕು shauchalaya ಆರಿಸು
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku garage
-  - belaku garage hachchu
+  - ಹಚ್ಚು ಬೆಳಕು garage
+  - ಬೆಳಕು garage ಹಚ್ಚು
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku garage
-  - belaku garage arisu
+  - ಆರಿಸು ಬೆಳಕು garage
+  - ಬೆಳಕು garage ಆರಿಸು
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku office
-  - belaku office hachchu
+  - ಹಚ್ಚು ಬೆಳಕು office
+  - ಬೆಳಕು office ಹಚ್ಚು
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku office
-  - belaku office arisu
+  - ಆರಿಸು ಬೆಳಕು office
+  - ಬೆಳಕು office ಆರಿಸು
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku garden
-  - belaku garden hachchu
+  - ಹಚ್ಚು ಬೆಳಕು garden
+  - ಬೆಳಕು garden ಹಚ್ಚು
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku garden
-  - belaku garden arisu
+  - ಆರಿಸು ಬೆಳಕು garden
+  - ಬೆಳಕು garden ಆರಿಸು
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone
-  - belaku shayanakone hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shayanakonemaster
+  - ಬೆಳಕು shayanakonemaster ಹಚ್ಚು
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shayanakone
-  - belaku shayanakone arisu
+  - ಆರಿಸು ಬೆಳಕು shayanakonemaster
+  - ಬೆಳಕು shayanakonemaster ಆರಿಸು
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone2
-  - belaku shayanakone2 hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shayanakone2
+  - ಬೆಳಕು shayanakone2 ಹಚ್ಚು
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shayanakone2
-  - belaku shayanakone2 arisu
+  - ಆರಿಸು ಬೆಳಕು shayanakone2
+  - ಬೆಳಕು shayanakone2 ಆರಿಸು
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone3
-  - belaku shayanakone3 hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shayanakone3
+  - ಬೆಳಕು shayanakone3 ಹಚ್ಚು
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shayanakone3
-  - belaku shayanakone3 arisu
+  - ಆರಿಸು ಬೆಳಕು shayanakone3
+  - ಬೆಳಕು shayanakone3 ಆರಿಸು
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku shayanakone4
-  - belaku shayanakone4 hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shayanakone4
+  - ಬೆಳಕು shayanakone4 ಹಚ್ಚು
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku shayanakone4
-  - belaku shayanakone4 arisu
+  - ಆರಿಸು ಬೆಳಕು shayanakone4
+  - ಬೆಳಕು shayanakone4 ಆರಿಸು
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku mukhyasnana
-  - belaku mukhyasnana hachchu
+  - ಹಚ್ಚು ಬೆಳಕು mukhyasnana
+  - ಬೆಳಕು mukhyasnana ಹಚ್ಚು
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku mukhyasnana
-  - belaku mukhyasnana arisu
+  - ಆರಿಸು ಬೆಳಕು mukhyasnana
+  - ಬೆಳಕು mukhyasnana ಆರಿಸು
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku main bath
-  - belaku main bath hachchu
+  - ಹಚ್ಚು ಬೆಳಕು main bath
+  - ಬೆಳಕು main bath ಹಚ್ಚು
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku main bath
-  - belaku main bath arisu
+  - ಆರಿಸು ಬೆಳಕು main bath
+  - ಬೆಳಕು main bath ಆರಿಸು
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku hallway
-  - belaku hallway hachchu
+  - ಹಚ್ಚು ಬೆಳಕು hallway
+  - ಬೆಳಕು hallway ಹಚ್ಚು
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku hallway
-  - belaku hallway arisu
+  - ಆರಿಸು ಬೆಳಕು hallway
+  - ಬೆಳಕು hallway ಆರಿಸು
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu belaku basement
-  - belaku basement hachchu
+  - ಹಚ್ಚು ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಹಚ್ಚು
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu belaku basement
-  - belaku basement arisu
+  - ಆರಿಸು ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಆರಿಸು
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani hallige
-  - chavani hallige hachchu
+  - ಹಚ್ಚು chavani ಹಾಲ್
+  - chavani ಹಾಲ್ ಹಚ್ಚು
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - arisu chavani hallige
-  - chavani hallige arisu
+  - ಆರಿಸು chavani ಹಾಲ್
+  - chavani ಹಾಲ್ ಆರಿಸು
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani hallige 20
-  - chavani hallige 20
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 20
+  - chavani ಹಾಲ್ 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani hallige 40
-  - chavani hallige 40
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 40
+  - chavani ಹಾಲ್ 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani hallige 50
-  - chavani hallige 50
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 50
+  - chavani ಹಾಲ್ 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani hallige 60
-  - chavani hallige 60
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 60
+  - chavani ಹಾಲ್ 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani hallige 80
-  - chavani hallige 80
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 80
+  - chavani ಹಾಲ್ 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani hallige 100
-  - chavani hallige 100
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ 100
+  - chavani ಹಾಲ್ 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - hachchu lamp hallige
-  - lamp hallige hachchu
+  - ಹಚ್ಚು belaku ಹಾಲ್
+  - belaku ಹಾಲ್ ಹಚ್ಚು
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - arisu lamp hallige
-  - lamp hallige arisu
+  - ಆರಿಸು belaku ಹಾಲ್
+  - belaku ಹಾಲ್ ಆರಿಸು
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu lamp hallige 20
-  - lamp hallige 20
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ 20
+  - belaku ಹಾಲ್ 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu lamp hallige 40
-  - lamp hallige 40
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ 40
+  - belaku ಹಾಲ್ 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu lamp hallige 50
-  - lamp hallige 50
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ 50
+  - belaku ಹಾಲ್ 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu lamp hallige 60
-  - lamp hallige 60
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ 60
+  - belaku ಹಾಲ್ 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu lamp hallige 80
-  - lamp hallige 80
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ 80
+  - belaku ಹಾಲ್ 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu lamp hallige 100
-  - lamp hallige 100
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ 100
+  - belaku ಹಾಲ್ 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani aduge
-  - chavani aduge hachchu
+  - ಹಚ್ಚು chavani ಅಡುಗೆ
+  - chavani ಅಡುಗೆ ಹಚ್ಚು
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - arisu chavani aduge
-  - chavani aduge arisu
+  - ಆರಿಸು chavani ಅಡುಗೆ
+  - chavani ಅಡುಗೆ ಆರಿಸು
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani aduge 20
-  - chavani aduge 20
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ 20
+  - chavani ಅಡುಗೆ 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani aduge 40
-  - chavani aduge 40
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ 40
+  - chavani ಅಡುಗೆ 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani aduge 50
-  - chavani aduge 50
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ 50
+  - chavani ಅಡುಗೆ 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani aduge 60
-  - chavani aduge 60
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ 60
+  - chavani ಅಡುಗೆ 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani aduge 80
-  - chavani aduge 80
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ 80
+  - chavani ಅಡುಗೆ 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani aduge 100
-  - chavani aduge 100
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ 100
+  - chavani ಅಡುಗೆ 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - hachchu dweepa aduge
-  - dweepa aduge hachchu
+  - ಹಚ್ಚು dweepa ಅಡುಗೆ
+  - dweepa ಅಡುಗೆ ಹಚ್ಚು
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - arisu dweepa aduge
-  - dweepa aduge arisu
+  - ಆರಿಸು dweepa ಅಡುಗೆ
+  - dweepa ಅಡುಗೆ ಆರಿಸು
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu dweepa aduge 20
-  - dweepa aduge 20
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ 20
+  - dweepa ಅಡುಗೆ 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu dweepa aduge 40
-  - dweepa aduge 40
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ 40
+  - dweepa ಅಡುಗೆ 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu dweepa aduge 50
-  - dweepa aduge 50
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ 50
+  - dweepa ಅಡುಗೆ 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu dweepa aduge 60
-  - dweepa aduge 60
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ 60
+  - dweepa ಅಡುಗೆ 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu dweepa aduge 80
-  - dweepa aduge 80
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ 80
+  - dweepa ಅಡುಗೆ 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu dweepa aduge 100
-  - dweepa aduge 100
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ 100
+  - dweepa ಅಡುಗೆ 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani shayanakone
-  - chavani shayanakone hachchu
+  - ಹಚ್ಚು chavani shayanakonemaster
+  - chavani shayanakonemaster ಹಚ್ಚು
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - arisu chavani shayanakone
-  - chavani shayanakone arisu
+  - ಆರಿಸು chavani shayanakonemaster
+  - chavani shayanakonemaster ಆರಿಸು
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani shayanakone 20
-  - chavani shayanakone 20
+  - ಹೊಂದಿಸು chavani shayanakonemaster 20
+  - chavani shayanakonemaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani shayanakone 40
-  - chavani shayanakone 40
+  - ಹೊಂದಿಸು chavani shayanakonemaster 40
+  - chavani shayanakonemaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani shayanakone 50
-  - chavani shayanakone 50
+  - ಹೊಂದಿಸು chavani shayanakonemaster 50
+  - chavani shayanakonemaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani shayanakone 60
-  - chavani shayanakone 60
+  - ಹೊಂದಿಸು chavani shayanakonemaster 60
+  - chavani shayanakonemaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani shayanakone 80
-  - chavani shayanakone 80
+  - ಹೊಂದಿಸು chavani shayanakonemaster 80
+  - chavani shayanakonemaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani shayanakone 100
-  - chavani shayanakone 100
+  - ಹೊಂದಿಸು chavani shayanakonemaster 100
+  - chavani shayanakonemaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - hachchu mancha shayanakone
-  - mancha shayanakone hachchu
+  - ಹಚ್ಚು mancha shayanakonemaster
+  - mancha shayanakonemaster ಹಚ್ಚು
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - arisu mancha shayanakone
-  - mancha shayanakone arisu
+  - ಆರಿಸು mancha shayanakonemaster
+  - mancha shayanakonemaster ಆರಿಸು
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu mancha shayanakone 20
-  - mancha shayanakone 20
+  - ಹೊಂದಿಸು mancha shayanakonemaster 20
+  - mancha shayanakonemaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu mancha shayanakone 40
-  - mancha shayanakone 40
+  - ಹೊಂದಿಸು mancha shayanakonemaster 40
+  - mancha shayanakonemaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu mancha shayanakone 50
-  - mancha shayanakone 50
+  - ಹೊಂದಿಸು mancha shayanakonemaster 50
+  - mancha shayanakonemaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu mancha shayanakone 60
-  - mancha shayanakone 60
+  - ಹೊಂದಿಸು mancha shayanakonemaster 60
+  - mancha shayanakonemaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu mancha shayanakone 80
-  - mancha shayanakone 80
+  - ಹೊಂದಿಸು mancha shayanakonemaster 80
+  - mancha shayanakonemaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu mancha shayanakone 100
-  - mancha shayanakone 100
+  - ಹೊಂದಿಸು mancha shayanakonemaster 100
+  - mancha shayanakonemaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani office
-  - chavani office hachchu
+  - ಹಚ್ಚು chavani office
+  - chavani office ಹಚ್ಚು
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - arisu chavani office
-  - chavani office arisu
+  - ಆರಿಸು chavani office
+  - chavani office ಆರಿಸು
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani office 20
+  - ಹೊಂದಿಸು chavani office 20
   - chavani office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani office 40
+  - ಹೊಂದಿಸು chavani office 40
   - chavani office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani office 50
+  - ಹೊಂದಿಸು chavani office 50
   - chavani office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani office 60
+  - ಹೊಂದಿಸು chavani office 60
   - chavani office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani office 80
+  - ಹೊಂದಿಸು chavani office 80
   - chavani office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani office 100
+  - ಹೊಂದಿಸು chavani office 100
   - chavani office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - hachchu belaku garden
-  - belaku garden hachchu
+  - ಹಚ್ಚು ಬೆಳಕು garden
+  - ಬೆಳಕು garden ಹಚ್ಚು
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - arisu belaku garden
-  - belaku garden arisu
+  - ಆರಿಸು ಬೆಳಕು garden
+  - ಬೆಳಕು garden ಆರಿಸು
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku garden 20
-  - belaku garden 20
+  - ಹೊಂದಿಸು ಬೆಳಕು garden 20
+  - ಬೆಳಕು garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku garden 40
-  - belaku garden 40
+  - ಹೊಂದಿಸು ಬೆಳಕು garden 40
+  - ಬೆಳಕು garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku garden 50
-  - belaku garden 50
+  - ಹೊಂದಿಸು ಬೆಳಕು garden 50
+  - ಬೆಳಕು garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku garden 60
-  - belaku garden 60
+  - ಹೊಂದಿಸು ಬೆಳಕು garden 60
+  - ಬೆಳಕು garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku garden 80
-  - belaku garden 80
+  - ಹೊಂದಿಸು ಬೆಳಕು garden 80
+  - ಬೆಳಕು garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku garden 100
-  - belaku garden 100
+  - ಹೊಂದಿಸು ಬೆಳಕು garden 100
+  - ಬೆಳಕು garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - hachchu belaku basement
-  - belaku basement hachchu
+  - ಹಚ್ಚು ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಹಚ್ಚು
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - arisu belaku basement
-  - belaku basement arisu
+  - ಆರಿಸು ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಆರಿಸು
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku basement 20
-  - belaku basement 20
+  - ಹೊಂದಿಸು ಬೆಳಕು basement 20
+  - ಬೆಳಕು basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku basement 40
-  - belaku basement 40
+  - ಹೊಂದಿಸು ಬೆಳಕು basement 40
+  - ಬೆಳಕು basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku basement 50
-  - belaku basement 50
+  - ಹೊಂದಿಸು ಬೆಳಕು basement 50
+  - ಬೆಳಕು basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku basement 60
-  - belaku basement 60
+  - ಹೊಂದಿಸು ಬೆಳಕು basement 60
+  - ಬೆಳಕು basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku basement 80
-  - belaku basement 80
+  - ಹೊಂದಿಸು ಬೆಳಕು basement 80
+  - ಬೆಳಕು basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku basement 100
-  - belaku basement 100
+  - ಹೊಂದಿಸು ಬೆಳಕು basement 100
+  - ಬೆಳಕು basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - hachchu belaku hallway
-  - belaku hallway hachchu
+  - ಹಚ್ಚು ಬೆಳಕು hallway
+  - ಬೆಳಕು hallway ಹಚ್ಚು
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - arisu belaku hallway
-  - belaku hallway arisu
+  - ಆರಿಸು ಬೆಳಕು hallway
+  - ಬೆಳಕು hallway ಆರಿಸು
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku hallway 20
-  - belaku hallway 20
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway 20
+  - ಬೆಳಕು hallway 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku hallway 40
-  - belaku hallway 40
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway 40
+  - ಬೆಳಕು hallway 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku hallway 50
-  - belaku hallway 50
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway 50
+  - ಬೆಳಕು hallway 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku hallway 60
-  - belaku hallway 60
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway 60
+  - ಬೆಳಕು hallway 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku hallway 80
-  - belaku hallway 80
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway 80
+  - ಬೆಳಕು hallway 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku hallway 100
-  - belaku hallway 100
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway 100
+  - ಬೆಳಕು hallway 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani kutumba
-  - chavani kutumba hachchu
+  - ಹಚ್ಚು chavani kutumba
+  - chavani kutumba ಹಚ್ಚು
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - arisu chavani kutumba
-  - chavani kutumba arisu
+  - ಆರಿಸು chavani kutumba
+  - chavani kutumba ಆರಿಸು
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani kutumba 20
+  - ಹೊಂದಿಸು chavani kutumba 20
   - chavani kutumba 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani kutumba 40
+  - ಹೊಂದಿಸು chavani kutumba 40
   - chavani kutumba 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani kutumba 50
+  - ಹೊಂದಿಸು chavani kutumba 50
   - chavani kutumba 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani kutumba 60
+  - ಹೊಂದಿಸು chavani kutumba 60
   - chavani kutumba 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani kutumba 80
+  - ಹೊಂದಿಸು chavani kutumba 80
   - chavani kutumba 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani kutumba 100
+  - ಹೊಂದಿಸು chavani kutumba 100
   - chavani kutumba 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - hachchu belaku kutumbaess
-  - belaku kutumbaess hachchu
+  - ಹಚ್ಚು ಬೆಳಕು kutumbaess
+  - ಬೆಳಕು kutumbaess ಹಚ್ಚು
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - arisu belaku kutumbaess
-  - belaku kutumbaess arisu
+  - ಆರಿಸು ಬೆಳಕು kutumbaess
+  - ಬೆಳಕು kutumbaess ಆರಿಸು
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku kutumbaess 20
-  - belaku kutumbaess 20
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess 20
+  - ಬೆಳಕು kutumbaess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku kutumbaess 40
-  - belaku kutumbaess 40
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess 40
+  - ಬೆಳಕು kutumbaess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku kutumbaess 50
-  - belaku kutumbaess 50
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess 50
+  - ಬೆಳಕು kutumbaess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku kutumbaess 60
-  - belaku kutumbaess 60
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess 60
+  - ಬೆಳಕು kutumbaess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku kutumbaess 80
-  - belaku kutumbaess 80
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess 80
+  - ಬೆಳಕು kutumbaess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku kutumbaess 100
-  - belaku kutumbaess 100
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess 100
+  - ಬೆಳಕು kutumbaess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - hachchu belaku garage
-  - belaku garage hachchu
+  - ಹಚ್ಚು ಬೆಳಕು garage
+  - ಬೆಳಕು garage ಹಚ್ಚು
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - arisu belaku garage
-  - belaku garage arisu
+  - ಆರಿಸು ಬೆಳಕು garage
+  - ಬೆಳಕು garage ಆರಿಸು
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku garage 20
-  - belaku garage 20
+  - ಹೊಂದಿಸು ಬೆಳಕು garage 20
+  - ಬೆಳಕು garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku garage 40
-  - belaku garage 40
+  - ಹೊಂದಿಸು ಬೆಳಕು garage 40
+  - ಬೆಳಕು garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku garage 50
-  - belaku garage 50
+  - ಹೊಂದಿಸು ಬೆಳಕು garage 50
+  - ಬೆಳಕು garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku garage 60
-  - belaku garage 60
+  - ಹೊಂದಿಸು ಬೆಳಕು garage 60
+  - ಬೆಳಕು garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku garage 80
-  - belaku garage 80
+  - ಹೊಂದಿಸು ಬೆಳಕು garage 80
+  - ಬೆಳಕು garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku garage 100
-  - belaku garage 100
+  - ಹೊಂದಿಸು ಬೆಳಕು garage 100
+  - ಬೆಳಕು garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani shayanakone2
-  - chavani shayanakone2 hachchu
+  - ಹಚ್ಚು chavani shayanakone2
+  - chavani shayanakone2 ಹಚ್ಚು
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - arisu chavani shayanakone2
-  - chavani shayanakone2 arisu
+  - ಆರಿಸು chavani shayanakone2
+  - chavani shayanakone2 ಆರಿಸು
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani shayanakone2 20
+  - ಹೊಂದಿಸು chavani shayanakone2 20
   - chavani shayanakone2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani shayanakone2 40
+  - ಹೊಂದಿಸು chavani shayanakone2 40
   - chavani shayanakone2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani shayanakone2 50
+  - ಹೊಂದಿಸು chavani shayanakone2 50
   - chavani shayanakone2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani shayanakone2 60
+  - ಹೊಂದಿಸು chavani shayanakone2 60
   - chavani shayanakone2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani shayanakone2 80
+  - ಹೊಂದಿಸು chavani shayanakone2 80
   - chavani shayanakone2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani shayanakone2 100
+  - ಹೊಂದಿಸು chavani shayanakone2 100
   - chavani shayanakone2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani shayanakone3
-  - chavani shayanakone3 hachchu
+  - ಹಚ್ಚು chavani shayanakone3
+  - chavani shayanakone3 ಹಚ್ಚು
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - arisu chavani shayanakone3
-  - chavani shayanakone3 arisu
+  - ಆರಿಸು chavani shayanakone3
+  - chavani shayanakone3 ಆರಿಸು
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani shayanakone3 20
+  - ಹೊಂದಿಸು chavani shayanakone3 20
   - chavani shayanakone3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani shayanakone3 40
+  - ಹೊಂದಿಸು chavani shayanakone3 40
   - chavani shayanakone3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani shayanakone3 50
+  - ಹೊಂದಿಸು chavani shayanakone3 50
   - chavani shayanakone3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani shayanakone3 60
+  - ಹೊಂದಿಸು chavani shayanakone3 60
   - chavani shayanakone3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani shayanakone3 80
+  - ಹೊಂದಿಸು chavani shayanakone3 80
   - chavani shayanakone3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani shayanakone3 100
+  - ಹೊಂದಿಸು chavani shayanakone3 100
   - chavani shayanakone3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani shayanakone4
-  - chavani shayanakone4 hachchu
+  - ಹಚ್ಚು chavani shayanakone4
+  - chavani shayanakone4 ಹಚ್ಚು
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - arisu chavani shayanakone4
-  - chavani shayanakone4 arisu
+  - ಆರಿಸು chavani shayanakone4
+  - chavani shayanakone4 ಆರಿಸು
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu chavani shayanakone4 20
+  - ಹೊಂದಿಸು chavani shayanakone4 20
   - chavani shayanakone4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu chavani shayanakone4 40
+  - ಹೊಂದಿಸು chavani shayanakone4 40
   - chavani shayanakone4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu chavani shayanakone4 50
+  - ಹೊಂದಿಸು chavani shayanakone4 50
   - chavani shayanakone4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu chavani shayanakone4 60
+  - ಹೊಂದಿಸು chavani shayanakone4 60
   - chavani shayanakone4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu chavani shayanakone4 80
+  - ಹೊಂದಿಸು chavani shayanakone4 80
   - chavani shayanakone4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu chavani shayanakone4 100
+  - ಹೊಂದಿಸು chavani shayanakone4 100
   - chavani shayanakone4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - hachchu belaku pravesha
-  - belaku pravesha hachchu
+  - ಹಚ್ಚು ಬೆಳಕು pravesha
+  - ಬೆಳಕು pravesha ಹಚ್ಚು
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - arisu belaku pravesha
-  - belaku pravesha arisu
+  - ಆರಿಸು ಬೆಳಕು pravesha
+  - ಬೆಳಕು pravesha ಆರಿಸು
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku pravesha 20
-  - belaku pravesha 20
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha 20
+  - ಬೆಳಕು pravesha 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku pravesha 40
-  - belaku pravesha 40
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha 40
+  - ಬೆಳಕು pravesha 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku pravesha 50
-  - belaku pravesha 50
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha 50
+  - ಬೆಳಕು pravesha 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku pravesha 60
-  - belaku pravesha 60
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha 60
+  - ಬೆಳಕು pravesha 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku pravesha 80
-  - belaku pravesha 80
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha 80
+  - ಬೆಳಕು pravesha 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku pravesha 100
-  - belaku pravesha 100
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha 100
+  - ಬೆಳಕು pravesha 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - hachchu belaku ogeyuva
-  - belaku ogeyuva hachchu
+  - ಹಚ್ಚು ಬೆಳಕು ogeyuva
+  - ಬೆಳಕು ogeyuva ಹಚ್ಚು
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - arisu belaku ogeyuva
-  - belaku ogeyuva arisu
+  - ಆರಿಸು ಬೆಳಕು ogeyuva
+  - ಬೆಳಕು ogeyuva ಆರಿಸು
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku ogeyuva 20
-  - belaku ogeyuva 20
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva 20
+  - ಬೆಳಕು ogeyuva 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku ogeyuva 40
-  - belaku ogeyuva 40
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva 40
+  - ಬೆಳಕು ogeyuva 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku ogeyuva 50
-  - belaku ogeyuva 50
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva 50
+  - ಬೆಳಕು ogeyuva 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku ogeyuva 60
-  - belaku ogeyuva 60
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva 60
+  - ಬೆಳಕು ogeyuva 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku ogeyuva 80
-  - belaku ogeyuva 80
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva 80
+  - ಬೆಳಕು ogeyuva 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku ogeyuva 100
-  - belaku ogeyuva 100
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva 100
+  - ಬೆಳಕು ogeyuva 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - hachchu belaku main bath
-  - belaku main bath hachchu
+  - ಹಚ್ಚು ಬೆಳಕು main bath
+  - ಬೆಳಕು main bath ಹಚ್ಚು
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - arisu belaku main bath
-  - belaku main bath arisu
+  - ಆರಿಸು ಬೆಳಕು main bath
+  - ಬೆಳಕು main bath ಆರಿಸು
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku main bath 20
-  - belaku main bath 20
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath 20
+  - ಬೆಳಕು main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku main bath 40
-  - belaku main bath 40
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath 40
+  - ಬೆಳಕು main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku main bath 50
-  - belaku main bath 50
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath 50
+  - ಬೆಳಕು main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku main bath 60
-  - belaku main bath 60
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath 60
+  - ಬೆಳಕು main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku main bath 80
-  - belaku main bath 80
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath 80
+  - ಬೆಳಕು main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku main bath 100
-  - belaku main bath 100
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath 100
+  - ಬೆಳಕು main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - hachchu belaku shauchalaya
-  - belaku shauchalaya hachchu
+  - ಹಚ್ಚು ಬೆಳಕು shauchalaya
+  - ಬೆಳಕು shauchalaya ಹಚ್ಚು
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - arisu belaku shauchalaya
-  - belaku shauchalaya arisu
+  - ಆರಿಸು ಬೆಳಕು shauchalaya
+  - ಬೆಳಕು shauchalaya ಆರಿಸು
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku shauchalaya 20
-  - belaku shauchalaya 20
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya 20
+  - ಬೆಳಕು shauchalaya 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku shauchalaya 40
-  - belaku shauchalaya 40
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya 40
+  - ಬೆಳಕು shauchalaya 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku shauchalaya 50
-  - belaku shauchalaya 50
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya 50
+  - ಬೆಳಕು shauchalaya 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku shauchalaya 60
-  - belaku shauchalaya 60
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya 60
+  - ಬೆಳಕು shauchalaya 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku shauchalaya 80
-  - belaku shauchalaya 80
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya 80
+  - ಬೆಳಕು shauchalaya 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku shauchalaya 100
-  - belaku shauchalaya 100
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya 100
+  - ಬೆಳಕು shauchalaya 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - hachchu ensuite shayanakone
-  - ensuite shayanakone hachchu
+  - ಹಚ್ಚು ensuite shayanakonemaster
+  - ensuite shayanakonemaster ಹಚ್ಚು
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - arisu ensuite shayanakone
-  - ensuite shayanakone arisu
+  - ಆರಿಸು ensuite shayanakonemaster
+  - ensuite shayanakonemaster ಆರಿಸು
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu ensuite shayanakone 20
-  - ensuite shayanakone 20
+  - ಹೊಂದಿಸು ensuite shayanakonemaster 20
+  - ensuite shayanakonemaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu ensuite shayanakone 40
-  - ensuite shayanakone 40
+  - ಹೊಂದಿಸು ensuite shayanakonemaster 40
+  - ensuite shayanakonemaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu ensuite shayanakone 50
-  - ensuite shayanakone 50
+  - ಹೊಂದಿಸು ensuite shayanakonemaster 50
+  - ensuite shayanakonemaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu ensuite shayanakone 60
-  - ensuite shayanakone 60
+  - ಹೊಂದಿಸು ensuite shayanakonemaster 60
+  - ensuite shayanakonemaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu ensuite shayanakone 80
-  - ensuite shayanakone 80
+  - ಹೊಂದಿಸು ensuite shayanakonemaster 80
+  - ensuite shayanakonemaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu ensuite shayanakone 100
-  - ensuite shayanakone 100
+  - ಹೊಂದಿಸು ensuite shayanakonemaster 100
+  - ensuite shayanakonemaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - hachchu mancha shayanakone
-  - mancha shayanakone hachchu
+  - ಹಚ್ಚು mancha shayanakonemaster
+  - mancha shayanakonemaster ಹಚ್ಚು
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - arisu mancha shayanakone
-  - mancha shayanakone arisu
+  - ಆರಿಸು mancha shayanakonemaster
+  - mancha shayanakonemaster ಆರಿಸು
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu mancha shayanakone 20
-  - mancha shayanakone 20
+  - ಹೊಂದಿಸು mancha shayanakonemaster 20
+  - mancha shayanakonemaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu mancha shayanakone 40
-  - mancha shayanakone 40
+  - ಹೊಂದಿಸು mancha shayanakonemaster 40
+  - mancha shayanakonemaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu mancha shayanakone 50
-  - mancha shayanakone 50
+  - ಹೊಂದಿಸು mancha shayanakonemaster 50
+  - mancha shayanakonemaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu mancha shayanakone 60
-  - mancha shayanakone 60
+  - ಹೊಂದಿಸು mancha shayanakonemaster 60
+  - mancha shayanakonemaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu mancha shayanakone 80
-  - mancha shayanakone 80
+  - ಹೊಂದಿಸು mancha shayanakonemaster 80
+  - mancha shayanakonemaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu mancha shayanakone 100
-  - mancha shayanakone 100
+  - ಹೊಂದಿಸು mancha shayanakonemaster 100
+  - mancha shayanakonemaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - hachchu belaku mukhyasnana
-  - belaku mukhyasnana hachchu
+  - ಹಚ್ಚು ಬೆಳಕು mukhyasnana
+  - ಬೆಳಕು mukhyasnana ಹಚ್ಚು
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - arisu belaku mukhyasnana
-  - belaku mukhyasnana arisu
+  - ಆರಿಸು ಬೆಳಕು mukhyasnana
+  - ಬೆಳಕು mukhyasnana ಆರಿಸು
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - hondisu belaku mukhyasnana 20
-  - belaku mukhyasnana 20
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana 20
+  - ಬೆಳಕು mukhyasnana 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - hondisu belaku mukhyasnana 40
-  - belaku mukhyasnana 40
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana 40
+  - ಬೆಳಕು mukhyasnana 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - hondisu belaku mukhyasnana 50
-  - belaku mukhyasnana 50
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana 50
+  - ಬೆಳಕು mukhyasnana 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - hondisu belaku mukhyasnana 60
-  - belaku mukhyasnana 60
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana 60
+  - ಬೆಳಕು mukhyasnana 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - hondisu belaku mukhyasnana 80
-  - belaku mukhyasnana 80
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana 80
+  - ಬೆಳಕು mukhyasnana 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - hondisu belaku mukhyasnana 100
-  - belaku mukhyasnana 100
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana 100
+  - ಬೆಳಕು mukhyasnana 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani hallige red
-  - hondisu belaku hallige red
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ red
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ red
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani hallige blue
-  - hondisu belaku hallige blue
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ blue
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ blue
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani hallige green
-  - hondisu belaku hallige green
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ green
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ green
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani hallige white
-  - hondisu belaku hallige white
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ white
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ white
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani hallige yellow
-  - hondisu belaku hallige yellow
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ yellow
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani hallige black
-  - hondisu belaku hallige black
+  - ಹೊಂದಿಸು chavani ಹಾಲ್ black
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ black
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu lamp hallige red
-  - hondisu belaku hallige red
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ red
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ red
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu lamp hallige blue
-  - hondisu belaku hallige blue
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ blue
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ blue
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu lamp hallige green
-  - hondisu belaku hallige green
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ green
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ green
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu lamp hallige white
-  - hondisu belaku hallige white
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ white
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ white
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu lamp hallige yellow
-  - hondisu belaku hallige yellow
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ yellow
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu lamp hallige black
-  - hondisu belaku hallige black
+  - ಹೊಂದಿಸು belaku ಹಾಲ್ black
+  - ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ black
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani aduge red
-  - hondisu belaku aduge red
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ red
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ red
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani aduge blue
-  - hondisu belaku aduge blue
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ blue
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ blue
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani aduge green
-  - hondisu belaku aduge green
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ green
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ green
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani aduge white
-  - hondisu belaku aduge white
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ white
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ white
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani aduge yellow
-  - hondisu belaku aduge yellow
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ yellow
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani aduge black
-  - hondisu belaku aduge black
+  - ಹೊಂದಿಸು chavani ಅಡುಗೆ black
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ black
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu dweepa aduge red
-  - hondisu belaku aduge red
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ red
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ red
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu dweepa aduge blue
-  - hondisu belaku aduge blue
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ blue
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ blue
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu dweepa aduge green
-  - hondisu belaku aduge green
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ green
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ green
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu dweepa aduge white
-  - hondisu belaku aduge white
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ white
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ white
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu dweepa aduge yellow
-  - hondisu belaku aduge yellow
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ yellow
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu dweepa aduge black
-  - hondisu belaku aduge black
+  - ಹೊಂದಿಸು dweepa ಅಡುಗೆ black
+  - ಹೊಂದಿಸು ಬೆಳಕು ಅಡುಗೆ black
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani shayanakone red
-  - hondisu belaku shayanakone red
+  - ಹೊಂದಿಸು chavani shayanakonemaster red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani shayanakone blue
-  - hondisu belaku shayanakone blue
+  - ಹೊಂದಿಸು chavani shayanakonemaster blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani shayanakone green
-  - hondisu belaku shayanakone green
+  - ಹೊಂದಿಸು chavani shayanakonemaster green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani shayanakone white
-  - hondisu belaku shayanakone white
+  - ಹೊಂದಿಸು chavani shayanakonemaster white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani shayanakone yellow
-  - hondisu belaku shayanakone yellow
+  - ಹೊಂದಿಸು chavani shayanakonemaster yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani shayanakone black
-  - hondisu belaku shayanakone black
+  - ಹೊಂದಿಸು chavani shayanakonemaster black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu mancha shayanakone red
-  - hondisu belaku shayanakone red
+  - ಹೊಂದಿಸು mancha shayanakonemaster red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu mancha shayanakone blue
-  - hondisu belaku shayanakone blue
+  - ಹೊಂದಿಸು mancha shayanakonemaster blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu mancha shayanakone green
-  - hondisu belaku shayanakone green
+  - ಹೊಂದಿಸು mancha shayanakonemaster green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu mancha shayanakone white
-  - hondisu belaku shayanakone white
+  - ಹೊಂದಿಸು mancha shayanakonemaster white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu mancha shayanakone yellow
-  - hondisu belaku shayanakone yellow
+  - ಹೊಂದಿಸು mancha shayanakonemaster yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu mancha shayanakone black
-  - hondisu belaku shayanakone black
+  - ಹೊಂದಿಸು mancha shayanakonemaster black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani office red
-  - hondisu belaku office red
+  - ಹೊಂದಿಸು chavani office red
+  - ಹೊಂದಿಸು ಬೆಳಕು office red
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani office blue
-  - hondisu belaku office blue
+  - ಹೊಂದಿಸು chavani office blue
+  - ಹೊಂದಿಸು ಬೆಳಕು office blue
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani office green
-  - hondisu belaku office green
+  - ಹೊಂದಿಸು chavani office green
+  - ಹೊಂದಿಸು ಬೆಳಕು office green
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani office white
-  - hondisu belaku office white
+  - ಹೊಂದಿಸು chavani office white
+  - ಹೊಂದಿಸು ಬೆಳಕು office white
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani office yellow
-  - hondisu belaku office yellow
+  - ಹೊಂದಿಸು chavani office yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು office yellow
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani office black
-  - hondisu belaku office black
+  - ಹೊಂದಿಸು chavani office black
+  - ಹೊಂದಿಸು ಬೆಳಕು office black
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku garden red
-  - belaku garden red
+  - ಹೊಂದಿಸು ಬೆಳಕು garden red
+  - ಬೆಳಕು garden red
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku garden blue
-  - belaku garden blue
+  - ಹೊಂದಿಸು ಬೆಳಕು garden blue
+  - ಬೆಳಕು garden blue
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku garden green
-  - belaku garden green
+  - ಹೊಂದಿಸು ಬೆಳಕು garden green
+  - ಬೆಳಕು garden green
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku garden white
-  - belaku garden white
+  - ಹೊಂದಿಸು ಬೆಳಕು garden white
+  - ಬೆಳಕು garden white
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku garden yellow
-  - belaku garden yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು garden yellow
+  - ಬೆಳಕು garden yellow
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku garden black
-  - belaku garden black
+  - ಹೊಂದಿಸು ಬೆಳಕು garden black
+  - ಬೆಳಕು garden black
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku basement red
-  - belaku basement red
+  - ಹೊಂದಿಸು ಬೆಳಕು basement red
+  - ಬೆಳಕು basement red
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku basement blue
-  - belaku basement blue
+  - ಹೊಂದಿಸು ಬೆಳಕು basement blue
+  - ಬೆಳಕು basement blue
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku basement green
-  - belaku basement green
+  - ಹೊಂದಿಸು ಬೆಳಕು basement green
+  - ಬೆಳಕು basement green
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku basement white
-  - belaku basement white
+  - ಹೊಂದಿಸು ಬೆಳಕು basement white
+  - ಬೆಳಕು basement white
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku basement yellow
-  - belaku basement yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು basement yellow
+  - ಬೆಳಕು basement yellow
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku basement black
-  - belaku basement black
+  - ಹೊಂದಿಸು ಬೆಳಕು basement black
+  - ಬೆಳಕು basement black
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku hallway red
-  - belaku hallway red
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway red
+  - ಬೆಳಕು hallway red
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku hallway blue
-  - belaku hallway blue
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway blue
+  - ಬೆಳಕು hallway blue
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku hallway green
-  - belaku hallway green
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway green
+  - ಬೆಳಕು hallway green
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku hallway white
-  - belaku hallway white
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway white
+  - ಬೆಳಕು hallway white
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku hallway yellow
-  - belaku hallway yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway yellow
+  - ಬೆಳಕು hallway yellow
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku hallway black
-  - belaku hallway black
+  - ಹೊಂದಿಸು ಬೆಳಕು hallway black
+  - ಬೆಳಕು hallway black
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani kutumba red
-  - hondisu belaku kutumba red
+  - ಹೊಂದಿಸು chavani kutumba red
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumba red
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani kutumba blue
-  - hondisu belaku kutumba blue
+  - ಹೊಂದಿಸು chavani kutumba blue
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumba blue
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani kutumba green
-  - hondisu belaku kutumba green
+  - ಹೊಂದಿಸು chavani kutumba green
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumba green
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani kutumba white
-  - hondisu belaku kutumba white
+  - ಹೊಂದಿಸು chavani kutumba white
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumba white
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani kutumba yellow
-  - hondisu belaku kutumba yellow
+  - ಹೊಂದಿಸು chavani kutumba yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumba yellow
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani kutumba black
-  - hondisu belaku kutumba black
+  - ಹೊಂದಿಸು chavani kutumba black
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumba black
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku kutumbaess red
-  - belaku kutumbaess red
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess red
+  - ಬೆಳಕು kutumbaess red
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku kutumbaess blue
-  - belaku kutumbaess blue
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess blue
+  - ಬೆಳಕು kutumbaess blue
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku kutumbaess green
-  - belaku kutumbaess green
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess green
+  - ಬೆಳಕು kutumbaess green
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku kutumbaess white
-  - belaku kutumbaess white
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess white
+  - ಬೆಳಕು kutumbaess white
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku kutumbaess yellow
-  - belaku kutumbaess yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess yellow
+  - ಬೆಳಕು kutumbaess yellow
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku kutumbaess black
-  - belaku kutumbaess black
+  - ಹೊಂದಿಸು ಬೆಳಕು kutumbaess black
+  - ಬೆಳಕು kutumbaess black
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku garage red
-  - belaku garage red
+  - ಹೊಂದಿಸು ಬೆಳಕು garage red
+  - ಬೆಳಕು garage red
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku garage blue
-  - belaku garage blue
+  - ಹೊಂದಿಸು ಬೆಳಕು garage blue
+  - ಬೆಳಕು garage blue
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku garage green
-  - belaku garage green
+  - ಹೊಂದಿಸು ಬೆಳಕು garage green
+  - ಬೆಳಕು garage green
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku garage white
-  - belaku garage white
+  - ಹೊಂದಿಸು ಬೆಳಕು garage white
+  - ಬೆಳಕು garage white
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku garage yellow
-  - belaku garage yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು garage yellow
+  - ಬೆಳಕು garage yellow
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku garage black
-  - belaku garage black
+  - ಹೊಂದಿಸು ಬೆಳಕು garage black
+  - ಬೆಳಕು garage black
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani shayanakone2 red
-  - hondisu belaku shayanakone2 red
+  - ಹೊಂದಿಸು chavani shayanakone2 red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone2 red
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani shayanakone2 blue
-  - hondisu belaku shayanakone2 blue
+  - ಹೊಂದಿಸು chavani shayanakone2 blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone2 blue
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani shayanakone2 green
-  - hondisu belaku shayanakone2 green
+  - ಹೊಂದಿಸು chavani shayanakone2 green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone2 green
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani shayanakone2 white
-  - hondisu belaku shayanakone2 white
+  - ಹೊಂದಿಸು chavani shayanakone2 white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone2 white
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani shayanakone2 yellow
-  - hondisu belaku shayanakone2 yellow
+  - ಹೊಂದಿಸು chavani shayanakone2 yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone2 yellow
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani shayanakone2 black
-  - hondisu belaku shayanakone2 black
+  - ಹೊಂದಿಸು chavani shayanakone2 black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone2 black
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani shayanakone3 red
-  - hondisu belaku shayanakone3 red
+  - ಹೊಂದಿಸು chavani shayanakone3 red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone3 red
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani shayanakone3 blue
-  - hondisu belaku shayanakone3 blue
+  - ಹೊಂದಿಸು chavani shayanakone3 blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone3 blue
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani shayanakone3 green
-  - hondisu belaku shayanakone3 green
+  - ಹೊಂದಿಸು chavani shayanakone3 green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone3 green
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani shayanakone3 white
-  - hondisu belaku shayanakone3 white
+  - ಹೊಂದಿಸು chavani shayanakone3 white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone3 white
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani shayanakone3 yellow
-  - hondisu belaku shayanakone3 yellow
+  - ಹೊಂದಿಸು chavani shayanakone3 yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone3 yellow
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani shayanakone3 black
-  - hondisu belaku shayanakone3 black
+  - ಹೊಂದಿಸು chavani shayanakone3 black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone3 black
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu chavani shayanakone4 red
-  - hondisu belaku shayanakone4 red
+  - ಹೊಂದಿಸು chavani shayanakone4 red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone4 red
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu chavani shayanakone4 blue
-  - hondisu belaku shayanakone4 blue
+  - ಹೊಂದಿಸು chavani shayanakone4 blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone4 blue
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu chavani shayanakone4 green
-  - hondisu belaku shayanakone4 green
+  - ಹೊಂದಿಸು chavani shayanakone4 green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone4 green
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu chavani shayanakone4 white
-  - hondisu belaku shayanakone4 white
+  - ಹೊಂದಿಸು chavani shayanakone4 white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone4 white
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu chavani shayanakone4 yellow
-  - hondisu belaku shayanakone4 yellow
+  - ಹೊಂದಿಸು chavani shayanakone4 yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone4 yellow
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu chavani shayanakone4 black
-  - hondisu belaku shayanakone4 black
+  - ಹೊಂದಿಸು chavani shayanakone4 black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakone4 black
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku pravesha red
-  - belaku pravesha red
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha red
+  - ಬೆಳಕು pravesha red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku pravesha blue
-  - belaku pravesha blue
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha blue
+  - ಬೆಳಕು pravesha blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku pravesha green
-  - belaku pravesha green
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha green
+  - ಬೆಳಕು pravesha green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku pravesha white
-  - belaku pravesha white
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha white
+  - ಬೆಳಕು pravesha white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku pravesha yellow
-  - belaku pravesha yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha yellow
+  - ಬೆಳಕು pravesha yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku pravesha black
-  - belaku pravesha black
+  - ಹೊಂದಿಸು ಬೆಳಕು pravesha black
+  - ಬೆಳಕು pravesha black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku ogeyuva red
-  - belaku ogeyuva red
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva red
+  - ಬೆಳಕು ogeyuva red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku ogeyuva blue
-  - belaku ogeyuva blue
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva blue
+  - ಬೆಳಕು ogeyuva blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku ogeyuva green
-  - belaku ogeyuva green
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva green
+  - ಬೆಳಕು ogeyuva green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku ogeyuva white
-  - belaku ogeyuva white
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva white
+  - ಬೆಳಕು ogeyuva white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku ogeyuva yellow
-  - belaku ogeyuva yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva yellow
+  - ಬೆಳಕು ogeyuva yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku ogeyuva black
-  - belaku ogeyuva black
+  - ಹೊಂದಿಸು ಬೆಳಕು ogeyuva black
+  - ಬೆಳಕು ogeyuva black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku main bath red
-  - belaku main bath red
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath red
+  - ಬೆಳಕು main bath red
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku main bath blue
-  - belaku main bath blue
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath blue
+  - ಬೆಳಕು main bath blue
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku main bath green
-  - belaku main bath green
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath green
+  - ಬೆಳಕು main bath green
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku main bath white
-  - belaku main bath white
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath white
+  - ಬೆಳಕು main bath white
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku main bath yellow
-  - belaku main bath yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath yellow
+  - ಬೆಳಕು main bath yellow
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku main bath black
-  - belaku main bath black
+  - ಹೊಂದಿಸು ಬೆಳಕು main bath black
+  - ಬೆಳಕು main bath black
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku shauchalaya red
-  - belaku shauchalaya red
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya red
+  - ಬೆಳಕು shauchalaya red
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku shauchalaya blue
-  - belaku shauchalaya blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya blue
+  - ಬೆಳಕು shauchalaya blue
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku shauchalaya green
-  - belaku shauchalaya green
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya green
+  - ಬೆಳಕು shauchalaya green
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku shauchalaya white
-  - belaku shauchalaya white
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya white
+  - ಬೆಳಕು shauchalaya white
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku shauchalaya yellow
-  - belaku shauchalaya yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya yellow
+  - ಬೆಳಕು shauchalaya yellow
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku shauchalaya black
-  - belaku shauchalaya black
+  - ಹೊಂದಿಸು ಬೆಳಕು shauchalaya black
+  - ಬೆಳಕು shauchalaya black
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu ensuite shayanakone red
-  - hondisu belaku shayanakone red
+  - ಹೊಂದಿಸು ensuite shayanakonemaster red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu ensuite shayanakone blue
-  - hondisu belaku shayanakone blue
+  - ಹೊಂದಿಸು ensuite shayanakonemaster blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu ensuite shayanakone green
-  - hondisu belaku shayanakone green
+  - ಹೊಂದಿಸು ensuite shayanakonemaster green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu ensuite shayanakone white
-  - hondisu belaku shayanakone white
+  - ಹೊಂದಿಸು ensuite shayanakonemaster white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu ensuite shayanakone yellow
-  - hondisu belaku shayanakone yellow
+  - ಹೊಂದಿಸು ensuite shayanakonemaster yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu ensuite shayanakone black
-  - hondisu belaku shayanakone black
+  - ಹೊಂದಿಸು ensuite shayanakonemaster black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu mancha shayanakone red
-  - hondisu belaku shayanakone red
+  - ಹೊಂದಿಸು mancha shayanakonemaster red
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu mancha shayanakone blue
-  - hondisu belaku shayanakone blue
+  - ಹೊಂದಿಸು mancha shayanakonemaster blue
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu mancha shayanakone green
-  - hondisu belaku shayanakone green
+  - ಹೊಂದಿಸು mancha shayanakonemaster green
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu mancha shayanakone white
-  - hondisu belaku shayanakone white
+  - ಹೊಂದಿಸು mancha shayanakonemaster white
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu mancha shayanakone yellow
-  - hondisu belaku shayanakone yellow
+  - ಹೊಂದಿಸು mancha shayanakonemaster yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu mancha shayanakone black
-  - hondisu belaku shayanakone black
+  - ಹೊಂದಿಸು mancha shayanakonemaster black
+  - ಹೊಂದಿಸು ಬೆಳಕು shayanakonemaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - hondisu belaku mukhyasnana red
-  - belaku mukhyasnana red
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana red
+  - ಬೆಳಕು mukhyasnana red
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - hondisu belaku mukhyasnana blue
-  - belaku mukhyasnana blue
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana blue
+  - ಬೆಳಕು mukhyasnana blue
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - hondisu belaku mukhyasnana green
-  - belaku mukhyasnana green
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana green
+  - ಬೆಳಕು mukhyasnana green
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - hondisu belaku mukhyasnana white
-  - belaku mukhyasnana white
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana white
+  - ಬೆಳಕು mukhyasnana white
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - hondisu belaku mukhyasnana yellow
-  - belaku mukhyasnana yellow
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana yellow
+  - ಬೆಳಕು mukhyasnana yellow
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - hondisu belaku mukhyasnana black
-  - belaku mukhyasnana black
+  - ಹೊಂದಿಸು ಬೆಳಕು mukhyasnana black
+  - ಬೆಳಕು mukhyasnana black
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake aduge
-  - ella belaku arisu hodake aduge
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake ಅಡುಗೆ
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake ಅಡುಗೆ
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake office
-  - ella belaku arisu hodake office
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake office
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake garage
-  - ella belaku arisu hodake garage
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake garage
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake shayanakone
-  - ella belaku arisu hodake shayanakone
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake shayanakonemaster
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake shayanakonemaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku kelage
-  - belaku kelage hachchu
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು kelage
+  - ಬೆಳಕು kelage ಹಚ್ಚು
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku kelage
-  - belaku kelage arisu
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು kelage
+  - ಬೆಳಕು kelage ಆರಿಸು
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku mele
-  - belaku mele hachchu
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು mele
+  - ಬೆಳಕು mele ಹಚ್ಚು
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku mele
-  - belaku mele arisu
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು mele
+  - ಬೆಳಕು mele ಆರಿಸು
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - hachchu ella belaku basement
-  - belaku basement hachchu
+  - ಹಚ್ಚು ಎಲ್ಲ ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಹಚ್ಚು
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku basement
-  - belaku basement arisu
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಆರಿಸು
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake pravesha
-  - ella belaku arisu hodake pravesha
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake pravesha
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake pravesha
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake hallige
-  - ella belaku arisu hodake hallige
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake ಹಾಲ್
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake ಹಾಲ್
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake kutumbaess
-  - ella belaku arisu hodake kutumbaess
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake kutumbaess
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake kutumbaess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake kutumba
-  - ella belaku arisu hodake kutumba
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake kutumba
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake kutumba
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake ogeyuva
-  - ella belaku arisu hodake ogeyuva
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake ogeyuva
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake ogeyuva
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake shauchalaya
-  - ella belaku arisu hodake shauchalaya
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake shauchalaya
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake shauchalaya
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake garden
-  - ella belaku arisu hodake garden
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake garden
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake shayanakone2
-  - ella belaku arisu hodake shayanakone2
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake shayanakone2
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake shayanakone2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake shayanakone3
-  - ella belaku arisu hodake shayanakone3
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake shayanakone3
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake shayanakone3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake shayanakone4
-  - ella belaku arisu hodake shayanakone4
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake shayanakone4
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake shayanakone4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake mukhyasnana
-  - ella belaku arisu hodake mukhyasnana
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake mukhyasnana
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake mukhyasnana
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake main bath
-  - ella belaku arisu hodake main bath
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake main bath
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake hallway
-  - ella belaku arisu hodake hallway
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake hallway
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake hallway
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - arisu ella belaku hodake basement
-  - ella belaku arisu hodake basement
+  - ಆರಿಸು ಎಲ್ಲ ಬೆಳಕು hodake basement
+  - ಎಲ್ಲ ಬೆಳಕು ಆರಿಸು hodake basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - hachchu belaku basement
-  - belaku basement hachchu
+  - ಹಚ್ಚು ಬೆಳಕು basement
+  - ಬೆಳಕು basement ಹಚ್ಚು
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - hachchu belaku hallway
-  - belaku hallway hachchu
+  - ಹಚ್ಚು ಬೆಳಕು hallway
+  - ಬೆಳಕು hallway ಹಚ್ಚು
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - hachchu chavani kutumba
-  - chavani kutumba hachchu
+  - ಹಚ್ಚು chavani kutumba
+  - chavani kutumba ಹಚ್ಚು
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - hachchu belaku kutumbaess
-  - belaku kutumbaess hachchu
+  - ಹಚ್ಚು ಬೆಳಕು kutumbaess
+  - ಬೆಳಕು kutumbaess ಹಚ್ಚು

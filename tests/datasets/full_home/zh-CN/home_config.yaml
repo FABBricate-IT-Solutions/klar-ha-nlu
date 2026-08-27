@@ -31,9 +31,10 @@ areas:
   aliases:
   - xuanguan
 - id: living
-  name: Keting
+  name: 客厅
   floor: ground
   aliases:
+  - 客厅
   - keting
 - id: dining
   name: Jiatingfangess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - jiatingfangess
 - id: kitchen
-  name: Chufang
+  name: 厨房
   floor: ground
   aliases:
+  - 厨房
   - chufang
 - id: family_room
   name: Jiatingfang
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Woshi
+  name: Woshimaster
   floor: upper
   aliases:
+  - woshimaster
   - woshi
 - id: bedroom_2
   name: Woshi2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: xuanguan deng
+  name: xuanguan 灯
   aliases:
-  - xuanguan deng
-  - deng
+  - xuanguan 灯
+  - 灯
 - id: light.living_ceiling
   area_id: living
-  name: keting tianhuaban
+  name: 客厅 tianhuaban
   aliases:
-  - keting tianhuaban
+  - 客厅 tianhuaban
   - tianhuaban
 - id: light.living_lamp
   area_id: living
-  name: keting deng
+  name: 客厅 deng
   aliases:
-  - keting deng
+  - 客厅 deng
   - deng
 - id: light.dining_pendant
   area_id: dining
-  name: jiatingfangess deng
+  name: jiatingfangess 灯
   aliases:
-  - jiatingfangess deng
-  - deng
+  - jiatingfangess 灯
+  - 灯
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: chufang tianhuaban
+  name: 厨房 tianhuaban
   aliases:
-  - chufang tianhuaban
+  - 厨房 tianhuaban
   - tianhuaban
 - id: light.kitchen_island
   area_id: kitchen
-  name: chufang daotai
+  name: 厨房 daotai
   aliases:
-  - chufang daotai
+  - 厨房 daotai
   - daotai
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - tianhuaban
 - id: light.laundry_light
   area_id: laundry
-  name: xiyifang deng
+  name: xiyifang 灯
   aliases:
-  - xiyifang deng
-  - deng
+  - xiyifang 灯
+  - 灯
 - id: light.powder_room_light
   area_id: powder_room
-  name: kewei deng
+  name: kewei 灯
   aliases:
-  - kewei deng
-  - deng
+  - kewei 灯
+  - 灯
 - id: light.garage_light
   area_id: garage
-  name: garage deng
+  name: garage 灯
   aliases:
-  - garage deng
-  - deng
+  - garage 灯
+  - 灯
 - id: light.office_ceiling
   area_id: office
   name: office tianhuaban
@@ -184,35 +187,35 @@ devices:
   - tianhuaban
 - id: light.garden
   area_id: garden
-  name: garden deng
+  name: garden 灯
   aliases:
-  - garden deng
-  - deng
+  - garden 灯
+  - 灯
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: woshi tianhuaban
+  name: woshimaster tianhuaban
   aliases:
-  - woshi tianhuaban
+  - woshimaster tianhuaban
   - tianhuaban
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: woshi ensuite
+  name: woshimaster ensuite
   aliases:
-  - woshi ensuite
+  - woshimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: woshi left chuangtoudeng
+  name: woshimaster left chuangtoudeng
   aliases:
-  - woshi left chuangtoudeng
+  - woshimaster left chuangtoudeng
   - chuangtoudeng
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: woshi right chuangtoudeng
+  name: woshimaster right chuangtoudeng
   aliases:
-  - woshi right chuangtoudeng
+  - woshimaster right chuangtoudeng
   - chuangtoudeng
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - tianhuaban
 - id: light.master_bath_light
   area_id: master_bath
-  name: zhuwei deng
+  name: zhuwei 灯
   aliases:
-  - zhuwei deng
-  - deng
+  - zhuwei 灯
+  - 灯
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath deng
+  name: main bath 灯
   aliases:
-  - main bath deng
-  - deng
+  - main bath 灯
+  - 灯
 - id: light.hallway_light
   area_id: hallway
-  name: zoulang deng
+  name: zoulang 灯
   aliases:
-  - zoulang deng
-  - deng
+  - zoulang 灯
+  - 灯
 - id: light.basement
   area_id: basement
-  name: basement deng
+  name: basement 灯
   aliases:
-  - basement deng
-  - deng
+  - basement 灯
+  - 灯
 - id: cover.living_blinds
   area_id: living
-  name: keting lianzi
+  name: 客厅 帘子
   aliases:
-  - keting lianzi
-  - lianzi
+  - 客厅 帘子
+  - 帘子
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: woshi lianzi
+  name: woshimaster 帘子
   aliases:
-  - woshi lianzi
-  - lianzi
+  - woshimaster 帘子
+  - 帘子
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: woshi2 lianzi
+  name: woshi2 帘子
   aliases:
-  - woshi2 lianzi
-  - lianzi
+  - woshi2 帘子
+  - 帘子
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: woshi3 lianzi
+  name: woshi3 帘子
   aliases:
-  - woshi3 lianzi
-  - lianzi
+  - woshi3 帘子
+  - 帘子
 - id: cover.garage_door
   area_id: garage
-  name: garage lianzi
+  name: garage 帘子
   aliases:
-  - garage lianzi
-  - lianzi
+  - garage 帘子
+  - 帘子
 - id: climate.ground_thermostat
   area_id: living
-  name: keting kongtiao
+  name: 客厅 空调
   aliases:
-  - keting kongtiao
-  - kongtiao
+  - 客厅 空调
+  - 空调
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: woshi kongtiao
+  name: woshimaster 空调
   aliases:
-  - woshi kongtiao
-  - kongtiao
+  - woshimaster 空调
+  - 空调
 - id: climate.master_ac
   area_id: master_bedroom
-  name: kongtiao woshi
+  name: kongtiao woshimaster
   aliases:
-  - kongtiao woshi
+  - kongtiao woshimaster
   - kongtiao
   - ac
   tags:
   - kongtiao
 - id: fan.family_fan
   area_id: family_room
-  name: jiatingfang fengshan
+  name: jiatingfang 风扇
   aliases:
-  - jiatingfang fengshan
-  - fengshan
+  - jiatingfang 风扇
+  - 风扇
 - id: fan.master_fan
   area_id: master_bedroom
-  name: woshi fengshan
+  name: woshimaster 风扇
   aliases:
-  - woshi fengshan
-  - fengshan
+  - woshimaster 风扇
+  - 风扇
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: woshi2 fengshan
+  name: woshi2 风扇
   aliases:
-  - woshi2 fengshan
-  - fengshan
+  - woshi2 风扇
+  - 风扇
 - id: lock.front_door
   area_id: entryway
-  name: front men
+  name: front 门
   aliases:
-  - front men
+  - front 门
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage men
+  name: garage 门
   aliases:
-  - garage men
+  - garage 门
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: chufang xiwanji
+  name: 厨房 xiwanji
   aliases:
-  - chufang xiwanji
+  - 厨房 xiwanji
   - xiwanji
 - id: switch.rangehood
   area_id: kitchen
-  name: chufang youyanji
+  name: 厨房 youyanji
   aliases:
-  - chufang youyanji
+  - 厨房 youyanji
   - youyanji
   tags:
   - youyanji
@@ -389,9 +392,9 @@ devices:
   - yushifengshan
 - id: media_player.living_tv
   area_id: living
-  name: keting dianshi
+  name: 客厅 dianshi
   aliases:
-  - keting dianshi
+  - 客厅 dianshi
   - dianshi
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - dianshi
 - id: media_player.living_music
   area_id: living
-  name: keting yinyue
+  name: 客厅 电视
   aliases:
-  - keting yinyue
-  - yinyue
+  - 客厅 电视
+  - 电视
   platform: music_assistant
   tags:
-  - yinyue
+  - 电视
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: chufang yinyue
+  name: 厨房 电视
   aliases:
-  - chufang yinyue
-  - yinyue
+  - 厨房 电视
+  - 电视
   platform: music_assistant
   tags:
-  - yinyue
+  - 电视
 - id: media_player.office_music
   area_id: office
-  name: office yinyue
+  name: office 电视
   aliases:
-  - office yinyue
-  - yinyue
+  - office 电视
+  - 电视
   platform: music_assistant
   tags:
-  - yinyue
+  - 电视
 - id: vacuum.robot
   area_id: living
-  name: keting saodi
+  name: 客厅 扫地
   aliases:
-  - keting saodi
-  - saodi
+  - 客厅 扫地
+  - 扫地
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: xuanguan mensuoqi
@@ -442,33 +445,33 @@ devices:
   - mensuoqi
 - id: binary_sensor.living_window
   area_id: living
-  name: keting chuangsuoqi
+  name: 客厅 chuangsuoqi
   aliases:
-  - keting chuangsuoqi
+  - 客厅 chuangsuoqi
   - chuangsuoqi
   tags:
   - chuangsuoqi
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: chufang yundong
+  name: 厨房 yundong
   aliases:
-  - chufang yundong
+  - 厨房 yundong
   - yundong
   tags:
   - yundong
 - id: sensor.living_temperature
   area_id: living
-  name: keting wenshidu
+  name: 客厅 wenshidu
   aliases:
-  - keting wenshidu
+  - 客厅 wenshidu
   - wenshidu
   tags:
   - wenshidu
 - id: sensor.living_humidity
   area_id: living
-  name: keting shidu
+  name: 客厅 shidu
   aliases:
-  - keting shidu
+  - 客厅 shidu
   - shidu
   tags:
   - shidu
@@ -494,11 +497,11 @@ scripts:
   name: likai
 timers:
 - id: oven
-  name: oven dingshi
+  name: oven 定时
 - id: laundry
-  name: laundry dingshi
+  name: laundry 定时
 - id: abstract
-  name: abstract dingshi
+  name: abstract 定时
 lists:
 - id: shopping
-  name: qingdan
+  name: 清单

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - ustaw ogrzewanie salon 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- ustaw ogrzewanie sypialnia 19
+- ustaw ogrzewanie sypialniamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - ustaw zaslona sypialnia2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - otworz zaslona salon
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- ustaw zaslona sypialnia 19
+- ustaw zaslona sypialniamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- zamknij zaslona sypialnia
+- zamknij zaslona sypialniamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- otworz zaslona sypialnia
+- otworz zaslona sypialniamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - ustaw wentylator sypialnia2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - wlacz wentylator salonfam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- ustaw wentylator sypialnia 28
+- ustaw wentylator sypialniamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- wylacz wentylator sypialnia
+- wylacz wentylator sypialniamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- wlacz wentylator sypialnia
+- wlacz wentylator sypialniamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- wylacz wentylator sypialnia i wylacz swiatlo kuchnia
+- wylacz wentylator sypialniamaster then wylacz wyspa kuchnia
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- wlacz wentylator sypialnia i wlacz swiatlo kuchnia
+- wlacz wentylator sypialniamaster then wlacz wyspa kuchnia
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - ustaw sufit sypialnia2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - wlacz sufit kuchnia
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- ustaw swiatlo kuchnia 99
+- ustaw wyspa kuchnia 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- ustaw swiatlo kuchnia zielony
+- ustaw wyspa kuchnia zielony
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- wylacz swiatlo kuchnia
+- wylacz wyspa kuchnia
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- wlacz swiatlo kuchnia
+- wlacz wyspa kuchnia
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - ustaw swiatlo pralnia 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - wlacz sufit salon
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- ustaw swiatlo salon 72
+- ustaw lamp salon 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- ustaw swiatlo salon czerwony
+- ustaw lamp salon czerwony
 devices/light_living_lamp::light_living_lamp_turn_off:
-- wylacz swiatlo salon
+- wylacz lamp salon
 devices/light_living_lamp::light_living_lamp_turn_on:
-- wlacz swiatlo salon
+- wlacz lamp salon
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - ustaw swiatlo main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - wlacz swiatlo lazmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- ustaw noca sypialnia 25
+- ustaw noca sypialniamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- ustaw noca sypialnia czerwony
+- ustaw noca sypialniamaster czerwony
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- wylacz noca sypialnia
+- wylacz noca sypialniamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- wlacz noca sypialnia
+- wlacz noca sypialniamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- ustaw sufit sypialnia 77
+- ustaw sufit sypialniamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- ustaw sufit sypialnia niebieski
+- ustaw sufit sypialniamaster niebieski
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- wylacz sufit sypialnia
+- wylacz sufit sypialniamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- wlacz sufit sypialnia
+- wlacz sufit sypialniamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- ustaw swiatlo sypialnia 55
+- ustaw ankleide sypialniamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- ustaw swiatlo sypialnia czarny
+- ustaw ankleide sypialniamaster czarny
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- wylacz swiatlo sypialnia
+- wylacz ankleide sypialniamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- wlacz swiatlo sypialnia
+- wlacz ankleide sypialniamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - ustaw swiatlo toaleta 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - wlacz telewizor salonfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause telewizor salonfam
+- pause tv salonfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - wylacz telewizor salonfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - wlacz telewizor salon
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause telewizor salon
+- pause tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - wylacz telewizor salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - wlacz telewizor salon
 devices/scenes::dinner_time:
-- ustaw swiatlo salonfamess 90 i wlacz sufit kuchnia i ustaw swiatlo kuchnia 80
+- ustaw swiatlo salonfamess 90 then wlacz sufit kuchnia then ustaw wyspa kuchnia 80
 devices/scenes::good_morning:
-- wlacz sufit kuchnia i ustaw swiatlo salonfamess 100 i otworz zaslona salon i otworz
-  zaslona sypialnia
+- wlacz sufit kuchnia then ustaw swiatlo salonfamess 100 then otworz zaslona salon
+  then otworz zaslona sypialniamaster
 devices/scenes::kids_bedtime:
-- wylacz sufit sypialnia2 i wylacz sufit sypialnia3 i wylacz sufit sypialnia4 i ustaw
-  swiatlo przedpokojgang 15
+- wylacz sufit sypialnia2 then wylacz sufit sypialnia3 then wylacz sufit sypialnia4
+  then ustaw swiatlo przedpokojgang 15
 devices/scenes::movie_night:
-- wylacz sufit salon i ustaw swiatlo salon 20 i wlacz telewizor salon i zamknij zaslona
-  salon
+- wylacz sufit salon then ustaw lamp salon 20 then wlacz telewizor salon then zamknij
+  zaslona salon
 devices/scripts::good_night:
-- wlacz scena noc
+- wylacz sufit salon then wylacz lamp salon then wylacz swiatlo salonfamess then wylacz
+  sufit kuchnia then wylacz wyspa kuchnia then wylacz sufit salonfam then wylacz swiatlo
+  przedpokoj then wylacz swiatlo przedpokojgang then zamek zamek przedpokoj then zamek
+  zamek garage then ustaw ogrzewanie sypialniamaster 20
 devices/scripts::leaving_home:
-- wlacz scena wyjscie
+- wylacz sufit salon then wylacz lamp salon then wylacz sufit kuchnia then wylacz
+  sufit salonfam then wylacz swiatlo przedpokoj then zamek zamek przedpokoj then zamek
+  zamek garage then zamknij zaslona garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - wylacz zmywarka
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - wlacz zmywarka
 devices/switch_dryer::switch_dryer_turn_off:
-- wylacz pralka
+- wylacz suszarka
 devices/switch_dryer::switch_dryer_turn_on:
-- wlacz pralka
+- wlacz suszarka
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - wylacz pralka
 devices/switch_washing_machine::switch_washing_machine_turn_on:

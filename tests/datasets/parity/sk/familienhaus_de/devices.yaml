@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - nastav kurenie obyvacka 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- nastav kurenie spalna 19
+- nastav kurenie spalnamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - nastav zaves spalna2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - otvor zaves obyvacka
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- nastav zaves spalna 19
+- nastav zaves spalnamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- zatvor zaves spalna
+- zatvor zaves spalnamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- otvor zaves spalna
+- otvor zaves spalnamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - nastav ventilator spalna2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - zapni ventilator obyvackafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- nastav ventilator spalna 28
+- nastav ventilator spalnamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- vypni ventilator spalna
+- vypni ventilator spalnamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- zapni ventilator spalna
+- zapni ventilator spalnamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- vypni ventilator spalna a vypni svetlo kuchyne
+- vypni ventilator spalnamaster then vypni ostrov kuchyne
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- zapni ventilator spalna a zapni svetlo kuchyne
+- zapni ventilator spalnamaster then zapni ostrov kuchyne
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - nastav strop spalna2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - zapni strop kuchyne
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- nastav svetlo kuchyne 99
+- nastav ostrov kuchyne 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- nastav svetlo kuchyne green
+- nastav ostrov kuchyne green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- vypni svetlo kuchyne
+- vypni ostrov kuchyne
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- zapni svetlo kuchyne
+- zapni ostrov kuchyne
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - nastav svetlo pradelna 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - zapni strop obyvacka
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- nastav svetlo obyvacka 72
+- nastav lamp obyvacka 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- nastav svetlo obyvacka red
+- nastav lamp obyvacka red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- vypni svetlo obyvacka
+- vypni lamp obyvacka
 devices/light_living_lamp::light_living_lamp_turn_on:
-- zapni svetlo obyvacka
+- zapni lamp obyvacka
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - nastav svetlo main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - zapni svetlo kupelmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- nastav nocny spalna 25
+- nastav nocny spalnamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- nastav nocny spalna red
+- nastav nocny spalnamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- vypni nocny spalna
+- vypni nocny spalnamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- zapni nocny spalna
+- zapni nocny spalnamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- nastav strop spalna 77
+- nastav strop spalnamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- nastav strop spalna blue
+- nastav strop spalnamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- vypni strop spalna
+- vypni strop spalnamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- zapni strop spalna
+- zapni strop spalnamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- nastav svetlo spalna 55
+- nastav ankleide spalnamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- nastav svetlo spalna black
+- nastav ankleide spalnamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- vypni svetlo spalna
+- vypni ankleide spalnamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- zapni svetlo spalna
+- zapni ankleide spalnamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - nastav svetlo wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - zapni televizia obyvackafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause televizia obyvackafam
+- pause tv obyvackafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - vypni televizia obyvackafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - zapni televizia obyvacka
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause televizia obyvacka
+- pause tv obyvacka
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - vypni televizia obyvacka
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - zapni televizia obyvacka
 devices/scenes::dinner_time:
-- nastav svetlo obyvackafamess 90 a zapni strop kuchyne a nastav svetlo kuchyne 80
+- nastav svetlo obyvackafamess 90 then zapni strop kuchyne then nastav ostrov kuchyne
+  80
 devices/scenes::good_morning:
-- zapni strop kuchyne a nastav svetlo obyvackafamess 100 a otvor zaves obyvacka a
-  otvor zaves spalna
+- zapni strop kuchyne then nastav svetlo obyvackafamess 100 then otvor zaves obyvacka
+  then otvor zaves spalnamaster
 devices/scenes::kids_bedtime:
-- vypni strop spalna2 a vypni strop spalna3 a vypni strop spalna4 a nastav svetlo
-  predsiengang 15
+- vypni strop spalna2 then vypni strop spalna3 then vypni strop spalna4 then nastav
+  svetlo predsiengang 15
 devices/scenes::movie_night:
-- vypni strop obyvacka a nastav svetlo obyvacka 20 a zapni televizia obyvacka a zatvor
-  zaves obyvacka
+- vypni strop obyvacka then nastav lamp obyvacka 20 then zapni televizia obyvacka
+  then zatvor zaves obyvacka
 devices/scripts::good_night:
-- zapni scena noc
+- vypni strop obyvacka then vypni lamp obyvacka then vypni svetlo obyvackafamess then
+  vypni strop kuchyne then vypni ostrov kuchyne then vypni strop obyvackafam then
+  vypni svetlo predsien then vypni svetlo predsiengang then zamok zamok predsien then
+  zamok zamok garage then nastav kurenie spalnamaster 20
 devices/scripts::leaving_home:
-- zapni scena odchod
+- vypni strop obyvacka then vypni lamp obyvacka then vypni strop kuchyne then vypni
+  strop obyvackafam then vypni svetlo predsien then zamok zamok predsien then zamok
+  zamok garage then zatvor zaves garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - vypni umyvacka
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - zapni umyvacka
 devices/switch_dryer::switch_dryer_turn_off:
-- vypni pracka
+- vypni susicka
 devices/switch_dryer::switch_dryer_turn_on:
-- zapni pracka
+- zapni susicka
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - vypni pracka
 devices/switch_washing_machine::switch_washing_machine_turn_on:

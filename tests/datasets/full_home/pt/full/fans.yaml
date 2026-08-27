@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventoinha quarto liga
-  - liga ventoinha quarto
+  - ventoinha quartomaster liga
+  - liga ventoinha quartomaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - desliga ventoinha quarto
-  - ventoinha quarto desliga
+  - desliga ventoinha quartomaster
+  - ventoinha quartomaster desliga
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - poe ventoinha quarto 40
-  - ventoinha quarto 40
+  - poe ventoinha quartomaster 40
+  - ventoinha quartomaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - poe ventoinha quarto 20
-  - ventoinha quarto 20
+  - poe ventoinha quartomaster 20
+  - ventoinha quartomaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - poe ventoinha quarto 60
-  - ventoinha quarto 60
+  - poe ventoinha quartomaster 60
+  - ventoinha quartomaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - poe ventoinha quarto 80
-  - ventoinha quarto 80
+  - poe ventoinha quartomaster 80
+  - ventoinha quartomaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

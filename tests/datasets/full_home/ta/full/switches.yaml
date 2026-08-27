@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - eru pattiram samaiyal
-  - pattiram samaiyal eru
+  - ஏற்று pattiram சமையல்
+  - pattiram சமையல் ஏற்று
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - anai pattiram samaiyal
-  - pattiram samaiyal anai
+  - அணை pattiram சமையல்
+  - pattiram சமையல் அணை
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - eru washing salavai
-  - washing salavai eru
+  - ஏற்று washing salavai
+  - washing salavai ஏற்று
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - anai washing salavai
-  - washing salavai anai
+  - அணை washing salavai
+  - washing salavai அணை
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - eru dryer salavai
-  - dryer salavai eru
+  - ஏற்று dryer salavai
+  - dryer salavai ஏற்று
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - anai dryer salavai
-  - dryer salavai anai
+  - அணை dryer salavai
+  - dryer salavai அணை
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - eru rangehood samaiyal
-  - rangehood samaiyal eru
+  - ஏற்று rangehood சமையல்
+  - rangehood சமையல் ஏற்று
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - anai rangehood samaiyal
-  - rangehood samaiyal anai
+  - அணை rangehood சமையல்
+  - rangehood சமையல் அணை
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - eru visiribad muthanmaikuliyal
-  - visiribad muthanmaikuliyal eru
+  - ஏற்று விசிறிbad muthanmaikuliyal
+  - விசிறிbad muthanmaikuliyal ஏற்று
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - anai visiribad muthanmaikuliyal
-  - visiribad muthanmaikuliyal anai
+  - அணை விசிறிbad muthanmaikuliyal
+  - விசிறிbad muthanmaikuliyal அணை
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - eru visiribad main bath
-  - visiribad main bath eru
+  - ஏற்று விசிறிbad main bath
+  - விசிறிbad main bath ஏற்று
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - anai visiribad main bath
-  - visiribad main bath anai
+  - அணை விசிறிbad main bath
+  - விசிறிbad main bath அணை

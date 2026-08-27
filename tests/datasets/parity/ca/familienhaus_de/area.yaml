@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - encen ventilador habitacio2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- posa llum habitacio2 65
+- posa tot llum habitacio2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- posa llum habitacio2 rosa
+- posa tot llum habitacio2 rosa
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- apaga llum habitacio2
+- apaga tot llum habitacio2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- encen llum habitacio2
+- encen tot llum habitacio2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - tanca cortina habitacio3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - posa cortina habitacio3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- posa llum habitacio3 76
+- posa tot llum habitacio3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- posa llum habitacio3 blau
+- posa tot llum habitacio3 blau
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- apaga llum habitacio3
+- apaga tot llum habitacio3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- encen llum habitacio3
+- encen tot llum habitacio3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- posa llum habitacio4 69
+- posa tot llum habitacio4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- posa llum habitacio4 verd
+- posa tot llum habitacio4 verd
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- apaga llum habitacio4
+- apaga tot llum habitacio4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- encen llum habitacio4
+- encen tot llum habitacio4
 area/dining_lights::dining_lights_change_brightness:
-- posa llum salaestaress 54
+- posa tot llum salaestaress 54
 area/dining_lights::dining_lights_change_color:
-- posa llum salaestaress blau
+- posa tot llum salaestaress blau
 area/dining_lights::dining_lights_turn_off:
-- apaga llum salaestaress
+- apaga tot llum salaestaress
 area/dining_lights::dining_lights_turn_on:
-- encen llum salaestaress
+- encen tot llum salaestaress
 area/entryway_lights::entryway_lights_change_brightness:
-- posa llum entrada 72
+- posa tot llum entrada 72
 area/entryway_lights::entryway_lights_change_color:
-- posa llum entrada negre
+- posa tot llum entrada negre
 area/entryway_lights::entryway_lights_turn_off:
-- apaga llum entrada
+- apaga tot llum entrada
 area/entryway_lights::entryway_lights_turn_on:
-- encen llum entrada
+- encen tot llum entrada
 area/entryway_locks::entryway_locks_lock:
 - bloqueja pany entrada
 area/entryway_locks::entryway_locks_unlock:
 - obri pany entrada
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- posa llum salaestar 39 i posa llum cuina 39
+- posa tot llum salaestar 39 then posa tot llum cuina 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- posa llum salaestar lila i posa llum cuina lila
+- posa tot llum salaestar lila then posa tot llum cuina lila
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- apaga llum salaestar i apaga llum cuina
+- apaga tot llum salaestar then apaga tot llum cuina
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- encen llum salaestar i encen llum cuina
+- encen tot llum salaestar then encen tot llum cuina
 area/family_room_fans::family_room_fans_set_fan_speed:
 - posa ventilador salaestar 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - encen ventilador salaestar
 area/family_room_lights::family_room_lights_change_brightness:
-- posa llum salaestar 44
+- posa tot llum salaestar 44
 area/family_room_lights::family_room_lights_change_color:
-- posa llum salaestar verd
+- posa tot llum salaestar verd
 area/family_room_lights::family_room_lights_turn_off:
-- apaga llum salaestar
+- apaga tot llum salaestar
 area/family_room_lights::family_room_lights_turn_on:
-- encen llum salaestar
+- encen tot llum salaestar
 area/garage_covers::garage_covers_close:
 - tanca cortina garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - posa cortina garage 86
 area/garage_lights::garage_lights_change_brightness:
-- posa llum garage 16
+- posa tot llum garage 16
 area/garage_lights::garage_lights_change_color:
-- posa llum garage blau
+- posa tot llum garage blau
 area/garage_lights::garage_lights_turn_off:
-- apaga llum garage
+- apaga tot llum garage
 area/garage_lights::garage_lights_turn_on:
-- encen llum garage
+- encen tot llum garage
 area/garage_locks::garage_locks_lock:
 - bloqueja pany garage
 area/garage_locks::garage_locks_unlock:
 - obri pany garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- posa llum entradagang 26 i posa llum lavabo 26
+- posa tot llum entradagang 26 then posa tot llum lavabo 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- posa llum entradagang lila i posa llum lavabo lila
+- posa tot llum entradagang lila then posa tot llum lavabo lila
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- apaga llum entradagang i apaga llum lavabo
+- apaga tot llum entradagang then apaga tot llum lavabo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- encen llum entradagang i encen llum lavabo
+- encen tot llum entradagang then encen tot llum lavabo
 area/hallway_lights::hallway_lights_change_brightness:
-- posa llum entradagang 61
+- posa tot llum entradagang 61
 area/hallway_lights::hallway_lights_change_color:
-- posa llum entradagang taronja
+- posa tot llum entradagang taronja
 area/hallway_lights::hallway_lights_turn_off:
-- apaga llum entradagang
+- apaga tot llum entradagang
 area/hallway_lights::hallway_lights_turn_on:
-- encen llum entradagang
+- encen tot llum entradagang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- posa llum cuina 45
+- posa tot llum cuina 45
 area/kitchen_lights::kitchen_lights_change_color:
-- posa llum cuina rosa
+- posa tot llum cuina rosa
 area/kitchen_lights::kitchen_lights_turn_off:
-- apaga llum cuina
+- apaga tot llum cuina
 area/kitchen_lights::kitchen_lights_turn_on:
-- encen llum cuina
+- encen tot llum cuina
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- apaga aparell cuina
+- apaga tot aparell cuina
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- encen aparell cuina
+- encen tot aparell cuina
 area/laundry_lights::laundry_lights_change_brightness:
-- posa llum bugaderia 62
+- posa tot llum bugaderia 62
 area/laundry_lights::laundry_lights_change_color:
-- posa llum bugaderia groc
+- posa tot llum bugaderia groc
 area/laundry_lights::laundry_lights_turn_off:
-- apaga llum bugaderia
+- apaga tot llum bugaderia
 area/laundry_lights::laundry_lights_turn_on:
-- encen llum bugaderia
+- encen tot llum bugaderia
 area/laundry_switchs::laundry_switchs_turn_off:
-- apaga aparell bugaderia
+- apaga tot aparell bugaderia
 area/laundry_switchs::laundry_switchs_turn_on:
-- encen aparell bugaderia
+- encen tot aparell bugaderia
 area/living_climates::living_climates_set_temperature:
 - posa calefaccio sala 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,100 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - posa cortina sala 46
 area/living_lights::living_lights_change_brightness:
-- posa llum sala 84
+- posa tot llum sala 84
 area/living_lights::living_lights_change_color:
-- posa llum sala blau
+- posa tot llum sala blau
 area/living_lights::living_lights_turn_off:
-- apaga llum sala
+- apaga tot llum sala
 area/living_lights::living_lights_turn_on:
-- encen llum sala
+- encen tot llum sala
 area/main_bath_lights::main_bath_lights_change_brightness:
-- posa llum main bath 73
+- posa tot llum main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- posa llum main bath rosa
+- posa tot llum main bath rosa
 area/main_bath_lights::main_bath_lights_turn_off:
-- apaga llum main bath
+- apaga tot llum main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- encen llum main bath
+- encen tot llum main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- apaga aparell main bath
+- apaga tot aparell main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- encen aparell main bath
+- encen tot aparell main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- posa llum banymaster 60
+- posa tot llum banymaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- posa llum banymaster negre
+- posa tot llum banymaster negre
 area/master_bath_lights::master_bath_lights_turn_off:
-- apaga llum banymaster
+- apaga tot llum banymaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- encen llum banymaster
+- encen tot llum banymaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- apaga aparell banymaster
+- apaga tot aparell banymaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- encen aparell banymaster
+- encen tot aparell banymaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- posa calefaccio habitacio 20 i posa calefaccio sala 20
+- posa calefaccio habitaciomaster 20 then posa calefaccio sala 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- tanca cortina habitacio i tanca cortina sala
+- tanca cortina habitaciomaster then tanca cortina sala
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- obri cortina habitacio i obri cortina sala
+- obri cortina habitaciomaster then obri cortina sala
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- posa cortina habitacio 19 i posa cortina sala 19
+- posa cortina habitaciomaster 19 then posa cortina sala 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- posa llum habitacio 25 i posa llum sala 25
+- posa tot llum habitaciomaster 25 then posa tot llum sala 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- posa llum habitacio blanc i posa llum sala blanc
+- posa tot llum habitaciomaster blanc then posa tot llum sala blanc
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- apaga llum habitacio i apaga llum sala
+- apaga tot llum habitaciomaster then apaga tot llum sala
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- encen llum habitacio i encen llum sala
+- encen tot llum habitaciomaster then encen tot llum sala
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- posa llum habitacio 57 i posa llum main bath 57
+- posa tot llum habitaciomaster 57 then posa tot llum main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- posa llum habitacio rosa i posa llum main bath rosa
+- posa tot llum habitaciomaster rosa then posa tot llum main bath rosa
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- apaga llum habitacio i apaga llum main bath
+- apaga tot llum habitaciomaster then apaga tot llum main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- encen llum habitacio i encen llum main bath
+- encen tot llum habitaciomaster then encen tot llum main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- posa calefaccio habitacio 20
+- posa calefaccio habitaciomaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- tanca cortina habitacio
+- tanca cortina habitaciomaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- obri cortina habitacio
+- obri cortina habitaciomaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- posa cortina habitacio 38
+- posa cortina habitaciomaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- posa ventilador habitacio 79
+- posa ventilador habitaciomaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- apaga ventilador habitacio
+- apaga ventilador habitaciomaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- encen ventilador habitacio
+- encen ventilador habitaciomaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- posa llum habitacio 73
+- posa tot llum habitaciomaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- posa llum habitacio rosa
+- posa tot llum habitaciomaster rosa
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- apaga llum habitacio
+- apaga tot llum habitaciomaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- encen llum habitacio
+- encen tot llum habitaciomaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- posa llum lavabo 52
+- posa tot llum lavabo 52
 area/powder_room_lights::powder_room_lights_change_color:
-- posa llum lavabo lila
+- posa tot llum lavabo lila
 area/powder_room_lights::powder_room_lights_turn_off:
-- apaga llum lavabo
+- apaga tot llum lavabo
 area/powder_room_lights::powder_room_lights_turn_on:
-- encen llum lavabo
+- encen tot llum lavabo
 area/spoken_lights::spoken_bedroom_inflection:
-- posa llum habitacio vermell
+- posa tot llum habitaciomaster vermell
 area/spoken_lights::spoken_except_island:
 - apaga tot llum excepte illa
 area/spoken_lights::spoken_except_kitchen:
-- apaga tot llum excepte cuina excepte illa
+- apaga tot llum excepte cuina
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- apaga llum sala i apaga llum salaestaress i apaga llum cuina
+- apaga tot llum sala then apaga tot llum salaestaress then apaga tot llum cuina
 area/spoken_lights::spoken_stt_kitchen_off:
-- apaga llum cuina
+- apaga tot llum cuina
 area/spoken_lights::spoken_stt_living_off:
-- apaga llum sala
+- apaga tot llum sala

@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - poetfai nang
-  - nang poetfai
+  - เปิด nang
+  - nang เปิด
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - poetfai khuen
-  - khuen poetfai
+  - เปิด khuen
+  - khuen เปิด
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - poetfai ok
-  - ok poetfai
+  - เปิด ok
+  - ok เปิด
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - poetfai dinner
-  - dinner poetfai
+  - เปิด dinner
+  - dinner เปิด
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - poetfai morning
-  - morning poetfai
+  - เปิด morning
+  - morning เปิด
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - poetfai kids
-  - kids poetfai
+  - เปิด kids
+  - kids เปิด

@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - skakel lig slaapkamer
-  - lig slaapkamer skakel
+  - skakel lig slaapkamermaster
+  - lig slaapkamermaster skakel
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - doof lig slaapkamer
-  - lig slaapkamer doof
+  - doof lig slaapkamermaster
+  - lig slaapkamermaster doof
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - skakel plafon slaapkamer
-  - plafon slaapkamer skakel
+  - skakel plafon slaapkamermaster
+  - plafon slaapkamermaster skakel
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - doof plafon slaapkamer
-  - plafon slaapkamer doof
+  - doof plafon slaapkamermaster
+  - plafon slaapkamermaster doof
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stel plafon slaapkamer 20
-  - plafon slaapkamer 20
+  - stel plafon slaapkamermaster 20
+  - plafon slaapkamermaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stel plafon slaapkamer 40
-  - plafon slaapkamer 40
+  - stel plafon slaapkamermaster 40
+  - plafon slaapkamermaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stel plafon slaapkamer 50
-  - plafon slaapkamer 50
+  - stel plafon slaapkamermaster 50
+  - plafon slaapkamermaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stel plafon slaapkamer 60
-  - plafon slaapkamer 60
+  - stel plafon slaapkamermaster 60
+  - plafon slaapkamermaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stel plafon slaapkamer 80
-  - plafon slaapkamer 80
+  - stel plafon slaapkamermaster 80
+  - plafon slaapkamermaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - stel plafon slaapkamer 100
-  - plafon slaapkamer 100
+  - stel plafon slaapkamermaster 100
+  - plafon slaapkamermaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - skakel nagus slaapkamer
-  - nagus slaapkamer skakel
+  - skakel nagus slaapkamermaster
+  - nagus slaapkamermaster skakel
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - doof nagus slaapkamer
-  - nagus slaapkamer doof
+  - doof nagus slaapkamermaster
+  - nagus slaapkamermaster doof
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stel nagus slaapkamer 20
-  - nagus slaapkamer 20
+  - stel nagus slaapkamermaster 20
+  - nagus slaapkamermaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stel nagus slaapkamer 40
-  - nagus slaapkamer 40
+  - stel nagus slaapkamermaster 40
+  - nagus slaapkamermaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stel nagus slaapkamer 50
-  - nagus slaapkamer 50
+  - stel nagus slaapkamermaster 50
+  - nagus slaapkamermaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stel nagus slaapkamer 60
-  - nagus slaapkamer 60
+  - stel nagus slaapkamermaster 60
+  - nagus slaapkamermaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stel nagus slaapkamer 80
-  - nagus slaapkamer 80
+  - stel nagus slaapkamermaster 80
+  - nagus slaapkamermaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - stel nagus slaapkamer 100
-  - nagus slaapkamer 100
+  - stel nagus slaapkamermaster 100
+  - nagus slaapkamermaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - skakel ensuite slaapkamer
-  - ensuite slaapkamer skakel
+  - skakel ensuite slaapkamermaster
+  - ensuite slaapkamermaster skakel
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - doof ensuite slaapkamer
-  - ensuite slaapkamer doof
+  - doof ensuite slaapkamermaster
+  - ensuite slaapkamermaster doof
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stel ensuite slaapkamer 20
-  - ensuite slaapkamer 20
+  - stel ensuite slaapkamermaster 20
+  - ensuite slaapkamermaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stel ensuite slaapkamer 40
-  - ensuite slaapkamer 40
+  - stel ensuite slaapkamermaster 40
+  - ensuite slaapkamermaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stel ensuite slaapkamer 50
-  - ensuite slaapkamer 50
+  - stel ensuite slaapkamermaster 50
+  - ensuite slaapkamermaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stel ensuite slaapkamer 60
-  - ensuite slaapkamer 60
+  - stel ensuite slaapkamermaster 60
+  - ensuite slaapkamermaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stel ensuite slaapkamer 80
-  - ensuite slaapkamer 80
+  - stel ensuite slaapkamermaster 80
+  - ensuite slaapkamermaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - stel ensuite slaapkamer 100
-  - ensuite slaapkamer 100
+  - stel ensuite slaapkamermaster 100
+  - ensuite slaapkamermaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - skakel nagus slaapkamer
-  - nagus slaapkamer skakel
+  - skakel nagus slaapkamermaster
+  - nagus slaapkamermaster skakel
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - doof nagus slaapkamer
-  - nagus slaapkamer doof
+  - doof nagus slaapkamermaster
+  - nagus slaapkamermaster doof
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - stel nagus slaapkamer 20
-  - nagus slaapkamer 20
+  - stel nagus slaapkamermaster 20
+  - nagus slaapkamermaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - stel nagus slaapkamer 40
-  - nagus slaapkamer 40
+  - stel nagus slaapkamermaster 40
+  - nagus slaapkamermaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - stel nagus slaapkamer 50
-  - nagus slaapkamer 50
+  - stel nagus slaapkamermaster 50
+  - nagus slaapkamermaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - stel nagus slaapkamer 60
-  - nagus slaapkamer 60
+  - stel nagus slaapkamermaster 60
+  - nagus slaapkamermaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - stel nagus slaapkamer 80
-  - nagus slaapkamer 80
+  - stel nagus slaapkamermaster 80
+  - nagus slaapkamermaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - stel nagus slaapkamer 100
-  - nagus slaapkamer 100
+  - stel nagus slaapkamermaster 100
+  - nagus slaapkamermaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - stel plafon slaapkamer rooi
-  - stel lig slaapkamer rooi
+  - stel plafon slaapkamermaster rooi
+  - stel lig slaapkamermaster rooi
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - stel plafon slaapkamer blou
-  - stel lig slaapkamer blou
+  - stel plafon slaapkamermaster blou
+  - stel lig slaapkamermaster blou
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - stel plafon slaapkamer groen
-  - stel lig slaapkamer groen
+  - stel plafon slaapkamermaster groen
+  - stel lig slaapkamermaster groen
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - stel plafon slaapkamer wit
-  - stel lig slaapkamer wit
+  - stel plafon slaapkamermaster wit
+  - stel lig slaapkamermaster wit
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - stel plafon slaapkamer geel
-  - stel lig slaapkamer geel
+  - stel plafon slaapkamermaster geel
+  - stel lig slaapkamermaster geel
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - stel plafon slaapkamer swart
-  - stel lig slaapkamer swart
+  - stel plafon slaapkamermaster swart
+  - stel lig slaapkamermaster swart
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - stel nagus slaapkamer rooi
-  - stel lig slaapkamer rooi
+  - stel nagus slaapkamermaster rooi
+  - stel lig slaapkamermaster rooi
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - stel nagus slaapkamer blou
-  - stel lig slaapkamer blou
+  - stel nagus slaapkamermaster blou
+  - stel lig slaapkamermaster blou
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - stel nagus slaapkamer groen
-  - stel lig slaapkamer groen
+  - stel nagus slaapkamermaster groen
+  - stel lig slaapkamermaster groen
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - stel nagus slaapkamer wit
-  - stel lig slaapkamer wit
+  - stel nagus slaapkamermaster wit
+  - stel lig slaapkamermaster wit
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - stel nagus slaapkamer geel
-  - stel lig slaapkamer geel
+  - stel nagus slaapkamermaster geel
+  - stel lig slaapkamermaster geel
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - stel nagus slaapkamer swart
-  - stel lig slaapkamer swart
+  - stel nagus slaapkamermaster swart
+  - stel lig slaapkamermaster swart
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - stel ensuite slaapkamer rooi
-  - stel lig slaapkamer rooi
+  - stel ensuite slaapkamermaster rooi
+  - stel lig slaapkamermaster rooi
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - stel ensuite slaapkamer blou
-  - stel lig slaapkamer blou
+  - stel ensuite slaapkamermaster blou
+  - stel lig slaapkamermaster blou
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - stel ensuite slaapkamer groen
-  - stel lig slaapkamer groen
+  - stel ensuite slaapkamermaster groen
+  - stel lig slaapkamermaster groen
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - stel ensuite slaapkamer wit
-  - stel lig slaapkamer wit
+  - stel ensuite slaapkamermaster wit
+  - stel lig slaapkamermaster wit
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - stel ensuite slaapkamer geel
-  - stel lig slaapkamer geel
+  - stel ensuite slaapkamermaster geel
+  - stel lig slaapkamermaster geel
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - stel ensuite slaapkamer swart
-  - stel lig slaapkamer swart
+  - stel ensuite slaapkamermaster swart
+  - stel lig slaapkamermaster swart
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - stel nagus slaapkamer rooi
-  - stel lig slaapkamer rooi
+  - stel nagus slaapkamermaster rooi
+  - stel lig slaapkamermaster rooi
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - stel nagus slaapkamer blou
-  - stel lig slaapkamer blou
+  - stel nagus slaapkamermaster blou
+  - stel lig slaapkamermaster blou
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - stel nagus slaapkamer groen
-  - stel lig slaapkamer groen
+  - stel nagus slaapkamermaster groen
+  - stel lig slaapkamermaster groen
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - stel nagus slaapkamer wit
-  - stel lig slaapkamer wit
+  - stel nagus slaapkamermaster wit
+  - stel lig slaapkamermaster wit
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - stel nagus slaapkamer geel
-  - stel lig slaapkamer geel
+  - stel nagus slaapkamermaster geel
+  - stel lig slaapkamermaster geel
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - stel nagus slaapkamer swart
-  - stel lig slaapkamer swart
+  - stel nagus slaapkamermaster swart
+  - stel lig slaapkamermaster swart
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - doof almal lig behalwe slaapkamer
-  - almal lig doof behalwe slaapkamer
+  - doof almal lig behalwe slaapkamermaster
+  - almal lig doof behalwe slaapkamermaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

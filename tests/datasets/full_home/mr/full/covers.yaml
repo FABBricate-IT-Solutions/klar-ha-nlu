@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - ughad padda baithak
-  - padda baithak ughad
+  - उघड पडदा बैठक
+  - पडदा बैठक उघड
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - bandkar padda baithak
-  - padda baithak bandkar
+  - बंदकर पडदा बैठक
+  - पडदा बैठक बंदकर
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set padda baithak 0
-  - padda baithak 0
+  - सेट पडदा बैठक 0
+  - पडदा बैठक 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set padda baithak 25
-  - padda baithak 25
+  - सेट पडदा बैठक 25
+  - पडदा बैठक 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set padda baithak 40
-  - padda baithak 40
+  - सेट पडदा बैठक 40
+  - पडदा बैठक 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set padda baithak 75
-  - padda baithak 75
+  - सेट पडदा बैठक 75
+  - पडदा बैठक 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set padda baithak 100
-  - padda baithak 100
+  - सेट पडदा बैठक 100
+  - पडदा बैठक 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ughad padda shayankaksh
-  - padda shayankaksh ughad
+  - उघड पडदा shayankakshmaster
+  - पडदा shayankakshmaster उघड
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - bandkar padda shayankaksh
-  - padda shayankaksh bandkar
+  - बंदकर पडदा shayankakshmaster
+  - पडदा shayankakshmaster बंदकर
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set padda shayankaksh 0
-  - padda shayankaksh 0
+  - सेट पडदा shayankakshmaster 0
+  - पडदा shayankakshmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set padda shayankaksh 25
-  - padda shayankaksh 25
+  - सेट पडदा shayankakshmaster 25
+  - पडदा shayankakshmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set padda shayankaksh 40
-  - padda shayankaksh 40
+  - सेट पडदा shayankakshmaster 40
+  - पडदा shayankakshmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set padda shayankaksh 75
-  - padda shayankaksh 75
+  - सेट पडदा shayankakshmaster 75
+  - पडदा shayankakshmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set padda shayankaksh 100
-  - padda shayankaksh 100
+  - सेट पडदा shayankakshmaster 100
+  - पडदा shayankakshmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - ughad padda shayankaksh2
-  - padda shayankaksh2 ughad
+  - उघड पडदा shayankaksh2
+  - पडदा shayankaksh2 उघड
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - bandkar padda shayankaksh2
-  - padda shayankaksh2 bandkar
+  - बंदकर पडदा shayankaksh2
+  - पडदा shayankaksh2 बंदकर
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set padda shayankaksh2 0
-  - padda shayankaksh2 0
+  - सेट पडदा shayankaksh2 0
+  - पडदा shayankaksh2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set padda shayankaksh2 25
-  - padda shayankaksh2 25
+  - सेट पडदा shayankaksh2 25
+  - पडदा shayankaksh2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set padda shayankaksh2 40
-  - padda shayankaksh2 40
+  - सेट पडदा shayankaksh2 40
+  - पडदा shayankaksh2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set padda shayankaksh2 75
-  - padda shayankaksh2 75
+  - सेट पडदा shayankaksh2 75
+  - पडदा shayankaksh2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set padda shayankaksh2 100
-  - padda shayankaksh2 100
+  - सेट पडदा shayankaksh2 100
+  - पडदा shayankaksh2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - ughad padda shayankaksh3
-  - padda shayankaksh3 ughad
+  - उघड पडदा shayankaksh3
+  - पडदा shayankaksh3 उघड
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - bandkar padda shayankaksh3
-  - padda shayankaksh3 bandkar
+  - बंदकर पडदा shayankaksh3
+  - पडदा shayankaksh3 बंदकर
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set padda shayankaksh3 0
-  - padda shayankaksh3 0
+  - सेट पडदा shayankaksh3 0
+  - पडदा shayankaksh3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set padda shayankaksh3 25
-  - padda shayankaksh3 25
+  - सेट पडदा shayankaksh3 25
+  - पडदा shayankaksh3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set padda shayankaksh3 40
-  - padda shayankaksh3 40
+  - सेट पडदा shayankaksh3 40
+  - पडदा shayankaksh3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set padda shayankaksh3 75
-  - padda shayankaksh3 75
+  - सेट पडदा shayankaksh3 75
+  - पडदा shayankaksh3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set padda shayankaksh3 100
-  - padda shayankaksh3 100
+  - सेट पडदा shayankaksh3 100
+  - पडदा shayankaksh3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - ughad padda garage
-  - padda garage ughad
+  - उघड पडदा garage
+  - पडदा garage उघड
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - bandkar padda garage
-  - padda garage bandkar
+  - बंदकर पडदा garage
+  - पडदा garage बंदकर
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set padda garage 0
-  - padda garage 0
+  - सेट पडदा garage 0
+  - पडदा garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set padda garage 25
-  - padda garage 25
+  - सेट पडदा garage 25
+  - पडदा garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set padda garage 40
-  - padda garage 40
+  - सेट पडदा garage 40
+  - पडदा garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set padda garage 75
-  - padda garage 75
+  - सेट पडदा garage 75
+  - पडदा garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set padda garage 100
-  - padda garage 100
+  - सेट पडदा garage 100
+  - पडदा garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - ughad padda baithak
-  - padda baithak ughad
+  - उघड पडदा बैठक
+  - पडदा बैठक उघड
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ughad padda shayankaksh
-  - padda shayankaksh ughad
+  - उघड पडदा shayankakshmaster
+  - पडदा shayankakshmaster उघड

@@ -1,267 +1,268 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- shezhi kongtiao keting 23
+- 设置 空调 客厅 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- shezhi kongtiao woshi 19
+- 设置 空调 woshimaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
-- shezhi lianzi woshi2 67
+- 设置 帘子 woshi2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
-- heshang lianzi woshi2
+- 合上 帘子 woshi2
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
-- kaiqi lianzi woshi2
+- 开启 帘子 woshi2
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
-- shezhi lianzi woshi3 27
+- 设置 帘子 woshi3 27
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
-- heshang lianzi woshi3
+- 合上 帘子 woshi3
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
-- kaiqi lianzi woshi3
+- 开启 帘子 woshi3
 devices/cover_garage_door::cover_garage_door_change_position:
-- shezhi lianzi garage 52
+- 设置 帘子 garage 52
 devices/cover_garage_door::cover_garage_door_close:
-- heshang lianzi garage
+- 合上 帘子 garage
 devices/cover_garage_door::cover_garage_door_open:
-- kaiqi lianzi garage
+- 开启 帘子 garage
 devices/cover_living_blinds::cover_living_blinds_change_position:
-- shezhi lianzi keting 35
+- 设置 帘子 客厅 35
 devices/cover_living_blinds::cover_living_blinds_close:
-- heshang lianzi keting
+- 合上 帘子 客厅
 devices/cover_living_blinds::cover_living_blinds_open:
-- kaiqi lianzi keting
+- 开启 帘子 客厅
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- shezhi lianzi woshi 19
+- 设置 帘子 woshimaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- heshang lianzi woshi
+- 合上 帘子 woshimaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- kaiqi lianzi woshi
+- 开启 帘子 woshimaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
-- shezhi fengshan woshi2 72
+- 设置 风扇 woshi2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
-- guanbi fengshan woshi2
+- 关闭 风扇 woshi2
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
-- dakai fengshan woshi2
+- 打开 风扇 woshi2
 devices/fan_family_fan::fan_family_fan_set_fan_speed:
-- shezhi fengshan jiatingfang 63
+- 设置 风扇 jiatingfang 63
 devices/fan_family_fan::fan_family_fan_turn_off:
-- guanbi fengshan jiatingfang
+- 关闭 风扇 jiatingfang
 devices/fan_family_fan::fan_family_fan_turn_on:
-- dakai fengshan jiatingfang
+- 打开 风扇 jiatingfang
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- shezhi fengshan woshi 28
+- 设置 风扇 woshimaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- guanbi fengshan woshi
+- 关闭 风扇 woshimaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- dakai fengshan woshi
+- 打开 风扇 woshimaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- guanbi fengshan woshi 和 guanbi deng chufang
+- 关闭 风扇 woshimaster then 关闭 daotai 厨房
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- dakai fengshan woshi 和 dakai deng chufang
+- 打开 风扇 woshimaster then 打开 daotai 厨房
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
-- shezhi tianhuaban woshi2 94
+- 设置 tianhuaban woshi2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
-- shezhi tianhuaban woshi2 pink
+- 设置 tianhuaban woshi2 粉
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
-- guanbi tianhuaban woshi2
+- 关闭 tianhuaban woshi2
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
-- dakai tianhuaban woshi2
+- 打开 tianhuaban woshi2
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
-- shezhi tianhuaban woshi3 36
+- 设置 tianhuaban woshi3 36
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
-- shezhi tianhuaban woshi3 yellow
+- 设置 tianhuaban woshi3 黄
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
-- guanbi tianhuaban woshi3
+- 关闭 tianhuaban woshi3
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
-- dakai tianhuaban woshi3
+- 打开 tianhuaban woshi3
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
-- shezhi tianhuaban woshi4 60
+- 设置 tianhuaban woshi4 60
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
-- shezhi tianhuaban woshi4 red
+- 设置 tianhuaban woshi4 红
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
-- guanbi tianhuaban woshi4
+- 关闭 tianhuaban woshi4
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
-- dakai tianhuaban woshi4
+- 打开 tianhuaban woshi4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- shezhi deng jiatingfangess 21
+- 设置 灯 jiatingfangess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- shezhi deng jiatingfangess blue
+- 设置 灯 jiatingfangess 蓝
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- guanbi deng jiatingfangess
+- 关闭 灯 jiatingfangess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- dakai deng jiatingfangess
+- 打开 灯 jiatingfangess
 devices/light_entryway_light::light_entryway_light_change_brightness:
-- shezhi deng xuanguan 88
+- 设置 灯 xuanguan 88
 devices/light_entryway_light::light_entryway_light_change_color:
-- shezhi deng xuanguan yellow
+- 设置 灯 xuanguan 黄
 devices/light_entryway_light::light_entryway_light_turn_off:
-- guanbi deng xuanguan
+- 关闭 灯 xuanguan
 devices/light_entryway_light::light_entryway_light_turn_on:
-- dakai deng xuanguan
+- 打开 灯 xuanguan
 devices/light_family_ceiling::light_family_ceiling_change_brightness:
-- shezhi tianhuaban jiatingfang 98
+- 设置 tianhuaban jiatingfang 98
 devices/light_family_ceiling::light_family_ceiling_change_color:
-- shezhi tianhuaban jiatingfang purple
+- 设置 tianhuaban jiatingfang 紫
 devices/light_family_ceiling::light_family_ceiling_turn_off:
-- guanbi tianhuaban jiatingfang
+- 关闭 tianhuaban jiatingfang
 devices/light_family_ceiling::light_family_ceiling_turn_on:
-- dakai tianhuaban jiatingfang
+- 打开 tianhuaban jiatingfang
 devices/light_garage_light::light_garage_light_change_brightness:
-- shezhi deng garage 76
+- 设置 灯 garage 76
 devices/light_garage_light::light_garage_light_change_color:
-- shezhi deng garage green
+- 设置 灯 garage 绿
 devices/light_garage_light::light_garage_light_turn_off:
-- guanbi deng garage
+- 关闭 灯 garage
 devices/light_garage_light::light_garage_light_turn_on:
-- dakai deng garage
+- 打开 灯 garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- shezhi deng xuanguangang 11
+- 设置 灯 xuanguangang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- shezhi deng xuanguangang white
+- 设置 灯 xuanguangang 白
 devices/light_hallway_light::light_hallway_light_turn_off:
-- guanbi deng xuanguangang
+- 关闭 灯 xuanguangang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- dakai deng xuanguangang
+- 打开 灯 xuanguangang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
-- shezhi tianhuaban chufang 25
+- 设置 tianhuaban 厨房 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
-- shezhi tianhuaban chufang orange
+- 设置 tianhuaban 厨房 橙
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
-- guanbi tianhuaban chufang
+- 关闭 tianhuaban 厨房
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
-- dakai tianhuaban chufang
+- 打开 tianhuaban 厨房
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- shezhi deng chufang 99
+- 设置 daotai 厨房 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- shezhi deng chufang green
+- 设置 daotai 厨房 绿
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- guanbi deng chufang
+- 关闭 daotai 厨房
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- dakai deng chufang
+- 打开 daotai 厨房
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- shezhi deng xiyifang 18
+- 设置 灯 xiyifang 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- shezhi deng xiyifang white
+- 设置 灯 xiyifang 白
 devices/light_laundry_light::light_laundry_light_turn_off:
-- guanbi deng xiyifang
+- 关闭 灯 xiyifang
 devices/light_laundry_light::light_laundry_light_turn_on:
-- dakai deng xiyifang
+- 打开 灯 xiyifang
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
-- shezhi tianhuaban keting 72
+- 设置 tianhuaban 客厅 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
-- shezhi tianhuaban keting black
+- 设置 tianhuaban 客厅 黑
 devices/light_living_ceiling::light_living_ceiling_turn_off:
-- guanbi tianhuaban keting
+- 关闭 tianhuaban 客厅
 devices/light_living_ceiling::light_living_ceiling_turn_on:
-- dakai tianhuaban keting
+- 打开 tianhuaban 客厅
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- shezhi deng keting 72
+- 设置 deng 客厅 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- shezhi deng keting red
+- 设置 deng 客厅 红
 devices/light_living_lamp::light_living_lamp_turn_off:
-- guanbi deng keting
+- 关闭 deng 客厅
 devices/light_living_lamp::light_living_lamp_turn_on:
-- dakai deng keting
+- 打开 deng 客厅
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
-- shezhi deng main bath 85
+- 设置 灯 main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
-- shezhi deng main bath blue
+- 设置 灯 main bath 蓝
 devices/light_main_bath_light::light_main_bath_light_turn_off:
-- guanbi deng main bath
+- 关闭 灯 main bath
 devices/light_main_bath_light::light_main_bath_light_turn_on:
-- dakai deng main bath
+- 打开 灯 main bath
 devices/light_master_bath_light::light_master_bath_light_change_brightness:
-- shezhi deng zhuwei 18
+- 设置 灯 zhuwei 18
 devices/light_master_bath_light::light_master_bath_light_change_color:
-- shezhi deng zhuwei black
+- 设置 灯 zhuwei 黑
 devices/light_master_bath_light::light_master_bath_light_turn_off:
-- guanbi deng zhuwei
+- 关闭 灯 zhuwei
 devices/light_master_bath_light::light_master_bath_light_turn_on:
-- dakai deng zhuwei
+- 打开 灯 zhuwei
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- shezhi chuangtoudeng woshi 25
+- 设置 chuangtoudeng woshimaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- shezhi chuangtoudeng woshi red
+- 设置 chuangtoudeng woshimaster 红
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- guanbi chuangtoudeng woshi
+- 关闭 chuangtoudeng woshimaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- dakai chuangtoudeng woshi
+- 打开 chuangtoudeng woshimaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- shezhi tianhuaban woshi 77
+- 设置 tianhuaban woshimaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- shezhi tianhuaban woshi blue
+- 设置 tianhuaban woshimaster 蓝
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- guanbi tianhuaban woshi
+- 关闭 tianhuaban woshimaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- dakai tianhuaban woshi
+- 打开 tianhuaban woshimaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- shezhi deng woshi 55
+- 设置 ankleide woshimaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- shezhi deng woshi black
+- 设置 ankleide woshimaster 黑
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- guanbi deng woshi
+- 关闭 ankleide woshimaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- dakai deng woshi
+- 打开 ankleide woshimaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
-- shezhi deng kewei 22
+- 设置 灯 kewei 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
-- shezhi deng kewei black
+- 设置 灯 kewei 黑
 devices/light_powder_room_light::light_powder_room_light_turn_off:
-- guanbi deng kewei
+- 关闭 灯 kewei
 devices/light_powder_room_light::light_powder_room_light_turn_on:
-- dakai deng kewei
+- 打开 灯 kewei
 devices/lock_front_door::lock_front_door_lock:
-- suo suo xuanguan
+- 锁 锁 xuanguan
 devices/lock_front_door::lock_front_door_unlock:
-- kaiqi suo xuanguan
+- 开启 锁 xuanguan
 devices/lock_garage_entry::lock_garage_entry_lock:
-- suo suo garage
+- 锁 锁 garage
 devices/lock_garage_entry::lock_garage_entry_unlock:
-- kaiqi suo garage
+- 开启 锁 garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- dakai dianshi jiatingfang
+- 打开 电视 jiatingfang
 devices/media_player_family_tv::media_player_family_tv_pause:
-- zanting dianshi jiatingfang
+- 暂停 tv jiatingfang
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- guanbi dianshi jiatingfang
+- 关闭 电视 jiatingfang
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- dakai dianshi jiatingfang
+- 打开 电视 jiatingfang
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- dakai dianshi jiatingfang
+- 打开 电视 jiatingfang
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- dakai dianshi jiatingfang
+- 打开 电视 jiatingfang
 devices/media_player_living_tv::media_player_living_tv_mute:
-- dakai dianshi keting
+- 打开 电视 客厅
 devices/media_player_living_tv::media_player_living_tv_pause:
-- zanting dianshi keting
+- 暂停 tv 客厅
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- guanbi dianshi keting
+- 关闭 电视 客厅
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- dakai dianshi keting
+- 打开 电视 客厅
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- dakai dianshi keting
+- 打开 电视 客厅
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- dakai dianshi keting
+- 打开 电视 客厅
 devices/scenes::dinner_time:
-- shezhi deng jiatingfangess 90 和 dakai tianhuaban chufang 和 shezhi deng chufang 80
+- 设置 灯 jiatingfangess 90 then 打开 tianhuaban 厨房 then 设置 daotai 厨房 80
 devices/scenes::good_morning:
-- dakai tianhuaban chufang 和 shezhi deng jiatingfangess 100 和 kaiqi lianzi keting
-  和 kaiqi lianzi woshi
+- 打开 tianhuaban 厨房 then 设置 灯 jiatingfangess 100 then 开启 帘子 客厅 then 开启 帘子 woshimaster
 devices/scenes::kids_bedtime:
-- guanbi tianhuaban woshi2 和 guanbi tianhuaban woshi3 和 guanbi tianhuaban woshi4 和
-  shezhi deng xuanguangang 15
+- 关闭 tianhuaban woshi2 then 关闭 tianhuaban woshi3 then 关闭 tianhuaban woshi4 then 设置
+  灯 xuanguangang 15
 devices/scenes::movie_night:
-- guanbi tianhuaban keting 和 shezhi deng keting 20 和 dakai dianshi keting 和 heshang
-  lianzi keting
+- 关闭 tianhuaban 客厅 then 设置 deng 客厅 20 then 打开 电视 客厅 then 合上 帘子 客厅
 devices/scripts::good_night:
-- dakai changjing wanshang
+- 关闭 tianhuaban 客厅 then 关闭 deng 客厅 then 关闭 灯 jiatingfangess then 关闭 tianhuaban 厨房
+  then 关闭 daotai 厨房 then 关闭 tianhuaban jiatingfang then 关闭 灯 xuanguan then 关闭 灯 xuanguangang
+  then 锁 锁 xuanguan then 锁 锁 garage then 设置 空调 woshimaster 20
 devices/scripts::leaving_home:
-- dakai changjing likai
+- 关闭 tianhuaban 客厅 then 关闭 deng 客厅 then 关闭 tianhuaban 厨房 then 关闭 tianhuaban jiatingfang
+  then 关闭 灯 xuanguan then 锁 锁 xuanguan then 锁 锁 garage then 合上 帘子 garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- guanbi xiwanji
+- 关闭 xiwanji
 devices/switch_dishwasher::switch_dishwasher_turn_on:
-- dakai xiwanji
+- 打开 xiwanji
 devices/switch_dryer::switch_dryer_turn_off:
-- guanbi xiyiji
+- 关闭 dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- dakai xiyiji
+- 打开 dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
-- guanbi xiyiji
+- 关闭 xiyiji
 devices/switch_washing_machine::switch_washing_machine_turn_on:
-- dakai xiyiji
+- 打开 xiyiji

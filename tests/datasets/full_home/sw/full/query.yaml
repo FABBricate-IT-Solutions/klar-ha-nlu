@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - nini pazia chumbakulala
-  - nini chumbakulala pazia
+  - nini pazia chumbakulalamaster
+  - nini chumbakulalamaster pazia
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - nini joto chumbakulala
-  - nini chumbakulala joto
+  - nini joto chumbakulalamaster
+  - nini chumbakulalamaster joto
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - nini joto chumbakulala
-  - nini chumbakulala joto
+  - nini joto chumbakulalamaster
+  - nini chumbakulalamaster joto
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - nini feni chumbakulala
-  - nini chumbakulala feni
+  - nini feni chumbakulalamaster
+  - nini chumbakulalamaster feni
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - nini taa chumbakulala
-  - nini chumbakulala taa
+  - nini taa chumbakulalamaster
+  - nini chumbakulalamaster taa
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - nini taa chumbakulala
-  - nini chumbakulala taa
+  - nini taa chumbakulalamaster
+  - nini chumbakulalamaster taa
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - nini ensuite chumbakulala
-  - nini chumbakulala ensuite
+  - nini ensuite chumbakulalamaster
+  - nini chumbakulalamaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - nini taa chumbakulala
-  - nini chumbakulala taa
+  - nini taa chumbakulalamaster
+  - nini chumbakulalamaster taa
 - name: query_light.master_bath_light
   conditions:
   - type: query

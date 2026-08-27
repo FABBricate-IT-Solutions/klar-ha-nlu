@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - jalao jharu
-  - jharu jalao
+  - জ্বালাও ঝাড়ু
+  - ঝাড়ু জ্বালাও
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - nibhao jharu
-  - jharu nibhao
+  - নিভাও ঝাড়ু
+  - ঝাড়ু নিভাও

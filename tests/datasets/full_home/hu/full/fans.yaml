@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator haloszoba kapcsold
-  - kapcsold ventilator haloszoba
+  - ventilator haloszobamaster kapcsold
+  - kapcsold ventilator haloszobamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - oltsd ventilator haloszoba
-  - ventilator haloszoba oltsd
+  - oltsd ventilator haloszobamaster
+  - ventilator haloszobamaster oltsd
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - allitsd ventilator haloszoba 40
-  - ventilator haloszoba 40
+  - allitsd ventilator haloszobamaster 40
+  - ventilator haloszobamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - allitsd ventilator haloszoba 20
-  - ventilator haloszoba 20
+  - allitsd ventilator haloszobamaster 20
+  - ventilator haloszobamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - allitsd ventilator haloszoba 60
-  - ventilator haloszoba 60
+  - allitsd ventilator haloszobamaster 60
+  - ventilator haloszobamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - allitsd ventilator haloszoba 80
-  - ventilator haloszoba 80
+  - allitsd ventilator haloszobamaster 80
+  - ventilator haloszobamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

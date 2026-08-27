@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti baithak
+  - बाल बत्ती बैठक
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti baithak
+  - निभाऊ बत्ती बैठक
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti bhansa
+  - बाल बत्ती भान्सा
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti bhansa
+  - निभाऊ बत्ती भान्सा
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti garage
+  - बाल बत्ती garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti garage
+  - निभाऊ बत्ती garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti office
+  - बाल बत्ती office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti office
+  - निभाऊ बत्ती office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti garden
+  - बाल बत्ती garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti garden
+  - निभाऊ बत्ती garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti sutnekotha
+  - बाल बत्ती sutnekothamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti sutnekotha
+  - निभाऊ बत्ती sutnekothamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti hallway
+  - बाल बत्ती hallway
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti hallway
+  - निभाऊ बत्ती hallway
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti basement
+  - बाल बत्ती basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,21 +125,21 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhau batti basement
+  - निभाऊ बत्ती basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - bal chhana baithak
+  - बाल chhana बैठक
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - nibhau chhana baithak
+  - निभाऊ chhana बैठक
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -147,105 +147,105 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhana baithak 50
+  - सेट chhana बैठक 50
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - bal lamp baithak
+  - बाल batti बैठक
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - nibhau lamp baithak
+  - निभाऊ batti बैठक
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - bal chhana bhansa
+  - बाल chhana भान्सा
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - nibhau chhana bhansa
+  - निभाऊ chhana भान्सा
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - bal dweep bhansa
+  - बाल dweep भान्सा
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - nibhau dweep bhansa
+  - निभाऊ dweep भान्सा
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - bal chhana sutnekotha
+  - बाल chhana sutnekothamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - nibhau chhana sutnekotha
+  - निभाऊ chhana sutnekothamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - bal khat sutnekotha
+  - बाल khat sutnekothamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - nibhau khat sutnekotha
+  - निभाऊ khat sutnekothamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - bal chhana office
+  - बाल chhana office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - nibhau chhana office
+  - निभाऊ chhana office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - bal batti garden
+  - बाल बत्ती garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - nibhau batti garden
+  - निभाऊ बत्ती garden
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -253,4 +253,4 @@
     attributes:
       color: red
   sentences:
-  - set chhana baithak red
+  - सेट chhana बैठक red

@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - skakel lig slaapkamer
+  - skakel lig slaapkamermaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - doof lig slaapkamer
+  - doof lig slaapkamermaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - skakel plafon slaapkamer
+  - skakel plafon slaapkamermaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - doof plafon slaapkamer
+  - doof plafon slaapkamermaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - skakel nagus slaapkamer
+  - skakel nagus slaapkamermaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - doof nagus slaapkamer
+  - doof nagus slaapkamermaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

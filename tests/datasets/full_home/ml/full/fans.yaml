@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - fan kutumbam theli
-  - theli fan kutumbam
+  - ഫാൻ kutumbam തെളി
+  - തെളി ഫാൻ kutumbam
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - anaykku fan kutumbam
-  - fan kutumbam anaykku
+  - അണയ്ക്ക് ഫാൻ kutumbam
+  - ഫാൻ kutumbam അണയ്ക്ക്
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set fan kutumbam 40
-  - fan kutumbam 40
+  - സെറ്റ് ഫാൻ kutumbam 40
+  - ഫാൻ kutumbam 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - fan kitappumuri theli
-  - theli fan kitappumuri
+  - ഫാൻ kitappumurimaster തെളി
+  - തെളി ഫാൻ kitappumurimaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - anaykku fan kitappumuri
-  - fan kitappumuri anaykku
+  - അണയ്ക്ക് ഫാൻ kitappumurimaster
+  - ഫാൻ kitappumurimaster അണയ്ക്ക്
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set fan kitappumuri 40
-  - fan kitappumuri 40
+  - സെറ്റ് ഫാൻ kitappumurimaster 40
+  - ഫാൻ kitappumurimaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - fan kitappumuri2 theli
-  - theli fan kitappumuri2
+  - ഫാൻ kitappumuri2 തെളി
+  - തെളി ഫാൻ kitappumuri2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - anaykku fan kitappumuri2
-  - fan kitappumuri2 anaykku
+  - അണയ്ക്ക് ഫാൻ kitappumuri2
+  - ഫാൻ kitappumuri2 അണയ്ക്ക്
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - set fan kitappumuri2 40
-  - fan kitappumuri2 40
+  - സെറ്റ് ഫാൻ kitappumuri2 40
+  - ഫാൻ kitappumuri2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fan kutumbam 20
-  - fan kutumbam 20
+  - സെറ്റ് ഫാൻ kutumbam 20
+  - ഫാൻ kutumbam 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fan kutumbam 60
-  - fan kutumbam 60
+  - സെറ്റ് ഫാൻ kutumbam 60
+  - ഫാൻ kutumbam 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set fan kutumbam 80
-  - fan kutumbam 80
+  - സെറ്റ് ഫാൻ kutumbam 80
+  - ഫാൻ kutumbam 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fan kitappumuri 20
-  - fan kitappumuri 20
+  - സെറ്റ് ഫാൻ kitappumurimaster 20
+  - ഫാൻ kitappumurimaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fan kitappumuri 60
-  - fan kitappumuri 60
+  - സെറ്റ് ഫാൻ kitappumurimaster 60
+  - ഫാൻ kitappumurimaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set fan kitappumuri 80
-  - fan kitappumuri 80
+  - സെറ്റ് ഫാൻ kitappumurimaster 80
+  - ഫാൻ kitappumurimaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fan kitappumuri2 20
-  - fan kitappumuri2 20
+  - സെറ്റ് ഫാൻ kitappumuri2 20
+  - ഫാൻ kitappumuri2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fan kitappumuri2 60
-  - fan kitappumuri2 60
+  - സെറ്റ് ഫാൻ kitappumuri2 60
+  - ഫാൻ kitappumuri2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - set fan kitappumuri2 80
-  - fan kitappumuri2 80
+  - സെറ്റ് ഫാൻ kitappumuri2 80
+  - ഫാൻ kitappumuri2 80

@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo prabesh
-  - alo prabesh jalao
+  - জ্বালাও আলো prabesh
+  - আলো prabesh জ্বালাও
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo prabesh
-  - alo prabesh nibhao
+  - নিভাও আলো prabesh
+  - আলো prabesh নিভাও
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo bosar
-  - alo bosar jalao
+  - জ্বালাও আলো বসার
+  - আলো বসার জ্বালাও
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo bosar
-  - alo bosar nibhao
+  - নিভাও আলো বসার
+  - আলো বসার নিভাও
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo paribarikess
-  - alo paribarikess jalao
+  - জ্বালাও আলো paribarikess
+  - আলো paribarikess জ্বালাও
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo paribarikess
-  - alo paribarikess nibhao
+  - নিভাও আলো paribarikess
+  - আলো paribarikess নিভাও
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo ranna
-  - alo ranna jalao
+  - জ্বালাও আলো রান্না
+  - আলো রান্না জ্বালাও
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo ranna
-  - alo ranna nibhao
+  - নিভাও আলো রান্না
+  - আলো রান্না নিভাও
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo paribarik
-  - alo paribarik jalao
+  - জ্বালাও আলো paribarik
+  - আলো paribarik জ্বালাও
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo paribarik
-  - alo paribarik nibhao
+  - নিভাও আলো paribarik
+  - আলো paribarik নিভাও
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo dhoa
-  - alo dhoa jalao
+  - জ্বালাও আলো dhoa
+  - আলো dhoa জ্বালাও
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo dhoa
-  - alo dhoa nibhao
+  - নিভাও আলো dhoa
+  - আলো dhoa নিভাও
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shauchagar
-  - alo shauchagar jalao
+  - জ্বালাও আলো shauchagar
+  - আলো shauchagar জ্বালাও
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo shauchagar
-  - alo shauchagar nibhao
+  - নিভাও আলো shauchagar
+  - আলো shauchagar নিভাও
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo garage
-  - alo garage jalao
+  - জ্বালাও আলো garage
+  - আলো garage জ্বালাও
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo garage
-  - alo garage nibhao
+  - নিভাও আলো garage
+  - আলো garage নিভাও
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo office
-  - alo office jalao
+  - জ্বালাও আলো office
+  - আলো office জ্বালাও
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo office
-  - alo office nibhao
+  - নিভাও আলো office
+  - আলো office নিভাও
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo garden
-  - alo garden jalao
+  - জ্বালাও আলো garden
+  - আলো garden জ্বালাও
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo garden
-  - alo garden nibhao
+  - নিভাও আলো garden
+  - আলো garden নিভাও
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shobarghor
-  - alo shobarghor jalao
+  - জ্বালাও আলো shobarghormaster
+  - আলো shobarghormaster জ্বালাও
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo shobarghor
-  - alo shobarghor nibhao
+  - নিভাও আলো shobarghormaster
+  - আলো shobarghormaster নিভাও
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shobarghor2
-  - alo shobarghor2 jalao
+  - জ্বালাও আলো shobarghor2
+  - আলো shobarghor2 জ্বালাও
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo shobarghor2
-  - alo shobarghor2 nibhao
+  - নিভাও আলো shobarghor2
+  - আলো shobarghor2 নিভাও
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shobarghor3
-  - alo shobarghor3 jalao
+  - জ্বালাও আলো shobarghor3
+  - আলো shobarghor3 জ্বালাও
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo shobarghor3
-  - alo shobarghor3 nibhao
+  - নিভাও আলো shobarghor3
+  - আলো shobarghor3 নিভাও
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shobarghor4
-  - alo shobarghor4 jalao
+  - জ্বালাও আলো shobarghor4
+  - আলো shobarghor4 জ্বালাও
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo shobarghor4
-  - alo shobarghor4 nibhao
+  - নিভাও আলো shobarghor4
+  - আলো shobarghor4 নিভাও
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo masterbath
-  - alo masterbath jalao
+  - জ্বালাও আলো masterbath
+  - আলো masterbath জ্বালাও
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo masterbath
-  - alo masterbath nibhao
+  - নিভাও আলো masterbath
+  - আলো masterbath নিভাও
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo main bath
-  - alo main bath jalao
+  - জ্বালাও আলো main bath
+  - আলো main bath জ্বালাও
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo main bath
-  - alo main bath nibhao
+  - নিভাও আলো main bath
+  - আলো main bath নিভাও
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo hallway
-  - alo hallway jalao
+  - জ্বালাও আলো hallway
+  - আলো hallway জ্বালাও
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo hallway
-  - alo hallway nibhao
+  - নিভাও আলো hallway
+  - আলো hallway নিভাও
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo basement
-  - alo basement jalao
+  - জ্বালাও আলো basement
+  - আলো basement জ্বালাও
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao alo basement
-  - alo basement nibhao
+  - নিভাও আলো basement
+  - আলো basement নিভাও
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - jalao chhad bosar
-  - chhad bosar jalao
+  - জ্বালাও chhad বসার
+  - chhad বসার জ্বালাও
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad bosar
-  - chhad bosar nibhao
+  - নিভাও chhad বসার
+  - chhad বসার নিভাও
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad bosar 20
-  - chhad bosar 20
+  - সেট chhad বসার 20
+  - chhad বসার 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad bosar 40
-  - chhad bosar 40
+  - সেট chhad বসার 40
+  - chhad বসার 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad bosar 50
-  - chhad bosar 50
+  - সেট chhad বসার 50
+  - chhad বসার 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad bosar 60
-  - chhad bosar 60
+  - সেট chhad বসার 60
+  - chhad বসার 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad bosar 80
-  - chhad bosar 80
+  - সেট chhad বসার 80
+  - chhad বসার 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad bosar 100
-  - chhad bosar 100
+  - সেট chhad বসার 100
+  - chhad বসার 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - jalao lamp bosar
-  - lamp bosar jalao
+  - জ্বালাও alo বসার
+  - alo বসার জ্বালাও
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - nibhao lamp bosar
-  - lamp bosar nibhao
+  - নিভাও alo বসার
+  - alo বসার নিভাও
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set lamp bosar 20
-  - lamp bosar 20
+  - সেট alo বসার 20
+  - alo বসার 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set lamp bosar 40
-  - lamp bosar 40
+  - সেট alo বসার 40
+  - alo বসার 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set lamp bosar 50
-  - lamp bosar 50
+  - সেট alo বসার 50
+  - alo বসার 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set lamp bosar 60
-  - lamp bosar 60
+  - সেট alo বসার 60
+  - alo বসার 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set lamp bosar 80
-  - lamp bosar 80
+  - সেট alo বসার 80
+  - alo বসার 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set lamp bosar 100
-  - lamp bosar 100
+  - সেট alo বসার 100
+  - alo বসার 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - jalao chhad ranna
-  - chhad ranna jalao
+  - জ্বালাও chhad রান্না
+  - chhad রান্না জ্বালাও
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad ranna
-  - chhad ranna nibhao
+  - নিভাও chhad রান্না
+  - chhad রান্না নিভাও
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad ranna 20
-  - chhad ranna 20
+  - সেট chhad রান্না 20
+  - chhad রান্না 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad ranna 40
-  - chhad ranna 40
+  - সেট chhad রান্না 40
+  - chhad রান্না 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad ranna 50
-  - chhad ranna 50
+  - সেট chhad রান্না 50
+  - chhad রান্না 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad ranna 60
-  - chhad ranna 60
+  - সেট chhad রান্না 60
+  - chhad রান্না 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad ranna 80
-  - chhad ranna 80
+  - সেট chhad রান্না 80
+  - chhad রান্না 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad ranna 100
-  - chhad ranna 100
+  - সেট chhad রান্না 100
+  - chhad রান্না 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao dip ranna
-  - dip ranna jalao
+  - জ্বালাও dip রান্না
+  - dip রান্না জ্বালাও
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - nibhao dip ranna
-  - dip ranna nibhao
+  - নিভাও dip রান্না
+  - dip রান্না নিভাও
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set dip ranna 20
-  - dip ranna 20
+  - সেট dip রান্না 20
+  - dip রান্না 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set dip ranna 40
-  - dip ranna 40
+  - সেট dip রান্না 40
+  - dip রান্না 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set dip ranna 50
-  - dip ranna 50
+  - সেট dip রান্না 50
+  - dip রান্না 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set dip ranna 60
-  - dip ranna 60
+  - সেট dip রান্না 60
+  - dip রান্না 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set dip ranna 80
-  - dip ranna 80
+  - সেট dip রান্না 80
+  - dip রান্না 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set dip ranna 100
-  - dip ranna 100
+  - সেট dip রান্না 100
+  - dip রান্না 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - jalao chhad shobarghor
-  - chhad shobarghor jalao
+  - জ্বালাও chhad shobarghormaster
+  - chhad shobarghormaster জ্বালাও
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad shobarghor
-  - chhad shobarghor nibhao
+  - নিভাও chhad shobarghormaster
+  - chhad shobarghormaster নিভাও
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad shobarghor 20
-  - chhad shobarghor 20
+  - সেট chhad shobarghormaster 20
+  - chhad shobarghormaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad shobarghor 40
-  - chhad shobarghor 40
+  - সেট chhad shobarghormaster 40
+  - chhad shobarghormaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad shobarghor 50
-  - chhad shobarghor 50
+  - সেট chhad shobarghormaster 50
+  - chhad shobarghormaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad shobarghor 60
-  - chhad shobarghor 60
+  - সেট chhad shobarghormaster 60
+  - chhad shobarghormaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad shobarghor 80
-  - chhad shobarghor 80
+  - সেট chhad shobarghormaster 80
+  - chhad shobarghormaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad shobarghor 100
-  - chhad shobarghor 100
+  - সেট chhad shobarghormaster 100
+  - chhad shobarghormaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - jalao bichana shobarghor
-  - bichana shobarghor jalao
+  - জ্বালাও bichana shobarghormaster
+  - bichana shobarghormaster জ্বালাও
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - nibhao bichana shobarghor
-  - bichana shobarghor nibhao
+  - নিভাও bichana shobarghormaster
+  - bichana shobarghormaster নিভাও
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set bichana shobarghor 20
-  - bichana shobarghor 20
+  - সেট bichana shobarghormaster 20
+  - bichana shobarghormaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set bichana shobarghor 40
-  - bichana shobarghor 40
+  - সেট bichana shobarghormaster 40
+  - bichana shobarghormaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set bichana shobarghor 50
-  - bichana shobarghor 50
+  - সেট bichana shobarghormaster 50
+  - bichana shobarghormaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set bichana shobarghor 60
-  - bichana shobarghor 60
+  - সেট bichana shobarghormaster 60
+  - bichana shobarghormaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set bichana shobarghor 80
-  - bichana shobarghor 80
+  - সেট bichana shobarghormaster 80
+  - bichana shobarghormaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set bichana shobarghor 100
-  - bichana shobarghor 100
+  - সেট bichana shobarghormaster 100
+  - bichana shobarghormaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - jalao chhad office
-  - chhad office jalao
+  - জ্বালাও chhad office
+  - chhad office জ্বালাও
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad office
-  - chhad office nibhao
+  - নিভাও chhad office
+  - chhad office নিভাও
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad office 20
+  - সেট chhad office 20
   - chhad office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad office 40
+  - সেট chhad office 40
   - chhad office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad office 50
+  - সেট chhad office 50
   - chhad office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad office 60
+  - সেট chhad office 60
   - chhad office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad office 80
+  - সেট chhad office 80
   - chhad office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad office 100
+  - সেট chhad office 100
   - chhad office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - jalao alo garden
-  - alo garden jalao
+  - জ্বালাও আলো garden
+  - আলো garden জ্বালাও
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - nibhao alo garden
-  - alo garden nibhao
+  - নিভাও আলো garden
+  - আলো garden নিভাও
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo garden 20
-  - alo garden 20
+  - সেট আলো garden 20
+  - আলো garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo garden 40
-  - alo garden 40
+  - সেট আলো garden 40
+  - আলো garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo garden 50
-  - alo garden 50
+  - সেট আলো garden 50
+  - আলো garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo garden 60
-  - alo garden 60
+  - সেট আলো garden 60
+  - আলো garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo garden 80
-  - alo garden 80
+  - সেট আলো garden 80
+  - আলো garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo garden 100
-  - alo garden 100
+  - সেট আলো garden 100
+  - আলো garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - jalao alo basement
-  - alo basement jalao
+  - জ্বালাও আলো basement
+  - আলো basement জ্বালাও
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - nibhao alo basement
-  - alo basement nibhao
+  - নিভাও আলো basement
+  - আলো basement নিভাও
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo basement 20
-  - alo basement 20
+  - সেট আলো basement 20
+  - আলো basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo basement 40
-  - alo basement 40
+  - সেট আলো basement 40
+  - আলো basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo basement 50
-  - alo basement 50
+  - সেট আলো basement 50
+  - আলো basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo basement 60
-  - alo basement 60
+  - সেট আলো basement 60
+  - আলো basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo basement 80
-  - alo basement 80
+  - সেট আলো basement 80
+  - আলো basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo basement 100
-  - alo basement 100
+  - সেট আলো basement 100
+  - আলো basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - jalao alo hallway
-  - alo hallway jalao
+  - জ্বালাও আলো hallway
+  - আলো hallway জ্বালাও
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - nibhao alo hallway
-  - alo hallway nibhao
+  - নিভাও আলো hallway
+  - আলো hallway নিভাও
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo hallway 20
-  - alo hallway 20
+  - সেট আলো hallway 20
+  - আলো hallway 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo hallway 40
-  - alo hallway 40
+  - সেট আলো hallway 40
+  - আলো hallway 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo hallway 50
-  - alo hallway 50
+  - সেট আলো hallway 50
+  - আলো hallway 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo hallway 60
-  - alo hallway 60
+  - সেট আলো hallway 60
+  - আলো hallway 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo hallway 80
-  - alo hallway 80
+  - সেট আলো hallway 80
+  - আলো hallway 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo hallway 100
-  - alo hallway 100
+  - সেট আলো hallway 100
+  - আলো hallway 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - jalao chhad paribarik
-  - chhad paribarik jalao
+  - জ্বালাও chhad paribarik
+  - chhad paribarik জ্বালাও
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad paribarik
-  - chhad paribarik nibhao
+  - নিভাও chhad paribarik
+  - chhad paribarik নিভাও
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad paribarik 20
+  - সেট chhad paribarik 20
   - chhad paribarik 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad paribarik 40
+  - সেট chhad paribarik 40
   - chhad paribarik 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad paribarik 50
+  - সেট chhad paribarik 50
   - chhad paribarik 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad paribarik 60
+  - সেট chhad paribarik 60
   - chhad paribarik 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad paribarik 80
+  - সেট chhad paribarik 80
   - chhad paribarik 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad paribarik 100
+  - সেট chhad paribarik 100
   - chhad paribarik 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - jalao alo paribarikess
-  - alo paribarikess jalao
+  - জ্বালাও আলো paribarikess
+  - আলো paribarikess জ্বালাও
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - nibhao alo paribarikess
-  - alo paribarikess nibhao
+  - নিভাও আলো paribarikess
+  - আলো paribarikess নিভাও
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo paribarikess 20
-  - alo paribarikess 20
+  - সেট আলো paribarikess 20
+  - আলো paribarikess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo paribarikess 40
-  - alo paribarikess 40
+  - সেট আলো paribarikess 40
+  - আলো paribarikess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo paribarikess 50
-  - alo paribarikess 50
+  - সেট আলো paribarikess 50
+  - আলো paribarikess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo paribarikess 60
-  - alo paribarikess 60
+  - সেট আলো paribarikess 60
+  - আলো paribarikess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo paribarikess 80
-  - alo paribarikess 80
+  - সেট আলো paribarikess 80
+  - আলো paribarikess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo paribarikess 100
-  - alo paribarikess 100
+  - সেট আলো paribarikess 100
+  - আলো paribarikess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - jalao alo garage
-  - alo garage jalao
+  - জ্বালাও আলো garage
+  - আলো garage জ্বালাও
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - nibhao alo garage
-  - alo garage nibhao
+  - নিভাও আলো garage
+  - আলো garage নিভাও
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo garage 20
-  - alo garage 20
+  - সেট আলো garage 20
+  - আলো garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo garage 40
-  - alo garage 40
+  - সেট আলো garage 40
+  - আলো garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo garage 50
-  - alo garage 50
+  - সেট আলো garage 50
+  - আলো garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo garage 60
-  - alo garage 60
+  - সেট আলো garage 60
+  - আলো garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo garage 80
-  - alo garage 80
+  - সেট আলো garage 80
+  - আলো garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo garage 100
-  - alo garage 100
+  - সেট আলো garage 100
+  - আলো garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - jalao chhad shobarghor2
-  - chhad shobarghor2 jalao
+  - জ্বালাও chhad shobarghor2
+  - chhad shobarghor2 জ্বালাও
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad shobarghor2
-  - chhad shobarghor2 nibhao
+  - নিভাও chhad shobarghor2
+  - chhad shobarghor2 নিভাও
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad shobarghor2 20
+  - সেট chhad shobarghor2 20
   - chhad shobarghor2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad shobarghor2 40
+  - সেট chhad shobarghor2 40
   - chhad shobarghor2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad shobarghor2 50
+  - সেট chhad shobarghor2 50
   - chhad shobarghor2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad shobarghor2 60
+  - সেট chhad shobarghor2 60
   - chhad shobarghor2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad shobarghor2 80
+  - সেট chhad shobarghor2 80
   - chhad shobarghor2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad shobarghor2 100
+  - সেট chhad shobarghor2 100
   - chhad shobarghor2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - jalao chhad shobarghor3
-  - chhad shobarghor3 jalao
+  - জ্বালাও chhad shobarghor3
+  - chhad shobarghor3 জ্বালাও
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad shobarghor3
-  - chhad shobarghor3 nibhao
+  - নিভাও chhad shobarghor3
+  - chhad shobarghor3 নিভাও
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad shobarghor3 20
+  - সেট chhad shobarghor3 20
   - chhad shobarghor3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad shobarghor3 40
+  - সেট chhad shobarghor3 40
   - chhad shobarghor3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad shobarghor3 50
+  - সেট chhad shobarghor3 50
   - chhad shobarghor3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad shobarghor3 60
+  - সেট chhad shobarghor3 60
   - chhad shobarghor3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad shobarghor3 80
+  - সেট chhad shobarghor3 80
   - chhad shobarghor3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad shobarghor3 100
+  - সেট chhad shobarghor3 100
   - chhad shobarghor3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - jalao chhad shobarghor4
-  - chhad shobarghor4 jalao
+  - জ্বালাও chhad shobarghor4
+  - chhad shobarghor4 জ্বালাও
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - nibhao chhad shobarghor4
-  - chhad shobarghor4 nibhao
+  - নিভাও chhad shobarghor4
+  - chhad shobarghor4 নিভাও
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhad shobarghor4 20
+  - সেট chhad shobarghor4 20
   - chhad shobarghor4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhad shobarghor4 40
+  - সেট chhad shobarghor4 40
   - chhad shobarghor4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhad shobarghor4 50
+  - সেট chhad shobarghor4 50
   - chhad shobarghor4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhad shobarghor4 60
+  - সেট chhad shobarghor4 60
   - chhad shobarghor4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhad shobarghor4 80
+  - সেট chhad shobarghor4 80
   - chhad shobarghor4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhad shobarghor4 100
+  - সেট chhad shobarghor4 100
   - chhad shobarghor4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - jalao alo prabesh
-  - alo prabesh jalao
+  - জ্বালাও আলো prabesh
+  - আলো prabesh জ্বালাও
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - nibhao alo prabesh
-  - alo prabesh nibhao
+  - নিভাও আলো prabesh
+  - আলো prabesh নিভাও
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo prabesh 20
-  - alo prabesh 20
+  - সেট আলো prabesh 20
+  - আলো prabesh 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo prabesh 40
-  - alo prabesh 40
+  - সেট আলো prabesh 40
+  - আলো prabesh 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo prabesh 50
-  - alo prabesh 50
+  - সেট আলো prabesh 50
+  - আলো prabesh 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo prabesh 60
-  - alo prabesh 60
+  - সেট আলো prabesh 60
+  - আলো prabesh 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo prabesh 80
-  - alo prabesh 80
+  - সেট আলো prabesh 80
+  - আলো prabesh 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo prabesh 100
-  - alo prabesh 100
+  - সেট আলো prabesh 100
+  - আলো prabesh 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - jalao alo dhoa
-  - alo dhoa jalao
+  - জ্বালাও আলো dhoa
+  - আলো dhoa জ্বালাও
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - nibhao alo dhoa
-  - alo dhoa nibhao
+  - নিভাও আলো dhoa
+  - আলো dhoa নিভাও
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo dhoa 20
-  - alo dhoa 20
+  - সেট আলো dhoa 20
+  - আলো dhoa 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo dhoa 40
-  - alo dhoa 40
+  - সেট আলো dhoa 40
+  - আলো dhoa 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo dhoa 50
-  - alo dhoa 50
+  - সেট আলো dhoa 50
+  - আলো dhoa 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo dhoa 60
-  - alo dhoa 60
+  - সেট আলো dhoa 60
+  - আলো dhoa 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo dhoa 80
-  - alo dhoa 80
+  - সেট আলো dhoa 80
+  - আলো dhoa 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo dhoa 100
-  - alo dhoa 100
+  - সেট আলো dhoa 100
+  - আলো dhoa 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - jalao alo main bath
-  - alo main bath jalao
+  - জ্বালাও আলো main bath
+  - আলো main bath জ্বালাও
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - nibhao alo main bath
-  - alo main bath nibhao
+  - নিভাও আলো main bath
+  - আলো main bath নিভাও
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo main bath 20
-  - alo main bath 20
+  - সেট আলো main bath 20
+  - আলো main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo main bath 40
-  - alo main bath 40
+  - সেট আলো main bath 40
+  - আলো main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo main bath 50
-  - alo main bath 50
+  - সেট আলো main bath 50
+  - আলো main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo main bath 60
-  - alo main bath 60
+  - সেট আলো main bath 60
+  - আলো main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo main bath 80
-  - alo main bath 80
+  - সেট আলো main bath 80
+  - আলো main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo main bath 100
-  - alo main bath 100
+  - সেট আলো main bath 100
+  - আলো main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - jalao alo shauchagar
-  - alo shauchagar jalao
+  - জ্বালাও আলো shauchagar
+  - আলো shauchagar জ্বালাও
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - nibhao alo shauchagar
-  - alo shauchagar nibhao
+  - নিভাও আলো shauchagar
+  - আলো shauchagar নিভাও
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo shauchagar 20
-  - alo shauchagar 20
+  - সেট আলো shauchagar 20
+  - আলো shauchagar 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo shauchagar 40
-  - alo shauchagar 40
+  - সেট আলো shauchagar 40
+  - আলো shauchagar 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo shauchagar 50
-  - alo shauchagar 50
+  - সেট আলো shauchagar 50
+  - আলো shauchagar 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo shauchagar 60
-  - alo shauchagar 60
+  - সেট আলো shauchagar 60
+  - আলো shauchagar 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo shauchagar 80
-  - alo shauchagar 80
+  - সেট আলো shauchagar 80
+  - আলো shauchagar 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo shauchagar 100
-  - alo shauchagar 100
+  - সেট আলো shauchagar 100
+  - আলো shauchagar 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - jalao ensuite shobarghor
-  - ensuite shobarghor jalao
+  - জ্বালাও ensuite shobarghormaster
+  - ensuite shobarghormaster জ্বালাও
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - nibhao ensuite shobarghor
-  - ensuite shobarghor nibhao
+  - নিভাও ensuite shobarghormaster
+  - ensuite shobarghormaster নিভাও
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set ensuite shobarghor 20
-  - ensuite shobarghor 20
+  - সেট ensuite shobarghormaster 20
+  - ensuite shobarghormaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set ensuite shobarghor 40
-  - ensuite shobarghor 40
+  - সেট ensuite shobarghormaster 40
+  - ensuite shobarghormaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set ensuite shobarghor 50
-  - ensuite shobarghor 50
+  - সেট ensuite shobarghormaster 50
+  - ensuite shobarghormaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set ensuite shobarghor 60
-  - ensuite shobarghor 60
+  - সেট ensuite shobarghormaster 60
+  - ensuite shobarghormaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set ensuite shobarghor 80
-  - ensuite shobarghor 80
+  - সেট ensuite shobarghormaster 80
+  - ensuite shobarghormaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set ensuite shobarghor 100
-  - ensuite shobarghor 100
+  - সেট ensuite shobarghormaster 100
+  - ensuite shobarghormaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - jalao bichana shobarghor
-  - bichana shobarghor jalao
+  - জ্বালাও bichana shobarghormaster
+  - bichana shobarghormaster জ্বালাও
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - nibhao bichana shobarghor
-  - bichana shobarghor nibhao
+  - নিভাও bichana shobarghormaster
+  - bichana shobarghormaster নিভাও
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set bichana shobarghor 20
-  - bichana shobarghor 20
+  - সেট bichana shobarghormaster 20
+  - bichana shobarghormaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set bichana shobarghor 40
-  - bichana shobarghor 40
+  - সেট bichana shobarghormaster 40
+  - bichana shobarghormaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set bichana shobarghor 50
-  - bichana shobarghor 50
+  - সেট bichana shobarghormaster 50
+  - bichana shobarghormaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set bichana shobarghor 60
-  - bichana shobarghor 60
+  - সেট bichana shobarghormaster 60
+  - bichana shobarghormaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set bichana shobarghor 80
-  - bichana shobarghor 80
+  - সেট bichana shobarghormaster 80
+  - bichana shobarghormaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set bichana shobarghor 100
-  - bichana shobarghor 100
+  - সেট bichana shobarghormaster 100
+  - bichana shobarghormaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - jalao alo masterbath
-  - alo masterbath jalao
+  - জ্বালাও আলো masterbath
+  - আলো masterbath জ্বালাও
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - nibhao alo masterbath
-  - alo masterbath nibhao
+  - নিভাও আলো masterbath
+  - আলো masterbath নিভাও
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set alo masterbath 20
-  - alo masterbath 20
+  - সেট আলো masterbath 20
+  - আলো masterbath 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set alo masterbath 40
-  - alo masterbath 40
+  - সেট আলো masterbath 40
+  - আলো masterbath 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set alo masterbath 50
-  - alo masterbath 50
+  - সেট আলো masterbath 50
+  - আলো masterbath 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set alo masterbath 60
-  - alo masterbath 60
+  - সেট আলো masterbath 60
+  - আলো masterbath 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set alo masterbath 80
-  - alo masterbath 80
+  - সেট আলো masterbath 80
+  - আলো masterbath 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - set alo masterbath 100
-  - alo masterbath 100
+  - সেট আলো masterbath 100
+  - আলো masterbath 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad bosar red
-  - set alo bosar red
+  - সেট chhad বসার red
+  - সেট আলো বসার red
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad bosar blue
-  - set alo bosar blue
+  - সেট chhad বসার blue
+  - সেট আলো বসার blue
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad bosar green
-  - set alo bosar green
+  - সেট chhad বসার green
+  - সেট আলো বসার green
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad bosar white
-  - set alo bosar white
+  - সেট chhad বসার white
+  - সেট আলো বসার white
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad bosar yellow
-  - set alo bosar yellow
+  - সেট chhad বসার yellow
+  - সেট আলো বসার yellow
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad bosar black
-  - set alo bosar black
+  - সেট chhad বসার black
+  - সেট আলো বসার black
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - set lamp bosar red
-  - set alo bosar red
+  - সেট alo বসার red
+  - সেট আলো বসার red
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - set lamp bosar blue
-  - set alo bosar blue
+  - সেট alo বসার blue
+  - সেট আলো বসার blue
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - set lamp bosar green
-  - set alo bosar green
+  - সেট alo বসার green
+  - সেট আলো বসার green
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - set lamp bosar white
-  - set alo bosar white
+  - সেট alo বসার white
+  - সেট আলো বসার white
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - set lamp bosar yellow
-  - set alo bosar yellow
+  - সেট alo বসার yellow
+  - সেট আলো বসার yellow
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - set lamp bosar black
-  - set alo bosar black
+  - সেট alo বসার black
+  - সেট আলো বসার black
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad ranna red
-  - set alo ranna red
+  - সেট chhad রান্না red
+  - সেট আলো রান্না red
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad ranna blue
-  - set alo ranna blue
+  - সেট chhad রান্না blue
+  - সেট আলো রান্না blue
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad ranna green
-  - set alo ranna green
+  - সেট chhad রান্না green
+  - সেট আলো রান্না green
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad ranna white
-  - set alo ranna white
+  - সেট chhad রান্না white
+  - সেট আলো রান্না white
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad ranna yellow
-  - set alo ranna yellow
+  - সেট chhad রান্না yellow
+  - সেট আলো রান্না yellow
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad ranna black
-  - set alo ranna black
+  - সেট chhad রান্না black
+  - সেট আলো রান্না black
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - set dip ranna red
-  - set alo ranna red
+  - সেট dip রান্না red
+  - সেট আলো রান্না red
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - set dip ranna blue
-  - set alo ranna blue
+  - সেট dip রান্না blue
+  - সেট আলো রান্না blue
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - set dip ranna green
-  - set alo ranna green
+  - সেট dip রান্না green
+  - সেট আলো রান্না green
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - set dip ranna white
-  - set alo ranna white
+  - সেট dip রান্না white
+  - সেট আলো রান্না white
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - set dip ranna yellow
-  - set alo ranna yellow
+  - সেট dip রান্না yellow
+  - সেট আলো রান্না yellow
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - set dip ranna black
-  - set alo ranna black
+  - সেট dip রান্না black
+  - সেট আলো রান্না black
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad shobarghor red
-  - set alo shobarghor red
+  - সেট chhad shobarghormaster red
+  - সেট আলো shobarghormaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad shobarghor blue
-  - set alo shobarghor blue
+  - সেট chhad shobarghormaster blue
+  - সেট আলো shobarghormaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad shobarghor green
-  - set alo shobarghor green
+  - সেট chhad shobarghormaster green
+  - সেট আলো shobarghormaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad shobarghor white
-  - set alo shobarghor white
+  - সেট chhad shobarghormaster white
+  - সেট আলো shobarghormaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad shobarghor yellow
-  - set alo shobarghor yellow
+  - সেট chhad shobarghormaster yellow
+  - সেট আলো shobarghormaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad shobarghor black
-  - set alo shobarghor black
+  - সেট chhad shobarghormaster black
+  - সেট আলো shobarghormaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - set bichana shobarghor red
-  - set alo shobarghor red
+  - সেট bichana shobarghormaster red
+  - সেট আলো shobarghormaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - set bichana shobarghor blue
-  - set alo shobarghor blue
+  - সেট bichana shobarghormaster blue
+  - সেট আলো shobarghormaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - set bichana shobarghor green
-  - set alo shobarghor green
+  - সেট bichana shobarghormaster green
+  - সেট আলো shobarghormaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - set bichana shobarghor white
-  - set alo shobarghor white
+  - সেট bichana shobarghormaster white
+  - সেট আলো shobarghormaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - set bichana shobarghor yellow
-  - set alo shobarghor yellow
+  - সেট bichana shobarghormaster yellow
+  - সেট আলো shobarghormaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - set bichana shobarghor black
-  - set alo shobarghor black
+  - সেট bichana shobarghormaster black
+  - সেট আলো shobarghormaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad office red
-  - set alo office red
+  - সেট chhad office red
+  - সেট আলো office red
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad office blue
-  - set alo office blue
+  - সেট chhad office blue
+  - সেট আলো office blue
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad office green
-  - set alo office green
+  - সেট chhad office green
+  - সেট আলো office green
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad office white
-  - set alo office white
+  - সেট chhad office white
+  - সেট আলো office white
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad office yellow
-  - set alo office yellow
+  - সেট chhad office yellow
+  - সেট আলো office yellow
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad office black
-  - set alo office black
+  - সেট chhad office black
+  - সেট আলো office black
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - set alo garden red
-  - alo garden red
+  - সেট আলো garden red
+  - আলো garden red
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo garden blue
-  - alo garden blue
+  - সেট আলো garden blue
+  - আলো garden blue
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - set alo garden green
-  - alo garden green
+  - সেট আলো garden green
+  - আলো garden green
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - set alo garden white
-  - alo garden white
+  - সেট আলো garden white
+  - আলো garden white
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo garden yellow
-  - alo garden yellow
+  - সেট আলো garden yellow
+  - আলো garden yellow
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - set alo garden black
-  - alo garden black
+  - সেট আলো garden black
+  - আলো garden black
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - set alo basement red
-  - alo basement red
+  - সেট আলো basement red
+  - আলো basement red
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo basement blue
-  - alo basement blue
+  - সেট আলো basement blue
+  - আলো basement blue
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - set alo basement green
-  - alo basement green
+  - সেট আলো basement green
+  - আলো basement green
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - set alo basement white
-  - alo basement white
+  - সেট আলো basement white
+  - আলো basement white
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo basement yellow
-  - alo basement yellow
+  - সেট আলো basement yellow
+  - আলো basement yellow
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - set alo basement black
-  - alo basement black
+  - সেট আলো basement black
+  - আলো basement black
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - set alo hallway red
-  - alo hallway red
+  - সেট আলো hallway red
+  - আলো hallway red
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo hallway blue
-  - alo hallway blue
+  - সেট আলো hallway blue
+  - আলো hallway blue
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - set alo hallway green
-  - alo hallway green
+  - সেট আলো hallway green
+  - আলো hallway green
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - set alo hallway white
-  - alo hallway white
+  - সেট আলো hallway white
+  - আলো hallway white
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo hallway yellow
-  - alo hallway yellow
+  - সেট আলো hallway yellow
+  - আলো hallway yellow
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - set alo hallway black
-  - alo hallway black
+  - সেট আলো hallway black
+  - আলো hallway black
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad paribarik red
-  - set alo paribarik red
+  - সেট chhad paribarik red
+  - সেট আলো paribarik red
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad paribarik blue
-  - set alo paribarik blue
+  - সেট chhad paribarik blue
+  - সেট আলো paribarik blue
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad paribarik green
-  - set alo paribarik green
+  - সেট chhad paribarik green
+  - সেট আলো paribarik green
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad paribarik white
-  - set alo paribarik white
+  - সেট chhad paribarik white
+  - সেট আলো paribarik white
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad paribarik yellow
-  - set alo paribarik yellow
+  - সেট chhad paribarik yellow
+  - সেট আলো paribarik yellow
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad paribarik black
-  - set alo paribarik black
+  - সেট chhad paribarik black
+  - সেট আলো paribarik black
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - set alo paribarikess red
-  - alo paribarikess red
+  - সেট আলো paribarikess red
+  - আলো paribarikess red
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo paribarikess blue
-  - alo paribarikess blue
+  - সেট আলো paribarikess blue
+  - আলো paribarikess blue
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - set alo paribarikess green
-  - alo paribarikess green
+  - সেট আলো paribarikess green
+  - আলো paribarikess green
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - set alo paribarikess white
-  - alo paribarikess white
+  - সেট আলো paribarikess white
+  - আলো paribarikess white
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo paribarikess yellow
-  - alo paribarikess yellow
+  - সেট আলো paribarikess yellow
+  - আলো paribarikess yellow
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - set alo paribarikess black
-  - alo paribarikess black
+  - সেট আলো paribarikess black
+  - আলো paribarikess black
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - set alo garage red
-  - alo garage red
+  - সেট আলো garage red
+  - আলো garage red
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo garage blue
-  - alo garage blue
+  - সেট আলো garage blue
+  - আলো garage blue
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - set alo garage green
-  - alo garage green
+  - সেট আলো garage green
+  - আলো garage green
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - set alo garage white
-  - alo garage white
+  - সেট আলো garage white
+  - আলো garage white
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo garage yellow
-  - alo garage yellow
+  - সেট আলো garage yellow
+  - আলো garage yellow
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - set alo garage black
-  - alo garage black
+  - সেট আলো garage black
+  - আলো garage black
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad shobarghor2 red
-  - set alo shobarghor2 red
+  - সেট chhad shobarghor2 red
+  - সেট আলো shobarghor2 red
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad shobarghor2 blue
-  - set alo shobarghor2 blue
+  - সেট chhad shobarghor2 blue
+  - সেট আলো shobarghor2 blue
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad shobarghor2 green
-  - set alo shobarghor2 green
+  - সেট chhad shobarghor2 green
+  - সেট আলো shobarghor2 green
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad shobarghor2 white
-  - set alo shobarghor2 white
+  - সেট chhad shobarghor2 white
+  - সেট আলো shobarghor2 white
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad shobarghor2 yellow
-  - set alo shobarghor2 yellow
+  - সেট chhad shobarghor2 yellow
+  - সেট আলো shobarghor2 yellow
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad shobarghor2 black
-  - set alo shobarghor2 black
+  - সেট chhad shobarghor2 black
+  - সেট আলো shobarghor2 black
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad shobarghor3 red
-  - set alo shobarghor3 red
+  - সেট chhad shobarghor3 red
+  - সেট আলো shobarghor3 red
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad shobarghor3 blue
-  - set alo shobarghor3 blue
+  - সেট chhad shobarghor3 blue
+  - সেট আলো shobarghor3 blue
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad shobarghor3 green
-  - set alo shobarghor3 green
+  - সেট chhad shobarghor3 green
+  - সেট আলো shobarghor3 green
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad shobarghor3 white
-  - set alo shobarghor3 white
+  - সেট chhad shobarghor3 white
+  - সেট আলো shobarghor3 white
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad shobarghor3 yellow
-  - set alo shobarghor3 yellow
+  - সেট chhad shobarghor3 yellow
+  - সেট আলো shobarghor3 yellow
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad shobarghor3 black
-  - set alo shobarghor3 black
+  - সেট chhad shobarghor3 black
+  - সেট আলো shobarghor3 black
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - set chhad shobarghor4 red
-  - set alo shobarghor4 red
+  - সেট chhad shobarghor4 red
+  - সেট আলো shobarghor4 red
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhad shobarghor4 blue
-  - set alo shobarghor4 blue
+  - সেট chhad shobarghor4 blue
+  - সেট আলো shobarghor4 blue
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - set chhad shobarghor4 green
-  - set alo shobarghor4 green
+  - সেট chhad shobarghor4 green
+  - সেট আলো shobarghor4 green
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - set chhad shobarghor4 white
-  - set alo shobarghor4 white
+  - সেট chhad shobarghor4 white
+  - সেট আলো shobarghor4 white
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhad shobarghor4 yellow
-  - set alo shobarghor4 yellow
+  - সেট chhad shobarghor4 yellow
+  - সেট আলো shobarghor4 yellow
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - set chhad shobarghor4 black
-  - set alo shobarghor4 black
+  - সেট chhad shobarghor4 black
+  - সেট আলো shobarghor4 black
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - set alo prabesh red
-  - alo prabesh red
+  - সেট আলো prabesh red
+  - আলো prabesh red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo prabesh blue
-  - alo prabesh blue
+  - সেট আলো prabesh blue
+  - আলো prabesh blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - set alo prabesh green
-  - alo prabesh green
+  - সেট আলো prabesh green
+  - আলো prabesh green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - set alo prabesh white
-  - alo prabesh white
+  - সেট আলো prabesh white
+  - আলো prabesh white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo prabesh yellow
-  - alo prabesh yellow
+  - সেট আলো prabesh yellow
+  - আলো prabesh yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - set alo prabesh black
-  - alo prabesh black
+  - সেট আলো prabesh black
+  - আলো prabesh black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - set alo dhoa red
-  - alo dhoa red
+  - সেট আলো dhoa red
+  - আলো dhoa red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo dhoa blue
-  - alo dhoa blue
+  - সেট আলো dhoa blue
+  - আলো dhoa blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - set alo dhoa green
-  - alo dhoa green
+  - সেট আলো dhoa green
+  - আলো dhoa green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - set alo dhoa white
-  - alo dhoa white
+  - সেট আলো dhoa white
+  - আলো dhoa white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo dhoa yellow
-  - alo dhoa yellow
+  - সেট আলো dhoa yellow
+  - আলো dhoa yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - set alo dhoa black
-  - alo dhoa black
+  - সেট আলো dhoa black
+  - আলো dhoa black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - set alo main bath red
-  - alo main bath red
+  - সেট আলো main bath red
+  - আলো main bath red
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo main bath blue
-  - alo main bath blue
+  - সেট আলো main bath blue
+  - আলো main bath blue
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - set alo main bath green
-  - alo main bath green
+  - সেট আলো main bath green
+  - আলো main bath green
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - set alo main bath white
-  - alo main bath white
+  - সেট আলো main bath white
+  - আলো main bath white
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo main bath yellow
-  - alo main bath yellow
+  - সেট আলো main bath yellow
+  - আলো main bath yellow
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - set alo main bath black
-  - alo main bath black
+  - সেট আলো main bath black
+  - আলো main bath black
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - set alo shauchagar red
-  - alo shauchagar red
+  - সেট আলো shauchagar red
+  - আলো shauchagar red
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo shauchagar blue
-  - alo shauchagar blue
+  - সেট আলো shauchagar blue
+  - আলো shauchagar blue
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - set alo shauchagar green
-  - alo shauchagar green
+  - সেট আলো shauchagar green
+  - আলো shauchagar green
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - set alo shauchagar white
-  - alo shauchagar white
+  - সেট আলো shauchagar white
+  - আলো shauchagar white
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo shauchagar yellow
-  - alo shauchagar yellow
+  - সেট আলো shauchagar yellow
+  - আলো shauchagar yellow
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - set alo shauchagar black
-  - alo shauchagar black
+  - সেট আলো shauchagar black
+  - আলো shauchagar black
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - set ensuite shobarghor red
-  - set alo shobarghor red
+  - সেট ensuite shobarghormaster red
+  - সেট আলো shobarghormaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - set ensuite shobarghor blue
-  - set alo shobarghor blue
+  - সেট ensuite shobarghormaster blue
+  - সেট আলো shobarghormaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - set ensuite shobarghor green
-  - set alo shobarghor green
+  - সেট ensuite shobarghormaster green
+  - সেট আলো shobarghormaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - set ensuite shobarghor white
-  - set alo shobarghor white
+  - সেট ensuite shobarghormaster white
+  - সেট আলো shobarghormaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - set ensuite shobarghor yellow
-  - set alo shobarghor yellow
+  - সেট ensuite shobarghormaster yellow
+  - সেট আলো shobarghormaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - set ensuite shobarghor black
-  - set alo shobarghor black
+  - সেট ensuite shobarghormaster black
+  - সেট আলো shobarghormaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - set bichana shobarghor red
-  - set alo shobarghor red
+  - সেট bichana shobarghormaster red
+  - সেট আলো shobarghormaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - set bichana shobarghor blue
-  - set alo shobarghor blue
+  - সেট bichana shobarghormaster blue
+  - সেট আলো shobarghormaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - set bichana shobarghor green
-  - set alo shobarghor green
+  - সেট bichana shobarghormaster green
+  - সেট আলো shobarghormaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - set bichana shobarghor white
-  - set alo shobarghor white
+  - সেট bichana shobarghormaster white
+  - সেট আলো shobarghormaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - set bichana shobarghor yellow
-  - set alo shobarghor yellow
+  - সেট bichana shobarghormaster yellow
+  - সেট আলো shobarghormaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - set bichana shobarghor black
-  - set alo shobarghor black
+  - সেট bichana shobarghormaster black
+  - সেট আলো shobarghormaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - set alo masterbath red
-  - alo masterbath red
+  - সেট আলো masterbath red
+  - আলো masterbath red
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - set alo masterbath blue
-  - alo masterbath blue
+  - সেট আলো masterbath blue
+  - আলো masterbath blue
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - set alo masterbath green
-  - alo masterbath green
+  - সেট আলো masterbath green
+  - আলো masterbath green
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - set alo masterbath white
-  - alo masterbath white
+  - সেট আলো masterbath white
+  - আলো masterbath white
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - set alo masterbath yellow
-  - alo masterbath yellow
+  - সেট আলো masterbath yellow
+  - আলো masterbath yellow
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - set alo masterbath black
-  - alo masterbath black
+  - সেট আলো masterbath black
+  - আলো masterbath black
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara ranna
-  - sob alo nibhao chara ranna
+  - নিভাও সব আলো chara রান্না
+  - সব আলো নিভাও chara রান্না
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara office
-  - sob alo nibhao chara office
+  - নিভাও সব আলো chara office
+  - সব আলো নিভাও chara office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara garage
-  - sob alo nibhao chara garage
+  - নিভাও সব আলো chara garage
+  - সব আলো নিভাও chara garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara shobarghor
-  - sob alo nibhao chara shobarghor
+  - নিভাও সব আলো chara shobarghormaster
+  - সব আলো নিভাও chara shobarghormaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo nich
-  - alo nich jalao
+  - জ্বালাও সব আলো nich
+  - আলো nich জ্বালাও
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo nich
-  - alo nich nibhao
+  - নিভাও সব আলো nich
+  - আলো nich নিভাও
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo upor
-  - alo upor jalao
+  - জ্বালাও সব আলো upor
+  - আলো upor জ্বালাও
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo upor
-  - alo upor nibhao
+  - নিভাও সব আলো upor
+  - আলো upor নিভাও
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - jalao sob alo basement
-  - alo basement jalao
+  - জ্বালাও সব আলো basement
+  - আলো basement জ্বালাও
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo basement
-  - alo basement nibhao
+  - নিভাও সব আলো basement
+  - আলো basement নিভাও
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara prabesh
-  - sob alo nibhao chara prabesh
+  - নিভাও সব আলো chara prabesh
+  - সব আলো নিভাও chara prabesh
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara bosar
-  - sob alo nibhao chara bosar
+  - নিভাও সব আলো chara বসার
+  - সব আলো নিভাও chara বসার
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara paribarikess
-  - sob alo nibhao chara paribarikess
+  - নিভাও সব আলো chara paribarikess
+  - সব আলো নিভাও chara paribarikess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara paribarik
-  - sob alo nibhao chara paribarik
+  - নিভাও সব আলো chara paribarik
+  - সব আলো নিভাও chara paribarik
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara dhoa
-  - sob alo nibhao chara dhoa
+  - নিভাও সব আলো chara dhoa
+  - সব আলো নিভাও chara dhoa
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara shauchagar
-  - sob alo nibhao chara shauchagar
+  - নিভাও সব আলো chara shauchagar
+  - সব আলো নিভাও chara shauchagar
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara garden
-  - sob alo nibhao chara garden
+  - নিভাও সব আলো chara garden
+  - সব আলো নিভাও chara garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara shobarghor2
-  - sob alo nibhao chara shobarghor2
+  - নিভাও সব আলো chara shobarghor2
+  - সব আলো নিভাও chara shobarghor2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara shobarghor3
-  - sob alo nibhao chara shobarghor3
+  - নিভাও সব আলো chara shobarghor3
+  - সব আলো নিভাও chara shobarghor3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara shobarghor4
-  - sob alo nibhao chara shobarghor4
+  - নিভাও সব আলো chara shobarghor4
+  - সব আলো নিভাও chara shobarghor4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara masterbath
-  - sob alo nibhao chara masterbath
+  - নিভাও সব আলো chara masterbath
+  - সব আলো নিভাও chara masterbath
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara main bath
-  - sob alo nibhao chara main bath
+  - নিভাও সব আলো chara main bath
+  - সব আলো নিভাও chara main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara hallway
-  - sob alo nibhao chara hallway
+  - নিভাও সব আলো chara hallway
+  - সব আলো নিভাও chara hallway
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nibhao sob alo chara basement
-  - sob alo nibhao chara basement
+  - নিভাও সব আলো chara basement
+  - সব আলো নিভাও chara basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - jalao alo basement
-  - alo basement jalao
+  - জ্বালাও আলো basement
+  - আলো basement জ্বালাও
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - jalao alo hallway
-  - alo hallway jalao
+  - জ্বালাও আলো hallway
+  - আলো hallway জ্বালাও
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - jalao chhad paribarik
-  - chhad paribarik jalao
+  - জ্বালাও chhad paribarik
+  - chhad paribarik জ্বালাও
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - jalao alo paribarikess
-  - alo paribarikess jalao
+  - জ্বালাও আলো paribarikess
+  - আলো paribarikess জ্বালাও

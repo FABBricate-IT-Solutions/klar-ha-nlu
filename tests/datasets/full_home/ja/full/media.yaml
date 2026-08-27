@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - terebi ribingu tsukete
-  - tsukete terebi ribingu
+  - terebi リビング つけて
+  - つけて terebi リビング
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - keshite terebi ribingu
-  - terebi ribingu keshite
+  - 消して terebi リビング
+  - terebi リビング 消して
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause terebi ribingu
-  - terebi ribingu pause
+  - 一時停止 terebi リビング
+  - terebi リビング 一時停止
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - terebi famirii tsukete
-  - tsukete terebi famirii
+  - terebi famirii つけて
+  - つけて terebi famirii
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - keshite terebi famirii
-  - terebi famirii keshite
+  - 消して terebi famirii
+  - terebi famirii 消して
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause terebi famirii
-  - terebi famirii pause
+  - 一時停止 terebi famirii
+  - terebi famirii 一時停止

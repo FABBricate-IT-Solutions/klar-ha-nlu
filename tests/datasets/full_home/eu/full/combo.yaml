@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - piztu logela sabai eta logela gaua
-  - logela sabai eta logela gaua piztu
+  - piztu logelamaster sabai eta logelamaster gaua
+  - logelamaster sabai eta logelamaster gaua piztu
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - itzali logela sabai eta logela gaua
-  - logela sabai eta logela gaua itzali
+  - itzali logelamaster sabai eta logelamaster gaua
+  - logelamaster sabai eta logelamaster gaua itzali
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - piztu logela haizagailua eta sukaldea uharte
-  - logela haizagailua eta sukaldea uharte piztu
+  - piztu logelamaster haizagailua eta sukaldea uharte
+  - logelamaster haizagailua eta sukaldea uharte piztu
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - itzali argia logela eta main bath
-  - argia logela eta main bath itzali
+  - itzali argia logelamaster eta main bath
+  - argia logelamaster eta main bath itzali
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - itzali denak argia izan egongela eta logela
-  - denak argia itzali izan egongela eta logela
+  - itzali denak argia izan egongela eta logelamaster
+  - denak argia itzali izan egongela eta logelamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - itzali denak argia solairu izan logela
-  - denak argia solairu itzali izan logela
+  - itzali denak argia solairu izan logelamaster
+  - denak argia solairu itzali izan logelamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - ireki gortina egongela eta logela
-  - gortina egongela eta logela ireki
+  - ireki gortina egongela eta logelamaster
+  - gortina egongela eta logelamaster ireki
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - itxi gortina egongela eta logela
-  - gortina egongela eta logela itxi
+  - itxi gortina egongela eta logelamaster
+  - gortina egongela eta logelamaster itxi
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - jarri berogailu egongela eta logela 21
-  - berogailu egongela eta logela 21
+  - jarri berogailu egongela eta logelamaster 21
+  - berogailu egongela eta logelamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

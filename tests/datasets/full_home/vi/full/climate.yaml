@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - dat dieuhoa phongngu 18
-  - dieuhoa phongngu 18
+  - dat dieuhoa phongngumaster 18
+  - dieuhoa phongngumaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - dat dieuhoa phongngu 19
-  - dieuhoa phongngu 19
+  - dat dieuhoa phongngumaster 19
+  - dieuhoa phongngumaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - dat dieuhoa phongngu 20
-  - dieuhoa phongngu 20
+  - dat dieuhoa phongngumaster 20
+  - dieuhoa phongngumaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - dat dieuhoa phongngu 21
-  - dieuhoa phongngu 21
+  - dat dieuhoa phongngumaster 21
+  - dieuhoa phongngumaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - dat dieuhoa phongngu 22
-  - dieuhoa phongngu 22
+  - dat dieuhoa phongngumaster 22
+  - dieuhoa phongngumaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - dat dieuhoa phongngu 23
-  - dieuhoa phongngu 23
+  - dat dieuhoa phongngumaster 23
+  - dieuhoa phongngumaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - dat dieuhoa phongngu 24
-  - dieuhoa phongngu 24
+  - dat dieuhoa phongngumaster 24
+  - dieuhoa phongngumaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - gi dieuhoa phongngu
-  - dieuhoa phongngu
+  - gi dieuhoa phongngumaster
+  - dieuhoa phongngumaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - dat dieuhoa phongngu 18
-  - dieuhoa phongngu 18
+  - dat dieuhoa phongngumaster 18
+  - dieuhoa phongngumaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - dat dieuhoa phongngu 19
-  - dieuhoa phongngu 19
+  - dat dieuhoa phongngumaster 19
+  - dieuhoa phongngumaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - dat dieuhoa phongngu 20
-  - dieuhoa phongngu 20
+  - dat dieuhoa phongngumaster 20
+  - dieuhoa phongngumaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - dat dieuhoa phongngu 21
-  - dieuhoa phongngu 21
+  - dat dieuhoa phongngumaster 21
+  - dieuhoa phongngumaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - dat dieuhoa phongngu 22
-  - dieuhoa phongngu 22
+  - dat dieuhoa phongngumaster 22
+  - dieuhoa phongngumaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - dat dieuhoa phongngu 23
-  - dieuhoa phongngu 23
+  - dat dieuhoa phongngumaster 23
+  - dieuhoa phongngumaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - dat dieuhoa phongngu 24
-  - dieuhoa phongngu 24
+  - dat dieuhoa phongngumaster 24
+  - dieuhoa phongngumaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - gi dieuhoa phongngu
-  - dieuhoa phongngu
+  - gi dieuhoa phongngumaster
+  - dieuhoa phongngumaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - gi dieuhoa phongngu
-  - dieuhoa phongngu
+  - gi dieuhoa phongngumaster
+  - dieuhoa phongngumaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - gi dieuhoa phongngu
-  - dieuhoa phongngu
+  - gi dieuhoa phongngumaster
+  - dieuhoa phongngumaster

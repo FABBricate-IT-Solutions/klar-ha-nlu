@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vadu queen gadi
-  - vadu queen tivi gadi
+  - ప్లే queen గది
+  - ప్లే queen టీవీ గది
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - vadu album rumours by fleetwood mac gadi
+  - ప్లే album rumours by fleetwood mac గది
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vadu queen radio mode gadi
+  - ప్లే queen radio mode గది
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - vadu bohemian rhapsody queue gadi
+  - ప్లే bohemian rhapsody queue గది
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - emi tivi gadi
-  - emi track gadi
+  - ఏమి టీవీ గది
+  - ఏమి track గది
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi gadi 10
-  - tivi gadi 10
+  - సెట్ టీవీ గది 10
+  - టీవీ గది 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi gadi 20
-  - tivi gadi 20
+  - సెట్ టీవీ గది 20
+  - టీవీ గది 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi gadi 30
-  - tivi gadi 30
+  - సెట్ టీవీ గది 30
+  - టీవీ గది 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi gadi 50
-  - tivi gadi 50
+  - సెట్ టీవీ గది 50
+  - టీవీ గది 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi gadi 80
-  - tivi gadi 80
+  - సెట్ టీవీ గది 80
+  - టీవీ గది 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track gadi
+  - next track గది
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track gadi
+  - previous track గది
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vadu queen vantagadi
-  - vadu queen tivi vantagadi
+  - ప్లే queen వంటగది
+  - ప్లే queen టీవీ వంటగది
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vadu beatles gadi
-  - vadu beatles tivi gadi
+  - ప్లే beatles గది
+  - ప్లే beatles టీవీ గది
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vadu radiohead gadi
-  - vadu radiohead tivi gadi
+  - ప్లే radiohead గది
+  - ప్లే radiohead టీవీ గది
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vadu abba gadi
-  - vadu abba tivi gadi
+  - ప్లే abba గది
+  - ప్లే abba టీవీ గది
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vadu coldplay gadi
-  - vadu coldplay tivi gadi
+  - ప్లే coldplay గది
+  - ప్లే coldplay టీవీ గది
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vadu adele gadi
-  - vadu adele tivi gadi
+  - ప్లే adele గది
+  - ప్లే adele టీవీ గది
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vadu prince gadi
-  - vadu prince tivi gadi
+  - ప్లే prince గది
+  - ప్లే prince టీవీ గది
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vadu bowie gadi
-  - vadu bowie tivi gadi
+  - ప్లే bowie గది
+  - ప్లే bowie టీవీ గది
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vadu nirvana gadi
-  - vadu nirvana tivi gadi
+  - ప్లే nirvana గది
+  - ప్లే nirvana టీవీ గది
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vadu eagles gadi
-  - vadu eagles tivi gadi
+  - ప్లే eagles గది
+  - ప్లే eagles టీవీ గది
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vadu madonna gadi
-  - vadu madonna tivi gadi
+  - ప్లే madonna గది
+  - ప్లే madonna టీవీ గది
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vadu mozart gadi
-  - vadu mozart tivi gadi
+  - ప్లే mozart గది
+  - ప్లే mozart టీవీ గది
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vadu daft punk gadi
-  - vadu daft punk tivi gadi
+  - ప్లే daft punk గది
+  - ప్లే daft punk టీవీ గది
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vadu biafra gadi
-  - vadu biafra tivi gadi
+  - ప్లే biafra గది
+  - ప్లే biafra టీవీ గది
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vadu queen vantagadi
-  - vadu queen tivi vantagadi
+  - ప్లే queen వంటగది
+  - ప్లే queen టీవీ వంటగది
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vadu beatles vantagadi
-  - vadu beatles tivi vantagadi
+  - ప్లే beatles వంటగది
+  - ప్లే beatles టీవీ వంటగది
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vadu radiohead vantagadi
-  - vadu radiohead tivi vantagadi
+  - ప్లే radiohead వంటగది
+  - ప్లే radiohead టీవీ వంటగది
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vadu abba vantagadi
-  - vadu abba tivi vantagadi
+  - ప్లే abba వంటగది
+  - ప్లే abba టీవీ వంటగది
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vadu coldplay vantagadi
-  - vadu coldplay tivi vantagadi
+  - ప్లే coldplay వంటగది
+  - ప్లే coldplay టీవీ వంటగది
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vadu adele vantagadi
-  - vadu adele tivi vantagadi
+  - ప్లే adele వంటగది
+  - ప్లే adele టీవీ వంటగది
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vadu prince vantagadi
-  - vadu prince tivi vantagadi
+  - ప్లే prince వంటగది
+  - ప్లే prince టీవీ వంటగది
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vadu bowie vantagadi
-  - vadu bowie tivi vantagadi
+  - ప్లే bowie వంటగది
+  - ప్లే bowie టీవీ వంటగది
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vadu nirvana vantagadi
-  - vadu nirvana tivi vantagadi
+  - ప్లే nirvana వంటగది
+  - ప్లే nirvana టీవీ వంటగది
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vadu eagles vantagadi
-  - vadu eagles tivi vantagadi
+  - ప్లే eagles వంటగది
+  - ప్లే eagles టీవీ వంటగది
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vadu madonna vantagadi
-  - vadu madonna tivi vantagadi
+  - ప్లే madonna వంటగది
+  - ప్లే madonna టీవీ వంటగది
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vadu mozart vantagadi
-  - vadu mozart tivi vantagadi
+  - ప్లే mozart వంటగది
+  - ప్లే mozart టీవీ వంటగది
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vadu daft punk vantagadi
-  - vadu daft punk tivi vantagadi
+  - ప్లే daft punk వంటగది
+  - ప్లే daft punk టీవీ వంటగది
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vadu biafra vantagadi
-  - vadu biafra tivi vantagadi
+  - ప్లే biafra వంటగది
+  - ప్లే biafra టీవీ వంటగది
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vadu queen office
-  - vadu queen tivi office
+  - ప్లే queen office
+  - ప్లే queen టీవీ office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vadu beatles office
-  - vadu beatles tivi office
+  - ప్లే beatles office
+  - ప్లే beatles టీవీ office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vadu radiohead office
-  - vadu radiohead tivi office
+  - ప్లే radiohead office
+  - ప్లే radiohead టీవీ office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vadu abba office
-  - vadu abba tivi office
+  - ప్లే abba office
+  - ప్లే abba టీవీ office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vadu coldplay office
-  - vadu coldplay tivi office
+  - ప్లే coldplay office
+  - ప్లే coldplay టీవీ office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vadu adele office
-  - vadu adele tivi office
+  - ప్లే adele office
+  - ప్లే adele టీవీ office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vadu prince office
-  - vadu prince tivi office
+  - ప్లే prince office
+  - ప్లే prince టీవీ office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vadu bowie office
-  - vadu bowie tivi office
+  - ప్లే bowie office
+  - ప్లే bowie టీవీ office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vadu nirvana office
-  - vadu nirvana tivi office
+  - ప్లే nirvana office
+  - ప్లే nirvana టీవీ office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vadu eagles office
-  - vadu eagles tivi office
+  - ప్లే eagles office
+  - ప్లే eagles టీవీ office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vadu madonna office
-  - vadu madonna tivi office
+  - ప్లే madonna office
+  - ప్లే madonna టీవీ office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vadu mozart office
-  - vadu mozart tivi office
+  - ప్లే mozart office
+  - ప్లే mozart టీవీ office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vadu daft punk office
-  - vadu daft punk tivi office
+  - ప్లే daft punk office
+  - ప్లే daft punk టీవీ office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vadu biafra office
-  - vadu biafra tivi office
+  - ప్లే biafra office
+  - ప్లే biafra టీవీ office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vadu queen radio mode gadi
+  - ప్లే queen radio mode గది
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - emi tivi gadi
-  - emi track gadi
+  - ఏమి టీవీ గది
+  - ఏమి track గది
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vadu queen radio mode vantagadi
+  - ప్లే queen radio mode వంటగది
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - emi tivi vantagadi
-  - emi track vantagadi
+  - ఏమి టీవీ వంటగది
+  - ఏమి track వంటగది
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vadu queen radio mode office
+  - ప్లే queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - emi tivi office
-  - emi track office
+  - ఏమి టీవీ office
+  - ఏమి track office

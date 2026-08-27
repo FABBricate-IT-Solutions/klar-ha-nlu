@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: υπνοδωματο
+  name: υπνοδωματοmaster
   floor: upper
   aliases:
+  - υπνοδωματοmaster
   - υπνοδωματο
 - id: bedroom_2
   name: υπνοδωματο2
@@ -130,10 +131,10 @@ devices:
   - ταβανι
 - id: light.living_lamp
   area_id: living
-  name: σαλονι φως
+  name: σαλονι lamp
   aliases:
-  - σαλονι φως
-  - φως
+  - σαλονι lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: σαλονιfamess φως
@@ -190,29 +191,29 @@ devices:
   - φως
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: υπνοδωματο ταβανι
+  name: υπνοδωματοmaster ταβανι
   aliases:
-  - υπνοδωματο ταβανι
+  - υπνοδωματοmaster ταβανι
   - ταβανι
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: υπνοδωματο ensuite
+  name: υπνοδωματοmaster ensuite
   aliases:
-  - υπνοδωματο ensuite
+  - υπνοδωματοmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: υπνοδωματο left κομοδινο
+  name: υπνοδωματοmaster left κομοδινο
   aliases:
-  - υπνοδωματο left κομοδινο
+  - υπνοδωματοmaster left κομοδινο
   - κομοδινο
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: υπνοδωματο right κομοδινο
+  name: υπνοδωματοmaster right κομοδινο
   aliases:
-  - υπνοδωματο right κομοδινο
+  - υπνοδωματοmaster right κομοδινο
   - κομοδινο
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - κουρτινα
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: υπνοδωματο κουρτινα
+  name: υπνοδωματοmaster κουρτινα
   aliases:
-  - υπνοδωματο κουρτινα
+  - υπνοδωματοmaster κουρτινα
   - κουρτινα
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - θερμανση
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: υπνοδωματο θερμανση
+  name: υπνοδωματοmaster θερμανση
   aliases:
-  - υπνοδωματο θερμανση
+  - υπνοδωματοmaster θερμανση
   - θερμανση
 - id: climate.master_ac
   area_id: master_bedroom
-  name: θερμοκρασια υπνοδωματο
+  name: θερμοκρασια υπνοδωματοmaster
   aliases:
-  - θερμοκρασια υπνοδωματο
+  - θερμοκρασια υπνοδωματοmaster
   - θερμοκρασια
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ανεμιστηρας
 - id: fan.master_fan
   area_id: master_bedroom
-  name: υπνοδωματο ανεμιστηρας
+  name: υπνοδωματοmaster ανεμιστηρας
   aliases:
-  - υπνοδωματο ανεμιστηρας
+  - υπνοδωματοmaster ανεμιστηρας
   - ανεμιστηρας
 - id: fan.bedroom2_fan
   area_id: bedroom_2

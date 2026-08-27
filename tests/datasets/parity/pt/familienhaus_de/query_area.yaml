@@ -69,13 +69,13 @@ query_area/entryway_locks::entryway_locks_list_locked_locks:
 query_area/entryway_locks::entryway_locks_list_unlocked_locks:
 - que fechadura entrada
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_brightness:
-- que luz salaestar e que luz cozinha
+- que luz salaestar then que luz cozinha
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_get_state:
-- que luz salaestar e que luz cozinha
+- que luz salaestar then que luz cozinha
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_off_lights:
-- que luz salaestar e que luz cozinha
+- que luz salaestar then que luz cozinha
 query_area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_list_on_lights:
-- que luz salaestar e que luz cozinha
+- que luz salaestar then que luz cozinha
 query_area/family_room_fans::family_room_fans_get_fan_speed:
 - que ventoinha salaestar
 query_area/family_room_fans::family_room_fans_get_state:
@@ -115,13 +115,13 @@ query_area/garage_locks::garage_locks_list_locked_locks:
 query_area/garage_locks::garage_locks_list_unlocked_locks:
 - que fechadura garage
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_brightness:
-- que luz entradagang e que luz wc
+- que luz entradagang then que luz wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_get_state:
-- que luz entradagang e que luz wc
+- que luz entradagang then que luz wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_off_lights:
-- que luz entradagang e que luz wc
+- que luz entradagang then que luz wc
 query_area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_list_on_lights:
-- que luz entradagang e que luz wc
+- que luz entradagang then que luz wc
 query_area/hallway_lights::hallway_lights_get_brightness:
 - que luz entradagang
 query_area/hallway_lights::hallway_lights_get_state:
@@ -205,39 +205,39 @@ query_area/master_bath_switchs::master_bath_switchs_list_off_switchs:
 query_area/master_bath_switchs::master_bath_switchs_list_on_switchs:
 - que aparelho banhomaster
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_position:
-- que cortina quarto e que cortina sala
+- que cortina quartomaster then que cortina sala
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_get_state:
-- que cortina quarto e que cortina sala
+- que cortina quartomaster then que cortina sala
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_closed_covers:
-- que cortina quarto e que cortina sala
+- que cortina quartomaster then que cortina sala
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
-- que cortina quarto e que cortina sala
+- que cortina quartomaster then que cortina sala
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- que aquecimento quarto
+- que aquecimento quartomaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
-- que cortina quarto
+- que cortina quartomaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:
-- que cortina quarto
+- que cortina quartomaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_closed_covers:
-- que cortina quarto
+- que cortina quartomaster
 query_area/master_bedroom_covers::master_bedroom_covers_list_open_covers:
-- que cortina quarto
+- que cortina quartomaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_fan_speed:
-- que ventoinha quarto
+- que ventoinha quartomaster
 query_area/master_bedroom_fans::master_bedroom_fans_get_state:
-- que ventoinha quarto
+- que ventoinha quartomaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_off_fans:
-- que ventoinha quarto
+- que ventoinha quartomaster
 query_area/master_bedroom_fans::master_bedroom_fans_list_on_fans:
-- que ventoinha quarto
+- que ventoinha quartomaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_brightness:
-- que luz quarto
+- que luz quartomaster
 query_area/master_bedroom_lights::master_bedroom_lights_get_state:
-- que luz quarto
+- que luz quartomaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_off_lights:
-- que luz quarto
+- que luz quartomaster
 query_area/master_bedroom_lights::master_bedroom_lights_list_on_lights:
-- que luz quarto
+- que luz quartomaster
 query_area/powder_room_lights::powder_room_lights_get_brightness:
 - que luz wc
 query_area/powder_room_lights::powder_room_lights_get_state:

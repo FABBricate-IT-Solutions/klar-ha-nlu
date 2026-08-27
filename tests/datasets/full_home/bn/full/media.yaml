@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv bosar jalao
-  - jalao tv bosar
+  - tv বসার জ্বালাও
+  - জ্বালাও tv বসার
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - nibhao tv bosar
-  - tv bosar nibhao
+  - নিভাও tv বসার
+  - tv বসার নিভাও
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv bosar
-  - tv bosar pause
+  - থামাও tv বসার
+  - tv বসার থামাও
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv paribarik jalao
-  - jalao tv paribarik
+  - tv paribarik জ্বালাও
+  - জ্বালাও tv paribarik
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - nibhao tv paribarik
-  - tv paribarik nibhao
+  - নিভাও tv paribarik
+  - tv paribarik নিভাও
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv paribarik
-  - tv paribarik pause
+  - থামাও tv paribarik
+  - tv paribarik থামাও

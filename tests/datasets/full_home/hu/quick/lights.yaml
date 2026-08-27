@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - kapcsold villany haloszoba
+  - kapcsold villany haloszobamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - oltsd villany haloszoba
+  - oltsd villany haloszobamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - kapcsold mennyezet haloszoba
+  - kapcsold mennyezet haloszobamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - oltsd mennyezet haloszoba
+  - oltsd mennyezet haloszobamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - kapcsold ejjeliszekreny haloszoba
+  - kapcsold ejjeliszekreny haloszobamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - oltsd ejjeliszekreny haloszoba
+  - oltsd ejjeliszekreny haloszobamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

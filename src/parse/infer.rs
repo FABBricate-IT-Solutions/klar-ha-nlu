@@ -1,6 +1,6 @@
 use crate::lang::catalog;
 use crate::lang::VerbKind;
-use crate::parse::action::{has_light_noun, Action};
+use crate::parse::action::{has_cover_noun, has_light_noun, Action};
 use crate::parse::fuzzy::{select_unique, Profile};
 use crate::parse::normalize::{fold_umlaut, join_tokens};
 use crate::session::Session;
@@ -69,6 +69,7 @@ pub(crate) fn mentions_lamp_fixture(tokens: &[String]) -> bool {
 fn session_domain(session: &Session, tokens: &[String]) -> Option<&'static str> {
     let cat = catalog();
     if has_light_noun(tokens)
+        || has_cover_noun(tokens)
         || cat.any(tokens, cat.ceiling())
         || cat.any(tokens, cat.named_device())
         || cat.any(tokens, cat.island())
@@ -100,7 +101,11 @@ fn bind_domain_with(action: Action, tokens: &[String], number: Option<i32>, doma
             _ => {}
         }
     }
-    if matches!(action, Action::On | Action::Off) && domain == Some("lock") && cat.any(tokens, cat.unlock_follow()) {
+    if matches!(action, Action::On | Action::Off | Action::Lock)
+        && !has_cover_noun(tokens)
+        && (domain == Some("lock") || cat.any(tokens, cat.lock_nouns()))
+        && (cat.any(tokens, cat.unlock_follow()) || cat.any(tokens, cat.open_words()))
+    {
         return Action::Unlock;
     }
     let cover_follow = matches!(action, Action::On | Action::Off) || (session_follow && matches!(action, Action::GetState));
@@ -396,6 +401,10 @@ mod tests {
         let licht = vec!["licht".into()];
         assert_eq!(bind_domain(Action::SetLight, &licht, Some(21), Some("climate")), Action::SetLight);
         assert_eq!(bind_domain(Action::On, &licht, Some(50), Some("light")), Action::SetLight);
+        let _th = crate::lang::bind(&["th".into()]);
+        let open_lock = vec!["เปิด".into(), "กุญแจ".into()];
+        assert_eq!(bind_domain(Action::On, &open_lock, None, Some("lock")), Action::Unlock);
+        assert_eq!(bind_domain(Action::Lock, &open_lock, None, Some("lock")), Action::Unlock);
     }
 
     #[test]

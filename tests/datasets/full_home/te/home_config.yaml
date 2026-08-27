@@ -31,9 +31,10 @@ areas:
   aliases:
   - pravesham
 - id: living
-  name: Gadi
+  name: గది
   floor: ground
   aliases:
+  - గది
   - gadi
 - id: dining
   name: Kutumbamess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - kutumbamess
 - id: kitchen
-  name: Vantagadi
+  name: వంటగది
   floor: ground
   aliases:
+  - వంటగది
   - vantagadi
 - id: family_room
   name: Kutumbam
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Padakagadi
+  name: Padakagadimaster
   floor: upper
   aliases:
+  - padakagadimaster
   - padakagadi
 - id: bedroom_2
   name: Padakagadi2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: pravesham velugu
+  name: pravesham వెలుగు
   aliases:
-  - pravesham velugu
-  - velugu
+  - pravesham వెలుగు
+  - వెలుగు
 - id: light.living_ceiling
   area_id: living
-  name: gadi kappu
+  name: గది kappu
   aliases:
-  - gadi kappu
+  - గది kappu
   - kappu
 - id: light.living_lamp
   area_id: living
-  name: gadi velugu
+  name: గది velugu
   aliases:
-  - gadi velugu
+  - గది velugu
   - velugu
 - id: light.dining_pendant
   area_id: dining
-  name: kutumbamess velugu
+  name: kutumbamess వెలుగు
   aliases:
-  - kutumbamess velugu
-  - velugu
+  - kutumbamess వెలుగు
+  - వెలుగు
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: vantagadi kappu
+  name: వంటగది kappu
   aliases:
-  - vantagadi kappu
+  - వంటగది kappu
   - kappu
 - id: light.kitchen_island
   area_id: kitchen
-  name: vantagadi dweepam
+  name: వంటగది dweepam
   aliases:
-  - vantagadi dweepam
+  - వంటగది dweepam
   - dweepam
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - kappu
 - id: light.laundry_light
   area_id: laundry
-  name: laundry velugu
+  name: laundry వెలుగు
   aliases:
-  - laundry velugu
-  - velugu
+  - laundry వెలుగు
+  - వెలుగు
 - id: light.powder_room_light
   area_id: powder_room
-  name: toilet velugu
+  name: toilet వెలుగు
   aliases:
-  - toilet velugu
-  - velugu
+  - toilet వెలుగు
+  - వెలుగు
 - id: light.garage_light
   area_id: garage
-  name: garage velugu
+  name: garage వెలుగు
   aliases:
-  - garage velugu
-  - velugu
+  - garage వెలుగు
+  - వెలుగు
 - id: light.office_ceiling
   area_id: office
   name: office kappu
@@ -184,35 +187,35 @@ devices:
   - kappu
 - id: light.garden
   area_id: garden
-  name: garden velugu
+  name: garden వెలుగు
   aliases:
-  - garden velugu
-  - velugu
+  - garden వెలుగు
+  - వెలుగు
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: padakagadi kappu
+  name: padakagadimaster kappu
   aliases:
-  - padakagadi kappu
+  - padakagadimaster kappu
   - kappu
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: padakagadi ensuite
+  name: padakagadimaster ensuite
   aliases:
-  - padakagadi ensuite
+  - padakagadimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: padakagadi left mancham
+  name: padakagadimaster left mancham
   aliases:
-  - padakagadi left mancham
+  - padakagadimaster left mancham
   - mancham
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: padakagadi right mancham
+  name: padakagadimaster right mancham
   aliases:
-  - padakagadi right mancham
+  - padakagadimaster right mancham
   - mancham
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - kappu
 - id: light.master_bath_light
   area_id: master_bath
-  name: masterbath velugu
+  name: masterbath వెలుగు
   aliases:
-  - masterbath velugu
-  - velugu
+  - masterbath వెలుగు
+  - వెలుగు
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath velugu
+  name: main bath వెలుగు
   aliases:
-  - main bath velugu
-  - velugu
+  - main bath వెలుగు
+  - వెలుగు
 - id: light.hallway_light
   area_id: hallway
-  name: hallway velugu
+  name: hallway వెలుగు
   aliases:
-  - hallway velugu
-  - velugu
+  - hallway వెలుగు
+  - వెలుగు
 - id: light.basement
   area_id: basement
-  name: basement velugu
+  name: basement వెలుగు
   aliases:
-  - basement velugu
-  - velugu
+  - basement వెలుగు
+  - వెలుగు
 - id: cover.living_blinds
   area_id: living
-  name: gadi thera
+  name: గది తెర
   aliases:
-  - gadi thera
-  - thera
+  - గది తెర
+  - తెర
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: padakagadi thera
+  name: padakagadimaster తెర
   aliases:
-  - padakagadi thera
-  - thera
+  - padakagadimaster తెర
+  - తెర
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: padakagadi2 thera
+  name: padakagadi2 తెర
   aliases:
-  - padakagadi2 thera
-  - thera
+  - padakagadi2 తెర
+  - తెర
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: padakagadi3 thera
+  name: padakagadi3 తెర
   aliases:
-  - padakagadi3 thera
-  - thera
+  - padakagadi3 తెర
+  - తెర
 - id: cover.garage_door
   area_id: garage
-  name: garage thera
+  name: garage తెర
   aliases:
-  - garage thera
-  - thera
+  - garage తెర
+  - తెర
 - id: climate.ground_thermostat
   area_id: living
-  name: gadi vedi
+  name: గది వేడి
   aliases:
-  - gadi vedi
-  - vedi
+  - గది వేడి
+  - వేడి
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: padakagadi vedi
+  name: padakagadimaster వేడి
   aliases:
-  - padakagadi vedi
-  - vedi
+  - padakagadimaster వేడి
+  - వేడి
 - id: climate.master_ac
   area_id: master_bedroom
-  name: vedi padakagadi
+  name: vedi padakagadimaster
   aliases:
-  - vedi padakagadi
+  - vedi padakagadimaster
   - vedi
   - ac
   tags:
   - vedi
 - id: fan.family_fan
   area_id: family_room
-  name: kutumbam fanu
+  name: kutumbam ఫ్యాన్
   aliases:
-  - kutumbam fanu
-  - fanu
+  - kutumbam ఫ్యాన్
+  - ఫ్యాన్
 - id: fan.master_fan
   area_id: master_bedroom
-  name: padakagadi fanu
+  name: padakagadimaster ఫ్యాన్
   aliases:
-  - padakagadi fanu
-  - fanu
+  - padakagadimaster ఫ్యాన్
+  - ఫ్యాన్
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: padakagadi2 fanu
+  name: padakagadi2 ఫ్యాన్
   aliases:
-  - padakagadi2 fanu
-  - fanu
+  - padakagadi2 ఫ్యాన్
+  - ఫ్యాన్
 - id: lock.front_door
   area_id: entryway
-  name: front talupu
+  name: front తలుపు
   aliases:
-  - front talupu
+  - front తలుపు
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage talupu
+  name: garage తలుపు
   aliases:
-  - garage talupu
+  - garage తలుపు
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: vantagadi ginjalu
+  name: వంటగది ginjalu
   aliases:
-  - vantagadi ginjalu
+  - వంటగది ginjalu
   - ginjalu
 - id: switch.rangehood
   area_id: kitchen
-  name: vantagadi rangehood
+  name: వంటగది rangehood
   aliases:
-  - vantagadi rangehood
+  - వంటగది rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: masterbath fanubad
+  name: masterbath ఫ్యాన్bad
   aliases:
-  - masterbath fanubad
-  - fanubad
+  - masterbath ఫ్యాన్bad
+  - ఫ్యాన్bad
   tags:
-  - fanubad
+  - ఫ్యాన్bad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath fanubad
+  name: main bath ఫ్యాన్bad
   aliases:
-  - main bath fanubad
-  - fanubad
+  - main bath ఫ్యాన్bad
+  - ఫ్యాన్bad
   tags:
-  - fanubad
+  - ఫ్యాన్bad
 - id: media_player.living_tv
   area_id: living
-  name: gadi tv
+  name: గది tv
   aliases:
-  - gadi tv
+  - గది tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: gadi tivi
+  name: గది టీవీ
   aliases:
-  - gadi tivi
-  - tivi
+  - గది టీవీ
+  - టీవీ
   platform: music_assistant
   tags:
-  - tivi
+  - టీవీ
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: vantagadi tivi
+  name: వంటగది టీవీ
   aliases:
-  - vantagadi tivi
-  - tivi
+  - వంటగది టీవీ
+  - టీవీ
   platform: music_assistant
   tags:
-  - tivi
+  - టీవీ
 - id: media_player.office_music
   area_id: office
-  name: office tivi
+  name: office టీవీ
   aliases:
-  - office tivi
-  - tivi
+  - office టీవీ
+  - టీవీ
   platform: music_assistant
   tags:
-  - tivi
+  - టీవీ
 - id: vacuum.robot
   area_id: living
-  name: gadi udchu
+  name: గది ఊడ్చు
   aliases:
-  - gadi udchu
-  - udchu
+  - గది ఊడ్చు
+  - ఊడ్చు
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: pravesham doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: gadi windowsensor
+  name: గది windowsensor
   aliases:
-  - gadi windowsensor
+  - గది windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: vantagadi motion
+  name: వంటగది motion
   aliases:
-  - vantagadi motion
+  - వంటగది motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: gadi tempsensor
+  name: గది tempsensor
   aliases:
-  - gadi tempsensor
+  - గది tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: gadi humidity
+  name: గది humidity
   aliases:
-  - gadi humidity
+  - గది humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: vellu
 timers:
 - id: oven
-  name: oven timer
+  name: oven టైమర్
 - id: laundry
-  name: laundry timer
+  name: laundry టైమర్
 - id: abstract
-  name: abstract timer
+  name: abstract టైమర్
 lists:
 - id: shopping
-  name: jabita
+  name: జాబితా

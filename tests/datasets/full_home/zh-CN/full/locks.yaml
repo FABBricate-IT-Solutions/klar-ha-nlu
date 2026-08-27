@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - suo suo xuanguan
-  - suo xuanguan suo
+  - 锁 锁 xuanguan
+  - 锁 xuanguan 锁
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - kaiqi suo xuanguan
-  - suo xuanguan kaiqi
+  - 开启 锁 xuanguan
+  - 锁 xuanguan 开启
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - suo suo garage
-  - suo garage suo
+  - 锁 锁 garage
+  - 锁 garage 锁
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - kaiqi suo garage
-  - suo garage kaiqi
+  - 开启 锁 garage
+  - 锁 garage 开启
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - suo suo xuanguan
-  - suo xuanguan suo
+  - 锁 锁 xuanguan
+  - 锁 xuanguan 锁
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - suo suo garage
-  - suo garage suo
+  - 锁 锁 garage
+  - 锁 garage 锁

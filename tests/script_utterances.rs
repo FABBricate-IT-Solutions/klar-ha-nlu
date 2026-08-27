@@ -89,17 +89,11 @@ const CASES: &[(&str, &str, &str)] = &[
 fn native_script_home_commands() {
     let home = default_home();
     for (lang, text, intent) in CASES {
-        let settings = Settings {
-            languages: vec![(*lang).into()],
-            ..Settings::default()
-        };
+        let settings = Settings { languages: vec![(*lang).into()], ..Settings::default() };
         let mut session = Session::default();
         let outcome = parse(text, &home, &mut session, &[], &settings);
-        let names: Vec<_> = outcome
-            .plan
-            .as_ref()
-            .map(|plan| plan.intents().into_iter().map(|item| item.name).collect())
-            .unwrap_or_default();
+        let names: Vec<_> =
+            outcome.plan.as_ref().map(|plan| plan.intents().into_iter().map(|item| item.name).collect()).unwrap_or_default();
         assert!(
             matches!(outcome.decision, ParseDecision::Execute) && names.iter().any(|name| name == intent),
             "{lang} {text} decision={:?} intents={names:?}",

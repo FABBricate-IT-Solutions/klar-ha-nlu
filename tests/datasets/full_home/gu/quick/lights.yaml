@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash orado
+  - ચાલુ પ્રકાશ ઓરડો
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash orado
+  - બંધ પ્રકાશ ઓરડો
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash rasodu
+  - ચાલુ પ્રકાશ રસોડું
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash rasodu
+  - બંધ પ્રકાશ રસોડું
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash garage
+  - ચાલુ પ્રકાશ garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash garage
+  - બંધ પ્રકાશ garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash office
+  - ચાલુ પ્રકાશ office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash office
+  - બંધ પ્રકાશ office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash garden
+  - ચાલુ પ્રકાશ garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash garden
+  - બંધ પ્રકાશ garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash shayankhand
+  - ચાલુ પ્રકાશ shayankhandmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash shayankhand
+  - બંધ પ્રકાશ shayankhandmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash hallway
+  - ચાલુ પ્રકાશ hallway
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash hallway
+  - બંધ પ્રકાશ hallway
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash basement
+  - ચાલુ પ્રકાશ basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,21 +125,21 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash basement
+  - બંધ પ્રકાશ basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - chalu chhat orado
+  - ચાલુ chhat ઓરડો
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - bandh chhat orado
+  - બંધ chhat ઓરડો
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -147,105 +147,105 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat orado 50
+  - સેટ chhat ઓરડો 50
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - chalu lamp orado
+  - ચાલુ prakash ઓરડો
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - bandh lamp orado
+  - બંધ prakash ઓરડો
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - chalu chhat rasodu
+  - ચાલુ chhat રસોડું
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - bandh chhat rasodu
+  - બંધ chhat રસોડું
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - chalu tapu rasodu
+  - ચાલુ tapu રસોડું
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - bandh tapu rasodu
+  - બંધ tapu રસોડું
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - chalu chhat shayankhand
+  - ચાલુ chhat shayankhandmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - bandh chhat shayankhand
+  - બંધ chhat shayankhandmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - chalu palang shayankhand
+  - ચાલુ palang shayankhandmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - bandh palang shayankhand
+  - બંધ palang shayankhandmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - chalu chhat office
+  - ચાલુ chhat office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - bandh chhat office
+  - બંધ chhat office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - chalu prakash garden
+  - ચાલુ પ્રકાશ garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - bandh prakash garden
+  - બંધ પ્રકાશ garden
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -253,4 +253,4 @@
     attributes:
       color: red
   sentences:
-  - set chhat orado red
+  - સેટ chhat ઓરડો red

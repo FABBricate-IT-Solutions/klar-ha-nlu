@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - settu hiti stofa 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- settu hiti svefnherbergi 19
+- settu hiti svefnherbergimaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - settu gardina svefnherbergi2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - opnadu gardina stofa
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- settu gardina svefnherbergi 19
+- settu gardina svefnherbergimaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- lokadu gardina svefnherbergi
+- lokadu gardina svefnherbergimaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- opnadu gardina svefnherbergi
+- opnadu gardina svefnherbergimaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - settu viftu svefnherbergi2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - kveiktu viftu stofafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- settu viftu svefnherbergi 28
+- settu viftu svefnherbergimaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- slokktu viftu svefnherbergi
+- slokktu viftu svefnherbergimaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- kveiktu viftu svefnherbergi
+- kveiktu viftu svefnherbergimaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- slokktu viftu svefnherbergi og slokktu ljos eldhus
+- slokktu viftu svefnherbergimaster then slokktu eyja eldhus
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- kveiktu viftu svefnherbergi og kveiktu ljos eldhus
+- kveiktu viftu svefnherbergimaster then kveiktu eyja eldhus
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - settu loft svefnherbergi2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - kveiktu loft eldhus
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- settu ljos eldhus 99
+- settu eyja eldhus 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- settu ljos eldhus green
+- settu eyja eldhus green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- slokktu ljos eldhus
+- slokktu eyja eldhus
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- kveiktu ljos eldhus
+- kveiktu eyja eldhus
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - settu ljos thvottahus 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - kveiktu loft stofa
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- settu ljos stofa 72
+- settu lamp stofa 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- settu ljos stofa red
+- settu lamp stofa red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- slokktu ljos stofa
+- slokktu lamp stofa
 devices/light_living_lamp::light_living_lamp_turn_on:
-- kveiktu ljos stofa
+- kveiktu lamp stofa
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - settu ljos main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - kveiktu ljos badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- settu nattbord svefnherbergi 25
+- settu nattbord svefnherbergimaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- settu nattbord svefnherbergi red
+- settu nattbord svefnherbergimaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- slokktu nattbord svefnherbergi
+- slokktu nattbord svefnherbergimaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- kveiktu nattbord svefnherbergi
+- kveiktu nattbord svefnherbergimaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- settu loft svefnherbergi 77
+- settu loft svefnherbergimaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- settu loft svefnherbergi blue
+- settu loft svefnherbergimaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- slokktu loft svefnherbergi
+- slokktu loft svefnherbergimaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- kveiktu loft svefnherbergi
+- kveiktu loft svefnherbergimaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- settu ljos svefnherbergi 55
+- settu ankleide svefnherbergimaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- settu ljos svefnherbergi black
+- settu ankleide svefnherbergimaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- slokktu ljos svefnherbergi
+- slokktu ankleide svefnherbergimaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- kveiktu ljos svefnherbergi
+- kveiktu ankleide svefnherbergimaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - settu ljos klósett 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - kveiktu sjonvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause sjonvarp stofafam
+- pause tv stofafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - slokktu sjonvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - kveiktu sjonvarp stofa
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause sjonvarp stofa
+- pause tv stofa
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - slokktu sjonvarp stofa
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - kveiktu sjonvarp stofa
 devices/scenes::dinner_time:
-- settu ljos stofafamess 90 og kveiktu loft eldhus og settu ljos eldhus 80
+- settu ljos stofafamess 90 then kveiktu loft eldhus then settu eyja eldhus 80
 devices/scenes::good_morning:
-- kveiktu loft eldhus og settu ljos stofafamess 100 og opnadu gardina stofa og opnadu
-  gardina svefnherbergi
+- kveiktu loft eldhus then settu ljos stofafamess 100 then opnadu gardina stofa then
+  opnadu gardina svefnherbergimaster
 devices/scenes::kids_bedtime:
-- slokktu loft svefnherbergi2 og slokktu loft svefnherbergi3 og slokktu loft svefnherbergi4
-  og settu ljos anddyrigang 15
+- slokktu loft svefnherbergi2 then slokktu loft svefnherbergi3 then slokktu loft svefnherbergi4
+  then settu ljos anddyrigang 15
 devices/scenes::movie_night:
-- slokktu loft stofa og settu ljos stofa 20 og kveiktu sjonvarp stofa og lokadu gardina
-  stofa
+- slokktu loft stofa then settu lamp stofa 20 then kveiktu sjonvarp stofa then lokadu
+  gardina stofa
 devices/scripts::good_night:
-- kveiktu sena nott
+- slokktu loft stofa then slokktu lamp stofa then slokktu ljos stofafamess then slokktu
+  loft eldhus then slokktu eyja eldhus then slokktu loft stofafam then slokktu ljos
+  anddyri then slokktu ljos anddyrigang then las las anddyri then las las garage then
+  settu hiti svefnherbergimaster 20
 devices/scripts::leaving_home:
-- kveiktu sena brottfor
+- slokktu loft stofa then slokktu lamp stofa then slokktu loft eldhus then slokktu
+  loft stofafam then slokktu ljos anddyri then las las anddyri then las las garage
+  then lokadu gardina garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - slokktu uppvthvott
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - kveiktu uppvthvott
 devices/switch_dryer::switch_dryer_turn_off:
-- slokktu thvottavel
+- slokktu dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- kveiktu thvottavel
+- kveiktu dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - slokktu thvottavel
 devices/switch_washing_machine::switch_washing_machine_turn_on:

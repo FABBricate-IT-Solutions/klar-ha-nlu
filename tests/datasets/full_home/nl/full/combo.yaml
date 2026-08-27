@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - aanzetten slaapkamer plafond en slaapkamer nachtkast
-  - slaapkamer plafond en slaapkamer nachtkast aanzetten
+  - aanzetten slaapkamermaster plafond en slaapkamermaster nachtkast
+  - slaapkamermaster plafond en slaapkamermaster nachtkast aanzetten
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - uitzetten slaapkamer plafond en slaapkamer nachtkast
-  - slaapkamer plafond en slaapkamer nachtkast uitzetten
+  - uitzetten slaapkamermaster plafond en slaapkamermaster nachtkast
+  - slaapkamermaster plafond en slaapkamermaster nachtkast uitzetten
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - aanzetten slaapkamer ventilator en keuken eiland
-  - slaapkamer ventilator en keuken eiland aanzetten
+  - aanzetten slaapkamermaster ventilator en keuken eiland
+  - slaapkamermaster ventilator en keuken eiland aanzetten
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - aanzetten wasruimte wasmachine en wasruimte dryer
-  - wasruimte wasmachine en wasruimte dryer aanzetten
+  - aanzetten wasruimte wasmachine en wasruimte droger
+  - wasruimte wasmachine en wasruimte droger aanzetten
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - uitzetten licht slaapkamer en badkamer
-  - licht slaapkamer en badkamer uitzetten
+  - uitzetten licht slaapkamermaster en badkamer
+  - licht slaapkamermaster en badkamer uitzetten
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - uitzetten alle licht behalve woonkamer en slaapkamer
-  - alle licht uitzetten behalve woonkamer en slaapkamer
+  - uitzetten alle licht behalve woonkamer en slaapkamermaster
+  - alle licht uitzetten behalve woonkamer en slaapkamermaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - uitzetten alle licht boven behalve slaapkamer
-  - alle licht boven uitzetten behalve slaapkamer
+  - uitzetten alle licht boven behalve slaapkamermaster
+  - alle licht boven uitzetten behalve slaapkamermaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - open gordijn woonkamer en slaapkamer
-  - gordijn woonkamer en slaapkamer open
+  - open gordijn woonkamer en slaapkamermaster
+  - gordijn woonkamer en slaapkamermaster open
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - dicht gordijn woonkamer en slaapkamer
-  - gordijn woonkamer en slaapkamer dicht
+  - dicht gordijn woonkamer en slaapkamermaster
+  - gordijn woonkamer en slaapkamermaster dicht
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stel verwarming woonkamer en slaapkamer 21
-  - verwarming woonkamer en slaapkamer 21
+  - stel verwarming woonkamer en slaapkamermaster 21
+  - verwarming woonkamer en slaapkamermaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

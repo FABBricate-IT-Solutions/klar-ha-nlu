@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - iskljuci plafon spavaca
 devices/geraete::device_arbeitszimmer_an:
-- ukljuci svetlo dnevna
+- ukljuci svetlo office
 devices/geraete::device_esszimmer_an:
 - ukljuci svetlo dnevnafamess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - ukljuci svetlo dnevna
 devices/geraete::filmabend:
-- ukljuci Filmabend
+- ukljuci scena filmabend
 devices/geraete::kugel_an:
-- ukljuci kugla spavaca
+- ukljuci kugla
 devices/geraete::luefter_50:
-- stavi ventilator dnevna 50
+- stavi ventilator office 50
 devices/geraete::pc_an:
-- ukljuci uredjaj
+- ukljuci pc
 devices/geraete::r2d2_saugen:
 - ukljuci usisivac dnevna
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - ukljuci ves
 devices/klima::klima_schlaf_21:
-- stavi grejanje spavaca 21
+- stavi ac spavaca 21
 devices/spoken::deckenlampe_an:
 - ukljuci plafon spavaca
 devices/spoken::kugel_aus:
-- iskljuci kugla spavaca
+- iskljuci kugla
 devices/spoken::luefter_aus:
-- iskljuci ventilator dnevna
+- iskljuci ventilator office
 devices/spoken::rollo_auf:
 - otvori zavesa dnevna
 devices/spoken::trockner_an:
-- ukljuci ves
+- ukljuci dryer
 devices/spoken::tv_aus:
 - iskljuci tv
 devices/spoken_more::decke_aus_casual:
 - iskljuci plafon spavaca
 devices/spoken_more::kugel_casual:
-- ukljuci kugla spavaca
+- ukljuci kugla
 devices/spoken_more::pc_aus:
-- iskljuci uredjaj
+- iskljuci pc
 devices/spoken_more::spuelmaschine_an:
 - ukljuci sudovi
 devices/spoken_more::waschmaschine_aus:

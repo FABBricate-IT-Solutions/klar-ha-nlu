@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - dir jerutsum hyurasenyak 18
-  - jerutsum hyurasenyak 18
+  - դիր ջեռուցում հյուրասենյակ 18
+  - ջեռուցում հյուրասենյակ 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - dir jerutsum hyurasenyak 19
-  - jerutsum hyurasenyak 19
+  - դիր ջեռուցում հյուրասենյակ 19
+  - ջեռուցում հյուրասենյակ 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - dir jerutsum hyurasenyak 20
-  - jerutsum hyurasenyak 20
+  - դիր ջեռուցում հյուրասենյակ 20
+  - ջեռուցում հյուրասենյակ 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - dir jerutsum hyurasenyak 21
-  - jerutsum hyurasenyak 21
+  - դիր ջեռուցում հյուրասենյակ 21
+  - ջեռուցում հյուրասենյակ 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - dir jerutsum hyurasenyak 22
-  - jerutsum hyurasenyak 22
+  - դիր ջեռուցում հյուրասենյակ 22
+  - ջեռուցում հյուրասենյակ 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - dir jerutsum hyurasenyak 23
-  - jerutsum hyurasenyak 23
+  - դիր ջեռուցում հյուրասենյակ 23
+  - ջեռուցում հյուրասենյակ 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - dir jerutsum hyurasenyak 24
-  - jerutsum hyurasenyak 24
+  - դիր ջեռուցում հյուրասենյակ 24
+  - ջեռուցում հյուրասենյակ 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - inch jerutsum hyurasenyak
-  - jerutsum hyurasenyak
+  - ինչ ջեռուցում հյուրասենյակ
+  - ջեռուցում հյուրասենյակ
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - dir jerutsum qnakaran 18
-  - jerutsum qnakaran 18
+  - դիր ջեռուցում qnakaranmaster 18
+  - ջեռուցում qnakaranmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - dir jerutsum qnakaran 19
-  - jerutsum qnakaran 19
+  - դիր ջեռուցում qnakaranmaster 19
+  - ջեռուցում qnakaranmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - dir jerutsum qnakaran 20
-  - jerutsum qnakaran 20
+  - դիր ջեռուցում qnakaranmaster 20
+  - ջեռուցում qnakaranmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - dir jerutsum qnakaran 21
-  - jerutsum qnakaran 21
+  - դիր ջեռուցում qnakaranmaster 21
+  - ջեռուցում qnakaranmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - dir jerutsum qnakaran 22
-  - jerutsum qnakaran 22
+  - դիր ջեռուցում qnakaranmaster 22
+  - ջեռուցում qnakaranmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - dir jerutsum qnakaran 23
-  - jerutsum qnakaran 23
+  - դիր ջեռուցում qnakaranmaster 23
+  - ջեռուցում qnakaranmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - dir jerutsum qnakaran 24
-  - jerutsum qnakaran 24
+  - դիր ջեռուցում qnakaranmaster 24
+  - ջեռուցում qnakaranmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - inch jerutsum qnakaran
-  - jerutsum qnakaran
+  - ինչ ջեռուցում qnakaranmaster
+  - ջեռուցում qnakaranmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - dir jerutsum qnakaran 18
-  - jerutsum qnakaran 18
+  - դիր jerutsum qnakaranmaster 18
+  - jerutsum qnakaranmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - dir jerutsum qnakaran 19
-  - jerutsum qnakaran 19
+  - դիր jerutsum qnakaranmaster 19
+  - jerutsum qnakaranmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - dir jerutsum qnakaran 20
-  - jerutsum qnakaran 20
+  - դիր jerutsum qnakaranmaster 20
+  - jerutsum qnakaranmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - dir jerutsum qnakaran 21
-  - jerutsum qnakaran 21
+  - դիր jerutsum qnakaranmaster 21
+  - jerutsum qnakaranmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - dir jerutsum qnakaran 22
-  - jerutsum qnakaran 22
+  - դիր jerutsum qnakaranmaster 22
+  - jerutsum qnakaranmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - dir jerutsum qnakaran 23
-  - jerutsum qnakaran 23
+  - դիր jerutsum qnakaranmaster 23
+  - jerutsum qnakaranmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - dir jerutsum qnakaran 24
-  - jerutsum qnakaran 24
+  - դիր jerutsum qnakaranmaster 24
+  - jerutsum qnakaranmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - inch jerutsum qnakaran
-  - jerutsum qnakaran
+  - ինչ jerutsum qnakaranmaster
+  - jerutsum qnakaranmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - inch jerutsum hyurasenyak
-  - jerutsum hyurasenyak
+  - ինչ ջեռուցում հյուրասենյակ
+  - ջեռուցում հյուրասենյակ
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - inch jerutsum qnakaran
-  - jerutsum qnakaran
+  - ինչ ջեռուցում qnakaranmaster
+  - ջեռուցում qnakaranmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - inch jerutsum qnakaran
-  - jerutsum qnakaran
+  - ինչ jerutsum qnakaranmaster
+  - jerutsum qnakaranmaster

@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - کیا پردہ bedroom
-  - کیا bedroom پردہ
+  - کیا پردہ bedroommaster
+  - کیا bedroommaster پردہ
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - کیا گرمی bedroom
-  - کیا bedroom گرمی
+  - کیا گرمی bedroommaster
+  - کیا bedroommaster گرمی
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - کیا درجہ bedroom
-  - کیا bedroom درجہ
+  - کیا درجہ bedroommaster
+  - کیا bedroommaster درجہ
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - کیا پنکھا bedroom
-  - کیا bedroom پنکھا
+  - کیا پنکھا bedroommaster
+  - کیا bedroommaster پنکھا
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - کیا روشنی bedroom
-  - کیا bedroom روشنی
+  - کیا روشنی bedroommaster
+  - کیا bedroommaster روشنی
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - کیا روشنی bedroom
-  - کیا bedroom روشنی
+  - کیا روشنی bedroommaster
+  - کیا bedroommaster روشنی
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - کیا ensuite bedroom
-  - کیا bedroom ensuite
+  - کیا ensuite bedroommaster
+  - کیا bedroommaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - کیا روشنی bedroom
-  - کیا bedroom روشنی
+  - کیا روشنی bedroommaster
+  - کیا bedroommaster روشنی
 - name: query_light.master_bath_light
   conditions:
   - type: query

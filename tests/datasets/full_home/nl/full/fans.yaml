@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator slaapkamer aanzetten
-  - aanzetten ventilator slaapkamer
+  - ventilator slaapkamermaster aanzetten
+  - aanzetten ventilator slaapkamermaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - uitzetten ventilator slaapkamer
-  - ventilator slaapkamer uitzetten
+  - uitzetten ventilator slaapkamermaster
+  - ventilator slaapkamermaster uitzetten
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - stel ventilator slaapkamer 40
-  - ventilator slaapkamer 40
+  - stel ventilator slaapkamermaster 40
+  - ventilator slaapkamermaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - stel ventilator slaapkamer 20
-  - ventilator slaapkamer 20
+  - stel ventilator slaapkamermaster 20
+  - ventilator slaapkamermaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - stel ventilator slaapkamer 60
-  - ventilator slaapkamer 60
+  - stel ventilator slaapkamermaster 60
+  - ventilator slaapkamermaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - stel ventilator slaapkamer 80
-  - ventilator slaapkamer 80
+  - stel ventilator slaapkamermaster 80
+  - ventilator slaapkamermaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - slack tak sovrum
 devices/geraete::device_arbeitszimmer_an:
-- tand ljus vardagsrum
+- tand ljus office
 devices/geraete::device_esszimmer_an:
 - tand ljus allrumess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - tand ljus vardagsrum
 devices/geraete::filmabend:
-- tand Filmabend
+- tand scen filmabend
 devices/geraete::kugel_an:
-- tand kula sovrum
+- tand kula
 devices/geraete::luefter_50:
-- satt flakt vardagsrum 50
+- satt flakt office 50
 devices/geraete::pc_an:
-- tand apparat
+- tand pc
 devices/geraete::r2d2_saugen:
 - tand dammsugare vardagsrum
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - tand tvattmaskin
 devices/klima::klima_schlaf_21:
-- satt varme sovrum 21
+- satt ac sovrum 21
 devices/spoken::deckenlampe_an:
 - tand tak sovrum
 devices/spoken::kugel_aus:
-- slack kula sovrum
+- slack kula
 devices/spoken::luefter_aus:
-- slack flakt vardagsrum
+- slack flakt office
 devices/spoken::rollo_auf:
 - oppna gardin vardagsrum
 devices/spoken::trockner_an:
-- tand tvattmaskin
+- tand dryer
 devices/spoken::tv_aus:
 - slack tv
 devices/spoken_more::decke_aus_casual:
 - slack tak sovrum
 devices/spoken_more::kugel_casual:
-- tand kula sovrum
+- tand kula
 devices/spoken_more::pc_aus:
-- slack apparat
+- slack pc
 devices/spoken_more::spuelmaschine_an:
 - tand disk
 devices/spoken_more::waschmaschine_aus:

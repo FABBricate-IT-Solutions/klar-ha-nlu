@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ανοιξε κουρτινα υπνοδωματο
-  - κουρτινα υπνοδωματο ανοιξε
+  - ανοιξε κουρτινα υπνοδωματοmaster
+  - κουρτινα υπνοδωματοmaster ανοιξε
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - κλεισε κουρτινα υπνοδωματο
-  - κουρτινα υπνοδωματο κλεισε
+  - κλεισε κουρτινα υπνοδωματοmaster
+  - κουρτινα υπνοδωματοmaster κλεισε
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - βαλε κουρτινα υπνοδωματο 0
-  - κουρτινα υπνοδωματο 0
+  - βαλε κουρτινα υπνοδωματοmaster 0
+  - κουρτινα υπνοδωματοmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - βαλε κουρτινα υπνοδωματο 25
-  - κουρτινα υπνοδωματο 25
+  - βαλε κουρτινα υπνοδωματοmaster 25
+  - κουρτινα υπνοδωματοmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - βαλε κουρτινα υπνοδωματο 40
-  - κουρτινα υπνοδωματο 40
+  - βαλε κουρτινα υπνοδωματοmaster 40
+  - κουρτινα υπνοδωματοmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - βαλε κουρτινα υπνοδωματο 75
-  - κουρτινα υπνοδωματο 75
+  - βαλε κουρτινα υπνοδωματοmaster 75
+  - κουρτινα υπνοδωματοmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - βαλε κουρτινα υπνοδωματο 100
-  - κουρτινα υπνοδωματο 100
+  - βαλε κουρτινα υπνοδωματοmaster 100
+  - κουρτινα υπνοδωματοmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ανοιξε κουρτινα υπνοδωματο
-  - κουρτινα υπνοδωματο ανοιξε
+  - ανοιξε κουρτινα υπνοδωματοmaster
+  - κουρτινα υπνοδωματοmaster ανοιξε

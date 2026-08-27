@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - wlacz sypialnia sufit i sypialnia noca
-  - sypialnia sufit i sypialnia noca wlacz
+  - wlacz sypialniamaster sufit i sypialniamaster noca
+  - sypialniamaster sufit i sypialniamaster noca wlacz
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - wylacz sypialnia sufit i sypialnia noca
-  - sypialnia sufit i sypialnia noca wylacz
+  - wylacz sypialniamaster sufit i sypialniamaster noca
+  - sypialniamaster sufit i sypialniamaster noca wylacz
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - wlacz sypialnia wentylator i kuchnia wyspa
-  - sypialnia wentylator i kuchnia wyspa wlacz
+  - wlacz sypialniamaster wentylator i kuchnia wyspa
+  - sypialniamaster wentylator i kuchnia wyspa wlacz
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - wlacz pralnia pralka i pralnia dryer
-  - pralnia pralka i pralnia dryer wlacz
+  - wlacz pralnia pralka i pralnia suszarka
+  - pralnia pralka i pralnia suszarka wlacz
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - wylacz swiatlo sypialnia i main bath
-  - swiatlo sypialnia i main bath wylacz
+  - wylacz swiatlo sypialniamaster i main bath
+  - swiatlo sypialniamaster i main bath wylacz
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - wylacz wszystko swiatlo oprocz salon i sypialnia
-  - wszystko swiatlo wylacz oprocz salon i sypialnia
+  - wylacz wszystko swiatlo oprocz salon i sypialniamaster
+  - wszystko swiatlo wylacz oprocz salon i sypialniamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - wylacz wszystko swiatlo pietro oprocz sypialnia
-  - wszystko swiatlo pietro wylacz oprocz sypialnia
+  - wylacz wszystko swiatlo pietro oprocz sypialniamaster
+  - wszystko swiatlo pietro wylacz oprocz sypialniamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - otworz zaslona salon i sypialnia
-  - zaslona salon i sypialnia otworz
+  - otworz zaslona salon i sypialniamaster
+  - zaslona salon i sypialniamaster otworz
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - zamknij zaslona salon i sypialnia
-  - zaslona salon i sypialnia zamknij
+  - zamknij zaslona salon i sypialniamaster
+  - zaslona salon i sypialniamaster zamknij
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - ustaw ogrzewanie salon i sypialnia 21
-  - ogrzewanie salon i sypialnia 21
+  - ustaw ogrzewanie salon i sypialniamaster 21
+  - ogrzewanie salon i sypialniamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

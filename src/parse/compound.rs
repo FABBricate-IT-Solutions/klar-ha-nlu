@@ -240,7 +240,15 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| matches!(e.domain.as_str(), "scene" | "script"))
-        .filter(|e| scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home)))
+        .filter(|e| {
+            let tail = e.entity_id.rsplit('.').next().unwrap_or("");
+            let compact_tail = compact(tail);
+            let compact_tokens: String = tokens.iter().map(|token| compact(token)).collect();
+            tokens.iter().any(|token| token == tail || scene_token(token) == tail)
+                || (compact_tail.len() > 3 && compact_tokens.contains(&compact_tail))
+                || scene_name_hit(tokens, &e.name, home)
+                || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home))
+        })
         .map(|e| e.entity_id.clone())
         .collect();
     let named = mentioned || catalog().any(tokens, catalog().scene_named());

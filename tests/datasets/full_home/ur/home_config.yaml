@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Bedroom
+  name: Bedroommaster
   floor: upper
   aliases:
+  - bedroommaster
   - bedroom
 - id: bedroom_2
   name: Bedroom2
@@ -130,10 +131,10 @@ devices:
   - چھت
 - id: light.living_lamp
   area_id: living
-  name: لانج روشنی
+  name: لانج lamp
   aliases:
-  - لانج روشنی
-  - روشنی
+  - لانج lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: خاندانیess روشنی
@@ -190,29 +191,29 @@ devices:
   - روشنی
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: bedroom چھت
+  name: bedroommaster چھت
   aliases:
-  - bedroom چھت
+  - bedroommaster چھت
   - چھت
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: bedroom ensuite
+  name: bedroommaster ensuite
   aliases:
-  - bedroom ensuite
+  - bedroommaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: bedroom left بسترکنار
+  name: bedroommaster left بسترکنار
   aliases:
-  - bedroom left بسترکنار
+  - bedroommaster left بسترکنار
   - بسترکنار
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: bedroom right بسترکنار
+  name: bedroommaster right بسترکنار
   aliases:
-  - bedroom right بسترکنار
+  - bedroommaster right بسترکنار
   - بسترکنار
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - پردہ
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: bedroom پردہ
+  name: bedroommaster پردہ
   aliases:
-  - bedroom پردہ
+  - bedroommaster پردہ
   - پردہ
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - گرمی
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: bedroom گرمی
+  name: bedroommaster گرمی
   aliases:
-  - bedroom گرمی
+  - bedroommaster گرمی
   - گرمی
 - id: climate.master_ac
   area_id: master_bedroom
-  name: درجہ bedroom
+  name: درجہ bedroommaster
   aliases:
-  - درجہ bedroom
+  - درجہ bedroommaster
   - درجہ
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - پنکھا
 - id: fan.master_fan
   area_id: master_bedroom
-  name: bedroom پنکھا
+  name: bedroommaster پنکھا
   aliases:
-  - bedroom پنکھا
+  - bedroommaster پنکھا
   - پنکھا
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator spavaca upali
-  - upali ventilator spavaca
+  - ventilator spavacamaster upali
+  - upali ventilator spavacamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - ugasi ventilator spavaca
-  - ventilator spavaca ugasi
+  - ugasi ventilator spavacamaster
+  - ventilator spavacamaster ugasi
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - stavi ventilator spavaca 40
-  - ventilator spavaca 40
+  - stavi ventilator spavacamaster 40
+  - ventilator spavacamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - stavi ventilator spavaca 20
-  - ventilator spavaca 20
+  - stavi ventilator spavacamaster 20
+  - ventilator spavacamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - stavi ventilator spavaca 60
-  - ventilator spavaca 60
+  - stavi ventilator spavacamaster 60
+  - ventilator spavacamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - stavi ventilator spavaca 80
-  - ventilator spavaca 80
+  - stavi ventilator spavacamaster 80
+  - ventilator spavacamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

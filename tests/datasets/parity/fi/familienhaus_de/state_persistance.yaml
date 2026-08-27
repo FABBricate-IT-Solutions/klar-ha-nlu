@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - mika valo garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - mika valo eteinengang ja mika valo wc
+- - mika valo eteinengang then mika valo wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - mika valo eteinengang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - mika valo kylpymaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - mika lampo makuuhuone ja mika lampo olohuone
+- - mika lampo makuuhuonemaster then mika lampo olohuone
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - mika verho makuuhuone ja mika verho olohuone
+- - mika verho makuuhuonemaster then mika verho olohuone
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - mika lampo makuuhuone
+- - mika lampo makuuhuonemaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - mika verho makuuhuone
+- - mika verho makuuhuonemaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - mika valo wc

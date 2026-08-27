@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - khol parda baithak
-  - parda baithak khol
+  - खोल पर्दा बैठक
+  - पर्दा बैठक खोल
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - banda parda baithak
-  - parda baithak banda
+  - बन्द पर्दा बैठक
+  - पर्दा बैठक बन्द
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda baithak 0
-  - parda baithak 0
+  - सेट पर्दा बैठक 0
+  - पर्दा बैठक 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda baithak 25
-  - parda baithak 25
+  - सेट पर्दा बैठक 25
+  - पर्दा बैठक 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda baithak 40
-  - parda baithak 40
+  - सेट पर्दा बैठक 40
+  - पर्दा बैठक 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda baithak 75
-  - parda baithak 75
+  - सेट पर्दा बैठक 75
+  - पर्दा बैठक 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda baithak 100
-  - parda baithak 100
+  - सेट पर्दा बैठक 100
+  - पर्दा बैठक 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - khol parda sutnekotha
-  - parda sutnekotha khol
+  - खोल पर्दा sutnekothamaster
+  - पर्दा sutnekothamaster खोल
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - banda parda sutnekotha
-  - parda sutnekotha banda
+  - बन्द पर्दा sutnekothamaster
+  - पर्दा sutnekothamaster बन्द
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda sutnekotha 0
-  - parda sutnekotha 0
+  - सेट पर्दा sutnekothamaster 0
+  - पर्दा sutnekothamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda sutnekotha 25
-  - parda sutnekotha 25
+  - सेट पर्दा sutnekothamaster 25
+  - पर्दा sutnekothamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda sutnekotha 40
-  - parda sutnekotha 40
+  - सेट पर्दा sutnekothamaster 40
+  - पर्दा sutnekothamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda sutnekotha 75
-  - parda sutnekotha 75
+  - सेट पर्दा sutnekothamaster 75
+  - पर्दा sutnekothamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda sutnekotha 100
-  - parda sutnekotha 100
+  - सेट पर्दा sutnekothamaster 100
+  - पर्दा sutnekothamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - khol parda sutnekotha2
-  - parda sutnekotha2 khol
+  - खोल पर्दा sutnekotha2
+  - पर्दा sutnekotha2 खोल
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - banda parda sutnekotha2
-  - parda sutnekotha2 banda
+  - बन्द पर्दा sutnekotha2
+  - पर्दा sutnekotha2 बन्द
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda sutnekotha2 0
-  - parda sutnekotha2 0
+  - सेट पर्दा sutnekotha2 0
+  - पर्दा sutnekotha2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda sutnekotha2 25
-  - parda sutnekotha2 25
+  - सेट पर्दा sutnekotha2 25
+  - पर्दा sutnekotha2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda sutnekotha2 40
-  - parda sutnekotha2 40
+  - सेट पर्दा sutnekotha2 40
+  - पर्दा sutnekotha2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda sutnekotha2 75
-  - parda sutnekotha2 75
+  - सेट पर्दा sutnekotha2 75
+  - पर्दा sutnekotha2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda sutnekotha2 100
-  - parda sutnekotha2 100
+  - सेट पर्दा sutnekotha2 100
+  - पर्दा sutnekotha2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - khol parda sutnekotha3
-  - parda sutnekotha3 khol
+  - खोल पर्दा sutnekotha3
+  - पर्दा sutnekotha3 खोल
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - banda parda sutnekotha3
-  - parda sutnekotha3 banda
+  - बन्द पर्दा sutnekotha3
+  - पर्दा sutnekotha3 बन्द
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda sutnekotha3 0
-  - parda sutnekotha3 0
+  - सेट पर्दा sutnekotha3 0
+  - पर्दा sutnekotha3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda sutnekotha3 25
-  - parda sutnekotha3 25
+  - सेट पर्दा sutnekotha3 25
+  - पर्दा sutnekotha3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda sutnekotha3 40
-  - parda sutnekotha3 40
+  - सेट पर्दा sutnekotha3 40
+  - पर्दा sutnekotha3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda sutnekotha3 75
-  - parda sutnekotha3 75
+  - सेट पर्दा sutnekotha3 75
+  - पर्दा sutnekotha3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set parda sutnekotha3 100
-  - parda sutnekotha3 100
+  - सेट पर्दा sutnekotha3 100
+  - पर्दा sutnekotha3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - khol parda garage
-  - parda garage khol
+  - खोल पर्दा garage
+  - पर्दा garage खोल
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - banda parda garage
-  - parda garage banda
+  - बन्द पर्दा garage
+  - पर्दा garage बन्द
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set parda garage 0
-  - parda garage 0
+  - सेट पर्दा garage 0
+  - पर्दा garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set parda garage 25
-  - parda garage 25
+  - सेट पर्दा garage 25
+  - पर्दा garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set parda garage 40
-  - parda garage 40
+  - सेट पर्दा garage 40
+  - पर्दा garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set parda garage 75
-  - parda garage 75
+  - सेट पर्दा garage 75
+  - पर्दा garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set parda garage 100
-  - parda garage 100
+  - सेट पर्दा garage 100
+  - पर्दा garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - khol parda baithak
-  - parda baithak khol
+  - खोल पर्दा बैठक
+  - पर्दा बैठक खोल
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - khol parda sutnekotha
-  - parda sutnekotha khol
+  - खोल पर्दा sutnekothamaster
+  - पर्दा sutnekothamaster खोल

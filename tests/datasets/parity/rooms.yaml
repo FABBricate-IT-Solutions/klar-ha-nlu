@@ -1,7 +1,7 @@
 af:
   areas:
     arbeitszimmer:
-    - sitkamer
+    - office
     badezimmer:
     - badmaster
     bedroom_2:
@@ -37,7 +37,9 @@ af:
     master_bath:
     - badmaster
     master_bedroom:
-    - slaapkamer
+    - slaapkamermaster
+    office:
+    - office
     powder_room:
     - toilet
     schlafzimmer:
@@ -54,7 +56,7 @@ af:
 ar:
   areas:
     arbeitszimmer:
-    - صالون
+    - office
     badezimmer:
     - حمامرئيسي
     bedroom_2:
@@ -90,7 +92,9 @@ ar:
     master_bath:
     - حمامرئيسي
     master_bedroom:
-    - غرفة
+    - غرفةmaster
+    office:
+    - office
     powder_room:
     - حمامضيف
     schlafzimmer:
@@ -107,7 +111,7 @@ ar:
 bg:
   areas:
     arbeitszimmer:
-    - хол
+    - office
     badezimmer:
     - баняmaster
     bedroom_2:
@@ -143,7 +147,9 @@ bg:
     master_bath:
     - баняmaster
     master_bedroom:
-    - спалня
+    - спалняmaster
+    office:
+    - office
     powder_room:
     - тоалетна
     schlafzimmer:
@@ -160,7 +166,7 @@ bg:
 bn:
   areas:
     arbeitszimmer:
-    - bosar
+    - office
     badezimmer:
     - masterbath
     bedroom_2:
@@ -186,22 +192,28 @@ bn:
     kids:
     - shobarghorkids
     kitchen:
+    - রান্না
     - ranna
     kuche:
+    - রান্না
     - ranna
     laundry:
     - dhoa
     living:
+    - বসার
     - bosar
     master_bath:
     - masterbath
     master_bedroom:
-    - shobarghor
+    - shobarghormaster
+    office:
+    - office
     powder_room:
     - shauchagar
     schlafzimmer:
     - shobarghor
     wohnzimmer:
+    - বসার
     - bosar
   floors:
     ground:
@@ -213,7 +225,7 @@ bn:
 ca:
   areas:
     arbeitszimmer:
-    - sala
+    - office
     badezimmer:
     - banymaster
     bedroom_2:
@@ -249,7 +261,9 @@ ca:
     master_bath:
     - banymaster
     master_bedroom:
-    - habitacio
+    - habitaciomaster
+    office:
+    - office
     powder_room:
     - lavabo
     schlafzimmer:
@@ -266,7 +280,7 @@ ca:
 cs:
   areas:
     arbeitszimmer:
-    - obyvak
+    - office
     badezimmer:
     - koupelmaster
     bedroom_2:
@@ -302,7 +316,9 @@ cs:
     master_bath:
     - koupelmaster
     master_bedroom:
-    - loznice
+    - loznicemaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -319,7 +335,7 @@ cs:
 cy:
   areas:
     arbeitszimmer:
-    - ystafell
+    - office
     badezimmer:
     - bathmaster
     bedroom_2:
@@ -355,7 +371,9 @@ cy:
     master_bath:
     - bathmaster
     master_bedroom:
-    - llofft
+    - llofftmaster
+    office:
+    - office
     powder_room:
     - toiled
     schlafzimmer:
@@ -372,7 +390,7 @@ cy:
 da:
   areas:
     arbeitszimmer:
-    - stue
+    - office
     badezimmer:
     - badmaster
     bedroom_2:
@@ -408,7 +426,9 @@ da:
     master_bath:
     - badmaster
     master_bedroom:
-    - sovevaerelse
+    - sovevaerelsemaster
+    office:
+    - office
     powder_room:
     - toilet
     schlafzimmer:
@@ -425,7 +445,7 @@ da:
 de-AT:
   areas:
     arbeitszimmer:
-    - wohnzimmer
+    - office
     badezimmer:
     - badmastermain
     bedroom_2:
@@ -463,7 +483,9 @@ de-AT:
     master_bath:
     - badmaster
     master_bedroom:
-    - schlafzimmer
+    - schlafzimmermaster
+    office:
+    - office
     powder_room:
     - klosett
     schlafzimmer:
@@ -480,7 +502,7 @@ de-AT:
 de-CH:
   areas:
     arbeitszimmer:
-    - wohnzimmer
+    - office
     badezimmer:
     - badmastermain
     bedroom_2:
@@ -518,7 +540,9 @@ de-CH:
     master_bath:
     - badmaster
     master_bedroom:
-    - schlafzimmer
+    - schlafzimmermaster
+    office:
+    - office
     powder_room:
     - toilette
     schlafzimmer:
@@ -535,7 +559,7 @@ de-CH:
 el:
   areas:
     arbeitszimmer:
-    - σαλονι
+    - office
     badezimmer:
     - μπανιοmaster
     bedroom_2:
@@ -571,7 +595,9 @@ el:
     master_bath:
     - μπανιοmaster
     master_bedroom:
-    - υπνοδωματο
+    - υπνοδωματοmaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -588,7 +614,7 @@ el:
 en-GB:
   areas:
     arbeitszimmer:
-    - lounge
+    - office
     badezimmer:
     - ensuite
     bedroom_2:
@@ -624,7 +650,9 @@ en-GB:
     master_bath:
     - ensuite
     master_bedroom:
-    - bedroom
+    - bedroommaster
+    office:
+    - office
     powder_room:
     - loo
     schlafzimmer:
@@ -641,7 +669,7 @@ en-GB:
 es:
   areas:
     arbeitszimmer:
-    - salon
+    - office
     badezimmer:
     - banomaster
     bedroom_2:
@@ -677,7 +705,9 @@ es:
     master_bath:
     - banomaster
     master_bedroom:
-    - dormitorio
+    - dormitoriomaster
+    office:
+    - office
     powder_room:
     - aseo
     schlafzimmer:
@@ -694,7 +724,7 @@ es:
 et:
   areas:
     arbeitszimmer:
-    - elutuba
+    - office
     badezimmer:
     - vannmaster
     bedroom_2:
@@ -730,7 +760,9 @@ et:
     master_bath:
     - vannmaster
     master_bedroom:
-    - magamistuba
+    - magamistubamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -747,7 +779,7 @@ et:
 eu:
   areas:
     arbeitszimmer:
-    - egongela
+    - office
     badezimmer:
     - bainumaster
     bedroom_2:
@@ -783,7 +815,9 @@ eu:
     master_bath:
     - bainumaster
     master_bedroom:
-    - logela
+    - logelamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -800,7 +834,7 @@ eu:
 fa:
   areas:
     arbeitszimmer:
-    - پذیرایی
+    - office
     badezimmer:
     - حماماصلی
     bedroom_2:
@@ -836,7 +870,9 @@ fa:
     master_bath:
     - حماماصلی
     master_bedroom:
-    - اتاقخواب
+    - اتاقخوابmaster
+    office:
+    - office
     powder_room:
     - سرویس
     schlafzimmer:
@@ -853,7 +889,7 @@ fa:
 fi:
   areas:
     arbeitszimmer:
-    - olohuone
+    - office
     badezimmer:
     - kylpymaster
     bedroom_2:
@@ -889,7 +925,9 @@ fi:
     master_bath:
     - kylpymaster
     master_bedroom:
-    - makuuhuone
+    - makuuhuonemaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -948,7 +986,7 @@ fr:
     master_bath:
     - bainmaster
     master_bedroom:
-    - chambre
+    - chambremaster
     powder_room:
     - toilettes
     schlafzimmer:
@@ -967,7 +1005,7 @@ fr:
 ga:
   areas:
     arbeitszimmer:
-    - seomra
+    - office
     badezimmer:
     - folcadanmaster
     bedroom_2:
@@ -1003,7 +1041,9 @@ ga:
     master_bath:
     - folcadanmaster
     master_bedroom:
-    - seomraleong
+    - seomraleongmaster
+    office:
+    - office
     powder_room:
     - leithreas
     schlafzimmer:
@@ -1020,7 +1060,7 @@ ga:
 gl:
   areas:
     arbeitszimmer:
-    - salon
+    - office
     badezimmer:
     - banomaster
     bedroom_2:
@@ -1056,7 +1096,9 @@ gl:
     master_bath:
     - banomaster
     master_bedroom:
-    - cuarto
+    - cuartomaster
+    office:
+    - office
     powder_room:
     - aseo
     schlafzimmer:
@@ -1073,7 +1115,7 @@ gl:
 gu:
   areas:
     arbeitszimmer:
-    - orado
+    - office
     badezimmer:
     - mukhyasnan
     bedroom_2:
@@ -1099,22 +1141,28 @@ gu:
     kids:
     - shayankhandkids
     kitchen:
+    - રસોડું
     - rasodu
     kuche:
+    - રસોડું
     - rasodu
     laundry:
     - dhovanu
     living:
+    - ઓરડો
     - orado
     master_bath:
     - mukhyasnan
     master_bedroom:
-    - shayankhand
+    - shayankhandmaster
+    office:
+    - office
     powder_room:
     - shauchalay
     schlafzimmer:
     - shayankhand
     wohnzimmer:
+    - ઓરડો
     - orado
   floors:
     ground:
@@ -1126,7 +1174,7 @@ gu:
 he:
   areas:
     arbeitszimmer:
-    - סלון
+    - office
     badezimmer:
     - חדררחצהראשי
     bedroom_2:
@@ -1162,7 +1210,9 @@ he:
     master_bath:
     - חדררחצהראשי
     master_bedroom:
-    - חדרשינה
+    - חדרשינהmaster
+    office:
+    - office
     powder_room:
     - שירותים
     schlafzimmer:
@@ -1179,7 +1229,7 @@ he:
 hi:
   areas:
     arbeitszimmer:
-    - baithak
+    - office
     badezimmer:
     - mukhyasnan
     bedroom_2:
@@ -1205,22 +1255,28 @@ hi:
     kids:
     - shayankakshkids
     kitchen:
+    - रसोई
     - rasoi
     kuche:
+    - रसोई
     - rasoi
     laundry:
     - dhobi
     living:
+    - बैठक
     - baithak
     master_bath:
     - mukhyasnan
     master_bedroom:
-    - shayankaksh
+    - shayankakshmaster
+    office:
+    - office
     powder_room:
     - shauchalay
     schlafzimmer:
     - shayankaksh
     wohnzimmer:
+    - बैठक
     - baithak
   floors:
     ground:
@@ -1232,7 +1288,7 @@ hi:
 hr:
   areas:
     arbeitszimmer:
-    - dnevni
+    - office
     badezimmer:
     - kupaonicamaster
     bedroom_2:
@@ -1268,7 +1324,9 @@ hr:
     master_bath:
     - kupaonicamaster
     master_bedroom:
-    - spavaca
+    - spavacamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -1285,7 +1343,7 @@ hr:
 hu:
   areas:
     arbeitszimmer:
-    - nappali
+    - office
     badezimmer:
     - furdomaster
     bedroom_2:
@@ -1321,7 +1379,9 @@ hu:
     master_bath:
     - furdomaster
     master_bedroom:
-    - haloszoba
+    - haloszobamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -1338,7 +1398,7 @@ hu:
 hy:
   areas:
     arbeitszimmer:
-    - hyurasenyak
+    - office
     badezimmer:
     - lvacaranmaster
     bedroom_2:
@@ -1364,22 +1424,28 @@ hy:
     kids:
     - qnakarankids
     kitchen:
+    - խոհանոց
     - khohanots
     kuche:
+    - խոհանոց
     - khohanots
     laundry:
     - lvacqaran
     living:
+    - հյուրասենյակ
     - hyurasenyak
     master_bath:
     - lvacaranmaster
     master_bedroom:
-    - qnakaran
+    - qnakaranmaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
     - qnakaran
     wohnzimmer:
+    - հյուրասենյակ
     - hyurasenyak
   floors:
     ground:
@@ -1391,7 +1457,7 @@ hy:
 id:
   areas:
     arbeitszimmer:
-    - ruang
+    - office
     badezimmer:
     - kamarmandimaster
     bedroom_2:
@@ -1427,7 +1493,9 @@ id:
     master_bath:
     - kamarmandimaster
     master_bedroom:
-    - kamar
+    - kamarmaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -1444,7 +1512,7 @@ id:
 is:
   areas:
     arbeitszimmer:
-    - stofa
+    - office
     badezimmer:
     - badmaster
     bedroom_2:
@@ -1480,7 +1548,9 @@ is:
     master_bath:
     - badmaster
     master_bedroom:
-    - svefnherbergi
+    - svefnherbergimaster
+    office:
+    - office
     powder_room:
     - klósett
     schlafzimmer:
@@ -1497,7 +1567,7 @@ is:
 it:
   areas:
     arbeitszimmer:
-    - soggiorno
+    - office
     badezimmer:
     - bagnomaster
     bedroom_2:
@@ -1533,7 +1603,9 @@ it:
     master_bath:
     - bagnomaster
     master_bedroom:
-    - camera
+    - cameramaster
+    office:
+    - office
     powder_room:
     - bagnetto
     schlafzimmer:
@@ -1550,7 +1622,7 @@ it:
 ja:
   areas:
     arbeitszimmer:
-    - ribingu
+    - office
     badezimmer:
     - shuyokushitsu
     bedroom_2:
@@ -1576,22 +1648,28 @@ ja:
     kids:
     - shinshitsukids
     kitchen:
+    - キッチン
     - kitchin
     kuche:
+    - キッチン
     - kitchin
     laundry:
     - sentakushitsu
     living:
+    - リビング
     - ribingu
     master_bath:
     - shuyokushitsu
     master_bedroom:
-    - shinshitsu
+    - shinshitsumaster
+    office:
+    - office
     powder_room:
     - toire
     schlafzimmer:
     - shinshitsu
     wohnzimmer:
+    - リビング
     - ribingu
   floors:
     ground:
@@ -1603,7 +1681,7 @@ ja:
 ka:
   areas:
     arbeitszimmer:
-    - misagebi
+    - office
     badezimmer:
     - abazanamaster
     bedroom_2:
@@ -1629,22 +1707,28 @@ ka:
     kids:
     - sadzinebelikids
     kitchen:
+    - სამზარეულო
     - samzareulo
     kuche:
+    - სამზარეულო
     - samzareulo
     laundry:
     - saretskhave
     living:
+    - მისაღები
     - misagebi
     master_bath:
     - abazanamaster
     master_bedroom:
-    - sadzinebeli
+    - sadzinebelimaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
     - sadzinebeli
     wohnzimmer:
+    - მისაღები
     - misagebi
   floors:
     ground:
@@ -1656,7 +1740,7 @@ ka:
 kn:
   areas:
     arbeitszimmer:
-    - hallige
+    - office
     badezimmer:
     - mukhyasnana
     bedroom_2:
@@ -1682,22 +1766,28 @@ kn:
     kids:
     - shayanakonekids
     kitchen:
+    - ಅಡುಗೆ
     - aduge
     kuche:
+    - ಅಡುಗೆ
     - aduge
     laundry:
     - ogeyuva
     living:
+    - ಹಾಲ್
     - hallige
     master_bath:
     - mukhyasnana
     master_bedroom:
-    - shayanakone
+    - shayanakonemaster
+    office:
+    - office
     powder_room:
     - shauchalaya
     schlafzimmer:
     - shayanakone
     wohnzimmer:
+    - ಹಾಲ್
     - hallige
   floors:
     ground:
@@ -1709,7 +1799,7 @@ kn:
 ko:
   areas:
     arbeitszimmer:
-    - geosil
+    - office
     badezimmer:
     - anbangyoksil
     bedroom_2:
@@ -1735,22 +1825,28 @@ ko:
     kids:
     - chimsilkids
     kitchen:
+    - 부엌
     - bueok
     kuche:
+    - 부엌
     - bueok
     laundry:
     - setaksil
     living:
+    - 거실
     - geosil
     master_bath:
     - anbangyoksil
     master_bedroom:
-    - chimsil
+    - chimsilmaster
+    office:
+    - office
     powder_room:
     - hwajangsil
     schlafzimmer:
     - chimsil
     wohnzimmer:
+    - 거실
     - geosil
   floors:
     ground:
@@ -1762,7 +1858,7 @@ ko:
 kw:
   areas:
     arbeitszimmer:
-    - stafell
+    - office
     badezimmer:
     - kewndhavas
     bedroom_2:
@@ -1798,7 +1894,9 @@ kw:
     master_bath:
     - kewndhavas
     master_bedroom:
-    - chambour
+    - chambourmaster
+    office:
+    - office
     powder_room:
     - tybach
     schlafzimmer:
@@ -1815,7 +1913,7 @@ kw:
 lb:
   areas:
     arbeitszimmer:
-    - wunnen
+    - office
     badezimmer:
     - bademaster
     bedroom_2:
@@ -1851,7 +1949,9 @@ lb:
     master_bath:
     - bademaster
     master_bedroom:
-    - schlofzëmmer
+    - schlofzëmmermaster
+    office:
+    - office
     powder_room:
     - toilette
     schlafzimmer:
@@ -1868,7 +1968,7 @@ lb:
 lt:
   areas:
     arbeitszimmer:
-    - svetaine
+    - office
     badezimmer:
     - voniamaster
     bedroom_2:
@@ -1904,7 +2004,9 @@ lt:
     master_bath:
     - voniamaster
     master_bedroom:
-    - miegamasis
+    - miegamasismaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -1921,7 +2023,7 @@ lt:
 lv:
   areas:
     arbeitszimmer:
-    - istaba
+    - office
     badezimmer:
     - vannamaster
     bedroom_2:
@@ -1957,7 +2059,9 @@ lv:
     master_bath:
     - vannamaster
     master_bedroom:
-    - gulamistaba
+    - gulamistabamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -1974,7 +2078,7 @@ lv:
 ml:
   areas:
     arbeitszimmer:
-    - muriyil
+    - office
     badezimmer:
     - masterbath
     bedroom_2:
@@ -2000,22 +2104,28 @@ ml:
     kids:
     - kitappumurikids
     kitchen:
+    - അടുക്കള
     - adukkala
     kuche:
+    - അടുക്കള
     - adukkala
     laundry:
     - alakku
     living:
+    - ഹാൾ
     - muriyil
     master_bath:
     - masterbath
     master_bedroom:
-    - kitappumuri
+    - kitappumurimaster
+    office:
+    - office
     powder_room:
     - toilet
     schlafzimmer:
     - kitappumuri
     wohnzimmer:
+    - ഹാൾ
     - muriyil
   floors:
     ground:
@@ -2027,7 +2137,7 @@ ml:
 mn:
   areas:
     arbeitszimmer:
-    - zochny
+    - office
     badezimmer:
     - untlagiinugasalgach
     bedroom_2:
@@ -2053,22 +2163,28 @@ mn:
     kids:
     - untlagiinkids
     kitchen:
+    - галтогоо
     - galtogoo
     kuche:
+    - галтогоо
     - galtogoo
     laundry:
     - ugaalga
     living:
+    - зочны
     - zochny
     master_bath:
     - untlagiinugasalgach
     master_bedroom:
-    - untlagiin
+    - untlagiinmaster
+    office:
+    - office
     powder_room:
     - oroon
     schlafzimmer:
     - untlagiin
     wohnzimmer:
+    - зочны
     - zochny
   floors:
     ground:
@@ -2080,7 +2196,7 @@ mn:
 mr:
   areas:
     arbeitszimmer:
-    - baithak
+    - office
     badezimmer:
     - mukhyasnan
     bedroom_2:
@@ -2106,22 +2222,28 @@ mr:
     kids:
     - shayankakshkids
     kitchen:
+    - स्वयंपाक
     - svayampak
     kuche:
+    - स्वयंपाक
     - svayampak
     laundry:
     - dhune
     living:
+    - बैठक
     - baithak
     master_bath:
     - mukhyasnan
     master_bedroom:
-    - shayankaksh
+    - shayankakshmaster
+    office:
+    - office
     powder_room:
     - swachhata
     schlafzimmer:
     - shayankaksh
     wohnzimmer:
+    - बैठक
     - baithak
   floors:
     ground:
@@ -2133,7 +2255,7 @@ mr:
 ms:
   areas:
     arbeitszimmer:
-    - ruang
+    - office
     badezimmer:
     - bilikmandimaster
     bedroom_2:
@@ -2169,7 +2291,9 @@ ms:
     master_bath:
     - bilikmandimaster
     master_bedroom:
-    - bilik
+    - bilikmaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -2186,7 +2310,7 @@ ms:
 nb:
   areas:
     arbeitszimmer:
-    - stue
+    - office
     badezimmer:
     - badmaster
     bedroom_2:
@@ -2222,7 +2346,9 @@ nb:
     master_bath:
     - badmaster
     master_bedroom:
-    - soverom
+    - soverommaster
+    office:
+    - office
     powder_room:
     - toalett
     schlafzimmer:
@@ -2239,7 +2365,7 @@ nb:
 ne:
   areas:
     arbeitszimmer:
-    - baithak
+    - office
     badezimmer:
     - mukhyasnan
     bedroom_2:
@@ -2265,22 +2391,28 @@ ne:
     kids:
     - sutnekothakids
     kitchen:
+    - भान्सा
     - bhansa
     kuche:
+    - भान्सा
     - bhansa
     laundry:
     - dhune
     living:
+    - बैठक
     - baithak
     master_bath:
     - mukhyasnan
     master_bedroom:
-    - sutnekotha
+    - sutnekothamaster
+    office:
+    - office
     powder_room:
     - shauchalay
     schlafzimmer:
     - sutnekotha
     wohnzimmer:
+    - बैठक
     - baithak
   floors:
     ground:
@@ -2331,7 +2463,7 @@ nl:
     master_bath:
     - badmaster
     master_bedroom:
-    - slaapkamer
+    - slaapkamermaster
     powder_room:
     - toilet
     schlafzimmer:
@@ -2350,7 +2482,7 @@ nl:
 pa:
   areas:
     arbeitszimmer:
-    - vithak
+    - office
     badezimmer:
     - masterbath
     bedroom_2:
@@ -2376,22 +2508,28 @@ pa:
     kids:
     - bedroomkids
     kitchen:
+    - ਰਸੋਈ
     - rasoi
     kuche:
+    - ਰਸੋਈ
     - rasoi
     laundry:
     - dhon
     living:
+    - ਬੈਠਕ
     - vithak
     master_bath:
     - masterbath
     master_bedroom:
-    - bedroom
+    - bedroommaster
+    office:
+    - office
     powder_room:
     - toilet
     schlafzimmer:
     - bedroom
     wohnzimmer:
+    - ਬੈਠਕ
     - vithak
   floors:
     ground:
@@ -2403,7 +2541,7 @@ pa:
 pl:
   areas:
     arbeitszimmer:
-    - salon
+    - office
     badezimmer:
     - lazmaster
     bedroom_2:
@@ -2439,7 +2577,9 @@ pl:
     master_bath:
     - lazmaster
     master_bedroom:
-    - sypialnia
+    - sypialniamaster
+    office:
+    - office
     powder_room:
     - toaleta
     schlafzimmer:
@@ -2456,7 +2596,7 @@ pl:
 pt:
   areas:
     arbeitszimmer:
-    - sala
+    - office
     badezimmer:
     - banhomaster
     bedroom_2:
@@ -2492,7 +2632,9 @@ pt:
     master_bath:
     - banhomaster
     master_bedroom:
-    - quarto
+    - quartomaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -2509,7 +2651,7 @@ pt:
 pt-BR:
   areas:
     arbeitszimmer:
-    - sala
+    - office
     badezimmer:
     - suitemaster
     bedroom_2:
@@ -2545,7 +2687,9 @@ pt-BR:
     master_bath:
     - suitemaster
     master_bedroom:
-    - quarto
+    - quartomaster
+    office:
+    - office
     powder_room:
     - lavabo
     schlafzimmer:
@@ -2562,7 +2706,7 @@ pt-BR:
 ro:
   areas:
     arbeitszimmer:
-    - sufragerie
+    - office
     badezimmer:
     - baiemaster
     bedroom_2:
@@ -2598,7 +2742,9 @@ ro:
     master_bath:
     - baiemaster
     master_bedroom:
-    - dormitor
+    - dormitormaster
+    office:
+    - office
     powder_room:
     - toaleta
     schlafzimmer:
@@ -2615,7 +2761,7 @@ ro:
 sk:
   areas:
     arbeitszimmer:
-    - obyvacka
+    - office
     badezimmer:
     - kupelmaster
     bedroom_2:
@@ -2651,7 +2797,9 @@ sk:
     master_bath:
     - kupelmaster
     master_bedroom:
-    - spalna
+    - spalnamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -2668,7 +2816,7 @@ sk:
 sl:
   areas:
     arbeitszimmer:
-    - dnevna
+    - office
     badezimmer:
     - kopalmaster
     bedroom_2:
@@ -2704,7 +2852,9 @@ sl:
     master_bath:
     - kopalmaster
     master_bedroom:
-    - spalnica
+    - spalnicamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -2721,7 +2871,7 @@ sl:
 sr:
   areas:
     arbeitszimmer:
-    - дневна
+    - office
     badezimmer:
     - купатилоmaster
     bedroom_2:
@@ -2757,7 +2907,9 @@ sr:
     master_bath:
     - купатилоmaster
     master_bedroom:
-    - спавача
+    - спавачаmaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -2774,7 +2926,7 @@ sr:
 sr-Latn:
   areas:
     arbeitszimmer:
-    - dnevna
+    - office
     badezimmer:
     - kupatilomaster
     bedroom_2:
@@ -2810,7 +2962,9 @@ sr-Latn:
     master_bath:
     - kupatilomaster
     master_bedroom:
-    - spavaca
+    - spavacamaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -2827,7 +2981,7 @@ sr-Latn:
 sv:
   areas:
     arbeitszimmer:
-    - vardagsrum
+    - office
     badezimmer:
     - badmaster
     bedroom_2:
@@ -2863,7 +3017,9 @@ sv:
     master_bath:
     - badmaster
     master_bedroom:
-    - sovrum
+    - sovrummaster
+    office:
+    - office
     powder_room:
     - toalett
     schlafzimmer:
@@ -2880,7 +3036,7 @@ sv:
 sw:
   areas:
     arbeitszimmer:
-    - sebuleni
+    - office
     badezimmer:
     - bafumaster
     bedroom_2:
@@ -2916,7 +3072,9 @@ sw:
     master_bath:
     - bafumaster
     master_bedroom:
-    - chumbakulala
+    - chumbakulalamaster
+    office:
+    - office
     powder_room:
     - choo
     schlafzimmer:
@@ -2933,7 +3091,7 @@ sw:
 ta:
   areas:
     arbeitszimmer:
-    - arai
+    - office
     badezimmer:
     - muthanmaikuliyal
     bedroom_2:
@@ -2959,22 +3117,28 @@ ta:
     kids:
     - padukkaiyaraikids
     kitchen:
+    - சமையல்
     - samaiyal
     kuche:
+    - சமையல்
     - samaiyal
     laundry:
     - salavai
     living:
+    - அறை
     - arai
     master_bath:
     - muthanmaikuliyal
     master_bedroom:
-    - padukkaiyarai
+    - padukkaiyaraimaster
+    office:
+    - office
     powder_room:
     - kazhivarai
     schlafzimmer:
     - padukkaiyarai
     wohnzimmer:
+    - அறை
     - arai
   floors:
     ground:
@@ -2986,7 +3150,7 @@ ta:
 te:
   areas:
     arbeitszimmer:
-    - gadi
+    - office
     badezimmer:
     - masterbath
     bedroom_2:
@@ -3012,22 +3176,28 @@ te:
     kids:
     - padakagadikids
     kitchen:
+    - వంటగది
     - vantagadi
     kuche:
+    - వంటగది
     - vantagadi
     laundry:
     - laundry
     living:
+    - గది
     - gadi
     master_bath:
     - masterbath
     master_bedroom:
-    - padakagadi
+    - padakagadimaster
+    office:
+    - office
     powder_room:
     - toilet
     schlafzimmer:
     - padakagadi
     wohnzimmer:
+    - గది
     - gadi
   floors:
     ground:
@@ -3039,7 +3209,7 @@ te:
 th:
   areas:
     arbeitszimmer:
-    - hongnang
+    - office
     badezimmer:
     - hongnamlak
     bedroom_2:
@@ -3065,22 +3235,28 @@ th:
     kids:
     - hongnonkids
     kitchen:
+    - ห้องครัว
     - hongkrua
     kuche:
+    - ห้องครัว
     - hongkrua
     laundry:
     - hongsakpha
     living:
+    - ห้องนั่งเล่น
     - hongnang
     master_bath:
     - hongnamlak
     master_bedroom:
-    - hongnon
+    - hongnonmaster
+    office:
+    - office
     powder_room:
     - hongnamkhaek
     schlafzimmer:
     - hongnon
     wohnzimmer:
+    - ห้องนั่งเล่น
     - hongnang
   floors:
     ground:
@@ -3092,7 +3268,7 @@ th:
 tr:
   areas:
     arbeitszimmer:
-    - salon
+    - office
     badezimmer:
     - ebatmaster
     bedroom_2:
@@ -3128,7 +3304,9 @@ tr:
     master_bath:
     - ebatmaster
     master_bedroom:
-    - yatakodasi
+    - yatakodasimaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -3145,7 +3323,7 @@ tr:
 uk:
   areas:
     arbeitszimmer:
-    - вітальня
+    - office
     badezimmer:
     - ваннаmaster
     bedroom_2:
@@ -3181,7 +3359,9 @@ uk:
     master_bath:
     - ваннаmaster
     master_bedroom:
-    - спальня
+    - спальняmaster
+    office:
+    - office
     powder_room:
     - туалет
     schlafzimmer:
@@ -3198,7 +3378,7 @@ uk:
 ur:
   areas:
     arbeitszimmer:
-    - لانج
+    - office
     badezimmer:
     - ماسٹرباتھ
     bedroom_2:
@@ -3234,7 +3414,9 @@ ur:
     master_bath:
     - ماسٹرباتھ
     master_bedroom:
-    - bedroom
+    - bedroommaster
+    office:
+    - office
     powder_room:
     - غسلخانہ
     schlafzimmer:
@@ -3251,7 +3433,7 @@ ur:
 vi:
   areas:
     arbeitszimmer:
-    - phongkhach
+    - office
     badezimmer:
     - phongtamchinh
     bedroom_2:
@@ -3287,7 +3469,9 @@ vi:
     master_bath:
     - phongtamchinh
     master_bedroom:
-    - phongngu
+    - phongngumaster
+    office:
+    - office
     powder_room:
     - wc
     schlafzimmer:
@@ -3304,7 +3488,7 @@ vi:
 zh-CN:
   areas:
     arbeitszimmer:
-    - keting
+    - office
     badezimmer:
     - zhuwei
     bedroom_2:
@@ -3330,22 +3514,28 @@ zh-CN:
     kids:
     - woshikids
     kitchen:
+    - 厨房
     - chufang
     kuche:
+    - 厨房
     - chufang
     laundry:
     - xiyifang
     living:
+    - 客厅
     - keting
     master_bath:
     - zhuwei
     master_bedroom:
-    - woshi
+    - woshimaster
+    office:
+    - office
     powder_room:
     - kewei
     schlafzimmer:
     - woshi
     wohnzimmer:
+    - 客厅
     - keting
   floors:
     ground:
@@ -3357,7 +3547,7 @@ zh-CN:
 zh-HK:
   areas:
     arbeitszimmer:
-    - keting
+    - office
     badezimmer:
     - zhuwei
     bedroom_2:
@@ -3383,22 +3573,28 @@ zh-HK:
     kids:
     - woshikids
     kitchen:
+    - 廚房
     - chufang
     kuche:
+    - 廚房
     - chufang
     laundry:
     - xiyifang
     living:
+    - 客廳
     - keting
     master_bath:
     - zhuwei
     master_bedroom:
-    - woshi
+    - woshimaster
+    office:
+    - office
     powder_room:
     - kewei
     schlafzimmer:
     - woshi
     wohnzimmer:
+    - 客廳
     - keting
   floors:
     ground:
@@ -3410,7 +3606,7 @@ zh-HK:
 zh-TW:
   areas:
     arbeitszimmer:
-    - keting
+    - office
     badezimmer:
     - zhuwei
     bedroom_2:
@@ -3436,22 +3632,28 @@ zh-TW:
     kids:
     - woshikids
     kitchen:
+    - 廚房
     - chufang
     kuche:
+    - 廚房
     - chufang
     laundry:
     - xiyifang
     living:
+    - 客廳
     - keting
     master_bath:
     - zhuwei
     master_bedroom:
-    - woshi
+    - woshimaster
+    office:
+    - office
     powder_room:
     - kewei
     schlafzimmer:
     - woshi
     wohnzimmer:
+    - 客廳
     - keting
   floors:
     ground:

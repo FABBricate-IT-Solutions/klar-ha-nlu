@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - satt varme sovrum 18
-  - varme sovrum 18
+  - satt varme sovrummaster 18
+  - varme sovrummaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - satt varme sovrum 19
-  - varme sovrum 19
+  - satt varme sovrummaster 19
+  - varme sovrummaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - satt varme sovrum 20
-  - varme sovrum 20
+  - satt varme sovrummaster 20
+  - varme sovrummaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - satt varme sovrum 21
-  - varme sovrum 21
+  - satt varme sovrummaster 21
+  - varme sovrummaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - satt varme sovrum 22
-  - varme sovrum 22
+  - satt varme sovrummaster 22
+  - varme sovrummaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - satt varme sovrum 23
-  - varme sovrum 23
+  - satt varme sovrummaster 23
+  - varme sovrummaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - satt varme sovrum 24
-  - varme sovrum 24
+  - satt varme sovrummaster 24
+  - varme sovrummaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - vad varme sovrum
-  - varme sovrum
+  - vad varme sovrummaster
+  - varme sovrummaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - satt temperatur sovrum 18
-  - temperatur sovrum 18
+  - satt temperatur sovrummaster 18
+  - temperatur sovrummaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - satt temperatur sovrum 19
-  - temperatur sovrum 19
+  - satt temperatur sovrummaster 19
+  - temperatur sovrummaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - satt temperatur sovrum 20
-  - temperatur sovrum 20
+  - satt temperatur sovrummaster 20
+  - temperatur sovrummaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - satt temperatur sovrum 21
-  - temperatur sovrum 21
+  - satt temperatur sovrummaster 21
+  - temperatur sovrummaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - satt temperatur sovrum 22
-  - temperatur sovrum 22
+  - satt temperatur sovrummaster 22
+  - temperatur sovrummaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - satt temperatur sovrum 23
-  - temperatur sovrum 23
+  - satt temperatur sovrummaster 23
+  - temperatur sovrummaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - satt temperatur sovrum 24
-  - temperatur sovrum 24
+  - satt temperatur sovrummaster 24
+  - temperatur sovrummaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - vad temperatur sovrum
-  - temperatur sovrum
+  - vad temperatur sovrummaster
+  - temperatur sovrummaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - vad varme sovrum
-  - varme sovrum
+  - vad varme sovrummaster
+  - varme sovrummaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - vad temperatur sovrum
-  - temperatur sovrum
+  - vad temperatur sovrummaster
+  - temperatur sovrummaster

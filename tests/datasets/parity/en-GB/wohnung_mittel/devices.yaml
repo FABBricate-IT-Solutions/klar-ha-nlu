@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - extinguish ceiling bedroom
 devices/geraete::device_arbeitszimmer_an:
-- enable light lounge
+- enable light office
 devices/geraete::device_esszimmer_an:
 - enable light loungefamess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - enable light lounge
 devices/geraete::filmabend:
-- enable Filmabend
+- enable scene filmabend
 devices/geraete::kugel_an:
-- enable globe bedroom
+- enable globe
 devices/geraete::luefter_50:
-- set fan lounge 50
+- set fan office 50
 devices/geraete::pc_an:
-- enable device
+- enable pc
 devices/geraete::r2d2_saugen:
 - enable hoover lounge
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - enable washer
 devices/klima::klima_schlaf_21:
-- set heating bedroom 21
+- set ac bedroom 21
 devices/spoken::deckenlampe_an:
 - enable ceiling bedroom
 devices/spoken::kugel_aus:
-- extinguish globe bedroom
+- extinguish globe
 devices/spoken::luefter_aus:
-- extinguish fan lounge
+- extinguish fan office
 devices/spoken::rollo_auf:
 - open curtain lounge
 devices/spoken::trockner_an:
-- enable washer
+- enable dryer
 devices/spoken::tv_aus:
-- extinguish telly
+- extinguish tv
 devices/spoken_more::decke_aus_casual:
 - extinguish ceiling bedroom
 devices/spoken_more::kugel_casual:
-- enable globe bedroom
+- enable globe
 devices/spoken_more::pc_aus:
-- extinguish device
+- extinguish pc
 devices/spoken_more::spuelmaschine_an:
 - enable dishwasher
 devices/spoken_more::waschmaschine_aus:

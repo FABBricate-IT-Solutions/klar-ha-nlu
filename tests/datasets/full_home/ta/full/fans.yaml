@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - visiri kutumbam eru
-  - eru visiri kutumbam
+  - விசிறி kutumbam ஏற்று
+  - ஏற்று விசிறி kutumbam
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - anai visiri kutumbam
-  - visiri kutumbam anai
+  - அணை விசிறி kutumbam
+  - விசிறி kutumbam அணை
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - amai visiri kutumbam 40
-  - visiri kutumbam 40
+  - அமை விசிறி kutumbam 40
+  - விசிறி kutumbam 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - visiri padukkaiyarai eru
-  - eru visiri padukkaiyarai
+  - விசிறி padukkaiyaraimaster ஏற்று
+  - ஏற்று விசிறி padukkaiyaraimaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - anai visiri padukkaiyarai
-  - visiri padukkaiyarai anai
+  - அணை விசிறி padukkaiyaraimaster
+  - விசிறி padukkaiyaraimaster அணை
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - amai visiri padukkaiyarai 40
-  - visiri padukkaiyarai 40
+  - அமை விசிறி padukkaiyaraimaster 40
+  - விசிறி padukkaiyaraimaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - visiri padukkaiyarai2 eru
-  - eru visiri padukkaiyarai2
+  - விசிறி padukkaiyarai2 ஏற்று
+  - ஏற்று விசிறி padukkaiyarai2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - anai visiri padukkaiyarai2
-  - visiri padukkaiyarai2 anai
+  - அணை விசிறி padukkaiyarai2
+  - விசிறி padukkaiyarai2 அணை
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - amai visiri padukkaiyarai2 40
-  - visiri padukkaiyarai2 40
+  - அமை விசிறி padukkaiyarai2 40
+  - விசிறி padukkaiyarai2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - amai visiri kutumbam 20
-  - visiri kutumbam 20
+  - அமை விசிறி kutumbam 20
+  - விசிறி kutumbam 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - amai visiri kutumbam 60
-  - visiri kutumbam 60
+  - அமை விசிறி kutumbam 60
+  - விசிறி kutumbam 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - amai visiri kutumbam 80
-  - visiri kutumbam 80
+  - அமை விசிறி kutumbam 80
+  - விசிறி kutumbam 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - amai visiri padukkaiyarai 20
-  - visiri padukkaiyarai 20
+  - அமை விசிறி padukkaiyaraimaster 20
+  - விசிறி padukkaiyaraimaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - amai visiri padukkaiyarai 60
-  - visiri padukkaiyarai 60
+  - அமை விசிறி padukkaiyaraimaster 60
+  - விசிறி padukkaiyaraimaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - amai visiri padukkaiyarai 80
-  - visiri padukkaiyarai 80
+  - அமை விசிறி padukkaiyaraimaster 80
+  - விசிறி padukkaiyaraimaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - amai visiri padukkaiyarai2 20
-  - visiri padukkaiyarai2 20
+  - அமை விசிறி padukkaiyarai2 20
+  - விசிறி padukkaiyarai2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - amai visiri padukkaiyarai2 60
-  - visiri padukkaiyarai2 60
+  - அமை விசிறி padukkaiyarai2 60
+  - விசிறி padukkaiyarai2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - amai visiri padukkaiyarai2 80
-  - visiri padukkaiyarai2 80
+  - அமை விசிறி padukkaiyarai2 80
+  - விசிறி padukkaiyarai2 80

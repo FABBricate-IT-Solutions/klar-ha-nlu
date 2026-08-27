@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - poetfai tangwela 10 min
-  - tangwela 10 min
+  - เปิด ตั้งเวลา 10 min
+  - ตั้งเวลา 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - poetfai tangwela 45 min
-  - tangwela 45 min
+  - เปิด ตั้งเวลา 45 min
+  - ตั้งเวลา 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - pitfai tangwela
-  - tangwela pitfai
+  - ปิด ตั้งเวลา
+  - ตั้งเวลา ปิด
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - poetfai tangwela 5 min
-  - tangwela 5 min
+  - เปิด ตั้งเวลา 5 min
+  - ตั้งเวลา 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - poetfai tangwela 15 min
-  - tangwela 15 min
+  - เปิด ตั้งเวลา 15 min
+  - ตั้งเวลา 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - poetfai tangwela 20 min
-  - tangwela 20 min
+  - เปิด ตั้งเวลา 20 min
+  - ตั้งเวลา 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - poetfai tangwela 30 min
-  - tangwela 30 min
+  - เปิด ตั้งเวลา 30 min
+  - ตั้งเวลา 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - poetfai tangwela 60 min
-  - tangwela 60 min
+  - เปิด ตั้งเวลา 60 min
+  - ตั้งเวลา 60 min

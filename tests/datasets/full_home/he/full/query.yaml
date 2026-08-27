@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - מה וילון חדרשינה
-  - מה חדרשינה וילון
+  - מה וילון חדרשינהmaster
+  - מה חדרשינהmaster וילון
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - מה חימום חדרשינה
-  - מה חדרשינה חימום
+  - מה חימום חדרשינהmaster
+  - מה חדרשינהmaster חימום
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - מה טמפרטורה חדרשינה
-  - מה חדרשינה טמפרטורה
+  - מה טמפרטורה חדרשינהmaster
+  - מה חדרשינהmaster טמפרטורה
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - מה מאוורר חדרשינה
-  - מה חדרשינה מאוורר
+  - מה מאוורר חדרשינהmaster
+  - מה חדרשינהmaster מאוורר
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - מה אור חדרשינה
-  - מה חדרשינה אור
+  - מה אור חדרשינהmaster
+  - מה חדרשינהmaster אור
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - מה אור חדרשינה
-  - מה חדרשינה אור
+  - מה אור חדרשינהmaster
+  - מה חדרשינהmaster אור
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - מה ensuite חדרשינה
-  - מה חדרשינה ensuite
+  - מה ensuite חדרשינהmaster
+  - מה חדרשינהmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - מה אור חדרשינה
-  - מה חדרשינה אור
+  - מה אור חדרשינהmaster
+  - מה חדרשינהmaster אור
 - name: query_light.master_bath_light
   conditions:
   - type: query

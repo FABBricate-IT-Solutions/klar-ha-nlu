@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - شغل غرفة سقف و غرفة جانبسرير
-  - غرفة سقف و غرفة جانبسرير شغل
+  - شغل غرفةmaster سقف و غرفةmaster جانبسرير
+  - غرفةmaster سقف و غرفةmaster جانبسرير شغل
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - اطفئ غرفة سقف و غرفة جانبسرير
-  - غرفة سقف و غرفة جانبسرير اطفئ
+  - اطفئ غرفةmaster سقف و غرفةmaster جانبسرير
+  - غرفةmaster سقف و غرفةmaster جانبسرير اطفئ
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - شغل غرفة مروحة و مطبخ جزيرة
-  - غرفة مروحة و مطبخ جزيرة شغل
+  - شغل غرفةmaster مروحة و مطبخ جزيرة
+  - غرفةmaster مروحة و مطبخ جزيرة شغل
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - اطفئ ضوء غرفة و main bath
-  - ضوء غرفة و main bath اطفئ
+  - اطفئ ضوء غرفةmaster و main bath
+  - ضوء غرفةmaster و main bath اطفئ
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - اطفئ كل ضوء إلا صالون و غرفة
-  - كل ضوء اطفئ إلا صالون و غرفة
+  - اطفئ كل ضوء إلا صالون و غرفةmaster
+  - كل ضوء اطفئ إلا صالون و غرفةmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - اطفئ كل ضوء فوق إلا غرفة
-  - كل ضوء فوق اطفئ إلا غرفة
+  - اطفئ كل ضوء فوق إلا غرفةmaster
+  - كل ضوء فوق اطفئ إلا غرفةmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - افتح ستارة صالون و غرفة
-  - ستارة صالون و غرفة افتح
+  - افتح ستارة صالون و غرفةmaster
+  - ستارة صالون و غرفةmaster افتح
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - اغلق ستارة صالون و غرفة
-  - ستارة صالون و غرفة اغلق
+  - اغلق ستارة صالون و غرفةmaster
+  - ستارة صالون و غرفةmaster اغلق
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - حط تكييف صالون و غرفة 21
-  - تكييف صالون و غرفة 21
+  - حط تكييف صالون و غرفةmaster 21
+  - تكييف صالون و غرفةmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

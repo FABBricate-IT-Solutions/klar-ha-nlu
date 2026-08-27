@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - ne isik garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - ne isik girisgang ve ne isik wc
+- - ne isik girisgang then ne isik wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - ne isik girisgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - ne isik ebatmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - ne klima yatakodasi ve ne klima salon
+- - ne klima yatakodasimaster then ne klima salon
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - ne perde yatakodasi ve ne perde salon
+- - ne perde yatakodasimaster then ne perde salon
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - ne klima yatakodasi
+- - ne klima yatakodasimaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - ne perde yatakodasi
+- - ne perde yatakodasimaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - ne isik wc

@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - ra sinatle misagebi
-  - ra misagebi sinatle
+  - რა სინათლე მისაღები
+  - რა მისაღები სინათლე
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - ra parda misagebi
-  - ra misagebi parda
+  - რა ფარდა მისაღები
+  - რა მისაღები ფარდა
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - ra saketi shemosasvleli
-  - ra shemosasvleli saketi
+  - რა საკეტი shemosasvleli
+  - რა shemosasvleli საკეტი
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ra gatboba misagebi
-  - ra misagebi gatboba
+  - რა გათბობა მისაღები
+  - რა მისაღები გათბობა
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - ra tv misagebi
-  - ra misagebi tv
+  - რა tv მისაღები
+  - რა მისაღები tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - ra doorsensor shemosasvleli
-  - ra shemosasvleli doorsensor
+  - რა doorsensor shemosasvleli
+  - რა shemosasvleli doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - ra windowsensor misagebi
-  - ra misagebi windowsensor
+  - რა windowsensor მისაღები
+  - რა მისაღები windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - ra tempsensor misagebi
-  - ra misagebi tempsensor
+  - რა tempsensor მისაღები
+  - რა მისაღები tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - ra sinatle samzareulo
-  - ra samzareulo sinatle
+  - რა სინათლე სამზარეულო
+  - რა სამზარეულო სინათლე
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - ra sinatle office
-  - ra office sinatle
+  - რა სინათლე office
+  - რა office სინათლე
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - ra sinatle garden
-  - ra garden sinatle
+  - რა სინათლე garden
+  - რა garden სინათლე
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - ra sinatle basement
-  - ra basement sinatle
+  - რა სინათლე basement
+  - რა basement სინათლე
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - ra parda sadzinebeli
-  - ra sadzinebeli parda
+  - რა ფარდა sadzinebelimaster
+  - რა sadzinebelimaster ფარდა
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - ra parda garage
-  - ra garage parda
+  - რა ფარდა garage
+  - რა garage ფარდა
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - ra saketi garage
-  - ra garage saketi
+  - რა საკეტი garage
+  - რა garage საკეტი
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ra gatboba sadzinebeli
-  - ra sadzinebeli gatboba
+  - რა გათბობა sadzinebelimaster
+  - რა sadzinebelimaster გათბობა
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ra gatboba sadzinebeli
-  - ra sadzinebeli gatboba
+  - რა gatboba sadzinebelimaster
+  - რა sadzinebelimaster gatboba
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - ra tv ojakhisotakhi
-  - ra ojakhisotakhi tv
+  - რა tv ojakhisotakhi
+  - რა ojakhisotakhi tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ra televizori misagebi
-  - ra misagebi televizori
+  - რა ტელევიზორი მისაღები
+  - რა მისაღები ტელევიზორი
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - ra motion samzareulo
-  - ra samzareulo motion
+  - რა motion სამზარეულო
+  - რა სამზარეულო motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - ra humidity misagebi
-  - ra misagebi humidity
+  - რა humidity მისაღები
+  - რა მისაღები humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - ra ventilatori sadzinebeli
-  - ra sadzinebeli ventilatori
+  - რა ვენტილატორი sadzinebelimaster
+  - რა sadzinebelimaster ვენტილატორი
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - ra mtversasruti misagebi
-  - ra misagebi mtversasruti
+  - რა მტვერსასრუტი მისაღები
+  - რა მისაღები მტვერსასრუტი
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - ra sinatle misagebi
-  - ra misagebi sinatle
+  - რა სინათლე მისაღები
+  - რა მისაღები სინათლე
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - ra sinatle samzareulo
-  - ra samzareulo sinatle
+  - რა სინათლე სამზარეულო
+  - რა სამზარეულო სინათლე
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - ra sinatle sadzinebeli
-  - ra sadzinebeli sinatle
+  - რა სინათლე sadzinebelimaster
+  - რა sadzinebelimaster სინათლე
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - ra sinatle sadzinebeli
-  - ra sadzinebeli sinatle
+  - რა სინათლე sadzinebelimaster
+  - რა sadzinebelimaster სინათლე
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - ra sinatle hallway
-  - ra hallway sinatle
+  - რა სინათლე hallway
+  - რა hallway სინათლე
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - ra sinatle ojakhisotakhi
-  - ra ojakhisotakhi sinatle
+  - რა სინათლე ojakhisotakhi
+  - რა ojakhisotakhi სინათლე
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - ra sinatle ojakhisotakhiess
-  - ra ojakhisotakhiess sinatle
+  - რა სინათლე ojakhisotakhiess
+  - რა ojakhisotakhiess სინათლე
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - ra sinatle garage
-  - ra garage sinatle
+  - რა სინათლე garage
+  - რა garage სინათლე
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - ra sinatle sadzinebeli2
-  - ra sadzinebeli2 sinatle
+  - რა სინათლე sadzinebeli2
+  - რა sadzinebeli2 სინათლე
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - ra sinatle sadzinebeli3
-  - ra sadzinebeli3 sinatle
+  - რა სინათლე sadzinebeli3
+  - რა sadzinebeli3 სინათლე
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - ra sinatle sadzinebeli4
-  - ra sadzinebeli4 sinatle
+  - რა სინათლე sadzinebeli4
+  - რა sadzinebeli4 სინათლე
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - ra sinatle shemosasvleli
-  - ra shemosasvleli sinatle
+  - რა სინათლე shemosasvleli
+  - რა shemosasvleli სინათლე
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - ra sinatle saretskhave
-  - ra saretskhave sinatle
+  - რა სინათლე saretskhave
+  - რა saretskhave სინათლე
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - ra sinatle main bath
-  - ra main bath sinatle
+  - რა სინათლე main bath
+  - რა main bath სინათლე
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - ra sinatle wc
-  - ra wc sinatle
+  - რა სინათლე wc
+  - რა wc სინათლე
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - ra ensuite sadzinebeli
-  - ra sadzinebeli ensuite
+  - რა ensuite sadzinebelimaster
+  - რა sadzinebelimaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - ra sinatle sadzinebeli
-  - ra sadzinebeli sinatle
+  - რა სინათლე sadzinebelimaster
+  - რა sadzinebelimaster სინათლე
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - ra sinatle abazanamaster
-  - ra abazanamaster sinatle
+  - რა სინათლე abazanamaster
+  - რა abazanamaster სინათლე

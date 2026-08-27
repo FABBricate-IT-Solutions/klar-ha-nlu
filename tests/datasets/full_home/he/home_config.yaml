@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: חדרשינה
+  name: חדרשינהmaster
   floor: upper
   aliases:
+  - חדרשינהmaster
   - חדרשינה
 - id: bedroom_2
   name: חדרשינה2
@@ -130,10 +131,10 @@ devices:
   - תקרה
 - id: light.living_lamp
   area_id: living
-  name: סלון אור
+  name: סלון lamp
   aliases:
-  - סלון אור
-  - אור
+  - סלון lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: משפחהess אור
@@ -190,29 +191,29 @@ devices:
   - אור
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: חדרשינה תקרה
+  name: חדרשינהmaster תקרה
   aliases:
-  - חדרשינה תקרה
+  - חדרשינהmaster תקרה
   - תקרה
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: חדרשינה ensuite
+  name: חדרשינהmaster ensuite
   aliases:
-  - חדרשינה ensuite
+  - חדרשינהmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: חדרשינה left לידמיטה
+  name: חדרשינהmaster left לידמיטה
   aliases:
-  - חדרשינה left לידמיטה
+  - חדרשינהmaster left לידמיטה
   - לידמיטה
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: חדרשינה right לידמיטה
+  name: חדרשינהmaster right לידמיטה
   aliases:
-  - חדרשינה right לידמיטה
+  - חדרשינהmaster right לידמיטה
   - לידמיטה
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - וילון
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: חדרשינה וילון
+  name: חדרשינהmaster וילון
   aliases:
-  - חדרשינה וילון
+  - חדרשינהmaster וילון
   - וילון
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - חימום
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: חדרשינה חימום
+  name: חדרשינהmaster חימום
   aliases:
-  - חדרשינה חימום
+  - חדרשינהmaster חימום
   - חימום
 - id: climate.master_ac
   area_id: master_bedroom
-  name: טמפרטורה חדרשינה
+  name: טמפרטורה חדרשינהmaster
   aliases:
-  - טמפרטורה חדרשינה
+  - טמפרטורה חדרשינהmaster
   - טמפרטורה
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - מאוורר
 - id: fan.master_fan
   area_id: master_bedroom
-  name: חדרשינה מאוורר
+  name: חדרשינהmaster מאוורר
   aliases:
-  - חדרשינה מאוורר
+  - חדרשינהmaster מאוורר
   - מאוורר
 - id: fan.bedroom2_fan
   area_id: bedroom_2

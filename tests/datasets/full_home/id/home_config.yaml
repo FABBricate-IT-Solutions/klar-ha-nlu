@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Kamar
+  name: Kamarmaster
   floor: upper
   aliases:
+  - kamarmaster
   - kamar
 - id: bedroom_2
   name: Kamar2
@@ -130,10 +131,10 @@ devices:
   - langit
 - id: light.living_lamp
   area_id: living
-  name: ruang lampu
+  name: ruang lamp
   aliases:
-  - ruang lampu
-  - lampu
+  - ruang lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: ruangkeluargaess lampu
@@ -190,29 +191,29 @@ devices:
   - lampu
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: kamar langit
+  name: kamarmaster langit
   aliases:
-  - kamar langit
+  - kamarmaster langit
   - langit
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: kamar ensuite
+  name: kamarmaster ensuite
   aliases:
-  - kamar ensuite
+  - kamarmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: kamar left nakas
+  name: kamarmaster left nakas
   aliases:
-  - kamar left nakas
+  - kamarmaster left nakas
   - nakas
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: kamar right nakas
+  name: kamarmaster right nakas
   aliases:
-  - kamar right nakas
+  - kamarmaster right nakas
   - nakas
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - tirai
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: kamar tirai
+  name: kamarmaster tirai
   aliases:
-  - kamar tirai
+  - kamarmaster tirai
   - tirai
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - ac
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: kamar ac
+  name: kamarmaster ac
   aliases:
-  - kamar ac
+  - kamarmaster ac
   - ac
 - id: climate.master_ac
   area_id: master_bedroom
-  name: ac kamar
+  name: ac kamarmaster
   aliases:
-  - ac kamar
+  - ac kamarmaster
   - ac
   tags:
   - ac
@@ -314,9 +315,9 @@ devices:
   - kipas
 - id: fan.master_fan
   area_id: master_bedroom
-  name: kamar kipas
+  name: kamarmaster kipas
   aliases:
-  - kamar kipas
+  - kamarmaster kipas
   - kipas
 - id: fan.bedroom2_fan
   area_id: bedroom_2

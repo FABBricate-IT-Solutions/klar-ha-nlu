@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen bosar
-  - bajao queen tivi bosar
+  - চালাও queen বসার
+  - চালাও queen টিভি বসার
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - bajao album rumours by fleetwood mac bosar
+  - চালাও album rumours by fleetwood mac বসার
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode bosar
+  - চালাও queen radio mode বসার
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - bajao bohemian rhapsody queue bosar
+  - চালাও bohemian rhapsody queue বসার
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ki tivi bosar
-  - ki track bosar
+  - কি টিভি বসার
+  - কি track বসার
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi bosar 10
-  - tivi bosar 10
+  - সেট টিভি বসার 10
+  - টিভি বসার 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi bosar 20
-  - tivi bosar 20
+  - সেট টিভি বসার 20
+  - টিভি বসার 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi bosar 30
-  - tivi bosar 30
+  - সেট টিভি বসার 30
+  - টিভি বসার 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi bosar 50
-  - tivi bosar 50
+  - সেট টিভি বসার 50
+  - টিভি বসার 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi bosar 80
-  - tivi bosar 80
+  - সেট টিভি বসার 80
+  - টিভি বসার 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track bosar
+  - next track বসার
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track bosar
+  - previous track বসার
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen ranna
-  - bajao queen tivi ranna
+  - চালাও queen রান্না
+  - চালাও queen টিভি রান্না
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajao beatles bosar
-  - bajao beatles tivi bosar
+  - চালাও beatles বসার
+  - চালাও beatles টিভি বসার
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajao radiohead bosar
-  - bajao radiohead tivi bosar
+  - চালাও radiohead বসার
+  - চালাও radiohead টিভি বসার
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajao abba bosar
-  - bajao abba tivi bosar
+  - চালাও abba বসার
+  - চালাও abba টিভি বসার
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajao coldplay bosar
-  - bajao coldplay tivi bosar
+  - চালাও coldplay বসার
+  - চালাও coldplay টিভি বসার
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajao adele bosar
-  - bajao adele tivi bosar
+  - চালাও adele বসার
+  - চালাও adele টিভি বসার
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajao prince bosar
-  - bajao prince tivi bosar
+  - চালাও prince বসার
+  - চালাও prince টিভি বসার
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajao bowie bosar
-  - bajao bowie tivi bosar
+  - চালাও bowie বসার
+  - চালাও bowie টিভি বসার
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajao nirvana bosar
-  - bajao nirvana tivi bosar
+  - চালাও nirvana বসার
+  - চালাও nirvana টিভি বসার
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajao eagles bosar
-  - bajao eagles tivi bosar
+  - চালাও eagles বসার
+  - চালাও eagles টিভি বসার
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajao madonna bosar
-  - bajao madonna tivi bosar
+  - চালাও madonna বসার
+  - চালাও madonna টিভি বসার
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajao mozart bosar
-  - bajao mozart tivi bosar
+  - চালাও mozart বসার
+  - চালাও mozart টিভি বসার
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajao daft punk bosar
-  - bajao daft punk tivi bosar
+  - চালাও daft punk বসার
+  - চালাও daft punk টিভি বসার
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajao biafra bosar
-  - bajao biafra tivi bosar
+  - চালাও biafra বসার
+  - চালাও biafra টিভি বসার
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen ranna
-  - bajao queen tivi ranna
+  - চালাও queen রান্না
+  - চালাও queen টিভি রান্না
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajao beatles ranna
-  - bajao beatles tivi ranna
+  - চালাও beatles রান্না
+  - চালাও beatles টিভি রান্না
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajao radiohead ranna
-  - bajao radiohead tivi ranna
+  - চালাও radiohead রান্না
+  - চালাও radiohead টিভি রান্না
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajao abba ranna
-  - bajao abba tivi ranna
+  - চালাও abba রান্না
+  - চালাও abba টিভি রান্না
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajao coldplay ranna
-  - bajao coldplay tivi ranna
+  - চালাও coldplay রান্না
+  - চালাও coldplay টিভি রান্না
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajao adele ranna
-  - bajao adele tivi ranna
+  - চালাও adele রান্না
+  - চালাও adele টিভি রান্না
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajao prince ranna
-  - bajao prince tivi ranna
+  - চালাও prince রান্না
+  - চালাও prince টিভি রান্না
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajao bowie ranna
-  - bajao bowie tivi ranna
+  - চালাও bowie রান্না
+  - চালাও bowie টিভি রান্না
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajao nirvana ranna
-  - bajao nirvana tivi ranna
+  - চালাও nirvana রান্না
+  - চালাও nirvana টিভি রান্না
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajao eagles ranna
-  - bajao eagles tivi ranna
+  - চালাও eagles রান্না
+  - চালাও eagles টিভি রান্না
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajao madonna ranna
-  - bajao madonna tivi ranna
+  - চালাও madonna রান্না
+  - চালাও madonna টিভি রান্না
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajao mozart ranna
-  - bajao mozart tivi ranna
+  - চালাও mozart রান্না
+  - চালাও mozart টিভি রান্না
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajao daft punk ranna
-  - bajao daft punk tivi ranna
+  - চালাও daft punk রান্না
+  - চালাও daft punk টিভি রান্না
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajao biafra ranna
-  - bajao biafra tivi ranna
+  - চালাও biafra রান্না
+  - চালাও biafra টিভি রান্না
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bajao queen office
-  - bajao queen tivi office
+  - চালাও queen office
+  - চালাও queen টিভি office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bajao beatles office
-  - bajao beatles tivi office
+  - চালাও beatles office
+  - চালাও beatles টিভি office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bajao radiohead office
-  - bajao radiohead tivi office
+  - চালাও radiohead office
+  - চালাও radiohead টিভি office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bajao abba office
-  - bajao abba tivi office
+  - চালাও abba office
+  - চালাও abba টিভি office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bajao coldplay office
-  - bajao coldplay tivi office
+  - চালাও coldplay office
+  - চালাও coldplay টিভি office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bajao adele office
-  - bajao adele tivi office
+  - চালাও adele office
+  - চালাও adele টিভি office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bajao prince office
-  - bajao prince tivi office
+  - চালাও prince office
+  - চালাও prince টিভি office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bajao bowie office
-  - bajao bowie tivi office
+  - চালাও bowie office
+  - চালাও bowie টিভি office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bajao nirvana office
-  - bajao nirvana tivi office
+  - চালাও nirvana office
+  - চালাও nirvana টিভি office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bajao eagles office
-  - bajao eagles tivi office
+  - চালাও eagles office
+  - চালাও eagles টিভি office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bajao madonna office
-  - bajao madonna tivi office
+  - চালাও madonna office
+  - চালাও madonna টিভি office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bajao mozart office
-  - bajao mozart tivi office
+  - চালাও mozart office
+  - চালাও mozart টিভি office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bajao daft punk office
-  - bajao daft punk tivi office
+  - চালাও daft punk office
+  - চালাও daft punk টিভি office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bajao biafra office
-  - bajao biafra tivi office
+  - চালাও biafra office
+  - চালাও biafra টিভি office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode bosar
+  - চালাও queen radio mode বসার
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ki tivi bosar
-  - ki track bosar
+  - কি টিভি বসার
+  - কি track বসার
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode ranna
+  - চালাও queen radio mode রান্না
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - ki tivi ranna
-  - ki track ranna
+  - কি টিভি রান্না
+  - কি track রান্না
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bajao queen radio mode office
+  - চালাও queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - ki tivi office
-  - ki track office
+  - কি টিভি office
+  - কি track office

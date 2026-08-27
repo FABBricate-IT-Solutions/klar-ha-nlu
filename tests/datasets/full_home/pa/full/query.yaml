@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - ki roshni vithak
-  - ki vithak roshni
+  - ਕੀ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ ਰੋਸ਼ਨੀ
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - ki parda vithak
-  - ki vithak parda
+  - ਕੀ ਪਰਦਾ ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ ਪਰਦਾ
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - ki tala dakhla
-  - ki dakhla tala
+  - ਕੀ ਤਾਲਾ dakhla
+  - ਕੀ dakhla ਤਾਲਾ
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ki garmi vithak
-  - ki vithak garmi
+  - ਕੀ ਗਰਮੀ ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ ਗਰਮੀ
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - ki tv vithak
-  - ki vithak tv
+  - ਕੀ tv ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - ki doorsensor dakhla
-  - ki dakhla doorsensor
+  - ਕੀ doorsensor dakhla
+  - ਕੀ dakhla doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - ki windowsensor vithak
-  - ki vithak windowsensor
+  - ਕੀ windowsensor ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - ki tempsensor vithak
-  - ki vithak tempsensor
+  - ਕੀ tempsensor ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - ki roshni rasoi
-  - ki rasoi roshni
+  - ਕੀ ਰੋਸ਼ਨੀ ਰਸੋਈ
+  - ਕੀ ਰਸੋਈ ਰੋਸ਼ਨੀ
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - ki roshni office
-  - ki office roshni
+  - ਕੀ ਰੋਸ਼ਨੀ office
+  - ਕੀ office ਰੋਸ਼ਨੀ
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - ki roshni garden
-  - ki garden roshni
+  - ਕੀ ਰੋਸ਼ਨੀ garden
+  - ਕੀ garden ਰੋਸ਼ਨੀ
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - ki roshni basement
-  - ki basement roshni
+  - ਕੀ ਰੋਸ਼ਨੀ basement
+  - ਕੀ basement ਰੋਸ਼ਨੀ
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - ki parda bedroom
-  - ki bedroom parda
+  - ਕੀ ਪਰਦਾ bedroommaster
+  - ਕੀ bedroommaster ਪਰਦਾ
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - ki parda garage
-  - ki garage parda
+  - ਕੀ ਪਰਦਾ garage
+  - ਕੀ garage ਪਰਦਾ
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - ki tala garage
-  - ki garage tala
+  - ਕੀ ਤਾਲਾ garage
+  - ਕੀ garage ਤਾਲਾ
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ki garmi bedroom
-  - ki bedroom garmi
+  - ਕੀ ਗਰਮੀ bedroommaster
+  - ਕੀ bedroommaster ਗਰਮੀ
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ki garmi bedroom
-  - ki bedroom garmi
+  - ਕੀ garmi bedroommaster
+  - ਕੀ bedroommaster garmi
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - ki tv parivarak
-  - ki parivarak tv
+  - ਕੀ tv parivarak
+  - ਕੀ parivarak tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - ki tivi vithak
-  - ki vithak tivi
+  - ਕੀ ਟੀਵੀ ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ ਟੀਵੀ
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - ki motion rasoi
-  - ki rasoi motion
+  - ਕੀ motion ਰਸੋਈ
+  - ਕੀ ਰਸੋਈ motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - ki humidity vithak
-  - ki vithak humidity
+  - ਕੀ humidity ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - ki pakha bedroom
-  - ki bedroom pakha
+  - ਕੀ ਪੱਖਾ bedroommaster
+  - ਕੀ bedroommaster ਪੱਖਾ
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - ki jharu vithak
-  - ki vithak jharu
+  - ਕੀ ਝਾੜੂ ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ ਝਾੜੂ
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - ki roshni vithak
-  - ki vithak roshni
+  - ਕੀ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - ਕੀ ਬੈਠਕ ਰੋਸ਼ਨੀ
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - ki roshni rasoi
-  - ki rasoi roshni
+  - ਕੀ ਰੋਸ਼ਨੀ ਰਸੋਈ
+  - ਕੀ ਰਸੋਈ ਰੋਸ਼ਨੀ
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - ki roshni bedroom
-  - ki bedroom roshni
+  - ਕੀ ਰੋਸ਼ਨੀ bedroommaster
+  - ਕੀ bedroommaster ਰੋਸ਼ਨੀ
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - ki roshni bedroom
-  - ki bedroom roshni
+  - ਕੀ ਰੋਸ਼ਨੀ bedroommaster
+  - ਕੀ bedroommaster ਰੋਸ਼ਨੀ
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - ki roshni hallway
-  - ki hallway roshni
+  - ਕੀ ਰੋਸ਼ਨੀ hallway
+  - ਕੀ hallway ਰੋਸ਼ਨੀ
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - ki roshni parivarak
-  - ki parivarak roshni
+  - ਕੀ ਰੋਸ਼ਨੀ parivarak
+  - ਕੀ parivarak ਰੋਸ਼ਨੀ
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - ki roshni parivarakess
-  - ki parivarakess roshni
+  - ਕੀ ਰੋਸ਼ਨੀ parivarakess
+  - ਕੀ parivarakess ਰੋਸ਼ਨੀ
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - ki roshni garage
-  - ki garage roshni
+  - ਕੀ ਰੋਸ਼ਨੀ garage
+  - ਕੀ garage ਰੋਸ਼ਨੀ
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - ki roshni bedroom2
-  - ki bedroom2 roshni
+  - ਕੀ ਰੋਸ਼ਨੀ bedroom2
+  - ਕੀ bedroom2 ਰੋਸ਼ਨੀ
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - ki roshni bedroom3
-  - ki bedroom3 roshni
+  - ਕੀ ਰੋਸ਼ਨੀ bedroom3
+  - ਕੀ bedroom3 ਰੋਸ਼ਨੀ
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - ki roshni bedroom4
-  - ki bedroom4 roshni
+  - ਕੀ ਰੋਸ਼ਨੀ bedroom4
+  - ਕੀ bedroom4 ਰੋਸ਼ਨੀ
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - ki roshni dakhla
-  - ki dakhla roshni
+  - ਕੀ ਰੋਸ਼ਨੀ dakhla
+  - ਕੀ dakhla ਰੋਸ਼ਨੀ
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - ki roshni dhon
-  - ki dhon roshni
+  - ਕੀ ਰੋਸ਼ਨੀ dhon
+  - ਕੀ dhon ਰੋਸ਼ਨੀ
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - ki roshni main bath
-  - ki main bath roshni
+  - ਕੀ ਰੋਸ਼ਨੀ main bath
+  - ਕੀ main bath ਰੋਸ਼ਨੀ
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - ki roshni toilet
-  - ki toilet roshni
+  - ਕੀ ਰੋਸ਼ਨੀ toilet
+  - ਕੀ toilet ਰੋਸ਼ਨੀ
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - ki ensuite bedroom
-  - ki bedroom ensuite
+  - ਕੀ ensuite bedroommaster
+  - ਕੀ bedroommaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - ki roshni bedroom
-  - ki bedroom roshni
+  - ਕੀ ਰੋਸ਼ਨੀ bedroommaster
+  - ਕੀ bedroommaster ਰੋਸ਼ਨੀ
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - ki roshni masterbath
-  - ki masterbath roshni
+  - ਕੀ ਰੋਸ਼ਨੀ masterbath
+  - ਕੀ masterbath ਰੋਸ਼ਨੀ

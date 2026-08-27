@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - enciende luz dormitorio
+  - enciende luz dormitoriomaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga luz dormitorio
+  - apaga luz dormitoriomaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - enciende techo dormitorio
+  - enciende techo dormitoriomaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - apaga techo dormitorio
+  - apaga techo dormitoriomaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - enciende mesilla dormitorio
+  - enciende mesilla dormitoriomaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - apaga mesilla dormitorio
+  - apaga mesilla dormitoriomaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

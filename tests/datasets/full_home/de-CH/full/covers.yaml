@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ufmache store schlafzimmer
-  - store schlafzimmer ufmache
+  - ufmache store schlafzimmermaster
+  - store schlafzimmermaster ufmache
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zue store schlafzimmer
-  - store schlafzimmer zue
+  - zue store schlafzimmermaster
+  - store schlafzimmermaster zue
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - stell store schlafzimmer 0
-  - store schlafzimmer 0
+  - stell store schlafzimmermaster 0
+  - store schlafzimmermaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - stell store schlafzimmer 25
-  - store schlafzimmer 25
+  - stell store schlafzimmermaster 25
+  - store schlafzimmermaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - stell store schlafzimmer 40
-  - store schlafzimmer 40
+  - stell store schlafzimmermaster 40
+  - store schlafzimmermaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - stell store schlafzimmer 75
-  - store schlafzimmer 75
+  - stell store schlafzimmermaster 75
+  - store schlafzimmermaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - stell store schlafzimmer 100
-  - store schlafzimmer 100
+  - stell store schlafzimmermaster 100
+  - store schlafzimmermaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - ufmache store schlafzimmer
-  - store schlafzimmer ufmache
+  - ufmache store schlafzimmermaster
+  - store schlafzimmermaster ufmache

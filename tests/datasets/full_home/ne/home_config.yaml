@@ -31,9 +31,10 @@ areas:
   aliases:
   - pravesh
 - id: living
-  name: Baithak
+  name: बैठक
   floor: ground
   aliases:
+  - बैठक
   - baithak
 - id: dining
   name: Parivarikess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - parivarikess
 - id: kitchen
-  name: Bhansa
+  name: भान्सा
   floor: ground
   aliases:
+  - भान्सा
   - bhansa
 - id: family_room
   name: Parivarik
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Sutnekotha
+  name: Sutnekothamaster
   floor: upper
   aliases:
+  - sutnekothamaster
   - sutnekotha
 - id: bedroom_2
   name: Sutnekotha2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: pravesh batti
+  name: pravesh बत्ती
   aliases:
-  - pravesh batti
-  - batti
+  - pravesh बत्ती
+  - बत्ती
 - id: light.living_ceiling
   area_id: living
-  name: baithak chhana
+  name: बैठक chhana
   aliases:
-  - baithak chhana
+  - बैठक chhana
   - chhana
 - id: light.living_lamp
   area_id: living
-  name: baithak batti
+  name: बैठक batti
   aliases:
-  - baithak batti
+  - बैठक batti
   - batti
 - id: light.dining_pendant
   area_id: dining
-  name: parivarikess batti
+  name: parivarikess बत्ती
   aliases:
-  - parivarikess batti
-  - batti
+  - parivarikess बत्ती
+  - बत्ती
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: bhansa chhana
+  name: भान्सा chhana
   aliases:
-  - bhansa chhana
+  - भान्सा chhana
   - chhana
 - id: light.kitchen_island
   area_id: kitchen
-  name: bhansa dweep
+  name: भान्सा dweep
   aliases:
-  - bhansa dweep
+  - भान्सा dweep
   - dweep
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - chhana
 - id: light.laundry_light
   area_id: laundry
-  name: dhune batti
+  name: dhune बत्ती
   aliases:
-  - dhune batti
-  - batti
+  - dhune बत्ती
+  - बत्ती
 - id: light.powder_room_light
   area_id: powder_room
-  name: shauchalay batti
+  name: shauchalay बत्ती
   aliases:
-  - shauchalay batti
-  - batti
+  - shauchalay बत्ती
+  - बत्ती
 - id: light.garage_light
   area_id: garage
-  name: garage batti
+  name: garage बत्ती
   aliases:
-  - garage batti
-  - batti
+  - garage बत्ती
+  - बत्ती
 - id: light.office_ceiling
   area_id: office
   name: office chhana
@@ -184,35 +187,35 @@ devices:
   - chhana
 - id: light.garden
   area_id: garden
-  name: garden batti
+  name: garden बत्ती
   aliases:
-  - garden batti
-  - batti
+  - garden बत्ती
+  - बत्ती
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: sutnekotha chhana
+  name: sutnekothamaster chhana
   aliases:
-  - sutnekotha chhana
+  - sutnekothamaster chhana
   - chhana
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: sutnekotha ensuite
+  name: sutnekothamaster ensuite
   aliases:
-  - sutnekotha ensuite
+  - sutnekothamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: sutnekotha left khat
+  name: sutnekothamaster left khat
   aliases:
-  - sutnekotha left khat
+  - sutnekothamaster left khat
   - khat
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: sutnekotha right khat
+  name: sutnekothamaster right khat
   aliases:
-  - sutnekotha right khat
+  - sutnekothamaster right khat
   - khat
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - chhana
 - id: light.master_bath_light
   area_id: master_bath
-  name: mukhyasnan batti
+  name: mukhyasnan बत्ती
   aliases:
-  - mukhyasnan batti
-  - batti
+  - mukhyasnan बत्ती
+  - बत्ती
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath batti
+  name: main bath बत्ती
   aliases:
-  - main bath batti
-  - batti
+  - main bath बत्ती
+  - बत्ती
 - id: light.hallway_light
   area_id: hallway
-  name: hallway batti
+  name: hallway बत्ती
   aliases:
-  - hallway batti
-  - batti
+  - hallway बत्ती
+  - बत्ती
 - id: light.basement
   area_id: basement
-  name: basement batti
+  name: basement बत्ती
   aliases:
-  - basement batti
-  - batti
+  - basement बत्ती
+  - बत्ती
 - id: cover.living_blinds
   area_id: living
-  name: baithak parda
+  name: बैठक पर्दा
   aliases:
-  - baithak parda
-  - parda
+  - बैठक पर्दा
+  - पर्दा
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: sutnekotha parda
+  name: sutnekothamaster पर्दा
   aliases:
-  - sutnekotha parda
-  - parda
+  - sutnekothamaster पर्दा
+  - पर्दा
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: sutnekotha2 parda
+  name: sutnekotha2 पर्दा
   aliases:
-  - sutnekotha2 parda
-  - parda
+  - sutnekotha2 पर्दा
+  - पर्दा
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: sutnekotha3 parda
+  name: sutnekotha3 पर्दा
   aliases:
-  - sutnekotha3 parda
-  - parda
+  - sutnekotha3 पर्दा
+  - पर्दा
 - id: cover.garage_door
   area_id: garage
-  name: garage parda
+  name: garage पर्दा
   aliases:
-  - garage parda
-  - parda
+  - garage पर्दा
+  - पर्दा
 - id: climate.ground_thermostat
   area_id: living
-  name: baithak tato
+  name: बैठक तातो
   aliases:
-  - baithak tato
-  - tato
+  - बैठक तातो
+  - तातो
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: sutnekotha tato
+  name: sutnekothamaster तातो
   aliases:
-  - sutnekotha tato
-  - tato
+  - sutnekothamaster तातो
+  - तातो
 - id: climate.master_ac
   area_id: master_bedroom
-  name: tato sutnekotha
+  name: tato sutnekothamaster
   aliases:
-  - tato sutnekotha
+  - tato sutnekothamaster
   - tato
   - ac
   tags:
   - tato
 - id: fan.family_fan
   area_id: family_room
-  name: parivarik pankha
+  name: parivarik पंखा
   aliases:
-  - parivarik pankha
-  - pankha
+  - parivarik पंखा
+  - पंखा
 - id: fan.master_fan
   area_id: master_bedroom
-  name: sutnekotha pankha
+  name: sutnekothamaster पंखा
   aliases:
-  - sutnekotha pankha
-  - pankha
+  - sutnekothamaster पंखा
+  - पंखा
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: sutnekotha2 pankha
+  name: sutnekotha2 पंखा
   aliases:
-  - sutnekotha2 pankha
-  - pankha
+  - sutnekotha2 पंखा
+  - पंखा
 - id: lock.front_door
   area_id: entryway
-  name: front dhoka
+  name: front ढोका
   aliases:
-  - front dhoka
+  - front ढोका
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage dhoka
+  name: garage ढोका
   aliases:
-  - garage dhoka
+  - garage ढोका
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: bhansa basna
+  name: भान्सा basna
   aliases:
-  - bhansa basna
+  - भान्सा basna
   - basna
 - id: switch.rangehood
   area_id: kitchen
-  name: bhansa rangehood
+  name: भान्सा rangehood
   aliases:
-  - bhansa rangehood
+  - भान्सा rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: mukhyasnan pankhabad
+  name: mukhyasnan पंखाbad
   aliases:
-  - mukhyasnan pankhabad
-  - pankhabad
+  - mukhyasnan पंखाbad
+  - पंखाbad
   tags:
-  - pankhabad
+  - पंखाbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath pankhabad
+  name: main bath पंखाbad
   aliases:
-  - main bath pankhabad
-  - pankhabad
+  - main bath पंखाbad
+  - पंखाbad
   tags:
-  - pankhabad
+  - पंखाbad
 - id: media_player.living_tv
   area_id: living
-  name: baithak tv
+  name: बैठक tv
   aliases:
-  - baithak tv
+  - बैठक tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: baithak tivi
+  name: बैठक टिभी
   aliases:
-  - baithak tivi
-  - tivi
+  - बैठक टिभी
+  - टिभी
   platform: music_assistant
   tags:
-  - tivi
+  - टिभी
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: bhansa tivi
+  name: भान्सा टिभी
   aliases:
-  - bhansa tivi
-  - tivi
+  - भान्सा टिभी
+  - टिभी
   platform: music_assistant
   tags:
-  - tivi
+  - टिभी
 - id: media_player.office_music
   area_id: office
-  name: office tivi
+  name: office टिभी
   aliases:
-  - office tivi
-  - tivi
+  - office टिभी
+  - टिभी
   platform: music_assistant
   tags:
-  - tivi
+  - टिभी
 - id: vacuum.robot
   area_id: living
-  name: baithak kucho
+  name: बैठक कुचो
   aliases:
-  - baithak kucho
-  - kucho
+  - बैठक कुचो
+  - कुचो
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: pravesh doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: baithak windowsensor
+  name: बैठक windowsensor
   aliases:
-  - baithak windowsensor
+  - बैठक windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: bhansa motion
+  name: भान्सा motion
   aliases:
-  - bhansa motion
+  - भान्सा motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: baithak tempsensor
+  name: बैठक tempsensor
   aliases:
-  - baithak tempsensor
+  - बैठक tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: baithak humidity
+  name: बैठक humidity
   aliases:
-  - baithak humidity
+  - बैठक humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: jane
 timers:
 - id: oven
-  name: oven timer
+  name: oven टाइमर
 - id: laundry
-  name: laundry timer
+  name: laundry टाइमर
 - id: abstract
-  name: abstract timer
+  name: abstract टाइमर
 lists:
 - id: shopping
-  name: suchi
+  name: सूची

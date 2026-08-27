@@ -286,6 +286,15 @@ mod tests {
     }
 
     #[test]
+    fn script_yes_words_rejoin_from_known_surfaces() {
+        let _ja = crate::lang::bind(&["ja".into()]);
+        assert_eq!(tokenize("はい"), vec!["はい"]);
+        drop(_ja);
+        let _th = crate::lang::bind(&["th".into()]);
+        assert_eq!(tokenize("ใช่"), vec!["ใช่"]);
+    }
+
+    #[test]
     fn indic_virama_stays_inside_the_word() {
         assert_eq!(tokenize("জ্বালাও আলো বসার"), vec!["জ্বালাও", "আলো", "বসার"]);
         assert_eq!(tokenize("जलाओ बत्ती बैठक"), vec!["जलाओ", "बत्ती", "बैठक"]);

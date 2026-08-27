@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - miatsu poshekul
-  - poshekul miatsu
+  - միացրու փոշեկուլ
+  - փոշեկուլ միացրու
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - anjatir poshekul
-  - poshekul anjatir
+  - անջատիր փոշեկուլ
+  - փոշեկուլ անջատիր

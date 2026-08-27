@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - apa tirai kamar
-  - apa kamar tirai
+  - apa tirai kamarmaster
+  - apa kamarmaster tirai
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - apa ac kamar
-  - apa kamar ac
+  - apa ac kamarmaster
+  - apa kamarmaster ac
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - apa ac kamar
-  - apa kamar ac
+  - apa ac kamarmaster
+  - apa kamarmaster ac
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - apa kipas kamar
-  - apa kamar kipas
+  - apa kipas kamarmaster
+  - apa kamarmaster kipas
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - apa lampu kamar
-  - apa kamar lampu
+  - apa lampu kamarmaster
+  - apa kamarmaster lampu
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - apa lampu kamar
-  - apa kamar lampu
+  - apa lampu kamarmaster
+  - apa kamarmaster lampu
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - apa ensuite kamar
-  - apa kamar ensuite
+  - apa ensuite kamarmaster
+  - apa kamarmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - apa lampu kamar
-  - apa kamar lampu
+  - apa lampu kamarmaster
+  - apa kamarmaster lampu
 - name: query_light.master_bath_light
   conditions:
   - type: query

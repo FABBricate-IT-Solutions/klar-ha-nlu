@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - פתח וילון חדרשינה
-  - וילון חדרשינה פתח
+  - פתח וילון חדרשינהmaster
+  - וילון חדרשינהmaster פתח
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - סגור וילון חדרשינה
-  - וילון חדרשינה סגור
+  - סגור וילון חדרשינהmaster
+  - וילון חדרשינהmaster סגור
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - שים וילון חדרשינה 0
-  - וילון חדרשינה 0
+  - שים וילון חדרשינהmaster 0
+  - וילון חדרשינהmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - שים וילון חדרשינה 25
-  - וילון חדרשינה 25
+  - שים וילון חדרשינהmaster 25
+  - וילון חדרשינהmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - שים וילון חדרשינה 40
-  - וילון חדרשינה 40
+  - שים וילון חדרשינהmaster 40
+  - וילון חדרשינהmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - שים וילון חדרשינה 75
-  - וילון חדרשינה 75
+  - שים וילון חדרשינהmaster 75
+  - וילון חדרשינהmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - שים וילון חדרשינה 100
-  - וילון חדרשינה 100
+  - שים וילון חדרשינהmaster 100
+  - וילון חדרשינהmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - פתח וילון חדרשינה
-  - וילון חדרשינה פתח
+  - פתח וילון חדרשינהmaster
+  - וילון חדרשינהmaster פתח

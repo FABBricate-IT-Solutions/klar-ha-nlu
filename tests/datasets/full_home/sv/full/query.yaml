@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - vad gardin sovrum
-  - vad sovrum gardin
+  - vad gardin sovrummaster
+  - vad sovrummaster gardin
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - vad varme sovrum
-  - vad sovrum varme
+  - vad varme sovrummaster
+  - vad sovrummaster varme
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - vad temperatur sovrum
-  - vad sovrum temperatur
+  - vad temperatur sovrummaster
+  - vad sovrummaster temperatur
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - vad flakt sovrum
-  - vad sovrum flakt
+  - vad flakt sovrummaster
+  - vad sovrummaster flakt
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - vad ljus sovrum
-  - vad sovrum ljus
+  - vad ljus sovrummaster
+  - vad sovrummaster ljus
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - vad ljus sovrum
-  - vad sovrum ljus
+  - vad ljus sovrummaster
+  - vad sovrummaster ljus
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - vad ensuite sovrum
-  - vad sovrum ensuite
+  - vad ensuite sovrummaster
+  - vad sovrummaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - vad ljus sovrum
-  - vad sovrum ljus
+  - vad ljus sovrummaster
+  - vad sovrummaster ljus
 - name: query_light.master_bath_light
   conditions:
   - type: query

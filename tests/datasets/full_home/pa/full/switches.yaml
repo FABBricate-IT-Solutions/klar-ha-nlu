@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - chalu bartan rasoi
-  - bartan rasoi chalu
+  - ਚਾਲੂ bartan ਰਸੋਈ
+  - bartan ਰਸੋਈ ਚਾਲੂ
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - band bartan rasoi
-  - bartan rasoi band
+  - ਬੰਦ bartan ਰਸੋਈ
+  - bartan ਰਸੋਈ ਬੰਦ
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - chalu washing dhon
-  - washing dhon chalu
+  - ਚਾਲੂ washing dhon
+  - washing dhon ਚਾਲੂ
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - band washing dhon
-  - washing dhon band
+  - ਬੰਦ washing dhon
+  - washing dhon ਬੰਦ
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - chalu dryer dhon
-  - dryer dhon chalu
+  - ਚਾਲੂ dryer dhon
+  - dryer dhon ਚਾਲੂ
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - band dryer dhon
-  - dryer dhon band
+  - ਬੰਦ dryer dhon
+  - dryer dhon ਬੰਦ
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - chalu rangehood rasoi
-  - rangehood rasoi chalu
+  - ਚਾਲੂ rangehood ਰਸੋਈ
+  - rangehood ਰਸੋਈ ਚਾਲੂ
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - band rangehood rasoi
-  - rangehood rasoi band
+  - ਬੰਦ rangehood ਰਸੋਈ
+  - rangehood ਰਸੋਈ ਬੰਦ
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - chalu pakhabad masterbath
-  - pakhabad masterbath chalu
+  - ਚਾਲੂ ਪੱਖਾbad masterbath
+  - ਪੱਖਾbad masterbath ਚਾਲੂ
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - band pakhabad masterbath
-  - pakhabad masterbath band
+  - ਬੰਦ ਪੱਖਾbad masterbath
+  - ਪੱਖਾbad masterbath ਬੰਦ
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - chalu pakhabad main bath
-  - pakhabad main bath chalu
+  - ਚਾਲੂ ਪੱਖਾbad main bath
+  - ਪੱਖਾbad main bath ਚਾਲੂ
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - band pakhabad main bath
-  - pakhabad main bath band
+  - ਬੰਦ ਪੱਖਾbad main bath
+  - ਪੱਖਾbad main bath ਬੰਦ

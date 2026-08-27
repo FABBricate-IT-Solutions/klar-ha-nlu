@@ -83,8 +83,8 @@ def lex_of(core: dict) -> dict:
     rooms.setdefault("badezimmer", []).append((rooms.get("badezimmer") or extra.get("master_bath") or [kitchen])[0])
     office = rooms.get("arbeitszimmer") or rooms.get("office") or []
     if not office or office[0] == living:
-        rooms["arbeitszimmer"] = [f"{living}office"]
-        rooms.setdefault("office", [f"{living}office"])
+        rooms["arbeitszimmer"] = ["office"]
+        rooms.setdefault("office", ["office"])
     else:
         rooms.setdefault("arbeitszimmer", []).append(office[0])
     first = lambda key, fallback=None: (w.get(key) or fallback or w["set"])[0]

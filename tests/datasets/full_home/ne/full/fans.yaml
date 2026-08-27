@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - pankha parivarik bal
-  - bal pankha parivarik
+  - पंखा parivarik बाल
+  - बाल पंखा parivarik
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - nibhau pankha parivarik
-  - pankha parivarik nibhau
+  - निभाऊ पंखा parivarik
+  - पंखा parivarik निभाऊ
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set pankha parivarik 40
-  - pankha parivarik 40
+  - सेट पंखा parivarik 40
+  - पंखा parivarik 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - pankha sutnekotha bal
-  - bal pankha sutnekotha
+  - पंखा sutnekothamaster बाल
+  - बाल पंखा sutnekothamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - nibhau pankha sutnekotha
-  - pankha sutnekotha nibhau
+  - निभाऊ पंखा sutnekothamaster
+  - पंखा sutnekothamaster निभाऊ
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set pankha sutnekotha 40
-  - pankha sutnekotha 40
+  - सेट पंखा sutnekothamaster 40
+  - पंखा sutnekothamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - pankha sutnekotha2 bal
-  - bal pankha sutnekotha2
+  - पंखा sutnekotha2 बाल
+  - बाल पंखा sutnekotha2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - nibhau pankha sutnekotha2
-  - pankha sutnekotha2 nibhau
+  - निभाऊ पंखा sutnekotha2
+  - पंखा sutnekotha2 निभाऊ
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - set pankha sutnekotha2 40
-  - pankha sutnekotha2 40
+  - सेट पंखा sutnekotha2 40
+  - पंखा sutnekotha2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pankha parivarik 20
-  - pankha parivarik 20
+  - सेट पंखा parivarik 20
+  - पंखा parivarik 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pankha parivarik 60
-  - pankha parivarik 60
+  - सेट पंखा parivarik 60
+  - पंखा parivarik 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set pankha parivarik 80
-  - pankha parivarik 80
+  - सेट पंखा parivarik 80
+  - पंखा parivarik 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pankha sutnekotha 20
-  - pankha sutnekotha 20
+  - सेट पंखा sutnekothamaster 20
+  - पंखा sutnekothamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pankha sutnekotha 60
-  - pankha sutnekotha 60
+  - सेट पंखा sutnekothamaster 60
+  - पंखा sutnekothamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set pankha sutnekotha 80
-  - pankha sutnekotha 80
+  - सेट पंखा sutnekothamaster 80
+  - पंखा sutnekothamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pankha sutnekotha2 20
-  - pankha sutnekotha2 20
+  - सेट पंखा sutnekotha2 20
+  - पंखा sutnekotha2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pankha sutnekotha2 60
-  - pankha sutnekotha2 60
+  - सेट पंखा sutnekotha2 60
+  - पंखा sutnekotha2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - set pankha sutnekotha2 80
-  - pankha sutnekotha2 80
+  - सेट पंखा sutnekotha2 80
+  - पंखा sutnekotha2 80

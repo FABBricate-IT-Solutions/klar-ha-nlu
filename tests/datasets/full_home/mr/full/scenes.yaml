@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - chalu chitrapat
-  - chitrapat chalu
+  - चालू chitrapat
+  - chitrapat चालू
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - chalu ratra
-  - ratra chalu
+  - चालू ratra
+  - ratra चालू
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - chalu jane
-  - jane chalu
+  - चालू jane
+  - jane चालू
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - chalu dinner
-  - dinner chalu
+  - चालू dinner
+  - dinner चालू
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - chalu morning
-  - morning chalu
+  - चालू morning
+  - morning चालू
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - chalu kids
-  - kids chalu
+  - चालू kids
+  - kids चालू

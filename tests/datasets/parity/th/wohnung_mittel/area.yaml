@@ -1,82 +1,82 @@
 area/heizung::heizung_badezimmer_23:
-- tang air hongnamlak 23
+- ตั้ง แอร์ hongnamlak 23
 area/heizung::heizung_esszimmer_23:
-- tang air hongkhropkhruaess 23
+- ตั้ง แอร์ hongkhropkhruaess 23
 area/heizung::heizung_schlafzimmer_23:
-- tang air hongnon 23
+- ตั้ง แอร์ hongnon 23
 area/heizung::heizung_wohnzimmer_23:
-- tang air hongnang 23
+- ตั้ง แอร์ ห้องนั่งเล่น 23
 area/lichter::alle_an_ausser_kugel:
-- poetfai ทั้งหมด fai ยกเว้น luk
+- เปิด ทั้งหมด ไฟ ยกเว้น luk
 area/lichter::alle_an_ausser_schlafzimmer:
-- poetfai ทั้งหมด fai ยกเว้น hongnon
+- เปิด ทั้งหมด ไฟ ยกเว้น hongnon
 area/lichter::alle_auf_20_ausser_schlafzimmer:
-- tang ทั้งหมด fai ยกเว้น hongnon 20
+- ตั้ง ทั้งหมด ไฟ ยกเว้น hongnon 20
 area/lichter::alle_auf_rot_ausser_kugel:
-- tang ทั้งหมด fai ยกเว้น luk red
+- ตั้ง ทั้งหมด ไฟ ยกเว้น luk แดง
 area/lichter::alle_ausser_kugel:
-- pitfai ทั้งหมด fai ยกเว้น luk
+- ปิด ทั้งหมด ไฟ ยกเว้น luk
 area/lichter::alle_ausser_schlafzimmer:
-- pitfai ทั้งหมด fai ยกเว้น hongnon
+- ปิด ทั้งหมด ไฟ ยกเว้น hongnon
 area/lichter::alle_lichter_an:
-- poetfai ทั้งหมด fai
+- เปิด ทั้งหมด ไฟ
 area/lichter::alle_lichter_aus:
-- pitfai ทั้งหมด fai
+- ปิด ทั้งหมด ไฟ
 area/lichter::arbeitszimmer_lichter_an:
-- poetfai fai hongnang
+- เปิด ทั้งหมด ไฟ office
 area/lichter::arbeitszimmer_lichter_aus:
-- pitfai fai hongnang
+- ปิด ทั้งหมด ไฟ office
 area/lichter::esszimmer_lichter_an:
-- poetfai fai hongkhropkhruaess
+- เปิด ทั้งหมด ไฟ hongkhropkhruaess
 area/lichter::esszimmer_lichter_aus:
-- pitfai fai hongkhropkhruaess
+- ปิด ทั้งหมด ไฟ hongkhropkhruaess
 area/lichter::kuche_lichter_an:
-- poetfai fai hongkrua
+- เปิด ทั้งหมด ไฟ ห้องครัว
 area/lichter::kuche_lichter_aus:
-- pitfai fai hongkrua
+- ปิด ทั้งหมด ไฟ ห้องครัว
 area/lichter::schlafzimmer_auf_blau:
-- tang fai hongnon blue
+- ตั้ง ทั้งหมด ไฟ hongnon น้ำเงิน
 area/lichter::schlafzimmer_auf_rot:
-- tang fai hongnon red
+- ตั้ง ทั้งหมด ไฟ hongnon แดง
 area/lichter::wohnzimmer_helligkeit:
-- tang fai hongnang 45
+- ตั้ง ทั้งหมด ไฟ ห้องนั่งเล่น 45
 area/lichter::wohnzimmer_lichter_an:
-- poetfai fai hongnang
+- เปิด ทั้งหมด ไฟ ห้องนั่งเล่น
 area/lichter::wohnzimmer_lichter_aus:
-- pitfai fai hongnang
+- ปิด ทั้งหมด ไฟ ห้องนั่งเล่น
 area/spoken::alle_ausser_kugel_stt:
-- pitfai ทั้งหมด fai ยกเว้น luk
+- ปิด ทั้งหมด ไฟ ยกเว้น luk
 area/spoken::alle_ausser_schlaf_stt:
-- pitfai ทั้งหมด fai ยกเว้น hongnon
+- ปิด ทั้งหมด ไฟ ยกเว้น hongnon
 area/spoken::alle_ganzen_an:
-- poetfai ทั้งหมด fai
+- เปิด ทั้งหมด ไฟ
 area/spoken::alle_lampen_aus:
-- pitfai ทั้งหมด fai
+- ปิด ทั้งหมด ไฟ
 area/spoken::esszimmer_weiss:
-- tang fai hongkhropkhruaess white
+- ตั้ง ทั้งหมด ไฟ hongkhropkhruaess ขาว
 area/spoken::stt_kuche_lichte:
-- pitfai fai hongkrua
+- ปิด ทั้งหมด ไฟ ห้องครัว
 area/spoken::stt_licht_wohnzimmer_an:
-- poetfai fai hongnang
+- เปิด ทั้งหมด ไฟ ห้องนั่งเล่น
 area/spoken::stt_licht_wohnzimmer_aus:
-- pitfai fai hongnang
+- ปิด ทั้งหมด ไฟ ห้องนั่งเล่น
 area/spoken::stt_schlafzimmer_dativ:
-- pitfai fai hongnon
+- ปิด ทั้งหมด ไฟ hongnon
 area/spoken::wohnzimmer_gruen:
-- tang fai hongnang green
+- ตั้ง ทั้งหมด ไฟ ห้องนั่งเล่น เขียว
 area/spoken_more::alle_ausser_arbeitszimmer:
-- pitfai ทั้งหมด fai ยกเว้น hongnang
+- ปิด ทั้งหมด ไฟ ยกเว้น office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- pitfai fai hongnang
+- ปิด ทั้งหมด ไฟ office
 area/spoken_more::esszimmer_30:
-- tang fai hongkhropkhruaess 30
+- ตั้ง ทั้งหมด ไฟ hongkhropkhruaess 30
 area/spoken_more::esszimmer_lichte_an:
-- poetfai fai hongkhropkhruaess
+- เปิด ทั้งหมด ไฟ hongkhropkhruaess
 area/spoken_more::kuche_80:
-- tang fai hongkrua 80
+- ตั้ง ทั้งหมด ไฟ ห้องครัว 80
 area/spoken_more::kuche_blau:
-- tang fai hongkrua blue
+- ตั้ง ทั้งหมด ไฟ ห้องครัว น้ำเงิน
 area/spoken_more::ueberall_ausser_schlaf_stt:
-- pitfai ทั้งหมด fai ยกเว้น hongnon
+- ปิด ทั้งหมด ไฟ ยกเว้น hongnon
 area/spoken_more::wohnzimmer_gelb:
-- tang fai hongnang yellow
+- ตั้ง ทั้งหมด ไฟ ห้องนั่งเล่น เหลือง

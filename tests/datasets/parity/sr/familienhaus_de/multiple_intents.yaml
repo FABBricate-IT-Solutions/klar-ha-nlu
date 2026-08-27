@@ -1,34 +1,34 @@
 multiple_intents/multiple_intents::multi_0:
-- искључи светло wc и укључи Guten Morgen
+- искључи светло wc then укључи сцена good_morning
 multiple_intents/multiple_intents::multi_1:
-- шта судови и укључи Haus verlassen
+- шта судови then укључи сцена leaving_home
 multiple_intents/multiple_intents::multi_10:
-- стави вентилатор спавача2 50 и шта завеса спавача2 и шта завеса спавача
+- стави вентилатор спавача2 50 then шта завеса спавача2 then шта завеса спавачаmaster
 multiple_intents/multiple_intents::multi_12:
-- искључи ноћни спавача и укључи светло вешерница
+- искључи ноћни спавачаmaster then укључи све светло вешерница
 multiple_intents/multiple_intents::multi_14:
-- искључи светло кухиња и шта светло улазgang
+- искључи све светло кухиња then шта светло улазgang
 multiple_intents/multiple_intents::multi_15:
-- шта завеса спавача2 и искључи светло кухиња
+- шта завеса спавача2 then искључи све светло кухиња
 multiple_intents/multiple_intents::multi_16:
-- укључи плафон кухиња и шта светло улазgang
+- укључи плафон кухиња then шта светло улазgang
 multiple_intents/multiple_intents::multi_18:
-- искључи вентилатор дневнаfam и стави светло кухиња 20
+- искључи вентилатор дневнаfam then стави острво кухиња 20
 multiple_intents/multiple_intents::multi_19:
-- шта вентилатор спавача2 и укључи светло вешерница
+- шта вентилатор спавача2 then укључи светло вешерница
 multiple_intents/multiple_intents::multi_2:
-- шта светло garage и затвори завеса дневна
+- шта светло garage then затвори завеса дневна
 multiple_intents/multiple_intents::multi_3:
-- шта грејање дневна и искључи плафон дневна
+- шта грејање дневна then искључи плафон дневна
 multiple_intents/multiple_intents::multi_4:
-- затвори завеса спавача3 и затвори завеса garage и укључи плафон спавача2
+- затвори завеса спавача3 then затвори завеса garage then укључи плафон спавача2
 multiple_intents/multiple_intents::multi_5:
-- искључи светло дневнаfamess и стави вентилатор спавача2 50
+- искључи светло дневнаfamess then стави вентилатор спавача2 50
 multiple_intents/multiple_intents::multi_6:
-- укључи плафон спавача3 и искључи светло улаз
+- укључи плафон спавача3 then искључи светло улаз
 multiple_intents/multiple_intents::multi_7:
-- укључи Filmabend и искључи судови
+- укључи сцена movie_night then искључи судови
 multiple_intents/multiple_intents::multi_8:
-- отвори брава garage и шта светло garage
+- отвори брава garage then шта светло garage
 multiple_intents/multiple_intents::multi_9:
-- pause телевизор дневна и искључи плафон дневна
+- pause tv дневна then искључи плафон дневна

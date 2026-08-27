@@ -31,9 +31,10 @@ areas:
   aliases:
   - shemosasvleli
 - id: living
-  name: Misagebi
+  name: მისაღები
   floor: ground
   aliases:
+  - მისაღები
   - misagebi
 - id: dining
   name: Ojakhisotakhiess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - ojakhisotakhiess
 - id: kitchen
-  name: Samzareulo
+  name: სამზარეულო
   floor: ground
   aliases:
+  - სამზარეულო
   - samzareulo
 - id: family_room
   name: Ojakhisotakhi
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Sadzinebeli
+  name: Sadzinebelimaster
   floor: upper
   aliases:
+  - sadzinebelimaster
   - sadzinebeli
 - id: bedroom_2
   name: Sadzinebeli2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: shemosasvleli sinatle
+  name: shemosasvleli სინათლე
   aliases:
-  - shemosasvleli sinatle
-  - sinatle
+  - shemosasvleli სინათლე
+  - სინათლე
 - id: light.living_ceiling
   area_id: living
-  name: misagebi potoloni
+  name: მისაღები potoloni
   aliases:
-  - misagebi potoloni
+  - მისაღები potoloni
   - potoloni
 - id: light.living_lamp
   area_id: living
-  name: misagebi sinatle
+  name: მისაღები sinatle
   aliases:
-  - misagebi sinatle
+  - მისაღები sinatle
   - sinatle
 - id: light.dining_pendant
   area_id: dining
-  name: ojakhisotakhiess sinatle
+  name: ojakhisotakhiess სინათლე
   aliases:
-  - ojakhisotakhiess sinatle
-  - sinatle
+  - ojakhisotakhiess სინათლე
+  - სინათლე
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: samzareulo potoloni
+  name: სამზარეულო potoloni
   aliases:
-  - samzareulo potoloni
+  - სამზარეულო potoloni
   - potoloni
 - id: light.kitchen_island
   area_id: kitchen
-  name: samzareulo kuntkhuli
+  name: სამზარეულო kuntkhuli
   aliases:
-  - samzareulo kuntkhuli
+  - სამზარეულო kuntkhuli
   - kuntkhuli
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - potoloni
 - id: light.laundry_light
   area_id: laundry
-  name: saretskhave sinatle
+  name: saretskhave სინათლე
   aliases:
-  - saretskhave sinatle
-  - sinatle
+  - saretskhave სინათლე
+  - სინათლე
 - id: light.powder_room_light
   area_id: powder_room
-  name: wc sinatle
+  name: wc სინათლე
   aliases:
-  - wc sinatle
-  - sinatle
+  - wc სინათლე
+  - სინათლე
 - id: light.garage_light
   area_id: garage
-  name: garage sinatle
+  name: garage სინათლე
   aliases:
-  - garage sinatle
-  - sinatle
+  - garage სინათლე
+  - სინათლე
 - id: light.office_ceiling
   area_id: office
   name: office potoloni
@@ -184,35 +187,35 @@ devices:
   - potoloni
 - id: light.garden
   area_id: garden
-  name: garden sinatle
+  name: garden სინათლე
   aliases:
-  - garden sinatle
-  - sinatle
+  - garden სინათლე
+  - სინათლე
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: sadzinebeli potoloni
+  name: sadzinebelimaster potoloni
   aliases:
-  - sadzinebeli potoloni
+  - sadzinebelimaster potoloni
   - potoloni
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: sadzinebeli ensuite
+  name: sadzinebelimaster ensuite
   aliases:
-  - sadzinebeli ensuite
+  - sadzinebelimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: sadzinebeli left sagamise
+  name: sadzinebelimaster left sagamise
   aliases:
-  - sadzinebeli left sagamise
+  - sadzinebelimaster left sagamise
   - sagamise
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: sadzinebeli right sagamise
+  name: sadzinebelimaster right sagamise
   aliases:
-  - sadzinebeli right sagamise
+  - sadzinebelimaster right sagamise
   - sagamise
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - potoloni
 - id: light.master_bath_light
   area_id: master_bath
-  name: abazanamaster sinatle
+  name: abazanamaster სინათლე
   aliases:
-  - abazanamaster sinatle
-  - sinatle
+  - abazanamaster სინათლე
+  - სინათლე
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath sinatle
+  name: main bath სინათლე
   aliases:
-  - main bath sinatle
-  - sinatle
+  - main bath სინათლე
+  - სინათლე
 - id: light.hallway_light
   area_id: hallway
-  name: hallway sinatle
+  name: hallway სინათლე
   aliases:
-  - hallway sinatle
-  - sinatle
+  - hallway სინათლე
+  - სინათლე
 - id: light.basement
   area_id: basement
-  name: basement sinatle
+  name: basement სინათლე
   aliases:
-  - basement sinatle
-  - sinatle
+  - basement სინათლე
+  - სინათლე
 - id: cover.living_blinds
   area_id: living
-  name: misagebi parda
+  name: მისაღები ფარდა
   aliases:
-  - misagebi parda
-  - parda
+  - მისაღები ფარდა
+  - ფარდა
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: sadzinebeli parda
+  name: sadzinebelimaster ფარდა
   aliases:
-  - sadzinebeli parda
-  - parda
+  - sadzinebelimaster ფარდა
+  - ფარდა
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: sadzinebeli2 parda
+  name: sadzinebeli2 ფარდა
   aliases:
-  - sadzinebeli2 parda
-  - parda
+  - sadzinebeli2 ფარდა
+  - ფარდა
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: sadzinebeli3 parda
+  name: sadzinebeli3 ფარდა
   aliases:
-  - sadzinebeli3 parda
-  - parda
+  - sadzinebeli3 ფარდა
+  - ფარდა
 - id: cover.garage_door
   area_id: garage
-  name: garage parda
+  name: garage ფარდა
   aliases:
-  - garage parda
-  - parda
+  - garage ფარდა
+  - ფარდა
 - id: climate.ground_thermostat
   area_id: living
-  name: misagebi gatboba
+  name: მისაღები გათბობა
   aliases:
-  - misagebi gatboba
-  - gatboba
+  - მისაღები გათბობა
+  - გათბობა
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: sadzinebeli gatboba
+  name: sadzinebelimaster გათბობა
   aliases:
-  - sadzinebeli gatboba
-  - gatboba
+  - sadzinebelimaster გათბობა
+  - გათბობა
 - id: climate.master_ac
   area_id: master_bedroom
-  name: gatboba sadzinebeli
+  name: gatboba sadzinebelimaster
   aliases:
-  - gatboba sadzinebeli
+  - gatboba sadzinebelimaster
   - gatboba
   - ac
   tags:
   - gatboba
 - id: fan.family_fan
   area_id: family_room
-  name: ojakhisotakhi ventilatori
+  name: ojakhisotakhi ვენტილატორი
   aliases:
-  - ojakhisotakhi ventilatori
-  - ventilatori
+  - ojakhisotakhi ვენტილატორი
+  - ვენტილატორი
 - id: fan.master_fan
   area_id: master_bedroom
-  name: sadzinebeli ventilatori
+  name: sadzinebelimaster ვენტილატორი
   aliases:
-  - sadzinebeli ventilatori
-  - ventilatori
+  - sadzinebelimaster ვენტილატორი
+  - ვენტილატორი
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: sadzinebeli2 ventilatori
+  name: sadzinebeli2 ვენტილატორი
   aliases:
-  - sadzinebeli2 ventilatori
-  - ventilatori
+  - sadzinebeli2 ვენტილატორი
+  - ვენტილატორი
 - id: lock.front_door
   area_id: entryway
-  name: front kari
+  name: front კარი
   aliases:
-  - front kari
+  - front კარი
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage kari
+  name: garage კარი
   aliases:
-  - garage kari
+  - garage კარი
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: samzareulo jamtchebi
+  name: სამზარეულო jamtchebi
   aliases:
-  - samzareulo jamtchebi
+  - სამზარეულო jamtchebi
   - jamtchebi
 - id: switch.rangehood
   area_id: kitchen
-  name: samzareulo rangehood
+  name: სამზარეულო rangehood
   aliases:
-  - samzareulo rangehood
+  - სამზარეულო rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: abazanamaster ventilatoribad
+  name: abazanamaster ვენტილატორიbad
   aliases:
-  - abazanamaster ventilatoribad
-  - ventilatoribad
+  - abazanamaster ვენტილატორიbad
+  - ვენტილატორიbad
   tags:
-  - ventilatoribad
+  - ვენტილატორიbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath ventilatoribad
+  name: main bath ვენტილატორიbad
   aliases:
-  - main bath ventilatoribad
-  - ventilatoribad
+  - main bath ვენტილატორიbad
+  - ვენტილატორიbad
   tags:
-  - ventilatoribad
+  - ვენტილატორიbad
 - id: media_player.living_tv
   area_id: living
-  name: misagebi tv
+  name: მისაღები tv
   aliases:
-  - misagebi tv
+  - მისაღები tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: misagebi televizori
+  name: მისაღები ტელევიზორი
   aliases:
-  - misagebi televizori
-  - televizori
+  - მისაღები ტელევიზორი
+  - ტელევიზორი
   platform: music_assistant
   tags:
-  - televizori
+  - ტელევიზორი
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: samzareulo televizori
+  name: სამზარეულო ტელევიზორი
   aliases:
-  - samzareulo televizori
-  - televizori
+  - სამზარეულო ტელევიზორი
+  - ტელევიზორი
   platform: music_assistant
   tags:
-  - televizori
+  - ტელევიზორი
 - id: media_player.office_music
   area_id: office
-  name: office televizori
+  name: office ტელევიზორი
   aliases:
-  - office televizori
-  - televizori
+  - office ტელევიზორი
+  - ტელევიზორი
   platform: music_assistant
   tags:
-  - televizori
+  - ტელევიზორი
 - id: vacuum.robot
   area_id: living
-  name: misagebi mtversasruti
+  name: მისაღები მტვერსასრუტი
   aliases:
-  - misagebi mtversasruti
-  - mtversasruti
+  - მისაღები მტვერსასრუტი
+  - მტვერსასრუტი
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: shemosasvleli doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: misagebi windowsensor
+  name: მისაღები windowsensor
   aliases:
-  - misagebi windowsensor
+  - მისაღები windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: samzareulo motion
+  name: სამზარეულო motion
   aliases:
-  - samzareulo motion
+  - სამზარეულო motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: misagebi tempsensor
+  name: მისაღები tempsensor
   aliases:
-  - misagebi tempsensor
+  - მისაღები tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: misagebi humidity
+  name: მისაღები humidity
   aliases:
-  - misagebi humidity
+  - მისაღები humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: gasvla
 timers:
 - id: oven
-  name: oven taimeri
+  name: oven ტაიმერი
 - id: laundry
-  name: laundry taimeri
+  name: laundry ტაიმერი
 - id: abstract
-  name: abstract taimeri
+  name: abstract ტაიმერი
 lists:
 - id: shopping
-  name: sia
+  name: სია

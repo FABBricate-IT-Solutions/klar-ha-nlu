@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Svefnherbergi
+  name: Svefnherbergimaster
   floor: upper
   aliases:
+  - svefnherbergimaster
   - svefnherbergi
 - id: bedroom_2
   name: Svefnherbergi2
@@ -130,10 +131,10 @@ devices:
   - loft
 - id: light.living_lamp
   area_id: living
-  name: stofa ljos
+  name: stofa lamp
   aliases:
-  - stofa ljos
-  - ljos
+  - stofa lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: stofafamess ljos
@@ -190,29 +191,29 @@ devices:
   - ljos
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: svefnherbergi loft
+  name: svefnherbergimaster loft
   aliases:
-  - svefnherbergi loft
+  - svefnherbergimaster loft
   - loft
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: svefnherbergi ensuite
+  name: svefnherbergimaster ensuite
   aliases:
-  - svefnherbergi ensuite
+  - svefnherbergimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: svefnherbergi left nattbord
+  name: svefnherbergimaster left nattbord
   aliases:
-  - svefnherbergi left nattbord
+  - svefnherbergimaster left nattbord
   - nattbord
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: svefnherbergi right nattbord
+  name: svefnherbergimaster right nattbord
   aliases:
-  - svefnherbergi right nattbord
+  - svefnherbergimaster right nattbord
   - nattbord
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - gardina
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: svefnherbergi gardina
+  name: svefnherbergimaster gardina
   aliases:
-  - svefnherbergi gardina
+  - svefnherbergimaster gardina
   - gardina
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - hiti
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: svefnherbergi hiti
+  name: svefnherbergimaster hiti
   aliases:
-  - svefnherbergi hiti
+  - svefnherbergimaster hiti
   - hiti
 - id: climate.master_ac
   area_id: master_bedroom
-  name: hiti svefnherbergi
+  name: hiti svefnherbergimaster
   aliases:
-  - hiti svefnherbergi
+  - hiti svefnherbergimaster
   - hiti
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - viftu
 - id: fan.master_fan
   area_id: master_bedroom
-  name: svefnherbergi viftu
+  name: svefnherbergimaster viftu
   aliases:
-  - svefnherbergi viftu
+  - svefnherbergimaster viftu
   - viftu
 - id: fan.bedroom2_fan
   area_id: bedroom_2

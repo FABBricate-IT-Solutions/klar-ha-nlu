@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - tuuletin makuuhuone sytyta
-  - sytyta tuuletin makuuhuone
+  - tuuletin makuuhuonemaster sytyta
+  - sytyta tuuletin makuuhuonemaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - sammuta tuuletin makuuhuone
-  - tuuletin makuuhuone sammuta
+  - sammuta tuuletin makuuhuonemaster
+  - tuuletin makuuhuonemaster sammuta
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - aseta tuuletin makuuhuone 40
-  - tuuletin makuuhuone 40
+  - aseta tuuletin makuuhuonemaster 40
+  - tuuletin makuuhuonemaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - aseta tuuletin makuuhuone 20
-  - tuuletin makuuhuone 20
+  - aseta tuuletin makuuhuonemaster 20
+  - tuuletin makuuhuonemaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - aseta tuuletin makuuhuone 60
-  - tuuletin makuuhuone 60
+  - aseta tuuletin makuuhuonemaster 60
+  - tuuletin makuuhuonemaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - aseta tuuletin makuuhuone 80
-  - tuuletin makuuhuone 80
+  - aseta tuuletin makuuhuonemaster 80
+  - tuuletin makuuhuonemaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

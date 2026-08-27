@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - включи спалня таван и спалня нощно
-  - спалня таван и спалня нощно включи
+  - включи спалняmaster таван и спалняmaster нощно
+  - спалняmaster таван и спалняmaster нощно включи
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - изключи спалня таван и спалня нощно
-  - спалня таван и спалня нощно изключи
+  - изключи спалняmaster таван и спалняmaster нощно
+  - спалняmaster таван и спалняmaster нощно изключи
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - включи спалня вентилатор и кухня остров
-  - спалня вентилатор и кухня остров включи
+  - включи спалняmaster вентилатор и кухня остров
+  - спалняmaster вентилатор и кухня остров включи
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи светлина спалня и main bath
-  - светлина спалня и main bath изключи
+  - изключи светлина спалняmaster и main bath
+  - светлина спалняmaster и main bath изключи
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи всичко светлина освен хол и спалня
-  - всичко светлина изключи освен хол и спалня
+  - изключи всичко светлина освен хол и спалняmaster
+  - всичко светлина изключи освен хол и спалняmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи всичко светлина етаж освен спалня
-  - всичко светлина етаж изключи освен спалня
+  - изключи всичко светлина етаж освен спалняmaster
+  - всичко светлина етаж изключи освен спалняmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - отвори завеса хол и спалня
-  - завеса хол и спалня отвори
+  - отвори завеса хол и спалняmaster
+  - завеса хол и спалняmaster отвори
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - затвори завеса хол и спалня
-  - завеса хол и спалня затвори
+  - затвори завеса хол и спалняmaster
+  - завеса хол и спалняmaster затвори
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - сложи парно хол и спалня 21
-  - парно хол и спалня 21
+  - сложи парно хол и спалняmaster 21
+  - парно хол и спалняmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - mach arbeitszimmer decke und hallway licht
-  - arbeitszimmer decke und hallway licht mach
+  - mach office decke und hallway licht
+  - office decke und hallway licht mach
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - schalt arbeitszimmer decke und hallway licht
-  - arbeitszimmer decke und hallway licht schalt
+  - schalt office decke und hallway licht
+  - office decke und hallway licht schalt
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - mach schlafzimmer decke und schlafzimmer nachttisch
-  - schlafzimmer decke und schlafzimmer nachttisch mach
+  - mach schlafzimmermaster decke und schlafzimmermaster nachttisch
+  - schlafzimmermaster decke und schlafzimmermaster nachttisch mach
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - schalt schlafzimmer decke und schlafzimmer nachttisch
-  - schlafzimmer decke und schlafzimmer nachttisch schalt
+  - schalt schlafzimmermaster decke und schlafzimmermaster nachttisch
+  - schlafzimmermaster decke und schlafzimmermaster nachttisch schalt
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - mach schlafzimmer ventilator und kuche insel
-  - schlafzimmer ventilator und kuche insel mach
+  - mach schlafzimmermaster ventilator und kuche insel
+  - schlafzimmermaster ventilator und kuche insel mach
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - mach waschraum waschmaschine und waschraum dryer
-  - waschraum waschmaschine und waschraum dryer mach
+  - mach waschraum waschmaschine und waschraum trockner
+  - waschraum waschmaschine und waschraum trockner mach
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt licht arbeitszimmer und hallway
-  - licht arbeitszimmer und hallway schalt
+  - schalt licht office und hallway
+  - licht office und hallway schalt
 - name: off_garage_garden
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt licht schlafzimmer und badmastermain
-  - licht schlafzimmer und badmastermain schalt
+  - schalt licht schlafzimmermaster und badmastermain
+  - licht schlafzimmermaster und badmastermain schalt
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach licht arbeitszimmer und hallway und garage
-  - licht arbeitszimmer hallway und garage mach
+  - mach licht office und hallway und garage
+  - licht office hallway und garage mach
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht ausser decke arbeitszimmer
-  - alle licht schalt ausser decke arbeitszimmer
+  - schalt alle licht ausser decke office
+  - alle licht schalt ausser decke office
   forbid:
   - light.office_ceiling
   - office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - mach alle licht ausser arbeitszimmer
-  - alle licht mach ausser arbeitszimmer
+  - mach alle licht ausser office
+  - alle licht mach ausser office
   forbid:
   - office
 - name: all_on_except_garden
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht ausser kuche und arbeitszimmer
-  - alle licht schalt ausser kuche und arbeitszimmer
+  - schalt alle licht ausser kuche und office
+  - alle licht schalt ausser kuche und office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht ausser wohnzimmer und schlafzimmer
-  - alle licht schalt ausser wohnzimmer und schlafzimmer
+  - schalt alle licht ausser wohnzimmer und schlafzimmermaster
+  - alle licht schalt ausser wohnzimmer und schlafzimmermaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht obergeschoss ausser schlafzimmer
-  - alle licht obergeschoss schalt ausser schlafzimmer
+  - schalt alle licht obergeschoss ausser schlafzimmermaster
+  - alle licht obergeschoss schalt ausser schlafzimmermaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - schalt alle licht erdgeschoss ausser arbeitszimmer
-  - alle licht erdgeschoss schalt ausser arbeitszimmer
+  - schalt alle licht erdgeschoss ausser office
+  - alle licht erdgeschoss schalt ausser office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - oeffne vorhang wohnzimmer und schlafzimmer
-  - vorhang wohnzimmer und schlafzimmer oeffne
+  - oeffne vorhang wohnzimmer und schlafzimmermaster
+  - vorhang wohnzimmer und schlafzimmermaster oeffne
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - schliesse vorhang wohnzimmer und schlafzimmer
-  - vorhang wohnzimmer und schlafzimmer schliesse
+  - schliesse vorhang wohnzimmer und schlafzimmermaster
+  - vorhang wohnzimmer und schlafzimmermaster schliesse
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell heizung wohnzimmer und schlafzimmer 21
-  - heizung wohnzimmer und schlafzimmer 21
+  - stell heizung wohnzimmer und schlafzimmermaster 21
+  - heizung wohnzimmer und schlafzimmermaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

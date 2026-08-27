@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - charte mtversasruti
-  - mtversasruti charte
+  - ჩართე მტვერსასრუტი
+  - მტვერსასრუტი ჩართე
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - gamorte mtversasruti
-  - mtversasruti gamorte
+  - გამორთე მტვერსასრუტი
+  - მტვერსასრუტი გამორთე

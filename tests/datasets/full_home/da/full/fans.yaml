@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator sovevaerelse taend
-  - taend ventilator sovevaerelse
+  - ventilator sovevaerelsemaster taend
+  - taend ventilator sovevaerelsemaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - sluk ventilator sovevaerelse
-  - ventilator sovevaerelse sluk
+  - sluk ventilator sovevaerelsemaster
+  - ventilator sovevaerelsemaster sluk
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - saet ventilator sovevaerelse 40
-  - ventilator sovevaerelse 40
+  - saet ventilator sovevaerelsemaster 40
+  - ventilator sovevaerelsemaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - saet ventilator sovevaerelse 20
-  - ventilator sovevaerelse 20
+  - saet ventilator sovevaerelsemaster 20
+  - ventilator sovevaerelsemaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - saet ventilator sovevaerelse 60
-  - ventilator sovevaerelse 60
+  - saet ventilator sovevaerelsemaster 60
+  - ventilator sovevaerelsemaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - saet ventilator sovevaerelse 80
-  - ventilator sovevaerelse 80
+  - saet ventilator sovevaerelsemaster 80
+  - ventilator sovevaerelsemaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

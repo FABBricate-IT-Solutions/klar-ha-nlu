@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - kholo pado orado
-  - pado orado kholo
+  - ખોલો પડદો ઓરડો
+  - પડદો ઓરડો ખોલો
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - bandhkaro pado orado
-  - pado orado bandhkaro
+  - બંધકરો પડદો ઓરડો
+  - પડદો ઓરડો બંધકરો
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set pado orado 0
-  - pado orado 0
+  - સેટ પડદો ઓરડો 0
+  - પડદો ઓરડો 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set pado orado 25
-  - pado orado 25
+  - સેટ પડદો ઓરડો 25
+  - પડદો ઓરડો 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set pado orado 40
-  - pado orado 40
+  - સેટ પડદો ઓરડો 40
+  - પડદો ઓરડો 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set pado orado 75
-  - pado orado 75
+  - સેટ પડદો ઓરડો 75
+  - પડદો ઓરડો 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set pado orado 100
-  - pado orado 100
+  - સેટ પડદો ઓરડો 100
+  - પડદો ઓરડો 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - kholo pado shayankhand
-  - pado shayankhand kholo
+  - ખોલો પડદો shayankhandmaster
+  - પડદો shayankhandmaster ખોલો
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - bandhkaro pado shayankhand
-  - pado shayankhand bandhkaro
+  - બંધકરો પડદો shayankhandmaster
+  - પડદો shayankhandmaster બંધકરો
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set pado shayankhand 0
-  - pado shayankhand 0
+  - સેટ પડદો shayankhandmaster 0
+  - પડદો shayankhandmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set pado shayankhand 25
-  - pado shayankhand 25
+  - સેટ પડદો shayankhandmaster 25
+  - પડદો shayankhandmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set pado shayankhand 40
-  - pado shayankhand 40
+  - સેટ પડદો shayankhandmaster 40
+  - પડદો shayankhandmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set pado shayankhand 75
-  - pado shayankhand 75
+  - સેટ પડદો shayankhandmaster 75
+  - પડદો shayankhandmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set pado shayankhand 100
-  - pado shayankhand 100
+  - સેટ પડદો shayankhandmaster 100
+  - પડદો shayankhandmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - kholo pado shayankhand2
-  - pado shayankhand2 kholo
+  - ખોલો પડદો shayankhand2
+  - પડદો shayankhand2 ખોલો
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - bandhkaro pado shayankhand2
-  - pado shayankhand2 bandhkaro
+  - બંધકરો પડદો shayankhand2
+  - પડદો shayankhand2 બંધકરો
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set pado shayankhand2 0
-  - pado shayankhand2 0
+  - સેટ પડદો shayankhand2 0
+  - પડદો shayankhand2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set pado shayankhand2 25
-  - pado shayankhand2 25
+  - સેટ પડદો shayankhand2 25
+  - પડદો shayankhand2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set pado shayankhand2 40
-  - pado shayankhand2 40
+  - સેટ પડદો shayankhand2 40
+  - પડદો shayankhand2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set pado shayankhand2 75
-  - pado shayankhand2 75
+  - સેટ પડદો shayankhand2 75
+  - પડદો shayankhand2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set pado shayankhand2 100
-  - pado shayankhand2 100
+  - સેટ પડદો shayankhand2 100
+  - પડદો shayankhand2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - kholo pado shayankhand3
-  - pado shayankhand3 kholo
+  - ખોલો પડદો shayankhand3
+  - પડદો shayankhand3 ખોલો
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - bandhkaro pado shayankhand3
-  - pado shayankhand3 bandhkaro
+  - બંધકરો પડદો shayankhand3
+  - પડદો shayankhand3 બંધકરો
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set pado shayankhand3 0
-  - pado shayankhand3 0
+  - સેટ પડદો shayankhand3 0
+  - પડદો shayankhand3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set pado shayankhand3 25
-  - pado shayankhand3 25
+  - સેટ પડદો shayankhand3 25
+  - પડદો shayankhand3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set pado shayankhand3 40
-  - pado shayankhand3 40
+  - સેટ પડદો shayankhand3 40
+  - પડદો shayankhand3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set pado shayankhand3 75
-  - pado shayankhand3 75
+  - સેટ પડદો shayankhand3 75
+  - પડદો shayankhand3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set pado shayankhand3 100
-  - pado shayankhand3 100
+  - સેટ પડદો shayankhand3 100
+  - પડદો shayankhand3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - kholo pado garage
-  - pado garage kholo
+  - ખોલો પડદો garage
+  - પડદો garage ખોલો
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - bandhkaro pado garage
-  - pado garage bandhkaro
+  - બંધકરો પડદો garage
+  - પડદો garage બંધકરો
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set pado garage 0
-  - pado garage 0
+  - સેટ પડદો garage 0
+  - પડદો garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set pado garage 25
-  - pado garage 25
+  - સેટ પડદો garage 25
+  - પડદો garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set pado garage 40
-  - pado garage 40
+  - સેટ પડદો garage 40
+  - પડદો garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set pado garage 75
-  - pado garage 75
+  - સેટ પડદો garage 75
+  - પડદો garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set pado garage 100
-  - pado garage 100
+  - સેટ પડદો garage 100
+  - પડદો garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - kholo pado orado
-  - pado orado kholo
+  - ખોલો પડદો ઓરડો
+  - પડદો ઓરડો ખોલો
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - kholo pado shayankhand
-  - pado shayankhand kholo
+  - ખોલો પડદો shayankhandmaster
+  - પડદો shayankhandmaster ખોલો

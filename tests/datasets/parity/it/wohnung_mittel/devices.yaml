@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - spegni soffitto camera
 devices/geraete::device_arbeitszimmer_an:
-- accendi luce soggiorno
+- accendi luce office
 devices/geraete::device_esszimmer_an:
 - accendi luce soggiornofamess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - accendi luce soggiorno
 devices/geraete::filmabend:
-- accendi Filmabend
+- accendi scena filmabend
 devices/geraete::kugel_an:
-- accendi sfera camera
+- accendi sfera
 devices/geraete::luefter_50:
-- metti ventola soggiorno 50
+- metti ventola office 50
 devices/geraete::pc_an:
-- accendi apparecchio
+- accendi pc
 devices/geraete::r2d2_saugen:
 - accendi aspirapolvere soggiorno
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - accendi lavatrice
 devices/klima::klima_schlaf_21:
-- metti riscaldamento camera 21
+- metti ac camera 21
 devices/spoken::deckenlampe_an:
 - accendi soffitto camera
 devices/spoken::kugel_aus:
-- spegni sfera camera
+- spegni sfera
 devices/spoken::luefter_aus:
-- spegni ventola soggiorno
+- spegni ventola office
 devices/spoken::rollo_auf:
 - apri tenda soggiorno
 devices/spoken::trockner_an:
-- accendi lavatrice
+- accendi asciugatrice
 devices/spoken::tv_aus:
 - spegni tv
 devices/spoken_more::decke_aus_casual:
 - spegni soffitto camera
 devices/spoken_more::kugel_casual:
-- accendi sfera camera
+- accendi sfera
 devices/spoken_more::pc_aus:
-- spegni apparecchio
+- spegni pc
 devices/spoken_more::spuelmaschine_an:
 - accendi lavastoviglie
 devices/spoken_more::waschmaschine_aus:

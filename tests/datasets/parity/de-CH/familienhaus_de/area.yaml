@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - mach ventilator schlafzimmer2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- stell liecht schlafzimmer2 65
+- stell alli liecht schlafzimmer2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- stell liecht schlafzimmer2 rosa
+- stell alli liecht schlafzimmer2 rosa
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- loesch liecht schlafzimmer2
+- loesch alli liecht schlafzimmer2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- mach liecht schlafzimmer2
+- mach alli liecht schlafzimmer2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - zue store schlafzimmer3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - stell store schlafzimmer3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- stell liecht schlafzimmer3 76
+- stell alli liecht schlafzimmer3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- stell liecht schlafzimmer3 blau
+- stell alli liecht schlafzimmer3 blau
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- loesch liecht schlafzimmer3
+- loesch alli liecht schlafzimmer3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- mach liecht schlafzimmer3
+- mach alli liecht schlafzimmer3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- stell liecht schlafzimmer4 69
+- stell alli liecht schlafzimmer4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- stell liecht schlafzimmer4 gruen
+- stell alli liecht schlafzimmer4 gruen
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- loesch liecht schlafzimmer4
+- loesch alli liecht schlafzimmer4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- mach liecht schlafzimmer4
+- mach alli liecht schlafzimmer4
 area/dining_lights::dining_lights_change_brightness:
-- stell liecht stubeess 54
+- stell alli liecht stubeess 54
 area/dining_lights::dining_lights_change_color:
-- stell liecht stubeess blau
+- stell alli liecht stubeess blau
 area/dining_lights::dining_lights_turn_off:
-- loesch liecht stubeess
+- loesch alli liecht stubeess
 area/dining_lights::dining_lights_turn_on:
-- mach liecht stubeess
+- mach alli liecht stubeess
 area/entryway_lights::entryway_lights_change_brightness:
-- stell liecht eingang 72
+- stell alli liecht eingang 72
 area/entryway_lights::entryway_lights_change_color:
-- stell liecht eingang schwarz
+- stell alli liecht eingang schwarz
 area/entryway_lights::entryway_lights_turn_off:
-- loesch liecht eingang
+- loesch alli liecht eingang
 area/entryway_lights::entryway_lights_turn_on:
-- mach liecht eingang
+- mach alli liecht eingang
 area/entryway_locks::entryway_locks_lock:
 - schloss schloss eingang
 area/entryway_locks::entryway_locks_unlock:
 - ufmache schloss eingang
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- stell liecht stube 39 und stell liecht chuchi 39
+- stell alli liecht stube 39 then stell alli liecht chuchi 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- stell liecht stube violett und stell liecht chuchi violett
+- stell alli liecht stube violett then stell alli liecht chuchi violett
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- loesch liecht stube und loesch liecht chuchi
+- loesch alli liecht stube then loesch alli liecht chuchi
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- mach liecht stube und mach liecht chuchi
+- mach alli liecht stube then mach alli liecht chuchi
 area/family_room_fans::family_room_fans_set_fan_speed:
 - stell ventilator stube 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - mach ventilator stube
 area/family_room_lights::family_room_lights_change_brightness:
-- stell liecht stube 44
+- stell alli liecht stube 44
 area/family_room_lights::family_room_lights_change_color:
-- stell liecht stube gruen
+- stell alli liecht stube gruen
 area/family_room_lights::family_room_lights_turn_off:
-- loesch liecht stube
+- loesch alli liecht stube
 area/family_room_lights::family_room_lights_turn_on:
-- mach liecht stube
+- mach alli liecht stube
 area/garage_covers::garage_covers_close:
 - zue store garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - stell store garage 86
 area/garage_lights::garage_lights_change_brightness:
-- stell liecht garage 16
+- stell alli liecht garage 16
 area/garage_lights::garage_lights_change_color:
-- stell liecht garage blau
+- stell alli liecht garage blau
 area/garage_lights::garage_lights_turn_off:
-- loesch liecht garage
+- loesch alli liecht garage
 area/garage_lights::garage_lights_turn_on:
-- mach liecht garage
+- mach alli liecht garage
 area/garage_locks::garage_locks_lock:
 - schloss schloss garage
 area/garage_locks::garage_locks_unlock:
 - ufmache schloss garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stell liecht einganggang 26 und stell liecht toilette 26
+- stell alli liecht einganggang 26 then stell alli liecht toilette 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stell liecht einganggang violett und stell liecht toilette violett
+- stell alli liecht einganggang violett then stell alli liecht toilette violett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- loesch liecht einganggang und loesch liecht toilette
+- loesch alli liecht einganggang then loesch alli liecht toilette
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- mach liecht einganggang und mach liecht toilette
+- mach alli liecht einganggang then mach alli liecht toilette
 area/hallway_lights::hallway_lights_change_brightness:
-- stell liecht einganggang 61
+- stell alli liecht einganggang 61
 area/hallway_lights::hallway_lights_change_color:
-- stell liecht einganggang orange
+- stell alli liecht einganggang orange
 area/hallway_lights::hallway_lights_turn_off:
-- loesch liecht einganggang
+- loesch alli liecht einganggang
 area/hallway_lights::hallway_lights_turn_on:
-- mach liecht einganggang
+- mach alli liecht einganggang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- stell liecht chuchi 45
+- stell alli liecht chuchi 45
 area/kitchen_lights::kitchen_lights_change_color:
-- stell liecht chuchi rosa
+- stell alli liecht chuchi rosa
 area/kitchen_lights::kitchen_lights_turn_off:
-- loesch liecht chuchi
+- loesch alli liecht chuchi
 area/kitchen_lights::kitchen_lights_turn_on:
-- mach liecht chuchi
+- mach alli liecht chuchi
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- loesch geraet chuchi
+- loesch alli geraet chuchi
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- mach geraet chuchi
+- mach alli geraet chuchi
 area/laundry_lights::laundry_lights_change_brightness:
-- stell liecht waschruum 62
+- stell alli liecht waschruum 62
 area/laundry_lights::laundry_lights_change_color:
-- stell liecht waschruum gelb
+- stell alli liecht waschruum gelb
 area/laundry_lights::laundry_lights_turn_off:
-- loesch liecht waschruum
+- loesch alli liecht waschruum
 area/laundry_lights::laundry_lights_turn_on:
-- mach liecht waschruum
+- mach alli liecht waschruum
 area/laundry_switchs::laundry_switchs_turn_off:
-- loesch geraet waschruum
+- loesch alli geraet waschruum
 area/laundry_switchs::laundry_switchs_turn_on:
-- mach geraet waschruum
+- mach alli geraet waschruum
 area/living_climates::living_climates_set_temperature:
 - stell heizig wohnzimmer 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - stell store wohnzimmer 46
 area/living_lights::living_lights_change_brightness:
-- stell liecht wohnzimmer 84
+- stell alli liecht wohnzimmer 84
 area/living_lights::living_lights_change_color:
-- stell liecht wohnzimmer blau
+- stell alli liecht wohnzimmer blau
 area/living_lights::living_lights_turn_off:
-- loesch liecht wohnzimmer
+- loesch alli liecht wohnzimmer
 area/living_lights::living_lights_turn_on:
-- mach liecht wohnzimmer
+- mach alli liecht wohnzimmer
 area/main_bath_lights::main_bath_lights_change_brightness:
-- stell liecht badmastermain 73
+- stell alli liecht badmastermain 73
 area/main_bath_lights::main_bath_lights_change_color:
-- stell liecht badmastermain rosa
+- stell alli liecht badmastermain rosa
 area/main_bath_lights::main_bath_lights_turn_off:
-- loesch liecht badmastermain
+- loesch alli liecht badmastermain
 area/main_bath_lights::main_bath_lights_turn_on:
-- mach liecht badmastermain
+- mach alli liecht badmastermain
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- loesch geraet badmastermain
+- loesch alli geraet badmastermain
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- mach geraet badmastermain
+- mach alli geraet badmastermain
 area/master_bath_lights::master_bath_lights_change_brightness:
-- stell liecht badmaster 60
+- stell alli liecht badmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- stell liecht badmaster schwarz
+- stell alli liecht badmaster schwarz
 area/master_bath_lights::master_bath_lights_turn_off:
-- loesch liecht badmaster
+- loesch alli liecht badmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- mach liecht badmaster
+- mach alli liecht badmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- loesch geraet badmaster
+- loesch alli geraet badmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- mach geraet badmaster
+- mach alli geraet badmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- stell heizig schlafzimmer 20 und stell heizig wohnzimmer 20
+- stell heizig schlafzimmermaster 20 then stell heizig wohnzimmer 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- zue store schlafzimmer und zue store wohnzimmer
+- zue store schlafzimmermaster then zue store wohnzimmer
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- ufmache store schlafzimmer und ufmache store wohnzimmer
+- ufmache store schlafzimmermaster then ufmache store wohnzimmer
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- stell store schlafzimmer 19 und stell store wohnzimmer 19
+- stell store schlafzimmermaster 19 then stell store wohnzimmer 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- stell liecht schlafzimmer 25 und stell liecht wohnzimmer 25
+- stell alli liecht schlafzimmermaster 25 then stell alli liecht wohnzimmer 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- stell liecht schlafzimmer weiss und stell liecht wohnzimmer weiss
+- stell alli liecht schlafzimmermaster weiss then stell alli liecht wohnzimmer weiss
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- loesch liecht schlafzimmer und loesch liecht wohnzimmer
+- loesch alli liecht schlafzimmermaster then loesch alli liecht wohnzimmer
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- mach liecht schlafzimmer und mach liecht wohnzimmer
+- mach alli liecht schlafzimmermaster then mach alli liecht wohnzimmer
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- stell liecht schlafzimmer 57 und stell liecht badmastermain 57
+- stell alli liecht schlafzimmermaster 57 then stell alli liecht badmastermain 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- stell liecht schlafzimmer rosa und stell liecht badmastermain rosa
+- stell alli liecht schlafzimmermaster rosa then stell alli liecht badmastermain rosa
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- loesch liecht schlafzimmer und loesch liecht badmastermain
+- loesch alli liecht schlafzimmermaster then loesch alli liecht badmastermain
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- mach liecht schlafzimmer und mach liecht badmastermain
+- mach alli liecht schlafzimmermaster then mach alli liecht badmastermain
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- stell heizig schlafzimmer 20
+- stell heizig schlafzimmermaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- zue store schlafzimmer
+- zue store schlafzimmermaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- ufmache store schlafzimmer
+- ufmache store schlafzimmermaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- stell store schlafzimmer 38
+- stell store schlafzimmermaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- stell ventilator schlafzimmer 79
+- stell ventilator schlafzimmermaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- loesch ventilator schlafzimmer
+- loesch ventilator schlafzimmermaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- mach ventilator schlafzimmer
+- mach ventilator schlafzimmermaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- stell liecht schlafzimmer 73
+- stell alli liecht schlafzimmermaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- stell liecht schlafzimmer rosa
+- stell alli liecht schlafzimmermaster rosa
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- loesch liecht schlafzimmer
+- loesch alli liecht schlafzimmermaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- mach liecht schlafzimmer
+- mach alli liecht schlafzimmermaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- stell liecht toilette 52
+- stell alli liecht toilette 52
 area/powder_room_lights::powder_room_lights_change_color:
-- stell liecht toilette violett
+- stell alli liecht toilette violett
 area/powder_room_lights::powder_room_lights_turn_off:
-- loesch liecht toilette
+- loesch alli liecht toilette
 area/powder_room_lights::powder_room_lights_turn_on:
-- mach liecht toilette
+- mach alli liecht toilette
 area/spoken_lights::spoken_bedroom_inflection:
-- stell liecht schlafzimmer rot
+- stell alli liecht schlafzimmermaster rot
 area/spoken_lights::spoken_except_island:
 - loesch alli liecht ausser insel
 area/spoken_lights::spoken_except_kitchen:
-- loesch alli liecht ausser chuchi ausser insel
+- loesch alli liecht ausser chuchi
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- loesch liecht wohnzimmer und loesch liecht stubeess und loesch liecht chuchi
+- loesch alli liecht wohnzimmer then loesch alli liecht stubeess then loesch alli
+  liecht chuchi
 area/spoken_lights::spoken_stt_kitchen_off:
-- loesch liecht chuchi
+- loesch alli liecht chuchi
 area/spoken_lights::spoken_stt_living_off:
-- loesch liecht wohnzimmer
+- loesch alli liecht wohnzimmer

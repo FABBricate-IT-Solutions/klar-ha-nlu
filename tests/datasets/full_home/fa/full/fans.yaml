@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - پنکه اتاقخواب روشن
-  - روشن پنکه اتاقخواب
+  - پنکه اتاقخوابmaster روشن
+  - روشن پنکه اتاقخوابmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - خاموش پنکه اتاقخواب
-  - پنکه اتاقخواب خاموش
+  - خاموش پنکه اتاقخوابmaster
+  - پنکه اتاقخوابmaster خاموش
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - بگذار پنکه اتاقخواب 40
-  - پنکه اتاقخواب 40
+  - بگذار پنکه اتاقخوابmaster 40
+  - پنکه اتاقخوابmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - بگذار پنکه اتاقخواب 20
-  - پنکه اتاقخواب 20
+  - بگذار پنکه اتاقخوابmaster 20
+  - پنکه اتاقخوابmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - بگذار پنکه اتاقخواب 60
-  - پنکه اتاقخواب 60
+  - بگذار پنکه اتاقخوابmaster 60
+  - پنکه اتاقخوابmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - بگذار پنکه اتاقخواب 80
-  - پنکه اتاقخواب 80
+  - بگذار پنکه اتاقخوابmaster 80
+  - پنکه اتاقخوابmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

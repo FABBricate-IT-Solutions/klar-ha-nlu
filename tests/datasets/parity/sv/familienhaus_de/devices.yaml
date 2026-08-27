@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - satt varme vardagsrum 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- satt varme sovrum 19
+- satt varme sovrummaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - satt gardin sovrum2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - oppna gardin vardagsrum
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- satt gardin sovrum 19
+- satt gardin sovrummaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- stang gardin sovrum
+- stang gardin sovrummaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- oppna gardin sovrum
+- oppna gardin sovrummaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - satt flakt sovrum2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - tand flakt allrum
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- satt flakt sovrum 28
+- satt flakt sovrummaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- slack flakt sovrum
+- slack flakt sovrummaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- tand flakt sovrum
+- tand flakt sovrummaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- slack flakt sovrum och slack ljus kok
+- slack flakt sovrummaster then slack o kok
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- tand flakt sovrum och tand ljus kok
+- tand flakt sovrummaster then tand o kok
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - satt tak sovrum2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - tand tak kok
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- satt ljus kok 99
+- satt o kok 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- satt ljus kok gron
+- satt o kok gron
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- slack ljus kok
+- slack o kok
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- tand ljus kok
+- tand o kok
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - satt ljus tvattstuga 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - tand tak vardagsrum
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- satt ljus vardagsrum 72
+- satt lamp vardagsrum 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- satt ljus vardagsrum rod
+- satt lamp vardagsrum rod
 devices/light_living_lamp::light_living_lamp_turn_off:
-- slack ljus vardagsrum
+- slack lamp vardagsrum
 devices/light_living_lamp::light_living_lamp_turn_on:
-- tand ljus vardagsrum
+- tand lamp vardagsrum
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - satt ljus main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - tand ljus badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- satt sanglampa sovrum 25
+- satt sanglampa sovrummaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- satt sanglampa sovrum rod
+- satt sanglampa sovrummaster rod
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- slack sanglampa sovrum
+- slack sanglampa sovrummaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- tand sanglampa sovrum
+- tand sanglampa sovrummaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- satt tak sovrum 77
+- satt tak sovrummaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- satt tak sovrum bla
+- satt tak sovrummaster bla
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- slack tak sovrum
+- slack tak sovrummaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- tand tak sovrum
+- tand tak sovrummaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- satt ljus sovrum 55
+- satt ankleide sovrummaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- satt ljus sovrum svart
+- satt ankleide sovrummaster svart
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- slack ljus sovrum
+- slack ankleide sovrummaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- tand ljus sovrum
+- tand ankleide sovrummaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - satt ljus toalett 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - tand tv vardagsrum
 devices/scenes::dinner_time:
-- satt ljus allrumess 90 och tand tak kok och satt ljus kok 80
+- satt ljus allrumess 90 then tand tak kok then satt o kok 80
 devices/scenes::good_morning:
-- tand tak kok och satt ljus allrumess 100 och oppna gardin vardagsrum och oppna gardin
-  sovrum
+- tand tak kok then satt ljus allrumess 100 then oppna gardin vardagsrum then oppna
+  gardin sovrummaster
 devices/scenes::kids_bedtime:
-- slack tak sovrum2 och slack tak sovrum3 och slack tak sovrum4 och satt ljus entregang
+- slack tak sovrum2 then slack tak sovrum3 then slack tak sovrum4 then satt ljus entregang
   15
 devices/scenes::movie_night:
-- slack tak vardagsrum och satt ljus vardagsrum 20 och tand tv vardagsrum och stang
+- slack tak vardagsrum then satt lamp vardagsrum 20 then tand tv vardagsrum then stang
   gardin vardagsrum
 devices/scripts::good_night:
-- tand scen natt
+- slack tak vardagsrum then slack lamp vardagsrum then slack ljus allrumess then slack
+  tak kok then slack o kok then slack tak allrum then slack ljus entre then slack
+  ljus entregang then las las entre then las las garage then satt varme sovrummaster
+  20
 devices/scripts::leaving_home:
-- tand scen avgang
+- slack tak vardagsrum then slack lamp vardagsrum then slack tak kok then slack tak
+  allrum then slack ljus entre then las las entre then las las garage then stang gardin
+  garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - slack disk
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - tand disk
 devices/switch_dryer::switch_dryer_turn_off:
-- slack tvattmaskin
+- slack dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- tand tvattmaskin
+- tand dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - slack tvattmaskin
 devices/switch_washing_machine::switch_washing_machine_turn_on:

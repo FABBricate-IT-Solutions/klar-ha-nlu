@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: اتاقخواب
+  name: اتاقخوابmaster
   floor: upper
   aliases:
+  - اتاقخوابmaster
   - اتاقخواب
 - id: bedroom_2
   name: اتاقخواب2
@@ -130,10 +131,10 @@ devices:
   - سقف
 - id: light.living_lamp
   area_id: living
-  name: پذیرایی چراغ
+  name: پذیرایی lamp
   aliases:
-  - پذیرایی چراغ
-  - چراغ
+  - پذیرایی lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: خانوادهess چراغ
@@ -190,29 +191,29 @@ devices:
   - چراغ
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: اتاقخواب سقف
+  name: اتاقخوابmaster سقف
   aliases:
-  - اتاقخواب سقف
+  - اتاقخوابmaster سقف
   - سقف
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: اتاقخواب ensuite
+  name: اتاقخوابmaster ensuite
   aliases:
-  - اتاقخواب ensuite
+  - اتاقخوابmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: اتاقخواب left کنارتخت
+  name: اتاقخوابmaster left کنارتخت
   aliases:
-  - اتاقخواب left کنارتخت
+  - اتاقخوابmaster left کنارتخت
   - کنارتخت
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: اتاقخواب right کنارتخت
+  name: اتاقخوابmaster right کنارتخت
   aliases:
-  - اتاقخواب right کنارتخت
+  - اتاقخوابmaster right کنارتخت
   - کنارتخت
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - پرده
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: اتاقخواب پرده
+  name: اتاقخوابmaster پرده
   aliases:
-  - اتاقخواب پرده
+  - اتاقخوابmaster پرده
   - پرده
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - سرما
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: اتاقخواب سرما
+  name: اتاقخوابmaster سرما
   aliases:
-  - اتاقخواب سرما
+  - اتاقخوابmaster سرما
   - سرما
 - id: climate.master_ac
   area_id: master_bedroom
-  name: دما اتاقخواب
+  name: دما اتاقخوابmaster
   aliases:
-  - دما اتاقخواب
+  - دما اتاقخوابmaster
   - دما
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - پنکه
 - id: fan.master_fan
   area_id: master_bedroom
-  name: اتاقخواب پنکه
+  name: اتاقخوابmaster پنکه
   aliases:
-  - اتاقخواب پنکه
+  - اتاقخوابmaster پنکه
   - پنکه
 - id: fan.bedroom2_fan
   area_id: bedroom_2

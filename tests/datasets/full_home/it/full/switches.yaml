@@ -36,16 +36,16 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - accendi dryer lavanderia
-  - dryer lavanderia accendi
+  - accendi asciugatrice lavanderia
+  - asciugatrice lavanderia accendi
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - spegni dryer lavanderia
-  - dryer lavanderia spegni
+  - spegni asciugatrice lavanderia
+  - asciugatrice lavanderia spegni
 - name: switch.rangehood_on
   conditions:
   - type: action

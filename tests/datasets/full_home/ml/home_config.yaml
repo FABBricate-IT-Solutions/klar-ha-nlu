@@ -31,9 +31,10 @@ areas:
   aliases:
   - praveshanam
 - id: living
-  name: Muriyil
+  name: ഹാൾ
   floor: ground
   aliases:
+  - ഹാൾ
   - muriyil
 - id: dining
   name: Kutumbamess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - kutumbamess
 - id: kitchen
-  name: Adukkala
+  name: അടുക്കള
   floor: ground
   aliases:
+  - അടുക്കള
   - adukkala
 - id: family_room
   name: Kutumbam
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Kitappumuri
+  name: Kitappumurimaster
   floor: upper
   aliases:
+  - kitappumurimaster
   - kitappumuri
 - id: bedroom_2
   name: Kitappumuri2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: praveshanam vilakku
+  name: praveshanam വിളക്ക്
   aliases:
-  - praveshanam vilakku
-  - vilakku
+  - praveshanam വിളക്ക്
+  - വിളക്ക്
 - id: light.living_ceiling
   area_id: living
-  name: muriyil tosh
+  name: ഹാൾ tosh
   aliases:
-  - muriyil tosh
+  - ഹാൾ tosh
   - tosh
 - id: light.living_lamp
   area_id: living
-  name: muriyil vilakku
+  name: ഹാൾ vilakku
   aliases:
-  - muriyil vilakku
+  - ഹാൾ vilakku
   - vilakku
 - id: light.dining_pendant
   area_id: dining
-  name: kutumbamess vilakku
+  name: kutumbamess വിളക്ക്
   aliases:
-  - kutumbamess vilakku
-  - vilakku
+  - kutumbamess വിളക്ക്
+  - വിളക്ക്
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: adukkala tosh
+  name: അടുക്കള tosh
   aliases:
-  - adukkala tosh
+  - അടുക്കള tosh
   - tosh
 - id: light.kitchen_island
   area_id: kitchen
-  name: adukkala dweep
+  name: അടുക്കള dweep
   aliases:
-  - adukkala dweep
+  - അടുക്കള dweep
   - dweep
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - tosh
 - id: light.laundry_light
   area_id: laundry
-  name: alakku vilakku
+  name: alakku വിളക്ക്
   aliases:
-  - alakku vilakku
-  - vilakku
+  - alakku വിളക്ക്
+  - വിളക്ക്
 - id: light.powder_room_light
   area_id: powder_room
-  name: toilet vilakku
+  name: toilet വിളക്ക്
   aliases:
-  - toilet vilakku
-  - vilakku
+  - toilet വിളക്ക്
+  - വിളക്ക്
 - id: light.garage_light
   area_id: garage
-  name: garage vilakku
+  name: garage വിളക്ക്
   aliases:
-  - garage vilakku
-  - vilakku
+  - garage വിളക്ക്
+  - വിളക്ക്
 - id: light.office_ceiling
   area_id: office
   name: office tosh
@@ -184,35 +187,35 @@ devices:
   - tosh
 - id: light.garden
   area_id: garden
-  name: garden vilakku
+  name: garden വിളക്ക്
   aliases:
-  - garden vilakku
-  - vilakku
+  - garden വിളക്ക്
+  - വിളക്ക്
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: kitappumuri tosh
+  name: kitappumurimaster tosh
   aliases:
-  - kitappumuri tosh
+  - kitappumurimaster tosh
   - tosh
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: kitappumuri ensuite
+  name: kitappumurimaster ensuite
   aliases:
-  - kitappumuri ensuite
+  - kitappumurimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: kitappumuri left kattil
+  name: kitappumurimaster left kattil
   aliases:
-  - kitappumuri left kattil
+  - kitappumurimaster left kattil
   - kattil
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: kitappumuri right kattil
+  name: kitappumurimaster right kattil
   aliases:
-  - kitappumuri right kattil
+  - kitappumurimaster right kattil
   - kattil
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - tosh
 - id: light.master_bath_light
   area_id: master_bath
-  name: masterbath vilakku
+  name: masterbath വിളക്ക്
   aliases:
-  - masterbath vilakku
-  - vilakku
+  - masterbath വിളക്ക്
+  - വിളക്ക്
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath vilakku
+  name: main bath വിളക്ക്
   aliases:
-  - main bath vilakku
-  - vilakku
+  - main bath വിളക്ക്
+  - വിളക്ക്
 - id: light.hallway_light
   area_id: hallway
-  name: hallway vilakku
+  name: hallway വിളക്ക്
   aliases:
-  - hallway vilakku
-  - vilakku
+  - hallway വിളക്ക്
+  - വിളക്ക്
 - id: light.basement
   area_id: basement
-  name: basement vilakku
+  name: basement വിളക്ക്
   aliases:
-  - basement vilakku
-  - vilakku
+  - basement വിളക്ക്
+  - വിളക്ക്
 - id: cover.living_blinds
   area_id: living
-  name: muriyil jada
+  name: ഹാൾ ജാലകം
   aliases:
-  - muriyil jada
-  - jada
+  - ഹാൾ ജാലകം
+  - ജാലകം
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: kitappumuri jada
+  name: kitappumurimaster ജാലകം
   aliases:
-  - kitappumuri jada
-  - jada
+  - kitappumurimaster ജാലകം
+  - ജാലകം
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: kitappumuri2 jada
+  name: kitappumuri2 ജാലകം
   aliases:
-  - kitappumuri2 jada
-  - jada
+  - kitappumuri2 ജാലകം
+  - ജാലകം
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: kitappumuri3 jada
+  name: kitappumuri3 ജാലകം
   aliases:
-  - kitappumuri3 jada
-  - jada
+  - kitappumuri3 ജാലകം
+  - ജാലകം
 - id: cover.garage_door
   area_id: garage
-  name: garage jada
+  name: garage ജാലകം
   aliases:
-  - garage jada
-  - jada
+  - garage ജാലകം
+  - ജാലകം
 - id: climate.ground_thermostat
   area_id: living
-  name: muriyil chudu
+  name: ഹാൾ ചൂട്
   aliases:
-  - muriyil chudu
-  - chudu
+  - ഹാൾ ചൂട്
+  - ചൂട്
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: kitappumuri chudu
+  name: kitappumurimaster ചൂട്
   aliases:
-  - kitappumuri chudu
-  - chudu
+  - kitappumurimaster ചൂട്
+  - ചൂട്
 - id: climate.master_ac
   area_id: master_bedroom
-  name: chudu kitappumuri
+  name: chudu kitappumurimaster
   aliases:
-  - chudu kitappumuri
+  - chudu kitappumurimaster
   - chudu
   - ac
   tags:
   - chudu
 - id: fan.family_fan
   area_id: family_room
-  name: kutumbam fan
+  name: kutumbam ഫാൻ
   aliases:
-  - kutumbam fan
-  - fan
+  - kutumbam ഫാൻ
+  - ഫാൻ
 - id: fan.master_fan
   area_id: master_bedroom
-  name: kitappumuri fan
+  name: kitappumurimaster ഫാൻ
   aliases:
-  - kitappumuri fan
-  - fan
+  - kitappumurimaster ഫാൻ
+  - ഫാൻ
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: kitappumuri2 fan
+  name: kitappumuri2 ഫാൻ
   aliases:
-  - kitappumuri2 fan
-  - fan
+  - kitappumuri2 ഫാൻ
+  - ഫാൻ
 - id: lock.front_door
   area_id: entryway
-  name: front vathil
+  name: front വാതിൽ
   aliases:
-  - front vathil
+  - front വാതിൽ
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage vathil
+  name: garage വാതിൽ
   aliases:
-  - garage vathil
+  - garage വാതിൽ
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: adukkala pathram
+  name: അടുക്കള pathram
   aliases:
-  - adukkala pathram
+  - അടുക്കള pathram
   - pathram
 - id: switch.rangehood
   area_id: kitchen
-  name: adukkala rangehood
+  name: അടുക്കള rangehood
   aliases:
-  - adukkala rangehood
+  - അടുക്കള rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: masterbath fanbad
+  name: masterbath ഫാൻbad
   aliases:
-  - masterbath fanbad
-  - fanbad
+  - masterbath ഫാൻbad
+  - ഫാൻbad
   tags:
-  - fanbad
+  - ഫാൻbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath fanbad
+  name: main bath ഫാൻbad
   aliases:
-  - main bath fanbad
-  - fanbad
+  - main bath ഫാൻbad
+  - ഫാൻbad
   tags:
-  - fanbad
+  - ഫാൻbad
 - id: media_player.living_tv
   area_id: living
-  name: muriyil tv
+  name: ഹാൾ tv
   aliases:
-  - muriyil tv
+  - ഹാൾ tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: muriyil tivi
+  name: ഹാൾ ടിവി
   aliases:
-  - muriyil tivi
-  - tivi
+  - ഹാൾ ടിവി
+  - ടിവി
   platform: music_assistant
   tags:
-  - tivi
+  - ടിവി
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: adukkala tivi
+  name: അടുക്കള ടിവി
   aliases:
-  - adukkala tivi
-  - tivi
+  - അടുക്കള ടിവി
+  - ടിവി
   platform: music_assistant
   tags:
-  - tivi
+  - ടിവി
 - id: media_player.office_music
   area_id: office
-  name: office tivi
+  name: office ടിവി
   aliases:
-  - office tivi
-  - tivi
+  - office ടിവി
+  - ടിവി
   platform: music_assistant
   tags:
-  - tivi
+  - ടിവി
 - id: vacuum.robot
   area_id: living
-  name: muriyil varal
+  name: ഹാൾ വാരൽ
   aliases:
-  - muriyil varal
-  - varal
+  - ഹാൾ വാരൽ
+  - വാരൽ
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: praveshanam doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: muriyil windowsensor
+  name: ഹാൾ windowsensor
   aliases:
-  - muriyil windowsensor
+  - ഹാൾ windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: adukkala motion
+  name: അടുക്കള motion
   aliases:
-  - adukkala motion
+  - അടുക്കള motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: muriyil tempsensor
+  name: ഹാൾ tempsensor
   aliases:
-  - muriyil tempsensor
+  - ഹാൾ tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: muriyil humidity
+  name: ഹാൾ humidity
   aliases:
-  - muriyil humidity
+  - ഹാൾ humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: poku
 timers:
 - id: oven
-  name: oven timer
+  name: oven ടൈമർ
 - id: laundry
-  name: laundry timer
+  name: laundry ടൈമർ
 - id: abstract
-  name: abstract timer
+  name: abstract ടൈമർ
 lists:
 - id: shopping
-  name: pattika
+  name: പട്ടിക

@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - aabn gardin sovevaerelse
-  - gardin sovevaerelse aabn
+  - aabn gardin sovevaerelsemaster
+  - gardin sovevaerelsemaster aabn
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - luk gardin sovevaerelse
-  - gardin sovevaerelse luk
+  - luk gardin sovevaerelsemaster
+  - gardin sovevaerelsemaster luk
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - saet gardin sovevaerelse 0
-  - gardin sovevaerelse 0
+  - saet gardin sovevaerelsemaster 0
+  - gardin sovevaerelsemaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - saet gardin sovevaerelse 25
-  - gardin sovevaerelse 25
+  - saet gardin sovevaerelsemaster 25
+  - gardin sovevaerelsemaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - saet gardin sovevaerelse 40
-  - gardin sovevaerelse 40
+  - saet gardin sovevaerelsemaster 40
+  - gardin sovevaerelsemaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - saet gardin sovevaerelse 75
-  - gardin sovevaerelse 75
+  - saet gardin sovevaerelsemaster 75
+  - gardin sovevaerelsemaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - saet gardin sovevaerelse 100
-  - gardin sovevaerelse 100
+  - saet gardin sovevaerelsemaster 100
+  - gardin sovevaerelsemaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - aabn gardin sovevaerelse
-  - gardin sovevaerelse aabn
+  - aabn gardin sovevaerelsemaster
+  - gardin sovevaerelsemaster aabn

@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - fean seomraleong cas
-  - cas fean seomraleong
+  - fean seomraleongmaster cas
+  - cas fean seomraleongmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - much fean seomraleong
-  - fean seomraleong much
+  - much fean seomraleongmaster
+  - fean seomraleongmaster much
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - socraigh fean seomraleong 40
-  - fean seomraleong 40
+  - socraigh fean seomraleongmaster 40
+  - fean seomraleongmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - socraigh fean seomraleong 20
-  - fean seomraleong 20
+  - socraigh fean seomraleongmaster 20
+  - fean seomraleongmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - socraigh fean seomraleong 60
-  - fean seomraleong 60
+  - socraigh fean seomraleongmaster 60
+  - fean seomraleongmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - socraigh fean seomraleong 80
-  - fean seomraleong 80
+  - socraigh fean seomraleongmaster 80
+  - fean seomraleongmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- hva lys entree
+- hva sensor dor entree
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
 - hva varme stue
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- hva varme soverom
+- hva varme soverommaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - hva gardin soverom2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -21,9 +21,9 @@ query_devices/cover_living_blinds::cover_living_blinds_get_position:
 query_devices/cover_living_blinds::cover_living_blinds_get_status:
 - hva gardin stue
 query_devices/cover_master_blinds::cover_master_blinds_get_position:
-- hva gardin soverom
+- hva gardin soverommaster
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
-- hva gardin soverom
+- hva gardin soverommaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
 - hva vifte soverom2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
@@ -33,9 +33,9 @@ query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
 query_devices/fan_family_fan::fan_family_fan_get_status:
 - hva vifte stuefam
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- hva vifte soverom
+- hva vifte soverommaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- hva vifte soverom
+- hva vifte soverommaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - hva tak soverom2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -73,9 +73,9 @@ query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
 - hva tak kjokken
 query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
-- hva lys kjokken
+- hva oy kjokken
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
-- hva lys kjokken
+- hva oy kjokken
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
 - hva lys vaskerom
 query_devices/light_laundry_light::light_laundry_light_get_status:
@@ -85,9 +85,9 @@ query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
 - hva tak stue
 query_devices/light_living_lamp::light_living_lamp_get_brightness:
-- hva lys stue
+- hva lamp stue
 query_devices/light_living_lamp::light_living_lamp_get_status:
-- hva lys stue
+- hva lamp stue
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
 - hva lys main bath
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
@@ -97,21 +97,21 @@ query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
 - hva lys badmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
-- hva nattbord soverom
+- hva nattbord soverommaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
-- hva nattbord soverom
+- hva nattbord soverommaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
-- hva nattbord soverom
+- hva nattbord soverommaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
-- hva nattbord soverom
+- hva nattbord soverommaster
 query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
-- hva tak soverom
+- hva tak soverommaster
 query_devices/light_master_ceiling::light_master_ceiling_get_status:
-- hva tak soverom
+- hva tak soverommaster
 query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
-- hva lys soverom
+- hva ankleide soverommaster
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
-- hva lys soverom
+- hva ankleide soverommaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
 - hva lys toalett
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
@@ -127,6 +127,6 @@ query_devices/media_player_living_tv::media_player_living_tv_get_status:
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - hva oppvask
 query_devices/switch_dryer::switch_dryer_get_status:
-- hva vaskemaskin
+- hva dryer
 query_devices/switch_washing_machine::switch_washing_machine_get_status:
 - hva vaskemaskin

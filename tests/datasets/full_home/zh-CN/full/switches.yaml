@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - dakai xiwanji chufang
-  - xiwanji chufang dakai
+  - 打开 xiwanji 厨房
+  - xiwanji 厨房 打开
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - guanbi xiwanji chufang
-  - xiwanji chufang guanbi
+  - 关闭 xiwanji 厨房
+  - xiwanji 厨房 关闭
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - dakai xiyiji xiyifang
-  - xiyiji xiyifang dakai
+  - 打开 xiyiji xiyifang
+  - xiyiji xiyifang 打开
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - guanbi xiyiji xiyifang
-  - xiyiji xiyifang guanbi
+  - 关闭 xiyiji xiyifang
+  - xiyiji xiyifang 关闭
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - dakai dryer xiyifang
-  - dryer xiyifang dakai
+  - 打开 dryer xiyifang
+  - dryer xiyifang 打开
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - guanbi dryer xiyifang
-  - dryer xiyifang guanbi
+  - 关闭 dryer xiyifang
+  - dryer xiyifang 关闭
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - dakai youyanji chufang
-  - youyanji chufang dakai
+  - 打开 youyanji 厨房
+  - youyanji 厨房 打开
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - guanbi youyanji chufang
-  - youyanji chufang guanbi
+  - 关闭 youyanji 厨房
+  - youyanji 厨房 关闭
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - dakai yushifengshan zhuwei
-  - yushifengshan zhuwei dakai
+  - 打开 yushifengshan zhuwei
+  - yushifengshan zhuwei 打开
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - guanbi yushifengshan zhuwei
-  - yushifengshan zhuwei guanbi
+  - 关闭 yushifengshan zhuwei
+  - yushifengshan zhuwei 关闭
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - dakai yushifengshan main bath
-  - yushifengshan main bath dakai
+  - 打开 yushifengshan main bath
+  - yushifengshan main bath 打开
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - guanbi yushifengshan main bath
-  - yushifengshan main bath guanbi
+  - 关闭 yushifengshan main bath
+  - yushifengshan main bath 关闭

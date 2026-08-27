@@ -5,7 +5,7 @@ mod words;
 use super::groups::{GroupClarify, LanguagePack as Pack, NumberStyle};
 use super::morphology::Morphology;
 use super::speech::Speech;
-use super::verbs::VerbKind;
+use super::verbs::{extra_verb, VerbKind};
 use super::LangId;
 use crate::types::CustomSentence;
 use std::collections::{HashMap, HashSet};
@@ -37,7 +37,7 @@ pub struct Catalog {
 
 impl Catalog {
     pub fn verb(&self, t: &str) -> Option<VerbKind> {
-        self.verbs.get(t).copied()
+        self.verbs.get(t).copied().or_else(|| extra_verb(t))
     }
 
     pub fn is_filler(&self, t: &str) -> bool {
@@ -78,6 +78,10 @@ impl Catalog {
 
     pub fn any(&self, tokens: &[String], set: &HashSet<&'static str>) -> bool {
         tokens.iter().any(|t| set.contains(t.as_str()))
+            || set.iter().any(|phrase| {
+                let parts: Vec<&str> = phrase.split_whitespace().collect();
+                parts.len() > 1 && tokens.windows(parts.len()).any(|window| window.iter().map(String::as_str).eq(parts.iter().copied()))
+            })
     }
 
     /// Query language packs directly. New word lists belong on `LanguagePack`; the HashSets are a cache.
@@ -193,6 +197,8 @@ impl Catalog {
             || self.all_words().contains(token)
             || self.conjunctions().contains(token)
             || self.question_words().contains(token)
+            || self.affirm().contains(token)
+            || self.clarify_pick().contains(token)
             || self.is_except(token)
             || self.synonym_pairs.iter().any(|(alias, _)| *alias == token)
     }

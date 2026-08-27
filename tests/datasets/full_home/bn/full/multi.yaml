@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo bosar ebong ranna
-  - alo bosar ebong ranna jalao
+  - জ্বালাও আলো বসার এবং রান্না
+  - আলো বসার এবং রান্না জ্বালাও
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - nibhao alo bosar ebong tala dorja
-  - nibhao bosar ebong tala dorja
+  - নিভাও আলো বসার এবং তালা দরজা
+  - নিভাও বসার এবং তালা দরজা
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo ranna ebong paribarikess
-  - alo ranna ebong paribarikess jalao
+  - জ্বালাও আলো রান্না এবং paribarikess
+  - আলো রান্না এবং paribarikess জ্বালাও
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo office ebong hallway
-  - alo office ebong hallway jalao
+  - জ্বালাও আলো office এবং hallway
+  - আলো office এবং hallway জ্বালাও
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo garage ebong garden
-  - alo garage ebong garden jalao
+  - জ্বালাও আলো garage এবং garden
+  - আলো garage এবং garden জ্বালাও
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shobarghor ebong main bath
-  - alo shobarghor ebong main bath jalao
+  - জ্বালাও আলো shobarghormaster এবং main bath
+  - আলো shobarghormaster এবং main bath জ্বালাও
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo paribarik ebong bosar
-  - alo paribarik ebong bosar jalao
+  - জ্বালাও আলো paribarik এবং বসার
+  - আলো paribarik এবং বসার জ্বালাও
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo basement ebong garden
-  - alo basement ebong garden jalao
+  - জ্বালাও আলো basement এবং garden
+  - আলো basement এবং garden জ্বালাও
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo hallway ebong office
-  - alo hallway ebong office jalao
+  - জ্বালাও আলো hallway এবং office
+  - আলো hallway এবং office জ্বালাও
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo paribarikess ebong ranna
-  - alo paribarikess ebong ranna jalao
+  - জ্বালাও আলো paribarikess এবং রান্না
+  - আলো paribarikess এবং রান্না জ্বালাও
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao alo shobarghor2 ebong shobarghor3
-  - alo shobarghor2 ebong shobarghor3 jalao
+  - জ্বালাও আলো shobarghor2 এবং shobarghor3
+  - আলো shobarghor2 এবং shobarghor3 জ্বালাও

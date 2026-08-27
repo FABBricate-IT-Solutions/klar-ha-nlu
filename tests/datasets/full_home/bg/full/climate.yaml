@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - сложи парно спалня 18
-  - парно спалня 18
+  - сложи парно спалняmaster 18
+  - парно спалняmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - сложи парно спалня 19
-  - парно спалня 19
+  - сложи парно спалняmaster 19
+  - парно спалняmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - сложи парно спалня 20
-  - парно спалня 20
+  - сложи парно спалняmaster 20
+  - парно спалняmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - сложи парно спалня 21
-  - парно спалня 21
+  - сложи парно спалняmaster 21
+  - парно спалняmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - сложи парно спалня 22
-  - парно спалня 22
+  - сложи парно спалняmaster 22
+  - парно спалняmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - сложи парно спалня 23
-  - парно спалня 23
+  - сложи парно спалняmaster 23
+  - парно спалняmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - сложи парно спалня 24
-  - парно спалня 24
+  - сложи парно спалняmaster 24
+  - парно спалняmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - какво парно спалня
-  - парно спалня
+  - какво парно спалняmaster
+  - парно спалняmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - сложи температура спалня 18
-  - температура спалня 18
+  - сложи температура спалняmaster 18
+  - температура спалняmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - сложи температура спалня 19
-  - температура спалня 19
+  - сложи температура спалняmaster 19
+  - температура спалняmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - сложи температура спалня 20
-  - температура спалня 20
+  - сложи температура спалняmaster 20
+  - температура спалняmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - сложи температура спалня 21
-  - температура спалня 21
+  - сложи температура спалняmaster 21
+  - температура спалняmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - сложи температура спалня 22
-  - температура спалня 22
+  - сложи температура спалняmaster 22
+  - температура спалняmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - сложи температура спалня 23
-  - температура спалня 23
+  - сложи температура спалняmaster 23
+  - температура спалняmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - сложи температура спалня 24
-  - температура спалня 24
+  - сложи температура спалняmaster 24
+  - температура спалняmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - какво температура спалня
-  - температура спалня
+  - какво температура спалняmaster
+  - температура спалняmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - какво парно спалня
-  - парно спалня
+  - какво парно спалняmaster
+  - парно спалняmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - какво температура спалня
-  - температура спалня
+  - какво температура спалняmaster
+  - температура спалняmaster

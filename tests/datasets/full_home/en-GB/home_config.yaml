@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Bedroom
+  name: Bedroommaster
   floor: upper
   aliases:
+  - bedroommaster
   - bedroom
 - id: bedroom_2
   name: Bedroom2
@@ -190,29 +191,29 @@ devices:
   - light
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: bedroom ceiling
+  name: bedroommaster ceiling
   aliases:
-  - bedroom ceiling
+  - bedroommaster ceiling
   - ceiling
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: bedroom ensuite
+  name: bedroommaster ensuite
   aliases:
-  - bedroom ensuite
+  - bedroommaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: bedroom left bedside
+  name: bedroommaster left bedside
   aliases:
-  - bedroom left bedside
+  - bedroommaster left bedside
   - bedside
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: bedroom right bedside
+  name: bedroommaster right bedside
   aliases:
-  - bedroom right bedside
+  - bedroommaster right bedside
   - bedside
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - curtain
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: bedroom curtain
+  name: bedroommaster curtain
   aliases:
-  - bedroom curtain
+  - bedroommaster curtain
   - curtain
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - heating
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: bedroom heating
+  name: bedroommaster heating
   aliases:
-  - bedroom heating
+  - bedroommaster heating
   - heating
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperature bedroom
+  name: temperature bedroommaster
   aliases:
-  - temperature bedroom
+  - temperature bedroommaster
   - temperature
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - fan
 - id: fan.master_fan
   area_id: master_bedroom
-  name: bedroom fan
+  name: bedroommaster fan
   aliases:
-  - bedroom fan
+  - bedroommaster fan
   - fan
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - що штора спальня
-  - що спальня штора
+  - що штора спальняmaster
+  - що спальняmaster штора
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - що опалення спальня
-  - що спальня опалення
+  - що опалення спальняmaster
+  - що спальняmaster опалення
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - що температура спальня
-  - що спальня температура
+  - що температура спальняmaster
+  - що спальняmaster температура
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - що вентилятор спальня
-  - що спальня вентилятор
+  - що вентилятор спальняmaster
+  - що спальняmaster вентилятор
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - що світло спальня
-  - що спальня світло
+  - що світло спальняmaster
+  - що спальняmaster світло
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - що світло спальня
-  - що спальня світло
+  - що світло спальняmaster
+  - що спальняmaster світло
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - що ensuite спальня
-  - що спальня ensuite
+  - що ensuite спальняmaster
+  - що спальняmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - що світло спальня
-  - що спальня світло
+  - що світло спальняmaster
+  - що спальняmaster світло
 - name: query_light.master_bath_light
   conditions:
   - type: query

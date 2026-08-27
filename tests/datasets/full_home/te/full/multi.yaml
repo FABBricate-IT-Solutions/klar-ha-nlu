@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu gadi mariyu vantagadi
-  - velugu gadi mariyu vantagadi veliginchu
+  - వెలిగించు వెలుగు గది మరియు వంటగది
+  - వెలుగు గది మరియు వంటగది వెలిగించు
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - arpu velugu gadi mariyu talam talupu
-  - arpu gadi mariyu talam talupu
+  - ఆర్పు వెలుగు గది మరియు తాళం తలుపు
+  - ఆర్పు గది మరియు తాళం తలుపు
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu vantagadi mariyu kutumbamess
-  - velugu vantagadi mariyu kutumbamess veliginchu
+  - వెలిగించు వెలుగు వంటగది మరియు kutumbamess
+  - వెలుగు వంటగది మరియు kutumbamess వెలిగించు
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu office mariyu hallway
-  - velugu office mariyu hallway veliginchu
+  - వెలిగించు వెలుగు office మరియు hallway
+  - వెలుగు office మరియు hallway వెలిగించు
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu garage mariyu garden
-  - velugu garage mariyu garden veliginchu
+  - వెలిగించు వెలుగు garage మరియు garden
+  - వెలుగు garage మరియు garden వెలిగించు
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu padakagadi mariyu main bath
-  - velugu padakagadi mariyu main bath veliginchu
+  - వెలిగించు వెలుగు padakagadimaster మరియు main bath
+  - వెలుగు padakagadimaster మరియు main bath వెలిగించు
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu kutumbam mariyu gadi
-  - velugu kutumbam mariyu gadi veliginchu
+  - వెలిగించు వెలుగు kutumbam మరియు గది
+  - వెలుగు kutumbam మరియు గది వెలిగించు
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu basement mariyu garden
-  - velugu basement mariyu garden veliginchu
+  - వెలిగించు వెలుగు basement మరియు garden
+  - వెలుగు basement మరియు garden వెలిగించు
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu hallway mariyu office
-  - velugu hallway mariyu office veliginchu
+  - వెలిగించు వెలుగు hallway మరియు office
+  - వెలుగు hallway మరియు office వెలిగించు
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu kutumbamess mariyu vantagadi
-  - velugu kutumbamess mariyu vantagadi veliginchu
+  - వెలిగించు వెలుగు kutumbamess మరియు వంటగది
+  - వెలుగు kutumbamess మరియు వంటగది వెలిగించు
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - veliginchu velugu padakagadi2 mariyu padakagadi3
-  - velugu padakagadi2 mariyu padakagadi3 veliginchu
+  - వెలిగించు వెలుగు padakagadi2 మరియు padakagadi3
+  - వెలుగు padakagadi2 మరియు padakagadi3 వెలిగించు

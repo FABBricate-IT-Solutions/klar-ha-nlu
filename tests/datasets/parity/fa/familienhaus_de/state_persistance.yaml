@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - چی چراغ garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - چی چراغ ورودیgang و چی چراغ سرویس
+- - چی چراغ ورودیgang then چی چراغ سرویس
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - چی چراغ ورودیgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - چی چراغ حماماصلی
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - چی سرما اتاقخواب و چی سرما پذیرایی
+- - چی سرما اتاقخوابmaster then چی سرما پذیرایی
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - چی پرده اتاقخواب و چی پرده پذیرایی
+- - چی پرده اتاقخوابmaster then چی پرده پذیرایی
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - چی سرما اتاقخواب
+- - چی سرما اتاقخوابmaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - چی پرده اتاقخواب
+- - چی پرده اتاقخوابmaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - چی چراغ سرویس

@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator loznice zapni
-  - zapni ventilator loznice
+  - ventilator loznicemaster zapni
+  - zapni ventilator loznicemaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - vypni ventilator loznice
-  - ventilator loznice vypni
+  - vypni ventilator loznicemaster
+  - ventilator loznicemaster vypni
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - nastav ventilator loznice 40
-  - ventilator loznice 40
+  - nastav ventilator loznicemaster 40
+  - ventilator loznicemaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - nastav ventilator loznice 20
-  - ventilator loznice 20
+  - nastav ventilator loznicemaster 20
+  - ventilator loznicemaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - nastav ventilator loznice 60
-  - ventilator loznice 60
+  - nastav ventilator loznicemaster 60
+  - ventilator loznicemaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - nastav ventilator loznice 80
-  - ventilator loznice 80
+  - nastav ventilator loznicemaster 80
+  - ventilator loznicemaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

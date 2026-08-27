@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti baithak ra bhansa
-  - batti baithak ra bhansa bal
+  - बाल बत्ती बैठक र भान्सा
+  - बत्ती बैठक र भान्सा बाल
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - nibhau batti baithak ra tala dhoka
-  - nibhau baithak ra tala dhoka
+  - निभाऊ बत्ती बैठक र ताला ढोका
+  - निभाऊ बैठक र ताला ढोका
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti bhansa ra parivarikess
-  - batti bhansa ra parivarikess bal
+  - बाल बत्ती भान्सा र parivarikess
+  - बत्ती भान्सा र parivarikess बाल
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti office ra hallway
-  - batti office ra hallway bal
+  - बाल बत्ती office र hallway
+  - बत्ती office र hallway बाल
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti garage ra garden
-  - batti garage ra garden bal
+  - बाल बत्ती garage र garden
+  - बत्ती garage र garden बाल
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti sutnekotha ra main bath
-  - batti sutnekotha ra main bath bal
+  - बाल बत्ती sutnekothamaster र main bath
+  - बत्ती sutnekothamaster र main bath बाल
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti parivarik ra baithak
-  - batti parivarik ra baithak bal
+  - बाल बत्ती parivarik र बैठक
+  - बत्ती parivarik र बैठक बाल
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti basement ra garden
-  - batti basement ra garden bal
+  - बाल बत्ती basement र garden
+  - बत्ती basement र garden बाल
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti hallway ra office
-  - batti hallway ra office bal
+  - बाल बत्ती hallway र office
+  - बत्ती hallway र office बाल
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti parivarikess ra bhansa
-  - batti parivarikess ra bhansa bal
+  - बाल बत्ती parivarikess र भान्सा
+  - बत्ती parivarikess र भान्सा बाल
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - bal batti sutnekotha2 ra sutnekotha3
-  - batti sutnekotha2 ra sutnekotha3 bal
+  - बाल बत्ती sutnekotha2 र sutnekotha3
+  - बत्ती sutnekotha2 र sutnekotha3 बाल

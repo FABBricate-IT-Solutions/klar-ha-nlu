@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - iesledz gaisma gulamistaba
+  - iesledz gaisma gulamistabamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - izsledz gaisma gulamistaba
+  - izsledz gaisma gulamistabamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - iesledz griesti gulamistaba
+  - iesledz griesti gulamistabamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - izsledz griesti gulamistaba
+  - izsledz griesti gulamistabamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - iesledz bedside gulamistaba
+  - iesledz bedside gulamistabamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - izsledz bedside gulamistaba
+  - izsledz bedside gulamistabamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - mis vali garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - mis vali esikgang ja mis vali wc
+- - mis vali esikgang then mis vali wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - mis vali esikgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - mis vali vannmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - mis kyte magamistuba ja mis kyte elutuba
+- - mis kyte magamistubamaster then mis kyte elutuba
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - mis kardin magamistuba ja mis kardin elutuba
+- - mis kardin magamistubamaster then mis kardin elutuba
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - mis kyte magamistuba
+- - mis kyte magamistubamaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - mis kardin magamistuba
+- - mis kardin magamistubamaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - mis vali wc

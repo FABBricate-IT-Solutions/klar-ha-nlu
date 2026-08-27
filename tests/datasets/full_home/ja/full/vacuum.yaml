@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - tsukete soujiki
-  - soujiki tsukete
+  - つけて 掃除機
+  - 掃除機 つけて
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - keshite soujiki
-  - soujiki keshite
+  - 消して 掃除機
+  - 掃除機 消して

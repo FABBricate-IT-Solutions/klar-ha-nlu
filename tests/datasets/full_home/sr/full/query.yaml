@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - шта завеса спавача
-  - шта спавача завеса
+  - шта завеса спавачаmaster
+  - шта спавачаmaster завеса
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - шта грејање спавача
-  - шта спавача грејање
+  - шта грејање спавачаmaster
+  - шта спавачаmaster грејање
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - шта температура спавача
-  - шта спавача температура
+  - шта температура спавачаmaster
+  - шта спавачаmaster температура
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - шта вентилатор спавача
-  - шта спавача вентилатор
+  - шта вентилатор спавачаmaster
+  - шта спавачаmaster вентилатор
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - шта светло спавача
-  - шта спавача светло
+  - шта светло спавачаmaster
+  - шта спавачаmaster светло
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - шта светло спавача
-  - шта спавача светло
+  - шта светло спавачаmaster
+  - шта спавачаmaster светло
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - шта ensuite спавача
-  - шта спавача ensuite
+  - шта ensuite спавачаmaster
+  - шта спавачаmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - шта светло спавача
-  - шта спавача светло
+  - шта светло спавачаmaster
+  - шта спавачаmaster светло
 - name: query_light.master_bath_light
   conditions:
   - type: query

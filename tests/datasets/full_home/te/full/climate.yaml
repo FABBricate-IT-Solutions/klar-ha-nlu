@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set vedi gadi 18
-  - vedi gadi 18
+  - సెట్ వేడి గది 18
+  - వేడి గది 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set vedi gadi 19
-  - vedi gadi 19
+  - సెట్ వేడి గది 19
+  - వేడి గది 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set vedi gadi 20
-  - vedi gadi 20
+  - సెట్ వేడి గది 20
+  - వేడి గది 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set vedi gadi 21
-  - vedi gadi 21
+  - సెట్ వేడి గది 21
+  - వేడి గది 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set vedi gadi 22
-  - vedi gadi 22
+  - సెట్ వేడి గది 22
+  - వేడి గది 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set vedi gadi 23
-  - vedi gadi 23
+  - సెట్ వేడి గది 23
+  - వేడి గది 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set vedi gadi 24
-  - vedi gadi 24
+  - సెట్ వేడి గది 24
+  - వేడి గది 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - emi vedi gadi
-  - vedi gadi
+  - ఏమి వేడి గది
+  - వేడి గది
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set vedi padakagadi 18
-  - vedi padakagadi 18
+  - సెట్ వేడి padakagadimaster 18
+  - వేడి padakagadimaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set vedi padakagadi 19
-  - vedi padakagadi 19
+  - సెట్ వేడి padakagadimaster 19
+  - వేడి padakagadimaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set vedi padakagadi 20
-  - vedi padakagadi 20
+  - సెట్ వేడి padakagadimaster 20
+  - వేడి padakagadimaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set vedi padakagadi 21
-  - vedi padakagadi 21
+  - సెట్ వేడి padakagadimaster 21
+  - వేడి padakagadimaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set vedi padakagadi 22
-  - vedi padakagadi 22
+  - సెట్ వేడి padakagadimaster 22
+  - వేడి padakagadimaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set vedi padakagadi 23
-  - vedi padakagadi 23
+  - సెట్ వేడి padakagadimaster 23
+  - వేడి padakagadimaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set vedi padakagadi 24
-  - vedi padakagadi 24
+  - సెట్ వేడి padakagadimaster 24
+  - వేడి padakagadimaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - emi vedi padakagadi
-  - vedi padakagadi
+  - ఏమి వేడి padakagadimaster
+  - వేడి padakagadimaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set vedi padakagadi 18
-  - vedi padakagadi 18
+  - సెట్ vedi padakagadimaster 18
+  - vedi padakagadimaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set vedi padakagadi 19
-  - vedi padakagadi 19
+  - సెట్ vedi padakagadimaster 19
+  - vedi padakagadimaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set vedi padakagadi 20
-  - vedi padakagadi 20
+  - సెట్ vedi padakagadimaster 20
+  - vedi padakagadimaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set vedi padakagadi 21
-  - vedi padakagadi 21
+  - సెట్ vedi padakagadimaster 21
+  - vedi padakagadimaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set vedi padakagadi 22
-  - vedi padakagadi 22
+  - సెట్ vedi padakagadimaster 22
+  - vedi padakagadimaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set vedi padakagadi 23
-  - vedi padakagadi 23
+  - సెట్ vedi padakagadimaster 23
+  - vedi padakagadimaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - set vedi padakagadi 24
-  - vedi padakagadi 24
+  - సెట్ vedi padakagadimaster 24
+  - vedi padakagadimaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - emi vedi padakagadi
-  - vedi padakagadi
+  - ఏమి vedi padakagadimaster
+  - vedi padakagadimaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - emi vedi gadi
-  - vedi gadi
+  - ఏమి వేడి గది
+  - వేడి గది
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - emi vedi padakagadi
-  - vedi padakagadi
+  - ఏమి వేడి padakagadimaster
+  - వేడి padakagadimaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - emi vedi padakagadi
-  - vedi padakagadi
+  - ఏమి vedi padakagadimaster
+  - vedi padakagadimaster

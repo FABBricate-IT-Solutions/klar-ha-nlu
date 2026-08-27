@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - charte filmi
-  - filmi charte
+  - ჩართე filmi
+  - filmi ჩართე
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - charte ghame
-  - ghame charte
+  - ჩართე ghame
+  - ghame ჩართე
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - charte gasvla
-  - gasvla charte
+  - ჩართე gasvla
+  - gasvla ჩართე
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - charte dinner
-  - dinner charte
+  - ჩართე dinner
+  - dinner ჩართე
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - charte morning
-  - morning charte
+  - ჩართე morning
+  - morning ჩართე
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - charte kids
-  - kids charte
+  - ჩართე kids
+  - kids ჩართე

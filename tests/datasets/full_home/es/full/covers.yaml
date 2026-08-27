@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - abre cortina dormitorio
-  - cortina dormitorio abre
+  - abre cortina dormitoriomaster
+  - cortina dormitoriomaster abre
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - cierra cortina dormitorio
-  - cortina dormitorio cierra
+  - cierra cortina dormitoriomaster
+  - cortina dormitoriomaster cierra
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - pon cortina dormitorio 0
-  - cortina dormitorio 0
+  - pon cortina dormitoriomaster 0
+  - cortina dormitoriomaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - pon cortina dormitorio 25
-  - cortina dormitorio 25
+  - pon cortina dormitoriomaster 25
+  - cortina dormitoriomaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - pon cortina dormitorio 40
-  - cortina dormitorio 40
+  - pon cortina dormitoriomaster 40
+  - cortina dormitoriomaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - pon cortina dormitorio 75
-  - cortina dormitorio 75
+  - pon cortina dormitoriomaster 75
+  - cortina dormitoriomaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - pon cortina dormitorio 100
-  - cortina dormitorio 100
+  - pon cortina dormitoriomaster 100
+  - cortina dormitoriomaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - abre cortina dormitorio
-  - cortina dormitorio abre
+  - abre cortina dormitoriomaster
+  - cortina dormitoriomaster abre

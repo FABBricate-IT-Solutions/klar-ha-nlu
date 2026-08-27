@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - bat phongngu tran va phongngu dau giuong
-  - phongngu tran va phongngu dau giuong bat
+  - bat phongngumaster tran va phongngumaster dau giuong
+  - phongngumaster tran va phongngumaster dau giuong bat
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - tat phongngu tran va phongngu dau giuong
-  - phongngu tran va phongngu dau giuong tat
+  - tat phongngumaster tran va phongngumaster dau giuong
+  - phongngumaster tran va phongngumaster dau giuong tat
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - bat phongngu quat va bep dao
-  - phongngu quat va bep dao bat
+  - bat phongngumaster quat va bep dao
+  - phongngumaster quat va bep dao bat
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - tat bongden phongngu va main bath
-  - bongden phongngu va main bath tat
+  - tat bongden phongngumaster va main bath
+  - bongden phongngumaster va main bath tat
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - tat tatca bongden tru phongkhach va phongngu
-  - tatca bongden tat tru phongkhach va phongngu
+  - tat tatca bongden tru phongkhach va phongngumaster
+  - tatca bongden tat tru phongkhach va phongngumaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - tat tatca bongden tang tru phongngu
-  - tatca bongden tang tat tru phongngu
+  - tat tatca bongden tang tru phongngumaster
+  - tatca bongden tang tat tru phongngumaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - mo rem phongkhach va phongngu
-  - rem phongkhach va phongngu mo
+  - mo rem phongkhach va phongngumaster
+  - rem phongkhach va phongngumaster mo
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - dong rem phongkhach va phongngu
-  - rem phongkhach va phongngu dong
+  - dong rem phongkhach va phongngumaster
+  - rem phongkhach va phongngumaster dong
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - dat dieuhoa phongkhach va phongngu 21
-  - dieuhoa phongkhach va phongngu 21
+  - dat dieuhoa phongkhach va phongngumaster 21
+  - dieuhoa phongkhach va phongngumaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

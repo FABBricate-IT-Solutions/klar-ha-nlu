@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Seomraleong
+  name: Seomraleongmaster
   floor: upper
   aliases:
+  - seomraleongmaster
   - seomraleong
 - id: bedroom_2
   name: Seomraleong2
@@ -130,10 +131,10 @@ devices:
   - uasteorainn
 - id: light.living_lamp
   area_id: living
-  name: seomra solas
+  name: seomra lamp
   aliases:
-  - seomra solas
-  - solas
+  - seomra lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: seomrateaghlaighess solas
@@ -190,29 +191,29 @@ devices:
   - solas
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: seomraleong uasteorainn
+  name: seomraleongmaster uasteorainn
   aliases:
-  - seomraleong uasteorainn
+  - seomraleongmaster uasteorainn
   - uasteorainn
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: seomraleong ensuite
+  name: seomraleongmaster ensuite
   aliases:
-  - seomraleong ensuite
+  - seomraleongmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: seomraleong left leaba
+  name: seomraleongmaster left leaba
   aliases:
-  - seomraleong left leaba
+  - seomraleongmaster left leaba
   - leaba
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: seomraleong right leaba
+  name: seomraleongmaster right leaba
   aliases:
-  - seomraleong right leaba
+  - seomraleongmaster right leaba
   - leaba
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - cuirtin
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: seomraleong cuirtin
+  name: seomraleongmaster cuirtin
   aliases:
-  - seomraleong cuirtin
+  - seomraleongmaster cuirtin
   - cuirtin
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - teas
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: seomraleong teas
+  name: seomraleongmaster teas
   aliases:
-  - seomraleong teas
+  - seomraleongmaster teas
   - teas
 - id: climate.master_ac
   area_id: master_bedroom
-  name: teas seomraleong
+  name: teas seomraleongmaster
   aliases:
-  - teas seomraleong
+  - teas seomraleongmaster
   - teas
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - fean
 - id: fan.master_fan
   area_id: master_bedroom
-  name: seomraleong fean
+  name: seomraleongmaster fean
   aliases:
-  - seomraleong fean
+  - seomraleongmaster fean
   - fean
 - id: fan.bedroom2_fan
   area_id: bedroom_2

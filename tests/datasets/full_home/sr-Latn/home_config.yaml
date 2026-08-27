@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Spavaca
+  name: Spavacamaster
   floor: upper
   aliases:
+  - spavacamaster
   - spavaca
 - id: bedroom_2
   name: Spavaca2
@@ -130,10 +131,10 @@ devices:
   - plafon
 - id: light.living_lamp
   area_id: living
-  name: dnevna svetlo
+  name: dnevna lamp
   aliases:
-  - dnevna svetlo
-  - svetlo
+  - dnevna lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: dnevnafamess svetlo
@@ -190,29 +191,29 @@ devices:
   - svetlo
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: spavaca plafon
+  name: spavacamaster plafon
   aliases:
-  - spavaca plafon
+  - spavacamaster plafon
   - plafon
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: spavaca ensuite
+  name: spavacamaster ensuite
   aliases:
-  - spavaca ensuite
+  - spavacamaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: spavaca left nocni
+  name: spavacamaster left nocni
   aliases:
-  - spavaca left nocni
+  - spavacamaster left nocni
   - nocni
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: spavaca right nocni
+  name: spavacamaster right nocni
   aliases:
-  - spavaca right nocni
+  - spavacamaster right nocni
   - nocni
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - zavesa
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: spavaca zavesa
+  name: spavacamaster zavesa
   aliases:
-  - spavaca zavesa
+  - spavacamaster zavesa
   - zavesa
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - grejanje
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: spavaca grejanje
+  name: spavacamaster grejanje
   aliases:
-  - spavaca grejanje
+  - spavacamaster grejanje
   - grejanje
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatura spavaca
+  name: temperatura spavacamaster
   aliases:
-  - temperatura spavaca
+  - temperatura spavacamaster
   - temperatura
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: spavaca ventilator
+  name: spavacamaster ventilator
   aliases:
-  - spavaca ventilator
+  - spavacamaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - ijunk miegamasis lubos ir miegamasis naktinis
-  - miegamasis lubos ir miegamasis naktinis ijunk
+  - ijunk miegamasismaster lubos ir miegamasismaster naktinis
+  - miegamasismaster lubos ir miegamasismaster naktinis ijunk
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - isjunk miegamasis lubos ir miegamasis naktinis
-  - miegamasis lubos ir miegamasis naktinis isjunk
+  - isjunk miegamasismaster lubos ir miegamasismaster naktinis
+  - miegamasismaster lubos ir miegamasismaster naktinis isjunk
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - ijunk miegamasis ventiliatorius ir virtuve sala
-  - miegamasis ventiliatorius ir virtuve sala ijunk
+  - ijunk miegamasismaster ventiliatorius ir virtuve sala
+  - miegamasismaster ventiliatorius ir virtuve sala ijunk
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - isjunk sviesa miegamasis ir main bath
-  - sviesa miegamasis ir main bath isjunk
+  - isjunk sviesa miegamasismaster ir main bath
+  - sviesa miegamasismaster ir main bath isjunk
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - isjunk viskas sviesa iskyrus svetaine ir miegamasis
-  - viskas sviesa isjunk iskyrus svetaine ir miegamasis
+  - isjunk viskas sviesa iskyrus svetaine ir miegamasismaster
+  - viskas sviesa isjunk iskyrus svetaine ir miegamasismaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - isjunk viskas sviesa aukstas iskyrus miegamasis
-  - viskas sviesa aukstas isjunk iskyrus miegamasis
+  - isjunk viskas sviesa aukstas iskyrus miegamasismaster
+  - viskas sviesa aukstas isjunk iskyrus miegamasismaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - atidaryk uzuolaida svetaine ir miegamasis
-  - uzuolaida svetaine ir miegamasis atidaryk
+  - atidaryk uzuolaida svetaine ir miegamasismaster
+  - uzuolaida svetaine ir miegamasismaster atidaryk
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - uzdaryk uzuolaida svetaine ir miegamasis
-  - uzuolaida svetaine ir miegamasis uzdaryk
+  - uzdaryk uzuolaida svetaine ir miegamasismaster
+  - uzuolaida svetaine ir miegamasismaster uzdaryk
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nustatyk sildymas svetaine ir miegamasis 21
-  - sildymas svetaine ir miegamasis 21
+  - nustatyk sildymas svetaine ir miegamasismaster 21
+  - sildymas svetaine ir miegamasismaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

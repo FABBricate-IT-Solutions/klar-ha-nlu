@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - הדלק חדרשינה תקרה ו חדרשינה לידמיטה
-  - חדרשינה תקרה ו חדרשינה לידמיטה הדלק
+  - הדלק חדרשינהmaster תקרה ו חדרשינהmaster לידמיטה
+  - חדרשינהmaster תקרה ו חדרשינהmaster לידמיטה הדלק
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - כבה חדרשינה תקרה ו חדרשינה לידמיטה
-  - חדרשינה תקרה ו חדרשינה לידמיטה כבה
+  - כבה חדרשינהmaster תקרה ו חדרשינהmaster לידמיטה
+  - חדרשינהmaster תקרה ו חדרשינהmaster לידמיטה כבה
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - הדלק חדרשינה מאוורר ו מטבח אי
-  - חדרשינה מאוורר ו מטבח אי הדלק
+  - הדלק חדרשינהmaster מאוורר ו מטבח אי
+  - חדרשינהmaster מאוורר ו מטבח אי הדלק
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - כבה אור חדרשינה ו main bath
-  - אור חדרשינה ו main bath כבה
+  - כבה אור חדרשינהmaster ו main bath
+  - אור חדרשינהmaster ו main bath כבה
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - כבה הכל אור חוץ סלון ו חדרשינה
-  - הכל אור כבה חוץ סלון ו חדרשינה
+  - כבה הכל אור חוץ סלון ו חדרשינהmaster
+  - הכל אור כבה חוץ סלון ו חדרשינהmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - כבה הכל אור קומה חוץ חדרשינה
-  - הכל אור קומה כבה חוץ חדרשינה
+  - כבה הכל אור קומה חוץ חדרשינהmaster
+  - הכל אור קומה כבה חוץ חדרשינהmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - פתח וילון סלון ו חדרשינה
-  - וילון סלון ו חדרשינה פתח
+  - פתח וילון סלון ו חדרשינהmaster
+  - וילון סלון ו חדרשינהmaster פתח
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - סגור וילון סלון ו חדרשינה
-  - וילון סלון ו חדרשינה סגור
+  - סגור וילון סלון ו חדרשינהmaster
+  - וילון סלון ו חדרשינהmaster סגור
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - שים חימום סלון ו חדרשינה 21
-  - חימום סלון ו חדרשינה 21
+  - שים חימום סלון ו חדרשינהmaster 21
+  - חימום סלון ו חדרשינהmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

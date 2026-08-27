@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - چی پرده اتاقخواب
-  - چی اتاقخواب پرده
+  - چی پرده اتاقخوابmaster
+  - چی اتاقخوابmaster پرده
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - چی سرما اتاقخواب
-  - چی اتاقخواب سرما
+  - چی سرما اتاقخوابmaster
+  - چی اتاقخوابmaster سرما
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - چی دما اتاقخواب
-  - چی اتاقخواب دما
+  - چی دما اتاقخوابmaster
+  - چی اتاقخوابmaster دما
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - چی پنکه اتاقخواب
-  - چی اتاقخواب پنکه
+  - چی پنکه اتاقخوابmaster
+  - چی اتاقخوابmaster پنکه
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - چی چراغ اتاقخواب
-  - چی اتاقخواب چراغ
+  - چی چراغ اتاقخوابmaster
+  - چی اتاقخوابmaster چراغ
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - چی چراغ اتاقخواب
-  - چی اتاقخواب چراغ
+  - چی چراغ اتاقخوابmaster
+  - چی اتاقخوابmaster چراغ
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - چی ensuite اتاقخواب
-  - چی اتاقخواب ensuite
+  - چی ensuite اتاقخوابmaster
+  - چی اتاقخوابmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - چی چراغ اتاقخواب
-  - چی اتاقخواب چراغ
+  - چی چراغ اتاقخوابmaster
+  - چی اتاقخوابmaster چراغ
 - name: query_light.master_bath_light
   conditions:
   - type: query
