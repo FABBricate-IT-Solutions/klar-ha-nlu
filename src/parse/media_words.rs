@@ -20,8 +20,6 @@ const SKIP_MEDIA: &[&str] = &[
     "queue",
     "warteschlange",
     "radiomodus",
-    "mode",
-    "modus",
     "room",
     "zimmer",
     "tv",
@@ -34,10 +32,13 @@ const SKIP_MEDIA: &[&str] = &[
 ];
 
 pub(super) fn clean_media_words(words: &[String], home: &HomeGraph, resolved: &Resolved) -> Vec<String> {
-    words.iter().filter(|word| !skip_media_word(word, home, resolved)).cloned().collect()
+    words.iter().filter(|word| !skip_media_word(word, words, home, resolved)).cloned().collect()
 }
 
-fn skip_media_word(word: &str, home: &HomeGraph, resolved: &Resolved) -> bool {
+fn skip_media_word(word: &str, words: &[String], home: &HomeGraph, resolved: &Resolved) -> bool {
+    if matches!(word, "mode" | "modus") && words.iter().any(|item| item == "radio" || item == "radiomodus") {
+        return true;
+    }
     is_play_word(word)
         || catalog().is_filler(word)
         || catalog().is_conj(word)
@@ -107,7 +108,8 @@ pub(super) fn music_context(tokens: &[String]) -> bool {
 }
 
 pub(super) fn music_resume(tokens: &[String]) -> bool {
-    any(tokens, &["musik", "music", "radio", "playback", "wiedergabe"]) && any(tokens, &["an", "on", "weiter", "resume", "unpause"])
+    any(tokens, &["musik", "music", "radio", "playback", "wiedergabe"])
+        && (catalog().any(tokens, catalog().playback_resume()) || any(tokens, &["an", "on", "weiter", "resume", "unpause"]))
 }
 
 pub(super) fn has_search_tail(tokens: &[String], home: &HomeGraph, resolved: &Resolved) -> bool {
@@ -117,6 +119,7 @@ pub(super) fn has_search_tail(tokens: &[String], home: &HomeGraph, resolved: &Re
 pub(super) fn is_play_word(word: &str) -> bool {
     ["spiel", "spiele", "hoere", "hoer", "abspielen", "weiter", "fortsetzen", "play", "listen", "put", "resume", "unpause"].contains(&word)
         || matches!(catalog().verb(word), Some(VerbKind::Play))
+        || catalog().playback_resume().contains(word)
 }
 
 pub(super) fn any(tokens: &[String], words: &[&str]) -> bool {

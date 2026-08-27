@@ -10,3 +10,33 @@
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - o que esta no calendario
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - adiciona dentista amanha as 15 calendario
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - apaga dentista calendario
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - move dentista amanha as 16 calendario
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - toca depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

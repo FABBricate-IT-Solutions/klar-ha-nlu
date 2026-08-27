@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Ez dut ulertu. Esan adibidez zein argi piztu.",
+    unknown: "Ez dut ulertu.",
     need_on: "Zer piztu?",
     need_off: "Zer itzali?",
     need_which: "Zer piztu?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Zer itzali?",
     timer_pause: "Zer itzali?",
     list_add: "Zerrendan dago.",
+    calendar_list: "{items}",
+    calendar_empty: "Ez dut ulertu.",
+    calendar_none: "Ez dut ulertu.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Ez dut ulertu.",
+    calendar_need_when: "Ez dut ulertu.",
+    calendar_readonly: "Ez dut ulertu.",
+    calendar_deleted: "Ezabatuta.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Zein hitzordu?",
+    calendar_no_uid: "Id ez.",
+    no_music_player: "Ez dut ulertu.",
     done: "{name}",
     light_suffix: " argia",
     area_light: "argia {loc}",

@@ -225,7 +225,7 @@ class KlarConversationEntity(ConversationEntity):
             and not clarify
             and not intents
             and not payload.get("unreachable")
-            and (decision_type != "reject" or self._nlu_rag())
+            and self._fallback_agent_id()
         ):
             fallback = await self._fallback(user_input, chat_log, pack, chat, retrieval=retrieval)
             replied = await self._after_fallback(

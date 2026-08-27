@@ -12,6 +12,7 @@ from homeassistant.components.conversation import ConversationInput
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry, intent
 
+from .calendar_ha import CALENDAR_INTENTS, handle_calendar_intent
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -71,6 +72,11 @@ async def handle_intent(
     name = item.get("name")
     if not name:
         return _fail("missing_intent")
+    if name in CALENDAR_INTENTS:
+        ok, speech, error = await handle_calendar_intent(
+            hass, item, pack, exposed, getattr(user_input, "conversation_id", None)
+        )
+        return _ok(speech) if ok else _fail(error or "calendar_failed")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):

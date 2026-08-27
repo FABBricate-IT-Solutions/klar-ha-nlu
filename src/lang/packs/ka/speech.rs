@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Ver gavige. Magalithad ra sinatle unda chavrtо.",
+    unknown: "Ver gavige.",
     need_on: "Ra chavrtо?",
     need_off: "Ra gamovrtо?",
     need_which: "Ra chavrtо?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Ra gamovrtо?",
     timer_pause: "Ra gamovrtо?",
     list_add: "Siaze aris.",
+    calendar_list: "{items}",
+    calendar_empty: "Ver gavige.",
+    calendar_none: "Ver gavige.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Ver gavige.",
+    calendar_need_when: "Ver gavige.",
+    calendar_readonly: "Ver gavige.",
+    calendar_deleted: "Tsashlilia.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Romeli movlena?",
+    calendar_no_uid: "Id ar aris.",
+    no_music_player: "Ver gavige.",
     done: "{name}",
     light_suffix: " sinatle",
     area_light: "sinatle {loc}",

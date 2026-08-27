@@ -392,7 +392,7 @@ fn media_transport_does_not_fall_through_to_script() {
     home.entities.retain(|entity| entity.domain != "media_player");
     home.entities.push(entity("script.pause", "Pause Musik", "script", None, None, &["pausiere musik"], &[]));
     let parsed = intents("Pausiere Musik", "de", &home, &mut Session::new());
-    assert!(parsed.is_empty(), "{parsed:?}");
+    assert!(parsed.is_empty() || parsed.iter().all(|intent| intent.name == "KlarNoMusicPlayer"), "{parsed:?}");
 }
 
 #[test]
@@ -463,6 +463,28 @@ fn protected_media_followup_recursively_splits_remaining_actions() {
     assert_eq!(clauses[0].join(" "), "wie laut ist die musik");
     assert_eq!(clauses[1].first().map(String::as_str), Some("schalte"));
     assert_eq!(clauses[2].first().map(String::as_str), Some("oeffne"));
+}
+
+#[test]
+fn en_resume_music_unpauses_tagged_player() {
+    let intent = one("resume music", "en");
+    assert_eq!(intent.name, "HassMediaUnpause");
+    assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+}
+
+#[test]
+fn en_play_artist_uses_mass() {
+    let intent = one("play depeche mode", "en");
+    assert_eq!(intent.name, "MassPlayMedia");
+    assert!(slot(&intent, "media_id").unwrap_or("").contains("depeche"), "{intent:?}");
+    assert_eq!(slot(&intent, "entity_id"), Some("media_player.wohnzimmer_2"));
+}
+
+#[test]
+fn de_play_artist_smoke() {
+    let intent = one("spiel depeche mode", "de");
+    assert_eq!(intent.name, "MassPlayMedia");
+    assert!(slot(&intent, "media_id").unwrap_or("").contains("depeche"), "{intent:?}");
 }
 
 #[test]

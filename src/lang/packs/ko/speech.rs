@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "잘 못 들었어요. 예를 들어 어떤 불을 켤지 말해 주세요.",
+    unknown: "잘 못 들었어요.",
     need_on: "뭘 켤까요?",
     need_off: "뭘 끌까요?",
     need_which: "뭘 켤까요?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "뭘 끌까요?",
     timer_pause: "뭘 끌까요?",
     list_add: "목록에 넣었어요.",
+    calendar_list: "{items}",
+    calendar_empty: "일정이 없어요.",
+    calendar_none: "캘린더가 없어요.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "제목은요?",
+    calendar_need_when: "언제요?",
+    calendar_readonly: "읽기 전용이에요.",
+    calendar_deleted: "삭제했어요.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "어떤 일정?",
+    calendar_no_uid: "식별자가 없어요.",
+    no_music_player: "재생기가 없어요.",
     done: "{name}",
     light_suffix: " bul",
     area_light: "bul {loc}",

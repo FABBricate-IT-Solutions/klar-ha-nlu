@@ -10,3 +10,33 @@
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - calendar me kya hai
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - jodo dentist kal 15 calendar
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - hatao dentist calendar
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - sarkao dentist kal 16 calendar
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - bajao depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

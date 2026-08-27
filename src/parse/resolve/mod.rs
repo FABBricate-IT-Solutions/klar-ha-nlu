@@ -47,6 +47,8 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| !is_infra(e))
+        .filter(|e| !crate::home::policy::is_nlu_ignored(e))
+        .filter(|e| !crate::parse::calendar::is_calendar_control(e))
         .filter(|e| domain.is_none_or(|d| matches_domain(e, d, catalog())))
         .filter_map(|e| score_entity(tokens, &fuzzy_tokens, e, home).map(|s| (s, e.clone())))
         .collect();
@@ -283,7 +285,15 @@ pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
         return false;
     }
     let compact_label = compact(label);
-    if tokens.iter().any(|token| token_eq(token, label) || compact(token) == compact_label || umlaut_eq(&compact(token), &compact_label)) {
+    if tokens.iter().any(|token| token_eq(token, label)) {
+        return true;
+    }
+    if !compact_label.is_empty()
+        && tokens.iter().any(|token| {
+            let folded = compact(token);
+            !folded.is_empty() && (folded == compact_label || umlaut_eq(&folded, &compact_label))
+        })
+    {
         return true;
     }
     if label.contains(' ') || label.contains('_') || label.contains('-') {
@@ -420,6 +430,7 @@ pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
         || cat.any(tokens, cat.media_nouns())
         || cat.any(tokens, cat.timer_nouns())
         || cat.any(tokens, cat.list_nouns())
+        || crate::parse::calendar::mentions_calendar(tokens)
         || cat.any(tokens, cat.scene_nouns())
         || cat.any(tokens, cat.named_device())
         || cat.any(tokens, cat.on_words())

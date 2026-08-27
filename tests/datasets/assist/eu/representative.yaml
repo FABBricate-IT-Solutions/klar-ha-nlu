@@ -10,3 +10,33 @@
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - zer dago egutegian
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - gehitu dentista bihar 15 egutegi
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - ezabatu dentista egutegi
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - mugitu dentista bihar 16 egutegi
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - erreproduzitu depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "سمجھ نہیں آیا۔ مثلا بتاؤ کون سی روشنی چالو کروں۔",
+    unknown: "سمجھ نہیں آیا۔",
     need_on: "کیا چالو کروں؟",
     need_off: "کیا بند کروں؟",
     need_which: "کیا چالو کروں؟",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "کیا بند کروں؟",
     timer_pause: "کیا بند کروں؟",
     list_add: "فہرست میں شامل۔",
+    calendar_list: "{items}",
+    calendar_empty: "کوئی تقریب نہیں۔",
+    calendar_none: "کیلنڈر نہیں۔",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "کیا نام؟",
+    calendar_need_when: "کب؟",
+    calendar_readonly: "صرف پڑھنے کے لیے۔",
+    calendar_deleted: "حذف ہو گیا۔",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "کون سی تقریب؟",
+    calendar_no_uid: "کوئی شناخت نہیں۔",
+    no_music_player: "کوئی پلیئر نہیں۔",
     done: "{name}",
     light_suffix: " روشنی",
     area_light: "روشنی {loc}",

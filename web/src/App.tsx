@@ -47,6 +47,7 @@ export function App() {
   const [dashboard, setDashboard] = useState<Dashboard | null>(null);
   const [inspecting, setInspecting] = useState<Assignment | null>(null);
   const [aliasDraft, setAliasDraft] = useState("");
+  const [nluIgnore, setNluIgnore] = useState(false);
   const [confirmApply, setConfirmApply] = useState(false);
   const [replayText, setReplayText] = useState("");
   const [error, setError] = useState("");
@@ -109,6 +110,7 @@ export function App() {
   };
   const openInspect = (row: Assignment) => {
     setAliasDraft(row.aliases.join(", "));
+    setNluIgnore(row.tags.includes("nlu_ignore"));
     setInspecting(row);
   };
   const saveAlias = async () => {
@@ -118,6 +120,7 @@ export function App() {
       entity_id: inspecting.entity_id,
       aliases,
       preferred: inspecting.tags.includes("preferred"),
+      nlu_ignore: nluIgnore,
       area: inspecting.area || undefined,
     });
     setInspecting(null);
@@ -125,7 +128,7 @@ export function App() {
   };
   const accept = async (row: Assignment, area = row.suggested_area?.area_id || "") => {
     const aliases = aliasDraft.split(",").map((item) => item.trim()).filter(Boolean);
-    await api.tagEntity({ entity_id: row.entity_id, aliases: aliases.length ? aliases : row.aliases, preferred: row.tags.includes("preferred"), area });
+    await api.tagEntity({ entity_id: row.entity_id, aliases: aliases.length ? aliases : row.aliases, preferred: row.tags.includes("preferred"), nlu_ignore: nluIgnore, area });
     setInspecting(null);
     refresh();
   };
@@ -156,7 +159,16 @@ export function App() {
         <HousePage data={dashboard} ui={ui} t={t} onUi={setUi} onInspect={openInspect} onRefresh={refresh} onApply={() => setConfirmApply(true)} />
       )}
       {ui.tab === "lab" && <ParsePage t={t} locale={ui.locale} replayText={replayText} nluRag={settings.nlu_rag} rooms={dashboard?.rooms || []} />}
-      {ui.tab === "settings" && <SettingsPage t={t} settings={settings} onSettings={setSettings} />}
+      {ui.tab === "settings" && (
+        <SettingsPage
+          t={t}
+          settings={settings}
+          onSettings={(next) => {
+            setSettings(next);
+            setUi((prev) => ({ ...prev, locale: initialLocale(prev.locale, next.languages) }));
+          }}
+        />
+      )}
 
       {inspecting && (
         <Drawer title={inspecting.name} onClose={() => setInspecting(null)} closeLabel={t.close}>
@@ -164,6 +176,11 @@ export function App() {
           <p className={`conf-${inspecting.confidence}`}>{t[inspecting.confidence]}</p>
           <label>{t.alias}</label>
           <input value={aliasDraft} onChange={(ev) => setAliasDraft(ev.target.value)} placeholder={t.searchDevice} />
+          <label className="row" style={{ marginTop: 12 }}>
+            <input type="checkbox" checked={nluIgnore} onChange={(ev) => setNluIgnore(ev.target.checked)} />
+            <span>{t.nluIgnore}</span>
+          </label>
+          <p className="muted">{t.nluIgnoreHint}</p>
           <button className="secondary" onClick={saveAlias}>{t.save}</button>
           <label>{t.room}</label>
           <p>{inspecting.area || "..."}</p>

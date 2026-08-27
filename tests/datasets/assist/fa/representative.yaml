@@ -10,3 +10,33 @@
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - تقویم چیست
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - اضافه دندانپزشک فردا ساعت 15 تقویم
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - حذف دندانپزشک تقویم
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - جابجا دندانپزشک فردا ساعت 16 تقویم
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - پخش depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

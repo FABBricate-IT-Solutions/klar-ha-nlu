@@ -10,3 +10,33 @@
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - kas kalendoriuje
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - prideti odontologa rytoj 15 kalendorius
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - istrink odontologa kalendorius
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - perkelk odontologa rytoj 16 kalendorius
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - grotu depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

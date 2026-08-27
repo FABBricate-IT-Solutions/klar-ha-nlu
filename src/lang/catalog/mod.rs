@@ -1,3 +1,4 @@
+mod keys;
 mod merge;
 mod words;
 
@@ -9,7 +10,7 @@ use super::LangId;
 use crate::types::CustomSentence;
 use std::collections::{HashMap, HashSet};
 
-pub use words::WordKey;
+pub use keys::WordKey;
 
 pub struct Catalog {
     packs: Vec<&'static Pack>,
@@ -26,7 +27,7 @@ pub struct Catalog {
     pub synonym_pairs: Vec<(&'static str, &'static str)>,
     pub scene_synonyms: Vec<(&'static str, &'static str)>,
     pub speech: Vec<&'static Speech>,
-    pub(super) sets: HashMap<words::WordKey, HashSet<&'static str>>,
+    pub(super) sets: HashMap<keys::WordKey, HashSet<&'static str>>,
     pub news_intro: &'static str,
     pub news_nudge: &'static str,
     pub news_done: &'static str,
@@ -173,6 +174,14 @@ impl Catalog {
             || self.lock_nouns().contains(token)
             || self.timer_nouns().contains(token)
             || self.list_nouns().contains(token)
+            || self.calendar_nouns().contains(token)
+            || self.calendar_query().contains(token)
+            || self.calendar_create().contains(token)
+            || self.calendar_delete().contains(token)
+            || self.calendar_move().contains(token)
+            || self.calendar_today().contains(token)
+            || self.calendar_tomorrow().contains(token)
+            || self.calendar_when().contains(token)
             || self.fan_nouns().contains(token)
             || self.vacuum_nouns().contains(token)
             || self.scene_nouns().contains(token)

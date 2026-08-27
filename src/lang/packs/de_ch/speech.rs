@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Das han i nöd verstande. Sägs mer zum Biispil, weles Liecht aa söll.",
+    unknown: "Das han i nöd verstande.",
     need_on: "Was söll i aamache?",
     need_off: "Was söll i usmache?",
     need_which: "Was söll i aamache?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Was söll i usmache?",
     timer_pause: "Was söll i usmache?",
     list_add: "Stat uf de Liste.",
+    calendar_list: "{items}",
+    calendar_empty: "Kei Terminä.",
+    calendar_none: "Kei Kalender.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Wie heisst de Termin?",
+    calendar_need_when: "Wänn?",
+    calendar_readonly: "Nur läse.",
+    calendar_deleted: "Termin glöscht.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Wele Termin?",
+    calendar_no_uid: "Kei Kennig.",
+    no_music_player: "Kei Musigspieler.",
     done: "{name}",
     light_suffix: " liecht",
     area_light: "liecht {loc}",

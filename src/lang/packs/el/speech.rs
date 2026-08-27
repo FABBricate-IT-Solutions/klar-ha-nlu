@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Δεν το καταλαβα. Πες για παραδειγμα ποιο φως να ανοίξω.",
+    unknown: "Δεν το καταλαβα.",
     need_on: "Τι να ανοιξω;",
     need_off: "Τι να κλεισω;",
     need_which: "Τι να ανοιξω;",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Τι να κλεισω;",
     timer_pause: "Τι να κλεισω;",
     list_add: "Ειναι στη λιστα.",
+    calendar_list: "{items}",
+    calendar_empty: "Δεν υπαρχουν γεγονοτα.",
+    calendar_none: "Δεν υπαρχει ημερολογιο.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Τι τιτλος?",
+    calendar_need_when: "Πότε?",
+    calendar_readonly: "Μονο αναγνωση.",
+    calendar_deleted: "Διαγραφηκε.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Ποιο γεγονος?",
+    calendar_no_uid: "Χωρις id.",
+    no_music_player: "Δεν υπαρχει παικτης.",
     done: "{name}",
     light_suffix: " φως",
     area_light: "φως {loc}",

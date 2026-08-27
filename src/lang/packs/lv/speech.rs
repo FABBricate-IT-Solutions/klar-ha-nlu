@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Nesapratu. Pasaki piemeram, kuru gaismu ieslegt.",
+    unknown: "Nesapratu.",
     need_on: "Ko ieslegt?",
     need_off: "Ko izslegt?",
     need_which: "Ko ieslegt?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Ko izslegt?",
     timer_pause: "Ko izslegt?",
     list_add: "Saraksta.",
+    calendar_list: "{items}",
+    calendar_empty: "Nesapratu.",
+    calendar_none: "Nesapratu.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Nesapratu.",
+    calendar_need_when: "Nesapratu.",
+    calendar_readonly: "Nesapratu.",
+    calendar_deleted: "Dzests.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Kurss notikums?",
+    calendar_no_uid: "Nav id.",
+    no_music_player: "Nesapratu.",
     done: "{name}",
     light_suffix: " gaisma",
     area_light: "gaisma {loc}",

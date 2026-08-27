@@ -34,6 +34,7 @@ export function CalibratePage({
         <div>
           <h1>{t.calibrate}</h1>
           <p className="muted">{inbox.length ? `${inbox.length} ${t.open}` : t.noGaps}</p>
+          <p className="muted">{t.mappingHint}</p>
         </div>
         {inbox.some((row) => (row.suggested_area?.score || 0) >= 3) && <button className="primary" onClick={onApply}>{t.applyAll}</button>}
       </section>

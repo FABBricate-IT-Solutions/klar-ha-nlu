@@ -62,7 +62,8 @@ pub(crate) fn collect_named_devices(tokens: &[String], home: &HomeGraph) -> Opti
             continue;
         }
         for entity in &home.entities {
-            if !assist_visible(entity, home) || entity.domain != "light" || is_infra(entity) {
+            if !assist_visible(entity, home) || entity.domain != "light" || is_infra(entity) || crate::home::policy::is_nlu_ignored(entity)
+            {
                 continue;
             }
             if found.iter().any(|have: &EntityRec| have.entity_id == entity.entity_id) {

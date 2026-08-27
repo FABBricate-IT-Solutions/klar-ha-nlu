@@ -64,6 +64,10 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
         sys.modules[f"{PACKAGE}.contracts"] = contracts
         speech = _load(f"{PACKAGE}.speech", "speech.py")
         sys.modules[f"{PACKAGE}.speech"] = speech
+        _load(f"{PACKAGE}.speech_locale", "speech_locale.py")
+        _load(f"{PACKAGE}.calendar_session", "calendar_session.py")
+        _load("calendar_session", "calendar_session.py")
+        _load(f"{PACKAGE}.calendar_ha", "calendar_ha.py")
         intents = _load(f"{PACKAGE}.intents", "intents.py")
         sys.modules[f"{PACKAGE}.intents"] = intents
         dispatch = _load(f"{PACKAGE}.dispatch", "dispatch.py")

@@ -46,7 +46,8 @@ pub(crate) fn parse_clause_candidates_for_action(
     forced_action: Option<Action>,
 ) -> Vec<ClauseCandidate> {
     let cat = catalog();
-    let free_text_payload = cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.media_nouns());
+    let free_text_payload =
+        cat.any(tokens, cat.list_nouns()) || cat.any(tokens, cat.media_nouns()) || crate::parse::calendar::mentions_calendar(tokens);
     if !free_text_payload && tokens.iter().any(|token| cat.is_protected_typo(token) && !known_target_token(token, home)) {
         return Vec::new();
     }

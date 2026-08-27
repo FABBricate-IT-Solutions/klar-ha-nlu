@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Нисам разумео. Реци на пример које светло да упалим.",
+    unknown: "Нисам разумео.",
     need_on: "Шта да укључим?",
     need_off: "Шта да искључим?",
     need_which: "Шта да укључим?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Шта да искључим?",
     timer_pause: "Шта да искључим?",
     list_add: "На је списку.",
+    calendar_list: "{items}",
+    calendar_empty: "Нема догађаја.",
+    calendar_none: "Нема календара.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Који наслов?",
+    calendar_need_when: "Када?",
+    calendar_readonly: "Само читање.",
+    calendar_deleted: "Обрисано.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Који догађај?",
+    calendar_no_uid: "Нема id.",
+    no_music_player: "Нема плејера.",
     done: "{name}",
     light_suffix: " светло",
     area_light: "светло {loc}",

@@ -8,6 +8,7 @@ that locale's lexicon actually lists them. de-CH/de-AT may keep German.
 
 from __future__ import annotations
 
+from lang_packs.calendar_lex import calendar_for
 from lang_packs.extras import pack_extras
 from lang_packs.voices import normalize_personality
 
@@ -27,7 +28,24 @@ def expand(core: dict) -> dict:
     w = core["w"]
     for key, val in pack_extras(core["code"]).items():
         w.setdefault(key, val)
-    speech = core["speech"]
+    cal = calendar_for(core["code"])
+    w.setdefault("calendar", list(cal["nouns"]))
+    w.setdefault("calendar_query", list(cal["query"]))
+    w.setdefault("calendar_create", list(cal["create"]))
+    w.setdefault("calendar_today", list(cal["today"]))
+    w.setdefault("calendar_tomorrow", list(cal["tomorrow"]))
+    w.setdefault("calendar_when", list(cal["when"]))
+    w.setdefault("calendar_delete", list(cal.get("delete") or []))
+    w.setdefault("calendar_move", list(cal.get("move") or []))
+    w.setdefault("resume", list(cal["resume"]))
+    speech = dict(core["speech"])
+    for key, value in cal["speech"].items():
+        if key == "unknown":
+            speech["unknown"] = value
+        else:
+            speech.setdefault(key, value)
+    chat = dict(core["chat"])
+    chat["news_intro"] = speech["unknown"]
     colors = list(core.get("colors") or default_colors())
     numbers = list(core.get("numbers", []))
     rooms = list(core.get("rooms", []))
@@ -110,6 +128,8 @@ def expand(core: dict) -> dict:
         domain.append((word, "timer"))
     for word in lst:
         domain.append((word, "todo"))
+    for word in unique(w.get("calendar", [])):
+        domain.append((word, "calendar"))
     for word in vacuum:
         domain.append((word, "vacuum"))
     for word in fan:
@@ -173,6 +193,7 @@ def expand(core: dict) -> dict:
             "garage_cover": door[:1],
             "timer_nouns": timer,
             "list_nouns": unique(lst),
+            "calendar_nouns": unique(w.get("calendar", [])),
             "vacuum_nouns": vacuum,
             "scene_nouns": scene,
             "script_words": w.get("script", scene[:1]),
@@ -230,7 +251,14 @@ def expand(core: dict) -> dict:
             "timer_pause": w.get("pause", []),
             "timer_add": w.get("add", []),
             "list_complete": w.get("done", []),
-            "playback_resume": w.get("play", []),
+            "playback_resume": unique(list(w.get("play") or []) + list(w.get("resume") or [])),
+            "calendar_query": unique(w.get("calendar_query", [])),
+            "calendar_create": unique(w.get("calendar_create", [])),
+            "calendar_today": unique(w.get("calendar_today", [])),
+            "calendar_tomorrow": unique(w.get("calendar_tomorrow", [])),
+            "calendar_when": unique(w.get("calendar_when", [])),
+            "calendar_delete": unique(w.get("calendar_delete", [])),
+            "calendar_move": unique(w.get("calendar_move", [])),
             "vacuum_start": on[:1],
             "hours": w.get("hours", []),
             "minutes": w.get("minutes", []),
@@ -265,9 +293,9 @@ def expand(core: dict) -> dict:
             "number_style": core.get("number_style", "ListedOnly"),
             "room_index_nouns": [r[0] for r in rooms if r[1] in ("bedroom", "bathroom")] or [r[0] for r in rooms[:1]],
         },
-        "chat": core["chat"],
+        "chat": chat,
         "household": household_from(core, w, speech),
-        "smoke": smoke_rows(core, on),
+        "smoke": smoke_rows(core, on) + calendar_smokes(cal) + music_smokes(w),
     }
 
 
@@ -324,6 +352,25 @@ def scene_lexemes(core: dict) -> list[str]:
 def smoke_rows(core: dict, on: list[str]) -> list[tuple[str, str]]:
     del on
     return list(core.get("smoke", []))
+
+
+def calendar_smokes(cal: dict) -> list[tuple[str, str]]:
+    rows = []
+    if cal.get("list_smoke"):
+        rows.append((cal["list_smoke"], "KlarGetCalendarEvents"))
+    if cal.get("create_smoke"):
+        rows.append((cal["create_smoke"], "KlarCreateCalendarEvent"))
+    if cal.get("delete_smoke"):
+        rows.append((cal["delete_smoke"], "KlarDeleteCalendarEvent"))
+    if cal.get("move_smoke"):
+        rows.append((cal["move_smoke"], "KlarMoveCalendarEvent"))
+    return rows
+
+
+def music_smokes(w: dict) -> list[tuple[str, str]]:
+    play = (w.get("play") or ["play"])[0]
+    search = "depeche"
+    return [(f"{play} {search}", "MassPlayMedia")]
 
 
 def fixture_alias_rows(w: dict) -> list[tuple[str, list[str]]]:

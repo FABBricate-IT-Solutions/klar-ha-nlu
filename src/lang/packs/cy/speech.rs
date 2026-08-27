@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Do ddeallais i ddim. Dywedwch pa olau i'w droi ymlaen, er enghraifft.",
+    unknown: "Do ddeallais i ddim.",
     need_on: "Beth i droi ymlaen?",
     need_off: "Beth i ddiffodd?",
     need_which: "Beth i droi ymlaen?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Beth i ddiffodd?",
     timer_pause: "Beth i ddiffodd?",
     list_add: "Ar y rhestr.",
+    calendar_list: "{items}",
+    calendar_empty: "Do ddeallais i ddim.",
+    calendar_none: "Do ddeallais i ddim.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Do ddeallais i ddim.",
+    calendar_need_when: "Do ddeallais i ddim.",
+    calendar_readonly: "Do ddeallais i ddim.",
+    calendar_deleted: "Wedi dileu.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Pa ddigwyddiad?",
+    calendar_no_uid: "Dim id.",
+    no_music_player: "Do ddeallais i ddim.",
     done: "{name}",
     light_suffix: " golau",
     area_light: "golau {loc}",

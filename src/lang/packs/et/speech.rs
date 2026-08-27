@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Ma ei saanud aru. Utle naiteks, milline valgus sisse panna.",
+    unknown: "Ma ei saanud aru.",
     need_on: "Mis sisse?",
     need_off: "Mis valja?",
     need_which: "Mis sisse?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Mis valja?",
     timer_pause: "Mis valja?",
     list_add: "On nimekirjas.",
+    calendar_list: "{items}",
+    calendar_empty: "Ma ei saanud aru.",
+    calendar_none: "Ma ei saanud aru.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Ma ei saanud aru.",
+    calendar_need_when: "Ma ei saanud aru.",
+    calendar_readonly: "Ma ei saanud aru.",
+    calendar_deleted: "Kustutatud.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Milline sundmus?",
+    calendar_no_uid: "Pole id.",
+    no_music_player: "Ma ei saanud aru.",
     done: "{name}",
     light_suffix: " vali",
     area_light: "vali {loc}",

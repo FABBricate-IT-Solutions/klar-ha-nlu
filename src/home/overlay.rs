@@ -52,6 +52,8 @@ pub struct Overlay {
     #[serde(default)]
     pub preferred: Vec<String>,
     #[serde(default)]
+    pub nlu_ignore: Vec<String>,
+    #[serde(default)]
     pub areas: HashMap<String, String>,
     #[serde(default)]
     pub settings: Option<Settings>,
@@ -104,6 +106,9 @@ pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {
         }
         if overlay.preferred.iter().any(|id| id == &ent.entity_id) && !ent.tags.iter().any(|t| t == "preferred") {
             ent.tags.push("preferred".into());
+        }
+        if overlay.nlu_ignore.iter().any(|id| id == &ent.entity_id) && !ent.tags.iter().any(|t| t == "nlu_ignore") {
+            ent.tags.push("nlu_ignore".into());
         }
         if let Some(area) = overlay.areas.get(&ent.entity_id) {
             ent.area = if area.is_empty() { None } else { Some(area.clone()) };
@@ -238,5 +243,24 @@ mod tests {
         assert!(home.entities[0].tags.iter().any(|t| t == "infra"));
         assert_eq!(home.policy.timer_hints.get(&90).map(String::as_str), Some("laundry"));
         assert!(crate::home::policy::is_infra(&home.entities[0]));
+    }
+
+    #[test]
+    fn overlay_marks_nlu_ignore() {
+        let mut home = HomeGraph {
+            entities: vec![EntityRec {
+                entity_id: "switch.create_calendar_event".into(),
+                name: "Create Calendar Event".into(),
+                domain: "switch".into(),
+                platform: None,
+                area: None,
+                aliases: Vec::new(),
+                tags: Vec::new(),
+            }],
+            ..Default::default()
+        };
+        apply_overlay(&mut home, &Overlay { nlu_ignore: vec!["switch.create_calendar_event".into()], ..Default::default() });
+        assert!(home.entities[0].tags.iter().any(|tag| tag == "nlu_ignore"));
+        assert!(crate::home::policy::is_nlu_ignored(&home.entities[0]));
     }
 }

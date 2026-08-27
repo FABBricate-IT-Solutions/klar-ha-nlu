@@ -221,7 +221,7 @@ pub fn join_tokens(tokens: &[String]) -> String {
 }
 
 pub fn compact(s: &str) -> String {
-    fold_latin(s).chars().filter(|c| c.is_ascii_alphanumeric()).collect()
+    fold_latin(s).chars().filter(|c| c.is_alphanumeric()).collect()
 }
 
 /// "Schlafzimmern" / "Wohnzimmers" / "bedrooms" match the room stem.
@@ -258,6 +258,16 @@ mod tests {
     #[test]
     fn latin_tokenize_is_unchanged_when_text_has_no_cjk() {
         assert_eq!(tokenize("allume la lumiere salon"), vec!["allume", "la", "lumiere", "salon"]);
+    }
+
+    #[test]
+    fn compact_keeps_letters_outside_ascii() {
+        use super::compact;
+        assert_eq!(compact("Wohnzimmer!"), "wohnzimmer");
+        assert_eq!(compact("филм"), "филм");
+        assert_ne!(compact("филм"), compact("антре"));
+        assert_eq!(compact("فيلم"), "فيلم");
+        assert_eq!(compact("סרט"), "סרט");
     }
 
     #[test]

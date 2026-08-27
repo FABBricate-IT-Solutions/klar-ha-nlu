@@ -70,6 +70,10 @@ pub fn is_infra(entity: &EntityRec) -> bool {
     tagged_infra(entity) || is_infra_light(entity) || is_infra_switch(entity) || is_infra_sensor(entity)
 }
 
+pub fn is_nlu_ignored(entity: &EntityRec) -> bool {
+    entity.tags.iter().any(|tag| tag.eq_ignore_ascii_case("nlu_ignore"))
+}
+
 pub fn is_infra_light(entity: &EntityRec) -> bool {
     entity.domain == "light" && (tagged_infra(entity) || infra_hit(entity))
 }

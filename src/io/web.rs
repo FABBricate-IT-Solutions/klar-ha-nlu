@@ -240,9 +240,11 @@ struct TagIn {
     #[serde(default)]
     tags: Vec<String>,
     #[serde(default)]
-    aliases: Vec<String>,
+    aliases: Option<Vec<String>>,
     #[serde(default)]
-    preferred: bool,
+    preferred: Option<bool>,
+    #[serde(default)]
+    nlu_ignore: Option<bool>,
     pub area: Option<String>,
 }
 
@@ -266,13 +268,23 @@ async fn tag_entity(
         return Err(StatusCode::NOT_FOUND);
     }
     let mut overlay = load_overlay(&state.data_dir);
-    overlay.aliases.insert(body.entity_id.clone(), body.aliases.clone());
+    if let Some(aliases) = &body.aliases {
+        overlay.aliases.insert(body.entity_id.clone(), aliases.clone());
+    }
     if let Some(area) = &body.area {
         overlay.areas.insert(body.entity_id.clone(), area.clone());
     }
-    overlay.preferred.retain(|id| id != &body.entity_id);
-    if body.preferred {
-        overlay.preferred.push(body.entity_id.clone());
+    if let Some(preferred) = body.preferred {
+        overlay.preferred.retain(|id| id != &body.entity_id);
+        if preferred {
+            overlay.preferred.push(body.entity_id.clone());
+        }
+    }
+    if let Some(ignore) = body.nlu_ignore {
+        overlay.nlu_ignore.retain(|id| id != &body.entity_id);
+        if ignore {
+            overlay.nlu_ignore.push(body.entity_id.clone());
+        }
     }
     let _ = save_overlay(&state.data_dir, &overlay);
     let updated = state
@@ -280,13 +292,18 @@ async fn tag_entity(
         .edit(|next| {
             apply_overlay(next, &overlay);
             let ent = next.entities.iter_mut().find(|e| e.entity_id == body.entity_id)?;
-            if !body.aliases.is_empty() {
-                ent.aliases = body.aliases;
+            if let Some(aliases) = body.aliases {
+                if !aliases.is_empty() {
+                    ent.aliases = aliases;
+                }
             }
             let mut tags = ent.tags.clone();
-            tags.retain(|t| t != "preferred");
-            if body.preferred || body.tags.iter().any(|t| t == "preferred") {
+            tags.retain(|t| t != "preferred" && t != "nlu_ignore");
+            if overlay.preferred.iter().any(|id| id == &body.entity_id) || body.tags.iter().any(|t| t == "preferred") {
                 tags.push("preferred".into());
+            }
+            if overlay.nlu_ignore.iter().any(|id| id == &body.entity_id) || body.tags.iter().any(|t| t == "nlu_ignore") {
+                tags.push("nlu_ignore".into());
             }
             ent.tags = tags;
             Some(ent.clone())

@@ -46,6 +46,11 @@ pub const KNOWN_INTENTS: &[&str] = &[
     "HassListCompleteItem",
     "HassShoppingListAddItem",
     "HassShoppingListCompleteItem",
+    "KlarGetCalendarEvents",
+    "KlarCreateCalendarEvent",
+    "KlarDeleteCalendarEvent",
+    "KlarMoveCalendarEvent",
+    "KlarNoMusicPlayer",
 ];
 
 pub fn known_intent(name: &str) -> bool {

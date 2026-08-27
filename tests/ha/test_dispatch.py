@@ -63,6 +63,10 @@ def _load_dispatch() -> types.ModuleType:
     }
     with patch.dict(sys.modules, modules):
         _load(f"{PACKAGE}.speech", "speech.py")
+        _load(f"{PACKAGE}.speech_locale", "speech_locale.py")
+        _load(f"{PACKAGE}.calendar_session", "calendar_session.py")
+        _load("calendar_session", "calendar_session.py")
+        _load(f"{PACKAGE}.calendar_ha", "calendar_ha.py")
         _load(f"{PACKAGE}.intents", "intents.py")
         return _load(f"{PACKAGE}.dispatch", "dispatch.py")
 

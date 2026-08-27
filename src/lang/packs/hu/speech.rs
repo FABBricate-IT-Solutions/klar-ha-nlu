@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Nem ertettem. Mondd peldaul, melyik villanyt kapcsoljam fel.",
+    unknown: "Nem ertettem.",
     need_on: "Mit kapcsoljak?",
     need_off: "Mit oltsak?",
     need_which: "Mit kapcsoljak?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Mit oltsak?",
     timer_pause: "Mit oltsak?",
     list_add: "Felkerult a listara.",
+    calendar_list: "{items}",
+    calendar_empty: "Nincs esemeny.",
+    calendar_none: "Nincs naptar.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Milyen cim?",
+    calendar_need_when: "Mikor?",
+    calendar_readonly: "Csak olvashato.",
+    calendar_deleted: "Torolve.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Melyik esemeny?",
+    calendar_no_uid: "Nincs id.",
+    no_music_player: "Nincs lejatszo.",
     done: "{name}",
     light_suffix: " villany",
     area_light: "villany {loc}",

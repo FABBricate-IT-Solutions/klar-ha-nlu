@@ -21,10 +21,15 @@ use std::net::SocketAddr;
 pub fn routes() -> Router<AppState> {
     Router::new()
         .route("/api/v2/languages", get(list_languages))
+        .route("/api/v2/intents", get(list_intents))
         .route("/api/lang/overlay", get(get_overlay).post(set_overlay))
         .route("/api/lang/preview", post(preview))
         .route("/api/lang/explain", post(explain))
         .route("/api/lang/rollback", post(rollback))
+}
+
+async fn list_intents() -> Json<Vec<&'static str>> {
+    Json(crate::types::KNOWN_INTENTS.to_vec())
 }
 
 async fn list_languages() -> Json<Vec<LanguageOut>> {

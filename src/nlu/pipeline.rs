@@ -1,3 +1,4 @@
+use crate::parse::calendar::speak_calendar_need;
 use crate::parse::compound::expand_compounds;
 use crate::parse::normalize::{strip_fillers, tokenize};
 use crate::parse::respond::{speak_clarify, speak_unknown};
@@ -73,7 +74,8 @@ pub(super) fn run(context: ParseContext<'_>) -> PipelineResult {
     dedup_intents(&mut intents);
     let selected_plan = ranking.selected.as_ref().map(|candidate| candidate.plan.clone());
     let draft = if let Some((options, template)) = clarify {
-        let prompt = speak_clarify(&options, Some(context.home));
+        let prompt =
+            if template.name.contains("Calendar") { speak_calendar_need(&template) } else { speak_clarify(&options, Some(context.home)) };
         Draft {
             decision: ParseDecision::Clarify { prompt: prompt.clone(), options: options.clone() },
             plan: None,

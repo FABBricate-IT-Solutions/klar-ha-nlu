@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Samajayu nahi. Udaharan tarike kaho ke prakaash chalu karvu.",
+    unknown: "Samajayu nahi.",
     need_on: "Shu chalu?",
     need_off: "Shu bandh?",
     need_which: "Shu chalu?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Shu bandh?",
     timer_pause: "Shu bandh?",
     list_add: "Yadi par chhe.",
+    calendar_list: "{items}",
+    calendar_empty: "Samajayu nahi.",
+    calendar_none: "Samajayu nahi.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Samajayu nahi.",
+    calendar_need_when: "Samajayu nahi.",
+    calendar_readonly: "Samajayu nahi.",
+    calendar_deleted: "Kadi didhu.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Kyo event?",
+    calendar_no_uid: "Id nathi.",
+    no_music_player: "Samajayu nahi.",
     done: "{name}",
     light_suffix: " prakash",
     area_light: "prakash {loc}",

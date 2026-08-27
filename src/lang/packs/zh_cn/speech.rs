@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "我没听清。比如说，告诉我要开哪盏灯。",
+    unknown: "我没听清。",
     need_on: "打开什么？",
     need_off: "关闭什么？",
     need_which: "打开什么？",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "关闭什么？",
     timer_pause: "关闭什么？",
     list_add: "已加入清单。",
+    calendar_list: "{items}",
+    calendar_empty: "没有日程。",
+    calendar_none: "没有日历。",
+    calendar_created: "{summary} {when}。",
+    calendar_need_title: "叫什么？",
+    calendar_need_when: "什么时候？",
+    calendar_readonly: "日历只读。",
+    calendar_deleted: "已删除。",
+    calendar_moved: "{summary} {when}。",
+    calendar_which: "哪个日程？",
+    calendar_no_uid: "没有编号。",
+    no_music_player: "没有播放器。",
     done: "{name}",
     light_suffix: " deng",
     area_light: "deng {loc}",

@@ -1,7 +1,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "I did not catch that. Tell me which light to turn on, for example.",
+    unknown: "I did not catch that.",
     need_on: "What should I turn on?",
     need_off: "What should I turn off?",
     need_which: "Tell me which device you mean.",
@@ -40,6 +40,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Timer is off.",
     timer_pause: "Timer is paused.",
     list_add: "Added to the list.",
+    calendar_list: "{items}",
+    calendar_empty: "No upcoming events.",
+    calendar_none: "No calendar is available.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "What should I call the event?",
+    calendar_need_when: "When is the event?",
+    calendar_readonly: "That calendar cannot be changed.",
+    calendar_deleted: "Event deleted.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Which event?",
+    calendar_no_uid: "That event has no identifier.",
+    no_music_player: "No music player is available.",
     done: "Done: {name}.",
     light_suffix: " light",
     area_light: "the light {loc}",

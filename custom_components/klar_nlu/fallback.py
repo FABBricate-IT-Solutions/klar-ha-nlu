@@ -16,6 +16,12 @@ _CHAT_ONLY = {
     ),
 }
 
+_ANSWER_IN_PACK = (
+    "Reply in conversation only. Do not control devices "
+    "and do not call Home Assistant tools. "
+    "Answer in the user's language (Assist pack code: {pack})."
+)
+
 
 def agent_has_home_control(features: object) -> bool:
     try:
@@ -49,7 +55,7 @@ _NEWS_FOLLOW = {
 
 
 def chat_only_prompt(pack: str, extra: str | None) -> str:
-    only = _CHAT_ONLY.get(pack, _CHAT_ONLY["de"])
+    only = _CHAT_ONLY.get(pack) or _ANSWER_IN_PACK.format(pack=pack)
     extra = (extra or "").strip()
     return f"{extra}\n{only}" if extra else only
 
@@ -63,16 +69,25 @@ def with_personality(base: str | None, voice: str | None) -> str:
 
 
 def news_prompt(pack: str, headlines: list[str], extra: str | None) -> str:
-    body = _NEWS.get(pack, _NEWS["de"])
+    body = _NEWS.get(pack) or (
+        "The user wants current news. "
+        "Summarize the following headlines in three to five short sentences. "
+        "Do not invent stories. "
+        "If you have web search or news tools, use them. "
+        f"Answer in the user's language (Assist pack code: {pack})."
+    )
     if headlines:
         lines = "\n".join(f"- {item}" for item in headlines)
-        label = "Schlagzeilen" if pack == "de" else "Headlines"
+        label = {"de": "Schlagzeilen", "en": "Headlines"}.get(pack, "Headlines")
         body = f"{body}\n\n{label}:\n{lines}"
     return chat_only_prompt(pack, _join_extra(extra, body))
 
 
 def news_followup_prompt(pack: str, extra: str | None) -> str:
-    stay = _NEWS_FOLLOW.get(pack, _NEWS_FOLLOW["de"])
+    stay = _NEWS_FOLLOW.get(pack) or (
+        f"Stay on the news topic. Keep it short. Do not control devices. "
+        f"Answer in the user's language (Assist pack code: {pack})."
+    )
     return chat_only_prompt(pack, _join_extra(extra, stay))
 
 

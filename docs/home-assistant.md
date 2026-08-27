@@ -38,15 +38,17 @@ Nicht den LLM-Agenten direkt als Engine wählen. Sonst umgeht Assist Klar und da
 
 Einstellungen → Geräte & Dienste → Klar NLU → Konfigurieren → **Conversation-Agent für Smalltalk**.
 
+Es gibt keine Nutzer-Phrase wie „Frag das LLM“. Ist ein Fallback-Agent gesetzt, gehen unhandled Sätze (Reject oder leere Intents) an diesen Agenten in der Assist-Sprache. Refine ändert nur den Ton einer schon gesprochenen NLU-Zeile.
+
 Ablauf:
 
 1. Klar parst.
 2. Haus-Intents werden über `intent.async_handle` ausgeführt.
 3. Rückfragen (`clarify`) bleiben bei Klar.
-4. Keine Intents → Weiterleitung an den gewählten Agenten.
+4. Keine Intents, einschließlich Reject → Weiterleitung an den gewählten Agenten. NLU-RAG ist nicht nötig.
 5. Klar selbst und ein unerreichbarer Motor lösen keinen Fallback aus.
 
-Der Agent bekommt den Hinweis, keine Geräte zu steuern. Wenn der Agent in seiner eigenen Integration HA-Tools hat, können die trotzdem greifen — Tools dort aus lassen, wenn Smalltalk nur reden soll.
+Der Agent bekommt den Hinweis, keine Geräte zu steuern und in der Assist-Sprache des Nutzers zu antworten. Wenn der Agent in seiner eigenen Integration HA-Tools hat, können die trotzdem greifen — Tools dort aus lassen, wenn Smalltalk nur reden soll.
 
 ## Persönlichkeit
 
@@ -196,7 +198,7 @@ Die Integration führt nur `decision.type == execute` aus. Confirm, Clarify und 
 
 ## Medien und Music Assistant
 
-Pause, weiter, zurück, stumm und Lautstärke nutzen den genannten `media_player` oder den im Raum. Den Player freigeben.
+Pause, weiter, zurück, stumm und Lautstärke nutzen den genannten `media_player` oder den im Raum. Der Player muss für Assist freigegeben sein und ein Music-Assistant-Player oder mit einem Musik-Tag versehen. Fehlt der Player, ist das Setup — nicht das Lexikon.
 
 | Satz | Hinweis |
 |------|---------|

@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Eg skildi thetta ekki. Segdu til daemis hvada ljos a ad kveikja.",
+    unknown: "Eg skildi thetta ekki.",
     need_on: "Hvad a ad kveikja?",
     need_off: "Hvad a ad slokkva?",
     need_which: "Hvad a ad kveikja?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Hvad a ad slokkva?",
     timer_pause: "Hvad a ad slokkva?",
     list_add: "A listanum.",
+    calendar_list: "{items}",
+    calendar_empty: "Eg skildi thetta ekki.",
+    calendar_none: "Eg skildi thetta ekki.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Eg skildi thetta ekki.",
+    calendar_need_when: "Eg skildi thetta ekki.",
+    calendar_readonly: "Eg skildi thetta ekki.",
+    calendar_deleted: "Eytt.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Hvad atburdur?",
+    calendar_no_uid: "Ekkert id.",
+    no_music_player: "Eg skildi thetta ekki.",
     done: "{name}",
     light_suffix: " ljos",
     area_light: "ljos {loc}",
