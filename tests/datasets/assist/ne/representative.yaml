@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - bal batti baithak
+    - बाल बत्ती बैठक
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - nibhau batti bhansa
+    - निभाऊ बत्ती भान्सा
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - calendar ma ke
+    - पात्रो मा के
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - thap dentist bholi 15 calendar
+    - थप दाँत भोली 15 पात्रो
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - hatau dentist calendar
+    - हटाऊ दाँत पात्रो
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - saru dentist bholi 16 calendar
+    - सरु दाँत भोली 16 पात्रो
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - bajau depeche
+    - चलाऊ depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

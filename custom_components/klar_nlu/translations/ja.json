@@ -36,6 +36,7 @@
           "assist_filter": "Assist に公開されたエンティティだけ操作する",
           "nlu_rag": "NLU-RAG（任意）",
           "quiet_ack": "短い確認（チャイム）",
+          "calendar_llm": "カレンダー照会をLLMに送る",
           "channel": "リリースチャネル"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "オン：Assist が見えるものだけ。オフ：非表示も含む。",
           "nlu_rag": "既定はオフ。雑談では一致した断片だけを予備モデルへ送ります。",
           "quiet_ack": "単純な照明のオン／オフでは発話せず、衛星で短い音だけ鳴らします。",
+          "calendar_llm": "初期値はオフ。オン：Klarがカレンダーを読み、予備LLMが予定を話す。オフ：Klar自身が一覧を話す。作成・削除・移動はKlarのまま。",
           "languages": "既定は Home Assistant のシステム言語です。",
           "channel": "いつでも変更できます。Staging は Klar NLU（Staging）を指します。"
         }

@@ -1,12 +1,12 @@
 - name: light_on
   sentences:
-    - poetfai fai hongnang
+    - เปิด ไฟ ห้องนั่งเล่น
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - pitfai fai hongkrua
+    - ปิด ไฟ ห้องครัว
   nlu_expect:
     intents:
       - intent: HassTurnOff
@@ -36,7 +36,7 @@
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - len depeche
+    - เล่น depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

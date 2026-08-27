@@ -13,6 +13,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry, intent
 
 from .calendar_ha import CALENDAR_INTENTS, handle_calendar_intent
+from .lang_select import speak_tag
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -222,7 +223,7 @@ async def invoke_intent(
             slots,
             user_input.text,
             user_input.context,
-            user_input.language or pack,
+            speak_tag(pack),
             assistant=assistant,
         )
     except Exception as err:  # noqa: BLE001 — HA intent system is a boundary

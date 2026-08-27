@@ -36,6 +36,7 @@
           "assist_filter": "Kontrolatu Assist-i agertutako entitateak soilik",
           "nlu_rag": "NLU-RAG (aukerakoa)",
           "quiet_ack": "Berrespen laburra (kanpaia)",
+          "calendar_llm": "Bidali egutegi-kontsultak LLM-ra",
           "channel": "Argitalpen kanala"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Piztuta: Assist-ek ikusten duena soilik. Itzalita: ezkutuko entitateak ere.",
           "nlu_rag": "Itzalita lehenetsita. Berriketan bat datorren zatia bakarrik doa ordezko eredura.",
           "quiet_ack": "Argia piztu/itzali sinplean ez da hitzik, soinu laburra satelitean.",
+          "calendar_llm": "Itzalita lehenetsita. Piztuta: Klarrek egutegia irakurri eta ordezko LLM-k gertaerak esaten ditu. Itzalita: Klarrek zerrenda esaten du. Sortu, ezabatu eta mugitu Klarrenean geratzen dira.",
           "languages": "Lehenetsita Home Assistant sistemaren hizkuntza da.",
           "channel": "Edozein unetan. Staging-ek Klar NLU (Staging) seinalatzen du."
         }

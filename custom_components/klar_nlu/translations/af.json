@@ -36,6 +36,7 @@
           "assist_filter": "Beheer slegs entiteite wat aan Assist blootgestel is",
           "nlu_rag": "NLU-RAG (opsioneel)",
           "quiet_ack": "Kort bevestiging (klokkie)",
+          "calendar_llm": "Stuur kalendernavrae na die LLM",
           "channel": "Vrystellingskanaal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Aan: net wat Assist mag sien. Af: ook versteekte entiteite.",
           "nlu_rag": "Verstek af. In gesels stuur slegs die ooreenstemmende stuk na die rugsteunmodel.",
           "quiet_ack": "By eenvoudige lig aan/af geen sin nie, net ’n kort klank op die satelliet.",
+          "calendar_llm": "Verstek af. Aan: Klar lees die kalender, die terugval-LLM sê die afsprake. Af: Klar sê self die lys. Skep, skrapping en skuif bly by Klar.",
           "languages": "Verstek volg die Home Assistant-stelseltaal.",
           "channel": "Enige tyd. Staging wys na Klar NLU (Staging)."
         }

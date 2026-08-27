@@ -26,6 +26,19 @@ class ConversationFallbackTests(unittest.TestCase):
         body = src[start:end]
         self.assertIn("chat_only_prompt", body)
         self.assertIn("refine_prompt", body)
+        self.assertIn("speak_tag(pack)", body)
+        self.assertNotIn("user_input.language", body)
+
+    def test_calendar_queries_can_go_to_llm(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
+            encoding="utf-8"
+        )
+        start = src.index("executed = await execute_plan")
+        end = src.index("if self._quiet_ack()", start)
+        block = src[start:end]
+        self.assertIn("calendar_query_only(plan)", block)
+        self.assertIn("calendar_prompt(pack, speech", block)
+        self.assertIn("self._calendar_llm()", block)
 
 
 if __name__ == "__main__":

@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Artha agalilla.",
-    need_on: "Enu hachchuvudu?",
-    need_off: "Enu arisuvudu?",
+    need_on: "ಏನು ಹಚ್ಚುವುದು?",
+    need_off: "ಏನು ಆರಿಸುವುದು?",
     need_which: "Enu hachchuvudu?",
     correction: "Sari, koneya vaakya bittu biduttene.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " mattu ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} hachchide.",
+    turn_on: "{target} ಹಚ್ಚಿದೆ.",
     turn_on_scene: "{target}.",
-    turn_off: "{target} ariside.",
+    turn_off: "{target} ಆರಿಸಿದೆ.",
     toggle: "{target} badaluttide.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,11 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Enu hachchuvudu?",
     or_home: "Enu hachchuvudu?",
-    room_names: &[("wohnzimmer", "hallige"), ("kuche", "aduge")],
-    loc_der_rooms: &["aduge", "hallige"],
+    room_names: &[
+        ("wohnzimmer", "ಹಾಲ್"),
+        ("kuche", "ಅಡುಗೆ"),
+    ],
+    loc_der_rooms: &["ಅಡುಗೆ", "ಹಾಲ್"],
     personality: &[
         ("butler", &["Chennagide. ", "Santosha. ", ""]),
         ("locker", &["Tiliyitu. ", "Aayitu. ", ""]),
@@ -74,5 +77,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Haudu. ", "Haudu, nanna ratna. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Nijavagi?",
+    confirm: "ನಿಜವಾಗಿ?",
 };

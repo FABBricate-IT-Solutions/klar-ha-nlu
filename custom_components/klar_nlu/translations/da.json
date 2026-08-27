@@ -36,6 +36,7 @@
           "assist_filter": "Styr kun enheder synlige for Assist",
           "nlu_rag": "NLU-RAG (valgfrit)",
           "quiet_ack": "Kort bekræftelse (klokke)",
+          "calendar_llm": "Send kalenderforespørgsler til LLM'et",
           "channel": "Udgivelseskanal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Til: kun det Assist må se. Fra: også skjulte enheder.",
           "nlu_rag": "Fra som standard. Ved chat sendes kun det genkendte udsnit til fallback-modellen.",
           "quiet_ack": "Ved simpelt lys eller kontakt tænd/sluk ingen sætning, kun en kort tone.",
+          "calendar_llm": "Slået fra som standard. Til: Klar læser kalenderen, fallback-LLM'et siger aftalerne. Fra: Klar siger listen selv. Opret, slet og flyt bliver i Klar.",
           "languages": "Standard er Home Assistants systemsprog.",
           "channel": "Når som helst. Staging peger på Klar NLU (Staging)."
         }

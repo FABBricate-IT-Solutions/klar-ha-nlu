@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - asaa gerel zochny
+    - асаа гэрэл зочны
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - untraa gerel galtogoo
+    - унтраа гэрэл галтогоо
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - tsagand yu baina
+    - хуанли юу байна
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - nem shudny margash 15 tsag
+    - нэм шүдны маргааш 15 хуанли
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - ustga shudny tsag
+    - устга шүдны хуанли
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - shilj shudny margash 16 tsag
+    - шилж шүдны маргааш 16 хуанли
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - toglogch depeche
+    - тоглуул depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

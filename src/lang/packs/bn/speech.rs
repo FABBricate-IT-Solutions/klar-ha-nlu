@@ -3,8 +3,8 @@ use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
     unknown: "Bujhte parini.",
-    need_on: "Ki jalabo?",
-    need_off: "Ki nibhabo?",
+    need_on: "কি জ্বালাব?",
+    need_off: "কি নিভাব?",
     need_which: "Ki jalabo?",
     correction: "Thik ache, shesh bakyo chhere dichhi.",
     clarify: "{names}?",
@@ -12,9 +12,9 @@ pub(super) const SPEECH: Speech = Speech {
     and_join: " ebong ",
     group_on: "{names}.",
     group_off: "{names}.",
-    turn_on: "{target} jwalchhe.",
+    turn_on: "{target} জ্বলছে।",
     turn_on_scene: "{target}.",
-    turn_off: "{target} nibhano.",
+    turn_off: "{target} নিভানো।",
     toggle: "{target} badlachhe.",
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
@@ -60,8 +60,11 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "Ki jalabo?",
     or_home: "Ki jalabo?",
-    room_names: &[("wohnzimmer", "bosar"), ("kuche", "ranna")],
-    loc_der_rooms: &["bosar", "ranna"],
+    room_names: &[
+        ("wohnzimmer", "বসার"),
+        ("kuche", "রান্না"),
+    ],
+    loc_der_rooms: &["বসার", "রান্না"],
     personality: &[
         ("butler", &["Bhalo. ", "Khushi te. ", ""]),
         ("locker", &["Bujhechi. ", "Hoyeche. ", ""]),
@@ -74,5 +77,5 @@ pub(super) const SPEECH: Speech = Speech {
         ("gollum", &["Hyan. ", "Hyan, amar ratno. ", ""]),
         ("jarvis", &["Of course, sir. ", "Right away. ", ""]),
     ],
-    confirm: "Sotti?",
+    confirm: "সত্যি?",
 };

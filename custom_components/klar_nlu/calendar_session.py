@@ -29,19 +29,34 @@ def last_events(conversation_id: str | None) -> list[dict[str, str]]:
     return list(events)
 
 
-def as_record(entity_id: str, event: dict[str, Any]) -> dict[str, str]:
+def _stamp(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, dict):
+        value = value.get("dateTime") or value.get("date") or ""
+    if hasattr(value, "isoformat"):
+        return str(value.isoformat())
+    return str(value)
+
+
+def as_record(entity_id: str, event: dict[str, Any] | Any) -> dict[str, str]:
+    if not isinstance(event, dict):
+        return {
+            "uid": str(getattr(event, "uid", None) or getattr(event, "id", None) or ""),
+            "recurrence_id": str(getattr(event, "recurrence_id", None) or ""),
+            "summary": str(getattr(event, "summary", None) or getattr(event, "title", None) or "").strip(),
+            "start": _stamp(getattr(event, "start", None)),
+            "end": _stamp(getattr(event, "end", None)),
+            "entity_id": entity_id,
+        }
     start = event.get("start") or event.get("start_date_time") or event.get("start_date") or ""
     end = event.get("end") or event.get("end_date_time") or event.get("end_date") or ""
-    if isinstance(start, dict):
-        start = start.get("dateTime") or start.get("date") or ""
-    if isinstance(end, dict):
-        end = end.get("dateTime") or end.get("date") or ""
     return {
         "uid": str(event.get("uid") or event.get("id") or ""),
         "recurrence_id": str(event.get("recurrence_id") or ""),
         "summary": str(event.get("summary") or event.get("title") or "").strip(),
-        "start": str(start),
-        "end": str(end),
+        "start": _stamp(start),
+        "end": _stamp(end),
         "entity_id": entity_id,
     }
 

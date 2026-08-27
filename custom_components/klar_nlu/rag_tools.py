@@ -47,7 +47,7 @@ def retrieval_lines(retrieval: dict[str, Any] | None, pack: str) -> str:
 
 
 def rag_prompt(pack: str, retrieval: dict[str, Any] | None, extra: str | None) -> str:
-    instruct = _INSTRUCT.get(pack, _INSTRUCT["de"])
+    instruct = _INSTRUCT.get(pack, _INSTRUCT["en"])
     context = retrieval_lines(retrieval, pack)
     parts = [part for part in (extra, context, instruct) if part]
     return "\n".join(parts)

@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - chalu roshni vithak
+    - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - band roshni rasoi
+    - ਬੰਦ ਰੋਸ਼ਨੀ ਰਸੋਈ
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - calendar vich ki
+    - ਕੈਲੰਡਰ ਵਿਚ ਕੀ
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - pao dentist kal 15 calendar
+    - ਪਾਓ ਦੰਦ ਕੱਲ 15 ਕੈਲੰਡਰ
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - hatao dentist calendar
+    - ਹਟਾਓ ਦੰਦ ਕੈਲੰਡਰ
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - saraka dentist kal 16 calendar
+    - ਸਰਕਾ ਦੰਦ ਕੱਲ 16 ਕੈਲੰਡਰ
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - vajao depeche
+    - ਚਲਾਓ depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

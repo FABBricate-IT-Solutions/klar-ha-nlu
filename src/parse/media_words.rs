@@ -153,5 +153,5 @@ pub(super) fn entity_word(word: &str, entity: &EntityRec) -> bool {
 
 fn label_has_word(label: &str, word: &str) -> bool {
     let folded = fold_umlaut(label);
-    folded.split(|c: char| !c.is_alphanumeric()).any(|part| part == word)
+    folded.split(|c: char| !crate::parse::normalize::is_word_char(c)).any(|part| part == word)
 }

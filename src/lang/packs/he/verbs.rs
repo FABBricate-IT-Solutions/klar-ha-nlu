@@ -2,14 +2,11 @@
 use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
-    ("active", VerbKind::On),
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("green", VerbKind::Color),
-    ("next", VerbKind::Next),
     ("orange", VerbKind::Color),
     ("pink", VerbKind::Color),
-    ("play", VerbKind::Play),
     ("purple", VerbKind::Color),
     ("red", VerbKind::Color),
     ("white", VerbKind::Color),

@@ -1,7 +1,7 @@
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::infer::looks_like_question;
-use crate::parse::normalize::compact;
+use crate::parse::normalize::{compact, is_word_char};
 use crate::parse::slots::ClauseOut;
 use crate::types::{EntityRec, HomeGraph, Intent};
 
@@ -77,7 +77,7 @@ fn stem_hit(token: &str, word: &str) -> bool {
 
 fn phrase_hit(tokens: &[String], set: &std::collections::HashSet<&str>) -> bool {
     set.iter().any(|phrase| {
-        let parts: Vec<&str> = phrase.split(|c: char| !c.is_alphanumeric()).filter(|part| !part.is_empty()).collect();
+        let parts: Vec<&str> = phrase.split(|c: char| !is_word_char(c)).filter(|part| !part.is_empty()).collect();
         parts.len() > 1 && tokens.windows(parts.len()).any(|window| window.iter().zip(parts.iter()).all(|(token, part)| token == part))
     })
 }

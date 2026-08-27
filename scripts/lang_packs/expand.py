@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from lang_packs.calendar_lex import calendar_for
 from lang_packs.extras import pack_extras
+from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.voices import normalize_personality
 
 ROOMS = (
@@ -25,6 +26,7 @@ ROOMS = (
 )
 
 def expand(core: dict) -> dict:
+    apply_native(core)
     w = core["w"]
     for key, val in pack_extras(core["code"]).items():
         w.setdefault(key, val)
@@ -69,7 +71,10 @@ def expand(core: dict) -> dict:
     opn = w["open"]
     close = w["close"]
     verbs = []
-    for word in unique(on + ["active"]):
+    extra_on = ["active"] if not is_script_pack(core) else []
+    extra_play = ["play"] if not is_script_pack(core) else []
+    extra_next = ["next"] if not is_script_pack(core) else []
+    for word in unique(on + extra_on):
         verbs.append((word, "On"))
     for word in off:
         verbs.append((word, "Off"))
@@ -107,9 +112,9 @@ def expand(core: dict) -> dict:
         verbs.append((word, "Percent"))
     for word in w.get("stop", off[:1]):
         verbs.append((word, "Stop"))
-    for word in unique(list(w.get("play") or []) + ["play"]):
+    for word in unique(list(w.get("play") or []) + extra_play):
         verbs.append((word, "Play"))
-    for word in unique(list(w.get("next") or []) + ["next"]):
+    for word in unique(list(w.get("next") or []) + extra_next):
         verbs.append((word, "Next"))
     for word in w.get("pause", []):
         verbs.append((word, "Pause"))

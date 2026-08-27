@@ -1,42 +1,42 @@
 - name: light_on
   sentences:
-    - kyeo bul geosil
+    - 켜 불 거실
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - kkaeo bul bueok
+    - 꺼 불 부엌
   nlu_expect:
     intents:
       - intent: HassTurnOff
 - name: calendar_list
   sentences:
-    - dallyeok e mwo isseo
+    - 일정 뭐 있어
   nlu_expect:
     intents:
       - intent: KlarGetCalendarEvents
 - name: calendar_create
   sentences:
-    - chuga chigwa naeil 15 dallyeok
+    - 추가 치과 내일 15 캘린더
   nlu_expect:
     intents:
       - intent: KlarCreateCalendarEvent
 - name: calendar_delete
   sentences:
-    - sakje chigwa dallyeok
+    - 삭제 치과 캘린더
   nlu_expect:
     intents:
       - intent: KlarDeleteCalendarEvent
 - name: calendar_move
   sentences:
-    - omgyeo chigwa naeil 16 dallyeok
+    - 옮겨 치과 내일 16 캘린더
   nlu_expect:
     intents:
       - intent: KlarMoveCalendarEvent
 - name: play_media
   sentences:
-    - jaesaeng depeche
+    - 재생 depeche
   nlu_expect:
     intents:
       - intent: MassPlayMedia

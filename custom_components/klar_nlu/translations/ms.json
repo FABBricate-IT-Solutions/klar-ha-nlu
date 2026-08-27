@@ -36,6 +36,7 @@
           "assist_filter": "Kawal hanya entiti yang terdedah kepada Assist",
           "nlu_rag": "NLU-RAG (pilihan)",
           "quiet_ack": "Pengesahan ringkas (loceng)",
+          "calendar_llm": "Hantar pertanyaan kalendar ke LLM",
           "channel": "Saluran keluaran"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Hidup: hanya yang Assist boleh lihat. Mati: termasuk entiti tersembunyi.",
           "nlu_rag": "Lalai mati. Semasa sembang hanya potongan yang sepadan dihantar ke model sandaran.",
           "quiet_ack": "Untuk hidup/mati lampu ringkas, tiada ayat, hanya bunyi pendek pada satelit.",
+          "calendar_llm": "Lalai dimatikan. Hidup: Klar baca kalendar, LLM sandaran sebut acara. Mati: Klar sebut senarai. Cipta, padam, pindah kekal di Klar.",
           "languages": "Lalai mengikut bahasa sistem Home Assistant.",
           "channel": "Boleh bila-bila masa. Staging menunjuk ke Klar NLU (Staging)."
         }

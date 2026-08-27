@@ -36,6 +36,7 @@
           "assist_filter": "Nur für Assist freigebeni Entitäte stüre",
           "nlu_rag": "NLU-RAG (optional)",
           "quiet_ack": "Churzi Bestätigung (Chime)",
+          "calendar_llm": "Kalenderabfroge ans LLM schicke",
           "channel": "Release-Kanal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Aa: nur was Assist gseht. Us: au versteckti Entitäte.",
           "nlu_rag": "Standard us. Bi Chat nume de gmatchti Uschnitt ans Fallback-Modell.",
           "quiet_ack": "Bi eifachem Liecht aa/us kei gredti Antwort, nur en churze Ton.",
+          "calendar_llm": "Standard us. Aa: Klar liest de Kalender, s Fallback-LLM seit d Termin. Us: Klar seit d Liste sälber. Aalege, Lösche und Verschiebe blibed bi Klar.",
           "languages": "Standard isch d Home-Assistant-Systemsprach.",
           "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine."
         }

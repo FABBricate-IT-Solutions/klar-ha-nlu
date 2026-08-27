@@ -24,6 +24,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
     CONF_ASSIST_FILTER,
+    CONF_CALENDAR_LLM,
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_NLU_RAG,
@@ -34,18 +35,21 @@ from .const import (
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_CALENDAR_LLM,
     DEFAULT_NLU_RAG,
     DEFAULT_QUIET_ACK,
     DEFAULT_URL,
     DOMAIN,
     resolve_personality,
 )
-from .lang_select import advertise, enabled_packs, resolve_pack
+from .lang_select import advertise, enabled_packs, resolve_pack, speak_tag
 from .contracts import executable_intents, validate_v2_payload
 from .executor import execute_plan
 from .fallback import (
     agent_has_home_control,
     can_use_fallback_agent,
+    calendar_prompt,
+    calendar_query_only,
     chat_only_prompt,
     news_followup_prompt,
     news_prompt,
@@ -246,6 +250,21 @@ class KlarConversationEntity(ConversationEntity):
             )
             if executed.get("speech"):
                 speech = str(executed["speech"])
+            if (
+                self._calendar_llm()
+                and calendar_query_only(plan)
+                and self._fallback_agent_id()
+            ):
+                extra = getattr(user_input, "extra_system_prompt", None)
+                extra_s = extra if isinstance(extra, str) else None
+                fallback = await self._fallback(
+                    user_input, chat_log, pack, True, calendar_prompt(pack, speech, extra_s)
+                )
+                replied = await self._after_fallback(
+                    user_input, chat_log, pack, fallback, speech, conversation_id
+                )
+                if replied is not None:
+                    return replied
             if self._quiet_ack() and quiet_ack_applies(executed, plan):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
@@ -297,7 +316,7 @@ class KlarConversationEntity(ConversationEntity):
                 self._agent_controls_home(str(agent_id or "")),
                 speech,
                 user_input.context,
-                user_input.language,
+                speak_tag(pack),
                 pack,
                 self._personality(),
                 str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
@@ -312,7 +331,7 @@ class KlarConversationEntity(ConversationEntity):
         )
         if speech.strip():
             await emit_assistant_speech(chat_log, user_input.agent_id, speech)
-        response = intent.IntentResponse(language=user_input.language or pack)
+        response = intent.IntentResponse(language=speak_tag(pack))
         response.async_set_speech(speech)
         return ConversationResult(
             conversation_id=conversation_id,
@@ -348,6 +367,9 @@ class KlarConversationEntity(ConversationEntity):
 
     def _quiet_ack(self) -> bool:
         return bool(self._entry.options.get(CONF_QUIET_ACK, DEFAULT_QUIET_ACK))
+
+    def _calendar_llm(self) -> bool:
+        return bool(self._entry.options.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM))
 
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""
@@ -445,7 +467,7 @@ class KlarConversationEntity(ConversationEntity):
                 user_input.text,
                 isolated_conversation_id(),
                 user_input.context,
-                **nested_llm_session(agent_id, user_input.language, system),
+                **nested_llm_session(agent_id, speak_tag(pack), system),
             )
         except Exception as err:  # noqa: BLE001 — other agent is a system boundary
             _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)

@@ -36,6 +36,7 @@
           "assist_filter": "Controllare solo le entità esposte ad Assist",
           "nlu_rag": "NLU-RAG (opzionale)",
           "quiet_ack": "Conferma breve (campanella)",
+          "calendar_llm": "Invia le richieste calendario all'LLM",
           "channel": "Canale di rilascio"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "On: solo ciò che Assist può vedere. Off: anche entità nascoste.",
           "nlu_rag": "Disattivato di default. In chat solo il frammento riconosciuto va al modello di riserva.",
           "quiet_ack": "Per accensione o spegnimento semplice, nessuna frase: solo un suono breve sul satellite.",
+          "calendar_llm": "Disattivato di default. Attivo: Klar legge il calendario, l'LLM di riserva dice gli eventi. Spento: Klar dice l'elenco. Crea, elimina e sposta restano in Klar.",
           "languages": "L’impostazione predefinita è la lingua di sistema di Home Assistant.",
           "channel": "Sempre. Staging punta a Klar NLU (Staging), Stable all’app o al motore incluso."
         }
