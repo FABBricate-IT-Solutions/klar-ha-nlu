@@ -3,7 +3,7 @@ mod common;
 use common::{run, slots};
 use klar_nlu::home::default_home;
 use klar_nlu::parse::parse;
-use klar_nlu::session::Session;
+use klar_nlu::session::{Session, Sessions};
 use klar_nlu::types::{EntityRec, Settings};
 
 #[test]
@@ -193,6 +193,24 @@ fn follow_up_aus() {
     assert_eq!(second.intents[0].name, "HassTurnOff");
     let third = parse("schalte es wieder an", &home, &mut session, &[], &settings);
     assert_eq!(third.intents[0].name, "HassTurnOn", "{:?} {}", third.intents, third.speech);
+}
+
+#[test]
+fn follow_up_ein_across_conversation_ids() {
+    let home = default_home();
+    let settings = Settings::pinned("de");
+    let mut sessions = Sessions::default();
+    let mut first = sessions.take(Some("wake-off"));
+    let off = parse("Wohnzimmerlicht aus", &home, &mut first, &[], &settings);
+    assert_eq!(off.intents[0].name, "HassTurnOff", "{:?} {}", off.intents, off.speech);
+    let off_id = off.intents[0].slot("entity_id");
+    assert_eq!(off_id, Some("light.wohnzimmer"), "{:?} {}", off.intents, off.speech);
+    sessions.put(first);
+    let mut second = sessions.take(Some("wake-on"));
+    let on = parse("schalte es wieder ein", &home, &mut second, &[], &settings);
+    assert!(!on.clarify, "{}", on.speech);
+    assert_eq!(on.intents[0].name, "HassTurnOn", "{:?} {}", on.intents, on.speech);
+    assert_eq!(on.intents[0].slot("entity_id"), off_id, "{:?} {}", on.intents, on.speech);
 }
 
 #[test]
