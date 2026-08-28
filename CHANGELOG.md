@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.52](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.51...2026.8.52) - 2026-08-28
+
+
+
+### Bug Fixes
+
+- satisfy rustfmt, clippy, and the isolated-fallback session test([5748f16](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5748f16c961521b004b5ccd426ccfdd38a52c500))
+
+- give the story LLM prior turns so egal stays on topic([c49a5fd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c49a5fd272bf5cde73d8fe6ca5758d824ef0eca6))
+
+
+### Other
+
+- Merge pull request #145 from FABBricate-IT-Solutions/fix/llm-story-context([afd3032](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/afd3032481135cd2997fad59d6798f12b5b0efd3))
+
 ## [2026.8.51](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.50...2026.8.51) - 2026-08-28
 
 
