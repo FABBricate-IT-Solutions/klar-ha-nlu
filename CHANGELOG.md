@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.51](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.50...2026.8.51) - 2026-08-28
+
+
+
+### Bug Fixes
+
+- keep LLM story replies in chat instead of living-room status([47893b3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/47893b3fdaa11cb87a7c0054d860094f779d2e06))
+
+
+### Other
+
+- Merge pull request #143 from FABBricate-IT-Solutions/fix/llm-chat-followup([08bf4d8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/08bf4d8ade981df90782a03f57f6088a0334f14a))
+
 ## [2026.8.50](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.49-staging.fcb456d...2026.8.50) - 2026-08-28
 
 
