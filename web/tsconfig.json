@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "react", "react-dom", "@figma/code-connect/figma-types"]
+    "types": ["vite/client", "react", "react-dom"]
   },
   "include": ["src"],
   "references": []
