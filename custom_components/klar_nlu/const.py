@@ -3,6 +3,21 @@ from urllib.parse import urlparse
 from .languages import LANGUAGE_VARIANTS, SUPPORTED_LANGUAGES
 
 DOMAIN = "klar_nlu"
+FOLLOWUP_SESSION = "klar-followup"
+
+
+def engine_session_id(device_id: object = None, satellite_id: object = None) -> str:
+    for candidate in (satellite_id, device_id):
+        text = str(candidate or "").strip()
+        if text:
+            return f"dev:{text}"[:128]
+    return FOLLOWUP_SESSION
+
+
+def keeps_conversation(decision: object) -> bool:
+    return str(decision or "") in {"clarify", "confirm", "execute"}
+
+
 DEFAULT_URL = "http://127.0.0.1:10520"
 DEFAULT_ADDON_URL = "http://klar-nlu:10520"
 DEFAULT_STAGING_ADDON_URL = "http://klar-nlu-staging:10520"

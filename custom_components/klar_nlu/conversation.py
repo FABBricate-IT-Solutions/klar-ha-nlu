@@ -40,6 +40,8 @@ from .const import (
     DEFAULT_QUIET_ACK,
     DEFAULT_URL,
     DOMAIN,
+    engine_session_id,
+    keeps_conversation,
     resolve_personality,
 )
 from .lang_select import advertise, enabled_packs, resolve_pack, speak_tag
@@ -268,10 +270,10 @@ class KlarConversationEntity(ConversationEntity):
             if self._quiet_ack() and quiet_ack_applies(executed, plan):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
-                    user_input, chat_log, pack, "", conversation_id, False, "chime"
+                    user_input, chat_log, pack, "", conversation_id, True, "chime"
                 )
         return await self._spoken(
-            user_input, chat_log, pack, speech, conversation_id, clarify, decision_type
+            user_input, chat_log, pack, speech, conversation_id, keeps_conversation(decision_type), decision_type
         )
 
     async def _after_fallback(
@@ -424,7 +426,7 @@ class KlarConversationEntity(ConversationEntity):
                 if intents:
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
-                    return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False, "execute")
+                    return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), True, "execute")
             speech = str(payload.get("speech") or _cue(_DONE, pack, "OK"))
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
         if tool.get("tool") == "klar.act" and tool.get("intent"):
@@ -433,7 +435,7 @@ class KlarConversationEntity(ConversationEntity):
             if not intents:
                 return None
             executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
-            return await self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _cue(_DONE, pack, "OK")), user_input.conversation_id, False, "execute")
+            return await self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _cue(_DONE, pack, "OK")), user_input.conversation_id, True, "execute")
         return None
 
     async def _fallback(
@@ -486,13 +488,13 @@ class KlarConversationEntity(ConversationEntity):
         return None
 
     async def _parse(
-        self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
+        self, text: str, _conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/v2/parse"
         pack = resolve_pack(language, self._packs())
         body: dict[str, Any] = {
             "text": text,
-            "conversation_id": conversation_id,
+            "conversation_id": engine_session_id(device_id, satellite_id),
             "language": pack,
             "personality": self._personality(),
         }
