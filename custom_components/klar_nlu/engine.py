@@ -251,26 +251,58 @@ class KlarEngine:
             return False
 
 
+def merge_engine_settings(
+    data: object, personality: str, languages: list[str] | None
+) -> dict | None:
+    if not isinstance(data, dict):
+        return None
+    out = dict(data)
+    out["personality"] = resolve_personality(personality)
+    if languages is not None:
+        out["languages"] = list(languages)
+    return out
+
+
+def merge_ui_locale(data: object, locale: str) -> dict | None:
+    if not isinstance(data, dict):
+        return None
+    out = dict(data)
+    out["locale"] = locale
+    return out
+
+
 async def async_push_personality(
-    hass: HomeAssistant, url: str, personality: str, token: str | None = None
+    hass: HomeAssistant,
+    url: str,
+    personality: str,
+    token: str | None = None,
+    languages: list[str] | None = None,
+    ui_locale: str | None = None,
 ) -> None:
-    """Write the HA personality onto the engine so the Klar UI matches Assist."""
-    personality = resolve_personality(personality)
+    """Write HA personality and language onto the engine so the Klar UI matches Assist."""
     session = async_get_clientsession(hass)
-    settings_url = f"{url.rstrip('/')}/api/settings"
+    base = url.rstrip("/")
     headers = {"X-Klar-Token": token} if token else {}
+    timeout = ClientTimeout(total=3)
     try:
-        async with session.get(
-            settings_url, headers=headers, timeout=ClientTimeout(total=3)
-        ) as resp:
+        settings_url = f"{base}/api/settings"
+        async with session.get(settings_url, headers=headers, timeout=timeout) as resp:
             resp.raise_for_status()
-            data = await resp.json()
-        if not isinstance(data, dict):
+            payload = merge_engine_settings(await resp.json(), personality, languages)
+        if payload is None:
             return
-        data["personality"] = personality
         async with session.post(
-            settings_url, json=data, headers=headers, timeout=ClientTimeout(total=3)
+            settings_url, json=payload, headers=headers, timeout=timeout
         ) as resp:
             resp.raise_for_status()
+        if ui_locale:
+            ui_url = f"{base}/api/ui"
+            async with session.get(ui_url, headers=headers, timeout=timeout) as resp:
+                resp.raise_for_status()
+                ui = merge_ui_locale(await resp.json(), ui_locale)
+            if ui is None:
+                return
+            async with session.post(ui_url, json=ui, headers=headers, timeout=timeout) as resp:
+                resp.raise_for_status()
     except (ClientError, TimeoutError, OSError) as err:
-        _LOGGER.debug("Klar personality not synced: %s", err)
+        _LOGGER.debug("Klar settings not synced: %s", err)

@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
-import { dictionaries, initialLocale } from "./i18n";
+import { chromeLocale, dictionaries, isRtl } from "./i18n";
 import { ConversationsPage } from "./pages/ConversationsPage";
 import { DashboardPage } from "./pages/Dashboard";
 import { HousePage } from "./pages/HousePage";
 import { ParsePage } from "./pages/ParsePage";
 import { RulesPage } from "./pages/RulesPage";
 import { SettingsPage } from "./pages/SettingsPage";
-import type { Assignment, Dashboard, Locale, Settings, Tab, UiState } from "./types";
+import type { Assignment, Dashboard, Settings, Tab, UiState } from "./types";
 
 const tabs: Tab[] = ["home", "conversations", "rules", "house", "lab", "settings"];
 const legacyTab: Record<string, Tab> = {
@@ -52,7 +52,8 @@ export function App() {
   const [replayText, setReplayText] = useState("");
   const [error, setError] = useState("");
   const uiLoaded = useRef(false);
-  const t = dictionaries[ui.locale] || dictionaries.de;
+  const locale = chromeLocale(settings.languages, ui.locale);
+  const t = dictionaries[locale] || dictionaries.de;
 
   const refresh = async () => {
     try {
@@ -68,10 +69,19 @@ export function App() {
   useEffect(() => {
     (async () => {
       try {
-        const [nextSettings, nextUi, nextDashboard] = await Promise.all([api.settings(), api.ui(), api.dashboard()]);
-        const locale = initialLocale(nextUi.locale, nextSettings.languages);
-        setSettings({ ...defaultSettings, ...nextSettings });
-        setUi({ ...defaultUi, ...nextUi, locale, tab: asTab(nextUi.tab) });
+        const [nextSettings, nextUi, nextDashboard] = await Promise.all([
+          api.settings(),
+          api.ui(),
+          api.dashboard(),
+        ]);
+        const next = { ...defaultSettings, ...nextSettings };
+        setSettings(next);
+        setUi({
+          ...defaultUi,
+          ...nextUi,
+          locale: chromeLocale(next.languages, nextUi.locale),
+          tab: asTab(nextUi.tab),
+        });
         setDashboard(nextDashboard);
         uiLoaded.current = true;
       } catch (err) {
@@ -82,9 +92,14 @@ export function App() {
 
   useEffect(() => {
     if (!uiLoaded.current) return;
-    const timer = window.setTimeout(() => api.saveUi(ui).catch(() => undefined), 350);
+    const timer = window.setTimeout(() => api.saveUi({ ...ui, locale }).catch(() => undefined), 350);
     return () => window.clearTimeout(timer);
-  }, [ui]);
+  }, [ui, locale]);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = isRtl(locale) ? "rtl" : "ltr";
+  }, [locale]);
 
   const applyCandidates = useMemo(
     () => dashboard?.assignment.filter((row) => (row.suggested_area?.score || 0) >= 3 && row.area !== row.suggested_area?.area_id) || [],
@@ -92,7 +107,6 @@ export function App() {
   );
 
   const setTab = (tab: Tab) => setUi((prev) => ({ ...prev, tab }));
-  const setLocale = (locale: Locale) => setUi((prev) => ({ ...prev, locale }));
   const replay = (text: string) => {
     setReplayText(text);
     setTab("lab");
@@ -145,30 +159,20 @@ export function App() {
           {tabs.map((tab) => <button key={tab} className={ui.tab === tab ? "active" : ""} onClick={() => setTab(tab)}>{t[tab]}</button>)}
         </nav>
         <div className="status">
-          <button className="ghost" onClick={() => setLocale(ui.locale === "de" ? "en" : "de")}>{ui.locale.toUpperCase()}</button>
           <span className={`pill${dashboard?.counts.leftover ? " hot" : ""}`}>{dashboard?.counts.leftover ?? 0} {t.open}</span>
           <span className={`pill${settings.nlu_rag ? " hot" : ""}`}>{settings.nlu_rag ? t.ragMode : t.chatMode}</span>
         </div>
       </header>
       {error && <div className="page"><div className="card danger">{error}</div></div>}
       {!dashboard && !error && <div className="page"><div className="card">{t.loading}</div></div>}
-      {dashboard && ui.tab === "home" && <DashboardPage data={dashboard} t={t} locale={ui.locale} onReplay={replay} onApply={() => setConfirmApply(true)} onOpenCalibrate={() => setTab("house")} canApply={applyCandidates.length > 0} />}
+      {dashboard && ui.tab === "home" && <DashboardPage data={dashboard} t={t} locale={locale} onReplay={replay} onApply={() => setConfirmApply(true)} onOpenCalibrate={() => setTab("house")} canApply={applyCandidates.length > 0} />}
       {ui.tab === "conversations" && <ConversationsPage t={t} onReplay={replay} />}
-      {ui.tab === "rules" && <RulesPage t={t} locale={ui.locale} personality={settings.personality} languages={settings.languages} />}
+      {ui.tab === "rules" && <RulesPage t={t} locale={locale} personality={settings.personality} languages={settings.languages} />}
       {dashboard && ui.tab === "house" && (
         <HousePage data={dashboard} ui={ui} t={t} onUi={setUi} onInspect={openInspect} onRefresh={refresh} onApply={() => setConfirmApply(true)} />
       )}
-      {ui.tab === "lab" && <ParsePage t={t} locale={ui.locale} replayText={replayText} nluRag={settings.nlu_rag} rooms={dashboard?.rooms || []} />}
-      {ui.tab === "settings" && (
-        <SettingsPage
-          t={t}
-          settings={settings}
-          onSettings={(next) => {
-            setSettings(next);
-            setUi((prev) => ({ ...prev, locale: initialLocale(prev.locale, next.languages) }));
-          }}
-        />
-      )}
+      {ui.tab === "lab" && <ParsePage t={t} locale={locale} replayText={replayText} nluRag={settings.nlu_rag} rooms={dashboard?.rooms || []} />}
+      {ui.tab === "settings" && <SettingsPage t={t} settings={settings} onSettings={setSettings} />}
 
       {inspecting && (
         <Drawer title={inspecting.name} onClose={() => setInspecting(null)} closeLabel={t.close}>

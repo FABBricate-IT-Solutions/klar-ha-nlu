@@ -1,4 +1,4 @@
-export type Locale = "de" | "en";
+export type Locale = string;
 export type Tab = "home" | "conversations" | "rules" | "house" | "lab" | "settings";
 export type HouseView = "graph" | "entities" | "calibrate";
 export type Confidence = "high" | "medium" | "low";

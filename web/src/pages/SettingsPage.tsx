@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import { api, download, setToken, type LanguagePack } from "../api";
-import { LanguagePicker } from "../components/LanguagePicker";
+import { api, download, setToken } from "../api";
 import type { Messages } from "../i18n";
 import type { BundleList, Settings } from "../types";
 
 export function SettingsPage({ t, settings, onSettings }: { t: Messages; settings: Settings; onSettings: (s: Settings) => void }) {
   const [bundle, setBundle] = useState<BundleList | null>(null);
-  const [packs, setPacks] = useState<LanguagePack[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   useEffect(() => {
     refresh();
-    api.languages().then(setPacks).catch(() => setPacks([]));
   }, []);
   const save = async (next = settings) => {
     setToken(token);
@@ -27,7 +24,6 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
     await api.clearBundle();
     refresh();
   };
-  const setLanguages = (languages: string[]) => onSettings({ ...settings, languages });
   return (
     <div className="page">
       <section className="hero">
@@ -43,14 +39,7 @@ export function SettingsPage({ t, settings, onSettings }: { t: Messages; setting
             <option value="context_only">context_only</option>
           </select>
           <label>{t.languages}</label>
-          <LanguagePicker
-            packs={packs}
-            value={settings.languages}
-            allLabel={t.allLanguages}
-            searchLabel={t.languageSearch}
-            emptyLabel={t.noLanguageMatch}
-            onChange={setLanguages}
-          />
+          <p>{settings.languages.length ? settings.languages.join(" · ") : t.allLanguages}</p>
           <p className="caption">{t.languageHint}</p>
           <label className="row">
             <input type="checkbox" checked={settings.confirm_risky_actions} onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })} style={{ width: "auto" }} />

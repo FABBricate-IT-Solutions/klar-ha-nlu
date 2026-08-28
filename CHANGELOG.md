@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## Unreleased
+
+### Features
+
+- localize the operator UI for every compiled Assist language
+- operator UI follows the integration language instead of a second picker
+
+### Bug Fixes
+
+- keep Supervisor-prefixed app hostnames (`xyz-klar-nlu`) instead of rewriting them to `klar-nlu`
+
 ## [2026.8.47](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.46...2026.8.47) - 2026-08-28
 
 

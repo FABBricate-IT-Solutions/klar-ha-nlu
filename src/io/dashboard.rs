@@ -62,10 +62,18 @@ async fn set_ui(
     Ok(Json(overlay.ui))
 }
 
-fn sanitize_ui(mut ui: UiState) -> UiState {
-    if ui.locale != "de" && ui.locale != "en" {
-        ui.locale = "de".into();
+fn resolve_ui_locale(raw: &str) -> String {
+    if let Some(id) = crate::lang::LangId::from_code(raw) {
+        return id.code().to_string();
     }
+    if let Some(id) = crate::lang::LangId::from_tag(raw) {
+        return id.code().to_string();
+    }
+    "de".into()
+}
+
+fn sanitize_ui(mut ui: UiState) -> UiState {
+    ui.locale = resolve_ui_locale(&ui.locale);
     if ui.tab.is_empty() || ui.tab.len() > 32 {
         ui.tab = "home".into();
     }
@@ -158,12 +166,22 @@ mod tests {
     fn sanitizes_ui_locale_and_ids() {
         let ui = sanitize_ui(UiState {
             tab: String::new(),
-            locale: "fr".into(),
+            locale: "zz".into(),
             dismissed: vec!["../x".into(), "light.ok".into()],
             ..Default::default()
         });
         assert_eq!(ui.tab, "home");
         assert_eq!(ui.locale, "de");
         assert_eq!(ui.dismissed, vec!["light.ok"]);
+    }
+
+    #[test]
+    fn keeps_compiled_operator_locales() {
+        assert_eq!(resolve_ui_locale("fr"), "fr");
+        assert_eq!(resolve_ui_locale("fr-FR"), "fr");
+        assert_eq!(resolve_ui_locale("zh-CN"), "zh-CN");
+        assert_eq!(resolve_ui_locale("sr-Latn"), "sr-Latn");
+        assert_eq!(resolve_ui_locale("de-CH"), "de-CH");
+        assert_eq!(resolve_ui_locale("nope"), "de");
     }
 }

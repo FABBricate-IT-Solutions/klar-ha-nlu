@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lang_packs.emit import write_pack, write_registry
 from lang_packs.ha_ui import write_ha_translations
+from lang_packs.web_ui import write_web_ui_translations
 from lang_packs.expand import expand
 from lang_packs.lexicons import ALL_CORES, BUILTINS
 from lang_packs.voices import HAND_BUNDLES, locale_bundle, PERSONALITY_KEYS
@@ -107,6 +108,7 @@ fn russian_is_not_a_compiled_pack() {
         (dest / "representative.yaml").write_text("".join(rows), encoding="utf-8")
     write_speech_locale(generated)
     write_ha_translations()
+    write_web_ui_translations()
     print("registry", len(registry), "languages")
 
 

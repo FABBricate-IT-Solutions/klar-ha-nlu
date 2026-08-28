@@ -2,27 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
 import { AreaTrend, Bars, DecisionMix, Donut, type MixRow } from "../components/charts";
 import { Empty, Kpi } from "../components/common";
-import type { Messages } from "../i18n";
+import { fill, type Messages } from "../i18n";
 import type { ConversationTurn, Dashboard as DashboardData, Locale } from "../types";
 
-function trySentences(rooms: DashboardData["rooms"], locale: Locale): string[] {
-  const room = rooms[0]?.name || (locale === "en" ? "the kitchen" : "der Küche");
-  if (locale === "en") {
-    return [
-      `Turn on the light in ${room}`,
-      "Is the door locked?",
-      "What time is it?",
-      "Good night",
-      "Undo that",
-    ];
-  }
-  return [
-    `Licht in ${room} an`,
-    "Ist die Tür abgeschlossen?",
-    "Wie spät ist es?",
-    "Gute Nacht",
-    "Rückgängig",
-  ];
+function trySentences(rooms: DashboardData["rooms"], t: Messages): string[] {
+  const room = rooms[0]?.name || t.tryRoom;
+  return [fill(t.tryOn, { room }), t.tryLock, t.tryTime, t.tryNight, t.tryUndo];
 }
 
 function mixFrom(turns: ConversationTurn[]): MixRow[] {
@@ -65,11 +50,11 @@ export function DashboardPage({
   const mix = useMemo(() => mixFrom(turns), [turns]);
   const inbox = data.assignment.filter((row) => row.confidence !== "high");
   const last = turns.at(-1);
-  const samples = trySentences(data.rooms, locale);
+  const samples = trySentences(data.rooms, t);
   const undoLast = async () => {
     setBusy(true);
     try {
-      await api.parse(locale === "en" ? "undo that" : "rückgängig", locale);
+      await api.parse(t.tryUndo, locale);
       const next = await api.conversations();
       setTurns(next);
     } finally {

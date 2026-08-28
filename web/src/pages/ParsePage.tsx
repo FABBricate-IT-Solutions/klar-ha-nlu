@@ -18,7 +18,7 @@ export function ParsePage({
   nluRag: boolean;
   rooms: { area_id: string; name: string }[];
 }) {
-  const [text, setText] = useState(locale === "en" ? "Turn on the living room light" : "Mach das Licht im Wohnzimmer an");
+  const [text, setText] = useState(t.parseSample);
   const [result, setResult] = useState<ParseResult | null>(null);
   const [raw, setRaw] = useState(false);
   const [conversationId, setConversationId] = useState<string | undefined>();
@@ -32,6 +32,9 @@ export function ParsePage({
   useEffect(() => {
     if (replayText) setText(replayText);
   }, [replayText]);
+  useEffect(() => {
+    if (!replayText) setText(t.parseSample);
+  }, [t.parseSample, replayText]);
   useEffect(() => {
     api.intents().then((names) => { if (names.length) setKnownIntents(names); }).catch(() => undefined);
   }, []);

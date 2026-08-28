@@ -117,12 +117,12 @@ th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--lin
 .drawer {
   position: fixed;
   top: 0;
-  right: 0;
+  inset-inline-end: 0;
   bottom: 0;
   width: min(460px, 100%);
   padding: 24px;
   background: var(--surface);
-  border-left: 1px solid var(--line);
+  border-inline-start: 1px solid var(--line);
   z-index: 20;
 }
 .drawer-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, .45); z-index: 19; }
@@ -152,35 +152,6 @@ th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--lin
 .chip.intent, .slot-chip { color: var(--cyan); border-color: #2a5558; }
 button.chip { background: transparent; }
 .chip.on { color: var(--text); border-color: var(--cyan); }
-.lang-picker { display: flex; flex-direction: column; gap: 8px; }
-.lang-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.lang-combo { position: relative; }
-.lang-list {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 8;
-  max-height: 240px;
-  overflow: auto;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-.lang-option {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 12px;
-  border: 0;
-  background: transparent;
-  color: var(--text);
-  text-align: left;
-}
-.lang-option.active, .lang-option:hover { background: var(--surface-2); }
-.lang-option.on { color: var(--cyan); }
 .caption { color: var(--muted); font-size: 12px; margin-top: 8px; }
 .timeline { display: flex; flex-direction: column; gap: 0; }
 .timeline-item {
