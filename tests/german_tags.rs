@@ -236,6 +236,12 @@ fn news_briefing_then_followup_not_device_replay() {
 
     let again = parse("aktuelle News", &home, &mut session, &[], &settings);
     assert!(again.briefing);
+    let skip = parse("egal", &home, &mut session, &[], &settings);
+    assert!(!skip.chat, "{}", skip.speech);
+    assert!(!session.briefing);
+
+    let again = parse("aktuelle News", &home, &mut session, &[], &settings);
+    assert!(again.briefing);
     let stop = parse("nein danke", &home, &mut session, &[], &settings);
     assert!(!stop.chat, "{}", stop.speech);
     assert!(stop.briefing);
@@ -266,7 +272,7 @@ fn llm_story_replies_stay_chat_and_unknown_is_not_living_light() {
     assert!(story.chat, "{}", story.speech);
     assert!(story.intents.is_empty(), "{:?}", story.intents);
 
-    for text in ["über einen Elefanten", "länger"] {
+    for text in ["über einen Elefanten", "länger", "egal", "science fiction"] {
         let follow = parse(text, &home, &mut session, &[], &settings);
         assert!(follow.chat, "{text}: {:?} {}", follow.intents, follow.speech);
         assert!(follow.intents.is_empty(), "{text}: {:?}", follow.intents);

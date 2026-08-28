@@ -43,7 +43,7 @@ class EngineChannelTests(unittest.TestCase):
     def test_followup_session_key_and_keep(self) -> None:
         self.assertTrue(const.keeps_conversation("execute"))
         self.assertTrue(const.keeps_conversation("clarify"))
-        self.assertFalse(const.keeps_conversation("chat"))
+        self.assertTrue(const.keeps_conversation("chat"))
         self.assertEqual(const.engine_session_id("dev-1", None), "dev:dev-1")
         self.assertEqual(const.engine_session_id(None, "sat-1"), "dev:sat-1")
         self.assertEqual(const.engine_session_id(None, None), const.FOLLOWUP_SESSION)

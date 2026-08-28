@@ -61,7 +61,10 @@ pub fn is_news_dismiss(tokens: &[String]) -> bool {
 }
 
 pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
-    in_llm_turn(session) && !tokens.is_empty() && !looks_like_home(tokens, home) && !is_news_dismiss(tokens)
+    in_llm_turn(session)
+        && !tokens.is_empty()
+        && !looks_like_home(tokens, home)
+        && !(session.briefing && is_news_dismiss(tokens))
 }
 
 fn in_llm_turn(session: &Session) -> bool {
@@ -216,11 +219,13 @@ mod tests {
             area: Some("wohnzimmer".into()),
             names: Vec::new(),
         });
-        for text in ["über einen Elefanten", "länger"] {
+        for text in ["über einen Elefanten", "länger", "egal", "science fiction"] {
             assert!(briefing_followup(&toks(text), &home, &session), "{text}");
         }
         for text in ["Licht im Wohnzimmer aus", "mach sie aus"] {
             assert!(!briefing_followup(&toks(text), &home, &session), "{text}");
         }
+        session.briefing = true;
+        assert!(!briefing_followup(&toks("egal"), &home, &session));
     }
 }
