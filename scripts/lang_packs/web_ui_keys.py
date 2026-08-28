@@ -16,10 +16,22 @@ ALIASES = {
 CONSTANTS = {
     "unitsPercent": "%",
     "entityId": "entity_id",
-    "nluRag": "NLU-RAG",
+    "nluRag": "House context on miss",
     "processPath": "conversation.process",
     "advancedJson": "JSON",
     "unitsUs": "µs",
+    "coverageGraph": "Graph",
+    "coverageAssist": "Assist",
+    "coverageReady": "ready",
+    "coverageOpen": "open",
+    "undoLastCommand": "Undo last command",
+    "applyDone": "Applied {count} room suggestions",
+    "applyUndone": "Room suggestions undone",
+    "applyUndoFailed": "Could not undo room suggestions",
+    "modeFull": "Resolve devices",
+    "modeContext": "Rooms only",
+    "engineHint": "Mode binds devices or rooms only. House context on a miss is optional.",
+    "inLab": "In Lab",
 }
 
 CATALOG_KEYS = (

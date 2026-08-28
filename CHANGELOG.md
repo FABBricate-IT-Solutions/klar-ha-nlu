@@ -12,10 +12,21 @@ and [Conventional Commits](https://www.conventionalcommits.org/).
 
 - localize the operator UI for every compiled Assist language
 - operator UI follows the integration language instead of a second picker
+- add SearchSelect pickers for phrases, policies, and routines
+- add a six-step setup wizard overlay
+- use hash routes and a rail as the default operator chrome
+- persist journal tokens for a privacy-safe heard line
+- teach a phrase from a miss on Home and Gespräche
+- rewrite Graph as a floor/room/device map plus keyboard list
+- restyle Lab to Klar tokens while keeping pipeline and raw JSON
+- add a Klar light theme (same Plex, terracotta, and square chrome)
+- rename NLU-RAG chrome to house context on miss (engine unchanged)
 
 ### Bug Fixes
 
 - keep Supervisor-prefixed app hostnames (`xyz-klar-nlu`) instead of rewriting them to `klar-nlu`
+- restore Lab Analyze for parse traces that include tokens and unknown fields
+- hide dismissed Mapping leftover cards
 
 ## [2026.8.47](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.46...2026.8.47) - 2026-08-28
 

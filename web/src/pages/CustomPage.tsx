@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { api, type CustomRule, type LangExplain, type LangOverlay } from "../api";
+import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
+import { sentencesEmpty, SetupHint } from "../components/SetupHint";
+import { TEACH_HEARD_KEY, TEACH_INTENT_KEY } from "../components/TeachFromMiss";
 import type { Messages } from "../i18n";
 import type { Locale } from "../types";
 
@@ -19,6 +22,7 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   const [jsonMode, setJsonMode] = useState(false);
   const [jsonBody, setJsonBody] = useState("[]");
   const [status, setStatus] = useState("");
+  const { entityOptions } = useHouseCatalog();
 
   const load = (overlay: LangOverlay) => {
     setRules(overlay.custom);
@@ -30,7 +34,20 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   useEffect(() => {
     api.langOverlay().then(load).catch((err) => setStatus(String(err)));
     api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
+    const heard = sessionStorage.getItem(TEACH_HEARD_KEY);
+    if (heard) {
+      setPhrase(heard);
+      sessionStorage.removeItem(TEACH_HEARD_KEY);
+    }
   }, []);
+
+  useEffect(() => {
+    const intent = sessionStorage.getItem(TEACH_INTENT_KEY);
+    if (intent && intents.includes(intent)) {
+      setIntent(intent);
+      sessionStorage.removeItem(TEACH_INTENT_KEY);
+    }
+  }, [intents]);
 
   const persist = async (next: CustomRule[], label: string) => {
     load(await api.saveLangOverlay({ custom: next, language, label }));
@@ -99,7 +116,12 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
               {intents.map((name) => <option key={name} value={name}>{name}</option>)}
             </select>
             <label>{t.entityId}</label>
-            <input value={entityId} onChange={(ev) => setEntityId(ev.target.value)} placeholder="light.wohnzimmer" />
+            <SearchSelect
+              value={entityId}
+              options={withCurrent(entityOptions, entityId)}
+              onChange={setEntityId}
+              placeholder="light.wohnzimmer"
+            />
             <label>{t.slots}</label>
             <input value={summary} onChange={(ev) => setSummary(ev.target.value)} placeholder="summary" />
           </div>
@@ -119,7 +141,12 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
         </section>
       )}
       <section className="card" style={{ marginTop: 16 }}>
-        {rules.length === 0 && <p className="muted">{t.noRules}</p>}
+        {rules.length === 0 && (
+          <div>
+            <p className="muted">{sentencesEmpty(t)}</p>
+            <SetupHint t={t} />
+          </div>
+        )}
         {rules.map((rule, index) => (
           <div className="row" key={`${rule.phrase}-${index}`} style={{ marginTop: 8 }}>
             <strong>{rule.phrase}</strong>

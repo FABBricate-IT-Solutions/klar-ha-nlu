@@ -44,7 +44,7 @@ async fn get_ui(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    Ok(Json(load_overlay(&state.data_dir).ui))
+    Ok(Json(sanitize_ui(load_overlay(&state.data_dir).ui)))
 }
 
 async fn set_ui(
@@ -82,7 +82,18 @@ fn sanitize_ui(mut ui: UiState) -> UiState {
     ui.dismissed.dedup();
     ui.last_apply.retain(|row| valid_entity_id(&row.entity_id) && valid_area(&row.after));
     ui.graph.retain(|id, point| valid_entity_id(id) && point.x.is_finite() && point.y.is_finite());
+    ui.house_view = sanitize_choice(&ui.house_view, &["graph", "entities", "calibrate"], "calibrate");
+    ui.rules_view = sanitize_choice(&ui.rules_view, &["routines", "sentences", "policies"], "routines");
+    ui.theme = sanitize_choice(&ui.theme, &["dark", "light"], "dark");
     ui
+}
+
+fn sanitize_choice(value: &str, allowed: &[&str], fallback: &str) -> String {
+    if allowed.contains(&value) {
+        value.to_string()
+    } else {
+        fallback.into()
+    }
 }
 
 fn valid_entity_id(id: &str) -> bool {
@@ -173,6 +184,40 @@ mod tests {
         assert_eq!(ui.tab, "home");
         assert_eq!(ui.locale, "de");
         assert_eq!(ui.dismissed, vec!["light.ok"]);
+        assert!(!ui.wizard_done);
+        assert_eq!(ui.house_view, "calibrate");
+        assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.theme, "dark");
+    }
+
+    #[test]
+    fn sanitizes_overlay_views_and_theme() {
+        let ui = sanitize_ui(UiState {
+            wizard_done: true,
+            house_view: "lab".into(),
+            rules_view: "wizard".into(),
+            theme: "neon".into(),
+            ..Default::default()
+        });
+        assert!(ui.wizard_done);
+        assert_eq!(ui.house_view, "calibrate");
+        assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.theme, "dark");
+    }
+
+    #[test]
+    fn keeps_known_overlay_views_and_theme() {
+        let ui = sanitize_ui(UiState {
+            wizard_done: true,
+            house_view: "graph".into(),
+            rules_view: "sentences".into(),
+            theme: "light".into(),
+            ..Default::default()
+        });
+        assert!(ui.wizard_done);
+        assert_eq!(ui.house_view, "graph");
+        assert_eq!(ui.rules_view, "sentences");
+        assert_eq!(ui.theme, "light");
     }
 
     #[test]

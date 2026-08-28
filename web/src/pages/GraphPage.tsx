@@ -1,15 +1,10 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import { api } from "../api";
 import type { Messages } from "../i18n";
 import type { Assignment, Dashboard, UiState } from "../types";
-
-const color = (c: string) => c === "high" ? "var(--high)" : c === "medium" ? "var(--medium)" : "var(--low)";
-const roomColumn = 24;
-const nodeColumn = 280;
-const nodeGapX = 270;
-const nodeGapY = 88;
-const nodeLabelWidth = 220;
-const rowPad = 44;
-
-const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+import { GraphCanvas } from "./GraphCanvas";
+import { GraphList } from "./GraphList";
+import { flattenHouse, groupHouse, matchesAssignment } from "./graphModel";
 
 export function GraphPage({
   data,
@@ -17,97 +12,114 @@ export function GraphPage({
   t,
   onUi,
   onInspect,
+  activeId,
 }: {
   data: Dashboard;
   ui: UiState;
   t: Messages;
   onUi: (ui: UiState) => void;
   onInspect: (row: Assignment) => void;
+  activeId?: string;
 }) {
-  const areas = [
-    ...data.rooms.map((room) => ({ id: room.area_id, name: room.name, inbox: room.inbox })),
-    ...(data.assignment.some((row) => !row.area) ? [{ id: "_unmapped", name: t.unmapped, inbox: 0 }] : []),
-  ];
-  const byArea = Object.fromEntries(areas.map((area) => [area.id, data.assignment.filter((row) => (row.area || "_unmapped") === area.id)]));
-  let cursor = 64;
-  const roomY: Record<string, number> = {};
-  const roomTop: Record<string, number> = {};
-  for (const area of areas) {
-    const count = Math.max(1, byArea[area.id].length);
-    const rows = Math.ceil(count / 3);
-    const block = Math.max(108, rows * nodeGapY + rowPad);
-    roomTop[area.id] = cursor;
-    roomY[area.id] = cursor + block / 2 - 8;
-    cursor += block + 24;
-  }
-  const width = Math.max(1180, nodeColumn + 3 * nodeGapX + nodeLabelWidth);
-  const height = Math.max(620, cursor + 20);
-  const nodes = data.assignment.map((row) => {
-    const area = row.area || "_unmapped";
-    const siblings = byArea[area] || [];
-    const index = Math.max(0, siblings.findIndex((item) => item.entity_id === row.entity_id));
-    const auto = {
-      x: nodeColumn + (index % 3) * nodeGapX,
-      y: roomTop[area] + 34 + Math.floor(index / 3) * nodeGapY,
-    };
-    const saved = ui.graph[row.entity_id];
-    return {
-      row,
-      x: clamp(saved?.x ?? auto.x, nodeColumn - 40, width - nodeLabelWidth),
-      y: clamp(saved?.y ?? auto.y, 48, height - 42),
-    };
-  });
+  const [query, setQuery] = useState("");
+  const [areaFloor, setAreaFloor] = useState<Record<string, string>>({});
+  const [cursorId, setCursorId] = useState(activeId || "");
+  const searchRef = useRef<HTMLInputElement>(null);
+  const uiRef = useRef(ui);
+  uiRef.current = ui;
 
-  const drag = (row: Assignment, ev: React.PointerEvent<SVGGElement>) => {
-    const target = ev.currentTarget;
-    target.setPointerCapture(ev.pointerId);
-    const rect = target.ownerSVGElement!.getBoundingClientRect();
-    const move = (next: PointerEvent) => {
-      const x = clamp(((next.clientX - rect.left) / rect.width) * width, nodeColumn - 40, width - nodeLabelWidth);
-      const y = clamp(((next.clientY - rect.top) / rect.height) * height, 48, height - 42);
-      onUi({ ...ui, graph: { ...ui.graph, [row.entity_id]: { x, y } } });
+  useEffect(() => {
+    if (activeId) setCursorId(activeId);
+  }, [activeId]);
+
+  useEffect(() => {
+    if ((data.floors ?? []).length === 0) return;
+    let live = true;
+    api
+      .gaps()
+      .then((gaps) => {
+        if (!live) return;
+        const next: Record<string, string> = {};
+        for (const room of gaps.rooms) {
+          if (room.floor_id) next[room.area_id] = room.floor_id;
+        }
+        setAreaFloor(next);
+      })
+      .catch(() => undefined);
+    return () => {
+      live = false;
     };
-    const up = () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", up);
-    };
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", up);
+  }, [data.floors]);
+
+  const filtered = useMemo(
+    () => data.assignment.filter((row) => matchesAssignment(row, query, [t[row.confidence]])),
+    [data.assignment, query, t],
+  );
+  const mapTree = useMemo(() => groupHouse(data.assignment, data, areaFloor), [data, areaFloor]);
+  const listTree = useMemo(() => groupHouse(filtered, data, areaFloor), [filtered, data, areaFloor]);
+  const listRows = useMemo(() => flattenHouse(listTree), [listTree]);
+
+  useEffect(() => {
+    if (listRows.some((row) => row.entity_id === cursorId)) return;
+    setCursorId(listRows[0]?.entity_id || "");
+  }, [cursorId, listRows]);
+
+  const moveNode = (entityId: string, x: number, y: number) => {
+    const current = uiRef.current;
+    onUi({ ...current, graph: { ...current.graph, [entityId]: { x, y } } });
   };
 
   return (
-    <div className="page">
+    <div className="page" style={{ minWidth: 0 }}>
+      <style>{graphCss}</style>
       <section className="hero">
         <div>
           <h1>{t.graph}</h1>
           <p className="muted">{t.graphHint}</p>
         </div>
-        <button className="secondary" onClick={() => onUi({ ...ui, graph: {} })}>{t.resetLayout}</button>
+        <button type="button" className="secondary" onClick={() => onUi({ ...ui, graph: {} })}>
+          {t.resetLayout}
+        </button>
       </section>
-      <div className="card graph-canvas">
-        <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
-          {areas.map((room) => (
-            <g key={room.id}>
-              <rect x={roomColumn} y={roomY[room.id] - 34} width={188} height={68} fill="var(--surface)" stroke="var(--line)" />
-              <text x={roomColumn + 20} y={roomY[room.id] - 6} fill="var(--text)" fontSize="16">{room.name}</text>
-              <text x={roomColumn + 20} y={roomY[room.id] + 18} fill="var(--muted)" fontSize="12">{room.inbox} {t.open}</text>
-            </g>
-          ))}
-          {nodes.map(({ row, x, y }) => row.area && (
-            <line key={`${row.entity_id}-area`} x1={roomColumn + 188} y1={roomY[row.area] || 30} x2={x} y2={y} stroke="var(--line)" strokeDasharray="5 6" />
-          ))}
-          {nodes.map(({ row, x, y }) => row.suggested_area && (
-            <line key={`${row.entity_id}-suggest`} x1={roomColumn + 188} y1={roomY[row.suggested_area.area_id] || 30} x2={x} y2={y} stroke="var(--accent)" strokeDasharray="7 7" opacity=".62" />
-          ))}
-          {nodes.map(({ row, x, y }) => (
-            <g className="node" key={row.entity_id} transform={`translate(${x} ${y})`} onPointerDown={(ev) => drag(row, ev)} onDoubleClick={() => onInspect(row)}>
-              <circle r={22} fill="var(--surface-2)" stroke={color(row.confidence)} strokeWidth={2} />
-              <text x={42} y="-4" fill="var(--text)" fontSize="14">{row.name}</text>
-              <text x={42} y="16" fill="var(--muted)" fontSize="11">{row.entity_id}</text>
-            </g>
-          ))}
-        </svg>
+      <div className="graph-split">
+        <GraphCanvas
+          tree={mapTree}
+          ui={ui}
+          t={t}
+          query={query}
+          cursorId={cursorId}
+          onInspect={onInspect}
+          onMove={moveNode}
+        />
+        <GraphList
+          tree={listTree}
+          rows={listRows}
+          t={t}
+          query={query}
+          cursorId={cursorId}
+          searchRef={searchRef}
+          onQuery={setQuery}
+          onCursor={setCursorId}
+          onInspect={onInspect}
+        />
       </div>
     </div>
   );
 }
+
+const graphCss = `
+.graph-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+}
+.graph-split .graph-canvas,
+.graph-split .card {
+  border-radius: 0;
+}
+@media (max-width: 860px) {
+  .graph-split { grid-template-columns: 1fr; }
+}
+`;

@@ -1,6 +1,8 @@
 export type Locale = string;
 export type Tab = "home" | "conversations" | "rules" | "house" | "lab" | "settings";
 export type HouseView = "graph" | "entities" | "calibrate";
+export type RulesView = "routines" | "sentences" | "policies";
+export type Theme = "dark" | "light";
 export type Confidence = "high" | "medium" | "low";
 
 export type Settings = {
@@ -134,6 +136,7 @@ export type ConversationTurn = {
   conversation_id: string;
   ts_ms: number;
   text?: string | null;
+  tokens?: string[];
   decision: string;
   speech: string;
   confidence: number;
@@ -172,6 +175,7 @@ export type Dashboard = {
   coverage: { all: number; assist: number; high: number; leftover: number };
   domains: { domain: string; count: number }[];
   rooms: { area_id: string; name: string; count: number; high: number; medium: number; low: number; inbox: number }[];
+  floors?: { floor_id: string; name: string }[];
   assignment: Assignment[];
   traffic: {
     total: number;
@@ -191,6 +195,10 @@ export type UiState = {
   dismissed: string[];
   last_apply: ApplyRow[];
   graph: Record<string, { x: number; y: number }>;
+  wizard_done?: boolean;
+  house_view?: HouseView;
+  rules_view?: RulesView;
+  theme?: Theme;
 };
 
 export type BundleEntry = {

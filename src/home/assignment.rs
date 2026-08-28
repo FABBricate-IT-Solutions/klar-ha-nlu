@@ -105,11 +105,18 @@ pub struct DomainCount {
 }
 
 #[derive(Debug, Clone, Serialize)]
+pub struct FloorEntry {
+    pub floor_id: String,
+    pub name: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
 pub struct Dashboard {
     pub counts: Counts,
     pub coverage: Coverage,
     pub domains: Vec<DomainCount>,
     pub rooms: Vec<RoomReadiness>,
+    pub floors: Vec<FloorEntry>,
     pub assignment: Vec<AssignmentRow>,
     pub traffic: Traffic,
 }
@@ -145,6 +152,7 @@ pub fn build_dashboard(
         coverage: Coverage { all: home.entities.len(), assist: assignment.len(), high, leftover },
         domains: domains(&assignment),
         rooms: rooms(home, &assignment),
+        floors: floors(home),
         assignment,
         traffic: if live_traffic.total > 0 { live_traffic } else { traffic(bundle) },
     }
@@ -273,6 +281,28 @@ fn rooms(home: &HomeGraph, rows: &[AssignmentRow]) -> Vec<RoomReadiness> {
     out
 }
 
+fn floors(home: &HomeGraph) -> Vec<FloorEntry> {
+    let mut floors: Vec<_> = home.floors.iter().filter(|floor| !floor.floor_id.is_empty()).collect();
+    floors.sort_by(|a, b| {
+        match (a.level, b.level) {
+            (Some(left), Some(right)) => left.cmp(&right),
+            (Some(_), None) => std::cmp::Ordering::Less,
+            (None, Some(_)) => std::cmp::Ordering::Greater,
+            (None, None) => std::cmp::Ordering::Equal,
+        }
+        .then_with(|| a.name.cmp(&b.name))
+        .then_with(|| a.floor_id.cmp(&b.floor_id))
+    });
+    floors.dedup_by(|a, b| a.floor_id == b.floor_id);
+    floors
+        .into_iter()
+        .map(|floor| FloorEntry {
+            floor_id: floor.floor_id.clone(),
+            name: if floor.name.is_empty() { floor.floor_id.clone() } else { floor.name.clone() },
+        })
+        .collect()
+}
+
 fn traffic(bundle: &[BundleEntry]) -> Traffic {
     let mut by_source = BTreeMap::new();
     let mut by_intent = BTreeMap::new();
@@ -331,7 +361,7 @@ fn recent(entry: &BundleEntry) -> TrafficRecent {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::types::{AreaRec, EntityRec, HomeGraph};
+    use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 
     fn ent(id: &str, name: &str, area: Option<&str>) -> EntityRec {
         EntityRec {
@@ -382,5 +412,19 @@ mod tests {
         assert_eq!(dash.counts.assist, 3);
         assert_eq!(dash.counts.high + dash.counts.medium + dash.counts.low, dash.counts.assist);
         assert_eq!(dash.coverage.leftover, dash.counts.medium + dash.counts.low);
+        assert!(dash.floors.is_empty());
+    }
+
+    #[test]
+    fn dashboard_lists_floor_ids() {
+        let mut home = home();
+        home.floors = vec![
+            FloorRec { floor_id: "upper".into(), name: "Obergeschoss".into(), aliases: vec!["og".into()], level: Some(1) },
+            FloorRec { floor_id: String::new(), name: "Ghost".into(), aliases: Vec::new(), level: None },
+            FloorRec { floor_id: "ground".into(), name: "Erdgeschoss".into(), aliases: Vec::new(), level: Some(0) },
+        ];
+        let dash = build_dashboard(&home, &[], &[], Traffic::default(), crate::lang::catalog());
+        assert_eq!(dash.floors.iter().map(|floor| floor.floor_id.as_str()).collect::<Vec<_>>(), ["ground", "upper"]);
+        assert_eq!(dash.floors[0].name, "Erdgeschoss");
     }
 }

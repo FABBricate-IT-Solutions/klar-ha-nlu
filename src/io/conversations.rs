@@ -1,5 +1,6 @@
 use crate::home::paths::{read_to_string_confined, write_confined};
 use crate::io::auth::reads_allowed;
+use crate::io::privacy::replay_tokens;
 use crate::io::state::AppState;
 use crate::types::{ParseDecision, ParseOutcome};
 use axum::extract::{ConnectInfo, Path, State};
@@ -22,6 +23,8 @@ pub struct ConversationTurn {
     pub ts_ms: u64,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub text: Option<String>,
+    #[serde(default)]
+    pub tokens: Vec<String>,
     pub decision: String,
     pub speech: String,
     pub confidence: f64,
@@ -86,6 +89,7 @@ pub fn turn_from_outcome(
         conversation_id: outcome.conversation_id.clone(),
         ts_ms: now_ms(),
         text: include_text.then(|| outcome.text.clone()),
+        tokens: replay_tokens(&outcome.text),
         decision: decision_name(&outcome.decision).into(),
         speech: outcome.speech.clone(),
         confidence: outcome.confidence,
@@ -198,11 +202,14 @@ mod tests {
         let turn = turn_from_outcome(&outcome, false, Vec::new(), None);
         assert_eq!(turn.decision, "confirm");
         assert!(turn.text.is_none());
+        assert_eq!(turn.tokens, replay_tokens("lock the door"));
         assert_eq!(turn.confirm_prompt.as_deref(), Some("Really?"));
         assert_eq!(turn.candidate_id.as_deref(), Some("sel"));
         let json = serde_json::to_string(&turn).expect("turn json");
         assert!(json.contains("\"last_names\":[]"), "{json}");
         assert!(json.contains("\"evidence_kinds\":[]"), "{json}");
+        assert!(!json.contains("lock the door"), "{json}");
+        assert!(json.contains("\"tokens\""), "{json}");
     }
 
     #[test]
@@ -227,6 +234,81 @@ mod tests {
         let turn = turn_from_outcome(&outcome, true, vec!["Kugel".into()], Some("kueche".into()));
         assert_eq!(turn.preferred_area.as_deref(), Some("kueche"));
         assert_eq!(turn.text.as_deref(), Some("x"));
+        assert_eq!(turn.tokens, replay_tokens("x"));
         assert!(turn.candidate_id.is_none());
+    }
+
+    #[test]
+    fn default_journal_persists_tokens_not_raw_text() {
+        let spoken = "Mach das Küchenlicht an!";
+        let outcome = ParseOutcome {
+            schema_version: "2.0".into(),
+            text: spoken.into(),
+            conversation_id: "c1".into(),
+            decision: ParseDecision::Chat,
+            speech: "Verstanden.".into(),
+            confidence: 0.2,
+            margin: 0.0,
+            selected_candidate_id: None,
+            candidates: Vec::new(),
+            plan: None,
+            evidence: Vec::new(),
+            trace: Default::default(),
+            briefing: false,
+            retrieval: None,
+            policy_trace: None,
+        };
+        let turn = turn_from_outcome(&outcome, false, vec!["HassTurnOn".into()], None);
+        assert!(turn.text.is_none());
+        assert_eq!(turn.tokens, replay_tokens(spoken));
+        assert!(!turn.tokens.is_empty());
+        let json = serde_json::to_string(&turn).expect("turn json");
+        assert!(!json.contains(spoken), "{json}");
+        assert!(!json.contains("Küchenlicht"), "{json}");
+        assert!(json.contains("\"tokens\""), "{json}");
+    }
+
+    #[test]
+    fn journal_roundtrip_keeps_tokens_without_raw_text() {
+        let dir = std::env::temp_dir().join(format!("klar-journal-tokens-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&dir);
+        std::fs::create_dir_all(&dir).expect("temp journal dir");
+        let spoken = "Küche AN!";
+        let outcome = ParseOutcome {
+            schema_version: "2.0".into(),
+            text: spoken.into(),
+            conversation_id: "c9".into(),
+            decision: ParseDecision::Execute,
+            speech: "An.".into(),
+            confidence: 0.9,
+            margin: 1.0,
+            selected_candidate_id: None,
+            candidates: Vec::new(),
+            plan: None,
+            evidence: Vec::new(),
+            trace: Default::default(),
+            briefing: false,
+            retrieval: None,
+            policy_trace: None,
+        };
+        let journal = ConversationJournal::open(&dir);
+        journal.append(turn_from_outcome(&outcome, false, Vec::new(), None));
+        let reloaded = ConversationJournal::open(&dir);
+        let turns = reloaded.list();
+        assert_eq!(turns.len(), 1);
+        assert!(turns[0].text.is_none());
+        assert_eq!(turns[0].tokens, replay_tokens(spoken));
+        let raw = crate::home::paths::read_to_string_confined(&dir, JOURNAL_FILE).expect("journal file");
+        assert!(!raw.contains(spoken), "{raw}");
+        assert!(!raw.contains("Küche"), "{raw}");
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn legacy_journal_line_defaults_empty_tokens() {
+        let line = r#"{"conversation_id":"c1","ts_ms":1,"decision":"chat","speech":"hi","confidence":0.1,"briefing":false}"#;
+        let turn: ConversationTurn = serde_json::from_str(line).expect("legacy turn");
+        assert!(turn.tokens.is_empty());
+        assert!(turn.text.is_none());
     }
 }
