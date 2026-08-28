@@ -63,7 +63,8 @@ pub(super) fn route_special(context: &ParseContext<'_>, raw: &[String], split: &
         return Some(draft);
     }
     if briefing_followup(tokens, context.home, context.session) || briefing_followup(raw, context.home, context.session) {
-        return Some(chat(String::new(), true, true));
+        let news = context.session.briefing;
+        return Some(chat(String::new(), news, news));
     }
     if wants_llm(raw, context.home) || wants_llm(tokens, context.home) {
         return Some(chat(String::new(), context.session.briefing, context.session.briefing));

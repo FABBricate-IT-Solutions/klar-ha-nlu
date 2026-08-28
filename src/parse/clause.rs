@@ -271,7 +271,7 @@ fn fallback_cover(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn leftover_command(ctx: &Clause) -> Option<ClauseOut> {
-    (!matches!(ctx.action, Action::On | Action::Off | Action::Toggle))
+    (!matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::GetState))
         .then(|| finish_intents(vec![fill_intent(ctx.action, ctx.tokens, ctx.number, None, None, ctx.domain)], ctx))
 }
 

@@ -1,5 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
+use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
 use crate::parse::resolve::unique_in_area;
@@ -23,11 +24,17 @@ pub(crate) fn session_climate_cover(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 pub(crate) fn session_entities(ctx: &Clause) -> Option<ClauseOut> {
+    if !allows_session_replay(ctx) {
+        return None;
+    }
     let intents = replay_session_intents(ctx.session, ctx.home, ctx.tokens, ctx.action, ctx.number, ctx.domain);
     (!intents.is_empty()).then(|| finish_intents(intents, ctx))
 }
 
 pub(crate) fn session_areas(ctx: &Clause) -> Option<ClauseOut> {
+    if !allows_session_replay(ctx) {
+        return None;
+    }
     let areas = last_turn_areas(ctx.session, ctx.home);
     (!areas.is_empty()).then(|| {
         let intents = areas
@@ -76,6 +83,16 @@ pub(crate) fn replay_session_intents(
         intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(&area), domain));
     }
     intents
+}
+
+fn allows_session_replay(ctx: &Clause) -> bool {
+    !matches!(ctx.action, Action::GetState) || wants_status_query(ctx.tokens)
+}
+
+fn wants_status_query(tokens: &[String]) -> bool {
+    let cat = catalog();
+    cat.any(tokens, cat.status_words())
+        || tokens.iter().any(|token| cat.is_query_hint(token) || cat.is_question_word(token) || cat.is_question_start(token))
 }
 
 fn last_turn_targets(session: &Session, home: &HomeGraph, domain: Option<&str>) -> (Vec<String>, Vec<String>) {
