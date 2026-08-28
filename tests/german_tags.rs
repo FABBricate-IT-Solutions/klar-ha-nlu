@@ -246,3 +246,37 @@ fn news_briefing_then_followup_not_device_replay() {
     assert!(!replay.chat, "{:?}", replay.intents);
     assert!(replay.intents.iter().any(|i| i.name.starts_with("Hass")), "{:?}", replay.intents);
 }
+
+#[test]
+fn llm_story_replies_stay_chat_and_unknown_is_not_living_light() {
+    let home = default_home();
+    let settings = Settings::pinned("de");
+    let mut session = Session::new();
+    session.preferred_area = Some("wohnzimmer".into());
+
+    let light = parse("Licht im Wohnzimmer an", &home, &mut session, &[], &settings);
+    assert_eq!(light.intents[0].name, "HassTurnOn", "{}", light.speech);
+
+    let stray = parse("über einen Elefanten", &home, &mut session, &[], &settings);
+    assert!(!stray.chat, "{}", stray.speech);
+    assert!(stray.intents.is_empty(), "unknown must not query last light: {:?} {}", stray.intents, stray.speech);
+    assert!(!stray.speech.to_lowercase().contains("wohnzimmer"), "{}", stray.speech);
+
+    let story = parse("kannst du mir eine Geschichte erzählen", &home, &mut session, &[], &settings);
+    assert!(story.chat, "{}", story.speech);
+    assert!(story.intents.is_empty(), "{:?}", story.intents);
+
+    for text in ["über einen Elefanten", "länger"] {
+        let follow = parse(text, &home, &mut session, &[], &settings);
+        assert!(follow.chat, "{text}: {:?} {}", follow.intents, follow.speech);
+        assert!(follow.intents.is_empty(), "{text}: {:?}", follow.intents);
+        assert!(!follow.speech.to_lowercase().contains("wohnzimmer"), "{text}: {}", follow.speech);
+    }
+
+    let off = parse("mach sie aus", &home, &mut session, &[], &settings);
+    assert!(!off.chat, "{}", off.speech);
+    assert_eq!(off.intents[0].name, "HassTurnOff", "{} {:?}", off.speech, off.intents);
+
+    let status = parse("wie ist der Status", &home, &mut session, &[], &settings);
+    assert_eq!(status.intents[0].name, "HassGetState", "{} {:?}", status.speech, status.intents);
+}
