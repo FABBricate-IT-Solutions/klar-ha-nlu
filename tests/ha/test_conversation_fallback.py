@@ -28,7 +28,7 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("refine_prompt", body)
         self.assertIn("speak_tag(pack)", body)
         self.assertIn("history_prompt", body)
-        self.assertIn("llm_conversation_id", body)
+        self.assertIn("_llm_session_id", body)
         self.assertNotIn("user_input.language", body)
 
     def test_calendar_queries_can_go_to_llm(self) -> None:

@@ -61,10 +61,13 @@ pub fn is_news_dismiss(tokens: &[String]) -> bool {
 }
 
 pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
-    in_llm_turn(session)
-        && !tokens.is_empty()
-        && !looks_like_home(tokens, home)
-        && !(session.briefing && is_news_dismiss(tokens))
+    if !in_llm_turn(session) || tokens.is_empty() || looks_like_home(tokens, home) {
+        return false;
+    }
+    if session.briefing && is_news_dismiss(tokens) {
+        return false;
+    }
+    true
 }
 
 fn in_llm_turn(session: &Session) -> bool {

@@ -485,20 +485,6 @@ class KlarConversationEntity(ConversationEntity):
             return None
         return result
 
-    def _llm_session_id(self, user_input: ConversationInput) -> str:
-        return llm_conversation_id(
-            engine_session_id(user_input.device_id, getattr(user_input, "satellite_id", None))
-        )
-
-    def _llm_turns(self, session_id: str) -> list[tuple[str, str]]:
-        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
-        return list(store.get(session_id) or [])
-
-    def _note_llm_turn(self, user_input: ConversationInput, speech: str) -> None:
-        session_id = self._llm_session_id(user_input)
-        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
-        store[session_id] = append_llm_turn(store.get(session_id), user_input.text, speech)
-
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
         registry = device_registry.async_get(self.hass)
         for candidate in (device_id, satellite_id):
@@ -545,3 +531,17 @@ class KlarConversationEntity(ConversationEntity):
                 "plan": None,
                 "unreachable": True,
             }
+
+    def _llm_session_id(self, user_input: ConversationInput) -> str:
+        return llm_conversation_id(
+            engine_session_id(user_input.device_id, getattr(user_input, "satellite_id", None))
+        )
+
+    def _llm_turns(self, session_id: str) -> list[tuple[str, str]]:
+        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
+        return list(store.get(session_id) or [])
+
+    def _note_llm_turn(self, user_input: ConversationInput, speech: str) -> None:
+        session_id = self._llm_session_id(user_input)
+        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
+        store[session_id] = append_llm_turn(store.get(session_id), user_input.text, speech)
