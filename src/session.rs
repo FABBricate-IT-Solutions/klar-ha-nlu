@@ -7,6 +7,7 @@ use uuid::Uuid;
 
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
+const RECENT_FOLLOW_TTL: Duration = Duration::from_secs(15 * 60);
 const LAST_KEEP: usize = 8;
 const WRONG_LOG_KEEP: usize = 32;
 
@@ -196,6 +197,7 @@ impl Session {
 #[derive(Default)]
 pub struct Sessions {
     inner: HashMap<String, Session>,
+    recent_id: Option<String>,
 }
 
 impl Sessions {
@@ -225,7 +227,9 @@ impl Sessions {
     }
 
     pub fn take(&mut self, id: Option<&str>) -> Session {
-        self.get_or_create(id).clone()
+        let mut session = self.get_or_create(id).clone();
+        self.seed_followup(&mut session);
+        session
     }
 
     pub fn put(&mut self, mut session: Session) {
@@ -234,7 +238,31 @@ impl Sessions {
         if session.id.chars().count() > 128 || session.id.chars().any(char::is_control) {
             session.id = Uuid::new_v4().to_string();
         }
+        if !session.last.is_empty() {
+            self.recent_id = Some(session.id.clone());
+        }
         self.inner.insert(session.id.clone(), session);
+    }
+
+    fn seed_followup(&self, session: &mut Session) {
+        if !session.last.is_empty() {
+            return;
+        }
+        let Some(recent_id) = self.recent_id.as_deref() else {
+            return;
+        };
+        if recent_id == session.id {
+            return;
+        }
+        let Some(recent) = self.inner.get(recent_id) else {
+            return;
+        };
+        if Instant::now().duration_since(recent.last_used) >= RECENT_FOLLOW_TTL || recent.last.is_empty() {
+            return;
+        }
+        session.last = recent.last.clone();
+        session.last_execute = recent.last_execute.clone();
+        session.last_turn_id = recent.last_turn_id;
     }
 
     #[cfg(test)]
@@ -245,6 +273,9 @@ impl Sessions {
     fn sweep_ttl(&mut self) {
         let now = Instant::now();
         self.inner.retain(|_, session| now.duration_since(session.last_used) < SESSION_TTL);
+        if self.recent_id.as_ref().is_some_and(|id| !self.inner.contains_key(id)) {
+            self.recent_id = None;
+        }
     }
 
     fn make_room(&mut self) {
@@ -283,6 +314,31 @@ mod tests {
         let mut sessions = Sessions::default();
         sessions.get_or_create(Some("assist-1")).remember_entity("light.a");
         assert_eq!(sessions.get_or_create(Some("assist-1")).last_entities().collect::<Vec<_>>(), ["light.a"]);
+    }
+
+    #[test]
+    fn new_conversation_inherits_recent_last() {
+        let mut sessions = Sessions::default();
+        let mut first = sessions.take(Some("wake-1"));
+        first.remember_entity("light.wohnzimmer");
+        sessions.put(first);
+        let follow = sessions.take(Some("wake-2"));
+        assert_eq!(follow.id, "wake-2");
+        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
+    }
+
+    #[test]
+    fn existing_last_is_not_replaced_by_recent() {
+        let mut sessions = Sessions::default();
+        let mut first = sessions.take(Some("wake-1"));
+        first.remember_entity("light.wohnzimmer");
+        sessions.put(first);
+        let mut second = sessions.take(Some("wake-2"));
+        second.last.clear();
+        second.remember_entity("light.kueche");
+        sessions.put(second);
+        let follow = sessions.take(Some("wake-2"));
+        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.kueche"]);
     }
 
     #[test]

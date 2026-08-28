@@ -194,7 +194,7 @@ pub const PACK: LanguagePack = LanguagePack {
         timer_query: &["uebrig"],
         brightness: &["helligkeit"],
         start_words: &["starten", "starte"],
-        replay_on_off: &["aus", "an", "ausmachen", "anmachen"],
+        replay_on_off: &["aus", "an", "ein", "ausmachen", "anmachen", "einschalten"],
         replay_off: &["aus", "ausmachen"],
         sensor_words: &["sensor", "bewegung"],
         lock_verbs: &["abschliessen", "aufschliessen", "verriegeln", "schliess", "schloss", "tuer", "garagentuer"],
