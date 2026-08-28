@@ -49,10 +49,13 @@ from .contracts import executable_intents, validate_v2_payload
 from .executor import execute_plan
 from .fallback import (
     agent_has_home_control,
+    append_llm_turn,
     can_use_fallback_agent,
     calendar_prompt,
     calendar_query_only,
     chat_only_prompt,
+    history_prompt,
+    llm_conversation_id,
     news_followup_prompt,
     news_prompt,
     with_personality,
@@ -294,6 +297,7 @@ class KlarConversationEntity(ConversationEntity):
         if leaks_klar_tools(llm):
             llm = speech or _cue(_DONE, pack, "OK")
             return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False)
+        self._note_llm_turn(user_input, llm)
         return await self._spoken(
             user_input, chat_log, pack, llm, conversation_id,
             bool(getattr(fallback, "continue_conversation", False)), "chat",
@@ -362,6 +366,7 @@ class KlarConversationEntity(ConversationEntity):
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
+        self._note_llm_turn(user_input, spoken)
         return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
 
     def _nlu_rag(self) -> bool:
@@ -463,6 +468,10 @@ class KlarConversationEntity(ConversationEntity):
             system = rag_prompt(pack, retrieval, with_personality(extra_s, voice))
         else:
             system = chat_only_prompt(pack, with_personality(extra_s, voice))
+        session_id = self._llm_session_id(user_input)
+        prior = history_prompt(pack, self._llm_turns(session_id))
+        if prior:
+            system = f"{system}\n\n{prior}"
         try:
             result = await conversation.async_converse(
                 self.hass,
@@ -522,3 +531,17 @@ class KlarConversationEntity(ConversationEntity):
                 "plan": None,
                 "unreachable": True,
             }
+
+    def _llm_session_id(self, user_input: ConversationInput) -> str:
+        return llm_conversation_id(
+            engine_session_id(user_input.device_id, getattr(user_input, "satellite_id", None))
+        )
+
+    def _llm_turns(self, session_id: str) -> list[tuple[str, str]]:
+        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
+        return list(store.get(session_id) or [])
+
+    def _note_llm_turn(self, user_input: ConversationInput, speech: str) -> None:
+        session_id = self._llm_session_id(user_input)
+        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
+        store[session_id] = append_llm_turn(store.get(session_id), user_input.text, speech)

@@ -177,6 +177,40 @@ def _join_extra(extra: str | None, body: str) -> str:
     return f"{extra}\n{body}" if extra else body
 
 
+def llm_conversation_id(session_key: str) -> str:
+    key = (session_key or "klar-followup").strip() or "klar-followup"
+    return f"klar-llm-{key}"[:128]
+
+
+def append_llm_turn(
+    turns: list[tuple[str, str]] | None, user: str, assistant: str, keep: int = 8
+) -> list[tuple[str, str]]:
+    out = list(turns or [])
+    user, assistant = user.strip(), assistant.strip()
+    if user or assistant:
+        out.append((user, assistant))
+    return out[-keep:]
+
+
+def history_prompt(pack: str, turns: list[tuple[str, str]] | None) -> str:
+    if not turns:
+        return ""
+    german = pack == "de" or pack.startswith("de-")
+    header = (
+        "Bisher im Gespräch (behalte Thema und Auftrag, auch bei kurzen Antworten wie egal):"
+        if german
+        else "Conversation so far (keep the topic and task, including short replies like whatever):"
+    )
+    who = "Nutzer" if german else "User"
+    lines = [header]
+    for user, assistant in turns:
+        if user:
+            lines.append(f"{who}: {user}")
+        if assistant:
+            lines.append(f"Klar: {assistant}")
+    return "\n".join(lines)
+
+
 def can_use_fallback_agent(controls_home: bool, chat: bool = False) -> bool:
     del chat
     return not controls_home

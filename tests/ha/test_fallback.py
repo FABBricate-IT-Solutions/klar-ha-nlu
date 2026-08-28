@@ -110,6 +110,21 @@ class FallbackTests(unittest.TestCase):
             if pack not in {"en", "en-GB"}:
                 self.assertNotEqual(ask, say.LLM["en"][0], pack)
 
+    def test_history_prompt_keeps_story_thread(self) -> None:
+        self.assertEqual(fallback.llm_conversation_id("klar-followup"), "klar-llm-klar-followup")
+        turns = fallback.append_llm_turn(
+            None, "erzähl eine Geschichte", "Kurz oder lang?"
+        )
+        turns = fallback.append_llm_turn(turns, "science fiction", "Raumschiff oder KI?")
+        prompt = fallback.history_prompt("de", turns)
+        self.assertIn("erzähl eine Geschichte", prompt)
+        self.assertIn("science fiction", prompt)
+        self.assertIn("Nutzer:", prompt)
+        self.assertTrue(prompt.startswith("Bisher im Gespräch"))
+        self.assertEqual(fallback.history_prompt("de", []), "")
+        trimmed = fallback.append_llm_turn(turns, "a", "b", keep=2)
+        self.assertEqual(len(trimmed), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -15,7 +15,7 @@ def engine_session_id(device_id: object = None, satellite_id: object = None) -> 
 
 
 def keeps_conversation(decision: object) -> bool:
-    return str(decision or "") in {"clarify", "confirm", "execute"}
+    return str(decision or "") in {"clarify", "confirm", "execute", "chat"}
 
 
 DEFAULT_URL = "http://127.0.0.1:10520"
