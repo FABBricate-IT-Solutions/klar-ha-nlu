@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.50](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.49-staging.fcb456d...2026.8.50) - 2026-08-28
+
+
+
+### Bug Fixes
+
+- keep the last light so "schalte es wieder ein" works after a new wake ([#140](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/140), [#141](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/141))([484f98d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/484f98d304df69c9d4a4873a4c179c991b33d8ee))
+
+### Other
+
+- Merge pull request #141 from FABBricate-IT-Solutions/staging([01c20fb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/01c20fb91756ed85cc34dfa4fc39f270ae26d1ea))
+
 ## [2026.8.49](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.48-staging.4801af1...2026.8.49) - 2026-08-28
 
 
