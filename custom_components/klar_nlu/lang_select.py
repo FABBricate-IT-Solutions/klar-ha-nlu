@@ -88,6 +88,16 @@ def enabled_packs(raw: object, hass_language: str | None = None) -> list[str]:
     return [choice]
 
 
+def engine_language_state(
+    raw: object, hass_language: str | None = None
+) -> tuple[list[str], str]:
+    """Pin the engine to the integration language; empty means every pack."""
+    packs = enabled_packs(raw, hass_language)
+    choice = normalize_language_choice(raw)
+    pinned = [] if choice == LANGUAGE_ALL else list(packs)
+    return pinned, resolve_pack(hass_language, packs)
+
+
 def advertise(packs: list[str]) -> list[str]:
     out: list[str] = []
     for pack in packs:

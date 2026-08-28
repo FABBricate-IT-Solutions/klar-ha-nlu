@@ -1,0 +1,21 @@
+---
+description: Run Rust tests with cargo nextest and no thread cap
+alwaysApply: true
+---
+
+# Rust tests
+
+Always use `cargo nextest`. Never `cargo test` for running the suite.
+
+Do not pass `--test-threads=1` or any other thread cap. Let nextest use its default parallelism.
+
+```bash
+# good
+cargo nextest run --locked
+cargo nextest run --locked --profile ci
+
+# bad
+cargo test
+cargo test -- --test-threads=1
+cargo nextest run --test-threads=1
+```

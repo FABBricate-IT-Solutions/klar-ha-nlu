@@ -59,3 +59,12 @@ fn entity_pseudonyms_are_stable_across_rows() {
 fn replay_tokens_are_stable_and_normalized() {
     assert_eq!(replay_tokens("Küche AN!"), replay_tokens("kueche an"));
 }
+
+#[test]
+fn journal_tokens_are_not_raw_sentence() {
+    let spoken = "Mach das Küchenlicht an";
+    let tokens = replay_tokens(spoken);
+    assert_eq!(tokens, replay_tokens(spoken));
+    assert_ne!(tokens.join(" "), spoken);
+    assert!(!tokens.iter().any(|token| token.contains("Küche") || token.contains("Licht")));
+}

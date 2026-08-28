@@ -30,11 +30,29 @@ pub struct UiState {
     pub last_apply: Vec<UiApplyRow>,
     #[serde(default)]
     pub graph: HashMap<String, UiPoint>,
+    #[serde(default)]
+    pub wizard_done: bool,
+    #[serde(default = "default_house_view")]
+    pub house_view: String,
+    #[serde(default = "default_rules_view")]
+    pub rules_view: String,
+    #[serde(default = "default_theme")]
+    pub theme: String,
 }
 
 impl Default for UiState {
     fn default() -> Self {
-        Self { tab: default_tab(), locale: default_locale(), dismissed: Vec::new(), last_apply: Vec::new(), graph: HashMap::new() }
+        Self {
+            tab: default_tab(),
+            locale: default_locale(),
+            dismissed: Vec::new(),
+            last_apply: Vec::new(),
+            graph: HashMap::new(),
+            wizard_done: false,
+            house_view: default_house_view(),
+            rules_view: default_rules_view(),
+            theme: default_theme(),
+        }
     }
 }
 
@@ -44,6 +62,18 @@ fn default_tab() -> String {
 
 fn default_locale() -> String {
     "de".into()
+}
+
+fn default_house_view() -> String {
+    "calibrate".into()
+}
+
+fn default_rules_view() -> String {
+    "routines".into()
+}
+
+fn default_theme() -> String {
+    "dark".into()
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -195,6 +225,10 @@ mod tests {
                     after: "schlafzimmer".into(),
                 }],
                 graph: [("light.schlafzimmer".into(), UiPoint { x: 120.0, y: 40.0 })].into(),
+                wizard_done: true,
+                house_view: "entities".into(),
+                rules_view: "policies".into(),
+                theme: "light".into(),
             },
             ..Default::default()
         };
@@ -205,7 +239,20 @@ mod tests {
         assert_eq!(loaded.ui.dismissed, vec!["light.hue_play_1"]);
         assert_eq!(loaded.ui.last_apply[0].before.as_deref(), Some("wohnzimmer"));
         assert_eq!(loaded.ui.graph["light.schlafzimmer"].x, 120.0);
+        assert!(loaded.ui.wizard_done);
+        assert_eq!(loaded.ui.house_view, "entities");
+        assert_eq!(loaded.ui.rules_view, "policies");
+        assert_eq!(loaded.ui.theme, "light");
         let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn ui_overlay_defaults_missing_fields() {
+        let ui: UiState = serde_json::from_str(r#"{"tab":"home"}"#).unwrap();
+        assert!(!ui.wizard_done);
+        assert_eq!(ui.house_view, "calibrate");
+        assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.theme, "dark");
     }
 
     #[test]

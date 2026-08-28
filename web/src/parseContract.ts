@@ -8,6 +8,8 @@ const MAX_OPTIONS = 32;
 const MAX_STAGES = 16;
 const MAX_DISCARDED = 64;
 const MAX_DETAIL = 256;
+const MAX_TOKENS = 256;
+const MAX_TOKEN = 64;
 
 type JsonObject = Record<string, unknown>;
 
@@ -158,7 +160,7 @@ function validateEvidence(value: unknown, path: string): void {
 
 function validateTrace(value: unknown): void {
   const trace = object(value, "trace");
-  keys(trace, ["stages", "discarded"]);
+  keys(trace, ["stages", "discarded", "tokens", "normalized"], ["tokens", "normalized"]);
   list(trace.stages, "trace.stages", MAX_STAGES, (item, path) => {
     const stage = object(item, path);
     keys(stage, ["stage", "duration_us", "detail"]);
@@ -174,6 +176,12 @@ function validateTrace(value: unknown): void {
     score(discarded.score, `${path}.score`);
     string(discarded.reason, `${path}.reason`, MAX_DETAIL);
   });
+  if (trace.tokens !== undefined) {
+    list(trace.tokens, "trace.tokens", MAX_TOKENS, (item, path) => string(item, path, MAX_TOKEN));
+  }
+  if (trace.normalized !== undefined) {
+    string(trace.normalized, "trace.normalized", 4096, true);
+  }
 }
 
 function object(value: unknown, path: string): JsonObject {
@@ -182,8 +190,6 @@ function object(value: unknown, path: string): JsonObject {
 }
 
 function keys(value: JsonObject, allowed: string[], optional: string[] = []): void {
-  const allowedSet = new Set(allowed);
-  if (Object.keys(value).some((key) => !allowedSet.has(key))) throw new Error("Response has unknown fields");
   if (allowed.some((key) => !optional.includes(key) && !(key in value))) throw new Error("Response is missing fields");
 }
 

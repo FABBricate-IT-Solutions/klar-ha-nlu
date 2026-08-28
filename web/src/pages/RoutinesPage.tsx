@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { api, type CustomRule, type LangOverlay } from "../api";
+import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
+import { SetupHint } from "../components/SetupHint";
 import type { Messages } from "../i18n";
 
 function isRoutine(rule: CustomRule): boolean {
@@ -19,6 +21,7 @@ export function RoutinesPage({ t }: { t: Messages }) {
   const [phrase, setPhrase] = useState("");
   const [script, setScript] = useState("");
   const [status, setStatus] = useState("");
+  const { scriptOptions } = useHouseCatalog();
 
   const load = (overlay: LangOverlay) => {
     setRules(overlay.custom);
@@ -60,14 +63,25 @@ export function RoutinesPage({ t }: { t: Messages }) {
         <label>{t.whenPhrase}</label>
         <input value={phrase} onChange={(ev) => setPhrase(ev.target.value)} placeholder={t.routinePhraseHint} />
         <label>{t.payloadScript}</label>
-        <input value={script} onChange={(ev) => setScript(ev.target.value)} placeholder="script.good_night" />
+        <SearchSelect
+          value={script}
+          options={withCurrent(scriptOptions, script.startsWith("script.") ? script : script ? `script.${script}` : "")}
+          onChange={setScript}
+          placeholder="script.good_night"
+          allowEmpty={false}
+        />
         <div className="row" style={{ marginTop: 12 }}>
           <button className="primary" onClick={add}>{t.addRoutine}</button>
         </div>
         {status && <p className="caption">{status}</p>}
       </div>
       <div className="card">
-        {routines.length === 0 && <p className="muted">{t.noRoutines}</p>}
+        {routines.length === 0 && (
+          <div>
+            <p className="muted">{t.noRoutines}</p>
+            <SetupHint t={t} />
+          </div>
+        )}
         {routines.map(({ rule, index }) => (
           <div className="row" key={`${rule.phrase}-${index}`} style={{ justifyContent: "space-between", borderBottom: "1px solid var(--line)", padding: "8px 0" }}>
             <div>
