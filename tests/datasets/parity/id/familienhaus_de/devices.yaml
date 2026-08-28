@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - setel ac ruang 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- setel ac kamar 19
+- setel ac kamarmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - setel tirai kamar2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - buka tirai ruang
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- setel tirai kamar 19
+- setel tirai kamarmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- tutup tirai kamar
+- tutup tirai kamarmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- buka tirai kamar
+- buka tirai kamarmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - setel kipas kamar2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - nyalakan kipas ruangkeluarga
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- setel kipas kamar 28
+- setel kipas kamarmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- matikan kipas kamar
+- matikan kipas kamarmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- nyalakan kipas kamar
+- nyalakan kipas kamarmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- matikan kipas kamar dan matikan lampu dapur
+- matikan kipas kamarmaster then matikan pulau dapur
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- nyalakan kipas kamar dan nyalakan lampu dapur
+- nyalakan kipas kamarmaster then nyalakan pulau dapur
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - setel langit kamar2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - nyalakan langit dapur
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- setel lampu dapur 99
+- setel pulau dapur 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- setel lampu dapur green
+- setel pulau dapur green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- matikan lampu dapur
+- matikan pulau dapur
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- nyalakan lampu dapur
+- nyalakan pulau dapur
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - setel lampu binatu 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - nyalakan langit ruang
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- setel lampu ruang 72
+- setel lamp ruang 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- setel lampu ruang red
+- setel lamp ruang red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- matikan lampu ruang
+- matikan lamp ruang
 devices/light_living_lamp::light_living_lamp_turn_on:
-- nyalakan lampu ruang
+- nyalakan lamp ruang
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - setel lampu main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - nyalakan lampu kamarmandimaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- setel nakas kamar 25
+- setel nakas kamarmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- setel nakas kamar red
+- setel nakas kamarmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- matikan nakas kamar
+- matikan nakas kamarmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- nyalakan nakas kamar
+- nyalakan nakas kamarmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- setel langit kamar 77
+- setel langit kamarmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- setel langit kamar blue
+- setel langit kamarmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- matikan langit kamar
+- matikan langit kamarmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- nyalakan langit kamar
+- nyalakan langit kamarmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- setel lampu kamar 55
+- setel ankleide kamarmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- setel lampu kamar black
+- setel ankleide kamarmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- matikan lampu kamar
+- matikan ankleide kamarmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- nyalakan lampu kamar
+- nyalakan ankleide kamarmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - setel lampu wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,29 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - nyalakan tv ruang
 devices/scenes::dinner_time:
-- setel lampu ruangkeluargaess 90 dan nyalakan langit dapur dan setel lampu dapur
+- setel lampu ruangkeluargaess 90 then nyalakan langit dapur then setel pulau dapur
   80
 devices/scenes::good_morning:
-- nyalakan langit dapur dan setel lampu ruangkeluargaess 100 dan buka tirai ruang
-  dan buka tirai kamar
+- nyalakan langit dapur then setel lampu ruangkeluargaess 100 then buka tirai ruang
+  then buka tirai kamarmaster
 devices/scenes::kids_bedtime:
-- matikan langit kamar2 dan matikan langit kamar3 dan matikan langit kamar4 dan setel
-  lampu loronggang 15
+- matikan langit kamar2 then matikan langit kamar3 then matikan langit kamar4 then
+  setel lampu loronggang 15
 devices/scenes::movie_night:
-- matikan langit ruang dan setel lampu ruang 20 dan nyalakan tv ruang dan tutup tirai
-  ruang
+- matikan langit ruang then setel lamp ruang 20 then nyalakan tv ruang then tutup
+  tirai ruang
 devices/scripts::good_night:
-- nyalakan adegan malam
+- matikan langit ruang then matikan lamp ruang then matikan lampu ruangkeluargaess
+  then matikan langit dapur then matikan pulau dapur then matikan langit ruangkeluarga
+  then matikan lampu lorong then matikan lampu loronggang then kunci kunci lorong
+  then kunci kunci garage then setel ac kamarmaster 20
 devices/scripts::leaving_home:
-- nyalakan adegan pergi
+- matikan langit ruang then matikan lamp ruang then matikan langit dapur then matikan
+  langit ruangkeluarga then matikan lampu lorong then kunci kunci lorong then kunci
+  kunci garage then tutup tirai garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - matikan piring
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - nyalakan piring
 devices/switch_dryer::switch_dryer_turn_off:
-- matikan pencuci
+- matikan dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- nyalakan pencuci
+- nyalakan dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - matikan pencuci
 devices/switch_washing_machine::switch_washing_machine_turn_on:

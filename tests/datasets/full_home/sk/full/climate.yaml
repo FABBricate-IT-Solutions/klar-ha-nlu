@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nastav kurenie spalna 18
-  - kurenie spalna 18
+  - nastav kurenie spalnamaster 18
+  - kurenie spalnamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nastav kurenie spalna 19
-  - kurenie spalna 19
+  - nastav kurenie spalnamaster 19
+  - kurenie spalnamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nastav kurenie spalna 20
-  - kurenie spalna 20
+  - nastav kurenie spalnamaster 20
+  - kurenie spalnamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastav kurenie spalna 21
-  - kurenie spalna 21
+  - nastav kurenie spalnamaster 21
+  - kurenie spalnamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nastav kurenie spalna 22
-  - kurenie spalna 22
+  - nastav kurenie spalnamaster 22
+  - kurenie spalnamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nastav kurenie spalna 23
-  - kurenie spalna 23
+  - nastav kurenie spalnamaster 23
+  - kurenie spalnamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nastav kurenie spalna 24
-  - kurenie spalna 24
+  - nastav kurenie spalnamaster 24
+  - kurenie spalnamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - co kurenie spalna
-  - kurenie spalna
+  - co kurenie spalnamaster
+  - kurenie spalnamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nastav teplota spalna 18
-  - teplota spalna 18
+  - nastav teplota spalnamaster 18
+  - teplota spalnamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nastav teplota spalna 19
-  - teplota spalna 19
+  - nastav teplota spalnamaster 19
+  - teplota spalnamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nastav teplota spalna 20
-  - teplota spalna 20
+  - nastav teplota spalnamaster 20
+  - teplota spalnamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastav teplota spalna 21
-  - teplota spalna 21
+  - nastav teplota spalnamaster 21
+  - teplota spalnamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nastav teplota spalna 22
-  - teplota spalna 22
+  - nastav teplota spalnamaster 22
+  - teplota spalnamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nastav teplota spalna 23
-  - teplota spalna 23
+  - nastav teplota spalnamaster 23
+  - teplota spalnamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nastav teplota spalna 24
-  - teplota spalna 24
+  - nastav teplota spalnamaster 24
+  - teplota spalnamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - co teplota spalna
-  - teplota spalna
+  - co teplota spalnamaster
+  - teplota spalnamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - co kurenie spalna
-  - kurenie spalna
+  - co kurenie spalnamaster
+  - kurenie spalnamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - co teplota spalna
-  - teplota spalna
+  - co teplota spalnamaster
+  - teplota spalnamaster

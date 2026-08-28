@@ -36,6 +36,7 @@
           "assist_filter": "Ne commander que les entités exposées à Assist",
           "nlu_rag": "NLU-RAG (optionnel)",
           "quiet_ack": "Confirmation courte (carillon)",
+          "calendar_llm": "Envoyer les requêtes agenda à l'LLM",
           "channel": "Canal de publication"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Activé : seulement ce qu’Assist peut voir. Désactivé : aussi les entités masquées.",
           "nlu_rag": "Désactivé par défaut. En discussion, seul l’extrait déjà reconnu va au modèle de secours.",
           "quiet_ack": "Pour un simple allumage ou extinction, pas de phrase : un court carillon sur le satellite.",
+          "calendar_llm": "Désactivé par défaut. Activé : Klar lit l'agenda, puis le LLM de secours dit les événements. Désactivé : Klar dit la liste. Créer, supprimer et déplacer restent dans Klar.",
           "languages": "Par défaut, la langue système de Home Assistant.",
           "channel": "À tout moment. Staging pointe vers Klar NLU (Staging), Stable vers l’app ou le moteur intégré."
         }

@@ -3,7 +3,7 @@ query_area/spoken::status_licht_kuche_casual:
 query_area/spoken::status_licht_wohnzimmer_casual:
 - cosa luce soggiorno
 query_area/spoken_more::brennt_arbeitszimmer:
-- cosa luce soggiorno
+- cosa luce office
 query_area/spoken_more::brennt_esszimmer:
 - cosa luce soggiornofamess
 query_area/spoken_more::status_licht_schlaf_casual:
@@ -11,7 +11,7 @@ query_area/spoken_more::status_licht_schlaf_casual:
 query_area/status::status_alle_lichter:
 - cosa tutti luce
 query_area/status::status_licht_arbeitszimmer:
-- cosa luce soggiorno
+- cosa luce office
 query_area/status::status_licht_badezimmer:
 - weather france
 query_area/status::status_licht_esszimmer:
@@ -21,7 +21,7 @@ query_area/status::status_licht_kuche:
 query_area/status::status_licht_wohnzimmer:
 - cosa luce soggiorno
 query_area/status::status_wohn_und_esszimmer:
-- cosa soggiorno e soggiornofamess
+- cosa wohn und esszimmer
 query_area/status::temperatur_wohnung:
 - weather france
 query_area/status::temperatur_wohnzimmer:

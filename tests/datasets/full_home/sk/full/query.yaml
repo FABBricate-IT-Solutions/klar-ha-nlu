@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - co zaves spalna
-  - co spalna zaves
+  - co zaves spalnamaster
+  - co spalnamaster zaves
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - co kurenie spalna
-  - co spalna kurenie
+  - co kurenie spalnamaster
+  - co spalnamaster kurenie
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - co teplota spalna
-  - co spalna teplota
+  - co teplota spalnamaster
+  - co spalnamaster teplota
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - co ventilator spalna
-  - co spalna ventilator
+  - co ventilator spalnamaster
+  - co spalnamaster ventilator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - co svetlo spalna
-  - co spalna svetlo
+  - co svetlo spalnamaster
+  - co spalnamaster svetlo
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - co svetlo spalna
-  - co spalna svetlo
+  - co svetlo spalnamaster
+  - co spalnamaster svetlo
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - co ensuite spalna
-  - co spalna ensuite
+  - co ensuite spalnamaster
+  - co spalnamaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - co svetlo spalna
-  - co spalna svetlo
+  - co svetlo spalnamaster
+  - co spalnamaster svetlo
 - name: query_light.master_bath_light
   conditions:
   - type: query

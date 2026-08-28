@@ -1,26 +1,29 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - much uile solas ach seomraleong ach cistin
 multiple_intents/multi::licht_und_heizung:
-- cas solas seomra agus socraigh teas seomra 23
+- cas uile solas seomra then socraigh teas seomra 23
 multiple_intents/multi::wohn_und_ess_aus:
-- much solas seomra agus much solas seomrateaghlaighess
+- much uile solas seomra then much uile solas seomrateaghlaighess
 multiple_intents/multi::wohn_und_ess_rot:
-- socraigh solas seomra red agus socraigh solas seomrateaghlaighess red
+- socraigh uile solas seomra red then socraigh uile solas seomrateaghlaighess red
 multiple_intents/multi::wz_und_kuche_licht:
-- cas solas seomra agus cas solas cistin
+- cas uile solas seomra then cas uile solas cistin
 multiple_intents/multi::zwei_raeume_und_heizung:
-- cas solas seomra agus cas solas cistin agus socraigh teas seomra 23
+- cas uile solas seomra then cas uile solas cistin then socraigh teas seomra 23
 multiple_intents/spoken::drei_raeume_an:
-- cas solas seomra agus cas solas seomrateaghlaighess agus cas solas cistin
+- cas uile solas seomra then cas uile solas seomrateaghlaighess then cas uile solas
+  cistin
 multiple_intents/spoken::drei_raeume_aus:
-- much solas seomra agus much solas seomrateaghlaighess agus much solas cistin
+- much uile solas seomra then much uile solas seomrateaghlaighess then much uile solas
+  cistin
 multiple_intents/spoken::ess_und_wohn_aus:
-- much solas seomra agus much solas seomrateaghlaighess
+- much uile solas seomra then much uile solas seomrateaghlaighess
 multiple_intents/spoken::kugel_und_decke_aus:
-- much liathroid agus much uasteorainn
+- liathroid agus uasteorainn seomraleong much
 multiple_intents/spoken_more::kuche_und_ess_an:
-- cas solas cistin agus cas solas seomrateaghlaighess
+- cas uile solas cistin then cas uile solas seomrateaghlaighess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- much solas seomra agus much solas seomrateaghlaighess
+- much uile solas seomra then much uile solas seomrateaghlaighess then much uile solas
+  office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- much solas seomra
+- much uile solas seomra then much uile solas office

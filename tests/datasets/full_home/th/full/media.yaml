@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - thorathat hongnang poetfai
-  - poetfai thorathat hongnang
+  - thorathat ห้องนั่งเล่น เปิด
+  - เปิด thorathat ห้องนั่งเล่น
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - pitfai thorathat hongnang
-  - thorathat hongnang pitfai
+  - ปิด thorathat ห้องนั่งเล่น
+  - thorathat ห้องนั่งเล่น ปิด
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause thorathat hongnang
-  - thorathat hongnang pause
+  - หยุด thorathat ห้องนั่งเล่น
+  - thorathat ห้องนั่งเล่น หยุด
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - thorathat hongkhropkhrua poetfai
-  - poetfai thorathat hongkhropkhrua
+  - thorathat hongkhropkhrua เปิด
+  - เปิด thorathat hongkhropkhrua
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - pitfai thorathat hongkhropkhrua
-  - thorathat hongkhropkhrua pitfai
+  - ปิด thorathat hongkhropkhrua
+  - thorathat hongkhropkhrua ปิด
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause thorathat hongkhropkhrua
-  - thorathat hongkhropkhrua pause
+  - หยุด thorathat hongkhropkhrua
+  - thorathat hongkhropkhrua หยุด

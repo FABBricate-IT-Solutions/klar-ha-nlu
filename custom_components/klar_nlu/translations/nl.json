@@ -36,6 +36,7 @@
           "assist_filter": "Alleen aan Assist vrijgegeven entiteiten bedienen",
           "nlu_rag": "NLU-RAG (optioneel)",
           "quiet_ack": "Korte bevestiging (chime)",
+          "calendar_llm": "Agenda-vragen naar het LLM sturen",
           "channel": "Releasekanaal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Aan: alleen wat Assist mag zien. Uit: ook verborgen entiteiten.",
           "nlu_rag": "Standaard uit. Bij chat alleen het herkende stuk naar het fallback-model.",
           "quiet_ack": "Bij eenvoudig licht of schakelaar aan/uit geen gesproken antwoord, alleen een korte toon.",
+          "calendar_llm": "Standaard uit. Aan: Klar leest de agenda, het fallback-LLM spreekt de afspraken. Uit: Klar spreekt de lijst zelf. Aanmaken, verwijderen en verplaatsen blijven bij Klar.",
           "languages": "Standaard is de Home Assistant-systeemtaal.",
           "channel": "Altijd. Staging wijst naar Klar NLU (Staging), Stable naar de app of de meegeleverde engine."
         }

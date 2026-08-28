@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilateur chambre allume
-  - allume ventilateur chambre
+  - ventilateur chambremaster allume
+  - allume ventilateur chambremaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - eteins ventilateur chambre
-  - ventilateur chambre eteins
+  - eteins ventilateur chambremaster
+  - ventilateur chambremaster eteins
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - mets ventilateur chambre 40
-  - ventilateur chambre 40
+  - mets ventilateur chambremaster 40
+  - ventilateur chambremaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - mets ventilateur chambre 20
-  - ventilateur chambre 20
+  - mets ventilateur chambremaster 20
+  - ventilateur chambremaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - mets ventilateur chambre 60
-  - ventilateur chambre 60
+  - mets ventilateur chambremaster 60
+  - ventilateur chambremaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - mets ventilateur chambre 80
-  - ventilateur chambre 80
+  - mets ventilateur chambremaster 80
+  - ventilateur chambremaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

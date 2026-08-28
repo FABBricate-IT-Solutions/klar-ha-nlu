@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "聞き取れませんでした。例えば、どのライトを点けるか教えてください。",
+    unknown: "聞き取れませんでした。",
     need_on: "何をつけますか",
     need_off: "何をけしますか",
     need_which: "何をつけますか",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "何をけしますか",
     timer_pause: "何をけしますか",
     list_add: "リストに追加しました。",
+    calendar_list: "{items}",
+    calendar_empty: "予定はありません。",
+    calendar_none: "カレンダーがありません。",
+    calendar_created: "{summary} {when}。",
+    calendar_need_title: "タイトルは？",
+    calendar_need_when: "いつ？",
+    calendar_readonly: "読み取り専用です。",
+    calendar_deleted: "削除しました。",
+    calendar_moved: "{summary} {when}。",
+    calendar_which: "どの予定？",
+    calendar_no_uid: "識別子がありません。",
+    no_music_player: "プレーヤーがありません。",
     done: "{name}",
     light_suffix: " raito",
     area_light: "raito {loc}",
@@ -48,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "何をつけますか",
     or_home: "何をつけますか",
-    room_names: &[("wohnzimmer", "ribingu"), ("kuche", "kitchin")],
-    loc_der_rooms: &["kitchin", "ribingu"],
+    room_names: &[("wohnzimmer", "リビング"), ("kuche", "キッチン")],
+    loc_der_rooms: &["キッチン", "リビング"],
     personality: &[
         ("butler", &["わかりました。 ", "喜んで。 ", ""]),
         ("locker", &["了解。 ", "できた。 ", ""]),

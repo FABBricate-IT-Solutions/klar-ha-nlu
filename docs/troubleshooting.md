@@ -8,7 +8,7 @@ Zuerst der Haushaltsweg: [Einstieg](getting-started.md). Hier: Fehltreffer, Writ
 
 1. **Freigabe.** Einstellungen → Sprachassistenten → Freigeben. Die Option **Nur für Assist freigegebene Entitäten steuern** ist standardmäßig an. Versteckte Sensoren und Schalter sind keine Ziele.
 2. **Name und Raum.** Die Entität braucht einen sprechbaren Namen und einen Raum in Home Assistant. Ein generisches „Licht“ in einem Raum mit drei Lampen wird zur Rückfrage.
-3. **Zuordnung.** Klar-UI → **Haus → Zuordnung**. Alias setzen oder Raumvorschlag übernehmen. Keine zweite Geräteliste in Klar bauen.
+3. **Zuordnung.** App-Seitenleiste **Klar NLU** → **Haus → Zuordnung** (nicht Lovelace **Klar**). Alias setzen oder Raumvorschlag übernehmen. Keine zweite Geräteliste in Klar bauen.
 4. **Sprache.** Assist auf die gesprochene Locale pinnen (`de`, `en`, `fr`, …). Klar bindet dieses Pack für den Request.
 
 Die Integrationsoption **Nur für Assist freigegebene Entitäten steuern** ist eine Entwickler-Ausnahme. Aus trifft auch versteckte Entitäten — leichter das falsche Gerät.
@@ -17,8 +17,8 @@ Die Integrationsoption **Nur für Assist freigegebene Entitäten steuern** ist e
 
 - Conversation-Engine der Pipeline muss **Klar NLU** sein, nicht das Smalltalk-LLM.
 - Engine und Integration dieselbe CalVer (V2: nur `POST /api/v2/parse`).
-- Mitgelieferte Engine: warten, bis das GitHub-Release in `.storage/klar_nlu/` liegt.
-- Add-on / Docker: Integrations-URL `http://klar-nlu:10520` (HAOS) oder `http://127.0.0.1:10520` (Host-Netz).
+- Mitgelieferte Engine: warten, bis das GitHub-Release in `/config/klar_nlu/` liegt.
+- App / Docker: Integrations-URL `http://klar-nlu:10520` (HAOS) oder `http://127.0.0.1:10520` (Host-Netz). App und mitgelieferte Engine nicht gleichzeitig.
 - Confirm / Clarify rufen keine Services. `ja` / `yes` in derselben Conversation, oder das Gerät nennen.
 
 ## Medien und Music Assistant
@@ -33,11 +33,11 @@ Loopback darf lesen und schreiben. Das Supervisor-Netz darf lesen. Schreibzugrif
 
 | Betrieb | Wo der Token liegt |
 |---------|---------------------|
-| Mitgelieferte Engine | Unter `.storage/klar_nlu/token`, die Integration schickt ihn mit |
-| Add-on | Add-on-Option **token** → `KLAR_TOKEN`. Denselben Wert in der Integration unter **Write-Token** |
+| Mitgelieferte Engine | Unter `/config/klar_nlu/token`, die Integration schickt ihn mit |
+| App | App-Option **token** → `KLAR_TOKEN`. Denselben Wert in der Integration unter **Write-Token** |
 | Docker / Cargo | `--token`, `KLAR_TOKEN` oder `--token-file` |
 
-Leerer Add-on-Token heißt kein gemeinsames Geheimnis: Overlay-Writes aus Home Assistant scheitern, außer sie kommen von Loopback.
+Leerer App-Token heißt kein gemeinsames Geheimnis: Overlay-Writes aus Home Assistant scheitern, außer sie kommen von Loopback.
 
 ## Support-Bundle
 

@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - wlacz swiatlo sypialnia
+  - wlacz swiatlo sypialniamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - wylacz swiatlo sypialnia
+  - wylacz swiatlo sypialniamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - wlacz sufit sypialnia
+  - wlacz sufit sypialniamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - wylacz sufit sypialnia
+  - wylacz sufit sypialniamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - wlacz noca sypialnia
+  - wlacz noca sypialniamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - wylacz noca sypialnia
+  - wylacz noca sypialniamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

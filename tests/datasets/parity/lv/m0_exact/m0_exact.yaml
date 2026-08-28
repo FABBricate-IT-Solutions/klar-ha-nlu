@@ -1,9 +1,9 @@
 m0_exact/representative::exact_clarify:
 - iesledz gaisma istaba
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread saraksts
+- done bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- iesledz griesti gulamistaba3 un izsledz gaisma prieksnams
+- iesledz griesti gulamistaba3 then izsledz gaisma prieksnams
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - iesledz taimeris oven
 m0_exact/representative::exact_todo_list:
-- add apples saraksts
+- add apples aufgabenliste

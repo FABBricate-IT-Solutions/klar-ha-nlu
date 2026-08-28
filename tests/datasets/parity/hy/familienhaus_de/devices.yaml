@@ -1,267 +1,272 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- dir jerutsum hyurasenyak 23
+- դիր ջեռուցում հյուրասենյակ 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- dir jerutsum qnakaran 19
+- դիր ջեռուցում qnakaranmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
-- dir varaguyr qnakaran2 67
+- դիր վարագույր qnakaran2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
-- pakir varaguyr qnakaran2
+- փակիր վարագույր qnakaran2
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
-- batsir varaguyr qnakaran2
+- բացիր վարագույր qnakaran2
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
-- dir varaguyr qnakaran3 27
+- դիր վարագույր qnakaran3 27
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
-- pakir varaguyr qnakaran3
+- փակիր վարագույր qnakaran3
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
-- batsir varaguyr qnakaran3
+- բացիր վարագույր qnakaran3
 devices/cover_garage_door::cover_garage_door_change_position:
-- dir varaguyr garage 52
+- դիր վարագույր garage 52
 devices/cover_garage_door::cover_garage_door_close:
-- pakir varaguyr garage
+- փակիր վարագույր garage
 devices/cover_garage_door::cover_garage_door_open:
-- batsir varaguyr garage
+- բացիր վարագույր garage
 devices/cover_living_blinds::cover_living_blinds_change_position:
-- dir varaguyr hyurasenyak 35
+- դիր վարագույր հյուրասենյակ 35
 devices/cover_living_blinds::cover_living_blinds_close:
-- pakir varaguyr hyurasenyak
+- փակիր վարագույր հյուրասենյակ
 devices/cover_living_blinds::cover_living_blinds_open:
-- batsir varaguyr hyurasenyak
+- բացիր վարագույր հյուրասենյակ
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- dir varaguyr qnakaran 19
+- դիր վարագույր qnakaranmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- pakir varaguyr qnakaran
+- փակիր վարագույր qnakaranmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- batsir varaguyr qnakaran
+- բացիր վարագույր qnakaranmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
-- dir odapokhich qnakaran2 72
+- դիր օդափոխիչ qnakaran2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
-- anjatir odapokhich qnakaran2
+- անջատիր օդափոխիչ qnakaran2
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
-- miatsu odapokhich qnakaran2
+- միացրու օդափոխիչ qnakaran2
 devices/fan_family_fan::fan_family_fan_set_fan_speed:
-- dir odapokhich yntaniq 63
+- դիր օդափոխիչ yntaniq 63
 devices/fan_family_fan::fan_family_fan_turn_off:
-- anjatir odapokhich yntaniq
+- անջատիր օդափոխիչ yntaniq
 devices/fan_family_fan::fan_family_fan_turn_on:
-- miatsu odapokhich yntaniq
+- միացրու օդափոխիչ yntaniq
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- dir odapokhich qnakaran 28
+- դիր օդափոխիչ qnakaranmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- anjatir odapokhich qnakaran
+- անջատիր օդափոխիչ qnakaranmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- miatsu odapokhich qnakaran
+- միացրու օդափոխիչ qnakaranmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- anjatir odapokhich qnakaran yev anjatir luys khohanots
+- անջատիր օդափոխիչ qnakaranmaster yev անջատիր kghzi խոհանոց
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- miatsu odapokhich qnakaran yev miatsu luys khohanots
+- միացրու օդափոխիչ qnakaranmaster yev միացրու kghzi խոհանոց
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
-- dir stalat qnakaran2 94
+- դիր stalat qnakaran2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
-- dir stalat qnakaran2 pink
+- դիր stalat qnakaran2 pink
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
-- anjatir stalat qnakaran2
+- անջատիր stalat qnakaran2
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
-- miatsu stalat qnakaran2
+- միացրու stalat qnakaran2
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
-- dir stalat qnakaran3 36
+- դիր stalat qnakaran3 36
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
-- dir stalat qnakaran3 yellow
+- դիր stalat qnakaran3 yellow
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
-- anjatir stalat qnakaran3
+- անջատիր stalat qnakaran3
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
-- miatsu stalat qnakaran3
+- միացրու stalat qnakaran3
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
-- dir stalat qnakaran4 60
+- դիր stalat qnakaran4 60
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
-- dir stalat qnakaran4 red
+- դիր stalat qnakaran4 red
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
-- anjatir stalat qnakaran4
+- անջատիր stalat qnakaran4
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
-- miatsu stalat qnakaran4
+- միացրու stalat qnakaran4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- dir luys yntaniqess 21
+- դիր լույս yntaniqess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- dir luys yntaniqess blue
+- դիր լույս yntaniqess blue
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- anjatir luys yntaniqess
+- անջատիր լույս yntaniqess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- miatsu luys yntaniqess
+- միացրու լույս yntaniqess
 devices/light_entryway_light::light_entryway_light_change_brightness:
-- dir luys mutq 88
+- դիր լույս mutq 88
 devices/light_entryway_light::light_entryway_light_change_color:
-- dir luys mutq yellow
+- դիր լույս mutq yellow
 devices/light_entryway_light::light_entryway_light_turn_off:
-- anjatir luys mutq
+- անջատիր լույս mutq
 devices/light_entryway_light::light_entryway_light_turn_on:
-- miatsu luys mutq
+- միացրու լույս mutq
 devices/light_family_ceiling::light_family_ceiling_change_brightness:
-- dir stalat yntaniq 98
+- դիր stalat yntaniq 98
 devices/light_family_ceiling::light_family_ceiling_change_color:
-- dir stalat yntaniq purple
+- դիր stalat yntaniq purple
 devices/light_family_ceiling::light_family_ceiling_turn_off:
-- anjatir stalat yntaniq
+- անջատիր stalat yntaniq
 devices/light_family_ceiling::light_family_ceiling_turn_on:
-- miatsu stalat yntaniq
+- միացրու stalat yntaniq
 devices/light_garage_light::light_garage_light_change_brightness:
-- dir luys garage 76
+- դիր լույս garage 76
 devices/light_garage_light::light_garage_light_change_color:
-- dir luys garage green
+- դիր լույս garage green
 devices/light_garage_light::light_garage_light_turn_off:
-- anjatir luys garage
+- անջատիր լույս garage
 devices/light_garage_light::light_garage_light_turn_on:
-- miatsu luys garage
+- միացրու լույս garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- dir luys mutqgang 11
+- դիր լույս mutqgang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- dir luys mutqgang white
+- դիր լույս mutqgang white
 devices/light_hallway_light::light_hallway_light_turn_off:
-- anjatir luys mutqgang
+- անջատիր լույս mutqgang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- miatsu luys mutqgang
+- միացրու լույս mutqgang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
-- dir stalat khohanots 25
+- դիր stalat խոհանոց 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
-- dir stalat khohanots orange
+- դիր stalat խոհանոց orange
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
-- anjatir stalat khohanots
+- անջատիր stalat խոհանոց
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
-- miatsu stalat khohanots
+- միացրու stalat խոհանոց
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- dir luys khohanots 99
+- դիր kghzi խոհանոց 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- dir luys khohanots green
+- դիր kghzi խոհանոց green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- anjatir luys khohanots
+- անջատիր kghzi խոհանոց
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- miatsu luys khohanots
+- միացրու kghzi խոհանոց
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- dir luys lvacqaran 18
+- դիր լույս lvacqaran 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- dir luys lvacqaran white
+- դիր լույս lvacqaran white
 devices/light_laundry_light::light_laundry_light_turn_off:
-- anjatir luys lvacqaran
+- անջատիր լույս lvacqaran
 devices/light_laundry_light::light_laundry_light_turn_on:
-- miatsu luys lvacqaran
+- միացրու լույս lvacqaran
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
-- dir stalat hyurasenyak 72
+- դիր stalat հյուրասենյակ 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
-- dir stalat hyurasenyak black
+- դիր stalat հյուրասենյակ black
 devices/light_living_ceiling::light_living_ceiling_turn_off:
-- anjatir stalat hyurasenyak
+- անջատիր stalat հյուրասենյակ
 devices/light_living_ceiling::light_living_ceiling_turn_on:
-- miatsu stalat hyurasenyak
+- միացրու stalat հյուրասենյակ
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- dir luys hyurasenyak 72
+- դիր luys հյուրասենյակ 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- dir luys hyurasenyak red
+- դիր luys հյուրասենյակ red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- anjatir luys hyurasenyak
+- անջատիր luys հյուրասենյակ
 devices/light_living_lamp::light_living_lamp_turn_on:
-- miatsu luys hyurasenyak
+- միացրու luys հյուրասենյակ
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
-- dir luys main bath 85
+- դիր լույս main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
-- dir luys main bath blue
+- դիր լույս main bath blue
 devices/light_main_bath_light::light_main_bath_light_turn_off:
-- anjatir luys main bath
+- անջատիր լույս main bath
 devices/light_main_bath_light::light_main_bath_light_turn_on:
-- miatsu luys main bath
+- միացրու լույս main bath
 devices/light_master_bath_light::light_master_bath_light_change_brightness:
-- dir luys lvacaranmaster 18
+- դիր լույս lvacaranmaster 18
 devices/light_master_bath_light::light_master_bath_light_change_color:
-- dir luys lvacaranmaster black
+- դիր լույս lvacaranmaster black
 devices/light_master_bath_light::light_master_bath_light_turn_off:
-- anjatir luys lvacaranmaster
+- անջատիր լույս lvacaranmaster
 devices/light_master_bath_light::light_master_bath_light_turn_on:
-- miatsu luys lvacaranmaster
+- միացրու լույս lvacaranmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- dir gisherayin qnakaran 25
+- դիր gisherayin qnakaranmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- dir gisherayin qnakaran red
+- դիր gisherayin qnakaranmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- anjatir gisherayin qnakaran
+- անջատիր gisherayin qnakaranmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- miatsu gisherayin qnakaran
+- միացրու gisherayin qnakaranmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- dir stalat qnakaran 77
+- դիր stalat qnakaranmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- dir stalat qnakaran blue
+- դիր stalat qnakaranmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- anjatir stalat qnakaran
+- անջատիր stalat qnakaranmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- miatsu stalat qnakaran
+- միացրու stalat qnakaranmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- dir luys qnakaran 55
+- դիր ankleide qnakaranmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- dir luys qnakaran black
+- դիր ankleide qnakaranmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- anjatir luys qnakaran
+- անջատիր ankleide qnakaranmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- miatsu luys qnakaran
+- միացրու ankleide qnakaranmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
-- dir luys wc 22
+- դիր լույս wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
-- dir luys wc black
+- դիր լույս wc black
 devices/light_powder_room_light::light_powder_room_light_turn_off:
-- anjatir luys wc
+- անջատիր լույս wc
 devices/light_powder_room_light::light_powder_room_light_turn_on:
-- miatsu luys wc
+- միացրու լույս wc
 devices/lock_front_door::lock_front_door_lock:
-- kogpek kogpek mutq
+- կողպեք կողպեք mutq
 devices/lock_front_door::lock_front_door_unlock:
-- batsir kogpek mutq
+- բացիր կողպեք mutq
 devices/lock_garage_entry::lock_garage_entry_lock:
-- kogpek kogpek garage
+- կողպեք կողպեք garage
 devices/lock_garage_entry::lock_garage_entry_unlock:
-- batsir kogpek garage
+- բացիր կողպեք garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- miatsu herustatsuyts yntaniq
+- միացրու հեռուստացույց yntaniq
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause herustatsuyts yntaniq
+- դադար tv yntaniq
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- anjatir herustatsuyts yntaniq
+- անջատիր հեռուստացույց yntaniq
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- miatsu herustatsuyts yntaniq
+- միացրու հեռուստացույց yntaniq
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- miatsu herustatsuyts yntaniq
+- միացրու հեռուստացույց yntaniq
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- miatsu herustatsuyts yntaniq
+- միացրու հեռուստացույց yntaniq
 devices/media_player_living_tv::media_player_living_tv_mute:
-- miatsu herustatsuyts hyurasenyak
+- միացրու հեռուստացույց հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause herustatsuyts hyurasenyak
+- դադար tv հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- anjatir herustatsuyts hyurasenyak
+- անջատիր հեռուստացույց հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- miatsu herustatsuyts hyurasenyak
+- միացրու հեռուստացույց հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- miatsu herustatsuyts hyurasenyak
+- միացրու հեռուստացույց հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- miatsu herustatsuyts hyurasenyak
+- միացրու հեռուստացույց հյուրասենյակ
 devices/scenes::dinner_time:
-- dir luys yntaniqess 90 yev miatsu stalat khohanots yev dir luys khohanots 80
+- դիր լույս yntaniqess 90 yev միացրու stalat խոհանոց yev դիր kghzi խոհանոց 80
 devices/scenes::good_morning:
-- miatsu stalat khohanots yev dir luys yntaniqess 100 yev batsir varaguyr hyurasenyak
-  yev batsir varaguyr qnakaran
+- միացրու stalat խոհանոց yev դիր լույս yntaniqess 100 yev բացիր վարագույր հյուրասենյակ
+  yev բացիր վարագույր qnakaranmaster
 devices/scenes::kids_bedtime:
-- anjatir stalat qnakaran2 yev anjatir stalat qnakaran3 yev anjatir stalat qnakaran4
-  yev dir luys mutqgang 15
+- անջատիր stalat qnakaran2 yev անջատիր stalat qnakaran3 yev անջատիր stalat qnakaran4
+  yev դիր լույս mutqgang 15
 devices/scenes::movie_night:
-- anjatir stalat hyurasenyak yev dir luys hyurasenyak 20 yev miatsu herustatsuyts
-  hyurasenyak yev pakir varaguyr hyurasenyak
+- անջատիր stalat հյուրասենյակ yev դիր luys հյուրասենյակ 20 yev միացրու հեռուստացույց
+  հյուրասենյակ yev փակիր վարագույր հյուրասենյակ
 devices/scripts::good_night:
-- miatsu tesaran gisher
+- անջատիր stalat հյուրասենյակ yev անջատիր luys հյուրասենյակ yev անջատիր լույս yntaniqess
+  yev անջատիր stalat խոհանոց yev անջատիր kghzi խոհանոց yev անջատիր stalat yntaniq
+  yev անջատիր լույս mutq yev անջատիր լույս mutqgang yev կողպեք կողպեք mutq yev կողպեք
+  կողպեք garage yev դիր ջեռուցում qnakaranmaster 20
 devices/scripts::leaving_home:
-- miatsu tesaran elq
+- անջատիր stalat հյուրասենյակ yev անջատիր luys հյուրասենյակ yev անջատիր stalat խոհանոց
+  yev անջատիր stalat yntaniq yev անջատիր լույս mutq yev կողպեք կողպեք mutq yev կողպեք
+  կողպեք garage yev փակիր վարագույր garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- anjatir aman
+- անջատիր aman
 devices/switch_dishwasher::switch_dishwasher_turn_on:
-- miatsu aman
+- միացրու aman
 devices/switch_dryer::switch_dryer_turn_off:
-- anjatir lvacqimekena
+- անջատիր dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- miatsu lvacqimekena
+- միացրու dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
-- anjatir lvacqimekena
+- անջատիր lvacqimekena
 devices/switch_washing_machine::switch_washing_machine_turn_on:
-- miatsu lvacqimekena
+- միացրու lvacqimekena

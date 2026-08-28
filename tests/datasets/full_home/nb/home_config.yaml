@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Soverom
+  name: Soverommaster
   floor: upper
   aliases:
+  - soverommaster
   - soverom
 - id: bedroom_2
   name: Soverom2
@@ -130,10 +131,10 @@ devices:
   - tak
 - id: light.living_lamp
   area_id: living
-  name: stue lys
+  name: stue lamp
   aliases:
-  - stue lys
-  - lys
+  - stue lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: stuefamess lys
@@ -190,29 +191,29 @@ devices:
   - lys
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: soverom tak
+  name: soverommaster tak
   aliases:
-  - soverom tak
+  - soverommaster tak
   - tak
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: soverom ensuite
+  name: soverommaster ensuite
   aliases:
-  - soverom ensuite
+  - soverommaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: soverom left nattbord
+  name: soverommaster left nattbord
   aliases:
-  - soverom left nattbord
+  - soverommaster left nattbord
   - nattbord
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: soverom right nattbord
+  name: soverommaster right nattbord
   aliases:
-  - soverom right nattbord
+  - soverommaster right nattbord
   - nattbord
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - gardin
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: soverom gardin
+  name: soverommaster gardin
   aliases:
-  - soverom gardin
+  - soverommaster gardin
   - gardin
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - varme
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: soverom varme
+  name: soverommaster varme
   aliases:
-  - soverom varme
+  - soverommaster varme
   - varme
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatur soverom
+  name: temperatur soverommaster
   aliases:
-  - temperatur soverom
+  - temperatur soverommaster
   - temperatur
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - vifte
 - id: fan.master_fan
   area_id: master_bedroom
-  name: soverom vifte
+  name: soverommaster vifte
   aliases:
-  - soverom vifte
+  - soverommaster vifte
   - vifte
 - id: fan.bedroom2_fan
   area_id: bedroom_2

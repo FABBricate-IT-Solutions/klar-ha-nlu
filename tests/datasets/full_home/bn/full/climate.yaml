@@ -5,8 +5,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set gorom bosar 18
-  - gorom bosar 18
+  - সেট গরম বসার 18
+  - গরম বসার 18
 - name: climate.ground_thermostat_19
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set gorom bosar 19
-  - gorom bosar 19
+  - সেট গরম বসার 19
+  - গরম বসার 19
 - name: climate.ground_thermostat_20
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set gorom bosar 20
-  - gorom bosar 20
+  - সেট গরম বসার 20
+  - গরম বসার 20
 - name: climate.ground_thermostat_21
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set gorom bosar 21
-  - gorom bosar 21
+  - সেট গরম বসার 21
+  - গরম বসার 21
 - name: climate.ground_thermostat_22
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set gorom bosar 22
-  - gorom bosar 22
+  - সেট গরম বসার 22
+  - গরম বসার 22
 - name: climate.ground_thermostat_23
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set gorom bosar 23
-  - gorom bosar 23
+  - সেট গরম বসার 23
+  - গরম বসার 23
 - name: climate.ground_thermostat_24
   conditions:
   - type: action
@@ -59,15 +59,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set gorom bosar 24
-  - gorom bosar 24
+  - সেট গরম বসার 24
+  - গরম বসার 24
 - name: climate.ground_thermostat_get
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ki gorom bosar
-  - gorom bosar
+  - কি গরম বসার
+  - গরম বসার
 - name: climate.upper_thermostat_18
   conditions:
   - type: action
@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set gorom shobarghor 18
-  - gorom shobarghor 18
+  - সেট গরম shobarghormaster 18
+  - গরম shobarghormaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set gorom shobarghor 19
-  - gorom shobarghor 19
+  - সেট গরম shobarghormaster 19
+  - গরম shobarghormaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set gorom shobarghor 20
-  - gorom shobarghor 20
+  - সেট গরম shobarghormaster 20
+  - গরম shobarghormaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set gorom shobarghor 21
-  - gorom shobarghor 21
+  - সেট গরম shobarghormaster 21
+  - গরম shobarghormaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set gorom shobarghor 22
-  - gorom shobarghor 22
+  - সেট গরম shobarghormaster 22
+  - গরম shobarghormaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set gorom shobarghor 23
-  - gorom shobarghor 23
+  - সেট গরম shobarghormaster 23
+  - গরম shobarghormaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set gorom shobarghor 24
-  - gorom shobarghor 24
+  - সেট গরম shobarghormaster 24
+  - গরম shobarghormaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ki gorom shobarghor
-  - gorom shobarghor
+  - কি গরম shobarghormaster
+  - গরম shobarghormaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set gorom shobarghor 18
-  - gorom shobarghor 18
+  - সেট gorom shobarghormaster 18
+  - gorom shobarghormaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set gorom shobarghor 19
-  - gorom shobarghor 19
+  - সেট gorom shobarghormaster 19
+  - gorom shobarghormaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set gorom shobarghor 20
-  - gorom shobarghor 20
+  - সেট gorom shobarghormaster 20
+  - gorom shobarghormaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set gorom shobarghor 21
-  - gorom shobarghor 21
+  - সেট gorom shobarghormaster 21
+  - gorom shobarghormaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set gorom shobarghor 22
-  - gorom shobarghor 22
+  - সেট gorom shobarghormaster 22
+  - gorom shobarghormaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set gorom shobarghor 23
-  - gorom shobarghor 23
+  - সেট gorom shobarghormaster 23
+  - gorom shobarghormaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,33 +199,33 @@
     attributes:
       temperature: 24
   sentences:
-  - set gorom shobarghor 24
-  - gorom shobarghor 24
+  - সেট gorom shobarghormaster 24
+  - gorom shobarghormaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ki gorom shobarghor
-  - gorom shobarghor
+  - কি gorom shobarghormaster
+  - gorom shobarghormaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ki gorom bosar
-  - gorom bosar
+  - কি গরম বসার
+  - গরম বসার
 - name: climate.upper_thermostat_get_full
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ki gorom shobarghor
-  - gorom shobarghor
+  - কি গরম shobarghormaster
+  - গরম shobarghormaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ki gorom shobarghor
-  - gorom shobarghor
+  - কি gorom shobarghormaster
+  - gorom shobarghormaster

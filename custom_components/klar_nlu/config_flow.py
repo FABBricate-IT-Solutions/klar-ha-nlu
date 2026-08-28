@@ -17,6 +17,7 @@ from .const import (
     CONF_FALLBACK_AGENT,
     CONF_LANGUAGES,
     CONF_MODE,
+    CONF_CALENDAR_LLM,
     CONF_NLU_RAG,
     CONF_PERSONALITY,
     CONF_QUIET_ACK,
@@ -25,6 +26,7 @@ from .const import (
     CONF_TOKEN,
     CONF_URL,
     DEFAULT_ASSIST_FILTER,
+    DEFAULT_CALENDAR_LLM,
     DEFAULT_CHANNEL,
     DEFAULT_NLU_RAG,
     DEFAULT_PERSONALITY,
@@ -45,12 +47,14 @@ from .const import (
     resolve_engine_target,
     resolve_personality,
 )
-from .lang_select import normalize_language_choice
+from .lang_select import enabled_packs, normalize_language_choice, resolve_pack
 from .languages import LANGUAGE_NAMES
-from .refine_voices import editable_prompt, prompt_pack, resolve_stored_prompt
+from .refine_voices import editable_prompt, resolve_stored_prompt
 
 
 def _language_options() -> list[dict[str, str]]:
+    # HA SelectSelector requires value+label on every dict option.
+    # Missing labels make the options flow return HTTP 400.
     packs = [
         {"value": code, "label": f"{LANGUAGE_NAMES.get(code, code)} ({code})"}
         for code in SUPPORTED_LANGUAGES
@@ -110,6 +114,9 @@ def _options_schema() -> vol.Schema:
         ),
         vol.Optional(CONF_NLU_RAG, default=DEFAULT_NLU_RAG): selector.BooleanSelector(),
         vol.Optional(CONF_QUIET_ACK, default=DEFAULT_QUIET_ACK): selector.BooleanSelector(),
+        vol.Optional(CONF_CALENDAR_LLM, default=DEFAULT_CALENDAR_LLM): (
+            selector.BooleanSelector()
+        ),
         vol.Optional(CONF_CHANNEL, default=DEFAULT_CHANNEL): selector.SelectSelector(
             selector.SelectSelectorConfig(
                 options=[CHANNEL_STABLE, CHANNEL_STAGING],
@@ -206,8 +213,15 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
         super().__init__(*args, **kwargs)
         self._shown_personality: str | None = None
 
-    def _pack(self) -> str:
-        return prompt_pack(getattr(getattr(self.hass, "config", None), "language", None))
+    def _pack(self, language_choice: object | None = None) -> str:
+        hass_language = getattr(getattr(self.hass, "config", None), "language", None)
+        packs = enabled_packs(
+            language_choice if language_choice is not None else self.config_entry.options.get(CONF_LANGUAGES),
+            hass_language,
+        )
+        if len(packs) == 1:
+            return packs[0]
+        return resolve_pack(hass_language, packs)
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
@@ -217,7 +231,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                 user_input.get(CONF_LANGUAGES, LANGUAGE_SYSTEM)
             )
             personality = resolve_personality(user_input.get(CONF_PERSONALITY))
-            pack = self._pack()
+            pack = self._pack(language)
             if self._shown_personality is not None and personality != self._shown_personality:
                 self._shown_personality = personality
                 swapped = {
@@ -294,6 +308,9 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
                     )
                 )
             data[CONF_NLU_RAG] = bool(user_input.get(CONF_NLU_RAG, DEFAULT_NLU_RAG))
+            data[CONF_CALENDAR_LLM] = bool(
+                user_input.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)
+            )
             data[CONF_QUIET_ACK] = bool(
                 user_input.get(
                     CONF_QUIET_ACK,
@@ -308,6 +325,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             CONF_REFINE_PROMPT: DEFAULT_REFINE_PROMPT,
             CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
             CONF_NLU_RAG: DEFAULT_NLU_RAG,
+            CONF_CALENDAR_LLM: DEFAULT_CALENDAR_LLM,
             CONF_QUIET_ACK: DEFAULT_QUIET_ACK,
             CONF_MODE: self.config_entry.options.get(
                 CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)

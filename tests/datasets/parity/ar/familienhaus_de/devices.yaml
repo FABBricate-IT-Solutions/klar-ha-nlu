@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - حط تكييف صالون 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- حط تكييف غرفة 19
+- حط تكييف غرفةmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - حط ستارة غرفة2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - افتح ستارة صالون
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- حط ستارة غرفة 19
+- حط ستارة غرفةmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- اغلق ستارة غرفة
+- اغلق ستارة غرفةmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- افتح ستارة غرفة
+- افتح ستارة غرفةmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - حط مروحة غرفة2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - شغل مروحة عائلي
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- حط مروحة غرفة 28
+- حط مروحة غرفةmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- اطفئ مروحة غرفة
+- اطفئ مروحة غرفةmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- شغل مروحة غرفة
+- شغل مروحة غرفةmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- اطفئ مروحة غرفة و اطفئ ضوء مطبخ
+- اطفئ مروحة غرفةmaster then اطفئ جزيرة مطبخ
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- شغل مروحة غرفة و شغل ضوء مطبخ
+- شغل مروحة غرفةmaster then شغل جزيرة مطبخ
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - حط سقف غرفة2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - شغل سقف مطبخ
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- حط ضوء مطبخ 99
+- حط جزيرة مطبخ 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- حط ضوء مطبخ green
+- حط جزيرة مطبخ green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- اطفئ ضوء مطبخ
+- اطفئ جزيرة مطبخ
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- شغل ضوء مطبخ
+- شغل جزيرة مطبخ
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - حط ضوء غسيل 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - شغل سقف صالون
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- حط ضوء صالون 72
+- حط lamp صالون 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- حط ضوء صالون red
+- حط lamp صالون red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- اطفئ ضوء صالون
+- اطفئ lamp صالون
 devices/light_living_lamp::light_living_lamp_turn_on:
-- شغل ضوء صالون
+- شغل lamp صالون
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - حط ضوء main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - شغل ضوء حمامرئيسي
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- حط جانبسرير غرفة 25
+- حط جانبسرير غرفةmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- حط جانبسرير غرفة red
+- حط جانبسرير غرفةmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- اطفئ جانبسرير غرفة
+- اطفئ جانبسرير غرفةmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- شغل جانبسرير غرفة
+- شغل جانبسرير غرفةmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- حط سقف غرفة 77
+- حط سقف غرفةmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- حط سقف غرفة blue
+- حط سقف غرفةmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- اطفئ سقف غرفة
+- اطفئ سقف غرفةmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- شغل سقف غرفة
+- شغل سقف غرفةmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- حط ضوء غرفة 55
+- حط ankleide غرفةmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- حط ضوء غرفة black
+- حط ankleide غرفةmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- اطفئ ضوء غرفة
+- اطفئ ankleide غرفةmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- شغل ضوء غرفة
+- شغل ankleide غرفةmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - حط ضوء حمامضيف 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - شغل تلفاز عائلي
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause تلفاز عائلي
+- pause tv عائلي
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - اطفئ تلفاز عائلي
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - شغل تلفاز صالون
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause تلفاز صالون
+- pause tv صالون
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - اطفئ تلفاز صالون
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,25 +239,28 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - شغل تلفاز صالون
 devices/scenes::dinner_time:
-- حط ضوء عائليess 90 و شغل سقف مطبخ و حط ضوء مطبخ 80
+- حط ضوء عائليess 90 then شغل سقف مطبخ then حط جزيرة مطبخ 80
 devices/scenes::good_morning:
-- شغل سقف مطبخ و حط ضوء عائليess 100 و افتح ستارة صالون و افتح ستارة غرفة
+- شغل سقف مطبخ then حط ضوء عائليess 100 then افتح ستارة صالون then افتح ستارة غرفةmaster
 devices/scenes::kids_bedtime:
-- اطفئ سقف غرفة2 و اطفئ سقف غرفة3 و اطفئ سقف غرفة4 و حط ضوء مدخلgang 15
+- اطفئ سقف غرفة2 then اطفئ سقف غرفة3 then اطفئ سقف غرفة4 then حط ضوء مدخلgang 15
 devices/scenes::movie_night:
-- اطفئ سقف صالون و حط ضوء صالون 20 و شغل تلفاز صالون و اغلق ستارة صالون
+- اطفئ سقف صالون then حط lamp صالون 20 then شغل تلفاز صالون then اغلق ستارة صالون
 devices/scripts::good_night:
-- شغل مشهد ليل
+- اطفئ سقف صالون then اطفئ lamp صالون then اطفئ ضوء عائليess then اطفئ سقف مطبخ then
+  اطفئ جزيرة مطبخ then اطفئ سقف عائلي then اطفئ ضوء مدخل then اطفئ ضوء مدخلgang then
+  قفل قفل مدخل then قفل قفل garage then حط تكييف غرفةmaster 20
 devices/scripts::leaving_home:
-- شغل مشهد خروج
+- اطفئ سقف صالون then اطفئ lamp صالون then اطفئ سقف مطبخ then اطفئ سقف عائلي then
+  اطفئ ضوء مدخل then قفل قفل مدخل then قفل قفل garage then اغلق ستارة garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - اطفئ جلاية
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - شغل جلاية
 devices/switch_dryer::switch_dryer_turn_off:
-- اطفئ غسالة
+- اطفئ dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- شغل غسالة
+- شغل dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - اطفئ غسالة
 devices/switch_washing_machine::switch_washing_machine_turn_on:

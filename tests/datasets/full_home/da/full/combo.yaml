@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - taend sovevaerelse loft og sovevaerelse natbord
-  - sovevaerelse loft og sovevaerelse natbord taend
+  - taend sovevaerelsemaster loft og sovevaerelsemaster natbord
+  - sovevaerelsemaster loft og sovevaerelsemaster natbord taend
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sluk sovevaerelse loft og sovevaerelse natbord
-  - sovevaerelse loft og sovevaerelse natbord sluk
+  - sluk sovevaerelsemaster loft og sovevaerelsemaster natbord
+  - sovevaerelsemaster loft og sovevaerelsemaster natbord sluk
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - taend sovevaerelse ventilator og kokken oe
-  - sovevaerelse ventilator og kokken oe taend
+  - taend sovevaerelsemaster ventilator og kokken oe
+  - sovevaerelsemaster ventilator og kokken oe taend
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sluk lys sovevaerelse og main bath
-  - lys sovevaerelse og main bath sluk
+  - sluk lys sovevaerelsemaster og main bath
+  - lys sovevaerelsemaster og main bath sluk
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sluk alle lys undtagen stue og sovevaerelse
-  - alle lys sluk undtagen stue og sovevaerelse
+  - sluk alle lys undtagen stue og sovevaerelsemaster
+  - alle lys sluk undtagen stue og sovevaerelsemaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sluk alle lys overetage undtagen sovevaerelse
-  - alle lys overetage sluk undtagen sovevaerelse
+  - sluk alle lys overetage undtagen sovevaerelsemaster
+  - alle lys overetage sluk undtagen sovevaerelsemaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - aabn gardin stue og sovevaerelse
-  - gardin stue og sovevaerelse aabn
+  - aabn gardin stue og sovevaerelsemaster
+  - gardin stue og sovevaerelsemaster aabn
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - luk gardin stue og sovevaerelse
-  - gardin stue og sovevaerelse luk
+  - luk gardin stue og sovevaerelsemaster
+  - gardin stue og sovevaerelsemaster luk
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - saet varme stue og sovevaerelse 21
-  - varme stue og sovevaerelse 21
+  - saet varme stue og sovevaerelsemaster 21
+  - varme stue og sovevaerelsemaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

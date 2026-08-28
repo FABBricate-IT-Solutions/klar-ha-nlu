@@ -5,7 +5,7 @@ use crate::home::policy::is_whole_home;
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::fuzzy::{evidence, select_unique, Profile};
-use crate::parse::normalize::{compact, fold_umlaut, inflected_eq};
+use crate::parse::normalize::{compact, fold_marks, fold_umlaut, inflected_eq, umlaut_eq};
 use crate::types::{EntityRec, HomeGraph};
 use std::collections::HashSet;
 
@@ -130,6 +130,10 @@ fn area_prefixes(home: &HomeGraph) -> Vec<(String, String)> {
         if name.len() >= 4 {
             prefixes.push((name, area.area_id.clone()));
         }
+        let slug = compact(&fold_marks(&area.name));
+        if slug.len() >= 4 && slug != compact(&area.area_id) {
+            prefixes.push((slug, area.area_id.clone()));
+        }
         for alias in &area.aliases {
             let folded = compact(alias);
             if folded.len() >= 6 {
@@ -236,7 +240,15 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| matches!(e.domain.as_str(), "scene" | "script"))
-        .filter(|e| scene_name_hit(tokens, &e.name, home) || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home)))
+        .filter(|e| {
+            let tail = e.entity_id.rsplit('.').next().unwrap_or("");
+            let compact_tail = compact(tail);
+            let compact_tokens: String = tokens.iter().map(|token| compact(token)).collect();
+            tokens.iter().any(|token| token == tail || scene_token(token) == tail)
+                || (compact_tail.len() > 3 && compact_tokens.contains(&compact_tail))
+                || scene_name_hit(tokens, &e.name, home)
+                || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home))
+        })
         .map(|e| e.entity_id.clone())
         .collect();
     let named = mentioned || catalog().any(tokens, catalog().scene_named());
@@ -287,18 +299,11 @@ fn scene_distinctive(part: &str, home: &HomeGraph) -> bool {
         return false;
     }
     let folded = compact(part);
-    !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
+    !folded.is_empty() && !home.areas.iter().any(|a| compact(&a.area_id) == folded || compact(&a.name) == folded)
 }
 
-/// Room-level light bind. Computed once; `area_slots` and clarify both use it.
-///
-/// Apartment rule: `light.{area}` is a room group only when its name is the
-/// room, `{room}licht` / `{room}light`, or a generic room light. A named
-/// fixture that reuses that id (Schlafzimmer → Hue Kugel) is `OccupiedId` —
-/// room commands target every light in the area and do not ask. Compound
-/// "Schlafzimmerlicht" still binds that fixture via `pick_compound_light`.
-/// Homes without `light.{area}` and several fixtures clarify on singular
-/// "the light".
+/// Room-level light bind. `light.{area}` is a room group when named as the room
+/// or a generic light; a named fixture on that id is `OccupiedId`.
 pub(crate) enum LightAim {
     RoomGroup(String),
     OccupiedId,
@@ -400,6 +405,7 @@ fn room_status_only(tokens: &[String], home: &HomeGraph, resolved: &crate::parse
             || catalog().status_words().contains(token.as_str())
             || matches!(token.as_str(), "of" | "the")
             || rooms.contains(token)
+            || rooms.iter().any(|word| umlaut_eq(token, word))
     })
 }
 
@@ -411,6 +417,7 @@ fn area_words(home: &HomeGraph, areas: &[String]) -> HashSet<String> {
         };
         words.insert(compact(&area.area_id));
         words.insert(compact(&area.name));
+        words.insert(compact(&fold_marks(&area.name)));
         words.extend(area.aliases.iter().map(|alias| compact(alias)));
     }
     words
@@ -471,24 +478,5 @@ fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::home::default_home;
-
-    #[test]
-    fn fuzzy_split_transposes_room_before_licht() {
-        let home = default_home();
-        let split = expand_compounds(&["wonhzimmerlicht".into()], &home);
-        assert!(split.tokens.iter().any(|token| token == "wohnzimmer"), "{:?}", split.tokens);
-        assert!(split.tokens.iter().any(|token| token == "licht"), "{:?}", split.tokens);
-        assert_eq!(split.light_areas, ["wohnzimmer"]);
-    }
-
-    #[test]
-    fn fuzzy_split_rejects_unrelated_licht() {
-        let home = default_home();
-        let split = expand_compounds(&["fensterbanklicht".into()], &home);
-        assert_eq!(split.tokens, ["fensterbanklicht"]);
-        assert!(split.light_areas.is_empty());
-    }
-}
+#[path = "compound_tests.rs"]
+mod tests;

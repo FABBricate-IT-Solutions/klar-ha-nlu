@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - kyeo taimeo 10 min
-  - taimeo 10 min
+  - 켜 타이머 10 min
+  - 타이머 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - kyeo taimeo 45 min
-  - taimeo 45 min
+  - 켜 타이머 45 min
+  - 타이머 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - kkaeo taimeo
-  - taimeo kkaeo
+  - 꺼 타이머
+  - 타이머 꺼
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - kyeo taimeo 5 min
-  - taimeo 5 min
+  - 켜 타이머 5 min
+  - 타이머 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - kyeo taimeo 15 min
-  - taimeo 15 min
+  - 켜 타이머 15 min
+  - 타이머 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - kyeo taimeo 20 min
-  - taimeo 20 min
+  - 켜 타이머 20 min
+  - 타이머 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - kyeo taimeo 30 min
-  - taimeo 30 min
+  - 켜 타이머 30 min
+  - 타이머 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - kyeo taimeo 60 min
-  - taimeo 60 min
+  - 켜 타이머 60 min
+  - 타이머 60 min

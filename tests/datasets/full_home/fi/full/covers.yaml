@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - avaa verho makuuhuone
-  - verho makuuhuone avaa
+  - avaa verho makuuhuonemaster
+  - verho makuuhuonemaster avaa
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - sulje verho makuuhuone
-  - verho makuuhuone sulje
+  - sulje verho makuuhuonemaster
+  - verho makuuhuonemaster sulje
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - aseta verho makuuhuone 0
-  - verho makuuhuone 0
+  - aseta verho makuuhuonemaster 0
+  - verho makuuhuonemaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - aseta verho makuuhuone 25
-  - verho makuuhuone 25
+  - aseta verho makuuhuonemaster 25
+  - verho makuuhuonemaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - aseta verho makuuhuone 40
-  - verho makuuhuone 40
+  - aseta verho makuuhuonemaster 40
+  - verho makuuhuonemaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - aseta verho makuuhuone 75
-  - verho makuuhuone 75
+  - aseta verho makuuhuonemaster 75
+  - verho makuuhuonemaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - aseta verho makuuhuone 100
-  - verho makuuhuone 100
+  - aseta verho makuuhuonemaster 100
+  - verho makuuhuonemaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - avaa verho makuuhuone
-  - verho makuuhuone avaa
+  - avaa verho makuuhuonemaster
+  - verho makuuhuonemaster avaa

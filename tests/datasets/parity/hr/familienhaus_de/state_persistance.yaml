@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - kako svjetlo garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - kako svjetlo hodnikgang i kako svjetlo wc
+- - kako svjetlo hodnikgang then kako svjetlo wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - kako svjetlo hodnikgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - kako svjetlo kupaonicamaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - kako grijanje spavaca i kako grijanje dnevni
+- - kako grijanje spavacamaster then kako grijanje dnevni
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - kako zavjesa spavaca i kako zavjesa dnevni
+- - kako zavjesa spavacamaster then kako zavjesa dnevni
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - kako grijanje spavaca
+- - kako grijanje spavacamaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - kako zavjesa spavaca
+- - kako zavjesa spavacamaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - kako svjetlo wc

@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Habitacio
+  name: Habitaciomaster
   floor: upper
   aliases:
+  - habitaciomaster
   - habitacio
 - id: bedroom_2
   name: Habitacio2
@@ -190,29 +191,29 @@ devices:
   - llum
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: habitacio sostre
+  name: habitaciomaster sostre
   aliases:
-  - habitacio sostre
+  - habitaciomaster sostre
   - sostre
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: habitacio ensuite
+  name: habitaciomaster ensuite
   aliases:
-  - habitacio ensuite
+  - habitaciomaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: habitacio left tauleta
+  name: habitaciomaster left tauleta
   aliases:
-  - habitacio left tauleta
+  - habitaciomaster left tauleta
   - tauleta
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: habitacio right tauleta
+  name: habitaciomaster right tauleta
   aliases:
-  - habitacio right tauleta
+  - habitaciomaster right tauleta
   - tauleta
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - cortina
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: habitacio cortina
+  name: habitaciomaster cortina
   aliases:
-  - habitacio cortina
+  - habitaciomaster cortina
   - cortina
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - calefaccio
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: habitacio calefaccio
+  name: habitaciomaster calefaccio
   aliases:
-  - habitacio calefaccio
+  - habitaciomaster calefaccio
   - calefaccio
 - id: climate.master_ac
   area_id: master_bedroom
-  name: aire habitacio
+  name: aire habitaciomaster
   aliases:
-  - aire habitacio
+  - aire habitaciomaster
   - aire
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilador
 - id: fan.master_fan
   area_id: master_bedroom
-  name: habitacio ventilador
+  name: habitaciomaster ventilador
   aliases:
-  - habitacio ventilador
+  - habitaciomaster ventilador
   - ventilador
 - id: fan.bedroom2_fan
   area_id: bedroom_2

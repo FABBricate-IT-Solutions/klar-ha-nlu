@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - stel verwarming woonkamer 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- stel verwarming slaapkamer 19
+- stel verwarming slaapkamermaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - stel gordijn slaapkamer2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - open gordijn woonkamer
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- stel gordijn slaapkamer 19
+- stel gordijn slaapkamermaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- dicht gordijn slaapkamer
+- dicht gordijn slaapkamermaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- open gordijn slaapkamer
+- open gordijn slaapkamermaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - stel ventilator slaapkamer2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - aanzetten ventilator huiskamer
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- stel ventilator slaapkamer 28
+- stel ventilator slaapkamermaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- uitzetten ventilator slaapkamer
+- uitzetten ventilator slaapkamermaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- aanzetten ventilator slaapkamer
+- aanzetten ventilator slaapkamermaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- uitzetten ventilator slaapkamer en uitzetten licht keuken
+- uitzetten ventilator slaapkamermaster then uitzetten eiland keuken
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- aanzetten ventilator slaapkamer en aanzetten licht keuken
+- aanzetten ventilator slaapkamermaster then aanzetten eiland keuken
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - stel plafond slaapkamer2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - aanzetten plafond keuken
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- stel licht keuken 99
+- stel eiland keuken 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- stel licht keuken groen
+- stel eiland keuken groen
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- uitzetten licht keuken
+- uitzetten eiland keuken
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- aanzetten licht keuken
+- aanzetten eiland keuken
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - stel licht wasruimte 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - aanzetten plafond woonkamer
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- stel licht woonkamer 72
+- stel lamp woonkamer 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- stel licht woonkamer rood
+- stel lamp woonkamer rood
 devices/light_living_lamp::light_living_lamp_turn_off:
-- uitzetten licht woonkamer
+- uitzetten lamp woonkamer
 devices/light_living_lamp::light_living_lamp_turn_on:
-- aanzetten licht woonkamer
+- aanzetten lamp woonkamer
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - stel licht badkamer 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - aanzetten licht badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stel nachtkast slaapkamer 25
+- stel nachtkast slaapkamermaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stel nachtkast slaapkamer rood
+- stel nachtkast slaapkamermaster rood
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- uitzetten nachtkast slaapkamer
+- uitzetten nachtkast slaapkamermaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- aanzetten nachtkast slaapkamer
+- aanzetten nachtkast slaapkamermaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- stel plafond slaapkamer 77
+- stel plafond slaapkamermaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- stel plafond slaapkamer blauw
+- stel plafond slaapkamermaster blauw
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- uitzetten plafond slaapkamer
+- uitzetten plafond slaapkamermaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- aanzetten plafond slaapkamer
+- aanzetten plafond slaapkamermaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- stel licht slaapkamer 55
+- stel ankleide slaapkamermaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- stel licht slaapkamer zwart
+- stel ankleide slaapkamermaster zwart
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- uitzetten licht slaapkamer
+- uitzetten ankleide slaapkamermaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- aanzetten licht slaapkamer
+- aanzetten ankleide slaapkamermaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - stel licht toilet 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - aanzetten tv woonkamer
 devices/scenes::dinner_time:
-- stel licht huiskameress 90 en aanzetten plafond keuken en stel licht keuken 80
+- stel licht huiskameress 90 then aanzetten plafond keuken then stel eiland keuken
+  80
 devices/scenes::good_morning:
-- aanzetten plafond keuken en stel licht huiskameress 100 en open gordijn woonkamer
-  en open gordijn slaapkamer
+- aanzetten plafond keuken then stel licht huiskameress 100 then open gordijn woonkamer
+  then open gordijn slaapkamermaster
 devices/scenes::kids_bedtime:
-- uitzetten plafond slaapkamer2 en uitzetten plafond slaapkamer3 en uitzetten plafond
-  slaapkamer4 en stel licht gang 15
+- uitzetten plafond slaapkamer2 then uitzetten plafond slaapkamer3 then uitzetten
+  plafond slaapkamer4 then stel licht gang 15
 devices/scenes::movie_night:
-- uitzetten plafond woonkamer en stel licht woonkamer 20 en aanzetten tv woonkamer
-  en dicht gordijn woonkamer
+- uitzetten plafond woonkamer then stel lamp woonkamer 20 then aanzetten tv woonkamer
+  then dicht gordijn woonkamer
 devices/scripts::good_night:
-- aanzetten scene nacht
+- uitzetten plafond woonkamer then uitzetten lamp woonkamer then uitzetten licht huiskameress
+  then uitzetten plafond keuken then uitzetten eiland keuken then uitzetten plafond
+  huiskamer then uitzetten licht hal then uitzetten licht gang then vergrendel slot
+  hal then vergrendel slot garage then stel verwarming slaapkamermaster 20
 devices/scripts::leaving_home:
-- aanzetten scene vertrek
+- uitzetten plafond woonkamer then uitzetten lamp woonkamer then uitzetten plafond
+  keuken then uitzetten plafond huiskamer then uitzetten licht hal then vergrendel
+  slot hal then vergrendel slot garage then dicht gordijn garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - uitzetten vaatwasser
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - aanzetten vaatwasser
 devices/switch_dryer::switch_dryer_turn_off:
-- uitzetten wasmachine
+- uitzetten droger
 devices/switch_dryer::switch_dryer_turn_on:
-- aanzetten wasmachine
+- aanzetten droger
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - uitzetten wasmachine
 devices/switch_washing_machine::switch_washing_machine_turn_on:

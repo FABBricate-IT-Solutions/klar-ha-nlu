@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - מאוורר חדרשינה הדלק
-  - הדלק מאוורר חדרשינה
+  - מאוורר חדרשינהmaster הדלק
+  - הדלק מאוורר חדרשינהmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - כבה מאוורר חדרשינה
-  - מאוורר חדרשינה כבה
+  - כבה מאוורר חדרשינהmaster
+  - מאוורר חדרשינהmaster כבה
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - שים מאוורר חדרשינה 40
-  - מאוורר חדרשינה 40
+  - שים מאוורר חדרשינהmaster 40
+  - מאוורר חדרשינהmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - שים מאוורר חדרשינה 20
-  - מאוורר חדרשינה 20
+  - שים מאוורר חדרשינהmaster 20
+  - מאוורר חדרשינהmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - שים מאוורר חדרשינה 60
-  - מאוורר חדרשינה 60
+  - שים מאוורר חדרשינהmaster 60
+  - מאוורר חדרשינהmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - שים מאוורר חדרשינה 80
-  - מאוורר חדרשינה 80
+  - שים מאוורר חדרשינהmaster 80
+  - מאוורר חדרשינהmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

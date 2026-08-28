@@ -64,11 +64,11 @@ Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Re
 
 **Actions → Release → Run workflow** bleibt für einen manuellen Override (Feld leer = nächste Version, oder z. B. `2026.8.0`).
 
-Build erzeugt linux-x86_64, linux-aarch64 und linux-armv7 und hängt die Tarballs an das GitHub-Release. Der Release-Text ist der letzte git-cliff-Abschnitt.
+Build erzeugt linux-x86_64 und linux-aarch64 und hängt die Tarballs an das GitHub-Release. Der Release-Text ist der letzte git-cliff-Abschnitt.
 
 Ein Tag von deinem Rechner startet Build weiter selbst: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-Der Cut nutzt nur den kurzlebigen `GITHUB_TOKEN` des Jobs. `main` verbietet Löschen und Force-Push; Required Checks gelten nicht für den Version-Commit (sonst bräuchte es ein dauerhaftes Admin-PAT). PR-CI bleibt der Qualitätsfilter vor dem Merge.
+Der Cut nutzt nur den kurzlebigen `GITHUB_TOKEN` des Jobs. `main` und `staging` verlangen die Required Checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) vor jedem PR-Merge, auch für Admins. Der Version-Commit bleibt ein Direkt-Push vom Release-Job und umgeht diese Merge-Checks.
 
 ## Changelog lokal
 

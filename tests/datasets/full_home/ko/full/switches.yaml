@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - kyeo sikgi bueok
-  - sikgi bueok kyeo
+  - 켜 sikgi 부엌
+  - sikgi 부엌 켜
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - kkaeo sikgi bueok
-  - sikgi bueok kkaeo
+  - 꺼 sikgi 부엌
+  - sikgi 부엌 꺼
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - kyeo setakgi setaksil
-  - setakgi setaksil kyeo
+  - 켜 setakgi setaksil
+  - setakgi setaksil 켜
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - kkaeo setakgi setaksil
-  - setakgi setaksil kkaeo
+  - 꺼 setakgi setaksil
+  - setakgi setaksil 꺼
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - kyeo dryer setaksil
-  - dryer setaksil kyeo
+  - 켜 dryer setaksil
+  - dryer setaksil 켜
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - kkaeo dryer setaksil
-  - dryer setaksil kkaeo
+  - 꺼 dryer setaksil
+  - dryer setaksil 꺼
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - kyeo rangehood bueok
-  - rangehood bueok kyeo
+  - 켜 rangehood 부엌
+  - rangehood 부엌 켜
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - kkaeo rangehood bueok
-  - rangehood bueok kkaeo
+  - 꺼 rangehood 부엌
+  - rangehood 부엌 꺼
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - kyeo seonpunggibad anbangyoksil
-  - seonpunggibad anbangyoksil kyeo
+  - 켜 선풍기bad anbangyoksil
+  - 선풍기bad anbangyoksil 켜
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - kkaeo seonpunggibad anbangyoksil
-  - seonpunggibad anbangyoksil kkaeo
+  - 꺼 선풍기bad anbangyoksil
+  - 선풍기bad anbangyoksil 꺼
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - kyeo seonpunggibad main bath
-  - seonpunggibad main bath kyeo
+  - 켜 선풍기bad main bath
+  - 선풍기bad main bath 켜
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - kkaeo seonpunggibad main bath
-  - seonpunggibad main bath kkaeo
+  - 꺼 선풍기bad main bath
+  - 선풍기bad main bath 꺼

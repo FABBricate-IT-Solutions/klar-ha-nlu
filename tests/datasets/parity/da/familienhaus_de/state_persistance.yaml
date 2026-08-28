@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - hvad lys garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - hvad lys entreegang og hvad lys toilet
+- - hvad lys entreegang then hvad lys toilet
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - hvad lys entreegang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - hvad lys badmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - hvad varme sovevaerelse og hvad varme stue
+- - hvad varme sovevaerelsemaster then hvad varme stue
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - hvad gardin sovevaerelse og hvad gardin stue
+- - hvad gardin sovevaerelsemaster then hvad gardin stue
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - hvad varme sovevaerelse
+- - hvad varme sovevaerelsemaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - hvad gardin sovevaerelse
+- - hvad gardin sovevaerelsemaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - hvad lys toilet

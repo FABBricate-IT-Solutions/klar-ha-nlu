@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - ukljuci spavaca plafon i spavaca nocni
-  - spavaca plafon i spavaca nocni ukljuci
+  - ukljuci spavacamaster plafon i spavacamaster nocni
+  - spavacamaster plafon i spavacamaster nocni ukljuci
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - iskljuci spavaca plafon i spavaca nocni
-  - spavaca plafon i spavaca nocni iskljuci
+  - iskljuci spavacamaster plafon i spavacamaster nocni
+  - spavacamaster plafon i spavacamaster nocni iskljuci
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - ukljuci spavaca ventilator i kuhinja ostrvo
-  - spavaca ventilator i kuhinja ostrvo ukljuci
+  - ukljuci spavacamaster ventilator i kuhinja ostrvo
+  - spavacamaster ventilator i kuhinja ostrvo ukljuci
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - iskljuci svetlo spavaca i main bath
-  - svetlo spavaca i main bath iskljuci
+  - iskljuci svetlo spavacamaster i main bath
+  - svetlo spavacamaster i main bath iskljuci
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - iskljuci sve svetlo osim dnevna i spavaca
-  - sve svetlo iskljuci osim dnevna i spavaca
+  - iskljuci sve svetlo osim dnevna i spavacamaster
+  - sve svetlo iskljuci osim dnevna i spavacamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - iskljuci sve svetlo sprat osim spavaca
-  - sve svetlo sprat iskljuci osim spavaca
+  - iskljuci sve svetlo sprat osim spavacamaster
+  - sve svetlo sprat iskljuci osim spavacamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - otvori zavesa dnevna i spavaca
-  - zavesa dnevna i spavaca otvori
+  - otvori zavesa dnevna i spavacamaster
+  - zavesa dnevna i spavacamaster otvori
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - zatvori zavesa dnevna i spavaca
-  - zavesa dnevna i spavaca zatvori
+  - zatvori zavesa dnevna i spavacamaster
+  - zavesa dnevna i spavacamaster zatvori
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stavi grejanje dnevna i spavaca 21
-  - grejanje dnevna i spavaca 21
+  - stavi grejanje dnevna i spavacamaster 21
+  - grejanje dnevna i spavacamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

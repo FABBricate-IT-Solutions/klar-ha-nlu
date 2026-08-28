@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Llofft
+  name: Llofftmaster
   floor: upper
   aliases:
+  - llofftmaster
   - llofft
 - id: bedroom_2
   name: Llofft2
@@ -130,10 +131,10 @@ devices:
   - nenfwd
 - id: light.living_lamp
   area_id: living
-  name: ystafell golau
+  name: ystafell lamp
   aliases:
-  - ystafell golau
-  - golau
+  - ystafell lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: ystafellteuluess golau
@@ -190,29 +191,29 @@ devices:
   - golau
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: llofft nenfwd
+  name: llofftmaster nenfwd
   aliases:
-  - llofft nenfwd
+  - llofftmaster nenfwd
   - nenfwd
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: llofft ensuite
+  name: llofftmaster ensuite
   aliases:
-  - llofft ensuite
+  - llofftmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: llofft left gwely
+  name: llofftmaster left gwely
   aliases:
-  - llofft left gwely
+  - llofftmaster left gwely
   - gwely
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: llofft right gwely
+  name: llofftmaster right gwely
   aliases:
-  - llofft right gwely
+  - llofftmaster right gwely
   - gwely
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - llen
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: llofft llen
+  name: llofftmaster llen
   aliases:
-  - llofft llen
+  - llofftmaster llen
   - llen
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - gwres
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: llofft gwres
+  name: llofftmaster gwres
   aliases:
-  - llofft gwres
+  - llofftmaster gwres
   - gwres
 - id: climate.master_ac
   area_id: master_bedroom
-  name: gwres llofft
+  name: gwres llofftmaster
   aliases:
-  - gwres llofft
+  - gwres llofftmaster
   - gwres
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - gwyntyll
 - id: fan.master_fan
   area_id: master_bedroom
-  name: llofft gwyntyll
+  name: llofftmaster gwyntyll
   aliases:
-  - llofft gwyntyll
+  - llofftmaster gwyntyll
   - gwyntyll
 - id: fan.bedroom2_fan
   area_id: bedroom_2

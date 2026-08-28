@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - veliginchu velugu gadi
+    - వెలిగించు వెలుగు గది
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - arpu velugu vantagadi
+    - ఆర్పు వెలుగు వంటగది
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - క్యాలెండర్ లో ఏమి
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - ఏక్కు దంత రేపు 15 క్యాలెండర్
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - తీయు దంత క్యాలెండర్
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - మారుపు దంత రేపు 16 క్యాలెండర్
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - ప్లే depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

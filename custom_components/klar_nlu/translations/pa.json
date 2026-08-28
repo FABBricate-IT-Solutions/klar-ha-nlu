@@ -36,6 +36,7 @@
           "assist_filter": "Only control entities exposed to Assist",
           "nlu_rag": "NLU-RAG (ਵਿਕਲਪਿਕ)",
           "quiet_ack": "Short confirmation (chime)",
+          "calendar_llm": "ਕੈਲੰਡਰ ਸਵਾਲ LLM ਨੂੰ ਭੇਜੋ",
           "channel": "ਰਿਲੀਜ਼ ਚੈਨਲ"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "On: only what Assist may see. Off: hidden entities too.",
           "nlu_rag": "ਡਿਫਾਲਟ ਬੰਦ। ਗੱਲਬਾਤ ਵਿੱਚ ਸਿਰਫ਼ ਮਿਲਿਆ ਟੁਕੜਾ ਬੈਕਅੱਪ ਮਾਡਲ ਨੂੰ ਜਾਂਦਾ ਹੈ।",
           "quiet_ack": "ਸਧਾਰਨ ਲਾਈਟ ਚਾਲੂ/ਬੰਦ ਤੇ ਵਾਕ ਨਹੀਂ, ਉਪਗ੍ਰਹਿ ਤੇ ਛੋਟੀ ਆਵਾਜ਼।",
+          "calendar_llm": "ਡਿਫਾਲਟ ਬੰਦ। ਗੱਲਬਾਤ ਵਿੱਚ ਸਿਰਫ਼ ਮਿਲਿਆ ਟੁਕੜਾ ਬੈਕਅੱਪ ਮਾਡਲ ਨੂੰ ਜਾਂਦਾ ਹੈ। ਕੈਲੰਡਰ ਸਵਾਲ LLM ਨੂੰ ਭੇਜੋ.",
           "languages": "ਡਿਫਾਲਟ Home Assistant ਸਿਸਟਮ ਭਾਸ਼ਾ ਹੈ।",
           "channel": "ਕਿਸੇ ਵੀ ਵੇਲੇ। Staging Klar NLU (Staging) ਵੱਲ ਹੈ।"
         }

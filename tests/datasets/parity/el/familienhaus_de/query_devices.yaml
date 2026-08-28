@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- τι φως εισοδος
+- τι sensor πορτα εισοδος
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
 - τι θερμανση σαλονι
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- τι θερμανση υπνοδωματο
+- τι θερμανση υπνοδωματοmaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - τι κουρτινα υπνοδωματο2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -21,9 +21,9 @@ query_devices/cover_living_blinds::cover_living_blinds_get_position:
 query_devices/cover_living_blinds::cover_living_blinds_get_status:
 - τι κουρτινα σαλονι
 query_devices/cover_master_blinds::cover_master_blinds_get_position:
-- τι κουρτινα υπνοδωματο
+- τι κουρτινα υπνοδωματοmaster
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
-- τι κουρτινα υπνοδωματο
+- τι κουρτινα υπνοδωματοmaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
 - τι ανεμιστηρας υπνοδωματο2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
@@ -33,9 +33,9 @@ query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
 query_devices/fan_family_fan::fan_family_fan_get_status:
 - τι ανεμιστηρας σαλονιfam
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- τι ανεμιστηρας υπνοδωματο
+- τι ανεμιστηρας υπνοδωματοmaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- τι ανεμιστηρας υπνοδωματο
+- τι ανεμιστηρας υπνοδωματοmaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - τι ταβανι υπνοδωματο2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -73,9 +73,9 @@ query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
 - τι ταβανι κουζινα
 query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
-- τι φως κουζινα
+- τι νησι κουζινα
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
-- τι φως κουζινα
+- τι νησι κουζινα
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
 - τι φως πλυσταριο
 query_devices/light_laundry_light::light_laundry_light_get_status:
@@ -85,9 +85,9 @@ query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
 - τι ταβανι σαλονι
 query_devices/light_living_lamp::light_living_lamp_get_brightness:
-- τι φως σαλονι
+- τι lamp σαλονι
 query_devices/light_living_lamp::light_living_lamp_get_status:
-- τι φως σαλονι
+- τι lamp σαλονι
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
 - τι φως main bath
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
@@ -97,21 +97,21 @@ query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
 - τι φως μπανιοmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
-- τι κομοδινο υπνοδωματο
+- τι κομοδινο υπνοδωματοmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
-- τι κομοδινο υπνοδωματο
+- τι κομοδινο υπνοδωματοmaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
-- τι κομοδινο υπνοδωματο
+- τι κομοδινο υπνοδωματοmaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
-- τι κομοδινο υπνοδωματο
+- τι κομοδινο υπνοδωματοmaster
 query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
-- τι ταβανι υπνοδωματο
+- τι ταβανι υπνοδωματοmaster
 query_devices/light_master_ceiling::light_master_ceiling_get_status:
-- τι ταβανι υπνοδωματο
+- τι ταβανι υπνοδωματοmaster
 query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
-- τι φως υπνοδωματο
+- τι ankleide υπνοδωματοmaster
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
-- τι φως υπνοδωματο
+- τι ankleide υπνοδωματοmaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
 - τι φως wc
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
@@ -127,6 +127,6 @@ query_devices/media_player_living_tv::media_player_living_tv_get_status:
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - τι πιατα
 query_devices/switch_dryer::switch_dryer_get_status:
-- τι πλυντηριο
+- τι dryer
 query_devices/switch_washing_machine::switch_washing_machine_get_status:
 - τι πλυντηριο

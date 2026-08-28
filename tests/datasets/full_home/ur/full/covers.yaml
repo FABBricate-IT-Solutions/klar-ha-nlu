@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - کھولو پردہ bedroom
-  - پردہ bedroom کھولو
+  - کھولو پردہ bedroommaster
+  - پردہ bedroommaster کھولو
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - بندکرو پردہ bedroom
-  - پردہ bedroom بندکرو
+  - بندکرو پردہ bedroommaster
+  - پردہ bedroommaster بندکرو
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - رکھو پردہ bedroom 0
-  - پردہ bedroom 0
+  - رکھو پردہ bedroommaster 0
+  - پردہ bedroommaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - رکھو پردہ bedroom 25
-  - پردہ bedroom 25
+  - رکھو پردہ bedroommaster 25
+  - پردہ bedroommaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - رکھو پردہ bedroom 40
-  - پردہ bedroom 40
+  - رکھو پردہ bedroommaster 40
+  - پردہ bedroommaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - رکھو پردہ bedroom 75
-  - پردہ bedroom 75
+  - رکھو پردہ bedroommaster 75
+  - پردہ bedroommaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - رکھو پردہ bedroom 100
-  - پردہ bedroom 100
+  - رکھو پردہ bedroommaster 100
+  - پردہ bedroommaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - کھولو پردہ bedroom
-  - پردہ bedroom کھولو
+  - کھولو پردہ bedroommaster
+  - پردہ bedroommaster کھولو

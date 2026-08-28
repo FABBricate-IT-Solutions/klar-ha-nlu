@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv zochny asaa
-  - asaa tv zochny
+  - tv зочны асаа
+  - асаа tv зочны
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - untraa tv zochny
-  - tv zochny untraa
+  - унтраа tv зочны
+  - tv зочны унтраа
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv zochny
-  - tv zochny pause
+  - зогсоо tv зочны
+  - tv зочны зогсоо
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv gerbul asaa
-  - asaa tv gerbul
+  - tv gerbul асаа
+  - асаа tv gerbul
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - untraa tv gerbul
-  - tv gerbul untraa
+  - унтраа tv gerbul
+  - tv gerbul унтраа
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv gerbul
-  - tv gerbul pause
+  - зогсоо tv gerbul
+  - tv gerbul зогсоо

@@ -1,8 +1,9 @@
+use super::paths::{confined_file, read_to_string_confined, write_atomic_confined};
 use crate::lang::{LanguageOverlay, LanguageRevision};
 use crate::types::{CustomSentence, HomeGraph, PolicyRule, Settings, SpeechBank};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct UiPoint {
@@ -29,11 +30,29 @@ pub struct UiState {
     pub last_apply: Vec<UiApplyRow>,
     #[serde(default)]
     pub graph: HashMap<String, UiPoint>,
+    #[serde(default)]
+    pub wizard_done: bool,
+    #[serde(default = "default_house_view")]
+    pub house_view: String,
+    #[serde(default = "default_rules_view")]
+    pub rules_view: String,
+    #[serde(default = "default_theme")]
+    pub theme: String,
 }
 
 impl Default for UiState {
     fn default() -> Self {
-        Self { tab: default_tab(), locale: default_locale(), dismissed: Vec::new(), last_apply: Vec::new(), graph: HashMap::new() }
+        Self {
+            tab: default_tab(),
+            locale: default_locale(),
+            dismissed: Vec::new(),
+            last_apply: Vec::new(),
+            graph: HashMap::new(),
+            wizard_done: false,
+            house_view: default_house_view(),
+            rules_view: default_rules_view(),
+            theme: default_theme(),
+        }
     }
 }
 
@@ -45,12 +64,26 @@ fn default_locale() -> String {
     "de".into()
 }
 
+fn default_house_view() -> String {
+    "calibrate".into()
+}
+
+fn default_rules_view() -> String {
+    "routines".into()
+}
+
+fn default_theme() -> String {
+    "dark".into()
+}
+
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Overlay {
     #[serde(default)]
     pub aliases: HashMap<String, Vec<String>>,
     #[serde(default)]
     pub preferred: Vec<String>,
+    #[serde(default)]
+    pub nlu_ignore: Vec<String>,
     #[serde(default)]
     pub areas: HashMap<String, String>,
     #[serde(default)]
@@ -77,20 +110,19 @@ pub struct Overlay {
     pub speech_bank: SpeechBank,
 }
 
+const OVERLAY_FILE: &str = "klar_nlu.json";
+
 pub fn overlay_path(dir: &Path) -> std::path::PathBuf {
-    dir.join("klar_nlu.json")
+    confined_file(dir, OVERLAY_FILE).unwrap_or_else(|_| PathBuf::from(OVERLAY_FILE))
 }
 
 pub fn load_overlay(dir: &Path) -> Overlay {
-    let raw = std::fs::read_to_string(overlay_path(dir)).unwrap_or_default();
+    let raw = read_to_string_confined(dir, OVERLAY_FILE).unwrap_or_default();
     serde_json::from_str(&raw).unwrap_or_default()
 }
 
 pub fn save_overlay(dir: &Path, overlay: &Overlay) -> std::io::Result<()> {
-    let path = overlay_path(dir);
-    let tmp = path.with_extension("json.tmp");
-    std::fs::write(&tmp, serde_json::to_vec_pretty(overlay).unwrap_or_default())?;
-    std::fs::rename(tmp, path)
+    write_atomic_confined(dir, OVERLAY_FILE, &serde_json::to_vec_pretty(overlay).unwrap_or_default())
 }
 
 pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {
@@ -104,6 +136,9 @@ pub fn apply_overlay(home: &mut HomeGraph, overlay: &Overlay) {
         }
         if overlay.preferred.iter().any(|id| id == &ent.entity_id) && !ent.tags.iter().any(|t| t == "preferred") {
             ent.tags.push("preferred".into());
+        }
+        if overlay.nlu_ignore.iter().any(|id| id == &ent.entity_id) && !ent.tags.iter().any(|t| t == "nlu_ignore") {
+            ent.tags.push("nlu_ignore".into());
         }
         if let Some(area) = overlay.areas.get(&ent.entity_id) {
             ent.area = if area.is_empty() { None } else { Some(area.clone()) };
@@ -190,6 +225,10 @@ mod tests {
                     after: "schlafzimmer".into(),
                 }],
                 graph: [("light.schlafzimmer".into(), UiPoint { x: 120.0, y: 40.0 })].into(),
+                wizard_done: true,
+                house_view: "entities".into(),
+                rules_view: "policies".into(),
+                theme: "light".into(),
             },
             ..Default::default()
         };
@@ -200,7 +239,20 @@ mod tests {
         assert_eq!(loaded.ui.dismissed, vec!["light.hue_play_1"]);
         assert_eq!(loaded.ui.last_apply[0].before.as_deref(), Some("wohnzimmer"));
         assert_eq!(loaded.ui.graph["light.schlafzimmer"].x, 120.0);
+        assert!(loaded.ui.wizard_done);
+        assert_eq!(loaded.ui.house_view, "entities");
+        assert_eq!(loaded.ui.rules_view, "policies");
+        assert_eq!(loaded.ui.theme, "light");
         let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn ui_overlay_defaults_missing_fields() {
+        let ui: UiState = serde_json::from_str(r#"{"tab":"home"}"#).unwrap();
+        assert!(!ui.wizard_done);
+        assert_eq!(ui.house_view, "calibrate");
+        assert_eq!(ui.rules_view, "routines");
+        assert_eq!(ui.theme, "dark");
     }
 
     #[test]
@@ -238,5 +290,24 @@ mod tests {
         assert!(home.entities[0].tags.iter().any(|t| t == "infra"));
         assert_eq!(home.policy.timer_hints.get(&90).map(String::as_str), Some("laundry"));
         assert!(crate::home::policy::is_infra(&home.entities[0]));
+    }
+
+    #[test]
+    fn overlay_marks_nlu_ignore() {
+        let mut home = HomeGraph {
+            entities: vec![EntityRec {
+                entity_id: "switch.create_calendar_event".into(),
+                name: "Create Calendar Event".into(),
+                domain: "switch".into(),
+                platform: None,
+                area: None,
+                aliases: Vec::new(),
+                tags: Vec::new(),
+            }],
+            ..Default::default()
+        };
+        apply_overlay(&mut home, &Overlay { nlu_ignore: vec!["switch.create_calendar_event".into()], ..Default::default() });
+        assert!(home.entities[0].tags.iter().any(|tag| tag == "nlu_ignore"));
+        assert!(crate::home::policy::is_nlu_ignored(&home.entities[0]));
     }
 }

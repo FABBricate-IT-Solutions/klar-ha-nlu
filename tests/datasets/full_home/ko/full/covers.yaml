@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - yeolo keoteun geosil
-  - keoteun geosil yeolo
+  - 열어 커튼 거실
+  - 커튼 거실 열어
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - dada keoteun geosil
-  - keoteun geosil dada
+  - 닫아 커튼 거실
+  - 커튼 거실 닫아
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - seoljeong keoteun geosil 0
-  - keoteun geosil 0
+  - 설정 커튼 거실 0
+  - 커튼 거실 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - seoljeong keoteun geosil 25
-  - keoteun geosil 25
+  - 설정 커튼 거실 25
+  - 커튼 거실 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - seoljeong keoteun geosil 40
-  - keoteun geosil 40
+  - 설정 커튼 거실 40
+  - 커튼 거실 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - seoljeong keoteun geosil 75
-  - keoteun geosil 75
+  - 설정 커튼 거실 75
+  - 커튼 거실 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - seoljeong keoteun geosil 100
-  - keoteun geosil 100
+  - 설정 커튼 거실 100
+  - 커튼 거실 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - yeolo keoteun chimsil
-  - keoteun chimsil yeolo
+  - 열어 커튼 chimsilmaster
+  - 커튼 chimsilmaster 열어
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - dada keoteun chimsil
-  - keoteun chimsil dada
+  - 닫아 커튼 chimsilmaster
+  - 커튼 chimsilmaster 닫아
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - seoljeong keoteun chimsil 0
-  - keoteun chimsil 0
+  - 설정 커튼 chimsilmaster 0
+  - 커튼 chimsilmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - seoljeong keoteun chimsil 25
-  - keoteun chimsil 25
+  - 설정 커튼 chimsilmaster 25
+  - 커튼 chimsilmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - seoljeong keoteun chimsil 40
-  - keoteun chimsil 40
+  - 설정 커튼 chimsilmaster 40
+  - 커튼 chimsilmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - seoljeong keoteun chimsil 75
-  - keoteun chimsil 75
+  - 설정 커튼 chimsilmaster 75
+  - 커튼 chimsilmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - seoljeong keoteun chimsil 100
-  - keoteun chimsil 100
+  - 설정 커튼 chimsilmaster 100
+  - 커튼 chimsilmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - yeolo keoteun chimsil2
-  - keoteun chimsil2 yeolo
+  - 열어 커튼 chimsil2
+  - 커튼 chimsil2 열어
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - dada keoteun chimsil2
-  - keoteun chimsil2 dada
+  - 닫아 커튼 chimsil2
+  - 커튼 chimsil2 닫아
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - seoljeong keoteun chimsil2 0
-  - keoteun chimsil2 0
+  - 설정 커튼 chimsil2 0
+  - 커튼 chimsil2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - seoljeong keoteun chimsil2 25
-  - keoteun chimsil2 25
+  - 설정 커튼 chimsil2 25
+  - 커튼 chimsil2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - seoljeong keoteun chimsil2 40
-  - keoteun chimsil2 40
+  - 설정 커튼 chimsil2 40
+  - 커튼 chimsil2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - seoljeong keoteun chimsil2 75
-  - keoteun chimsil2 75
+  - 설정 커튼 chimsil2 75
+  - 커튼 chimsil2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - seoljeong keoteun chimsil2 100
-  - keoteun chimsil2 100
+  - 설정 커튼 chimsil2 100
+  - 커튼 chimsil2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - yeolo keoteun chimsil3
-  - keoteun chimsil3 yeolo
+  - 열어 커튼 chimsil3
+  - 커튼 chimsil3 열어
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - dada keoteun chimsil3
-  - keoteun chimsil3 dada
+  - 닫아 커튼 chimsil3
+  - 커튼 chimsil3 닫아
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - seoljeong keoteun chimsil3 0
-  - keoteun chimsil3 0
+  - 설정 커튼 chimsil3 0
+  - 커튼 chimsil3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - seoljeong keoteun chimsil3 25
-  - keoteun chimsil3 25
+  - 설정 커튼 chimsil3 25
+  - 커튼 chimsil3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - seoljeong keoteun chimsil3 40
-  - keoteun chimsil3 40
+  - 설정 커튼 chimsil3 40
+  - 커튼 chimsil3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - seoljeong keoteun chimsil3 75
-  - keoteun chimsil3 75
+  - 설정 커튼 chimsil3 75
+  - 커튼 chimsil3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - seoljeong keoteun chimsil3 100
-  - keoteun chimsil3 100
+  - 설정 커튼 chimsil3 100
+  - 커튼 chimsil3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - yeolo keoteun garage
-  - keoteun garage yeolo
+  - 열어 커튼 garage
+  - 커튼 garage 열어
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - dada keoteun garage
-  - keoteun garage dada
+  - 닫아 커튼 garage
+  - 커튼 garage 닫아
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - seoljeong keoteun garage 0
-  - keoteun garage 0
+  - 설정 커튼 garage 0
+  - 커튼 garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - seoljeong keoteun garage 25
-  - keoteun garage 25
+  - 설정 커튼 garage 25
+  - 커튼 garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - seoljeong keoteun garage 40
-  - keoteun garage 40
+  - 설정 커튼 garage 40
+  - 커튼 garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - seoljeong keoteun garage 75
-  - keoteun garage 75
+  - 설정 커튼 garage 75
+  - 커튼 garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - seoljeong keoteun garage 100
-  - keoteun garage 100
+  - 설정 커튼 garage 100
+  - 커튼 garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - yeolo keoteun geosil
-  - keoteun geosil yeolo
+  - 열어 커튼 거실
+  - 커튼 거실 열어
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - yeolo keoteun chimsil
-  - keoteun chimsil yeolo
+  - 열어 커튼 chimsilmaster
+  - 커튼 chimsilmaster 열어

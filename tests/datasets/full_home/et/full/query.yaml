@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - mis kardin magamistuba
-  - mis magamistuba kardin
+  - mis kardin magamistubamaster
+  - mis magamistubamaster kardin
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mis kyte magamistuba
-  - mis magamistuba kyte
+  - mis kyte magamistubamaster
+  - mis magamistubamaster kyte
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mis kyte magamistuba
-  - mis magamistuba kyte
+  - mis kyte magamistubamaster
+  - mis magamistubamaster kyte
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - mis ventilaator magamistuba
-  - mis magamistuba ventilaator
+  - mis ventilaator magamistubamaster
+  - mis magamistubamaster ventilaator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - mis vali magamistuba
-  - mis magamistuba vali
+  - mis vali magamistubamaster
+  - mis magamistubamaster vali
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - mis vali magamistuba
-  - mis magamistuba vali
+  - mis vali magamistubamaster
+  - mis magamistubamaster vali
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - mis ensuite magamistuba
-  - mis magamistuba ensuite
+  - mis ensuite magamistubamaster
+  - mis magamistubamaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - mis vali magamistuba
-  - mis magamistuba vali
+  - mis vali magamistubamaster
+  - mis magamistubamaster vali
 - name: query_light.master_bath_light
   conditions:
   - type: query

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - שים חימום סלון 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- שים חימום חדרשינה 19
+- שים חימום חדרשינהmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - שים וילון חדרשינה2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - פתח וילון סלון
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- שים וילון חדרשינה 19
+- שים וילון חדרשינהmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- סגור וילון חדרשינה
+- סגור וילון חדרשינהmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- פתח וילון חדרשינה
+- פתח וילון חדרשינהmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - שים מאוורר חדרשינה2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - הדלק מאוורר משפחה
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- שים מאוורר חדרשינה 28
+- שים מאוורר חדרשינהmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- כבה מאוורר חדרשינה
+- כבה מאוורר חדרשינהmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- הדלק מאוורר חדרשינה
+- הדלק מאוורר חדרשינהmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- כבה מאוורר חדרשינה ו כבה אור מטבח
+- כבה מאוורר חדרשינהmaster then כבה אי מטבח
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- הדלק מאוורר חדרשינה ו הדלק אור מטבח
+- הדלק מאוורר חדרשינהmaster then הדלק אי מטבח
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - שים תקרה חדרשינה2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - הדלק תקרה מטבח
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- שים אור מטבח 99
+- שים אי מטבח 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- שים אור מטבח green
+- שים אי מטבח green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- כבה אור מטבח
+- כבה אי מטבח
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- הדלק אור מטבח
+- הדלק אי מטבח
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - שים אור כביסה 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - הדלק תקרה סלון
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- שים אור סלון 72
+- שים lamp סלון 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- שים אור סלון red
+- שים lamp סלון red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- כבה אור סלון
+- כבה lamp סלון
 devices/light_living_lamp::light_living_lamp_turn_on:
-- הדלק אור סלון
+- הדלק lamp סלון
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - שים אור main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - הדלק אור חדררחצהראשי
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- שים לידמיטה חדרשינה 25
+- שים לידמיטה חדרשינהmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- שים לידמיטה חדרשינה red
+- שים לידמיטה חדרשינהmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- כבה לידמיטה חדרשינה
+- כבה לידמיטה חדרשינהmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- הדלק לידמיטה חדרשינה
+- הדלק לידמיטה חדרשינהmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- שים תקרה חדרשינה 77
+- שים תקרה חדרשינהmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- שים תקרה חדרשינה blue
+- שים תקרה חדרשינהmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- כבה תקרה חדרשינה
+- כבה תקרה חדרשינהmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- הדלק תקרה חדרשינה
+- הדלק תקרה חדרשינהmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- שים אור חדרשינה 55
+- שים ankleide חדרשינהmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- שים אור חדרשינה black
+- שים ankleide חדרשינהmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- כבה אור חדרשינה
+- כבה ankleide חדרשינהmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- הדלק אור חדרשינה
+- הדלק ankleide חדרשינהmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - שים אור שירותים 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - הדלק טלוויזיה משפחה
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause טלוויזיה משפחה
+- pause tv משפחה
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - כבה טלוויזיה משפחה
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - הדלק טלוויזיה סלון
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause טלוויזיה סלון
+- pause tv סלון
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - כבה טלוויזיה סלון
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,25 +239,29 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - הדלק טלוויזיה סלון
 devices/scenes::dinner_time:
-- שים אור משפחהess 90 ו הדלק תקרה מטבח ו שים אור מטבח 80
+- שים אור משפחהess 90 then הדלק תקרה מטבח then שים אי מטבח 80
 devices/scenes::good_morning:
-- הדלק תקרה מטבח ו שים אור משפחהess 100 ו פתח וילון סלון ו פתח וילון חדרשינה
+- הדלק תקרה מטבח then שים אור משפחהess 100 then פתח וילון סלון then פתח וילון חדרשינהmaster
 devices/scenes::kids_bedtime:
-- כבה תקרה חדרשינה2 ו כבה תקרה חדרשינה3 ו כבה תקרה חדרשינה4 ו שים אור כניסהgang 15
+- כבה תקרה חדרשינה2 then כבה תקרה חדרשינה3 then כבה תקרה חדרשינה4 then שים אור כניסהgang
+  15
 devices/scenes::movie_night:
-- כבה תקרה סלון ו שים אור סלון 20 ו הדלק טלוויזיה סלון ו סגור וילון סלון
+- כבה תקרה סלון then שים lamp סלון 20 then הדלק טלוויזיה סלון then סגור וילון סלון
 devices/scripts::good_night:
-- הדלק סצנה לילה
+- כבה תקרה סלון then כבה lamp סלון then כבה אור משפחהess then כבה תקרה מטבח then כבה
+  אי מטבח then כבה תקרה משפחה then כבה אור כניסה then כבה אור כניסהgang then מנעול
+  מנעול כניסה then מנעול מנעול garage then שים חימום חדרשינהmaster 20
 devices/scripts::leaving_home:
-- הדלק סצנה יציאה
+- כבה תקרה סלון then כבה lamp סלון then כבה תקרה מטבח then כבה תקרה משפחה then כבה
+  אור כניסה then מנעול מנעול כניסה then מנעול מנעול garage then סגור וילון garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - כבה מדיח
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - הדלק מדיח
 devices/switch_dryer::switch_dryer_turn_off:
-- כבה מכונתכביסה
+- כבה dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- הדלק מכונתכביסה
+- הדלק dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - כבה מכונתכביסה
 devices/switch_washing_machine::switch_washing_machine_turn_on:

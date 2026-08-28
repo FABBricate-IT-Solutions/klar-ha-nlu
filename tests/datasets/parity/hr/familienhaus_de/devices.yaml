@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - stavi grijanje dnevni 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- stavi grijanje spavaca 19
+- stavi grijanje spavacamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - stavi zavjesa spavaca2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - otvori zavjesa dnevni
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- stavi zavjesa spavaca 19
+- stavi zavjesa spavacamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- zatvori zavjesa spavaca
+- zatvori zavjesa spavacamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- otvori zavjesa spavaca
+- otvori zavjesa spavacamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - stavi ventilator spavaca2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - upali ventilator dnevnifam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- stavi ventilator spavaca 28
+- stavi ventilator spavacamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- ugasi ventilator spavaca
+- ugasi ventilator spavacamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- upali ventilator spavaca
+- upali ventilator spavacamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- ugasi ventilator spavaca i ugasi svjetlo kuhinja
+- ugasi ventilator spavacamaster then ugasi otok kuhinja
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- upali ventilator spavaca i upali svjetlo kuhinja
+- upali ventilator spavacamaster then upali otok kuhinja
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - stavi strop spavaca2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - upali strop kuhinja
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- stavi svjetlo kuhinja 99
+- stavi otok kuhinja 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- stavi svjetlo kuhinja green
+- stavi otok kuhinja green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- ugasi svjetlo kuhinja
+- ugasi otok kuhinja
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- upali svjetlo kuhinja
+- upali otok kuhinja
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - stavi svjetlo perionica 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - upali strop dnevni
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- stavi svjetlo dnevni 72
+- stavi lamp dnevni 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- stavi svjetlo dnevni red
+- stavi lamp dnevni red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- ugasi svjetlo dnevni
+- ugasi lamp dnevni
 devices/light_living_lamp::light_living_lamp_turn_on:
-- upali svjetlo dnevni
+- upali lamp dnevni
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - stavi svjetlo main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - upali svjetlo kupaonicamaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- stavi nocni spavaca 25
+- stavi nocni spavacamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- stavi nocni spavaca red
+- stavi nocni spavacamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- ugasi nocni spavaca
+- ugasi nocni spavacamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- upali nocni spavaca
+- upali nocni spavacamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- stavi strop spavaca 77
+- stavi strop spavacamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- stavi strop spavaca blue
+- stavi strop spavacamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- ugasi strop spavaca
+- ugasi strop spavacamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- upali strop spavaca
+- upali strop spavacamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- stavi svjetlo spavaca 55
+- stavi ankleide spavacamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- stavi svjetlo spavaca black
+- stavi ankleide spavacamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- ugasi svjetlo spavaca
+- ugasi ankleide spavacamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- upali svjetlo spavaca
+- upali ankleide spavacamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - stavi svjetlo wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - upali televizor dnevnifam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause televizor dnevnifam
+- pause tv dnevnifam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - ugasi televizor dnevnifam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - upali televizor dnevni
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause televizor dnevni
+- pause tv dnevni
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - ugasi televizor dnevni
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - upali televizor dnevni
 devices/scenes::dinner_time:
-- stavi svjetlo dnevnifamess 90 i upali strop kuhinja i stavi svjetlo kuhinja 80
+- stavi svjetlo dnevnifamess 90 then upali strop kuhinja then stavi otok kuhinja 80
 devices/scenes::good_morning:
-- upali strop kuhinja i stavi svjetlo dnevnifamess 100 i otvori zavjesa dnevni i otvori
-  zavjesa spavaca
+- upali strop kuhinja then stavi svjetlo dnevnifamess 100 then otvori zavjesa dnevni
+  then otvori zavjesa spavacamaster
 devices/scenes::kids_bedtime:
-- ugasi strop spavaca2 i ugasi strop spavaca3 i ugasi strop spavaca4 i stavi svjetlo
-  hodnikgang 15
+- ugasi strop spavaca2 then ugasi strop spavaca3 then ugasi strop spavaca4 then stavi
+  svjetlo hodnikgang 15
 devices/scenes::movie_night:
-- ugasi strop dnevni i stavi svjetlo dnevni 20 i upali televizor dnevni i zatvori
+- ugasi strop dnevni then stavi lamp dnevni 20 then upali televizor dnevni then zatvori
   zavjesa dnevni
 devices/scripts::good_night:
-- upali scena noc
+- ugasi strop dnevni then ugasi lamp dnevni then ugasi svjetlo dnevnifamess then ugasi
+  strop kuhinja then ugasi otok kuhinja then ugasi strop dnevnifam then ugasi svjetlo
+  hodnik then ugasi svjetlo hodnikgang then brava brava hodnik then brava brava garage
+  then stavi grijanje spavacamaster 20
 devices/scripts::leaving_home:
-- upali scena odlazak
+- ugasi strop dnevni then ugasi lamp dnevni then ugasi strop kuhinja then ugasi strop
+  dnevnifam then ugasi svjetlo hodnik then brava brava hodnik then brava brava garage
+  then zatvori zavjesa garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - ugasi posuda
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - upali posuda
 devices/switch_dryer::switch_dryer_turn_off:
-- ugasi perilica
+- ugasi dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- upali perilica
+- upali dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - ugasi perilica
 devices/switch_washing_machine::switch_washing_machine_turn_on:

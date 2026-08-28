@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - sta zavesa spavaca
-  - sta spavaca zavesa
+  - sta zavesa spavacamaster
+  - sta spavacamaster zavesa
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - sta grejanje spavaca
-  - sta spavaca grejanje
+  - sta grejanje spavacamaster
+  - sta spavacamaster grejanje
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - sta temperatura spavaca
-  - sta spavaca temperatura
+  - sta temperatura spavacamaster
+  - sta spavacamaster temperatura
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - sta ventilator spavaca
-  - sta spavaca ventilator
+  - sta ventilator spavacamaster
+  - sta spavacamaster ventilator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - sta svetlo spavaca
-  - sta spavaca svetlo
+  - sta svetlo spavacamaster
+  - sta spavacamaster svetlo
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - sta svetlo spavaca
-  - sta spavaca svetlo
+  - sta svetlo spavacamaster
+  - sta spavacamaster svetlo
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - sta ensuite spavaca
-  - sta spavaca ensuite
+  - sta ensuite spavacamaster
+  - sta spavacamaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - sta svetlo spavaca
-  - sta spavaca svetlo
+  - sta svetlo spavacamaster
+  - sta spavacamaster svetlo
 - name: query_light.master_bath_light
   conditions:
   - type: query

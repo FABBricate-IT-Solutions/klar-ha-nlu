@@ -1,124 +1,7 @@
+use super::keys::WordKey;
 use super::Catalog;
 use std::collections::HashSet;
 use std::sync::OnceLock;
-
-/// Keyed word-list index. Merge fills `Catalog::sets` from `WORD_SOURCES` once per pack.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum WordKey {
-    Fillers,
-    ActionKeep,
-    Conjunctions,
-    Particles,
-    Affirm,
-    OrWords,
-    AllWords,
-    QueryHint,
-    QuestionStarts,
-    QuestionWords,
-    Correction,
-    CorrectionPhrases,
-    ClarifyPick,
-    LightNouns,
-    LightSingular,
-    LightPlural,
-    CoverNouns,
-    CurtainNouns,
-    FanNouns,
-    ClimateNouns,
-    MediaNouns,
-    LockNouns,
-    DoorNouns,
-    GarageWords,
-    GarageCover,
-    TimerNouns,
-    ListNouns,
-    VacuumNouns,
-    SceneNouns,
-    ScriptWords,
-    SwitchPlural,
-    DeviceSide,
-    NamedDevice,
-    Island,
-    Ceiling,
-    LampFixture,
-    Pendant,
-    Bedside,
-    Left,
-    Right,
-    Sides,
-    SingularLamp,
-    SingularLampBlock,
-    PowerWords,
-    CommandHedges,
-    SkipLight,
-    LaundryArea,
-    LaundryMachines,
-    Kitchen,
-    OpenWords,
-    CloseWords,
-    RollClose,
-    UnlockFollow,
-    CoverOpenFollow,
-    GarageLockBlock,
-    OnWords,
-    OffWords,
-    SceneNamed,
-    TempQuery,
-    TimerQuery,
-    Brightness,
-    StartWords,
-    ReplayOnOff,
-    ReplayOff,
-    SensorWords,
-    LockVerbs,
-    EntryWords,
-    Oven,
-    LaundryTimer,
-    Illuminate,
-    ListDown,
-    Chores,
-    WeakScene,
-    TimerCancel,
-    TimerPause,
-    TimerAdd,
-    ListComplete,
-    PlaybackResume,
-    VacuumStart,
-    Hours,
-    Minutes,
-    Seconds,
-    ListSkip,
-    ShoppingNames,
-    StatusWords,
-    WindowWords,
-    OpenClose,
-    LaundryHint,
-    BareSwitch,
-    OutletWords,
-    TvWords,
-    ClimateCool,
-    ClimateHeat,
-    RoleLight,
-    RoleClimate,
-    RoleMedia,
-    RoleFan,
-    Generic,
-    RoomLevel,
-    ExtraDeviceNouns,
-    ArticleOne,
-    RoomIndexNouns,
-    ChatGreet,
-    ChatThanks,
-    ChatFeeling,
-    ChatIdentity,
-    ChatTell,
-    ChatYarn,
-    ChatWorld,
-    ChatAdvice,
-    ChatOpen,
-    ChatNews,
-    ChatNewsDismiss,
-}
 
 fn empty_set() -> &'static HashSet<&'static str> {
     static EMPTY: OnceLock<HashSet<&'static str>> = OnceLock::new();
@@ -214,6 +97,30 @@ impl Catalog {
     }
     pub fn list_nouns(&self) -> &HashSet<&'static str> {
         self.words(WordKey::ListNouns)
+    }
+    pub fn calendar_nouns(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarNouns)
+    }
+    pub fn calendar_query(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarQuery)
+    }
+    pub fn calendar_create(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarCreate)
+    }
+    pub fn calendar_today(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarToday)
+    }
+    pub fn calendar_tomorrow(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarTomorrow)
+    }
+    pub fn calendar_when(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarWhen)
+    }
+    pub fn calendar_delete(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarDelete)
+    }
+    pub fn calendar_move(&self) -> &HashSet<&'static str> {
+        self.words(WordKey::CalendarMove)
     }
     pub fn vacuum_nouns(&self) -> &HashSet<&'static str> {
         self.words(WordKey::VacuumNouns)

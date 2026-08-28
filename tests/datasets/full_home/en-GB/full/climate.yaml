@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set heating bedroom 18
-  - heating bedroom 18
+  - set heating bedroommaster 18
+  - heating bedroommaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set heating bedroom 19
-  - heating bedroom 19
+  - set heating bedroommaster 19
+  - heating bedroommaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set heating bedroom 20
-  - heating bedroom 20
+  - set heating bedroommaster 20
+  - heating bedroommaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set heating bedroom 21
-  - heating bedroom 21
+  - set heating bedroommaster 21
+  - heating bedroommaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set heating bedroom 22
-  - heating bedroom 22
+  - set heating bedroommaster 22
+  - heating bedroommaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set heating bedroom 23
-  - heating bedroom 23
+  - set heating bedroommaster 23
+  - heating bedroommaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set heating bedroom 24
-  - heating bedroom 24
+  - set heating bedroommaster 24
+  - heating bedroommaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - what heating bedroom
-  - heating bedroom
+  - what heating bedroommaster
+  - heating bedroommaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - set temperature bedroom 18
-  - temperature bedroom 18
+  - set temperature bedroommaster 18
+  - temperature bedroommaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - set temperature bedroom 19
-  - temperature bedroom 19
+  - set temperature bedroommaster 19
+  - temperature bedroommaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - set temperature bedroom 20
-  - temperature bedroom 20
+  - set temperature bedroommaster 20
+  - temperature bedroommaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set temperature bedroom 21
-  - temperature bedroom 21
+  - set temperature bedroommaster 21
+  - temperature bedroommaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - set temperature bedroom 22
-  - temperature bedroom 22
+  - set temperature bedroommaster 22
+  - temperature bedroommaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - set temperature bedroom 23
-  - temperature bedroom 23
+  - set temperature bedroommaster 23
+  - temperature bedroommaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - set temperature bedroom 24
-  - temperature bedroom 24
+  - set temperature bedroommaster 24
+  - temperature bedroommaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - what temperature bedroom
-  - temperature bedroom
+  - what temperature bedroommaster
+  - temperature bedroommaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - what heating bedroom
-  - heating bedroom
+  - what heating bedroommaster
+  - heating bedroommaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - what temperature bedroom
-  - temperature bedroom
+  - what temperature bedroommaster
+  - temperature bedroommaster

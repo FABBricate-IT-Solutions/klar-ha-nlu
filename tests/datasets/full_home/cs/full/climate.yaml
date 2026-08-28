@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nastav topeni loznice 18
-  - topeni loznice 18
+  - nastav topeni loznicemaster 18
+  - topeni loznicemaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nastav topeni loznice 19
-  - topeni loznice 19
+  - nastav topeni loznicemaster 19
+  - topeni loznicemaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nastav topeni loznice 20
-  - topeni loznice 20
+  - nastav topeni loznicemaster 20
+  - topeni loznicemaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastav topeni loznice 21
-  - topeni loznice 21
+  - nastav topeni loznicemaster 21
+  - topeni loznicemaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nastav topeni loznice 22
-  - topeni loznice 22
+  - nastav topeni loznicemaster 22
+  - topeni loznicemaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nastav topeni loznice 23
-  - topeni loznice 23
+  - nastav topeni loznicemaster 23
+  - topeni loznicemaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nastav topeni loznice 24
-  - topeni loznice 24
+  - nastav topeni loznicemaster 24
+  - topeni loznicemaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - co topeni loznice
-  - topeni loznice
+  - co topeni loznicemaster
+  - topeni loznicemaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nastav klima loznice 18
-  - klima loznice 18
+  - nastav klima loznicemaster 18
+  - klima loznicemaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nastav klima loznice 19
-  - klima loznice 19
+  - nastav klima loznicemaster 19
+  - klima loznicemaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nastav klima loznice 20
-  - klima loznice 20
+  - nastav klima loznicemaster 20
+  - klima loznicemaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastav klima loznice 21
-  - klima loznice 21
+  - nastav klima loznicemaster 21
+  - klima loznicemaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nastav klima loznice 22
-  - klima loznice 22
+  - nastav klima loznicemaster 22
+  - klima loznicemaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nastav klima loznice 23
-  - klima loznice 23
+  - nastav klima loznicemaster 23
+  - klima loznicemaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nastav klima loznice 24
-  - klima loznice 24
+  - nastav klima loznicemaster 24
+  - klima loznicemaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - co klima loznice
-  - klima loznice
+  - co klima loznicemaster
+  - klima loznicemaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - co topeni loznice
-  - topeni loznice
+  - co topeni loznicemaster
+  - topeni loznicemaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - co klima loznice
-  - klima loznice
+  - co klima loznicemaster
+  - klima loznicemaster

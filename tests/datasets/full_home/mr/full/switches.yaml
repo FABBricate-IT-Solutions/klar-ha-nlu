@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - chalu bhandi svayampak
-  - bhandi svayampak chalu
+  - चालू bhandi स्वयंपाक
+  - bhandi स्वयंपाक चालू
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - band bhandi svayampak
-  - bhandi svayampak band
+  - बंद bhandi स्वयंपाक
+  - bhandi स्वयंपाक बंद
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - chalu washing dhune
-  - washing dhune chalu
+  - चालू washing dhune
+  - washing dhune चालू
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - band washing dhune
-  - washing dhune band
+  - बंद washing dhune
+  - washing dhune बंद
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - chalu dryer dhune
-  - dryer dhune chalu
+  - चालू dryer dhune
+  - dryer dhune चालू
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - band dryer dhune
-  - dryer dhune band
+  - बंद dryer dhune
+  - dryer dhune बंद
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - chalu rangehood svayampak
-  - rangehood svayampak chalu
+  - चालू rangehood स्वयंपाक
+  - rangehood स्वयंपाक चालू
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - band rangehood svayampak
-  - rangehood svayampak band
+  - बंद rangehood स्वयंपाक
+  - rangehood स्वयंपाक बंद
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - chalu pankhabad mukhyasnan
-  - pankhabad mukhyasnan chalu
+  - चालू पंखाbad mukhyasnan
+  - पंखाbad mukhyasnan चालू
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - band pankhabad mukhyasnan
-  - pankhabad mukhyasnan band
+  - बंद पंखाbad mukhyasnan
+  - पंखाbad mukhyasnan बंद
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - chalu pankhabad main bath
-  - pankhabad main bath chalu
+  - चालू पंखाbad main bath
+  - पंखाbad main bath चालू
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - band pankhabad main bath
-  - pankhabad main bath band
+  - बंद पंखाbad main bath
+  - पंखाbad main bath बंद

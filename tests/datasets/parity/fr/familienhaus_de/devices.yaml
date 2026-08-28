@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - mets chauffage salon 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- mets chauffage chambre 19
+- mets chauffage chambremaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - mets store chambre2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - ouvre store salon
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- mets store chambre 19
+- mets store chambremaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- ferme store chambre
+- ferme store chambremaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- ouvre store chambre
+- ouvre store chambremaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - mets ventilateur chambre2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - allume ventilateur famille
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- mets ventilateur chambre 28
+- mets ventilateur chambremaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- eteins ventilateur chambre
+- eteins ventilateur chambremaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- allume ventilateur chambre
+- allume ventilateur chambremaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- eteins ventilateur chambre puis eteins lumiere cuisine
+- eteins ventilateur chambremaster puis eteins ilot cuisine
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- allume ventilateur chambre puis allume lumiere cuisine
+- allume ventilateur chambremaster puis allume ilot cuisine
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - mets plafond chambre2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - allume plafond cuisine
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- mets lumiere cuisine 99
+- mets ilot cuisine 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- mets lumiere cuisine vert
+- mets ilot cuisine vert
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- eteins lumiere cuisine
+- eteins ilot cuisine
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- allume lumiere cuisine
+- allume ilot cuisine
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - mets lumiere buanderie 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - allume plafond salon
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- mets lumiere salon 72
+- mets lampe salon 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- mets lumiere salon rouge
+- mets lampe salon rouge
 devices/light_living_lamp::light_living_lamp_turn_off:
-- eteins lumiere salon
+- eteins lampe salon
 devices/light_living_lamp::light_living_lamp_turn_on:
-- allume lumiere salon
+- allume lampe salon
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - mets lumiere salledebain 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - allume lumiere bainmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- mets chevet chambre 25
+- mets chevet chambremaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- mets chevet chambre rouge
+- mets chevet chambremaster rouge
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- eteins chevet chambre
+- eteins chevet chambremaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- allume chevet chambre
+- allume chevet chambremaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- mets plafond chambre 77
+- mets plafond chambremaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- mets plafond chambre bleu
+- mets plafond chambremaster bleu
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- eteins plafond chambre
+- eteins plafond chambremaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- allume plafond chambre
+- allume plafond chambremaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- mets lumiere chambre 55
+- mets ankleide chambremaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- mets lumiere chambre noir
+- mets ankleide chambremaster noir
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- eteins lumiere chambre
+- eteins ankleide chambremaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- allume lumiere chambre
+- allume ankleide chambremaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - mets lumiere toilettes 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - allume tv salon
 devices/scenes::dinner_time:
-- mets lumiere salle 90 puis allume plafond cuisine puis mets lumiere cuisine 80
+- mets lumiere salle 90 puis allume plafond cuisine puis mets ilot cuisine 80
 devices/scenes::good_morning:
 - allume plafond cuisine puis mets lumiere salle 100 puis ouvre store salon puis ouvre
-  store chambre
+  store chambremaster
 devices/scenes::kids_bedtime:
 - eteins plafond chambre2 puis eteins plafond chambre3 puis eteins plafond chambre4
   puis mets lumiere couloir 15
 devices/scenes::movie_night:
-- eteins plafond salon puis mets lumiere salon 20 puis allume tv salon puis ferme
-  store salon
+- eteins plafond salon puis mets lampe salon 20 puis allume tv salon puis ferme store
+  salon
 devices/scripts::good_night:
-- allume scene nuit
+- eteins plafond salon puis eteins lampe salon puis eteins lumiere salle puis eteins
+  plafond cuisine puis eteins ilot cuisine puis eteins plafond famille puis eteins
+  lumiere entree puis eteins lumiere couloir puis verrouille serrure entree puis verrouille
+  serrure garage puis mets chauffage chambremaster 20
 devices/scripts::leaving_home:
-- allume scene partir
+- eteins plafond salon puis eteins lampe salon puis eteins plafond cuisine puis eteins
+  plafond famille puis eteins lumiere entree puis verrouille serrure entree puis verrouille
+  serrure garage puis ferme store garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - eteins lavevaisselle
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - allume lavevaisselle
 devices/switch_dryer::switch_dryer_turn_off:
-- eteins lave
+- eteins sechelinge
 devices/switch_dryer::switch_dryer_turn_on:
-- allume lave
+- allume sechelinge
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - eteins lave
 devices/switch_washing_machine::switch_washing_machine_turn_on:

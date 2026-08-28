@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - nyisd fuggony haloszoba
-  - fuggony haloszoba nyisd
+  - nyisd fuggony haloszobamaster
+  - fuggony haloszobamaster nyisd
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - csukd fuggony haloszoba
-  - fuggony haloszoba csukd
+  - csukd fuggony haloszobamaster
+  - fuggony haloszobamaster csukd
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - allitsd fuggony haloszoba 0
-  - fuggony haloszoba 0
+  - allitsd fuggony haloszobamaster 0
+  - fuggony haloszobamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - allitsd fuggony haloszoba 25
-  - fuggony haloszoba 25
+  - allitsd fuggony haloszobamaster 25
+  - fuggony haloszobamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - allitsd fuggony haloszoba 40
-  - fuggony haloszoba 40
+  - allitsd fuggony haloszobamaster 40
+  - fuggony haloszobamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - allitsd fuggony haloszoba 75
-  - fuggony haloszoba 75
+  - allitsd fuggony haloszobamaster 75
+  - fuggony haloszobamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - allitsd fuggony haloszoba 100
-  - fuggony haloszoba 100
+  - allitsd fuggony haloszobamaster 100
+  - fuggony haloszobamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - nyisd fuggony haloszoba
-  - fuggony haloszoba nyisd
+  - nyisd fuggony haloszobamaster
+  - fuggony haloszobamaster nyisd

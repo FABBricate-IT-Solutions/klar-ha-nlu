@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - prizgi luc spalnica
+  - prizgi luc spalnicamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - ugasni luc spalnica
+  - ugasni luc spalnicamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - prizgi strop spalnica
+  - prizgi strop spalnicamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - ugasni strop spalnica
+  - ugasni strop spalnicamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - prizgi nocna spalnica
+  - prizgi nocna spalnicamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - ugasni nocna spalnica
+  - ugasni nocna spalnicamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

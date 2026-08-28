@@ -8,6 +8,7 @@ from lang_packs.lexicons_rest import leftover
 from lang_packs.lexicons_script import script
 from lang_packs.lexicons_slavic import slavic
 from lang_packs.lexicons_west import west
+from lang_packs.native_apply import apply_native
 from lang_packs.speech_tmpl import chat, speech
 from lang_packs.voices import triples
 
@@ -224,3 +225,5 @@ ALL_CORES = [
 ]
 
 ALL_CORES.extend(west() + north() + slavic() + script() + leftover())
+for _core in ALL_CORES:
+    apply_native(_core)

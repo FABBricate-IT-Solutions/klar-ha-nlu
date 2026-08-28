@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - chalu timer 10 min
-  - timer 10 min
+  - चालू टाइमर 10 min
+  - टाइमर 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - chalu timer 45 min
-  - timer 45 min
+  - चालू टाइमर 45 min
+  - टाइमर 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - band timer
-  - timer band
+  - बंद टाइमर
+  - टाइमर बंद
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - chalu timer 5 min
-  - timer 5 min
+  - चालू टाइमर 5 min
+  - टाइमर 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - chalu timer 15 min
-  - timer 15 min
+  - चालू टाइमर 15 min
+  - टाइमर 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - chalu timer 20 min
-  - timer 20 min
+  - चालू टाइमर 20 min
+  - टाइमर 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - chalu timer 30 min
-  - timer 30 min
+  - चालू टाइमर 30 min
+  - टाइमर 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - chalu timer 60 min
-  - timer 60 min
+  - चालू टाइमर 60 min
+  - टाइमर 60 min

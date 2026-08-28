@@ -6,6 +6,243 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## Unreleased
+
+### Features
+
+- localize the operator UI for every compiled Assist language
+- operator UI follows the integration language instead of a second picker
+- add SearchSelect pickers for phrases, policies, and routines
+- add a six-step setup wizard overlay
+- use hash routes and a rail as the default operator chrome
+- persist journal tokens for a privacy-safe heard line
+- teach a phrase from a miss on Home and Gespräche
+- rewrite Graph as a floor/room/device map plus keyboard list
+- restyle Lab to Klar tokens while keeping pipeline and raw JSON
+- add a Klar light theme (same Plex, terracotta, and square chrome)
+- rename NLU-RAG chrome to house context on miss (engine unchanged)
+
+### Bug Fixes
+
+- keep Supervisor-prefixed app hostnames (`xyz-klar-nlu`) instead of rewriting them to `klar-nlu`
+- restore Lab Analyze for parse traces that include tokens and unknown fields
+- hide dismissed Mapping leftover cards
+
+## [2026.8.47](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.46...2026.8.47) - 2026-08-28
+
+
+
+### Features
+
+- parse Assist STT native script and keep LLM replies in-pack ([#131](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/131))([082296a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/082296a6042aa68ee6f1f79e1dc0100393de8861))
+
+
+### Bug Fixes
+
+- treat ac as cooling and label parity fixtures more precisely ([e4ab033](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e4ab033fce3c3d951ec2a4fc73011def761b21b7))
+- close native-script parity gaps for laundry, unlock, and lists ([4896458](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4896458ce112d8d598958d063b96992e75b05151))
+- keep German home-graph tokens out of generated packs ([bed41bb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bed41bb5238d79a9d4d8e862cd104bc2285fb27e))
+- keep music nouns off the TV pool and recover island ASR ([94f57d6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/94f57d66526a321a8d177586a38992909bb7c407))
+- confine overlay, bundle, and journal files under the data dir ([84e7355](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/84e7355d38d215961546360dd31280422027bc38))
+
+
+### Other
+
+- require a green pipeline before any PR merge ([#130](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/130))([4975f62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4975f620fa2d6429ffca2be5c2298fdb1b7caf78))
+
+## [2026.8.46](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.45...2026.8.46) - 2026-08-27
+
+
+
+### Features
+
+- list, create, delete, and move calendar events in 67 Assist languages. Follow-ups stay in Home Assistant, so “delete that” and “move it to Friday” work after a list without series, attendees, or reminders ([#128](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/128))([2c57f4e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2c57f4e6caf2a39e51c768caea3563e2b38930b1))
+
+
+### Other
+
+- Merge pull request #128 from FABBricate-IT-Solutions/feat/calendar-delete-move([9309f0f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9309f0f937be6817c97312e9330802678556bd9a))
+
+## [2026.8.45](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.44...2026.8.45) - 2026-08-27
+
+
+
+### Documentation
+
+- bump rust from 1.97-bookworm to 1.98-bookworm (#125)([af96514](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/af9651497d102188391f16aa7246f6e5af380638))
+
+
+### Other
+
+- bump vite from 8.2.1 to 8.2.2 in /web in the npm-patch group (#127)([ce2e05d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ce2e05d1f07ab98ffdb3abd0fe78101ab9eac2e4))
+
+## [2026.8.44](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.43...2026.8.44) - 2026-08-22
+
+
+
+### Features
+
+- localize the HA UI for every Assist locale([a8de462](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a8de46258c2393c2ba4f6c49e0787192e2d33e46))
+
+- add a quiet chime switch for simple light replies([dccb80a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/dccb80a3cc14259c3c55d97e4cea6bfb84cccc19))
+
+
+### Other
+
+- Merge pull request #124 from FABBricate-IT-Solutions/feat/quiet-ack-main([f6acd98](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f6acd98703604c3b9a0ce64b25afb4f809242556))
+
+## [2026.8.43](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.42...2026.8.43) - 2026-08-20
+
+
+
+### Documentation
+
+- spell out HACS vs App vs bundled engine([2125e2d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2125e2dbe6cd553b5765b03fa334f92563d52ba1))
+
+
+### Other
+
+- Merge pull request #122 from FABBricate-IT-Solutions/docs/clarify-hacs-vs-app([81d6d1c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/81d6d1c4abd4344f2f2f98a72628b2b37b9d4972))
+
+## [2026.8.42](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.41...2026.8.42) - 2026-08-20
+
+
+
+### Bug Fixes
+
+- run the bundled engine on Alpine Home Assistant Core([f91b0c6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f91b0c6e958eacf861b5c7f7b39e2603ee5ebe01))
+
+
+### Other
+
+- Merge pull request #121 from FABBricate-IT-Solutions/fix/bundled-musl-engine([4539012](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4539012094d9e5386443f5e907dc6d53f4caebbd))
+
+## [2026.8.41](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.40...2026.8.41) - 2026-08-20
+
+
+
+### Bug Fixes
+
+- pack the engine tarball member as klar([3ae4060](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3ae406053dfec889cc31b6d78b4ffbfe1541d857))
+
+
+### Other
+
+- Merge pull request #120 from FABBricate-IT-Solutions/fix/archive-klar-binary([2ca0d44](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/2ca0d448f477265ef4cf0cb9c117c93d14852992))
+
+## [2026.8.40](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.39...2026.8.40) - 2026-08-19
+
+
+
+### Bug Fixes
+
+- keep compound.rs under the 500-line gate([92ce6e7](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/92ce6e7dc9122cca1336f197e77aed9f372190b2))
+
+- speak final TTS and stream it by sentence([6201129](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/620112940e02d0c20187f722cd5c11ac9cad56d4))
+
+- match umlaut rooms like Küche to HA slugs([fff3d05](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fff3d053b1afbf9ddfafb2683ea18a0f4e05224d))
+
+
+### Documentation
+
+- show 67 languages and the follow-up banner([e9802c8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e9802c838e917c8539685a4c22a24b5da71ce76b))
+
+
+### Miscellaneous
+
+- stop shipping armv7 after Home Assistant dropped 32-bit([a262240](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a2622405d3c66895ec9b2ca4ccbafe1eb31e8287))
+
+
+### Other
+
+- Merge pull request #118 from FABBricate-IT-Solutions/drop/armv7([569a6b8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/569a6b83bcdd547630e9ac8634434730318c816d))
+
+- Merge pull request #117 from FABBricate-IT-Solutions/fix/tts-stream-umlaut([428a2ef](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/428a2ef773bcdbbe9f8860fa8cc10d8e91817155))
+
+## [2026.8.39](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.38...2026.8.39) - 2026-08-19
+
+
+
+### Other
+
+- Merge pull request #116 from FABBricate-IT-Solutions/release/promote-personality([a5c0a13](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a5c0a13ec1076449ec8df6c2532b9b7f4a18ba57))
+
+- Merge remote-tracking branch 'origin/main' into release/promote-personality([21125cc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/21125cc97e6e4926ae17e44f4915cc82705401e2))
+
+## [2026.8.38](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.37...2026.8.38) - 2026-08-19
+
+
+
+### Other
+
+- Merge pull request #114 from FABBricate-IT-Solutions/release/promote-nlu-rag([97f6031](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/97f603162ac57d1cfa04b4753ccef581e5bbb2f8))
+
+- Merge remote-tracking branch 'origin/main' into release/promote-nlu-rag([616020b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/616020b3cc1ad42d7046c237100b01ae1d1f7f36))
+
+## [2026.8.37](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.36...2026.8.37) - 2026-08-19
+
+
+
+### Other
+
+- Merge pull request #112 from FABBricate-IT-Solutions/release/promote-wiedergabe([3c65d9b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3c65d9bcf0feef059b5d2ca5d1a111dd4e1f905c))
+
+- Merge remote-tracking branch 'origin/main' into release/promote-wiedergabe([35b1aff](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/35b1affb4d92f6d080f5f8594494d57451cfe6e6))
+
+## [2026.8.36](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.35...2026.8.36) - 2026-08-19
+
+
+
+### Other
+
+- Merge pull request #110 from FABBricate-IT-Solutions/release/promote-staging([4cbc4fa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4cbc4facb509107250789472d0e96010abd566f1))
+
+- Merge remote-tracking branch 'origin/main' into release/promote-staging([4bf2dec](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4bf2dec4a89ff348bf228a1a9bf4652a49d5140d))
+
+## [2026.8.35](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.34...2026.8.35) - 2026-08-18
+
+
+
+### Bug Fixes
+
+- options flow 400 on Configure (#108)([1e75383](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1e753831d7c7d0e7a3409ffa9c2463affb794026))
+
+## [2026.8.34](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.33...2026.8.34) - 2026-08-18
+
+
+
+### Documentation
+
+- bump rust from 1.85-bookworm to 1.97-bookworm (#104)([4d5bf80](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4d5bf804d2bc7685d84fcc815cb7fa6837237cc5))
+
+
+### Other
+
+- bump uuid from 1.24.0 to 1.24.1 in the rust-patch group (#105)([828d1cb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/828d1cb462e21644b63ab3779cc88a3fe41399c1))
+
+## [2026.8.33](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.32...2026.8.33) - 2026-08-18
+
+
+
+### Other
+
+- Merge pull request #103 from FABBricate-IT-Solutions/release/promote-staging([4e5b3c6](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4e5b3c682ee7f2dd3ca39a15ef0146dc6bfd58ce))
+
+- main 2026.8.32 into staging for the stable cut([d572987](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d57298791c7c8fc72ca9af38d24b5355af106ab0))
+
+## [2026.8.32](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.31...2026.8.32) - 2026-08-18
+
+
+
+### Features
+
+- add a Stable/Staging switch on main([bb4f8f1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bb4f8f13117b79d1477bc288cc85fadcd5fd9c19))
+
+
+### Other
+
+- Merge pull request #97 from FABBricate-IT-Solutions/feat/simple-channel-switch-main([b106172](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b1061725570f205f4df3ff1b32baeff5faf5b089))
+
 ## [2026.8.31](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.30...2026.8.31) - 2026-08-17
 
 

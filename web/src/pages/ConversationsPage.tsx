@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
+import { Empty } from "../components/common";
+import { SetupHint } from "../components/SetupHint";
+import { canTeachFromMiss, TeachFromMiss, teachIntentFromNames } from "../components/TeachFromMiss";
+import { WhyDrawer, canJournalReplay, journalHeard, whyThisBand } from "../components/WhyDrawer";
 import type { Messages } from "../i18n";
 import type { ConversationTurn } from "../types";
 
@@ -10,9 +14,24 @@ function asTurns(rows: unknown): ConversationTurn[] {
   return rows.filter((row): row is ConversationTurn => !!row && typeof row === "object");
 }
 
-export function ConversationsPage({ t, onReplay }: { t: Messages; onReplay: (text: string) => void }) {
+function turnTitle(turn: ConversationTurn, locale: string | undefined): string {
+  const when = turn.ts_ms ? new Date(turn.ts_ms).toLocaleString(locale) : "";
+  return [when, turn.decision].filter(Boolean).join(" · ");
+}
+
+export function ConversationsPage({
+  t,
+  onReplay,
+  onTeach,
+}: {
+  t: Messages;
+  onReplay: (text: string) => void;
+  onTeach?: (heard: string) => void;
+}) {
   const [turns, setTurns] = useState<ConversationTurn[] | null>(null);
   const [error, setError] = useState("");
+  const [why, setWhy] = useState<ConversationTurn | null>(null);
+  const locale = t.replay === "Nochmal" ? "de" : undefined;
   useEffect(() => {
     api.conversations()
       .then((rows) => setTurns(asTurns(rows)))
@@ -21,16 +40,10 @@ export function ConversationsPage({ t, onReplay }: { t: Messages; onReplay: (tex
         setError(String(err));
       });
   }, []);
-  const grouped = useMemo(() => {
-    const map = new Map<string, ConversationTurn[]>();
-    for (const turn of [...(turns || [])].sort((a, b) => (b.ts_ms || 0) - (a.ts_ms || 0))) {
-      const id = turn.conversation_id || "unknown";
-      const list = map.get(id) || [];
-      list.push(turn);
-      map.set(id, list);
-    }
-    return [...map.entries()];
-  }, [turns]);
+  const items = useMemo(
+    () => [...(turns || [])].sort((a, b) => (b.ts_ms || 0) - (a.ts_ms || 0)),
+    [turns],
+  );
   return (
     <div className="page">
       <section className="hero">
@@ -41,27 +54,45 @@ export function ConversationsPage({ t, onReplay }: { t: Messages; onReplay: (tex
       </section>
       {error && <div className="card danger">{error}</div>}
       {turns === null && !error && <div className="card">{t.loading}</div>}
-      {turns && grouped.length === 0 && !error && <div className="card">{t.noConversations}</div>}
-      <div className="timeline">
-        {grouped.map(([id, items]) => (
-          <section className="card" key={id} style={{ marginBottom: 16 }}>
-            <h3 className="mono">{id}</h3>
-            {items.map((turn) => (
-              <div className="timeline-item" key={`${id}-${turn.ts_ms}`}>
-                <div className="muted">{new Date(turn.ts_ms).toLocaleString()}</div>
-                <div>
-                  <span className={`chip ${turn.decision === "execute" ? "intent" : ""}`}>{turn.decision}</span>
-                  {turn.text && <p>{turn.text}</p>}
-                  {turn.preferred_area && <p className="caption">{t.heardIn}: {turn.preferred_area}</p>}
-                  <p className="muted">{turn.speech || turn.confirm_prompt || ""}</p>
-                  {(turn.last_names ?? []).length > 0 && <p className="mono">{turn.last_names.join(" · ")}</p>}
-                </div>
-                <button className="ghost" onClick={() => onReplay(turn.text || "")} disabled={!turn.text}>{t.replay}</button>
+      {turns && items.length === 0 && !error && (
+        <Empty text={t.noConversations} action={<SetupHint t={t} />} />
+      )}
+      {items.map((turn, index) => {
+        const heard = journalHeard(turn);
+        return (
+          <article className="card" key={`${turn.conversation_id}-${turn.ts_ms}-${index}`} style={{ marginBottom: 16 }}>
+            <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+              <h2>{turnTitle(turn, locale)}</h2>
+              <div className="row">
+                <button className="ghost" type="button" onClick={() => setWhy(turn)}>{whyThisBand(t)}</button>
+                <button
+                  className="ghost"
+                  type="button"
+                  onClick={() => onReplay(heard)}
+                  disabled={!canJournalReplay(turn)}
+                >
+                  {t.replay}
+                </button>
               </div>
-            ))}
-          </section>
-        ))}
-      </div>
+            </div>
+            {heard ? <p>{heard}</p> : <p className="muted">—</p>}
+            {turn.speech ? <p className="muted">{turn.speech}</p> : null}
+            {turn.preferred_area ? <p className="caption">{t.heardIn}: {turn.preferred_area}</p> : null}
+            {canTeachFromMiss(turn) && (
+              <div style={{ marginTop: 12 }}>
+                <TeachFromMiss
+                  heard={heard}
+                  t={t}
+                  onReplay={onReplay}
+                  onTeach={onTeach}
+                  intent={teachIntentFromNames(turn.last_names ?? [])}
+                />
+              </div>
+            )}
+          </article>
+        );
+      })}
+      {why && <WhyDrawer turn={why} t={t} onClose={() => setWhy(null)} />}
     </div>
   );
 }

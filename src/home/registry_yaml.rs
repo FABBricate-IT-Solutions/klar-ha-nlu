@@ -1,4 +1,4 @@
-use crate::parse::normalize::fold_umlaut;
+use crate::parse::normalize::{fold_marks, fold_umlaut};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph, HomePolicy};
 use serde::Deserialize;
 use std::collections::HashMap;
@@ -269,6 +269,7 @@ pub(crate) fn merge_area_aliases(area_id: &str, name: &str, existing: Vec<String
     let mut aliases = existing;
     aliases.push(area_id.to_string());
     aliases.push(fold_umlaut(name));
+    aliases.push(fold_marks(name));
     for part in name.split_whitespace() {
         let p = fold_umlaut(part);
         if p.len() > 3 && !GENERIC_NAME.contains(&p.as_str()) {

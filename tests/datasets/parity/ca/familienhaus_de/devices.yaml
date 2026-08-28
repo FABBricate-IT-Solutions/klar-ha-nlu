@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - posa calefaccio sala 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- posa calefaccio habitacio 19
+- posa calefaccio habitaciomaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - posa cortina habitacio2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - obri cortina sala
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- posa cortina habitacio 19
+- posa cortina habitaciomaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- tanca cortina habitacio
+- tanca cortina habitaciomaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- obri cortina habitacio
+- obri cortina habitaciomaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - posa ventilador habitacio2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - encen ventilador salaestar
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- posa ventilador habitacio 28
+- posa ventilador habitaciomaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- apaga ventilador habitacio
+- apaga ventilador habitaciomaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- encen ventilador habitacio
+- encen ventilador habitaciomaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- apaga ventilador habitacio i apaga llum cuina
+- apaga ventilador habitaciomaster then apaga illa cuina
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- encen ventilador habitacio i encen llum cuina
+- encen ventilador habitaciomaster then encen illa cuina
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - posa sostre habitacio2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - encen sostre cuina
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- posa llum cuina 99
+- posa illa cuina 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- posa llum cuina verd
+- posa illa cuina verd
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- apaga llum cuina
+- apaga illa cuina
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- encen llum cuina
+- encen illa cuina
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - posa llum bugaderia 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - encen sostre sala
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- posa llum sala 72
+- posa lampada sala 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- posa llum sala vermell
+- posa lampada sala vermell
 devices/light_living_lamp::light_living_lamp_turn_off:
-- apaga llum sala
+- apaga lampada sala
 devices/light_living_lamp::light_living_lamp_turn_on:
-- encen llum sala
+- encen lampada sala
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - posa llum main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - encen llum banymaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- posa tauleta habitacio 25
+- posa tauleta habitaciomaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- posa tauleta habitacio vermell
+- posa tauleta habitaciomaster vermell
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- apaga tauleta habitacio
+- apaga tauleta habitaciomaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- encen tauleta habitacio
+- encen tauleta habitaciomaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- posa sostre habitacio 77
+- posa sostre habitaciomaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- posa sostre habitacio blau
+- posa sostre habitaciomaster blau
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- apaga sostre habitacio
+- apaga sostre habitaciomaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- encen sostre habitacio
+- encen sostre habitaciomaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- posa llum habitacio 55
+- posa ankleide habitaciomaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- posa llum habitacio negre
+- posa ankleide habitaciomaster negre
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- apaga llum habitacio
+- apaga ankleide habitaciomaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- encen llum habitacio
+- encen ankleide habitaciomaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - posa llum lavabo 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,27 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - encen tv sala
 devices/scenes::dinner_time:
-- posa llum salaestaress 90 i encen sostre cuina i posa llum cuina 80
+- posa llum salaestaress 90 then encen sostre cuina then posa illa cuina 80
 devices/scenes::good_morning:
-- encen sostre cuina i posa llum salaestaress 100 i obri cortina sala i obri cortina
-  habitacio
+- encen sostre cuina then posa llum salaestaress 100 then obri cortina sala then obri
+  cortina habitaciomaster
 devices/scenes::kids_bedtime:
-- apaga sostre habitacio2 i apaga sostre habitacio3 i apaga sostre habitacio4 i posa
-  llum entradagang 15
+- apaga sostre habitacio2 then apaga sostre habitacio3 then apaga sostre habitacio4
+  then posa llum entradagang 15
 devices/scenes::movie_night:
-- apaga sostre sala i posa llum sala 20 i encen tv sala i tanca cortina sala
+- apaga sostre sala then posa lampada sala 20 then encen tv sala then tanca cortina
+  sala
 devices/scripts::good_night:
-- encen escena nit
+- apaga sostre sala then apaga lampada sala then apaga llum salaestaress then apaga
+  sostre cuina then apaga illa cuina then apaga sostre salaestar then apaga llum entrada
+  then apaga llum entradagang then bloqueja pany entrada then bloqueja pany garage
+  then posa calefaccio habitaciomaster 20
 devices/scripts::leaving_home:
-- encen escena sortida
+- apaga sostre sala then apaga lampada sala then apaga sostre cuina then apaga sostre
+  salaestar then apaga llum entrada then bloqueja pany entrada then bloqueja pany
+  garage then tanca cortina garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - apaga eixugadora
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - encen eixugadora
 devices/switch_dryer::switch_dryer_turn_off:
-- apaga rentadora
+- apaga dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- encen rentadora
+- encen dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - apaga rentadora
 devices/switch_washing_machine::switch_washing_machine_turn_on:

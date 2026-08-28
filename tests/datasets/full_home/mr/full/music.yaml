@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajav queen baithak
-  - vajav queen tivi baithak
+  - चालव queen बैठक
+  - चालव queen टीव्ही बैठक
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - vajav album rumours by fleetwood mac baithak
+  - चालव album rumours by fleetwood mac बैठक
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajav queen radio mode baithak
+  - चालव queen radio mode बैठक
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - vajav bohemian rhapsody queue baithak
+  - चालव bohemian rhapsody queue बैठक
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - kay tivi baithak
-  - kay track baithak
+  - काय टीव्ही बैठक
+  - काय track बैठक
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi baithak 10
-  - tivi baithak 10
+  - सेट टीव्ही बैठक 10
+  - टीव्ही बैठक 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi baithak 20
-  - tivi baithak 20
+  - सेट टीव्ही बैठक 20
+  - टीव्ही बैठक 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi baithak 30
-  - tivi baithak 30
+  - सेट टीव्ही बैठक 30
+  - टीव्ही बैठक 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi baithak 50
-  - tivi baithak 50
+  - सेट टीव्ही बैठक 50
+  - टीव्ही बैठक 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi baithak 80
-  - tivi baithak 80
+  - सेट टीव्ही बैठक 80
+  - टीव्ही बैठक 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track baithak
+  - next track बैठक
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track baithak
+  - previous track बैठक
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajav queen svayampak
-  - vajav queen tivi svayampak
+  - चालव queen स्वयंपाक
+  - चालव queen टीव्ही स्वयंपाक
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vajav beatles baithak
-  - vajav beatles tivi baithak
+  - चालव beatles बैठक
+  - चालव beatles टीव्ही बैठक
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vajav radiohead baithak
-  - vajav radiohead tivi baithak
+  - चालव radiohead बैठक
+  - चालव radiohead टीव्ही बैठक
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vajav abba baithak
-  - vajav abba tivi baithak
+  - चालव abba बैठक
+  - चालव abba टीव्ही बैठक
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vajav coldplay baithak
-  - vajav coldplay tivi baithak
+  - चालव coldplay बैठक
+  - चालव coldplay टीव्ही बैठक
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vajav adele baithak
-  - vajav adele tivi baithak
+  - चालव adele बैठक
+  - चालव adele टीव्ही बैठक
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vajav prince baithak
-  - vajav prince tivi baithak
+  - चालव prince बैठक
+  - चालव prince टीव्ही बैठक
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vajav bowie baithak
-  - vajav bowie tivi baithak
+  - चालव bowie बैठक
+  - चालव bowie टीव्ही बैठक
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vajav nirvana baithak
-  - vajav nirvana tivi baithak
+  - चालव nirvana बैठक
+  - चालव nirvana टीव्ही बैठक
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vajav eagles baithak
-  - vajav eagles tivi baithak
+  - चालव eagles बैठक
+  - चालव eagles टीव्ही बैठक
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vajav madonna baithak
-  - vajav madonna tivi baithak
+  - चालव madonna बैठक
+  - चालव madonna टीव्ही बैठक
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vajav mozart baithak
-  - vajav mozart tivi baithak
+  - चालव mozart बैठक
+  - चालव mozart टीव्ही बैठक
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vajav daft punk baithak
-  - vajav daft punk tivi baithak
+  - चालव daft punk बैठक
+  - चालव daft punk टीव्ही बैठक
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vajav biafra baithak
-  - vajav biafra tivi baithak
+  - चालव biafra बैठक
+  - चालव biafra टीव्ही बैठक
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajav queen svayampak
-  - vajav queen tivi svayampak
+  - चालव queen स्वयंपाक
+  - चालव queen टीव्ही स्वयंपाक
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vajav beatles svayampak
-  - vajav beatles tivi svayampak
+  - चालव beatles स्वयंपाक
+  - चालव beatles टीव्ही स्वयंपाक
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vajav radiohead svayampak
-  - vajav radiohead tivi svayampak
+  - चालव radiohead स्वयंपाक
+  - चालव radiohead टीव्ही स्वयंपाक
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vajav abba svayampak
-  - vajav abba tivi svayampak
+  - चालव abba स्वयंपाक
+  - चालव abba टीव्ही स्वयंपाक
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vajav coldplay svayampak
-  - vajav coldplay tivi svayampak
+  - चालव coldplay स्वयंपाक
+  - चालव coldplay टीव्ही स्वयंपाक
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vajav adele svayampak
-  - vajav adele tivi svayampak
+  - चालव adele स्वयंपाक
+  - चालव adele टीव्ही स्वयंपाक
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vajav prince svayampak
-  - vajav prince tivi svayampak
+  - चालव prince स्वयंपाक
+  - चालव prince टीव्ही स्वयंपाक
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vajav bowie svayampak
-  - vajav bowie tivi svayampak
+  - चालव bowie स्वयंपाक
+  - चालव bowie टीव्ही स्वयंपाक
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vajav nirvana svayampak
-  - vajav nirvana tivi svayampak
+  - चालव nirvana स्वयंपाक
+  - चालव nirvana टीव्ही स्वयंपाक
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vajav eagles svayampak
-  - vajav eagles tivi svayampak
+  - चालव eagles स्वयंपाक
+  - चालव eagles टीव्ही स्वयंपाक
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vajav madonna svayampak
-  - vajav madonna tivi svayampak
+  - चालव madonna स्वयंपाक
+  - चालव madonna टीव्ही स्वयंपाक
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vajav mozart svayampak
-  - vajav mozart tivi svayampak
+  - चालव mozart स्वयंपाक
+  - चालव mozart टीव्ही स्वयंपाक
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vajav daft punk svayampak
-  - vajav daft punk tivi svayampak
+  - चालव daft punk स्वयंपाक
+  - चालव daft punk टीव्ही स्वयंपाक
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vajav biafra svayampak
-  - vajav biafra tivi svayampak
+  - चालव biafra स्वयंपाक
+  - चालव biafra टीव्ही स्वयंपाक
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - vajav queen office
-  - vajav queen tivi office
+  - चालव queen office
+  - चालव queen टीव्ही office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - vajav beatles office
-  - vajav beatles tivi office
+  - चालव beatles office
+  - चालव beatles टीव्ही office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - vajav radiohead office
-  - vajav radiohead tivi office
+  - चालव radiohead office
+  - चालव radiohead टीव्ही office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - vajav abba office
-  - vajav abba tivi office
+  - चालव abba office
+  - चालव abba टीव्ही office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - vajav coldplay office
-  - vajav coldplay tivi office
+  - चालव coldplay office
+  - चालव coldplay टीव्ही office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - vajav adele office
-  - vajav adele tivi office
+  - चालव adele office
+  - चालव adele टीव्ही office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - vajav prince office
-  - vajav prince tivi office
+  - चालव prince office
+  - चालव prince टीव्ही office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - vajav bowie office
-  - vajav bowie tivi office
+  - चालव bowie office
+  - चालव bowie टीव्ही office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - vajav nirvana office
-  - vajav nirvana tivi office
+  - चालव nirvana office
+  - चालव nirvana टीव्ही office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - vajav eagles office
-  - vajav eagles tivi office
+  - चालव eagles office
+  - चालव eagles टीव्ही office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - vajav madonna office
-  - vajav madonna tivi office
+  - चालव madonna office
+  - चालव madonna टीव्ही office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - vajav mozart office
-  - vajav mozart tivi office
+  - चालव mozart office
+  - चालव mozart टीव्ही office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - vajav daft punk office
-  - vajav daft punk tivi office
+  - चालव daft punk office
+  - चालव daft punk टीव्ही office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - vajav biafra office
-  - vajav biafra tivi office
+  - चालव biafra office
+  - चालव biafra टीव्ही office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajav queen radio mode baithak
+  - चालव queen radio mode बैठक
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - kay tivi baithak
-  - kay track baithak
+  - काय टीव्ही बैठक
+  - काय track बैठक
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajav queen radio mode svayampak
+  - चालव queen radio mode स्वयंपाक
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - kay tivi svayampak
-  - kay track svayampak
+  - काय टीव्ही स्वयंपाक
+  - काय track स्वयंपाक
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - vajav queen radio mode office
+  - चालव queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - kay tivi office
-  - kay track office
+  - काय टीव्ही office
+  - काय track office

@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - arai fai hongnang
-  - arai hongnang fai
+  - อะไร ไฟ ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น ไฟ
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - arai man hongnang
-  - arai hongnang man
+  - อะไร ม่าน ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น ม่าน
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - arai kunjae thangkhau
-  - arai thangkhau kunjae
+  - อะไร กุญแจ thangkhau
+  - อะไร thangkhau กุญแจ
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - arai air hongnang
-  - arai hongnang air
+  - อะไร แอร์ ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น แอร์
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - arai thorathat hongnang
-  - arai hongnang thorathat
+  - อะไร thorathat ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น thorathat
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - arai doorsensor thangkhau
-  - arai thangkhau doorsensor
+  - อะไร doorsensor thangkhau
+  - อะไร thangkhau doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - arai windowsensor hongnang
-  - arai hongnang windowsensor
+  - อะไร windowsensor ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - arai tempsensor hongnang
-  - arai hongnang tempsensor
+  - อะไร tempsensor ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - arai fai hongkrua
-  - arai hongkrua fai
+  - อะไร ไฟ ห้องครัว
+  - อะไร ห้องครัว ไฟ
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - arai fai office
-  - arai office fai
+  - อะไร ไฟ office
+  - อะไร office ไฟ
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - arai fai garden
-  - arai garden fai
+  - อะไร ไฟ garden
+  - อะไร garden ไฟ
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - arai fai basement
-  - arai basement fai
+  - อะไร ไฟ basement
+  - อะไร basement ไฟ
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - arai man hongnon
-  - arai hongnon man
+  - อะไร ม่าน hongnonmaster
+  - อะไร hongnonmaster ม่าน
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - arai man garage
-  - arai garage man
+  - อะไร ม่าน garage
+  - อะไร garage ม่าน
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - arai kunjae garage
-  - arai garage kunjae
+  - อะไร กุญแจ garage
+  - อะไร garage กุญแจ
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - arai air hongnon
-  - arai hongnon air
+  - อะไร แอร์ hongnonmaster
+  - อะไร hongnonmaster แอร์
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - arai air hongnon
-  - arai hongnon air
+  - อะไร air hongnonmaster
+  - อะไร hongnonmaster air
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - arai thorathat hongkhropkhrua
-  - arai hongkhropkhrua thorathat
+  - อะไร thorathat hongkhropkhrua
+  - อะไร hongkhropkhrua thorathat
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - arai phleng hongnang
-  - arai hongnang phleng
+  - อะไร ทีวี ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น ทีวี
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - arai motion hongkrua
-  - arai hongkrua motion
+  - อะไร motion ห้องครัว
+  - อะไร ห้องครัว motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - arai humidity hongnang
-  - arai hongnang humidity
+  - อะไร humidity ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - arai phat hongnon
-  - arai hongnon phat
+  - อะไร พัดลม hongnonmaster
+  - อะไร hongnonmaster พัดลม
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - arai dutfun hongnang
-  - arai hongnang dutfun
+  - อะไร ดูดฝุ่น ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น ดูดฝุ่น
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - arai fai hongnang
-  - arai hongnang fai
+  - อะไร ไฟ ห้องนั่งเล่น
+  - อะไร ห้องนั่งเล่น ไฟ
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - arai fai hongkrua
-  - arai hongkrua fai
+  - อะไร ไฟ ห้องครัว
+  - อะไร ห้องครัว ไฟ
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - arai fai hongnon
-  - arai hongnon fai
+  - อะไร ไฟ hongnonmaster
+  - อะไร hongnonmaster ไฟ
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - arai fai hongnon
-  - arai hongnon fai
+  - อะไร ไฟ hongnonmaster
+  - อะไร hongnonmaster ไฟ
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - arai fai hallway
-  - arai hallway fai
+  - อะไร ไฟ hallway
+  - อะไร hallway ไฟ
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - arai fai hongkhropkhrua
-  - arai hongkhropkhrua fai
+  - อะไร ไฟ hongkhropkhrua
+  - อะไร hongkhropkhrua ไฟ
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - arai fai hongkhropkhruaess
-  - arai hongkhropkhruaess fai
+  - อะไร ไฟ hongkhropkhruaess
+  - อะไร hongkhropkhruaess ไฟ
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - arai fai garage
-  - arai garage fai
+  - อะไร ไฟ garage
+  - อะไร garage ไฟ
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - arai fai hongnon2
-  - arai hongnon2 fai
+  - อะไร ไฟ hongnon2
+  - อะไร hongnon2 ไฟ
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - arai fai hongnon3
-  - arai hongnon3 fai
+  - อะไร ไฟ hongnon3
+  - อะไร hongnon3 ไฟ
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - arai fai hongnon4
-  - arai hongnon4 fai
+  - อะไร ไฟ hongnon4
+  - อะไร hongnon4 ไฟ
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - arai fai thangkhau
-  - arai thangkhau fai
+  - อะไร ไฟ thangkhau
+  - อะไร thangkhau ไฟ
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - arai fai hongsakpha
-  - arai hongsakpha fai
+  - อะไร ไฟ hongsakpha
+  - อะไร hongsakpha ไฟ
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - arai fai main bath
-  - arai main bath fai
+  - อะไร ไฟ main bath
+  - อะไร main bath ไฟ
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - arai fai hongnamkhaek
-  - arai hongnamkhaek fai
+  - อะไร ไฟ hongnamkhaek
+  - อะไร hongnamkhaek ไฟ
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - arai ensuite hongnon
-  - arai hongnon ensuite
+  - อะไร ensuite hongnonmaster
+  - อะไร hongnonmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - arai fai hongnon
-  - arai hongnon fai
+  - อะไร ไฟ hongnonmaster
+  - อะไร hongnonmaster ไฟ
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - arai fai hongnamlak
-  - arai hongnamlak fai
+  - อะไร ไฟ hongnamlak
+  - อะไร hongnamlak ไฟ

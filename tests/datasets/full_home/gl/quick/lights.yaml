@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - acende luz cuarto
+  - acende luz cuartomaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga luz cuarto
+  - apaga luz cuartomaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - acende teito cuarto
+  - acende teito cuartomaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - apaga teito cuarto
+  - apaga teito cuartomaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - acende mesilla cuarto
+  - acende mesilla cuartomaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - apaga mesilla cuarto
+  - apaga mesilla cuartomaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

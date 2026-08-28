@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - kyeo cheongsogi
-  - cheongsogi kyeo
+  - 켜 청소기
+  - 청소기 켜
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - kkaeo cheongsogi
-  - cheongsogi kkaeo
+  - 꺼 청소기
+  - 청소기 꺼

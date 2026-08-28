@@ -36,6 +36,7 @@
           "assist_filter": "Styr bare enheter som er synlige for Assist",
           "nlu_rag": "NLU-RAG (valgfritt)",
           "quiet_ack": "Kort bekreftelse (ding)",
+          "calendar_llm": "Send kalenderforespørsler til LLM-et",
           "channel": "Utgivelseskanal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "På: bare det Assist kan se. Av: også skjulte enheter.",
           "nlu_rag": "Av som standard. Ved prat sendes bare det gjenkjente utsnittet til reservemodellen.",
           "quiet_ack": "Ved enkelt lys eller bryter av/på ingen setning, bare en kort tone.",
+          "calendar_llm": "Av som standard. På: Klar leser kalenderen, reserve-LLM-et sier avtalene. Av: Klar sier listen selv. Opprett, slett og flytt blir i Klar.",
           "languages": "Standard er Home Assistants systemspråk.",
           "channel": "Når som helst. Staging peker på Klar NLU (Staging)."
         }

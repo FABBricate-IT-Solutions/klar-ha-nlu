@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys hyurasenyak yev khohanots
-  - luys hyurasenyak yev khohanots miatsu
+  - միացրու լույս հյուրասենյակ և խոհանոց
+  - լույս հյուրասենյակ և խոհանոց միացրու
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - anjatir luys hyurasenyak yev kogpek dur
-  - anjatir hyurasenyak yev kogpek dur
+  - անջատիր լույս հյուրասենյակ և կողպեք դոռռ
+  - անջատիր հյուրասենյակ և կողպեք դոռռ
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys khohanots yev yntaniqess
-  - luys khohanots yev yntaniqess miatsu
+  - միացրու լույս խոհանոց և yntaniqess
+  - լույս խոհանոց և yntaniqess միացրու
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys office yev hallway
-  - luys office yev hallway miatsu
+  - միացրու լույս office և hallway
+  - լույս office և hallway միացրու
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys garage yev garden
-  - luys garage yev garden miatsu
+  - միացրու լույս garage և garden
+  - լույս garage և garden միացրու
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys qnakaran yev main bath
-  - luys qnakaran yev main bath miatsu
+  - միացրու լույս qnakaranmaster և main bath
+  - լույս qnakaranmaster և main bath միացրու
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys yntaniq yev hyurasenyak
-  - luys yntaniq yev hyurasenyak miatsu
+  - միացրու լույս yntaniq և հյուրասենյակ
+  - լույս yntaniq և հյուրասենյակ միացրու
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys basement yev garden
-  - luys basement yev garden miatsu
+  - միացրու լույս basement և garden
+  - լույս basement և garden միացրու
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys hallway yev office
-  - luys hallway yev office miatsu
+  - միացրու լույս hallway և office
+  - լույս hallway և office միացրու
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys yntaniqess yev khohanots
-  - luys yntaniqess yev khohanots miatsu
+  - միացրու լույս yntaniqess և խոհանոց
+  - լույս yntaniqess և խոհանոց միացրու
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - miatsu luys qnakaran2 yev qnakaran3
-  - luys qnakaran2 yev qnakaran3 miatsu
+  - միացրու լույս qnakaran2 և qnakaran3
+  - լույս qnakaran2 և qnakaran3 միացրու

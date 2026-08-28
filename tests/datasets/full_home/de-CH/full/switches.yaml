@@ -36,16 +36,16 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - mach dryer waschruum
-  - dryer waschruum mach
+  - mach trockner waschruum
+  - trockner waschruum mach
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - loesch dryer waschruum
-  - dryer waschruum loesch
+  - loesch trockner waschruum
+  - trockner waschruum loesch
 - name: switch.rangehood_on
   conditions:
   - type: action

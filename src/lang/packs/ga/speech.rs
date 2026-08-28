@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Nior thuig me. Abair mar shampla cen solas le casadh.",
+    unknown: "Nior thuig me.",
     need_on: "Cad a chasfaidh me?",
     need_off: "Cad a mhuchfaidh me?",
     need_which: "Cad a chasfaidh me?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Cad a mhuchfaidh me?",
     timer_pause: "Cad a mhuchfaidh me?",
     list_add: "Ar an liosta.",
+    calendar_list: "{items}",
+    calendar_empty: "Nior thuig me.",
+    calendar_none: "Nior thuig me.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Nior thuig me.",
+    calendar_need_when: "Nior thuig me.",
+    calendar_readonly: "Nior thuig me.",
+    calendar_deleted: "Scriosta.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Ce imeacht?",
+    calendar_no_uid: "Gan id.",
+    no_music_player: "Nior thuig me.",
     done: "{name}",
     light_suffix: " solas",
     area_light: "solas {loc}",

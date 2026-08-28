@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - αναψε υπνοδωματο ταβανι και υπνοδωματο κομοδινο
-  - υπνοδωματο ταβανι και υπνοδωματο κομοδινο αναψε
+  - αναψε υπνοδωματοmaster ταβανι και υπνοδωματοmaster κομοδινο
+  - υπνοδωματοmaster ταβανι και υπνοδωματοmaster κομοδινο αναψε
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - σβησε υπνοδωματο ταβανι και υπνοδωματο κομοδινο
-  - υπνοδωματο ταβανι και υπνοδωματο κομοδινο σβησε
+  - σβησε υπνοδωματοmaster ταβανι και υπνοδωματοmaster κομοδινο
+  - υπνοδωματοmaster ταβανι και υπνοδωματοmaster κομοδινο σβησε
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - αναψε υπνοδωματο ανεμιστηρας και κουζινα νησι
-  - υπνοδωματο ανεμιστηρας και κουζινα νησι αναψε
+  - αναψε υπνοδωματοmaster ανεμιστηρας και κουζινα νησι
+  - υπνοδωματοmaster ανεμιστηρας και κουζινα νησι αναψε
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - σβησε φως υπνοδωματο και main bath
-  - φως υπνοδωματο και main bath σβησε
+  - σβησε φως υπνοδωματοmaster και main bath
+  - φως υπνοδωματοmaster και main bath σβησε
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - σβησε ολα φως εκτος σαλονι και υπνοδωματο
-  - ολα φως σβησε εκτος σαλονι και υπνοδωματο
+  - σβησε ολα φως εκτος σαλονι και υπνοδωματοmaster
+  - ολα φως σβησε εκτος σαλονι και υπνοδωματοmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - σβησε ολα φως οροφος εκτος υπνοδωματο
-  - ολα φως οροφος σβησε εκτος υπνοδωματο
+  - σβησε ολα φως οροφος εκτος υπνοδωματοmaster
+  - ολα φως οροφος σβησε εκτος υπνοδωματοmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - ανοιξε κουρτινα σαλονι και υπνοδωματο
-  - κουρτινα σαλονι και υπνοδωματο ανοιξε
+  - ανοιξε κουρτινα σαλονι και υπνοδωματοmaster
+  - κουρτινα σαλονι και υπνοδωματοmaster ανοιξε
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - κλεισε κουρτινα σαλονι και υπνοδωματο
-  - κουρτινα σαλονι και υπνοδωματο κλεισε
+  - κλεισε κουρτινα σαλονι και υπνοδωματοmaster
+  - κουρτινα σαλονι και υπνοδωματοmaster κλεισε
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - βαλε θερμανση σαλονι και υπνοδωματο 21
-  - θερμανση σαλονι και υπνοδωματο 21
+  - βαλε θερμανση σαλονι και υπνοδωματοmaster 21
+  - θερμανση σαλονι και υπνοδωματοmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

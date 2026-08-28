@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - kogpek kogpek mutq
-  - kogpek mutq kogpek
+  - կողպեք կողպեք mutq
+  - կողպեք mutq կողպեք
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - batsir kogpek mutq
-  - kogpek mutq batsir
+  - բացիր կողպեք mutq
+  - կողպեք mutq բացիր
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kogpek kogpek garage
-  - kogpek garage kogpek
+  - կողպեք կողպեք garage
+  - կողպեք garage կողպեք
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - batsir kogpek garage
-  - kogpek garage batsir
+  - բացիր կողպեք garage
+  - կողպեք garage բացիր
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - kogpek kogpek mutq
-  - kogpek mutq kogpek
+  - կողպեք կողպեք mutq
+  - կողպեք mutq կողպեք
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kogpek kogpek garage
-  - kogpek garage kogpek
+  - կողպեք կողպեք garage
+  - կողպեք garage կողպեք

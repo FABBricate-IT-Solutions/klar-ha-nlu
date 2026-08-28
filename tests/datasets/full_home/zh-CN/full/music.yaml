@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bofang queen keting
-  - bofang queen yinyue keting
+  - 播放 queen 客厅
+  - 播放 queen 电视 客厅
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - bofang album rumours by fleetwood mac keting
+  - 播放 album rumours by fleetwood mac 客厅
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bofang queen radio mode keting
+  - 播放 queen radio mode 客厅
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - bofang bohemian rhapsody queue keting
+  - 播放 bohemian rhapsody queue 客厅
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - shenme yinyue keting
-  - shenme track keting
+  - 什么 电视 客厅
+  - 什么 track 客厅
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - shezhi yinyue keting 10
-  - yinyue keting 10
+  - 设置 电视 客厅 10
+  - 电视 客厅 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - shezhi yinyue keting 20
-  - yinyue keting 20
+  - 设置 电视 客厅 20
+  - 电视 客厅 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - shezhi yinyue keting 30
-  - yinyue keting 30
+  - 设置 电视 客厅 30
+  - 电视 客厅 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - shezhi yinyue keting 50
-  - yinyue keting 50
+  - 设置 电视 客厅 50
+  - 电视 客厅 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - shezhi yinyue keting 80
-  - yinyue keting 80
+  - 设置 电视 客厅 80
+  - 电视 客厅 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track keting
+  - next track 客厅
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track keting
+  - previous track 客厅
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bofang queen chufang
-  - bofang queen yinyue chufang
+  - 播放 queen 厨房
+  - 播放 queen 电视 厨房
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bofang beatles keting
-  - bofang beatles yinyue keting
+  - 播放 beatles 客厅
+  - 播放 beatles 电视 客厅
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bofang radiohead keting
-  - bofang radiohead yinyue keting
+  - 播放 radiohead 客厅
+  - 播放 radiohead 电视 客厅
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bofang abba keting
-  - bofang abba yinyue keting
+  - 播放 abba 客厅
+  - 播放 abba 电视 客厅
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bofang coldplay keting
-  - bofang coldplay yinyue keting
+  - 播放 coldplay 客厅
+  - 播放 coldplay 电视 客厅
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bofang adele keting
-  - bofang adele yinyue keting
+  - 播放 adele 客厅
+  - 播放 adele 电视 客厅
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bofang prince keting
-  - bofang prince yinyue keting
+  - 播放 prince 客厅
+  - 播放 prince 电视 客厅
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bofang bowie keting
-  - bofang bowie yinyue keting
+  - 播放 bowie 客厅
+  - 播放 bowie 电视 客厅
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bofang nirvana keting
-  - bofang nirvana yinyue keting
+  - 播放 nirvana 客厅
+  - 播放 nirvana 电视 客厅
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bofang eagles keting
-  - bofang eagles yinyue keting
+  - 播放 eagles 客厅
+  - 播放 eagles 电视 客厅
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bofang madonna keting
-  - bofang madonna yinyue keting
+  - 播放 madonna 客厅
+  - 播放 madonna 电视 客厅
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bofang mozart keting
-  - bofang mozart yinyue keting
+  - 播放 mozart 客厅
+  - 播放 mozart 电视 客厅
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bofang daft punk keting
-  - bofang daft punk yinyue keting
+  - 播放 daft punk 客厅
+  - 播放 daft punk 电视 客厅
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bofang biafra keting
-  - bofang biafra yinyue keting
+  - 播放 biafra 客厅
+  - 播放 biafra 电视 客厅
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bofang queen chufang
-  - bofang queen yinyue chufang
+  - 播放 queen 厨房
+  - 播放 queen 电视 厨房
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bofang beatles chufang
-  - bofang beatles yinyue chufang
+  - 播放 beatles 厨房
+  - 播放 beatles 电视 厨房
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bofang radiohead chufang
-  - bofang radiohead yinyue chufang
+  - 播放 radiohead 厨房
+  - 播放 radiohead 电视 厨房
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bofang abba chufang
-  - bofang abba yinyue chufang
+  - 播放 abba 厨房
+  - 播放 abba 电视 厨房
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bofang coldplay chufang
-  - bofang coldplay yinyue chufang
+  - 播放 coldplay 厨房
+  - 播放 coldplay 电视 厨房
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bofang adele chufang
-  - bofang adele yinyue chufang
+  - 播放 adele 厨房
+  - 播放 adele 电视 厨房
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bofang prince chufang
-  - bofang prince yinyue chufang
+  - 播放 prince 厨房
+  - 播放 prince 电视 厨房
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bofang bowie chufang
-  - bofang bowie yinyue chufang
+  - 播放 bowie 厨房
+  - 播放 bowie 电视 厨房
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bofang nirvana chufang
-  - bofang nirvana yinyue chufang
+  - 播放 nirvana 厨房
+  - 播放 nirvana 电视 厨房
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bofang eagles chufang
-  - bofang eagles yinyue chufang
+  - 播放 eagles 厨房
+  - 播放 eagles 电视 厨房
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bofang madonna chufang
-  - bofang madonna yinyue chufang
+  - 播放 madonna 厨房
+  - 播放 madonna 电视 厨房
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bofang mozart chufang
-  - bofang mozart yinyue chufang
+  - 播放 mozart 厨房
+  - 播放 mozart 电视 厨房
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bofang daft punk chufang
-  - bofang daft punk yinyue chufang
+  - 播放 daft punk 厨房
+  - 播放 daft punk 电视 厨房
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bofang biafra chufang
-  - bofang biafra yinyue chufang
+  - 播放 biafra 厨房
+  - 播放 biafra 电视 厨房
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - bofang queen office
-  - bofang queen yinyue office
+  - 播放 queen office
+  - 播放 queen 电视 office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - bofang beatles office
-  - bofang beatles yinyue office
+  - 播放 beatles office
+  - 播放 beatles 电视 office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - bofang radiohead office
-  - bofang radiohead yinyue office
+  - 播放 radiohead office
+  - 播放 radiohead 电视 office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - bofang abba office
-  - bofang abba yinyue office
+  - 播放 abba office
+  - 播放 abba 电视 office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - bofang coldplay office
-  - bofang coldplay yinyue office
+  - 播放 coldplay office
+  - 播放 coldplay 电视 office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - bofang adele office
-  - bofang adele yinyue office
+  - 播放 adele office
+  - 播放 adele 电视 office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - bofang prince office
-  - bofang prince yinyue office
+  - 播放 prince office
+  - 播放 prince 电视 office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - bofang bowie office
-  - bofang bowie yinyue office
+  - 播放 bowie office
+  - 播放 bowie 电视 office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - bofang nirvana office
-  - bofang nirvana yinyue office
+  - 播放 nirvana office
+  - 播放 nirvana 电视 office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - bofang eagles office
-  - bofang eagles yinyue office
+  - 播放 eagles office
+  - 播放 eagles 电视 office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - bofang madonna office
-  - bofang madonna yinyue office
+  - 播放 madonna office
+  - 播放 madonna 电视 office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - bofang mozart office
-  - bofang mozart yinyue office
+  - 播放 mozart office
+  - 播放 mozart 电视 office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - bofang daft punk office
-  - bofang daft punk yinyue office
+  - 播放 daft punk office
+  - 播放 daft punk 电视 office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - bofang biafra office
-  - bofang biafra yinyue office
+  - 播放 biafra office
+  - 播放 biafra 电视 office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bofang queen radio mode keting
+  - 播放 queen radio mode 客厅
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - shenme yinyue keting
-  - shenme track keting
+  - 什么 电视 客厅
+  - 什么 track 客厅
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bofang queen radio mode chufang
+  - 播放 queen radio mode 厨房
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - shenme yinyue chufang
-  - shenme track chufang
+  - 什么 电视 厨房
+  - 什么 track 厨房
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - bofang queen radio mode office
+  - 播放 queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - shenme yinyue office
-  - shenme track office
+  - 什么 电视 office
+  - 什么 track office

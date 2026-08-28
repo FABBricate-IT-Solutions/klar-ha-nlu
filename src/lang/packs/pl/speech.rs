@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Nie zrozumialem. Powiedz na przyklad, ktore swiatlo wlaczyc.",
+    unknown: "Nie zrozumialem.",
     need_on: "Co wlaczyc?",
     need_off: "Co wylaczyc?",
     need_which: "Co wlaczyc?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Co wylaczyc?",
     timer_pause: "Co wylaczyc?",
     list_add: "Jest na liscie.",
+    calendar_list: "{items}",
+    calendar_empty: "Brak wydarzen.",
+    calendar_none: "Brak kalendarza.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Jaki tytul?",
+    calendar_need_when: "Kiedy?",
+    calendar_readonly: "Tylko odczyt.",
+    calendar_deleted: "Usunieto.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Ktore wydarzenie?",
+    calendar_no_uid: "Bez id.",
+    no_music_player: "Brak odtwarzacza.",
     done: "{name}",
     light_suffix: " swiatlo",
     area_light: "swiatlo {loc}",

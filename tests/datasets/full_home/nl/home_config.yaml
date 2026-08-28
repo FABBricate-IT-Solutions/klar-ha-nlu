@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Slaapkamer
+  name: Slaapkamermaster
   floor: upper
   aliases:
+  - slaapkamermaster
   - slaapkamer
 - id: bedroom_2
   name: Slaapkamer2
@@ -191,29 +192,29 @@ devices:
   - licht
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: slaapkamer plafond
+  name: slaapkamermaster plafond
   aliases:
-  - slaapkamer plafond
+  - slaapkamermaster plafond
   - plafond
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: slaapkamer ensuite
+  name: slaapkamermaster ensuite
   aliases:
-  - slaapkamer ensuite
+  - slaapkamermaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: slaapkamer left nachtkast
+  name: slaapkamermaster left nachtkast
   aliases:
-  - slaapkamer left nachtkast
+  - slaapkamermaster left nachtkast
   - nachtkast
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: slaapkamer right nachtkast
+  name: slaapkamermaster right nachtkast
   aliases:
-  - slaapkamer right nachtkast
+  - slaapkamermaster right nachtkast
   - nachtkast
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -265,9 +266,9 @@ devices:
   - gordijn
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: slaapkamer gordijn
+  name: slaapkamermaster gordijn
   aliases:
-  - slaapkamer gordijn
+  - slaapkamermaster gordijn
   - gordijn
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -295,15 +296,15 @@ devices:
   - verwarming
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: slaapkamer verwarming
+  name: slaapkamermaster verwarming
   aliases:
-  - slaapkamer verwarming
+  - slaapkamermaster verwarming
   - verwarming
 - id: climate.master_ac
   area_id: master_bedroom
-  name: graden slaapkamer
+  name: graden slaapkamermaster
   aliases:
-  - graden slaapkamer
+  - graden slaapkamermaster
   - graden
   - ac
   tags:
@@ -316,9 +317,9 @@ devices:
   - ventilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: slaapkamer ventilator
+  name: slaapkamermaster ventilator
   aliases:
-  - slaapkamer ventilator
+  - slaapkamermaster ventilator
   - ventilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2
@@ -366,12 +367,14 @@ devices:
   - wasmachine
 - id: switch.dryer
   area_id: laundry
-  name: wasruimte dryer
+  name: wasruimte droger
   aliases:
-  - wasruimte dryer
+  - wasruimte droger
+  - droger
   - dryer
   tags:
   - dryer
+  - droger
 - id: switch.master_bath_fan
   area_id: master_bath
   name: badmaster badventilator

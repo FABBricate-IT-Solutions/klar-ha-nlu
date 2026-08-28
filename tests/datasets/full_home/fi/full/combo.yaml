@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - sytyta makuuhuone katto ja makuuhuone yopoyta
-  - makuuhuone katto ja makuuhuone yopoyta sytyta
+  - sytyta makuuhuonemaster katto ja makuuhuonemaster yopoyta
+  - makuuhuonemaster katto ja makuuhuonemaster yopoyta sytyta
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - sammuta makuuhuone katto ja makuuhuone yopoyta
-  - makuuhuone katto ja makuuhuone yopoyta sammuta
+  - sammuta makuuhuonemaster katto ja makuuhuonemaster yopoyta
+  - makuuhuonemaster katto ja makuuhuonemaster yopoyta sammuta
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - sytyta makuuhuone tuuletin ja keittio saareke
-  - makuuhuone tuuletin ja keittio saareke sytyta
+  - sytyta makuuhuonemaster tuuletin ja keittio saareke
+  - makuuhuonemaster tuuletin ja keittio saareke sytyta
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta valo makuuhuone ja main bath
-  - valo makuuhuone ja main bath sammuta
+  - sammuta valo makuuhuonemaster ja main bath
+  - valo makuuhuonemaster ja main bath sammuta
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta kaikki valo paitsi olohuone ja makuuhuone
-  - kaikki valo sammuta paitsi olohuone ja makuuhuone
+  - sammuta kaikki valo paitsi olohuone ja makuuhuonemaster
+  - kaikki valo sammuta paitsi olohuone ja makuuhuonemaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sammuta kaikki valo yla paitsi makuuhuone
-  - kaikki valo yla sammuta paitsi makuuhuone
+  - sammuta kaikki valo yla paitsi makuuhuonemaster
+  - kaikki valo yla sammuta paitsi makuuhuonemaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - avaa verho olohuone ja makuuhuone
-  - verho olohuone ja makuuhuone avaa
+  - avaa verho olohuone ja makuuhuonemaster
+  - verho olohuone ja makuuhuonemaster avaa
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - sulje verho olohuone ja makuuhuone
-  - verho olohuone ja makuuhuone sulje
+  - sulje verho olohuone ja makuuhuonemaster
+  - verho olohuone ja makuuhuonemaster sulje
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - aseta lampo olohuone ja makuuhuone 21
-  - lampo olohuone ja makuuhuone 21
+  - aseta lampo olohuone ja makuuhuonemaster 21
+  - lampo olohuone ja makuuhuonemaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

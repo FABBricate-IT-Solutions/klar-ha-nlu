@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - رکھو گرمی لانج 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- رکھو گرمی bedroom 19
+- رکھو گرمی bedroommaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - رکھو پردہ bedroom2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - کھولو پردہ لانج
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- رکھو پردہ bedroom 19
+- رکھو پردہ bedroommaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- بندکرو پردہ bedroom
+- بندکرو پردہ bedroommaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- کھولو پردہ bedroom
+- کھولو پردہ bedroommaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - رکھو پنکھا bedroom2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - چالو پنکھا خاندانی
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- رکھو پنکھا bedroom 28
+- رکھو پنکھا bedroommaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- بند پنکھا bedroom
+- بند پنکھا bedroommaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- چالو پنکھا bedroom
+- چالو پنکھا bedroommaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- بند پنکھا bedroom اور بند روشنی باورچی
+- بند پنکھا bedroommaster then بند جزیرہ باورچی
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- چالو پنکھا bedroom اور چالو روشنی باورچی
+- چالو پنکھا bedroommaster then چالو جزیرہ باورچی
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - رکھو چھت bedroom2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - چالو چھت باورچی
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- رکھو روشنی باورچی 99
+- رکھو جزیرہ باورچی 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- رکھو روشنی باورچی green
+- رکھو جزیرہ باورچی green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- بند روشنی باورچی
+- بند جزیرہ باورچی
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- چالو روشنی باورچی
+- چالو جزیرہ باورچی
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - رکھو روشنی لانڈری 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - چالو چھت لانج
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- رکھو روشنی لانج 72
+- رکھو lamp لانج 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- رکھو روشنی لانج red
+- رکھو lamp لانج red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- بند روشنی لانج
+- بند lamp لانج
 devices/light_living_lamp::light_living_lamp_turn_on:
-- چالو روشنی لانج
+- چالو lamp لانج
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - رکھو روشنی main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - چالو روشنی ماسٹرباتھ
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- رکھو بسترکنار bedroom 25
+- رکھو بسترکنار bedroommaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- رکھو بسترکنار bedroom red
+- رکھو بسترکنار bedroommaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- بند بسترکنار bedroom
+- بند بسترکنار bedroommaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- چالو بسترکنار bedroom
+- چالو بسترکنار bedroommaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- رکھو چھت bedroom 77
+- رکھو چھت bedroommaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- رکھو چھت bedroom blue
+- رکھو چھت bedroommaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- بند چھت bedroom
+- بند چھت bedroommaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- چالو چھت bedroom
+- چالو چھت bedroommaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- رکھو روشنی bedroom 55
+- رکھو ankleide bedroommaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- رکھو روشنی bedroom black
+- رکھو ankleide bedroommaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- بند روشنی bedroom
+- بند ankleide bedroommaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- چالو روشنی bedroom
+- چالو ankleide bedroommaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - رکھو روشنی غسلخانہ 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - چالو ٹی وی خاندانی
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause ٹی وی خاندانی
+- pause tv خاندانی
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - بند ٹی وی خاندانی
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - چالو ٹی وی لانج
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause ٹی وی لانج
+- pause tv لانج
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - بند ٹی وی لانج
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,27 +239,30 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - چالو ٹی وی لانج
 devices/scenes::dinner_time:
-- رکھو روشنی خاندانیess 90 اور چالو چھت باورچی اور رکھو روشنی باورچی 80
+- رکھو روشنی خاندانیess 90 then چالو چھت باورچی then رکھو جزیرہ باورچی 80
 devices/scenes::good_morning:
-- چالو چھت باورچی اور رکھو روشنی خاندانیess 100 اور کھولو پردہ لانج اور کھولو پردہ
-  bedroom
+- چالو چھت باورچی then رکھو روشنی خاندانیess 100 then کھولو پردہ لانج then کھولو پردہ
+  bedroommaster
 devices/scenes::kids_bedtime:
-- بند چھت bedroom2 اور بند چھت bedroom3 اور بند چھت bedroom4 اور رکھو روشنی داخلہgang
+- بند چھت bedroom2 then بند چھت bedroom3 then بند چھت bedroom4 then رکھو روشنی داخلہgang
   15
 devices/scenes::movie_night:
-- بند چھت لانج اور رکھو روشنی لانج 20 اور چالو ٹی وی لانج اور بندکرو پردہ لانج
+- بند چھت لانج then رکھو lamp لانج 20 then چالو ٹی وی لانج then بندکرو پردہ لانج
 devices/scripts::good_night:
-- چالو منظر رات
+- بند چھت لانج then بند lamp لانج then بند روشنی خاندانیess then بند چھت باورچی then
+  بند جزیرہ باورچی then بند چھت خاندانی then بند روشنی داخلہ then بند روشنی داخلہgang
+  then تالا تالا داخلہ then تالا تالا garage then رکھو گرمی bedroommaster 20
 devices/scripts::leaving_home:
-- چالو منظر خروج
+- بند چھت لانج then بند lamp لانج then بند چھت باورچی then بند چھت خاندانی then بند
+  روشنی داخلہ then تالا تالا داخلہ then تالا تالا garage then بندکرو پردہ garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - بند برتن
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - چالو برتن
 devices/switch_dryer::switch_dryer_turn_off:
-- بند واشنگ
+- بند dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- چالو واشنگ
+- چالو dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - بند واشنگ
 devices/switch_washing_machine::switch_washing_machine_turn_on:

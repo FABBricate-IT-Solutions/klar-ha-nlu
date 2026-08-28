@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - bat quat phongngu2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- dat bongden phongngu2 65
+- dat tatca bongden phongngu2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- dat bongden phongngu2 pink
+- dat tatca bongden phongngu2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- tat bongden phongngu2
+- tat tatca bongden phongngu2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- bat bongden phongngu2
+- bat tatca bongden phongngu2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - dong rem phongngu3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - dat rem phongngu3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- dat bongden phongngu3 76
+- dat tatca bongden phongngu3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- dat bongden phongngu3 blue
+- dat tatca bongden phongngu3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- tat bongden phongngu3
+- tat tatca bongden phongngu3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- bat bongden phongngu3
+- bat tatca bongden phongngu3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- dat bongden phongngu4 69
+- dat tatca bongden phongngu4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- dat bongden phongngu4 green
+- dat tatca bongden phongngu4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- tat bongden phongngu4
+- tat tatca bongden phongngu4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- bat bongden phongngu4
+- bat tatca bongden phongngu4
 area/dining_lights::dining_lights_change_brightness:
-- dat bongden phonggiadinhess 54
+- dat tatca bongden phonggiadinhess 54
 area/dining_lights::dining_lights_change_color:
-- dat bongden phonggiadinhess blue
+- dat tatca bongden phonggiadinhess blue
 area/dining_lights::dining_lights_turn_off:
-- tat bongden phonggiadinhess
+- tat tatca bongden phonggiadinhess
 area/dining_lights::dining_lights_turn_on:
-- bat bongden phonggiadinhess
+- bat tatca bongden phonggiadinhess
 area/entryway_lights::entryway_lights_change_brightness:
-- dat bongden loivao 72
+- dat tatca bongden loivao 72
 area/entryway_lights::entryway_lights_change_color:
-- dat bongden loivao black
+- dat tatca bongden loivao black
 area/entryway_lights::entryway_lights_turn_off:
-- tat bongden loivao
+- tat tatca bongden loivao
 area/entryway_lights::entryway_lights_turn_on:
-- bat bongden loivao
+- bat tatca bongden loivao
 area/entryway_locks::entryway_locks_lock:
 - khoa khoa loivao
 area/entryway_locks::entryway_locks_unlock:
 - mo khoa loivao
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- dat bongden phonggiadinh 39 va dat bongden bep 39
+- dat tatca bongden phonggiadinh 39 then dat tatca bongden bep 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- dat bongden phonggiadinh purple va dat bongden bep purple
+- dat tatca bongden phonggiadinh purple then dat tatca bongden bep purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- tat bongden phonggiadinh va tat bongden bep
+- tat tatca bongden phonggiadinh then tat tatca bongden bep
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- bat bongden phonggiadinh va bat bongden bep
+- bat tatca bongden phonggiadinh then bat tatca bongden bep
 area/family_room_fans::family_room_fans_set_fan_speed:
 - dat quat phonggiadinh 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - bat quat phonggiadinh
 area/family_room_lights::family_room_lights_change_brightness:
-- dat bongden phonggiadinh 44
+- dat tatca bongden phonggiadinh 44
 area/family_room_lights::family_room_lights_change_color:
-- dat bongden phonggiadinh green
+- dat tatca bongden phonggiadinh green
 area/family_room_lights::family_room_lights_turn_off:
-- tat bongden phonggiadinh
+- tat tatca bongden phonggiadinh
 area/family_room_lights::family_room_lights_turn_on:
-- bat bongden phonggiadinh
+- bat tatca bongden phonggiadinh
 area/garage_covers::garage_covers_close:
 - dong rem garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - dat rem garage 86
 area/garage_lights::garage_lights_change_brightness:
-- dat bongden garage 16
+- dat tatca bongden garage 16
 area/garage_lights::garage_lights_change_color:
-- dat bongden garage blue
+- dat tatca bongden garage blue
 area/garage_lights::garage_lights_turn_off:
-- tat bongden garage
+- tat tatca bongden garage
 area/garage_lights::garage_lights_turn_on:
-- bat bongden garage
+- bat tatca bongden garage
 area/garage_locks::garage_locks_lock:
 - khoa khoa garage
 area/garage_locks::garage_locks_unlock:
 - mo khoa garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- dat bongden loivaogang 26 va dat bongden wc 26
+- dat tatca bongden loivaogang 26 then dat tatca bongden wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- dat bongden loivaogang purple va dat bongden wc purple
+- dat tatca bongden loivaogang purple then dat tatca bongden wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- tat bongden loivaogang va tat bongden wc
+- tat tatca bongden loivaogang then tat tatca bongden wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- bat bongden loivaogang va bat bongden wc
+- bat tatca bongden loivaogang then bat tatca bongden wc
 area/hallway_lights::hallway_lights_change_brightness:
-- dat bongden loivaogang 61
+- dat tatca bongden loivaogang 61
 area/hallway_lights::hallway_lights_change_color:
-- dat bongden loivaogang orange
+- dat tatca bongden loivaogang orange
 area/hallway_lights::hallway_lights_turn_off:
-- tat bongden loivaogang
+- tat tatca bongden loivaogang
 area/hallway_lights::hallway_lights_turn_on:
-- bat bongden loivaogang
+- bat tatca bongden loivaogang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- dat bongden bep 45
+- dat tatca bongden bep 45
 area/kitchen_lights::kitchen_lights_change_color:
-- dat bongden bep pink
+- dat tatca bongden bep pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- tat bongden bep
+- tat tatca bongden bep
 area/kitchen_lights::kitchen_lights_turn_on:
-- bat bongden bep
+- bat tatca bongden bep
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- tat thietbi bep
+- tat tatca thietbi bep
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- bat thietbi bep
+- bat tatca thietbi bep
 area/laundry_lights::laundry_lights_change_brightness:
-- dat bongden phonggiat 62
+- dat tatca bongden phonggiat 62
 area/laundry_lights::laundry_lights_change_color:
-- dat bongden phonggiat yellow
+- dat tatca bongden phonggiat yellow
 area/laundry_lights::laundry_lights_turn_off:
-- tat bongden phonggiat
+- tat tatca bongden phonggiat
 area/laundry_lights::laundry_lights_turn_on:
-- bat bongden phonggiat
+- bat tatca bongden phonggiat
 area/laundry_switchs::laundry_switchs_turn_off:
-- tat thietbi phonggiat
+- tat tatca thietbi phonggiat
 area/laundry_switchs::laundry_switchs_turn_on:
-- bat thietbi phonggiat
+- bat tatca thietbi phonggiat
 area/living_climates::living_climates_set_temperature:
 - dat dieuhoa phongkhach 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - dat rem phongkhach 46
 area/living_lights::living_lights_change_brightness:
-- dat bongden phongkhach 84
+- dat tatca bongden phongkhach 84
 area/living_lights::living_lights_change_color:
-- dat bongden phongkhach blue
+- dat tatca bongden phongkhach blue
 area/living_lights::living_lights_turn_off:
-- tat bongden phongkhach
+- tat tatca bongden phongkhach
 area/living_lights::living_lights_turn_on:
-- bat bongden phongkhach
+- bat tatca bongden phongkhach
 area/main_bath_lights::main_bath_lights_change_brightness:
-- dat bongden main bath 73
+- dat tatca bongden main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- dat bongden main bath pink
+- dat tatca bongden main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- tat bongden main bath
+- tat tatca bongden main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- bat bongden main bath
+- bat tatca bongden main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- tat thietbi main bath
+- tat tatca thietbi main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- bat thietbi main bath
+- bat tatca thietbi main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- dat bongden phongtamchinh 60
+- dat tatca bongden phongtamchinh 60
 area/master_bath_lights::master_bath_lights_change_color:
-- dat bongden phongtamchinh black
+- dat tatca bongden phongtamchinh black
 area/master_bath_lights::master_bath_lights_turn_off:
-- tat bongden phongtamchinh
+- tat tatca bongden phongtamchinh
 area/master_bath_lights::master_bath_lights_turn_on:
-- bat bongden phongtamchinh
+- bat tatca bongden phongtamchinh
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- tat thietbi phongtamchinh
+- tat tatca thietbi phongtamchinh
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- bat thietbi phongtamchinh
+- bat tatca thietbi phongtamchinh
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- dat dieuhoa phongngu 20 va dat dieuhoa phongkhach 20
+- dat dieuhoa phongngumaster 20 then dat dieuhoa phongkhach 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- dong rem phongngu va dong rem phongkhach
+- dong rem phongngumaster then dong rem phongkhach
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- mo rem phongngu va mo rem phongkhach
+- mo rem phongngumaster then mo rem phongkhach
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- dat rem phongngu 19 va dat rem phongkhach 19
+- dat rem phongngumaster 19 then dat rem phongkhach 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- dat bongden phongngu 25 va dat bongden phongkhach 25
+- dat tatca bongden phongngumaster 25 then dat tatca bongden phongkhach 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- dat bongden phongngu white va dat bongden phongkhach white
+- dat tatca bongden phongngumaster white then dat tatca bongden phongkhach white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- tat bongden phongngu va tat bongden phongkhach
+- tat tatca bongden phongngumaster then tat tatca bongden phongkhach
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- bat bongden phongngu va bat bongden phongkhach
+- bat tatca bongden phongngumaster then bat tatca bongden phongkhach
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- dat bongden phongngu 57 va dat bongden main bath 57
+- dat tatca bongden phongngumaster 57 then dat tatca bongden main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- dat bongden phongngu pink va dat bongden main bath pink
+- dat tatca bongden phongngumaster pink then dat tatca bongden main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- tat bongden phongngu va tat bongden main bath
+- tat tatca bongden phongngumaster then tat tatca bongden main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- bat bongden phongngu va bat bongden main bath
+- bat tatca bongden phongngumaster then bat tatca bongden main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- dat dieuhoa phongngu 20
+- dat dieuhoa phongngumaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- dong rem phongngu
+- dong rem phongngumaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- mo rem phongngu
+- mo rem phongngumaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- dat rem phongngu 38
+- dat rem phongngumaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- dat quat phongngu 79
+- dat quat phongngumaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- tat quat phongngu
+- tat quat phongngumaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- bat quat phongngu
+- bat quat phongngumaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- dat bongden phongngu 73
+- dat tatca bongden phongngumaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- dat bongden phongngu pink
+- dat tatca bongden phongngumaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- tat bongden phongngu
+- tat tatca bongden phongngumaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- bat bongden phongngu
+- bat tatca bongden phongngumaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- dat bongden wc 52
+- dat tatca bongden wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- dat bongden wc purple
+- dat tatca bongden wc purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- tat bongden wc
+- tat tatca bongden wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- bat bongden wc
+- bat tatca bongden wc
 area/spoken_lights::spoken_bedroom_inflection:
-- dat bongden phongngu red
+- dat tatca bongden phongngumaster red
 area/spoken_lights::spoken_except_island:
 - tat tatca bongden tru dao
 area/spoken_lights::spoken_except_kitchen:
-- tat tatca bongden tru bep tru dao
+- tat tatca bongden tru bep
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- tat bongden phongkhach va tat bongden phonggiadinhess va tat bongden bep
+- tat tatca bongden phongkhach then tat tatca bongden phonggiadinhess then tat tatca
+  bongden bep
 area/spoken_lights::spoken_stt_kitchen_off:
-- tat bongden bep
+- tat tatca bongden bep
 area/spoken_lights::spoken_stt_living_off:
-- tat bongden phongkhach
+- tat tatca bongden phongkhach

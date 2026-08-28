@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - какво завеса спалня
-  - какво спалня завеса
+  - какво завеса спалняmaster
+  - какво спалняmaster завеса
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - какво парно спалня
-  - какво спалня парно
+  - какво парно спалняmaster
+  - какво спалняmaster парно
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - какво температура спалня
-  - какво спалня температура
+  - какво температура спалняmaster
+  - какво спалняmaster температура
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - какво вентилатор спалня
-  - какво спалня вентилатор
+  - какво вентилатор спалняmaster
+  - какво спалняmaster вентилатор
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - какво светлина спалня
-  - какво спалня светлина
+  - какво светлина спалняmaster
+  - какво спалняmaster светлина
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - какво светлина спалня
-  - какво спалня светлина
+  - какво светлина спалняmaster
+  - какво спалняmaster светлина
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - какво ensuite спалня
-  - какво спалня ensuite
+  - какво ensuite спалняmaster
+  - какво спалняmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - какво светлина спалня
-  - какво спалня светлина
+  - какво светлина спалняmaster
+  - какво спалняmaster светлина
 - name: query_light.master_bath_light
   conditions:
   - type: query

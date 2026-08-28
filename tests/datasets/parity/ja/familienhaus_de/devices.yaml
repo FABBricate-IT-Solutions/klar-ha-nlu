@@ -1,267 +1,268 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- setto eakon ribingu 23
+- セット エアコン リビング 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- setto eakon shinshitsu 19
+- セット エアコン shinshitsumaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
-- setto kaaten shinshitsu2 67
+- セット カーテン shinshitsu2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
-- shimete kaaten shinshitsu2
+- 閉めて カーテン shinshitsu2
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_open:
-- akete kaaten shinshitsu2
+- 開けて カーテン shinshitsu2
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_change_position:
-- setto kaaten shinshitsu3 27
+- セット カーテン shinshitsu3 27
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_close:
-- shimete kaaten shinshitsu3
+- 閉めて カーテン shinshitsu3
 devices/cover_bedroom3_blinds::cover_bedroom3_blinds_open:
-- akete kaaten shinshitsu3
+- 開けて カーテン shinshitsu3
 devices/cover_garage_door::cover_garage_door_change_position:
-- setto kaaten garage 52
+- セット カーテン garage 52
 devices/cover_garage_door::cover_garage_door_close:
-- shimete kaaten garage
+- 閉めて カーテン garage
 devices/cover_garage_door::cover_garage_door_open:
-- akete kaaten garage
+- 開けて カーテン garage
 devices/cover_living_blinds::cover_living_blinds_change_position:
-- setto kaaten ribingu 35
+- セット カーテン リビング 35
 devices/cover_living_blinds::cover_living_blinds_close:
-- shimete kaaten ribingu
+- 閉めて カーテン リビング
 devices/cover_living_blinds::cover_living_blinds_open:
-- akete kaaten ribingu
+- 開けて カーテン リビング
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- setto kaaten shinshitsu 19
+- セット カーテン shinshitsumaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- shimete kaaten shinshitsu
+- 閉めて カーテン shinshitsumaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- akete kaaten shinshitsu
+- 開けて カーテン shinshitsumaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
-- setto fan shinshitsu2 72
+- セット ファン shinshitsu2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
-- keshite fan shinshitsu2
+- 消して ファン shinshitsu2
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_on:
-- tsukete fan shinshitsu2
+- つけて ファン shinshitsu2
 devices/fan_family_fan::fan_family_fan_set_fan_speed:
-- setto fan famirii 63
+- セット ファン famirii 63
 devices/fan_family_fan::fan_family_fan_turn_off:
-- keshite fan famirii
+- 消して ファン famirii
 devices/fan_family_fan::fan_family_fan_turn_on:
-- tsukete fan famirii
+- つけて ファン famirii
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- setto fan shinshitsu 28
+- セット ファン shinshitsumaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- keshite fan shinshitsu
+- 消して ファン shinshitsumaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- tsukete fan shinshitsu
+- つけて ファン shinshitsumaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- keshite fan shinshitsu と keshite raito kitchin
+- 消して ファン shinshitsumaster then 消して shima キッチン
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- tsukete fan shinshitsu と tsukete raito kitchin
+- つけて ファン shinshitsumaster then つけて shima キッチン
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
-- setto tenjo shinshitsu2 94
+- セット tenjo shinshitsu2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
-- setto tenjo shinshitsu2 pink
+- セット tenjo shinshitsu2 ピンク
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_off:
-- keshite tenjo shinshitsu2
+- 消して tenjo shinshitsu2
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_turn_on:
-- tsukete tenjo shinshitsu2
+- つけて tenjo shinshitsu2
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_brightness:
-- setto tenjo shinshitsu3 36
+- セット tenjo shinshitsu3 36
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_change_color:
-- setto tenjo shinshitsu3 yellow
+- セット tenjo shinshitsu3 黄
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_off:
-- keshite tenjo shinshitsu3
+- 消して tenjo shinshitsu3
 devices/light_bedroom3_ceiling::light_bedroom3_ceiling_turn_on:
-- tsukete tenjo shinshitsu3
+- つけて tenjo shinshitsu3
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_brightness:
-- setto tenjo shinshitsu4 60
+- セット tenjo shinshitsu4 60
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_change_color:
-- setto tenjo shinshitsu4 red
+- セット tenjo shinshitsu4 赤
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_off:
-- keshite tenjo shinshitsu4
+- 消して tenjo shinshitsu4
 devices/light_bedroom4_ceiling::light_bedroom4_ceiling_turn_on:
-- tsukete tenjo shinshitsu4
+- つけて tenjo shinshitsu4
 devices/light_dining_pendant::light_dining_pendant_change_brightness:
-- setto raito famiriiess 21
+- セット 電気 famiriiess 21
 devices/light_dining_pendant::light_dining_pendant_change_color:
-- setto raito famiriiess blue
+- セット 電気 famiriiess 青
 devices/light_dining_pendant::light_dining_pendant_turn_off:
-- keshite raito famiriiess
+- 消して 電気 famiriiess
 devices/light_dining_pendant::light_dining_pendant_turn_on:
-- tsukete raito famiriiess
+- つけて 電気 famiriiess
 devices/light_entryway_light::light_entryway_light_change_brightness:
-- setto raito genkan 88
+- セット 電気 genkan 88
 devices/light_entryway_light::light_entryway_light_change_color:
-- setto raito genkan yellow
+- セット 電気 genkan 黄
 devices/light_entryway_light::light_entryway_light_turn_off:
-- keshite raito genkan
+- 消して 電気 genkan
 devices/light_entryway_light::light_entryway_light_turn_on:
-- tsukete raito genkan
+- つけて 電気 genkan
 devices/light_family_ceiling::light_family_ceiling_change_brightness:
-- setto tenjo famirii 98
+- セット tenjo famirii 98
 devices/light_family_ceiling::light_family_ceiling_change_color:
-- setto tenjo famirii purple
+- セット tenjo famirii 紫
 devices/light_family_ceiling::light_family_ceiling_turn_off:
-- keshite tenjo famirii
+- 消して tenjo famirii
 devices/light_family_ceiling::light_family_ceiling_turn_on:
-- tsukete tenjo famirii
+- つけて tenjo famirii
 devices/light_garage_light::light_garage_light_change_brightness:
-- setto raito garage 76
+- セット 電気 garage 76
 devices/light_garage_light::light_garage_light_change_color:
-- setto raito garage green
+- セット 電気 garage 緑
 devices/light_garage_light::light_garage_light_turn_off:
-- keshite raito garage
+- 消して 電気 garage
 devices/light_garage_light::light_garage_light_turn_on:
-- tsukete raito garage
+- つけて 電気 garage
 devices/light_hallway_light::light_hallway_light_change_brightness:
-- setto raito genkangang 11
+- セット 電気 genkangang 11
 devices/light_hallway_light::light_hallway_light_change_color:
-- setto raito genkangang white
+- セット 電気 genkangang 白
 devices/light_hallway_light::light_hallway_light_turn_off:
-- keshite raito genkangang
+- 消して 電気 genkangang
 devices/light_hallway_light::light_hallway_light_turn_on:
-- tsukete raito genkangang
+- つけて 電気 genkangang
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_brightness:
-- setto tenjo kitchin 25
+- セット tenjo キッチン 25
 devices/light_kitchen_ceiling::light_kitchen_ceiling_change_color:
-- setto tenjo kitchin orange
+- セット tenjo キッチン オレンジ
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
-- keshite tenjo kitchin
+- 消して tenjo キッチン
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
-- tsukete tenjo kitchin
+- つけて tenjo キッチン
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- setto raito kitchin 99
+- セット shima キッチン 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- setto raito kitchin green
+- セット shima キッチン 緑
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- keshite raito kitchin
+- 消して shima キッチン
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- tsukete raito kitchin
+- つけて shima キッチン
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- setto raito sentakushitsu 18
+- セット 電気 sentakushitsu 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- setto raito sentakushitsu white
+- セット 電気 sentakushitsu 白
 devices/light_laundry_light::light_laundry_light_turn_off:
-- keshite raito sentakushitsu
+- 消して 電気 sentakushitsu
 devices/light_laundry_light::light_laundry_light_turn_on:
-- tsukete raito sentakushitsu
+- つけて 電気 sentakushitsu
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
-- setto tenjo ribingu 72
+- セット tenjo リビング 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
-- setto tenjo ribingu black
+- セット tenjo リビング 黒
 devices/light_living_ceiling::light_living_ceiling_turn_off:
-- keshite tenjo ribingu
+- 消して tenjo リビング
 devices/light_living_ceiling::light_living_ceiling_turn_on:
-- tsukete tenjo ribingu
+- つけて tenjo リビング
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- setto raito ribingu 72
+- セット ライト リビング 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- setto raito ribingu red
+- セット ライト リビング 赤
 devices/light_living_lamp::light_living_lamp_turn_off:
-- keshite raito ribingu
+- 消して ライト リビング
 devices/light_living_lamp::light_living_lamp_turn_on:
-- tsukete raito ribingu
+- つけて ライト リビング
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
-- setto raito main bath 85
+- セット 電気 main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
-- setto raito main bath blue
+- セット 電気 main bath 青
 devices/light_main_bath_light::light_main_bath_light_turn_off:
-- keshite raito main bath
+- 消して 電気 main bath
 devices/light_main_bath_light::light_main_bath_light_turn_on:
-- tsukete raito main bath
+- つけて 電気 main bath
 devices/light_master_bath_light::light_master_bath_light_change_brightness:
-- setto raito shuyokushitsu 18
+- セット 電気 shuyokushitsu 18
 devices/light_master_bath_light::light_master_bath_light_change_color:
-- setto raito shuyokushitsu black
+- セット 電気 shuyokushitsu 黒
 devices/light_master_bath_light::light_master_bath_light_turn_off:
-- keshite raito shuyokushitsu
+- 消して 電気 shuyokushitsu
 devices/light_master_bath_light::light_master_bath_light_turn_on:
-- tsukete raito shuyokushitsu
+- つけて 電気 shuyokushitsu
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- setto beddowaki shinshitsu 25
+- セット beddowaki shinshitsumaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- setto beddowaki shinshitsu red
+- セット beddowaki shinshitsumaster 赤
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- keshite beddowaki shinshitsu
+- 消して beddowaki shinshitsumaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- tsukete beddowaki shinshitsu
+- つけて beddowaki shinshitsumaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- setto tenjo shinshitsu 77
+- セット tenjo shinshitsumaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- setto tenjo shinshitsu blue
+- セット tenjo shinshitsumaster 青
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- keshite tenjo shinshitsu
+- 消して tenjo shinshitsumaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- tsukete tenjo shinshitsu
+- つけて tenjo shinshitsumaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- setto raito shinshitsu 55
+- セット ankleide shinshitsumaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- setto raito shinshitsu black
+- セット ankleide shinshitsumaster 黒
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- keshite raito shinshitsu
+- 消して ankleide shinshitsumaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- tsukete raito shinshitsu
+- つけて ankleide shinshitsumaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
-- setto raito toire 22
+- セット 電気 toire 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
-- setto raito toire black
+- セット 電気 toire 黒
 devices/light_powder_room_light::light_powder_room_light_turn_off:
-- keshite raito toire
+- 消して 電気 toire
 devices/light_powder_room_light::light_powder_room_light_turn_on:
-- tsukete raito toire
+- つけて 電気 toire
 devices/lock_front_door::lock_front_door_lock:
-- kagi kagi genkan
+- 鍵 鍵 genkan
 devices/lock_front_door::lock_front_door_unlock:
-- akete kagi genkan
+- 開けて 鍵 genkan
 devices/lock_garage_entry::lock_garage_entry_lock:
-- kagi kagi garage
+- 鍵 鍵 garage
 devices/lock_garage_entry::lock_garage_entry_unlock:
-- akete kagi garage
+- 開けて 鍵 garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- tsukete terebi famirii
+- つけて テレビ famirii
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause terebi famirii
+- 一時停止 tv famirii
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- keshite terebi famirii
+- 消して テレビ famirii
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- tsukete terebi famirii
+- つけて テレビ famirii
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- tsukete terebi famirii
+- つけて テレビ famirii
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- tsukete terebi famirii
+- つけて テレビ famirii
 devices/media_player_living_tv::media_player_living_tv_mute:
-- tsukete terebi ribingu
+- つけて テレビ リビング
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause terebi ribingu
+- 一時停止 tv リビング
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- keshite terebi ribingu
+- 消して テレビ リビング
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- tsukete terebi ribingu
+- つけて テレビ リビング
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- tsukete terebi ribingu
+- つけて テレビ リビング
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- tsukete terebi ribingu
+- つけて テレビ リビング
 devices/scenes::dinner_time:
-- setto raito famiriiess 90 と tsukete tenjo kitchin と setto raito kitchin 80
+- セット 電気 famiriiess 90 then つけて tenjo キッチン then セット shima キッチン 80
 devices/scenes::good_morning:
-- tsukete tenjo kitchin と setto raito famiriiess 100 と akete kaaten ribingu と akete
-  kaaten shinshitsu
+- つけて tenjo キッチン then セット 電気 famiriiess 100 then 開けて カーテン リビング then 開けて カーテン shinshitsumaster
 devices/scenes::kids_bedtime:
-- keshite tenjo shinshitsu2 と keshite tenjo shinshitsu3 と keshite tenjo shinshitsu4
-  と setto raito genkangang 15
+- 消して tenjo shinshitsu2 then 消して tenjo shinshitsu3 then 消して tenjo shinshitsu4 then
+  セット 電気 genkangang 15
 devices/scenes::movie_night:
-- keshite tenjo ribingu と setto raito ribingu 20 と tsukete terebi ribingu と shimete
-  kaaten ribingu
+- 消して tenjo リビング then セット ライト リビング 20 then つけて テレビ リビング then 閉めて カーテン リビング
 devices/scripts::good_night:
-- tsukete shiin yoru
+- 消して tenjo リビング then 消して ライト リビング then 消して 電気 famiriiess then 消して tenjo キッチン then
+  消して shima キッチン then 消して tenjo famirii then 消して 電気 genkan then 消して 電気 genkangang
+  then 鍵 鍵 genkan then 鍵 鍵 garage then セット エアコン shinshitsumaster 20
 devices/scripts::leaving_home:
-- tsukete shiin taishutsu
+- 消して tenjo リビング then 消して ライト リビング then 消して tenjo キッチン then 消して tenjo famirii then
+  消して 電気 genkan then 鍵 鍵 genkan then 鍵 鍵 garage then 閉めて カーテン garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- keshite shokkaiki
+- 消して shokkaiki
 devices/switch_dishwasher::switch_dishwasher_turn_on:
-- tsukete shokkaiki
+- つけて shokkaiki
 devices/switch_dryer::switch_dryer_turn_off:
-- keshite sentakuki
+- 消して kansouki
 devices/switch_dryer::switch_dryer_turn_on:
-- tsukete sentakuki
+- つけて kansouki
 devices/switch_washing_machine::switch_washing_machine_turn_off:
-- keshite sentakuki
+- 消して sentakuki
 devices/switch_washing_machine::switch_washing_machine_turn_on:
-- tsukete sentakuki
+- つけて sentakuki

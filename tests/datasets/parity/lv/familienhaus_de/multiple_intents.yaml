@@ -1,34 +1,35 @@
 multiple_intents/multiple_intents::multi_0:
-- izsledz gaisma wc un iesledz Guten Morgen
+- izsledz gaisma wc then iesledz scena good_morning
 multiple_intents/multiple_intents::multi_1:
-- kas trauku un iesledz Haus verlassen
+- kas trauku then iesledz scena leaving_home
 multiple_intents/multiple_intents::multi_10:
-- iestati ventilators gulamistaba2 50 un kas aizkars gulamistaba2 un kas aizkars gulamistaba
+- iestati ventilators gulamistaba2 50 then kas aizkars gulamistaba2 then kas aizkars
+  gulamistabamaster
 multiple_intents/multiple_intents::multi_12:
-- izsledz nakts gulamistaba un iesledz gaisma velas
+- izsledz nakts gulamistabamaster then iesledz viss gaisma velas
 multiple_intents/multiple_intents::multi_14:
-- izsledz gaisma virtuve un kas gaisma prieksnamsgang
+- izsledz viss gaisma virtuve then kas gaisma prieksnamsgang
 multiple_intents/multiple_intents::multi_15:
-- kas aizkars gulamistaba2 un izsledz gaisma virtuve
+- kas aizkars gulamistaba2 then izsledz viss gaisma virtuve
 multiple_intents/multiple_intents::multi_16:
-- iesledz griesti virtuve un kas gaisma prieksnamsgang
+- iesledz griesti virtuve then kas gaisma prieksnamsgang
 multiple_intents/multiple_intents::multi_18:
-- izsledz ventilators dzivojamafam un iestati gaisma virtuve 20
+- izsledz ventilators dzivojamafam then iestati sala virtuve 20
 multiple_intents/multiple_intents::multi_19:
-- kas ventilators gulamistaba2 un iesledz gaisma velas
+- kas ventilators gulamistaba2 then iesledz gaisma velas
 multiple_intents/multiple_intents::multi_2:
-- kas gaisma garage un aizver aizkars istaba
+- kas gaisma garage then aizver aizkars istaba
 multiple_intents/multiple_intents::multi_3:
-- kas apkure istaba un izsledz griesti istaba
+- kas apkure istaba then izsledz griesti istaba
 multiple_intents/multiple_intents::multi_4:
-- aizver aizkars gulamistaba3 un aizver aizkars garage un iesledz griesti gulamistaba2
+- aizver aizkars gulamistaba3 then aizver aizkars garage then iesledz griesti gulamistaba2
 multiple_intents/multiple_intents::multi_5:
-- izsledz gaisma dzivojamafamess un iestati ventilators gulamistaba2 50
+- izsledz gaisma dzivojamafamess then iestati ventilators gulamistaba2 50
 multiple_intents/multiple_intents::multi_6:
-- iesledz griesti gulamistaba3 un izsledz gaisma prieksnams
+- iesledz griesti gulamistaba3 then izsledz gaisma prieksnams
 multiple_intents/multiple_intents::multi_7:
-- iesledz Filmabend un izsledz trauku
+- iesledz scena movie_night then izsledz trauku
 multiple_intents/multiple_intents::multi_8:
-- atver sledzene garage un kas gaisma garage
+- atver sledzene garage then kas gaisma garage
 multiple_intents/multiple_intents::multi_9:
-- pause televizors istaba un izsledz griesti istaba
+- pause tv istaba then izsledz griesti istaba

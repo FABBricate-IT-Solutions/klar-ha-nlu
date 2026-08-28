@@ -1,138 +1,138 @@
 state_persistance/area_bedroom_2_covers::bedroom_2_covers_set_position:
-- - shenme lianzi woshi2
+- - 什么 帘子 woshi2
   - ' 51'
 state_persistance/area_bedroom_2_lights::bedroom_2_lights_set_brightness:
-- - shenme tianhuaban woshi2
+- - 什么 tianhuaban woshi2
   - ' 20'
 state_persistance/area_bedroom_3_covers::bedroom_3_covers_set_position:
-- - shenme lianzi woshi3
+- - 什么 帘子 woshi3
   - ' 67'
 state_persistance/area_bedroom_3_lights::bedroom_3_lights_set_brightness:
-- - shenme tianhuaban woshi3
+- - 什么 tianhuaban woshi3
   - ' 63'
 state_persistance/area_bedroom_4_lights::bedroom_4_lights_set_brightness:
-- - shenme tianhuaban woshi4
+- - 什么 tianhuaban woshi4
   - ' 80'
 state_persistance/area_dining_lights::dining_lights_set_brightness:
-- - shenme deng jiatingfangess
+- - 什么 灯 jiatingfangess
   - ' 68'
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - shenme deng xuanguan
+- - 什么 灯 xuanguan
   - ' 54'
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
-- - shenme tianhuaban jiatingfang
+- - 什么 tianhuaban jiatingfang
   - ' 94'
 state_persistance/area_garage_covers::garage_covers_set_position:
-- - shenme lianzi garage
+- - 什么 帘子 garage
   - ' 18'
 state_persistance/area_garage_lights::garage_lights_set_brightness:
-- - shenme deng garage
+- - 什么 灯 garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - shenme deng xuanguangang 和 shenme deng kewei
+- - 什么 灯 xuanguangang then 什么 灯 kewei
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - shenme deng xuanguangang
+- - 什么 灯 xuanguangang
   - ' 69'
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
-- - shenme deng chufang
+- - 什么 灯 厨房
   - ' 46'
 state_persistance/area_laundry_lights::laundry_lights_set_brightness:
-- - shenme deng xiyifang
+- - 什么 灯 xiyifang
   - ' 62'
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - shenme kongtiao keting
+- - 什么 空调 客厅
   - ' 95'
 state_persistance/area_living_covers::living_covers_set_position:
-- - shenme lianzi keting
+- - 什么 帘子 客厅
   - ' 86'
 state_persistance/area_living_lights::living_lights_set_brightness:
-- - shenme deng keting
+- - 什么 灯 客厅
   - ' 55'
 state_persistance/area_main_bath_lights::main_bath_lights_set_brightness:
-- - shenme deng main bath
+- - 什么 灯 main bath
   - ' 96'
 state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
-- - shenme deng zhuwei
+- - 什么 灯 zhuwei
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - shenme kongtiao woshi 和 shenme kongtiao keting
+- - 什么 空调 woshimaster then 什么 空调 客厅
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - shenme lianzi woshi 和 shenme lianzi keting
+- - 什么 帘子 woshimaster then 什么 帘子 客厅
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - shenme kongtiao woshi
+- - 什么 空调 woshimaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - shenme lianzi woshi
+- - 什么 帘子 woshimaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
-- - shenme deng kewei
+- - 什么 灯 kewei
   - ' 70'
 state_persistance/device_cover_garage_door::cover_garage_door_close:
-- - shenme lianzi garage
-  - heshang
+- - 什么 帘子 garage
+  - 合上
 state_persistance/device_cover_garage_door::cover_garage_door_open:
-- - shenme lianzi garage
-  - kaiqi
+- - 什么 帘子 garage
+  - 开启
 state_persistance/device_cover_garage_door::cover_garage_door_persistance_position:
-- - shenme lianzi garage
+- - 什么 帘子 garage
   - '23'
 state_persistance/device_cover_living_blinds::cover_living_blinds_close:
-- - shenme lianzi keting
-  - heshang
+- - 什么 帘子 客厅
+  - 合上
 state_persistance/device_cover_living_blinds::cover_living_blinds_open:
-- - shenme lianzi keting
-  - kaiqi
+- - 什么 帘子 客厅
+  - 开启
 state_persistance/device_cover_living_blinds::cover_living_blinds_persistance_position:
-- - shenme lianzi keting
+- - 什么 帘子 客厅
   - '85'
 state_persistance/device_fan_family_fan::fan_family_fan_persistance_percentage:
-- - shenme fengshan jiatingfang
+- - 什么 风扇 jiatingfang
   - ' 43'
 state_persistance/device_fan_family_fan::fan_family_fan_turn_off:
-- - shenme fengshan jiatingfang
-  - guanbi
+- - 什么 风扇 jiatingfang
+  - 关闭
 state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
-- - shenme fengshan jiatingfang
-  - dakai
+- - 什么 风扇 jiatingfang
+  - 打开
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - shenme deng xuanguan
+- - 什么 灯 xuanguan
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - shenme deng xuanguan
-  - guanbi
+- - 什么 灯 xuanguan
+  - 关闭
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - shenme deng xuanguan
-  - dakai
+- - 什么 灯 xuanguan
+  - 打开
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - shenme suo xuanguan
-  - suo
+- - 什么 锁 xuanguan
+  - 锁
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - shenme suo xuanguan
-  - kaiqi
+- - 什么 锁 xuanguan
+  - 开启
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
-- - shenme suo garage
-  - suo
+- - 什么 锁 garage
+  - 锁
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
-- - shenme suo garage
-  - kaiqi
+- - 什么 锁 garage
+  - 开启
 state_persistance/device_media_player_family_tv::media_player_family_tv_persistance_volume_level:
-- - shenme dianshi jiatingfang
+- - 什么 电视 jiatingfang
   - ' 21'
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_off:
-- - shenme dianshi jiatingfang
-  - guanbi
+- - 什么 电视 jiatingfang
+  - 关闭
 state_persistance/device_media_player_family_tv::media_player_family_tv_turn_on:
-- - shenme dianshi jiatingfang
-  - dakai
+- - 什么 电视 jiatingfang
+  - 打开
 state_persistance/device_media_player_living_tv::media_player_living_tv_persistance_volume_level:
-- - shenme dianshi keting
+- - 什么 电视 客厅
   - ' 21'
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_off:
-- - shenme dianshi keting
-  - guanbi
+- - 什么 电视 客厅
+  - 关闭
 state_persistance/device_media_player_living_tv::media_player_living_tv_turn_on:
-- - shenme dianshi keting
-  - dakai
+- - 什么 电视 客厅
+  - 打开

@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Anlamadim. Ornegin hangi isigin acilacagini soyle.",
+    unknown: "Anlamadim.",
     need_on: "Neyi acayim?",
     need_off: "Neyi kapatayim?",
     need_which: "Neyi acayim?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Neyi kapatayim?",
     timer_pause: "Neyi kapatayim?",
     list_add: "Listeye eklendi.",
+    calendar_list: "{items}",
+    calendar_empty: "Etkinlik yok.",
+    calendar_none: "Takvim yok.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Baslik?",
+    calendar_need_when: "Ne zaman?",
+    calendar_readonly: "Salt okunur.",
+    calendar_deleted: "Silindi.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Hangi etkinlik?",
+    calendar_no_uid: "Kimlik yok.",
+    no_music_player: "Oynatici yok.",
     done: "{name}",
     light_suffix: " isik",
     area_light: "isik {loc}",

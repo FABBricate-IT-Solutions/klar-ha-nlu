@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - βαλε θερμανση υπνοδωματο 18
-  - θερμανση υπνοδωματο 18
+  - βαλε θερμανση υπνοδωματοmaster 18
+  - θερμανση υπνοδωματοmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - βαλε θερμανση υπνοδωματο 19
-  - θερμανση υπνοδωματο 19
+  - βαλε θερμανση υπνοδωματοmaster 19
+  - θερμανση υπνοδωματοmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - βαλε θερμανση υπνοδωματο 20
-  - θερμανση υπνοδωματο 20
+  - βαλε θερμανση υπνοδωματοmaster 20
+  - θερμανση υπνοδωματοmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - βαλε θερμανση υπνοδωματο 21
-  - θερμανση υπνοδωματο 21
+  - βαλε θερμανση υπνοδωματοmaster 21
+  - θερμανση υπνοδωματοmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - βαλε θερμανση υπνοδωματο 22
-  - θερμανση υπνοδωματο 22
+  - βαλε θερμανση υπνοδωματοmaster 22
+  - θερμανση υπνοδωματοmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - βαλε θερμανση υπνοδωματο 23
-  - θερμανση υπνοδωματο 23
+  - βαλε θερμανση υπνοδωματοmaster 23
+  - θερμανση υπνοδωματοmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - βαλε θερμανση υπνοδωματο 24
-  - θερμανση υπνοδωματο 24
+  - βαλε θερμανση υπνοδωματοmaster 24
+  - θερμανση υπνοδωματοmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - τι θερμανση υπνοδωματο
-  - θερμανση υπνοδωματο
+  - τι θερμανση υπνοδωματοmaster
+  - θερμανση υπνοδωματοmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 18
-  - θερμοκρασια υπνοδωματο 18
+  - βαλε θερμοκρασια υπνοδωματοmaster 18
+  - θερμοκρασια υπνοδωματοmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 19
-  - θερμοκρασια υπνοδωματο 19
+  - βαλε θερμοκρασια υπνοδωματοmaster 19
+  - θερμοκρασια υπνοδωματοmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 20
-  - θερμοκρασια υπνοδωματο 20
+  - βαλε θερμοκρασια υπνοδωματοmaster 20
+  - θερμοκρασια υπνοδωματοmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 21
-  - θερμοκρασια υπνοδωματο 21
+  - βαλε θερμοκρασια υπνοδωματοmaster 21
+  - θερμοκρασια υπνοδωματοmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 22
-  - θερμοκρασια υπνοδωματο 22
+  - βαλε θερμοκρασια υπνοδωματοmaster 22
+  - θερμοκρασια υπνοδωματοmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 23
-  - θερμοκρασια υπνοδωματο 23
+  - βαλε θερμοκρασια υπνοδωματοmaster 23
+  - θερμοκρασια υπνοδωματοmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - βαλε θερμοκρασια υπνοδωματο 24
-  - θερμοκρασια υπνοδωματο 24
+  - βαλε θερμοκρασια υπνοδωματοmaster 24
+  - θερμοκρασια υπνοδωματοmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - τι θερμοκρασια υπνοδωματο
-  - θερμοκρασια υπνοδωματο
+  - τι θερμοκρασια υπνοδωματοmaster
+  - θερμοκρασια υπνοδωματοmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - τι θερμανση υπνοδωματο
-  - θερμανση υπνοδωματο
+  - τι θερμανση υπνοδωματοmaster
+  - θερμανση υπνοδωματοmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - τι θερμοκρασια υπνοδωματο
-  - θερμοκρασια υπνοδωματο
+  - τι θερμοκρασια υπνοδωματοmaster
+  - θερμοκρασια υπνοδωματοmaster

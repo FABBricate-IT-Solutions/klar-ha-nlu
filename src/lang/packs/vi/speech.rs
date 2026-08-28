@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Toi khong hieu. Vi du hay noi den nao can bat.",
+    unknown: "Toi khong hieu.",
     need_on: "Bat gi?",
     need_off: "Tat gi?",
     need_which: "Bat gi?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Tat gi?",
     timer_pause: "Tat gi?",
     list_add: "Da vao danhsach.",
+    calendar_list: "{items}",
+    calendar_empty: "Toi khong hieu.",
+    calendar_none: "Toi khong hieu.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Toi khong hieu.",
+    calendar_need_when: "Toi khong hieu.",
+    calendar_readonly: "Toi khong hieu.",
+    calendar_deleted: "Da xoa.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Su kien nao?",
+    calendar_no_uid: "Khong id.",
+    no_music_player: "Toi khong hieu.",
     done: "{name}",
     light_suffix: " bongden",
     area_light: "bongden {loc}",

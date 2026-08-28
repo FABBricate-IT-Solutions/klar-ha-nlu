@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - jalao baithak chhat aur baithak lamp
-  - baithak chhat aur baithak lamp jalao
+  - जलाओ बैठक chhat और बैठक batti
+  - बैठक chhat और बैठक batti जलाओ
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - bujhao baithak chhat aur baithak lamp
-  - baithak chhat aur baithak lamp bujhao
+  - बुझाओ बैठक chhat और बैठक batti
+  - बैठक chhat और बैठक batti बुझाओ
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao rasoi chhat aur rasoi dweep
-  - rasoi chhat aur rasoi dweep jalao
+  - जलाओ रसोई chhat और रसोई dweep
+  - रसोई chhat और रसोई dweep जलाओ
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - bujhao rasoi chhat aur rasoi dweep
-  - rasoi chhat aur rasoi dweep bujhao
+  - बुझाओ रसोई chhat और रसोई dweep
+  - रसोई chhat और रसोई dweep बुझाओ
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao baithak chhat aur rasoi dweep
-  - baithak chhat aur rasoi dweep jalao
+  - जलाओ बैठक chhat और रसोई dweep
+  - बैठक chhat और रसोई dweep जलाओ
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - bujhao baithak chhat aur rasoi dweep
-  - baithak chhat aur rasoi dweep bujhao
+  - बुझाओ बैठक chhat और रसोई dweep
+  - बैठक chhat और रसोई dweep बुझाओ
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - jalao office chhat aur hallway batti
-  - office chhat aur hallway batti jalao
+  - जलाओ office chhat और hallway बत्ती
+  - office chhat और hallway बत्ती जलाओ
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - bujhao office chhat aur hallway batti
-  - office chhat aur hallway batti bujhao
+  - बुझाओ office chhat और hallway बत्ती
+  - office chhat और hallway बत्ती बुझाओ
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - jalao garden batti aur garage batti
-  - garden batti aur garage batti jalao
+  - जलाओ garden बत्ती और garage बत्ती
+  - garden बत्ती और garage बत्ती जलाओ
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - bujhao garden batti aur garage batti
-  - garden batti aur garage batti bujhao
+  - बुझाओ garden बत्ती और garage बत्ती
+  - garden बत्ती और garage बत्ती बुझाओ
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - jalao shayankaksh chhat aur shayankaksh palang
-  - shayankaksh chhat aur shayankaksh palang jalao
+  - जलाओ shayankakshmaster chhat और shayankakshmaster palang
+  - shayankakshmaster chhat और shayankakshmaster palang जलाओ
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - bujhao shayankaksh chhat aur shayankaksh palang
-  - shayankaksh chhat aur shayankaksh palang bujhao
+  - बुझाओ shayankakshmaster chhat और shayankakshmaster palang
+  - shayankakshmaster chhat और shayankakshmaster palang बुझाओ
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - jalao parivarik chhat aur parivarikess batti
-  - parivarik chhat aur parivarikess batti jalao
+  - जलाओ parivarik chhat और parivarikess बत्ती
+  - parivarik chhat और parivarikess बत्ती जलाओ
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - bujhao parivarik chhat aur parivarikess batti
-  - parivarik chhat aur parivarikess batti bujhao
+  - बुझाओ parivarik chhat और parivarikess बत्ती
+  - parivarik chhat और parivarikess बत्ती बुझाओ
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - jalao basement batti aur dhobi batti
-  - basement batti aur dhobi batti jalao
+  - जलाओ basement बत्ती और dhobi बत्ती
+  - basement बत्ती और dhobi बत्ती जलाओ
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - bujhao basement batti aur dhobi batti
-  - basement batti aur dhobi batti bujhao
+  - बुझाओ basement बत्ती और dhobi बत्ती
+  - basement बत्ती और dhobi बत्ती बुझाओ
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - jalao shayankaksh pankha aur rasoi dweep
-  - shayankaksh pankha aur rasoi dweep jalao
+  - जलाओ shayankakshmaster पंखा और रसोई dweep
+  - shayankakshmaster पंखा और रसोई dweep जलाओ
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - jalao baithak parda aur baithak chhat
-  - baithak parda aur baithak chhat jalao
+  - जलाओ बैठक पर्दा और बैठक chhat
+  - बैठक पर्दा और बैठक chhat जलाओ
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - jalao dhobi washing aur dhobi dryer
-  - dhobi washing aur dhobi dryer jalao
+  - जलाओ dhobi washing और dhobi dryer
+  - dhobi washing और dhobi dryer जलाओ
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti baithak aur rasoi
-  - batti baithak aur rasoi bujhao
+  - बुझाओ बत्ती बैठक और रसोई
+  - बत्ती बैठक और रसोई बुझाओ
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti office aur hallway
-  - batti office aur hallway bujhao
+  - बुझाओ बत्ती office और hallway
+  - बत्ती office और hallway बुझाओ
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti garage aur garden
-  - batti garage aur garden bujhao
+  - बुझाओ बत्ती garage और garden
+  - बत्ती garage और garden बुझाओ
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti shayankaksh aur main bath
-  - batti shayankaksh aur main bath bujhao
+  - बुझाओ बत्ती shayankakshmaster और main bath
+  - बत्ती shayankakshmaster और main bath बुझाओ
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti parivarik aur parivarikess
-  - batti parivarik aur parivarikess bujhao
+  - बुझाओ बत्ती parivarik और parivarikess
+  - बत्ती parivarik और parivarikess बुझाओ
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti baithak aur parivarikess aur rasoi
-  - batti baithak parivarikess aur rasoi bujhao
+  - बुझाओ बत्ती बैठक और parivarikess और रसोई
+  - बत्ती बैठक parivarikess और रसोई बुझाओ
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao batti office aur hallway aur garage
-  - batti office hallway aur garage jalao
+  - जलाओ बत्ती office और hallway और garage
+  - बत्ती office hallway और garage जलाओ
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao batti garden aur basement aur dhobi
-  - batti garden basement aur dhobi bujhao
+  - बुझाओ बत्ती garden और basement और dhobi
+  - बत्ती garden basement और dhobi बुझाओ
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - bujhao sab batti sivay dweep rasoi
-  - sab batti bujhao sivay dweep rasoi
+  - बुझाओ सब बत्ती sivay dweep रसोई
+  - सब बत्ती बुझाओ sivay dweep रसोई
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - bujhao sab batti sivay lamp baithak
-  - sab batti bujhao sivay lamp baithak
+  - बुझाओ सब बत्ती sivay batti बैठक
+  - सब बत्ती बुझाओ sivay batti बैठक
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti sivay garden
-  - sab batti bujhao sivay garden
+  - बुझाओ सब बत्ती sivay garden
+  - सब बत्ती बुझाओ sivay garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti sivay chhat office
-  - sab batti bujhao sivay chhat office
+  - बुझाओ सब बत्ती sivay chhat office
+  - सब बत्ती बुझाओ sivay chhat office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti sivay basement
-  - sab batti bujhao sivay basement
+  - बुझाओ सब बत्ती sivay basement
+  - सब बत्ती बुझाओ sivay basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sab batti sivay rasoi
-  - sab batti jalao sivay rasoi
+  - जलाओ सब बत्ती sivay रसोई
+  - सब बत्ती जलाओ sivay रसोई
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sab batti sivay office
-  - sab batti jalao sivay office
+  - जलाओ सब बत्ती sivay office
+  - सब बत्ती जलाओ sivay office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sab batti sivay garden
-  - sab batti jalao sivay garden
+  - जलाओ सब बत्ती sivay garden
+  - सब बत्ती जलाओ sivay garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sab batti sivay baithak
-  - sab batti jalao sivay baithak
+  - जलाओ सब बत्ती sivay बैठक
+  - सब बत्ती जलाओ sivay बैठक
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - jalao sab batti sivay garage
-  - sab batti jalao sivay garage
+  - जलाओ सब बत्ती sivay garage
+  - सब बत्ती जलाओ sivay garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - bujhao sab batti rasoi sivay dweep
-  - sab batti rasoi bujhao sivay dweep
+  - बुझाओ सब बत्ती रसोई sivay dweep
+  - सब बत्ती रसोई बुझाओ sivay dweep
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - bujhao sab batti baithak sivay lamp
-  - sab batti baithak bujhao sivay lamp
+  - बुझाओ सब बत्ती बैठक sivay batti
+  - सब बत्ती बैठक बुझाओ sivay batti
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - jalao sab batti sivay dweep rasoi
-  - sab batti jalao sivay dweep rasoi
+  - जलाओ सब बत्ती sivay dweep रसोई
+  - सब बत्ती जलाओ sivay dweep रसोई
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti sivay rasoi aur office
-  - sab batti bujhao sivay rasoi aur office
+  - बुझाओ सब बत्ती sivay रसोई और office
+  - सब बत्ती बुझाओ sivay रसोई और office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti sivay baithak aur shayankaksh
-  - sab batti bujhao sivay baithak aur shayankaksh
+  - बुझाओ सब बत्ती sivay बैठक और shayankakshmaster
+  - सब बत्ती बुझाओ sivay बैठक और shayankakshmaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti sivay garage aur garden
-  - sab batti bujhao sivay garage aur garden
+  - बुझाओ सब बत्ती sivay garage और garden
+  - सब बत्ती बुझाओ sivay garage और garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti neeche sivay rasoi
-  - sab batti neeche bujhao sivay rasoi
+  - बुझाओ सब बत्ती neeche sivay रसोई
+  - सब बत्ती neeche बुझाओ sivay रसोई
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti upar sivay shayankaksh
-  - sab batti upar bujhao sivay shayankaksh
+  - बुझाओ सब बत्ती upar sivay shayankakshmaster
+  - सब बत्ती upar बुझाओ sivay shayankakshmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bujhao sab batti neeche sivay office
-  - sab batti neeche bujhao sivay office
+  - बुझाओ सब बत्ती neeche sivay office
+  - सब बत्ती neeche बुझाओ sivay office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - kholo parda baithak aur shayankaksh
-  - parda baithak aur shayankaksh kholo
+  - खोलो पर्दा बैठक और shayankakshmaster
+  - पर्दा बैठक और shayankakshmaster खोलो
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - band parda baithak aur shayankaksh
-  - parda baithak aur shayankaksh band
+  - बंद पर्दा बैठक और shayankakshmaster
+  - पर्दा बैठक और shayankakshmaster बंद
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set garmi baithak aur shayankaksh 21
-  - garmi baithak aur shayankaksh 21
+  - सेट गर्मी बैठक और shayankakshmaster 21
+  - गर्मी बैठक और shayankakshmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set batti baithak aur rasoi 50
-  - batti baithak aur rasoi 50
+  - सेट बत्ती बैठक और रसोई 50
+  - बत्ती बैठक और रसोई 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - set batti baithak aur rasoi red
-  - batti baithak aur rasoi red
+  - सेट बत्ती बैठक और रसोई लाल
+  - बत्ती बैठक और रसोई लाल
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - kya batti baithak aur rasoi
-  - batti baithak aur rasoi
+  - क्या बत्ती बैठक और रसोई
+  - बत्ती बैठक और रसोई
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kya garmi baithak aur bujhao batti rasoi
-  - bujhao batti rasoi aur kya garmi baithak
+  - क्या गर्मी बैठक और बुझाओ बत्ती रसोई
+  - बुझाओ बत्ती रसोई और क्या गर्मी बैठक
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tala front darwaza aur garage darwaza
-  - tala tala pravesh aur garage
+  - ताला front दरवाज़ा और garage दरवाज़ा
+  - ताला ताला pravesh और garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - jalao film aur bujhao batti shauchalay
-  - bujhao batti shauchalay aur jalao film
+  - जलाओ film और बुझाओ बत्ती shauchalay
+  - बुझाओ बत्ती shauchalay और जलाओ film

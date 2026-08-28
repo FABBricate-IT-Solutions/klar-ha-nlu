@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - kveiktu svefnherbergi loft og svefnherbergi nattbord
-  - svefnherbergi loft og svefnherbergi nattbord kveiktu
+  - kveiktu svefnherbergimaster loft og svefnherbergimaster nattbord
+  - svefnherbergimaster loft og svefnherbergimaster nattbord kveiktu
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - slokktu svefnherbergi loft og svefnherbergi nattbord
-  - svefnherbergi loft og svefnherbergi nattbord slokktu
+  - slokktu svefnherbergimaster loft og svefnherbergimaster nattbord
+  - svefnherbergimaster loft og svefnherbergimaster nattbord slokktu
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kveiktu svefnherbergi viftu og eldhus eyja
-  - svefnherbergi viftu og eldhus eyja kveiktu
+  - kveiktu svefnherbergimaster viftu og eldhus eyja
+  - svefnherbergimaster viftu og eldhus eyja kveiktu
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slokktu ljos svefnherbergi og main bath
-  - ljos svefnherbergi og main bath slokktu
+  - slokktu ljos svefnherbergimaster og main bath
+  - ljos svefnherbergimaster og main bath slokktu
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slokktu allt ljos nema stofa og svefnherbergi
-  - allt ljos slokktu nema stofa og svefnherbergi
+  - slokktu allt ljos nema stofa og svefnherbergimaster
+  - allt ljos slokktu nema stofa og svefnherbergimaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slokktu allt ljos haed nema svefnherbergi
-  - allt ljos haed slokktu nema svefnherbergi
+  - slokktu allt ljos haed nema svefnherbergimaster
+  - allt ljos haed slokktu nema svefnherbergimaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - opnadu gardina stofa og svefnherbergi
-  - gardina stofa og svefnherbergi opnadu
+  - opnadu gardina stofa og svefnherbergimaster
+  - gardina stofa og svefnherbergimaster opnadu
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - lokadu gardina stofa og svefnherbergi
-  - gardina stofa og svefnherbergi lokadu
+  - lokadu gardina stofa og svefnherbergimaster
+  - gardina stofa og svefnherbergimaster lokadu
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - settu hiti stofa og svefnherbergi 21
-  - hiti stofa og svefnherbergi 21
+  - settu hiti stofa og svefnherbergimaster 21
+  - hiti stofa og svefnherbergimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

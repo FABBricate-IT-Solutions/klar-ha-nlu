@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - nastavi ogrevanje dnevna 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- nastavi ogrevanje spalnica 19
+- nastavi ogrevanje spalnicamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - nastavi zavesa spalnica2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - odpri zavesa dnevna
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- nastavi zavesa spalnica 19
+- nastavi zavesa spalnicamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- zapri zavesa spalnica
+- zapri zavesa spalnicamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- odpri zavesa spalnica
+- odpri zavesa spalnicamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - nastavi ventilator spalnica2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - prizgi ventilator dnevnafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- nastavi ventilator spalnica 28
+- nastavi ventilator spalnicamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- ugasni ventilator spalnica
+- ugasni ventilator spalnicamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- prizgi ventilator spalnica
+- prizgi ventilator spalnicamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- ugasni ventilator spalnica in ugasni luc kuhinja
+- ugasni ventilator spalnicamaster then ugasni otok kuhinja
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- prizgi ventilator spalnica in prizgi luc kuhinja
+- prizgi ventilator spalnicamaster then prizgi otok kuhinja
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - nastavi strop spalnica2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - prizgi strop kuhinja
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- nastavi luc kuhinja 99
+- nastavi otok kuhinja 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- nastavi luc kuhinja green
+- nastavi otok kuhinja green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- ugasni luc kuhinja
+- ugasni otok kuhinja
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- prizgi luc kuhinja
+- prizgi otok kuhinja
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - nastavi luc pralnica 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - prizgi strop dnevna
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- nastavi luc dnevna 72
+- nastavi lamp dnevna 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- nastavi luc dnevna red
+- nastavi lamp dnevna red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- ugasni luc dnevna
+- ugasni lamp dnevna
 devices/light_living_lamp::light_living_lamp_turn_on:
-- prizgi luc dnevna
+- prizgi lamp dnevna
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - nastavi luc main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - prizgi luc kopalmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- nastavi nocna spalnica 25
+- nastavi nocna spalnicamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- nastavi nocna spalnica red
+- nastavi nocna spalnicamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- ugasni nocna spalnica
+- ugasni nocna spalnicamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- prizgi nocna spalnica
+- prizgi nocna spalnicamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- nastavi strop spalnica 77
+- nastavi strop spalnicamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- nastavi strop spalnica blue
+- nastavi strop spalnicamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- ugasni strop spalnica
+- ugasni strop spalnicamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- prizgi strop spalnica
+- prizgi strop spalnicamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- nastavi luc spalnica 55
+- nastavi ankleide spalnicamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- nastavi luc spalnica black
+- nastavi ankleide spalnicamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- ugasni luc spalnica
+- ugasni ankleide spalnicamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- prizgi luc spalnica
+- prizgi ankleide spalnicamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - nastavi luc wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - prizgi televizor dnevnafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause televizor dnevnafam
+- pause tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - ugasni televizor dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - prizgi televizor dnevna
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause televizor dnevna
+- pause tv dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - ugasni televizor dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - prizgi televizor dnevna
 devices/scenes::dinner_time:
-- nastavi luc dnevnafamess 90 in prizgi strop kuhinja in nastavi luc kuhinja 80
+- nastavi luc dnevnafamess 90 then prizgi strop kuhinja then nastavi otok kuhinja
+  80
 devices/scenes::good_morning:
-- prizgi strop kuhinja in nastavi luc dnevnafamess 100 in odpri zavesa dnevna in odpri
-  zavesa spalnica
+- prizgi strop kuhinja then nastavi luc dnevnafamess 100 then odpri zavesa dnevna
+  then odpri zavesa spalnicamaster
 devices/scenes::kids_bedtime:
-- ugasni strop spalnica2 in ugasni strop spalnica3 in ugasni strop spalnica4 in nastavi
-  luc predsobagang 15
+- ugasni strop spalnica2 then ugasni strop spalnica3 then ugasni strop spalnica4 then
+  nastavi luc predsobagang 15
 devices/scenes::movie_night:
-- ugasni strop dnevna in nastavi luc dnevna 20 in prizgi televizor dnevna in zapri
-  zavesa dnevna
+- ugasni strop dnevna then nastavi lamp dnevna 20 then prizgi televizor dnevna then
+  zapri zavesa dnevna
 devices/scripts::good_night:
-- prizgi scena noc
+- ugasni strop dnevna then ugasni lamp dnevna then ugasni luc dnevnafamess then ugasni
+  strop kuhinja then ugasni otok kuhinja then ugasni strop dnevnafam then ugasni luc
+  predsoba then ugasni luc predsobagang then kljucavnica kljucavnica predsoba then
+  kljucavnica kljucavnica garage then nastavi ogrevanje spalnicamaster 20
 devices/scripts::leaving_home:
-- prizgi scena odhod
+- ugasni strop dnevna then ugasni lamp dnevna then ugasni strop kuhinja then ugasni
+  strop dnevnafam then ugasni luc predsoba then kljucavnica kljucavnica predsoba then
+  kljucavnica kljucavnica garage then zapri zavesa garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - ugasni pomivalni
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - prizgi pomivalni
 devices/switch_dryer::switch_dryer_turn_off:
-- ugasni pralni
+- ugasni dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- prizgi pralni
+- prizgi dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - ugasni pralni
 devices/switch_washing_machine::switch_washing_machine_turn_on:

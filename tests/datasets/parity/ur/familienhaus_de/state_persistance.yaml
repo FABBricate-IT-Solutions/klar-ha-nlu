@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - کیا روشنی garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - کیا روشنی داخلہgang اور کیا روشنی غسلخانہ
+- - کیا روشنی داخلہgang then کیا روشنی غسلخانہ
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - کیا روشنی داخلہgang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - کیا روشنی ماسٹرباتھ
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - کیا گرمی bedroom اور کیا گرمی لانج
+- - کیا گرمی bedroommaster then کیا گرمی لانج
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - کیا پردہ bedroom اور کیا پردہ لانج
+- - کیا پردہ bedroommaster then کیا پردہ لانج
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - کیا گرمی bedroom
+- - کیا گرمی bedroommaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - کیا پردہ bedroom
+- - کیا پردہ bedroommaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - کیا روشنی غسلخانہ

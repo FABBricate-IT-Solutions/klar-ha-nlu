@@ -1,26 +1,26 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
-- guanbi 全部 deng 除了 woshi 除了 chufang
+- 關閉 全部 燈 除了 woshi 除了 廚房
 multiple_intents/multi::licht_und_heizung:
-- dakai deng keting 和 shezhi kongtiao keting 23
+- 打開 全部 燈 客廳 then 設置 空調 客廳 23
 multiple_intents/multi::wohn_und_ess_aus:
-- guanbi deng keting 和 guanbi deng jiatingfangess
+- 關閉 全部 燈 客廳 then 關閉 全部 燈 jiatingfangess
 multiple_intents/multi::wohn_und_ess_rot:
-- shezhi deng keting red 和 shezhi deng jiatingfangess red
+- 設置 全部 燈 客廳 紅 then 設置 全部 燈 jiatingfangess 紅
 multiple_intents/multi::wz_und_kuche_licht:
-- dakai deng keting 和 dakai deng chufang
+- 打開 全部 燈 客廳 then 打開 全部 燈 廚房
 multiple_intents/multi::zwei_raeume_und_heizung:
-- dakai deng keting 和 dakai deng chufang 和 shezhi kongtiao keting 23
+- 打開 全部 燈 客廳 then 打開 全部 燈 廚房 then 設置 空調 客廳 23
 multiple_intents/spoken::drei_raeume_an:
-- dakai deng keting 和 dakai deng jiatingfangess 和 dakai deng chufang
+- 打開 全部 燈 客廳 then 打開 全部 燈 jiatingfangess then 打開 全部 燈 廚房
 multiple_intents/spoken::drei_raeume_aus:
-- guanbi deng keting 和 guanbi deng jiatingfangess 和 guanbi deng chufang
+- 關閉 全部 燈 客廳 then 關閉 全部 燈 jiatingfangess then 關閉 全部 燈 廚房
 multiple_intents/spoken::ess_und_wohn_aus:
-- guanbi deng keting 和 guanbi deng jiatingfangess
+- 關閉 全部 燈 客廳 then 關閉 全部 燈 jiatingfangess
 multiple_intents/spoken::kugel_und_decke_aus:
-- guanbi qiudeng 和 guanbi tianhuaban
+- qiudeng 和 tianhuaban woshi 關閉
 multiple_intents/spoken_more::kuche_und_ess_an:
-- dakai deng chufang 和 dakai deng jiatingfangess
+- 打開 全部 燈 廚房 then 打開 全部 燈 jiatingfangess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- guanbi deng keting 和 guanbi deng jiatingfangess
+- 關閉 全部 燈 客廳 then 關閉 全部 燈 jiatingfangess then 關閉 全部 燈 office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- guanbi deng keting
+- 關閉 全部 燈 客廳 then 關閉 全部 燈 office

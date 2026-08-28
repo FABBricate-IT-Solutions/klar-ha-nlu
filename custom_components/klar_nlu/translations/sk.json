@@ -36,6 +36,7 @@
           "assist_filter": "Ovládať len entity vystavené Assistu",
           "nlu_rag": "NLU-RAG (voliteľné)",
           "quiet_ack": "Krátke potvrdenie (zvonček)",
+          "calendar_llm": "Posielať dopyty na kalendár do LLM",
           "channel": "Kanál vydania"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Zapnuté: len to, čo vidí Assist. Vypnuté: aj skryté entity.",
           "nlu_rag": "Predvolene vypnuté. Pri chate ide záložnému modelu len zhodný úsek.",
           "quiet_ack": "Pri jednoduchom zapnutí/vypnutí svetla bez vety, len krátky zvuk na satelite.",
+          "calendar_llm": "Predvolene vypnuté. Zapnuté: Klar prečíta kalendár, záložné LLM povie udalosti. Vypnuté: Klar povie zoznam. Vytvorenie, zmazanie a presun zostanú v Klar.",
           "languages": "Predvolene nasleduje jazyk systému Home Assistant.",
           "channel": "Kedykoľvek. Staging ukazuje na Klar NLU (Staging)."
         }

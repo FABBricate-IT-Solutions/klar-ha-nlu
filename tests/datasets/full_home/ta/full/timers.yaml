@@ -5,8 +5,8 @@
     attributes:
       minutes: 10
   sentences:
-  - eru timer 10 min
-  - timer 10 min
+  - ஏற்று டைமர் 10 min
+  - டைமர் 10 min
 - name: timer_laundry
   conditions:
   - type: action
@@ -14,15 +14,15 @@
     attributes:
       minutes: 45
   sentences:
-  - eru timer 45 min
-  - timer 45 min
+  - ஏற்று டைமர் 45 min
+  - டைமர் 45 min
 - name: timer_cancel
   conditions:
   - type: action
     entity_id: timer.abstract
   sentences:
-  - anai timer
-  - timer anai
+  - அணை டைமர்
+  - டைமர் அணை
 - name: timer_oven_5
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       minutes: 5
   sentences:
-  - eru timer 5 min
-  - timer 5 min
+  - ஏற்று டைமர் 5 min
+  - டைமர் 5 min
 - name: timer_oven_15
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       minutes: 15
   sentences:
-  - eru timer 15 min
-  - timer 15 min
+  - ஏற்று டைமர் 15 min
+  - டைமர் 15 min
 - name: timer_oven_20
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       minutes: 20
   sentences:
-  - eru timer 20 min
-  - timer 20 min
+  - ஏற்று டைமர் 20 min
+  - டைமர் 20 min
 - name: timer_oven_30
   conditions:
   - type: action
@@ -57,8 +57,8 @@
     attributes:
       minutes: 30
   sentences:
-  - eru timer 30 min
-  - timer 30 min
+  - ஏற்று டைமர் 30 min
+  - டைமர் 30 min
 - name: timer_oven_60
   conditions:
   - type: action
@@ -66,5 +66,5 @@
     attributes:
       minutes: 60
   sentences:
-  - eru timer 60 min
-  - timer 60 min
+  - ஏற்று டைமர் 60 min
+  - டைமர் 60 min

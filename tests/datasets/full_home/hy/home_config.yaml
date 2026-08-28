@@ -31,9 +31,10 @@ areas:
   aliases:
   - mutq
 - id: living
-  name: Hyurasenyak
+  name: հյուրասենյակ
   floor: ground
   aliases:
+  - հյուրասենյակ
   - hyurasenyak
 - id: dining
   name: Yntaniqess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - yntaniqess
 - id: kitchen
-  name: Khohanots
+  name: խոհանոց
   floor: ground
   aliases:
+  - խոհանոց
   - khohanots
 - id: family_room
   name: Yntaniq
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Qnakaran
+  name: Qnakaranmaster
   floor: upper
   aliases:
+  - qnakaranmaster
   - qnakaran
 - id: bedroom_2
   name: Qnakaran2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: mutq luys
+  name: mutq լույս
   aliases:
-  - mutq luys
-  - luys
+  - mutq լույս
+  - լույս
 - id: light.living_ceiling
   area_id: living
-  name: hyurasenyak stalat
+  name: հյուրասենյակ stalat
   aliases:
-  - hyurasenyak stalat
+  - հյուրասենյակ stalat
   - stalat
 - id: light.living_lamp
   area_id: living
-  name: hyurasenyak luys
+  name: հյուրասենյակ luys
   aliases:
-  - hyurasenyak luys
+  - հյուրասենյակ luys
   - luys
 - id: light.dining_pendant
   area_id: dining
-  name: yntaniqess luys
+  name: yntaniqess լույս
   aliases:
-  - yntaniqess luys
-  - luys
+  - yntaniqess լույս
+  - լույս
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: khohanots stalat
+  name: խոհանոց stalat
   aliases:
-  - khohanots stalat
+  - խոհանոց stalat
   - stalat
 - id: light.kitchen_island
   area_id: kitchen
-  name: khohanots kghzi
+  name: խոհանոց kghzi
   aliases:
-  - khohanots kghzi
+  - խոհանոց kghzi
   - kghzi
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - stalat
 - id: light.laundry_light
   area_id: laundry
-  name: lvacqaran luys
+  name: lvacqaran լույս
   aliases:
-  - lvacqaran luys
-  - luys
+  - lvacqaran լույս
+  - լույս
 - id: light.powder_room_light
   area_id: powder_room
-  name: wc luys
+  name: wc լույս
   aliases:
-  - wc luys
-  - luys
+  - wc լույս
+  - լույս
 - id: light.garage_light
   area_id: garage
-  name: garage luys
+  name: garage լույս
   aliases:
-  - garage luys
-  - luys
+  - garage լույս
+  - լույս
 - id: light.office_ceiling
   area_id: office
   name: office stalat
@@ -184,35 +187,35 @@ devices:
   - stalat
 - id: light.garden
   area_id: garden
-  name: garden luys
+  name: garden լույս
   aliases:
-  - garden luys
-  - luys
+  - garden լույս
+  - լույս
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: qnakaran stalat
+  name: qnakaranmaster stalat
   aliases:
-  - qnakaran stalat
+  - qnakaranmaster stalat
   - stalat
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: qnakaran ensuite
+  name: qnakaranmaster ensuite
   aliases:
-  - qnakaran ensuite
+  - qnakaranmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: qnakaran left gisherayin
+  name: qnakaranmaster left gisherayin
   aliases:
-  - qnakaran left gisherayin
+  - qnakaranmaster left gisherayin
   - gisherayin
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: qnakaran right gisherayin
+  name: qnakaranmaster right gisherayin
   aliases:
-  - qnakaran right gisherayin
+  - qnakaranmaster right gisherayin
   - gisherayin
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - stalat
 - id: light.master_bath_light
   area_id: master_bath
-  name: lvacaranmaster luys
+  name: lvacaranmaster լույս
   aliases:
-  - lvacaranmaster luys
-  - luys
+  - lvacaranmaster լույս
+  - լույս
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath luys
+  name: main bath լույս
   aliases:
-  - main bath luys
-  - luys
+  - main bath լույս
+  - լույս
 - id: light.hallway_light
   area_id: hallway
-  name: hallway luys
+  name: hallway լույս
   aliases:
-  - hallway luys
-  - luys
+  - hallway լույս
+  - լույս
 - id: light.basement
   area_id: basement
-  name: basement luys
+  name: basement լույս
   aliases:
-  - basement luys
-  - luys
+  - basement լույս
+  - լույս
 - id: cover.living_blinds
   area_id: living
-  name: hyurasenyak varaguyr
+  name: հյուրասենյակ վարագույր
   aliases:
-  - hyurasenyak varaguyr
-  - varaguyr
+  - հյուրասենյակ վարագույր
+  - վարագույր
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: qnakaran varaguyr
+  name: qnakaranmaster վարագույր
   aliases:
-  - qnakaran varaguyr
-  - varaguyr
+  - qnakaranmaster վարագույր
+  - վարագույր
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: qnakaran2 varaguyr
+  name: qnakaran2 վարագույր
   aliases:
-  - qnakaran2 varaguyr
-  - varaguyr
+  - qnakaran2 վարագույր
+  - վարագույր
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: qnakaran3 varaguyr
+  name: qnakaran3 վարագույր
   aliases:
-  - qnakaran3 varaguyr
-  - varaguyr
+  - qnakaran3 վարագույր
+  - վարագույր
 - id: cover.garage_door
   area_id: garage
-  name: garage varaguyr
+  name: garage վարագույր
   aliases:
-  - garage varaguyr
-  - varaguyr
+  - garage վարագույր
+  - վարագույր
 - id: climate.ground_thermostat
   area_id: living
-  name: hyurasenyak jerutsum
+  name: հյուրասենյակ ջեռուցում
   aliases:
-  - hyurasenyak jerutsum
-  - jerutsum
+  - հյուրասենյակ ջեռուցում
+  - ջեռուցում
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: qnakaran jerutsum
+  name: qnakaranmaster ջեռուցում
   aliases:
-  - qnakaran jerutsum
-  - jerutsum
+  - qnakaranmaster ջեռուցում
+  - ջեռուցում
 - id: climate.master_ac
   area_id: master_bedroom
-  name: jerutsum qnakaran
+  name: jerutsum qnakaranmaster
   aliases:
-  - jerutsum qnakaran
+  - jerutsum qnakaranmaster
   - jerutsum
   - ac
   tags:
   - jerutsum
 - id: fan.family_fan
   area_id: family_room
-  name: yntaniq odapokhich
+  name: yntaniq օդափոխիչ
   aliases:
-  - yntaniq odapokhich
-  - odapokhich
+  - yntaniq օդափոխիչ
+  - օդափոխիչ
 - id: fan.master_fan
   area_id: master_bedroom
-  name: qnakaran odapokhich
+  name: qnakaranmaster օդափոխիչ
   aliases:
-  - qnakaran odapokhich
-  - odapokhich
+  - qnakaranmaster օդափոխիչ
+  - օդափոխիչ
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: qnakaran2 odapokhich
+  name: qnakaran2 օդափոխիչ
   aliases:
-  - qnakaran2 odapokhich
-  - odapokhich
+  - qnakaran2 օդափոխիչ
+  - օդափոխիչ
 - id: lock.front_door
   area_id: entryway
-  name: front dur
+  name: front դոռռ
   aliases:
-  - front dur
+  - front դոռռ
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage dur
+  name: garage դոռռ
   aliases:
-  - garage dur
+  - garage դոռռ
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: khohanots aman
+  name: խոհանոց aman
   aliases:
-  - khohanots aman
+  - խոհանոց aman
   - aman
 - id: switch.rangehood
   area_id: kitchen
-  name: khohanots rangehood
+  name: խոհանոց rangehood
   aliases:
-  - khohanots rangehood
+  - խոհանոց rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: lvacaranmaster odapokhichbad
+  name: lvacaranmaster օդափոխիչbad
   aliases:
-  - lvacaranmaster odapokhichbad
-  - odapokhichbad
+  - lvacaranmaster օդափոխիչbad
+  - օդափոխիչbad
   tags:
-  - odapokhichbad
+  - օդափոխիչbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath odapokhichbad
+  name: main bath օդափոխիչbad
   aliases:
-  - main bath odapokhichbad
-  - odapokhichbad
+  - main bath օդափոխիչbad
+  - օդափոխիչbad
   tags:
-  - odapokhichbad
+  - օդափոխիչbad
 - id: media_player.living_tv
   area_id: living
-  name: hyurasenyak tv
+  name: հյուրասենյակ tv
   aliases:
-  - hyurasenyak tv
+  - հյուրասենյակ tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: hyurasenyak herustatsuyts
+  name: հյուրասենյակ հեռուստացույց
   aliases:
-  - hyurasenyak herustatsuyts
-  - herustatsuyts
+  - հյուրասենյակ հեռուստացույց
+  - հեռուստացույց
   platform: music_assistant
   tags:
-  - herustatsuyts
+  - հեռուստացույց
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: khohanots herustatsuyts
+  name: խոհանոց հեռուստացույց
   aliases:
-  - khohanots herustatsuyts
-  - herustatsuyts
+  - խոհանոց հեռուստացույց
+  - հեռուստացույց
   platform: music_assistant
   tags:
-  - herustatsuyts
+  - հեռուստացույց
 - id: media_player.office_music
   area_id: office
-  name: office herustatsuyts
+  name: office հեռուստացույց
   aliases:
-  - office herustatsuyts
-  - herustatsuyts
+  - office հեռուստացույց
+  - հեռուստացույց
   platform: music_assistant
   tags:
-  - herustatsuyts
+  - հեռուստացույց
 - id: vacuum.robot
   area_id: living
-  name: hyurasenyak poshekul
+  name: հյուրասենյակ փոշեկուլ
   aliases:
-  - hyurasenyak poshekul
-  - poshekul
+  - հյուրասենյակ փոշեկուլ
+  - փոշեկուլ
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: mutq doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: hyurasenyak windowsensor
+  name: հյուրասենյակ windowsensor
   aliases:
-  - hyurasenyak windowsensor
+  - հյուրասենյակ windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: khohanots motion
+  name: խոհանոց motion
   aliases:
-  - khohanots motion
+  - խոհանոց motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: hyurasenyak tempsensor
+  name: հյուրասենյակ tempsensor
   aliases:
-  - hyurasenyak tempsensor
+  - հյուրասենյակ tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: hyurasenyak humidity
+  name: հյուրասենյակ humidity
   aliases:
-  - hyurasenyak humidity
+  - հյուրասենյակ humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: elq
 timers:
 - id: oven
-  name: oven zhamachap
+  name: oven ժամաչափ
 - id: laundry
-  name: laundry zhamachap
+  name: laundry ժամաչափ
 - id: abstract
-  name: abstract zhamachap
+  name: abstract ժամաչափ
 lists:
 - id: shopping
-  name: tsutsak
+  name: ցուցակ

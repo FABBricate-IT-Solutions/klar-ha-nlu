@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - diffodd pob golau
 area/lichter::arbeitszimmer_lichter_an:
-- tro golau ystafell
+- tro pob golau office
 area/lichter::arbeitszimmer_lichter_aus:
-- diffodd golau ystafell
+- diffodd pob golau office
 area/lichter::esszimmer_lichter_an:
-- tro golau ystafellteuluess
+- tro pob golau ystafellteuluess
 area/lichter::esszimmer_lichter_aus:
-- diffodd golau ystafellteuluess
+- diffodd pob golau ystafellteuluess
 area/lichter::kuche_lichter_an:
-- tro golau cegin
+- tro pob golau cegin
 area/lichter::kuche_lichter_aus:
-- diffodd golau cegin
+- diffodd pob golau cegin
 area/lichter::schlafzimmer_auf_blau:
-- gosod golau llofft blue
+- gosod pob golau llofft blue
 area/lichter::schlafzimmer_auf_rot:
-- gosod golau llofft red
+- gosod pob golau llofft red
 area/lichter::wohnzimmer_helligkeit:
-- gosod golau ystafell 45
+- gosod pob golau ystafell 45
 area/lichter::wohnzimmer_lichter_an:
-- tro golau ystafell
+- tro pob golau ystafell
 area/lichter::wohnzimmer_lichter_aus:
-- diffodd golau ystafell
+- diffodd pob golau ystafell
 area/spoken::alle_ausser_kugel_stt:
 - diffodd pob golau heblaw pelen
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - diffodd pob golau
 area/spoken::esszimmer_weiss:
-- gosod golau ystafellteuluess white
+- gosod pob golau ystafellteuluess white
 area/spoken::stt_kuche_lichte:
-- diffodd golau cegin
+- diffodd pob golau cegin
 area/spoken::stt_licht_wohnzimmer_an:
-- tro golau ystafell
+- tro pob golau ystafell
 area/spoken::stt_licht_wohnzimmer_aus:
-- diffodd golau ystafell
+- diffodd pob golau ystafell
 area/spoken::stt_schlafzimmer_dativ:
-- diffodd golau llofft
+- diffodd pob golau llofft
 area/spoken::wohnzimmer_gruen:
-- gosod golau ystafell green
+- gosod pob golau ystafell green
 area/spoken_more::alle_ausser_arbeitszimmer:
-- diffodd pob golau heblaw ystafell
+- diffodd pob golau heblaw office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- diffodd golau ystafell
+- diffodd pob golau office
 area/spoken_more::esszimmer_30:
-- gosod golau ystafellteuluess 30
+- gosod pob golau ystafellteuluess 30
 area/spoken_more::esszimmer_lichte_an:
-- tro golau ystafellteuluess
+- tro pob golau ystafellteuluess
 area/spoken_more::kuche_80:
-- gosod golau cegin 80
+- gosod pob golau cegin 80
 area/spoken_more::kuche_blau:
-- gosod golau cegin blue
+- gosod pob golau cegin blue
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - diffodd pob golau heblaw llofft
 area/spoken_more::wohnzimmer_gelb:
-- gosod golau ystafell yellow
+- gosod pob golau ystafell yellow

@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - fengshan jiatingfang dakai
-  - dakai fengshan jiatingfang
+  - 風扇 jiatingfang 打開
+  - 打開 風扇 jiatingfang
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - guanbi fengshan jiatingfang
-  - fengshan jiatingfang guanbi
+  - 關閉 風扇 jiatingfang
+  - 風扇 jiatingfang 關閉
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - shezhi fengshan jiatingfang 40
-  - fengshan jiatingfang 40
+  - 設置 風扇 jiatingfang 40
+  - 風扇 jiatingfang 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - fengshan woshi dakai
-  - dakai fengshan woshi
+  - 風扇 woshimaster 打開
+  - 打開 風扇 woshimaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - guanbi fengshan woshi
-  - fengshan woshi guanbi
+  - 關閉 風扇 woshimaster
+  - 風扇 woshimaster 關閉
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - shezhi fengshan woshi 40
-  - fengshan woshi 40
+  - 設置 風扇 woshimaster 40
+  - 風扇 woshimaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - fengshan woshi2 dakai
-  - dakai fengshan woshi2
+  - 風扇 woshi2 打開
+  - 打開 風扇 woshi2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - guanbi fengshan woshi2
-  - fengshan woshi2 guanbi
+  - 關閉 風扇 woshi2
+  - 風扇 woshi2 關閉
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - shezhi fengshan woshi2 40
-  - fengshan woshi2 40
+  - 設置 風扇 woshi2 40
+  - 風扇 woshi2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - shezhi fengshan jiatingfang 20
-  - fengshan jiatingfang 20
+  - 設置 風扇 jiatingfang 20
+  - 風扇 jiatingfang 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - shezhi fengshan jiatingfang 60
-  - fengshan jiatingfang 60
+  - 設置 風扇 jiatingfang 60
+  - 風扇 jiatingfang 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - shezhi fengshan jiatingfang 80
-  - fengshan jiatingfang 80
+  - 設置 風扇 jiatingfang 80
+  - 風扇 jiatingfang 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - shezhi fengshan woshi 20
-  - fengshan woshi 20
+  - 設置 風扇 woshimaster 20
+  - 風扇 woshimaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - shezhi fengshan woshi 60
-  - fengshan woshi 60
+  - 設置 風扇 woshimaster 60
+  - 風扇 woshimaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - shezhi fengshan woshi 80
-  - fengshan woshi 80
+  - 設置 風扇 woshimaster 80
+  - 風扇 woshimaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - shezhi fengshan woshi2 20
-  - fengshan woshi2 20
+  - 設置 風扇 woshi2 20
+  - 風扇 woshi2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - shezhi fengshan woshi2 60
-  - fengshan woshi2 60
+  - 設置 風扇 woshi2 60
+  - 風扇 woshi2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - shezhi fengshan woshi2 80
-  - fengshan woshi2 80
+  - 設置 風扇 woshi2 80
+  - 風扇 woshi2 80

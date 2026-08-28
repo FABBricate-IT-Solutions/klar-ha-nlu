@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - acende luz cuarto
-  - luz cuarto acende
+  - acende luz cuartomaster
+  - luz cuartomaster acende
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga luz cuarto
-  - luz cuarto apaga
+  - apaga luz cuartomaster
+  - luz cuartomaster apaga
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - acende teito cuarto
-  - teito cuarto acende
+  - acende teito cuartomaster
+  - teito cuartomaster acende
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - apaga teito cuarto
-  - teito cuarto apaga
+  - apaga teito cuartomaster
+  - teito cuartomaster apaga
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - pon teito cuarto 20
-  - teito cuarto 20
+  - pon teito cuartomaster 20
+  - teito cuartomaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - pon teito cuarto 40
-  - teito cuarto 40
+  - pon teito cuartomaster 40
+  - teito cuartomaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - pon teito cuarto 50
-  - teito cuarto 50
+  - pon teito cuartomaster 50
+  - teito cuartomaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - pon teito cuarto 60
-  - teito cuarto 60
+  - pon teito cuartomaster 60
+  - teito cuartomaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - pon teito cuarto 80
-  - teito cuarto 80
+  - pon teito cuartomaster 80
+  - teito cuartomaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - pon teito cuarto 100
-  - teito cuarto 100
+  - pon teito cuartomaster 100
+  - teito cuartomaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - acende mesilla cuarto
-  - mesilla cuarto acende
+  - acende mesilla cuartomaster
+  - mesilla cuartomaster acende
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - apaga mesilla cuarto
-  - mesilla cuarto apaga
+  - apaga mesilla cuartomaster
+  - mesilla cuartomaster apaga
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - pon mesilla cuarto 20
-  - mesilla cuarto 20
+  - pon mesilla cuartomaster 20
+  - mesilla cuartomaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - pon mesilla cuarto 40
-  - mesilla cuarto 40
+  - pon mesilla cuartomaster 40
+  - mesilla cuartomaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - pon mesilla cuarto 50
-  - mesilla cuarto 50
+  - pon mesilla cuartomaster 50
+  - mesilla cuartomaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - pon mesilla cuarto 60
-  - mesilla cuarto 60
+  - pon mesilla cuartomaster 60
+  - mesilla cuartomaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - pon mesilla cuarto 80
-  - mesilla cuarto 80
+  - pon mesilla cuartomaster 80
+  - mesilla cuartomaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - pon mesilla cuarto 100
-  - mesilla cuarto 100
+  - pon mesilla cuartomaster 100
+  - mesilla cuartomaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - acende ensuite cuarto
-  - ensuite cuarto acende
+  - acende ensuite cuartomaster
+  - ensuite cuartomaster acende
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - apaga ensuite cuarto
-  - ensuite cuarto apaga
+  - apaga ensuite cuartomaster
+  - ensuite cuartomaster apaga
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - pon ensuite cuarto 20
-  - ensuite cuarto 20
+  - pon ensuite cuartomaster 20
+  - ensuite cuartomaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - pon ensuite cuarto 40
-  - ensuite cuarto 40
+  - pon ensuite cuartomaster 40
+  - ensuite cuartomaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - pon ensuite cuarto 50
-  - ensuite cuarto 50
+  - pon ensuite cuartomaster 50
+  - ensuite cuartomaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - pon ensuite cuarto 60
-  - ensuite cuarto 60
+  - pon ensuite cuartomaster 60
+  - ensuite cuartomaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - pon ensuite cuarto 80
-  - ensuite cuarto 80
+  - pon ensuite cuartomaster 80
+  - ensuite cuartomaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - pon ensuite cuarto 100
-  - ensuite cuarto 100
+  - pon ensuite cuartomaster 100
+  - ensuite cuartomaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - acende mesilla cuarto
-  - mesilla cuarto acende
+  - acende mesilla cuartomaster
+  - mesilla cuartomaster acende
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - apaga mesilla cuarto
-  - mesilla cuarto apaga
+  - apaga mesilla cuartomaster
+  - mesilla cuartomaster apaga
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - pon mesilla cuarto 20
-  - mesilla cuarto 20
+  - pon mesilla cuartomaster 20
+  - mesilla cuartomaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - pon mesilla cuarto 40
-  - mesilla cuarto 40
+  - pon mesilla cuartomaster 40
+  - mesilla cuartomaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - pon mesilla cuarto 50
-  - mesilla cuarto 50
+  - pon mesilla cuartomaster 50
+  - mesilla cuartomaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - pon mesilla cuarto 60
-  - mesilla cuarto 60
+  - pon mesilla cuartomaster 60
+  - mesilla cuartomaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - pon mesilla cuarto 80
-  - mesilla cuarto 80
+  - pon mesilla cuartomaster 80
+  - mesilla cuartomaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - pon mesilla cuarto 100
-  - mesilla cuarto 100
+  - pon mesilla cuartomaster 100
+  - mesilla cuartomaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - pon teito cuarto red
-  - pon luz cuarto red
+  - pon teito cuartomaster red
+  - pon luz cuartomaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - pon teito cuarto blue
-  - pon luz cuarto blue
+  - pon teito cuartomaster blue
+  - pon luz cuartomaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - pon teito cuarto green
-  - pon luz cuarto green
+  - pon teito cuartomaster green
+  - pon luz cuartomaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - pon teito cuarto white
-  - pon luz cuarto white
+  - pon teito cuartomaster white
+  - pon luz cuartomaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - pon teito cuarto yellow
-  - pon luz cuarto yellow
+  - pon teito cuartomaster yellow
+  - pon luz cuartomaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - pon teito cuarto black
-  - pon luz cuarto black
+  - pon teito cuartomaster black
+  - pon luz cuartomaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - pon mesilla cuarto red
-  - pon luz cuarto red
+  - pon mesilla cuartomaster red
+  - pon luz cuartomaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - pon mesilla cuarto blue
-  - pon luz cuarto blue
+  - pon mesilla cuartomaster blue
+  - pon luz cuartomaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - pon mesilla cuarto green
-  - pon luz cuarto green
+  - pon mesilla cuartomaster green
+  - pon luz cuartomaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - pon mesilla cuarto white
-  - pon luz cuarto white
+  - pon mesilla cuartomaster white
+  - pon luz cuartomaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - pon mesilla cuarto yellow
-  - pon luz cuarto yellow
+  - pon mesilla cuartomaster yellow
+  - pon luz cuartomaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - pon mesilla cuarto black
-  - pon luz cuarto black
+  - pon mesilla cuartomaster black
+  - pon luz cuartomaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - pon ensuite cuarto red
-  - pon luz cuarto red
+  - pon ensuite cuartomaster red
+  - pon luz cuartomaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - pon ensuite cuarto blue
-  - pon luz cuarto blue
+  - pon ensuite cuartomaster blue
+  - pon luz cuartomaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - pon ensuite cuarto green
-  - pon luz cuarto green
+  - pon ensuite cuartomaster green
+  - pon luz cuartomaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - pon ensuite cuarto white
-  - pon luz cuarto white
+  - pon ensuite cuartomaster white
+  - pon luz cuartomaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - pon ensuite cuarto yellow
-  - pon luz cuarto yellow
+  - pon ensuite cuartomaster yellow
+  - pon luz cuartomaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - pon ensuite cuarto black
-  - pon luz cuarto black
+  - pon ensuite cuartomaster black
+  - pon luz cuartomaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - pon mesilla cuarto red
-  - pon luz cuarto red
+  - pon mesilla cuartomaster red
+  - pon luz cuartomaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - pon mesilla cuarto blue
-  - pon luz cuarto blue
+  - pon mesilla cuartomaster blue
+  - pon luz cuartomaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - pon mesilla cuarto green
-  - pon luz cuarto green
+  - pon mesilla cuartomaster green
+  - pon luz cuartomaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - pon mesilla cuarto white
-  - pon luz cuarto white
+  - pon mesilla cuartomaster white
+  - pon luz cuartomaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - pon mesilla cuarto yellow
-  - pon luz cuarto yellow
+  - pon mesilla cuartomaster yellow
+  - pon luz cuartomaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - pon mesilla cuarto black
-  - pon luz cuarto black
+  - pon mesilla cuartomaster black
+  - pon luz cuartomaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga todo luz excepto cuarto
-  - todo luz apaga excepto cuarto
+  - apaga todo luz excepto cuartomaster
+  - todo luz apaga excepto cuartomaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

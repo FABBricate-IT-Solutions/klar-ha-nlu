@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - enow golow chambour
-  - golow chambour enow
+  - enow golow chambourmaster
+  - golow chambourmaster enow
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffyg golow chambour
-  - golow chambour diffyg
+  - diffyg golow chambourmaster
+  - golow chambourmaster diffyg
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - enow nen chambour
-  - nen chambour enow
+  - enow nen chambourmaster
+  - nen chambourmaster enow
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - diffyg nen chambour
-  - nen chambour diffyg
+  - diffyg nen chambourmaster
+  - nen chambourmaster diffyg
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - settya nen chambour 20
-  - nen chambour 20
+  - settya nen chambourmaster 20
+  - nen chambourmaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - settya nen chambour 40
-  - nen chambour 40
+  - settya nen chambourmaster 40
+  - nen chambourmaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - settya nen chambour 50
-  - nen chambour 50
+  - settya nen chambourmaster 50
+  - nen chambourmaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - settya nen chambour 60
-  - nen chambour 60
+  - settya nen chambourmaster 60
+  - nen chambourmaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - settya nen chambour 80
-  - nen chambour 80
+  - settya nen chambourmaster 80
+  - nen chambourmaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - settya nen chambour 100
-  - nen chambour 100
+  - settya nen chambourmaster 100
+  - nen chambourmaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - enow gweli chambour
-  - gweli chambour enow
+  - enow gweli chambourmaster
+  - gweli chambourmaster enow
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - diffyg gweli chambour
-  - gweli chambour diffyg
+  - diffyg gweli chambourmaster
+  - gweli chambourmaster diffyg
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - settya gweli chambour 20
-  - gweli chambour 20
+  - settya gweli chambourmaster 20
+  - gweli chambourmaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - settya gweli chambour 40
-  - gweli chambour 40
+  - settya gweli chambourmaster 40
+  - gweli chambourmaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - settya gweli chambour 50
-  - gweli chambour 50
+  - settya gweli chambourmaster 50
+  - gweli chambourmaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - settya gweli chambour 60
-  - gweli chambour 60
+  - settya gweli chambourmaster 60
+  - gweli chambourmaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - settya gweli chambour 80
-  - gweli chambour 80
+  - settya gweli chambourmaster 80
+  - gweli chambourmaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - settya gweli chambour 100
-  - gweli chambour 100
+  - settya gweli chambourmaster 100
+  - gweli chambourmaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - enow ensuite chambour
-  - ensuite chambour enow
+  - enow ensuite chambourmaster
+  - ensuite chambourmaster enow
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - diffyg ensuite chambour
-  - ensuite chambour diffyg
+  - diffyg ensuite chambourmaster
+  - ensuite chambourmaster diffyg
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - settya ensuite chambour 20
-  - ensuite chambour 20
+  - settya ensuite chambourmaster 20
+  - ensuite chambourmaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - settya ensuite chambour 40
-  - ensuite chambour 40
+  - settya ensuite chambourmaster 40
+  - ensuite chambourmaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - settya ensuite chambour 50
-  - ensuite chambour 50
+  - settya ensuite chambourmaster 50
+  - ensuite chambourmaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - settya ensuite chambour 60
-  - ensuite chambour 60
+  - settya ensuite chambourmaster 60
+  - ensuite chambourmaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - settya ensuite chambour 80
-  - ensuite chambour 80
+  - settya ensuite chambourmaster 80
+  - ensuite chambourmaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - settya ensuite chambour 100
-  - ensuite chambour 100
+  - settya ensuite chambourmaster 100
+  - ensuite chambourmaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - enow gweli chambour
-  - gweli chambour enow
+  - enow gweli chambourmaster
+  - gweli chambourmaster enow
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - diffyg gweli chambour
-  - gweli chambour diffyg
+  - diffyg gweli chambourmaster
+  - gweli chambourmaster diffyg
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - settya gweli chambour 20
-  - gweli chambour 20
+  - settya gweli chambourmaster 20
+  - gweli chambourmaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - settya gweli chambour 40
-  - gweli chambour 40
+  - settya gweli chambourmaster 40
+  - gweli chambourmaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - settya gweli chambour 50
-  - gweli chambour 50
+  - settya gweli chambourmaster 50
+  - gweli chambourmaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - settya gweli chambour 60
-  - gweli chambour 60
+  - settya gweli chambourmaster 60
+  - gweli chambourmaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - settya gweli chambour 80
-  - gweli chambour 80
+  - settya gweli chambourmaster 80
+  - gweli chambourmaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - settya gweli chambour 100
-  - gweli chambour 100
+  - settya gweli chambourmaster 100
+  - gweli chambourmaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - settya nen chambour red
-  - settya golow chambour red
+  - settya nen chambourmaster red
+  - settya golow chambourmaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - settya nen chambour blue
-  - settya golow chambour blue
+  - settya nen chambourmaster blue
+  - settya golow chambourmaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - settya nen chambour green
-  - settya golow chambour green
+  - settya nen chambourmaster green
+  - settya golow chambourmaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - settya nen chambour white
-  - settya golow chambour white
+  - settya nen chambourmaster white
+  - settya golow chambourmaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - settya nen chambour yellow
-  - settya golow chambour yellow
+  - settya nen chambourmaster yellow
+  - settya golow chambourmaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - settya nen chambour black
-  - settya golow chambour black
+  - settya nen chambourmaster black
+  - settya golow chambourmaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - settya gweli chambour red
-  - settya golow chambour red
+  - settya gweli chambourmaster red
+  - settya golow chambourmaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - settya gweli chambour blue
-  - settya golow chambour blue
+  - settya gweli chambourmaster blue
+  - settya golow chambourmaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - settya gweli chambour green
-  - settya golow chambour green
+  - settya gweli chambourmaster green
+  - settya golow chambourmaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - settya gweli chambour white
-  - settya golow chambour white
+  - settya gweli chambourmaster white
+  - settya golow chambourmaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - settya gweli chambour yellow
-  - settya golow chambour yellow
+  - settya gweli chambourmaster yellow
+  - settya golow chambourmaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - settya gweli chambour black
-  - settya golow chambour black
+  - settya gweli chambourmaster black
+  - settya golow chambourmaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - settya ensuite chambour red
-  - settya golow chambour red
+  - settya ensuite chambourmaster red
+  - settya golow chambourmaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - settya ensuite chambour blue
-  - settya golow chambour blue
+  - settya ensuite chambourmaster blue
+  - settya golow chambourmaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - settya ensuite chambour green
-  - settya golow chambour green
+  - settya ensuite chambourmaster green
+  - settya golow chambourmaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - settya ensuite chambour white
-  - settya golow chambour white
+  - settya ensuite chambourmaster white
+  - settya golow chambourmaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - settya ensuite chambour yellow
-  - settya golow chambour yellow
+  - settya ensuite chambourmaster yellow
+  - settya golow chambourmaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - settya ensuite chambour black
-  - settya golow chambour black
+  - settya ensuite chambourmaster black
+  - settya golow chambourmaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - settya gweli chambour red
-  - settya golow chambour red
+  - settya gweli chambourmaster red
+  - settya golow chambourmaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - settya gweli chambour blue
-  - settya golow chambour blue
+  - settya gweli chambourmaster blue
+  - settya golow chambourmaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - settya gweli chambour green
-  - settya golow chambour green
+  - settya gweli chambourmaster green
+  - settya golow chambourmaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - settya gweli chambour white
-  - settya golow chambour white
+  - settya gweli chambourmaster white
+  - settya golow chambourmaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - settya gweli chambour yellow
-  - settya golow chambour yellow
+  - settya gweli chambourmaster yellow
+  - settya golow chambourmaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - settya gweli chambour black
-  - settya golow chambour black
+  - settya gweli chambourmaster black
+  - settya golow chambourmaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - diffyg oll golow marnas chambour
-  - oll golow diffyg marnas chambour
+  - diffyg oll golow marnas chambourmaster
+  - oll golow diffyg marnas chambourmaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

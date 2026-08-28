@@ -1,0 +1,19 @@
+---
+description: Never merge a PR until required CI has finished and passed
+alwaysApply: true
+---
+
+# No merge before CI
+
+Never merge a pull request while checks are queued, pending, skipped-as-pending, or failed.
+
+```bash
+# wait until every required check finished
+gh pr checks --watch
+# merge only after gh pr checks shows all required jobs pass
+gh pr view --json mergeStateStatus,statusCheckRollup
+```
+
+- Do not run `gh pr merge` when `mergeStateStatus` is `UNSTABLE`, `BLOCKED`, or checks are `QUEUED` / `IN_PROGRESS`.
+- Do not use `--admin` or any bypass to skip a running or failed pipeline.
+- If the user asks to ship, open the PR, watch CI, fix failures, then merge.

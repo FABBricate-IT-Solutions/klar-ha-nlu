@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - izsledz griesti gulamistaba
 devices/geraete::device_arbeitszimmer_an:
-- iesledz gaisma istaba
+- iesledz gaisma office
 devices/geraete::device_esszimmer_an:
 - iesledz gaisma dzivojamafamess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - iesledz gaisma istaba
 devices/geraete::filmabend:
-- iesledz Filmabend
+- iesledz scena filmabend
 devices/geraete::kugel_an:
-- iesledz lode gulamistaba
+- iesledz lode
 devices/geraete::luefter_50:
-- iestati ventilators istaba 50
+- iestati ventilators office 50
 devices/geraete::pc_an:
-- iesledz ierice
+- iesledz pc
 devices/geraete::r2d2_saugen:
 - iesledz puteklusucejs istaba
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - iesledz veļasmašīna
 devices/klima::klima_schlaf_21:
-- iestati apkure gulamistaba 21
+- iestati ac gulamistaba 21
 devices/spoken::deckenlampe_an:
 - iesledz griesti gulamistaba
 devices/spoken::kugel_aus:
-- izsledz lode gulamistaba
+- izsledz lode
 devices/spoken::luefter_aus:
-- izsledz ventilators istaba
+- izsledz ventilators office
 devices/spoken::rollo_auf:
 - atver aizkars istaba
 devices/spoken::trockner_an:
-- iesledz veļasmašīna
+- iesledz dryer
 devices/spoken::tv_aus:
 - izsledz tv
 devices/spoken_more::decke_aus_casual:
 - izsledz griesti gulamistaba
 devices/spoken_more::kugel_casual:
-- iesledz lode gulamistaba
+- iesledz lode
 devices/spoken_more::pc_aus:
-- izsledz ierice
+- izsledz pc
 devices/spoken_more::spuelmaschine_an:
 - iesledz trauku
 devices/spoken_more::waschmaschine_aus:

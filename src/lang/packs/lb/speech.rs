@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Dat hunn ech net verstan. So zum Beispill, wei eng Luucht un soll.",
+    unknown: "Dat hunn ech net verstan.",
     need_on: "Wat uschalten?",
     need_off: "Wat ausschalten?",
     need_which: "Wat uschalten?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Wat ausschalten?",
     timer_pause: "Wat ausschalten?",
     list_add: "Steet op der Lescht.",
+    calendar_list: "{items}",
+    calendar_empty: "Dat hunn ech net verstan.",
+    calendar_none: "Dat hunn ech net verstan.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Dat hunn ech net verstan.",
+    calendar_need_when: "Dat hunn ech net verstan.",
+    calendar_readonly: "Dat hunn ech net verstan.",
+    calendar_deleted: "Geläscht.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Wee Termin?",
+    calendar_no_uid: "Keng id.",
+    no_music_player: "Dat hunn ech net verstan.",
     done: "{name}",
     light_suffix: " luucht",
     area_light: "luucht {loc}",

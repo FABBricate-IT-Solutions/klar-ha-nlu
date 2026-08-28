@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - روشن چراغ اتاقخواب
+  - روشن چراغ اتاقخوابmaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - خاموش چراغ اتاقخواب
+  - خاموش چراغ اتاقخوابmaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - روشن سقف اتاقخواب
+  - روشن سقف اتاقخوابmaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - خاموش سقف اتاقخواب
+  - خاموش سقف اتاقخوابmaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - روشن کنارتخت اتاقخواب
+  - روشن کنارتخت اتاقخوابmaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - خاموش کنارتخت اتاقخواب
+  - خاموش کنارتخت اتاقخوابmaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

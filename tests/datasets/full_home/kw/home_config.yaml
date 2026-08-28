@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Chambour
+  name: Chambourmaster
   floor: upper
   aliases:
+  - chambourmaster
   - chambour
 - id: bedroom_2
   name: Chambour2
@@ -130,10 +131,10 @@ devices:
   - nen
 - id: light.living_lamp
   area_id: living
-  name: stafell golow
+  name: stafell lamp
   aliases:
-  - stafell golow
-  - golow
+  - stafell lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: stevellteyluess golow
@@ -190,29 +191,29 @@ devices:
   - golow
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: chambour nen
+  name: chambourmaster nen
   aliases:
-  - chambour nen
+  - chambourmaster nen
   - nen
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: chambour ensuite
+  name: chambourmaster ensuite
   aliases:
-  - chambour ensuite
+  - chambourmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: chambour left gweli
+  name: chambourmaster left gweli
   aliases:
-  - chambour left gweli
+  - chambourmaster left gweli
   - gweli
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: chambour right gweli
+  name: chambourmaster right gweli
   aliases:
-  - chambour right gweli
+  - chambourmaster right gweli
   - gweli
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - curtayn
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: chambour curtayn
+  name: chambourmaster curtayn
   aliases:
-  - chambour curtayn
+  - chambourmaster curtayn
   - curtayn
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - tomder
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: chambour tomder
+  name: chambourmaster tomder
   aliases:
-  - chambour tomder
+  - chambourmaster tomder
   - tomder
 - id: climate.master_ac
   area_id: master_bedroom
-  name: tomder chambour
+  name: tomder chambourmaster
   aliases:
-  - tomder chambour
+  - tomder chambourmaster
   - tomder
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - gwyns
 - id: fan.master_fan
   area_id: master_bedroom
-  name: chambour gwyns
+  name: chambourmaster gwyns
   aliases:
-  - chambour gwyns
+  - chambourmaster gwyns
   - gwyns
 - id: fan.bedroom2_fan
   area_id: bedroom_2

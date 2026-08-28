@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react";
 import { api, type CustomRule, type LangExplain, type LangOverlay } from "../api";
+import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
+import { sentencesEmpty, SetupHint } from "../components/SetupHint";
+import { TEACH_HEARD_KEY, TEACH_INTENT_KEY } from "../components/TeachFromMiss";
 import type { Messages } from "../i18n";
 import type { Locale } from "../types";
 
-const intents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
+const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
 export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Locale; embedded?: boolean }) {
+  const [intents, setIntents] = useState<string[]>(fallbackIntents);
   const [rules, setRules] = useState<CustomRule[]>([]);
   const [language, setLanguage] = useState<unknown>({});
   const [history, setHistory] = useState<LangOverlay["history"]>([]);
   const [phrase, setPhrase] = useState("");
   const [intent, setIntent] = useState(intents[0]);
   const [entityId, setEntityId] = useState("");
+  const [summary, setSummary] = useState("");
   const [previewText, setPreviewText] = useState("");
   const [explain, setExplain] = useState<LangExplain | null>(null);
   const [jsonMode, setJsonMode] = useState(false);
   const [jsonBody, setJsonBody] = useState("[]");
   const [status, setStatus] = useState("");
+  const { entityOptions } = useHouseCatalog();
 
   const load = (overlay: LangOverlay) => {
     setRules(overlay.custom);
@@ -27,7 +33,21 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
 
   useEffect(() => {
     api.langOverlay().then(load).catch((err) => setStatus(String(err)));
+    api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
+    const heard = sessionStorage.getItem(TEACH_HEARD_KEY);
+    if (heard) {
+      setPhrase(heard);
+      sessionStorage.removeItem(TEACH_HEARD_KEY);
+    }
   }, []);
+
+  useEffect(() => {
+    const intent = sessionStorage.getItem(TEACH_INTENT_KEY);
+    if (intent && intents.includes(intent)) {
+      setIntent(intent);
+      sessionStorage.removeItem(TEACH_INTENT_KEY);
+    }
+  }, [intents]);
 
   const persist = async (next: CustomRule[], label: string) => {
     load(await api.saveLangOverlay({ custom: next, language, label }));
@@ -35,9 +55,13 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
   };
 
   const add = async () => {
-    const next = [...rules, { phrase: phrase.trim(), intent, slots: entityId.trim() ? { entity_id: entityId.trim() } : {} }];
+    const slots: Record<string, string> = {};
+    if (entityId.trim()) slots.entity_id = entityId.trim();
+    if (summary.trim()) slots.summary = summary.trim();
+    const next = [...rules, { phrase: phrase.trim(), intent, slots }];
     setPhrase("");
     setEntityId("");
+    setSummary("");
     await persist(next, phrase.trim() || "add");
   };
 
@@ -92,7 +116,14 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
               {intents.map((name) => <option key={name} value={name}>{name}</option>)}
             </select>
             <label>{t.entityId}</label>
-            <input value={entityId} onChange={(ev) => setEntityId(ev.target.value)} placeholder="light.wohnzimmer" />
+            <SearchSelect
+              value={entityId}
+              options={withCurrent(entityOptions, entityId)}
+              onChange={setEntityId}
+              placeholder="light.wohnzimmer"
+            />
+            <label>{t.slots}</label>
+            <input value={summary} onChange={(ev) => setSummary(ev.target.value)} placeholder="summary" />
           </div>
           <div className="card">
             <label>{t.previewRule}</label>
@@ -110,12 +141,18 @@ export function CustomPage({ t, locale, embedded }: { t: Messages; locale: Local
         </section>
       )}
       <section className="card" style={{ marginTop: 16 }}>
-        {rules.length === 0 && <p className="muted">{t.noRules}</p>}
+        {rules.length === 0 && (
+          <div>
+            <p className="muted">{sentencesEmpty(t)}</p>
+            <SetupHint t={t} />
+          </div>
+        )}
         {rules.map((rule, index) => (
           <div className="row" key={`${rule.phrase}-${index}`} style={{ marginTop: 8 }}>
             <strong>{rule.phrase}</strong>
             <span className="chip">{rule.intent}</span>
             {rule.slots.entity_id && <span className="chip">{rule.slots.entity_id}</span>}
+            {rule.slots.summary && <span className="chip">{rule.slots.summary}</span>}
             <button className="ghost danger" onClick={() => remove(index)}>{t.deleteSelected}</button>
           </div>
         ))}

@@ -36,6 +36,7 @@
           "assist_filter": "仅控制已向 Assist 公开的实体",
           "nlu_rag": "NLU-RAG（可选）",
           "quiet_ack": "短确认（提示音）",
+          "calendar_llm": "把日历查询发给大模型",
           "channel": "发布通道"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "开：仅 Assist 可见实体。关：也包括隐藏实体。",
           "nlu_rag": "默认关闭。闲聊时只把已匹配片段送给后备模型。",
           "quiet_ack": "简单开关灯时不说话，只在卫星上播放短提示音。",
+          "calendar_llm": "默认关闭。开：Klar 读取日历，由后备大模型口述日程。关：Klar 自己念列表。创建、删除和移动仍由 Klar 处理。",
           "languages": "默认跟随 Home Assistant 系统语言。",
           "channel": "随时可改。预发布指向 Klar NLU（Staging）。"
         }

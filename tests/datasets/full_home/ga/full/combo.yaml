@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - cas seomraleong uasteorainn agus seomraleong leaba
-  - seomraleong uasteorainn agus seomraleong leaba cas
+  - cas seomraleongmaster uasteorainn agus seomraleongmaster leaba
+  - seomraleongmaster uasteorainn agus seomraleongmaster leaba cas
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - much seomraleong uasteorainn agus seomraleong leaba
-  - seomraleong uasteorainn agus seomraleong leaba much
+  - much seomraleongmaster uasteorainn agus seomraleongmaster leaba
+  - seomraleongmaster uasteorainn agus seomraleongmaster leaba much
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - cas seomraleong fean agus cistin oilean
-  - seomraleong fean agus cistin oilean cas
+  - cas seomraleongmaster fean agus cistin oilean
+  - seomraleongmaster fean agus cistin oilean cas
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - much solas seomraleong agus main bath
-  - solas seomraleong agus main bath much
+  - much solas seomraleongmaster agus main bath
+  - solas seomraleongmaster agus main bath much
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - much uile solas ach seomra agus seomraleong
-  - uile solas much ach seomra agus seomraleong
+  - much uile solas ach seomra agus seomraleongmaster
+  - uile solas much ach seomra agus seomraleongmaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - much uile solas urlár ach seomraleong
-  - uile solas urlár much ach seomraleong
+  - much uile solas urlár ach seomraleongmaster
+  - uile solas urlár much ach seomraleongmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - oscail cuirtin seomra agus seomraleong
-  - cuirtin seomra agus seomraleong oscail
+  - oscail cuirtin seomra agus seomraleongmaster
+  - cuirtin seomra agus seomraleongmaster oscail
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - dun cuirtin seomra agus seomraleong
-  - cuirtin seomra agus seomraleong dun
+  - dun cuirtin seomra agus seomraleongmaster
+  - cuirtin seomra agus seomraleongmaster dun
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - socraigh teas seomra agus seomraleong 21
-  - teas seomra agus seomraleong 21
+  - socraigh teas seomra agus seomraleongmaster 21
+  - teas seomra agus seomraleongmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

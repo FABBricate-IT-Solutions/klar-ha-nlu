@@ -36,16 +36,16 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - aanzetten dryer wasruimte
-  - dryer wasruimte aanzetten
+  - aanzetten droger wasruimte
+  - droger wasruimte aanzetten
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - uitzetten dryer wasruimte
-  - dryer wasruimte uitzetten
+  - uitzetten droger wasruimte
+  - droger wasruimte uitzetten
 - name: switch.rangehood_on
   conditions:
   - type: action

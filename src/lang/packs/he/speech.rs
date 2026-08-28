@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "לא הבנתי. תגיד לי למשל איזה אור להדליק.",
+    unknown: "לא הבנתי.",
     need_on: "מה להדליק?",
     need_off: "מה לכבות?",
     need_which: "מה להדליק?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "מה לכבות?",
     timer_pause: "מה לכבות?",
     list_add: "נוסף לרשימה.",
+    calendar_list: "{items}",
+    calendar_empty: "אין אירועים.",
+    calendar_none: "אין יומן.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "איזה שם?",
+    calendar_need_when: "מתי?",
+    calendar_readonly: "לקריאה בלבד.",
+    calendar_deleted: "נמחק.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "איזה אירוע?",
+    calendar_no_uid: "אין מזהה.",
+    no_music_player: "אין נגן.",
     done: "{name}",
     light_suffix: " אור",
     area_light: "אור {loc}",

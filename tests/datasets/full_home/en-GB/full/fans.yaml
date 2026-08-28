@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - fan bedroom enable
-  - enable fan bedroom
+  - fan bedroommaster enable
+  - enable fan bedroommaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - extinguish fan bedroom
-  - fan bedroom extinguish
+  - extinguish fan bedroommaster
+  - fan bedroommaster extinguish
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - set fan bedroom 40
-  - fan bedroom 40
+  - set fan bedroommaster 40
+  - fan bedroommaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set fan bedroom 20
-  - fan bedroom 20
+  - set fan bedroommaster 20
+  - fan bedroommaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set fan bedroom 60
-  - fan bedroom 60
+  - set fan bedroommaster 60
+  - fan bedroommaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set fan bedroom 80
-  - fan bedroom 80
+  - set fan bedroommaster 80
+  - fan bedroommaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

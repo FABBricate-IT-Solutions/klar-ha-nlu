@@ -27,7 +27,7 @@ pub(crate) fn resolve_scored(tokens: &[String], home: &HomeGraph, domain: Option
     let mut ranked: Vec<ResolveEvidence> = home
         .entities
         .iter()
-        .filter(|entity| assist_visible(entity, home) && !is_infra(entity))
+        .filter(|entity| assist_visible(entity, home) && !is_infra(entity) && !crate::home::policy::is_nlu_ignored(entity))
         .filter(|entity| domain.is_none_or(|wanted| matches_domain(entity, wanted, catalog())))
         .filter_map(|entity| {
             score_entity(tokens, &fuzzy, entity, home).map(|score| ResolveEvidence {

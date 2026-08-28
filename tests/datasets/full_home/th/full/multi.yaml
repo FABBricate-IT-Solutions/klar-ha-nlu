@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hongnang และ hongkrua
-  - fai hongnang และ hongkrua poetfai
+  - เปิด ไฟ ห้องนั่งเล่น และ ห้องครัว
+  - ไฟ ห้องนั่งเล่น และ ห้องครัว เปิด
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - pitfai fai hongnang และ kunjae pratu
-  - pitfai hongnang และ kunjae pratu
+  - ปิด ไฟ ห้องนั่งเล่น และ กุญแจ ประตู
+  - ปิด ห้องนั่งเล่น และ กุญแจ ประตู
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hongkrua และ hongkhropkhruaess
-  - fai hongkrua และ hongkhropkhruaess poetfai
+  - เปิด ไฟ ห้องครัว และ hongkhropkhruaess
+  - ไฟ ห้องครัว และ hongkhropkhruaess เปิด
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai office และ hallway
-  - fai office และ hallway poetfai
+  - เปิด ไฟ office และ hallway
+  - ไฟ office และ hallway เปิด
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai garage และ garden
-  - fai garage และ garden poetfai
+  - เปิด ไฟ garage และ garden
+  - ไฟ garage และ garden เปิด
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hongnon และ main bath
-  - fai hongnon และ main bath poetfai
+  - เปิด ไฟ hongnonmaster และ main bath
+  - ไฟ hongnonmaster และ main bath เปิด
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hongkhropkhrua และ hongnang
-  - fai hongkhropkhrua และ hongnang poetfai
+  - เปิด ไฟ hongkhropkhrua และ ห้องนั่งเล่น
+  - ไฟ hongkhropkhrua และ ห้องนั่งเล่น เปิด
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai basement และ garden
-  - fai basement และ garden poetfai
+  - เปิด ไฟ basement และ garden
+  - ไฟ basement และ garden เปิด
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hallway และ office
-  - fai hallway และ office poetfai
+  - เปิด ไฟ hallway และ office
+  - ไฟ hallway และ office เปิด
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hongkhropkhruaess และ hongkrua
-  - fai hongkhropkhruaess และ hongkrua poetfai
+  - เปิด ไฟ hongkhropkhruaess และ ห้องครัว
+  - ไฟ hongkhropkhruaess และ ห้องครัว เปิด
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - poetfai fai hongnon2 และ hongnon3
-  - fai hongnon2 และ hongnon3 poetfai
+  - เปิด ไฟ hongnon2 และ hongnon3
+  - ไฟ hongnon2 และ hongnon3 เปิด

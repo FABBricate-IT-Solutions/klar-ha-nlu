@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hidupkan lampu bilik
-  - lampu bilik hidupkan
+  - hidupkan lampu bilikmaster
+  - lampu bilikmaster hidupkan
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan lampu bilik
-  - lampu bilik matikan
+  - matikan lampu bilikmaster
+  - lampu bilikmaster matikan
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -608,16 +608,16 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - hidupkan siling bilik
-  - siling bilik hidupkan
+  - hidupkan siling bilikmaster
+  - siling bilikmaster hidupkan
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - matikan siling bilik
-  - siling bilik matikan
+  - matikan siling bilikmaster
+  - siling bilikmaster matikan
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - tetapkan siling bilik 20
-  - siling bilik 20
+  - tetapkan siling bilikmaster 20
+  - siling bilikmaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - tetapkan siling bilik 40
-  - siling bilik 40
+  - tetapkan siling bilikmaster 40
+  - siling bilikmaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - tetapkan siling bilik 50
-  - siling bilik 50
+  - tetapkan siling bilikmaster 50
+  - siling bilikmaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - tetapkan siling bilik 60
-  - siling bilik 60
+  - tetapkan siling bilikmaster 60
+  - siling bilikmaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - tetapkan siling bilik 80
-  - siling bilik 80
+  - tetapkan siling bilikmaster 80
+  - siling bilikmaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - tetapkan siling bilik 100
-  - siling bilik 100
+  - tetapkan siling bilikmaster 100
+  - siling bilikmaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - hidupkan katil bilik
-  - katil bilik hidupkan
+  - hidupkan katil bilikmaster
+  - katil bilikmaster hidupkan
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - matikan katil bilik
-  - katil bilik matikan
+  - matikan katil bilikmaster
+  - katil bilikmaster matikan
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - tetapkan katil bilik 20
-  - katil bilik 20
+  - tetapkan katil bilikmaster 20
+  - katil bilikmaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - tetapkan katil bilik 40
-  - katil bilik 40
+  - tetapkan katil bilikmaster 40
+  - katil bilikmaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - tetapkan katil bilik 50
-  - katil bilik 50
+  - tetapkan katil bilikmaster 50
+  - katil bilikmaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - tetapkan katil bilik 60
-  - katil bilik 60
+  - tetapkan katil bilikmaster 60
+  - katil bilikmaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - tetapkan katil bilik 80
-  - katil bilik 80
+  - tetapkan katil bilikmaster 80
+  - katil bilikmaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,8 +740,8 @@
     attributes:
       brightness: 100
   sentences:
-  - tetapkan katil bilik 100
-  - katil bilik 100
+  - tetapkan katil bilikmaster 100
+  - katil bilikmaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
@@ -1728,16 +1728,16 @@
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - hidupkan ensuite bilik
-  - ensuite bilik hidupkan
+  - hidupkan ensuite bilikmaster
+  - ensuite bilikmaster hidupkan
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - matikan ensuite bilik
-  - ensuite bilik matikan
+  - matikan ensuite bilikmaster
+  - ensuite bilikmaster matikan
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - tetapkan ensuite bilik 20
-  - ensuite bilik 20
+  - tetapkan ensuite bilikmaster 20
+  - ensuite bilikmaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - tetapkan ensuite bilik 40
-  - ensuite bilik 40
+  - tetapkan ensuite bilikmaster 40
+  - ensuite bilikmaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - tetapkan ensuite bilik 50
-  - ensuite bilik 50
+  - tetapkan ensuite bilikmaster 50
+  - ensuite bilikmaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - tetapkan ensuite bilik 60
-  - ensuite bilik 60
+  - tetapkan ensuite bilikmaster 60
+  - ensuite bilikmaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - tetapkan ensuite bilik 80
-  - ensuite bilik 80
+  - tetapkan ensuite bilikmaster 80
+  - ensuite bilikmaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - tetapkan ensuite bilik 100
-  - ensuite bilik 100
+  - tetapkan ensuite bilikmaster 100
+  - ensuite bilikmaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - hidupkan katil bilik
-  - katil bilik hidupkan
+  - hidupkan katil bilikmaster
+  - katil bilikmaster hidupkan
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - matikan katil bilik
-  - katil bilik matikan
+  - matikan katil bilikmaster
+  - katil bilikmaster matikan
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - tetapkan katil bilik 20
-  - katil bilik 20
+  - tetapkan katil bilikmaster 20
+  - katil bilikmaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - tetapkan katil bilik 40
-  - katil bilik 40
+  - tetapkan katil bilikmaster 40
+  - katil bilikmaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - tetapkan katil bilik 50
-  - katil bilik 50
+  - tetapkan katil bilikmaster 50
+  - katil bilikmaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - tetapkan katil bilik 60
-  - katil bilik 60
+  - tetapkan katil bilikmaster 60
+  - katil bilikmaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - tetapkan katil bilik 80
-  - katil bilik 80
+  - tetapkan katil bilikmaster 80
+  - katil bilikmaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,8 +1860,8 @@
     attributes:
       brightness: 100
   sentences:
-  - tetapkan katil bilik 100
-  - katil bilik 100
+  - tetapkan katil bilikmaster 100
+  - katil bilikmaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - tetapkan siling bilik red
-  - tetapkan lampu bilik red
+  - tetapkan siling bilikmaster red
+  - tetapkan lampu bilikmaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - tetapkan siling bilik blue
-  - tetapkan lampu bilik blue
+  - tetapkan siling bilikmaster blue
+  - tetapkan lampu bilikmaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - tetapkan siling bilik green
-  - tetapkan lampu bilik green
+  - tetapkan siling bilikmaster green
+  - tetapkan lampu bilikmaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - tetapkan siling bilik white
-  - tetapkan lampu bilik white
+  - tetapkan siling bilikmaster white
+  - tetapkan lampu bilikmaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - tetapkan siling bilik yellow
-  - tetapkan lampu bilik yellow
+  - tetapkan siling bilikmaster yellow
+  - tetapkan lampu bilikmaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - tetapkan siling bilik black
-  - tetapkan lampu bilik black
+  - tetapkan siling bilikmaster black
+  - tetapkan lampu bilikmaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - tetapkan katil bilik red
-  - tetapkan lampu bilik red
+  - tetapkan katil bilikmaster red
+  - tetapkan lampu bilikmaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - tetapkan katil bilik blue
-  - tetapkan lampu bilik blue
+  - tetapkan katil bilikmaster blue
+  - tetapkan lampu bilikmaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - tetapkan katil bilik green
-  - tetapkan lampu bilik green
+  - tetapkan katil bilikmaster green
+  - tetapkan lampu bilikmaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - tetapkan katil bilik white
-  - tetapkan lampu bilik white
+  - tetapkan katil bilikmaster white
+  - tetapkan lampu bilikmaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - tetapkan katil bilik yellow
-  - tetapkan lampu bilik yellow
+  - tetapkan katil bilikmaster yellow
+  - tetapkan lampu bilikmaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - tetapkan katil bilik black
-  - tetapkan lampu bilik black
+  - tetapkan katil bilikmaster black
+  - tetapkan lampu bilikmaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - tetapkan ensuite bilik red
-  - tetapkan lampu bilik red
+  - tetapkan ensuite bilikmaster red
+  - tetapkan lampu bilikmaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - tetapkan ensuite bilik blue
-  - tetapkan lampu bilik blue
+  - tetapkan ensuite bilikmaster blue
+  - tetapkan lampu bilikmaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - tetapkan ensuite bilik green
-  - tetapkan lampu bilik green
+  - tetapkan ensuite bilikmaster green
+  - tetapkan lampu bilikmaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - tetapkan ensuite bilik white
-  - tetapkan lampu bilik white
+  - tetapkan ensuite bilikmaster white
+  - tetapkan lampu bilikmaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - tetapkan ensuite bilik yellow
-  - tetapkan lampu bilik yellow
+  - tetapkan ensuite bilikmaster yellow
+  - tetapkan lampu bilikmaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - tetapkan ensuite bilik black
-  - tetapkan lampu bilik black
+  - tetapkan ensuite bilikmaster black
+  - tetapkan lampu bilikmaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - tetapkan katil bilik red
-  - tetapkan lampu bilik red
+  - tetapkan katil bilikmaster red
+  - tetapkan lampu bilikmaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - tetapkan katil bilik blue
-  - tetapkan lampu bilik blue
+  - tetapkan katil bilikmaster blue
+  - tetapkan lampu bilikmaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - tetapkan katil bilik green
-  - tetapkan lampu bilik green
+  - tetapkan katil bilikmaster green
+  - tetapkan lampu bilikmaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - tetapkan katil bilik white
-  - tetapkan lampu bilik white
+  - tetapkan katil bilikmaster white
+  - tetapkan lampu bilikmaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - tetapkan katil bilik yellow
-  - tetapkan lampu bilik yellow
+  - tetapkan katil bilikmaster yellow
+  - tetapkan lampu bilikmaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - tetapkan katil bilik black
-  - tetapkan lampu bilik black
+  - tetapkan katil bilikmaster black
+  - tetapkan lampu bilikmaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan semua lampu kecuali bilik
-  - semua lampu matikan kecuali bilik
+  - matikan semua lampu kecuali bilikmaster
+  - semua lampu matikan kecuali bilikmaster
   forbid:
   - master_bedroom
 - name: floor_ground_on

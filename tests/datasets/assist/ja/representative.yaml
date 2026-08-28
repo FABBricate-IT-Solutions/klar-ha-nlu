@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - tsukete raito ribingu
+    - つけて 電気 リビング
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - keshite raito kitchin
+    - 消して 電気 キッチン
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - 何 予定
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - 追加 歯医者 明日 15 カレンダー
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - 削除 歯医者 カレンダー
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - 移動 歯医者 明日 16 カレンダー
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - 再生 depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

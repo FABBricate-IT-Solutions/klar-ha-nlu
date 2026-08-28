@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nastavi ogrevanje spalnica 18
-  - ogrevanje spalnica 18
+  - nastavi ogrevanje spalnicamaster 18
+  - ogrevanje spalnicamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nastavi ogrevanje spalnica 19
-  - ogrevanje spalnica 19
+  - nastavi ogrevanje spalnicamaster 19
+  - ogrevanje spalnicamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nastavi ogrevanje spalnica 20
-  - ogrevanje spalnica 20
+  - nastavi ogrevanje spalnicamaster 20
+  - ogrevanje spalnicamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastavi ogrevanje spalnica 21
-  - ogrevanje spalnica 21
+  - nastavi ogrevanje spalnicamaster 21
+  - ogrevanje spalnicamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nastavi ogrevanje spalnica 22
-  - ogrevanje spalnica 22
+  - nastavi ogrevanje spalnicamaster 22
+  - ogrevanje spalnicamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nastavi ogrevanje spalnica 23
-  - ogrevanje spalnica 23
+  - nastavi ogrevanje spalnicamaster 23
+  - ogrevanje spalnicamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nastavi ogrevanje spalnica 24
-  - ogrevanje spalnica 24
+  - nastavi ogrevanje spalnicamaster 24
+  - ogrevanje spalnicamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kaj ogrevanje spalnica
-  - ogrevanje spalnica
+  - kaj ogrevanje spalnicamaster
+  - ogrevanje spalnicamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - nastavi temperatura spalnica 18
-  - temperatura spalnica 18
+  - nastavi temperatura spalnicamaster 18
+  - temperatura spalnicamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - nastavi temperatura spalnica 19
-  - temperatura spalnica 19
+  - nastavi temperatura spalnicamaster 19
+  - temperatura spalnicamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - nastavi temperatura spalnica 20
-  - temperatura spalnica 20
+  - nastavi temperatura spalnicamaster 20
+  - temperatura spalnicamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastavi temperatura spalnica 21
-  - temperatura spalnica 21
+  - nastavi temperatura spalnicamaster 21
+  - temperatura spalnicamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - nastavi temperatura spalnica 22
-  - temperatura spalnica 22
+  - nastavi temperatura spalnicamaster 22
+  - temperatura spalnicamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - nastavi temperatura spalnica 23
-  - temperatura spalnica 23
+  - nastavi temperatura spalnicamaster 23
+  - temperatura spalnicamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - nastavi temperatura spalnica 24
-  - temperatura spalnica 24
+  - nastavi temperatura spalnicamaster 24
+  - temperatura spalnicamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kaj temperatura spalnica
-  - temperatura spalnica
+  - kaj temperatura spalnicamaster
+  - temperatura spalnicamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kaj ogrevanje spalnica
-  - ogrevanje spalnica
+  - kaj ogrevanje spalnicamaster
+  - ogrevanje spalnicamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kaj temperatura spalnica
-  - temperatura spalnica
+  - kaj temperatura spalnicamaster
+  - temperatura spalnicamaster

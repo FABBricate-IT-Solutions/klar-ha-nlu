@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - mach ventilator schlafzimmer2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- stell licht schlafzimmer2 65
+- stell alle licht schlafzimmer2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- stell licht schlafzimmer2 rosa
+- stell alle licht schlafzimmer2 rosa
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- schalt licht schlafzimmer2
+- schalt alle licht schlafzimmer2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- mach licht schlafzimmer2
+- mach alle licht schlafzimmer2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - schliesse vorhang schlafzimmer3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - stell vorhang schlafzimmer3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- stell licht schlafzimmer3 76
+- stell alle licht schlafzimmer3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- stell licht schlafzimmer3 blau
+- stell alle licht schlafzimmer3 blau
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- schalt licht schlafzimmer3
+- schalt alle licht schlafzimmer3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- mach licht schlafzimmer3
+- mach alle licht schlafzimmer3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- stell licht schlafzimmer4 69
+- stell alle licht schlafzimmer4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- stell licht schlafzimmer4 gruen
+- stell alle licht schlafzimmer4 gruen
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- schalt licht schlafzimmer4
+- schalt alle licht schlafzimmer4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- mach licht schlafzimmer4
+- mach alle licht schlafzimmer4
 area/dining_lights::dining_lights_change_brightness:
-- stell licht wohnstubeess 54
+- stell alle licht wohnstubeess 54
 area/dining_lights::dining_lights_change_color:
-- stell licht wohnstubeess blau
+- stell alle licht wohnstubeess blau
 area/dining_lights::dining_lights_turn_off:
-- schalt licht wohnstubeess
+- schalt alle licht wohnstubeess
 area/dining_lights::dining_lights_turn_on:
-- mach licht wohnstubeess
+- mach alle licht wohnstubeess
 area/entryway_lights::entryway_lights_change_brightness:
-- stell licht vorzimmer 72
+- stell alle licht vorzimmer 72
 area/entryway_lights::entryway_lights_change_color:
-- stell licht vorzimmer schwarz
+- stell alle licht vorzimmer schwarz
 area/entryway_lights::entryway_lights_turn_off:
-- schalt licht vorzimmer
+- schalt alle licht vorzimmer
 area/entryway_lights::entryway_lights_turn_on:
-- mach licht vorzimmer
+- mach alle licht vorzimmer
 area/entryway_locks::entryway_locks_lock:
 - schloss schloss vorzimmer
 area/entryway_locks::entryway_locks_unlock:
 - oeffne schloss vorzimmer
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- stell licht wohnstube 39 und stell licht kuche 39
+- stell alle licht wohnstube 39 then stell alle licht kuche 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- stell licht wohnstube violett und stell licht kuche violett
+- stell alle licht wohnstube violett then stell alle licht kuche violett
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- schalt licht wohnstube und schalt licht kuche
+- schalt alle licht wohnstube then schalt alle licht kuche
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- mach licht wohnstube und mach licht kuche
+- mach alle licht wohnstube then mach alle licht kuche
 area/family_room_fans::family_room_fans_set_fan_speed:
 - stell ventilator wohnstube 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - mach ventilator wohnstube
 area/family_room_lights::family_room_lights_change_brightness:
-- stell licht wohnstube 44
+- stell alle licht wohnstube 44
 area/family_room_lights::family_room_lights_change_color:
-- stell licht wohnstube gruen
+- stell alle licht wohnstube gruen
 area/family_room_lights::family_room_lights_turn_off:
-- schalt licht wohnstube
+- schalt alle licht wohnstube
 area/family_room_lights::family_room_lights_turn_on:
-- mach licht wohnstube
+- mach alle licht wohnstube
 area/garage_covers::garage_covers_close:
 - schliesse vorhang garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - stell vorhang garage 86
 area/garage_lights::garage_lights_change_brightness:
-- stell licht garage 16
+- stell alle licht garage 16
 area/garage_lights::garage_lights_change_color:
-- stell licht garage blau
+- stell alle licht garage blau
 area/garage_lights::garage_lights_turn_off:
-- schalt licht garage
+- schalt alle licht garage
 area/garage_lights::garage_lights_turn_on:
-- mach licht garage
+- mach alle licht garage
 area/garage_locks::garage_locks_lock:
 - schloss schloss garage
 area/garage_locks::garage_locks_unlock:
 - oeffne schloss garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stell licht vorzimmergang 26 und stell licht klosett 26
+- stell alle licht vorzimmergang 26 then stell alle licht klosett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stell licht vorzimmergang violett und stell licht klosett violett
+- stell alle licht vorzimmergang violett then stell alle licht klosett violett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- schalt licht vorzimmergang und schalt licht klosett
+- schalt alle licht vorzimmergang then schalt alle licht klosett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- mach licht vorzimmergang und mach licht klosett
+- mach alle licht vorzimmergang then mach alle licht klosett
 area/hallway_lights::hallway_lights_change_brightness:
-- stell licht vorzimmergang 61
+- stell alle licht vorzimmergang 61
 area/hallway_lights::hallway_lights_change_color:
-- stell licht vorzimmergang orange
+- stell alle licht vorzimmergang orange
 area/hallway_lights::hallway_lights_turn_off:
-- schalt licht vorzimmergang
+- schalt alle licht vorzimmergang
 area/hallway_lights::hallway_lights_turn_on:
-- mach licht vorzimmergang
+- mach alle licht vorzimmergang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- stell licht kuche 45
+- stell alle licht kuche 45
 area/kitchen_lights::kitchen_lights_change_color:
-- stell licht kuche rosa
+- stell alle licht kuche rosa
 area/kitchen_lights::kitchen_lights_turn_off:
-- schalt licht kuche
+- schalt alle licht kuche
 area/kitchen_lights::kitchen_lights_turn_on:
-- mach licht kuche
+- mach alle licht kuche
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- schalt geraet kuche
+- schalt alle geraet kuche
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- mach geraet kuche
+- mach alle geraet kuche
 area/laundry_lights::laundry_lights_change_brightness:
-- stell licht waschraum 62
+- stell alle licht waschraum 62
 area/laundry_lights::laundry_lights_change_color:
-- stell licht waschraum gelb
+- stell alle licht waschraum gelb
 area/laundry_lights::laundry_lights_turn_off:
-- schalt licht waschraum
+- schalt alle licht waschraum
 area/laundry_lights::laundry_lights_turn_on:
-- mach licht waschraum
+- mach alle licht waschraum
 area/laundry_switchs::laundry_switchs_turn_off:
-- schalt geraet waschraum
+- schalt alle geraet waschraum
 area/laundry_switchs::laundry_switchs_turn_on:
-- mach geraet waschraum
+- mach alle geraet waschraum
 area/living_climates::living_climates_set_temperature:
 - stell heizung wohnzimmer 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - stell vorhang wohnzimmer 46
 area/living_lights::living_lights_change_brightness:
-- stell licht wohnzimmer 84
+- stell alle licht wohnzimmer 84
 area/living_lights::living_lights_change_color:
-- stell licht wohnzimmer blau
+- stell alle licht wohnzimmer blau
 area/living_lights::living_lights_turn_off:
-- schalt licht wohnzimmer
+- schalt alle licht wohnzimmer
 area/living_lights::living_lights_turn_on:
-- mach licht wohnzimmer
+- mach alle licht wohnzimmer
 area/main_bath_lights::main_bath_lights_change_brightness:
-- stell licht badmastermain 73
+- stell alle licht badmastermain 73
 area/main_bath_lights::main_bath_lights_change_color:
-- stell licht badmastermain rosa
+- stell alle licht badmastermain rosa
 area/main_bath_lights::main_bath_lights_turn_off:
-- schalt licht badmastermain
+- schalt alle licht badmastermain
 area/main_bath_lights::main_bath_lights_turn_on:
-- mach licht badmastermain
+- mach alle licht badmastermain
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- schalt geraet badmastermain
+- schalt alle geraet badmastermain
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- mach geraet badmastermain
+- mach alle geraet badmastermain
 area/master_bath_lights::master_bath_lights_change_brightness:
-- stell licht badmaster 60
+- stell alle licht badmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- stell licht badmaster schwarz
+- stell alle licht badmaster schwarz
 area/master_bath_lights::master_bath_lights_turn_off:
-- schalt licht badmaster
+- schalt alle licht badmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- mach licht badmaster
+- mach alle licht badmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- schalt geraet badmaster
+- schalt alle geraet badmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- mach geraet badmaster
+- mach alle geraet badmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- stell heizung schlafzimmer 20 und stell heizung wohnzimmer 20
+- stell heizung schlafzimmermaster 20 then stell heizung wohnzimmer 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- schliesse vorhang schlafzimmer und schliesse vorhang wohnzimmer
+- schliesse vorhang schlafzimmermaster then schliesse vorhang wohnzimmer
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- oeffne vorhang schlafzimmer und oeffne vorhang wohnzimmer
+- oeffne vorhang schlafzimmermaster then oeffne vorhang wohnzimmer
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- stell vorhang schlafzimmer 19 und stell vorhang wohnzimmer 19
+- stell vorhang schlafzimmermaster 19 then stell vorhang wohnzimmer 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- stell licht schlafzimmer 25 und stell licht wohnzimmer 25
+- stell alle licht schlafzimmermaster 25 then stell alle licht wohnzimmer 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- stell licht schlafzimmer weiss und stell licht wohnzimmer weiss
+- stell alle licht schlafzimmermaster weiss then stell alle licht wohnzimmer weiss
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- schalt licht schlafzimmer und schalt licht wohnzimmer
+- schalt alle licht schlafzimmermaster then schalt alle licht wohnzimmer
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- mach licht schlafzimmer und mach licht wohnzimmer
+- mach alle licht schlafzimmermaster then mach alle licht wohnzimmer
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- stell licht schlafzimmer 57 und stell licht badmastermain 57
+- stell alle licht schlafzimmermaster 57 then stell alle licht badmastermain 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- stell licht schlafzimmer rosa und stell licht badmastermain rosa
+- stell alle licht schlafzimmermaster rosa then stell alle licht badmastermain rosa
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- schalt licht schlafzimmer und schalt licht badmastermain
+- schalt alle licht schlafzimmermaster then schalt alle licht badmastermain
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- mach licht schlafzimmer und mach licht badmastermain
+- mach alle licht schlafzimmermaster then mach alle licht badmastermain
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- stell heizung schlafzimmer 20
+- stell heizung schlafzimmermaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- schliesse vorhang schlafzimmer
+- schliesse vorhang schlafzimmermaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- oeffne vorhang schlafzimmer
+- oeffne vorhang schlafzimmermaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- stell vorhang schlafzimmer 38
+- stell vorhang schlafzimmermaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- stell ventilator schlafzimmer 79
+- stell ventilator schlafzimmermaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- schalt ventilator schlafzimmer
+- schalt ventilator schlafzimmermaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- mach ventilator schlafzimmer
+- mach ventilator schlafzimmermaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- stell licht schlafzimmer 73
+- stell alle licht schlafzimmermaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- stell licht schlafzimmer rosa
+- stell alle licht schlafzimmermaster rosa
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- schalt licht schlafzimmer
+- schalt alle licht schlafzimmermaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- mach licht schlafzimmer
+- mach alle licht schlafzimmermaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- stell licht klosett 52
+- stell alle licht klosett 52
 area/powder_room_lights::powder_room_lights_change_color:
-- stell licht klosett violett
+- stell alle licht klosett violett
 area/powder_room_lights::powder_room_lights_turn_off:
-- schalt licht klosett
+- schalt alle licht klosett
 area/powder_room_lights::powder_room_lights_turn_on:
-- mach licht klosett
+- mach alle licht klosett
 area/spoken_lights::spoken_bedroom_inflection:
-- stell licht schlafzimmer rot
+- stell alle licht schlafzimmermaster rot
 area/spoken_lights::spoken_except_island:
 - schalt alle licht ausser insel
 area/spoken_lights::spoken_except_kitchen:
-- schalt alle licht ausser kuche ausser insel
+- schalt alle licht ausser kuche
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- schalt licht wohnzimmer und schalt licht wohnstubeess und schalt licht kuche
+- schalt alle licht wohnzimmer then schalt alle licht wohnstubeess then schalt alle
+  licht kuche
 area/spoken_lights::spoken_stt_kitchen_off:
-- schalt licht kuche
+- schalt alle licht kuche
 area/spoken_lights::spoken_stt_living_off:
-- schalt licht wohnzimmer
+- schalt alle licht wohnzimmer

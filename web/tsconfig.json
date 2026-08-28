@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["vite/client", "react", "react-dom", "@figma/code-connect/figma-types"]
   },
   "include": ["src"],
   "references": []

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - poe ar sala 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- poe ar quarto 19
+- poe ar quartomaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - poe cortina quarto2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - abre cortina sala
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- poe cortina quarto 19
+- poe cortina quartomaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- fecha cortina quarto
+- fecha cortina quartomaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- abre cortina quarto
+- abre cortina quartomaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - poe ventilador quarto2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - liga ventilador salafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- poe ventilador quarto 28
+- poe ventilador quartomaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- desliga ventilador quarto
+- desliga ventilador quartomaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- liga ventilador quarto
+- liga ventilador quartomaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- desliga ventilador quarto e desliga luz cozinha
+- desliga ventilador quartomaster then desliga ilha cozinha
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- liga ventilador quarto e liga luz cozinha
+- liga ventilador quartomaster then liga ilha cozinha
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - poe teto quarto2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - liga teto cozinha
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- poe luz cozinha 99
+- poe ilha cozinha 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- poe luz cozinha verde
+- poe ilha cozinha verde
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- desliga luz cozinha
+- desliga ilha cozinha
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- liga luz cozinha
+- liga ilha cozinha
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - poe luz lavanderia 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - liga teto sala
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- poe luz sala 72
+- poe lamp sala 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- poe luz sala vermelho
+- poe lamp sala vermelho
 devices/light_living_lamp::light_living_lamp_turn_off:
-- desliga luz sala
+- desliga lamp sala
 devices/light_living_lamp::light_living_lamp_turn_on:
-- liga luz sala
+- liga lamp sala
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - poe luz main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - liga luz suitemaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- poe cabeceira quarto 25
+- poe cabeceira quartomaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- poe cabeceira quarto vermelho
+- poe cabeceira quartomaster vermelho
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- desliga cabeceira quarto
+- desliga cabeceira quartomaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- liga cabeceira quarto
+- liga cabeceira quartomaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- poe teto quarto 77
+- poe teto quartomaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- poe teto quarto azul
+- poe teto quartomaster azul
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- desliga teto quarto
+- desliga teto quartomaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- liga teto quarto
+- liga teto quartomaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- poe luz quarto 55
+- poe ankleide quartomaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- poe luz quarto preto
+- poe ankleide quartomaster preto
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- desliga luz quarto
+- desliga ankleide quartomaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- liga luz quarto
+- liga ankleide quartomaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - poe luz lavabo 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,26 +239,32 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - liga tv sala
 devices/scenes::dinner_time:
-- poe luz salafamess 90 e liga teto cozinha e poe luz cozinha 80
+- poe luz salafamess 90 then liga teto cozinha then poe ilha cozinha 80
 devices/scenes::good_morning:
-- liga teto cozinha e poe luz salafamess 100 e abre cortina sala e abre cortina quarto
+- liga teto cozinha then poe luz salafamess 100 then abre cortina sala then abre cortina
+  quartomaster
 devices/scenes::kids_bedtime:
-- desliga teto quarto2 e desliga teto quarto3 e desliga teto quarto4 e poe luz hallentradagang
-  15
+- desliga teto quarto2 then desliga teto quarto3 then desliga teto quarto4 then poe
+  luz hallentradagang 15
 devices/scenes::movie_night:
-- desliga teto sala e poe luz sala 20 e liga tv sala e fecha cortina sala
+- desliga teto sala then poe lamp sala 20 then liga tv sala then fecha cortina sala
 devices/scripts::good_night:
-- liga cena noite
+- desliga teto sala then desliga lamp sala then desliga luz salafamess then desliga
+  teto cozinha then desliga ilha cozinha then desliga teto salafam then desliga luz
+  hallentrada then desliga luz hallentradagang then fechadura fechadura hallentrada
+  then fechadura fechadura garage then poe ar quartomaster 20
 devices/scripts::leaving_home:
-- liga cena saida
+- desliga teto sala then desliga lamp sala then desliga teto cozinha then desliga
+  teto salafam then desliga luz hallentrada then fechadura fechadura hallentrada then
+  fechadura fechadura garage then fecha cortina garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - desliga louca
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - liga louca
 devices/switch_dryer::switch_dryer_turn_off:
-- desliga maquina
+- desliga dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- liga maquina
+- liga dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - desliga maquina
 devices/switch_washing_machine::switch_washing_machine_turn_on:

@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - pankha kutumb chalu
-  - chalu pankha kutumb
+  - पंखा kutumb चालू
+  - चालू पंखा kutumb
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - band pankha kutumb
-  - pankha kutumb band
+  - बंद पंखा kutumb
+  - पंखा kutumb बंद
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set pankha kutumb 40
-  - pankha kutumb 40
+  - सेट पंखा kutumb 40
+  - पंखा kutumb 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - pankha shayankaksh chalu
-  - chalu pankha shayankaksh
+  - पंखा shayankakshmaster चालू
+  - चालू पंखा shayankakshmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - band pankha shayankaksh
-  - pankha shayankaksh band
+  - बंद पंखा shayankakshmaster
+  - पंखा shayankakshmaster बंद
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set pankha shayankaksh 40
-  - pankha shayankaksh 40
+  - सेट पंखा shayankakshmaster 40
+  - पंखा shayankakshmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - pankha shayankaksh2 chalu
-  - chalu pankha shayankaksh2
+  - पंखा shayankaksh2 चालू
+  - चालू पंखा shayankaksh2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - band pankha shayankaksh2
-  - pankha shayankaksh2 band
+  - बंद पंखा shayankaksh2
+  - पंखा shayankaksh2 बंद
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - set pankha shayankaksh2 40
-  - pankha shayankaksh2 40
+  - सेट पंखा shayankaksh2 40
+  - पंखा shayankaksh2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pankha kutumb 20
-  - pankha kutumb 20
+  - सेट पंखा kutumb 20
+  - पंखा kutumb 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pankha kutumb 60
-  - pankha kutumb 60
+  - सेट पंखा kutumb 60
+  - पंखा kutumb 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set pankha kutumb 80
-  - pankha kutumb 80
+  - सेट पंखा kutumb 80
+  - पंखा kutumb 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pankha shayankaksh 20
-  - pankha shayankaksh 20
+  - सेट पंखा shayankakshmaster 20
+  - पंखा shayankakshmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pankha shayankaksh 60
-  - pankha shayankaksh 60
+  - सेट पंखा shayankakshmaster 60
+  - पंखा shayankakshmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set pankha shayankaksh 80
-  - pankha shayankaksh 80
+  - सेट पंखा shayankakshmaster 80
+  - पंखा shayankakshmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pankha shayankaksh2 20
-  - pankha shayankaksh2 20
+  - सेट पंखा shayankaksh2 20
+  - पंखा shayankaksh2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pankha shayankaksh2 60
-  - pankha shayankaksh2 60
+  - सेट पंखा shayankaksh2 60
+  - पंखा shayankaksh2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - set pankha shayankaksh2 80
-  - pankha shayankaksh2 80
+  - सेट पंखा shayankaksh2 80
+  - पंखा shayankaksh2 80

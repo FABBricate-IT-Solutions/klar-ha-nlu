@@ -1,13 +1,12 @@
 name: Klar NLU (Staging)
 version: "staging"
 slug: klar_nlu_staging
-description: Staging/RC build of Klar NLU. Not production. Same image family as stable, tag staging.
+description: Staging/RC von Klar NLU (67 Sprachen, Assist-Alternative). Nicht Produktion. Image-Tag staging.
 url: https://github.com/FABBricate-IT-Solutions/klar-ha-nlu
 stage: experimental
 arch:
   - amd64
   - aarch64
-  - armv7
 init: false
 startup: services
 boot: auto

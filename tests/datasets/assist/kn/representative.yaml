@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - hachchu belaku hallige
+    - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - arisu belaku aduge
+    - ಆರಿಸು ಬೆಳಕು ಅಡುಗೆ
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - ಕ್ಯಾಲೆಂಡರ್ ಅಲ್ಲಿ ಏನು
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - ಸೇರಿಸು ದಂತ ನಾಳೆ 15 ಕ್ಯಾಲೆಂಡರ್
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - ಅನಿಸು ದಂತ ಕ್ಯಾಲೆಂಡರ್
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - ಸರಿಸು ದಂತ ನಾಳೆ 16 ಕ್ಯಾಲೆಂಡರ್
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - ಹಾಡು depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

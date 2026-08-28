@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - رکھو گرمی bedroom 18
-  - گرمی bedroom 18
+  - رکھو گرمی bedroommaster 18
+  - گرمی bedroommaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - رکھو گرمی bedroom 19
-  - گرمی bedroom 19
+  - رکھو گرمی bedroommaster 19
+  - گرمی bedroommaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - رکھو گرمی bedroom 20
-  - گرمی bedroom 20
+  - رکھو گرمی bedroommaster 20
+  - گرمی bedroommaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - رکھو گرمی bedroom 21
-  - گرمی bedroom 21
+  - رکھو گرمی bedroommaster 21
+  - گرمی bedroommaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - رکھو گرمی bedroom 22
-  - گرمی bedroom 22
+  - رکھو گرمی bedroommaster 22
+  - گرمی bedroommaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - رکھو گرمی bedroom 23
-  - گرمی bedroom 23
+  - رکھو گرمی bedroommaster 23
+  - گرمی bedroommaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - رکھو گرمی bedroom 24
-  - گرمی bedroom 24
+  - رکھو گرمی bedroommaster 24
+  - گرمی bedroommaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - کیا گرمی bedroom
-  - گرمی bedroom
+  - کیا گرمی bedroommaster
+  - گرمی bedroommaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - رکھو درجہ bedroom 18
-  - درجہ bedroom 18
+  - رکھو درجہ bedroommaster 18
+  - درجہ bedroommaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - رکھو درجہ bedroom 19
-  - درجہ bedroom 19
+  - رکھو درجہ bedroommaster 19
+  - درجہ bedroommaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - رکھو درجہ bedroom 20
-  - درجہ bedroom 20
+  - رکھو درجہ bedroommaster 20
+  - درجہ bedroommaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - رکھو درجہ bedroom 21
-  - درجہ bedroom 21
+  - رکھو درجہ bedroommaster 21
+  - درجہ bedroommaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - رکھو درجہ bedroom 22
-  - درجہ bedroom 22
+  - رکھو درجہ bedroommaster 22
+  - درجہ bedroommaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - رکھو درجہ bedroom 23
-  - درجہ bedroom 23
+  - رکھو درجہ bedroommaster 23
+  - درجہ bedroommaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - رکھو درجہ bedroom 24
-  - درجہ bedroom 24
+  - رکھو درجہ bedroommaster 24
+  - درجہ bedroommaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - کیا درجہ bedroom
-  - درجہ bedroom
+  - کیا درجہ bedroommaster
+  - درجہ bedroommaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - کیا گرمی bedroom
-  - گرمی bedroom
+  - کیا گرمی bedroommaster
+  - گرمی bedroommaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - کیا درجہ bedroom
-  - درجہ bedroom
+  - کیا درجہ bedroommaster
+  - درجہ bedroommaster

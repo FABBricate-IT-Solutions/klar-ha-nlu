@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - toglogch queen zochny
-  - toglogch queen televiz zochny
+  - тоглуул queen зочны
+  - тоглуул queen телевиз зочны
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - toglogch album rumours by fleetwood mac zochny
+  - тоглуул album rumours by fleetwood mac зочны
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - toglogch queen radio mode zochny
+  - тоглуул queen radio mode зочны
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - toglogch bohemian rhapsody queue zochny
+  - тоглуул bohemian rhapsody queue зочны
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - yuu televiz zochny
-  - yuu track zochny
+  - юу телевиз зочны
+  - юу track зочны
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - tokhiruul televiz zochny 10
-  - televiz zochny 10
+  - тохируул телевиз зочны 10
+  - телевиз зочны 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - tokhiruul televiz zochny 20
-  - televiz zochny 20
+  - тохируул телевиз зочны 20
+  - телевиз зочны 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - tokhiruul televiz zochny 30
-  - televiz zochny 30
+  - тохируул телевиз зочны 30
+  - телевиз зочны 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - tokhiruul televiz zochny 50
-  - televiz zochny 50
+  - тохируул телевиз зочны 50
+  - телевиз зочны 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - tokhiruul televiz zochny 80
-  - televiz zochny 80
+  - тохируул телевиз зочны 80
+  - телевиз зочны 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track zochny
+  - next track зочны
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track zochny
+  - previous track зочны
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - toglogch queen galtogoo
-  - toglogch queen televiz galtogoo
+  - тоглуул queen галтогоо
+  - тоглуул queen телевиз галтогоо
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - toglogch beatles zochny
-  - toglogch beatles televiz zochny
+  - тоглуул beatles зочны
+  - тоглуул beatles телевиз зочны
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - toglogch radiohead zochny
-  - toglogch radiohead televiz zochny
+  - тоглуул radiohead зочны
+  - тоглуул radiohead телевиз зочны
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - toglogch abba zochny
-  - toglogch abba televiz zochny
+  - тоглуул abba зочны
+  - тоглуул abba телевиз зочны
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - toglogch coldplay zochny
-  - toglogch coldplay televiz zochny
+  - тоглуул coldplay зочны
+  - тоглуул coldplay телевиз зочны
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - toglogch adele zochny
-  - toglogch adele televiz zochny
+  - тоглуул adele зочны
+  - тоглуул adele телевиз зочны
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - toglogch prince zochny
-  - toglogch prince televiz zochny
+  - тоглуул prince зочны
+  - тоглуул prince телевиз зочны
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - toglogch bowie zochny
-  - toglogch bowie televiz zochny
+  - тоглуул bowie зочны
+  - тоглуул bowie телевиз зочны
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - toglogch nirvana zochny
-  - toglogch nirvana televiz zochny
+  - тоглуул nirvana зочны
+  - тоглуул nirvana телевиз зочны
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - toglogch eagles zochny
-  - toglogch eagles televiz zochny
+  - тоглуул eagles зочны
+  - тоглуул eagles телевиз зочны
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - toglogch madonna zochny
-  - toglogch madonna televiz zochny
+  - тоглуул madonna зочны
+  - тоглуул madonna телевиз зочны
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - toglogch mozart zochny
-  - toglogch mozart televiz zochny
+  - тоглуул mozart зочны
+  - тоглуул mozart телевиз зочны
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - toglogch daft punk zochny
-  - toglogch daft punk televiz zochny
+  - тоглуул daft punk зочны
+  - тоглуул daft punk телевиз зочны
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - toglogch biafra zochny
-  - toglogch biafra televiz zochny
+  - тоглуул biafra зочны
+  - тоглуул biafra телевиз зочны
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - toglogch queen galtogoo
-  - toglogch queen televiz galtogoo
+  - тоглуул queen галтогоо
+  - тоглуул queen телевиз галтогоо
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - toglogch beatles galtogoo
-  - toglogch beatles televiz galtogoo
+  - тоглуул beatles галтогоо
+  - тоглуул beatles телевиз галтогоо
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - toglogch radiohead galtogoo
-  - toglogch radiohead televiz galtogoo
+  - тоглуул radiohead галтогоо
+  - тоглуул radiohead телевиз галтогоо
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - toglogch abba galtogoo
-  - toglogch abba televiz galtogoo
+  - тоглуул abba галтогоо
+  - тоглуул abba телевиз галтогоо
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - toglogch coldplay galtogoo
-  - toglogch coldplay televiz galtogoo
+  - тоглуул coldplay галтогоо
+  - тоглуул coldplay телевиз галтогоо
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - toglogch adele galtogoo
-  - toglogch adele televiz galtogoo
+  - тоглуул adele галтогоо
+  - тоглуул adele телевиз галтогоо
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - toglogch prince galtogoo
-  - toglogch prince televiz galtogoo
+  - тоглуул prince галтогоо
+  - тоглуул prince телевиз галтогоо
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - toglogch bowie galtogoo
-  - toglogch bowie televiz galtogoo
+  - тоглуул bowie галтогоо
+  - тоглуул bowie телевиз галтогоо
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - toglogch nirvana galtogoo
-  - toglogch nirvana televiz galtogoo
+  - тоглуул nirvana галтогоо
+  - тоглуул nirvana телевиз галтогоо
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - toglogch eagles galtogoo
-  - toglogch eagles televiz galtogoo
+  - тоглуул eagles галтогоо
+  - тоглуул eagles телевиз галтогоо
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - toglogch madonna galtogoo
-  - toglogch madonna televiz galtogoo
+  - тоглуул madonna галтогоо
+  - тоглуул madonna телевиз галтогоо
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - toglogch mozart galtogoo
-  - toglogch mozart televiz galtogoo
+  - тоглуул mozart галтогоо
+  - тоглуул mozart телевиз галтогоо
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - toglogch daft punk galtogoo
-  - toglogch daft punk televiz galtogoo
+  - тоглуул daft punk галтогоо
+  - тоглуул daft punk телевиз галтогоо
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - toglogch biafra galtogoo
-  - toglogch biafra televiz galtogoo
+  - тоглуул biafra галтогоо
+  - тоглуул biafra телевиз галтогоо
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - toglogch queen office
-  - toglogch queen televiz office
+  - тоглуул queen office
+  - тоглуул queen телевиз office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - toglogch beatles office
-  - toglogch beatles televiz office
+  - тоглуул beatles office
+  - тоглуул beatles телевиз office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - toglogch radiohead office
-  - toglogch radiohead televiz office
+  - тоглуул radiohead office
+  - тоглуул radiohead телевиз office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - toglogch abba office
-  - toglogch abba televiz office
+  - тоглуул abba office
+  - тоглуул abba телевиз office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - toglogch coldplay office
-  - toglogch coldplay televiz office
+  - тоглуул coldplay office
+  - тоглуул coldplay телевиз office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - toglogch adele office
-  - toglogch adele televiz office
+  - тоглуул adele office
+  - тоглуул adele телевиз office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - toglogch prince office
-  - toglogch prince televiz office
+  - тоглуул prince office
+  - тоглуул prince телевиз office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - toglogch bowie office
-  - toglogch bowie televiz office
+  - тоглуул bowie office
+  - тоглуул bowie телевиз office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - toglogch nirvana office
-  - toglogch nirvana televiz office
+  - тоглуул nirvana office
+  - тоглуул nirvana телевиз office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - toglogch eagles office
-  - toglogch eagles televiz office
+  - тоглуул eagles office
+  - тоглуул eagles телевиз office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - toglogch madonna office
-  - toglogch madonna televiz office
+  - тоглуул madonna office
+  - тоглуул madonna телевиз office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - toglogch mozart office
-  - toglogch mozart televiz office
+  - тоглуул mozart office
+  - тоглуул mozart телевиз office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - toglogch daft punk office
-  - toglogch daft punk televiz office
+  - тоглуул daft punk office
+  - тоглуул daft punk телевиз office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - toglogch biafra office
-  - toglogch biafra televiz office
+  - тоглуул biafra office
+  - тоглуул biafra телевиз office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - toglogch queen radio mode zochny
+  - тоглуул queen radio mode зочны
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - yuu televiz zochny
-  - yuu track zochny
+  - юу телевиз зочны
+  - юу track зочны
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - toglogch queen radio mode galtogoo
+  - тоглуул queen radio mode галтогоо
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - yuu televiz galtogoo
-  - yuu track galtogoo
+  - юу телевиз галтогоо
+  - юу track галтогоо
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - toglogch queen radio mode office
+  - тоглуул queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - yuu televiz office
-  - yuu track office
+  - юу телевиз office
+  - юу track office

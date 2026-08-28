@@ -2,16 +2,20 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import re
+from collections.abc import AsyncIterator
 from typing import Any
 from uuid import uuid4
 
 try:
     from homeassistant.components import conversation
+    from homeassistant.components.conversation import AssistantContent
     from homeassistant.core import Context, HomeAssistant
 except ImportError:  # stdlib tests load this module without Home Assistant
     conversation = None  # type: ignore[assignment]
+    AssistantContent = None  # type: ignore[assignment,misc]
     Context = Any
     HomeAssistant = Any
 
@@ -58,6 +62,94 @@ def should_refine(enabled: bool, agent_id: str | None, speech: str) -> bool:
     return bool(enabled and agent_id and speech.strip())
 
 
+def isolated_conversation_id() -> str:
+    return f"klar-nested-{uuid4()}"
+
+
+def skip_rewrite(decision: str) -> bool:
+    """LLM fallback already applied the personality prompt — a second pass rewrites after TTS started."""
+    return decision in {"chat", "llm", "chime"}
+
+
+def nested_llm_session(agent_id: str, language: str | None, prompt: str | None) -> dict[str, Any]:
+    return {
+        "language": language,
+        "agent_id": agent_id,
+        "device_id": None,
+        "satellite_id": None,
+        "extra_system_prompt": prompt,
+    }
+
+
+def drop_same_turn_assistant(content: Any) -> None:
+    if not isinstance(content, list) or len(content) < 2:
+        return
+    if getattr(content[-1], "role", None) == "assistant" and getattr(content[-2], "role", None) == "user":
+        content.pop()
+
+
+_SENTENCE = re.compile(
+    r".+?(?:(?:\.\.\.|…|[.!?。！？])[\"'»”’]*)(?=\s+\S|\s*$)",
+    re.DOTALL,
+)
+_ABBREV_TAIL = re.compile(
+    r"(?:^|[\s.(])(?:z\.B|u\.a|d\.h|bzw|vgl|usw|etc|ca|dr|nr|st|mr|mrs|ms|prof|vs|[a-zäöü])\.$",
+    re.IGNORECASE,
+)
+
+
+def speech_chunks(speech: str) -> list[str]:
+    text = speech.strip()
+    if not text:
+        return []
+    chunks = [match.group(0) for match in _SENTENCE.finditer(text)]
+    consumed = sum(len(chunk) for chunk in chunks)
+    if consumed < len(text):
+        chunks.append(text[consumed:])
+    merged: list[str] = []
+    for chunk in chunks:
+        if merged and _ABBREV_TAIL.search(merged[-1].rstrip()):
+            merged[-1] += chunk
+        elif chunk.strip():
+            merged.append(chunk)
+    return merged or [text]
+
+
+async def iter_speech_deltas(speech: str) -> AsyncIterator[dict[str, str]]:
+    chunks = speech_chunks(speech)
+    if not chunks:
+        return
+    yield {"role": "assistant", "content": chunks[0]}
+    for chunk in chunks[1:]:
+        await asyncio.sleep(0)
+        yield {"content": chunk}
+
+
+def _assistant_content(agent_id: str | None, speech: str) -> Any:
+    if AssistantContent is None:
+        return speech
+    return AssistantContent(agent_id=agent_id, content=speech)
+
+
+async def emit_assistant_speech(chat_log: Any, agent_id: str | None, speech: str) -> None:
+    drop_same_turn_assistant(getattr(chat_log, "content", None))
+    streamer = getattr(chat_log, "async_add_delta_content_stream", None)
+    if callable(streamer) and speech.strip():
+        posted = streamer(agent_id, iter_speech_deltas(speech))
+        if hasattr(posted, "__aiter__"):
+            async for _ in posted:
+                pass
+            return
+    body = _assistant_content(agent_id, speech)
+    posted = getattr(chat_log, "async_add_assistant_content", None)
+    result = posted(body) if callable(posted) else None
+    if hasattr(result, "__aiter__"):
+        async for _ in result:
+            pass
+        return
+    chat_log.async_add_assistant_content_without_tools(body)
+
+
 async def async_finish_speech(
     hass: HomeAssistant,
     enabled: bool,
@@ -99,12 +191,44 @@ def refine_prompt(pack: str, personality: str, extra: str | None) -> str:
     if personality not in _PERSONALITY:
         personality = "default"
     custom = (extra or "").strip()
-    voice = custom or voice_block(pack, personality)
-    if pack == "en":
-        return f"{_RULES['en']}\n\n{voice}"
-    if pack == "de":
-        return f"{_RULES['de']}\n\n{voice}"
-    return f"{_RULES['meta']}\n\n{voice}"
+    stock = voice_block(pack, personality)
+    voice = custom if _usable_extra(custom, pack) else stock
+    if pack == "en" or pack.startswith("en-"):
+        rules = _RULES["en"]
+    elif pack == "de" or pack.startswith("de-"):
+        rules = _RULES["de"]
+    else:
+        rules = _RULES["meta"]
+    lock = _language_lock(pack)
+    return f"{lock}\n\n{rules}\n\n{voice}\n\n{lock}"
+
+
+def _usable_extra(custom: str, pack: str) -> bool:
+    if not custom:
+        return False
+    german = pack == "de" or pack.startswith("de-")
+    if not german and any(marker in custom for marker in ("Stimme:", "Schalt-Bestätigungen", "Antworte nur auf Deutsch")):
+        return False
+    return True
+
+
+def _language_lock(pack: str) -> str:
+    try:
+        from .lang_select import language_lock
+
+        return language_lock(pack)
+    except ImportError:
+        pass
+    try:
+        from lang_select import language_lock
+
+        return language_lock(pack)
+    except ImportError:
+        if pack == "de" or pack.startswith("de-"):
+            return "Antworte nur auf Deutsch. Übersetze nicht in eine andere Sprache."
+        if pack == "en" or pack.startswith("en-"):
+            return "Answer only in English. Do not translate into German or any other language."
+        return f"Answer only in the Klar NLU language ({pack}). Do not translate into German."
 
 
 def refine_input(speech: str, pack: str) -> str:
@@ -264,13 +388,9 @@ async def _async_refine_raw(
         result = await conversation.async_converse(
             hass,
             user,
-            f"klar-refine-{uuid4()}",
+            isolated_conversation_id(),
             context,
-            language=language,
-            agent_id=agent_id,
-            device_id=None,
-            satellite_id=None,
-            extra_system_prompt=prompt,
+            **nested_llm_session(agent_id, language, prompt),
         )
     except Exception as err:  # noqa: BLE001 — other agent is a system boundary
         _LOGGER.warning("LLM-Refine fehlgeschlagen: %s", err)

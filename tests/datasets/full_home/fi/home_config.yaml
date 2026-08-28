@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Makuuhuone
+  name: Makuuhuonemaster
   floor: upper
   aliases:
+  - makuuhuonemaster
   - makuuhuone
 - id: bedroom_2
   name: Makuuhuone2
@@ -130,10 +131,10 @@ devices:
   - katto
 - id: light.living_lamp
   area_id: living
-  name: olohuone valo
+  name: olohuone lamp
   aliases:
-  - olohuone valo
-  - valo
+  - olohuone lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: olohuonefamess valo
@@ -190,29 +191,29 @@ devices:
   - valo
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: makuuhuone katto
+  name: makuuhuonemaster katto
   aliases:
-  - makuuhuone katto
+  - makuuhuonemaster katto
   - katto
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: makuuhuone ensuite
+  name: makuuhuonemaster ensuite
   aliases:
-  - makuuhuone ensuite
+  - makuuhuonemaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: makuuhuone left yopoyta
+  name: makuuhuonemaster left yopoyta
   aliases:
-  - makuuhuone left yopoyta
+  - makuuhuonemaster left yopoyta
   - yopoyta
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: makuuhuone right yopoyta
+  name: makuuhuonemaster right yopoyta
   aliases:
-  - makuuhuone right yopoyta
+  - makuuhuonemaster right yopoyta
   - yopoyta
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - verho
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: makuuhuone verho
+  name: makuuhuonemaster verho
   aliases:
-  - makuuhuone verho
+  - makuuhuonemaster verho
   - verho
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - lampo
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: makuuhuone lampo
+  name: makuuhuonemaster lampo
   aliases:
-  - makuuhuone lampo
+  - makuuhuonemaster lampo
   - lampo
 - id: climate.master_ac
   area_id: master_bedroom
-  name: lammitys makuuhuone
+  name: lammitys makuuhuonemaster
   aliases:
-  - lammitys makuuhuone
+  - lammitys makuuhuonemaster
   - lammitys
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - tuuletin
 - id: fan.master_fan
   area_id: master_bedroom
-  name: makuuhuone tuuletin
+  name: makuuhuonemaster tuuletin
   aliases:
-  - makuuhuone tuuletin
+  - makuuhuonemaster tuuletin
   - tuuletin
 - id: fan.bedroom2_fan
   area_id: bedroom_2

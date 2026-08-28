@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv geosil kyeo
-  - kyeo tv geosil
+  - tv 거실 켜
+  - 켜 tv 거실
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - kkaeo tv geosil
-  - tv geosil kkaeo
+  - 꺼 tv 거실
+  - tv 거실 꺼
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv geosil
-  - tv geosil pause
+  - 일시정지 tv 거실
+  - tv 거실 일시정지
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv gajoksil kyeo
-  - kyeo tv gajoksil
+  - tv gajoksil 켜
+  - 켜 tv gajoksil
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - kkaeo tv gajoksil
-  - tv gajoksil kkaeo
+  - 꺼 tv gajoksil
+  - tv gajoksil 꺼
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv gajoksil
-  - tv gajoksil pause
+  - 일시정지 tv gajoksil
+  - tv gajoksil 일시정지

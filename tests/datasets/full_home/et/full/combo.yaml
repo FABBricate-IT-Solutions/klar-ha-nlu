@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - lulita magamistuba lagi ja magamistuba ooekapp
-  - magamistuba lagi ja magamistuba ooekapp lulita
+  - lulita magamistubamaster lagi ja magamistubamaster ooekapp
+  - magamistubamaster lagi ja magamistubamaster ooekapp lulita
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - kustuta magamistuba lagi ja magamistuba ooekapp
-  - magamistuba lagi ja magamistuba ooekapp kustuta
+  - kustuta magamistubamaster lagi ja magamistubamaster ooekapp
+  - magamistubamaster lagi ja magamistubamaster ooekapp kustuta
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - lulita magamistuba ventilaator ja kook saar
-  - magamistuba ventilaator ja kook saar lulita
+  - lulita magamistubamaster ventilaator ja kook saar
+  - magamistubamaster ventilaator ja kook saar lulita
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kustuta vali magamistuba ja main bath
-  - vali magamistuba ja main bath kustuta
+  - kustuta vali magamistubamaster ja main bath
+  - vali magamistubamaster ja main bath kustuta
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kustuta koik vali peale elutuba ja magamistuba
-  - koik vali kustuta peale elutuba ja magamistuba
+  - kustuta koik vali peale elutuba ja magamistubamaster
+  - koik vali kustuta peale elutuba ja magamistubamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kustuta koik vali korrus peale magamistuba
-  - koik vali korrus kustuta peale magamistuba
+  - kustuta koik vali korrus peale magamistubamaster
+  - koik vali korrus kustuta peale magamistubamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - ava kardin elutuba ja magamistuba
-  - kardin elutuba ja magamistuba ava
+  - ava kardin elutuba ja magamistubamaster
+  - kardin elutuba ja magamistubamaster ava
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - sulge kardin elutuba ja magamistuba
-  - kardin elutuba ja magamistuba sulge
+  - sulge kardin elutuba ja magamistubamaster
+  - kardin elutuba ja magamistubamaster sulge
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - sea kyte elutuba ja magamistuba 21
-  - kyte elutuba ja magamistuba 21
+  - sea kyte elutuba ja magamistubamaster 21
+  - kyte elutuba ja magamistubamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

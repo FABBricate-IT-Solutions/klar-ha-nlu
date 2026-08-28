@@ -1,5 +1,6 @@
 use crate::lang::catalog;
 use crate::parse::normalize::compact;
+use crate::parse::normalize::umlaut_eq;
 use crate::types::{HomeGraph, Intent, Personality};
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
@@ -83,7 +84,7 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
     let where_ = spoken_where(intent, home);
     let area = intent.slot("area").unwrap_or("");
     let target = or_home(&where_);
-    let fill = |template: &str| template.replace("{target}", &target).replace("{loc}", &loc(area)).replace("{name}", &intent.name);
+    let fill = |template: &str| template.replace("{target}", &target).replace("{loc}", &loc(area, home)).replace("{name}", &intent.name);
     match intent.name.as_str() {
         "HassTurnOn" if looks_started(intent.slot("entity_id").unwrap_or("")) => fill(pack.turn_on_scene),
         "HassTurnOn" => fill(pack.turn_on),
@@ -118,6 +119,22 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassCancelTimer" => pack.timer_cancel.to_string(),
         "HassPauseTimer" => pack.timer_pause.to_string(),
         "HassListAddItem" | "HassShoppingListAddItem" => pack.list_add.to_string(),
+        "KlarGetCalendarEvents" => pack.calendar_list.replace("{items}", "").replace("{count}", "0"),
+        "KlarCreateCalendarEvent" if intent.slot("need") == Some("title") => pack.calendar_need_title.to_string(),
+        "KlarCreateCalendarEvent" if intent.slot("need") == Some("when") => pack.calendar_need_when.to_string(),
+        "KlarCreateCalendarEvent" => pack
+            .calendar_created
+            .replace("{summary}", intent.slot("summary").unwrap_or(""))
+            .replace("{when}", intent.slot("day").unwrap_or("")),
+        "KlarDeleteCalendarEvent" if intent.slot("need") == Some("which") => pack.calendar_which.to_string(),
+        "KlarDeleteCalendarEvent" => pack.calendar_deleted.replace("{summary}", intent.slot("summary").unwrap_or("")),
+        "KlarMoveCalendarEvent" if intent.slot("need") == Some("when") => pack.calendar_need_when.to_string(),
+        "KlarMoveCalendarEvent" if intent.slot("need") == Some("which") => pack.calendar_which.to_string(),
+        "KlarMoveCalendarEvent" => pack
+            .calendar_moved
+            .replace("{summary}", intent.slot("summary").unwrap_or(""))
+            .replace("{when}", intent.slot("day").unwrap_or("")),
+        "KlarNoMusicPlayer" => pack.no_music_player.to_string(),
         other => pack.done.replace("{name}", other),
     }
 }
@@ -134,7 +151,7 @@ fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
         return device_label(&object_id(id), domain_of(id));
     }
     if let Some(area) = intent.slot("area") {
-        return area_label(area, intent.slot("domain").unwrap_or(""), &intent.name);
+        return area_label(area, intent.slot("domain").unwrap_or(""), &intent.name, home);
     }
     if let Some(floor) = intent.slot("floor") {
         if let Some(record) = home.and_then(|graph| graph.floor(floor)) {
@@ -169,12 +186,12 @@ fn device_label(name: &str, domain: &str) -> String {
     }
 }
 
-fn area_label(area: &str, domain: &str, intent: &str) -> String {
+fn area_label(area: &str, domain: &str, intent: &str, home: Option<&HomeGraph>) -> String {
     let light = domain == "light" || matches!(intent, "HassTurnOn" | "HassTurnOff" | "HassToggle" | "HassLightSet");
     if light && domain != "climate" && domain != "fan" && domain != "media_player" && domain != "switch" {
-        speech().area_light.replace("{loc}", &loc(area))
+        speech().area_light.replace("{loc}", &loc(area, home))
     } else {
-        title_word(area)
+        pretty_room(area, home)
     }
 }
 
@@ -264,15 +281,41 @@ fn title_word(raw: &str) -> String {
     }
 }
 
-fn loc(area: &str) -> String {
+fn loc(area: &str, home: Option<&HomeGraph>) -> String {
     let pack = speech();
     if area.is_empty() {
         return pack.loc_home.to_string();
     }
+    let room = pretty_room(area, home);
     let folded = compact(area);
-    let room = pack.room_name(&folded).map(str::to_string).unwrap_or_else(|| title_word(&area.replace('_', " ")));
-    let template = if pack.loc_der_rooms.contains(&folded.as_str()) { pack.loc_in_der } else { pack.loc_in };
+    let id_folded = area_record(area, home).map(|rec| compact(&rec.area_id)).unwrap_or_else(|| folded.clone());
+    let feminine = pack.loc_der_rooms.contains(&folded.as_str())
+        || pack.loc_der_rooms.contains(&id_folded.as_str())
+        || room.ends_with('e')
+        || room.ends_with('E');
+    let template = if feminine { pack.loc_in_der } else { pack.loc_in };
     template.replace("{room}", &room)
+}
+
+fn area_record<'a>(area: &'a str, home: Option<&'a HomeGraph>) -> Option<&'a crate::types::AreaRec> {
+    home.and_then(|graph| {
+        graph.areas.iter().find(|rec| {
+            rec.area_id == area || umlaut_eq(&compact(&rec.area_id), &compact(area)) || umlaut_eq(&compact(&rec.name), &compact(area))
+        })
+    })
+}
+
+fn pretty_room(area: &str, home: Option<&HomeGraph>) -> String {
+    let pack = speech();
+    let rec = area_record(area, home);
+    let folded = compact(area);
+    if let Some(name) = pack.room_name(&folded).or_else(|| rec.and_then(|item| pack.room_name(&compact(&item.area_id)))) {
+        return name.to_string();
+    }
+    if let Some(rec) = rec {
+        return rec.name.clone();
+    }
+    title_word(&area.replace('_', " "))
 }
 
 fn or_home(s: &str) -> String {
@@ -427,5 +470,15 @@ mod tests {
         let speech = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
         assert_eq!(speech, "Better Thermostat Wohnzimmer auf 21 Grad.");
         assert!(!speech.contains("climate."), "{speech}");
+    }
+
+    #[test]
+    fn kitchen_status_speaks_umlaut_not_slug() {
+        let _de = bind(&["de".into()]);
+        let home = crate::home::default_home();
+        let intent = Intent::new("HassGetState").with("area", "kuche");
+        let speech = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
+        assert!(speech.contains("Küche"), "{speech}");
+        assert!(!speech.contains("Kuche"), "{speech}");
     }
 }

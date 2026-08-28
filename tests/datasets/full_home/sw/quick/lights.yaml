@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - washa taa chumbakulala
+  - washa taa chumbakulalamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - zima taa chumbakulala
+  - zima taa chumbakulalamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - washa dari chumbakulala
+  - washa dari chumbakulalamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - zima dari chumbakulala
+  - zima dari chumbakulalamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - washa kitanda chumbakulala
+  - washa kitanda chumbakulalamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - zima kitanda chumbakulala
+  - zima kitanda chumbakulalamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

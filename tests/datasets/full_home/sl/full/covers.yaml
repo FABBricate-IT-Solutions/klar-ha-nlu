@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - odpri zavesa spalnica
-  - zavesa spalnica odpri
+  - odpri zavesa spalnicamaster
+  - zavesa spalnicamaster odpri
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zapri zavesa spalnica
-  - zavesa spalnica zapri
+  - zapri zavesa spalnicamaster
+  - zavesa spalnicamaster zapri
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - nastavi zavesa spalnica 0
-  - zavesa spalnica 0
+  - nastavi zavesa spalnicamaster 0
+  - zavesa spalnicamaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - nastavi zavesa spalnica 25
-  - zavesa spalnica 25
+  - nastavi zavesa spalnicamaster 25
+  - zavesa spalnicamaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - nastavi zavesa spalnica 40
-  - zavesa spalnica 40
+  - nastavi zavesa spalnicamaster 40
+  - zavesa spalnicamaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - nastavi zavesa spalnica 75
-  - zavesa spalnica 75
+  - nastavi zavesa spalnicamaster 75
+  - zavesa spalnicamaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - nastavi zavesa spalnica 100
-  - zavesa spalnica 100
+  - nastavi zavesa spalnicamaster 100
+  - zavesa spalnicamaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - odpri zavesa spalnica
-  - zavesa spalnica odpri
+  - odpri zavesa spalnicamaster
+  - zavesa spalnicamaster odpri

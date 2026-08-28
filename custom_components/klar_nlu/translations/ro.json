@@ -36,6 +36,7 @@
           "assist_filter": "Controlează doar entitățile expuse către Assist",
           "nlu_rag": "NLU-RAG (opțional)",
           "quiet_ack": "Confirmare scurtă (clopoțel)",
+          "calendar_llm": "Trimite interogările de calendar la LLM",
           "channel": "Canal de lansare"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Pornit: doar ce vede Assist. Oprit: și entități ascunse.",
           "nlu_rag": "Dezactivat implicit. La conversație doar fragmentul recunoscut merge la modelul de rezervă.",
           "quiet_ack": "La aprindere/stingere simplă nu vorbește, doar un sunet scurt pe satelit.",
+          "calendar_llm": "Dezactivat implicit. Pornit: Klar citește calendarul, LLM-ul de rezervă spune evenimentele. Oprit: Klar spune lista. Crearea, ștergerea și mutarea rămân în Klar.",
           "languages": "Implicit urmează limba sistemului Home Assistant.",
           "channel": "Oricând. Staging indică Klar NLU (Staging)."
         }

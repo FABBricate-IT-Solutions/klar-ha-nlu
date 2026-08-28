@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - tugjee tugjee orol
-  - tugjee orol tugjee
+  - түгжээ түгжээ orol
+  - түгжээ orol түгжээ
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - nee tugjee orol
-  - tugjee orol nee
+  - нээ түгжээ orol
+  - түгжээ orol нээ
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tugjee tugjee garage
-  - tugjee garage tugjee
+  - түгжээ түгжээ garage
+  - түгжээ garage түгжээ
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - nee tugjee garage
-  - tugjee garage nee
+  - нээ түгжээ garage
+  - түгжээ garage нээ
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - tugjee tugjee orol
-  - tugjee orol tugjee
+  - түгжээ түгжээ orol
+  - түгжээ orol түгжээ
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tugjee tugjee garage
-  - tugjee garage tugjee
+  - түгжээ түгжээ garage
+  - түгжээ garage түгжээ

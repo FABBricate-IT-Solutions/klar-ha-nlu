@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - liga quarto teto e quarto cabeceira
-  - quarto teto e quarto cabeceira liga
+  - liga quartomaster teto e quartomaster cabeceira
+  - quartomaster teto e quartomaster cabeceira liga
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - desliga quarto teto e quarto cabeceira
-  - quarto teto e quarto cabeceira desliga
+  - desliga quartomaster teto e quartomaster cabeceira
+  - quartomaster teto e quartomaster cabeceira desliga
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - liga quarto ventoinha e cozinha ilha
-  - quarto ventoinha e cozinha ilha liga
+  - liga quartomaster ventoinha e cozinha ilha
+  - quartomaster ventoinha e cozinha ilha liga
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - desliga luz quarto e main bath
-  - luz quarto e main bath desliga
+  - desliga luz quartomaster e main bath
+  - luz quartomaster e main bath desliga
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - desliga tudo luz exceto sala e quarto
-  - tudo luz desliga exceto sala e quarto
+  - desliga tudo luz exceto sala e quartomaster
+  - tudo luz desliga exceto sala e quartomaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - desliga tudo luz andar exceto quarto
-  - tudo luz andar desliga exceto quarto
+  - desliga tudo luz andar exceto quartomaster
+  - tudo luz andar desliga exceto quartomaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - abre cortina sala e quarto
-  - cortina sala e quarto abre
+  - abre cortina sala e quartomaster
+  - cortina sala e quartomaster abre
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - fecha cortina sala e quarto
-  - cortina sala e quarto fecha
+  - fecha cortina sala e quartomaster
+  - cortina sala e quartomaster fecha
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - poe aquecimento sala e quarto 21
-  - aquecimento sala e quarto 21
+  - poe aquecimento sala e quartomaster 21
+  - aquecimento sala e quartomaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Slaapkamer
+  name: Slaapkamermaster
   floor: upper
   aliases:
+  - slaapkamermaster
   - slaapkamer
 - id: bedroom_2
   name: Slaapkamer2
@@ -130,10 +131,10 @@ devices:
   - plafon
 - id: light.living_lamp
   area_id: living
-  name: sitkamer lig
+  name: sitkamer lamp
   aliases:
-  - sitkamer lig
-  - lig
+  - sitkamer lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: sitkamerfamess lig
@@ -190,29 +191,29 @@ devices:
   - lig
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: slaapkamer plafon
+  name: slaapkamermaster plafon
   aliases:
-  - slaapkamer plafon
+  - slaapkamermaster plafon
   - plafon
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: slaapkamer ensuite
+  name: slaapkamermaster ensuite
   aliases:
-  - slaapkamer ensuite
+  - slaapkamermaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: slaapkamer left nagus
+  name: slaapkamermaster left nagus
   aliases:
-  - slaapkamer left nagus
+  - slaapkamermaster left nagus
   - nagus
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: slaapkamer right nagus
+  name: slaapkamermaster right nagus
   aliases:
-  - slaapkamer right nagus
+  - slaapkamermaster right nagus
   - nagus
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - gordyn
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: slaapkamer gordyn
+  name: slaapkamermaster gordyn
   aliases:
-  - slaapkamer gordyn
+  - slaapkamermaster gordyn
   - gordyn
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - verwarming
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: slaapkamer verwarming
+  name: slaapkamermaster verwarming
   aliases:
-  - slaapkamer verwarming
+  - slaapkamermaster verwarming
   - verwarming
 - id: climate.master_ac
   area_id: master_bedroom
-  name: temperatuur slaapkamer
+  name: temperatuur slaapkamermaster
   aliases:
-  - temperatuur slaapkamer
+  - temperatuur slaapkamermaster
   - temperatuur
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - waaier
 - id: fan.master_fan
   area_id: master_bedroom
-  name: slaapkamer waaier
+  name: slaapkamermaster waaier
   aliases:
-  - slaapkamer waaier
+  - slaapkamermaster waaier
   - waaier
 - id: fan.bedroom2_fan
   area_id: bedroom_2

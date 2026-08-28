@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - thurakku jada muriyil
-  - jada muriyil thurakku
+  - തുറക്ക് ജാലകം ഹാൾ
+  - ജാലകം ഹാൾ തുറക്ക്
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - adaykku jada muriyil
-  - jada muriyil adaykku
+  - അടയ്ക്ക് ജാലകം ഹാൾ
+  - ജാലകം ഹാൾ അടയ്ക്ക്
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - set jada muriyil 0
-  - jada muriyil 0
+  - സെറ്റ് ജാലകം ഹാൾ 0
+  - ജാലകം ഹാൾ 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - set jada muriyil 25
-  - jada muriyil 25
+  - സെറ്റ് ജാലകം ഹാൾ 25
+  - ജാലകം ഹാൾ 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - set jada muriyil 40
-  - jada muriyil 40
+  - സെറ്റ് ജാലകം ഹാൾ 40
+  - ജാലകം ഹാൾ 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - set jada muriyil 75
-  - jada muriyil 75
+  - സെറ്റ് ജാലകം ഹാൾ 75
+  - ജാലകം ഹാൾ 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - set jada muriyil 100
-  - jada muriyil 100
+  - സെറ്റ് ജാലകം ഹാൾ 100
+  - ജാലകം ഹാൾ 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - thurakku jada kitappumuri
-  - jada kitappumuri thurakku
+  - തുറക്ക് ജാലകം kitappumurimaster
+  - ജാലകം kitappumurimaster തുറക്ക്
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - adaykku jada kitappumuri
-  - jada kitappumuri adaykku
+  - അടയ്ക്ക് ജാലകം kitappumurimaster
+  - ജാലകം kitappumurimaster അടയ്ക്ക്
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - set jada kitappumuri 0
-  - jada kitappumuri 0
+  - സെറ്റ് ജാലകം kitappumurimaster 0
+  - ജാലകം kitappumurimaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - set jada kitappumuri 25
-  - jada kitappumuri 25
+  - സെറ്റ് ജാലകം kitappumurimaster 25
+  - ജാലകം kitappumurimaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - set jada kitappumuri 40
-  - jada kitappumuri 40
+  - സെറ്റ് ജാലകം kitappumurimaster 40
+  - ജാലകം kitappumurimaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - set jada kitappumuri 75
-  - jada kitappumuri 75
+  - സെറ്റ് ജാലകം kitappumurimaster 75
+  - ജാലകം kitappumurimaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - set jada kitappumuri 100
-  - jada kitappumuri 100
+  - സെറ്റ് ജാലകം kitappumurimaster 100
+  - ജാലകം kitappumurimaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - thurakku jada kitappumuri2
-  - jada kitappumuri2 thurakku
+  - തുറക്ക് ജാലകം kitappumuri2
+  - ജാലകം kitappumuri2 തുറക്ക്
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - adaykku jada kitappumuri2
-  - jada kitappumuri2 adaykku
+  - അടയ്ക്ക് ജാലകം kitappumuri2
+  - ജാലകം kitappumuri2 അടയ്ക്ക്
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - set jada kitappumuri2 0
-  - jada kitappumuri2 0
+  - സെറ്റ് ജാലകം kitappumuri2 0
+  - ജാലകം kitappumuri2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - set jada kitappumuri2 25
-  - jada kitappumuri2 25
+  - സെറ്റ് ജാലകം kitappumuri2 25
+  - ജാലകം kitappumuri2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - set jada kitappumuri2 40
-  - jada kitappumuri2 40
+  - സെറ്റ് ജാലകം kitappumuri2 40
+  - ജാലകം kitappumuri2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - set jada kitappumuri2 75
-  - jada kitappumuri2 75
+  - സെറ്റ് ജാലകം kitappumuri2 75
+  - ജാലകം kitappumuri2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - set jada kitappumuri2 100
-  - jada kitappumuri2 100
+  - സെറ്റ് ജാലകം kitappumuri2 100
+  - ജാലകം kitappumuri2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - thurakku jada kitappumuri3
-  - jada kitappumuri3 thurakku
+  - തുറക്ക് ജാലകം kitappumuri3
+  - ജാലകം kitappumuri3 തുറക്ക്
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - adaykku jada kitappumuri3
-  - jada kitappumuri3 adaykku
+  - അടയ്ക്ക് ജാലകം kitappumuri3
+  - ജാലകം kitappumuri3 അടയ്ക്ക്
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - set jada kitappumuri3 0
-  - jada kitappumuri3 0
+  - സെറ്റ് ജാലകം kitappumuri3 0
+  - ജാലകം kitappumuri3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - set jada kitappumuri3 25
-  - jada kitappumuri3 25
+  - സെറ്റ് ജാലകം kitappumuri3 25
+  - ജാലകം kitappumuri3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - set jada kitappumuri3 40
-  - jada kitappumuri3 40
+  - സെറ്റ് ജാലകം kitappumuri3 40
+  - ജാലകം kitappumuri3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - set jada kitappumuri3 75
-  - jada kitappumuri3 75
+  - സെറ്റ് ജാലകം kitappumuri3 75
+  - ജാലകം kitappumuri3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - set jada kitappumuri3 100
-  - jada kitappumuri3 100
+  - സെറ്റ് ജാലകം kitappumuri3 100
+  - ജാലകം kitappumuri3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - thurakku jada garage
-  - jada garage thurakku
+  - തുറക്ക് ജാലകം garage
+  - ജാലകം garage തുറക്ക്
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - adaykku jada garage
-  - jada garage adaykku
+  - അടയ്ക്ക് ജാലകം garage
+  - ജാലകം garage അടയ്ക്ക്
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - set jada garage 0
-  - jada garage 0
+  - സെറ്റ് ജാലകം garage 0
+  - ജാലകം garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - set jada garage 25
-  - jada garage 25
+  - സെറ്റ് ജാലകം garage 25
+  - ജാലകം garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - set jada garage 40
-  - jada garage 40
+  - സെറ്റ് ജാലകം garage 40
+  - ജാലകം garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - set jada garage 75
-  - jada garage 75
+  - സെറ്റ് ജാലകം garage 75
+  - ജാലകം garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - set jada garage 100
-  - jada garage 100
+  - സെറ്റ് ജാലകം garage 100
+  - ജാലകം garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - thurakku jada muriyil
-  - jada muriyil thurakku
+  - തുറക്ക് ജാലകം ഹാൾ
+  - ജാലകം ഹാൾ തുറക്ക്
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - thurakku jada kitappumuri
-  - jada kitappumuri thurakku
+  - തുറക്ക് ജാലകം kitappumurimaster
+  - ജാലകം kitappumurimaster തുറക്ക്

@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Dormitorio
+  name: Dormitoriomaster
   floor: upper
   aliases:
+  - dormitoriomaster
   - dormitorio
 - id: bedroom_2
   name: Dormitorio2
@@ -190,29 +191,29 @@ devices:
   - luz
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: dormitorio techo
+  name: dormitoriomaster techo
   aliases:
-  - dormitorio techo
+  - dormitoriomaster techo
   - techo
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: dormitorio ensuite
+  name: dormitoriomaster ensuite
   aliases:
-  - dormitorio ensuite
+  - dormitoriomaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: dormitorio left mesilla
+  name: dormitoriomaster left mesilla
   aliases:
-  - dormitorio left mesilla
+  - dormitoriomaster left mesilla
   - mesilla
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: dormitorio right mesilla
+  name: dormitoriomaster right mesilla
   aliases:
-  - dormitorio right mesilla
+  - dormitoriomaster right mesilla
   - mesilla
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - cortina
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: dormitorio cortina
+  name: dormitoriomaster cortina
   aliases:
-  - dormitorio cortina
+  - dormitoriomaster cortina
   - cortina
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - calefaccion
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: dormitorio calefaccion
+  name: dormitoriomaster calefaccion
   aliases:
-  - dormitorio calefaccion
+  - dormitoriomaster calefaccion
   - calefaccion
 - id: climate.master_ac
   area_id: master_bedroom
-  name: aire dormitorio
+  name: aire dormitoriomaster
   aliases:
-  - aire dormitorio
+  - aire dormitoriomaster
   - aire
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventilador
 - id: fan.master_fan
   area_id: master_bedroom
-  name: dormitorio ventilador
+  name: dormitoriomaster ventilador
   aliases:
-  - dormitorio ventilador
+  - dormitoriomaster ventilador
   - ventilador
 - id: fan.bedroom2_fan
   area_id: bedroom_2
@@ -365,12 +366,14 @@ devices:
   - lavadora
 - id: switch.dryer
   area_id: laundry
-  name: lavadero dryer
+  name: lavadero secadora
   aliases:
-  - lavadero dryer
+  - lavadero secadora
+  - secadora
   - dryer
   tags:
   - dryer
+  - secadora
 - id: switch.master_bath_fan
   area_id: master_bath
   name: banomaster extractor

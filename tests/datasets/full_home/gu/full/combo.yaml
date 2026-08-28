@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - chalu orado chhat ane orado lamp
-  - orado chhat ane orado lamp chalu
+  - ચાલુ ઓરડો chhat અને ઓરડો prakash
+  - ઓરડો chhat અને ઓરડો prakash ચાલુ
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - bandh orado chhat ane orado lamp
-  - orado chhat ane orado lamp bandh
+  - બંધ ઓરડો chhat અને ઓરડો prakash
+  - ઓરડો chhat અને ઓરડો prakash બંધ
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - chalu rasodu chhat ane rasodu tapu
-  - rasodu chhat ane rasodu tapu chalu
+  - ચાલુ રસોડું chhat અને રસોડું tapu
+  - રસોડું chhat અને રસોડું tapu ચાલુ
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - bandh rasodu chhat ane rasodu tapu
-  - rasodu chhat ane rasodu tapu bandh
+  - બંધ રસોડું chhat અને રસોડું tapu
+  - રસોડું chhat અને રસોડું tapu બંધ
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - chalu orado chhat ane rasodu tapu
-  - orado chhat ane rasodu tapu chalu
+  - ચાલુ ઓરડો chhat અને રસોડું tapu
+  - ઓરડો chhat અને રસોડું tapu ચાલુ
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - bandh orado chhat ane rasodu tapu
-  - orado chhat ane rasodu tapu bandh
+  - બંધ ઓરડો chhat અને રસોડું tapu
+  - ઓરડો chhat અને રસોડું tapu બંધ
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - chalu office chhat ane hallway prakash
-  - office chhat ane hallway prakash chalu
+  - ચાલુ office chhat અને hallway પ્રકાશ
+  - office chhat અને hallway પ્રકાશ ચાલુ
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - bandh office chhat ane hallway prakash
-  - office chhat ane hallway prakash bandh
+  - બંધ office chhat અને hallway પ્રકાશ
+  - office chhat અને hallway પ્રકાશ બંધ
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - chalu garden prakash ane garage prakash
-  - garden prakash ane garage prakash chalu
+  - ચાલુ garden પ્રકાશ અને garage પ્રકાશ
+  - garden પ્રકાશ અને garage પ્રકાશ ચાલુ
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - bandh garden prakash ane garage prakash
-  - garden prakash ane garage prakash bandh
+  - બંધ garden પ્રકાશ અને garage પ્રકાશ
+  - garden પ્રકાશ અને garage પ્રકાશ બંધ
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - chalu shayankhand chhat ane shayankhand palang
-  - shayankhand chhat ane shayankhand palang chalu
+  - ચાલુ shayankhandmaster chhat અને shayankhandmaster palang
+  - shayankhandmaster chhat અને shayankhandmaster palang ચાલુ
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - bandh shayankhand chhat ane shayankhand palang
-  - shayankhand chhat ane shayankhand palang bandh
+  - બંધ shayankhandmaster chhat અને shayankhandmaster palang
+  - shayankhandmaster chhat અને shayankhandmaster palang બંધ
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - chalu kutumb chhat ane kutumbess prakash
-  - kutumb chhat ane kutumbess prakash chalu
+  - ચાલુ kutumb chhat અને kutumbess પ્રકાશ
+  - kutumb chhat અને kutumbess પ્રકાશ ચાલુ
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - bandh kutumb chhat ane kutumbess prakash
-  - kutumb chhat ane kutumbess prakash bandh
+  - બંધ kutumb chhat અને kutumbess પ્રકાશ
+  - kutumb chhat અને kutumbess પ્રકાશ બંધ
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - chalu basement prakash ane dhovanu prakash
-  - basement prakash ane dhovanu prakash chalu
+  - ચાલુ basement પ્રકાશ અને dhovanu પ્રકાશ
+  - basement પ્રકાશ અને dhovanu પ્રકાશ ચાલુ
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - bandh basement prakash ane dhovanu prakash
-  - basement prakash ane dhovanu prakash bandh
+  - બંધ basement પ્રકાશ અને dhovanu પ્રકાશ
+  - basement પ્રકાશ અને dhovanu પ્રકાશ બંધ
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - chalu shayankhand pankho ane rasodu tapu
-  - shayankhand pankho ane rasodu tapu chalu
+  - ચાલુ shayankhandmaster પંખો અને રસોડું tapu
+  - shayankhandmaster પંખો અને રસોડું tapu ચાલુ
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - chalu orado pado ane orado chhat
-  - orado pado ane orado chhat chalu
+  - ચાલુ ઓરડો પડદો અને ઓરડો chhat
+  - ઓરડો પડદો અને ઓરડો chhat ચાલુ
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - chalu dhovanu washing ane dhovanu dryer
-  - dhovanu washing ane dhovanu dryer chalu
+  - ચાલુ dhovanu washing અને dhovanu dryer
+  - dhovanu washing અને dhovanu dryer ચાલુ
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash orado ane rasodu
-  - prakash orado ane rasodu bandh
+  - બંધ પ્રકાશ ઓરડો અને રસોડું
+  - પ્રકાશ ઓરડો અને રસોડું બંધ
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash office ane hallway
-  - prakash office ane hallway bandh
+  - બંધ પ્રકાશ office અને hallway
+  - પ્રકાશ office અને hallway બંધ
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash garage ane garden
-  - prakash garage ane garden bandh
+  - બંધ પ્રકાશ garage અને garden
+  - પ્રકાશ garage અને garden બંધ
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash shayankhand ane main bath
-  - prakash shayankhand ane main bath bandh
+  - બંધ પ્રકાશ shayankhandmaster અને main bath
+  - પ્રકાશ shayankhandmaster અને main bath બંધ
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash kutumb ane kutumbess
-  - prakash kutumb ane kutumbess bandh
+  - બંધ પ્રકાશ kutumb અને kutumbess
+  - પ્રકાશ kutumb અને kutumbess બંધ
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash orado ane kutumbess ane rasodu
-  - prakash orado kutumbess ane rasodu bandh
+  - બંધ પ્રકાશ ઓરડો અને kutumbess અને રસોડું
+  - પ્રકાશ ઓરડો kutumbess અને રસોડું બંધ
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu prakash office ane hallway ane garage
-  - prakash office hallway ane garage chalu
+  - ચાલુ પ્રકાશ office અને hallway અને garage
+  - પ્રકાશ office hallway અને garage ચાલુ
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh prakash garden ane basement ane dhovanu
-  - prakash garden basement ane dhovanu bandh
+  - બંધ પ્રકાશ garden અને basement અને dhovanu
+  - પ્રકાશ garden basement અને dhovanu બંધ
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay tapu rasodu
-  - badhu prakash bandh sivay tapu rasodu
+  - બંધ બધું પ્રકાશ sivay tapu રસોડું
+  - બધું પ્રકાશ બંધ sivay tapu રસોડું
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay lamp orado
-  - badhu prakash bandh sivay lamp orado
+  - બંધ બધું પ્રકાશ sivay prakash ઓરડો
+  - બધું પ્રકાશ બંધ sivay prakash ઓરડો
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay garden
-  - badhu prakash bandh sivay garden
+  - બંધ બધું પ્રકાશ sivay garden
+  - બધું પ્રકાશ બંધ sivay garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay chhat office
-  - badhu prakash bandh sivay chhat office
+  - બંધ બધું પ્રકાશ sivay chhat office
+  - બધું પ્રકાશ બંધ sivay chhat office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay basement
-  - badhu prakash bandh sivay basement
+  - બંધ બધું પ્રકાશ sivay basement
+  - બધું પ્રકાશ બંધ sivay basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu badhu prakash sivay rasodu
-  - badhu prakash chalu sivay rasodu
+  - ચાલુ બધું પ્રકાશ sivay રસોડું
+  - બધું પ્રકાશ ચાલુ sivay રસોડું
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu badhu prakash sivay office
-  - badhu prakash chalu sivay office
+  - ચાલુ બધું પ્રકાશ sivay office
+  - બધું પ્રકાશ ચાલુ sivay office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu badhu prakash sivay garden
-  - badhu prakash chalu sivay garden
+  - ચાલુ બધું પ્રકાશ sivay garden
+  - બધું પ્રકાશ ચાલુ sivay garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu badhu prakash sivay orado
-  - badhu prakash chalu sivay orado
+  - ચાલુ બધું પ્રકાશ sivay ઓરડો
+  - બધું પ્રકાશ ચાલુ sivay ઓરડો
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu badhu prakash sivay garage
-  - badhu prakash chalu sivay garage
+  - ચાલુ બધું પ્રકાશ sivay garage
+  - બધું પ્રકાશ ચાલુ sivay garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - bandh badhu prakash rasodu sivay tapu
-  - badhu prakash rasodu bandh sivay tapu
+  - બંધ બધું પ્રકાશ રસોડું sivay tapu
+  - બધું પ્રકાશ રસોડું બંધ sivay tapu
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - bandh badhu prakash orado sivay lamp
-  - badhu prakash orado bandh sivay lamp
+  - બંધ બધું પ્રકાશ ઓરડો sivay prakash
+  - બધું પ્રકાશ ઓરડો બંધ sivay prakash
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - chalu badhu prakash sivay tapu rasodu
-  - badhu prakash chalu sivay tapu rasodu
+  - ચાલુ બધું પ્રકાશ sivay tapu રસોડું
+  - બધું પ્રકાશ ચાલુ sivay tapu રસોડું
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay rasodu ane office
-  - badhu prakash bandh sivay rasodu ane office
+  - બંધ બધું પ્રકાશ sivay રસોડું અને office
+  - બધું પ્રકાશ બંધ sivay રસોડું અને office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay orado ane shayankhand
-  - badhu prakash bandh sivay orado ane shayankhand
+  - બંધ બધું પ્રકાશ sivay ઓરડો અને shayankhandmaster
+  - બધું પ્રકાશ બંધ sivay ઓરડો અને shayankhandmaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash sivay garage ane garden
-  - badhu prakash bandh sivay garage ane garden
+  - બંધ બધું પ્રકાશ sivay garage અને garden
+  - બધું પ્રકાશ બંધ sivay garage અને garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash niche sivay rasodu
-  - badhu prakash niche bandh sivay rasodu
+  - બંધ બધું પ્રકાશ niche sivay રસોડું
+  - બધું પ્રકાશ niche બંધ sivay રસોડું
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash upar sivay shayankhand
-  - badhu prakash upar bandh sivay shayankhand
+  - બંધ બધું પ્રકાશ upar sivay shayankhandmaster
+  - બધું પ્રકાશ upar બંધ sivay shayankhandmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - bandh badhu prakash niche sivay office
-  - badhu prakash niche bandh sivay office
+  - બંધ બધું પ્રકાશ niche sivay office
+  - બધું પ્રકાશ niche બંધ sivay office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - kholo pado orado ane shayankhand
-  - pado orado ane shayankhand kholo
+  - ખોલો પડદો ઓરડો અને shayankhandmaster
+  - પડદો ઓરડો અને shayankhandmaster ખોલો
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - bandhkaro pado orado ane shayankhand
-  - pado orado ane shayankhand bandhkaro
+  - બંધકરો પડદો ઓરડો અને shayankhandmaster
+  - પડદો ઓરડો અને shayankhandmaster બંધકરો
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set garmi orado ane shayankhand 21
-  - garmi orado ane shayankhand 21
+  - સેટ ગરમી ઓરડો અને shayankhandmaster 21
+  - ગરમી ઓરડો અને shayankhandmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set prakash orado ane rasodu 50
-  - prakash orado ane rasodu 50
+  - સેટ પ્રકાશ ઓરડો અને રસોડું 50
+  - પ્રકાશ ઓરડો અને રસોડું 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - set prakash orado ane rasodu red
-  - prakash orado ane rasodu red
+  - સેટ પ્રકાશ ઓરડો અને રસોડું red
+  - પ્રકાશ ઓરડો અને રસોડું red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - shu prakash orado ane rasodu
-  - prakash orado ane rasodu
+  - શું પ્રકાશ ઓરડો અને રસોડું
+  - પ્રકાશ ઓરડો અને રસોડું
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - shu garmi orado ane bandh prakash rasodu
-  - bandh prakash rasodu ane shu garmi orado
+  - શું ગરમી ઓરડો અને બંધ પ્રકાશ રસોડું
+  - બંધ પ્રકાશ રસોડું અને શું ગરમી ઓરડો
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - talu front darwajo ane garage darwajo
-  - talu talu pravesh ane garage
+  - તાળું front દરવાજો અને garage દરવાજો
+  - તાળું તાળું pravesh અને garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - chalu film ane bandh prakash shauchalay
-  - bandh prakash shauchalay ane chalu film
+  - ચાલુ film અને બંધ પ્રકાશ shauchalay
+  - બંધ પ્રકાશ shauchalay અને ચાલુ film

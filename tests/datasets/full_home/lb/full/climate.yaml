@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stell heizung schlofzëmmer 18
-  - heizung schlofzëmmer 18
+  - stell heizung schlofzëmmermaster 18
+  - heizung schlofzëmmermaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stell heizung schlofzëmmer 19
-  - heizung schlofzëmmer 19
+  - stell heizung schlofzëmmermaster 19
+  - heizung schlofzëmmermaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stell heizung schlofzëmmer 20
-  - heizung schlofzëmmer 20
+  - stell heizung schlofzëmmermaster 20
+  - heizung schlofzëmmermaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell heizung schlofzëmmer 21
-  - heizung schlofzëmmer 21
+  - stell heizung schlofzëmmermaster 21
+  - heizung schlofzëmmermaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stell heizung schlofzëmmer 22
-  - heizung schlofzëmmer 22
+  - stell heizung schlofzëmmermaster 22
+  - heizung schlofzëmmermaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stell heizung schlofzëmmer 23
-  - heizung schlofzëmmer 23
+  - stell heizung schlofzëmmermaster 23
+  - heizung schlofzëmmermaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stell heizung schlofzëmmer 24
-  - heizung schlofzëmmer 24
+  - stell heizung schlofzëmmermaster 24
+  - heizung schlofzëmmermaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - wat heizung schlofzëmmer
-  - heizung schlofzëmmer
+  - wat heizung schlofzëmmermaster
+  - heizung schlofzëmmermaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stell heizung schlofzëmmer 18
-  - heizung schlofzëmmer 18
+  - stell heizung schlofzëmmermaster 18
+  - heizung schlofzëmmermaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stell heizung schlofzëmmer 19
-  - heizung schlofzëmmer 19
+  - stell heizung schlofzëmmermaster 19
+  - heizung schlofzëmmermaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stell heizung schlofzëmmer 20
-  - heizung schlofzëmmer 20
+  - stell heizung schlofzëmmermaster 20
+  - heizung schlofzëmmermaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell heizung schlofzëmmer 21
-  - heizung schlofzëmmer 21
+  - stell heizung schlofzëmmermaster 21
+  - heizung schlofzëmmermaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stell heizung schlofzëmmer 22
-  - heizung schlofzëmmer 22
+  - stell heizung schlofzëmmermaster 22
+  - heizung schlofzëmmermaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stell heizung schlofzëmmer 23
-  - heizung schlofzëmmer 23
+  - stell heizung schlofzëmmermaster 23
+  - heizung schlofzëmmermaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stell heizung schlofzëmmer 24
-  - heizung schlofzëmmer 24
+  - stell heizung schlofzëmmermaster 24
+  - heizung schlofzëmmermaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - wat heizung schlofzëmmer
-  - heizung schlofzëmmer
+  - wat heizung schlofzëmmermaster
+  - heizung schlofzëmmermaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - wat heizung schlofzëmmer
-  - heizung schlofzëmmer
+  - wat heizung schlofzëmmermaster
+  - heizung schlofzëmmermaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - wat heizung schlofzëmmer
-  - heizung schlofzëmmer
+  - wat heizung schlofzëmmermaster
+  - heizung schlofzëmmermaster

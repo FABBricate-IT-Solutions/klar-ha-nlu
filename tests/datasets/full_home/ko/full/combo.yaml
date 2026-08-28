@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - kyeo geosil cheonjang 그리고 geosil lamp
-  - geosil cheonjang 그리고 geosil lamp kyeo
+  - 켜 거실 cheonjang 그리고 거실 조명
+  - 거실 cheonjang 그리고 거실 조명 켜
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - kkaeo geosil cheonjang 그리고 geosil lamp
-  - geosil cheonjang 그리고 geosil lamp kkaeo
+  - 꺼 거실 cheonjang 그리고 거실 조명
+  - 거실 cheonjang 그리고 거실 조명 꺼
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kyeo bueok cheonjang 그리고 bueok seom
-  - bueok cheonjang 그리고 bueok seom kyeo
+  - 켜 부엌 cheonjang 그리고 부엌 seom
+  - 부엌 cheonjang 그리고 부엌 seom 켜
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - kkaeo bueok cheonjang 그리고 bueok seom
-  - bueok cheonjang 그리고 bueok seom kkaeo
+  - 꺼 부엌 cheonjang 그리고 부엌 seom
+  - 부엌 cheonjang 그리고 부엌 seom 꺼
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kyeo geosil cheonjang 그리고 bueok seom
-  - geosil cheonjang 그리고 bueok seom kyeo
+  - 켜 거실 cheonjang 그리고 부엌 seom
+  - 거실 cheonjang 그리고 부엌 seom 켜
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - kkaeo geosil cheonjang 그리고 bueok seom
-  - geosil cheonjang 그리고 bueok seom kkaeo
+  - 꺼 거실 cheonjang 그리고 부엌 seom
+  - 거실 cheonjang 그리고 부엌 seom 꺼
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - kyeo office cheonjang 그리고 bokdo bul
-  - office cheonjang 그리고 bokdo bul kyeo
+  - 켜 office cheonjang 그리고 bokdo 불
+  - office cheonjang 그리고 bokdo 불 켜
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - kkaeo office cheonjang 그리고 bokdo bul
-  - office cheonjang 그리고 bokdo bul kkaeo
+  - 꺼 office cheonjang 그리고 bokdo 불
+  - office cheonjang 그리고 bokdo 불 꺼
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - kyeo garden bul 그리고 garage bul
-  - garden bul 그리고 garage bul kyeo
+  - 켜 garden 불 그리고 garage 불
+  - garden 불 그리고 garage 불 켜
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - kkaeo garden bul 그리고 garage bul
-  - garden bul 그리고 garage bul kkaeo
+  - 꺼 garden 불 그리고 garage 불
+  - garden 불 그리고 garage 불 꺼
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - kyeo chimsil cheonjang 그리고 chimsil chimdae
-  - chimsil cheonjang 그리고 chimsil chimdae kyeo
+  - 켜 chimsilmaster cheonjang 그리고 chimsilmaster chimdae
+  - chimsilmaster cheonjang 그리고 chimsilmaster chimdae 켜
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - kkaeo chimsil cheonjang 그리고 chimsil chimdae
-  - chimsil cheonjang 그리고 chimsil chimdae kkaeo
+  - 꺼 chimsilmaster cheonjang 그리고 chimsilmaster chimdae
+  - chimsilmaster cheonjang 그리고 chimsilmaster chimdae 꺼
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - kyeo gajoksil cheonjang 그리고 gajoksiless bul
-  - gajoksil cheonjang 그리고 gajoksiless bul kyeo
+  - 켜 gajoksil cheonjang 그리고 gajoksiless 불
+  - gajoksil cheonjang 그리고 gajoksiless 불 켜
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - kkaeo gajoksil cheonjang 그리고 gajoksiless bul
-  - gajoksil cheonjang 그리고 gajoksiless bul kkaeo
+  - 꺼 gajoksil cheonjang 그리고 gajoksiless 불
+  - gajoksil cheonjang 그리고 gajoksiless 불 꺼
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - kyeo basement bul 그리고 setaksil bul
-  - basement bul 그리고 setaksil bul kyeo
+  - 켜 basement 불 그리고 setaksil 불
+  - basement 불 그리고 setaksil 불 켜
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - kkaeo basement bul 그리고 setaksil bul
-  - basement bul 그리고 setaksil bul kkaeo
+  - 꺼 basement 불 그리고 setaksil 불
+  - basement 불 그리고 setaksil 불 꺼
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kyeo chimsil seonpunggi 그리고 bueok seom
-  - chimsil seonpunggi 그리고 bueok seom kyeo
+  - 켜 chimsilmaster 선풍기 그리고 부엌 seom
+  - chimsilmaster 선풍기 그리고 부엌 seom 켜
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - kyeo geosil keoteun 그리고 geosil cheonjang
-  - geosil keoteun 그리고 geosil cheonjang kyeo
+  - 켜 거실 커튼 그리고 거실 cheonjang
+  - 거실 커튼 그리고 거실 cheonjang 켜
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - kyeo setaksil setakgi 그리고 setaksil dryer
-  - setaksil setakgi 그리고 setaksil dryer kyeo
+  - 켜 setaksil setakgi 그리고 setaksil dryer
+  - setaksil setakgi 그리고 setaksil dryer 켜
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul geosil 그리고 bueok
-  - bul geosil 그리고 bueok kkaeo
+  - 꺼 불 거실 그리고 부엌
+  - 불 거실 그리고 부엌 꺼
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul office 그리고 bokdo
-  - bul office 그리고 bokdo kkaeo
+  - 꺼 불 office 그리고 bokdo
+  - 불 office 그리고 bokdo 꺼
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul garage 그리고 garden
-  - bul garage 그리고 garden kkaeo
+  - 꺼 불 garage 그리고 garden
+  - 불 garage 그리고 garden 꺼
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul chimsil 그리고 main bath
-  - bul chimsil 그리고 main bath kkaeo
+  - 꺼 불 chimsilmaster 그리고 main bath
+  - 불 chimsilmaster 그리고 main bath 꺼
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul gajoksil 그리고 gajoksiless
-  - bul gajoksil 그리고 gajoksiless kkaeo
+  - 꺼 불 gajoksil 그리고 gajoksiless
+  - 불 gajoksil 그리고 gajoksiless 꺼
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul geosil 그리고 gajoksiless 그리고 bueok
-  - bul geosil gajoksiless 그리고 bueok kkaeo
+  - 꺼 불 거실 그리고 gajoksiless 그리고 부엌
+  - 불 거실 gajoksiless 그리고 부엌 꺼
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul office 그리고 bokdo 그리고 garage
-  - bul office bokdo 그리고 garage kyeo
+  - 켜 불 office 그리고 bokdo 그리고 garage
+  - 불 office bokdo 그리고 garage 켜
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul garden 그리고 basement 그리고 setaksil
-  - bul garden basement 그리고 setaksil kkaeo
+  - 꺼 불 garden 그리고 basement 그리고 setaksil
+  - 불 garden basement 그리고 setaksil 꺼
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 seom bueok
-  - 모두 bul kkaeo 빼고 seom bueok
+  - 꺼 모두 불 빼고 seom 부엌
+  - 모두 불 꺼 빼고 seom 부엌
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 lamp geosil
-  - 모두 bul kkaeo 빼고 lamp geosil
+  - 꺼 모두 불 빼고 조명 거실
+  - 모두 불 꺼 빼고 조명 거실
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 garden
-  - 모두 bul kkaeo 빼고 garden
+  - 꺼 모두 불 빼고 garden
+  - 모두 불 꺼 빼고 garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 cheonjang office
-  - 모두 bul kkaeo 빼고 cheonjang office
+  - 꺼 모두 불 빼고 cheonjang office
+  - 모두 불 꺼 빼고 cheonjang office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 basement
-  - 모두 bul kkaeo 빼고 basement
+  - 꺼 모두 불 빼고 basement
+  - 모두 불 꺼 빼고 basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul 빼고 bueok
-  - 모두 bul kyeo 빼고 bueok
+  - 켜 모두 불 빼고 부엌
+  - 모두 불 켜 빼고 부엌
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul 빼고 office
-  - 모두 bul kyeo 빼고 office
+  - 켜 모두 불 빼고 office
+  - 모두 불 켜 빼고 office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul 빼고 garden
-  - 모두 bul kyeo 빼고 garden
+  - 켜 모두 불 빼고 garden
+  - 모두 불 켜 빼고 garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul 빼고 geosil
-  - 모두 bul kyeo 빼고 geosil
+  - 켜 모두 불 빼고 거실
+  - 모두 불 켜 빼고 거실
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul 빼고 garage
-  - 모두 bul kyeo 빼고 garage
+  - 켜 모두 불 빼고 garage
+  - 모두 불 켜 빼고 garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - kkaeo 모두 bul bueok 빼고 seom
-  - 모두 bul bueok kkaeo 빼고 seom
+  - 꺼 모두 불 부엌 빼고 seom
+  - 모두 불 부엌 꺼 빼고 seom
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - kkaeo 모두 bul geosil 빼고 lamp
-  - 모두 bul geosil kkaeo 빼고 lamp
+  - 꺼 모두 불 거실 빼고 조명
+  - 모두 불 거실 꺼 빼고 조명
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - kyeo 모두 bul 빼고 seom bueok
-  - 모두 bul kyeo 빼고 seom bueok
+  - 켜 모두 불 빼고 seom 부엌
+  - 모두 불 켜 빼고 seom 부엌
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 bueok 그리고 office
-  - 모두 bul kkaeo 빼고 bueok 그리고 office
+  - 꺼 모두 불 빼고 부엌 그리고 office
+  - 모두 불 꺼 빼고 부엌 그리고 office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 geosil 그리고 chimsil
-  - 모두 bul kkaeo 빼고 geosil 그리고 chimsil
+  - 꺼 모두 불 빼고 거실 그리고 chimsilmaster
+  - 모두 불 꺼 빼고 거실 그리고 chimsilmaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 garage 그리고 garden
-  - 모두 bul kkaeo 빼고 garage 그리고 garden
+  - 꺼 모두 불 빼고 garage 그리고 garden
+  - 모두 불 꺼 빼고 garage 그리고 garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul araecheung 빼고 bueok
-  - 모두 bul araecheung kkaeo 빼고 bueok
+  - 꺼 모두 불 araecheung 빼고 부엌
+  - 모두 불 araecheung 꺼 빼고 부엌
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul wicheung 빼고 chimsil
-  - 모두 bul wicheung kkaeo 빼고 chimsil
+  - 꺼 모두 불 wicheung 빼고 chimsilmaster
+  - 모두 불 wicheung 꺼 빼고 chimsilmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul araecheung 빼고 office
-  - 모두 bul araecheung kkaeo 빼고 office
+  - 꺼 모두 불 araecheung 빼고 office
+  - 모두 불 araecheung 꺼 빼고 office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - yeolo keoteun geosil 그리고 chimsil
-  - keoteun geosil 그리고 chimsil yeolo
+  - 열어 커튼 거실 그리고 chimsilmaster
+  - 커튼 거실 그리고 chimsilmaster 열어
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - dada keoteun geosil 그리고 chimsil
-  - keoteun geosil 그리고 chimsil dada
+  - 닫아 커튼 거실 그리고 chimsilmaster
+  - 커튼 거실 그리고 chimsilmaster 닫아
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - seoljeong nanbang geosil 그리고 chimsil 21
-  - nanbang geosil 그리고 chimsil 21
+  - 설정 난방 거실 그리고 chimsilmaster 21
+  - 난방 거실 그리고 chimsilmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul geosil 그리고 bueok 50
-  - bul geosil 그리고 bueok 50
+  - 설정 불 거실 그리고 부엌 50
+  - 불 거실 그리고 부엌 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul geosil 그리고 bueok red
-  - bul geosil 그리고 bueok red
+  - 설정 불 거실 그리고 부엌 빨강
+  - 불 거실 그리고 부엌 빨강
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - mwo bul geosil 그리고 bueok
-  - bul geosil 그리고 bueok
+  - 뭔 불 거실 그리고 부엌
+  - 불 거실 그리고 부엌
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - mwo nanbang geosil 그리고 kkaeo bul bueok
-  - kkaeo bul bueok 그리고 mwo nanbang geosil
+  - 뭔 난방 거실 그리고 꺼 불 부엌
+  - 꺼 불 부엌 그리고 뭔 난방 거실
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - jamulsoe front mun 그리고 garage mun
-  - jamulsoe jamulsoe hyeongwan 그리고 garage
+  - 자물쇠 front 문 그리고 garage 문
+  - 자물쇠 자물쇠 hyeongwan 그리고 garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - kyeo yeonghwa 그리고 kkaeo bul hwajangsil
-  - kkaeo bul hwajangsil 그리고 kyeo yeonghwa
+  - 켜 yeonghwa 그리고 꺼 불 hwajangsil
+  - 꺼 불 hwajangsil 그리고 켜 yeonghwa

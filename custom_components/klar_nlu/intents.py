@@ -54,6 +54,11 @@ ALLOWED_INTENTS = TIMER_INTENTS | set(ENTITY_SERVICES) | LIST_INTENTS | {
     "HassVacuumStart",
     "HassVacuumReturnToBase",
     "HassSetPosition",
+    "KlarGetCalendarEvents",
+    "KlarCreateCalendarEvent",
+    "KlarDeleteCalendarEvent",
+    "KlarMoveCalendarEvent",
+    "KlarNoMusicPlayer",
 }
 
 
@@ -103,10 +108,81 @@ def get_state_has_target(item: dict[str, Any]) -> bool:
     )
 
 
+def _fold_latin(text: str) -> str:
+    return (
+        text.replace("ä", "ae")
+        .replace("ö", "oe")
+        .replace("ü", "ue")
+        .replace("Ä", "ae")
+        .replace("Ö", "oe")
+        .replace("Ü", "ue")
+        .replace("ß", "ss")
+        .casefold()
+    )
+
+
+def _fold_marks(text: str) -> str:
+    return (
+        text.replace("ä", "a")
+        .replace("ö", "o")
+        .replace("ü", "u")
+        .replace("Ä", "a")
+        .replace("Ö", "o")
+        .replace("Ü", "u")
+        .replace("ß", "ss")
+        .casefold()
+    )
+
+
+def _umlaut_eq(left: str, right: str) -> bool:
+    if left == right:
+        return True
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] != right[j]:
+            return False
+        if left[i] in {"a", "o", "u"}:
+            left_e = i + 1 < len(left) and left[i + 1] == "e"
+            right_e = j + 1 < len(right) and right[j + 1] == "e"
+            if left_e != right_e:
+                if left_e:
+                    i += 1
+                else:
+                    j += 1
+        i += 1
+        j += 1
+    return i == len(left) and j == len(right)
+
+
+def _area_hit(label: str, key: str) -> bool:
+    text = str(label)
+    want = key.casefold()
+    return (
+        text.casefold() == want
+        or _fold_latin(text) == _fold_latin(key)
+        or _fold_marks(text) == _fold_marks(key)
+        or _umlaut_eq(_fold_latin(text), _fold_latin(key))
+    )
+
+
+def resolve_area(hass: HomeAssistant, key: str) -> Any | None:
+    if not key:
+        return None
+    areas = area_registry.async_get(hass)
+    found = areas.async_get_area(key)
+    if found is not None:
+        return found
+    for item in areas.async_list_areas():
+        labels = [item.id, item.name, *list(getattr(item, "aliases", None) or [])]
+        if any(_area_hit(label, key) for label in labels):
+            return item
+    return None
+
+
 def area_label(hass: HomeAssistant, area_id: str) -> str:
     if not area_id:
         return ""
-    area = area_registry.async_get(hass).async_get_area(area_id)
+    area = resolve_area(hass, area_id)
     return str(getattr(area, "name", None) or area_id)
 
 

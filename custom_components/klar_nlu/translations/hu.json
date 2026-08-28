@@ -36,6 +36,7 @@
           "assist_filter": "Csak az Assistnek kitett entitások vezérlése",
           "nlu_rag": "NLU-RAG (opcionális)",
           "quiet_ack": "Rövid megerősítés (csengő)",
+          "calendar_llm": "Naptárlekérdezések küldése az LLM-nek",
           "channel": "Kiadási csatorna"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Be: csak amit az Assist lát. Ki: rejtett entitások is.",
           "nlu_rag": "Alapból ki. Csevegéskor csak az illeszkedő szelet megy a tartalék modellnek.",
           "quiet_ack": "Egyszerű lámpa ki/be esetén nincs beszéd, csak rövid hang a műholdon.",
+          "calendar_llm": "Alapból ki. Be: a Klar olvassa a naptárt, a tartalék LLM mondja az eseményeket. Ki: a Klar mondja a listát. Létrehozás, törlés, áthelyezés a Klarnál marad.",
           "languages": "Alapértelmezés a Home Assistant rendszer nyelve.",
           "channel": "Bármikor. A Staging a Klar NLU (Staging) felé mutat."
         }

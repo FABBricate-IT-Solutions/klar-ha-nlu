@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - skru soverom tak og soverom nattbord
-  - soverom tak og soverom nattbord skru
+  - skru soverommaster tak og soverommaster nattbord
+  - soverommaster tak og soverommaster nattbord skru
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - slaa soverom tak og soverom nattbord
-  - soverom tak og soverom nattbord slaa
+  - slaa soverommaster tak og soverommaster nattbord
+  - soverommaster tak og soverommaster nattbord slaa
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - skru soverom vifte og kjokken oy
-  - soverom vifte og kjokken oy skru
+  - skru soverommaster vifte og kjokken oy
+  - soverommaster vifte og kjokken oy skru
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slaa lys soverom og main bath
-  - lys soverom og main bath slaa
+  - slaa lys soverommaster og main bath
+  - lys soverommaster og main bath slaa
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slaa alle lys unntatt stue og soverom
-  - alle lys slaa unntatt stue og soverom
+  - slaa alle lys unntatt stue og soverommaster
+  - alle lys slaa unntatt stue og soverommaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - slaa alle lys overetasje unntatt soverom
-  - alle lys overetasje slaa unntatt soverom
+  - slaa alle lys overetasje unntatt soverommaster
+  - alle lys overetasje slaa unntatt soverommaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - apne gardin stue og soverom
-  - gardin stue og soverom apne
+  - apne gardin stue og soverommaster
+  - gardin stue og soverommaster apne
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - lukk gardin stue og soverom
-  - gardin stue og soverom lukk
+  - lukk gardin stue og soverommaster
+  - gardin stue og soverommaster lukk
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - sett varme stue og soverom 21
-  - varme stue og soverom 21
+  - sett varme stue og soverommaster 21
+  - varme stue og soverommaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

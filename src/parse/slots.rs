@@ -2,6 +2,7 @@ use crate::home::expose::assist_visible;
 use crate::home::policy::{is_infra, is_infra_light, is_whole_home};
 use crate::home::roles::is_light_like;
 use crate::lang::catalog;
+use crate::lang::VerbKind;
 use crate::parse::action::Action;
 use crate::parse::compound::area_slots;
 use crate::parse::infer::{bind_domain, color_word, except_focus, except_tail, mentions_lamp_fixture, wants_all_lights};
@@ -250,6 +251,7 @@ fn list_item(tokens: &[String], target: Option<&EntityRec>) -> Option<String> {
             !cat.list_skip().contains(token)
                 && !cat.list_nouns().contains(token)
                 && !cat.shopping_names().contains(token)
+                && !matches!(cat.verb(token), Some(VerbKind::Add | VerbKind::ListComplete | VerbKind::List))
                 && !target.is_some_and(|entity| target_label_token(token, entity))
         })
         .collect();
@@ -387,9 +389,11 @@ pub(crate) fn laundry_switch_clause(
     if switches.len() < 2 {
         return None;
     }
-    let plural = catalog().any(tokens, catalog().switch_plural());
-    let start = catalog().any(tokens, catalog().start_words());
-    let one = (tokens.iter().any(|t| t == "switch") && !plural) || start;
+    let plural = catalog().any(tokens, catalog().switch_plural()) || catalog().any(tokens, catalog().all_words());
+    let one = tokens.iter().any(|t| t == "switch") && !plural;
+    if !one && !plural && catalog().any(tokens, catalog().start_words()) && !catalog().any(tokens, catalog().on_words()) {
+        return None;
+    }
     if !one && !plural {
         return Some(ClauseOut::Clarify(switches, intent_from_action(action, tokens).with("area", area).with("domain", "switch")));
     }
@@ -398,77 +402,5 @@ pub(crate) fn laundry_switch_clause(
 }
 
 #[cfg(test)]
-mod tests {
-    use super::name_has_group_conj;
-    use crate::parse::parse;
-    use crate::session::Session;
-    use crate::types::{EntityRec, HomeGraph, Settings};
-    use std::collections::HashSet;
-
-    #[test]
-    fn group_conj_is_a_word_not_a_substring() {
-        assert!(name_has_group_conj("Wohn und Esszimmer"));
-        assert!(name_has_group_conj("Living and Dining"));
-        assert!(!name_has_group_conj("Island Lights"));
-        assert!(!name_has_group_conj("Insel Licht"));
-        assert!(!name_has_group_conj("Standleuchte"));
-    }
-
-    #[test]
-    fn configured_todo_names_aliases_and_labels_route_without_object_id_evidence() {
-        for (sentence, entity) in [
-            ("Füge Milch zur Aufgabenliste hinzu", todo("todo.internal_de", "Aufgaben", &[], &[])),
-            ("Add milk to the House Tasks list", todo("todo.internal_en", "House Tasks", &[], &[])),
-            ("Add milk to the Errands list", todo("todo.internal_alias", "Internal", &["Errands"], &[])),
-            ("Add milk to the Weekend list", todo("todo.internal_label", "Internal", &[], &["Weekend"])),
-        ] {
-            let result = parse_with_home(sentence, HomeGraph { entities: vec![entity.clone()], ..HomeGraph::default() });
-            assert!(!result.clarify, "{sentence}: {result:?}");
-            assert_eq!(result.intents.len(), 1, "{sentence}: {result:?}");
-            assert_eq!(result.intents[0].slot("entity_id"), Some(entity.entity_id.as_str()), "{sentence}: {result:?}");
-            assert_eq!(result.intents[0].slot("item"), sentence.starts_with("Füge").then_some("milch").or(Some("milk")));
-        }
-    }
-
-    #[test]
-    fn generic_shopping_does_not_guess_todo_and_hidden_or_ambiguous_names_do_not_execute() {
-        let first = todo("todo.first", "Errands", &[], &[]);
-        let second = todo("todo.second", "Errands", &[], &[]);
-        let generic = parse_with_home(
-            "Add milk to the shopping list",
-            HomeGraph { entities: vec![first.clone(), second.clone()], ..HomeGraph::default() },
-        );
-        assert_eq!(generic.intents.len(), 1, "{generic:?}");
-        assert_eq!(generic.intents[0].slot("name"), Some("shopping_list"));
-        assert_eq!(generic.intents[0].slot("entity_id"), None);
-
-        let ambiguous =
-            parse_with_home("Add milk to the Errands list", HomeGraph { entities: vec![first.clone(), second], ..HomeGraph::default() });
-        assert!(ambiguous.clarify, "{ambiguous:?}");
-        assert!(ambiguous.intents.is_empty(), "{ambiguous:?}");
-
-        let hidden = parse_with_home(
-            "Add milk to the Errands list",
-            HomeGraph { entities: vec![first], assist: Some(HashSet::new()), ..HomeGraph::default() },
-        );
-        assert!(!hidden.clarify, "{hidden:?}");
-        assert!(hidden.intents.is_empty(), "{hidden:?}");
-    }
-
-    fn parse_with_home(sentence: &str, home: HomeGraph) -> crate::types::ParseResult {
-        let lang = if sentence.starts_with("Füge") { "de" } else { "en" };
-        parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned(lang))
-    }
-
-    fn todo(id: &str, name: &str, aliases: &[&str], tags: &[&str]) -> EntityRec {
-        EntityRec {
-            entity_id: id.into(),
-            name: name.into(),
-            domain: "todo".into(),
-            platform: None,
-            area: None,
-            aliases: aliases.iter().map(|value| (*value).into()).collect(),
-            tags: tags.iter().map(|value| (*value).into()).collect(),
-        }
-    }
-}
+#[path = "slots_tests.rs"]
+mod tests;

@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv baithak chalu
-  - chalu tv baithak
+  - tv बैठक चालू
+  - चालू tv बैठक
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - band tv baithak
-  - tv baithak band
+  - बंद tv बैठक
+  - tv बैठक बंद
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv baithak
-  - tv baithak pause
+  - थांबव tv बैठक
+  - tv बैठक थांबव
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv kutumb chalu
-  - chalu tv kutumb
+  - tv kutumb चालू
+  - चालू tv kutumb
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - band tv kutumb
-  - tv kutumb band
+  - बंद tv kutumb
+  - tv kutumb बंद
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv kutumb
-  - tv kutumb pause
+  - थांबव tv kutumb
+  - tv kutumb थांबव

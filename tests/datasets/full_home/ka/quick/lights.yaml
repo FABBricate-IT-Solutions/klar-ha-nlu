@@ -5,7 +5,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle misagebi
+  - ჩართე სინათლე მისაღები
 - name: lights_living_off
   conditions:
   - type: action
@@ -13,7 +13,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle misagebi
+  - გამორთე სინათლე მისაღები
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -21,7 +21,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle samzareulo
+  - ჩართე სინათლე სამზარეულო
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -29,7 +29,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle samzareulo
+  - გამორთე სინათლე სამზარეულო
 - name: lights_garage_on
   conditions:
   - type: action
@@ -37,7 +37,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle garage
+  - ჩართე სინათლე garage
 - name: lights_garage_off
   conditions:
   - type: action
@@ -45,7 +45,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle garage
+  - გამორთე სინათლე garage
 - name: lights_office_on
   conditions:
   - type: action
@@ -53,7 +53,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle office
+  - ჩართე სინათლე office
 - name: lights_office_off
   conditions:
   - type: action
@@ -61,7 +61,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle office
+  - გამორთე სინათლე office
 - name: lights_garden_on
   conditions:
   - type: action
@@ -69,7 +69,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle garden
+  - ჩართე სინათლე garden
 - name: lights_garden_off
   conditions:
   - type: action
@@ -77,7 +77,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle garden
+  - გამორთე სინათლე garden
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle sadzinebeli
+  - ჩართე სინათლე sadzinebelimaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle sadzinebeli
+  - გამორთე სინათლე sadzinebelimaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -101,7 +101,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle hallway
+  - ჩართე სინათლე hallway
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -109,7 +109,7 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle hallway
+  - გამორთე სინათლე hallway
 - name: lights_basement_on
   conditions:
   - type: action
@@ -117,7 +117,7 @@
     domain: light
     state: 'on'
   sentences:
-  - charte sinatle basement
+  - ჩართე სინათლე basement
 - name: lights_basement_off
   conditions:
   - type: action
@@ -125,21 +125,21 @@
     domain: light
     state: 'off'
   sentences:
-  - gamorte sinatle basement
+  - გამორთე სინათლე basement
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - charte potoloni misagebi
+  - ჩართე potoloni მისაღები
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - gamorte potoloni misagebi
+  - გამორთე potoloni მისაღები
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -147,105 +147,105 @@
     attributes:
       brightness: 50
   sentences:
-  - daayene potoloni misagebi 50
+  - დააყენე potoloni მისაღები 50
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - charte lamp misagebi
+  - ჩართე sinatle მისაღები
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - gamorte lamp misagebi
+  - გამორთე sinatle მისაღები
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - charte potoloni samzareulo
+  - ჩართე potoloni სამზარეულო
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - gamorte potoloni samzareulo
+  - გამორთე potoloni სამზარეულო
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - charte kuntkhuli samzareulo
+  - ჩართე kuntkhuli სამზარეულო
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - gamorte kuntkhuli samzareulo
+  - გამორთე kuntkhuli სამზარეულო
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - charte potoloni sadzinebeli
+  - ჩართე potoloni sadzinebelimaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - gamorte potoloni sadzinebeli
+  - გამორთე potoloni sadzinebelimaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - charte sagamise sadzinebeli
+  - ჩართე sagamise sadzinebelimaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - gamorte sagamise sadzinebeli
+  - გამორთე sagamise sadzinebelimaster
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - charte potoloni office
+  - ჩართე potoloni office
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - gamorte potoloni office
+  - გამორთე potoloni office
 - name: light.garden_on
   conditions:
   - type: action
     entity_id: light.garden
     state: 'on'
   sentences:
-  - charte sinatle garden
+  - ჩართე სინათლე garden
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - gamorte sinatle garden
+  - გამორთე სინათლე garden
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -253,4 +253,4 @@
     attributes:
       color: red
   sentences:
-  - daayene potoloni misagebi red
+  - დააყენე potoloni მისაღები red

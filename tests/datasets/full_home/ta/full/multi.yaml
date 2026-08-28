@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku arai matrum samaiyal
-  - vilakku arai matrum samaiyal eru
+  - ஏற்று விளக்கு அறை மற்றும் சமையல்
+  - விளக்கு அறை மற்றும் சமையல் ஏற்று
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - anai vilakku arai matrum poottu kathavu
-  - anai arai matrum poottu kathavu
+  - அணை விளக்கு அறை மற்றும் பூட்டு கதவு
+  - அணை அறை மற்றும் பூட்டு கதவு
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku samaiyal matrum kutumbamess
-  - vilakku samaiyal matrum kutumbamess eru
+  - ஏற்று விளக்கு சமையல் மற்றும் kutumbamess
+  - விளக்கு சமையல் மற்றும் kutumbamess ஏற்று
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku office matrum hallway
-  - vilakku office matrum hallway eru
+  - ஏற்று விளக்கு office மற்றும் hallway
+  - விளக்கு office மற்றும் hallway ஏற்று
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku garage matrum garden
-  - vilakku garage matrum garden eru
+  - ஏற்று விளக்கு garage மற்றும் garden
+  - விளக்கு garage மற்றும் garden ஏற்று
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku padukkaiyarai matrum main bath
-  - vilakku padukkaiyarai matrum main bath eru
+  - ஏற்று விளக்கு padukkaiyaraimaster மற்றும் main bath
+  - விளக்கு padukkaiyaraimaster மற்றும் main bath ஏற்று
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku kutumbam matrum arai
-  - vilakku kutumbam matrum arai eru
+  - ஏற்று விளக்கு kutumbam மற்றும் அறை
+  - விளக்கு kutumbam மற்றும் அறை ஏற்று
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku basement matrum garden
-  - vilakku basement matrum garden eru
+  - ஏற்று விளக்கு basement மற்றும் garden
+  - விளக்கு basement மற்றும் garden ஏற்று
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku hallway matrum office
-  - vilakku hallway matrum office eru
+  - ஏற்று விளக்கு hallway மற்றும் office
+  - விளக்கு hallway மற்றும் office ஏற்று
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku kutumbamess matrum samaiyal
-  - vilakku kutumbamess matrum samaiyal eru
+  - ஏற்று விளக்கு kutumbamess மற்றும் சமையல்
+  - விளக்கு kutumbamess மற்றும் சமையல் ஏற்று
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - eru vilakku padukkaiyarai2 matrum padukkaiyarai3
-  - vilakku padukkaiyarai2 matrum padukkaiyarai3 eru
+  - ஏற்று விளக்கு padukkaiyarai2 மற்றும் padukkaiyarai3
+  - விளக்கு padukkaiyarai2 மற்றும் padukkaiyarai3 ஏற்று

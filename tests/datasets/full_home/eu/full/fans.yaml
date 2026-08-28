@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - haizagailua logela piztu
-  - piztu haizagailua logela
+  - haizagailua logelamaster piztu
+  - piztu haizagailua logelamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - itzali haizagailua logela
-  - haizagailua logela itzali
+  - itzali haizagailua logelamaster
+  - haizagailua logelamaster itzali
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - jarri haizagailua logela 40
-  - haizagailua logela 40
+  - jarri haizagailua logelamaster 40
+  - haizagailua logelamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - jarri haizagailua logela 20
-  - haizagailua logela 20
+  - jarri haizagailua logelamaster 20
+  - haizagailua logelamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - jarri haizagailua logela 60
-  - haizagailua logela 60
+  - jarri haizagailua logelamaster 60
+  - haizagailua logelamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - jarri haizagailua logela 80
-  - haizagailua logela 80
+  - jarri haizagailua logelamaster 80
+  - haizagailua logelamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

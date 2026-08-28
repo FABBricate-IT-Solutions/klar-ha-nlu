@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - vifte soverom skru
-  - skru vifte soverom
+  - vifte soverommaster skru
+  - skru vifte soverommaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - slaa vifte soverom
-  - vifte soverom slaa
+  - slaa vifte soverommaster
+  - vifte soverommaster slaa
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - sett vifte soverom 40
-  - vifte soverom 40
+  - sett vifte soverommaster 40
+  - vifte soverommaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - sett vifte soverom 20
-  - vifte soverom 20
+  - sett vifte soverommaster 20
+  - vifte soverommaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - sett vifte soverom 60
-  - vifte soverom 60
+  - sett vifte soverommaster 60
+  - vifte soverommaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - sett vifte soverom 80
-  - vifte soverom 80
+  - sett vifte soverommaster 80
+  - vifte soverommaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

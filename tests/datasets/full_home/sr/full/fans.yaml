@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - вентилатор спавача укључи
-  - укључи вентилатор спавача
+  - вентилатор спавачаmaster укључи
+  - укључи вентилатор спавачаmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - искључи вентилатор спавача
-  - вентилатор спавача искључи
+  - искључи вентилатор спавачаmaster
+  - вентилатор спавачаmaster искључи
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - стави вентилатор спавача 40
-  - вентилатор спавача 40
+  - стави вентилатор спавачаmaster 40
+  - вентилатор спавачаmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - стави вентилатор спавача 20
-  - вентилатор спавача 20
+  - стави вентилатор спавачаmaster 20
+  - вентилатор спавачаmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - стави вентилатор спавача 60
-  - вентилатор спавача 60
+  - стави вентилатор спавачаmaster 60
+  - вентилатор спавачаmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - стави вентилатор спавача 80
-  - вентилатор спавача 80
+  - стави вентилатор спавачаmaster 80
+  - вентилатор спавачаmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul hyeongwan
-  - bul hyeongwan kyeo
+  - 켜 불 hyeongwan
+  - 불 hyeongwan 켜
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul hyeongwan
-  - bul hyeongwan kkaeo
+  - 꺼 불 hyeongwan
+  - 불 hyeongwan 꺼
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul geosil
-  - bul geosil kyeo
+  - 켜 불 거실
+  - 불 거실 켜
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul geosil
-  - bul geosil kkaeo
+  - 꺼 불 거실
+  - 불 거실 꺼
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul gajoksiless
-  - bul gajoksiless kyeo
+  - 켜 불 gajoksiless
+  - 불 gajoksiless 켜
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul gajoksiless
-  - bul gajoksiless kkaeo
+  - 꺼 불 gajoksiless
+  - 불 gajoksiless 꺼
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul bueok
-  - bul bueok kyeo
+  - 켜 불 부엌
+  - 불 부엌 켜
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul bueok
-  - bul bueok kkaeo
+  - 꺼 불 부엌
+  - 불 부엌 꺼
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul gajoksil
-  - bul gajoksil kyeo
+  - 켜 불 gajoksil
+  - 불 gajoksil 켜
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul gajoksil
-  - bul gajoksil kkaeo
+  - 꺼 불 gajoksil
+  - 불 gajoksil 꺼
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul setaksil
-  - bul setaksil kyeo
+  - 켜 불 setaksil
+  - 불 setaksil 켜
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul setaksil
-  - bul setaksil kkaeo
+  - 꺼 불 setaksil
+  - 불 setaksil 꺼
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul hwajangsil
-  - bul hwajangsil kyeo
+  - 켜 불 hwajangsil
+  - 불 hwajangsil 켜
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul hwajangsil
-  - bul hwajangsil kkaeo
+  - 꺼 불 hwajangsil
+  - 불 hwajangsil 꺼
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul garage
-  - bul garage kyeo
+  - 켜 불 garage
+  - 불 garage 켜
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul garage
-  - bul garage kkaeo
+  - 꺼 불 garage
+  - 불 garage 꺼
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul office
-  - bul office kyeo
+  - 켜 불 office
+  - 불 office 켜
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul office
-  - bul office kkaeo
+  - 꺼 불 office
+  - 불 office 꺼
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul garden
-  - bul garden kyeo
+  - 켜 불 garden
+  - 불 garden 켜
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul garden
-  - bul garden kkaeo
+  - 꺼 불 garden
+  - 불 garden 꺼
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul chimsil
-  - bul chimsil kyeo
+  - 켜 불 chimsilmaster
+  - 불 chimsilmaster 켜
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul chimsil
-  - bul chimsil kkaeo
+  - 꺼 불 chimsilmaster
+  - 불 chimsilmaster 꺼
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul chimsil2
-  - bul chimsil2 kyeo
+  - 켜 불 chimsil2
+  - 불 chimsil2 켜
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul chimsil2
-  - bul chimsil2 kkaeo
+  - 꺼 불 chimsil2
+  - 불 chimsil2 꺼
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul chimsil3
-  - bul chimsil3 kyeo
+  - 켜 불 chimsil3
+  - 불 chimsil3 켜
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul chimsil3
-  - bul chimsil3 kkaeo
+  - 꺼 불 chimsil3
+  - 불 chimsil3 꺼
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul chimsil4
-  - bul chimsil4 kyeo
+  - 켜 불 chimsil4
+  - 불 chimsil4 켜
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul chimsil4
-  - bul chimsil4 kkaeo
+  - 꺼 불 chimsil4
+  - 불 chimsil4 꺼
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul anbangyoksil
-  - bul anbangyoksil kyeo
+  - 켜 불 anbangyoksil
+  - 불 anbangyoksil 켜
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul anbangyoksil
-  - bul anbangyoksil kkaeo
+  - 꺼 불 anbangyoksil
+  - 불 anbangyoksil 꺼
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul main bath
-  - bul main bath kyeo
+  - 켜 불 main bath
+  - 불 main bath 켜
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul main bath
-  - bul main bath kkaeo
+  - 꺼 불 main bath
+  - 불 main bath 꺼
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul bokdo
-  - bul bokdo kyeo
+  - 켜 불 bokdo
+  - 불 bokdo 켜
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul bokdo
-  - bul bokdo kkaeo
+  - 꺼 불 bokdo
+  - 불 bokdo 꺼
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo bul basement
-  - bul basement kyeo
+  - 켜 불 basement
+  - 불 basement 켜
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo bul basement
-  - bul basement kkaeo
+  - 꺼 불 basement
+  - 불 basement 꺼
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang geosil
-  - cheonjang geosil kyeo
+  - 켜 cheonjang 거실
+  - cheonjang 거실 켜
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang geosil
-  - cheonjang geosil kkaeo
+  - 꺼 cheonjang 거실
+  - cheonjang 거실 꺼
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang geosil 20
-  - cheonjang geosil 20
+  - 설정 cheonjang 거실 20
+  - cheonjang 거실 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang geosil 40
-  - cheonjang geosil 40
+  - 설정 cheonjang 거실 40
+  - cheonjang 거실 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang geosil 50
-  - cheonjang geosil 50
+  - 설정 cheonjang 거실 50
+  - cheonjang 거실 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang geosil 60
-  - cheonjang geosil 60
+  - 설정 cheonjang 거실 60
+  - cheonjang 거실 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang geosil 80
-  - cheonjang geosil 80
+  - 설정 cheonjang 거실 80
+  - cheonjang 거실 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang geosil 100
-  - cheonjang geosil 100
+  - 설정 cheonjang 거실 100
+  - cheonjang 거실 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - kyeo lamp geosil
-  - lamp geosil kyeo
+  - 켜 조명 거실
+  - 조명 거실 켜
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - kkaeo lamp geosil
-  - lamp geosil kkaeo
+  - 꺼 조명 거실
+  - 조명 거실 꺼
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong lamp geosil 20
-  - lamp geosil 20
+  - 설정 조명 거실 20
+  - 조명 거실 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong lamp geosil 40
-  - lamp geosil 40
+  - 설정 조명 거실 40
+  - 조명 거실 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong lamp geosil 50
-  - lamp geosil 50
+  - 설정 조명 거실 50
+  - 조명 거실 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong lamp geosil 60
-  - lamp geosil 60
+  - 설정 조명 거실 60
+  - 조명 거실 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong lamp geosil 80
-  - lamp geosil 80
+  - 설정 조명 거실 80
+  - 조명 거실 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong lamp geosil 100
-  - lamp geosil 100
+  - 설정 조명 거실 100
+  - 조명 거실 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang bueok
-  - cheonjang bueok kyeo
+  - 켜 cheonjang 부엌
+  - cheonjang 부엌 켜
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang bueok
-  - cheonjang bueok kkaeo
+  - 꺼 cheonjang 부엌
+  - cheonjang 부엌 꺼
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang bueok 20
-  - cheonjang bueok 20
+  - 설정 cheonjang 부엌 20
+  - cheonjang 부엌 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang bueok 40
-  - cheonjang bueok 40
+  - 설정 cheonjang 부엌 40
+  - cheonjang 부엌 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang bueok 50
-  - cheonjang bueok 50
+  - 설정 cheonjang 부엌 50
+  - cheonjang 부엌 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang bueok 60
-  - cheonjang bueok 60
+  - 설정 cheonjang 부엌 60
+  - cheonjang 부엌 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang bueok 80
-  - cheonjang bueok 80
+  - 설정 cheonjang 부엌 80
+  - cheonjang 부엌 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang bueok 100
-  - cheonjang bueok 100
+  - 설정 cheonjang 부엌 100
+  - cheonjang 부엌 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - kyeo seom bueok
-  - seom bueok kyeo
+  - 켜 seom 부엌
+  - seom 부엌 켜
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - kkaeo seom bueok
-  - seom bueok kkaeo
+  - 꺼 seom 부엌
+  - seom 부엌 꺼
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong seom bueok 20
-  - seom bueok 20
+  - 설정 seom 부엌 20
+  - seom 부엌 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong seom bueok 40
-  - seom bueok 40
+  - 설정 seom 부엌 40
+  - seom 부엌 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong seom bueok 50
-  - seom bueok 50
+  - 설정 seom 부엌 50
+  - seom 부엌 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong seom bueok 60
-  - seom bueok 60
+  - 설정 seom 부엌 60
+  - seom 부엌 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong seom bueok 80
-  - seom bueok 80
+  - 설정 seom 부엌 80
+  - seom 부엌 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong seom bueok 100
-  - seom bueok 100
+  - 설정 seom 부엌 100
+  - seom 부엌 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang chimsil
-  - cheonjang chimsil kyeo
+  - 켜 cheonjang chimsilmaster
+  - cheonjang chimsilmaster 켜
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang chimsil
-  - cheonjang chimsil kkaeo
+  - 꺼 cheonjang chimsilmaster
+  - cheonjang chimsilmaster 꺼
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang chimsil 20
-  - cheonjang chimsil 20
+  - 설정 cheonjang chimsilmaster 20
+  - cheonjang chimsilmaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang chimsil 40
-  - cheonjang chimsil 40
+  - 설정 cheonjang chimsilmaster 40
+  - cheonjang chimsilmaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang chimsil 50
-  - cheonjang chimsil 50
+  - 설정 cheonjang chimsilmaster 50
+  - cheonjang chimsilmaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang chimsil 60
-  - cheonjang chimsil 60
+  - 설정 cheonjang chimsilmaster 60
+  - cheonjang chimsilmaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang chimsil 80
-  - cheonjang chimsil 80
+  - 설정 cheonjang chimsilmaster 80
+  - cheonjang chimsilmaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang chimsil 100
-  - cheonjang chimsil 100
+  - 설정 cheonjang chimsilmaster 100
+  - cheonjang chimsilmaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - kyeo chimdae chimsil
-  - chimdae chimsil kyeo
+  - 켜 chimdae chimsilmaster
+  - chimdae chimsilmaster 켜
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - kkaeo chimdae chimsil
-  - chimdae chimsil kkaeo
+  - 꺼 chimdae chimsilmaster
+  - chimdae chimsilmaster 꺼
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong chimdae chimsil 20
-  - chimdae chimsil 20
+  - 설정 chimdae chimsilmaster 20
+  - chimdae chimsilmaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong chimdae chimsil 40
-  - chimdae chimsil 40
+  - 설정 chimdae chimsilmaster 40
+  - chimdae chimsilmaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong chimdae chimsil 50
-  - chimdae chimsil 50
+  - 설정 chimdae chimsilmaster 50
+  - chimdae chimsilmaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong chimdae chimsil 60
-  - chimdae chimsil 60
+  - 설정 chimdae chimsilmaster 60
+  - chimdae chimsilmaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong chimdae chimsil 80
-  - chimdae chimsil 80
+  - 설정 chimdae chimsilmaster 80
+  - chimdae chimsilmaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong chimdae chimsil 100
-  - chimdae chimsil 100
+  - 설정 chimdae chimsilmaster 100
+  - chimdae chimsilmaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang office
-  - cheonjang office kyeo
+  - 켜 cheonjang office
+  - cheonjang office 켜
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang office
-  - cheonjang office kkaeo
+  - 꺼 cheonjang office
+  - cheonjang office 꺼
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang office 20
+  - 설정 cheonjang office 20
   - cheonjang office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang office 40
+  - 설정 cheonjang office 40
   - cheonjang office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang office 50
+  - 설정 cheonjang office 50
   - cheonjang office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang office 60
+  - 설정 cheonjang office 60
   - cheonjang office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang office 80
+  - 설정 cheonjang office 80
   - cheonjang office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang office 100
+  - 설정 cheonjang office 100
   - cheonjang office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - kyeo bul garden
-  - bul garden kyeo
+  - 켜 불 garden
+  - 불 garden 켜
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - kkaeo bul garden
-  - bul garden kkaeo
+  - 꺼 불 garden
+  - 불 garden 꺼
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul garden 20
-  - bul garden 20
+  - 설정 불 garden 20
+  - 불 garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul garden 40
-  - bul garden 40
+  - 설정 불 garden 40
+  - 불 garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul garden 50
-  - bul garden 50
+  - 설정 불 garden 50
+  - 불 garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul garden 60
-  - bul garden 60
+  - 설정 불 garden 60
+  - 불 garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul garden 80
-  - bul garden 80
+  - 설정 불 garden 80
+  - 불 garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul garden 100
-  - bul garden 100
+  - 설정 불 garden 100
+  - 불 garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - kyeo bul basement
-  - bul basement kyeo
+  - 켜 불 basement
+  - 불 basement 켜
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - kkaeo bul basement
-  - bul basement kkaeo
+  - 꺼 불 basement
+  - 불 basement 꺼
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul basement 20
-  - bul basement 20
+  - 설정 불 basement 20
+  - 불 basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul basement 40
-  - bul basement 40
+  - 설정 불 basement 40
+  - 불 basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul basement 50
-  - bul basement 50
+  - 설정 불 basement 50
+  - 불 basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul basement 60
-  - bul basement 60
+  - 설정 불 basement 60
+  - 불 basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul basement 80
-  - bul basement 80
+  - 설정 불 basement 80
+  - 불 basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul basement 100
-  - bul basement 100
+  - 설정 불 basement 100
+  - 불 basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - kyeo bul bokdo
-  - bul bokdo kyeo
+  - 켜 불 bokdo
+  - 불 bokdo 켜
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - kkaeo bul bokdo
-  - bul bokdo kkaeo
+  - 꺼 불 bokdo
+  - 불 bokdo 꺼
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul bokdo 20
-  - bul bokdo 20
+  - 설정 불 bokdo 20
+  - 불 bokdo 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul bokdo 40
-  - bul bokdo 40
+  - 설정 불 bokdo 40
+  - 불 bokdo 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul bokdo 50
-  - bul bokdo 50
+  - 설정 불 bokdo 50
+  - 불 bokdo 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul bokdo 60
-  - bul bokdo 60
+  - 설정 불 bokdo 60
+  - 불 bokdo 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul bokdo 80
-  - bul bokdo 80
+  - 설정 불 bokdo 80
+  - 불 bokdo 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul bokdo 100
-  - bul bokdo 100
+  - 설정 불 bokdo 100
+  - 불 bokdo 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang gajoksil
-  - cheonjang gajoksil kyeo
+  - 켜 cheonjang gajoksil
+  - cheonjang gajoksil 켜
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang gajoksil
-  - cheonjang gajoksil kkaeo
+  - 꺼 cheonjang gajoksil
+  - cheonjang gajoksil 꺼
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang gajoksil 20
+  - 설정 cheonjang gajoksil 20
   - cheonjang gajoksil 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang gajoksil 40
+  - 설정 cheonjang gajoksil 40
   - cheonjang gajoksil 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang gajoksil 50
+  - 설정 cheonjang gajoksil 50
   - cheonjang gajoksil 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang gajoksil 60
+  - 설정 cheonjang gajoksil 60
   - cheonjang gajoksil 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang gajoksil 80
+  - 설정 cheonjang gajoksil 80
   - cheonjang gajoksil 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang gajoksil 100
+  - 설정 cheonjang gajoksil 100
   - cheonjang gajoksil 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - kyeo bul gajoksiless
-  - bul gajoksiless kyeo
+  - 켜 불 gajoksiless
+  - 불 gajoksiless 켜
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - kkaeo bul gajoksiless
-  - bul gajoksiless kkaeo
+  - 꺼 불 gajoksiless
+  - 불 gajoksiless 꺼
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul gajoksiless 20
-  - bul gajoksiless 20
+  - 설정 불 gajoksiless 20
+  - 불 gajoksiless 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul gajoksiless 40
-  - bul gajoksiless 40
+  - 설정 불 gajoksiless 40
+  - 불 gajoksiless 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul gajoksiless 50
-  - bul gajoksiless 50
+  - 설정 불 gajoksiless 50
+  - 불 gajoksiless 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul gajoksiless 60
-  - bul gajoksiless 60
+  - 설정 불 gajoksiless 60
+  - 불 gajoksiless 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul gajoksiless 80
-  - bul gajoksiless 80
+  - 설정 불 gajoksiless 80
+  - 불 gajoksiless 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul gajoksiless 100
-  - bul gajoksiless 100
+  - 설정 불 gajoksiless 100
+  - 불 gajoksiless 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - kyeo bul garage
-  - bul garage kyeo
+  - 켜 불 garage
+  - 불 garage 켜
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - kkaeo bul garage
-  - bul garage kkaeo
+  - 꺼 불 garage
+  - 불 garage 꺼
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul garage 20
-  - bul garage 20
+  - 설정 불 garage 20
+  - 불 garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul garage 40
-  - bul garage 40
+  - 설정 불 garage 40
+  - 불 garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul garage 50
-  - bul garage 50
+  - 설정 불 garage 50
+  - 불 garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul garage 60
-  - bul garage 60
+  - 설정 불 garage 60
+  - 불 garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul garage 80
-  - bul garage 80
+  - 설정 불 garage 80
+  - 불 garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul garage 100
-  - bul garage 100
+  - 설정 불 garage 100
+  - 불 garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang chimsil2
-  - cheonjang chimsil2 kyeo
+  - 켜 cheonjang chimsil2
+  - cheonjang chimsil2 켜
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang chimsil2
-  - cheonjang chimsil2 kkaeo
+  - 꺼 cheonjang chimsil2
+  - cheonjang chimsil2 꺼
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang chimsil2 20
+  - 설정 cheonjang chimsil2 20
   - cheonjang chimsil2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang chimsil2 40
+  - 설정 cheonjang chimsil2 40
   - cheonjang chimsil2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang chimsil2 50
+  - 설정 cheonjang chimsil2 50
   - cheonjang chimsil2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang chimsil2 60
+  - 설정 cheonjang chimsil2 60
   - cheonjang chimsil2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang chimsil2 80
+  - 설정 cheonjang chimsil2 80
   - cheonjang chimsil2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang chimsil2 100
+  - 설정 cheonjang chimsil2 100
   - cheonjang chimsil2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang chimsil3
-  - cheonjang chimsil3 kyeo
+  - 켜 cheonjang chimsil3
+  - cheonjang chimsil3 켜
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang chimsil3
-  - cheonjang chimsil3 kkaeo
+  - 꺼 cheonjang chimsil3
+  - cheonjang chimsil3 꺼
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang chimsil3 20
+  - 설정 cheonjang chimsil3 20
   - cheonjang chimsil3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang chimsil3 40
+  - 설정 cheonjang chimsil3 40
   - cheonjang chimsil3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang chimsil3 50
+  - 설정 cheonjang chimsil3 50
   - cheonjang chimsil3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang chimsil3 60
+  - 설정 cheonjang chimsil3 60
   - cheonjang chimsil3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang chimsil3 80
+  - 설정 cheonjang chimsil3 80
   - cheonjang chimsil3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang chimsil3 100
+  - 설정 cheonjang chimsil3 100
   - cheonjang chimsil3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang chimsil4
-  - cheonjang chimsil4 kyeo
+  - 켜 cheonjang chimsil4
+  - cheonjang chimsil4 켜
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - kkaeo cheonjang chimsil4
-  - cheonjang chimsil4 kkaeo
+  - 꺼 cheonjang chimsil4
+  - cheonjang chimsil4 꺼
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong cheonjang chimsil4 20
+  - 설정 cheonjang chimsil4 20
   - cheonjang chimsil4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong cheonjang chimsil4 40
+  - 설정 cheonjang chimsil4 40
   - cheonjang chimsil4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong cheonjang chimsil4 50
+  - 설정 cheonjang chimsil4 50
   - cheonjang chimsil4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong cheonjang chimsil4 60
+  - 설정 cheonjang chimsil4 60
   - cheonjang chimsil4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong cheonjang chimsil4 80
+  - 설정 cheonjang chimsil4 80
   - cheonjang chimsil4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong cheonjang chimsil4 100
+  - 설정 cheonjang chimsil4 100
   - cheonjang chimsil4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - kyeo bul hyeongwan
-  - bul hyeongwan kyeo
+  - 켜 불 hyeongwan
+  - 불 hyeongwan 켜
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - kkaeo bul hyeongwan
-  - bul hyeongwan kkaeo
+  - 꺼 불 hyeongwan
+  - 불 hyeongwan 꺼
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul hyeongwan 20
-  - bul hyeongwan 20
+  - 설정 불 hyeongwan 20
+  - 불 hyeongwan 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul hyeongwan 40
-  - bul hyeongwan 40
+  - 설정 불 hyeongwan 40
+  - 불 hyeongwan 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul hyeongwan 50
-  - bul hyeongwan 50
+  - 설정 불 hyeongwan 50
+  - 불 hyeongwan 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul hyeongwan 60
-  - bul hyeongwan 60
+  - 설정 불 hyeongwan 60
+  - 불 hyeongwan 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul hyeongwan 80
-  - bul hyeongwan 80
+  - 설정 불 hyeongwan 80
+  - 불 hyeongwan 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul hyeongwan 100
-  - bul hyeongwan 100
+  - 설정 불 hyeongwan 100
+  - 불 hyeongwan 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - kyeo bul setaksil
-  - bul setaksil kyeo
+  - 켜 불 setaksil
+  - 불 setaksil 켜
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - kkaeo bul setaksil
-  - bul setaksil kkaeo
+  - 꺼 불 setaksil
+  - 불 setaksil 꺼
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul setaksil 20
-  - bul setaksil 20
+  - 설정 불 setaksil 20
+  - 불 setaksil 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul setaksil 40
-  - bul setaksil 40
+  - 설정 불 setaksil 40
+  - 불 setaksil 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul setaksil 50
-  - bul setaksil 50
+  - 설정 불 setaksil 50
+  - 불 setaksil 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul setaksil 60
-  - bul setaksil 60
+  - 설정 불 setaksil 60
+  - 불 setaksil 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul setaksil 80
-  - bul setaksil 80
+  - 설정 불 setaksil 80
+  - 불 setaksil 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul setaksil 100
-  - bul setaksil 100
+  - 설정 불 setaksil 100
+  - 불 setaksil 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - kyeo bul main bath
-  - bul main bath kyeo
+  - 켜 불 main bath
+  - 불 main bath 켜
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - kkaeo bul main bath
-  - bul main bath kkaeo
+  - 꺼 불 main bath
+  - 불 main bath 꺼
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul main bath 20
-  - bul main bath 20
+  - 설정 불 main bath 20
+  - 불 main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul main bath 40
-  - bul main bath 40
+  - 설정 불 main bath 40
+  - 불 main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul main bath 50
-  - bul main bath 50
+  - 설정 불 main bath 50
+  - 불 main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul main bath 60
-  - bul main bath 60
+  - 설정 불 main bath 60
+  - 불 main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul main bath 80
-  - bul main bath 80
+  - 설정 불 main bath 80
+  - 불 main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul main bath 100
-  - bul main bath 100
+  - 설정 불 main bath 100
+  - 불 main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - kyeo bul hwajangsil
-  - bul hwajangsil kyeo
+  - 켜 불 hwajangsil
+  - 불 hwajangsil 켜
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - kkaeo bul hwajangsil
-  - bul hwajangsil kkaeo
+  - 꺼 불 hwajangsil
+  - 불 hwajangsil 꺼
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul hwajangsil 20
-  - bul hwajangsil 20
+  - 설정 불 hwajangsil 20
+  - 불 hwajangsil 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul hwajangsil 40
-  - bul hwajangsil 40
+  - 설정 불 hwajangsil 40
+  - 불 hwajangsil 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul hwajangsil 50
-  - bul hwajangsil 50
+  - 설정 불 hwajangsil 50
+  - 불 hwajangsil 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul hwajangsil 60
-  - bul hwajangsil 60
+  - 설정 불 hwajangsil 60
+  - 불 hwajangsil 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul hwajangsil 80
-  - bul hwajangsil 80
+  - 설정 불 hwajangsil 80
+  - 불 hwajangsil 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul hwajangsil 100
-  - bul hwajangsil 100
+  - 설정 불 hwajangsil 100
+  - 불 hwajangsil 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - kyeo ensuite chimsil
-  - ensuite chimsil kyeo
+  - 켜 ensuite chimsilmaster
+  - ensuite chimsilmaster 켜
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - kkaeo ensuite chimsil
-  - ensuite chimsil kkaeo
+  - 꺼 ensuite chimsilmaster
+  - ensuite chimsilmaster 꺼
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong ensuite chimsil 20
-  - ensuite chimsil 20
+  - 설정 ensuite chimsilmaster 20
+  - ensuite chimsilmaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong ensuite chimsil 40
-  - ensuite chimsil 40
+  - 설정 ensuite chimsilmaster 40
+  - ensuite chimsilmaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong ensuite chimsil 50
-  - ensuite chimsil 50
+  - 설정 ensuite chimsilmaster 50
+  - ensuite chimsilmaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong ensuite chimsil 60
-  - ensuite chimsil 60
+  - 설정 ensuite chimsilmaster 60
+  - ensuite chimsilmaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong ensuite chimsil 80
-  - ensuite chimsil 80
+  - 설정 ensuite chimsilmaster 80
+  - ensuite chimsilmaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong ensuite chimsil 100
-  - ensuite chimsil 100
+  - 설정 ensuite chimsilmaster 100
+  - ensuite chimsilmaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - kyeo chimdae chimsil
-  - chimdae chimsil kyeo
+  - 켜 chimdae chimsilmaster
+  - chimdae chimsilmaster 켜
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - kkaeo chimdae chimsil
-  - chimdae chimsil kkaeo
+  - 꺼 chimdae chimsilmaster
+  - chimdae chimsilmaster 꺼
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong chimdae chimsil 20
-  - chimdae chimsil 20
+  - 설정 chimdae chimsilmaster 20
+  - chimdae chimsilmaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong chimdae chimsil 40
-  - chimdae chimsil 40
+  - 설정 chimdae chimsilmaster 40
+  - chimdae chimsilmaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong chimdae chimsil 50
-  - chimdae chimsil 50
+  - 설정 chimdae chimsilmaster 50
+  - chimdae chimsilmaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong chimdae chimsil 60
-  - chimdae chimsil 60
+  - 설정 chimdae chimsilmaster 60
+  - chimdae chimsilmaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong chimdae chimsil 80
-  - chimdae chimsil 80
+  - 설정 chimdae chimsilmaster 80
+  - chimdae chimsilmaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong chimdae chimsil 100
-  - chimdae chimsil 100
+  - 설정 chimdae chimsilmaster 100
+  - chimdae chimsilmaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - kyeo bul anbangyoksil
-  - bul anbangyoksil kyeo
+  - 켜 불 anbangyoksil
+  - 불 anbangyoksil 켜
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - kkaeo bul anbangyoksil
-  - bul anbangyoksil kkaeo
+  - 꺼 불 anbangyoksil
+  - 불 anbangyoksil 꺼
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - seoljeong bul anbangyoksil 20
-  - bul anbangyoksil 20
+  - 설정 불 anbangyoksil 20
+  - 불 anbangyoksil 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - seoljeong bul anbangyoksil 40
-  - bul anbangyoksil 40
+  - 설정 불 anbangyoksil 40
+  - 불 anbangyoksil 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - seoljeong bul anbangyoksil 50
-  - bul anbangyoksil 50
+  - 설정 불 anbangyoksil 50
+  - 불 anbangyoksil 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - seoljeong bul anbangyoksil 60
-  - bul anbangyoksil 60
+  - 설정 불 anbangyoksil 60
+  - 불 anbangyoksil 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - seoljeong bul anbangyoksil 80
-  - bul anbangyoksil 80
+  - 설정 불 anbangyoksil 80
+  - 불 anbangyoksil 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - seoljeong bul anbangyoksil 100
-  - bul anbangyoksil 100
+  - 설정 불 anbangyoksil 100
+  - 불 anbangyoksil 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang geosil red
-  - seoljeong bul geosil red
+  - 설정 cheonjang 거실 빨강
+  - 설정 불 거실 빨강
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang geosil blue
-  - seoljeong bul geosil blue
+  - 설정 cheonjang 거실 파랑
+  - 설정 불 거실 파랑
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang geosil green
-  - seoljeong bul geosil green
+  - 설정 cheonjang 거실 초록
+  - 설정 불 거실 초록
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang geosil white
-  - seoljeong bul geosil white
+  - 설정 cheonjang 거실 하양
+  - 설정 불 거실 하양
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang geosil yellow
-  - seoljeong bul geosil yellow
+  - 설정 cheonjang 거실 노랑
+  - 설정 불 거실 노랑
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang geosil black
-  - seoljeong bul geosil black
+  - 설정 cheonjang 거실 검정
+  - 설정 불 거실 검정
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong lamp geosil red
-  - seoljeong bul geosil red
+  - 설정 조명 거실 빨강
+  - 설정 불 거실 빨강
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong lamp geosil blue
-  - seoljeong bul geosil blue
+  - 설정 조명 거실 파랑
+  - 설정 불 거실 파랑
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong lamp geosil green
-  - seoljeong bul geosil green
+  - 설정 조명 거실 초록
+  - 설정 불 거실 초록
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong lamp geosil white
-  - seoljeong bul geosil white
+  - 설정 조명 거실 하양
+  - 설정 불 거실 하양
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong lamp geosil yellow
-  - seoljeong bul geosil yellow
+  - 설정 조명 거실 노랑
+  - 설정 불 거실 노랑
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong lamp geosil black
-  - seoljeong bul geosil black
+  - 설정 조명 거실 검정
+  - 설정 불 거실 검정
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang bueok red
-  - seoljeong bul bueok red
+  - 설정 cheonjang 부엌 빨강
+  - 설정 불 부엌 빨강
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang bueok blue
-  - seoljeong bul bueok blue
+  - 설정 cheonjang 부엌 파랑
+  - 설정 불 부엌 파랑
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang bueok green
-  - seoljeong bul bueok green
+  - 설정 cheonjang 부엌 초록
+  - 설정 불 부엌 초록
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang bueok white
-  - seoljeong bul bueok white
+  - 설정 cheonjang 부엌 하양
+  - 설정 불 부엌 하양
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang bueok yellow
-  - seoljeong bul bueok yellow
+  - 설정 cheonjang 부엌 노랑
+  - 설정 불 부엌 노랑
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang bueok black
-  - seoljeong bul bueok black
+  - 설정 cheonjang 부엌 검정
+  - 설정 불 부엌 검정
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong seom bueok red
-  - seoljeong bul bueok red
+  - 설정 seom 부엌 빨강
+  - 설정 불 부엌 빨강
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong seom bueok blue
-  - seoljeong bul bueok blue
+  - 설정 seom 부엌 파랑
+  - 설정 불 부엌 파랑
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong seom bueok green
-  - seoljeong bul bueok green
+  - 설정 seom 부엌 초록
+  - 설정 불 부엌 초록
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong seom bueok white
-  - seoljeong bul bueok white
+  - 설정 seom 부엌 하양
+  - 설정 불 부엌 하양
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong seom bueok yellow
-  - seoljeong bul bueok yellow
+  - 설정 seom 부엌 노랑
+  - 설정 불 부엌 노랑
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong seom bueok black
-  - seoljeong bul bueok black
+  - 설정 seom 부엌 검정
+  - 설정 불 부엌 검정
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang chimsil red
-  - seoljeong bul chimsil red
+  - 설정 cheonjang chimsilmaster 빨강
+  - 설정 불 chimsilmaster 빨강
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang chimsil blue
-  - seoljeong bul chimsil blue
+  - 설정 cheonjang chimsilmaster 파랑
+  - 설정 불 chimsilmaster 파랑
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang chimsil green
-  - seoljeong bul chimsil green
+  - 설정 cheonjang chimsilmaster 초록
+  - 설정 불 chimsilmaster 초록
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang chimsil white
-  - seoljeong bul chimsil white
+  - 설정 cheonjang chimsilmaster 하양
+  - 설정 불 chimsilmaster 하양
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang chimsil yellow
-  - seoljeong bul chimsil yellow
+  - 설정 cheonjang chimsilmaster 노랑
+  - 설정 불 chimsilmaster 노랑
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang chimsil black
-  - seoljeong bul chimsil black
+  - 설정 cheonjang chimsilmaster 검정
+  - 설정 불 chimsilmaster 검정
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong chimdae chimsil red
-  - seoljeong bul chimsil red
+  - 설정 chimdae chimsilmaster 빨강
+  - 설정 불 chimsilmaster 빨강
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong chimdae chimsil blue
-  - seoljeong bul chimsil blue
+  - 설정 chimdae chimsilmaster 파랑
+  - 설정 불 chimsilmaster 파랑
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong chimdae chimsil green
-  - seoljeong bul chimsil green
+  - 설정 chimdae chimsilmaster 초록
+  - 설정 불 chimsilmaster 초록
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong chimdae chimsil white
-  - seoljeong bul chimsil white
+  - 설정 chimdae chimsilmaster 하양
+  - 설정 불 chimsilmaster 하양
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong chimdae chimsil yellow
-  - seoljeong bul chimsil yellow
+  - 설정 chimdae chimsilmaster 노랑
+  - 설정 불 chimsilmaster 노랑
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong chimdae chimsil black
-  - seoljeong bul chimsil black
+  - 설정 chimdae chimsilmaster 검정
+  - 설정 불 chimsilmaster 검정
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang office red
-  - seoljeong bul office red
+  - 설정 cheonjang office 빨강
+  - 설정 불 office 빨강
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang office blue
-  - seoljeong bul office blue
+  - 설정 cheonjang office 파랑
+  - 설정 불 office 파랑
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang office green
-  - seoljeong bul office green
+  - 설정 cheonjang office 초록
+  - 설정 불 office 초록
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang office white
-  - seoljeong bul office white
+  - 설정 cheonjang office 하양
+  - 설정 불 office 하양
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang office yellow
-  - seoljeong bul office yellow
+  - 설정 cheonjang office 노랑
+  - 설정 불 office 노랑
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang office black
-  - seoljeong bul office black
+  - 설정 cheonjang office 검정
+  - 설정 불 office 검정
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul garden red
-  - bul garden red
+  - 설정 불 garden 빨강
+  - 불 garden 빨강
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul garden blue
-  - bul garden blue
+  - 설정 불 garden 파랑
+  - 불 garden 파랑
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul garden green
-  - bul garden green
+  - 설정 불 garden 초록
+  - 불 garden 초록
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul garden white
-  - bul garden white
+  - 설정 불 garden 하양
+  - 불 garden 하양
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul garden yellow
-  - bul garden yellow
+  - 설정 불 garden 노랑
+  - 불 garden 노랑
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul garden black
-  - bul garden black
+  - 설정 불 garden 검정
+  - 불 garden 검정
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul basement red
-  - bul basement red
+  - 설정 불 basement 빨강
+  - 불 basement 빨강
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul basement blue
-  - bul basement blue
+  - 설정 불 basement 파랑
+  - 불 basement 파랑
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul basement green
-  - bul basement green
+  - 설정 불 basement 초록
+  - 불 basement 초록
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul basement white
-  - bul basement white
+  - 설정 불 basement 하양
+  - 불 basement 하양
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul basement yellow
-  - bul basement yellow
+  - 설정 불 basement 노랑
+  - 불 basement 노랑
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul basement black
-  - bul basement black
+  - 설정 불 basement 검정
+  - 불 basement 검정
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul bokdo red
-  - bul bokdo red
+  - 설정 불 bokdo 빨강
+  - 불 bokdo 빨강
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul bokdo blue
-  - bul bokdo blue
+  - 설정 불 bokdo 파랑
+  - 불 bokdo 파랑
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul bokdo green
-  - bul bokdo green
+  - 설정 불 bokdo 초록
+  - 불 bokdo 초록
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul bokdo white
-  - bul bokdo white
+  - 설정 불 bokdo 하양
+  - 불 bokdo 하양
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul bokdo yellow
-  - bul bokdo yellow
+  - 설정 불 bokdo 노랑
+  - 불 bokdo 노랑
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul bokdo black
-  - bul bokdo black
+  - 설정 불 bokdo 검정
+  - 불 bokdo 검정
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang gajoksil red
-  - seoljeong bul gajoksil red
+  - 설정 cheonjang gajoksil 빨강
+  - 설정 불 gajoksil 빨강
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang gajoksil blue
-  - seoljeong bul gajoksil blue
+  - 설정 cheonjang gajoksil 파랑
+  - 설정 불 gajoksil 파랑
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang gajoksil green
-  - seoljeong bul gajoksil green
+  - 설정 cheonjang gajoksil 초록
+  - 설정 불 gajoksil 초록
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang gajoksil white
-  - seoljeong bul gajoksil white
+  - 설정 cheonjang gajoksil 하양
+  - 설정 불 gajoksil 하양
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang gajoksil yellow
-  - seoljeong bul gajoksil yellow
+  - 설정 cheonjang gajoksil 노랑
+  - 설정 불 gajoksil 노랑
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang gajoksil black
-  - seoljeong bul gajoksil black
+  - 설정 cheonjang gajoksil 검정
+  - 설정 불 gajoksil 검정
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul gajoksiless red
-  - bul gajoksiless red
+  - 설정 불 gajoksiless 빨강
+  - 불 gajoksiless 빨강
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul gajoksiless blue
-  - bul gajoksiless blue
+  - 설정 불 gajoksiless 파랑
+  - 불 gajoksiless 파랑
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul gajoksiless green
-  - bul gajoksiless green
+  - 설정 불 gajoksiless 초록
+  - 불 gajoksiless 초록
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul gajoksiless white
-  - bul gajoksiless white
+  - 설정 불 gajoksiless 하양
+  - 불 gajoksiless 하양
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul gajoksiless yellow
-  - bul gajoksiless yellow
+  - 설정 불 gajoksiless 노랑
+  - 불 gajoksiless 노랑
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul gajoksiless black
-  - bul gajoksiless black
+  - 설정 불 gajoksiless 검정
+  - 불 gajoksiless 검정
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul garage red
-  - bul garage red
+  - 설정 불 garage 빨강
+  - 불 garage 빨강
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul garage blue
-  - bul garage blue
+  - 설정 불 garage 파랑
+  - 불 garage 파랑
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul garage green
-  - bul garage green
+  - 설정 불 garage 초록
+  - 불 garage 초록
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul garage white
-  - bul garage white
+  - 설정 불 garage 하양
+  - 불 garage 하양
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul garage yellow
-  - bul garage yellow
+  - 설정 불 garage 노랑
+  - 불 garage 노랑
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul garage black
-  - bul garage black
+  - 설정 불 garage 검정
+  - 불 garage 검정
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang chimsil2 red
-  - seoljeong bul chimsil2 red
+  - 설정 cheonjang chimsil2 빨강
+  - 설정 불 chimsil2 빨강
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang chimsil2 blue
-  - seoljeong bul chimsil2 blue
+  - 설정 cheonjang chimsil2 파랑
+  - 설정 불 chimsil2 파랑
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang chimsil2 green
-  - seoljeong bul chimsil2 green
+  - 설정 cheonjang chimsil2 초록
+  - 설정 불 chimsil2 초록
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang chimsil2 white
-  - seoljeong bul chimsil2 white
+  - 설정 cheonjang chimsil2 하양
+  - 설정 불 chimsil2 하양
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang chimsil2 yellow
-  - seoljeong bul chimsil2 yellow
+  - 설정 cheonjang chimsil2 노랑
+  - 설정 불 chimsil2 노랑
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang chimsil2 black
-  - seoljeong bul chimsil2 black
+  - 설정 cheonjang chimsil2 검정
+  - 설정 불 chimsil2 검정
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang chimsil3 red
-  - seoljeong bul chimsil3 red
+  - 설정 cheonjang chimsil3 빨강
+  - 설정 불 chimsil3 빨강
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang chimsil3 blue
-  - seoljeong bul chimsil3 blue
+  - 설정 cheonjang chimsil3 파랑
+  - 설정 불 chimsil3 파랑
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang chimsil3 green
-  - seoljeong bul chimsil3 green
+  - 설정 cheonjang chimsil3 초록
+  - 설정 불 chimsil3 초록
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang chimsil3 white
-  - seoljeong bul chimsil3 white
+  - 설정 cheonjang chimsil3 하양
+  - 설정 불 chimsil3 하양
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang chimsil3 yellow
-  - seoljeong bul chimsil3 yellow
+  - 설정 cheonjang chimsil3 노랑
+  - 설정 불 chimsil3 노랑
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang chimsil3 black
-  - seoljeong bul chimsil3 black
+  - 설정 cheonjang chimsil3 검정
+  - 설정 불 chimsil3 검정
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong cheonjang chimsil4 red
-  - seoljeong bul chimsil4 red
+  - 설정 cheonjang chimsil4 빨강
+  - 설정 불 chimsil4 빨강
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong cheonjang chimsil4 blue
-  - seoljeong bul chimsil4 blue
+  - 설정 cheonjang chimsil4 파랑
+  - 설정 불 chimsil4 파랑
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong cheonjang chimsil4 green
-  - seoljeong bul chimsil4 green
+  - 설정 cheonjang chimsil4 초록
+  - 설정 불 chimsil4 초록
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong cheonjang chimsil4 white
-  - seoljeong bul chimsil4 white
+  - 설정 cheonjang chimsil4 하양
+  - 설정 불 chimsil4 하양
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong cheonjang chimsil4 yellow
-  - seoljeong bul chimsil4 yellow
+  - 설정 cheonjang chimsil4 노랑
+  - 설정 불 chimsil4 노랑
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong cheonjang chimsil4 black
-  - seoljeong bul chimsil4 black
+  - 설정 cheonjang chimsil4 검정
+  - 설정 불 chimsil4 검정
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul hyeongwan red
-  - bul hyeongwan red
+  - 설정 불 hyeongwan 빨강
+  - 불 hyeongwan 빨강
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul hyeongwan blue
-  - bul hyeongwan blue
+  - 설정 불 hyeongwan 파랑
+  - 불 hyeongwan 파랑
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul hyeongwan green
-  - bul hyeongwan green
+  - 설정 불 hyeongwan 초록
+  - 불 hyeongwan 초록
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul hyeongwan white
-  - bul hyeongwan white
+  - 설정 불 hyeongwan 하양
+  - 불 hyeongwan 하양
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul hyeongwan yellow
-  - bul hyeongwan yellow
+  - 설정 불 hyeongwan 노랑
+  - 불 hyeongwan 노랑
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul hyeongwan black
-  - bul hyeongwan black
+  - 설정 불 hyeongwan 검정
+  - 불 hyeongwan 검정
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul setaksil red
-  - bul setaksil red
+  - 설정 불 setaksil 빨강
+  - 불 setaksil 빨강
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul setaksil blue
-  - bul setaksil blue
+  - 설정 불 setaksil 파랑
+  - 불 setaksil 파랑
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul setaksil green
-  - bul setaksil green
+  - 설정 불 setaksil 초록
+  - 불 setaksil 초록
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul setaksil white
-  - bul setaksil white
+  - 설정 불 setaksil 하양
+  - 불 setaksil 하양
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul setaksil yellow
-  - bul setaksil yellow
+  - 설정 불 setaksil 노랑
+  - 불 setaksil 노랑
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul setaksil black
-  - bul setaksil black
+  - 설정 불 setaksil 검정
+  - 불 setaksil 검정
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul main bath red
-  - bul main bath red
+  - 설정 불 main bath 빨강
+  - 불 main bath 빨강
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul main bath blue
-  - bul main bath blue
+  - 설정 불 main bath 파랑
+  - 불 main bath 파랑
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul main bath green
-  - bul main bath green
+  - 설정 불 main bath 초록
+  - 불 main bath 초록
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul main bath white
-  - bul main bath white
+  - 설정 불 main bath 하양
+  - 불 main bath 하양
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul main bath yellow
-  - bul main bath yellow
+  - 설정 불 main bath 노랑
+  - 불 main bath 노랑
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul main bath black
-  - bul main bath black
+  - 설정 불 main bath 검정
+  - 불 main bath 검정
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul hwajangsil red
-  - bul hwajangsil red
+  - 설정 불 hwajangsil 빨강
+  - 불 hwajangsil 빨강
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul hwajangsil blue
-  - bul hwajangsil blue
+  - 설정 불 hwajangsil 파랑
+  - 불 hwajangsil 파랑
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul hwajangsil green
-  - bul hwajangsil green
+  - 설정 불 hwajangsil 초록
+  - 불 hwajangsil 초록
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul hwajangsil white
-  - bul hwajangsil white
+  - 설정 불 hwajangsil 하양
+  - 불 hwajangsil 하양
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul hwajangsil yellow
-  - bul hwajangsil yellow
+  - 설정 불 hwajangsil 노랑
+  - 불 hwajangsil 노랑
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul hwajangsil black
-  - bul hwajangsil black
+  - 설정 불 hwajangsil 검정
+  - 불 hwajangsil 검정
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong ensuite chimsil red
-  - seoljeong bul chimsil red
+  - 설정 ensuite chimsilmaster 빨강
+  - 설정 불 chimsilmaster 빨강
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong ensuite chimsil blue
-  - seoljeong bul chimsil blue
+  - 설정 ensuite chimsilmaster 파랑
+  - 설정 불 chimsilmaster 파랑
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong ensuite chimsil green
-  - seoljeong bul chimsil green
+  - 설정 ensuite chimsilmaster 초록
+  - 설정 불 chimsilmaster 초록
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong ensuite chimsil white
-  - seoljeong bul chimsil white
+  - 설정 ensuite chimsilmaster 하양
+  - 설정 불 chimsilmaster 하양
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong ensuite chimsil yellow
-  - seoljeong bul chimsil yellow
+  - 설정 ensuite chimsilmaster 노랑
+  - 설정 불 chimsilmaster 노랑
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong ensuite chimsil black
-  - seoljeong bul chimsil black
+  - 설정 ensuite chimsilmaster 검정
+  - 설정 불 chimsilmaster 검정
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong chimdae chimsil red
-  - seoljeong bul chimsil red
+  - 설정 chimdae chimsilmaster 빨강
+  - 설정 불 chimsilmaster 빨강
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong chimdae chimsil blue
-  - seoljeong bul chimsil blue
+  - 설정 chimdae chimsilmaster 파랑
+  - 설정 불 chimsilmaster 파랑
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong chimdae chimsil green
-  - seoljeong bul chimsil green
+  - 설정 chimdae chimsilmaster 초록
+  - 설정 불 chimsilmaster 초록
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong chimdae chimsil white
-  - seoljeong bul chimsil white
+  - 설정 chimdae chimsilmaster 하양
+  - 설정 불 chimsilmaster 하양
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong chimdae chimsil yellow
-  - seoljeong bul chimsil yellow
+  - 설정 chimdae chimsilmaster 노랑
+  - 설정 불 chimsilmaster 노랑
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong chimdae chimsil black
-  - seoljeong bul chimsil black
+  - 설정 chimdae chimsilmaster 검정
+  - 설정 불 chimsilmaster 검정
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - seoljeong bul anbangyoksil red
-  - bul anbangyoksil red
+  - 설정 불 anbangyoksil 빨강
+  - 불 anbangyoksil 빨강
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - seoljeong bul anbangyoksil blue
-  - bul anbangyoksil blue
+  - 설정 불 anbangyoksil 파랑
+  - 불 anbangyoksil 파랑
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - seoljeong bul anbangyoksil green
-  - bul anbangyoksil green
+  - 설정 불 anbangyoksil 초록
+  - 불 anbangyoksil 초록
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - seoljeong bul anbangyoksil white
-  - bul anbangyoksil white
+  - 설정 불 anbangyoksil 하양
+  - 불 anbangyoksil 하양
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - seoljeong bul anbangyoksil yellow
-  - bul anbangyoksil yellow
+  - 설정 불 anbangyoksil 노랑
+  - 불 anbangyoksil 노랑
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - seoljeong bul anbangyoksil black
-  - bul anbangyoksil black
+  - 설정 불 anbangyoksil 검정
+  - 불 anbangyoksil 검정
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 bueok
-  - 모두 bul kkaeo 빼고 bueok
+  - 꺼 모두 불 빼고 부엌
+  - 모두 불 꺼 빼고 부엌
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 office
-  - 모두 bul kkaeo 빼고 office
+  - 꺼 모두 불 빼고 office
+  - 모두 불 꺼 빼고 office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 garage
-  - 모두 bul kkaeo 빼고 garage
+  - 꺼 모두 불 빼고 garage
+  - 모두 불 꺼 빼고 garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 chimsil
-  - 모두 bul kkaeo 빼고 chimsil
+  - 꺼 모두 불 빼고 chimsilmaster
+  - 모두 불 꺼 빼고 chimsilmaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul araecheung
-  - bul araecheung kyeo
+  - 켜 모두 불 araecheung
+  - 불 araecheung 켜
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul araecheung
-  - bul araecheung kkaeo
+  - 꺼 모두 불 araecheung
+  - 불 araecheung 꺼
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul wicheung
-  - bul wicheung kyeo
+  - 켜 모두 불 wicheung
+  - 불 wicheung 켜
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul wicheung
-  - bul wicheung kkaeo
+  - 꺼 모두 불 wicheung
+  - 불 wicheung 꺼
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - kyeo 모두 bul basement
-  - bul basement kyeo
+  - 켜 모두 불 basement
+  - 불 basement 켜
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul basement
-  - bul basement kkaeo
+  - 꺼 모두 불 basement
+  - 불 basement 꺼
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 hyeongwan
-  - 모두 bul kkaeo 빼고 hyeongwan
+  - 꺼 모두 불 빼고 hyeongwan
+  - 모두 불 꺼 빼고 hyeongwan
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 geosil
-  - 모두 bul kkaeo 빼고 geosil
+  - 꺼 모두 불 빼고 거실
+  - 모두 불 꺼 빼고 거실
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 gajoksiless
-  - 모두 bul kkaeo 빼고 gajoksiless
+  - 꺼 모두 불 빼고 gajoksiless
+  - 모두 불 꺼 빼고 gajoksiless
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 gajoksil
-  - 모두 bul kkaeo 빼고 gajoksil
+  - 꺼 모두 불 빼고 gajoksil
+  - 모두 불 꺼 빼고 gajoksil
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 setaksil
-  - 모두 bul kkaeo 빼고 setaksil
+  - 꺼 모두 불 빼고 setaksil
+  - 모두 불 꺼 빼고 setaksil
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 hwajangsil
-  - 모두 bul kkaeo 빼고 hwajangsil
+  - 꺼 모두 불 빼고 hwajangsil
+  - 모두 불 꺼 빼고 hwajangsil
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 garden
-  - 모두 bul kkaeo 빼고 garden
+  - 꺼 모두 불 빼고 garden
+  - 모두 불 꺼 빼고 garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 chimsil2
-  - 모두 bul kkaeo 빼고 chimsil2
+  - 꺼 모두 불 빼고 chimsil2
+  - 모두 불 꺼 빼고 chimsil2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 chimsil3
-  - 모두 bul kkaeo 빼고 chimsil3
+  - 꺼 모두 불 빼고 chimsil3
+  - 모두 불 꺼 빼고 chimsil3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 chimsil4
-  - 모두 bul kkaeo 빼고 chimsil4
+  - 꺼 모두 불 빼고 chimsil4
+  - 모두 불 꺼 빼고 chimsil4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 anbangyoksil
-  - 모두 bul kkaeo 빼고 anbangyoksil
+  - 꺼 모두 불 빼고 anbangyoksil
+  - 모두 불 꺼 빼고 anbangyoksil
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 main bath
-  - 모두 bul kkaeo 빼고 main bath
+  - 꺼 모두 불 빼고 main bath
+  - 모두 불 꺼 빼고 main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 bokdo
-  - 모두 bul kkaeo 빼고 bokdo
+  - 꺼 모두 불 빼고 bokdo
+  - 모두 불 꺼 빼고 bokdo
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - kkaeo 모두 bul 빼고 basement
-  - 모두 bul kkaeo 빼고 basement
+  - 꺼 모두 불 빼고 basement
+  - 모두 불 꺼 빼고 basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - kyeo bul basement
-  - bul basement kyeo
+  - 켜 불 basement
+  - 불 basement 켜
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - kyeo bul bokdo
-  - bul bokdo kyeo
+  - 켜 불 bokdo
+  - 불 bokdo 켜
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - kyeo cheonjang gajoksil
-  - cheonjang gajoksil kyeo
+  - 켜 cheonjang gajoksil
+  - cheonjang gajoksil 켜
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - kyeo bul gajoksiless
-  - bul gajoksiless kyeo
+  - 켜 불 gajoksiless
+  - 불 gajoksiless 켜

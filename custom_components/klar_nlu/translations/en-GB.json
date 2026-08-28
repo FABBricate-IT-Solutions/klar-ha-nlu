@@ -36,6 +36,7 @@
           "assist_filter": "Only control entities exposed to Assist",
           "nlu_rag": "NLU-RAG (opt-in)",
           "quiet_ack": "Short confirmation (chime)",
+          "calendar_llm": "Send calendar queries to the LLM",
           "channel": "Release channel"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "On (default): only what Assist may see. Off: hidden entities too.",
           "nlu_rag": "Off by default. Chat and empty rejects send the matched slice to the fallback model.",
           "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime.",
+          "calendar_llm": "Off by default. On: Klar still reads the calendar, then the fallback LLM speaks the events. Off: Klar speaks the list itself. Create, delete, and move stay in Klar.",
           "languages": "Default follows the Home Assistant system language.",
           "channel": "Works anytime. Staging points at Klar NLU (Staging). Stable goes back to the app or bundled engine."
         }

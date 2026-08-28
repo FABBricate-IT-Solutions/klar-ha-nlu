@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - nyalakan kipas kamar2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- setel lampu kamar2 65
+- setel semua lampu kamar2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- setel lampu kamar2 pink
+- setel semua lampu kamar2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- matikan lampu kamar2
+- matikan semua lampu kamar2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- nyalakan lampu kamar2
+- nyalakan semua lampu kamar2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - tutup tirai kamar3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - setel tirai kamar3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- setel lampu kamar3 76
+- setel semua lampu kamar3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- setel lampu kamar3 blue
+- setel semua lampu kamar3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- matikan lampu kamar3
+- matikan semua lampu kamar3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- nyalakan lampu kamar3
+- nyalakan semua lampu kamar3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- setel lampu kamar4 69
+- setel semua lampu kamar4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- setel lampu kamar4 green
+- setel semua lampu kamar4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- matikan lampu kamar4
+- matikan semua lampu kamar4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- nyalakan lampu kamar4
+- nyalakan semua lampu kamar4
 area/dining_lights::dining_lights_change_brightness:
-- setel lampu ruangkeluargaess 54
+- setel semua lampu ruangkeluargaess 54
 area/dining_lights::dining_lights_change_color:
-- setel lampu ruangkeluargaess blue
+- setel semua lampu ruangkeluargaess blue
 area/dining_lights::dining_lights_turn_off:
-- matikan lampu ruangkeluargaess
+- matikan semua lampu ruangkeluargaess
 area/dining_lights::dining_lights_turn_on:
-- nyalakan lampu ruangkeluargaess
+- nyalakan semua lampu ruangkeluargaess
 area/entryway_lights::entryway_lights_change_brightness:
-- setel lampu lorong 72
+- setel semua lampu lorong 72
 area/entryway_lights::entryway_lights_change_color:
-- setel lampu lorong black
+- setel semua lampu lorong black
 area/entryway_lights::entryway_lights_turn_off:
-- matikan lampu lorong
+- matikan semua lampu lorong
 area/entryway_lights::entryway_lights_turn_on:
-- nyalakan lampu lorong
+- nyalakan semua lampu lorong
 area/entryway_locks::entryway_locks_lock:
 - kunci kunci lorong
 area/entryway_locks::entryway_locks_unlock:
 - buka kunci lorong
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- setel lampu ruangkeluarga 39 dan setel lampu dapur 39
+- setel semua lampu ruangkeluarga 39 then setel semua lampu dapur 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- setel lampu ruangkeluarga purple dan setel lampu dapur purple
+- setel semua lampu ruangkeluarga purple then setel semua lampu dapur purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- matikan lampu ruangkeluarga dan matikan lampu dapur
+- matikan semua lampu ruangkeluarga then matikan semua lampu dapur
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- nyalakan lampu ruangkeluarga dan nyalakan lampu dapur
+- nyalakan semua lampu ruangkeluarga then nyalakan semua lampu dapur
 area/family_room_fans::family_room_fans_set_fan_speed:
 - setel kipas ruangkeluarga 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - nyalakan kipas ruangkeluarga
 area/family_room_lights::family_room_lights_change_brightness:
-- setel lampu ruangkeluarga 44
+- setel semua lampu ruangkeluarga 44
 area/family_room_lights::family_room_lights_change_color:
-- setel lampu ruangkeluarga green
+- setel semua lampu ruangkeluarga green
 area/family_room_lights::family_room_lights_turn_off:
-- matikan lampu ruangkeluarga
+- matikan semua lampu ruangkeluarga
 area/family_room_lights::family_room_lights_turn_on:
-- nyalakan lampu ruangkeluarga
+- nyalakan semua lampu ruangkeluarga
 area/garage_covers::garage_covers_close:
 - tutup tirai garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - setel tirai garage 86
 area/garage_lights::garage_lights_change_brightness:
-- setel lampu garage 16
+- setel semua lampu garage 16
 area/garage_lights::garage_lights_change_color:
-- setel lampu garage blue
+- setel semua lampu garage blue
 area/garage_lights::garage_lights_turn_off:
-- matikan lampu garage
+- matikan semua lampu garage
 area/garage_lights::garage_lights_turn_on:
-- nyalakan lampu garage
+- nyalakan semua lampu garage
 area/garage_locks::garage_locks_lock:
 - kunci kunci garage
 area/garage_locks::garage_locks_unlock:
 - buka kunci garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- setel lampu loronggang 26 dan setel lampu wc 26
+- setel semua lampu loronggang 26 then setel semua lampu wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- setel lampu loronggang purple dan setel lampu wc purple
+- setel semua lampu loronggang purple then setel semua lampu wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- matikan lampu loronggang dan matikan lampu wc
+- matikan semua lampu loronggang then matikan semua lampu wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- nyalakan lampu loronggang dan nyalakan lampu wc
+- nyalakan semua lampu loronggang then nyalakan semua lampu wc
 area/hallway_lights::hallway_lights_change_brightness:
-- setel lampu loronggang 61
+- setel semua lampu loronggang 61
 area/hallway_lights::hallway_lights_change_color:
-- setel lampu loronggang orange
+- setel semua lampu loronggang orange
 area/hallway_lights::hallway_lights_turn_off:
-- matikan lampu loronggang
+- matikan semua lampu loronggang
 area/hallway_lights::hallway_lights_turn_on:
-- nyalakan lampu loronggang
+- nyalakan semua lampu loronggang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- setel lampu dapur 45
+- setel semua lampu dapur 45
 area/kitchen_lights::kitchen_lights_change_color:
-- setel lampu dapur pink
+- setel semua lampu dapur pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- matikan lampu dapur
+- matikan semua lampu dapur
 area/kitchen_lights::kitchen_lights_turn_on:
-- nyalakan lampu dapur
+- nyalakan semua lampu dapur
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- matikan alat dapur
+- matikan semua alat dapur
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- nyalakan alat dapur
+- nyalakan semua alat dapur
 area/laundry_lights::laundry_lights_change_brightness:
-- setel lampu binatu 62
+- setel semua lampu binatu 62
 area/laundry_lights::laundry_lights_change_color:
-- setel lampu binatu yellow
+- setel semua lampu binatu yellow
 area/laundry_lights::laundry_lights_turn_off:
-- matikan lampu binatu
+- matikan semua lampu binatu
 area/laundry_lights::laundry_lights_turn_on:
-- nyalakan lampu binatu
+- nyalakan semua lampu binatu
 area/laundry_switchs::laundry_switchs_turn_off:
-- matikan alat binatu
+- matikan semua alat binatu
 area/laundry_switchs::laundry_switchs_turn_on:
-- nyalakan alat binatu
+- nyalakan semua alat binatu
 area/living_climates::living_climates_set_temperature:
 - setel ac ruang 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - setel tirai ruang 46
 area/living_lights::living_lights_change_brightness:
-- setel lampu ruang 84
+- setel semua lampu ruang 84
 area/living_lights::living_lights_change_color:
-- setel lampu ruang blue
+- setel semua lampu ruang blue
 area/living_lights::living_lights_turn_off:
-- matikan lampu ruang
+- matikan semua lampu ruang
 area/living_lights::living_lights_turn_on:
-- nyalakan lampu ruang
+- nyalakan semua lampu ruang
 area/main_bath_lights::main_bath_lights_change_brightness:
-- setel lampu main bath 73
+- setel semua lampu main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- setel lampu main bath pink
+- setel semua lampu main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- matikan lampu main bath
+- matikan semua lampu main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- nyalakan lampu main bath
+- nyalakan semua lampu main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- matikan alat main bath
+- matikan semua alat main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- nyalakan alat main bath
+- nyalakan semua alat main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- setel lampu kamarmandimaster 60
+- setel semua lampu kamarmandimaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- setel lampu kamarmandimaster black
+- setel semua lampu kamarmandimaster black
 area/master_bath_lights::master_bath_lights_turn_off:
-- matikan lampu kamarmandimaster
+- matikan semua lampu kamarmandimaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- nyalakan lampu kamarmandimaster
+- nyalakan semua lampu kamarmandimaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- matikan alat kamarmandimaster
+- matikan semua alat kamarmandimaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- nyalakan alat kamarmandimaster
+- nyalakan semua alat kamarmandimaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- setel ac kamar 20 dan setel ac ruang 20
+- setel ac kamarmaster 20 then setel ac ruang 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- tutup tirai kamar dan tutup tirai ruang
+- tutup tirai kamarmaster then tutup tirai ruang
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- buka tirai kamar dan buka tirai ruang
+- buka tirai kamarmaster then buka tirai ruang
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- setel tirai kamar 19 dan setel tirai ruang 19
+- setel tirai kamarmaster 19 then setel tirai ruang 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- setel lampu kamar 25 dan setel lampu ruang 25
+- setel semua lampu kamarmaster 25 then setel semua lampu ruang 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- setel lampu kamar white dan setel lampu ruang white
+- setel semua lampu kamarmaster white then setel semua lampu ruang white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- matikan lampu kamar dan matikan lampu ruang
+- matikan semua lampu kamarmaster then matikan semua lampu ruang
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- nyalakan lampu kamar dan nyalakan lampu ruang
+- nyalakan semua lampu kamarmaster then nyalakan semua lampu ruang
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- setel lampu kamar 57 dan setel lampu main bath 57
+- setel semua lampu kamarmaster 57 then setel semua lampu main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- setel lampu kamar pink dan setel lampu main bath pink
+- setel semua lampu kamarmaster pink then setel semua lampu main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- matikan lampu kamar dan matikan lampu main bath
+- matikan semua lampu kamarmaster then matikan semua lampu main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- nyalakan lampu kamar dan nyalakan lampu main bath
+- nyalakan semua lampu kamarmaster then nyalakan semua lampu main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- setel ac kamar 20
+- setel ac kamarmaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- tutup tirai kamar
+- tutup tirai kamarmaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- buka tirai kamar
+- buka tirai kamarmaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- setel tirai kamar 38
+- setel tirai kamarmaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- setel kipas kamar 79
+- setel kipas kamarmaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- matikan kipas kamar
+- matikan kipas kamarmaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- nyalakan kipas kamar
+- nyalakan kipas kamarmaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- setel lampu kamar 73
+- setel semua lampu kamarmaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- setel lampu kamar pink
+- setel semua lampu kamarmaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- matikan lampu kamar
+- matikan semua lampu kamarmaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- nyalakan lampu kamar
+- nyalakan semua lampu kamarmaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- setel lampu wc 52
+- setel semua lampu wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- setel lampu wc purple
+- setel semua lampu wc purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- matikan lampu wc
+- matikan semua lampu wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- nyalakan lampu wc
+- nyalakan semua lampu wc
 area/spoken_lights::spoken_bedroom_inflection:
-- setel lampu kamar red
+- setel semua lampu kamarmaster red
 area/spoken_lights::spoken_except_island:
 - matikan semua lampu kecuali pulau
 area/spoken_lights::spoken_except_kitchen:
-- matikan semua lampu kecuali dapur kecuali pulau
+- matikan semua lampu kecuali dapur
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- matikan lampu ruang dan matikan lampu ruangkeluargaess dan matikan lampu dapur
+- matikan semua lampu ruang then matikan semua lampu ruangkeluargaess then matikan
+  semua lampu dapur
 area/spoken_lights::spoken_stt_kitchen_off:
-- matikan lampu dapur
+- matikan semua lampu dapur
 area/spoken_lights::spoken_stt_living_off:
-- matikan lampu ruang
+- matikan semua lampu ruang

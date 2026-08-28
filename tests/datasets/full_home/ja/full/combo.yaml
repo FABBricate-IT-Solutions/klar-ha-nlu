@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - tsukete ribingu tenjo と ribingu lamp
-  - ribingu tenjo と ribingu lamp tsukete
+  - つけて リビング tenjo と リビング ライト
+  - リビング tenjo と リビング ライト つけて
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - keshite ribingu tenjo と ribingu lamp
-  - ribingu tenjo と ribingu lamp keshite
+  - 消して リビング tenjo と リビング ライト
+  - リビング tenjo と リビング ライト 消して
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tsukete kitchin tenjo と kitchin shima
-  - kitchin tenjo と kitchin shima tsukete
+  - つけて キッチン tenjo と キッチン shima
+  - キッチン tenjo と キッチン shima つけて
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - keshite kitchin tenjo と kitchin shima
-  - kitchin tenjo と kitchin shima keshite
+  - 消して キッチン tenjo と キッチン shima
+  - キッチン tenjo と キッチン shima 消して
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tsukete ribingu tenjo と kitchin shima
-  - ribingu tenjo と kitchin shima tsukete
+  - つけて リビング tenjo と キッチン shima
+  - リビング tenjo と キッチン shima つけて
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - keshite ribingu tenjo と kitchin shima
-  - ribingu tenjo と kitchin shima keshite
+  - 消して リビング tenjo と キッチン shima
+  - リビング tenjo と キッチン shima 消して
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - tsukete office tenjo と roka raito
-  - office tenjo と roka raito tsukete
+  - つけて office tenjo と roka 電気
+  - office tenjo と roka 電気 つけて
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - keshite office tenjo と roka raito
-  - office tenjo と roka raito keshite
+  - 消して office tenjo と roka 電気
+  - office tenjo と roka 電気 消して
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - tsukete garden raito と garage raito
-  - garden raito と garage raito tsukete
+  - つけて garden 電気 と garage 電気
+  - garden 電気 と garage 電気 つけて
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - keshite garden raito と garage raito
-  - garden raito と garage raito keshite
+  - 消して garden 電気 と garage 電気
+  - garden 電気 と garage 電気 消して
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - tsukete shinshitsu tenjo と shinshitsu beddowaki
-  - shinshitsu tenjo と shinshitsu beddowaki tsukete
+  - つけて shinshitsumaster tenjo と shinshitsumaster beddowaki
+  - shinshitsumaster tenjo と shinshitsumaster beddowaki つけて
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - keshite shinshitsu tenjo と shinshitsu beddowaki
-  - shinshitsu tenjo と shinshitsu beddowaki keshite
+  - 消して shinshitsumaster tenjo と shinshitsumaster beddowaki
+  - shinshitsumaster tenjo と shinshitsumaster beddowaki 消して
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - tsukete famirii tenjo と famiriiess raito
-  - famirii tenjo と famiriiess raito tsukete
+  - つけて famirii tenjo と famiriiess 電気
+  - famirii tenjo と famiriiess 電気 つけて
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - keshite famirii tenjo と famiriiess raito
-  - famirii tenjo と famiriiess raito keshite
+  - 消して famirii tenjo と famiriiess 電気
+  - famirii tenjo と famiriiess 電気 消して
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - tsukete chika raito と sentakushitsu raito
-  - chika raito と sentakushitsu raito tsukete
+  - つけて chika 電気 と sentakushitsu 電気
+  - chika 電気 と sentakushitsu 電気 つけて
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - keshite chika raito と sentakushitsu raito
-  - chika raito と sentakushitsu raito keshite
+  - 消して chika 電気 と sentakushitsu 電気
+  - chika 電気 と sentakushitsu 電気 消して
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - tsukete shinshitsu fan と kitchin shima
-  - shinshitsu fan と kitchin shima tsukete
+  - つけて shinshitsumaster ファン と キッチン shima
+  - shinshitsumaster ファン と キッチン shima つけて
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - tsukete ribingu kaaten と ribingu tenjo
-  - ribingu kaaten と ribingu tenjo tsukete
+  - つけて リビング カーテン と リビング tenjo
+  - リビング カーテン と リビング tenjo つけて
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - tsukete sentakushitsu sentakuki と sentakushitsu kansouki
-  - sentakushitsu sentakuki と sentakushitsu kansouki tsukete
+  - つけて sentakushitsu sentakuki と sentakushitsu kansouki
+  - sentakushitsu sentakuki と sentakushitsu kansouki つけて
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito ribingu と kitchin
-  - raito ribingu と kitchin keshite
+  - 消して 電気 リビング と キッチン
+  - 電気 リビング と キッチン 消して
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito office と roka
-  - raito office と roka keshite
+  - 消して 電気 office と roka
+  - 電気 office と roka 消して
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito garage と garden
-  - raito garage と garden keshite
+  - 消して 電気 garage と garden
+  - 電気 garage と garden 消して
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito shinshitsu と main bath
-  - raito shinshitsu と main bath keshite
+  - 消して 電気 shinshitsumaster と main bath
+  - 電気 shinshitsumaster と main bath 消して
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito famirii と famiriiess
-  - raito famirii と famiriiess keshite
+  - 消して 電気 famirii と famiriiess
+  - 電気 famirii と famiriiess 消して
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito ribingu と famiriiess と kitchin
-  - raito ribingu famiriiess と kitchin keshite
+  - 消して 電気 リビング と famiriiess と キッチン
+  - 電気 リビング famiriiess と キッチン 消して
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete raito office と roka と garage
-  - raito office roka と garage tsukete
+  - つけて 電気 office と roka と garage
+  - 電気 office roka と garage つけて
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite raito garden と chika と sentakushitsu
-  - raito garden chika と sentakushitsu keshite
+  - 消して 電気 garden と chika と sentakushitsu
+  - 電気 garden chika と sentakushitsu 消して
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 shima kitchin
-  - 全部 raito keshite 以外 shima kitchin
+  - 消して 全部 電気 以外 shima キッチン
+  - 全部 電気 消して 以外 shima キッチン
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 lamp ribingu
-  - 全部 raito keshite 以外 lamp ribingu
+  - 消して 全部 電気 以外 ライト リビング
+  - 全部 電気 消して 以外 ライト リビング
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 garden
-  - 全部 raito keshite 以外 garden
+  - 消して 全部 電気 以外 garden
+  - 全部 電気 消して 以外 garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 tenjo office
-  - 全部 raito keshite 以外 tenjo office
+  - 消して 全部 電気 以外 tenjo office
+  - 全部 電気 消して 以外 tenjo office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 chika
-  - 全部 raito keshite 以外 chika
+  - 消して 全部 電気 以外 chika
+  - 全部 電気 消して 以外 chika
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito 以外 kitchin
-  - 全部 raito tsukete 以外 kitchin
+  - つけて 全部 電気 以外 キッチン
+  - 全部 電気 つけて 以外 キッチン
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito 以外 office
-  - 全部 raito tsukete 以外 office
+  - つけて 全部 電気 以外 office
+  - 全部 電気 つけて 以外 office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito 以外 garden
-  - 全部 raito tsukete 以外 garden
+  - つけて 全部 電気 以外 garden
+  - 全部 電気 つけて 以外 garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito 以外 ribingu
-  - 全部 raito tsukete 以外 ribingu
+  - つけて 全部 電気 以外 リビング
+  - 全部 電気 つけて 以外 リビング
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - tsukete 全部 raito 以外 garage
-  - 全部 raito tsukete 以外 garage
+  - つけて 全部 電気 以外 garage
+  - 全部 電気 つけて 以外 garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - keshite 全部 raito kitchin 以外 shima
-  - 全部 raito kitchin keshite 以外 shima
+  - 消して 全部 電気 キッチン 以外 shima
+  - 全部 電気 キッチン 消して 以外 shima
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - keshite 全部 raito ribingu 以外 lamp
-  - 全部 raito ribingu keshite 以外 lamp
+  - 消して 全部 電気 リビング 以外 ライト
+  - 全部 電気 リビング 消して 以外 ライト
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - tsukete 全部 raito 以外 shima kitchin
-  - 全部 raito tsukete 以外 shima kitchin
+  - つけて 全部 電気 以外 shima キッチン
+  - 全部 電気 つけて 以外 shima キッチン
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 kitchin と office
-  - 全部 raito keshite 以外 kitchin と office
+  - 消して 全部 電気 以外 キッチン と office
+  - 全部 電気 消して 以外 キッチン と office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 ribingu と shinshitsu
-  - 全部 raito keshite 以外 ribingu と shinshitsu
+  - 消して 全部 電気 以外 リビング と shinshitsumaster
+  - 全部 電気 消して 以外 リビング と shinshitsumaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito 以外 garage と garden
-  - 全部 raito keshite 以外 garage と garden
+  - 消して 全部 電気 以外 garage と garden
+  - 全部 電気 消して 以外 garage と garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito kakai 以外 kitchin
-  - 全部 raito kakai keshite 以外 kitchin
+  - 消して 全部 電気 kakai 以外 キッチン
+  - 全部 電気 kakai 消して 以外 キッチン
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito joukai 以外 shinshitsu
-  - 全部 raito joukai keshite 以外 shinshitsu
+  - 消して 全部 電気 joukai 以外 shinshitsumaster
+  - 全部 電気 joukai 消して 以外 shinshitsumaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - keshite 全部 raito kakai 以外 office
-  - 全部 raito kakai keshite 以外 office
+  - 消して 全部 電気 kakai 以外 office
+  - 全部 電気 kakai 消して 以外 office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - akete kaaten ribingu と shinshitsu
-  - kaaten ribingu と shinshitsu akete
+  - 開けて カーテン リビング と shinshitsumaster
+  - カーテン リビング と shinshitsumaster 開けて
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - shimete kaaten ribingu と shinshitsu
-  - kaaten ribingu と shinshitsu shimete
+  - 閉めて カーテン リビング と shinshitsumaster
+  - カーテン リビング と shinshitsumaster 閉めて
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - setto eakon ribingu と shinshitsu 21
-  - eakon ribingu と shinshitsu 21
+  - セット エアコン リビング と shinshitsumaster 21
+  - エアコン リビング と shinshitsumaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - setto raito ribingu と kitchin 50
-  - raito ribingu と kitchin 50
+  - セット 電気 リビング と キッチン 50
+  - 電気 リビング と キッチン 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - setto raito ribingu と kitchin red
-  - raito ribingu と kitchin red
+  - セット 電気 リビング と キッチン 赤
+  - 電気 リビング と キッチン 赤
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - nani raito ribingu と kitchin
-  - raito ribingu と kitchin
+  - 何 電気 リビング と キッチン
+  - 電気 リビング と キッチン
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - nani eakon ribingu と keshite raito kitchin
-  - keshite raito kitchin と nani eakon ribingu
+  - 何 エアコン リビング と 消して 電気 キッチン
+  - 消して 電気 キッチン と 何 エアコン リビング
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - kagi front doa と garage doa
-  - kagi kagi genkan と garage
+  - 鍵 front ドア と garage ドア
+  - 鍵 鍵 genkan と garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - tsukete eiga と keshite raito toire
-  - keshite raito toire と tsukete eiga
+  - つけて eiga と 消して 電気 toire
+  - 消して 電気 toire と つけて eiga

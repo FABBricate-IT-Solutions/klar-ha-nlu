@@ -66,8 +66,8 @@
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - was licht arbeitszimmer
-  - was arbeitszimmer licht
+  - was licht office
+  - was office licht
 - name: query_light.garden
   conditions:
   - type: query
@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - was vorhang schlafzimmer
-  - was schlafzimmer vorhang
+  - was vorhang schlafzimmermaster
+  - was schlafzimmermaster vorhang
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - was heizung schlafzimmer
-  - was schlafzimmer heizung
+  - was heizung schlafzimmermaster
+  - was schlafzimmermaster heizung
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - was temperatur schlafzimmer
-  - was schlafzimmer temperatur
+  - was temperatur schlafzimmermaster
+  - was schlafzimmermaster temperatur
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - was ventilator schlafzimmer
-  - was schlafzimmer ventilator
+  - was ventilator schlafzimmermaster
+  - was schlafzimmermaster ventilator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - was licht schlafzimmer
-  - was schlafzimmer licht
+  - was licht schlafzimmermaster
+  - was schlafzimmermaster licht
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - was licht schlafzimmer
-  - was schlafzimmer licht
+  - was licht schlafzimmermaster
+  - was schlafzimmermaster licht
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - was ensuite schlafzimmer
-  - was schlafzimmer ensuite
+  - was ensuite schlafzimmermaster
+  - was schlafzimmermaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - was licht schlafzimmer
-  - was schlafzimmer licht
+  - was licht schlafzimmermaster
+  - was schlafzimmermaster licht
 - name: query_light.master_bath_light
   conditions:
   - type: query

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - сложи парно хол 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- сложи парно спалня 19
+- сложи парно спалняmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - сложи завеса спалня2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - отвори завеса хол
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- сложи завеса спалня 19
+- сложи завеса спалняmaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- затвори завеса спалня
+- затвори завеса спалняmaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- отвори завеса спалня
+- отвори завеса спалняmaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - сложи вентилатор спалня2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - включи вентилатор дневнаfam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- сложи вентилатор спалня 28
+- сложи вентилатор спалняmaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- изключи вентилатор спалня
+- изключи вентилатор спалняmaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- включи вентилатор спалня
+- включи вентилатор спалняmaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- изключи вентилатор спалня и изключи светлина кухня
+- изключи вентилатор спалняmaster then изключи остров кухня
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- включи вентилатор спалня и включи светлина кухня
+- включи вентилатор спалняmaster then включи остров кухня
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - сложи таван спалня2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - включи таван кухня
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- сложи светлина кухня 99
+- сложи остров кухня 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- сложи светлина кухня green
+- сложи остров кухня green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- изключи светлина кухня
+- изключи остров кухня
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- включи светлина кухня
+- включи остров кухня
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - сложи светлина пералня 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - включи таван хол
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- сложи светлина хол 72
+- сложи lamp хол 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- сложи светлина хол red
+- сложи lamp хол red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- изключи светлина хол
+- изключи lamp хол
 devices/light_living_lamp::light_living_lamp_turn_on:
-- включи светлина хол
+- включи lamp хол
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - сложи светлина main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - включи светлина баняmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- сложи нощно спалня 25
+- сложи нощно спалняmaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- сложи нощно спалня red
+- сложи нощно спалняmaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- изключи нощно спалня
+- изключи нощно спалняmaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- включи нощно спалня
+- включи нощно спалняmaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- сложи таван спалня 77
+- сложи таван спалняmaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- сложи таван спалня blue
+- сложи таван спалняmaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- изключи таван спалня
+- изключи таван спалняmaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- включи таван спалня
+- включи таван спалняmaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- сложи светлина спалня 55
+- сложи ankleide спалняmaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- сложи светлина спалня black
+- сложи ankleide спалняmaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- изключи светлина спалня
+- изключи ankleide спалняmaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- включи светлина спалня
+- включи ankleide спалняmaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - сложи светлина тоалетна 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - включи телевизор дневнаfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause телевизор дневнаfam
+- pause tv дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - изключи телевизор дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - включи телевизор хол
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause телевизор хол
+- pause tv хол
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - изключи телевизор хол
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,28 +239,33 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - включи телевизор хол
 devices/scenes::dinner_time:
-- сложи светлина дневнаfamess 90 и включи таван кухня и сложи светлина кухня 80
+- сложи светлина дневнаfamess 90 then включи таван кухня then сложи остров кухня 80
 devices/scenes::good_morning:
-- включи таван кухня и сложи светлина дневнаfamess 100 и отвори завеса хол и отвори
-  завеса спалня
+- включи таван кухня then сложи светлина дневнаfamess 100 then отвори завеса хол then
+  отвори завеса спалняmaster
 devices/scenes::kids_bedtime:
-- изключи таван спалня2 и изключи таван спалня3 и изключи таван спалня4 и сложи светлина
-  антреgang 15
+- изключи таван спалня2 then изключи таван спалня3 then изключи таван спалня4 then
+  сложи светлина антреgang 15
 devices/scenes::movie_night:
-- изключи таван хол и сложи светлина хол 20 и включи телевизор хол и затвори завеса
-  хол
+- изключи таван хол then сложи lamp хол 20 then включи телевизор хол then затвори
+  завеса хол
 devices/scripts::good_night:
-- включи сцена нощ
+- изключи таван хол then изключи lamp хол then изключи светлина дневнаfamess then
+  изключи таван кухня then изключи остров кухня then изключи таван дневнаfam then
+  изключи светлина антре then изключи светлина антреgang then ключалка ключалка антре
+  then ключалка ключалка garage then сложи парно спалняmaster 20
 devices/scripts::leaving_home:
-- включи сцена изход
+- изключи таван хол then изключи lamp хол then изключи таван кухня then изключи таван
+  дневнаfam then изключи светлина антре then ключалка ключалка антре then ключалка
+  ключалка garage then затвори завеса garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - изключи съдомиялна
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - включи съдомиялна
 devices/switch_dryer::switch_dryer_turn_off:
-- изключи пералня
+- изключи dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- включи пералня
+- включи dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - изключи пералня
 devices/switch_washing_machine::switch_washing_machine_turn_on:

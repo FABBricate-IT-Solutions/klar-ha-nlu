@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - okke queen muriyil
-  - okke queen tivi muriyil
+  - പ്ലേ queen ഹാൾ
+  - പ്ലേ queen ടിവി ഹാൾ
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - okke album rumours by fleetwood mac muriyil
+  - പ്ലേ album rumours by fleetwood mac ഹാൾ
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - okke queen radio mode muriyil
+  - പ്ലേ queen radio mode ഹാൾ
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - okke bohemian rhapsody queue muriyil
+  - പ്ലേ bohemian rhapsody queue ഹാൾ
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enth tivi muriyil
-  - enth track muriyil
+  - എന്ത് ടിവി ഹാൾ
+  - എന്ത് track ഹാൾ
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - set tivi muriyil 10
-  - tivi muriyil 10
+  - സെറ്റ് ടിവി ഹാൾ 10
+  - ടിവി ഹാൾ 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - set tivi muriyil 20
-  - tivi muriyil 20
+  - സെറ്റ് ടിവി ഹാൾ 20
+  - ടിവി ഹാൾ 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - set tivi muriyil 30
-  - tivi muriyil 30
+  - സെറ്റ് ടിവി ഹാൾ 30
+  - ടിവി ഹാൾ 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - set tivi muriyil 50
-  - tivi muriyil 50
+  - സെറ്റ് ടിവി ഹാൾ 50
+  - ടിവി ഹാൾ 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - set tivi muriyil 80
-  - tivi muriyil 80
+  - സെറ്റ് ടിവി ഹാൾ 80
+  - ടിവി ഹാൾ 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track muriyil
+  - next track ഹാൾ
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track muriyil
+  - previous track ഹാൾ
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - okke queen adukkala
-  - okke queen tivi adukkala
+  - പ്ലേ queen അടുക്കള
+  - പ്ലേ queen ടിവി അടുക്കള
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - okke beatles muriyil
-  - okke beatles tivi muriyil
+  - പ്ലേ beatles ഹാൾ
+  - പ്ലേ beatles ടിവി ഹാൾ
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - okke radiohead muriyil
-  - okke radiohead tivi muriyil
+  - പ്ലേ radiohead ഹാൾ
+  - പ്ലേ radiohead ടിവി ഹാൾ
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - okke abba muriyil
-  - okke abba tivi muriyil
+  - പ്ലേ abba ഹാൾ
+  - പ്ലേ abba ടിവി ഹാൾ
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - okke coldplay muriyil
-  - okke coldplay tivi muriyil
+  - പ്ലേ coldplay ഹാൾ
+  - പ്ലേ coldplay ടിവി ഹാൾ
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - okke adele muriyil
-  - okke adele tivi muriyil
+  - പ്ലേ adele ഹാൾ
+  - പ്ലേ adele ടിവി ഹാൾ
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - okke prince muriyil
-  - okke prince tivi muriyil
+  - പ്ലേ prince ഹാൾ
+  - പ്ലേ prince ടിവി ഹാൾ
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - okke bowie muriyil
-  - okke bowie tivi muriyil
+  - പ്ലേ bowie ഹാൾ
+  - പ്ലേ bowie ടിവി ഹാൾ
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - okke nirvana muriyil
-  - okke nirvana tivi muriyil
+  - പ്ലേ nirvana ഹാൾ
+  - പ്ലേ nirvana ടിവി ഹാൾ
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - okke eagles muriyil
-  - okke eagles tivi muriyil
+  - പ്ലേ eagles ഹാൾ
+  - പ്ലേ eagles ടിവി ഹാൾ
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - okke madonna muriyil
-  - okke madonna tivi muriyil
+  - പ്ലേ madonna ഹാൾ
+  - പ്ലേ madonna ടിവി ഹാൾ
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - okke mozart muriyil
-  - okke mozart tivi muriyil
+  - പ്ലേ mozart ഹാൾ
+  - പ്ലേ mozart ടിവി ഹാൾ
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - okke daft punk muriyil
-  - okke daft punk tivi muriyil
+  - പ്ലേ daft punk ഹാൾ
+  - പ്ലേ daft punk ടിവി ഹാൾ
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - okke biafra muriyil
-  - okke biafra tivi muriyil
+  - പ്ലേ biafra ഹാൾ
+  - പ്ലേ biafra ടിവി ഹാൾ
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - okke queen adukkala
-  - okke queen tivi adukkala
+  - പ്ലേ queen അടുക്കള
+  - പ്ലേ queen ടിവി അടുക്കള
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - okke beatles adukkala
-  - okke beatles tivi adukkala
+  - പ്ലേ beatles അടുക്കള
+  - പ്ലേ beatles ടിവി അടുക്കള
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - okke radiohead adukkala
-  - okke radiohead tivi adukkala
+  - പ്ലേ radiohead അടുക്കള
+  - പ്ലേ radiohead ടിവി അടുക്കള
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - okke abba adukkala
-  - okke abba tivi adukkala
+  - പ്ലേ abba അടുക്കള
+  - പ്ലേ abba ടിവി അടുക്കള
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - okke coldplay adukkala
-  - okke coldplay tivi adukkala
+  - പ്ലേ coldplay അടുക്കള
+  - പ്ലേ coldplay ടിവി അടുക്കള
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - okke adele adukkala
-  - okke adele tivi adukkala
+  - പ്ലേ adele അടുക്കള
+  - പ്ലേ adele ടിവി അടുക്കള
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - okke prince adukkala
-  - okke prince tivi adukkala
+  - പ്ലേ prince അടുക്കള
+  - പ്ലേ prince ടിവി അടുക്കള
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - okke bowie adukkala
-  - okke bowie tivi adukkala
+  - പ്ലേ bowie അടുക്കള
+  - പ്ലേ bowie ടിവി അടുക്കള
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - okke nirvana adukkala
-  - okke nirvana tivi adukkala
+  - പ്ലേ nirvana അടുക്കള
+  - പ്ലേ nirvana ടിവി അടുക്കള
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - okke eagles adukkala
-  - okke eagles tivi adukkala
+  - പ്ലേ eagles അടുക്കള
+  - പ്ലേ eagles ടിവി അടുക്കള
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - okke madonna adukkala
-  - okke madonna tivi adukkala
+  - പ്ലേ madonna അടുക്കള
+  - പ്ലേ madonna ടിവി അടുക്കള
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - okke mozart adukkala
-  - okke mozart tivi adukkala
+  - പ്ലേ mozart അടുക്കള
+  - പ്ലേ mozart ടിവി അടുക്കള
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - okke daft punk adukkala
-  - okke daft punk tivi adukkala
+  - പ്ലേ daft punk അടുക്കള
+  - പ്ലേ daft punk ടിവി അടുക്കള
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - okke biafra adukkala
-  - okke biafra tivi adukkala
+  - പ്ലേ biafra അടുക്കള
+  - പ്ലേ biafra ടിവി അടുക്കള
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - okke queen office
-  - okke queen tivi office
+  - പ്ലേ queen office
+  - പ്ലേ queen ടിവി office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - okke beatles office
-  - okke beatles tivi office
+  - പ്ലേ beatles office
+  - പ്ലേ beatles ടിവി office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - okke radiohead office
-  - okke radiohead tivi office
+  - പ്ലേ radiohead office
+  - പ്ലേ radiohead ടിവി office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - okke abba office
-  - okke abba tivi office
+  - പ്ലേ abba office
+  - പ്ലേ abba ടിവി office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - okke coldplay office
-  - okke coldplay tivi office
+  - പ്ലേ coldplay office
+  - പ്ലേ coldplay ടിവി office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - okke adele office
-  - okke adele tivi office
+  - പ്ലേ adele office
+  - പ്ലേ adele ടിവി office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - okke prince office
-  - okke prince tivi office
+  - പ്ലേ prince office
+  - പ്ലേ prince ടിവി office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - okke bowie office
-  - okke bowie tivi office
+  - പ്ലേ bowie office
+  - പ്ലേ bowie ടിവി office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - okke nirvana office
-  - okke nirvana tivi office
+  - പ്ലേ nirvana office
+  - പ്ലേ nirvana ടിവി office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - okke eagles office
-  - okke eagles tivi office
+  - പ്ലേ eagles office
+  - പ്ലേ eagles ടിവി office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - okke madonna office
-  - okke madonna tivi office
+  - പ്ലേ madonna office
+  - പ്ലേ madonna ടിവി office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - okke mozart office
-  - okke mozart tivi office
+  - പ്ലേ mozart office
+  - പ്ലേ mozart ടിവി office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - okke daft punk office
-  - okke daft punk tivi office
+  - പ്ലേ daft punk office
+  - പ്ലേ daft punk ടിവി office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - okke biafra office
-  - okke biafra tivi office
+  - പ്ലേ biafra office
+  - പ്ലേ biafra ടിവി office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - okke queen radio mode muriyil
+  - പ്ലേ queen radio mode ഹാൾ
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enth tivi muriyil
-  - enth track muriyil
+  - എന്ത് ടിവി ഹാൾ
+  - എന്ത് track ഹാൾ
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - okke queen radio mode adukkala
+  - പ്ലേ queen radio mode അടുക്കള
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - enth tivi adukkala
-  - enth track adukkala
+  - എന്ത് ടിവി അടുക്കള
+  - എന്ത് track അടുക്കള
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - okke queen radio mode office
+  - പ്ലേ queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - enth tivi office
-  - enth track office
+  - എന്ത് ടിവി office
+  - എന്ത് track office

@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - відкрий штора спальня
-  - штора спальня відкрий
+  - відкрий штора спальняmaster
+  - штора спальняmaster відкрий
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - закрий штора спальня
-  - штора спальня закрий
+  - закрий штора спальняmaster
+  - штора спальняmaster закрий
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - постав штора спальня 0
-  - штора спальня 0
+  - постав штора спальняmaster 0
+  - штора спальняmaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - постав штора спальня 25
-  - штора спальня 25
+  - постав штора спальняmaster 25
+  - штора спальняmaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - постав штора спальня 40
-  - штора спальня 40
+  - постав штора спальняmaster 40
+  - штора спальняmaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - постав штора спальня 75
-  - штора спальня 75
+  - постав штора спальняmaster 75
+  - штора спальняmaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - постав штора спальня 100
-  - штора спальня 100
+  - постав штора спальняmaster 100
+  - штора спальняmaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - відкрий штора спальня
-  - штора спальня відкрий
+  - відкрий штора спальняmaster
+  - штора спальняmaster відкрий

@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - dakai keting tianhuaban 和 keting lamp
-  - keting tianhuaban 和 keting lamp dakai
+  - 打开 客厅 tianhuaban 和 客厅 deng
+  - 客厅 tianhuaban 和 客厅 deng 打开
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - guanbi keting tianhuaban 和 keting lamp
-  - keting tianhuaban 和 keting lamp guanbi
+  - 关闭 客厅 tianhuaban 和 客厅 deng
+  - 客厅 tianhuaban 和 客厅 deng 关闭
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - dakai chufang tianhuaban 和 chufang daotai
-  - chufang tianhuaban 和 chufang daotai dakai
+  - 打开 厨房 tianhuaban 和 厨房 daotai
+  - 厨房 tianhuaban 和 厨房 daotai 打开
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - guanbi chufang tianhuaban 和 chufang daotai
-  - chufang tianhuaban 和 chufang daotai guanbi
+  - 关闭 厨房 tianhuaban 和 厨房 daotai
+  - 厨房 tianhuaban 和 厨房 daotai 关闭
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - dakai keting tianhuaban 和 chufang daotai
-  - keting tianhuaban 和 chufang daotai dakai
+  - 打开 客厅 tianhuaban 和 厨房 daotai
+  - 客厅 tianhuaban 和 厨房 daotai 打开
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - guanbi keting tianhuaban 和 chufang daotai
-  - keting tianhuaban 和 chufang daotai guanbi
+  - 关闭 客厅 tianhuaban 和 厨房 daotai
+  - 客厅 tianhuaban 和 厨房 daotai 关闭
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - dakai office tianhuaban 和 zoulang deng
-  - office tianhuaban 和 zoulang deng dakai
+  - 打开 office tianhuaban 和 zoulang 灯
+  - office tianhuaban 和 zoulang 灯 打开
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - guanbi office tianhuaban 和 zoulang deng
-  - office tianhuaban 和 zoulang deng guanbi
+  - 关闭 office tianhuaban 和 zoulang 灯
+  - office tianhuaban 和 zoulang 灯 关闭
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - dakai garden deng 和 garage deng
-  - garden deng 和 garage deng dakai
+  - 打开 garden 灯 和 garage 灯
+  - garden 灯 和 garage 灯 打开
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - guanbi garden deng 和 garage deng
-  - garden deng 和 garage deng guanbi
+  - 关闭 garden 灯 和 garage 灯
+  - garden 灯 和 garage 灯 关闭
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - dakai woshi tianhuaban 和 woshi chuangtoudeng
-  - woshi tianhuaban 和 woshi chuangtoudeng dakai
+  - 打开 woshimaster tianhuaban 和 woshimaster chuangtoudeng
+  - woshimaster tianhuaban 和 woshimaster chuangtoudeng 打开
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - guanbi woshi tianhuaban 和 woshi chuangtoudeng
-  - woshi tianhuaban 和 woshi chuangtoudeng guanbi
+  - 关闭 woshimaster tianhuaban 和 woshimaster chuangtoudeng
+  - woshimaster tianhuaban 和 woshimaster chuangtoudeng 关闭
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - dakai jiatingfang tianhuaban 和 jiatingfangess deng
-  - jiatingfang tianhuaban 和 jiatingfangess deng dakai
+  - 打开 jiatingfang tianhuaban 和 jiatingfangess 灯
+  - jiatingfang tianhuaban 和 jiatingfangess 灯 打开
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - guanbi jiatingfang tianhuaban 和 jiatingfangess deng
-  - jiatingfang tianhuaban 和 jiatingfangess deng guanbi
+  - 关闭 jiatingfang tianhuaban 和 jiatingfangess 灯
+  - jiatingfang tianhuaban 和 jiatingfangess 灯 关闭
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - dakai basement deng 和 xiyifang deng
-  - basement deng 和 xiyifang deng dakai
+  - 打开 basement 灯 和 xiyifang 灯
+  - basement 灯 和 xiyifang 灯 打开
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - guanbi basement deng 和 xiyifang deng
-  - basement deng 和 xiyifang deng guanbi
+  - 关闭 basement 灯 和 xiyifang 灯
+  - basement 灯 和 xiyifang 灯 关闭
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - dakai woshi fengshan 和 chufang daotai
-  - woshi fengshan 和 chufang daotai dakai
+  - 打开 woshimaster 风扇 和 厨房 daotai
+  - woshimaster 风扇 和 厨房 daotai 打开
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - dakai keting lianzi 和 keting tianhuaban
-  - keting lianzi 和 keting tianhuaban dakai
+  - 打开 客厅 帘子 和 客厅 tianhuaban
+  - 客厅 帘子 和 客厅 tianhuaban 打开
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - dakai xiyifang xiyiji 和 xiyifang dryer
-  - xiyifang xiyiji 和 xiyifang dryer dakai
+  - 打开 xiyifang xiyiji 和 xiyifang dryer
+  - xiyifang xiyiji 和 xiyifang dryer 打开
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng keting 和 chufang
-  - deng keting 和 chufang guanbi
+  - 关闭 灯 客厅 和 厨房
+  - 灯 客厅 和 厨房 关闭
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng office 和 zoulang
-  - deng office 和 zoulang guanbi
+  - 关闭 灯 office 和 zoulang
+  - 灯 office 和 zoulang 关闭
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng garage 和 garden
-  - deng garage 和 garden guanbi
+  - 关闭 灯 garage 和 garden
+  - 灯 garage 和 garden 关闭
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng woshi 和 main bath
-  - deng woshi 和 main bath guanbi
+  - 关闭 灯 woshimaster 和 main bath
+  - 灯 woshimaster 和 main bath 关闭
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng jiatingfang 和 jiatingfangess
-  - deng jiatingfang 和 jiatingfangess guanbi
+  - 关闭 灯 jiatingfang 和 jiatingfangess
+  - 灯 jiatingfang 和 jiatingfangess 关闭
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng keting 和 jiatingfangess 和 chufang
-  - deng keting jiatingfangess 和 chufang guanbi
+  - 关闭 灯 客厅 和 jiatingfangess 和 厨房
+  - 灯 客厅 jiatingfangess 和 厨房 关闭
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng office 和 zoulang 和 garage
-  - deng office zoulang 和 garage dakai
+  - 打开 灯 office 和 zoulang 和 garage
+  - 灯 office zoulang 和 garage 打开
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi deng garden 和 basement 和 xiyifang
-  - deng garden basement 和 xiyifang guanbi
+  - 关闭 灯 garden 和 basement 和 xiyifang
+  - 灯 garden basement 和 xiyifang 关闭
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 daotai chufang
-  - 全部 deng guanbi 除了 daotai chufang
+  - 关闭 全部 灯 除了 daotai 厨房
+  - 全部 灯 关闭 除了 daotai 厨房
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 lamp keting
-  - 全部 deng guanbi 除了 lamp keting
+  - 关闭 全部 灯 除了 deng 客厅
+  - 全部 灯 关闭 除了 deng 客厅
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 garden
-  - 全部 deng guanbi 除了 garden
+  - 关闭 全部 灯 除了 garden
+  - 全部 灯 关闭 除了 garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 tianhuaban office
-  - 全部 deng guanbi 除了 tianhuaban office
+  - 关闭 全部 灯 除了 tianhuaban office
+  - 全部 灯 关闭 除了 tianhuaban office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 basement
-  - 全部 deng guanbi 除了 basement
+  - 关闭 全部 灯 除了 basement
+  - 全部 灯 关闭 除了 basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai 全部 deng 除了 chufang
-  - 全部 deng dakai 除了 chufang
+  - 打开 全部 灯 除了 厨房
+  - 全部 灯 打开 除了 厨房
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai 全部 deng 除了 office
-  - 全部 deng dakai 除了 office
+  - 打开 全部 灯 除了 office
+  - 全部 灯 打开 除了 office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai 全部 deng 除了 garden
-  - 全部 deng dakai 除了 garden
+  - 打开 全部 灯 除了 garden
+  - 全部 灯 打开 除了 garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai 全部 deng 除了 keting
-  - 全部 deng dakai 除了 keting
+  - 打开 全部 灯 除了 客厅
+  - 全部 灯 打开 除了 客厅
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai 全部 deng 除了 garage
-  - 全部 deng dakai 除了 garage
+  - 打开 全部 灯 除了 garage
+  - 全部 灯 打开 除了 garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - guanbi 全部 deng chufang 除了 daotai
-  - 全部 deng chufang guanbi 除了 daotai
+  - 关闭 全部 灯 厨房 除了 daotai
+  - 全部 灯 厨房 关闭 除了 daotai
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - guanbi 全部 deng keting 除了 lamp
-  - 全部 deng keting guanbi 除了 lamp
+  - 关闭 全部 灯 客厅 除了 deng
+  - 全部 灯 客厅 关闭 除了 deng
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - dakai 全部 deng 除了 daotai chufang
-  - 全部 deng dakai 除了 daotai chufang
+  - 打开 全部 灯 除了 daotai 厨房
+  - 全部 灯 打开 除了 daotai 厨房
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 chufang 和 office
-  - 全部 deng guanbi 除了 chufang 和 office
+  - 关闭 全部 灯 除了 厨房 和 office
+  - 全部 灯 关闭 除了 厨房 和 office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 keting 和 woshi
-  - 全部 deng guanbi 除了 keting 和 woshi
+  - 关闭 全部 灯 除了 客厅 和 woshimaster
+  - 全部 灯 关闭 除了 客厅 和 woshimaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng 除了 garage 和 garden
-  - 全部 deng guanbi 除了 garage 和 garden
+  - 关闭 全部 灯 除了 garage 和 garden
+  - 全部 灯 关闭 除了 garage 和 garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng louxia 除了 chufang
-  - 全部 deng louxia guanbi 除了 chufang
+  - 关闭 全部 灯 louxia 除了 厨房
+  - 全部 灯 louxia 关闭 除了 厨房
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng loushang 除了 woshi
-  - 全部 deng loushang guanbi 除了 woshi
+  - 关闭 全部 灯 loushang 除了 woshimaster
+  - 全部 灯 loushang 关闭 除了 woshimaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - guanbi 全部 deng louxia 除了 office
-  - 全部 deng louxia guanbi 除了 office
+  - 关闭 全部 灯 louxia 除了 office
+  - 全部 灯 louxia 关闭 除了 office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - kaiqi lianzi keting 和 woshi
-  - lianzi keting 和 woshi kaiqi
+  - 开启 帘子 客厅 和 woshimaster
+  - 帘子 客厅 和 woshimaster 开启
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - heshang lianzi keting 和 woshi
-  - lianzi keting 和 woshi heshang
+  - 合上 帘子 客厅 和 woshimaster
+  - 帘子 客厅 和 woshimaster 合上
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - shezhi kongtiao keting 和 woshi 21
-  - kongtiao keting 和 woshi 21
+  - 设置 空调 客厅 和 woshimaster 21
+  - 空调 客厅 和 woshimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - shezhi deng keting 和 chufang 50
-  - deng keting 和 chufang 50
+  - 设置 灯 客厅 和 厨房 50
+  - 灯 客厅 和 厨房 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - shezhi deng keting 和 chufang red
-  - deng keting 和 chufang red
+  - 设置 灯 客厅 和 厨房 红
+  - 灯 客厅 和 厨房 红
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - shenme deng keting 和 chufang
-  - deng keting 和 chufang
+  - 什么 灯 客厅 和 厨房
+  - 灯 客厅 和 厨房
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - shenme kongtiao keting 和 guanbi deng chufang
-  - guanbi deng chufang 和 shenme kongtiao keting
+  - 什么 空调 客厅 和 关闭 灯 厨房
+  - 关闭 灯 厨房 和 什么 空调 客厅
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - suo front men 和 garage men
-  - suo suo xuanguan 和 garage
+  - 锁 front 门 和 garage 门
+  - 锁 锁 xuanguan 和 garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - dakai dianying 和 guanbi deng kewei
-  - guanbi deng kewei 和 dakai dianying
+  - 打开 dianying 和 关闭 灯 kewei
+  - 关闭 灯 kewei 和 打开 dianying

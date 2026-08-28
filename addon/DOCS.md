@@ -1,18 +1,20 @@
 # Klar NLU
 
-Starts the Klar NLU engine next to Home Assistant. The conversation integration is installed separately with [HACS](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu).
+Runs the Klar NLU **engine** next to Home Assistant (Mapping / Lab in sidebar **Klar NLU**). Assist still needs the **HACS integration** — this App does not replace it, and installing both does not make parsing more accurate.
 
 Household path: [getting started](../docs/en/getting-started.md) · [Einstieg](../docs/getting-started.md). Token, expose, bundle: [troubleshooting](../docs/en/troubleshooting.md).
 
 ## After start
 
-1. Install **Klar NLU** via HACS (category Integration).
-2. Add the integration and choose **Use an engine that is already running**.
+1. Install **Klar NLU** via HACS (category Integration) if it is not already there.
+2. Add the integration and choose **Use the Klar NLU App or Docker**.
 3. URL: `http://klar-nlu:10520`
-4. If you set the add-on **token**, paste the same value into the integration **Write token**. Overlay writes from Home Assistant need it (Supervisor is not loopback).
+4. If you set the App **token**, paste the same value into the integration **Write token**. Overlay writes from Home Assistant need it (Supervisor is not loopback).
 5. In the integration options: personality, optional chit-chat agent, optional **Let the LLM refine NLU replies**. Assist’s conversation engine must stay **Klar NLU**.
 
-UI: open **Klar NLU** from the Home Assistant sidebar. Direct access still works at `http://<home-assistant-host>:10520` if you expose the port.
+Do not also pick **Start the bundled engine (HACS only)** while this App is running.
+
+UI: open **Klar NLU** from the Home Assistant sidebar (the App). Lovelace **Klar** is only the last Assist turn. Direct access still works at `http://<home-assistant-host>:10520` if you expose the port.
 
 ## Add-on options
 

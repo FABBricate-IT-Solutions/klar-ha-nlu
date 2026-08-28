@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - zapni loznice strop a loznice nocnik
-  - loznice strop a loznice nocnik zapni
+  - zapni loznicemaster strop a loznicemaster nocnik
+  - loznicemaster strop a loznicemaster nocnik zapni
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - vypni loznice strop a loznice nocnik
-  - loznice strop a loznice nocnik vypni
+  - vypni loznicemaster strop a loznicemaster nocnik
+  - loznicemaster strop a loznicemaster nocnik vypni
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - zapni loznice ventilator a kuchyne ostrov
-  - loznice ventilator a kuchyne ostrov zapni
+  - zapni loznicemaster ventilator a kuchyne ostrov
+  - loznicemaster ventilator a kuchyne ostrov zapni
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni svetlo loznice a main bath
-  - svetlo loznice a main bath vypni
+  - vypni svetlo loznicemaster a main bath
+  - svetlo loznicemaster a main bath vypni
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni vse svetlo krome obyvak a loznice
-  - vse svetlo vypni krome obyvak a loznice
+  - vypni vse svetlo krome obyvak a loznicemaster
+  - vse svetlo vypni krome obyvak a loznicemaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni vse svetlo patro krome loznice
-  - vse svetlo patro vypni krome loznice
+  - vypni vse svetlo patro krome loznicemaster
+  - vse svetlo patro vypni krome loznicemaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - otevri zaves obyvak a loznice
-  - zaves obyvak a loznice otevri
+  - otevri zaves obyvak a loznicemaster
+  - zaves obyvak a loznicemaster otevri
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - zavri zaves obyvak a loznice
-  - zaves obyvak a loznice zavri
+  - zavri zaves obyvak a loznicemaster
+  - zaves obyvak a loznicemaster zavri
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastav topeni obyvak a loznice 21
-  - topeni obyvak a loznice 21
+  - nastav topeni obyvak a loznicemaster 21
+  - topeni obyvak a loznicemaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

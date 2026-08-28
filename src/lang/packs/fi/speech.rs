@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "En saanut tuosta kiinni. Sano vaikka mika valo pitaa sytyttaa.",
+    unknown: "En saanut kiinni.",
     need_on: "Mika sytytetaan?",
     need_off: "Mika sammutetaan?",
     need_which: "Mika sytytetaan?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Mika sammutetaan?",
     timer_pause: "Mika sammutetaan?",
     list_add: "On listalla.",
+    calendar_list: "{items}",
+    calendar_empty: "Ei tapahtumia.",
+    calendar_none: "Ei kalenteria.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Mika otsikko?",
+    calendar_need_when: "Milloin?",
+    calendar_readonly: "Vain luku.",
+    calendar_deleted: "Tapahtuma poistettu.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Mika tapahtuma?",
+    calendar_no_uid: "Ei tunnisteita.",
+    no_music_player: "Ei soitinta.",
     done: "{name}",
     light_suffix: " valo",
     area_light: "valo {loc}",

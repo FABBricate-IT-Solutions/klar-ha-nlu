@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - skakel slaapkamer plafon en slaapkamer nagus
-  - slaapkamer plafon en slaapkamer nagus skakel
+  - skakel slaapkamermaster plafon en slaapkamermaster nagus
+  - slaapkamermaster plafon en slaapkamermaster nagus skakel
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - doof slaapkamer plafon en slaapkamer nagus
-  - slaapkamer plafon en slaapkamer nagus doof
+  - doof slaapkamermaster plafon en slaapkamermaster nagus
+  - slaapkamermaster plafon en slaapkamermaster nagus doof
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - skakel slaapkamer waaier en kombuis eiland
-  - slaapkamer waaier en kombuis eiland skakel
+  - skakel slaapkamermaster waaier en kombuis eiland
+  - slaapkamermaster waaier en kombuis eiland skakel
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - doof lig slaapkamer en main bath
-  - lig slaapkamer en main bath doof
+  - doof lig slaapkamermaster en main bath
+  - lig slaapkamermaster en main bath doof
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - doof almal lig behalwe sitkamer en slaapkamer
-  - almal lig doof behalwe sitkamer en slaapkamer
+  - doof almal lig behalwe sitkamer en slaapkamermaster
+  - almal lig doof behalwe sitkamer en slaapkamermaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - doof almal lig boonste behalwe slaapkamer
-  - almal lig boonste doof behalwe slaapkamer
+  - doof almal lig boonste behalwe slaapkamermaster
+  - almal lig boonste doof behalwe slaapkamermaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - oop gordyn sitkamer en slaapkamer
-  - gordyn sitkamer en slaapkamer oop
+  - oop gordyn sitkamer en slaapkamermaster
+  - gordyn sitkamer en slaapkamermaster oop
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - toe gordyn sitkamer en slaapkamer
-  - gordyn sitkamer en slaapkamer toe
+  - toe gordyn sitkamer en slaapkamermaster
+  - gordyn sitkamer en slaapkamermaster toe
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stel verwarming sitkamer en slaapkamer 21
-  - verwarming sitkamer en slaapkamer 21
+  - stel verwarming sitkamer en slaapkamermaster 21
+  - verwarming sitkamer en slaapkamermaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

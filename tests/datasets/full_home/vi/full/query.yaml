@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - gi rem phongngu
-  - gi phongngu rem
+  - gi rem phongngumaster
+  - gi phongngumaster rem
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - gi dieuhoa phongngu
-  - gi phongngu dieuhoa
+  - gi dieuhoa phongngumaster
+  - gi phongngumaster dieuhoa
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - gi dieuhoa phongngu
-  - gi phongngu dieuhoa
+  - gi dieuhoa phongngumaster
+  - gi phongngumaster dieuhoa
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - gi quat phongngu
-  - gi phongngu quat
+  - gi quat phongngumaster
+  - gi phongngumaster quat
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - gi bongden phongngu
-  - gi phongngu bongden
+  - gi bongden phongngumaster
+  - gi phongngumaster bongden
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - gi bongden phongngu
-  - gi phongngu bongden
+  - gi bongden phongngumaster
+  - gi phongngumaster bongden
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - gi ensuite phongngu
-  - gi phongngu ensuite
+  - gi ensuite phongngumaster
+  - gi phongngumaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - gi bongden phongngu
-  - gi phongngu bongden
+  - gi bongden phongngumaster
+  - gi phongngumaster bongden
 - name: query_light.master_bath_light
   conditions:
   - type: query

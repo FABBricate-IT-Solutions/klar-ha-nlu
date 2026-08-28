@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Klar NLU",
-        "description": "Release channel picks the engine and can be changed later. On Home Assistant OS, Staging uses Klar NLU (Staging) even if you started with the bundled engine. A custom URL is left alone.",
+        "description": "This integration talks to Assist. A separate engine parses speech: the Klar NLU App (add-on), this bundled process, or Docker. On Home Assistant OS install the App as well, then pick Use the Klar NLU App. Without the App, pick Start the bundled engine. Do not run both. Release channel can be changed later.",
         "data": {
           "mode": "Engine",
           "channel": "Release channel",
@@ -36,6 +36,7 @@
           "assist_filter": "Only control entities exposed to Assist",
           "nlu_rag": "NLU-RAG (opt-in)",
           "quiet_ack": "Short confirmation (chime)",
+          "calendar_llm": "Send calendar queries to the LLM",
           "channel": "Release channel"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Developer option. On (default): Klar changes only what Assist may see. Off: match hidden sensors and switches too — easier to hit the wrong device.",
           "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
           "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime on the satellite.",
+          "calendar_llm": "Off by default. On: Klar still reads the calendar, then the fallback LLM speaks the events. Off: Klar speaks the list itself. Create, delete, and move stay in Klar.",
           "languages": "Default follows the Home Assistant system language. All languages keeps every compiled Assist locale enabled. Assist still pins one pack per request.",
           "channel": "Works anytime. On Home Assistant OS, Staging points at Klar NLU (Staging) even if setup started the bundled engine. Stable goes back to the Klar NLU app or the bundled engine. A custom URL is left alone. Do not edit `.storage`."
         }
@@ -58,8 +60,8 @@
   "selector": {
     "engine_mode": {
       "options": {
-        "local": "Start the bundled engine (recommended)",
-        "remote": "Use an engine that is already running"
+        "local": "Start the bundled engine (HACS only)",
+        "remote": "Use the Klar NLU App or Docker"
       }
     },
     "release_channel": {

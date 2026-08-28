@@ -36,6 +36,7 @@
           "assist_filter": "Controlar només entitats exposades a Assist",
           "nlu_rag": "NLU-RAG (opcional)",
           "quiet_ack": "Confirmació breu (timbre)",
+          "calendar_llm": "Enviar les consultes de calendari a l'LLM",
           "channel": "Canal de publicació"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Activat: només el que Assist pot veure. Desactivat: també entitats ocultes.",
           "nlu_rag": "Desactivat per defecte. Al xat només el fragment reconegut va al model de reserva.",
           "quiet_ack": "En encendre o apagar simple, sense frase: només un timbre curt al satèl·lit.",
+          "calendar_llm": "Desactivat per defecte. Activat: Klar llegeix el calendari i l'LLM de reserva diu els esdeveniments. Desactivat: Klar diu la llista. Crear, esborrar i moure queden a Klar.",
           "languages": "Per defecte, la llengua del sistema de Home Assistant.",
           "channel": "En qualsevol moment. Staging apunta a Klar NLU (Staging)."
         }

@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - allume lumiere salon
 devices/geraete::filmabend:
-- allume Filmabend
+- allume scene filmabend
 devices/geraete::kugel_an:
-- allume globe chambre
+- allume globe
 devices/geraete::luefter_50:
 - mets ventilateur bureau 50
 devices/geraete::pc_an:
-- allume appareil
+- allume pc
 devices/geraete::r2d2_saugen:
 - allume aspirateur salon
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - allume lave
 devices/klima::klima_schlaf_21:
-- mets chauffage chambre 21
+- mets ac chambre 21
 devices/spoken::deckenlampe_an:
 - allume plafond chambre
 devices/spoken::kugel_aus:
-- eteins globe chambre
+- eteins globe
 devices/spoken::luefter_aus:
 - eteins ventilateur bureau
 devices/spoken::rollo_auf:
 - ouvre store salon
 devices/spoken::trockner_an:
-- allume lave
+- allume sechelinge
 devices/spoken::tv_aus:
-- eteins tele
+- eteins tv
 devices/spoken_more::decke_aus_casual:
 - eteins plafond chambre
 devices/spoken_more::kugel_casual:
-- allume globe chambre
+- allume globe
 devices/spoken_more::pc_aus:
-- eteins appareil
+- eteins pc
 devices/spoken_more::spuelmaschine_an:
 - allume lavevaisselle
 devices/spoken_more::waschmaschine_aus:

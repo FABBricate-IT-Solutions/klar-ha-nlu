@@ -19,15 +19,17 @@ CONF_REFINE_PROMPT = "refine_prompt"
 CONF_REFINE_SPEECH = "refine_speech"
 CONF_NLU_RAG = "nlu_rag"
 CONF_QUIET_ACK = "quiet_ack"
+CONF_CALENDAR_LLM = "calendar_llm"
 CONF_TOKEN = "token"
 CONF_CHANNEL = "channel"
-ENGINE_VERSION = "2026.8.31"
+ENGINE_VERSION = "2026.8.47"
 DEFAULT_ASSIST_FILTER = True
 DEFAULT_PERSONALITY = "default"
 DEFAULT_REFINE_PROMPT = ""
 DEFAULT_REFINE_SPEECH = False
 DEFAULT_NLU_RAG = False
 DEFAULT_QUIET_ACK = False
+DEFAULT_CALENDAR_LLM = False
 PERSONALITIES = (
     "default",
     "butler",
@@ -60,8 +62,40 @@ def resolve_channel(value: object) -> str:
     return CHANNEL_STAGING if str(value or "") == CHANNEL_STAGING else CHANNEL_STABLE
 
 
+_ADDON_STABLE = "klar-nlu"
+_ADDON_STAGING = "klar-nlu-staging"
+
+
 def _normalize_engine_url(url: object) -> str:
     return str(url or "").strip().rstrip("/")
+
+
+def _engine_host(url: object) -> str:
+    return (urlparse(_normalize_engine_url(url)).hostname or "").lower()
+
+
+def _addon_label(host: str) -> str:
+    return host.split(".")[0].lower()
+
+
+def _addon_kind(host: str) -> str | None:
+    label = _addon_label(host)
+    if label == _ADDON_STAGING or label.endswith(f"-{_ADDON_STAGING}"):
+        return CHANNEL_STAGING
+    if label == _ADDON_STABLE or label.endswith(f"-{_ADDON_STABLE}"):
+        return CHANNEL_STABLE
+    return None
+
+
+def _supervisor_addon_prefix(host: str) -> str | None:
+    label = _addon_label(host)
+    if label.endswith(f"-{_ADDON_STAGING}"):
+        prefix = label[: -len(_ADDON_STAGING)].rstrip("-")
+        return prefix or None
+    if label.endswith(f"-{_ADDON_STABLE}"):
+        prefix = label[: -len(_ADDON_STABLE)].rstrip("-")
+        return prefix or None
+    return None
 
 
 def addon_url_for_channel(channel: object) -> str:
@@ -79,10 +113,21 @@ def is_managed_engine_url(url: object) -> bool:
         _normalize_engine_url(DEFAULT_STAGING_ADDON_URL),
     }:
         return True
-    host = urlparse(text).hostname or ""
-    return host in {"klar-nlu", "klar-nlu-staging"} or host.endswith(
-        ("-klar-nlu", "-klar-nlu-staging")
-    )
+    return _addon_kind(_engine_host(text)) is not None
+
+
+def _retarget_addon_url(url: str, channel: object) -> str:
+    parsed = urlparse(_normalize_engine_url(url))
+    host = parsed.hostname or ""
+    prefix = _supervisor_addon_prefix(host)
+    if prefix is None and _addon_kind(host) is None:
+        return addon_url_for_channel(channel)
+    slug = _ADDON_STAGING if resolve_channel(channel) == CHANNEL_STAGING else _ADDON_STABLE
+    name = f"{prefix}-{slug}" if prefix else slug
+    labels = host.split(".")
+    new_host = ".".join([name, *labels[1:]]) if len(labels) > 1 else name
+    netloc = f"{new_host}:{parsed.port}" if parsed.port else new_host
+    return parsed._replace(netloc=netloc).geturl()
 
 
 def resolve_engine_target(
@@ -95,6 +140,8 @@ def resolve_engine_target(
     text = str(url or "").strip()
     if text and not is_managed_engine_url(text):
         return MODE_REMOTE, text
+    if text and _supervisor_addon_prefix(_engine_host(text)):
+        return MODE_REMOTE, _retarget_addon_url(text, channel)
     if resolve_channel(channel) == CHANNEL_STAGING:
         if supervisor or str(mode or "") == MODE_REMOTE:
             return MODE_REMOTE, DEFAULT_STAGING_ADDON_URL

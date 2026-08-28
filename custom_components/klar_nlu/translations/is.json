@@ -36,6 +36,7 @@
           "assist_filter": "Stýra aðeins einingum sem Assist sér",
           "nlu_rag": "NLU-RAG (valfrjálst)",
           "quiet_ack": "Stutt staðfesting (bjalla)",
+          "calendar_llm": "Senda dagatalsfyrirspurnir til LLM",
           "channel": "Útgáfurás"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Kveikt: aðeins það sem Assist sér. Slökkt: líka faldar einingar.",
           "nlu_rag": "Slökkt sjálfgefið. Í spjalli fer aðeins samsvarandi sneið til varalíkansins.",
           "quiet_ack": "Við einfalda kveikingu/slökkvun ljóss er ekkert talað, aðeins stuttur hljóð á gervihnettinum.",
+          "calendar_llm": "Slökkt sjálfgefið. Kveikt: Klar les dagatalið, varakerfið segir atburðina. Slökkt: Klar segir listann. Búa til, eyða og færa verða áfram hjá Klar.",
           "languages": "Sjálfgefið fylgir kerfistungumáli Home Assistant.",
           "channel": "Hvenær sem er. Staging vísar á Klar NLU (Staging)."
         }

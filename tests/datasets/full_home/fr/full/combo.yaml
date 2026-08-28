@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - allume chambre plafond et chambre chevet
-  - chambre plafond et chambre chevet allume
+  - allume chambremaster plafond et chambremaster chevet
+  - chambremaster plafond et chambremaster chevet allume
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - eteins chambre plafond et chambre chevet
-  - chambre plafond et chambre chevet eteins
+  - eteins chambremaster plafond et chambremaster chevet
+  - chambremaster plafond et chambremaster chevet eteins
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - allume chambre ventilateur et cuisine ilot
-  - chambre ventilateur et cuisine ilot allume
+  - allume chambremaster ventilateur et cuisine ilot
+  - chambremaster ventilateur et cuisine ilot allume
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - eteins lumiere chambre et salledebain
-  - lumiere chambre et salledebain eteins
+  - eteins lumiere chambremaster et salledebain
+  - lumiere chambremaster et salledebain eteins
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - eteins tout lumiere sauf salon et chambre
-  - tout lumiere eteins sauf salon et chambre
+  - eteins tout lumiere sauf salon et chambremaster
+  - tout lumiere eteins sauf salon et chambremaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - eteins tout lumiere etage sauf chambre
-  - tout lumiere etage eteins sauf chambre
+  - eteins tout lumiere etage sauf chambremaster
+  - tout lumiere etage eteins sauf chambremaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - ouvre store salon et chambre
-  - store salon et chambre ouvre
+  - ouvre store salon et chambremaster
+  - store salon et chambremaster ouvre
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - ferme store salon et chambre
-  - store salon et chambre ferme
+  - ferme store salon et chambremaster
+  - store salon et chambremaster ferme
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - mets chauffage salon et chambre 21
-  - chauffage salon et chambre 21
+  - mets chauffage salon et chambremaster 21
+  - chauffage salon et chambremaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

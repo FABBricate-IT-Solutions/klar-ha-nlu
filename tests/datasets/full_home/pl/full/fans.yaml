@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - wentylator sypialnia wlacz
-  - wlacz wentylator sypialnia
+  - wentylator sypialniamaster wlacz
+  - wlacz wentylator sypialniamaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - wylacz wentylator sypialnia
-  - wentylator sypialnia wylacz
+  - wylacz wentylator sypialniamaster
+  - wentylator sypialniamaster wylacz
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - ustaw wentylator sypialnia 40
-  - wentylator sypialnia 40
+  - ustaw wentylator sypialniamaster 40
+  - wentylator sypialniamaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - ustaw wentylator sypialnia 20
-  - wentylator sypialnia 20
+  - ustaw wentylator sypialniamaster 20
+  - wentylator sypialniamaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - ustaw wentylator sypialnia 60
-  - wentylator sypialnia 60
+  - ustaw wentylator sypialniamaster 60
+  - wentylator sypialniamaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - ustaw wentylator sypialnia 80
-  - wentylator sypialnia 80
+  - ustaw wentylator sypialniamaster 80
+  - wentylator sypialniamaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

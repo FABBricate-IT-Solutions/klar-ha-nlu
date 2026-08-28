@@ -64,6 +64,7 @@ jobs:
         env:
           VERSION: ${{ inputs.version }}
           MESSAGE: ${{ github.event.head_commit.message }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"

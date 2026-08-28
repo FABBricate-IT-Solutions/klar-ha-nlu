@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - укључи вентилатор спавача2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- стави светло спавача2 65
+- стави све светло спавача2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- стави светло спавача2 pink
+- стави све светло спавача2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- искључи светло спавача2
+- искључи све светло спавача2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- укључи светло спавача2
+- укључи све светло спавача2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - затвори завеса спавача3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - стави завеса спавача3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- стави светло спавача3 76
+- стави све светло спавача3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- стави светло спавача3 blue
+- стави све светло спавача3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- искључи светло спавача3
+- искључи све светло спавача3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- укључи светло спавача3
+- укључи све светло спавача3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- стави светло спавача4 69
+- стави све светло спавача4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- стави светло спавача4 green
+- стави све светло спавача4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- искључи светло спавача4
+- искључи све светло спавача4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- укључи светло спавача4
+- укључи све светло спавача4
 area/dining_lights::dining_lights_change_brightness:
-- стави светло дневнаfamess 54
+- стави све светло дневнаfamess 54
 area/dining_lights::dining_lights_change_color:
-- стави светло дневнаfamess blue
+- стави све светло дневнаfamess blue
 area/dining_lights::dining_lights_turn_off:
-- искључи светло дневнаfamess
+- искључи све светло дневнаfamess
 area/dining_lights::dining_lights_turn_on:
-- укључи светло дневнаfamess
+- укључи све светло дневнаfamess
 area/entryway_lights::entryway_lights_change_brightness:
-- стави светло улаз 72
+- стави све светло улаз 72
 area/entryway_lights::entryway_lights_change_color:
-- стави светло улаз black
+- стави све светло улаз black
 area/entryway_lights::entryway_lights_turn_off:
-- искључи светло улаз
+- искључи све светло улаз
 area/entryway_lights::entryway_lights_turn_on:
-- укључи светло улаз
+- укључи све светло улаз
 area/entryway_locks::entryway_locks_lock:
 - брава брава улаз
 area/entryway_locks::entryway_locks_unlock:
 - отвори брава улаз
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- стави светло дневнаfam 39 и стави светло кухиња 39
+- стави све светло дневнаfam 39 then стави све светло кухиња 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- стави светло дневнаfam purple и стави светло кухиња purple
+- стави све светло дневнаfam purple then стави све светло кухиња purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- искључи светло дневнаfam и искључи светло кухиња
+- искључи све светло дневнаfam then искључи све светло кухиња
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- укључи светло дневнаfam и укључи светло кухиња
+- укључи све светло дневнаfam then укључи све светло кухиња
 area/family_room_fans::family_room_fans_set_fan_speed:
 - стави вентилатор дневнаfam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - укључи вентилатор дневнаfam
 area/family_room_lights::family_room_lights_change_brightness:
-- стави светло дневнаfam 44
+- стави све светло дневнаfam 44
 area/family_room_lights::family_room_lights_change_color:
-- стави светло дневнаfam green
+- стави све светло дневнаfam green
 area/family_room_lights::family_room_lights_turn_off:
-- искључи светло дневнаfam
+- искључи све светло дневнаfam
 area/family_room_lights::family_room_lights_turn_on:
-- укључи светло дневнаfam
+- укључи све светло дневнаfam
 area/garage_covers::garage_covers_close:
 - затвори завеса garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - стави завеса garage 86
 area/garage_lights::garage_lights_change_brightness:
-- стави светло garage 16
+- стави све светло garage 16
 area/garage_lights::garage_lights_change_color:
-- стави светло garage blue
+- стави све светло garage blue
 area/garage_lights::garage_lights_turn_off:
-- искључи светло garage
+- искључи све светло garage
 area/garage_lights::garage_lights_turn_on:
-- укључи светло garage
+- укључи све светло garage
 area/garage_locks::garage_locks_lock:
 - брава брава garage
 area/garage_locks::garage_locks_unlock:
 - отвори брава garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- стави светло улазgang 26 и стави светло wc 26
+- стави све светло улазgang 26 then стави све светло wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- стави светло улазgang purple и стави светло wc purple
+- стави све светло улазgang purple then стави све светло wc purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- искључи светло улазgang и искључи светло wc
+- искључи све светло улазgang then искључи све светло wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- укључи светло улазgang и укључи светло wc
+- укључи све светло улазgang then укључи све светло wc
 area/hallway_lights::hallway_lights_change_brightness:
-- стави светло улазgang 61
+- стави све светло улазgang 61
 area/hallway_lights::hallway_lights_change_color:
-- стави светло улазgang orange
+- стави све светло улазgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- искључи светло улазgang
+- искључи све светло улазgang
 area/hallway_lights::hallway_lights_turn_on:
-- укључи светло улазgang
+- укључи све светло улазgang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- стави светло кухиња 45
+- стави све светло кухиња 45
 area/kitchen_lights::kitchen_lights_change_color:
-- стави светло кухиња pink
+- стави све светло кухиња pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- искључи светло кухиња
+- искључи све светло кухиња
 area/kitchen_lights::kitchen_lights_turn_on:
-- укључи светло кухиња
+- укључи све светло кухиња
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- искључи уређај кухиња
+- искључи све уређај кухиња
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- укључи уређај кухиња
+- укључи све уређај кухиња
 area/laundry_lights::laundry_lights_change_brightness:
-- стави светло вешерница 62
+- стави све светло вешерница 62
 area/laundry_lights::laundry_lights_change_color:
-- стави светло вешерница yellow
+- стави све светло вешерница yellow
 area/laundry_lights::laundry_lights_turn_off:
-- искључи светло вешерница
+- искључи све светло вешерница
 area/laundry_lights::laundry_lights_turn_on:
-- укључи светло вешерница
+- укључи све светло вешерница
 area/laundry_switchs::laundry_switchs_turn_off:
-- искључи уређај вешерница
+- искључи све уређај вешерница
 area/laundry_switchs::laundry_switchs_turn_on:
-- укључи уређај вешерница
+- укључи све уређај вешерница
 area/living_climates::living_climates_set_temperature:
 - стави грејање дневна 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - стави завеса дневна 46
 area/living_lights::living_lights_change_brightness:
-- стави светло дневна 84
+- стави све светло дневна 84
 area/living_lights::living_lights_change_color:
-- стави светло дневна blue
+- стави све светло дневна blue
 area/living_lights::living_lights_turn_off:
-- искључи светло дневна
+- искључи све светло дневна
 area/living_lights::living_lights_turn_on:
-- укључи светло дневна
+- укључи све светло дневна
 area/main_bath_lights::main_bath_lights_change_brightness:
-- стави светло main bath 73
+- стави све светло main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- стави светло main bath pink
+- стави све светло main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- искључи светло main bath
+- искључи све светло main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- укључи светло main bath
+- укључи све светло main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- искључи уређај main bath
+- искључи све уређај main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- укључи уређај main bath
+- укључи све уређај main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- стави светло купатилоmaster 60
+- стави све светло купатилоmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- стави светло купатилоmaster black
+- стави све светло купатилоmaster black
 area/master_bath_lights::master_bath_lights_turn_off:
-- искључи светло купатилоmaster
+- искључи све светло купатилоmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- укључи светло купатилоmaster
+- укључи све светло купатилоmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- искључи уређај купатилоmaster
+- искључи све уређај купатилоmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- укључи уређај купатилоmaster
+- укључи све уређај купатилоmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- стави грејање спавача 20 и стави грејање дневна 20
+- стави грејање спавачаmaster 20 then стави грејање дневна 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- затвори завеса спавача и затвори завеса дневна
+- затвори завеса спавачаmaster then затвори завеса дневна
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- отвори завеса спавача и отвори завеса дневна
+- отвори завеса спавачаmaster then отвори завеса дневна
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- стави завеса спавача 19 и стави завеса дневна 19
+- стави завеса спавачаmaster 19 then стави завеса дневна 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- стави светло спавача 25 и стави светло дневна 25
+- стави све светло спавачаmaster 25 then стави све светло дневна 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- стави светло спавача white и стави светло дневна white
+- стави све светло спавачаmaster white then стави све светло дневна white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- искључи светло спавача и искључи светло дневна
+- искључи све светло спавачаmaster then искључи све светло дневна
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- укључи светло спавача и укључи светло дневна
+- укључи све светло спавачаmaster then укључи све светло дневна
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- стави светло спавача 57 и стави светло main bath 57
+- стави све светло спавачаmaster 57 then стави све светло main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- стави светло спавача pink и стави светло main bath pink
+- стави све светло спавачаmaster pink then стави све светло main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- искључи светло спавача и искључи светло main bath
+- искључи све светло спавачаmaster then искључи све светло main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- укључи светло спавача и укључи светло main bath
+- укључи све светло спавачаmaster then укључи све светло main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- стави грејање спавача 20
+- стави грејање спавачаmaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- затвори завеса спавача
+- затвори завеса спавачаmaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- отвори завеса спавача
+- отвори завеса спавачаmaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- стави завеса спавача 38
+- стави завеса спавачаmaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- стави вентилатор спавача 79
+- стави вентилатор спавачаmaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- искључи вентилатор спавача
+- искључи вентилатор спавачаmaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- укључи вентилатор спавача
+- укључи вентилатор спавачаmaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- стави светло спавача 73
+- стави све светло спавачаmaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- стави светло спавача pink
+- стави све светло спавачаmaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- искључи светло спавача
+- искључи све светло спавачаmaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- укључи светло спавача
+- укључи све светло спавачаmaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- стави светло wc 52
+- стави све светло wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- стави светло wc purple
+- стави све светло wc purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- искључи светло wc
+- искључи све светло wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- укључи светло wc
+- укључи све светло wc
 area/spoken_lights::spoken_bedroom_inflection:
-- стави светло спавача red
+- стави све светло спавачаmaster red
 area/spoken_lights::spoken_except_island:
 - искључи све светло осим острво
 area/spoken_lights::spoken_except_kitchen:
-- искључи све светло осим кухиња осим острво
+- искључи све светло осим кухиња
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- искључи светло дневна и искључи светло дневнаfamess и искључи светло кухиња
+- искључи све светло дневна then искључи све светло дневнаfamess then искључи све
+  светло кухиња
 area/spoken_lights::spoken_stt_kitchen_off:
-- искључи светло кухиња
+- искључи све светло кухиња
 area/spoken_lights::spoken_stt_living_off:
-- искључи светло дневна
+- искључи све светло дневна

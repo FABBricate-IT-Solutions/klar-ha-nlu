@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventola camera accendi
-  - accendi ventola camera
+  - ventola cameramaster accendi
+  - accendi ventola cameramaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - spegni ventola camera
-  - ventola camera spegni
+  - spegni ventola cameramaster
+  - ventola cameramaster spegni
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - metti ventola camera 40
-  - ventola camera 40
+  - metti ventola cameramaster 40
+  - ventola cameramaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - metti ventola camera 20
-  - ventola camera 20
+  - metti ventola cameramaster 20
+  - ventola cameramaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - metti ventola camera 60
-  - ventola camera 60
+  - metti ventola cameramaster 60
+  - ventola cameramaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - metti ventola camera 80
-  - ventola camera 80
+  - metti ventola cameramaster 80
+  - ventola cameramaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

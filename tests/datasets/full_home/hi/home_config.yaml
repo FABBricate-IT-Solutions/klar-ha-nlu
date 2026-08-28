@@ -31,9 +31,10 @@ areas:
   aliases:
   - pravesh
 - id: living
-  name: Baithak
+  name: बैठक
   floor: ground
   aliases:
+  - बैठक
   - baithak
 - id: dining
   name: Parivarikess
@@ -41,9 +42,10 @@ areas:
   aliases:
   - parivarikess
 - id: kitchen
-  name: Rasoi
+  name: रसोई
   floor: ground
   aliases:
+  - रसोई
   - rasoi
 - id: family_room
   name: Parivarik
@@ -76,9 +78,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Shayankaksh
+  name: Shayankakshmaster
   floor: upper
   aliases:
+  - shayankakshmaster
   - shayankaksh
 - id: bedroom_2
   name: Shayankaksh2
@@ -118,39 +121,39 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: pravesh batti
+  name: pravesh बत्ती
   aliases:
-  - pravesh batti
-  - batti
+  - pravesh बत्ती
+  - बत्ती
 - id: light.living_ceiling
   area_id: living
-  name: baithak chhat
+  name: बैठक chhat
   aliases:
-  - baithak chhat
+  - बैठक chhat
   - chhat
 - id: light.living_lamp
   area_id: living
-  name: baithak batti
+  name: बैठक batti
   aliases:
-  - baithak batti
+  - बैठक batti
   - batti
 - id: light.dining_pendant
   area_id: dining
-  name: parivarikess batti
+  name: parivarikess बत्ती
   aliases:
-  - parivarikess batti
-  - batti
+  - parivarikess बत्ती
+  - बत्ती
 - id: light.kitchen_ceiling
   area_id: kitchen
-  name: rasoi chhat
+  name: रसोई chhat
   aliases:
-  - rasoi chhat
+  - रसोई chhat
   - chhat
 - id: light.kitchen_island
   area_id: kitchen
-  name: rasoi dweep
+  name: रसोई dweep
   aliases:
-  - rasoi dweep
+  - रसोई dweep
   - dweep
 - id: light.family_ceiling
   area_id: family_room
@@ -160,22 +163,22 @@ devices:
   - chhat
 - id: light.laundry_light
   area_id: laundry
-  name: dhobi batti
+  name: dhobi बत्ती
   aliases:
-  - dhobi batti
-  - batti
+  - dhobi बत्ती
+  - बत्ती
 - id: light.powder_room_light
   area_id: powder_room
-  name: shauchalay batti
+  name: shauchalay बत्ती
   aliases:
-  - shauchalay batti
-  - batti
+  - shauchalay बत्ती
+  - बत्ती
 - id: light.garage_light
   area_id: garage
-  name: garage batti
+  name: garage बत्ती
   aliases:
-  - garage batti
-  - batti
+  - garage बत्ती
+  - बत्ती
 - id: light.office_ceiling
   area_id: office
   name: office chhat
@@ -184,35 +187,35 @@ devices:
   - chhat
 - id: light.garden
   area_id: garden
-  name: garden batti
+  name: garden बत्ती
   aliases:
-  - garden batti
-  - batti
+  - garden बत्ती
+  - बत्ती
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: shayankaksh chhat
+  name: shayankakshmaster chhat
   aliases:
-  - shayankaksh chhat
+  - shayankakshmaster chhat
   - chhat
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: shayankaksh ensuite
+  name: shayankakshmaster ensuite
   aliases:
-  - shayankaksh ensuite
+  - shayankakshmaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: shayankaksh left palang
+  name: shayankakshmaster left palang
   aliases:
-  - shayankaksh left palang
+  - shayankakshmaster left palang
   - palang
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: shayankaksh right palang
+  name: shayankakshmaster right palang
   aliases:
-  - shayankaksh right palang
+  - shayankakshmaster right palang
   - palang
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -234,122 +237,122 @@ devices:
   - chhat
 - id: light.master_bath_light
   area_id: master_bath
-  name: mukhyasnan batti
+  name: mukhyasnan बत्ती
   aliases:
-  - mukhyasnan batti
-  - batti
+  - mukhyasnan बत्ती
+  - बत्ती
 - id: light.main_bath_light
   area_id: main_bath
-  name: main bath batti
+  name: main bath बत्ती
   aliases:
-  - main bath batti
-  - batti
+  - main bath बत्ती
+  - बत्ती
 - id: light.hallway_light
   area_id: hallway
-  name: hallway batti
+  name: hallway बत्ती
   aliases:
-  - hallway batti
-  - batti
+  - hallway बत्ती
+  - बत्ती
 - id: light.basement
   area_id: basement
-  name: basement batti
+  name: basement बत्ती
   aliases:
-  - basement batti
-  - batti
+  - basement बत्ती
+  - बत्ती
 - id: cover.living_blinds
   area_id: living
-  name: baithak parda
+  name: बैठक पर्दा
   aliases:
-  - baithak parda
-  - parda
+  - बैठक पर्दा
+  - पर्दा
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: shayankaksh parda
+  name: shayankakshmaster पर्दा
   aliases:
-  - shayankaksh parda
-  - parda
+  - shayankakshmaster पर्दा
+  - पर्दा
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
-  name: shayankaksh2 parda
+  name: shayankaksh2 पर्दा
   aliases:
-  - shayankaksh2 parda
-  - parda
+  - shayankaksh2 पर्दा
+  - पर्दा
 - id: cover.bedroom3_blinds
   area_id: bedroom_3
-  name: shayankaksh3 parda
+  name: shayankaksh3 पर्दा
   aliases:
-  - shayankaksh3 parda
-  - parda
+  - shayankaksh3 पर्दा
+  - पर्दा
 - id: cover.garage_door
   area_id: garage
-  name: garage parda
+  name: garage पर्दा
   aliases:
-  - garage parda
-  - parda
+  - garage पर्दा
+  - पर्दा
 - id: climate.ground_thermostat
   area_id: living
-  name: baithak garmi
+  name: बैठक गर्मी
   aliases:
-  - baithak garmi
-  - garmi
+  - बैठक गर्मी
+  - गर्मी
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: shayankaksh garmi
+  name: shayankakshmaster गर्मी
   aliases:
-  - shayankaksh garmi
-  - garmi
+  - shayankakshmaster गर्मी
+  - गर्मी
 - id: climate.master_ac
   area_id: master_bedroom
-  name: garmi shayankaksh
+  name: garmi shayankakshmaster
   aliases:
-  - garmi shayankaksh
+  - garmi shayankakshmaster
   - garmi
   - ac
   tags:
   - garmi
 - id: fan.family_fan
   area_id: family_room
-  name: parivarik pankha
+  name: parivarik पंखा
   aliases:
-  - parivarik pankha
-  - pankha
+  - parivarik पंखा
+  - पंखा
 - id: fan.master_fan
   area_id: master_bedroom
-  name: shayankaksh pankha
+  name: shayankakshmaster पंखा
   aliases:
-  - shayankaksh pankha
-  - pankha
+  - shayankakshmaster पंखा
+  - पंखा
 - id: fan.bedroom2_fan
   area_id: bedroom_2
-  name: shayankaksh2 pankha
+  name: shayankaksh2 पंखा
   aliases:
-  - shayankaksh2 pankha
-  - pankha
+  - shayankaksh2 पंखा
+  - पंखा
 - id: lock.front_door
   area_id: entryway
-  name: front darwaza
+  name: front दरवाज़ा
   aliases:
-  - front darwaza
+  - front दरवाज़ा
   tags:
   - front
 - id: lock.garage_entry
   area_id: garage
-  name: garage darwaza
+  name: garage दरवाज़ा
   aliases:
-  - garage darwaza
+  - garage दरवाज़ा
   tags:
   - garage
 - id: switch.dishwasher
   area_id: kitchen
-  name: rasoi bartan
+  name: रसोई bartan
   aliases:
-  - rasoi bartan
+  - रसोई bartan
   - bartan
 - id: switch.rangehood
   area_id: kitchen
-  name: rasoi rangehood
+  name: रसोई rangehood
   aliases:
-  - rasoi rangehood
+  - रसोई rangehood
   - rangehood
   tags:
   - rangehood
@@ -373,25 +376,25 @@ devices:
   - dryer
 - id: switch.master_bath_fan
   area_id: master_bath
-  name: mukhyasnan pankhabad
+  name: mukhyasnan पंखाbad
   aliases:
-  - mukhyasnan pankhabad
-  - pankhabad
+  - mukhyasnan पंखाbad
+  - पंखाbad
   tags:
-  - pankhabad
+  - पंखाbad
 - id: switch.main_bath_fan
   area_id: main_bath
-  name: main bath pankhabad
+  name: main bath पंखाbad
   aliases:
-  - main bath pankhabad
-  - pankhabad
+  - main bath पंखाbad
+  - पंखाbad
   tags:
-  - pankhabad
+  - पंखाbad
 - id: media_player.living_tv
   area_id: living
-  name: baithak tv
+  name: बैठक tv
   aliases:
-  - baithak tv
+  - बैठक tv
   - tv
 - id: media_player.family_tv
   area_id: family_room
@@ -401,37 +404,37 @@ devices:
   - tv
 - id: media_player.living_music
   area_id: living
-  name: baithak tivi
+  name: बैठक टीवी
   aliases:
-  - baithak tivi
-  - tivi
+  - बैठक टीवी
+  - टीवी
   platform: music_assistant
   tags:
-  - tivi
+  - टीवी
 - id: media_player.kitchen_music
   area_id: kitchen
-  name: rasoi tivi
+  name: रसोई टीवी
   aliases:
-  - rasoi tivi
-  - tivi
+  - रसोई टीवी
+  - टीवी
   platform: music_assistant
   tags:
-  - tivi
+  - टीवी
 - id: media_player.office_music
   area_id: office
-  name: office tivi
+  name: office टीवी
   aliases:
-  - office tivi
-  - tivi
+  - office टीवी
+  - टीवी
   platform: music_assistant
   tags:
-  - tivi
+  - टीवी
 - id: vacuum.robot
   area_id: living
-  name: baithak jhadu
+  name: बैठक झाड़ू
   aliases:
-  - baithak jhadu
-  - jhadu
+  - बैठक झाड़ू
+  - झाड़ू
 - id: binary_sensor.front_door_sensor
   area_id: entryway
   name: pravesh doorsensor
@@ -442,33 +445,33 @@ devices:
   - doorsensor
 - id: binary_sensor.living_window
   area_id: living
-  name: baithak windowsensor
+  name: बैठक windowsensor
   aliases:
-  - baithak windowsensor
+  - बैठक windowsensor
   - windowsensor
   tags:
   - windowsensor
 - id: binary_sensor.kitchen_motion
   area_id: kitchen
-  name: rasoi motion
+  name: रसोई motion
   aliases:
-  - rasoi motion
+  - रसोई motion
   - motion
   tags:
   - motion
 - id: sensor.living_temperature
   area_id: living
-  name: baithak tempsensor
+  name: बैठक tempsensor
   aliases:
-  - baithak tempsensor
+  - बैठक tempsensor
   - tempsensor
   tags:
   - tempsensor
 - id: sensor.living_humidity
   area_id: living
-  name: baithak humidity
+  name: बैठक humidity
   aliases:
-  - baithak humidity
+  - बैठक humidity
   - humidity
   tags:
   - humidity
@@ -494,11 +497,11 @@ scripts:
   name: jaana
 timers:
 - id: oven
-  name: oven timer
+  name: oven टाइमर
 - id: laundry
-  name: laundry timer
+  name: laundry टाइमर
 - id: abstract
-  name: abstract timer
+  name: abstract टाइमर
 lists:
 - id: shopping
-  name: suchi
+  name: सूची

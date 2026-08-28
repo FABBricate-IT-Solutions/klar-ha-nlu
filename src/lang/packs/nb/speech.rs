@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Det skjonte jeg ikke. Si for eksempel hvilket lys som skal slas pa.",
+    unknown: "Det skjonte jeg ikke.",
     need_on: "Hva skal skrus pa?",
     need_off: "Hva skal slas av?",
     need_which: "Hva skal skrus pa?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Hva skal slas av?",
     timer_pause: "Hva skal slas av?",
     list_add: "Star pa listen.",
+    calendar_list: "{items}",
+    calendar_empty: "Ingen avtaler.",
+    calendar_none: "Ingen kalender.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Hvilken tittel?",
+    calendar_need_when: "Nar?",
+    calendar_readonly: "Skrivebeskyttet.",
+    calendar_deleted: "Avtale slettet.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Hvilken avtale?",
+    calendar_no_uid: "Ingen id.",
+    no_music_player: "Ingen spiller.",
     done: "{name}",
     light_suffix: " lys",
     area_light: "lys {loc}",

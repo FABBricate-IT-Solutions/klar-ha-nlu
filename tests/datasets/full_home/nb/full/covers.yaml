@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - apne gardin soverom
-  - gardin soverom apne
+  - apne gardin soverommaster
+  - gardin soverommaster apne
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - lukk gardin soverom
-  - gardin soverom lukk
+  - lukk gardin soverommaster
+  - gardin soverommaster lukk
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - sett gardin soverom 0
-  - gardin soverom 0
+  - sett gardin soverommaster 0
+  - gardin soverommaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - sett gardin soverom 25
-  - gardin soverom 25
+  - sett gardin soverommaster 25
+  - gardin soverommaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - sett gardin soverom 40
-  - gardin soverom 40
+  - sett gardin soverommaster 40
+  - gardin soverommaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - sett gardin soverom 75
-  - gardin soverom 75
+  - sett gardin soverommaster 75
+  - gardin soverommaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - sett gardin soverom 100
-  - gardin soverom 100
+  - sett gardin soverommaster 100
+  - gardin soverommaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - apne gardin soverom
-  - gardin soverom apne
+  - apne gardin soverommaster
+  - gardin soverommaster apne

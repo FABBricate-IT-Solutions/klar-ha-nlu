@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - tand flakt sovrum2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- satt ljus sovrum2 65
+- satt alla ljus sovrum2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- satt ljus sovrum2 rosa
+- satt alla ljus sovrum2 rosa
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- slack ljus sovrum2
+- slack alla ljus sovrum2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- tand ljus sovrum2
+- tand alla ljus sovrum2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - stang gardin sovrum3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - satt gardin sovrum3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- satt ljus sovrum3 76
+- satt alla ljus sovrum3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- satt ljus sovrum3 bla
+- satt alla ljus sovrum3 bla
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- slack ljus sovrum3
+- slack alla ljus sovrum3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- tand ljus sovrum3
+- tand alla ljus sovrum3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- satt ljus sovrum4 69
+- satt alla ljus sovrum4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- satt ljus sovrum4 gron
+- satt alla ljus sovrum4 gron
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- slack ljus sovrum4
+- slack alla ljus sovrum4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- tand ljus sovrum4
+- tand alla ljus sovrum4
 area/dining_lights::dining_lights_change_brightness:
-- satt ljus allrumess 54
+- satt alla ljus allrumess 54
 area/dining_lights::dining_lights_change_color:
-- satt ljus allrumess bla
+- satt alla ljus allrumess bla
 area/dining_lights::dining_lights_turn_off:
-- slack ljus allrumess
+- slack alla ljus allrumess
 area/dining_lights::dining_lights_turn_on:
-- tand ljus allrumess
+- tand alla ljus allrumess
 area/entryway_lights::entryway_lights_change_brightness:
-- satt ljus entre 72
+- satt alla ljus entre 72
 area/entryway_lights::entryway_lights_change_color:
-- satt ljus entre svart
+- satt alla ljus entre svart
 area/entryway_lights::entryway_lights_turn_off:
-- slack ljus entre
+- slack alla ljus entre
 area/entryway_lights::entryway_lights_turn_on:
-- tand ljus entre
+- tand alla ljus entre
 area/entryway_locks::entryway_locks_lock:
 - las las entre
 area/entryway_locks::entryway_locks_unlock:
 - oppna las entre
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- satt ljus allrum 39 och satt ljus kok 39
+- satt alla ljus allrum 39 then satt alla ljus kok 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- satt ljus allrum lila och satt ljus kok lila
+- satt alla ljus allrum lila then satt alla ljus kok lila
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- slack ljus allrum och slack ljus kok
+- slack alla ljus allrum then slack alla ljus kok
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- tand ljus allrum och tand ljus kok
+- tand alla ljus allrum then tand alla ljus kok
 area/family_room_fans::family_room_fans_set_fan_speed:
 - satt flakt allrum 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - tand flakt allrum
 area/family_room_lights::family_room_lights_change_brightness:
-- satt ljus allrum 44
+- satt alla ljus allrum 44
 area/family_room_lights::family_room_lights_change_color:
-- satt ljus allrum gron
+- satt alla ljus allrum gron
 area/family_room_lights::family_room_lights_turn_off:
-- slack ljus allrum
+- slack alla ljus allrum
 area/family_room_lights::family_room_lights_turn_on:
-- tand ljus allrum
+- tand alla ljus allrum
 area/garage_covers::garage_covers_close:
 - stang gardin garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - satt gardin garage 86
 area/garage_lights::garage_lights_change_brightness:
-- satt ljus garage 16
+- satt alla ljus garage 16
 area/garage_lights::garage_lights_change_color:
-- satt ljus garage bla
+- satt alla ljus garage bla
 area/garage_lights::garage_lights_turn_off:
-- slack ljus garage
+- slack alla ljus garage
 area/garage_lights::garage_lights_turn_on:
-- tand ljus garage
+- tand alla ljus garage
 area/garage_locks::garage_locks_lock:
 - las las garage
 area/garage_locks::garage_locks_unlock:
 - oppna las garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- satt ljus entregang 26 och satt ljus toalett 26
+- satt alla ljus entregang 26 then satt alla ljus toalett 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- satt ljus entregang lila och satt ljus toalett lila
+- satt alla ljus entregang lila then satt alla ljus toalett lila
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- slack ljus entregang och slack ljus toalett
+- slack alla ljus entregang then slack alla ljus toalett
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- tand ljus entregang och tand ljus toalett
+- tand alla ljus entregang then tand alla ljus toalett
 area/hallway_lights::hallway_lights_change_brightness:
-- satt ljus entregang 61
+- satt alla ljus entregang 61
 area/hallway_lights::hallway_lights_change_color:
-- satt ljus entregang orange
+- satt alla ljus entregang orange
 area/hallway_lights::hallway_lights_turn_off:
-- slack ljus entregang
+- slack alla ljus entregang
 area/hallway_lights::hallway_lights_turn_on:
-- tand ljus entregang
+- tand alla ljus entregang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- satt ljus kok 45
+- satt alla ljus kok 45
 area/kitchen_lights::kitchen_lights_change_color:
-- satt ljus kok rosa
+- satt alla ljus kok rosa
 area/kitchen_lights::kitchen_lights_turn_off:
-- slack ljus kok
+- slack alla ljus kok
 area/kitchen_lights::kitchen_lights_turn_on:
-- tand ljus kok
+- tand alla ljus kok
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- slack apparat kok
+- slack alla apparat kok
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- tand apparat kok
+- tand alla apparat kok
 area/laundry_lights::laundry_lights_change_brightness:
-- satt ljus tvattstuga 62
+- satt alla ljus tvattstuga 62
 area/laundry_lights::laundry_lights_change_color:
-- satt ljus tvattstuga gul
+- satt alla ljus tvattstuga gul
 area/laundry_lights::laundry_lights_turn_off:
-- slack ljus tvattstuga
+- slack alla ljus tvattstuga
 area/laundry_lights::laundry_lights_turn_on:
-- tand ljus tvattstuga
+- tand alla ljus tvattstuga
 area/laundry_switchs::laundry_switchs_turn_off:
-- slack apparat tvattstuga
+- slack alla apparat tvattstuga
 area/laundry_switchs::laundry_switchs_turn_on:
-- tand apparat tvattstuga
+- tand alla apparat tvattstuga
 area/living_climates::living_climates_set_temperature:
 - satt varme vardagsrum 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,100 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - satt gardin vardagsrum 46
 area/living_lights::living_lights_change_brightness:
-- satt ljus vardagsrum 84
+- satt alla ljus vardagsrum 84
 area/living_lights::living_lights_change_color:
-- satt ljus vardagsrum bla
+- satt alla ljus vardagsrum bla
 area/living_lights::living_lights_turn_off:
-- slack ljus vardagsrum
+- slack alla ljus vardagsrum
 area/living_lights::living_lights_turn_on:
-- tand ljus vardagsrum
+- tand alla ljus vardagsrum
 area/main_bath_lights::main_bath_lights_change_brightness:
-- satt ljus main bath 73
+- satt alla ljus main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- satt ljus main bath rosa
+- satt alla ljus main bath rosa
 area/main_bath_lights::main_bath_lights_turn_off:
-- slack ljus main bath
+- slack alla ljus main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- tand ljus main bath
+- tand alla ljus main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- slack apparat main bath
+- slack alla apparat main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- tand apparat main bath
+- tand alla apparat main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- satt ljus badmaster 60
+- satt alla ljus badmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- satt ljus badmaster svart
+- satt alla ljus badmaster svart
 area/master_bath_lights::master_bath_lights_turn_off:
-- slack ljus badmaster
+- slack alla ljus badmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- tand ljus badmaster
+- tand alla ljus badmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- slack apparat badmaster
+- slack alla apparat badmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- tand apparat badmaster
+- tand alla apparat badmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- satt varme sovrum 20 och satt varme vardagsrum 20
+- satt varme sovrummaster 20 then satt varme vardagsrum 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- stang gardin sovrum och stang gardin vardagsrum
+- stang gardin sovrummaster then stang gardin vardagsrum
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- oppna gardin sovrum och oppna gardin vardagsrum
+- oppna gardin sovrummaster then oppna gardin vardagsrum
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- satt gardin sovrum 19 och satt gardin vardagsrum 19
+- satt gardin sovrummaster 19 then satt gardin vardagsrum 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- satt ljus sovrum 25 och satt ljus vardagsrum 25
+- satt alla ljus sovrummaster 25 then satt alla ljus vardagsrum 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- satt ljus sovrum vit och satt ljus vardagsrum vit
+- satt alla ljus sovrummaster vit then satt alla ljus vardagsrum vit
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- slack ljus sovrum och slack ljus vardagsrum
+- slack alla ljus sovrummaster then slack alla ljus vardagsrum
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- tand ljus sovrum och tand ljus vardagsrum
+- tand alla ljus sovrummaster then tand alla ljus vardagsrum
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- satt ljus sovrum 57 och satt ljus main bath 57
+- satt alla ljus sovrummaster 57 then satt alla ljus main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- satt ljus sovrum rosa och satt ljus main bath rosa
+- satt alla ljus sovrummaster rosa then satt alla ljus main bath rosa
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- slack ljus sovrum och slack ljus main bath
+- slack alla ljus sovrummaster then slack alla ljus main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- tand ljus sovrum och tand ljus main bath
+- tand alla ljus sovrummaster then tand alla ljus main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- satt varme sovrum 20
+- satt varme sovrummaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- stang gardin sovrum
+- stang gardin sovrummaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- oppna gardin sovrum
+- oppna gardin sovrummaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- satt gardin sovrum 38
+- satt gardin sovrummaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- satt flakt sovrum 79
+- satt flakt sovrummaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- slack flakt sovrum
+- slack flakt sovrummaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- tand flakt sovrum
+- tand flakt sovrummaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- satt ljus sovrum 73
+- satt alla ljus sovrummaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- satt ljus sovrum rosa
+- satt alla ljus sovrummaster rosa
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- slack ljus sovrum
+- slack alla ljus sovrummaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- tand ljus sovrum
+- tand alla ljus sovrummaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- satt ljus toalett 52
+- satt alla ljus toalett 52
 area/powder_room_lights::powder_room_lights_change_color:
-- satt ljus toalett lila
+- satt alla ljus toalett lila
 area/powder_room_lights::powder_room_lights_turn_off:
-- slack ljus toalett
+- slack alla ljus toalett
 area/powder_room_lights::powder_room_lights_turn_on:
-- tand ljus toalett
+- tand alla ljus toalett
 area/spoken_lights::spoken_bedroom_inflection:
-- satt ljus sovrum rod
+- satt alla ljus sovrummaster rod
 area/spoken_lights::spoken_except_island:
 - slack alla ljus utom o
 area/spoken_lights::spoken_except_kitchen:
-- slack alla ljus utom kok utom o
+- slack alla ljus utom kok
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- slack ljus vardagsrum och slack ljus allrumess och slack ljus kok
+- slack alla ljus vardagsrum then slack alla ljus allrumess then slack alla ljus kok
 area/spoken_lights::spoken_stt_kitchen_off:
-- slack ljus kok
+- slack alla ljus kok
 area/spoken_lights::spoken_stt_living_off:
-- slack ljus vardagsrum
+- slack alla ljus vardagsrum

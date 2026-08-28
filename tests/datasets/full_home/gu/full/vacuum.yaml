@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - chalu jhadu
-  - jhadu chalu
+  - ચાલુ ઝાડુ
+  - ઝાડુ ચાલુ
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - bandh jhadu
-  - jhadu bandh
+  - બંધ ઝાડુ
+  - ઝાડુ બંધ

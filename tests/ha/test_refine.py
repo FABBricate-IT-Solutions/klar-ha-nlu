@@ -114,7 +114,14 @@ class RefineTests(unittest.TestCase):
         self.assertIn("open questions", prompt.lower())
         self.assertIn("Do not stamp the same opening every time.", prompt)
         self.assertIn("all set", prompt)
+        self.assertIn("Do not translate into German", prompt)
         self.assertNotIn("Additional style instruction", prompt)
+
+    def test_german_stored_extra_is_ignored_for_other_packs(self) -> None:
+        prompt = refine.refine_prompt("en", "butler", "Stimme: Jarvis.\nSchalt-Bestätigungen")
+        self.assertIn("Do not translate into German", prompt)
+        self.assertIn("Voice:", prompt)
+        self.assertNotIn("Stimme:", prompt)
 
     def test_nlu_home_turn_removed_because_every_reply_refines(self) -> None:
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
@@ -259,6 +266,145 @@ class RefineTests(unittest.TestCase):
             )
         )
         self.assertIsNone(out)
+
+    def test_skip_rewrite_for_llm_replies_only(self) -> None:
+        self.assertTrue(refine.skip_rewrite("chat"))
+        self.assertTrue(refine.skip_rewrite("llm"))
+        self.assertTrue(refine.skip_rewrite("chime"))
+        self.assertFalse(refine.skip_rewrite("execute"))
+        self.assertFalse(refine.skip_rewrite("clarify"))
+        self.assertFalse(refine.skip_rewrite("trigger"))
+        self.assertFalse(refine.skip_rewrite(""))
+
+    def test_isolated_ids_are_unique_and_prefixed(self) -> None:
+        first = refine.isolated_conversation_id()
+        second = refine.isolated_conversation_id()
+        self.assertTrue(first.startswith("klar-nested-"))
+        self.assertTrue(second.startswith("klar-nested-"))
+        self.assertNotEqual(first, second)
+
+    def test_nested_llm_session_never_targets_satellite(self) -> None:
+        session = refine.nested_llm_session("conversation.llm", "de", "Stimme: Jarvis.")
+        self.assertIsNone(session["device_id"])
+        self.assertIsNone(session["satellite_id"])
+        self.assertEqual(session["agent_id"], "conversation.llm")
+        self.assertEqual(session["language"], "de")
+        self.assertEqual(session["extra_system_prompt"], "Stimme: Jarvis.")
+
+    def test_drop_same_turn_assistant_only_after_user(self) -> None:
+        previous = types.SimpleNamespace(role="assistant", content="old")
+        user = types.SimpleNamespace(role="user", content="hi")
+        leaked = types.SimpleNamespace(role="assistant", content="unrefined")
+        content = [previous, user, leaked]
+        refine.drop_same_turn_assistant(content)
+        self.assertEqual(content, [previous, user])
+        refine.drop_same_turn_assistant(content)
+        self.assertEqual(content, [previous, user])
+
+    def test_speech_chunks_split_on_punctuation(self) -> None:
+        chunks = refine.speech_chunks(
+            "Natürlich, Sir. Im Wohnzimmer: Heizung ist 24,89. R2D2 ist pausiert."
+        )
+        self.assertEqual(
+            chunks,
+            [
+                "Natürlich, Sir.",
+                " Im Wohnzimmer: Heizung ist 24,89.",
+                " R2D2 ist pausiert.",
+            ],
+        )
+        self.assertEqual("".join(chunks), "Natürlich, Sir. Im Wohnzimmer: Heizung ist 24,89. R2D2 ist pausiert.")
+        self.assertEqual(refine.speech_chunks("Licht ist an."), ["Licht ist an."])
+        self.assertEqual(refine.speech_chunks(""), [])
+        self.assertEqual(refine.speech_chunks("OK"), ["OK"])
+        self.assertEqual(refine.speech_chunks("z.B. Licht ist an."), ["z.B. Licht ist an."])
+        self.assertEqual(
+            refine.speech_chunks("Set to 21.5 degrees. The light is on."),
+            ["Set to 21.5 degrees.", " The light is on."],
+        )
+
+    def test_emit_streams_sentences_as_deltas(self) -> None:
+        class Log:
+            def __init__(self) -> None:
+                self.content = [
+                    types.SimpleNamespace(role="user", content="hi"),
+                    types.SimpleNamespace(role="assistant", content="unrefined"),
+                ]
+                self.deltas: list[dict[str, str]] = []
+                self.without: list[str] = []
+
+            def async_add_delta_content_stream(self, agent_id: str | None, stream):
+                del agent_id
+
+                async def gen():
+                    parts: list[str] = []
+                    async for delta in stream:
+                        self.deltas.append(delta)
+                        parts.append(delta.get("content") or "")
+                    self.content.append("".join(parts))
+                    yield None
+
+                return gen()
+
+            def async_add_assistant_content_without_tools(self, body: str) -> None:
+                self.without.append(body)
+
+        log = Log()
+        speech = "Natürlich, Sir. Das Licht im Wohnzimmer ist an."
+        asyncio.run(refine.emit_assistant_speech(log, "conversation.klar_nlu", speech))
+        self.assertEqual(log.content[-1], speech)
+        self.assertEqual(log.without, [])
+        self.assertEqual(log.deltas[0]["role"], "assistant")
+        self.assertEqual(log.deltas[0]["content"], "Natürlich, Sir.")
+        self.assertEqual(log.deltas[1], {"content": " Das Licht im Wohnzimmer ist an."})
+
+    def test_emit_falls_back_without_delta_stream(self) -> None:
+        class Log:
+            def __init__(self) -> None:
+                self.content = [types.SimpleNamespace(role="user", content="hi")]
+                self.without: list[str] = []
+
+            def async_add_assistant_content_without_tools(self, body: str) -> None:
+                self.without.append(body)
+
+        log = Log()
+        asyncio.run(refine.emit_assistant_speech(log, "conversation.klar_nlu", "Licht ist an."))
+        self.assertEqual(log.without, ["Licht ist an."])
+
+    def test_tts_hears_first_published_line_not_later_rewrite(self) -> None:
+        nlu = "Wohnzimmer Licht ist an."
+        refined = "Natürlich, Sir. Das Licht im Wohnzimmer ist an."
+        published = [nlu]
+        self.assertNotEqual(published[-1], refined)
+        published = []
+        speech = nlu
+        if not refine.skip_rewrite("execute"):
+            speech = refined
+        published.append(speech)
+        self.assertEqual(published[-1], refined)
+        llm = "Bereits im Jarvis-Ton."
+        published = []
+        speech = llm
+        if not refine.skip_rewrite("chat"):
+            speech = refined
+        published.append(speech)
+        self.assertEqual(published[-1], llm)
+
+    def test_fallback_converse_must_not_reuse_voice_session(self) -> None:
+        src = (PKG / "conversation.py").read_text()
+        start = src.index("async def _fallback")
+        end = src.index("def _preferred_area")
+        body = src[start:end]
+        self.assertIn("isolated_conversation_id", body)
+        self.assertIn("nested_llm_session", body)
+        self.assertIn("speak_tag(pack)", body)
+        self.assertNotIn("user_input.conversation_id", body)
+        self.assertNotIn("user_input.device_id", body)
+        self.assertNotIn("record", body)
+        spoken = src[src.index("async def _spoken") : src.index("async def _briefing")]
+        self.assertIn("skip_rewrite", spoken)
+        self.assertIn("emit_assistant_speech", spoken)
+        self.assertNotIn("async_add_assistant_content_without_tools", spoken)
 
 
 class _CompletionMessage:

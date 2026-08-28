@@ -1,26 +1,27 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - ugasni vse luc razen spalnica razen kuhinja
 multiple_intents/multi::licht_und_heizung:
-- prizgi luc dnevna in nastavi ogrevanje dnevna 23
+- prizgi vse luc dnevna then nastavi ogrevanje dnevna 23
 multiple_intents/multi::wohn_und_ess_aus:
-- ugasni luc dnevna in ugasni luc dnevnafamess
+- ugasni vse luc dnevna then ugasni vse luc dnevnafamess
 multiple_intents/multi::wohn_und_ess_rot:
-- nastavi luc dnevna red in nastavi luc dnevnafamess red
+- nastavi vse luc dnevna red then nastavi vse luc dnevnafamess red
 multiple_intents/multi::wz_und_kuche_licht:
-- prizgi luc dnevna in prizgi luc kuhinja
+- prizgi vse luc dnevna then prizgi vse luc kuhinja
 multiple_intents/multi::zwei_raeume_und_heizung:
-- prizgi luc dnevna in prizgi luc kuhinja in nastavi ogrevanje dnevna 23
+- prizgi vse luc dnevna then prizgi vse luc kuhinja then nastavi ogrevanje dnevna
+  23
 multiple_intents/spoken::drei_raeume_an:
-- prizgi luc dnevna in prizgi luc dnevnafamess in prizgi luc kuhinja
+- prizgi vse luc dnevna then prizgi vse luc dnevnafamess then prizgi vse luc kuhinja
 multiple_intents/spoken::drei_raeume_aus:
-- ugasni luc dnevna in ugasni luc dnevnafamess in ugasni luc kuhinja
+- ugasni vse luc dnevna then ugasni vse luc dnevnafamess then ugasni vse luc kuhinja
 multiple_intents/spoken::ess_und_wohn_aus:
-- ugasni luc dnevna in ugasni luc dnevnafamess
+- ugasni vse luc dnevna then ugasni vse luc dnevnafamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- ugasni krogla in ugasni strop
+- krogla in strop spalnica ugasni
 multiple_intents/spoken_more::kuche_und_ess_an:
-- prizgi luc kuhinja in prizgi luc dnevnafamess
+- prizgi vse luc kuhinja then prizgi vse luc dnevnafamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- ugasni luc dnevna in ugasni luc dnevnafamess
+- ugasni vse luc dnevna then ugasni vse luc dnevnafamess then ugasni vse luc office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- ugasni luc dnevna
+- ugasni vse luc dnevna then ugasni vse luc office

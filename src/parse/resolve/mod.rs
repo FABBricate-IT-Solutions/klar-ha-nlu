@@ -1,9 +1,10 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::home::roles::{is_light_like, matches_domain};
+use crate::home::roles::matches_domain;
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
-use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit};
+use crate::parse::fuzzy::{evidence, Profile};
+use crate::parse::normalize::{compact, fold_umlaut, inflected_eq, is_time_unit, umlaut_eq};
 use crate::types::{AreaRec, EntityRec, FloorRec, HomeGraph};
 pub(crate) use report::{resolve_scored, ResolveEvidence, ResolveReport};
 use score::{fuzzy_tokens, overlap, score_entity, sort_hits};
@@ -11,7 +12,9 @@ pub(crate) use score::{has_fuzzy_target_token, known_target_token};
 
 mod prefer;
 mod report;
+mod scope;
 mod score;
+pub(crate) use scope::{light_rooms_for_clarify, mentions_home, query_grounded};
 
 #[derive(Debug, Clone)]
 pub struct Resolved {
@@ -47,6 +50,8 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         .iter()
         .filter(|e| assist_visible(e, home))
         .filter(|e| !is_infra(e))
+        .filter(|e| !crate::home::policy::is_nlu_ignored(e))
+        .filter(|e| !crate::parse::calendar::is_calendar_control(e))
         .filter(|e| domain.is_none_or(|d| matches_domain(e, d, catalog())))
         .filter_map(|e| score_entity(tokens, &fuzzy_tokens, e, home).map(|s| (s, e.clone())))
         .collect();
@@ -92,7 +97,28 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
             .map(|(_, e)| e.clone())
             .collect();
         if *best >= 0.86 && peers.is_empty() {
-            entities.push(rec.clone());
+            let generic_light = rec.domain == "light"
+                && catalog().any(tokens, catalog().light_nouns())
+                && !catalog().any(tokens, catalog().named_device())
+                && !catalog().any(tokens, catalog().ceiling())
+                && !catalog().any(tokens, catalog().island())
+                && !catalog().any(tokens, catalog().bedside())
+                && !catalog().any(tokens, catalog().lamp_fixture());
+            let crowded = rec.area.as_deref().is_some_and(|area| {
+                home.entities
+                    .iter()
+                    .filter(|entity| {
+                        assist_visible(entity, home)
+                            && entity.domain == "light"
+                            && !is_infra(entity)
+                            && entity.area.as_deref() == Some(area)
+                    })
+                    .count()
+                    > 1
+            });
+            if distinctive_light_name(tokens, rec, home) || !(generic_light && crowded) {
+                entities.push(rec.clone());
+            }
         } else if *best >= 0.86 && !peers.is_empty() {
             ambiguous.push(rec.clone());
             ambiguous.extend(peers);
@@ -167,6 +193,35 @@ pub(crate) fn entity_has_name_evidence(tokens: &[String], entity: &EntityRec, ho
 
 pub(crate) fn entity_name_is_mentioned(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
     score::entity_name_evidence(tokens, entity, home)
+}
+
+fn distinctive_light_name(tokens: &[String], entity: &EntityRec, home: &HomeGraph) -> bool {
+    let cat = catalog();
+    let area = entity.area.as_deref().and_then(|id| home.areas.iter().find(|area| area.area_id == id));
+    let room = area.map(|area| {
+        std::iter::once(area.area_id.as_str())
+            .chain(std::iter::once(area.name.as_str()))
+            .chain(area.aliases.iter().map(String::as_str))
+            .map(compact)
+            .collect::<Vec<_>>()
+    });
+    let room = room.unwrap_or_default();
+    let blob = compact(&format!("{} {}", entity.name, entity.aliases.join(" ")));
+    tokens.iter().any(|token| {
+        let folded = compact(token);
+        folded.len() >= 4
+            && !cat.light_nouns().contains(token.as_str())
+            && !cat.light_singular().contains(token.as_str())
+            && !room.iter().any(|name| name == &folded || name.contains(&folded) || folded.contains(name.as_str()))
+            && (blob.contains(&folded)
+                || entity.entity_id.contains(&folded)
+                || evidence(token, &blob, Profile::Target).is_some()
+                || entity
+                    .name
+                    .split([' ', '_'])
+                    .chain(entity.entity_id.split(['.', '_']))
+                    .any(|part| evidence(token, part, Profile::Target).is_some()))
+    })
 }
 
 fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option<Vec<EntityRec>> {
@@ -283,7 +338,15 @@ pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
         return false;
     }
     let compact_label = compact(label);
-    if tokens.iter().any(|token| token_eq(token, label) || compact(token) == compact_label) {
+    if tokens.iter().any(|token| token_eq(token, label)) {
+        return true;
+    }
+    if !compact_label.is_empty()
+        && tokens.iter().any(|token| {
+            let folded = compact(token);
+            !folded.is_empty() && (folded == compact_label || umlaut_eq(&folded, &compact_label))
+        })
+    {
         return true;
     }
     if label.contains(' ') || label.contains('_') || label.contains('-') {
@@ -294,7 +357,7 @@ pub(crate) fn token_hit(tokens: &[String], label: &str) -> bool {
 }
 
 pub(crate) fn token_eq(token: &str, label: &str) -> bool {
-    if token == label {
+    if token == label || umlaut_eq(token, label) {
         return true;
     }
     if number_word(token).as_deref() == Some(label) || number_word(label).as_deref() == Some(token) {
@@ -401,75 +464,6 @@ pub(crate) fn climates_of_kind(home: &HomeGraph, tokens: &[String]) -> Vec<Strin
         .filter(|e| matches_domain(e, "climate", catalog()) && !is_infra(e))
         .filter(|e| kind.is_none_or(|want| crate::home::roles::climate_kind(e, catalog()) == Some(want)))
         .map(|e| e.entity_id.clone())
-        .collect()
-}
-
-pub(crate) fn query_grounded(tokens: &[String], home: &HomeGraph, has_target: bool) -> bool {
-    has_target || mentions_home(tokens, home)
-}
-
-pub(crate) fn mentions_home(tokens: &[String], home: &HomeGraph) -> bool {
-    let cat = catalog();
-    if cat.any(tokens, cat.temp_query())
-        || cat.any(tokens, cat.light_nouns())
-        || cat.any(tokens, cat.climate_nouns())
-        || cat.any(tokens, cat.cover_nouns())
-        || cat.any(tokens, cat.fan_nouns())
-        || cat.any(tokens, cat.lock_nouns())
-        || cat.any(tokens, cat.vacuum_nouns())
-        || cat.any(tokens, cat.media_nouns())
-        || cat.any(tokens, cat.timer_nouns())
-        || cat.any(tokens, cat.list_nouns())
-        || cat.any(tokens, cat.scene_nouns())
-        || cat.any(tokens, cat.named_device())
-        || cat.any(tokens, cat.on_words())
-        || cat.any(tokens, cat.off_words())
-        || cat.any(tokens, cat.laundry_machines())
-        || cat.any(tokens, cat.status_words())
-    {
-        return true;
-    }
-    if home.entities.iter().any(crate::home::roles::is_music_player)
-        && (tokens.windows(2).any(|w| matches!((w[0].as_str(), w[1].as_str()), ("was", "laeuft") | ("was", "spielt")))
-            || tokens.windows(3).any(|w| matches!((w[0].as_str(), w[1].as_str(), w[2].as_str()), ("what", "s", "playing")))
-            || tokens.iter().any(|t| matches!(t.as_str(), "queue" | "warteschlange")))
-    {
-        return true;
-    }
-    if home.areas.iter().any(|area| {
-        std::iter::once(compact(&area.area_id))
-            .chain(std::iter::once(compact(&area.name)))
-            .chain(area.aliases.iter().map(|alias| compact(alias)))
-            .any(|name| !name.is_empty() && tokens.iter().any(|token| token == &name))
-    }) || home.floors.iter().any(|floor| {
-        std::iter::once(compact(&floor.floor_id))
-            .chain(std::iter::once(compact(&floor.name)))
-            .chain(floor.aliases.iter().map(|alias| compact(alias)))
-            .any(|name| !name.is_empty() && tokens.iter().any(|token| token == &name || token_hit(tokens, &name)))
-    }) {
-        return true;
-    }
-    home.entities.iter().filter(|entity| assist_visible(entity, home)).any(|entity| {
-        let name = fold_umlaut(&entity.name);
-        tokens.iter().any(|token| {
-            token.len() > 3
-                && !cat.is_question_start(token)
-                && !cat.is_question_word(token)
-                && (name.split([' ', '_']).any(|part| part == token) || entity.aliases.iter().any(|alias| alias == token))
-        })
-    })
-}
-
-pub(crate) fn light_rooms_for_clarify(home: &HomeGraph) -> Vec<String> {
-    home.areas
-        .iter()
-        .filter(|area| !crate::home::policy::is_whole_home(area))
-        .filter(|area| {
-            home.entities.iter().any(|entity| {
-                assist_visible(entity, home) && is_light_like(entity, catalog()) && entity.area.as_deref() == Some(area.area_id.as_str())
-            })
-        })
-        .map(|area| area.area_id.clone())
         .collect()
 }
 

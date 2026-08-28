@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - aanzetten ventilator slaapkamer2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- stel licht slaapkamer2 65
+- stel alle licht slaapkamer2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- stel licht slaapkamer2 roze
+- stel alle licht slaapkamer2 roze
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- uitzetten licht slaapkamer2
+- uitzetten alle licht slaapkamer2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- aanzetten licht slaapkamer2
+- aanzetten alle licht slaapkamer2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - dicht gordijn slaapkamer3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - stel gordijn slaapkamer3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- stel licht slaapkamer3 76
+- stel alle licht slaapkamer3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- stel licht slaapkamer3 blauw
+- stel alle licht slaapkamer3 blauw
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- uitzetten licht slaapkamer3
+- uitzetten alle licht slaapkamer3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- aanzetten licht slaapkamer3
+- aanzetten alle licht slaapkamer3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- stel licht slaapkamer4 69
+- stel alle licht slaapkamer4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- stel licht slaapkamer4 groen
+- stel alle licht slaapkamer4 groen
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- uitzetten licht slaapkamer4
+- uitzetten alle licht slaapkamer4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- aanzetten licht slaapkamer4
+- aanzetten alle licht slaapkamer4
 area/dining_lights::dining_lights_change_brightness:
-- stel licht huiskameress 54
+- stel alle licht huiskameress 54
 area/dining_lights::dining_lights_change_color:
-- stel licht huiskameress blauw
+- stel alle licht huiskameress blauw
 area/dining_lights::dining_lights_turn_off:
-- uitzetten licht huiskameress
+- uitzetten alle licht huiskameress
 area/dining_lights::dining_lights_turn_on:
-- aanzetten licht huiskameress
+- aanzetten alle licht huiskameress
 area/entryway_lights::entryway_lights_change_brightness:
-- stel licht hal 72
+- stel alle licht hal 72
 area/entryway_lights::entryway_lights_change_color:
-- stel licht hal zwart
+- stel alle licht hal zwart
 area/entryway_lights::entryway_lights_turn_off:
-- uitzetten licht hal
+- uitzetten alle licht hal
 area/entryway_lights::entryway_lights_turn_on:
-- aanzetten licht hal
+- aanzetten alle licht hal
 area/entryway_locks::entryway_locks_lock:
 - vergrendel slot hal
 area/entryway_locks::entryway_locks_unlock:
 - ontgrendel slot hal
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- stel licht huiskamer 39 en stel licht keuken 39
+- stel alle licht huiskamer 39 then stel alle licht keuken 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- stel licht huiskamer paars en stel licht keuken paars
+- stel alle licht huiskamer paars then stel alle licht keuken paars
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- uitzetten licht huiskamer en uitzetten licht keuken
+- uitzetten alle licht huiskamer then uitzetten alle licht keuken
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- aanzetten licht huiskamer en aanzetten licht keuken
+- aanzetten alle licht huiskamer then aanzetten alle licht keuken
 area/family_room_fans::family_room_fans_set_fan_speed:
 - stel ventilator huiskamer 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - aanzetten ventilator huiskamer
 area/family_room_lights::family_room_lights_change_brightness:
-- stel licht huiskamer 44
+- stel alle licht huiskamer 44
 area/family_room_lights::family_room_lights_change_color:
-- stel licht huiskamer groen
+- stel alle licht huiskamer groen
 area/family_room_lights::family_room_lights_turn_off:
-- uitzetten licht huiskamer
+- uitzetten alle licht huiskamer
 area/family_room_lights::family_room_lights_turn_on:
-- aanzetten licht huiskamer
+- aanzetten alle licht huiskamer
 area/garage_covers::garage_covers_close:
 - dicht gordijn garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - stel gordijn garage 86
 area/garage_lights::garage_lights_change_brightness:
-- stel licht garage 16
+- stel alle licht garage 16
 area/garage_lights::garage_lights_change_color:
-- stel licht garage blauw
+- stel alle licht garage blauw
 area/garage_lights::garage_lights_turn_off:
-- uitzetten licht garage
+- uitzetten alle licht garage
 area/garage_lights::garage_lights_turn_on:
-- aanzetten licht garage
+- aanzetten alle licht garage
 area/garage_locks::garage_locks_lock:
 - vergrendel slot garage
 area/garage_locks::garage_locks_unlock:
 - ontgrendel slot garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- stel licht gang 26 en stel licht toilet 26
+- stel alle licht gang 26 then stel alle licht toilet 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- stel licht gang paars en stel licht toilet paars
+- stel alle licht gang paars then stel alle licht toilet paars
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- uitzetten licht gang en uitzetten licht toilet
+- uitzetten alle licht gang then uitzetten alle licht toilet
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- aanzetten licht gang en aanzetten licht toilet
+- aanzetten alle licht gang then aanzetten alle licht toilet
 area/hallway_lights::hallway_lights_change_brightness:
-- stel licht gang 61
+- stel alle licht gang 61
 area/hallway_lights::hallway_lights_change_color:
-- stel licht gang oranje
+- stel alle licht gang oranje
 area/hallway_lights::hallway_lights_turn_off:
-- uitzetten licht gang
+- uitzetten alle licht gang
 area/hallway_lights::hallway_lights_turn_on:
-- aanzetten licht gang
+- aanzetten alle licht gang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- stel licht keuken 45
+- stel alle licht keuken 45
 area/kitchen_lights::kitchen_lights_change_color:
-- stel licht keuken roze
+- stel alle licht keuken roze
 area/kitchen_lights::kitchen_lights_turn_off:
-- uitzetten licht keuken
+- uitzetten alle licht keuken
 area/kitchen_lights::kitchen_lights_turn_on:
-- aanzetten licht keuken
+- aanzetten alle licht keuken
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- uitzetten apparaat keuken
+- uitzetten alle apparaat keuken
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- aanzetten apparaat keuken
+- aanzetten alle apparaat keuken
 area/laundry_lights::laundry_lights_change_brightness:
-- stel licht wasruimte 62
+- stel alle licht wasruimte 62
 area/laundry_lights::laundry_lights_change_color:
-- stel licht wasruimte geel
+- stel alle licht wasruimte geel
 area/laundry_lights::laundry_lights_turn_off:
-- uitzetten licht wasruimte
+- uitzetten alle licht wasruimte
 area/laundry_lights::laundry_lights_turn_on:
-- aanzetten licht wasruimte
+- aanzetten alle licht wasruimte
 area/laundry_switchs::laundry_switchs_turn_off:
-- uitzetten apparaat wasruimte
+- uitzetten alle apparaat wasruimte
 area/laundry_switchs::laundry_switchs_turn_on:
-- aanzetten apparaat wasruimte
+- aanzetten alle apparaat wasruimte
 area/living_climates::living_climates_set_temperature:
 - stel verwarming woonkamer 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - stel gordijn woonkamer 46
 area/living_lights::living_lights_change_brightness:
-- stel licht woonkamer 84
+- stel alle licht woonkamer 84
 area/living_lights::living_lights_change_color:
-- stel licht woonkamer blauw
+- stel alle licht woonkamer blauw
 area/living_lights::living_lights_turn_off:
-- uitzetten licht woonkamer
+- uitzetten alle licht woonkamer
 area/living_lights::living_lights_turn_on:
-- aanzetten licht woonkamer
+- aanzetten alle licht woonkamer
 area/main_bath_lights::main_bath_lights_change_brightness:
-- stel licht badkamer 73
+- stel alle licht badkamer 73
 area/main_bath_lights::main_bath_lights_change_color:
-- stel licht badkamer roze
+- stel alle licht badkamer roze
 area/main_bath_lights::main_bath_lights_turn_off:
-- uitzetten licht badkamer
+- uitzetten alle licht badkamer
 area/main_bath_lights::main_bath_lights_turn_on:
-- aanzetten licht badkamer
+- aanzetten alle licht badkamer
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- uitzetten apparaat badkamer
+- uitzetten alle apparaat badkamer
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- aanzetten apparaat badkamer
+- aanzetten alle apparaat badkamer
 area/master_bath_lights::master_bath_lights_change_brightness:
-- stel licht badmaster 60
+- stel alle licht badmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- stel licht badmaster zwart
+- stel alle licht badmaster zwart
 area/master_bath_lights::master_bath_lights_turn_off:
-- uitzetten licht badmaster
+- uitzetten alle licht badmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- aanzetten licht badmaster
+- aanzetten alle licht badmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- uitzetten apparaat badmaster
+- uitzetten alle apparaat badmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- aanzetten apparaat badmaster
+- aanzetten alle apparaat badmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- stel verwarming slaapkamer 20 en stel verwarming woonkamer 20
+- stel verwarming slaapkamermaster 20 then stel verwarming woonkamer 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- dicht gordijn slaapkamer en dicht gordijn woonkamer
+- dicht gordijn slaapkamermaster then dicht gordijn woonkamer
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- open gordijn slaapkamer en open gordijn woonkamer
+- open gordijn slaapkamermaster then open gordijn woonkamer
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- stel gordijn slaapkamer 19 en stel gordijn woonkamer 19
+- stel gordijn slaapkamermaster 19 then stel gordijn woonkamer 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- stel licht slaapkamer 25 en stel licht woonkamer 25
+- stel alle licht slaapkamermaster 25 then stel alle licht woonkamer 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- stel licht slaapkamer wit en stel licht woonkamer wit
+- stel alle licht slaapkamermaster wit then stel alle licht woonkamer wit
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- uitzetten licht slaapkamer en uitzetten licht woonkamer
+- uitzetten alle licht slaapkamermaster then uitzetten alle licht woonkamer
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- aanzetten licht slaapkamer en aanzetten licht woonkamer
+- aanzetten alle licht slaapkamermaster then aanzetten alle licht woonkamer
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- stel licht slaapkamer 57 en stel licht badkamer 57
+- stel alle licht slaapkamermaster 57 then stel alle licht badkamer 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- stel licht slaapkamer roze en stel licht badkamer roze
+- stel alle licht slaapkamermaster roze then stel alle licht badkamer roze
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- uitzetten licht slaapkamer en uitzetten licht badkamer
+- uitzetten alle licht slaapkamermaster then uitzetten alle licht badkamer
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- aanzetten licht slaapkamer en aanzetten licht badkamer
+- aanzetten alle licht slaapkamermaster then aanzetten alle licht badkamer
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- stel verwarming slaapkamer 20
+- stel verwarming slaapkamermaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- dicht gordijn slaapkamer
+- dicht gordijn slaapkamermaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- open gordijn slaapkamer
+- open gordijn slaapkamermaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- stel gordijn slaapkamer 38
+- stel gordijn slaapkamermaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- stel ventilator slaapkamer 79
+- stel ventilator slaapkamermaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- uitzetten ventilator slaapkamer
+- uitzetten ventilator slaapkamermaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- aanzetten ventilator slaapkamer
+- aanzetten ventilator slaapkamermaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- stel licht slaapkamer 73
+- stel alle licht slaapkamermaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- stel licht slaapkamer roze
+- stel alle licht slaapkamermaster roze
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- uitzetten licht slaapkamer
+- uitzetten alle licht slaapkamermaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- aanzetten licht slaapkamer
+- aanzetten alle licht slaapkamermaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- stel licht toilet 52
+- stel alle licht toilet 52
 area/powder_room_lights::powder_room_lights_change_color:
-- stel licht toilet paars
+- stel alle licht toilet paars
 area/powder_room_lights::powder_room_lights_turn_off:
-- uitzetten licht toilet
+- uitzetten alle licht toilet
 area/powder_room_lights::powder_room_lights_turn_on:
-- aanzetten licht toilet
+- aanzetten alle licht toilet
 area/spoken_lights::spoken_bedroom_inflection:
-- stel licht slaapkamer rood
+- stel alle licht slaapkamermaster rood
 area/spoken_lights::spoken_except_island:
 - uitzetten alle licht behalve eiland
 area/spoken_lights::spoken_except_kitchen:
-- uitzetten alle licht behalve keuken behalve eiland
+- uitzetten alle licht behalve keuken
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- uitzetten licht woonkamer en uitzetten licht huiskameress en uitzetten licht keuken
+- uitzetten alle licht woonkamer then uitzetten alle licht huiskameress then uitzetten
+  alle licht keuken
 area/spoken_lights::spoken_stt_kitchen_off:
-- uitzetten licht keuken
+- uitzetten alle licht keuken
 area/spoken_lights::spoken_stt_living_off:
-- uitzetten licht woonkamer
+- uitzetten alle licht woonkamer

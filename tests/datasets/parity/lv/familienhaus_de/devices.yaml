@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - iestati apkure istaba 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- iestati apkure gulamistaba 19
+- iestati apkure gulamistabamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - iestati aizkars gulamistaba2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - atver aizkars istaba
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- iestati aizkars gulamistaba 19
+- iestati aizkars gulamistabamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- aizver aizkars gulamistaba
+- aizver aizkars gulamistabamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- atver aizkars gulamistaba
+- atver aizkars gulamistabamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - iestati ventilators gulamistaba2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - iesledz ventilators dzivojamafam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- iestati ventilators gulamistaba 28
+- iestati ventilators gulamistabamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- izsledz ventilators gulamistaba
+- izsledz ventilators gulamistabamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- iesledz ventilators gulamistaba
+- iesledz ventilators gulamistabamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- izsledz ventilators gulamistaba un izsledz gaisma virtuve
+- izsledz ventilators gulamistabamaster then izsledz sala virtuve
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- iesledz ventilators gulamistaba un iesledz gaisma virtuve
+- iesledz ventilators gulamistabamaster then iesledz sala virtuve
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - iestati griesti gulamistaba2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - iesledz griesti virtuve
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- iestati gaisma virtuve 99
+- iestati sala virtuve 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- iestati gaisma virtuve green
+- iestati sala virtuve green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- izsledz gaisma virtuve
+- izsledz sala virtuve
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- iesledz gaisma virtuve
+- iesledz sala virtuve
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - iestati gaisma velas 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - iesledz griesti istaba
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- iestati gaisma istaba 72
+- iestati lamp istaba 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- iestati gaisma istaba red
+- iestati lamp istaba red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- izsledz gaisma istaba
+- izsledz lamp istaba
 devices/light_living_lamp::light_living_lamp_turn_on:
-- iesledz gaisma istaba
+- iesledz lamp istaba
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - iestati gaisma main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - iesledz gaisma vannamaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- iestati nakts gulamistaba 25
+- iestati nakts gulamistabamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- iestati nakts gulamistaba red
+- iestati nakts gulamistabamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- izsledz nakts gulamistaba
+- izsledz nakts gulamistabamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- iesledz nakts gulamistaba
+- iesledz nakts gulamistabamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- iestati griesti gulamistaba 77
+- iestati griesti gulamistabamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- iestati griesti gulamistaba blue
+- iestati griesti gulamistabamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- izsledz griesti gulamistaba
+- izsledz griesti gulamistabamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- iesledz griesti gulamistaba
+- iesledz griesti gulamistabamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- iestati gaisma gulamistaba 55
+- iestati ankleide gulamistabamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- iestati gaisma gulamistaba black
+- iestati ankleide gulamistabamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- izsledz gaisma gulamistaba
+- izsledz ankleide gulamistabamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- iesledz gaisma gulamistaba
+- iesledz ankleide gulamistabamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - iestati gaisma wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - iesledz televizors dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause televizors dzivojamafam
+- pause tv dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - izsledz televizors dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - iesledz televizors istaba
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause televizors istaba
+- pause tv istaba
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - izsledz televizors istaba
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,29 +239,35 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - iesledz televizors istaba
 devices/scenes::dinner_time:
-- iestati gaisma dzivojamafamess 90 un iesledz griesti virtuve un iestati gaisma virtuve
-  80
+- iestati gaisma dzivojamafamess 90 then iesledz griesti virtuve then iestati sala
+  virtuve 80
 devices/scenes::good_morning:
-- iesledz griesti virtuve un iestati gaisma dzivojamafamess 100 un atver aizkars istaba
-  un atver aizkars gulamistaba
+- iesledz griesti virtuve then iestati gaisma dzivojamafamess 100 then atver aizkars
+  istaba then atver aizkars gulamistabamaster
 devices/scenes::kids_bedtime:
-- izsledz griesti gulamistaba2 un izsledz griesti gulamistaba3 un izsledz griesti
-  gulamistaba4 un iestati gaisma prieksnamsgang 15
+- izsledz griesti gulamistaba2 then izsledz griesti gulamistaba3 then izsledz griesti
+  gulamistaba4 then iestati gaisma prieksnamsgang 15
 devices/scenes::movie_night:
-- izsledz griesti istaba un iestati gaisma istaba 20 un iesledz televizors istaba
-  un aizver aizkars istaba
+- izsledz griesti istaba then iestati lamp istaba 20 then iesledz televizors istaba
+  then aizver aizkars istaba
 devices/scripts::good_night:
-- iesledz scena nakts
+- izsledz griesti istaba then izsledz lamp istaba then izsledz gaisma dzivojamafamess
+  then izsledz griesti virtuve then izsledz sala virtuve then izsledz griesti dzivojamafam
+  then izsledz gaisma prieksnams then izsledz gaisma prieksnamsgang then sledzene
+  sledzene prieksnams then sledzene sledzene garage then iestati apkure gulamistabamaster
+  20
 devices/scripts::leaving_home:
-- iesledz scena izeja
+- izsledz griesti istaba then izsledz lamp istaba then izsledz griesti virtuve then
+  izsledz griesti dzivojamafam then izsledz gaisma prieksnams then sledzene sledzene
+  prieksnams then sledzene sledzene garage then aizver aizkars garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - izsledz trauku
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - iesledz trauku
 devices/switch_dryer::switch_dryer_turn_off:
-- izsledz veļasmašīna
+- izsledz dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- iesledz veļasmašīna
+- iesledz dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - izsledz veļasmašīna
 devices/switch_washing_machine::switch_washing_machine_turn_on:

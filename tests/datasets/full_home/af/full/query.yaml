@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - wat gordyn slaapkamer
-  - wat slaapkamer gordyn
+  - wat gordyn slaapkamermaster
+  - wat slaapkamermaster gordyn
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - wat verwarming slaapkamer
-  - wat slaapkamer verwarming
+  - wat verwarming slaapkamermaster
+  - wat slaapkamermaster verwarming
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - wat temperatuur slaapkamer
-  - wat slaapkamer temperatuur
+  - wat temperatuur slaapkamermaster
+  - wat slaapkamermaster temperatuur
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - wat waaier slaapkamer
-  - wat slaapkamer waaier
+  - wat waaier slaapkamermaster
+  - wat slaapkamermaster waaier
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - wat lig slaapkamer
-  - wat slaapkamer lig
+  - wat lig slaapkamermaster
+  - wat slaapkamermaster lig
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - wat lig slaapkamer
-  - wat slaapkamer lig
+  - wat lig slaapkamermaster
+  - wat slaapkamermaster lig
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - wat ensuite slaapkamer
-  - wat slaapkamer ensuite
+  - wat ensuite slaapkamermaster
+  - wat slaapkamermaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - wat lig slaapkamer
-  - wat slaapkamer lig
+  - wat lig slaapkamermaster
+  - wat slaapkamermaster lig
 - name: query_light.master_bath_light
   conditions:
   - type: query

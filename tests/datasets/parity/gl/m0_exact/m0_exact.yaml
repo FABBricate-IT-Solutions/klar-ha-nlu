@@ -1,9 +1,9 @@
 m0_exact/representative::exact_clarify:
 - acende luz salon
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread lista
+- done bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- acende teito cuarto3 e apaga luz entrada
+- acende teito cuarto3 then apaga luz entrada
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
@@ -16,4 +16,4 @@ m0_exact/representative::exact_timer:
 m0_exact/representative::exact_timer_resume_preserves_duration:
 - acende temporizador oven
 m0_exact/representative::exact_todo_list:
-- add apples lista
+- add apples aufgabenliste

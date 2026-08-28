@@ -19,13 +19,14 @@ export function CalibratePage({
   onInspect: (row: Assignment) => void;
   onApply: () => void;
 }) {
-  const inbox = data.assignment.filter((row) => row.confidence !== "high");
+  const inbox = data.assignment.filter((row) => row.confidence !== "high" && !ui.dismissed.includes(row.entity_id));
   const accept = async (row: Assignment, area = row.suggested_area?.area_id || "") => {
     await api.tagEntity({ entity_id: row.entity_id, aliases: row.aliases, preferred: row.tags.includes("preferred"), area });
     onRefresh();
   };
   const dismiss = (row: Assignment) => {
     onUi({ ...ui, dismissed: [...new Set([...ui.dismissed, row.entity_id])] });
+    onRefresh();
   };
 
   return (
@@ -34,6 +35,7 @@ export function CalibratePage({
         <div>
           <h1>{t.calibrate}</h1>
           <p className="muted">{inbox.length ? `${inbox.length} ${t.open}` : t.noGaps}</p>
+          <p className="muted">{t.mappingHint}</p>
         </div>
         {inbox.some((row) => (row.suggested_area?.score || 0) >= 3) && <button className="primary" onClick={onApply}>{t.applyAll}</button>}
       </section>

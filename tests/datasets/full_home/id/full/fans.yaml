@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - kipas kamar nyalakan
-  - nyalakan kipas kamar
+  - kipas kamarmaster nyalakan
+  - nyalakan kipas kamarmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - matikan kipas kamar
-  - kipas kamar matikan
+  - matikan kipas kamarmaster
+  - kipas kamarmaster matikan
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - setel kipas kamar 40
-  - kipas kamar 40
+  - setel kipas kamarmaster 40
+  - kipas kamarmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - setel kipas kamar 20
-  - kipas kamar 20
+  - setel kipas kamarmaster 20
+  - kipas kamarmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - setel kipas kamar 60
-  - kipas kamar 60
+  - setel kipas kamarmaster 60
+  - kipas kamarmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - setel kipas kamar 80
-  - kipas kamar 80
+  - setel kipas kamarmaster 80
+  - kipas kamarmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

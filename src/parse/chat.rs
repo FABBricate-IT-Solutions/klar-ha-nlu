@@ -23,6 +23,7 @@ fn has_home_domain_cue(tokens: &[String]) -> bool {
     cat.any(tokens, cat.media_nouns())
         || cat.any(tokens, cat.timer_nouns())
         || cat.any(tokens, cat.list_nouns())
+        || crate::parse::calendar::mentions_calendar(tokens)
         || cat.any(tokens, cat.light_nouns())
         || cat.any(tokens, cat.cover_nouns())
         || cat.any(tokens, cat.lock_nouns())

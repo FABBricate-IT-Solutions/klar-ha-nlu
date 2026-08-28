@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - charte jamtchebi samzareulo
-  - jamtchebi samzareulo charte
+  - ჩართე jamtchebi სამზარეულო
+  - jamtchebi სამზარეულო ჩართე
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - gamorte jamtchebi samzareulo
-  - jamtchebi samzareulo gamorte
+  - გამორთე jamtchebi სამზარეულო
+  - jamtchebi სამზარეულო გამორთე
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - charte saretskhave saretskhave
-  - saretskhave saretskhave charte
+  - ჩართე saretskhave saretskhave
+  - saretskhave saretskhave ჩართე
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - gamorte saretskhave saretskhave
-  - saretskhave saretskhave gamorte
+  - გამორთე saretskhave saretskhave
+  - saretskhave saretskhave გამორთე
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - charte dryer saretskhave
-  - dryer saretskhave charte
+  - ჩართე dryer saretskhave
+  - dryer saretskhave ჩართე
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - gamorte dryer saretskhave
-  - dryer saretskhave gamorte
+  - გამორთე dryer saretskhave
+  - dryer saretskhave გამორთე
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - charte rangehood samzareulo
-  - rangehood samzareulo charte
+  - ჩართე rangehood სამზარეულო
+  - rangehood სამზარეულო ჩართე
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - gamorte rangehood samzareulo
-  - rangehood samzareulo gamorte
+  - გამორთე rangehood სამზარეულო
+  - rangehood სამზარეულო გამორთე
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - charte ventilatoribad abazanamaster
-  - ventilatoribad abazanamaster charte
+  - ჩართე ვენტილატორიbad abazanamaster
+  - ვენტილატორიbad abazanamaster ჩართე
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - gamorte ventilatoribad abazanamaster
-  - ventilatoribad abazanamaster gamorte
+  - გამორთე ვენტილატორიbad abazanamaster
+  - ვენტილატორიbad abazanamaster გამორთე
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - charte ventilatoribad main bath
-  - ventilatoribad main bath charte
+  - ჩართე ვენტილატორიbad main bath
+  - ვენტილატორიbad main bath ჩართე
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - gamorte ventilatoribad main bath
-  - ventilatoribad main bath gamorte
+  - გამორთე ვენტილატორიbad main bath
+  - ვენტილატორიbad main bath გამორთე

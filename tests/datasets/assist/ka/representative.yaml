@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - charte sinatle misagebi
+    - ჩართე სინათლე მისაღები
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - gamorte sinatle samzareulo
+    - გამორთე სინათლე სამზარეულო
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - კალენდარი რა არის
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - დაამატე სტომატოლოგი ხვალ 15 კალენდარი
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - წაშალა სტომატოლოგი კალენდარი
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - გადაუყვან სტომატოლოგი ხვალ 16 კალენდარი
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - დაკვრა depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

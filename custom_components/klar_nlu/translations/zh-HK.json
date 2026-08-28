@@ -36,6 +36,7 @@
           "assist_filter": "只控制已向 Assist 公開嘅實體",
           "nlu_rag": "NLU-RAG（可選）",
           "quiet_ack": "簡短確認（提示音）",
+          "calendar_llm": "將日曆查詢交俾大模型",
           "channel": "發行通道"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "開：只限 Assist 見到嘅實體。關：包括隱藏實體。",
           "nlu_rag": "預設關閉。傾偈時只將已配對片段交俾後備模型。",
           "quiet_ack": "簡單開關燈唔講嘢，只喺衛星播短提示音。",
+          "calendar_llm": "預設關閉。開：Klar 讀日曆，後備大模型講行程。關：Klar 自己講清單。新增、刪除同搬動仍然由 Klar 處理。",
           "languages": "預設跟 Home Assistant 系統語言。",
           "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。"
         }

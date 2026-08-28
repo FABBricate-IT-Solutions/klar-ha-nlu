@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - poetfai langchan hongkrua
-  - langchan hongkrua poetfai
+  - เปิด langchan ห้องครัว
+  - langchan ห้องครัว เปิด
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - pitfai langchan hongkrua
-  - langchan hongkrua pitfai
+  - ปิด langchan ห้องครัว
+  - langchan ห้องครัว ปิด
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - poetfai sakpha hongsakpha
-  - sakpha hongsakpha poetfai
+  - เปิด sakpha hongsakpha
+  - sakpha hongsakpha เปิด
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - pitfai sakpha hongsakpha
-  - sakpha hongsakpha pitfai
+  - ปิด sakpha hongsakpha
+  - sakpha hongsakpha ปิด
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - poetfai dryer hongsakpha
-  - dryer hongsakpha poetfai
+  - เปิด dryer hongsakpha
+  - dryer hongsakpha เปิด
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - pitfai dryer hongsakpha
-  - dryer hongsakpha pitfai
+  - ปิด dryer hongsakpha
+  - dryer hongsakpha ปิด
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - poetfai rangehood hongkrua
-  - rangehood hongkrua poetfai
+  - เปิด rangehood ห้องครัว
+  - rangehood ห้องครัว เปิด
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - pitfai rangehood hongkrua
-  - rangehood hongkrua pitfai
+  - ปิด rangehood ห้องครัว
+  - rangehood ห้องครัว ปิด
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - poetfai phatbad hongnamlak
-  - phatbad hongnamlak poetfai
+  - เปิด พัดลมbad hongnamlak
+  - พัดลมbad hongnamlak เปิด
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - pitfai phatbad hongnamlak
-  - phatbad hongnamlak pitfai
+  - ปิด พัดลมbad hongnamlak
+  - พัดลมbad hongnamlak ปิด
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - poetfai phatbad main bath
-  - phatbad main bath poetfai
+  - เปิด พัดลมbad main bath
+  - พัดลมbad main bath เปิด
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - pitfai phatbad main bath
-  - phatbad main bath pitfai
+  - ปิด พัดลมbad main bath
+  - พัดลมbad main bath ปิด

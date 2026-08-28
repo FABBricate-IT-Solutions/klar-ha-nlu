@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Nu am inteles. Spune-mi de exemplu ce lumina sa aprind.",
+    unknown: "Nu am inteles.",
     need_on: "Ce aprind?",
     need_off: "Ce sting?",
     need_which: "Ce aprind?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Ce sting?",
     timer_pause: "Ce sting?",
     list_add: "E pe lista.",
+    calendar_list: "{items}",
+    calendar_empty: "Niciun eveniment.",
+    calendar_none: "Niciun calendar.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Ce titlu?",
+    calendar_need_when: "Cand?",
+    calendar_readonly: "Doar citire.",
+    calendar_deleted: "Eveniment sters.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Care eveniment?",
+    calendar_no_uid: "Fara identificator.",
+    no_music_player: "Niciun player.",
     done: "{name}",
     light_suffix: " lumina",
     area_light: "lumina {loc}",

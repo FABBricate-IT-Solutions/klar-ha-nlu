@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni vithak ate rasoi
-  - roshni vithak ate rasoi chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ ਅਤੇ ਰਸੋਈ
+  - ਰੋਸ਼ਨੀ ਬੈਠਕ ਅਤੇ ਰਸੋਈ ਚਾਲੂ
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - band roshni vithak ate tala darwaza
-  - band vithak ate tala darwaza
+  - ਬੰਦ ਰੋਸ਼ਨੀ ਬੈਠਕ ਅਤੇ ਤਾਲਾ ਦਰਵਾਜ਼ਾ
+  - ਬੰਦ ਬੈਠਕ ਅਤੇ ਤਾਲਾ ਦਰਵਾਜ਼ਾ
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni rasoi ate parivarakess
-  - roshni rasoi ate parivarakess chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ ਰਸੋਈ ਅਤੇ parivarakess
+  - ਰੋਸ਼ਨੀ ਰਸੋਈ ਅਤੇ parivarakess ਚਾਲੂ
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni office ate hallway
-  - roshni office ate hallway chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ office ਅਤੇ hallway
+  - ਰੋਸ਼ਨੀ office ਅਤੇ hallway ਚਾਲੂ
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni garage ate garden
-  - roshni garage ate garden chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ garage ਅਤੇ garden
+  - ਰੋਸ਼ਨੀ garage ਅਤੇ garden ਚਾਲੂ
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni bedroom ate main bath
-  - roshni bedroom ate main bath chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ bedroommaster ਅਤੇ main bath
+  - ਰੋਸ਼ਨੀ bedroommaster ਅਤੇ main bath ਚਾਲੂ
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni parivarak ate vithak
-  - roshni parivarak ate vithak chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ parivarak ਅਤੇ ਬੈਠਕ
+  - ਰੋਸ਼ਨੀ parivarak ਅਤੇ ਬੈਠਕ ਚਾਲੂ
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni basement ate garden
-  - roshni basement ate garden chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ basement ਅਤੇ garden
+  - ਰੋਸ਼ਨੀ basement ਅਤੇ garden ਚਾਲੂ
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni hallway ate office
-  - roshni hallway ate office chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ hallway ਅਤੇ office
+  - ਰੋਸ਼ਨੀ hallway ਅਤੇ office ਚਾਲੂ
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni parivarakess ate rasoi
-  - roshni parivarakess ate rasoi chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ parivarakess ਅਤੇ ਰਸੋਈ
+  - ਰੋਸ਼ਨੀ parivarakess ਅਤੇ ਰਸੋਈ ਚਾਲੂ
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu roshni bedroom2 ate bedroom3
-  - roshni bedroom2 ate bedroom3 chalu
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ bedroom2 ਅਤੇ bedroom3
+  - ਰੋਸ਼ਨੀ bedroom2 ਅਤੇ bedroom3 ਚਾਲੂ

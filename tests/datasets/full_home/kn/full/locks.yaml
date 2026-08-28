@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - biga biga pravesha
-  - biga pravesha biga
+  - ಬೀಗ ಬೀಗ pravesha
+  - ಬೀಗ pravesha ಬೀಗ
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - tere biga pravesha
-  - biga pravesha tere
+  - ತೆರೆ ಬೀಗ pravesha
+  - ಬೀಗ pravesha ತೆರೆ
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - biga biga garage
-  - biga garage biga
+  - ಬೀಗ ಬೀಗ garage
+  - ಬೀಗ garage ಬೀಗ
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - tere biga garage
-  - biga garage tere
+  - ತೆರೆ ಬೀಗ garage
+  - ಬೀಗ garage ತೆರೆ
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - biga biga pravesha
-  - biga pravesha biga
+  - ಬೀಗ ಬೀಗ pravesha
+  - ಬೀಗ pravesha ಬೀಗ
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - biga biga garage
-  - biga garage biga
+  - ಬೀಗ ಬೀಗ garage
+  - ಬೀಗ garage ಬೀಗ

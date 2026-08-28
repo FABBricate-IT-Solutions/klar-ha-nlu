@@ -36,6 +36,7 @@
           "assist_filter": "Ohjaa vain Assistille näkyviä entiteettejä",
           "nlu_rag": "NLU-RAG (valinnainen)",
           "quiet_ack": "Lyhyt vahvistus (kello)",
+          "calendar_llm": "Lähetä kalenterikyselyt LLM:lle",
           "channel": "Julkaisukanava"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Päällä: vain se mitä Assist saa nähdä. Pois: myös piilotetut.",
           "nlu_rag": "Oletuksena pois. Keskustelussa vain tunnistettu ote menee varamalliin.",
           "quiet_ack": "Yksinkertaisessa valon tai kytkimen päälle/pois-komennossa ei lausetta, vain lyhyt ääni.",
+          "calendar_llm": "Oletuksena pois. Päällä: Klar lukee kalenterin, varamalli sanoo tapahtumat. Pois: Klar sanoo listan itse. Luonti, poisto ja siirto jäävät Klariin.",
           "languages": "Oletus on Home Assistantin järjestelmäkieli.",
           "channel": "Milloin tahansa. Staging osoittaa Klar NLU (Staging) -palveluun."
         }

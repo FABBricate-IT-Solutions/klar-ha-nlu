@@ -113,6 +113,7 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         self.assertIn(config_flow.CONF_ASSIST_FILTER, keys)
         self.assertIn(config_flow.CONF_NLU_RAG, keys)
         self.assertIn(config_flow.CONF_QUIET_ACK, keys)
+        self.assertIn(config_flow.CONF_CALENDAR_LLM, keys)
         self.assertIn(config_flow.CONF_CHANNEL, keys)
         self.assertIn(config_flow.CONF_MODE, keys)
 
@@ -136,6 +137,10 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         self.assertIn("fr", codes)
         self.assertNotIn("ru", codes)
         self.assertGreater(len(codes), 2)
+        for item in options:
+            self.assertIn("value", item)
+            self.assertIn("label", item)
+            self.assertTrue(str(item["label"]).strip())
         marker = next(item for item in schema.schema if item.schema == config_flow.CONF_LANGUAGES)
         self.assertEqual(marker.default, config_flow.LANGUAGE_SYSTEM)
 

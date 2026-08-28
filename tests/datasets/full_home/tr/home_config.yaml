@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Yatakodasi
+  name: Yatakodasimaster
   floor: upper
   aliases:
+  - yatakodasimaster
   - yatakodasi
 - id: bedroom_2
   name: Yatakodasi2
@@ -130,10 +131,10 @@ devices:
   - tavan
 - id: light.living_lamp
   area_id: living
-  name: salon isik
+  name: salon lamp
   aliases:
-  - salon isik
-  - isik
+  - salon lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: aileess isik
@@ -190,29 +191,29 @@ devices:
   - isik
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: yatakodasi tavan
+  name: yatakodasimaster tavan
   aliases:
-  - yatakodasi tavan
+  - yatakodasimaster tavan
   - tavan
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: yatakodasi ensuite
+  name: yatakodasimaster ensuite
   aliases:
-  - yatakodasi ensuite
+  - yatakodasimaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: yatakodasi left komodin
+  name: yatakodasimaster left komodin
   aliases:
-  - yatakodasi left komodin
+  - yatakodasimaster left komodin
   - komodin
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: yatakodasi right komodin
+  name: yatakodasimaster right komodin
   aliases:
-  - yatakodasi right komodin
+  - yatakodasimaster right komodin
   - komodin
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - perde
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: yatakodasi perde
+  name: yatakodasimaster perde
   aliases:
-  - yatakodasi perde
+  - yatakodasimaster perde
   - perde
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - klima
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: yatakodasi klima
+  name: yatakodasimaster klima
   aliases:
-  - yatakodasi klima
+  - yatakodasimaster klima
   - klima
 - id: climate.master_ac
   area_id: master_bedroom
-  name: sicaklik yatakodasi
+  name: sicaklik yatakodasimaster
   aliases:
-  - sicaklik yatakodasi
+  - sicaklik yatakodasimaster
   - sicaklik
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - vantilator
 - id: fan.master_fan
   area_id: master_bedroom
-  name: yatakodasi vantilator
+  name: yatakodasimaster vantilator
   aliases:
-  - yatakodasi vantilator
+  - yatakodasimaster vantilator
   - vantilator
 - id: fan.bedroom2_fan
   area_id: bedroom_2

@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - obri cortina habitacio
-  - cortina habitacio obri
+  - obri cortina habitaciomaster
+  - cortina habitaciomaster obri
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - tanca cortina habitacio
-  - cortina habitacio tanca
+  - tanca cortina habitaciomaster
+  - cortina habitaciomaster tanca
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - posa cortina habitacio 0
-  - cortina habitacio 0
+  - posa cortina habitaciomaster 0
+  - cortina habitaciomaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - posa cortina habitacio 25
-  - cortina habitacio 25
+  - posa cortina habitaciomaster 25
+  - cortina habitaciomaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - posa cortina habitacio 40
-  - cortina habitacio 40
+  - posa cortina habitaciomaster 40
+  - cortina habitaciomaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - posa cortina habitacio 75
-  - cortina habitacio 75
+  - posa cortina habitaciomaster 75
+  - cortina habitaciomaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - posa cortina habitacio 100
-  - cortina habitacio 100
+  - posa cortina habitaciomaster 100
+  - cortina habitaciomaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - obri cortina habitacio
-  - cortina habitacio obri
+  - obri cortina habitaciomaster
+  - cortina habitaciomaster obri

@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - sea kyte magamistuba 18
-  - kyte magamistuba 18
+  - sea kyte magamistubamaster 18
+  - kyte magamistubamaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - sea kyte magamistuba 19
-  - kyte magamistuba 19
+  - sea kyte magamistubamaster 19
+  - kyte magamistubamaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - sea kyte magamistuba 20
-  - kyte magamistuba 20
+  - sea kyte magamistubamaster 20
+  - kyte magamistubamaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - sea kyte magamistuba 21
-  - kyte magamistuba 21
+  - sea kyte magamistubamaster 21
+  - kyte magamistubamaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - sea kyte magamistuba 22
-  - kyte magamistuba 22
+  - sea kyte magamistubamaster 22
+  - kyte magamistubamaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - sea kyte magamistuba 23
-  - kyte magamistuba 23
+  - sea kyte magamistubamaster 23
+  - kyte magamistubamaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - sea kyte magamistuba 24
-  - kyte magamistuba 24
+  - sea kyte magamistubamaster 24
+  - kyte magamistubamaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mis kyte magamistuba
-  - kyte magamistuba
+  - mis kyte magamistubamaster
+  - kyte magamistubamaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - sea kyte magamistuba 18
-  - kyte magamistuba 18
+  - sea kyte magamistubamaster 18
+  - kyte magamistubamaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - sea kyte magamistuba 19
-  - kyte magamistuba 19
+  - sea kyte magamistubamaster 19
+  - kyte magamistubamaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - sea kyte magamistuba 20
-  - kyte magamistuba 20
+  - sea kyte magamistubamaster 20
+  - kyte magamistubamaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - sea kyte magamistuba 21
-  - kyte magamistuba 21
+  - sea kyte magamistubamaster 21
+  - kyte magamistubamaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - sea kyte magamistuba 22
-  - kyte magamistuba 22
+  - sea kyte magamistubamaster 22
+  - kyte magamistubamaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - sea kyte magamistuba 23
-  - kyte magamistuba 23
+  - sea kyte magamistubamaster 23
+  - kyte magamistubamaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - sea kyte magamistuba 24
-  - kyte magamistuba 24
+  - sea kyte magamistubamaster 24
+  - kyte magamistubamaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mis kyte magamistuba
-  - kyte magamistuba
+  - mis kyte magamistubamaster
+  - kyte magamistubamaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mis kyte magamistuba
-  - kyte magamistuba
+  - mis kyte magamistubamaster
+  - kyte magamistubamaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mis kyte magamistuba
-  - kyte magamistuba
+  - mis kyte magamistubamaster
+  - kyte magamistubamaster

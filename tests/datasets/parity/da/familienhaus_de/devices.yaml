@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - saet varme stue 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- saet varme sovevaerelse 19
+- saet varme sovevaerelsemaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - saet gardin sovevaerelse2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - aabn gardin stue
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- saet gardin sovevaerelse 19
+- saet gardin sovevaerelsemaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- luk gardin sovevaerelse
+- luk gardin sovevaerelsemaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- aabn gardin sovevaerelse
+- aabn gardin sovevaerelsemaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - saet ventilator sovevaerelse2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - taend ventilator alrum
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- saet ventilator sovevaerelse 28
+- saet ventilator sovevaerelsemaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- sluk ventilator sovevaerelse
+- sluk ventilator sovevaerelsemaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- taend ventilator sovevaerelse
+- taend ventilator sovevaerelsemaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- sluk ventilator sovevaerelse og sluk lys kokken
+- sluk ventilator sovevaerelsemaster then sluk oe kokken
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- taend ventilator sovevaerelse og taend lys kokken
+- taend ventilator sovevaerelsemaster then taend oe kokken
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - saet loft sovevaerelse2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - taend loft kokken
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- saet lys kokken 99
+- saet oe kokken 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- saet lys kokken gron
+- saet oe kokken gron
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- sluk lys kokken
+- sluk oe kokken
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- taend lys kokken
+- taend oe kokken
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - saet lys vaskerum 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - taend loft stue
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- saet lys stue 72
+- saet lamp stue 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- saet lys stue rod
+- saet lamp stue rod
 devices/light_living_lamp::light_living_lamp_turn_off:
-- sluk lys stue
+- sluk lamp stue
 devices/light_living_lamp::light_living_lamp_turn_on:
-- taend lys stue
+- taend lamp stue
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - saet lys main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - taend lys badmaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- saet natbord sovevaerelse 25
+- saet natbord sovevaerelsemaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- saet natbord sovevaerelse rod
+- saet natbord sovevaerelsemaster rod
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- sluk natbord sovevaerelse
+- sluk natbord sovevaerelsemaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- taend natbord sovevaerelse
+- taend natbord sovevaerelsemaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- saet loft sovevaerelse 77
+- saet loft sovevaerelsemaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- saet loft sovevaerelse bla
+- saet loft sovevaerelsemaster bla
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- sluk loft sovevaerelse
+- sluk loft sovevaerelsemaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- taend loft sovevaerelse
+- taend loft sovevaerelsemaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- saet lys sovevaerelse 55
+- saet ankleide sovevaerelsemaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- saet lys sovevaerelse sort
+- saet ankleide sovevaerelsemaster sort
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- sluk lys sovevaerelse
+- sluk ankleide sovevaerelsemaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- taend lys sovevaerelse
+- taend ankleide sovevaerelsemaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - saet lys toilet 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,26 +239,30 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - taend tv stue
 devices/scenes::dinner_time:
-- saet lys alrumess 90 og taend loft kokken og saet lys kokken 80
+- saet lys alrumess 90 then taend loft kokken then saet oe kokken 80
 devices/scenes::good_morning:
-- taend loft kokken og saet lys alrumess 100 og aabn gardin stue og aabn gardin sovevaerelse
+- taend loft kokken then saet lys alrumess 100 then aabn gardin stue then aabn gardin
+  sovevaerelsemaster
 devices/scenes::kids_bedtime:
-- sluk loft sovevaerelse2 og sluk loft sovevaerelse3 og sluk loft sovevaerelse4 og
-  saet lys entreegang 15
+- sluk loft sovevaerelse2 then sluk loft sovevaerelse3 then sluk loft sovevaerelse4
+  then saet lys entreegang 15
 devices/scenes::movie_night:
-- sluk loft stue og saet lys stue 20 og taend tv stue og luk gardin stue
+- sluk loft stue then saet lamp stue 20 then taend tv stue then luk gardin stue
 devices/scripts::good_night:
-- taend scene nat
+- sluk loft stue then sluk lamp stue then sluk lys alrumess then sluk loft kokken
+  then sluk oe kokken then sluk loft alrum then sluk lys entree then sluk lys entreegang
+  then laas laas entree then laas laas garage then saet varme sovevaerelsemaster 20
 devices/scripts::leaving_home:
-- taend scene afgang
+- sluk loft stue then sluk lamp stue then sluk loft kokken then sluk loft alrum then
+  sluk lys entree then laas laas entree then laas laas garage then luk gardin garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - sluk opvask
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - taend opvask
 devices/switch_dryer::switch_dryer_turn_off:
-- sluk vaskemaskine
+- sluk dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- taend vaskemaskine
+- taend dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - sluk vaskemaskine
 devices/switch_washing_machine::switch_washing_machine_turn_on:

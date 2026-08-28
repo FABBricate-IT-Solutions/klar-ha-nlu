@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - skru lys soverom
+  - skru lys soverommaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - slaa lys soverom
+  - slaa lys soverommaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - skru tak soverom
+  - skru tak soverommaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - slaa tak soverom
+  - slaa tak soverommaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - skru nattbord soverom
+  - skru nattbord soverommaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - slaa nattbord soverom
+  - slaa nattbord soverommaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

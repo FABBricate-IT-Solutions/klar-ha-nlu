@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - allitsd futes nappali 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- allitsd futes haloszoba 19
+- allitsd futes haloszobamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - allitsd fuggony haloszoba2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - nyisd fuggony nappali
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- allitsd fuggony haloszoba 19
+- allitsd fuggony haloszobamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- csukd fuggony haloszoba
+- csukd fuggony haloszobamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- nyisd fuggony haloszoba
+- nyisd fuggony haloszobamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - allitsd ventilator haloszoba2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - kapcsold ventilator nappalifam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- allitsd ventilator haloszoba 28
+- allitsd ventilator haloszobamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- oltsd ventilator haloszoba
+- oltsd ventilator haloszobamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- kapcsold ventilator haloszoba
+- kapcsold ventilator haloszobamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- oltsd ventilator haloszoba es oltsd villany konyha
+- oltsd ventilator haloszobamaster then oltsd sziget konyha
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- kapcsold ventilator haloszoba es kapcsold villany konyha
+- kapcsold ventilator haloszobamaster then kapcsold sziget konyha
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - allitsd mennyezet haloszoba2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - kapcsold mennyezet konyha
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- allitsd villany konyha 99
+- allitsd sziget konyha 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- allitsd villany konyha green
+- allitsd sziget konyha green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- oltsd villany konyha
+- oltsd sziget konyha
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- kapcsold villany konyha
+- kapcsold sziget konyha
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - allitsd villany mosokonyha 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - kapcsold mennyezet nappali
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- allitsd villany nappali 72
+- allitsd lamp nappali 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- allitsd villany nappali red
+- allitsd lamp nappali red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- oltsd villany nappali
+- oltsd lamp nappali
 devices/light_living_lamp::light_living_lamp_turn_on:
-- kapcsold villany nappali
+- kapcsold lamp nappali
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - allitsd villany main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - kapcsold villany furdomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- allitsd ejjeliszekreny haloszoba 25
+- allitsd ejjeliszekreny haloszobamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- allitsd ejjeliszekreny haloszoba red
+- allitsd ejjeliszekreny haloszobamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- oltsd ejjeliszekreny haloszoba
+- oltsd ejjeliszekreny haloszobamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- kapcsold ejjeliszekreny haloszoba
+- kapcsold ejjeliszekreny haloszobamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- allitsd mennyezet haloszoba 77
+- allitsd mennyezet haloszobamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- allitsd mennyezet haloszoba blue
+- allitsd mennyezet haloszobamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- oltsd mennyezet haloszoba
+- oltsd mennyezet haloszobamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- kapcsold mennyezet haloszoba
+- kapcsold mennyezet haloszobamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- allitsd villany haloszoba 55
+- allitsd ankleide haloszobamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- allitsd villany haloszoba black
+- allitsd ankleide haloszobamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- oltsd villany haloszoba
+- oltsd ankleide haloszobamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- kapcsold villany haloszoba
+- kapcsold ankleide haloszobamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - allitsd villany wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,29 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - kapcsold tv nappali
 devices/scenes::dinner_time:
-- allitsd villany nappalifamess 90 es kapcsold mennyezet konyha es allitsd villany
+- allitsd villany nappalifamess 90 then kapcsold mennyezet konyha then allitsd sziget
   konyha 80
 devices/scenes::good_morning:
-- kapcsold mennyezet konyha es allitsd villany nappalifamess 100 es nyisd fuggony
-  nappali es nyisd fuggony haloszoba
+- kapcsold mennyezet konyha then allitsd villany nappalifamess 100 then nyisd fuggony
+  nappali then nyisd fuggony haloszobamaster
 devices/scenes::kids_bedtime:
-- oltsd mennyezet haloszoba2 es oltsd mennyezet haloszoba3 es oltsd mennyezet haloszoba4
-  es allitsd villany elotergang 15
+- oltsd mennyezet haloszoba2 then oltsd mennyezet haloszoba3 then oltsd mennyezet
+  haloszoba4 then allitsd villany elotergang 15
 devices/scenes::movie_night:
-- oltsd mennyezet nappali es allitsd villany nappali 20 es kapcsold tv nappali es
+- oltsd mennyezet nappali then allitsd lamp nappali 20 then kapcsold tv nappali then
   csukd fuggony nappali
 devices/scripts::good_night:
-- kapcsold jelenet ejjel
+- oltsd mennyezet nappali then oltsd lamp nappali then oltsd villany nappalifamess
+  then oltsd mennyezet konyha then oltsd sziget konyha then oltsd mennyezet nappalifam
+  then oltsd villany eloter then oltsd villany elotergang then zar zar eloter then
+  zar zar garage then allitsd futes haloszobamaster 20
 devices/scripts::leaving_home:
-- kapcsold jelenet tavozas
+- oltsd mennyezet nappali then oltsd lamp nappali then oltsd mennyezet konyha then
+  oltsd mennyezet nappalifam then oltsd villany eloter then zar zar eloter then zar
+  zar garage then csukd fuggony garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - oltsd mosogatogep
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - kapcsold mosogatogep
 devices/switch_dryer::switch_dryer_turn_off:
-- oltsd mosogep
+- oltsd dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- kapcsold mosogep
+- kapcsold dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - oltsd mosogep
 devices/switch_washing_machine::switch_washing_machine_turn_on:

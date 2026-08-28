@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "我聽唔明。例如話我知開邊盞燈。",
+    unknown: "我聽唔明。",
     need_on: "開咩？",
     need_off: "關咩？",
     need_which: "開咩？",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "關咩？",
     timer_pause: "關咩？",
     list_add: "加咗入清單。",
+    calendar_list: "{items}",
+    calendar_empty: "冇行程。",
+    calendar_none: "冇日曆。",
+    calendar_created: "{summary} {when}。",
+    calendar_need_title: "叫咩名？",
+    calendar_need_when: "幾時？",
+    calendar_readonly: "日曆唯讀。",
+    calendar_deleted: "刪咗。",
+    calendar_moved: "{summary} {when}。",
+    calendar_which: "邊個行程？",
+    calendar_no_uid: "冇編號。",
+    no_music_player: "冇播放器。",
     done: "{name}",
     light_suffix: " deng",
     area_light: "deng {loc}",
@@ -48,8 +60,8 @@ pub(super) const SPEECH: Speech = Speech {
     loc_in_der: "{room}",
     loc_home: "開咩？",
     or_home: "開咩？",
-    room_names: &[("wohnzimmer", "keting"), ("kuche", "chufang")],
-    loc_der_rooms: &["chufang", "keting"],
+    room_names: &[("wohnzimmer", "客廳"), ("kuche", "廚房")],
+    loc_der_rooms: &["客廳", "廚房"],
     personality: &[
         ("butler", &["好呀。 ", "樂意。 ", ""]),
         ("locker", &["得。 ", "搞掂。 ", ""]),

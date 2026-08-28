@@ -1,4 +1,4 @@
-use super::words::WordKey;
+use super::keys::WordKey;
 use super::Catalog;
 use crate::lang::groups::GroupClarify;
 use crate::lang::groups::LanguagePack as Pack;
@@ -35,6 +35,7 @@ const WORD_SOURCES: &[(WordKey, WordPick)] = &[
     (WordKey::GarageCover, |p: &Pack| p.nouns.garage_cover),
     (WordKey::TimerNouns, |p: &Pack| p.nouns.timer_nouns),
     (WordKey::ListNouns, |p: &Pack| p.nouns.list_nouns),
+    (WordKey::CalendarNouns, |p: &Pack| p.nouns.calendar_nouns),
     (WordKey::VacuumNouns, |p: &Pack| p.nouns.vacuum_nouns),
     (WordKey::SceneNouns, |p: &Pack| p.nouns.scene_nouns),
     (WordKey::ScriptWords, |p: &Pack| p.nouns.script_words),
@@ -86,6 +87,13 @@ const WORD_SOURCES: &[(WordKey, WordPick)] = &[
     (WordKey::TimerAdd, |p: &Pack| p.cues.timer_add),
     (WordKey::ListComplete, |p: &Pack| p.cues.list_complete),
     (WordKey::PlaybackResume, |p: &Pack| p.cues.playback_resume),
+    (WordKey::CalendarQuery, |p: &Pack| p.cues.calendar_query),
+    (WordKey::CalendarCreate, |p: &Pack| p.cues.calendar_create),
+    (WordKey::CalendarToday, |p: &Pack| p.cues.calendar_today),
+    (WordKey::CalendarTomorrow, |p: &Pack| p.cues.calendar_tomorrow),
+    (WordKey::CalendarWhen, |p: &Pack| p.cues.calendar_when),
+    (WordKey::CalendarDelete, |p: &Pack| p.cues.calendar_delete),
+    (WordKey::CalendarMove, |p: &Pack| p.cues.calendar_move),
     (WordKey::VacuumStart, |p: &Pack| p.cues.vacuum_start),
     (WordKey::Hours, |p: &Pack| p.cues.hours),
     (WordKey::Minutes, |p: &Pack| p.cues.minutes),
@@ -164,6 +172,9 @@ impl Catalog {
             c.morphology.room_suffixes.extend(p.morphology.room_suffixes.iter().copied());
             c.morphology.color_suffixes.extend(p.morphology.color_suffixes.iter().copied());
             c.morphology.linking.extend(p.morphology.linking.iter().copied());
+        }
+        for extra in ["aufgabenliste", "liste"] {
+            c.sets.entry(WordKey::ListNouns).or_default().insert(extra);
         }
         c
     }

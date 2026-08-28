@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - talu talu pravesh
-  - talu pravesh talu
+  - તાળું તાળું pravesh
+  - તાળું pravesh તાળું
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - kholo talu pravesh
-  - talu pravesh kholo
+  - ખોલો તાળું pravesh
+  - તાળું pravesh ખોલો
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - talu talu garage
-  - talu garage talu
+  - તાળું તાળું garage
+  - તાળું garage તાળું
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - kholo talu garage
-  - talu garage kholo
+  - ખોલો તાળું garage
+  - તાળું garage ખોલો
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - talu talu pravesh
-  - talu pravesh talu
+  - તાળું તાળું pravesh
+  - તાળું pravesh તાળું
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - talu talu garage
-  - talu garage talu
+  - તાળું તાળું garage
+  - તાળું garage તાળું

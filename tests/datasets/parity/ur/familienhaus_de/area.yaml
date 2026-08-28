@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - چالو پنکھا bedroom2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- رکھو روشنی bedroom2 65
+- رکھو سب روشنی bedroom2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- رکھو روشنی bedroom2 pink
+- رکھو سب روشنی bedroom2 pink
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- بند روشنی bedroom2
+- بند سب روشنی bedroom2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- چالو روشنی bedroom2
+- چالو سب روشنی bedroom2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - بندکرو پردہ bedroom3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - رکھو پردہ bedroom3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- رکھو روشنی bedroom3 76
+- رکھو سب روشنی bedroom3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- رکھو روشنی bedroom3 blue
+- رکھو سب روشنی bedroom3 blue
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- بند روشنی bedroom3
+- بند سب روشنی bedroom3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- چالو روشنی bedroom3
+- چالو سب روشنی bedroom3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- رکھو روشنی bedroom4 69
+- رکھو سب روشنی bedroom4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- رکھو روشنی bedroom4 green
+- رکھو سب روشنی bedroom4 green
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- بند روشنی bedroom4
+- بند سب روشنی bedroom4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- چالو روشنی bedroom4
+- چالو سب روشنی bedroom4
 area/dining_lights::dining_lights_change_brightness:
-- رکھو روشنی خاندانیess 54
+- رکھو سب روشنی خاندانیess 54
 area/dining_lights::dining_lights_change_color:
-- رکھو روشنی خاندانیess blue
+- رکھو سب روشنی خاندانیess blue
 area/dining_lights::dining_lights_turn_off:
-- بند روشنی خاندانیess
+- بند سب روشنی خاندانیess
 area/dining_lights::dining_lights_turn_on:
-- چالو روشنی خاندانیess
+- چالو سب روشنی خاندانیess
 area/entryway_lights::entryway_lights_change_brightness:
-- رکھو روشنی داخلہ 72
+- رکھو سب روشنی داخلہ 72
 area/entryway_lights::entryway_lights_change_color:
-- رکھو روشنی داخلہ black
+- رکھو سب روشنی داخلہ black
 area/entryway_lights::entryway_lights_turn_off:
-- بند روشنی داخلہ
+- بند سب روشنی داخلہ
 area/entryway_lights::entryway_lights_turn_on:
-- چالو روشنی داخلہ
+- چالو سب روشنی داخلہ
 area/entryway_locks::entryway_locks_lock:
 - تالا تالا داخلہ
 area/entryway_locks::entryway_locks_unlock:
 - کھولو تالا داخلہ
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- رکھو روشنی خاندانی 39 اور رکھو روشنی باورچی 39
+- رکھو سب روشنی خاندانی 39 then رکھو سب روشنی باورچی 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- رکھو روشنی خاندانی purple اور رکھو روشنی باورچی purple
+- رکھو سب روشنی خاندانی purple then رکھو سب روشنی باورچی purple
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- بند روشنی خاندانی اور بند روشنی باورچی
+- بند سب روشنی خاندانی then بند سب روشنی باورچی
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- چالو روشنی خاندانی اور چالو روشنی باورچی
+- چالو سب روشنی خاندانی then چالو سب روشنی باورچی
 area/family_room_fans::family_room_fans_set_fan_speed:
 - رکھو پنکھا خاندانی 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - چالو پنکھا خاندانی
 area/family_room_lights::family_room_lights_change_brightness:
-- رکھو روشنی خاندانی 44
+- رکھو سب روشنی خاندانی 44
 area/family_room_lights::family_room_lights_change_color:
-- رکھو روشنی خاندانی green
+- رکھو سب روشنی خاندانی green
 area/family_room_lights::family_room_lights_turn_off:
-- بند روشنی خاندانی
+- بند سب روشنی خاندانی
 area/family_room_lights::family_room_lights_turn_on:
-- چالو روشنی خاندانی
+- چالو سب روشنی خاندانی
 area/garage_covers::garage_covers_close:
 - بندکرو پردہ garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - رکھو پردہ garage 86
 area/garage_lights::garage_lights_change_brightness:
-- رکھو روشنی garage 16
+- رکھو سب روشنی garage 16
 area/garage_lights::garage_lights_change_color:
-- رکھو روشنی garage blue
+- رکھو سب روشنی garage blue
 area/garage_lights::garage_lights_turn_off:
-- بند روشنی garage
+- بند سب روشنی garage
 area/garage_lights::garage_lights_turn_on:
-- چالو روشنی garage
+- چالو سب روشنی garage
 area/garage_locks::garage_locks_lock:
 - تالا تالا garage
 area/garage_locks::garage_locks_unlock:
 - کھولو تالا garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- رکھو روشنی داخلہgang 26 اور رکھو روشنی غسلخانہ 26
+- رکھو سب روشنی داخلہgang 26 then رکھو سب روشنی غسلخانہ 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- رکھو روشنی داخلہgang purple اور رکھو روشنی غسلخانہ purple
+- رکھو سب روشنی داخلہgang purple then رکھو سب روشنی غسلخانہ purple
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- بند روشنی داخلہgang اور بند روشنی غسلخانہ
+- بند سب روشنی داخلہgang then بند سب روشنی غسلخانہ
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- چالو روشنی داخلہgang اور چالو روشنی غسلخانہ
+- چالو سب روشنی داخلہgang then چالو سب روشنی غسلخانہ
 area/hallway_lights::hallway_lights_change_brightness:
-- رکھو روشنی داخلہgang 61
+- رکھو سب روشنی داخلہgang 61
 area/hallway_lights::hallway_lights_change_color:
-- رکھو روشنی داخلہgang orange
+- رکھو سب روشنی داخلہgang orange
 area/hallway_lights::hallway_lights_turn_off:
-- بند روشنی داخلہgang
+- بند سب روشنی داخلہgang
 area/hallway_lights::hallway_lights_turn_on:
-- چالو روشنی داخلہgang
+- چالو سب روشنی داخلہgang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- رکھو روشنی باورچی 45
+- رکھو سب روشنی باورچی 45
 area/kitchen_lights::kitchen_lights_change_color:
-- رکھو روشنی باورچی pink
+- رکھو سب روشنی باورچی pink
 area/kitchen_lights::kitchen_lights_turn_off:
-- بند روشنی باورچی
+- بند سب روشنی باورچی
 area/kitchen_lights::kitchen_lights_turn_on:
-- چالو روشنی باورچی
+- چالو سب روشنی باورچی
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- بند آلہ باورچی
+- بند سب آلہ باورچی
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- چالو آلہ باورچی
+- چالو سب آلہ باورچی
 area/laundry_lights::laundry_lights_change_brightness:
-- رکھو روشنی لانڈری 62
+- رکھو سب روشنی لانڈری 62
 area/laundry_lights::laundry_lights_change_color:
-- رکھو روشنی لانڈری yellow
+- رکھو سب روشنی لانڈری yellow
 area/laundry_lights::laundry_lights_turn_off:
-- بند روشنی لانڈری
+- بند سب روشنی لانڈری
 area/laundry_lights::laundry_lights_turn_on:
-- چالو روشنی لانڈری
+- چالو سب روشنی لانڈری
 area/laundry_switchs::laundry_switchs_turn_off:
-- بند آلہ لانڈری
+- بند سب آلہ لانڈری
 area/laundry_switchs::laundry_switchs_turn_on:
-- چالو آلہ لانڈری
+- چالو سب آلہ لانڈری
 area/living_climates::living_climates_set_temperature:
 - رکھو گرمی لانج 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,100 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - رکھو پردہ لانج 46
 area/living_lights::living_lights_change_brightness:
-- رکھو روشنی لانج 84
+- رکھو سب روشنی لانج 84
 area/living_lights::living_lights_change_color:
-- رکھو روشنی لانج blue
+- رکھو سب روشنی لانج blue
 area/living_lights::living_lights_turn_off:
-- بند روشنی لانج
+- بند سب روشنی لانج
 area/living_lights::living_lights_turn_on:
-- چالو روشنی لانج
+- چالو سب روشنی لانج
 area/main_bath_lights::main_bath_lights_change_brightness:
-- رکھو روشنی main bath 73
+- رکھو سب روشنی main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- رکھو روشنی main bath pink
+- رکھو سب روشنی main bath pink
 area/main_bath_lights::main_bath_lights_turn_off:
-- بند روشنی main bath
+- بند سب روشنی main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- چالو روشنی main bath
+- چالو سب روشنی main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- بند آلہ main bath
+- بند سب آلہ main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- چالو آلہ main bath
+- چالو سب آلہ main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- رکھو روشنی ماسٹرباتھ 60
+- رکھو سب روشنی ماسٹرباتھ 60
 area/master_bath_lights::master_bath_lights_change_color:
-- رکھو روشنی ماسٹرباتھ black
+- رکھو سب روشنی ماسٹرباتھ black
 area/master_bath_lights::master_bath_lights_turn_off:
-- بند روشنی ماسٹرباتھ
+- بند سب روشنی ماسٹرباتھ
 area/master_bath_lights::master_bath_lights_turn_on:
-- چالو روشنی ماسٹرباتھ
+- چالو سب روشنی ماسٹرباتھ
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- بند آلہ ماسٹرباتھ
+- بند سب آلہ ماسٹرباتھ
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- چالو آلہ ماسٹرباتھ
+- چالو سب آلہ ماسٹرباتھ
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- رکھو گرمی bedroom 20 اور رکھو گرمی لانج 20
+- رکھو گرمی bedroommaster 20 then رکھو گرمی لانج 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- بندکرو پردہ bedroom اور بندکرو پردہ لانج
+- بندکرو پردہ bedroommaster then بندکرو پردہ لانج
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- کھولو پردہ bedroom اور کھولو پردہ لانج
+- کھولو پردہ bedroommaster then کھولو پردہ لانج
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- رکھو پردہ bedroom 19 اور رکھو پردہ لانج 19
+- رکھو پردہ bedroommaster 19 then رکھو پردہ لانج 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- رکھو روشنی bedroom 25 اور رکھو روشنی لانج 25
+- رکھو سب روشنی bedroommaster 25 then رکھو سب روشنی لانج 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- رکھو روشنی bedroom white اور رکھو روشنی لانج white
+- رکھو سب روشنی bedroommaster white then رکھو سب روشنی لانج white
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- بند روشنی bedroom اور بند روشنی لانج
+- بند سب روشنی bedroommaster then بند سب روشنی لانج
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- چالو روشنی bedroom اور چالو روشنی لانج
+- چالو سب روشنی bedroommaster then چالو سب روشنی لانج
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- رکھو روشنی bedroom 57 اور رکھو روشنی main bath 57
+- رکھو سب روشنی bedroommaster 57 then رکھو سب روشنی main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- رکھو روشنی bedroom pink اور رکھو روشنی main bath pink
+- رکھو سب روشنی bedroommaster pink then رکھو سب روشنی main bath pink
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- بند روشنی bedroom اور بند روشنی main bath
+- بند سب روشنی bedroommaster then بند سب روشنی main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- چالو روشنی bedroom اور چالو روشنی main bath
+- چالو سب روشنی bedroommaster then چالو سب روشنی main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- رکھو گرمی bedroom 20
+- رکھو گرمی bedroommaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- بندکرو پردہ bedroom
+- بندکرو پردہ bedroommaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- کھولو پردہ bedroom
+- کھولو پردہ bedroommaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- رکھو پردہ bedroom 38
+- رکھو پردہ bedroommaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- رکھو پنکھا bedroom 79
+- رکھو پنکھا bedroommaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- بند پنکھا bedroom
+- بند پنکھا bedroommaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- چالو پنکھا bedroom
+- چالو پنکھا bedroommaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- رکھو روشنی bedroom 73
+- رکھو سب روشنی bedroommaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- رکھو روشنی bedroom pink
+- رکھو سب روشنی bedroommaster pink
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- بند روشنی bedroom
+- بند سب روشنی bedroommaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- چالو روشنی bedroom
+- چالو سب روشنی bedroommaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- رکھو روشنی غسلخانہ 52
+- رکھو سب روشنی غسلخانہ 52
 area/powder_room_lights::powder_room_lights_change_color:
-- رکھو روشنی غسلخانہ purple
+- رکھو سب روشنی غسلخانہ purple
 area/powder_room_lights::powder_room_lights_turn_off:
-- بند روشنی غسلخانہ
+- بند سب روشنی غسلخانہ
 area/powder_room_lights::powder_room_lights_turn_on:
-- چالو روشنی غسلخانہ
+- چالو سب روشنی غسلخانہ
 area/spoken_lights::spoken_bedroom_inflection:
-- رکھو روشنی bedroom red
+- رکھو سب روشنی bedroommaster red
 area/spoken_lights::spoken_except_island:
 - بند سب روشنی سوا جزیرہ
 area/spoken_lights::spoken_except_kitchen:
-- بند سب روشنی سوا باورچی سوا جزیرہ
+- بند سب روشنی سوا باورچی
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- بند روشنی لانج اور بند روشنی خاندانیess اور بند روشنی باورچی
+- بند سب روشنی لانج then بند سب روشنی خاندانیess then بند سب روشنی باورچی
 area/spoken_lights::spoken_stt_kitchen_off:
-- بند روشنی باورچی
+- بند سب روشنی باورچی
 area/spoken_lights::spoken_stt_living_off:
-- بند روشنی لانج
+- بند سب روشنی لانج

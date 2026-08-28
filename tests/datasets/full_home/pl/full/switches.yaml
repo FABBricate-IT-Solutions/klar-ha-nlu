@@ -36,16 +36,16 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - wlacz dryer pralnia
-  - dryer pralnia wlacz
+  - wlacz suszarka pralnia
+  - suszarka pralnia wlacz
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - wylacz dryer pralnia
-  - dryer pralnia wylacz
+  - wylacz suszarka pralnia
+  - suszarka pralnia wylacz
 - name: switch.rangehood_on
   conditions:
   - type: action

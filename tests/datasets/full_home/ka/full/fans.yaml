@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - ventilatori ojakhisotakhi charte
-  - charte ventilatori ojakhisotakhi
+  - ვენტილატორი ojakhisotakhi ჩართე
+  - ჩართე ვენტილატორი ojakhisotakhi
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - gamorte ventilatori ojakhisotakhi
-  - ventilatori ojakhisotakhi gamorte
+  - გამორთე ვენტილატორი ojakhisotakhi
+  - ვენტილატორი ojakhisotakhi გამორთე
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - daayene ventilatori ojakhisotakhi 40
-  - ventilatori ojakhisotakhi 40
+  - დააყენე ვენტილატორი ojakhisotakhi 40
+  - ვენტილატორი ojakhisotakhi 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilatori sadzinebeli charte
-  - charte ventilatori sadzinebeli
+  - ვენტილატორი sadzinebelimaster ჩართე
+  - ჩართე ვენტილატორი sadzinebelimaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - gamorte ventilatori sadzinebeli
-  - ventilatori sadzinebeli gamorte
+  - გამორთე ვენტილატორი sadzinebelimaster
+  - ვენტილატორი sadzinebelimaster გამორთე
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - daayene ventilatori sadzinebeli 40
-  - ventilatori sadzinebeli 40
+  - დააყენე ვენტილატორი sadzinebelimaster 40
+  - ვენტილატორი sadzinebelimaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - ventilatori sadzinebeli2 charte
-  - charte ventilatori sadzinebeli2
+  - ვენტილატორი sadzinebeli2 ჩართე
+  - ჩართე ვენტილატორი sadzinebeli2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - gamorte ventilatori sadzinebeli2
-  - ventilatori sadzinebeli2 gamorte
+  - გამორთე ვენტილატორი sadzinebeli2
+  - ვენტილატორი sadzinebeli2 გამორთე
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - daayene ventilatori sadzinebeli2 40
-  - ventilatori sadzinebeli2 40
+  - დააყენე ვენტილატორი sadzinebeli2 40
+  - ვენტილატორი sadzinebeli2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - daayene ventilatori ojakhisotakhi 20
-  - ventilatori ojakhisotakhi 20
+  - დააყენე ვენტილატორი ojakhisotakhi 20
+  - ვენტილატორი ojakhisotakhi 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - daayene ventilatori ojakhisotakhi 60
-  - ventilatori ojakhisotakhi 60
+  - დააყენე ვენტილატორი ojakhisotakhi 60
+  - ვენტილატორი ojakhisotakhi 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - daayene ventilatori ojakhisotakhi 80
-  - ventilatori ojakhisotakhi 80
+  - დააყენე ვენტილატორი ojakhisotakhi 80
+  - ვენტილატორი ojakhisotakhi 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - daayene ventilatori sadzinebeli 20
-  - ventilatori sadzinebeli 20
+  - დააყენე ვენტილატორი sadzinebelimaster 20
+  - ვენტილატორი sadzinebelimaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - daayene ventilatori sadzinebeli 60
-  - ventilatori sadzinebeli 60
+  - დააყენე ვენტილატორი sadzinebelimaster 60
+  - ვენტილატორი sadzinebelimaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - daayene ventilatori sadzinebeli 80
-  - ventilatori sadzinebeli 80
+  - დააყენე ვენტილატორი sadzinebelimaster 80
+  - ვენტილატორი sadzinebelimaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - daayene ventilatori sadzinebeli2 20
-  - ventilatori sadzinebeli2 20
+  - დააყენე ვენტილატორი sadzinebeli2 20
+  - ვენტილატორი sadzinebeli2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - daayene ventilatori sadzinebeli2 60
-  - ventilatori sadzinebeli2 60
+  - დააყენე ვენტილატორი sadzinebeli2 60
+  - ვენტილატორი sadzinebeli2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - daayene ventilatori sadzinebeli2 80
-  - ventilatori sadzinebeli2 80
+  - დააყენე ვენტილატორი sadzinebeli2 80
+  - ვენტილატორი sadzinebeli2 80

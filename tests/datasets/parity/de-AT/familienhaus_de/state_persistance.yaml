@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - was licht garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - was licht vorzimmergang und was licht klosett
+- - was licht vorzimmergang then was licht klosett
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - was licht vorzimmergang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - was licht badmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - was heizung schlafzimmer und was heizung wohnzimmer
+- - was heizung schlafzimmermaster then was heizung wohnzimmer
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - was vorhang schlafzimmer und was vorhang wohnzimmer
+- - was vorhang schlafzimmermaster then was vorhang wohnzimmer
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - was heizung schlafzimmer
+- - was heizung schlafzimmermaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - was vorhang schlafzimmer
+- - was vorhang schlafzimmermaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - was licht klosett

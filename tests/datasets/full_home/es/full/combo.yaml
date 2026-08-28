@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - enciende dormitorio techo y dormitorio mesilla
-  - dormitorio techo y dormitorio mesilla enciende
+  - enciende dormitoriomaster techo y dormitoriomaster mesilla
+  - dormitoriomaster techo y dormitoriomaster mesilla enciende
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - apaga dormitorio techo y dormitorio mesilla
-  - dormitorio techo y dormitorio mesilla apaga
+  - apaga dormitoriomaster techo y dormitoriomaster mesilla
+  - dormitoriomaster techo y dormitoriomaster mesilla apaga
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - enciende dormitorio ventilador y cocina isla
-  - dormitorio ventilador y cocina isla enciende
+  - enciende dormitoriomaster ventilador y cocina isla
+  - dormitoriomaster ventilador y cocina isla enciende
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - enciende lavadero lavadora y lavadero dryer
-  - lavadero lavadora y lavadero dryer enciende
+  - enciende lavadero lavadora y lavadero secadora
+  - lavadero lavadora y lavadero secadora enciende
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga luz dormitorio y main bath
-  - luz dormitorio y main bath apaga
+  - apaga luz dormitoriomaster y main bath
+  - luz dormitoriomaster y main bath apaga
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga todo luz excepto salon y dormitorio
-  - todo luz apaga excepto salon y dormitorio
+  - apaga todo luz excepto salon y dormitoriomaster
+  - todo luz apaga excepto salon y dormitoriomaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apaga todo luz piso excepto dormitorio
-  - todo luz piso apaga excepto dormitorio
+  - apaga todo luz piso excepto dormitoriomaster
+  - todo luz piso apaga excepto dormitoriomaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - abre cortina salon y dormitorio
-  - cortina salon y dormitorio abre
+  - abre cortina salon y dormitoriomaster
+  - cortina salon y dormitoriomaster abre
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - cierra cortina salon y dormitorio
-  - cortina salon y dormitorio cierra
+  - cierra cortina salon y dormitoriomaster
+  - cortina salon y dormitoriomaster cierra
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - pon calefaccion salon y dormitorio 21
-  - calefaccion salon y dormitorio 21
+  - pon calefaccion salon y dormitoriomaster 21
+  - calefaccion salon y dormitoriomaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

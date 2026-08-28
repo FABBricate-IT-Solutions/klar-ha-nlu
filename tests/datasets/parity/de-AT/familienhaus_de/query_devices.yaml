@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
-- was licht vorzimmer
+- was sensor tuer vorzimmer
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
 - was heizung wohnzimmer
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- was heizung schlafzimmer
+- was heizung schlafzimmermaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - was vorhang schlafzimmer2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -21,9 +21,9 @@ query_devices/cover_living_blinds::cover_living_blinds_get_position:
 query_devices/cover_living_blinds::cover_living_blinds_get_status:
 - was vorhang wohnzimmer
 query_devices/cover_master_blinds::cover_master_blinds_get_position:
-- was vorhang schlafzimmer
+- was vorhang schlafzimmermaster
 query_devices/cover_master_blinds::cover_master_blinds_get_status:
-- was vorhang schlafzimmer
+- was vorhang schlafzimmermaster
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_fan_speed:
 - was ventilator schlafzimmer2
 query_devices/fan_bedroom2_fan::fan_bedroom2_fan_get_status:
@@ -33,9 +33,9 @@ query_devices/fan_family_fan::fan_family_fan_get_fan_speed:
 query_devices/fan_family_fan::fan_family_fan_get_status:
 - was ventilator wohnstube
 query_devices/fan_master_fan::fan_master_fan_get_fan_speed:
-- was ventilator schlafzimmer
+- was ventilator schlafzimmermaster
 query_devices/fan_master_fan::fan_master_fan_get_status:
-- was ventilator schlafzimmer
+- was ventilator schlafzimmermaster
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_brightness:
 - was decke schlafzimmer2
 query_devices/light_bedroom2_ceiling::light_bedroom2_ceiling_get_status:
@@ -73,9 +73,9 @@ query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_brightness:
 query_devices/light_kitchen_ceiling::light_kitchen_ceiling_get_status:
 - was decke kuche
 query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
-- was licht kuche
+- was insel kuche
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
-- was licht kuche
+- was insel kuche
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
 - was licht waschraum
 query_devices/light_laundry_light::light_laundry_light_get_status:
@@ -85,9 +85,9 @@ query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
 - was decke wohnzimmer
 query_devices/light_living_lamp::light_living_lamp_get_brightness:
-- was licht wohnzimmer
+- was leuchte wohnzimmer
 query_devices/light_living_lamp::light_living_lamp_get_status:
-- was licht wohnzimmer
+- was leuchte wohnzimmer
 query_devices/light_main_bath_light::light_main_bath_light_get_brightness:
 - was licht badmastermain
 query_devices/light_main_bath_light::light_main_bath_light_get_status:
@@ -97,21 +97,21 @@ query_devices/light_master_bath_light::light_master_bath_light_get_brightness:
 query_devices/light_master_bath_light::light_master_bath_light_get_status:
 - was licht badmaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_brightness:
-- was nachttisch schlafzimmer
+- was nachttisch schlafzimmermaster
 query_devices/light_master_bedside_left::light_master_bedside_left_get_status:
-- was nachttisch schlafzimmer
+- was nachttisch schlafzimmermaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_brightness:
-- was nachttisch schlafzimmer
+- was nachttisch schlafzimmermaster
 query_devices/light_master_bedside_right::light_master_bedside_right_get_status:
-- was nachttisch schlafzimmer
+- was nachttisch schlafzimmermaster
 query_devices/light_master_ceiling::light_master_ceiling_get_brightness:
-- was decke schlafzimmer
+- was decke schlafzimmermaster
 query_devices/light_master_ceiling::light_master_ceiling_get_status:
-- was decke schlafzimmer
+- was decke schlafzimmermaster
 query_devices/light_master_ensuite::light_master_ensuite_get_brightness:
-- was licht schlafzimmer
+- was ankleide schlafzimmermaster
 query_devices/light_master_ensuite::light_master_ensuite_get_status:
-- was licht schlafzimmer
+- was ankleide schlafzimmermaster
 query_devices/light_powder_room_light::light_powder_room_light_get_brightness:
 - was licht klosett
 query_devices/light_powder_room_light::light_powder_room_light_get_status:
@@ -127,6 +127,6 @@ query_devices/media_player_living_tv::media_player_living_tv_get_status:
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - was spuelmaschine
 query_devices/switch_dryer::switch_dryer_get_status:
-- was waschmaschine
+- was trockner
 query_devices/switch_washing_machine::switch_washing_machine_get_status:
 - was waschmaschine

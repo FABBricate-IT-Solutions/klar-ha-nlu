@@ -36,6 +36,7 @@
           "assist_filter": "Chỉ điều khiển thực thể đã mở cho Assist",
           "nlu_rag": "NLU-RAG (tuỳ chọn)",
           "quiet_ack": "Xác nhận ngắn (chuông)",
+          "calendar_llm": "Gửi câu hỏi lịch tới LLM",
           "channel": "Kênh phát hành"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Bật: chỉ những gì Assist thấy. Tắt: cả thực thể ẩn.",
           "nlu_rag": "Mặc định tắt. Khi trò chuyện chỉ gửi đoạn đã khớp tới mô hình dự phòng.",
           "quiet_ack": "Bật/tắt đèn đơn giản thì không nói, chỉ một tiếng ngắn trên vệ tinh.",
+          "calendar_llm": "Mặc định tắt. Bật: Klar đọc lịch, LLM dự phòng nói sự kiện. Tắt: Klar tự nói danh sách. Tạo, xóa, chuyển vẫn do Klar.",
           "languages": "Mặc định theo ngôn ngữ hệ thống của Home Assistant.",
           "channel": "Đổi bất cứ lúc nào. Staging trỏ tới Klar NLU (Staging)."
         }

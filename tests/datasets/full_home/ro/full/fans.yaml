@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventilator dormitor aprinde
-  - aprinde ventilator dormitor
+  - ventilator dormitormaster aprinde
+  - aprinde ventilator dormitormaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - stinge ventilator dormitor
-  - ventilator dormitor stinge
+  - stinge ventilator dormitormaster
+  - ventilator dormitormaster stinge
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - pune ventilator dormitor 40
-  - ventilator dormitor 40
+  - pune ventilator dormitormaster 40
+  - ventilator dormitormaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - pune ventilator dormitor 20
-  - ventilator dormitor 20
+  - pune ventilator dormitormaster 20
+  - ventilator dormitormaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - pune ventilator dormitor 60
-  - ventilator dormitor 60
+  - pune ventilator dormitormaster 60
+  - ventilator dormitormaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - pune ventilator dormitor 80
-  - ventilator dormitor 80
+  - pune ventilator dormitormaster 80
+  - ventilator dormitormaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

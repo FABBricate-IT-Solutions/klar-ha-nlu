@@ -4,93 +4,93 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - veliginchu ginjalu vantagadi
-  - ginjalu vantagadi veliginchu
+  - వెలిగించు ginjalu వంటగది
+  - ginjalu వంటగది వెలిగించు
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - arpu ginjalu vantagadi
-  - ginjalu vantagadi arpu
+  - ఆర్పు ginjalu వంటగది
+  - ginjalu వంటగది ఆర్పు
 - name: switch.washing_machine_on
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - veliginchu washing laundry
-  - washing laundry veliginchu
+  - వెలిగించు washing laundry
+  - washing laundry వెలిగించు
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - arpu washing laundry
-  - washing laundry arpu
+  - ఆర్పు washing laundry
+  - washing laundry ఆర్పు
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - veliginchu dryer laundry
-  - dryer laundry veliginchu
+  - వెలిగించు dryer laundry
+  - dryer laundry వెలిగించు
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - arpu dryer laundry
-  - dryer laundry arpu
+  - ఆర్పు dryer laundry
+  - dryer laundry ఆర్పు
 - name: switch.rangehood_on
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'on'
   sentences:
-  - veliginchu rangehood vantagadi
-  - rangehood vantagadi veliginchu
+  - వెలిగించు rangehood వంటగది
+  - rangehood వంటగది వెలిగించు
 - name: switch.rangehood_off
   conditions:
   - type: action
     entity_id: switch.rangehood
     state: 'off'
   sentences:
-  - arpu rangehood vantagadi
-  - rangehood vantagadi arpu
+  - ఆర్పు rangehood వంటగది
+  - rangehood వంటగది ఆర్పు
 - name: switch.master_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'on'
   sentences:
-  - veliginchu fanubad masterbath
-  - fanubad masterbath veliginchu
+  - వెలిగించు ఫ్యాన్bad masterbath
+  - ఫ్యాన్bad masterbath వెలిగించు
 - name: switch.master_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.master_bath_fan
     state: 'off'
   sentences:
-  - arpu fanubad masterbath
-  - fanubad masterbath arpu
+  - ఆర్పు ఫ్యాన్bad masterbath
+  - ఫ్యాన్bad masterbath ఆర్పు
 - name: switch.main_bath_fan_on
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'on'
   sentences:
-  - veliginchu fanubad main bath
-  - fanubad main bath veliginchu
+  - వెలిగించు ఫ్యాన్bad main bath
+  - ఫ్యాన్bad main bath వెలిగించు
 - name: switch.main_bath_fan_off
   conditions:
   - type: action
     entity_id: switch.main_bath_fan
     state: 'off'
   sentences:
-  - arpu fanubad main bath
-  - fanubad main bath arpu
+  - ఆర్పు ఫ్యాన్bad main bath
+  - ఫ్యాన్bad main bath ఆర్పు

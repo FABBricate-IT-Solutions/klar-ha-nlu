@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - pakha parivarak chalu
-  - chalu pakha parivarak
+  - ਪੱਖਾ parivarak ਚਾਲੂ
+  - ਚਾਲੂ ਪੱਖਾ parivarak
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - band pakha parivarak
-  - pakha parivarak band
+  - ਬੰਦ ਪੱਖਾ parivarak
+  - ਪੱਖਾ parivarak ਬੰਦ
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set pakha parivarak 40
-  - pakha parivarak 40
+  - ਸੈੱਟ ਪੱਖਾ parivarak 40
+  - ਪੱਖਾ parivarak 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - pakha bedroom chalu
-  - chalu pakha bedroom
+  - ਪੱਖਾ bedroommaster ਚਾਲੂ
+  - ਚਾਲੂ ਪੱਖਾ bedroommaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - band pakha bedroom
-  - pakha bedroom band
+  - ਬੰਦ ਪੱਖਾ bedroommaster
+  - ਪੱਖਾ bedroommaster ਬੰਦ
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - set pakha bedroom 40
-  - pakha bedroom 40
+  - ਸੈੱਟ ਪੱਖਾ bedroommaster 40
+  - ਪੱਖਾ bedroommaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - pakha bedroom2 chalu
-  - chalu pakha bedroom2
+  - ਪੱਖਾ bedroom2 ਚਾਲੂ
+  - ਚਾਲੂ ਪੱਖਾ bedroom2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - band pakha bedroom2
-  - pakha bedroom2 band
+  - ਬੰਦ ਪੱਖਾ bedroom2
+  - ਪੱਖਾ bedroom2 ਬੰਦ
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - set pakha bedroom2 40
-  - pakha bedroom2 40
+  - ਸੈੱਟ ਪੱਖਾ bedroom2 40
+  - ਪੱਖਾ bedroom2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pakha parivarak 20
-  - pakha parivarak 20
+  - ਸੈੱਟ ਪੱਖਾ parivarak 20
+  - ਪੱਖਾ parivarak 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pakha parivarak 60
-  - pakha parivarak 60
+  - ਸੈੱਟ ਪੱਖਾ parivarak 60
+  - ਪੱਖਾ parivarak 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set pakha parivarak 80
-  - pakha parivarak 80
+  - ਸੈੱਟ ਪੱਖਾ parivarak 80
+  - ਪੱਖਾ parivarak 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pakha bedroom 20
-  - pakha bedroom 20
+  - ਸੈੱਟ ਪੱਖਾ bedroommaster 20
+  - ਪੱਖਾ bedroommaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pakha bedroom 60
-  - pakha bedroom 60
+  - ਸੈੱਟ ਪੱਖਾ bedroommaster 60
+  - ਪੱਖਾ bedroommaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - set pakha bedroom 80
-  - pakha bedroom 80
+  - ਸੈੱਟ ਪੱਖਾ bedroommaster 80
+  - ਪੱਖਾ bedroommaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - set pakha bedroom2 20
-  - pakha bedroom2 20
+  - ਸੈੱਟ ਪੱਖਾ bedroom2 20
+  - ਪੱਖਾ bedroom2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - set pakha bedroom2 60
-  - pakha bedroom2 60
+  - ਸੈੱਟ ਪੱਖਾ bedroom2 60
+  - ਪੱਖਾ bedroom2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - set pakha bedroom2 80
-  - pakha bedroom2 80
+  - ਸੈੱਟ ਪੱਖਾ bedroom2 80
+  - ਪੱਖਾ bedroom2 80

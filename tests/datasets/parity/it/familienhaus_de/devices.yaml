@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - metti riscaldamento soggiorno 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- metti riscaldamento camera 19
+- metti riscaldamento cameramaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - metti tenda camera2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - apri tenda soggiorno
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- metti tenda camera 19
+- metti tenda cameramaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- chiudi tenda camera
+- chiudi tenda cameramaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- apri tenda camera
+- apri tenda cameramaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - metti ventola camera2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - accendi ventola soggiornofam
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- metti ventola camera 28
+- metti ventola cameramaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- spegni ventola camera
+- spegni ventola cameramaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- accendi ventola camera
+- accendi ventola cameramaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- spegni ventola camera e spegni luce cucina
+- spegni ventola cameramaster then spegni isola cucina
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- accendi ventola camera e accendi luce cucina
+- accendi ventola cameramaster then accendi isola cucina
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - metti soffitto camera2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - accendi soffitto cucina
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- metti luce cucina 99
+- metti isola cucina 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- metti luce cucina verde
+- metti isola cucina verde
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- spegni luce cucina
+- spegni isola cucina
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- accendi luce cucina
+- accendi isola cucina
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - metti luce lavanderia 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - accendi soffitto soggiorno
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- metti luce soggiorno 72
+- metti lampada soggiorno 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- metti luce soggiorno rosso
+- metti lampada soggiorno rosso
 devices/light_living_lamp::light_living_lamp_turn_off:
-- spegni luce soggiorno
+- spegni lampada soggiorno
 devices/light_living_lamp::light_living_lamp_turn_on:
-- accendi luce soggiorno
+- accendi lampada soggiorno
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - metti luce main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - accendi luce bagnomaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- metti comodino camera 25
+- metti comodino cameramaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- metti comodino camera rosso
+- metti comodino cameramaster rosso
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- spegni comodino camera
+- spegni comodino cameramaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- accendi comodino camera
+- accendi comodino cameramaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- metti soffitto camera 77
+- metti soffitto cameramaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- metti soffitto camera blu
+- metti soffitto cameramaster blu
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- spegni soffitto camera
+- spegni soffitto cameramaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- accendi soffitto camera
+- accendi soffitto cameramaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- metti luce camera 55
+- metti ankleide cameramaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- metti luce camera nero
+- metti ankleide cameramaster nero
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- spegni luce camera
+- spegni ankleide cameramaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- accendi luce camera
+- accendi ankleide cameramaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - metti luce bagnetto 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -239,28 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - accendi tv soggiorno
 devices/scenes::dinner_time:
-- metti luce soggiornofamess 90 e accendi soffitto cucina e metti luce cucina 80
+- metti luce soggiornofamess 90 then accendi soffitto cucina then metti isola cucina
+  80
 devices/scenes::good_morning:
-- accendi soffitto cucina e metti luce soggiornofamess 100 e apri tenda soggiorno
-  e apri tenda camera
+- accendi soffitto cucina then metti luce soggiornofamess 100 then apri tenda soggiorno
+  then apri tenda cameramaster
 devices/scenes::kids_bedtime:
-- spegni soffitto camera2 e spegni soffitto camera3 e spegni soffitto camera4 e metti
-  luce ingressogang 15
+- spegni soffitto camera2 then spegni soffitto camera3 then spegni soffitto camera4
+  then metti luce ingressogang 15
 devices/scenes::movie_night:
-- spegni soffitto soggiorno e metti luce soggiorno 20 e accendi tv soggiorno e chiudi
-  tenda soggiorno
+- spegni soffitto soggiorno then metti lampada soggiorno 20 then accendi tv soggiorno
+  then chiudi tenda soggiorno
 devices/scripts::good_night:
-- accendi scena notte
+- spegni soffitto soggiorno then spegni lampada soggiorno then spegni luce soggiornofamess
+  then spegni soffitto cucina then spegni isola cucina then spegni soffitto soggiornofam
+  then spegni luce ingresso then spegni luce ingressogang then blocca serratura ingresso
+  then blocca serratura garage then metti riscaldamento cameramaster 20
 devices/scripts::leaving_home:
-- accendi scena uscita
+- spegni soffitto soggiorno then spegni lampada soggiorno then spegni soffitto cucina
+  then spegni soffitto soggiornofam then spegni luce ingresso then blocca serratura
+  ingresso then blocca serratura garage then chiudi tenda garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - spegni lavastoviglie
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - accendi lavastoviglie
 devices/switch_dryer::switch_dryer_turn_off:
-- spegni lavatrice
+- spegni asciugatrice
 devices/switch_dryer::switch_dryer_turn_on:
-- accendi lavatrice
+- accendi asciugatrice
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - spegni lavatrice
 devices/switch_washing_machine::switch_washing_machine_turn_on:

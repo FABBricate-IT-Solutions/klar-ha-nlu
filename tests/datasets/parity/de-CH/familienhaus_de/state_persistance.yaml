@@ -29,7 +29,7 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - was liecht garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - was liecht einganggang und was liecht toilette
+- - was liecht einganggang then was liecht toilette
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
 - - was liecht einganggang
@@ -56,16 +56,16 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - was liecht badmaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - was heizig schlafzimmer und was heizig wohnzimmer
+- - was heizig schlafzimmermaster then was heizig wohnzimmer
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- - was store schlafzimmer und was store wohnzimmer
+- - was store schlafzimmermaster then was store wohnzimmer
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - was heizig schlafzimmer
+- - was heizig schlafzimmermaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
-- - was store schlafzimmer
+- - was store schlafzimmermaster
   - ' 88'
 state_persistance/area_powder_room_lights::powder_room_lights_set_brightness:
 - - was liecht toilette

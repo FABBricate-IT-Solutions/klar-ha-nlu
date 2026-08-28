@@ -2,7 +2,7 @@
 use crate::lang::speech::Speech;
 
 pub(super) const SPEECH: Speech = Speech {
-    unknown: "Saya tidak faham. Contohnya beritahu lampu mana nak dihidupkan.",
+    unknown: "Saya tidak faham.",
     need_on: "Hidupkan apa?",
     need_off: "Matikan apa?",
     need_which: "Hidupkan apa?",
@@ -41,6 +41,18 @@ pub(super) const SPEECH: Speech = Speech {
     timer_cancel: "Matikan apa?",
     timer_pause: "Matikan apa?",
     list_add: "Ada dalam senarai.",
+    calendar_list: "{items}",
+    calendar_empty: "Saya tidak faham.",
+    calendar_none: "Saya tidak faham.",
+    calendar_created: "{summary} {when}.",
+    calendar_need_title: "Saya tidak faham.",
+    calendar_need_when: "Saya tidak faham.",
+    calendar_readonly: "Saya tidak faham.",
+    calendar_deleted: "Dipadam.",
+    calendar_moved: "{summary} {when}.",
+    calendar_which: "Acara yang mana?",
+    calendar_no_uid: "Tiada id.",
+    no_music_player: "Saya tidak faham.",
     done: "{name}",
     light_suffix: " lampu",
     area_light: "lampu {loc}",

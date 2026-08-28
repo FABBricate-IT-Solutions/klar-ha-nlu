@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv vithak chalu
-  - chalu tv vithak
+  - tv ਬੈਠਕ ਚਾਲੂ
+  - ਚਾਲੂ tv ਬੈਠਕ
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - band tv vithak
-  - tv vithak band
+  - ਬੰਦ tv ਬੈਠਕ
+  - tv ਬੈਠਕ ਬੰਦ
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv vithak
-  - tv vithak pause
+  - ਰੋਕੋ tv ਬੈਠਕ
+  - tv ਬੈਠਕ ਰੋਕੋ
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv parivarak chalu
-  - chalu tv parivarak
+  - tv parivarak ਚਾਲੂ
+  - ਚਾਲੂ tv parivarak
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - band tv parivarak
-  - tv parivarak band
+  - ਬੰਦ tv parivarak
+  - tv parivarak ਬੰਦ
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv parivarak
-  - tv parivarak pause
+  - ਰੋਕੋ tv parivarak
+  - tv parivarak ਰੋਕੋ

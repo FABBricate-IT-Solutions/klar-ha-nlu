@@ -1,19 +1,19 @@
 m0_exact/representative::exact_clarify:
-- kyeo bul geosil
+- 켜 불 거실
 m0_exact/representative::exact_list_complete_from_setup:
-- done bread mongnok
+- 완료 bread aufgabenliste
 m0_exact/representative::exact_multi_intent:
-- kyeo cheonjang chimsil3 그리고 kkaeo bul hyeongwan
+- 켜 cheonjang chimsil3 then 꺼 불 hyeongwan
 m0_exact/representative::exact_reject:
 - weather france
 m0_exact/representative::exact_shopping_list:
-- add milk mongnok
+- add milk 목록
 m0_exact/representative::exact_state_persistence:
-- - mwo bul hyeongwan
+- - 뭔 불 hyeongwan
   - '12'
 m0_exact/representative::exact_timer:
-- kyeo taimeo oven 2 min
+- 켜 타이머 oven 2 min
 m0_exact/representative::exact_timer_resume_preserves_duration:
-- kyeo taimeo oven
+- 켜 타이머 oven
 m0_exact/representative::exact_todo_list:
-- add apples mongnok
+- add apples aufgabenliste

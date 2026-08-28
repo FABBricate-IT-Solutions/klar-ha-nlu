@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - kya batti baithak
-  - kya baithak batti
+  - क्या बत्ती बैठक
+  - क्या बैठक बत्ती
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - kya parda baithak
-  - kya baithak parda
+  - क्या पर्दा बैठक
+  - क्या बैठक पर्दा
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - kya tala pravesh
-  - kya pravesh tala
+  - क्या ताला pravesh
+  - क्या pravesh ताला
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - kya garmi baithak
-  - kya baithak garmi
+  - क्या गर्मी बैठक
+  - क्या बैठक गर्मी
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - kya tv baithak
-  - kya baithak tv
+  - क्या tv बैठक
+  - क्या बैठक tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - kya doorsensor pravesh
-  - kya pravesh doorsensor
+  - क्या doorsensor pravesh
+  - क्या pravesh doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - kya windowsensor baithak
-  - kya baithak windowsensor
+  - क्या windowsensor बैठक
+  - क्या बैठक windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - kya tempsensor baithak
-  - kya baithak tempsensor
+  - क्या tempsensor बैठक
+  - क्या बैठक tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - kya batti rasoi
-  - kya rasoi batti
+  - क्या बत्ती रसोई
+  - क्या रसोई बत्ती
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - kya batti office
-  - kya office batti
+  - क्या बत्ती office
+  - क्या office बत्ती
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - kya batti garden
-  - kya garden batti
+  - क्या बत्ती garden
+  - क्या garden बत्ती
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - kya batti basement
-  - kya basement batti
+  - क्या बत्ती basement
+  - क्या basement बत्ती
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - kya parda shayankaksh
-  - kya shayankaksh parda
+  - क्या पर्दा shayankakshmaster
+  - क्या shayankakshmaster पर्दा
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - kya parda garage
-  - kya garage parda
+  - क्या पर्दा garage
+  - क्या garage पर्दा
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - kya tala garage
-  - kya garage tala
+  - क्या ताला garage
+  - क्या garage ताला
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - kya garmi shayankaksh
-  - kya shayankaksh garmi
+  - क्या गर्मी shayankakshmaster
+  - क्या shayankakshmaster गर्मी
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - kya garmi shayankaksh
-  - kya shayankaksh garmi
+  - क्या garmi shayankakshmaster
+  - क्या shayankakshmaster garmi
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - kya tv parivarik
-  - kya parivarik tv
+  - क्या tv parivarik
+  - क्या parivarik tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - kya tivi baithak
-  - kya baithak tivi
+  - क्या टीवी बैठक
+  - क्या बैठक टीवी
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - kya motion rasoi
-  - kya rasoi motion
+  - क्या motion रसोई
+  - क्या रसोई motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - kya humidity baithak
-  - kya baithak humidity
+  - क्या humidity बैठक
+  - क्या बैठक humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - kya pankha shayankaksh
-  - kya shayankaksh pankha
+  - क्या पंखा shayankakshmaster
+  - क्या shayankakshmaster पंखा
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - kya jhadu baithak
-  - kya baithak jhadu
+  - क्या झाड़ू बैठक
+  - क्या बैठक झाड़ू
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - kya batti baithak
-  - kya baithak batti
+  - क्या बत्ती बैठक
+  - क्या बैठक बत्ती
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - kya batti rasoi
-  - kya rasoi batti
+  - क्या बत्ती रसोई
+  - क्या रसोई बत्ती
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - kya batti shayankaksh
-  - kya shayankaksh batti
+  - क्या बत्ती shayankakshmaster
+  - क्या shayankakshmaster बत्ती
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - kya batti shayankaksh
-  - kya shayankaksh batti
+  - क्या बत्ती shayankakshmaster
+  - क्या shayankakshmaster बत्ती
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - kya batti hallway
-  - kya hallway batti
+  - क्या बत्ती hallway
+  - क्या hallway बत्ती
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - kya batti parivarik
-  - kya parivarik batti
+  - क्या बत्ती parivarik
+  - क्या parivarik बत्ती
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - kya batti parivarikess
-  - kya parivarikess batti
+  - क्या बत्ती parivarikess
+  - क्या parivarikess बत्ती
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - kya batti garage
-  - kya garage batti
+  - क्या बत्ती garage
+  - क्या garage बत्ती
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - kya batti shayankaksh2
-  - kya shayankaksh2 batti
+  - क्या बत्ती shayankaksh2
+  - क्या shayankaksh2 बत्ती
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - kya batti shayankaksh3
-  - kya shayankaksh3 batti
+  - क्या बत्ती shayankaksh3
+  - क्या shayankaksh3 बत्ती
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - kya batti shayankaksh4
-  - kya shayankaksh4 batti
+  - क्या बत्ती shayankaksh4
+  - क्या shayankaksh4 बत्ती
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - kya batti pravesh
-  - kya pravesh batti
+  - क्या बत्ती pravesh
+  - क्या pravesh बत्ती
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - kya batti dhobi
-  - kya dhobi batti
+  - क्या बत्ती dhobi
+  - क्या dhobi बत्ती
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - kya batti main bath
-  - kya main bath batti
+  - क्या बत्ती main bath
+  - क्या main bath बत्ती
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - kya batti shauchalay
-  - kya shauchalay batti
+  - क्या बत्ती shauchalay
+  - क्या shauchalay बत्ती
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - kya ensuite shayankaksh
-  - kya shayankaksh ensuite
+  - क्या ensuite shayankakshmaster
+  - क्या shayankakshmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - kya batti shayankaksh
-  - kya shayankaksh batti
+  - क्या बत्ती shayankakshmaster
+  - क्या shayankakshmaster बत्ती
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - kya batti mukhyasnan
-  - kya mukhyasnan batti
+  - क्या बत्ती mukhyasnan
+  - क्या mukhyasnan बत्ती

@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - theli muriyil tosh um muriyil lamp
-  - muriyil tosh um muriyil lamp theli
+  - തെളി ഹാൾ tosh ഉം ഹാൾ vilakku
+  - ഹാൾ tosh ഉം ഹാൾ vilakku തെളി
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - anaykku muriyil tosh um muriyil lamp
-  - muriyil tosh um muriyil lamp anaykku
+  - അണയ്ക്ക് ഹാൾ tosh ഉം ഹാൾ vilakku
+  - ഹാൾ tosh ഉം ഹാൾ vilakku അണയ്ക്ക്
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - theli adukkala tosh um adukkala dweep
-  - adukkala tosh um adukkala dweep theli
+  - തെളി അടുക്കള tosh ഉം അടുക്കള dweep
+  - അടുക്കള tosh ഉം അടുക്കള dweep തെളി
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - anaykku adukkala tosh um adukkala dweep
-  - adukkala tosh um adukkala dweep anaykku
+  - അണയ്ക്ക് അടുക്കള tosh ഉം അടുക്കള dweep
+  - അടുക്കള tosh ഉം അടുക്കള dweep അണയ്ക്ക്
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - theli muriyil tosh um adukkala dweep
-  - muriyil tosh um adukkala dweep theli
+  - തെളി ഹാൾ tosh ഉം അടുക്കള dweep
+  - ഹാൾ tosh ഉം അടുക്കള dweep തെളി
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - anaykku muriyil tosh um adukkala dweep
-  - muriyil tosh um adukkala dweep anaykku
+  - അണയ്ക്ക് ഹാൾ tosh ഉം അടുക്കള dweep
+  - ഹാൾ tosh ഉം അടുക്കള dweep അണയ്ക്ക്
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - theli office tosh um hallway vilakku
-  - office tosh um hallway vilakku theli
+  - തെളി office tosh ഉം hallway വിളക്ക്
+  - office tosh ഉം hallway വിളക്ക് തെളി
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - anaykku office tosh um hallway vilakku
-  - office tosh um hallway vilakku anaykku
+  - അണയ്ക്ക് office tosh ഉം hallway വിളക്ക്
+  - office tosh ഉം hallway വിളക്ക് അണയ്ക്ക്
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - theli garden vilakku um garage vilakku
-  - garden vilakku um garage vilakku theli
+  - തെളി garden വിളക്ക് ഉം garage വിളക്ക്
+  - garden വിളക്ക് ഉം garage വിളക്ക് തെളി
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - anaykku garden vilakku um garage vilakku
-  - garden vilakku um garage vilakku anaykku
+  - അണയ്ക്ക് garden വിളക്ക് ഉം garage വിളക്ക്
+  - garden വിളക്ക് ഉം garage വിളക്ക് അണയ്ക്ക്
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - theli kitappumuri tosh um kitappumuri kattil
-  - kitappumuri tosh um kitappumuri kattil theli
+  - തെളി kitappumurimaster tosh ഉം kitappumurimaster kattil
+  - kitappumurimaster tosh ഉം kitappumurimaster kattil തെളി
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - anaykku kitappumuri tosh um kitappumuri kattil
-  - kitappumuri tosh um kitappumuri kattil anaykku
+  - അണയ്ക്ക് kitappumurimaster tosh ഉം kitappumurimaster kattil
+  - kitappumurimaster tosh ഉം kitappumurimaster kattil അണയ്ക്ക്
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - theli kutumbam tosh um kutumbamess vilakku
-  - kutumbam tosh um kutumbamess vilakku theli
+  - തെളി kutumbam tosh ഉം kutumbamess വിളക്ക്
+  - kutumbam tosh ഉം kutumbamess വിളക്ക് തെളി
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - anaykku kutumbam tosh um kutumbamess vilakku
-  - kutumbam tosh um kutumbamess vilakku anaykku
+  - അണയ്ക്ക് kutumbam tosh ഉം kutumbamess വിളക്ക്
+  - kutumbam tosh ഉം kutumbamess വിളക്ക് അണയ്ക്ക്
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - theli basement vilakku um alakku vilakku
-  - basement vilakku um alakku vilakku theli
+  - തെളി basement വിളക്ക് ഉം alakku വിളക്ക്
+  - basement വിളക്ക് ഉം alakku വിളക്ക് തെളി
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - anaykku basement vilakku um alakku vilakku
-  - basement vilakku um alakku vilakku anaykku
+  - അണയ്ക്ക് basement വിളക്ക് ഉം alakku വിളക്ക്
+  - basement വിളക്ക് ഉം alakku വിളക്ക് അണയ്ക്ക്
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - theli kitappumuri fan um adukkala dweep
-  - kitappumuri fan um adukkala dweep theli
+  - തെളി kitappumurimaster ഫാൻ ഉം അടുക്കള dweep
+  - kitappumurimaster ഫാൻ ഉം അടുക്കള dweep തെളി
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - theli muriyil jada um muriyil tosh
-  - muriyil jada um muriyil tosh theli
+  - തെളി ഹാൾ ജാലകം ഉം ഹാൾ tosh
+  - ഹാൾ ജാലകം ഉം ഹാൾ tosh തെളി
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - theli alakku washing um alakku dryer
-  - alakku washing um alakku dryer theli
+  - തെളി alakku washing ഉം alakku dryer
+  - alakku washing ഉം alakku dryer തെളി
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku muriyil um adukkala
-  - vilakku muriyil um adukkala anaykku
+  - അണയ്ക്ക് വിളക്ക് ഹാൾ ഉം അടുക്കള
+  - വിളക്ക് ഹാൾ ഉം അടുക്കള അണയ്ക്ക്
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku office um hallway
-  - vilakku office um hallway anaykku
+  - അണയ്ക്ക് വിളക്ക് office ഉം hallway
+  - വിളക്ക് office ഉം hallway അണയ്ക്ക്
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku garage um garden
-  - vilakku garage um garden anaykku
+  - അണയ്ക്ക് വിളക്ക് garage ഉം garden
+  - വിളക്ക് garage ഉം garden അണയ്ക്ക്
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kitappumuri um main bath
-  - vilakku kitappumuri um main bath anaykku
+  - അണയ്ക്ക് വിളക്ക് kitappumurimaster ഉം main bath
+  - വിളക്ക് kitappumurimaster ഉം main bath അണയ്ക്ക്
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku kutumbam um kutumbamess
-  - vilakku kutumbam um kutumbamess anaykku
+  - അണയ്ക്ക് വിളക്ക് kutumbam ഉം kutumbamess
+  - വിളക്ക് kutumbam ഉം kutumbamess അണയ്ക്ക്
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku muriyil um kutumbamess um adukkala
-  - vilakku muriyil kutumbamess um adukkala anaykku
+  - അണയ്ക്ക് വിളക്ക് ഹാൾ ഉം kutumbamess ഉം അടുക്കള
+  - വിളക്ക് ഹാൾ kutumbamess ഉം അടുക്കള അണയ്ക്ക്
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli vilakku office um hallway um garage
-  - vilakku office hallway um garage theli
+  - തെളി വിളക്ക് office ഉം hallway ഉം garage
+  - വിളക്ക് office hallway ഉം garage തെളി
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku vilakku garden um basement um alakku
-  - vilakku garden basement um alakku anaykku
+  - അണയ്ക്ക് വിളക്ക് garden ഉം basement ഉം alakku
+  - വിളക്ക് garden basement ഉം alakku അണയ്ക്ക്
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike dweep adukkala
-  - ellam vilakku anaykku ozhike dweep adukkala
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike dweep അടുക്കള
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike dweep അടുക്കള
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike lamp muriyil
-  - ellam vilakku anaykku ozhike lamp muriyil
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike vilakku ഹാൾ
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike vilakku ഹാൾ
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike garden
-  - ellam vilakku anaykku ozhike garden
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike garden
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike tosh office
-  - ellam vilakku anaykku ozhike tosh office
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike tosh office
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike tosh office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike basement
-  - ellam vilakku anaykku ozhike basement
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike basement
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku ozhike adukkala
-  - ellam vilakku theli ozhike adukkala
+  - തെളി എല്ലാം വിളക്ക് ozhike അടുക്കള
+  - എല്ലാം വിളക്ക് തെളി ozhike അടുക്കള
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku ozhike office
-  - ellam vilakku theli ozhike office
+  - തെളി എല്ലാം വിളക്ക് ozhike office
+  - എല്ലാം വിളക്ക് തെളി ozhike office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku ozhike garden
-  - ellam vilakku theli ozhike garden
+  - തെളി എല്ലാം വിളക്ക് ozhike garden
+  - എല്ലാം വിളക്ക് തെളി ozhike garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku ozhike muriyil
-  - ellam vilakku theli ozhike muriyil
+  - തെളി എല്ലാം വിളക്ക് ozhike ഹാൾ
+  - എല്ലാം വിളക്ക് തെളി ozhike ഹാൾ
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - theli ellam vilakku ozhike garage
-  - ellam vilakku theli ozhike garage
+  - തെളി എല്ലാം വിളക്ക് ozhike garage
+  - എല്ലാം വിളക്ക് തെളി ozhike garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - anaykku ellam vilakku adukkala ozhike dweep
-  - ellam vilakku adukkala anaykku ozhike dweep
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് അടുക്കള ozhike dweep
+  - എല്ലാം വിളക്ക് അടുക്കള അണയ്ക്ക് ozhike dweep
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - anaykku ellam vilakku muriyil ozhike lamp
-  - ellam vilakku muriyil anaykku ozhike lamp
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ഹാൾ ozhike vilakku
+  - എല്ലാം വിളക്ക് ഹാൾ അണയ്ക്ക് ozhike vilakku
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - theli ellam vilakku ozhike dweep adukkala
-  - ellam vilakku theli ozhike dweep adukkala
+  - തെളി എല്ലാം വിളക്ക് ozhike dweep അടുക്കള
+  - എല്ലാം വിളക്ക് തെളി ozhike dweep അടുക്കള
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike adukkala um office
-  - ellam vilakku anaykku ozhike adukkala um office
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike അടുക്കള ഉം office
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike അടുക്കള ഉം office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike muriyil um kitappumuri
-  - ellam vilakku anaykku ozhike muriyil um kitappumuri
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike ഹാൾ ഉം kitappumurimaster
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike ഹാൾ ഉം kitappumurimaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku ozhike garage um garden
-  - ellam vilakku anaykku ozhike garage um garden
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് ozhike garage ഉം garden
+  - എല്ലാം വിളക്ക് അണയ്ക്ക് ozhike garage ഉം garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku thazhe ozhike adukkala
-  - ellam vilakku thazhe anaykku ozhike adukkala
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് thazhe ozhike അടുക്കള
+  - എല്ലാം വിളക്ക് thazhe അണയ്ക്ക് ozhike അടുക്കള
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku mukalil ozhike kitappumuri
-  - ellam vilakku mukalil anaykku ozhike kitappumuri
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് mukalil ozhike kitappumurimaster
+  - എല്ലാം വിളക്ക് mukalil അണയ്ക്ക് ozhike kitappumurimaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - anaykku ellam vilakku thazhe ozhike office
-  - ellam vilakku thazhe anaykku ozhike office
+  - അണയ്ക്ക് എല്ലാം വിളക്ക് thazhe ozhike office
+  - എല്ലാം വിളക്ക് thazhe അണയ്ക്ക് ozhike office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - thurakku jada muriyil um kitappumuri
-  - jada muriyil um kitappumuri thurakku
+  - തുറക്ക് ജാലകം ഹാൾ ഉം kitappumurimaster
+  - ജാലകം ഹാൾ ഉം kitappumurimaster തുറക്ക്
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - adaykku jada muriyil um kitappumuri
-  - jada muriyil um kitappumuri adaykku
+  - അടയ്ക്ക് ജാലകം ഹാൾ ഉം kitappumurimaster
+  - ജാലകം ഹാൾ ഉം kitappumurimaster അടയ്ക്ക്
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - set chudu muriyil um kitappumuri 21
-  - chudu muriyil um kitappumuri 21
+  - സെറ്റ് ചൂട് ഹാൾ ഉം kitappumurimaster 21
+  - ചൂട് ഹാൾ ഉം kitappumurimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set vilakku muriyil um adukkala 50
-  - vilakku muriyil um adukkala 50
+  - സെറ്റ് വിളക്ക് ഹാൾ ഉം അടുക്കള 50
+  - വിളക്ക് ഹാൾ ഉം അടുക്കള 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - set vilakku muriyil um adukkala red
-  - vilakku muriyil um adukkala red
+  - സെറ്റ് വിളക്ക് ഹാൾ ഉം അടുക്കള red
+  - വിളക്ക് ഹാൾ ഉം അടുക്കള red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - enth vilakku muriyil um adukkala
-  - vilakku muriyil um adukkala
+  - എന്ത് വിളക്ക് ഹാൾ ഉം അടുക്കള
+  - വിളക്ക് ഹാൾ ഉം അടുക്കള
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - enth chudu muriyil um anaykku vilakku adukkala
-  - anaykku vilakku adukkala um enth chudu muriyil
+  - എന്ത് ചൂട് ഹാൾ ഉം അണയ്ക്ക് വിളക്ക് അടുക്കള
+  - അണയ്ക്ക് വിളക്ക് അടുക്കള ഉം എന്ത് ചൂട് ഹാൾ
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - poott front vathil um garage vathil
-  - poott poott praveshanam um garage
+  - പൂട്ട് front വാതിൽ ഉം garage വാതിൽ
+  - പൂട്ട് പൂട്ട് praveshanam ഉം garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - theli cinema um anaykku vilakku toilet
-  - anaykku vilakku toilet um theli cinema
+  - തെളി cinema ഉം അണയ്ക്ക് വിളക്ക് toilet
+  - അണയ്ക്ക് വിളക്ക് toilet ഉം തെളി cinema

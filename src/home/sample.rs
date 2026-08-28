@@ -36,6 +36,7 @@ pub fn default_home() -> HomeGraph {
         ent("cover.wohnzimmer_rollo", "Rollo Wohnzimmer", "cover", "wohnzimmer", &["rollo wohnzimmer", "rollo"]),
         ent("lock.wohnungstuer", "Wohnungstür", "lock", "flur", &["wohnungstuer", "tuer", "front door", "front"]),
         ent("scene.filmabend", "Filmabend", "scene", "wohnzimmer", &["filmabend", "movie night"]),
+        ent("calendar.home", "Kalender", "calendar", "wohnung", &["calendar", "kalender", "termin"]),
     ];
     HomeGraph { entities, areas, ..Default::default() }
 }

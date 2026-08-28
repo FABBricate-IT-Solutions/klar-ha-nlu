@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - aprinde dormitor tavan si dormitor noptiera
-  - dormitor tavan si dormitor noptiera aprinde
+  - aprinde dormitormaster tavan si dormitormaster noptiera
+  - dormitormaster tavan si dormitormaster noptiera aprinde
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - stinge dormitor tavan si dormitor noptiera
-  - dormitor tavan si dormitor noptiera stinge
+  - stinge dormitormaster tavan si dormitormaster noptiera
+  - dormitormaster tavan si dormitormaster noptiera stinge
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - aprinde dormitor ventilator si bucatarie insula
-  - dormitor ventilator si bucatarie insula aprinde
+  - aprinde dormitormaster ventilator si bucatarie insula
+  - dormitormaster ventilator si bucatarie insula aprinde
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - stinge lumina dormitor si main bath
-  - lumina dormitor si main bath stinge
+  - stinge lumina dormitormaster si main bath
+  - lumina dormitormaster si main bath stinge
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - stinge tot lumina exceptand sufragerie si dormitor
-  - tot lumina stinge exceptand sufragerie si dormitor
+  - stinge tot lumina exceptand sufragerie si dormitormaster
+  - tot lumina stinge exceptand sufragerie si dormitormaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - stinge tot lumina etaj exceptand dormitor
-  - tot lumina etaj stinge exceptand dormitor
+  - stinge tot lumina etaj exceptand dormitormaster
+  - tot lumina etaj stinge exceptand dormitormaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - deschide perdea sufragerie si dormitor
-  - perdea sufragerie si dormitor deschide
+  - deschide perdea sufragerie si dormitormaster
+  - perdea sufragerie si dormitormaster deschide
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - inchide perdea sufragerie si dormitor
-  - perdea sufragerie si dormitor inchide
+  - inchide perdea sufragerie si dormitormaster
+  - perdea sufragerie si dormitormaster inchide
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - pune incalzire sufragerie si dormitor 21
-  - incalzire sufragerie si dormitor 21
+  - pune incalzire sufragerie si dormitormaster 21
+  - incalzire sufragerie si dormitormaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

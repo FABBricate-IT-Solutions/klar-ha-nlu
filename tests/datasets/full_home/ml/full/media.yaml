@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv muriyil theli
-  - theli tv muriyil
+  - tv ഹാൾ തെളി
+  - തെളി tv ഹാൾ
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - anaykku tv muriyil
-  - tv muriyil anaykku
+  - അണയ്ക്ക് tv ഹാൾ
+  - tv ഹാൾ അണയ്ക്ക്
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv muriyil
-  - tv muriyil pause
+  - നിർത്ത് tv ഹാൾ
+  - tv ഹാൾ നിർത്ത്
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv kutumbam theli
-  - theli tv kutumbam
+  - tv kutumbam തെളി
+  - തെളി tv kutumbam
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - anaykku tv kutumbam
-  - tv kutumbam anaykku
+  - അണയ്ക്ക് tv kutumbam
+  - tv kutumbam അണയ്ക്ക്
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv kutumbam
-  - tv kutumbam pause
+  - നിർത്ത് tv kutumbam
+  - tv kutumbam നിർത്ത്

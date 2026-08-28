@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "../api";
+import { SearchSelect, useHouseCatalog, withCurrent } from "../components/SearchSelect";
+import { policiesEmpty, SetupHint } from "../components/SetupHint";
 import type { Messages } from "../i18n";
 import { bakeVariants } from "../speechBank";
-import type { EvaluateOut, Locale, PolicyEffect, PolicyRule, SpeechBank } from "../types";
+import type { EvaluateOut, Locale, PolicyEffect, PolicyRule, RulesView, SpeechBank } from "../types";
 import { CustomPage } from "./CustomPage";
 import { RoutinesPage } from "./RoutinesPage";
+
+// App must scope any chrome hero (Speichern / Regel) to rules_view === "policies".
+
+const fallbackIntents = ["HassTurnOn", "HassTurnOff", "HassToggle", "HassLightSet", "HassGetState", "HassClimateSetTemperature"];
 
 const EFFECTS: PolicyEffect[] = ["confirm", "block", "allow", "prefer_entity", "prefer_area", "reply", "script", "template", "llm"];
 const ACTION_EFFECTS: PolicyEffect[] = ["reply", "script", "template", "llm"];
@@ -69,21 +75,47 @@ function newRule(): PolicyRule {
   };
 }
 
-export function RulesPage({ t, locale, personality, languages }: { t: Messages; locale: Locale; personality: string; languages: string[] }) {
-  const [view, setView] = useState<"routines" | "sentences" | "policies">("routines");
+export function RulesPage({
+  t,
+  locale,
+  personality,
+  languages,
+  rulesView,
+  onRulesView,
+}: {
+  t: Messages;
+  locale: Locale;
+  personality: string;
+  languages: string[];
+  rulesView?: RulesView;
+  onRulesView?: (view: RulesView) => void;
+}) {
+  const [localView, setLocalView] = useState<RulesView>(rulesView ?? "routines");
+  const view = rulesView ?? localView;
+  const setView = (next: RulesView) => {
+    if (rulesView === undefined) setLocalView(next);
+    onRulesView?.(next);
+  };
   const [rules, setRules] = useState<PolicyRule[]>([]);
   const [bank, setBank] = useState<SpeechBank>({ entries: [] });
   const [selected, setSelected] = useState(0);
   const [utterance, setUtterance] = useState("");
   const [evalOut, setEvalOut] = useState<EvaluateOut | null>(null);
   const [status, setStatus] = useState("");
+  const [intents, setIntents] = useState<string[]>(fallbackIntents);
+  const { entityOptions, rooms, domains, floors } = useHouseCatalog();
   const current = rules[selected];
+  const intentOptions = useMemo(
+    () => intents.map((name) => ({ value: name, label: name })),
+    [intents],
+  );
 
   useEffect(() => {
     api.policies().then((bundle) => {
       setRules(bundle.policies);
       setBank(bundle.speech_bank);
     }).catch((err) => setStatus(String(err)));
+    api.intents().then((names) => { if (names.length) setIntents(names); }).catch(() => undefined);
   }, []);
 
   const persist = async (next: PolicyRule[], nextBank = bank) => {
@@ -104,6 +136,16 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
     update({ when: { ...current.when, [key]: value || undefined } });
   };
 
+  const updateWhenEntity = (entityId: string) => {
+    if (!current) return;
+    const next = { ...current.when, entity_id: entityId || undefined };
+    if (entityId && !current.when.domain) {
+      const domain = entityId.split(".")[0];
+      if (domain) next.domain = domain;
+    }
+    update({ when: next });
+  };
+
   const move = (from: number, to: number) => {
     if (to < 0 || to >= rules.length) return;
     const next = [...rules];
@@ -117,13 +159,22 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
     setEvalOut(await api.evaluatePolicies({ text: utterance, language: locale, policies: rules }));
   };
 
-  const bake = async () => {
+  const addRule = () => {
+    const next = [...rules, newRule()];
+    setRules(next);
+    setSelected(next.length - 1);
+  };
+
+  const removeRule = async (id: string) => {
+    const next = rules.filter((item) => item.id !== id);
+    setSelected((index) => Math.min(index, Math.max(0, next.length - 1)));
+    await persist(next);
+  };
+
+  const bake = () => {
     if (!current) return;
     const entry = bakeVariants(current.id, current.effect, personality, languages.length ? languages : [locale]);
-    const entries = [...bank.entries.filter((item) => item.rule_id !== current.id), entry];
-    const nextBank = { entries };
-    setBank(nextBank);
-    await persist(rules, nextBank);
+    setBank({ entries: [...bank.entries.filter((item) => item.rule_id !== current.id), entry] });
   };
 
   return (
@@ -131,12 +182,14 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
       <section className="hero">
         <div>
           <h1>{t.rules}</h1>
-          <p className="muted">{t.priority}</p>
+          {view === "policies" && <p className="muted">{t.priority}</p>}
         </div>
-        <div className="row">
-          <button className="secondary" onClick={() => persist(rules)}>{t.save}</button>
-          <button className="primary" onClick={() => { const next = [...rules, newRule()]; setRules(next); setSelected(next.length - 1); }}>{t.addRule}</button>
-        </div>
+        {view === "policies" && (
+          <div className="row">
+            <button className="secondary" onClick={() => persist(rules)}>{t.save}</button>
+            <button className="primary" onClick={addRule}>{t.addRule}</button>
+          </div>
+        )}
       </section>
       <nav className="subnav">
         <button className={view === "routines" ? "active" : ""} onClick={() => setView("routines")}>{t.routines}</button>
@@ -148,7 +201,12 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
       {view === "policies" && (
         <section className="grid two">
           <div className="card">
-            {rules.length === 0 && <p className="muted">{t.noPolicies}</p>}
+            {rules.length === 0 && (
+              <div>
+                <p className="muted">{policiesEmpty(t)}</p>
+                <SetupHint t={t} />
+              </div>
+            )}
             {rules.map((rule, index) => (
               <div
                 className={`rule-row${index === selected ? " active" : ""}`}
@@ -165,7 +223,7 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
                 <span className="muted">{index + 1}</span>
                 <strong>{rule.label || rule.id}</strong>
                 <span className="chip intent">{rule.effect}</span>
-                <button className="ghost danger" onClick={() => persist(rules.filter((item) => item.id !== rule.id))}>{t.dismiss}</button>
+                <button className="ghost danger" onClick={() => removeRule(rule.id)}>{t.dismiss}</button>
               </div>
             ))}
           </div>
@@ -180,15 +238,58 @@ export function RulesPage({ t, locale, personality, languages }: { t: Messages; 
                 </label>
                 <label>{t.when}</label>
                 <input placeholder={t.whenPhrase} value={current.when.phrase || ""} onChange={(ev) => updateWhen("phrase", ev.target.value)} />
-                {(["intent", "domain", "area", "entity_id", "floor", "name"] as const).map((key) => (
-                  <input key={key} placeholder={key} value={current.when[key] || ""} onChange={(ev) => updateWhen(key, ev.target.value)} />
-                ))}
+                <SearchSelect
+                  value={current.when.intent || ""}
+                  options={withCurrent(intentOptions, current.when.intent || "")}
+                  onChange={(value) => updateWhen("intent", value)}
+                  placeholder="intent"
+                />
+                <SearchSelect
+                  value={current.when.domain || ""}
+                  options={withCurrent(domains, current.when.domain || "")}
+                  onChange={(value) => updateWhen("domain", value)}
+                  placeholder="domain"
+                />
+                <SearchSelect
+                  value={current.when.area || ""}
+                  options={withCurrent(rooms, current.when.area || "")}
+                  onChange={(value) => updateWhen("area", value)}
+                  placeholder="area"
+                />
+                <SearchSelect
+                  value={current.when.entity_id || ""}
+                  options={withCurrent(entityOptions, current.when.entity_id || "")}
+                  onChange={updateWhenEntity}
+                  placeholder="entity_id"
+                />
+                <SearchSelect
+                  value={current.when.floor || ""}
+                  options={withCurrent(floors, current.when.floor || "")}
+                  onChange={(value) => updateWhen("floor", value)}
+                  placeholder="floor"
+                />
+                <input placeholder="name" value={current.when.name || ""} onChange={(ev) => updateWhen("name", ev.target.value)} />
                 <label>{t.then}</label>
                 <select value={current.effect} onChange={(ev) => update({ effect: ev.target.value as PolicyEffect })}>
                   {EFFECTS.map((effect) => <option key={effect} value={effect}>{effectLabel(t, effect)}</option>)}
                 </select>
-                {(current.effect === "prefer_entity" || current.effect === "prefer_area") && (
-                  <input placeholder="prefer" value={current.prefer || ""} onChange={(ev) => update({ prefer: ev.target.value })} />
+                {current.effect === "prefer_entity" && (
+                  <SearchSelect
+                    value={current.prefer || ""}
+                    options={withCurrent(entityOptions, current.prefer || "")}
+                    onChange={(value) => update({ prefer: value || undefined })}
+                    placeholder="prefer"
+                    allowEmpty={false}
+                  />
+                )}
+                {current.effect === "prefer_area" && (
+                  <SearchSelect
+                    value={current.prefer || ""}
+                    options={withCurrent(rooms, current.prefer || "")}
+                    onChange={(value) => update({ prefer: value || undefined })}
+                    placeholder="prefer"
+                    allowEmpty={false}
+                  />
                 )}
                 {ACTION_EFFECTS.includes(current.effect) && (
                   <textarea placeholder={payloadHint(t, current.effect)} value={current.payload || ""} onChange={(ev) => update({ payload: ev.target.value })} />

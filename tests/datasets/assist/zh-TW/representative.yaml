@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - dakai deng keting
+    - 打開 燈 客廳
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - guanbi deng chufang
+    - 關閉 燈 廚房
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - 日曆 有 什麼
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - 添加 牙醫 明天 15 日曆
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - 刪除 牙醫 日曆
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - 移動 牙醫 明天 16 日曆
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - 播放 depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

@@ -23,27 +23,27 @@ area/lichter::alle_lichter_an:
 area/lichter::alle_lichter_aus:
 - apaga todo luz
 area/lichter::arbeitszimmer_lichter_an:
-- enciende luz salon
+- enciende todo luz office
 area/lichter::arbeitszimmer_lichter_aus:
-- apaga luz salon
+- apaga todo luz office
 area/lichter::esszimmer_lichter_an:
-- enciende luz estanciaess
+- enciende todo luz estanciaess
 area/lichter::esszimmer_lichter_aus:
-- apaga luz estanciaess
+- apaga todo luz estanciaess
 area/lichter::kuche_lichter_an:
-- enciende luz cocina
+- enciende todo luz cocina
 area/lichter::kuche_lichter_aus:
-- apaga luz cocina
+- apaga todo luz cocina
 area/lichter::schlafzimmer_auf_blau:
-- pon luz dormitorio azul
+- pon todo luz dormitorio azul
 area/lichter::schlafzimmer_auf_rot:
-- pon luz dormitorio rojo
+- pon todo luz dormitorio rojo
 area/lichter::wohnzimmer_helligkeit:
-- pon luz salon 45
+- pon todo luz salon 45
 area/lichter::wohnzimmer_lichter_an:
-- enciende luz salon
+- enciende todo luz salon
 area/lichter::wohnzimmer_lichter_aus:
-- apaga luz salon
+- apaga todo luz salon
 area/spoken::alle_ausser_kugel_stt:
 - apaga todo luz excepto bola
 area/spoken::alle_ausser_schlaf_stt:
@@ -53,30 +53,30 @@ area/spoken::alle_ganzen_an:
 area/spoken::alle_lampen_aus:
 - apaga todo luz
 area/spoken::esszimmer_weiss:
-- pon luz estanciaess blanco
+- pon todo luz estanciaess blanco
 area/spoken::stt_kuche_lichte:
-- apaga luz cocina
+- apaga todo luz cocina
 area/spoken::stt_licht_wohnzimmer_an:
-- enciende luz salon
+- enciende todo luz salon
 area/spoken::stt_licht_wohnzimmer_aus:
-- apaga luz salon
+- apaga todo luz salon
 area/spoken::stt_schlafzimmer_dativ:
-- apaga luz dormitorio
+- apaga todo luz dormitorio
 area/spoken::wohnzimmer_gruen:
-- pon luz salon verde
+- pon todo luz salon verde
 area/spoken_more::alle_ausser_arbeitszimmer:
-- apaga todo luz excepto salon
+- apaga todo luz excepto office
 area/spoken_more::arbeitszimmer_lampen_aus:
-- apaga luz salon
+- apaga todo luz office
 area/spoken_more::esszimmer_30:
-- pon luz estanciaess 30
+- pon todo luz estanciaess 30
 area/spoken_more::esszimmer_lichte_an:
-- enciende luz estanciaess
+- enciende todo luz estanciaess
 area/spoken_more::kuche_80:
-- pon luz cocina 80
+- pon todo luz cocina 80
 area/spoken_more::kuche_blau:
-- pon luz cocina azul
+- pon todo luz cocina azul
 area/spoken_more::ueberall_ausser_schlaf_stt:
 - apaga todo luz excepto dormitorio
 area/spoken_more::wohnzimmer_gelb:
-- pon luz salon amarillo
+- pon todo luz salon amarillo

@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva pravesh
-  - diva pravesh chalu
+  - चालू दिवा pravesh
+  - दिवा pravesh चालू
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva pravesh
-  - diva pravesh band
+  - बंद दिवा pravesh
+  - दिवा pravesh बंद
 - name: lights_living_on
   conditions:
   - type: action
@@ -23,8 +23,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva baithak
-  - diva baithak chalu
+  - चालू दिवा बैठक
+  - दिवा बैठक चालू
 - name: lights_living_off
   conditions:
   - type: action
@@ -32,8 +32,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva baithak
-  - diva baithak band
+  - बंद दिवा बैठक
+  - दिवा बैठक बंद
 - name: lights_dining_on
   conditions:
   - type: action
@@ -41,8 +41,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva kutumbess
-  - diva kutumbess chalu
+  - चालू दिवा kutumbess
+  - दिवा kutumbess चालू
 - name: lights_dining_off
   conditions:
   - type: action
@@ -50,8 +50,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva kutumbess
-  - diva kutumbess band
+  - बंद दिवा kutumbess
+  - दिवा kutumbess बंद
 - name: lights_kitchen_on
   conditions:
   - type: action
@@ -59,8 +59,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva svayampak
-  - diva svayampak chalu
+  - चालू दिवा स्वयंपाक
+  - दिवा स्वयंपाक चालू
 - name: lights_kitchen_off
   conditions:
   - type: action
@@ -68,8 +68,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva svayampak
-  - diva svayampak band
+  - बंद दिवा स्वयंपाक
+  - दिवा स्वयंपाक बंद
 - name: lights_family_room_on
   conditions:
   - type: action
@@ -77,8 +77,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva kutumb
-  - diva kutumb chalu
+  - चालू दिवा kutumb
+  - दिवा kutumb चालू
 - name: lights_family_room_off
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva kutumb
-  - diva kutumb band
+  - बंद दिवा kutumb
+  - दिवा kutumb बंद
 - name: lights_laundry_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva dhune
-  - diva dhune chalu
+  - चालू दिवा dhune
+  - दिवा dhune चालू
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva dhune
-  - diva dhune band
+  - बंद दिवा dhune
+  - दिवा dhune बंद
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -113,8 +113,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva swachhata
-  - diva swachhata chalu
+  - चालू दिवा swachhata
+  - दिवा swachhata चालू
 - name: lights_powder_room_off
   conditions:
   - type: action
@@ -122,8 +122,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva swachhata
-  - diva swachhata band
+  - बंद दिवा swachhata
+  - दिवा swachhata बंद
 - name: lights_garage_on
   conditions:
   - type: action
@@ -131,8 +131,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva garage
-  - diva garage chalu
+  - चालू दिवा garage
+  - दिवा garage चालू
 - name: lights_garage_off
   conditions:
   - type: action
@@ -140,8 +140,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva garage
-  - diva garage band
+  - बंद दिवा garage
+  - दिवा garage बंद
 - name: lights_office_on
   conditions:
   - type: action
@@ -149,8 +149,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva office
-  - diva office chalu
+  - चालू दिवा office
+  - दिवा office चालू
 - name: lights_office_off
   conditions:
   - type: action
@@ -158,8 +158,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva office
-  - diva office band
+  - बंद दिवा office
+  - दिवा office बंद
 - name: lights_garden_on
   conditions:
   - type: action
@@ -167,8 +167,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva garden
-  - diva garden chalu
+  - चालू दिवा garden
+  - दिवा garden चालू
 - name: lights_garden_off
   conditions:
   - type: action
@@ -176,8 +176,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva garden
-  - diva garden band
+  - बंद दिवा garden
+  - दिवा garden बंद
 - name: lights_master_bedroom_on
   conditions:
   - type: action
@@ -185,8 +185,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva shayankaksh
-  - diva shayankaksh chalu
+  - चालू दिवा shayankakshmaster
+  - दिवा shayankakshmaster चालू
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva shayankaksh
-  - diva shayankaksh band
+  - बंद दिवा shayankakshmaster
+  - दिवा shayankakshmaster बंद
 - name: lights_bedroom_2_on
   conditions:
   - type: action
@@ -203,8 +203,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva shayankaksh2
-  - diva shayankaksh2 chalu
+  - चालू दिवा shayankaksh2
+  - दिवा shayankaksh2 चालू
 - name: lights_bedroom_2_off
   conditions:
   - type: action
@@ -212,8 +212,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva shayankaksh2
-  - diva shayankaksh2 band
+  - बंद दिवा shayankaksh2
+  - दिवा shayankaksh2 बंद
 - name: lights_bedroom_3_on
   conditions:
   - type: action
@@ -221,8 +221,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva shayankaksh3
-  - diva shayankaksh3 chalu
+  - चालू दिवा shayankaksh3
+  - दिवा shayankaksh3 चालू
 - name: lights_bedroom_3_off
   conditions:
   - type: action
@@ -230,8 +230,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva shayankaksh3
-  - diva shayankaksh3 band
+  - बंद दिवा shayankaksh3
+  - दिवा shayankaksh3 बंद
 - name: lights_bedroom_4_on
   conditions:
   - type: action
@@ -239,8 +239,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva shayankaksh4
-  - diva shayankaksh4 chalu
+  - चालू दिवा shayankaksh4
+  - दिवा shayankaksh4 चालू
 - name: lights_bedroom_4_off
   conditions:
   - type: action
@@ -248,8 +248,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva shayankaksh4
-  - diva shayankaksh4 band
+  - बंद दिवा shayankaksh4
+  - दिवा shayankaksh4 बंद
 - name: lights_master_bath_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva mukhyasnan
-  - diva mukhyasnan chalu
+  - चालू दिवा mukhyasnan
+  - दिवा mukhyasnan चालू
 - name: lights_master_bath_off
   conditions:
   - type: action
@@ -266,8 +266,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva mukhyasnan
-  - diva mukhyasnan band
+  - बंद दिवा mukhyasnan
+  - दिवा mukhyasnan बंद
 - name: lights_main_bath_on
   conditions:
   - type: action
@@ -275,8 +275,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva main bath
-  - diva main bath chalu
+  - चालू दिवा main bath
+  - दिवा main bath चालू
 - name: lights_main_bath_off
   conditions:
   - type: action
@@ -284,8 +284,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva main bath
-  - diva main bath band
+  - बंद दिवा main bath
+  - दिवा main bath बंद
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -293,8 +293,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva hallway
-  - diva hallway chalu
+  - चालू दिवा hallway
+  - दिवा hallway चालू
 - name: lights_hallway_off
   conditions:
   - type: action
@@ -302,8 +302,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva hallway
-  - diva hallway band
+  - बंद दिवा hallway
+  - दिवा hallway बंद
 - name: lights_basement_on
   conditions:
   - type: action
@@ -311,8 +311,8 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu diva basement
-  - diva basement chalu
+  - चालू दिवा basement
+  - दिवा basement चालू
 - name: lights_basement_off
   conditions:
   - type: action
@@ -320,24 +320,24 @@
     domain: light
     state: 'off'
   sentences:
-  - band diva basement
-  - diva basement band
+  - बंद दिवा basement
+  - दिवा basement बंद
 - name: light.living_ceiling_on
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - chalu chhat baithak
-  - chhat baithak chalu
+  - चालू chhat बैठक
+  - chhat बैठक चालू
 - name: light.living_ceiling_off
   conditions:
   - type: action
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - band chhat baithak
-  - chhat baithak band
+  - बंद chhat बैठक
+  - chhat बैठक बंद
 - name: light.living_ceiling_bright_20
   conditions:
   - type: action
@@ -345,8 +345,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat baithak 20
-  - chhat baithak 20
+  - सेट chhat बैठक 20
+  - chhat बैठक 20
 - name: light.living_ceiling_bright_40
   conditions:
   - type: action
@@ -354,8 +354,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat baithak 40
-  - chhat baithak 40
+  - सेट chhat बैठक 40
+  - chhat बैठक 40
 - name: light.living_ceiling_bright_50
   conditions:
   - type: action
@@ -363,8 +363,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat baithak 50
-  - chhat baithak 50
+  - सेट chhat बैठक 50
+  - chhat बैठक 50
 - name: light.living_ceiling_bright_60
   conditions:
   - type: action
@@ -372,8 +372,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat baithak 60
-  - chhat baithak 60
+  - सेट chhat बैठक 60
+  - chhat बैठक 60
 - name: light.living_ceiling_bright_80
   conditions:
   - type: action
@@ -381,8 +381,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat baithak 80
-  - chhat baithak 80
+  - सेट chhat बैठक 80
+  - chhat बैठक 80
 - name: light.living_ceiling_bright_100
   conditions:
   - type: action
@@ -390,24 +390,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat baithak 100
-  - chhat baithak 100
+  - सेट chhat बैठक 100
+  - chhat बैठक 100
 - name: light.living_lamp_on
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - chalu lamp baithak
-  - lamp baithak chalu
+  - चालू diva बैठक
+  - diva बैठक चालू
 - name: light.living_lamp_off
   conditions:
   - type: action
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - band lamp baithak
-  - lamp baithak band
+  - बंद diva बैठक
+  - diva बैठक बंद
 - name: light.living_lamp_bright_20
   conditions:
   - type: action
@@ -415,8 +415,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set lamp baithak 20
-  - lamp baithak 20
+  - सेट diva बैठक 20
+  - diva बैठक 20
 - name: light.living_lamp_bright_40
   conditions:
   - type: action
@@ -424,8 +424,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set lamp baithak 40
-  - lamp baithak 40
+  - सेट diva बैठक 40
+  - diva बैठक 40
 - name: light.living_lamp_bright_50
   conditions:
   - type: action
@@ -433,8 +433,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set lamp baithak 50
-  - lamp baithak 50
+  - सेट diva बैठक 50
+  - diva बैठक 50
 - name: light.living_lamp_bright_60
   conditions:
   - type: action
@@ -442,8 +442,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set lamp baithak 60
-  - lamp baithak 60
+  - सेट diva बैठक 60
+  - diva बैठक 60
 - name: light.living_lamp_bright_80
   conditions:
   - type: action
@@ -451,8 +451,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set lamp baithak 80
-  - lamp baithak 80
+  - सेट diva बैठक 80
+  - diva बैठक 80
 - name: light.living_lamp_bright_100
   conditions:
   - type: action
@@ -460,24 +460,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set lamp baithak 100
-  - lamp baithak 100
+  - सेट diva बैठक 100
+  - diva बैठक 100
 - name: light.kitchen_ceiling_on
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - chalu chhat svayampak
-  - chhat svayampak chalu
+  - चालू chhat स्वयंपाक
+  - chhat स्वयंपाक चालू
 - name: light.kitchen_ceiling_off
   conditions:
   - type: action
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - band chhat svayampak
-  - chhat svayampak band
+  - बंद chhat स्वयंपाक
+  - chhat स्वयंपाक बंद
 - name: light.kitchen_ceiling_bright_20
   conditions:
   - type: action
@@ -485,8 +485,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat svayampak 20
-  - chhat svayampak 20
+  - सेट chhat स्वयंपाक 20
+  - chhat स्वयंपाक 20
 - name: light.kitchen_ceiling_bright_40
   conditions:
   - type: action
@@ -494,8 +494,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat svayampak 40
-  - chhat svayampak 40
+  - सेट chhat स्वयंपाक 40
+  - chhat स्वयंपाक 40
 - name: light.kitchen_ceiling_bright_50
   conditions:
   - type: action
@@ -503,8 +503,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat svayampak 50
-  - chhat svayampak 50
+  - सेट chhat स्वयंपाक 50
+  - chhat स्वयंपाक 50
 - name: light.kitchen_ceiling_bright_60
   conditions:
   - type: action
@@ -512,8 +512,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat svayampak 60
-  - chhat svayampak 60
+  - सेट chhat स्वयंपाक 60
+  - chhat स्वयंपाक 60
 - name: light.kitchen_ceiling_bright_80
   conditions:
   - type: action
@@ -521,8 +521,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat svayampak 80
-  - chhat svayampak 80
+  - सेट chhat स्वयंपाक 80
+  - chhat स्वयंपाक 80
 - name: light.kitchen_ceiling_bright_100
   conditions:
   - type: action
@@ -530,24 +530,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat svayampak 100
-  - chhat svayampak 100
+  - सेट chhat स्वयंपाक 100
+  - chhat स्वयंपाक 100
 - name: light.kitchen_island_on
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - chalu dweep svayampak
-  - dweep svayampak chalu
+  - चालू dweep स्वयंपाक
+  - dweep स्वयंपाक चालू
 - name: light.kitchen_island_off
   conditions:
   - type: action
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - band dweep svayampak
-  - dweep svayampak band
+  - बंद dweep स्वयंपाक
+  - dweep स्वयंपाक बंद
 - name: light.kitchen_island_bright_20
   conditions:
   - type: action
@@ -555,8 +555,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set dweep svayampak 20
-  - dweep svayampak 20
+  - सेट dweep स्वयंपाक 20
+  - dweep स्वयंपाक 20
 - name: light.kitchen_island_bright_40
   conditions:
   - type: action
@@ -564,8 +564,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set dweep svayampak 40
-  - dweep svayampak 40
+  - सेट dweep स्वयंपाक 40
+  - dweep स्वयंपाक 40
 - name: light.kitchen_island_bright_50
   conditions:
   - type: action
@@ -573,8 +573,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set dweep svayampak 50
-  - dweep svayampak 50
+  - सेट dweep स्वयंपाक 50
+  - dweep स्वयंपाक 50
 - name: light.kitchen_island_bright_60
   conditions:
   - type: action
@@ -582,8 +582,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set dweep svayampak 60
-  - dweep svayampak 60
+  - सेट dweep स्वयंपाक 60
+  - dweep स्वयंपाक 60
 - name: light.kitchen_island_bright_80
   conditions:
   - type: action
@@ -591,8 +591,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set dweep svayampak 80
-  - dweep svayampak 80
+  - सेट dweep स्वयंपाक 80
+  - dweep स्वयंपाक 80
 - name: light.kitchen_island_bright_100
   conditions:
   - type: action
@@ -600,24 +600,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set dweep svayampak 100
-  - dweep svayampak 100
+  - सेट dweep स्वयंपाक 100
+  - dweep स्वयंपाक 100
 - name: light.master_ceiling_on
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - chalu chhat shayankaksh
-  - chhat shayankaksh chalu
+  - चालू chhat shayankakshmaster
+  - chhat shayankakshmaster चालू
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - band chhat shayankaksh
-  - chhat shayankaksh band
+  - बंद chhat shayankakshmaster
+  - chhat shayankakshmaster बंद
 - name: light.master_ceiling_bright_20
   conditions:
   - type: action
@@ -625,8 +625,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat shayankaksh 20
-  - chhat shayankaksh 20
+  - सेट chhat shayankakshmaster 20
+  - chhat shayankakshmaster 20
 - name: light.master_ceiling_bright_40
   conditions:
   - type: action
@@ -634,8 +634,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat shayankaksh 40
-  - chhat shayankaksh 40
+  - सेट chhat shayankakshmaster 40
+  - chhat shayankakshmaster 40
 - name: light.master_ceiling_bright_50
   conditions:
   - type: action
@@ -643,8 +643,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat shayankaksh 50
-  - chhat shayankaksh 50
+  - सेट chhat shayankakshmaster 50
+  - chhat shayankakshmaster 50
 - name: light.master_ceiling_bright_60
   conditions:
   - type: action
@@ -652,8 +652,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat shayankaksh 60
-  - chhat shayankaksh 60
+  - सेट chhat shayankakshmaster 60
+  - chhat shayankakshmaster 60
 - name: light.master_ceiling_bright_80
   conditions:
   - type: action
@@ -661,8 +661,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat shayankaksh 80
-  - chhat shayankaksh 80
+  - सेट chhat shayankakshmaster 80
+  - chhat shayankakshmaster 80
 - name: light.master_ceiling_bright_100
   conditions:
   - type: action
@@ -670,24 +670,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat shayankaksh 100
-  - chhat shayankaksh 100
+  - सेट chhat shayankakshmaster 100
+  - chhat shayankakshmaster 100
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - chalu palang shayankaksh
-  - palang shayankaksh chalu
+  - चालू palang shayankakshmaster
+  - palang shayankakshmaster चालू
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - band palang shayankaksh
-  - palang shayankaksh band
+  - बंद palang shayankakshmaster
+  - palang shayankakshmaster बंद
 - name: light.master_bedside_left_bright_20
   conditions:
   - type: action
@@ -695,8 +695,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set palang shayankaksh 20
-  - palang shayankaksh 20
+  - सेट palang shayankakshmaster 20
+  - palang shayankakshmaster 20
 - name: light.master_bedside_left_bright_40
   conditions:
   - type: action
@@ -704,8 +704,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set palang shayankaksh 40
-  - palang shayankaksh 40
+  - सेट palang shayankakshmaster 40
+  - palang shayankakshmaster 40
 - name: light.master_bedside_left_bright_50
   conditions:
   - type: action
@@ -713,8 +713,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set palang shayankaksh 50
-  - palang shayankaksh 50
+  - सेट palang shayankakshmaster 50
+  - palang shayankakshmaster 50
 - name: light.master_bedside_left_bright_60
   conditions:
   - type: action
@@ -722,8 +722,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set palang shayankaksh 60
-  - palang shayankaksh 60
+  - सेट palang shayankakshmaster 60
+  - palang shayankakshmaster 60
 - name: light.master_bedside_left_bright_80
   conditions:
   - type: action
@@ -731,8 +731,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set palang shayankaksh 80
-  - palang shayankaksh 80
+  - सेट palang shayankakshmaster 80
+  - palang shayankakshmaster 80
 - name: light.master_bedside_left_bright_100
   conditions:
   - type: action
@@ -740,24 +740,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set palang shayankaksh 100
-  - palang shayankaksh 100
+  - सेट palang shayankakshmaster 100
+  - palang shayankakshmaster 100
 - name: light.office_ceiling_on
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'on'
   sentences:
-  - chalu chhat office
-  - chhat office chalu
+  - चालू chhat office
+  - chhat office चालू
 - name: light.office_ceiling_off
   conditions:
   - type: action
     entity_id: light.office_ceiling
     state: 'off'
   sentences:
-  - band chhat office
-  - chhat office band
+  - बंद chhat office
+  - chhat office बंद
 - name: light.office_ceiling_bright_20
   conditions:
   - type: action
@@ -765,7 +765,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat office 20
+  - सेट chhat office 20
   - chhat office 20
 - name: light.office_ceiling_bright_40
   conditions:
@@ -774,7 +774,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat office 40
+  - सेट chhat office 40
   - chhat office 40
 - name: light.office_ceiling_bright_50
   conditions:
@@ -783,7 +783,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat office 50
+  - सेट chhat office 50
   - chhat office 50
 - name: light.office_ceiling_bright_60
   conditions:
@@ -792,7 +792,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat office 60
+  - सेट chhat office 60
   - chhat office 60
 - name: light.office_ceiling_bright_80
   conditions:
@@ -801,7 +801,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat office 80
+  - सेट chhat office 80
   - chhat office 80
 - name: light.office_ceiling_bright_100
   conditions:
@@ -810,7 +810,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat office 100
+  - सेट chhat office 100
   - chhat office 100
 - name: light.garden_on
   conditions:
@@ -818,16 +818,16 @@
     entity_id: light.garden
     state: 'on'
   sentences:
-  - chalu diva garden
-  - diva garden chalu
+  - चालू दिवा garden
+  - दिवा garden चालू
 - name: light.garden_off
   conditions:
   - type: action
     entity_id: light.garden
     state: 'off'
   sentences:
-  - band diva garden
-  - diva garden band
+  - बंद दिवा garden
+  - दिवा garden बंद
 - name: light.garden_bright_20
   conditions:
   - type: action
@@ -835,8 +835,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva garden 20
-  - diva garden 20
+  - सेट दिवा garden 20
+  - दिवा garden 20
 - name: light.garden_bright_40
   conditions:
   - type: action
@@ -844,8 +844,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva garden 40
-  - diva garden 40
+  - सेट दिवा garden 40
+  - दिवा garden 40
 - name: light.garden_bright_50
   conditions:
   - type: action
@@ -853,8 +853,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva garden 50
-  - diva garden 50
+  - सेट दिवा garden 50
+  - दिवा garden 50
 - name: light.garden_bright_60
   conditions:
   - type: action
@@ -862,8 +862,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva garden 60
-  - diva garden 60
+  - सेट दिवा garden 60
+  - दिवा garden 60
 - name: light.garden_bright_80
   conditions:
   - type: action
@@ -871,8 +871,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva garden 80
-  - diva garden 80
+  - सेट दिवा garden 80
+  - दिवा garden 80
 - name: light.garden_bright_100
   conditions:
   - type: action
@@ -880,24 +880,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva garden 100
-  - diva garden 100
+  - सेट दिवा garden 100
+  - दिवा garden 100
 - name: light.basement_on
   conditions:
   - type: action
     entity_id: light.basement
     state: 'on'
   sentences:
-  - chalu diva basement
-  - diva basement chalu
+  - चालू दिवा basement
+  - दिवा basement चालू
 - name: light.basement_off
   conditions:
   - type: action
     entity_id: light.basement
     state: 'off'
   sentences:
-  - band diva basement
-  - diva basement band
+  - बंद दिवा basement
+  - दिवा basement बंद
 - name: light.basement_bright_20
   conditions:
   - type: action
@@ -905,8 +905,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva basement 20
-  - diva basement 20
+  - सेट दिवा basement 20
+  - दिवा basement 20
 - name: light.basement_bright_40
   conditions:
   - type: action
@@ -914,8 +914,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva basement 40
-  - diva basement 40
+  - सेट दिवा basement 40
+  - दिवा basement 40
 - name: light.basement_bright_50
   conditions:
   - type: action
@@ -923,8 +923,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva basement 50
-  - diva basement 50
+  - सेट दिवा basement 50
+  - दिवा basement 50
 - name: light.basement_bright_60
   conditions:
   - type: action
@@ -932,8 +932,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva basement 60
-  - diva basement 60
+  - सेट दिवा basement 60
+  - दिवा basement 60
 - name: light.basement_bright_80
   conditions:
   - type: action
@@ -941,8 +941,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva basement 80
-  - diva basement 80
+  - सेट दिवा basement 80
+  - दिवा basement 80
 - name: light.basement_bright_100
   conditions:
   - type: action
@@ -950,24 +950,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva basement 100
-  - diva basement 100
+  - सेट दिवा basement 100
+  - दिवा basement 100
 - name: light.hallway_light_on
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - chalu diva hallway
-  - diva hallway chalu
+  - चालू दिवा hallway
+  - दिवा hallway चालू
 - name: light.hallway_light_off
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - band diva hallway
-  - diva hallway band
+  - बंद दिवा hallway
+  - दिवा hallway बंद
 - name: light.hallway_light_bright_20
   conditions:
   - type: action
@@ -975,8 +975,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva hallway 20
-  - diva hallway 20
+  - सेट दिवा hallway 20
+  - दिवा hallway 20
 - name: light.hallway_light_bright_40
   conditions:
   - type: action
@@ -984,8 +984,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva hallway 40
-  - diva hallway 40
+  - सेट दिवा hallway 40
+  - दिवा hallway 40
 - name: light.hallway_light_bright_50
   conditions:
   - type: action
@@ -993,8 +993,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva hallway 50
-  - diva hallway 50
+  - सेट दिवा hallway 50
+  - दिवा hallway 50
 - name: light.hallway_light_bright_60
   conditions:
   - type: action
@@ -1002,8 +1002,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva hallway 60
-  - diva hallway 60
+  - सेट दिवा hallway 60
+  - दिवा hallway 60
 - name: light.hallway_light_bright_80
   conditions:
   - type: action
@@ -1011,8 +1011,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva hallway 80
-  - diva hallway 80
+  - सेट दिवा hallway 80
+  - दिवा hallway 80
 - name: light.hallway_light_bright_100
   conditions:
   - type: action
@@ -1020,24 +1020,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva hallway 100
-  - diva hallway 100
+  - सेट दिवा hallway 100
+  - दिवा hallway 100
 - name: light.family_ceiling_on
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - chalu chhat kutumb
-  - chhat kutumb chalu
+  - चालू chhat kutumb
+  - chhat kutumb चालू
 - name: light.family_ceiling_off
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'off'
   sentences:
-  - band chhat kutumb
-  - chhat kutumb band
+  - बंद chhat kutumb
+  - chhat kutumb बंद
 - name: light.family_ceiling_bright_20
   conditions:
   - type: action
@@ -1045,7 +1045,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat kutumb 20
+  - सेट chhat kutumb 20
   - chhat kutumb 20
 - name: light.family_ceiling_bright_40
   conditions:
@@ -1054,7 +1054,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat kutumb 40
+  - सेट chhat kutumb 40
   - chhat kutumb 40
 - name: light.family_ceiling_bright_50
   conditions:
@@ -1063,7 +1063,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat kutumb 50
+  - सेट chhat kutumb 50
   - chhat kutumb 50
 - name: light.family_ceiling_bright_60
   conditions:
@@ -1072,7 +1072,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat kutumb 60
+  - सेट chhat kutumb 60
   - chhat kutumb 60
 - name: light.family_ceiling_bright_80
   conditions:
@@ -1081,7 +1081,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat kutumb 80
+  - सेट chhat kutumb 80
   - chhat kutumb 80
 - name: light.family_ceiling_bright_100
   conditions:
@@ -1090,7 +1090,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat kutumb 100
+  - सेट chhat kutumb 100
   - chhat kutumb 100
 - name: light.dining_pendant_on
   conditions:
@@ -1098,16 +1098,16 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - chalu diva kutumbess
-  - diva kutumbess chalu
+  - चालू दिवा kutumbess
+  - दिवा kutumbess चालू
 - name: light.dining_pendant_off
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - band diva kutumbess
-  - diva kutumbess band
+  - बंद दिवा kutumbess
+  - दिवा kutumbess बंद
 - name: light.dining_pendant_bright_20
   conditions:
   - type: action
@@ -1115,8 +1115,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva kutumbess 20
-  - diva kutumbess 20
+  - सेट दिवा kutumbess 20
+  - दिवा kutumbess 20
 - name: light.dining_pendant_bright_40
   conditions:
   - type: action
@@ -1124,8 +1124,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva kutumbess 40
-  - diva kutumbess 40
+  - सेट दिवा kutumbess 40
+  - दिवा kutumbess 40
 - name: light.dining_pendant_bright_50
   conditions:
   - type: action
@@ -1133,8 +1133,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva kutumbess 50
-  - diva kutumbess 50
+  - सेट दिवा kutumbess 50
+  - दिवा kutumbess 50
 - name: light.dining_pendant_bright_60
   conditions:
   - type: action
@@ -1142,8 +1142,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva kutumbess 60
-  - diva kutumbess 60
+  - सेट दिवा kutumbess 60
+  - दिवा kutumbess 60
 - name: light.dining_pendant_bright_80
   conditions:
   - type: action
@@ -1151,8 +1151,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva kutumbess 80
-  - diva kutumbess 80
+  - सेट दिवा kutumbess 80
+  - दिवा kutumbess 80
 - name: light.dining_pendant_bright_100
   conditions:
   - type: action
@@ -1160,24 +1160,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva kutumbess 100
-  - diva kutumbess 100
+  - सेट दिवा kutumbess 100
+  - दिवा kutumbess 100
 - name: light.garage_light_on
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - chalu diva garage
-  - diva garage chalu
+  - चालू दिवा garage
+  - दिवा garage चालू
 - name: light.garage_light_off
   conditions:
   - type: action
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - band diva garage
-  - diva garage band
+  - बंद दिवा garage
+  - दिवा garage बंद
 - name: light.garage_light_bright_20
   conditions:
   - type: action
@@ -1185,8 +1185,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva garage 20
-  - diva garage 20
+  - सेट दिवा garage 20
+  - दिवा garage 20
 - name: light.garage_light_bright_40
   conditions:
   - type: action
@@ -1194,8 +1194,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva garage 40
-  - diva garage 40
+  - सेट दिवा garage 40
+  - दिवा garage 40
 - name: light.garage_light_bright_50
   conditions:
   - type: action
@@ -1203,8 +1203,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva garage 50
-  - diva garage 50
+  - सेट दिवा garage 50
+  - दिवा garage 50
 - name: light.garage_light_bright_60
   conditions:
   - type: action
@@ -1212,8 +1212,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva garage 60
-  - diva garage 60
+  - सेट दिवा garage 60
+  - दिवा garage 60
 - name: light.garage_light_bright_80
   conditions:
   - type: action
@@ -1221,8 +1221,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva garage 80
-  - diva garage 80
+  - सेट दिवा garage 80
+  - दिवा garage 80
 - name: light.garage_light_bright_100
   conditions:
   - type: action
@@ -1230,24 +1230,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva garage 100
-  - diva garage 100
+  - सेट दिवा garage 100
+  - दिवा garage 100
 - name: light.bedroom2_ceiling_on
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'on'
   sentences:
-  - chalu chhat shayankaksh2
-  - chhat shayankaksh2 chalu
+  - चालू chhat shayankaksh2
+  - chhat shayankaksh2 चालू
 - name: light.bedroom2_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom2_ceiling
     state: 'off'
   sentences:
-  - band chhat shayankaksh2
-  - chhat shayankaksh2 band
+  - बंद chhat shayankaksh2
+  - chhat shayankaksh2 बंद
 - name: light.bedroom2_ceiling_bright_20
   conditions:
   - type: action
@@ -1255,7 +1255,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat shayankaksh2 20
+  - सेट chhat shayankaksh2 20
   - chhat shayankaksh2 20
 - name: light.bedroom2_ceiling_bright_40
   conditions:
@@ -1264,7 +1264,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat shayankaksh2 40
+  - सेट chhat shayankaksh2 40
   - chhat shayankaksh2 40
 - name: light.bedroom2_ceiling_bright_50
   conditions:
@@ -1273,7 +1273,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat shayankaksh2 50
+  - सेट chhat shayankaksh2 50
   - chhat shayankaksh2 50
 - name: light.bedroom2_ceiling_bright_60
   conditions:
@@ -1282,7 +1282,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat shayankaksh2 60
+  - सेट chhat shayankaksh2 60
   - chhat shayankaksh2 60
 - name: light.bedroom2_ceiling_bright_80
   conditions:
@@ -1291,7 +1291,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat shayankaksh2 80
+  - सेट chhat shayankaksh2 80
   - chhat shayankaksh2 80
 - name: light.bedroom2_ceiling_bright_100
   conditions:
@@ -1300,7 +1300,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat shayankaksh2 100
+  - सेट chhat shayankaksh2 100
   - chhat shayankaksh2 100
 - name: light.bedroom3_ceiling_on
   conditions:
@@ -1308,16 +1308,16 @@
     entity_id: light.bedroom3_ceiling
     state: 'on'
   sentences:
-  - chalu chhat shayankaksh3
-  - chhat shayankaksh3 chalu
+  - चालू chhat shayankaksh3
+  - chhat shayankaksh3 चालू
 - name: light.bedroom3_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom3_ceiling
     state: 'off'
   sentences:
-  - band chhat shayankaksh3
-  - chhat shayankaksh3 band
+  - बंद chhat shayankaksh3
+  - chhat shayankaksh3 बंद
 - name: light.bedroom3_ceiling_bright_20
   conditions:
   - type: action
@@ -1325,7 +1325,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat shayankaksh3 20
+  - सेट chhat shayankaksh3 20
   - chhat shayankaksh3 20
 - name: light.bedroom3_ceiling_bright_40
   conditions:
@@ -1334,7 +1334,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat shayankaksh3 40
+  - सेट chhat shayankaksh3 40
   - chhat shayankaksh3 40
 - name: light.bedroom3_ceiling_bright_50
   conditions:
@@ -1343,7 +1343,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat shayankaksh3 50
+  - सेट chhat shayankaksh3 50
   - chhat shayankaksh3 50
 - name: light.bedroom3_ceiling_bright_60
   conditions:
@@ -1352,7 +1352,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat shayankaksh3 60
+  - सेट chhat shayankaksh3 60
   - chhat shayankaksh3 60
 - name: light.bedroom3_ceiling_bright_80
   conditions:
@@ -1361,7 +1361,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat shayankaksh3 80
+  - सेट chhat shayankaksh3 80
   - chhat shayankaksh3 80
 - name: light.bedroom3_ceiling_bright_100
   conditions:
@@ -1370,7 +1370,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat shayankaksh3 100
+  - सेट chhat shayankaksh3 100
   - chhat shayankaksh3 100
 - name: light.bedroom4_ceiling_on
   conditions:
@@ -1378,16 +1378,16 @@
     entity_id: light.bedroom4_ceiling
     state: 'on'
   sentences:
-  - chalu chhat shayankaksh4
-  - chhat shayankaksh4 chalu
+  - चालू chhat shayankaksh4
+  - chhat shayankaksh4 चालू
 - name: light.bedroom4_ceiling_off
   conditions:
   - type: action
     entity_id: light.bedroom4_ceiling
     state: 'off'
   sentences:
-  - band chhat shayankaksh4
-  - chhat shayankaksh4 band
+  - बंद chhat shayankaksh4
+  - chhat shayankaksh4 बंद
 - name: light.bedroom4_ceiling_bright_20
   conditions:
   - type: action
@@ -1395,7 +1395,7 @@
     attributes:
       brightness: 20
   sentences:
-  - set chhat shayankaksh4 20
+  - सेट chhat shayankaksh4 20
   - chhat shayankaksh4 20
 - name: light.bedroom4_ceiling_bright_40
   conditions:
@@ -1404,7 +1404,7 @@
     attributes:
       brightness: 40
   sentences:
-  - set chhat shayankaksh4 40
+  - सेट chhat shayankaksh4 40
   - chhat shayankaksh4 40
 - name: light.bedroom4_ceiling_bright_50
   conditions:
@@ -1413,7 +1413,7 @@
     attributes:
       brightness: 50
   sentences:
-  - set chhat shayankaksh4 50
+  - सेट chhat shayankaksh4 50
   - chhat shayankaksh4 50
 - name: light.bedroom4_ceiling_bright_60
   conditions:
@@ -1422,7 +1422,7 @@
     attributes:
       brightness: 60
   sentences:
-  - set chhat shayankaksh4 60
+  - सेट chhat shayankaksh4 60
   - chhat shayankaksh4 60
 - name: light.bedroom4_ceiling_bright_80
   conditions:
@@ -1431,7 +1431,7 @@
     attributes:
       brightness: 80
   sentences:
-  - set chhat shayankaksh4 80
+  - सेट chhat shayankaksh4 80
   - chhat shayankaksh4 80
 - name: light.bedroom4_ceiling_bright_100
   conditions:
@@ -1440,7 +1440,7 @@
     attributes:
       brightness: 100
   sentences:
-  - set chhat shayankaksh4 100
+  - सेट chhat shayankaksh4 100
   - chhat shayankaksh4 100
 - name: light.entryway_light_on
   conditions:
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - chalu diva pravesh
-  - diva pravesh chalu
+  - चालू दिवा pravesh
+  - दिवा pravesh चालू
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - band diva pravesh
-  - diva pravesh band
+  - बंद दिवा pravesh
+  - दिवा pravesh बंद
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva pravesh 20
-  - diva pravesh 20
+  - सेट दिवा pravesh 20
+  - दिवा pravesh 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva pravesh 40
-  - diva pravesh 40
+  - सेट दिवा pravesh 40
+  - दिवा pravesh 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva pravesh 50
-  - diva pravesh 50
+  - सेट दिवा pravesh 50
+  - दिवा pravesh 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva pravesh 60
-  - diva pravesh 60
+  - सेट दिवा pravesh 60
+  - दिवा pravesh 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva pravesh 80
-  - diva pravesh 80
+  - सेट दिवा pravesh 80
+  - दिवा pravesh 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,24 +1510,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva pravesh 100
-  - diva pravesh 100
+  - सेट दिवा pravesh 100
+  - दिवा pravesh 100
 - name: light.laundry_light_on
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - chalu diva dhune
-  - diva dhune chalu
+  - चालू दिवा dhune
+  - दिवा dhune चालू
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - band diva dhune
-  - diva dhune band
+  - बंद दिवा dhune
+  - दिवा dhune बंद
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva dhune 20
-  - diva dhune 20
+  - सेट दिवा dhune 20
+  - दिवा dhune 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva dhune 40
-  - diva dhune 40
+  - सेट दिवा dhune 40
+  - दिवा dhune 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva dhune 50
-  - diva dhune 50
+  - सेट दिवा dhune 50
+  - दिवा dhune 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva dhune 60
-  - diva dhune 60
+  - सेट दिवा dhune 60
+  - दिवा dhune 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva dhune 80
-  - diva dhune 80
+  - सेट दिवा dhune 80
+  - दिवा dhune 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,24 +1580,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva dhune 100
-  - diva dhune 100
+  - सेट दिवा dhune 100
+  - दिवा dhune 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'on'
   sentences:
-  - chalu diva main bath
-  - diva main bath chalu
+  - चालू दिवा main bath
+  - दिवा main bath चालू
 - name: light.main_bath_light_off
   conditions:
   - type: action
     entity_id: light.main_bath_light
     state: 'off'
   sentences:
-  - band diva main bath
-  - diva main bath band
+  - बंद दिवा main bath
+  - दिवा main bath बंद
 - name: light.main_bath_light_bright_20
   conditions:
   - type: action
@@ -1605,8 +1605,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva main bath 20
-  - diva main bath 20
+  - सेट दिवा main bath 20
+  - दिवा main bath 20
 - name: light.main_bath_light_bright_40
   conditions:
   - type: action
@@ -1614,8 +1614,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva main bath 40
-  - diva main bath 40
+  - सेट दिवा main bath 40
+  - दिवा main bath 40
 - name: light.main_bath_light_bright_50
   conditions:
   - type: action
@@ -1623,8 +1623,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva main bath 50
-  - diva main bath 50
+  - सेट दिवा main bath 50
+  - दिवा main bath 50
 - name: light.main_bath_light_bright_60
   conditions:
   - type: action
@@ -1632,8 +1632,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva main bath 60
-  - diva main bath 60
+  - सेट दिवा main bath 60
+  - दिवा main bath 60
 - name: light.main_bath_light_bright_80
   conditions:
   - type: action
@@ -1641,8 +1641,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva main bath 80
-  - diva main bath 80
+  - सेट दिवा main bath 80
+  - दिवा main bath 80
 - name: light.main_bath_light_bright_100
   conditions:
   - type: action
@@ -1650,24 +1650,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva main bath 100
-  - diva main bath 100
+  - सेट दिवा main bath 100
+  - दिवा main bath 100
 - name: light.powder_room_light_on
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'on'
   sentences:
-  - chalu diva swachhata
-  - diva swachhata chalu
+  - चालू दिवा swachhata
+  - दिवा swachhata चालू
 - name: light.powder_room_light_off
   conditions:
   - type: action
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - band diva swachhata
-  - diva swachhata band
+  - बंद दिवा swachhata
+  - दिवा swachhata बंद
 - name: light.powder_room_light_bright_20
   conditions:
   - type: action
@@ -1675,8 +1675,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva swachhata 20
-  - diva swachhata 20
+  - सेट दिवा swachhata 20
+  - दिवा swachhata 20
 - name: light.powder_room_light_bright_40
   conditions:
   - type: action
@@ -1684,8 +1684,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva swachhata 40
-  - diva swachhata 40
+  - सेट दिवा swachhata 40
+  - दिवा swachhata 40
 - name: light.powder_room_light_bright_50
   conditions:
   - type: action
@@ -1693,8 +1693,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva swachhata 50
-  - diva swachhata 50
+  - सेट दिवा swachhata 50
+  - दिवा swachhata 50
 - name: light.powder_room_light_bright_60
   conditions:
   - type: action
@@ -1702,8 +1702,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva swachhata 60
-  - diva swachhata 60
+  - सेट दिवा swachhata 60
+  - दिवा swachhata 60
 - name: light.powder_room_light_bright_80
   conditions:
   - type: action
@@ -1711,8 +1711,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva swachhata 80
-  - diva swachhata 80
+  - सेट दिवा swachhata 80
+  - दिवा swachhata 80
 - name: light.powder_room_light_bright_100
   conditions:
   - type: action
@@ -1720,24 +1720,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva swachhata 100
-  - diva swachhata 100
+  - सेट दिवा swachhata 100
+  - दिवा swachhata 100
 - name: light.master_ensuite_on
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'on'
   sentences:
-  - chalu ensuite shayankaksh
-  - ensuite shayankaksh chalu
+  - चालू ensuite shayankakshmaster
+  - ensuite shayankakshmaster चालू
 - name: light.master_ensuite_off
   conditions:
   - type: action
     entity_id: light.master_ensuite
     state: 'off'
   sentences:
-  - band ensuite shayankaksh
-  - ensuite shayankaksh band
+  - बंद ensuite shayankakshmaster
+  - ensuite shayankakshmaster बंद
 - name: light.master_ensuite_bright_20
   conditions:
   - type: action
@@ -1745,8 +1745,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set ensuite shayankaksh 20
-  - ensuite shayankaksh 20
+  - सेट ensuite shayankakshmaster 20
+  - ensuite shayankakshmaster 20
 - name: light.master_ensuite_bright_40
   conditions:
   - type: action
@@ -1754,8 +1754,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set ensuite shayankaksh 40
-  - ensuite shayankaksh 40
+  - सेट ensuite shayankakshmaster 40
+  - ensuite shayankakshmaster 40
 - name: light.master_ensuite_bright_50
   conditions:
   - type: action
@@ -1763,8 +1763,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set ensuite shayankaksh 50
-  - ensuite shayankaksh 50
+  - सेट ensuite shayankakshmaster 50
+  - ensuite shayankakshmaster 50
 - name: light.master_ensuite_bright_60
   conditions:
   - type: action
@@ -1772,8 +1772,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set ensuite shayankaksh 60
-  - ensuite shayankaksh 60
+  - सेट ensuite shayankakshmaster 60
+  - ensuite shayankakshmaster 60
 - name: light.master_ensuite_bright_80
   conditions:
   - type: action
@@ -1781,8 +1781,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set ensuite shayankaksh 80
-  - ensuite shayankaksh 80
+  - सेट ensuite shayankakshmaster 80
+  - ensuite shayankakshmaster 80
 - name: light.master_ensuite_bright_100
   conditions:
   - type: action
@@ -1790,24 +1790,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set ensuite shayankaksh 100
-  - ensuite shayankaksh 100
+  - सेट ensuite shayankakshmaster 100
+  - ensuite shayankakshmaster 100
 - name: light.master_bedside_right_on
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'on'
   sentences:
-  - chalu palang shayankaksh
-  - palang shayankaksh chalu
+  - चालू palang shayankakshmaster
+  - palang shayankakshmaster चालू
 - name: light.master_bedside_right_off
   conditions:
   - type: action
     entity_id: light.master_bedside_right
     state: 'off'
   sentences:
-  - band palang shayankaksh
-  - palang shayankaksh band
+  - बंद palang shayankakshmaster
+  - palang shayankakshmaster बंद
 - name: light.master_bedside_right_bright_20
   conditions:
   - type: action
@@ -1815,8 +1815,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set palang shayankaksh 20
-  - palang shayankaksh 20
+  - सेट palang shayankakshmaster 20
+  - palang shayankakshmaster 20
 - name: light.master_bedside_right_bright_40
   conditions:
   - type: action
@@ -1824,8 +1824,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set palang shayankaksh 40
-  - palang shayankaksh 40
+  - सेट palang shayankakshmaster 40
+  - palang shayankakshmaster 40
 - name: light.master_bedside_right_bright_50
   conditions:
   - type: action
@@ -1833,8 +1833,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set palang shayankaksh 50
-  - palang shayankaksh 50
+  - सेट palang shayankakshmaster 50
+  - palang shayankakshmaster 50
 - name: light.master_bedside_right_bright_60
   conditions:
   - type: action
@@ -1842,8 +1842,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set palang shayankaksh 60
-  - palang shayankaksh 60
+  - सेट palang shayankakshmaster 60
+  - palang shayankakshmaster 60
 - name: light.master_bedside_right_bright_80
   conditions:
   - type: action
@@ -1851,8 +1851,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set palang shayankaksh 80
-  - palang shayankaksh 80
+  - सेट palang shayankakshmaster 80
+  - palang shayankakshmaster 80
 - name: light.master_bedside_right_bright_100
   conditions:
   - type: action
@@ -1860,24 +1860,24 @@
     attributes:
       brightness: 100
   sentences:
-  - set palang shayankaksh 100
-  - palang shayankaksh 100
+  - सेट palang shayankakshmaster 100
+  - palang shayankakshmaster 100
 - name: light.master_bath_light_on
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'on'
   sentences:
-  - chalu diva mukhyasnan
-  - diva mukhyasnan chalu
+  - चालू दिवा mukhyasnan
+  - दिवा mukhyasnan चालू
 - name: light.master_bath_light_off
   conditions:
   - type: action
     entity_id: light.master_bath_light
     state: 'off'
   sentences:
-  - band diva mukhyasnan
-  - diva mukhyasnan band
+  - बंद दिवा mukhyasnan
+  - दिवा mukhyasnan बंद
 - name: light.master_bath_light_bright_20
   conditions:
   - type: action
@@ -1885,8 +1885,8 @@
     attributes:
       brightness: 20
   sentences:
-  - set diva mukhyasnan 20
-  - diva mukhyasnan 20
+  - सेट दिवा mukhyasnan 20
+  - दिवा mukhyasnan 20
 - name: light.master_bath_light_bright_40
   conditions:
   - type: action
@@ -1894,8 +1894,8 @@
     attributes:
       brightness: 40
   sentences:
-  - set diva mukhyasnan 40
-  - diva mukhyasnan 40
+  - सेट दिवा mukhyasnan 40
+  - दिवा mukhyasnan 40
 - name: light.master_bath_light_bright_50
   conditions:
   - type: action
@@ -1903,8 +1903,8 @@
     attributes:
       brightness: 50
   sentences:
-  - set diva mukhyasnan 50
-  - diva mukhyasnan 50
+  - सेट दिवा mukhyasnan 50
+  - दिवा mukhyasnan 50
 - name: light.master_bath_light_bright_60
   conditions:
   - type: action
@@ -1912,8 +1912,8 @@
     attributes:
       brightness: 60
   sentences:
-  - set diva mukhyasnan 60
-  - diva mukhyasnan 60
+  - सेट दिवा mukhyasnan 60
+  - दिवा mukhyasnan 60
 - name: light.master_bath_light_bright_80
   conditions:
   - type: action
@@ -1921,8 +1921,8 @@
     attributes:
       brightness: 80
   sentences:
-  - set diva mukhyasnan 80
-  - diva mukhyasnan 80
+  - सेट दिवा mukhyasnan 80
+  - दिवा mukhyasnan 80
 - name: light.master_bath_light_bright_100
   conditions:
   - type: action
@@ -1930,8 +1930,8 @@
     attributes:
       brightness: 100
   sentences:
-  - set diva mukhyasnan 100
-  - diva mukhyasnan 100
+  - सेट दिवा mukhyasnan 100
+  - दिवा mukhyasnan 100
 - name: light.living_ceiling_red
   conditions:
   - type: action
@@ -1939,8 +1939,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat baithak red
-  - set diva baithak red
+  - सेट chhat बैठक red
+  - सेट दिवा बैठक red
 - name: light.living_ceiling_blue
   conditions:
   - type: action
@@ -1948,8 +1948,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat baithak blue
-  - set diva baithak blue
+  - सेट chhat बैठक blue
+  - सेट दिवा बैठक blue
 - name: light.living_ceiling_green
   conditions:
   - type: action
@@ -1957,8 +1957,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat baithak green
-  - set diva baithak green
+  - सेट chhat बैठक green
+  - सेट दिवा बैठक green
 - name: light.living_ceiling_white
   conditions:
   - type: action
@@ -1966,8 +1966,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat baithak white
-  - set diva baithak white
+  - सेट chhat बैठक white
+  - सेट दिवा बैठक white
 - name: light.living_ceiling_yellow
   conditions:
   - type: action
@@ -1975,8 +1975,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat baithak yellow
-  - set diva baithak yellow
+  - सेट chhat बैठक yellow
+  - सेट दिवा बैठक yellow
 - name: light.living_ceiling_black
   conditions:
   - type: action
@@ -1984,8 +1984,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat baithak black
-  - set diva baithak black
+  - सेट chhat बैठक black
+  - सेट दिवा बैठक black
 - name: light.living_lamp_red
   conditions:
   - type: action
@@ -1993,8 +1993,8 @@
     attributes:
       color: red
   sentences:
-  - set lamp baithak red
-  - set diva baithak red
+  - सेट diva बैठक red
+  - सेट दिवा बैठक red
 - name: light.living_lamp_blue
   conditions:
   - type: action
@@ -2002,8 +2002,8 @@
     attributes:
       color: blue
   sentences:
-  - set lamp baithak blue
-  - set diva baithak blue
+  - सेट diva बैठक blue
+  - सेट दिवा बैठक blue
 - name: light.living_lamp_green
   conditions:
   - type: action
@@ -2011,8 +2011,8 @@
     attributes:
       color: green
   sentences:
-  - set lamp baithak green
-  - set diva baithak green
+  - सेट diva बैठक green
+  - सेट दिवा बैठक green
 - name: light.living_lamp_white
   conditions:
   - type: action
@@ -2020,8 +2020,8 @@
     attributes:
       color: white
   sentences:
-  - set lamp baithak white
-  - set diva baithak white
+  - सेट diva बैठक white
+  - सेट दिवा बैठक white
 - name: light.living_lamp_yellow
   conditions:
   - type: action
@@ -2029,8 +2029,8 @@
     attributes:
       color: yellow
   sentences:
-  - set lamp baithak yellow
-  - set diva baithak yellow
+  - सेट diva बैठक yellow
+  - सेट दिवा बैठक yellow
 - name: light.living_lamp_black
   conditions:
   - type: action
@@ -2038,8 +2038,8 @@
     attributes:
       color: black
   sentences:
-  - set lamp baithak black
-  - set diva baithak black
+  - सेट diva बैठक black
+  - सेट दिवा बैठक black
 - name: light.kitchen_ceiling_red
   conditions:
   - type: action
@@ -2047,8 +2047,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat svayampak red
-  - set diva svayampak red
+  - सेट chhat स्वयंपाक red
+  - सेट दिवा स्वयंपाक red
 - name: light.kitchen_ceiling_blue
   conditions:
   - type: action
@@ -2056,8 +2056,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat svayampak blue
-  - set diva svayampak blue
+  - सेट chhat स्वयंपाक blue
+  - सेट दिवा स्वयंपाक blue
 - name: light.kitchen_ceiling_green
   conditions:
   - type: action
@@ -2065,8 +2065,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat svayampak green
-  - set diva svayampak green
+  - सेट chhat स्वयंपाक green
+  - सेट दिवा स्वयंपाक green
 - name: light.kitchen_ceiling_white
   conditions:
   - type: action
@@ -2074,8 +2074,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat svayampak white
-  - set diva svayampak white
+  - सेट chhat स्वयंपाक white
+  - सेट दिवा स्वयंपाक white
 - name: light.kitchen_ceiling_yellow
   conditions:
   - type: action
@@ -2083,8 +2083,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat svayampak yellow
-  - set diva svayampak yellow
+  - सेट chhat स्वयंपाक yellow
+  - सेट दिवा स्वयंपाक yellow
 - name: light.kitchen_ceiling_black
   conditions:
   - type: action
@@ -2092,8 +2092,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat svayampak black
-  - set diva svayampak black
+  - सेट chhat स्वयंपाक black
+  - सेट दिवा स्वयंपाक black
 - name: light.kitchen_island_red
   conditions:
   - type: action
@@ -2101,8 +2101,8 @@
     attributes:
       color: red
   sentences:
-  - set dweep svayampak red
-  - set diva svayampak red
+  - सेट dweep स्वयंपाक red
+  - सेट दिवा स्वयंपाक red
 - name: light.kitchen_island_blue
   conditions:
   - type: action
@@ -2110,8 +2110,8 @@
     attributes:
       color: blue
   sentences:
-  - set dweep svayampak blue
-  - set diva svayampak blue
+  - सेट dweep स्वयंपाक blue
+  - सेट दिवा स्वयंपाक blue
 - name: light.kitchen_island_green
   conditions:
   - type: action
@@ -2119,8 +2119,8 @@
     attributes:
       color: green
   sentences:
-  - set dweep svayampak green
-  - set diva svayampak green
+  - सेट dweep स्वयंपाक green
+  - सेट दिवा स्वयंपाक green
 - name: light.kitchen_island_white
   conditions:
   - type: action
@@ -2128,8 +2128,8 @@
     attributes:
       color: white
   sentences:
-  - set dweep svayampak white
-  - set diva svayampak white
+  - सेट dweep स्वयंपाक white
+  - सेट दिवा स्वयंपाक white
 - name: light.kitchen_island_yellow
   conditions:
   - type: action
@@ -2137,8 +2137,8 @@
     attributes:
       color: yellow
   sentences:
-  - set dweep svayampak yellow
-  - set diva svayampak yellow
+  - सेट dweep स्वयंपाक yellow
+  - सेट दिवा स्वयंपाक yellow
 - name: light.kitchen_island_black
   conditions:
   - type: action
@@ -2146,8 +2146,8 @@
     attributes:
       color: black
   sentences:
-  - set dweep svayampak black
-  - set diva svayampak black
+  - सेट dweep स्वयंपाक black
+  - सेट दिवा स्वयंपाक black
 - name: light.master_ceiling_red
   conditions:
   - type: action
@@ -2155,8 +2155,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat shayankaksh red
-  - set diva shayankaksh red
+  - सेट chhat shayankakshmaster red
+  - सेट दिवा shayankakshmaster red
 - name: light.master_ceiling_blue
   conditions:
   - type: action
@@ -2164,8 +2164,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat shayankaksh blue
-  - set diva shayankaksh blue
+  - सेट chhat shayankakshmaster blue
+  - सेट दिवा shayankakshmaster blue
 - name: light.master_ceiling_green
   conditions:
   - type: action
@@ -2173,8 +2173,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat shayankaksh green
-  - set diva shayankaksh green
+  - सेट chhat shayankakshmaster green
+  - सेट दिवा shayankakshmaster green
 - name: light.master_ceiling_white
   conditions:
   - type: action
@@ -2182,8 +2182,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat shayankaksh white
-  - set diva shayankaksh white
+  - सेट chhat shayankakshmaster white
+  - सेट दिवा shayankakshmaster white
 - name: light.master_ceiling_yellow
   conditions:
   - type: action
@@ -2191,8 +2191,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat shayankaksh yellow
-  - set diva shayankaksh yellow
+  - सेट chhat shayankakshmaster yellow
+  - सेट दिवा shayankakshmaster yellow
 - name: light.master_ceiling_black
   conditions:
   - type: action
@@ -2200,8 +2200,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat shayankaksh black
-  - set diva shayankaksh black
+  - सेट chhat shayankakshmaster black
+  - सेट दिवा shayankakshmaster black
 - name: light.master_bedside_left_red
   conditions:
   - type: action
@@ -2209,8 +2209,8 @@
     attributes:
       color: red
   sentences:
-  - set palang shayankaksh red
-  - set diva shayankaksh red
+  - सेट palang shayankakshmaster red
+  - सेट दिवा shayankakshmaster red
 - name: light.master_bedside_left_blue
   conditions:
   - type: action
@@ -2218,8 +2218,8 @@
     attributes:
       color: blue
   sentences:
-  - set palang shayankaksh blue
-  - set diva shayankaksh blue
+  - सेट palang shayankakshmaster blue
+  - सेट दिवा shayankakshmaster blue
 - name: light.master_bedside_left_green
   conditions:
   - type: action
@@ -2227,8 +2227,8 @@
     attributes:
       color: green
   sentences:
-  - set palang shayankaksh green
-  - set diva shayankaksh green
+  - सेट palang shayankakshmaster green
+  - सेट दिवा shayankakshmaster green
 - name: light.master_bedside_left_white
   conditions:
   - type: action
@@ -2236,8 +2236,8 @@
     attributes:
       color: white
   sentences:
-  - set palang shayankaksh white
-  - set diva shayankaksh white
+  - सेट palang shayankakshmaster white
+  - सेट दिवा shayankakshmaster white
 - name: light.master_bedside_left_yellow
   conditions:
   - type: action
@@ -2245,8 +2245,8 @@
     attributes:
       color: yellow
   sentences:
-  - set palang shayankaksh yellow
-  - set diva shayankaksh yellow
+  - सेट palang shayankakshmaster yellow
+  - सेट दिवा shayankakshmaster yellow
 - name: light.master_bedside_left_black
   conditions:
   - type: action
@@ -2254,8 +2254,8 @@
     attributes:
       color: black
   sentences:
-  - set palang shayankaksh black
-  - set diva shayankaksh black
+  - सेट palang shayankakshmaster black
+  - सेट दिवा shayankakshmaster black
 - name: light.office_ceiling_red
   conditions:
   - type: action
@@ -2263,8 +2263,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat office red
-  - set diva office red
+  - सेट chhat office red
+  - सेट दिवा office red
 - name: light.office_ceiling_blue
   conditions:
   - type: action
@@ -2272,8 +2272,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat office blue
-  - set diva office blue
+  - सेट chhat office blue
+  - सेट दिवा office blue
 - name: light.office_ceiling_green
   conditions:
   - type: action
@@ -2281,8 +2281,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat office green
-  - set diva office green
+  - सेट chhat office green
+  - सेट दिवा office green
 - name: light.office_ceiling_white
   conditions:
   - type: action
@@ -2290,8 +2290,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat office white
-  - set diva office white
+  - सेट chhat office white
+  - सेट दिवा office white
 - name: light.office_ceiling_yellow
   conditions:
   - type: action
@@ -2299,8 +2299,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat office yellow
-  - set diva office yellow
+  - सेट chhat office yellow
+  - सेट दिवा office yellow
 - name: light.office_ceiling_black
   conditions:
   - type: action
@@ -2308,8 +2308,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat office black
-  - set diva office black
+  - सेट chhat office black
+  - सेट दिवा office black
 - name: light.garden_red
   conditions:
   - type: action
@@ -2317,8 +2317,8 @@
     attributes:
       color: red
   sentences:
-  - set diva garden red
-  - diva garden red
+  - सेट दिवा garden red
+  - दिवा garden red
 - name: light.garden_blue
   conditions:
   - type: action
@@ -2326,8 +2326,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva garden blue
-  - diva garden blue
+  - सेट दिवा garden blue
+  - दिवा garden blue
 - name: light.garden_green
   conditions:
   - type: action
@@ -2335,8 +2335,8 @@
     attributes:
       color: green
   sentences:
-  - set diva garden green
-  - diva garden green
+  - सेट दिवा garden green
+  - दिवा garden green
 - name: light.garden_white
   conditions:
   - type: action
@@ -2344,8 +2344,8 @@
     attributes:
       color: white
   sentences:
-  - set diva garden white
-  - diva garden white
+  - सेट दिवा garden white
+  - दिवा garden white
 - name: light.garden_yellow
   conditions:
   - type: action
@@ -2353,8 +2353,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva garden yellow
-  - diva garden yellow
+  - सेट दिवा garden yellow
+  - दिवा garden yellow
 - name: light.garden_black
   conditions:
   - type: action
@@ -2362,8 +2362,8 @@
     attributes:
       color: black
   sentences:
-  - set diva garden black
-  - diva garden black
+  - सेट दिवा garden black
+  - दिवा garden black
 - name: light.basement_red
   conditions:
   - type: action
@@ -2371,8 +2371,8 @@
     attributes:
       color: red
   sentences:
-  - set diva basement red
-  - diva basement red
+  - सेट दिवा basement red
+  - दिवा basement red
 - name: light.basement_blue
   conditions:
   - type: action
@@ -2380,8 +2380,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva basement blue
-  - diva basement blue
+  - सेट दिवा basement blue
+  - दिवा basement blue
 - name: light.basement_green
   conditions:
   - type: action
@@ -2389,8 +2389,8 @@
     attributes:
       color: green
   sentences:
-  - set diva basement green
-  - diva basement green
+  - सेट दिवा basement green
+  - दिवा basement green
 - name: light.basement_white
   conditions:
   - type: action
@@ -2398,8 +2398,8 @@
     attributes:
       color: white
   sentences:
-  - set diva basement white
-  - diva basement white
+  - सेट दिवा basement white
+  - दिवा basement white
 - name: light.basement_yellow
   conditions:
   - type: action
@@ -2407,8 +2407,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva basement yellow
-  - diva basement yellow
+  - सेट दिवा basement yellow
+  - दिवा basement yellow
 - name: light.basement_black
   conditions:
   - type: action
@@ -2416,8 +2416,8 @@
     attributes:
       color: black
   sentences:
-  - set diva basement black
-  - diva basement black
+  - सेट दिवा basement black
+  - दिवा basement black
 - name: light.hallway_light_red
   conditions:
   - type: action
@@ -2425,8 +2425,8 @@
     attributes:
       color: red
   sentences:
-  - set diva hallway red
-  - diva hallway red
+  - सेट दिवा hallway red
+  - दिवा hallway red
 - name: light.hallway_light_blue
   conditions:
   - type: action
@@ -2434,8 +2434,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva hallway blue
-  - diva hallway blue
+  - सेट दिवा hallway blue
+  - दिवा hallway blue
 - name: light.hallway_light_green
   conditions:
   - type: action
@@ -2443,8 +2443,8 @@
     attributes:
       color: green
   sentences:
-  - set diva hallway green
-  - diva hallway green
+  - सेट दिवा hallway green
+  - दिवा hallway green
 - name: light.hallway_light_white
   conditions:
   - type: action
@@ -2452,8 +2452,8 @@
     attributes:
       color: white
   sentences:
-  - set diva hallway white
-  - diva hallway white
+  - सेट दिवा hallway white
+  - दिवा hallway white
 - name: light.hallway_light_yellow
   conditions:
   - type: action
@@ -2461,8 +2461,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva hallway yellow
-  - diva hallway yellow
+  - सेट दिवा hallway yellow
+  - दिवा hallway yellow
 - name: light.hallway_light_black
   conditions:
   - type: action
@@ -2470,8 +2470,8 @@
     attributes:
       color: black
   sentences:
-  - set diva hallway black
-  - diva hallway black
+  - सेट दिवा hallway black
+  - दिवा hallway black
 - name: light.family_ceiling_red
   conditions:
   - type: action
@@ -2479,8 +2479,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat kutumb red
-  - set diva kutumb red
+  - सेट chhat kutumb red
+  - सेट दिवा kutumb red
 - name: light.family_ceiling_blue
   conditions:
   - type: action
@@ -2488,8 +2488,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat kutumb blue
-  - set diva kutumb blue
+  - सेट chhat kutumb blue
+  - सेट दिवा kutumb blue
 - name: light.family_ceiling_green
   conditions:
   - type: action
@@ -2497,8 +2497,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat kutumb green
-  - set diva kutumb green
+  - सेट chhat kutumb green
+  - सेट दिवा kutumb green
 - name: light.family_ceiling_white
   conditions:
   - type: action
@@ -2506,8 +2506,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat kutumb white
-  - set diva kutumb white
+  - सेट chhat kutumb white
+  - सेट दिवा kutumb white
 - name: light.family_ceiling_yellow
   conditions:
   - type: action
@@ -2515,8 +2515,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat kutumb yellow
-  - set diva kutumb yellow
+  - सेट chhat kutumb yellow
+  - सेट दिवा kutumb yellow
 - name: light.family_ceiling_black
   conditions:
   - type: action
@@ -2524,8 +2524,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat kutumb black
-  - set diva kutumb black
+  - सेट chhat kutumb black
+  - सेट दिवा kutumb black
 - name: light.dining_pendant_red
   conditions:
   - type: action
@@ -2533,8 +2533,8 @@
     attributes:
       color: red
   sentences:
-  - set diva kutumbess red
-  - diva kutumbess red
+  - सेट दिवा kutumbess red
+  - दिवा kutumbess red
 - name: light.dining_pendant_blue
   conditions:
   - type: action
@@ -2542,8 +2542,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva kutumbess blue
-  - diva kutumbess blue
+  - सेट दिवा kutumbess blue
+  - दिवा kutumbess blue
 - name: light.dining_pendant_green
   conditions:
   - type: action
@@ -2551,8 +2551,8 @@
     attributes:
       color: green
   sentences:
-  - set diva kutumbess green
-  - diva kutumbess green
+  - सेट दिवा kutumbess green
+  - दिवा kutumbess green
 - name: light.dining_pendant_white
   conditions:
   - type: action
@@ -2560,8 +2560,8 @@
     attributes:
       color: white
   sentences:
-  - set diva kutumbess white
-  - diva kutumbess white
+  - सेट दिवा kutumbess white
+  - दिवा kutumbess white
 - name: light.dining_pendant_yellow
   conditions:
   - type: action
@@ -2569,8 +2569,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva kutumbess yellow
-  - diva kutumbess yellow
+  - सेट दिवा kutumbess yellow
+  - दिवा kutumbess yellow
 - name: light.dining_pendant_black
   conditions:
   - type: action
@@ -2578,8 +2578,8 @@
     attributes:
       color: black
   sentences:
-  - set diva kutumbess black
-  - diva kutumbess black
+  - सेट दिवा kutumbess black
+  - दिवा kutumbess black
 - name: light.garage_light_red
   conditions:
   - type: action
@@ -2587,8 +2587,8 @@
     attributes:
       color: red
   sentences:
-  - set diva garage red
-  - diva garage red
+  - सेट दिवा garage red
+  - दिवा garage red
 - name: light.garage_light_blue
   conditions:
   - type: action
@@ -2596,8 +2596,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva garage blue
-  - diva garage blue
+  - सेट दिवा garage blue
+  - दिवा garage blue
 - name: light.garage_light_green
   conditions:
   - type: action
@@ -2605,8 +2605,8 @@
     attributes:
       color: green
   sentences:
-  - set diva garage green
-  - diva garage green
+  - सेट दिवा garage green
+  - दिवा garage green
 - name: light.garage_light_white
   conditions:
   - type: action
@@ -2614,8 +2614,8 @@
     attributes:
       color: white
   sentences:
-  - set diva garage white
-  - diva garage white
+  - सेट दिवा garage white
+  - दिवा garage white
 - name: light.garage_light_yellow
   conditions:
   - type: action
@@ -2623,8 +2623,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva garage yellow
-  - diva garage yellow
+  - सेट दिवा garage yellow
+  - दिवा garage yellow
 - name: light.garage_light_black
   conditions:
   - type: action
@@ -2632,8 +2632,8 @@
     attributes:
       color: black
   sentences:
-  - set diva garage black
-  - diva garage black
+  - सेट दिवा garage black
+  - दिवा garage black
 - name: light.bedroom2_ceiling_red
   conditions:
   - type: action
@@ -2641,8 +2641,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat shayankaksh2 red
-  - set diva shayankaksh2 red
+  - सेट chhat shayankaksh2 red
+  - सेट दिवा shayankaksh2 red
 - name: light.bedroom2_ceiling_blue
   conditions:
   - type: action
@@ -2650,8 +2650,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat shayankaksh2 blue
-  - set diva shayankaksh2 blue
+  - सेट chhat shayankaksh2 blue
+  - सेट दिवा shayankaksh2 blue
 - name: light.bedroom2_ceiling_green
   conditions:
   - type: action
@@ -2659,8 +2659,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat shayankaksh2 green
-  - set diva shayankaksh2 green
+  - सेट chhat shayankaksh2 green
+  - सेट दिवा shayankaksh2 green
 - name: light.bedroom2_ceiling_white
   conditions:
   - type: action
@@ -2668,8 +2668,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat shayankaksh2 white
-  - set diva shayankaksh2 white
+  - सेट chhat shayankaksh2 white
+  - सेट दिवा shayankaksh2 white
 - name: light.bedroom2_ceiling_yellow
   conditions:
   - type: action
@@ -2677,8 +2677,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat shayankaksh2 yellow
-  - set diva shayankaksh2 yellow
+  - सेट chhat shayankaksh2 yellow
+  - सेट दिवा shayankaksh2 yellow
 - name: light.bedroom2_ceiling_black
   conditions:
   - type: action
@@ -2686,8 +2686,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat shayankaksh2 black
-  - set diva shayankaksh2 black
+  - सेट chhat shayankaksh2 black
+  - सेट दिवा shayankaksh2 black
 - name: light.bedroom3_ceiling_red
   conditions:
   - type: action
@@ -2695,8 +2695,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat shayankaksh3 red
-  - set diva shayankaksh3 red
+  - सेट chhat shayankaksh3 red
+  - सेट दिवा shayankaksh3 red
 - name: light.bedroom3_ceiling_blue
   conditions:
   - type: action
@@ -2704,8 +2704,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat shayankaksh3 blue
-  - set diva shayankaksh3 blue
+  - सेट chhat shayankaksh3 blue
+  - सेट दिवा shayankaksh3 blue
 - name: light.bedroom3_ceiling_green
   conditions:
   - type: action
@@ -2713,8 +2713,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat shayankaksh3 green
-  - set diva shayankaksh3 green
+  - सेट chhat shayankaksh3 green
+  - सेट दिवा shayankaksh3 green
 - name: light.bedroom3_ceiling_white
   conditions:
   - type: action
@@ -2722,8 +2722,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat shayankaksh3 white
-  - set diva shayankaksh3 white
+  - सेट chhat shayankaksh3 white
+  - सेट दिवा shayankaksh3 white
 - name: light.bedroom3_ceiling_yellow
   conditions:
   - type: action
@@ -2731,8 +2731,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat shayankaksh3 yellow
-  - set diva shayankaksh3 yellow
+  - सेट chhat shayankaksh3 yellow
+  - सेट दिवा shayankaksh3 yellow
 - name: light.bedroom3_ceiling_black
   conditions:
   - type: action
@@ -2740,8 +2740,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat shayankaksh3 black
-  - set diva shayankaksh3 black
+  - सेट chhat shayankaksh3 black
+  - सेट दिवा shayankaksh3 black
 - name: light.bedroom4_ceiling_red
   conditions:
   - type: action
@@ -2749,8 +2749,8 @@
     attributes:
       color: red
   sentences:
-  - set chhat shayankaksh4 red
-  - set diva shayankaksh4 red
+  - सेट chhat shayankaksh4 red
+  - सेट दिवा shayankaksh4 red
 - name: light.bedroom4_ceiling_blue
   conditions:
   - type: action
@@ -2758,8 +2758,8 @@
     attributes:
       color: blue
   sentences:
-  - set chhat shayankaksh4 blue
-  - set diva shayankaksh4 blue
+  - सेट chhat shayankaksh4 blue
+  - सेट दिवा shayankaksh4 blue
 - name: light.bedroom4_ceiling_green
   conditions:
   - type: action
@@ -2767,8 +2767,8 @@
     attributes:
       color: green
   sentences:
-  - set chhat shayankaksh4 green
-  - set diva shayankaksh4 green
+  - सेट chhat shayankaksh4 green
+  - सेट दिवा shayankaksh4 green
 - name: light.bedroom4_ceiling_white
   conditions:
   - type: action
@@ -2776,8 +2776,8 @@
     attributes:
       color: white
   sentences:
-  - set chhat shayankaksh4 white
-  - set diva shayankaksh4 white
+  - सेट chhat shayankaksh4 white
+  - सेट दिवा shayankaksh4 white
 - name: light.bedroom4_ceiling_yellow
   conditions:
   - type: action
@@ -2785,8 +2785,8 @@
     attributes:
       color: yellow
   sentences:
-  - set chhat shayankaksh4 yellow
-  - set diva shayankaksh4 yellow
+  - सेट chhat shayankaksh4 yellow
+  - सेट दिवा shayankaksh4 yellow
 - name: light.bedroom4_ceiling_black
   conditions:
   - type: action
@@ -2794,8 +2794,8 @@
     attributes:
       color: black
   sentences:
-  - set chhat shayankaksh4 black
-  - set diva shayankaksh4 black
+  - सेट chhat shayankaksh4 black
+  - सेट दिवा shayankaksh4 black
 - name: light.entryway_light_red
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - set diva pravesh red
-  - diva pravesh red
+  - सेट दिवा pravesh red
+  - दिवा pravesh red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva pravesh blue
-  - diva pravesh blue
+  - सेट दिवा pravesh blue
+  - दिवा pravesh blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - set diva pravesh green
-  - diva pravesh green
+  - सेट दिवा pravesh green
+  - दिवा pravesh green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - set diva pravesh white
-  - diva pravesh white
+  - सेट दिवा pravesh white
+  - दिवा pravesh white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva pravesh yellow
-  - diva pravesh yellow
+  - सेट दिवा pravesh yellow
+  - दिवा pravesh yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - set diva pravesh black
-  - diva pravesh black
+  - सेट दिवा pravesh black
+  - दिवा pravesh black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - set diva dhune red
-  - diva dhune red
+  - सेट दिवा dhune red
+  - दिवा dhune red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva dhune blue
-  - diva dhune blue
+  - सेट दिवा dhune blue
+  - दिवा dhune blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - set diva dhune green
-  - diva dhune green
+  - सेट दिवा dhune green
+  - दिवा dhune green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - set diva dhune white
-  - diva dhune white
+  - सेट दिवा dhune white
+  - दिवा dhune white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva dhune yellow
-  - diva dhune yellow
+  - सेट दिवा dhune yellow
+  - दिवा dhune yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - set diva dhune black
-  - diva dhune black
+  - सेट दिवा dhune black
+  - दिवा dhune black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -2911,8 +2911,8 @@
     attributes:
       color: red
   sentences:
-  - set diva main bath red
-  - diva main bath red
+  - सेट दिवा main bath red
+  - दिवा main bath red
 - name: light.main_bath_light_blue
   conditions:
   - type: action
@@ -2920,8 +2920,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva main bath blue
-  - diva main bath blue
+  - सेट दिवा main bath blue
+  - दिवा main bath blue
 - name: light.main_bath_light_green
   conditions:
   - type: action
@@ -2929,8 +2929,8 @@
     attributes:
       color: green
   sentences:
-  - set diva main bath green
-  - diva main bath green
+  - सेट दिवा main bath green
+  - दिवा main bath green
 - name: light.main_bath_light_white
   conditions:
   - type: action
@@ -2938,8 +2938,8 @@
     attributes:
       color: white
   sentences:
-  - set diva main bath white
-  - diva main bath white
+  - सेट दिवा main bath white
+  - दिवा main bath white
 - name: light.main_bath_light_yellow
   conditions:
   - type: action
@@ -2947,8 +2947,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva main bath yellow
-  - diva main bath yellow
+  - सेट दिवा main bath yellow
+  - दिवा main bath yellow
 - name: light.main_bath_light_black
   conditions:
   - type: action
@@ -2956,8 +2956,8 @@
     attributes:
       color: black
   sentences:
-  - set diva main bath black
-  - diva main bath black
+  - सेट दिवा main bath black
+  - दिवा main bath black
 - name: light.powder_room_light_red
   conditions:
   - type: action
@@ -2965,8 +2965,8 @@
     attributes:
       color: red
   sentences:
-  - set diva swachhata red
-  - diva swachhata red
+  - सेट दिवा swachhata red
+  - दिवा swachhata red
 - name: light.powder_room_light_blue
   conditions:
   - type: action
@@ -2974,8 +2974,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva swachhata blue
-  - diva swachhata blue
+  - सेट दिवा swachhata blue
+  - दिवा swachhata blue
 - name: light.powder_room_light_green
   conditions:
   - type: action
@@ -2983,8 +2983,8 @@
     attributes:
       color: green
   sentences:
-  - set diva swachhata green
-  - diva swachhata green
+  - सेट दिवा swachhata green
+  - दिवा swachhata green
 - name: light.powder_room_light_white
   conditions:
   - type: action
@@ -2992,8 +2992,8 @@
     attributes:
       color: white
   sentences:
-  - set diva swachhata white
-  - diva swachhata white
+  - सेट दिवा swachhata white
+  - दिवा swachhata white
 - name: light.powder_room_light_yellow
   conditions:
   - type: action
@@ -3001,8 +3001,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva swachhata yellow
-  - diva swachhata yellow
+  - सेट दिवा swachhata yellow
+  - दिवा swachhata yellow
 - name: light.powder_room_light_black
   conditions:
   - type: action
@@ -3010,8 +3010,8 @@
     attributes:
       color: black
   sentences:
-  - set diva swachhata black
-  - diva swachhata black
+  - सेट दिवा swachhata black
+  - दिवा swachhata black
 - name: light.master_ensuite_red
   conditions:
   - type: action
@@ -3019,8 +3019,8 @@
     attributes:
       color: red
   sentences:
-  - set ensuite shayankaksh red
-  - set diva shayankaksh red
+  - सेट ensuite shayankakshmaster red
+  - सेट दिवा shayankakshmaster red
 - name: light.master_ensuite_blue
   conditions:
   - type: action
@@ -3028,8 +3028,8 @@
     attributes:
       color: blue
   sentences:
-  - set ensuite shayankaksh blue
-  - set diva shayankaksh blue
+  - सेट ensuite shayankakshmaster blue
+  - सेट दिवा shayankakshmaster blue
 - name: light.master_ensuite_green
   conditions:
   - type: action
@@ -3037,8 +3037,8 @@
     attributes:
       color: green
   sentences:
-  - set ensuite shayankaksh green
-  - set diva shayankaksh green
+  - सेट ensuite shayankakshmaster green
+  - सेट दिवा shayankakshmaster green
 - name: light.master_ensuite_white
   conditions:
   - type: action
@@ -3046,8 +3046,8 @@
     attributes:
       color: white
   sentences:
-  - set ensuite shayankaksh white
-  - set diva shayankaksh white
+  - सेट ensuite shayankakshmaster white
+  - सेट दिवा shayankakshmaster white
 - name: light.master_ensuite_yellow
   conditions:
   - type: action
@@ -3055,8 +3055,8 @@
     attributes:
       color: yellow
   sentences:
-  - set ensuite shayankaksh yellow
-  - set diva shayankaksh yellow
+  - सेट ensuite shayankakshmaster yellow
+  - सेट दिवा shayankakshmaster yellow
 - name: light.master_ensuite_black
   conditions:
   - type: action
@@ -3064,8 +3064,8 @@
     attributes:
       color: black
   sentences:
-  - set ensuite shayankaksh black
-  - set diva shayankaksh black
+  - सेट ensuite shayankakshmaster black
+  - सेट दिवा shayankakshmaster black
 - name: light.master_bedside_right_red
   conditions:
   - type: action
@@ -3073,8 +3073,8 @@
     attributes:
       color: red
   sentences:
-  - set palang shayankaksh red
-  - set diva shayankaksh red
+  - सेट palang shayankakshmaster red
+  - सेट दिवा shayankakshmaster red
 - name: light.master_bedside_right_blue
   conditions:
   - type: action
@@ -3082,8 +3082,8 @@
     attributes:
       color: blue
   sentences:
-  - set palang shayankaksh blue
-  - set diva shayankaksh blue
+  - सेट palang shayankakshmaster blue
+  - सेट दिवा shayankakshmaster blue
 - name: light.master_bedside_right_green
   conditions:
   - type: action
@@ -3091,8 +3091,8 @@
     attributes:
       color: green
   sentences:
-  - set palang shayankaksh green
-  - set diva shayankaksh green
+  - सेट palang shayankakshmaster green
+  - सेट दिवा shayankakshmaster green
 - name: light.master_bedside_right_white
   conditions:
   - type: action
@@ -3100,8 +3100,8 @@
     attributes:
       color: white
   sentences:
-  - set palang shayankaksh white
-  - set diva shayankaksh white
+  - सेट palang shayankakshmaster white
+  - सेट दिवा shayankakshmaster white
 - name: light.master_bedside_right_yellow
   conditions:
   - type: action
@@ -3109,8 +3109,8 @@
     attributes:
       color: yellow
   sentences:
-  - set palang shayankaksh yellow
-  - set diva shayankaksh yellow
+  - सेट palang shayankakshmaster yellow
+  - सेट दिवा shayankakshmaster yellow
 - name: light.master_bedside_right_black
   conditions:
   - type: action
@@ -3118,8 +3118,8 @@
     attributes:
       color: black
   sentences:
-  - set palang shayankaksh black
-  - set diva shayankaksh black
+  - सेट palang shayankakshmaster black
+  - सेट दिवा shayankakshmaster black
 - name: light.master_bath_light_red
   conditions:
   - type: action
@@ -3127,8 +3127,8 @@
     attributes:
       color: red
   sentences:
-  - set diva mukhyasnan red
-  - diva mukhyasnan red
+  - सेट दिवा mukhyasnan red
+  - दिवा mukhyasnan red
 - name: light.master_bath_light_blue
   conditions:
   - type: action
@@ -3136,8 +3136,8 @@
     attributes:
       color: blue
   sentences:
-  - set diva mukhyasnan blue
-  - diva mukhyasnan blue
+  - सेट दिवा mukhyasnan blue
+  - दिवा mukhyasnan blue
 - name: light.master_bath_light_green
   conditions:
   - type: action
@@ -3145,8 +3145,8 @@
     attributes:
       color: green
   sentences:
-  - set diva mukhyasnan green
-  - diva mukhyasnan green
+  - सेट दिवा mukhyasnan green
+  - दिवा mukhyasnan green
 - name: light.master_bath_light_white
   conditions:
   - type: action
@@ -3154,8 +3154,8 @@
     attributes:
       color: white
   sentences:
-  - set diva mukhyasnan white
-  - diva mukhyasnan white
+  - सेट दिवा mukhyasnan white
+  - दिवा mukhyasnan white
 - name: light.master_bath_light_yellow
   conditions:
   - type: action
@@ -3163,8 +3163,8 @@
     attributes:
       color: yellow
   sentences:
-  - set diva mukhyasnan yellow
-  - diva mukhyasnan yellow
+  - सेट दिवा mukhyasnan yellow
+  - दिवा mukhyasnan yellow
 - name: light.master_bath_light_black
   conditions:
   - type: action
@@ -3172,8 +3172,8 @@
     attributes:
       color: black
   sentences:
-  - set diva mukhyasnan black
-  - diva mukhyasnan black
+  - सेट दिवा mukhyasnan black
+  - दिवा mukhyasnan black
 - name: all_except_kitchen
   conditions:
   - type: action
@@ -3245,8 +3245,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal svayampak
-  - sarva diva band vagal svayampak
+  - बंद सर्व दिवा vagal स्वयंपाक
+  - सर्व दिवा बंद vagal स्वयंपाक
   forbid:
   - kitchen
 - name: all_except_office
@@ -3320,8 +3320,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal office
-  - sarva diva band vagal office
+  - बंद सर्व दिवा vagal office
+  - सर्व दिवा बंद vagal office
   forbid:
   - office
 - name: all_except_garage
@@ -3395,8 +3395,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal garage
-  - sarva diva band vagal garage
+  - बंद सर्व दिवा vagal garage
+  - सर्व दिवा बंद vagal garage
   forbid:
   - garage
 - name: all_except_master_bedroom
@@ -3470,8 +3470,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal shayankaksh
-  - sarva diva band vagal shayankaksh
+  - बंद सर्व दिवा vagal shayankakshmaster
+  - सर्व दिवा बंद vagal shayankakshmaster
   forbid:
   - master_bedroom
 - name: floor_ground_on
@@ -3480,48 +3480,48 @@
     domain: light
     state: 'on'
   sentences:
-  - chalu sarva diva khali
-  - diva khali chalu
+  - चालू सर्व दिवा khali
+  - दिवा khali चालू
 - name: floor_ground_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva khali
-  - diva khali band
+  - बंद सर्व दिवा khali
+  - दिवा khali बंद
 - name: floor_upper_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - chalu sarva diva var
-  - diva var chalu
+  - चालू सर्व दिवा var
+  - दिवा var चालू
 - name: floor_upper_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva var
-  - diva var band
+  - बंद सर्व दिवा var
+  - दिवा var बंद
 - name: floor_basement_on
   conditions:
   - type: action
     domain: light
     state: 'on'
   sentences:
-  - chalu sarva diva basement
-  - diva basement chalu
+  - चालू सर्व दिवा basement
+  - दिवा basement चालू
 - name: floor_basement_off
   conditions:
   - type: action
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva basement
-  - diva basement band
+  - बंद सर्व दिवा basement
+  - दिवा basement बंद
 - name: all_except_entryway
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal pravesh
-  - sarva diva band vagal pravesh
+  - बंद सर्व दिवा vagal pravesh
+  - सर्व दिवा बंद vagal pravesh
   forbid:
   - entryway
 - name: all_except_living
@@ -3668,8 +3668,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal baithak
-  - sarva diva band vagal baithak
+  - बंद सर्व दिवा vagal बैठक
+  - सर्व दिवा बंद vagal बैठक
   forbid:
   - living
 - name: all_except_dining
@@ -3743,8 +3743,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal kutumbess
-  - sarva diva band vagal kutumbess
+  - बंद सर्व दिवा vagal kutumbess
+  - सर्व दिवा बंद vagal kutumbess
   forbid:
   - dining
 - name: all_except_family_room
@@ -3818,8 +3818,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal kutumb
-  - sarva diva band vagal kutumb
+  - बंद सर्व दिवा vagal kutumb
+  - सर्व दिवा बंद vagal kutumb
   forbid:
   - family_room
 - name: all_except_laundry
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal dhune
-  - sarva diva band vagal dhune
+  - बंद सर्व दिवा vagal dhune
+  - सर्व दिवा बंद vagal dhune
   forbid:
   - laundry
 - name: all_except_powder_room
@@ -3968,8 +3968,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal swachhata
-  - sarva diva band vagal swachhata
+  - बंद सर्व दिवा vagal swachhata
+  - सर्व दिवा बंद vagal swachhata
   forbid:
   - powder_room
 - name: all_except_garden
@@ -4043,8 +4043,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal garden
-  - sarva diva band vagal garden
+  - बंद सर्व दिवा vagal garden
+  - सर्व दिवा बंद vagal garden
   forbid:
   - garden
 - name: all_except_bedroom_2
@@ -4118,8 +4118,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal shayankaksh2
-  - sarva diva band vagal shayankaksh2
+  - बंद सर्व दिवा vagal shayankaksh2
+  - सर्व दिवा बंद vagal shayankaksh2
   forbid:
   - bedroom_2
 - name: all_except_bedroom_3
@@ -4193,8 +4193,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal shayankaksh3
-  - sarva diva band vagal shayankaksh3
+  - बंद सर्व दिवा vagal shayankaksh3
+  - सर्व दिवा बंद vagal shayankaksh3
   forbid:
   - bedroom_3
 - name: all_except_bedroom_4
@@ -4268,8 +4268,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal shayankaksh4
-  - sarva diva band vagal shayankaksh4
+  - बंद सर्व दिवा vagal shayankaksh4
+  - सर्व दिवा बंद vagal shayankaksh4
   forbid:
   - bedroom_4
 - name: all_except_master_bath
@@ -4343,8 +4343,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal mukhyasnan
-  - sarva diva band vagal mukhyasnan
+  - बंद सर्व दिवा vagal mukhyasnan
+  - सर्व दिवा बंद vagal mukhyasnan
   forbid:
   - master_bath
 - name: all_except_main_bath
@@ -4418,8 +4418,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal main bath
-  - sarva diva band vagal main bath
+  - बंद सर्व दिवा vagal main bath
+  - सर्व दिवा बंद vagal main bath
   forbid:
   - main_bath
 - name: all_except_hallway
@@ -4493,8 +4493,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal hallway
-  - sarva diva band vagal hallway
+  - बंद सर्व दिवा vagal hallway
+  - सर्व दिवा बंद vagal hallway
   forbid:
   - hallway
 - name: all_except_basement
@@ -4568,8 +4568,8 @@
     domain: light
     state: 'off'
   sentences:
-  - band sarva diva vagal basement
-  - sarva diva band vagal basement
+  - बंद सर्व दिवा vagal basement
+  - सर्व दिवा बंद vagal basement
   forbid:
   - basement
 - name: light.basement_on_extra
@@ -4578,29 +4578,29 @@
     entity_id: light.basement
     state: 'on'
   sentences:
-  - chalu diva basement
-  - diva basement chalu
+  - चालू दिवा basement
+  - दिवा basement चालू
 - name: light.hallway_light_on_extra
   conditions:
   - type: action
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - chalu diva hallway
-  - diva hallway chalu
+  - चालू दिवा hallway
+  - दिवा hallway चालू
 - name: light.family_ceiling_on_extra
   conditions:
   - type: action
     entity_id: light.family_ceiling
     state: 'on'
   sentences:
-  - chalu chhat kutumb
-  - chhat kutumb chalu
+  - चालू chhat kutumb
+  - chhat kutumb चालू
 - name: light.dining_pendant_on_extra
   conditions:
   - type: action
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - chalu diva kutumbess
-  - diva kutumbess chalu
+  - चालू दिवा kutumbess
+  - दिवा kutumbess चालू

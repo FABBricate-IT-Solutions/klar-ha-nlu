@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - изключи таван спалня
 devices/geraete::device_arbeitszimmer_an:
-- включи светлина хол
+- включи светлина office
 devices/geraete::device_esszimmer_an:
 - включи светлина дневнаfamess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - включи светлина хол
 devices/geraete::filmabend:
-- включи Filmabend
+- включи сцена filmabend
 devices/geraete::kugel_an:
-- включи топка спалня
+- включи топка
 devices/geraete::luefter_50:
-- сложи вентилатор хол 50
+- сложи вентилатор office 50
 devices/geraete::pc_an:
-- включи уред
+- включи pc
 devices/geraete::r2d2_saugen:
 - включи прахосмукачка хол
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - включи пералня
 devices/klima::klima_schlaf_21:
-- сложи парно спалня 21
+- сложи ac спалня 21
 devices/spoken::deckenlampe_an:
 - включи таван спалня
 devices/spoken::kugel_aus:
-- изключи топка спалня
+- изключи топка
 devices/spoken::luefter_aus:
-- изключи вентилатор хол
+- изключи вентилатор office
 devices/spoken::rollo_auf:
 - отвори завеса хол
 devices/spoken::trockner_an:
-- включи пералня
+- включи dryer
 devices/spoken::tv_aus:
-- изключи тв
+- изключи tv
 devices/spoken_more::decke_aus_casual:
 - изключи таван спалня
 devices/spoken_more::kugel_casual:
-- включи топка спалня
+- включи топка
 devices/spoken_more::pc_aus:
-- изключи уред
+- изключи pc
 devices/spoken_more::spuelmaschine_an:
 - включи съдомиялна
 devices/spoken_more::waschmaschine_aus:

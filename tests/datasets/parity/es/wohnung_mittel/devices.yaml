@@ -1,7 +1,7 @@
 devices/geraete::deckenlampe_aus:
 - apaga techo dormitorio
 devices/geraete::device_arbeitszimmer_an:
-- enciende luz salon
+- enciende luz office
 devices/geraete::device_esszimmer_an:
 - enciende luz estanciaess
 devices/geraete::device_kuche_kuche_an:
@@ -9,13 +9,13 @@ devices/geraete::device_kuche_kuche_an:
 devices/geraete::device_wohnzimmer_an:
 - enciende luz salon
 devices/geraete::filmabend:
-- enciende Filmabend
+- enciende escena filmabend
 devices/geraete::kugel_an:
-- enciende bola dormitorio
+- enciende bola
 devices/geraete::luefter_50:
-- pon ventilador salon 50
+- pon ventilador office 50
 devices/geraete::pc_an:
-- enciende aparato
+- enciende pc
 devices/geraete::r2d2_saugen:
 - enciende aspiradora salon
 devices/geraete::rollo_zu:
@@ -27,25 +27,25 @@ devices/geraete::tuer_abschliessen:
 devices/geraete::waschmaschine_an:
 - enciende lavadora
 devices/klima::klima_schlaf_21:
-- pon calefaccion dormitorio 21
+- pon ac dormitorio 21
 devices/spoken::deckenlampe_an:
 - enciende techo dormitorio
 devices/spoken::kugel_aus:
-- apaga bola dormitorio
+- apaga bola
 devices/spoken::luefter_aus:
-- apaga ventilador salon
+- apaga ventilador office
 devices/spoken::rollo_auf:
 - abre cortina salon
 devices/spoken::trockner_an:
-- enciende lavadora
+- enciende secadora
 devices/spoken::tv_aus:
-- apaga tele
+- apaga tv
 devices/spoken_more::decke_aus_casual:
 - apaga techo dormitorio
 devices/spoken_more::kugel_casual:
-- enciende bola dormitorio
+- enciende bola
 devices/spoken_more::pc_aus:
-- apaga aparato
+- apaga pc
 devices/spoken_more::spuelmaschine_an:
 - enciende lavavajillas
 devices/spoken_more::waschmaschine_aus:

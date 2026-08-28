@@ -1,8 +1,6 @@
 # Klar NLU (Staging)
 
-Release-candidate app. Supervisor pulls `ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}:staging`.
-
-This is not production. Use **Klar NLU** for the last CalVer cut.
+Release-candidate **App**. Supervisor pulls `ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}:staging`. Assist still uses the HACS integration; this App only hosts the engine. Not production — use **Klar NLU** for the last CalVer cut.
 
 ## Switch
 

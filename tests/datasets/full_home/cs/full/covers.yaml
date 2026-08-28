@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otevri zaves loznice
-  - zaves loznice otevri
+  - otevri zaves loznicemaster
+  - zaves loznicemaster otevri
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - zavri zaves loznice
-  - zaves loznice zavri
+  - zavri zaves loznicemaster
+  - zaves loznicemaster zavri
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - nastav zaves loznice 0
-  - zaves loznice 0
+  - nastav zaves loznicemaster 0
+  - zaves loznicemaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - nastav zaves loznice 25
-  - zaves loznice 25
+  - nastav zaves loznicemaster 25
+  - zaves loznicemaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - nastav zaves loznice 40
-  - zaves loznice 40
+  - nastav zaves loznicemaster 40
+  - zaves loznicemaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - nastav zaves loznice 75
-  - zaves loznice 75
+  - nastav zaves loznicemaster 75
+  - zaves loznicemaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - nastav zaves loznice 100
-  - zaves loznice 100
+  - nastav zaves loznicemaster 100
+  - zaves loznicemaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - otevri zaves loznice
-  - zaves loznice otevri
+  - otevri zaves loznicemaster
+  - zaves loznicemaster otevri

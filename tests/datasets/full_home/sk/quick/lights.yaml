@@ -85,7 +85,7 @@
     domain: light
     state: 'on'
   sentences:
-  - zapni svetlo spalna
+  - zapni svetlo spalnamaster
 - name: lights_master_bedroom_off
   conditions:
   - type: action
@@ -93,7 +93,7 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni svetlo spalna
+  - vypni svetlo spalnamaster
 - name: lights_hallway_on
   conditions:
   - type: action
@@ -196,28 +196,28 @@
     entity_id: light.master_ceiling
     state: 'on'
   sentences:
-  - zapni strop spalna
+  - zapni strop spalnamaster
 - name: light.master_ceiling_off
   conditions:
   - type: action
     entity_id: light.master_ceiling
     state: 'off'
   sentences:
-  - vypni strop spalna
+  - vypni strop spalnamaster
 - name: light.master_bedside_left_on
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - zapni nocny spalna
+  - zapni nocny spalnamaster
 - name: light.master_bedside_left_off
   conditions:
   - type: action
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - vypni nocny spalna
+  - vypni nocny spalnamaster
 - name: light.office_ceiling_on
   conditions:
   - type: action

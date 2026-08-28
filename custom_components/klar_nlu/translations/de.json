@@ -36,6 +36,7 @@
           "assist_filter": "Nur für Assist freigegebene Entitäten steuern",
           "nlu_rag": "NLU-RAG (optional)",
           "quiet_ack": "Kurze Bestätigung (Chime)",
+          "calendar_llm": "Kalenderabfragen an das LLM senden",
           "channel": "Release-Kanal"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "An (Standard): nur was Assist sehen darf. Aus: auch versteckte Entitäten — leichter das falsche Gerät.",
           "nlu_rag": "Standard aus. Bei Chat und leerem Reject nur den gematchten Ausschnitt an das Fallback-Modell. Nur Klar-Werkzeuge.",
           "quiet_ack": "Bei einfachem Licht oder Schalter an/aus keine gesprochene Antwort, nur ein kurzer Ton am Satelliten.",
+          "calendar_llm": "Standard aus. An: Klar liest den Kalender, das Fallback-LLM spricht die Termine. Aus: Klar spricht die Liste selbst. Anlegen, Löschen und Verschieben bleiben bei Klar.",
           "languages": "Standard ist die Home-Assistant-Systemsprache. Alle Sprachen lässt jede kompilierte Assist-Locale aktiv.",
           "channel": "Geht jederzeit. Staging zeigt auf Klar NLU (Staging), Stable auf die App oder die mitgelieferte Engine. Eine eigene URL bleibt."
         }

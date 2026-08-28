@@ -125,6 +125,62 @@ class EngineChannelTests(unittest.TestCase):
             custom,
         )
 
+    def test_resolve_engine_url_keeps_supervisor_prefix(self) -> None:
+        prefixed = "http://xyz-klar-nlu:10520"
+        fqdn = "http://8db2ab02-klar-nlu.local.hass.io:10520"
+        for url in (prefixed, fqdn):
+            self.assertTrue(const.is_managed_engine_url(url), url)
+            self.assertEqual(
+                const.resolve_engine_url(
+                    mode=const.MODE_REMOTE,
+                    channel=const.CHANNEL_STABLE,
+                    url=url,
+                    supervisor=True,
+                ),
+                url,
+            )
+            self.assertEqual(
+                const.resolve_engine_target(
+                    mode=const.MODE_REMOTE,
+                    channel=const.CHANNEL_STABLE,
+                    url=url,
+                    supervisor=True,
+                ),
+                (const.MODE_REMOTE, url),
+            )
+
+    def test_resolve_engine_url_retargets_prefixed_channel(self) -> None:
+        self.assertEqual(
+            const.resolve_engine_url(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STAGING,
+                url="http://xyz-klar-nlu:10520",
+                supervisor=True,
+            ),
+            "http://xyz-klar-nlu-staging:10520",
+        )
+        self.assertEqual(
+            const.resolve_engine_url(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STABLE,
+                url="http://xyz-klar-nlu-staging.local.hass.io:10520",
+                supervisor=True,
+            ),
+            "http://xyz-klar-nlu.local.hass.io:10520",
+        )
+
+    def test_hassio_discovery_slug_url_is_kept(self) -> None:
+        discovered = "http://8db2ab02-klar-nlu:10520"
+        self.assertEqual(
+            const.resolve_engine_target(
+                mode=const.MODE_REMOTE,
+                channel=const.CHANNEL_STABLE,
+                url=discovered,
+                supervisor=True,
+            ),
+            (const.MODE_REMOTE, discovered),
+        )
+
     def test_channel_for_addon_slug(self) -> None:
         self.assertEqual(
             const.channel_for_addon_slug("klar_nlu_staging"),
@@ -146,6 +202,25 @@ class EngineChannelTests(unittest.TestCase):
             )
         )
         self.assertIsNone(const.pick_staging_release("nope"))
+
+    def test_addon_and_engine_drop_armv7(self) -> None:
+        engine = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text()
+        self.assertIn("languages", engine)
+        self.assertIn("ui_locale", engine)
+        self.assertNotIn("armv7", engine)
+        build = (ROOT / ".github" / "workflows" / "build.yml").read_text()
+        self.assertNotIn("armv7", build)
+        self.assertIn("x86_64-unknown-linux-musl", build)
+        self.assertIn("aarch64-unknown-linux-musl", build)
+        self.assertNotIn("unknown-linux-gnu", build)
+        for rel in (
+            "config.yaml",
+            "addon/config.yaml",
+            "addon-staging/config.yaml",
+            "addon/build.yaml",
+            "addon-staging/build.yaml",
+        ):
+            self.assertNotIn("armv7", (ROOT / rel).read_text(), rel)
 
 
 if __name__ == "__main__":

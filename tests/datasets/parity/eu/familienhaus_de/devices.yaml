@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
 - jarri berogailu egongela 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- jarri berogailu logela 19
+- jarri berogailu logelamaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - jarri gortina logela2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -27,11 +27,11 @@ devices/cover_living_blinds::cover_living_blinds_close:
 devices/cover_living_blinds::cover_living_blinds_open:
 - ireki gortina egongela
 devices/cover_master_blinds::cover_master_blinds_change_position:
-- jarri gortina logela 19
+- jarri gortina logelamaster 19
 devices/cover_master_blinds::cover_master_blinds_close:
-- itxi gortina logela
+- itxi gortina logelamaster
 devices/cover_master_blinds::cover_master_blinds_open:
-- ireki gortina logela
+- ireki gortina logelamaster
 devices/fan_bedroom2_fan::fan_bedroom2_fan_set_fan_speed:
 - jarri haizagailua logela2 72
 devices/fan_bedroom2_fan::fan_bedroom2_fan_turn_off:
@@ -45,15 +45,15 @@ devices/fan_family_fan::fan_family_fan_turn_off:
 devices/fan_family_fan::fan_family_fan_turn_on:
 - piztu haizagailua familiagela
 devices/fan_master_fan::fan_master_fan_set_fan_speed:
-- jarri haizagailua logela 28
+- jarri haizagailua logelamaster 28
 devices/fan_master_fan::fan_master_fan_turn_off:
-- itzali haizagailua logela
+- itzali haizagailua logelamaster
 devices/fan_master_fan::fan_master_fan_turn_on:
-- piztu haizagailua logela
+- piztu haizagailua logelamaster
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_off:
-- itzali haizagailua logela eta itzali argia sukaldea
+- itzali haizagailua logelamaster then itzali uharte sukaldea
 devices/fan_master_fan_and_light_kitchen_island::fan_master_fan_and_light_kitchen_island_turn_on:
-- piztu haizagailua logela eta piztu argia sukaldea
+- piztu haizagailua logelamaster then piztu uharte sukaldea
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_brightness:
 - jarri sabai logela2 94
 devices/light_bedroom2_ceiling::light_bedroom2_ceiling_change_color:
@@ -127,13 +127,13 @@ devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_off:
 devices/light_kitchen_ceiling::light_kitchen_ceiling_turn_on:
 - piztu sabai sukaldea
 devices/light_kitchen_island::light_kitchen_island_change_brightness:
-- jarri argia sukaldea 99
+- jarri uharte sukaldea 99
 devices/light_kitchen_island::light_kitchen_island_change_color:
-- jarri argia sukaldea green
+- jarri uharte sukaldea green
 devices/light_kitchen_island::light_kitchen_island_turn_off:
-- itzali argia sukaldea
+- itzali uharte sukaldea
 devices/light_kitchen_island::light_kitchen_island_turn_on:
-- piztu argia sukaldea
+- piztu uharte sukaldea
 devices/light_laundry_light::light_laundry_light_change_brightness:
 - jarri argia garbiketa 18
 devices/light_laundry_light::light_laundry_light_change_color:
@@ -151,13 +151,13 @@ devices/light_living_ceiling::light_living_ceiling_turn_off:
 devices/light_living_ceiling::light_living_ceiling_turn_on:
 - piztu sabai egongela
 devices/light_living_lamp::light_living_lamp_change_brightness:
-- jarri argia egongela 72
+- jarri lamp egongela 72
 devices/light_living_lamp::light_living_lamp_change_color:
-- jarri argia egongela red
+- jarri lamp egongela red
 devices/light_living_lamp::light_living_lamp_turn_off:
-- itzali argia egongela
+- itzali lamp egongela
 devices/light_living_lamp::light_living_lamp_turn_on:
-- piztu argia egongela
+- piztu lamp egongela
 devices/light_main_bath_light::light_main_bath_light_change_brightness:
 - jarri argia main bath 85
 devices/light_main_bath_light::light_main_bath_light_change_color:
@@ -175,29 +175,29 @@ devices/light_master_bath_light::light_master_bath_light_turn_off:
 devices/light_master_bath_light::light_master_bath_light_turn_on:
 - piztu argia bainumaster
 devices/light_master_bedside_right::light_master_bedside_right_change_brightness:
-- jarri gaua logela 25
+- jarri gaua logelamaster 25
 devices/light_master_bedside_right::light_master_bedside_right_change_color:
-- jarri gaua logela red
+- jarri gaua logelamaster red
 devices/light_master_bedside_right::light_master_bedside_right_turn_off:
-- itzali gaua logela
+- itzali gaua logelamaster
 devices/light_master_bedside_right::light_master_bedside_right_turn_on:
-- piztu gaua logela
+- piztu gaua logelamaster
 devices/light_master_ceiling::light_master_ceiling_change_brightness:
-- jarri sabai logela 77
+- jarri sabai logelamaster 77
 devices/light_master_ceiling::light_master_ceiling_change_color:
-- jarri sabai logela blue
+- jarri sabai logelamaster blue
 devices/light_master_ceiling::light_master_ceiling_turn_off:
-- itzali sabai logela
+- itzali sabai logelamaster
 devices/light_master_ceiling::light_master_ceiling_turn_on:
-- piztu sabai logela
+- piztu sabai logelamaster
 devices/light_master_ensuite::light_master_ensuite_change_brightness:
-- jarri argia logela 55
+- jarri ankleide logelamaster 55
 devices/light_master_ensuite::light_master_ensuite_change_color:
-- jarri argia logela black
+- jarri ankleide logelamaster black
 devices/light_master_ensuite::light_master_ensuite_turn_off:
-- itzali argia logela
+- itzali ankleide logelamaster
 devices/light_master_ensuite::light_master_ensuite_turn_on:
-- piztu argia logela
+- piztu ankleide logelamaster
 devices/light_powder_room_light::light_powder_room_light_change_brightness:
 - jarri argia wc 22
 devices/light_powder_room_light::light_powder_room_light_change_color:
@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - piztu telebista familiagela
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause telebista familiagela
+- pause tv familiagela
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - itzali telebista familiagela
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - piztu telebista egongela
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause telebista egongela
+- pause tv egongela
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - itzali telebista egongela
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -239,29 +239,34 @@ devices/media_player_living_tv::media_player_living_tv_unmute:
 devices/media_player_living_tv::media_player_living_tv_unpause:
 - piztu telebista egongela
 devices/scenes::dinner_time:
-- jarri argia familiagelaess 90 eta piztu sabai sukaldea eta jarri argia sukaldea
+- jarri argia familiagelaess 90 then piztu sabai sukaldea then jarri uharte sukaldea
   80
 devices/scenes::good_morning:
-- piztu sabai sukaldea eta jarri argia familiagelaess 100 eta ireki gortina egongela
-  eta ireki gortina logela
+- piztu sabai sukaldea then jarri argia familiagelaess 100 then ireki gortina egongela
+  then ireki gortina logelamaster
 devices/scenes::kids_bedtime:
-- itzali sabai logela2 eta itzali sabai logela3 eta itzali sabai logela4 eta jarri
+- itzali sabai logela2 then itzali sabai logela3 then itzali sabai logela4 then jarri
   argia sarreragang 15
 devices/scenes::movie_night:
-- itzali sabai egongela eta jarri argia egongela 20 eta piztu telebista egongela eta
-  itxi gortina egongela
+- itzali sabai egongela then jarri lamp egongela 20 then piztu telebista egongela
+  then itxi gortina egongela
 devices/scripts::good_night:
-- piztu eszena gau
+- itzali sabai egongela then itzali lamp egongela then itzali argia familiagelaess
+  then itzali sabai sukaldea then itzali uharte sukaldea then itzali sabai familiagela
+  then itzali argia sarrera then itzali argia sarreragang then sarraila sarraila sarrera
+  then sarraila sarraila garage then jarri berogailu logelamaster 20
 devices/scripts::leaving_home:
-- piztu eszena irteera
+- itzali sabai egongela then itzali lamp egongela then itzali sabai sukaldea then
+  itzali sabai familiagela then itzali argia sarrera then sarraila sarraila sarrera
+  then sarraila sarraila garage then itxi gortina garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
 - itzali ontzigailu
 devices/switch_dishwasher::switch_dishwasher_turn_on:
 - piztu ontzigailu
 devices/switch_dryer::switch_dryer_turn_off:
-- itzali garbigailu
+- itzali dryer
 devices/switch_dryer::switch_dryer_turn_on:
-- piztu garbigailu
+- piztu dryer
 devices/switch_washing_machine::switch_washing_machine_turn_off:
 - itzali garbigailu
 devices/switch_washing_machine::switch_washing_machine_turn_on:

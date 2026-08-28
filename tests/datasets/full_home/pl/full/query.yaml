@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - co zaslona sypialnia
-  - co sypialnia zaslona
+  - co zaslona sypialniamaster
+  - co sypialniamaster zaslona
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - co ogrzewanie sypialnia
-  - co sypialnia ogrzewanie
+  - co ogrzewanie sypialniamaster
+  - co sypialniamaster ogrzewanie
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - co temperatura sypialnia
-  - co sypialnia temperatura
+  - co temperatura sypialniamaster
+  - co sypialniamaster temperatura
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - co wentylator sypialnia
-  - co sypialnia wentylator
+  - co wentylator sypialniamaster
+  - co sypialniamaster wentylator
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - co swiatlo sypialnia
-  - co sypialnia swiatlo
+  - co swiatlo sypialniamaster
+  - co sypialniamaster swiatlo
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - co swiatlo sypialnia
-  - co sypialnia swiatlo
+  - co swiatlo sypialniamaster
+  - co sypialniamaster swiatlo
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - co ensuite sypialnia
-  - co sypialnia ensuite
+  - co ensuite sypialniamaster
+  - co sypialniamaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - co swiatlo sypialnia
-  - co sypialnia swiatlo
+  - co swiatlo sypialniamaster
+  - co sypialniamaster swiatlo
 - name: query_light.master_bath_light
   conditions:
   - type: query

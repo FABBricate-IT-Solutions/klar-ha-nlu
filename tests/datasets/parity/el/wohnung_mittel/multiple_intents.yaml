@@ -1,26 +1,26 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - σβησε ολα φως εκτος υπνοδωματο εκτος κουζινα
 multiple_intents/multi::licht_und_heizung:
-- αναψε φως σαλονι και βαλε θερμανση σαλονι 23
+- αναψε ολα φως σαλονι then βαλε θερμανση σαλονι 23
 multiple_intents/multi::wohn_und_ess_aus:
-- σβησε φως σαλονι και σβησε φως σαλονιfamess
+- σβησε ολα φως σαλονι then σβησε ολα φως σαλονιfamess
 multiple_intents/multi::wohn_und_ess_rot:
-- βαλε φως σαλονι red και βαλε φως σαλονιfamess red
+- βαλε ολα φως σαλονι red then βαλε ολα φως σαλονιfamess red
 multiple_intents/multi::wz_und_kuche_licht:
-- αναψε φως σαλονι και αναψε φως κουζινα
+- αναψε ολα φως σαλονι then αναψε ολα φως κουζινα
 multiple_intents/multi::zwei_raeume_und_heizung:
-- αναψε φως σαλονι και αναψε φως κουζινα και βαλε θερμανση σαλονι 23
+- αναψε ολα φως σαλονι then αναψε ολα φως κουζινα then βαλε θερμανση σαλονι 23
 multiple_intents/spoken::drei_raeume_an:
-- αναψε φως σαλονι και αναψε φως σαλονιfamess και αναψε φως κουζινα
+- αναψε ολα φως σαλονι then αναψε ολα φως σαλονιfamess then αναψε ολα φως κουζινα
 multiple_intents/spoken::drei_raeume_aus:
-- σβησε φως σαλονι και σβησε φως σαλονιfamess και σβησε φως κουζινα
+- σβησε ολα φως σαλονι then σβησε ολα φως σαλονιfamess then σβησε ολα φως κουζινα
 multiple_intents/spoken::ess_und_wohn_aus:
-- σβησε φως σαλονι και σβησε φως σαλονιfamess
+- σβησε ολα φως σαλονι then σβησε ολα φως σαλονιfamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- σβησε σφαιρα και σβησε ταβανι
+- σφαιρα και ταβανι υπνοδωματο σβησε
 multiple_intents/spoken_more::kuche_und_ess_an:
-- αναψε φως κουζινα και αναψε φως σαλονιfamess
+- αναψε ολα φως κουζινα then αναψε ολα φως σαλονιfamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- σβησε φως σαλονι και σβησε φως σαλονιfamess
+- σβησε ολα φως σαλονι then σβησε ολα φως σαλονιfamess then σβησε ολα φως office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- σβησε φως σαλονι
+- σβησε ολα φως σαλονι then σβησε ολα φως office

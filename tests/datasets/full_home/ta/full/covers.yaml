@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - thira thirai arai
-  - thirai arai thira
+  - திற திரை அறை
+  - திரை அறை திற
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - moodu thirai arai
-  - thirai arai moodu
+  - மூடு திரை அறை
+  - திரை அறை மூடு
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - amai thirai arai 0
-  - thirai arai 0
+  - அமை திரை அறை 0
+  - திரை அறை 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - amai thirai arai 25
-  - thirai arai 25
+  - அமை திரை அறை 25
+  - திரை அறை 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - amai thirai arai 40
-  - thirai arai 40
+  - அமை திரை அறை 40
+  - திரை அறை 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - amai thirai arai 75
-  - thirai arai 75
+  - அமை திரை அறை 75
+  - திரை அறை 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - amai thirai arai 100
-  - thirai arai 100
+  - அமை திரை அறை 100
+  - திரை அறை 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - thira thirai padukkaiyarai
-  - thirai padukkaiyarai thira
+  - திற திரை padukkaiyaraimaster
+  - திரை padukkaiyaraimaster திற
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - moodu thirai padukkaiyarai
-  - thirai padukkaiyarai moodu
+  - மூடு திரை padukkaiyaraimaster
+  - திரை padukkaiyaraimaster மூடு
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - amai thirai padukkaiyarai 0
-  - thirai padukkaiyarai 0
+  - அமை திரை padukkaiyaraimaster 0
+  - திரை padukkaiyaraimaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - amai thirai padukkaiyarai 25
-  - thirai padukkaiyarai 25
+  - அமை திரை padukkaiyaraimaster 25
+  - திரை padukkaiyaraimaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - amai thirai padukkaiyarai 40
-  - thirai padukkaiyarai 40
+  - அமை திரை padukkaiyaraimaster 40
+  - திரை padukkaiyaraimaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - amai thirai padukkaiyarai 75
-  - thirai padukkaiyarai 75
+  - அமை திரை padukkaiyaraimaster 75
+  - திரை padukkaiyaraimaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - amai thirai padukkaiyarai 100
-  - thirai padukkaiyarai 100
+  - அமை திரை padukkaiyaraimaster 100
+  - திரை padukkaiyaraimaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - thira thirai padukkaiyarai2
-  - thirai padukkaiyarai2 thira
+  - திற திரை padukkaiyarai2
+  - திரை padukkaiyarai2 திற
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - moodu thirai padukkaiyarai2
-  - thirai padukkaiyarai2 moodu
+  - மூடு திரை padukkaiyarai2
+  - திரை padukkaiyarai2 மூடு
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - amai thirai padukkaiyarai2 0
-  - thirai padukkaiyarai2 0
+  - அமை திரை padukkaiyarai2 0
+  - திரை padukkaiyarai2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - amai thirai padukkaiyarai2 25
-  - thirai padukkaiyarai2 25
+  - அமை திரை padukkaiyarai2 25
+  - திரை padukkaiyarai2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - amai thirai padukkaiyarai2 40
-  - thirai padukkaiyarai2 40
+  - அமை திரை padukkaiyarai2 40
+  - திரை padukkaiyarai2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - amai thirai padukkaiyarai2 75
-  - thirai padukkaiyarai2 75
+  - அமை திரை padukkaiyarai2 75
+  - திரை padukkaiyarai2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - amai thirai padukkaiyarai2 100
-  - thirai padukkaiyarai2 100
+  - அமை திரை padukkaiyarai2 100
+  - திரை padukkaiyarai2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - thira thirai padukkaiyarai3
-  - thirai padukkaiyarai3 thira
+  - திற திரை padukkaiyarai3
+  - திரை padukkaiyarai3 திற
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - moodu thirai padukkaiyarai3
-  - thirai padukkaiyarai3 moodu
+  - மூடு திரை padukkaiyarai3
+  - திரை padukkaiyarai3 மூடு
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - amai thirai padukkaiyarai3 0
-  - thirai padukkaiyarai3 0
+  - அமை திரை padukkaiyarai3 0
+  - திரை padukkaiyarai3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - amai thirai padukkaiyarai3 25
-  - thirai padukkaiyarai3 25
+  - அமை திரை padukkaiyarai3 25
+  - திரை padukkaiyarai3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - amai thirai padukkaiyarai3 40
-  - thirai padukkaiyarai3 40
+  - அமை திரை padukkaiyarai3 40
+  - திரை padukkaiyarai3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - amai thirai padukkaiyarai3 75
-  - thirai padukkaiyarai3 75
+  - அமை திரை padukkaiyarai3 75
+  - திரை padukkaiyarai3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - amai thirai padukkaiyarai3 100
-  - thirai padukkaiyarai3 100
+  - அமை திரை padukkaiyarai3 100
+  - திரை padukkaiyarai3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - thira thirai garage
-  - thirai garage thira
+  - திற திரை garage
+  - திரை garage திற
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - moodu thirai garage
-  - thirai garage moodu
+  - மூடு திரை garage
+  - திரை garage மூடு
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - amai thirai garage 0
-  - thirai garage 0
+  - அமை திரை garage 0
+  - திரை garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - amai thirai garage 25
-  - thirai garage 25
+  - அமை திரை garage 25
+  - திரை garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - amai thirai garage 40
-  - thirai garage 40
+  - அமை திரை garage 40
+  - திரை garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - amai thirai garage 75
-  - thirai garage 75
+  - அமை திரை garage 75
+  - திரை garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - amai thirai garage 100
-  - thirai garage 100
+  - அமை திரை garage 100
+  - திரை garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - thira thirai arai
-  - thirai arai thira
+  - திற திரை அறை
+  - திரை அறை திற
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - thira thirai padukkaiyarai
-  - thirai padukkaiyarai thira
+  - திற திரை padukkaiyaraimaster
+  - திரை padukkaiyaraimaster திற

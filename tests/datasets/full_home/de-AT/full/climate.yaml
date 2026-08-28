@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stell heizung schlafzimmer 18
-  - heizung schlafzimmer 18
+  - stell heizung schlafzimmermaster 18
+  - heizung schlafzimmermaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stell heizung schlafzimmer 19
-  - heizung schlafzimmer 19
+  - stell heizung schlafzimmermaster 19
+  - heizung schlafzimmermaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stell heizung schlafzimmer 20
-  - heizung schlafzimmer 20
+  - stell heizung schlafzimmermaster 20
+  - heizung schlafzimmermaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell heizung schlafzimmer 21
-  - heizung schlafzimmer 21
+  - stell heizung schlafzimmermaster 21
+  - heizung schlafzimmermaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stell heizung schlafzimmer 22
-  - heizung schlafzimmer 22
+  - stell heizung schlafzimmermaster 22
+  - heizung schlafzimmermaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stell heizung schlafzimmer 23
-  - heizung schlafzimmer 23
+  - stell heizung schlafzimmermaster 23
+  - heizung schlafzimmermaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stell heizung schlafzimmer 24
-  - heizung schlafzimmer 24
+  - stell heizung schlafzimmermaster 24
+  - heizung schlafzimmermaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - was heizung schlafzimmer
-  - heizung schlafzimmer
+  - was heizung schlafzimmermaster
+  - heizung schlafzimmermaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stell temperatur schlafzimmer 18
-  - temperatur schlafzimmer 18
+  - stell temperatur schlafzimmermaster 18
+  - temperatur schlafzimmermaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stell temperatur schlafzimmer 19
-  - temperatur schlafzimmer 19
+  - stell temperatur schlafzimmermaster 19
+  - temperatur schlafzimmermaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stell temperatur schlafzimmer 20
-  - temperatur schlafzimmer 20
+  - stell temperatur schlafzimmermaster 20
+  - temperatur schlafzimmermaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell temperatur schlafzimmer 21
-  - temperatur schlafzimmer 21
+  - stell temperatur schlafzimmermaster 21
+  - temperatur schlafzimmermaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stell temperatur schlafzimmer 22
-  - temperatur schlafzimmer 22
+  - stell temperatur schlafzimmermaster 22
+  - temperatur schlafzimmermaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stell temperatur schlafzimmer 23
-  - temperatur schlafzimmer 23
+  - stell temperatur schlafzimmermaster 23
+  - temperatur schlafzimmermaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stell temperatur schlafzimmer 24
-  - temperatur schlafzimmer 24
+  - stell temperatur schlafzimmermaster 24
+  - temperatur schlafzimmermaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - was temperatur schlafzimmer
-  - temperatur schlafzimmer
+  - was temperatur schlafzimmermaster
+  - temperatur schlafzimmermaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - was heizung schlafzimmer
-  - heizung schlafzimmer
+  - was heizung schlafzimmermaster
+  - heizung schlafzimmermaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - was temperatur schlafzimmer
-  - temperatur schlafzimmer
+  - was temperatur schlafzimmermaster
+  - temperatur schlafzimmermaster

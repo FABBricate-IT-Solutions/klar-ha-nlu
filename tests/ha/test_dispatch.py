@@ -63,6 +63,17 @@ def _load_dispatch() -> types.ModuleType:
     }
     with patch.dict(sys.modules, modules):
         _load(f"{PACKAGE}.speech", "speech.py")
+        _load(f"{PACKAGE}.speech_locale", "speech_locale.py")
+        _load(f"{PACKAGE}.calendar_session", "calendar_session.py")
+        _load("calendar_session", "calendar_session.py")
+        package.calendar_entity = _load(f"{PACKAGE}.calendar_entity", "calendar_entity.py")
+        package.calendar_say = _load(f"{PACKAGE}.calendar_say", "calendar_say.py")
+        _load("calendar_entity", "calendar_entity.py")
+        _load("calendar_say", "calendar_say.py")
+        _load(f"{PACKAGE}.calendar_ha", "calendar_ha.py")
+        _load(f"{PACKAGE}.languages", "languages.py")
+        _load(f"{PACKAGE}.const", "const.py")
+        _load(f"{PACKAGE}.lang_select", "lang_select.py")
         _load(f"{PACKAGE}.intents", "intents.py")
         return _load(f"{PACKAGE}.dispatch", "dispatch.py")
 
@@ -393,6 +404,25 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         slots = dispatch.intent.async_handle.await_args.args[3]
         self.assertEqual(slots["area"]["value"], "Wohnzimmer")
         self.assertEqual(slots["domain"]["value"], "light")
+
+    async def test_generic_named_light_turns_on_by_entity_id(self) -> None:
+        light = _State("light.kuche_kuche", "off", friendly_name="Licht")
+        hass = _hass(light)
+        with patch.object(dispatch, "from_handled", return_value="Licht ist an."):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item("HassTurnOn", entity_id=light.entity_id, area="kuche", domain="light"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        dispatch.intent.async_handle.assert_not_awaited()
+        hass.services.async_call.assert_awaited()
+        args = hass.services.async_call.await_args
+        self.assertEqual(args.args[:2], ("light", "turn_on"))
+        self.assertEqual(args.args[2]["entity_id"], "light.kuche_kuche")
 
     async def test_area_climate_get_reads_room_states_when_ha_fails(self) -> None:
         climate = _State(

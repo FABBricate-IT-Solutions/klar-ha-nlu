@@ -269,7 +269,7 @@ fn has_media_noun(tokens: &[String]) -> bool {
     catalog().any(tokens, catalog().media_nouns()) || tokens.iter().any(|token| matches!(token.as_str(), "wiedergabe" | "playback"))
 }
 
-fn has_cover_noun(tokens: &[String]) -> bool {
+pub(crate) fn has_cover_noun(tokens: &[String]) -> bool {
     catalog().any(tokens, catalog().cover_nouns())
 }
 
@@ -282,7 +282,11 @@ pub(crate) fn has_light_noun(tokens: &[String]) -> bool {
 }
 
 fn has_climate_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, catalog().climate_nouns())
+    let cat = catalog();
+    if cat.any(tokens, cat.climate_nouns()) {
+        return true;
+    }
+    tokens.iter().any(|token| matches!(token.as_str(), "ac" | "klima" | "klimaanlage") && cat.verb(token) != Some(VerbKind::Open))
 }
 
 fn has_power_word(tokens: &[String]) -> bool {

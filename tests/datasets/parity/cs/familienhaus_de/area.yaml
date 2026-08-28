@@ -11,13 +11,13 @@ area/bedroom_2_fans::bedroom_2_fans_turn_off:
 area/bedroom_2_fans::bedroom_2_fans_turn_on:
 - zapni ventilator loznice2
 area/bedroom_2_lights::bedroom_2_lights_change_brightness:
-- nastav svetlo loznice2 65
+- nastav vse svetlo loznice2 65
 area/bedroom_2_lights::bedroom_2_lights_change_color:
-- nastav svetlo loznice2 ruzova
+- nastav vse svetlo loznice2 ruzova
 area/bedroom_2_lights::bedroom_2_lights_turn_off:
-- vypni svetlo loznice2
+- vypni vse svetlo loznice2
 area/bedroom_2_lights::bedroom_2_lights_turn_on:
-- zapni svetlo loznice2
+- zapni vse svetlo loznice2
 area/bedroom_3_covers::bedroom_3_covers_close:
 - zavri zaves loznice3
 area/bedroom_3_covers::bedroom_3_covers_open:
@@ -25,49 +25,49 @@ area/bedroom_3_covers::bedroom_3_covers_open:
 area/bedroom_3_covers::bedroom_3_covers_set_position:
 - nastav zaves loznice3 29
 area/bedroom_3_lights::bedroom_3_lights_change_brightness:
-- nastav svetlo loznice3 76
+- nastav vse svetlo loznice3 76
 area/bedroom_3_lights::bedroom_3_lights_change_color:
-- nastav svetlo loznice3 modra
+- nastav vse svetlo loznice3 modra
 area/bedroom_3_lights::bedroom_3_lights_turn_off:
-- vypni svetlo loznice3
+- vypni vse svetlo loznice3
 area/bedroom_3_lights::bedroom_3_lights_turn_on:
-- zapni svetlo loznice3
+- zapni vse svetlo loznice3
 area/bedroom_4_lights::bedroom_4_lights_change_brightness:
-- nastav svetlo loznice4 69
+- nastav vse svetlo loznice4 69
 area/bedroom_4_lights::bedroom_4_lights_change_color:
-- nastav svetlo loznice4 zelena
+- nastav vse svetlo loznice4 zelena
 area/bedroom_4_lights::bedroom_4_lights_turn_off:
-- vypni svetlo loznice4
+- vypni vse svetlo loznice4
 area/bedroom_4_lights::bedroom_4_lights_turn_on:
-- zapni svetlo loznice4
+- zapni vse svetlo loznice4
 area/dining_lights::dining_lights_change_brightness:
-- nastav svetlo obyvakfamess 54
+- nastav vse svetlo obyvakfamess 54
 area/dining_lights::dining_lights_change_color:
-- nastav svetlo obyvakfamess modra
+- nastav vse svetlo obyvakfamess modra
 area/dining_lights::dining_lights_turn_off:
-- vypni svetlo obyvakfamess
+- vypni vse svetlo obyvakfamess
 area/dining_lights::dining_lights_turn_on:
-- zapni svetlo obyvakfamess
+- zapni vse svetlo obyvakfamess
 area/entryway_lights::entryway_lights_change_brightness:
-- nastav svetlo predsin 72
+- nastav vse svetlo predsin 72
 area/entryway_lights::entryway_lights_change_color:
-- nastav svetlo predsin cerna
+- nastav vse svetlo predsin cerna
 area/entryway_lights::entryway_lights_turn_off:
-- vypni svetlo predsin
+- vypni vse svetlo predsin
 area/entryway_lights::entryway_lights_turn_on:
-- zapni svetlo predsin
+- zapni vse svetlo predsin
 area/entryway_locks::entryway_locks_lock:
 - zamkni zamek predsin
 area/entryway_locks::entryway_locks_unlock:
 - odemkni zamek predsin
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
-- nastav svetlo obyvakfam 39 a nastav svetlo kuchyne 39
+- nastav vse svetlo obyvakfam 39 then nastav vse svetlo kuchyne 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
-- nastav svetlo obyvakfam fialova a nastav svetlo kuchyne fialova
+- nastav vse svetlo obyvakfam fialova then nastav vse svetlo kuchyne fialova
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_off:
-- vypni svetlo obyvakfam a vypni svetlo kuchyne
+- vypni vse svetlo obyvakfam then vypni vse svetlo kuchyne
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_turn_on:
-- zapni svetlo obyvakfam a zapni svetlo kuchyne
+- zapni vse svetlo obyvakfam then zapni vse svetlo kuchyne
 area/family_room_fans::family_room_fans_set_fan_speed:
 - nastav ventilator obyvakfam 32
 area/family_room_fans::family_room_fans_turn_off:
@@ -75,13 +75,13 @@ area/family_room_fans::family_room_fans_turn_off:
 area/family_room_fans::family_room_fans_turn_on:
 - zapni ventilator obyvakfam
 area/family_room_lights::family_room_lights_change_brightness:
-- nastav svetlo obyvakfam 44
+- nastav vse svetlo obyvakfam 44
 area/family_room_lights::family_room_lights_change_color:
-- nastav svetlo obyvakfam zelena
+- nastav vse svetlo obyvakfam zelena
 area/family_room_lights::family_room_lights_turn_off:
-- vypni svetlo obyvakfam
+- vypni vse svetlo obyvakfam
 area/family_room_lights::family_room_lights_turn_on:
-- zapni svetlo obyvakfam
+- zapni vse svetlo obyvakfam
 area/garage_covers::garage_covers_close:
 - zavri zaves garage
 area/garage_covers::garage_covers_open:
@@ -89,57 +89,57 @@ area/garage_covers::garage_covers_open:
 area/garage_covers::garage_covers_set_position:
 - nastav zaves garage 86
 area/garage_lights::garage_lights_change_brightness:
-- nastav svetlo garage 16
+- nastav vse svetlo garage 16
 area/garage_lights::garage_lights_change_color:
-- nastav svetlo garage modra
+- nastav vse svetlo garage modra
 area/garage_lights::garage_lights_turn_off:
-- vypni svetlo garage
+- vypni vse svetlo garage
 area/garage_lights::garage_lights_turn_on:
-- zapni svetlo garage
+- zapni vse svetlo garage
 area/garage_locks::garage_locks_lock:
 - zamkni zamek garage
 area/garage_locks::garage_locks_unlock:
 - odemkni zamek garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- nastav svetlo predsingang 26 a nastav svetlo wc 26
+- nastav vse svetlo predsingang 26 then nastav vse svetlo wc 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- nastav svetlo predsingang fialova a nastav svetlo wc fialova
+- nastav vse svetlo predsingang fialova then nastav vse svetlo wc fialova
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- vypni svetlo predsingang a vypni svetlo wc
+- vypni vse svetlo predsingang then vypni vse svetlo wc
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- zapni svetlo predsingang a zapni svetlo wc
+- zapni vse svetlo predsingang then zapni vse svetlo wc
 area/hallway_lights::hallway_lights_change_brightness:
-- nastav svetlo predsingang 61
+- nastav vse svetlo predsingang 61
 area/hallway_lights::hallway_lights_change_color:
-- nastav svetlo predsingang oranzova
+- nastav vse svetlo predsingang oranzova
 area/hallway_lights::hallway_lights_turn_off:
-- vypni svetlo predsingang
+- vypni vse svetlo predsingang
 area/hallway_lights::hallway_lights_turn_on:
-- zapni svetlo predsingang
+- zapni vse svetlo predsingang
 area/kitchen_lights::kitchen_lights_change_brightness:
-- nastav svetlo kuchyne 45
+- nastav vse svetlo kuchyne 45
 area/kitchen_lights::kitchen_lights_change_color:
-- nastav svetlo kuchyne ruzova
+- nastav vse svetlo kuchyne ruzova
 area/kitchen_lights::kitchen_lights_turn_off:
-- vypni svetlo kuchyne
+- vypni vse svetlo kuchyne
 area/kitchen_lights::kitchen_lights_turn_on:
-- zapni svetlo kuchyne
+- zapni vse svetlo kuchyne
 area/kitchen_switchs::kitchen_switchs_turn_off:
-- vypni pristroj kuchyne
+- vypni vse pristroj kuchyne
 area/kitchen_switchs::kitchen_switchs_turn_on:
-- zapni pristroj kuchyne
+- zapni vse pristroj kuchyne
 area/laundry_lights::laundry_lights_change_brightness:
-- nastav svetlo pradelna 62
+- nastav vse svetlo pradelna 62
 area/laundry_lights::laundry_lights_change_color:
-- nastav svetlo pradelna zluta
+- nastav vse svetlo pradelna zluta
 area/laundry_lights::laundry_lights_turn_off:
-- vypni svetlo pradelna
+- vypni vse svetlo pradelna
 area/laundry_lights::laundry_lights_turn_on:
-- zapni svetlo pradelna
+- zapni vse svetlo pradelna
 area/laundry_switchs::laundry_switchs_turn_off:
-- vypni pristroj pradelna
+- vypni vse pristroj pradelna
 area/laundry_switchs::laundry_switchs_turn_on:
-- zapni pristroj pradelna
+- zapni vse pristroj pradelna
 area/living_climates::living_climates_set_temperature:
 - nastav topeni obyvak 20
 area/living_covers::living_covers_close:
@@ -149,100 +149,101 @@ area/living_covers::living_covers_open:
 area/living_covers::living_covers_set_position:
 - nastav zaves obyvak 46
 area/living_lights::living_lights_change_brightness:
-- nastav svetlo obyvak 84
+- nastav vse svetlo obyvak 84
 area/living_lights::living_lights_change_color:
-- nastav svetlo obyvak modra
+- nastav vse svetlo obyvak modra
 area/living_lights::living_lights_turn_off:
-- vypni svetlo obyvak
+- vypni vse svetlo obyvak
 area/living_lights::living_lights_turn_on:
-- zapni svetlo obyvak
+- zapni vse svetlo obyvak
 area/main_bath_lights::main_bath_lights_change_brightness:
-- nastav svetlo main bath 73
+- nastav vse svetlo main bath 73
 area/main_bath_lights::main_bath_lights_change_color:
-- nastav svetlo main bath ruzova
+- nastav vse svetlo main bath ruzova
 area/main_bath_lights::main_bath_lights_turn_off:
-- vypni svetlo main bath
+- vypni vse svetlo main bath
 area/main_bath_lights::main_bath_lights_turn_on:
-- zapni svetlo main bath
+- zapni vse svetlo main bath
 area/main_bath_switchs::main_bath_switchs_turn_off:
-- vypni pristroj main bath
+- vypni vse pristroj main bath
 area/main_bath_switchs::main_bath_switchs_turn_on:
-- zapni pristroj main bath
+- zapni vse pristroj main bath
 area/master_bath_lights::master_bath_lights_change_brightness:
-- nastav svetlo koupelmaster 60
+- nastav vse svetlo koupelmaster 60
 area/master_bath_lights::master_bath_lights_change_color:
-- nastav svetlo koupelmaster cerna
+- nastav vse svetlo koupelmaster cerna
 area/master_bath_lights::master_bath_lights_turn_off:
-- vypni svetlo koupelmaster
+- vypni vse svetlo koupelmaster
 area/master_bath_lights::master_bath_lights_turn_on:
-- zapni svetlo koupelmaster
+- zapni vse svetlo koupelmaster
 area/master_bath_switchs::master_bath_switchs_turn_off:
-- vypni pristroj koupelmaster
+- vypni vse pristroj koupelmaster
 area/master_bath_switchs::master_bath_switchs_turn_on:
-- zapni pristroj koupelmaster
+- zapni vse pristroj koupelmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- nastav topeni loznice 20 a nastav topeni obyvak 20
+- nastav topeni loznicemaster 20 then nastav topeni obyvak 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
-- zavri zaves loznice a zavri zaves obyvak
+- zavri zaves loznicemaster then zavri zaves obyvak
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
-- otevri zaves loznice a otevri zaves obyvak
+- otevri zaves loznicemaster then otevri zaves obyvak
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
-- nastav zaves loznice 19 a nastav zaves obyvak 19
+- nastav zaves loznicemaster 19 then nastav zaves obyvak 19
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_brightness:
-- nastav svetlo loznice 25 a nastav svetlo obyvak 25
+- nastav vse svetlo loznicemaster 25 then nastav vse svetlo obyvak 25
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_change_color:
-- nastav svetlo loznice bila a nastav svetlo obyvak bila
+- nastav vse svetlo loznicemaster bila then nastav vse svetlo obyvak bila
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_off:
-- vypni svetlo loznice a vypni svetlo obyvak
+- vypni vse svetlo loznicemaster then vypni vse svetlo obyvak
 area/master_bedroom_and_living_lights::master_bedroom_and_living_lights_turn_on:
-- zapni svetlo loznice a zapni svetlo obyvak
+- zapni vse svetlo loznicemaster then zapni vse svetlo obyvak
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_brightness:
-- nastav svetlo loznice 57 a nastav svetlo main bath 57
+- nastav vse svetlo loznicemaster 57 then nastav vse svetlo main bath 57
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_change_color:
-- nastav svetlo loznice ruzova a nastav svetlo main bath ruzova
+- nastav vse svetlo loznicemaster ruzova then nastav vse svetlo main bath ruzova
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_off:
-- vypni svetlo loznice a vypni svetlo main bath
+- vypni vse svetlo loznicemaster then vypni vse svetlo main bath
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
-- zapni svetlo loznice a zapni svetlo main bath
+- zapni vse svetlo loznicemaster then zapni vse svetlo main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- nastav topeni loznice 20
+- nastav topeni loznicemaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
-- zavri zaves loznice
+- zavri zaves loznicemaster
 area/master_bedroom_covers::master_bedroom_covers_open:
-- otevri zaves loznice
+- otevri zaves loznicemaster
 area/master_bedroom_covers::master_bedroom_covers_set_position:
-- nastav zaves loznice 38
+- nastav zaves loznicemaster 38
 area/master_bedroom_fans::master_bedroom_fans_set_fan_speed:
-- nastav ventilator loznice 79
+- nastav ventilator loznicemaster 79
 area/master_bedroom_fans::master_bedroom_fans_turn_off:
-- vypni ventilator loznice
+- vypni ventilator loznicemaster
 area/master_bedroom_fans::master_bedroom_fans_turn_on:
-- zapni ventilator loznice
+- zapni ventilator loznicemaster
 area/master_bedroom_lights::master_bedroom_lights_change_brightness:
-- nastav svetlo loznice 73
+- nastav vse svetlo loznicemaster 73
 area/master_bedroom_lights::master_bedroom_lights_change_color:
-- nastav svetlo loznice ruzova
+- nastav vse svetlo loznicemaster ruzova
 area/master_bedroom_lights::master_bedroom_lights_turn_off:
-- vypni svetlo loznice
+- vypni vse svetlo loznicemaster
 area/master_bedroom_lights::master_bedroom_lights_turn_on:
-- zapni svetlo loznice
+- zapni vse svetlo loznicemaster
 area/powder_room_lights::powder_room_lights_change_brightness:
-- nastav svetlo wc 52
+- nastav vse svetlo wc 52
 area/powder_room_lights::powder_room_lights_change_color:
-- nastav svetlo wc fialova
+- nastav vse svetlo wc fialova
 area/powder_room_lights::powder_room_lights_turn_off:
-- vypni svetlo wc
+- vypni vse svetlo wc
 area/powder_room_lights::powder_room_lights_turn_on:
-- zapni svetlo wc
+- zapni vse svetlo wc
 area/spoken_lights::spoken_bedroom_inflection:
-- nastav svetlo loznice cervena
+- nastav vse svetlo loznicemaster cervena
 area/spoken_lights::spoken_except_island:
 - vypni vse svetlo krome ostrov
 area/spoken_lights::spoken_except_kitchen:
-- vypni vse svetlo krome kuchyne krome ostrov
+- vypni vse svetlo krome kuchyne
 area/spoken_lights::spoken_listing_living_dining_kitchen:
-- vypni svetlo obyvak a vypni svetlo obyvakfamess a vypni svetlo kuchyne
+- vypni vse svetlo obyvak then vypni vse svetlo obyvakfamess then vypni vse svetlo
+  kuchyne
 area/spoken_lights::spoken_stt_kitchen_off:
-- vypni svetlo kuchyne
+- vypni vse svetlo kuchyne
 area/spoken_lights::spoken_stt_living_off:
-- vypni svetlo obyvak
+- vypni vse svetlo obyvak

@@ -1,26 +1,30 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - wylacz wszystko swiatlo oprocz sypialnia oprocz kuchnia
 multiple_intents/multi::licht_und_heizung:
-- wlacz swiatlo salon i ustaw ogrzewanie salon 23
+- wlacz wszystko swiatlo salon then ustaw ogrzewanie salon 23
 multiple_intents/multi::wohn_und_ess_aus:
-- wylacz swiatlo salon i wylacz swiatlo salonfamess
+- wylacz wszystko swiatlo salon then wylacz wszystko swiatlo salonfamess
 multiple_intents/multi::wohn_und_ess_rot:
-- ustaw swiatlo salon czerwony i ustaw swiatlo salonfamess czerwony
+- ustaw wszystko swiatlo salon czerwony then ustaw wszystko swiatlo salonfamess czerwony
 multiple_intents/multi::wz_und_kuche_licht:
-- wlacz swiatlo salon i wlacz swiatlo kuchnia
+- wlacz wszystko swiatlo salon then wlacz wszystko swiatlo kuchnia
 multiple_intents/multi::zwei_raeume_und_heizung:
-- wlacz swiatlo salon i wlacz swiatlo kuchnia i ustaw ogrzewanie salon 23
+- wlacz wszystko swiatlo salon then wlacz wszystko swiatlo kuchnia then ustaw ogrzewanie
+  salon 23
 multiple_intents/spoken::drei_raeume_an:
-- wlacz swiatlo salon i wlacz swiatlo salonfamess i wlacz swiatlo kuchnia
+- wlacz wszystko swiatlo salon then wlacz wszystko swiatlo salonfamess then wlacz
+  wszystko swiatlo kuchnia
 multiple_intents/spoken::drei_raeume_aus:
-- wylacz swiatlo salon i wylacz swiatlo salonfamess i wylacz swiatlo kuchnia
+- wylacz wszystko swiatlo salon then wylacz wszystko swiatlo salonfamess then wylacz
+  wszystko swiatlo kuchnia
 multiple_intents/spoken::ess_und_wohn_aus:
-- wylacz swiatlo salon i wylacz swiatlo salonfamess
+- wylacz wszystko swiatlo salon then wylacz wszystko swiatlo salonfamess
 multiple_intents/spoken::kugel_und_decke_aus:
-- wylacz kula i wylacz sufit
+- kula i sufit sypialnia wylacz
 multiple_intents/spoken_more::kuche_und_ess_an:
-- wlacz swiatlo kuchnia i wlacz swiatlo salonfamess
+- wlacz wszystko swiatlo kuchnia then wlacz wszystko swiatlo salonfamess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- wylacz swiatlo salon i wylacz swiatlo salonfamess
+- wylacz wszystko swiatlo salon then wylacz wszystko swiatlo salonfamess then wylacz
+  wszystko swiatlo office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- wylacz swiatlo salon
+- wylacz wszystko swiatlo salon then wylacz wszystko swiatlo office

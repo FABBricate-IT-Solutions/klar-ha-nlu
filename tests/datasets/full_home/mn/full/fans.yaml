@@ -4,16 +4,16 @@
     entity_id: fan.family_fan
     state: 'on'
   sentences:
-  - sens gerbul asaa
-  - asaa sens gerbul
+  - сэнс gerbul асаа
+  - асаа сэнс gerbul
 - name: fan.family_fan_off
   conditions:
   - type: action
     entity_id: fan.family_fan
     state: 'off'
   sentences:
-  - untraa sens gerbul
-  - sens gerbul untraa
+  - унтраа сэнс gerbul
+  - сэнс gerbul унтраа
 - name: fan.family_fan_speed
   conditions:
   - type: action
@@ -21,24 +21,24 @@
     attributes:
       percentage: 40
   sentences:
-  - tokhiruul sens gerbul 40
-  - sens gerbul 40
+  - тохируул сэнс gerbul 40
+  - сэнс gerbul 40
 - name: fan.master_fan_on
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - sens untlagiin asaa
-  - asaa sens untlagiin
+  - сэнс untlagiinmaster асаа
+  - асаа сэнс untlagiinmaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - untraa sens untlagiin
-  - sens untlagiin untraa
+  - унтраа сэнс untlagiinmaster
+  - сэнс untlagiinmaster унтраа
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,24 +46,24 @@
     attributes:
       percentage: 40
   sentences:
-  - tokhiruul sens untlagiin 40
-  - sens untlagiin 40
+  - тохируул сэнс untlagiinmaster 40
+  - сэнс untlagiinmaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'on'
   sentences:
-  - sens untlagiin2 asaa
-  - asaa sens untlagiin2
+  - сэнс untlagiin2 асаа
+  - асаа сэнс untlagiin2
 - name: fan.bedroom2_fan_off
   conditions:
   - type: action
     entity_id: fan.bedroom2_fan
     state: 'off'
   sentences:
-  - untraa sens untlagiin2
-  - sens untlagiin2 untraa
+  - унтраа сэнс untlagiin2
+  - сэнс untlagiin2 унтраа
 - name: fan.bedroom2_fan_speed
   conditions:
   - type: action
@@ -71,8 +71,8 @@
     attributes:
       percentage: 40
   sentences:
-  - tokhiruul sens untlagiin2 40
-  - sens untlagiin2 40
+  - тохируул сэнс untlagiin2 40
+  - сэнс untlagiin2 40
 - name: fan.family_fan_speed_20
   conditions:
   - type: action
@@ -80,8 +80,8 @@
     attributes:
       percentage: 20
   sentences:
-  - tokhiruul sens gerbul 20
-  - sens gerbul 20
+  - тохируул сэнс gerbul 20
+  - сэнс gerbul 20
 - name: fan.family_fan_speed_60
   conditions:
   - type: action
@@ -89,8 +89,8 @@
     attributes:
       percentage: 60
   sentences:
-  - tokhiruul sens gerbul 60
-  - sens gerbul 60
+  - тохируул сэнс gerbul 60
+  - сэнс gerbul 60
 - name: fan.family_fan_speed_80
   conditions:
   - type: action
@@ -98,8 +98,8 @@
     attributes:
       percentage: 80
   sentences:
-  - tokhiruul sens gerbul 80
-  - sens gerbul 80
+  - тохируул сэнс gerbul 80
+  - сэнс gerbul 80
 - name: fan.master_fan_speed_20
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - tokhiruul sens untlagiin 20
-  - sens untlagiin 20
+  - тохируул сэнс untlagiinmaster 20
+  - сэнс untlagiinmaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - tokhiruul sens untlagiin 60
-  - sens untlagiin 60
+  - тохируул сэнс untlagiinmaster 60
+  - сэнс untlagiinmaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - tokhiruul sens untlagiin 80
-  - sens untlagiin 80
+  - тохируул сэнс untlagiinmaster 80
+  - сэнс untlagiinmaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action
@@ -134,8 +134,8 @@
     attributes:
       percentage: 20
   sentences:
-  - tokhiruul sens untlagiin2 20
-  - sens untlagiin2 20
+  - тохируул сэнс untlagiin2 20
+  - сэнс untlagiin2 20
 - name: fan.bedroom2_fan_speed_60
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       percentage: 60
   sentences:
-  - tokhiruul sens untlagiin2 60
-  - sens untlagiin2 60
+  - тохируул сэнс untlagiin2 60
+  - сэнс untlagiin2 60
 - name: fan.bedroom2_fan_speed_80
   conditions:
   - type: action
@@ -152,5 +152,5 @@
     attributes:
       percentage: 80
   sentences:
-  - tokhiruul sens untlagiin2 80
-  - sens untlagiin2 80
+  - тохируул сэнс untlagiin2 80
+  - сэнс untlagiin2 80

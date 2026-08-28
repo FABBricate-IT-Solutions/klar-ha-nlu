@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - beth llen llofft
-  - beth llofft llen
+  - beth llen llofftmaster
+  - beth llofftmaster llen
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - beth gwres llofft
-  - beth llofft gwres
+  - beth gwres llofftmaster
+  - beth llofftmaster gwres
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - beth gwres llofft
-  - beth llofft gwres
+  - beth gwres llofftmaster
+  - beth llofftmaster gwres
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - beth gwyntyll llofft
-  - beth llofft gwyntyll
+  - beth gwyntyll llofftmaster
+  - beth llofftmaster gwyntyll
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - beth golau llofft
-  - beth llofft golau
+  - beth golau llofftmaster
+  - beth llofftmaster golau
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - beth golau llofft
-  - beth llofft golau
+  - beth golau llofftmaster
+  - beth llofftmaster golau
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - beth ensuite llofft
-  - beth llofft ensuite
+  - beth ensuite llofftmaster
+  - beth llofftmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - beth golau llofft
-  - beth llofft golau
+  - beth golau llofftmaster
+  - beth llofftmaster golau
 - name: query_light.master_bath_light
   conditions:
   - type: query

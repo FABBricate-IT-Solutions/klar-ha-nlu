@@ -63,7 +63,8 @@ export const api = {
     request<EvaluateOut>("/api/v2/policies/evaluate", { method: "POST", body: JSON.stringify(body) }),
   conversations: () => request<ConversationTurn[]>("/api/v2/conversations"),
   conversation: (id: string) => request<ConversationTurn[]>(`/api/v2/conversations/${encodeURIComponent(id)}`),
-  tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; area?: string }) =>
+  intents: () => request<string[]>("/api/v2/intents"),
+  tagEntity: (body: { entity_id: string; aliases?: string[]; preferred?: boolean; nlu_ignore?: boolean; area?: string }) =>
     request<Entity>("/api/entities", { method: "POST", body: JSON.stringify(body) }),
   bundle: () => request<BundleList>("/api/bundle/entries"),
   deleteBundle: (ids: string[]) => request<BundleList>("/api/bundle/entries", { method: "POST", body: JSON.stringify({ ids }) }),

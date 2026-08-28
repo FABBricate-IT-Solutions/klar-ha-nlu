@@ -10,8 +10,10 @@ from typing import Any
 
 from homeassistant.components.conversation import ConversationInput
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers import area_registry, entity_registry, intent
+from homeassistant.helpers import entity_registry, intent
 
+from .calendar_ha import CALENDAR_INTENTS, handle_calendar_intent
+from .lang_select import speak_tag
 from .intents import (
     ENTITY_SERVICES,
     LIST_INTENTS,
@@ -20,6 +22,7 @@ from .intents import (
     area_label,
     item_slots,
     list_slots,
+    resolve_area,
     timer_slots,
 )
 from .speech import from_handled, media_state_speech, queue_speech
@@ -70,6 +73,11 @@ async def handle_intent(
     name = item.get("name")
     if not name:
         return _fail("missing_intent")
+    if name in CALENDAR_INTENTS:
+        ok, speech, error = await handle_calendar_intent(
+            hass, item, pack, exposed, getattr(user_input, "conversation_id", None)
+        )
+        return _ok(speech) if ok else _fail(error or "calendar_failed")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
@@ -95,6 +103,8 @@ async def handle_intent(
     if name in _SERVICE_ONLY:
         if not entity_id:
             return _fail("missing_entity")
+        return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
+    if entity_id and (name in ENTITY_SERVICES or name == "HassLightSet"):
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
     if entity_id:
         if not exposed(entity_id):
@@ -184,11 +194,7 @@ async def climate_query(
 def climate_states_in_area(hass: HomeAssistant, area_key: str) -> list[Any]:
     if not area_key:
         return []
-    areas = area_registry.async_get(hass)
-    area = areas.async_get_area(area_key)
-    if area is None:
-        folded = area_key.casefold()
-        area = next((item for item in areas.async_list_areas() if str(item.name).casefold() == folded), None)
+    area = resolve_area(hass, area_key)
     if area is None:
         return []
     registry = entity_registry.async_get(hass)
@@ -217,7 +223,7 @@ async def invoke_intent(
             slots,
             user_input.text,
             user_input.context,
-            user_input.language or pack,
+            speak_tag(pack),
             assistant=assistant,
         )
     except Exception as err:  # noqa: BLE001 — HA intent system is a boundary

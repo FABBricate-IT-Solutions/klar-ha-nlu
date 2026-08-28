@@ -9,8 +9,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng keting 和 chufang
-  - deng keting 和 chufang dakai
+  - 打开 灯 客厅 和 厨房
+  - 灯 客厅 和 厨房 打开
 - name: multi_off_lock
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - guanbi deng keting 和 suo men
-  - guanbi keting 和 suo men
+  - 关闭 灯 客厅 和 锁 门
+  - 关闭 客厅 和 锁 门
 - name: multi_kitchen_dining
   conditions:
   - type: action
@@ -34,8 +34,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng chufang 和 jiatingfangess
-  - deng chufang 和 jiatingfangess dakai
+  - 打开 灯 厨房 和 jiatingfangess
+  - 灯 厨房 和 jiatingfangess 打开
 - name: multi_office_hallway
   conditions:
   - type: action
@@ -47,8 +47,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng office 和 zoulang
-  - deng office 和 zoulang dakai
+  - 打开 灯 office 和 zoulang
+  - 灯 office 和 zoulang 打开
 - name: multi_garage_garden
   conditions:
   - type: action
@@ -60,8 +60,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng garage 和 garden
-  - deng garage 和 garden dakai
+  - 打开 灯 garage 和 garden
+  - 灯 garage 和 garden 打开
 - name: multi_master_bedroom_main_bath
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng woshi 和 main bath
-  - deng woshi 和 main bath dakai
+  - 打开 灯 woshimaster 和 main bath
+  - 灯 woshimaster 和 main bath 打开
 - name: multi_family_room_living
   conditions:
   - type: action
@@ -86,8 +86,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng jiatingfang 和 keting
-  - deng jiatingfang 和 keting dakai
+  - 打开 灯 jiatingfang 和 客厅
+  - 灯 jiatingfang 和 客厅 打开
 - name: multi_basement_garden
   conditions:
   - type: action
@@ -99,8 +99,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng basement 和 garden
-  - deng basement 和 garden dakai
+  - 打开 灯 basement 和 garden
+  - 灯 basement 和 garden 打开
 - name: multi_hallway_office
   conditions:
   - type: action
@@ -112,8 +112,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng zoulang 和 office
-  - deng zoulang 和 office dakai
+  - 打开 灯 zoulang 和 office
+  - 灯 zoulang 和 office 打开
 - name: multi_dining_kitchen
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng jiatingfangess 和 chufang
-  - deng jiatingfangess 和 chufang dakai
+  - 打开 灯 jiatingfangess 和 厨房
+  - 灯 jiatingfangess 和 厨房 打开
 - name: multi_bedroom_2_bedroom_3
   conditions:
   - type: action
@@ -138,5 +138,5 @@
     domain: light
     state: 'on'
   sentences:
-  - dakai deng woshi2 和 woshi3
-  - deng woshi2 和 woshi3 dakai
+  - 打开 灯 woshi2 和 woshi3
+  - 灯 woshi2 和 woshi3 打开

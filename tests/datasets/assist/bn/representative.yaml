@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - jalao alo bosar
+    - জ্বালাও আলো বসার
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - nibhao alo ranna
+    - নিভাও আলো রান্না
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - ক্যালেন্ডার য়ে কি
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - যোগো ডেন্টিস্ট কাল 15 ক্যালেন্ডার
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - মুছ ডেন্টিস্ট ক্যালেন্ডার
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - সরাও ডেন্টিস্ট কাল 16 ক্যালেন্ডার
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - চালাও depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

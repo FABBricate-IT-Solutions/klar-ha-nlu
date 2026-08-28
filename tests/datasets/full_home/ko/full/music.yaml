@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - jaesaeng queen geosil
-  - jaesaeng queen eumak geosil
+  - 재생 queen 거실
+  - 재생 queen 티비 거실
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - jaesaeng album rumours by fleetwood mac geosil
+  - 재생 album rumours by fleetwood mac 거실
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - jaesaeng queen radio mode geosil
+  - 재생 queen radio mode 거실
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - jaesaeng bohemian rhapsody queue geosil
+  - 재생 bohemian rhapsody queue 거실
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - mwo eumak geosil
-  - mwo track geosil
+  - 뭔 티비 거실
+  - 뭔 track 거실
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - seoljeong eumak geosil 10
-  - eumak geosil 10
+  - 설정 티비 거실 10
+  - 티비 거실 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - seoljeong eumak geosil 20
-  - eumak geosil 20
+  - 설정 티비 거실 20
+  - 티비 거실 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - seoljeong eumak geosil 30
-  - eumak geosil 30
+  - 설정 티비 거실 30
+  - 티비 거실 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - seoljeong eumak geosil 50
-  - eumak geosil 50
+  - 설정 티비 거실 50
+  - 티비 거실 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - seoljeong eumak geosil 80
-  - eumak geosil 80
+  - 설정 티비 거실 80
+  - 티비 거실 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track geosil
+  - next track 거실
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track geosil
+  - previous track 거실
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - jaesaeng queen bueok
-  - jaesaeng queen eumak bueok
+  - 재생 queen 부엌
+  - 재생 queen 티비 부엌
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - jaesaeng beatles geosil
-  - jaesaeng beatles eumak geosil
+  - 재생 beatles 거실
+  - 재생 beatles 티비 거실
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - jaesaeng radiohead geosil
-  - jaesaeng radiohead eumak geosil
+  - 재생 radiohead 거실
+  - 재생 radiohead 티비 거실
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - jaesaeng abba geosil
-  - jaesaeng abba eumak geosil
+  - 재생 abba 거실
+  - 재생 abba 티비 거실
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - jaesaeng coldplay geosil
-  - jaesaeng coldplay eumak geosil
+  - 재생 coldplay 거실
+  - 재생 coldplay 티비 거실
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - jaesaeng adele geosil
-  - jaesaeng adele eumak geosil
+  - 재생 adele 거실
+  - 재생 adele 티비 거실
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - jaesaeng prince geosil
-  - jaesaeng prince eumak geosil
+  - 재생 prince 거실
+  - 재생 prince 티비 거실
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - jaesaeng bowie geosil
-  - jaesaeng bowie eumak geosil
+  - 재생 bowie 거실
+  - 재생 bowie 티비 거실
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - jaesaeng nirvana geosil
-  - jaesaeng nirvana eumak geosil
+  - 재생 nirvana 거실
+  - 재생 nirvana 티비 거실
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - jaesaeng eagles geosil
-  - jaesaeng eagles eumak geosil
+  - 재생 eagles 거실
+  - 재생 eagles 티비 거실
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - jaesaeng madonna geosil
-  - jaesaeng madonna eumak geosil
+  - 재생 madonna 거실
+  - 재생 madonna 티비 거실
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - jaesaeng mozart geosil
-  - jaesaeng mozart eumak geosil
+  - 재생 mozart 거실
+  - 재생 mozart 티비 거실
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - jaesaeng daft punk geosil
-  - jaesaeng daft punk eumak geosil
+  - 재생 daft punk 거실
+  - 재생 daft punk 티비 거실
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - jaesaeng biafra geosil
-  - jaesaeng biafra eumak geosil
+  - 재생 biafra 거실
+  - 재생 biafra 티비 거실
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - jaesaeng queen bueok
-  - jaesaeng queen eumak bueok
+  - 재생 queen 부엌
+  - 재생 queen 티비 부엌
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - jaesaeng beatles bueok
-  - jaesaeng beatles eumak bueok
+  - 재생 beatles 부엌
+  - 재생 beatles 티비 부엌
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - jaesaeng radiohead bueok
-  - jaesaeng radiohead eumak bueok
+  - 재생 radiohead 부엌
+  - 재생 radiohead 티비 부엌
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - jaesaeng abba bueok
-  - jaesaeng abba eumak bueok
+  - 재생 abba 부엌
+  - 재생 abba 티비 부엌
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - jaesaeng coldplay bueok
-  - jaesaeng coldplay eumak bueok
+  - 재생 coldplay 부엌
+  - 재생 coldplay 티비 부엌
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - jaesaeng adele bueok
-  - jaesaeng adele eumak bueok
+  - 재생 adele 부엌
+  - 재생 adele 티비 부엌
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - jaesaeng prince bueok
-  - jaesaeng prince eumak bueok
+  - 재생 prince 부엌
+  - 재생 prince 티비 부엌
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - jaesaeng bowie bueok
-  - jaesaeng bowie eumak bueok
+  - 재생 bowie 부엌
+  - 재생 bowie 티비 부엌
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - jaesaeng nirvana bueok
-  - jaesaeng nirvana eumak bueok
+  - 재생 nirvana 부엌
+  - 재생 nirvana 티비 부엌
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - jaesaeng eagles bueok
-  - jaesaeng eagles eumak bueok
+  - 재생 eagles 부엌
+  - 재생 eagles 티비 부엌
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - jaesaeng madonna bueok
-  - jaesaeng madonna eumak bueok
+  - 재생 madonna 부엌
+  - 재생 madonna 티비 부엌
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - jaesaeng mozart bueok
-  - jaesaeng mozart eumak bueok
+  - 재생 mozart 부엌
+  - 재생 mozart 티비 부엌
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - jaesaeng daft punk bueok
-  - jaesaeng daft punk eumak bueok
+  - 재생 daft punk 부엌
+  - 재생 daft punk 티비 부엌
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - jaesaeng biafra bueok
-  - jaesaeng biafra eumak bueok
+  - 재생 biafra 부엌
+  - 재생 biafra 티비 부엌
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - jaesaeng queen office
-  - jaesaeng queen eumak office
+  - 재생 queen office
+  - 재생 queen 티비 office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - jaesaeng beatles office
-  - jaesaeng beatles eumak office
+  - 재생 beatles office
+  - 재생 beatles 티비 office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - jaesaeng radiohead office
-  - jaesaeng radiohead eumak office
+  - 재생 radiohead office
+  - 재생 radiohead 티비 office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - jaesaeng abba office
-  - jaesaeng abba eumak office
+  - 재생 abba office
+  - 재생 abba 티비 office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - jaesaeng coldplay office
-  - jaesaeng coldplay eumak office
+  - 재생 coldplay office
+  - 재생 coldplay 티비 office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - jaesaeng adele office
-  - jaesaeng adele eumak office
+  - 재생 adele office
+  - 재생 adele 티비 office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - jaesaeng prince office
-  - jaesaeng prince eumak office
+  - 재생 prince office
+  - 재생 prince 티비 office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - jaesaeng bowie office
-  - jaesaeng bowie eumak office
+  - 재생 bowie office
+  - 재생 bowie 티비 office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - jaesaeng nirvana office
-  - jaesaeng nirvana eumak office
+  - 재생 nirvana office
+  - 재생 nirvana 티비 office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - jaesaeng eagles office
-  - jaesaeng eagles eumak office
+  - 재생 eagles office
+  - 재생 eagles 티비 office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - jaesaeng madonna office
-  - jaesaeng madonna eumak office
+  - 재생 madonna office
+  - 재생 madonna 티비 office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - jaesaeng mozart office
-  - jaesaeng mozart eumak office
+  - 재생 mozart office
+  - 재생 mozart 티비 office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - jaesaeng daft punk office
-  - jaesaeng daft punk eumak office
+  - 재생 daft punk office
+  - 재생 daft punk 티비 office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - jaesaeng biafra office
-  - jaesaeng biafra eumak office
+  - 재생 biafra office
+  - 재생 biafra 티비 office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - jaesaeng queen radio mode geosil
+  - 재생 queen radio mode 거실
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - mwo eumak geosil
-  - mwo track geosil
+  - 뭔 티비 거실
+  - 뭔 track 거실
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - jaesaeng queen radio mode bueok
+  - 재생 queen radio mode 부엌
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - mwo eumak bueok
-  - mwo track bueok
+  - 뭔 티비 부엌
+  - 뭔 track 부엌
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - jaesaeng queen radio mode office
+  - 재생 queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - mwo eumak office
-  - mwo track office
+  - 뭔 티비 office
+  - 뭔 track office

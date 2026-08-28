@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - poetfai dutfun
-  - dutfun poetfai
+  - เปิด ดูดฝุ่น
+  - ดูดฝุ่น เปิด
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - pitfai dutfun
-  - dutfun pitfai
+  - ปิด ดูดฝุ่น
+  - ดูดฝุ่น ปิด

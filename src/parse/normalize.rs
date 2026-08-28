@@ -38,13 +38,96 @@ pub fn fold_umlaut(s: &str) -> String {
     fold_latin(s)
 }
 
+/// Home Assistant slugify strips marks (`ü`→`u`). Klar's pack fold uses digraphs (`ü`→`ue`).
+pub fn fold_marks(s: &str) -> String {
+    let mut out = String::with_capacity(s.len());
+    for c in s.chars() {
+        match c {
+            'ä' | 'Ä' | 'à' | 'á' | 'â' | 'ã' | 'å' | 'ā' | 'ă' => out.push('a'),
+            'ö' | 'Ö' | 'ò' | 'ó' | 'ô' | 'õ' | 'ø' | 'ō' | 'ő' => out.push('o'),
+            'ü' | 'Ü' | 'ù' | 'ú' | 'û' | 'ū' | 'ű' => out.push('u'),
+            'ß' => out.push_str("ss"),
+            'ç' | 'č' | 'ć' => out.push('c'),
+            'è' | 'é' | 'ê' | 'ë' | 'ē' | 'ė' | 'ę' => out.push('e'),
+            'ì' | 'í' | 'î' | 'ï' | 'ī' | 'į' | 'ı' => out.push('i'),
+            'ñ' | 'ń' | 'ň' => out.push('n'),
+            'ý' | 'ÿ' => out.push('y'),
+            'ž' | 'ź' | 'ż' => out.push('z'),
+            'š' | 'ś' | 'ş' | 'Ş' => out.push('s'),
+            'ł' => out.push('l'),
+            'đ' => out.push('d'),
+            'æ' => out.push('a'),
+            'œ' => out.push('o'),
+            'ğ' | 'Ğ' => out.push('g'),
+            'ț' | 'Ț' => out.push('t'),
+            'ș' | 'Ș' => out.push('s'),
+            other => out.extend(other.to_lowercase()),
+        }
+    }
+    out
+}
+
+/// Equal when one side used HA's `ü`→`u` slug and the other Klar's `ü`→`ue` fold.
+pub fn umlaut_eq(a: &str, b: &str) -> bool {
+    if a == b {
+        return true;
+    }
+    let a: Vec<char> = a.chars().collect();
+    let b: Vec<char> = b.chars().collect();
+    let (mut i, mut j) = (0usize, 0usize);
+    while i < a.len() && j < b.len() {
+        if a[i] != b[j] {
+            return false;
+        }
+        if matches!(a[i], 'a' | 'o' | 'u') {
+            let a_e = a.get(i + 1) == Some(&'e');
+            let b_e = b.get(j + 1) == Some(&'e');
+            if a_e != b_e {
+                if a_e {
+                    i += 1;
+                } else {
+                    j += 1;
+                }
+            }
+        }
+        i += 1;
+        j += 1;
+    }
+    i == a.len() && j == b.len()
+}
+
+/// Letters plus virama / matras / harakat so Indic and pointed Arabic stay one token.
+pub(crate) fn is_word_char(c: char) -> bool {
+    c == '\'' || c == '\u{200C}' || c == '\u{200D}' || c.is_alphanumeric() || is_word_mark(c)
+}
+
+fn is_word_mark(c: char) -> bool {
+    let u = c as u32;
+    matches!(
+        u,
+        0x0300..=0x036F
+            | 0x0483..=0x0489
+            | 0x0591..=0x05C7
+            | 0x0610..=0x061A
+            | 0x064B..=0x065F
+            | 0x0670
+            | 0x06D6..=0x06ED
+            | 0x0900..=0x0D7F
+            | 0x0E31
+            | 0x0E34..=0x0E3A
+            | 0x0E47..=0x0E4E
+            | 0x180B..=0x180E
+            | 0xFE20..=0xFE2F
+    ) && !matches!(c, '।' | '॥' | '॰')
+}
+
 pub fn tokenize(text: &str) -> Vec<String> {
     let folded = fold_latin(text);
     if folded.chars().any(is_script_unit) {
         tokenize_script(&folded)
     } else {
         folded
-            .split(|c: char| !c.is_alphanumeric() && c != '\'')
+            .split(|c: char| !is_word_char(c))
             .filter(|token| !token.is_empty())
             .map(|token| {
                 let token =
@@ -93,7 +176,7 @@ fn tokenize_script(folded: &str) -> Vec<String> {
             raw.push(c.to_string());
             continue;
         }
-        if c.is_alphanumeric() {
+        if is_word_char(c) {
             latin.push(c);
             continue;
         }
@@ -163,7 +246,7 @@ pub fn join_tokens(tokens: &[String]) -> String {
 }
 
 pub fn compact(s: &str) -> String {
-    fold_latin(s).chars().filter(|c| c.is_ascii_alphanumeric()).collect()
+    fold_latin(s).chars().filter(|c| is_word_char(*c) && *c != '\'').collect()
 }
 
 /// "Schlafzimmern" / "Wohnzimmers" / "bedrooms" match the room stem.
@@ -200,5 +283,47 @@ mod tests {
     #[test]
     fn latin_tokenize_is_unchanged_when_text_has_no_cjk() {
         assert_eq!(tokenize("allume la lumiere salon"), vec!["allume", "la", "lumiere", "salon"]);
+    }
+
+    #[test]
+    fn script_yes_words_rejoin_from_known_surfaces() {
+        let _ja = crate::lang::bind(&["ja".into()]);
+        assert_eq!(tokenize("はい"), vec!["はい"]);
+        drop(_ja);
+        let _th = crate::lang::bind(&["th".into()]);
+        assert_eq!(tokenize("ใช่"), vec!["ใช่"]);
+    }
+
+    #[test]
+    fn indic_virama_stays_inside_the_word() {
+        assert_eq!(tokenize("জ্বালাও আলো বসার"), vec!["জ্বালাও", "আলো", "বসার"]);
+        assert_eq!(tokenize("जलाओ बत्ती बैठक"), vec!["जलाओ", "बत्ती", "बैठक"]);
+        use super::compact;
+        assert_eq!(compact("জ্বালাও"), "জ্বালাও");
+        assert_eq!(compact("बत्ती"), "बत्ती");
+    }
+
+    #[test]
+    fn compact_keeps_letters_outside_ascii() {
+        use super::compact;
+        assert_eq!(compact("Wohnzimmer!"), "wohnzimmer");
+        assert_eq!(compact("филм"), "филм");
+        assert_ne!(compact("филм"), compact("антре"));
+        assert_eq!(compact("فيلم"), "فيلم");
+        assert_eq!(compact("סרט"), "סרט");
+    }
+
+    #[test]
+    fn umlaut_eq_matches_ha_slug_and_klar_fold() {
+        use super::{fold_marks, umlaut_eq};
+        assert_eq!(fold_marks("Küche"), "kuche");
+        assert_eq!(fold_marks("Büro"), "buro");
+        assert_eq!(fold_marks("Gästezimmer"), "gastezimmer");
+        assert!(umlaut_eq("kueche", "kuche"));
+        assert!(umlaut_eq("kuche", "kueche"));
+        assert!(umlaut_eq("buero", "buro"));
+        assert!(umlaut_eq("gaestezimmer", "gastezimmer"));
+        assert!(!umlaut_eq("kueche", "wohnzimmer"));
+        assert!(!umlaut_eq("quelle", "kuche"));
     }
 }

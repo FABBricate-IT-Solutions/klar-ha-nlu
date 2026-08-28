@@ -5,8 +5,8 @@
     attributes:
       search_query: queen
   sentences:
-  - valu queen arai
-  - valu queen tivi arai
+  - இயக்கு queen அறை
+  - இயக்கு queen டிவி அறை
 - name: play_album
   conditions:
   - type: action
@@ -16,7 +16,7 @@
       media_type: album
       artist: fleetwood mac
   sentences:
-  - valu album rumours by fleetwood mac arai
+  - இயக்கு album rumours by fleetwood mac அறை
 - name: play_radio
   conditions:
   - type: action
@@ -25,7 +25,7 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - valu queen radio mode arai
+  - இயக்கு queen radio mode அறை
 - name: queue_song
   conditions:
   - type: action
@@ -34,14 +34,14 @@
       media_id: bohemian rhapsody
       enqueue: add
   sentences:
-  - valu bohemian rhapsody queue arai
+  - இயக்கு bohemian rhapsody queue அறை
 - name: now_playing
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enna tivi arai
-  - enna track arai
+  - என்ன டிவி அறை
+  - என்ன track அறை
 - name: music_volume_10
   conditions:
   - type: action
@@ -49,8 +49,8 @@
     attributes:
       volume_level: 10
   sentences:
-  - amai tivi arai 10
-  - tivi arai 10
+  - அமை டிவி அறை 10
+  - டிவி அறை 10
 - name: music_volume_20
   conditions:
   - type: action
@@ -58,8 +58,8 @@
     attributes:
       volume_level: 20
   sentences:
-  - amai tivi arai 20
-  - tivi arai 20
+  - அமை டிவி அறை 20
+  - டிவி அறை 20
 - name: music_volume_30
   conditions:
   - type: action
@@ -67,8 +67,8 @@
     attributes:
       volume_level: 30
   sentences:
-  - amai tivi arai 30
-  - tivi arai 30
+  - அமை டிவி அறை 30
+  - டிவி அறை 30
 - name: music_volume_50
   conditions:
   - type: action
@@ -76,8 +76,8 @@
     attributes:
       volume_level: 50
   sentences:
-  - amai tivi arai 50
-  - tivi arai 50
+  - அமை டிவி அறை 50
+  - டிவி அறை 50
 - name: music_volume_80
   conditions:
   - type: action
@@ -85,22 +85,22 @@
     attributes:
       volume_level: 80
   sentences:
-  - amai tivi arai 80
-  - tivi arai 80
+  - அமை டிவி அறை 80
+  - டிவி அறை 80
 - name: music_next
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: next
   sentences:
-  - next track arai
+  - next track அறை
 - name: music_prev
   conditions:
   - type: action
     entity_id: media_player.living_music
     state: previous
   sentences:
-  - previous track arai
+  - previous track அறை
 - name: kitchen_play
   conditions:
   - type: action
@@ -108,8 +108,8 @@
     attributes:
       search_query: queen
   sentences:
-  - valu queen samaiyal
-  - valu queen tivi samaiyal
+  - இயக்கு queen சமையல்
+  - இயக்கு queen டிவி சமையல்
 - name: play_beatles_living
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - valu beatles arai
-  - valu beatles tivi arai
+  - இயக்கு beatles அறை
+  - இயக்கு beatles டிவி அறை
 - name: play_radiohead_living
   conditions:
   - type: action
@@ -126,8 +126,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - valu radiohead arai
-  - valu radiohead tivi arai
+  - இயக்கு radiohead அறை
+  - இயக்கு radiohead டிவி அறை
 - name: play_abba_living
   conditions:
   - type: action
@@ -135,8 +135,8 @@
     attributes:
       search_query: abba
   sentences:
-  - valu abba arai
-  - valu abba tivi arai
+  - இயக்கு abba அறை
+  - இயக்கு abba டிவி அறை
 - name: play_coldplay_living
   conditions:
   - type: action
@@ -144,8 +144,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - valu coldplay arai
-  - valu coldplay tivi arai
+  - இயக்கு coldplay அறை
+  - இயக்கு coldplay டிவி அறை
 - name: play_adele_living
   conditions:
   - type: action
@@ -153,8 +153,8 @@
     attributes:
       search_query: adele
   sentences:
-  - valu adele arai
-  - valu adele tivi arai
+  - இயக்கு adele அறை
+  - இயக்கு adele டிவி அறை
 - name: play_prince_living
   conditions:
   - type: action
@@ -162,8 +162,8 @@
     attributes:
       search_query: prince
   sentences:
-  - valu prince arai
-  - valu prince tivi arai
+  - இயக்கு prince அறை
+  - இயக்கு prince டிவி அறை
 - name: play_bowie_living
   conditions:
   - type: action
@@ -171,8 +171,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - valu bowie arai
-  - valu bowie tivi arai
+  - இயக்கு bowie அறை
+  - இயக்கு bowie டிவி அறை
 - name: play_nirvana_living
   conditions:
   - type: action
@@ -180,8 +180,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - valu nirvana arai
-  - valu nirvana tivi arai
+  - இயக்கு nirvana அறை
+  - இயக்கு nirvana டிவி அறை
 - name: play_eagles_living
   conditions:
   - type: action
@@ -189,8 +189,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - valu eagles arai
-  - valu eagles tivi arai
+  - இயக்கு eagles அறை
+  - இயக்கு eagles டிவி அறை
 - name: play_madonna_living
   conditions:
   - type: action
@@ -198,8 +198,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - valu madonna arai
-  - valu madonna tivi arai
+  - இயக்கு madonna அறை
+  - இயக்கு madonna டிவி அறை
 - name: play_mozart_living
   conditions:
   - type: action
@@ -207,8 +207,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - valu mozart arai
-  - valu mozart tivi arai
+  - இயக்கு mozart அறை
+  - இயக்கு mozart டிவி அறை
 - name: play_daft punk_living
   conditions:
   - type: action
@@ -216,8 +216,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - valu daft punk arai
-  - valu daft punk tivi arai
+  - இயக்கு daft punk அறை
+  - இயக்கு daft punk டிவி அறை
 - name: play_biafra_living
   conditions:
   - type: action
@@ -225,8 +225,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - valu biafra arai
-  - valu biafra tivi arai
+  - இயக்கு biafra அறை
+  - இயக்கு biafra டிவி அறை
 - name: play_queen_kitchen
   conditions:
   - type: action
@@ -234,8 +234,8 @@
     attributes:
       search_query: queen
   sentences:
-  - valu queen samaiyal
-  - valu queen tivi samaiyal
+  - இயக்கு queen சமையல்
+  - இயக்கு queen டிவி சமையல்
 - name: play_beatles_kitchen
   conditions:
   - type: action
@@ -243,8 +243,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - valu beatles samaiyal
-  - valu beatles tivi samaiyal
+  - இயக்கு beatles சமையல்
+  - இயக்கு beatles டிவி சமையல்
 - name: play_radiohead_kitchen
   conditions:
   - type: action
@@ -252,8 +252,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - valu radiohead samaiyal
-  - valu radiohead tivi samaiyal
+  - இயக்கு radiohead சமையல்
+  - இயக்கு radiohead டிவி சமையல்
 - name: play_abba_kitchen
   conditions:
   - type: action
@@ -261,8 +261,8 @@
     attributes:
       search_query: abba
   sentences:
-  - valu abba samaiyal
-  - valu abba tivi samaiyal
+  - இயக்கு abba சமையல்
+  - இயக்கு abba டிவி சமையல்
 - name: play_coldplay_kitchen
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - valu coldplay samaiyal
-  - valu coldplay tivi samaiyal
+  - இயக்கு coldplay சமையல்
+  - இயக்கு coldplay டிவி சமையல்
 - name: play_adele_kitchen
   conditions:
   - type: action
@@ -279,8 +279,8 @@
     attributes:
       search_query: adele
   sentences:
-  - valu adele samaiyal
-  - valu adele tivi samaiyal
+  - இயக்கு adele சமையல்
+  - இயக்கு adele டிவி சமையல்
 - name: play_prince_kitchen
   conditions:
   - type: action
@@ -288,8 +288,8 @@
     attributes:
       search_query: prince
   sentences:
-  - valu prince samaiyal
-  - valu prince tivi samaiyal
+  - இயக்கு prince சமையல்
+  - இயக்கு prince டிவி சமையல்
 - name: play_bowie_kitchen
   conditions:
   - type: action
@@ -297,8 +297,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - valu bowie samaiyal
-  - valu bowie tivi samaiyal
+  - இயக்கு bowie சமையல்
+  - இயக்கு bowie டிவி சமையல்
 - name: play_nirvana_kitchen
   conditions:
   - type: action
@@ -306,8 +306,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - valu nirvana samaiyal
-  - valu nirvana tivi samaiyal
+  - இயக்கு nirvana சமையல்
+  - இயக்கு nirvana டிவி சமையல்
 - name: play_eagles_kitchen
   conditions:
   - type: action
@@ -315,8 +315,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - valu eagles samaiyal
-  - valu eagles tivi samaiyal
+  - இயக்கு eagles சமையல்
+  - இயக்கு eagles டிவி சமையல்
 - name: play_madonna_kitchen
   conditions:
   - type: action
@@ -324,8 +324,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - valu madonna samaiyal
-  - valu madonna tivi samaiyal
+  - இயக்கு madonna சமையல்
+  - இயக்கு madonna டிவி சமையல்
 - name: play_mozart_kitchen
   conditions:
   - type: action
@@ -333,8 +333,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - valu mozart samaiyal
-  - valu mozart tivi samaiyal
+  - இயக்கு mozart சமையல்
+  - இயக்கு mozart டிவி சமையல்
 - name: play_daft punk_kitchen
   conditions:
   - type: action
@@ -342,8 +342,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - valu daft punk samaiyal
-  - valu daft punk tivi samaiyal
+  - இயக்கு daft punk சமையல்
+  - இயக்கு daft punk டிவி சமையல்
 - name: play_biafra_kitchen
   conditions:
   - type: action
@@ -351,8 +351,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - valu biafra samaiyal
-  - valu biafra tivi samaiyal
+  - இயக்கு biafra சமையல்
+  - இயக்கு biafra டிவி சமையல்
 - name: play_queen_office
   conditions:
   - type: action
@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - valu queen office
-  - valu queen tivi office
+  - இயக்கு queen office
+  - இயக்கு queen டிவி office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - valu beatles office
-  - valu beatles tivi office
+  - இயக்கு beatles office
+  - இயக்கு beatles டிவி office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - valu radiohead office
-  - valu radiohead tivi office
+  - இயக்கு radiohead office
+  - இயக்கு radiohead டிவி office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - valu abba office
-  - valu abba tivi office
+  - இயக்கு abba office
+  - இயக்கு abba டிவி office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - valu coldplay office
-  - valu coldplay tivi office
+  - இயக்கு coldplay office
+  - இயக்கு coldplay டிவி office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - valu adele office
-  - valu adele tivi office
+  - இயக்கு adele office
+  - இயக்கு adele டிவி office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - valu prince office
-  - valu prince tivi office
+  - இயக்கு prince office
+  - இயக்கு prince டிவி office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - valu bowie office
-  - valu bowie tivi office
+  - இயக்கு bowie office
+  - இயக்கு bowie டிவி office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - valu nirvana office
-  - valu nirvana tivi office
+  - இயக்கு nirvana office
+  - இயக்கு nirvana டிவி office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - valu eagles office
-  - valu eagles tivi office
+  - இயக்கு eagles office
+  - இயக்கு eagles டிவி office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - valu madonna office
-  - valu madonna tivi office
+  - இயக்கு madonna office
+  - இயக்கு madonna டிவி office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - valu mozart office
-  - valu mozart tivi office
+  - இயக்கு mozart office
+  - இயக்கு mozart டிவி office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - valu daft punk office
-  - valu daft punk tivi office
+  - இயக்கு daft punk office
+  - இயக்கு daft punk டிவி office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - valu biafra office
-  - valu biafra tivi office
+  - இயக்கு biafra office
+  - இயக்கு biafra டிவி office
 - name: radio_living
   conditions:
   - type: action
@@ -487,14 +487,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - valu queen radio mode arai
+  - இயக்கு queen radio mode அறை
 - name: now_living
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - enna tivi arai
-  - enna track arai
+  - என்ன டிவி அறை
+  - என்ன track அறை
 - name: radio_kitchen
   conditions:
   - type: action
@@ -503,14 +503,14 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - valu queen radio mode samaiyal
+  - இயக்கு queen radio mode சமையல்
 - name: now_kitchen
   conditions:
   - type: query
     entity_id: media_player.kitchen_music
   sentences:
-  - enna tivi samaiyal
-  - enna track samaiyal
+  - என்ன டிவி சமையல்
+  - என்ன track சமையல்
 - name: radio_office
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - valu queen radio mode office
+  - இயக்கு queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - enna tivi office
-  - enna track office
+  - என்ன டிவி office
+  - என்ன track office

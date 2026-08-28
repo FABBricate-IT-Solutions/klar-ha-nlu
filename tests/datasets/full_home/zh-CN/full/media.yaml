@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - dianshi keting dakai
-  - dakai dianshi keting
+  - dianshi 客厅 打开
+  - 打开 dianshi 客厅
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - guanbi dianshi keting
-  - dianshi keting guanbi
+  - 关闭 dianshi 客厅
+  - dianshi 客厅 关闭
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - zanting dianshi keting
-  - dianshi keting zanting
+  - 暂停 dianshi 客厅
+  - dianshi 客厅 暂停
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - dianshi jiatingfang dakai
-  - dakai dianshi jiatingfang
+  - dianshi jiatingfang 打开
+  - 打开 dianshi jiatingfang
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - guanbi dianshi jiatingfang
-  - dianshi jiatingfang guanbi
+  - 关闭 dianshi jiatingfang
+  - dianshi jiatingfang 关闭
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - zanting dianshi jiatingfang
-  - dianshi jiatingfang zanting
+  - 暂停 dianshi jiatingfang
+  - dianshi jiatingfang 暂停

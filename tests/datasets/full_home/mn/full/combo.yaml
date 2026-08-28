@@ -7,8 +7,8 @@
     entity_id: light.living_lamp
     state: 'on'
   sentences:
-  - asaa zochny taaz ba zochny lamp
-  - zochny taaz ba zochny lamp asaa
+  - асаа зочны taaz ба зочны gerel
+  - зочны taaz ба зочны gerel асаа
 - name: and_light.living_ceiling_light.living_lamp_off
   conditions:
   - type: action
@@ -18,8 +18,8 @@
     entity_id: light.living_lamp
     state: 'off'
   sentences:
-  - untraa zochny taaz ba zochny lamp
-  - zochny taaz ba zochny lamp untraa
+  - унтраа зочны taaz ба зочны gerel
+  - зочны taaz ба зочны gerel унтраа
 - name: and_light.kitchen_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -29,8 +29,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - asaa galtogoo taaz ba galtogoo aran
-  - galtogoo taaz ba galtogoo aran asaa
+  - асаа галтогоо taaz ба галтогоо aran
+  - галтогоо taaz ба галтогоо aran асаа
 - name: and_light.kitchen_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -40,8 +40,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - untraa galtogoo taaz ba galtogoo aran
-  - galtogoo taaz ba galtogoo aran untraa
+  - унтраа галтогоо taaz ба галтогоо aran
+  - галтогоо taaz ба галтогоо aran унтраа
 - name: and_light.living_ceiling_light.kitchen_island_on
   conditions:
   - type: action
@@ -51,8 +51,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - asaa zochny taaz ba galtogoo aran
-  - zochny taaz ba galtogoo aran asaa
+  - асаа зочны taaz ба галтогоо aran
+  - зочны taaz ба галтогоо aran асаа
 - name: and_light.living_ceiling_light.kitchen_island_off
   conditions:
   - type: action
@@ -62,8 +62,8 @@
     entity_id: light.kitchen_island
     state: 'off'
   sentences:
-  - untraa zochny taaz ba galtogoo aran
-  - zochny taaz ba galtogoo aran untraa
+  - унтраа зочны taaz ба галтогоо aran
+  - зочны taaz ба галтогоо aran унтраа
 - name: and_light.office_ceiling_light.hallway_light_on
   conditions:
   - type: action
@@ -73,8 +73,8 @@
     entity_id: light.hallway_light
     state: 'on'
   sentences:
-  - asaa office taaz ba hallway gerel
-  - office taaz ba hallway gerel asaa
+  - асаа office taaz ба hallway гэрэл
+  - office taaz ба hallway гэрэл асаа
 - name: and_light.office_ceiling_light.hallway_light_off
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     entity_id: light.hallway_light
     state: 'off'
   sentences:
-  - untraa office taaz ba hallway gerel
-  - office taaz ba hallway gerel untraa
+  - унтраа office taaz ба hallway гэрэл
+  - office taaz ба hallway гэрэл унтраа
 - name: and_light.garden_light.garage_light_on
   conditions:
   - type: action
@@ -95,8 +95,8 @@
     entity_id: light.garage_light
     state: 'on'
   sentences:
-  - asaa garden gerel ba garage gerel
-  - garden gerel ba garage gerel asaa
+  - асаа garden гэрэл ба garage гэрэл
+  - garden гэрэл ба garage гэрэл асаа
 - name: and_light.garden_light.garage_light_off
   conditions:
   - type: action
@@ -106,8 +106,8 @@
     entity_id: light.garage_light
     state: 'off'
   sentences:
-  - untraa garden gerel ba garage gerel
-  - garden gerel ba garage gerel untraa
+  - унтраа garden гэрэл ба garage гэрэл
+  - garden гэрэл ба garage гэрэл унтраа
 - name: and_light.master_ceiling_light.master_bedside_left_on
   conditions:
   - type: action
@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - asaa untlagiin taaz ba untlagiin oronii
-  - untlagiin taaz ba untlagiin oronii asaa
+  - асаа untlagiinmaster taaz ба untlagiinmaster oronii
+  - untlagiinmaster taaz ба untlagiinmaster oronii асаа
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - untraa untlagiin taaz ba untlagiin oronii
-  - untlagiin taaz ba untlagiin oronii untraa
+  - унтраа untlagiinmaster taaz ба untlagiinmaster oronii
+  - untlagiinmaster taaz ба untlagiinmaster oronii унтраа
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -139,8 +139,8 @@
     entity_id: light.dining_pendant
     state: 'on'
   sentences:
-  - asaa gerbul taaz ba gerbuless gerel
-  - gerbul taaz ba gerbuless gerel asaa
+  - асаа gerbul taaz ба gerbuless гэрэл
+  - gerbul taaz ба gerbuless гэрэл асаа
 - name: and_light.family_ceiling_light.dining_pendant_off
   conditions:
   - type: action
@@ -150,8 +150,8 @@
     entity_id: light.dining_pendant
     state: 'off'
   sentences:
-  - untraa gerbul taaz ba gerbuless gerel
-  - gerbul taaz ba gerbuless gerel untraa
+  - унтраа gerbul taaz ба gerbuless гэрэл
+  - gerbul taaz ба gerbuless гэрэл унтраа
 - name: and_light.basement_light.laundry_light_on
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - asaa basement gerel ba ugaalga gerel
-  - basement gerel ba ugaalga gerel asaa
+  - асаа basement гэрэл ба ugaalga гэрэл
+  - basement гэрэл ба ugaalga гэрэл асаа
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - untraa basement gerel ba ugaalga gerel
-  - basement gerel ba ugaalga gerel untraa
+  - унтраа basement гэрэл ба ugaalga гэрэл
+  - basement гэрэл ба ugaalga гэрэл унтраа
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - asaa untlagiin sens ba galtogoo aran
-  - untlagiin sens ba galtogoo aran asaa
+  - асаа untlagiinmaster сэнс ба галтогоо aran
+  - untlagiinmaster сэнс ба галтогоо aran асаа
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -194,8 +194,8 @@
     entity_id: light.living_ceiling
     state: 'on'
   sentences:
-  - asaa zochny khoshig ba zochny taaz
-  - zochny khoshig ba zochny taaz asaa
+  - асаа зочны хөшиг ба зочны taaz
+  - зочны хөшиг ба зочны taaz асаа
 - name: and_switch.washing_machine_switch.dryer_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - asaa ugaalga ugaalgyn ba ugaalga dryer
-  - ugaalga ugaalgyn ba ugaalga dryer asaa
+  - асаа ugaalga ugaalgyn ба ugaalga dryer
+  - ugaalga ugaalgyn ба ugaalga dryer асаа
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -218,8 +218,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel zochny ba galtogoo
-  - gerel zochny ba galtogoo untraa
+  - унтраа гэрэл зочны ба галтогоо
+  - гэрэл зочны ба галтогоо унтраа
 - name: off_office_hallway
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel office ba hallway
-  - gerel office ba hallway untraa
+  - унтраа гэрэл office ба hallway
+  - гэрэл office ба hallway унтраа
 - name: off_garage_garden
   conditions:
   - type: action
@@ -244,8 +244,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel garage ba garden
-  - gerel garage ba garden untraa
+  - унтраа гэрэл garage ба garden
+  - гэрэл garage ба garden унтраа
 - name: off_master_bedroom_main_bath
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel untlagiin ba main bath
-  - gerel untlagiin ba main bath untraa
+  - унтраа гэрэл untlagiinmaster ба main bath
+  - гэрэл untlagiinmaster ба main bath унтраа
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -270,8 +270,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel gerbul ba gerbuless
-  - gerel gerbul ba gerbuless untraa
+  - унтраа гэрэл gerbul ба gerbuless
+  - гэрэл gerbul ба gerbuless унтраа
 - name: off_living_dining_kitchen
   conditions:
   - type: action
@@ -287,8 +287,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel zochny ba gerbuless ba galtogoo
-  - gerel zochny gerbuless ba galtogoo untraa
+  - унтраа гэрэл зочны ба gerbuless ба галтогоо
+  - гэрэл зочны gerbuless ба галтогоо унтраа
 - name: on_office_hallway_garage
   conditions:
   - type: action
@@ -304,8 +304,8 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa gerel office ba hallway ba garage
-  - gerel office hallway ba garage asaa
+  - асаа гэрэл office ба hallway ба garage
+  - гэрэл office hallway ба garage асаа
 - name: off_garden_basement_laundry
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa gerel garden ba basement ba ugaalga
-  - gerel garden basement ba ugaalga untraa
+  - унтраа гэрэл garden ба basement ба ugaalga
+  - гэрэл garden basement ба ugaalga унтраа
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -397,8 +397,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - untraa bugd gerel busad aran galtogoo
-  - bugd gerel untraa busad aran galtogoo
+  - унтраа бүгд гэрэл busad aran галтогоо
+  - бүгд гэрэл унтраа busad aran галтогоо
   forbid:
   - light.kitchen_island
   - kitchen
@@ -476,8 +476,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - untraa bugd gerel busad lamp zochny
-  - bugd gerel untraa busad lamp zochny
+  - унтраа бүгд гэрэл busad gerel зочны
+  - бүгд гэрэл унтраа busad gerel зочны
   forbid:
   - light.living_lamp
   - living
@@ -552,8 +552,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel busad garden
-  - bugd gerel untraa busad garden
+  - унтраа бүгд гэрэл busad garden
+  - бүгд гэрэл унтраа busad garden
   forbid:
   - light.garden
   - garden
@@ -628,8 +628,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel busad taaz office
-  - bugd gerel untraa busad taaz office
+  - унтраа бүгд гэрэл busad taaz office
+  - бүгд гэрэл унтраа busad taaz office
   forbid:
   - light.office_ceiling
   - office
@@ -704,8 +704,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel busad basement
-  - bugd gerel untraa busad basement
+  - унтраа бүгд гэрэл busad basement
+  - бүгд гэрэл унтраа busad basement
   forbid:
   - light.basement
   - basement
@@ -780,8 +780,8 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa bugd gerel busad galtogoo
-  - bugd gerel asaa busad galtogoo
+  - асаа бүгд гэрэл busad галтогоо
+  - бүгд гэрэл асаа busad галтогоо
   forbid:
   - kitchen
 - name: all_on_except_office
@@ -855,8 +855,8 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa bugd gerel busad office
-  - bugd gerel asaa busad office
+  - асаа бүгд гэрэл busad office
+  - бүгд гэрэл асаа busad office
   forbid:
   - office
 - name: all_on_except_garden
@@ -930,8 +930,8 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa bugd gerel busad garden
-  - bugd gerel asaa busad garden
+  - асаа бүгд гэрэл busad garden
+  - бүгд гэрэл асаа busad garden
   forbid:
   - garden
 - name: all_on_except_living
@@ -1005,8 +1005,8 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa bugd gerel busad zochny
-  - bugd gerel asaa busad zochny
+  - асаа бүгд гэрэл busad зочны
+  - бүгд гэрэл асаа busad зочны
   forbid:
   - living
 - name: all_on_except_garage
@@ -1080,8 +1080,8 @@
     domain: light
     state: 'on'
   sentences:
-  - asaa bugd gerel busad garage
-  - bugd gerel asaa busad garage
+  - асаа бүгд гэрэл busad garage
+  - бүгд гэрэл асаа busad garage
   forbid:
   - garage
 - name: except_in_kitchen_island
@@ -1090,8 +1090,8 @@
     entity_id: light.kitchen_ceiling
     state: 'off'
   sentences:
-  - untraa bugd gerel galtogoo busad aran
-  - bugd gerel galtogoo untraa busad aran
+  - унтраа бүгд гэрэл галтогоо busad aran
+  - бүгд гэрэл галтогоо унтраа busad aran
   forbid:
   - light.kitchen_island
 - name: except_in_living_lamp
@@ -1100,8 +1100,8 @@
     entity_id: light.living_ceiling
     state: 'off'
   sentences:
-  - untraa bugd gerel zochny busad lamp
-  - bugd gerel zochny untraa busad lamp
+  - унтраа бүгд гэрэл зочны busad gerel
+  - бүгд гэрэл зочны унтраа busad gerel
   forbid:
   - light.living_lamp
 - name: except_island_on
@@ -1178,8 +1178,8 @@
     entity_id: light.kitchen_ceiling
     state: 'on'
   sentences:
-  - asaa bugd gerel busad aran galtogoo
-  - bugd gerel asaa busad aran galtogoo
+  - асаа бүгд гэрэл busad aran галтогоо
+  - бүгд гэрэл асаа busad aran галтогоо
   forbid:
   - light.kitchen_island
 - name: except_kitchen_office
@@ -1249,8 +1249,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel busad galtogoo ba office
-  - bugd gerel untraa busad galtogoo ba office
+  - унтраа бүгд гэрэл busad галтогоо ба office
+  - бүгд гэрэл унтраа busad галтогоо ба office
   forbid:
   - kitchen
   - office
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel busad zochny ba untlagiin
-  - bugd gerel untraa busad zochny ba untlagiin
+  - унтраа бүгд гэрэл busad зочны ба untlagiinmaster
+  - бүгд гэрэл унтраа busad зочны ба untlagiinmaster
   forbid:
   - living
   - master_bedroom
@@ -1393,8 +1393,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel busad garage ba garden
-  - bugd gerel untraa busad garage ba garden
+  - унтраа бүгд гэрэл busad garage ба garden
+  - бүгд гэрэл унтраа busad garage ба garden
   forbid:
   - garage
   - garden
@@ -1437,8 +1437,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel dood busad galtogoo
-  - bugd gerel dood untraa busad galtogoo
+  - унтраа бүгд гэрэл dood busad галтогоо
+  - бүгд гэрэл dood унтраа busad галтогоо
   forbid:
   - kitchen
 - name: floor_upper_except_master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel deed busad untlagiin
-  - bugd gerel deed untraa busad untlagiin
+  - унтраа бүгд гэрэл deed busad untlagiinmaster
+  - бүгд гэрэл deed унтраа busad untlagiinmaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1511,8 +1511,8 @@
     domain: light
     state: 'off'
   sentences:
-  - untraa bugd gerel dood busad office
-  - bugd gerel dood untraa busad office
+  - унтраа бүгд гэрэл dood busad office
+  - бүгд гэрэл dood унтраа busad office
   forbid:
   - office
 - name: covers_living_master_open
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - nee khoshig zochny ba untlagiin
-  - khoshig zochny ba untlagiin nee
+  - нээ хөшиг зочны ба untlagiinmaster
+  - хөшиг зочны ба untlagiinmaster нээ
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - khaa khoshig zochny ba untlagiin
-  - khoshig zochny ba untlagiin khaa
+  - хаа хөшиг зочны ба untlagiinmaster
+  - хөшиг зочны ба untlagiinmaster хаа
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - tokhiruul khalaalt zochny ba untlagiin 21
-  - khalaalt zochny ba untlagiin 21
+  - тохируул халаалт зочны ба untlagiinmaster 21
+  - халаалт зочны ба untlagiinmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1569,8 +1569,8 @@
     attributes:
       brightness: 50
   sentences:
-  - tokhiruul gerel zochny ba galtogoo 50
-  - gerel zochny ba galtogoo 50
+  - тохируул гэрэл зочны ба галтогоо 50
+  - гэрэл зочны ба галтогоо 50
 - name: color_living_kitchen_red
   conditions:
   - type: action
@@ -1584,8 +1584,8 @@
     attributes:
       color: red
   sentences:
-  - tokhiruul gerel zochny ba galtogoo red
-  - gerel zochny ba galtogoo red
+  - тохируул гэрэл зочны ба галтогоо red
+  - гэрэл зочны ба галтогоо red
 - name: query_living_kitchen_lights
   conditions:
   - type: query
@@ -1595,8 +1595,8 @@
     area: kitchen
     domain: light
   sentences:
-  - yuu gerel zochny ba galtogoo
-  - gerel zochny ba galtogoo
+  - юу гэрэл зочны ба галтогоо
+  - гэрэл зочны ба галтогоо
 - name: temp_living_and_light_kitchen_off
   conditions:
   - type: query
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - yuu khalaalt zochny ba untraa gerel galtogoo
-  - untraa gerel galtogoo ba yuu khalaalt zochny
+  - юу халаалт зочны ба унтраа гэрэл галтогоо
+  - унтраа гэрэл галтогоо ба юу халаалт зочны
 - name: locks_front_and_garage
   conditions:
   - type: action
@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - tugjee front khaalga ba garage khaalga
-  - tugjee tugjee orol ba garage
+  - түгжээ front хаалга ба garage хаалга
+  - түгжээ түгжээ orol ба garage
 - name: scene_and_powder_off
   conditions:
   - type: action
@@ -1628,5 +1628,5 @@
     entity_id: light.powder_room_light
     state: 'off'
   sentences:
-  - asaa kino ba untraa gerel oroon
-  - untraa gerel oroon ba asaa kino
+  - асаа kino ба унтраа гэрэл oroon
+  - унтраа гэрэл oroon ба асаа kino

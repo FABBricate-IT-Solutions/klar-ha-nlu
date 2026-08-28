@@ -36,6 +36,7 @@
           "assist_filter": "Upravljaj samo entitetima izloženim Assist-u",
           "nlu_rag": "NLU-RAG (opciono)",
           "quiet_ack": "Kratka potvrda (zvonce)",
+          "calendar_llm": "Šalji upite kalendara LLM-u",
           "channel": "Kanal izdanja"
         },
         "data_description": {
@@ -46,6 +47,7 @@
           "assist_filter": "Uključeno: samo što Assist vidi. Isključeno: i skriveni entiteti.",
           "nlu_rag": "Podrazumevano isključeno. U razgovoru samo prepoznati odsečak ide rezervnom modelu.",
           "quiet_ack": "Kod prostog uključivanja/isključivanja svetla nema govora, samo kratak zvuk na satelitu.",
+          "calendar_llm": "Podrazumevano isključeno. Uključeno: Klar čita kalendar, rezervni LLM izgovara događaje. Isključeno: Klar izgovara spisak. Pravljenje, brisanje i premeštanje ostaju u Klaru.",
           "languages": "Podrazumevano prati jezik sistema Home Assistant.",
           "channel": "Bilo kada. Staging pokazuje na Klar NLU (Staging)."
         }

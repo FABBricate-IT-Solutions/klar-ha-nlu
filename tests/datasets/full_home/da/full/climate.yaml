@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - saet varme sovevaerelse 18
-  - varme sovevaerelse 18
+  - saet varme sovevaerelsemaster 18
+  - varme sovevaerelsemaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - saet varme sovevaerelse 19
-  - varme sovevaerelse 19
+  - saet varme sovevaerelsemaster 19
+  - varme sovevaerelsemaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - saet varme sovevaerelse 20
-  - varme sovevaerelse 20
+  - saet varme sovevaerelsemaster 20
+  - varme sovevaerelsemaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - saet varme sovevaerelse 21
-  - varme sovevaerelse 21
+  - saet varme sovevaerelsemaster 21
+  - varme sovevaerelsemaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - saet varme sovevaerelse 22
-  - varme sovevaerelse 22
+  - saet varme sovevaerelsemaster 22
+  - varme sovevaerelsemaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - saet varme sovevaerelse 23
-  - varme sovevaerelse 23
+  - saet varme sovevaerelsemaster 23
+  - varme sovevaerelsemaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - saet varme sovevaerelse 24
-  - varme sovevaerelse 24
+  - saet varme sovevaerelsemaster 24
+  - varme sovevaerelsemaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hvad varme sovevaerelse
-  - varme sovevaerelse
+  - hvad varme sovevaerelsemaster
+  - varme sovevaerelsemaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - saet temperatur sovevaerelse 18
-  - temperatur sovevaerelse 18
+  - saet temperatur sovevaerelsemaster 18
+  - temperatur sovevaerelsemaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - saet temperatur sovevaerelse 19
-  - temperatur sovevaerelse 19
+  - saet temperatur sovevaerelsemaster 19
+  - temperatur sovevaerelsemaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - saet temperatur sovevaerelse 20
-  - temperatur sovevaerelse 20
+  - saet temperatur sovevaerelsemaster 20
+  - temperatur sovevaerelsemaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - saet temperatur sovevaerelse 21
-  - temperatur sovevaerelse 21
+  - saet temperatur sovevaerelsemaster 21
+  - temperatur sovevaerelsemaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - saet temperatur sovevaerelse 22
-  - temperatur sovevaerelse 22
+  - saet temperatur sovevaerelsemaster 22
+  - temperatur sovevaerelsemaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - saet temperatur sovevaerelse 23
-  - temperatur sovevaerelse 23
+  - saet temperatur sovevaerelsemaster 23
+  - temperatur sovevaerelsemaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - saet temperatur sovevaerelse 24
-  - temperatur sovevaerelse 24
+  - saet temperatur sovevaerelsemaster 24
+  - temperatur sovevaerelsemaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hvad temperatur sovevaerelse
-  - temperatur sovevaerelse
+  - hvad temperatur sovevaerelsemaster
+  - temperatur sovevaerelsemaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - hvad varme sovevaerelse
-  - varme sovevaerelse
+  - hvad varme sovevaerelsemaster
+  - varme sovevaerelsemaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - hvad temperatur sovevaerelse
-  - temperatur sovevaerelse
+  - hvad temperatur sovevaerelsemaster
+  - temperatur sovevaerelsemaster

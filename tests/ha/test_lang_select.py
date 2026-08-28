@@ -59,6 +59,28 @@ class LangSelectTests(unittest.TestCase):
     def test_empty_list_is_all(self) -> None:
         self.assertEqual(lang.normalize_language_choice([]), lang.LANGUAGE_ALL)
 
+    def test_selected_klar_pack_wins_over_assist_language(self) -> None:
+        self.assertEqual(lang.resolve_pack("de", ["en"]), "en")
+        self.assertEqual(lang.resolve_pack("de-DE", ["en"]), "en")
+        self.assertEqual(lang.resolve_pack("de", ["de", "en"]), "de")
+        self.assertEqual(lang.resolve_pack("en-GB", ["en-GB"]), "en-GB")
+        self.assertEqual(lang.speak_tag("en"), "en")
+        self.assertEqual(lang.speak_tag("zh-CN"), "zh-CN")
+        lock = lang.language_lock("en")
+        self.assertIn("English", lock)
+        self.assertIn("German", lock)
+        self.assertIn("Deutsch", lang.language_lock("de"))
+
+    def test_engine_follows_integration_language(self) -> None:
+        self.assertEqual(lang.engine_language_state("fr", "de"), (["fr"], "fr"))
+        self.assertEqual(lang.engine_language_state("system", "en-GB"), (["en-GB"], "en-GB"))
+        pinned, chrome = lang.engine_language_state("all", "nl")
+        self.assertEqual(pinned, [])
+        self.assertEqual(chrome, "nl")
+        pinned, chrome = lang.engine_language_state("all", "zh-CN")
+        self.assertEqual(pinned, [])
+        self.assertEqual(chrome, "zh-CN")
+
 
 if __name__ == "__main__":
     unittest.main()

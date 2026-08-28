@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - پنکھا bedroom چالو
-  - چالو پنکھا bedroom
+  - پنکھا bedroommaster چالو
+  - چالو پنکھا bedroommaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - بند پنکھا bedroom
-  - پنکھا bedroom بند
+  - بند پنکھا bedroommaster
+  - پنکھا bedroommaster بند
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - رکھو پنکھا bedroom 40
-  - پنکھا bedroom 40
+  - رکھو پنکھا bedroommaster 40
+  - پنکھا bedroommaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - رکھو پنکھا bedroom 20
-  - پنکھا bedroom 20
+  - رکھو پنکھا bedroommaster 20
+  - پنکھا bedroommaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - رکھو پنکھا bedroom 60
-  - پنکھا bedroom 60
+  - رکھو پنکھا bedroommaster 60
+  - پنکھا bedroommaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - رکھو پنکھا bedroom 80
-  - پنکھا bedroom 80
+  - رکھو پنکھا bedroommaster 80
+  - پنکھا bedroommaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -7,8 +7,6 @@ import logging
 import os
 import platform
 import secrets
-import tarfile
-from io import BytesIO
 from pathlib import Path
 
 from aiohttp import ClientError, ClientSession, ClientTimeout
@@ -16,7 +14,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import issue_registry as ir
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .archive import require_sha256
+from .archive import extract_klar_archive, require_sha256
 from .const import (
     CHANNEL_STAGING,
     DEFAULT_URL,
@@ -35,11 +33,13 @@ _ASSETS = {
     "amd64": "klar-linux-x86_64.tar.gz",
     "aarch64": "klar-linux-aarch64.tar.gz",
     "arm64": "klar-linux-aarch64.tar.gz",
-    "armv7l": "klar-linux-armv7.tar.gz",
-    "armv7": "klar-linux-armv7.tar.gz",
 }
 
 _READY_TRIES = 30
+
+
+def _read_stamp(path: Path) -> str:
+    return path.read_text(encoding="utf-8").strip() if path.is_file() else ""
 
 
 def _release_urls(version: str) -> tuple[str, ...]:
@@ -63,7 +63,7 @@ class KlarEngine:
 
     @property
     def bindir(self) -> Path:
-        return Path(self.hass.config.path(".storage", "klar_nlu"))
+        return Path(self.hass.config.path("klar_nlu"))
 
     @property
     def binary(self) -> Path:
@@ -96,18 +96,20 @@ class KlarEngine:
 
     async def _ensure_binary(self) -> None:
         stamp = self.bindir / "version"
-        current = stamp.read_text(encoding="utf-8").strip() if stamp.is_file() else ""
+        current = await self.hass.async_add_executor_job(_read_stamp, stamp)
+        present = await self.hass.async_add_executor_job(self.binary.is_file)
         session = async_get_clientsession(self.hass)
         timeout = ClientTimeout(total=180)
         if self.channel != CHANNEL_STAGING:
             wanted = self._stamp_for(ENGINE_VERSION)
-            if self.binary.is_file() and current in {wanted, ENGINE_VERSION}:
+            if present and current in {wanted, ENGINE_VERSION}:
                 return
         try:
             release = await self._fetch_release(session, timeout)
             version = str(release.get("tag_name") or ENGINE_VERSION).lstrip("v")
             wanted = self._stamp_for(version)
-            if self.binary.is_file() and current == wanted:
+            present = await self.hass.async_add_executor_job(self.binary.is_file)
+            if present and current == wanted:
                 return
             machine = platform.machine().lower()
             asset = _ASSETS.get(machine)
@@ -160,26 +162,7 @@ class KlarEngine:
         )
 
     def _extract(self, blob: bytes, stamp: str) -> None:
-        self.bindir.mkdir(parents=True, exist_ok=True)
-        with tarfile.open(fileobj=BytesIO(blob), mode="r:gz") as tar:
-            tar.extraction_filter = getattr(tarfile, "data_filter", tarfile.tar_filter)
-            member = next(
-                (
-                    item
-                    for item in tar.getmembers()
-                    if item.isfile()
-                    and Path(item.name).name == "klar"
-                    and ".." not in Path(item.name).parts
-                ),
-                None,
-            )
-            if member is None:
-                raise RuntimeError("Klar archive has no klar binary")
-            extracted = tar.extractfile(member)
-            if extracted is None:
-                raise RuntimeError("Klar archive could not be read")
-            self.binary.write_bytes(extracted.read())
-        self.binary.chmod(0o755)
+        extract_klar_archive(blob, self.bindir)
         (self.bindir / "version").write_text(stamp, encoding="utf-8")
 
     def _ensure_token(self) -> str:
@@ -194,23 +177,30 @@ class KlarEngine:
         return token
 
     async def _spawn(self) -> None:
-        self.token = self._ensure_token()
+        self.token = await self.hass.async_add_executor_job(self._ensure_token)
         env = os.environ.copy()
         env["KLAR_TOKEN"] = self.token
-        self._proc = await asyncio.create_subprocess_exec(
-            str(self.binary),
-            "--config-dir",
-            str(self.hass.config.config_dir),
-            "--data-dir",
-            str(self.bindir),
-            "--http",
-            "127.0.0.1:10520",
-            "--wyoming",
-            "127.0.0.1:10500",
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            env=env,
-        )
+        env["KLAR_UI_DIR"] = str(self.bindir / "ui")
+        try:
+            self._proc = await asyncio.create_subprocess_exec(
+                str(self.binary),
+                "--config-dir",
+                str(self.hass.config.config_dir),
+                "--data-dir",
+                str(self.bindir),
+                "--http",
+                "127.0.0.1:10520",
+                "--wyoming",
+                "127.0.0.1:10500",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                env=env,
+            )
+        except FileNotFoundError as err:
+            raise RuntimeError(
+                f"Klar binary not runnable at {self.binary} ({err}). "
+                "Home Assistant Core is Alpine musl; the release tarball must be musl."
+            ) from err
         asyncio.create_task(self._pipe_log(self._proc.stdout, logging.DEBUG))
         asyncio.create_task(self._pipe_log(self._proc.stderr, logging.WARNING))
         _LOGGER.info("Started Klar engine pid=%s", self._proc.pid)
@@ -261,26 +251,58 @@ class KlarEngine:
             return False
 
 
+def merge_engine_settings(
+    data: object, personality: str, languages: list[str] | None
+) -> dict | None:
+    if not isinstance(data, dict):
+        return None
+    out = dict(data)
+    out["personality"] = resolve_personality(personality)
+    if languages is not None:
+        out["languages"] = list(languages)
+    return out
+
+
+def merge_ui_locale(data: object, locale: str) -> dict | None:
+    if not isinstance(data, dict):
+        return None
+    out = dict(data)
+    out["locale"] = locale
+    return out
+
+
 async def async_push_personality(
-    hass: HomeAssistant, url: str, personality: str, token: str | None = None
+    hass: HomeAssistant,
+    url: str,
+    personality: str,
+    token: str | None = None,
+    languages: list[str] | None = None,
+    ui_locale: str | None = None,
 ) -> None:
-    """Write the HA personality onto the engine so the Klar UI matches Assist."""
-    personality = resolve_personality(personality)
+    """Write HA personality and language onto the engine so the Klar UI matches Assist."""
     session = async_get_clientsession(hass)
-    settings_url = f"{url.rstrip('/')}/api/settings"
+    base = url.rstrip("/")
     headers = {"X-Klar-Token": token} if token else {}
+    timeout = ClientTimeout(total=3)
     try:
-        async with session.get(
-            settings_url, headers=headers, timeout=ClientTimeout(total=3)
-        ) as resp:
+        settings_url = f"{base}/api/settings"
+        async with session.get(settings_url, headers=headers, timeout=timeout) as resp:
             resp.raise_for_status()
-            data = await resp.json()
-        if not isinstance(data, dict):
+            payload = merge_engine_settings(await resp.json(), personality, languages)
+        if payload is None:
             return
-        data["personality"] = personality
         async with session.post(
-            settings_url, json=data, headers=headers, timeout=ClientTimeout(total=3)
+            settings_url, json=payload, headers=headers, timeout=timeout
         ) as resp:
             resp.raise_for_status()
+        if ui_locale:
+            ui_url = f"{base}/api/ui"
+            async with session.get(ui_url, headers=headers, timeout=timeout) as resp:
+                resp.raise_for_status()
+                ui = merge_ui_locale(await resp.json(), ui_locale)
+            if ui is None:
+                return
+            async with session.post(ui_url, json=ui, headers=headers, timeout=timeout) as resp:
+                resp.raise_for_status()
     except (ClientError, TimeoutError, OSError) as err:
-        _LOGGER.debug("Klar personality not synced: %s", err)
+        _LOGGER.debug("Klar settings not synced: %s", err)

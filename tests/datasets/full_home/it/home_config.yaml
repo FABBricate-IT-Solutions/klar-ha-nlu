@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Camera
+  name: Cameramaster
   floor: upper
   aliases:
+  - cameramaster
   - camera
 - id: bedroom_2
   name: Camera2
@@ -190,29 +191,29 @@ devices:
   - luce
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: camera soffitto
+  name: cameramaster soffitto
   aliases:
-  - camera soffitto
+  - cameramaster soffitto
   - soffitto
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: camera ensuite
+  name: cameramaster ensuite
   aliases:
-  - camera ensuite
+  - cameramaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: camera left comodino
+  name: cameramaster left comodino
   aliases:
-  - camera left comodino
+  - cameramaster left comodino
   - comodino
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: camera right comodino
+  name: cameramaster right comodino
   aliases:
-  - camera right comodino
+  - cameramaster right comodino
   - comodino
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - tenda
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: camera tenda
+  name: cameramaster tenda
   aliases:
-  - camera tenda
+  - cameramaster tenda
   - tenda
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - riscaldamento
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: camera riscaldamento
+  name: cameramaster riscaldamento
   aliases:
-  - camera riscaldamento
+  - cameramaster riscaldamento
   - riscaldamento
 - id: climate.master_ac
   area_id: master_bedroom
-  name: clima camera
+  name: clima cameramaster
   aliases:
-  - clima camera
+  - clima cameramaster
   - clima
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventola
 - id: fan.master_fan
   area_id: master_bedroom
-  name: camera ventola
+  name: cameramaster ventola
   aliases:
-  - camera ventola
+  - cameramaster ventola
   - ventola
 - id: fan.bedroom2_fan
   area_id: bedroom_2
@@ -365,12 +366,14 @@ devices:
   - lavatrice
 - id: switch.dryer
   area_id: laundry
-  name: lavanderia dryer
+  name: lavanderia asciugatrice
   aliases:
-  - lavanderia dryer
+  - lavanderia asciugatrice
+  - asciugatrice
   - dryer
   tags:
   - dryer
+  - asciugatrice
 - id: switch.master_bath_fan
   area_id: master_bath
   name: bagnomaster ventolabad

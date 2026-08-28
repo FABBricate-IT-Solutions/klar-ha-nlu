@@ -65,16 +65,16 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - open gordijn slaapkamer
-  - gordijn slaapkamer open
+  - open gordijn slaapkamermaster
+  - gordijn slaapkamermaster open
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - dicht gordijn slaapkamer
-  - gordijn slaapkamer dicht
+  - dicht gordijn slaapkamermaster
+  - gordijn slaapkamermaster dicht
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - stel gordijn slaapkamer 0
-  - gordijn slaapkamer 0
+  - stel gordijn slaapkamermaster 0
+  - gordijn slaapkamermaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - stel gordijn slaapkamer 25
-  - gordijn slaapkamer 25
+  - stel gordijn slaapkamermaster 25
+  - gordijn slaapkamermaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - stel gordijn slaapkamer 40
-  - gordijn slaapkamer 40
+  - stel gordijn slaapkamermaster 40
+  - gordijn slaapkamermaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - stel gordijn slaapkamer 75
-  - gordijn slaapkamer 75
+  - stel gordijn slaapkamermaster 75
+  - gordijn slaapkamermaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,8 +118,8 @@
     attributes:
       position: 100
   sentences:
-  - stel gordijn slaapkamer 100
-  - gordijn slaapkamer 100
+  - stel gordijn slaapkamermaster 100
+  - gordijn slaapkamermaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
@@ -317,5 +317,5 @@
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - open gordijn slaapkamer
-  - gordijn slaapkamer open
+  - open gordijn slaapkamermaster
+  - gordijn slaapkamermaster open

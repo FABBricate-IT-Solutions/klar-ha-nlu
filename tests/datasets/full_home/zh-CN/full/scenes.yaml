@@ -4,45 +4,45 @@
     entity_id: scene.movie_night
     state: 'on'
   sentences:
-  - dakai dianying
-  - dianying dakai
+  - 打开 dianying
+  - dianying 打开
 - name: scene_night
   conditions:
   - type: action
     entity_id: script.good_night
     state: 'on'
   sentences:
-  - dakai wanshang
-  - wanshang dakai
+  - 打开 wanshang
+  - wanshang 打开
 - name: scene_leave
   conditions:
   - type: action
     entity_id: script.leaving_home
     state: 'on'
   sentences:
-  - dakai likai
-  - likai dakai
+  - 打开 likai
+  - likai 打开
 - name: scene_dinner
   conditions:
   - type: action
     entity_id: scene.dinner_time
     state: 'on'
   sentences:
-  - dakai wanfan
-  - wanfan dakai
+  - 打开 wanfan
+  - wanfan 打开
 - name: scene_morning
   conditions:
   - type: action
     entity_id: scene.good_morning
     state: 'on'
   sentences:
-  - dakai zaoshang
-  - zaoshang dakai
+  - 打开 zaoshang
+  - zaoshang 打开
 - name: scene_kids
   conditions:
   - type: action
     entity_id: scene.kids_bedtime
     state: 'on'
   sentences:
-  - dakai haizi
-  - haizi dakai
+  - 打开 haizi
+  - haizi 打开

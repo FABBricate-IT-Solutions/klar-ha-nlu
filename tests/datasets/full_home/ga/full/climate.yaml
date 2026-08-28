@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - socraigh teas seomraleong 18
-  - teas seomraleong 18
+  - socraigh teas seomraleongmaster 18
+  - teas seomraleongmaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - socraigh teas seomraleong 19
-  - teas seomraleong 19
+  - socraigh teas seomraleongmaster 19
+  - teas seomraleongmaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - socraigh teas seomraleong 20
-  - teas seomraleong 20
+  - socraigh teas seomraleongmaster 20
+  - teas seomraleongmaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - socraigh teas seomraleong 21
-  - teas seomraleong 21
+  - socraigh teas seomraleongmaster 21
+  - teas seomraleongmaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - socraigh teas seomraleong 22
-  - teas seomraleong 22
+  - socraigh teas seomraleongmaster 22
+  - teas seomraleongmaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - socraigh teas seomraleong 23
-  - teas seomraleong 23
+  - socraigh teas seomraleongmaster 23
+  - teas seomraleongmaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - socraigh teas seomraleong 24
-  - teas seomraleong 24
+  - socraigh teas seomraleongmaster 24
+  - teas seomraleongmaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - cad teas seomraleong
-  - teas seomraleong
+  - cad teas seomraleongmaster
+  - teas seomraleongmaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - socraigh teas seomraleong 18
-  - teas seomraleong 18
+  - socraigh teas seomraleongmaster 18
+  - teas seomraleongmaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - socraigh teas seomraleong 19
-  - teas seomraleong 19
+  - socraigh teas seomraleongmaster 19
+  - teas seomraleongmaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - socraigh teas seomraleong 20
-  - teas seomraleong 20
+  - socraigh teas seomraleongmaster 20
+  - teas seomraleongmaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - socraigh teas seomraleong 21
-  - teas seomraleong 21
+  - socraigh teas seomraleongmaster 21
+  - teas seomraleongmaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - socraigh teas seomraleong 22
-  - teas seomraleong 22
+  - socraigh teas seomraleongmaster 22
+  - teas seomraleongmaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - socraigh teas seomraleong 23
-  - teas seomraleong 23
+  - socraigh teas seomraleongmaster 23
+  - teas seomraleongmaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - socraigh teas seomraleong 24
-  - teas seomraleong 24
+  - socraigh teas seomraleongmaster 24
+  - teas seomraleongmaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - cad teas seomraleong
-  - teas seomraleong
+  - cad teas seomraleongmaster
+  - teas seomraleongmaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - cad teas seomraleong
-  - teas seomraleong
+  - cad teas seomraleongmaster
+  - teas seomraleongmaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - cad teas seomraleong
-  - teas seomraleong
+  - cad teas seomraleongmaster
+  - teas seomraleongmaster

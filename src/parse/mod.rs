@@ -1,6 +1,7 @@
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic))]
 
 pub mod action;
+pub(crate) mod calendar;
 pub(crate) mod chat;
 pub(crate) mod clause;
 pub(crate) mod clause_area;

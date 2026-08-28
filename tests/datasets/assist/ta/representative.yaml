@@ -1,12 +1,42 @@
 - name: light_on
   sentences:
-    - eru vilakku arai
+    - ஏற்று விளக்கு அறை
   nlu_expect:
     intents:
       - intent: HassTurnOn
 - name: light_off
   sentences:
-    - anai vilakku samaiyal
+    - அணை விளக்கு சமையல்
   nlu_expect:
     intents:
       - intent: HassTurnOff
+- name: calendar_list
+  sentences:
+    - நாட்காட்டி லா என்ன
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+- name: calendar_create
+  sentences:
+    - சேரு பல்லி நாளை 15 நாட்காட்டி
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+- name: calendar_delete
+  sentences:
+    - நீக்கு பல்லி நாட்காட்டி
+  nlu_expect:
+    intents:
+      - intent: KlarDeleteCalendarEvent
+- name: calendar_move
+  sentences:
+    - மாற்று பல்லி நாளை 16 நாட்காட்டி
+  nlu_expect:
+    intents:
+      - intent: KlarMoveCalendarEvent
+- name: play_media
+  sentences:
+    - இயக்கு depeche
+  nlu_expect:
+    intents:
+      - intent: MassPlayMedia

@@ -4,45 +4,45 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - saketi saketi shemosasvleli
-  - saketi shemosasvleli saketi
+  - საკეტი საკეტი shemosasvleli
+  - საკეტი shemosasvleli საკეტი
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - gakhseni saketi shemosasvleli
-  - saketi shemosasvleli gakhseni
+  - გახსენი საკეტი shemosasvleli
+  - საკეტი shemosasvleli გახსენი
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - saketi saketi garage
-  - saketi garage saketi
+  - საკეტი საკეტი garage
+  - საკეტი garage საკეტი
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: unlocked
   sentences:
-  - gakhseni saketi garage
-  - saketi garage gakhseni
+  - გახსენი საკეტი garage
+  - საკეტი garage გახსენი
 - name: lock.front_door_lock_extra
   conditions:
   - type: action
     entity_id: lock.front_door
     state: locked
   sentences:
-  - saketi saketi shemosasvleli
-  - saketi shemosasvleli saketi
+  - საკეტი საკეტი shemosasvleli
+  - საკეტი shemosasvleli საკეტი
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - saketi saketi garage
-  - saketi garage saketi
+  - საკეტი საკეტი garage
+  - საკეტი garage საკეტი

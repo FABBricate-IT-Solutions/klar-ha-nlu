@@ -4,45 +4,45 @@
     entity_id: media_player.living_tv
     state: 'on'
   sentences:
-  - tv misagebi charte
-  - charte tv misagebi
+  - tv მისაღები ჩართე
+  - ჩართე tv მისაღები
 - name: media_player.living_tv_off
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: 'off'
   sentences:
-  - gamorte tv misagebi
-  - tv misagebi gamorte
+  - გამორთე tv მისაღები
+  - tv მისაღები გამორთე
 - name: media_player.living_tv_pause
   conditions:
   - type: action
     entity_id: media_player.living_tv
     state: paused
   sentences:
-  - pause tv misagebi
-  - tv misagebi pause
+  - პაუზა tv მისაღები
+  - tv მისაღები პაუზა
 - name: media_player.family_tv_on
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'on'
   sentences:
-  - tv ojakhisotakhi charte
-  - charte tv ojakhisotakhi
+  - tv ojakhisotakhi ჩართე
+  - ჩართე tv ojakhisotakhi
 - name: media_player.family_tv_off
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: 'off'
   sentences:
-  - gamorte tv ojakhisotakhi
-  - tv ojakhisotakhi gamorte
+  - გამორთე tv ojakhisotakhi
+  - tv ojakhisotakhi გამორთე
 - name: media_player.family_tv_pause
   conditions:
   - type: action
     entity_id: media_player.family_tv
     state: paused
   sentences:
-  - pause tv ojakhisotakhi
-  - tv ojakhisotakhi pause
+  - პაუზა tv ojakhisotakhi
+  - tv ojakhisotakhi პაუზა

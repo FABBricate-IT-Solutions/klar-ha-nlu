@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - zapni spalna strop a spalna nocny
-  - spalna strop a spalna nocny zapni
+  - zapni spalnamaster strop a spalnamaster nocny
+  - spalnamaster strop a spalnamaster nocny zapni
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - vypni spalna strop a spalna nocny
-  - spalna strop a spalna nocny vypni
+  - vypni spalnamaster strop a spalnamaster nocny
+  - spalnamaster strop a spalnamaster nocny vypni
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - zapni spalna ventilator a kuchyne ostrov
-  - spalna ventilator a kuchyne ostrov zapni
+  - zapni spalnamaster ventilator a kuchyne ostrov
+  - spalnamaster ventilator a kuchyne ostrov zapni
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - zapni pradelna pracka a pradelna dryer
-  - pradelna pracka a pradelna dryer zapni
+  - zapni pradelna pracka a pradelna susicka
+  - pradelna pracka a pradelna susicka zapni
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni svetlo spalna a main bath
-  - svetlo spalna a main bath vypni
+  - vypni svetlo spalnamaster a main bath
+  - svetlo spalnamaster a main bath vypni
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni vsetko svetlo okrem obyvacka a spalna
-  - vsetko svetlo vypni okrem obyvacka a spalna
+  - vypni vsetko svetlo okrem obyvacka a spalnamaster
+  - vsetko svetlo vypni okrem obyvacka a spalnamaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - vypni vsetko svetlo poschodie okrem spalna
-  - vsetko svetlo poschodie vypni okrem spalna
+  - vypni vsetko svetlo poschodie okrem spalnamaster
+  - vsetko svetlo poschodie vypni okrem spalnamaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - otvor zaves obyvacka a spalna
-  - zaves obyvacka a spalna otvor
+  - otvor zaves obyvacka a spalnamaster
+  - zaves obyvacka a spalnamaster otvor
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - zatvor zaves obyvacka a spalna
-  - zaves obyvacka a spalna zatvor
+  - zatvor zaves obyvacka a spalnamaster
+  - zaves obyvacka a spalnamaster zatvor
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - nastav kurenie obyvacka a spalna 21
-  - kurenie obyvacka a spalna 21
+  - nastav kurenie obyvacka a spalnamaster 21
+  - kurenie obyvacka a spalnamaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

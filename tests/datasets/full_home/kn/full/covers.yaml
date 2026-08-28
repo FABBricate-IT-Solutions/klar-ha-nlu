@@ -4,16 +4,16 @@
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - tere parade hallige
-  - parade hallige tere
+  - ತೆರೆ ಪರದೆ ಹಾಲ್
+  - ಪರದೆ ಹಾಲ್ ತೆರೆ
 - name: cover.living_blinds_close
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: closed
   sentences:
-  - muchchu parade hallige
-  - parade hallige muchchu
+  - ಮುಚ್ಚು ಪರದೆ ಹಾಲ್
+  - ಪರದೆ ಹಾಲ್ ಮುಚ್ಚು
 - name: cover.living_blinds_pos_0
   conditions:
   - type: action
@@ -21,8 +21,8 @@
     attributes:
       position: 0
   sentences:
-  - hondisu parade hallige 0
-  - parade hallige 0
+  - ಹೊಂದಿಸು ಪರದೆ ಹಾಲ್ 0
+  - ಪರದೆ ಹಾಲ್ 0
 - name: cover.living_blinds_pos_25
   conditions:
   - type: action
@@ -30,8 +30,8 @@
     attributes:
       position: 25
   sentences:
-  - hondisu parade hallige 25
-  - parade hallige 25
+  - ಹೊಂದಿಸು ಪರದೆ ಹಾಲ್ 25
+  - ಪರದೆ ಹಾಲ್ 25
 - name: cover.living_blinds_pos_40
   conditions:
   - type: action
@@ -39,8 +39,8 @@
     attributes:
       position: 40
   sentences:
-  - hondisu parade hallige 40
-  - parade hallige 40
+  - ಹೊಂದಿಸು ಪರದೆ ಹಾಲ್ 40
+  - ಪರದೆ ಹಾಲ್ 40
 - name: cover.living_blinds_pos_75
   conditions:
   - type: action
@@ -48,8 +48,8 @@
     attributes:
       position: 75
   sentences:
-  - hondisu parade hallige 75
-  - parade hallige 75
+  - ಹೊಂದಿಸು ಪರದೆ ಹಾಲ್ 75
+  - ಪರದೆ ಹಾಲ್ 75
 - name: cover.living_blinds_pos_100
   conditions:
   - type: action
@@ -57,24 +57,24 @@
     attributes:
       position: 100
   sentences:
-  - hondisu parade hallige 100
-  - parade hallige 100
+  - ಹೊಂದಿಸು ಪರದೆ ಹಾಲ್ 100
+  - ಪರದೆ ಹಾಲ್ 100
 - name: cover.master_blinds_open
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - tere parade shayanakone
-  - parade shayanakone tere
+  - ತೆರೆ ಪರದೆ shayanakonemaster
+  - ಪರದೆ shayanakonemaster ತೆರೆ
 - name: cover.master_blinds_close
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: closed
   sentences:
-  - muchchu parade shayanakone
-  - parade shayanakone muchchu
+  - ಮುಚ್ಚು ಪರದೆ shayanakonemaster
+  - ಪರದೆ shayanakonemaster ಮುಚ್ಚು
 - name: cover.master_blinds_pos_0
   conditions:
   - type: action
@@ -82,8 +82,8 @@
     attributes:
       position: 0
   sentences:
-  - hondisu parade shayanakone 0
-  - parade shayanakone 0
+  - ಹೊಂದಿಸು ಪರದೆ shayanakonemaster 0
+  - ಪರದೆ shayanakonemaster 0
 - name: cover.master_blinds_pos_25
   conditions:
   - type: action
@@ -91,8 +91,8 @@
     attributes:
       position: 25
   sentences:
-  - hondisu parade shayanakone 25
-  - parade shayanakone 25
+  - ಹೊಂದಿಸು ಪರದೆ shayanakonemaster 25
+  - ಪರದೆ shayanakonemaster 25
 - name: cover.master_blinds_pos_40
   conditions:
   - type: action
@@ -100,8 +100,8 @@
     attributes:
       position: 40
   sentences:
-  - hondisu parade shayanakone 40
-  - parade shayanakone 40
+  - ಹೊಂದಿಸು ಪರದೆ shayanakonemaster 40
+  - ಪರದೆ shayanakonemaster 40
 - name: cover.master_blinds_pos_75
   conditions:
   - type: action
@@ -109,8 +109,8 @@
     attributes:
       position: 75
   sentences:
-  - hondisu parade shayanakone 75
-  - parade shayanakone 75
+  - ಹೊಂದಿಸು ಪರದೆ shayanakonemaster 75
+  - ಪರದೆ shayanakonemaster 75
 - name: cover.master_blinds_pos_100
   conditions:
   - type: action
@@ -118,24 +118,24 @@
     attributes:
       position: 100
   sentences:
-  - hondisu parade shayanakone 100
-  - parade shayanakone 100
+  - ಹೊಂದಿಸು ಪರದೆ shayanakonemaster 100
+  - ಪರದೆ shayanakonemaster 100
 - name: cover.bedroom2_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: open
   sentences:
-  - tere parade shayanakone2
-  - parade shayanakone2 tere
+  - ತೆರೆ ಪರದೆ shayanakone2
+  - ಪರದೆ shayanakone2 ತೆರೆ
 - name: cover.bedroom2_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom2_blinds
     state: closed
   sentences:
-  - muchchu parade shayanakone2
-  - parade shayanakone2 muchchu
+  - ಮುಚ್ಚು ಪರದೆ shayanakone2
+  - ಪರದೆ shayanakone2 ಮುಚ್ಚು
 - name: cover.bedroom2_blinds_pos_0
   conditions:
   - type: action
@@ -143,8 +143,8 @@
     attributes:
       position: 0
   sentences:
-  - hondisu parade shayanakone2 0
-  - parade shayanakone2 0
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone2 0
+  - ಪರದೆ shayanakone2 0
 - name: cover.bedroom2_blinds_pos_25
   conditions:
   - type: action
@@ -152,8 +152,8 @@
     attributes:
       position: 25
   sentences:
-  - hondisu parade shayanakone2 25
-  - parade shayanakone2 25
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone2 25
+  - ಪರದೆ shayanakone2 25
 - name: cover.bedroom2_blinds_pos_40
   conditions:
   - type: action
@@ -161,8 +161,8 @@
     attributes:
       position: 40
   sentences:
-  - hondisu parade shayanakone2 40
-  - parade shayanakone2 40
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone2 40
+  - ಪರದೆ shayanakone2 40
 - name: cover.bedroom2_blinds_pos_75
   conditions:
   - type: action
@@ -170,8 +170,8 @@
     attributes:
       position: 75
   sentences:
-  - hondisu parade shayanakone2 75
-  - parade shayanakone2 75
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone2 75
+  - ಪರದೆ shayanakone2 75
 - name: cover.bedroom2_blinds_pos_100
   conditions:
   - type: action
@@ -179,24 +179,24 @@
     attributes:
       position: 100
   sentences:
-  - hondisu parade shayanakone2 100
-  - parade shayanakone2 100
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone2 100
+  - ಪರದೆ shayanakone2 100
 - name: cover.bedroom3_blinds_open
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: open
   sentences:
-  - tere parade shayanakone3
-  - parade shayanakone3 tere
+  - ತೆರೆ ಪರದೆ shayanakone3
+  - ಪರದೆ shayanakone3 ತೆರೆ
 - name: cover.bedroom3_blinds_close
   conditions:
   - type: action
     entity_id: cover.bedroom3_blinds
     state: closed
   sentences:
-  - muchchu parade shayanakone3
-  - parade shayanakone3 muchchu
+  - ಮುಚ್ಚು ಪರದೆ shayanakone3
+  - ಪರದೆ shayanakone3 ಮುಚ್ಚು
 - name: cover.bedroom3_blinds_pos_0
   conditions:
   - type: action
@@ -204,8 +204,8 @@
     attributes:
       position: 0
   sentences:
-  - hondisu parade shayanakone3 0
-  - parade shayanakone3 0
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone3 0
+  - ಪರದೆ shayanakone3 0
 - name: cover.bedroom3_blinds_pos_25
   conditions:
   - type: action
@@ -213,8 +213,8 @@
     attributes:
       position: 25
   sentences:
-  - hondisu parade shayanakone3 25
-  - parade shayanakone3 25
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone3 25
+  - ಪರದೆ shayanakone3 25
 - name: cover.bedroom3_blinds_pos_40
   conditions:
   - type: action
@@ -222,8 +222,8 @@
     attributes:
       position: 40
   sentences:
-  - hondisu parade shayanakone3 40
-  - parade shayanakone3 40
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone3 40
+  - ಪರದೆ shayanakone3 40
 - name: cover.bedroom3_blinds_pos_75
   conditions:
   - type: action
@@ -231,8 +231,8 @@
     attributes:
       position: 75
   sentences:
-  - hondisu parade shayanakone3 75
-  - parade shayanakone3 75
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone3 75
+  - ಪರದೆ shayanakone3 75
 - name: cover.bedroom3_blinds_pos_100
   conditions:
   - type: action
@@ -240,24 +240,24 @@
     attributes:
       position: 100
   sentences:
-  - hondisu parade shayanakone3 100
-  - parade shayanakone3 100
+  - ಹೊಂದಿಸು ಪರದೆ shayanakone3 100
+  - ಪರದೆ shayanakone3 100
 - name: cover.garage_door_open
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: open
   sentences:
-  - tere parade garage
-  - parade garage tere
+  - ತೆರೆ ಪರದೆ garage
+  - ಪರದೆ garage ತೆರೆ
 - name: cover.garage_door_close
   conditions:
   - type: action
     entity_id: cover.garage_door
     state: closed
   sentences:
-  - muchchu parade garage
-  - parade garage muchchu
+  - ಮುಚ್ಚು ಪರದೆ garage
+  - ಪರದೆ garage ಮುಚ್ಚು
 - name: cover.garage_door_pos_0
   conditions:
   - type: action
@@ -265,8 +265,8 @@
     attributes:
       position: 0
   sentences:
-  - hondisu parade garage 0
-  - parade garage 0
+  - ಹೊಂದಿಸು ಪರದೆ garage 0
+  - ಪರದೆ garage 0
 - name: cover.garage_door_pos_25
   conditions:
   - type: action
@@ -274,8 +274,8 @@
     attributes:
       position: 25
   sentences:
-  - hondisu parade garage 25
-  - parade garage 25
+  - ಹೊಂದಿಸು ಪರದೆ garage 25
+  - ಪರದೆ garage 25
 - name: cover.garage_door_pos_40
   conditions:
   - type: action
@@ -283,8 +283,8 @@
     attributes:
       position: 40
   sentences:
-  - hondisu parade garage 40
-  - parade garage 40
+  - ಹೊಂದಿಸು ಪರದೆ garage 40
+  - ಪರದೆ garage 40
 - name: cover.garage_door_pos_75
   conditions:
   - type: action
@@ -292,8 +292,8 @@
     attributes:
       position: 75
   sentences:
-  - hondisu parade garage 75
-  - parade garage 75
+  - ಹೊಂದಿಸು ಪರದೆ garage 75
+  - ಪರದೆ garage 75
 - name: cover.garage_door_pos_100
   conditions:
   - type: action
@@ -301,21 +301,21 @@
     attributes:
       position: 100
   sentences:
-  - hondisu parade garage 100
-  - parade garage 100
+  - ಹೊಂದಿಸು ಪರದೆ garage 100
+  - ಪರದೆ garage 100
 - name: cover.living_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.living_blinds
     state: open
   sentences:
-  - tere parade hallige
-  - parade hallige tere
+  - ತೆರೆ ಪರದೆ ಹಾಲ್
+  - ಪರದೆ ಹಾಲ್ ತೆರೆ
 - name: cover.master_blinds_open_extra
   conditions:
   - type: action
     entity_id: cover.master_blinds
     state: open
   sentences:
-  - tere parade shayanakone
-  - parade shayanakone tere
+  - ತೆರೆ ಪರದೆ shayanakonemaster
+  - ಪರದೆ shayanakonemaster ತೆರೆ

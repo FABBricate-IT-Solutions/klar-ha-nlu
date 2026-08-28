@@ -63,6 +63,13 @@ class IntentPassThroughTests(unittest.TestCase):
         out = intents.home_intents([{"name": "HassGetState", "slots": []}], set())
         self.assertEqual(out, [])
 
+    def test_umlaut_area_aliases_match_ha_slug(self) -> None:
+        self.assertTrue(intents._umlaut_eq("kueche", "kuche"))
+        self.assertTrue(intents._area_hit("Küche", "kueche"))
+        self.assertTrue(intents._area_hit("kuche", "Küche"))
+        self.assertTrue(intents._area_hit("Büro", "buro"))
+        self.assertFalse(intents._area_hit("Wohnzimmer", "kuche"))
+
 
 if __name__ == "__main__":
     unittest.main()

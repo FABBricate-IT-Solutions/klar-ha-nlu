@@ -29,16 +29,16 @@
     entity_id: fan.master_fan
     state: 'on'
   sentences:
-  - ventiliatorius miegamasis ijunk
-  - ijunk ventiliatorius miegamasis
+  - ventiliatorius miegamasismaster ijunk
+  - ijunk ventiliatorius miegamasismaster
 - name: fan.master_fan_off
   conditions:
   - type: action
     entity_id: fan.master_fan
     state: 'off'
   sentences:
-  - isjunk ventiliatorius miegamasis
-  - ventiliatorius miegamasis isjunk
+  - isjunk ventiliatorius miegamasismaster
+  - ventiliatorius miegamasismaster isjunk
 - name: fan.master_fan_speed
   conditions:
   - type: action
@@ -46,8 +46,8 @@
     attributes:
       percentage: 40
   sentences:
-  - nustatyk ventiliatorius miegamasis 40
-  - ventiliatorius miegamasis 40
+  - nustatyk ventiliatorius miegamasismaster 40
+  - ventiliatorius miegamasismaster 40
 - name: fan.bedroom2_fan_on
   conditions:
   - type: action
@@ -107,8 +107,8 @@
     attributes:
       percentage: 20
   sentences:
-  - nustatyk ventiliatorius miegamasis 20
-  - ventiliatorius miegamasis 20
+  - nustatyk ventiliatorius miegamasismaster 20
+  - ventiliatorius miegamasismaster 20
 - name: fan.master_fan_speed_60
   conditions:
   - type: action
@@ -116,8 +116,8 @@
     attributes:
       percentage: 60
   sentences:
-  - nustatyk ventiliatorius miegamasis 60
-  - ventiliatorius miegamasis 60
+  - nustatyk ventiliatorius miegamasismaster 60
+  - ventiliatorius miegamasismaster 60
 - name: fan.master_fan_speed_80
   conditions:
   - type: action
@@ -125,8 +125,8 @@
     attributes:
       percentage: 80
   sentences:
-  - nustatyk ventiliatorius miegamasis 80
-  - ventiliatorius miegamasis 80
+  - nustatyk ventiliatorius miegamasismaster 80
+  - ventiliatorius miegamasismaster 80
 - name: fan.bedroom2_fan_speed_20
   conditions:
   - type: action

@@ -360,8 +360,8 @@
     attributes:
       search_query: queen
   sentences:
-  - spiel queen arbeitszimmer
-  - spiel queen fernseher arbeitszimmer
+  - spiel queen office
+  - spiel queen fernseher office
 - name: play_beatles_office
   conditions:
   - type: action
@@ -369,8 +369,8 @@
     attributes:
       search_query: beatles
   sentences:
-  - spiel beatles arbeitszimmer
-  - spiel beatles fernseher arbeitszimmer
+  - spiel beatles office
+  - spiel beatles fernseher office
 - name: play_radiohead_office
   conditions:
   - type: action
@@ -378,8 +378,8 @@
     attributes:
       search_query: radiohead
   sentences:
-  - spiel radiohead arbeitszimmer
-  - spiel radiohead fernseher arbeitszimmer
+  - spiel radiohead office
+  - spiel radiohead fernseher office
 - name: play_abba_office
   conditions:
   - type: action
@@ -387,8 +387,8 @@
     attributes:
       search_query: abba
   sentences:
-  - spiel abba arbeitszimmer
-  - spiel abba fernseher arbeitszimmer
+  - spiel abba office
+  - spiel abba fernseher office
 - name: play_coldplay_office
   conditions:
   - type: action
@@ -396,8 +396,8 @@
     attributes:
       search_query: coldplay
   sentences:
-  - spiel coldplay arbeitszimmer
-  - spiel coldplay fernseher arbeitszimmer
+  - spiel coldplay office
+  - spiel coldplay fernseher office
 - name: play_adele_office
   conditions:
   - type: action
@@ -405,8 +405,8 @@
     attributes:
       search_query: adele
   sentences:
-  - spiel adele arbeitszimmer
-  - spiel adele fernseher arbeitszimmer
+  - spiel adele office
+  - spiel adele fernseher office
 - name: play_prince_office
   conditions:
   - type: action
@@ -414,8 +414,8 @@
     attributes:
       search_query: prince
   sentences:
-  - spiel prince arbeitszimmer
-  - spiel prince fernseher arbeitszimmer
+  - spiel prince office
+  - spiel prince fernseher office
 - name: play_bowie_office
   conditions:
   - type: action
@@ -423,8 +423,8 @@
     attributes:
       search_query: bowie
   sentences:
-  - spiel bowie arbeitszimmer
-  - spiel bowie fernseher arbeitszimmer
+  - spiel bowie office
+  - spiel bowie fernseher office
 - name: play_nirvana_office
   conditions:
   - type: action
@@ -432,8 +432,8 @@
     attributes:
       search_query: nirvana
   sentences:
-  - spiel nirvana arbeitszimmer
-  - spiel nirvana fernseher arbeitszimmer
+  - spiel nirvana office
+  - spiel nirvana fernseher office
 - name: play_eagles_office
   conditions:
   - type: action
@@ -441,8 +441,8 @@
     attributes:
       search_query: eagles
   sentences:
-  - spiel eagles arbeitszimmer
-  - spiel eagles fernseher arbeitszimmer
+  - spiel eagles office
+  - spiel eagles fernseher office
 - name: play_madonna_office
   conditions:
   - type: action
@@ -450,8 +450,8 @@
     attributes:
       search_query: madonna
   sentences:
-  - spiel madonna arbeitszimmer
-  - spiel madonna fernseher arbeitszimmer
+  - spiel madonna office
+  - spiel madonna fernseher office
 - name: play_mozart_office
   conditions:
   - type: action
@@ -459,8 +459,8 @@
     attributes:
       search_query: mozart
   sentences:
-  - spiel mozart arbeitszimmer
-  - spiel mozart fernseher arbeitszimmer
+  - spiel mozart office
+  - spiel mozart fernseher office
 - name: play_daft punk_office
   conditions:
   - type: action
@@ -468,8 +468,8 @@
     attributes:
       search_query: daft punk
   sentences:
-  - spiel daft punk arbeitszimmer
-  - spiel daft punk fernseher arbeitszimmer
+  - spiel daft punk office
+  - spiel daft punk fernseher office
 - name: play_biafra_office
   conditions:
   - type: action
@@ -477,8 +477,8 @@
     attributes:
       search_query: biafra
   sentences:
-  - spiel biafra arbeitszimmer
-  - spiel biafra fernseher arbeitszimmer
+  - spiel biafra office
+  - spiel biafra fernseher office
 - name: radio_living
   conditions:
   - type: action
@@ -519,11 +519,11 @@
       media_id: queen
       radio_mode: 'true'
   sentences:
-  - spiel queen radio mode arbeitszimmer
+  - spiel queen radio mode office
 - name: now_office
   conditions:
   - type: query
     entity_id: media_player.office_music
   sentences:
-  - was fernseher arbeitszimmer
-  - was track arbeitszimmer
+  - was fernseher office
+  - was track office

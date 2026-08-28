@@ -75,8 +75,8 @@
     attributes:
       temperature: 18
   sentences:
-  - pon calefaccion dormitorio 18
-  - calefaccion dormitorio 18
+  - pon calefaccion dormitoriomaster 18
+  - calefaccion dormitoriomaster 18
 - name: climate.upper_thermostat_19
   conditions:
   - type: action
@@ -84,8 +84,8 @@
     attributes:
       temperature: 19
   sentences:
-  - pon calefaccion dormitorio 19
-  - calefaccion dormitorio 19
+  - pon calefaccion dormitoriomaster 19
+  - calefaccion dormitoriomaster 19
 - name: climate.upper_thermostat_20
   conditions:
   - type: action
@@ -93,8 +93,8 @@
     attributes:
       temperature: 20
   sentences:
-  - pon calefaccion dormitorio 20
-  - calefaccion dormitorio 20
+  - pon calefaccion dormitoriomaster 20
+  - calefaccion dormitoriomaster 20
 - name: climate.upper_thermostat_21
   conditions:
   - type: action
@@ -102,8 +102,8 @@
     attributes:
       temperature: 21
   sentences:
-  - pon calefaccion dormitorio 21
-  - calefaccion dormitorio 21
+  - pon calefaccion dormitoriomaster 21
+  - calefaccion dormitoriomaster 21
 - name: climate.upper_thermostat_22
   conditions:
   - type: action
@@ -111,8 +111,8 @@
     attributes:
       temperature: 22
   sentences:
-  - pon calefaccion dormitorio 22
-  - calefaccion dormitorio 22
+  - pon calefaccion dormitoriomaster 22
+  - calefaccion dormitoriomaster 22
 - name: climate.upper_thermostat_23
   conditions:
   - type: action
@@ -120,8 +120,8 @@
     attributes:
       temperature: 23
   sentences:
-  - pon calefaccion dormitorio 23
-  - calefaccion dormitorio 23
+  - pon calefaccion dormitoriomaster 23
+  - calefaccion dormitoriomaster 23
 - name: climate.upper_thermostat_24
   conditions:
   - type: action
@@ -129,15 +129,15 @@
     attributes:
       temperature: 24
   sentences:
-  - pon calefaccion dormitorio 24
-  - calefaccion dormitorio 24
+  - pon calefaccion dormitoriomaster 24
+  - calefaccion dormitoriomaster 24
 - name: climate.upper_thermostat_get
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - que calefaccion dormitorio
-  - calefaccion dormitorio
+  - que calefaccion dormitoriomaster
+  - calefaccion dormitoriomaster
 - name: climate.master_ac_18
   conditions:
   - type: action
@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - pon aire dormitorio 18
-  - aire dormitorio 18
+  - pon aire dormitoriomaster 18
+  - aire dormitoriomaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - pon aire dormitorio 19
-  - aire dormitorio 19
+  - pon aire dormitoriomaster 19
+  - aire dormitoriomaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - pon aire dormitorio 20
-  - aire dormitorio 20
+  - pon aire dormitoriomaster 20
+  - aire dormitoriomaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - pon aire dormitorio 21
-  - aire dormitorio 21
+  - pon aire dormitoriomaster 21
+  - aire dormitoriomaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - pon aire dormitorio 22
-  - aire dormitorio 22
+  - pon aire dormitoriomaster 22
+  - aire dormitoriomaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - pon aire dormitorio 23
-  - aire dormitorio 23
+  - pon aire dormitoriomaster 23
+  - aire dormitoriomaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - pon aire dormitorio 24
-  - aire dormitorio 24
+  - pon aire dormitoriomaster 24
+  - aire dormitoriomaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - que aire dormitorio
-  - aire dormitorio
+  - que aire dormitoriomaster
+  - aire dormitoriomaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -220,12 +220,12 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - que calefaccion dormitorio
-  - calefaccion dormitorio
+  - que calefaccion dormitoriomaster
+  - calefaccion dormitoriomaster
 - name: climate.master_ac_get_full
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - que aire dormitorio
-  - aire dormitorio
+  - que aire dormitoriomaster
+  - aire dormitoriomaster

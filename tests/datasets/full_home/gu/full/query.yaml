@@ -3,285 +3,285 @@
   - type: query
     entity_id: light.living_ceiling
   sentences:
-  - shu prakash orado
-  - shu orado prakash
+  - શું પ્રકાશ ઓરડો
+  - શું ઓરડો પ્રકાશ
 - name: query_cover.living_blinds
   conditions:
   - type: query
     entity_id: cover.living_blinds
   sentences:
-  - shu pado orado
-  - shu orado pado
+  - શું પડદો ઓરડો
+  - શું ઓરડો પડદો
 - name: query_lock.front_door
   conditions:
   - type: query
     entity_id: lock.front_door
   sentences:
-  - shu talu pravesh
-  - shu pravesh talu
+  - શું તાળું pravesh
+  - શું pravesh તાળું
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - shu garmi orado
-  - shu orado garmi
+  - શું ગરમી ઓરડો
+  - શું ઓરડો ગરમી
 - name: query_media_player.living_tv
   conditions:
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - shu tv orado
-  - shu orado tv
+  - શું tv ઓરડો
+  - શું ઓરડો tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - shu doorsensor pravesh
-  - shu pravesh doorsensor
+  - શું doorsensor pravesh
+  - શું pravesh doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
     entity_id: binary_sensor.living_window
   sentences:
-  - shu windowsensor orado
-  - shu orado windowsensor
+  - શું windowsensor ઓરડો
+  - શું ઓરડો windowsensor
 - name: query_sensor.living_temperature
   conditions:
   - type: query
     entity_id: sensor.living_temperature
   sentences:
-  - shu tempsensor orado
-  - shu orado tempsensor
+  - શું tempsensor ઓરડો
+  - શું ઓરડો tempsensor
 - name: query_light.kitchen_ceiling
   conditions:
   - type: query
     entity_id: light.kitchen_ceiling
   sentences:
-  - shu prakash rasodu
-  - shu rasodu prakash
+  - શું પ્રકાશ રસોડું
+  - શું રસોડું પ્રકાશ
 - name: query_light.office_ceiling
   conditions:
   - type: query
     entity_id: light.office_ceiling
   sentences:
-  - shu prakash office
-  - shu office prakash
+  - શું પ્રકાશ office
+  - શું office પ્રકાશ
 - name: query_light.garden
   conditions:
   - type: query
     entity_id: light.garden
   sentences:
-  - shu prakash garden
-  - shu garden prakash
+  - શું પ્રકાશ garden
+  - શું garden પ્રકાશ
 - name: query_light.basement
   conditions:
   - type: query
     entity_id: light.basement
   sentences:
-  - shu prakash basement
-  - shu basement prakash
+  - શું પ્રકાશ basement
+  - શું basement પ્રકાશ
 - name: query_cover.master_blinds
   conditions:
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - shu pado shayankhand
-  - shu shayankhand pado
+  - શું પડદો shayankhandmaster
+  - શું shayankhandmaster પડદો
 - name: query_cover.garage_door
   conditions:
   - type: query
     entity_id: cover.garage_door
   sentences:
-  - shu pado garage
-  - shu garage pado
+  - શું પડદો garage
+  - શું garage પડદો
 - name: query_lock.garage_entry
   conditions:
   - type: query
     entity_id: lock.garage_entry
   sentences:
-  - shu talu garage
-  - shu garage talu
+  - શું તાળું garage
+  - શું garage તાળું
 - name: query_climate.upper_thermostat
   conditions:
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - shu garmi shayankhand
-  - shu shayankhand garmi
+  - શું ગરમી shayankhandmaster
+  - શું shayankhandmaster ગરમી
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - shu garmi shayankhand
-  - shu shayankhand garmi
+  - શું garmi shayankhandmaster
+  - શું shayankhandmaster garmi
 - name: query_media_player.family_tv
   conditions:
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - shu tv kutumb
-  - shu kutumb tv
+  - શું tv kutumb
+  - શું kutumb tv
 - name: query_media_player.living_music
   conditions:
   - type: query
     entity_id: media_player.living_music
   sentences:
-  - shu tivi orado
-  - shu orado tivi
+  - શું ટીવી ઓરડો
+  - શું ઓરડો ટીવી
 - name: query_binary_sensor.kitchen_motion
   conditions:
   - type: query
     entity_id: binary_sensor.kitchen_motion
   sentences:
-  - shu motion rasodu
-  - shu rasodu motion
+  - શું motion રસોડું
+  - શું રસોડું motion
 - name: query_sensor.living_humidity
   conditions:
   - type: query
     entity_id: sensor.living_humidity
   sentences:
-  - shu humidity orado
-  - shu orado humidity
+  - શું humidity ઓરડો
+  - શું ઓરડો humidity
 - name: query_fan.master_fan
   conditions:
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - shu pankho shayankhand
-  - shu shayankhand pankho
+  - શું પંખો shayankhandmaster
+  - શું shayankhandmaster પંખો
 - name: query_vacuum.robot
   conditions:
   - type: query
     entity_id: vacuum.robot
   sentences:
-  - shu jhadu orado
-  - shu orado jhadu
+  - શું ઝાડુ ઓરડો
+  - શું ઓરડો ઝાડુ
 - name: query_light.living_lamp
   conditions:
   - type: query
     entity_id: light.living_lamp
   sentences:
-  - shu prakash orado
-  - shu orado prakash
+  - શું પ્રકાશ ઓરડો
+  - શું ઓરડો પ્રકાશ
 - name: query_light.kitchen_island
   conditions:
   - type: query
     entity_id: light.kitchen_island
   sentences:
-  - shu prakash rasodu
-  - shu rasodu prakash
+  - શું પ્રકાશ રસોડું
+  - શું રસોડું પ્રકાશ
 - name: query_light.master_ceiling
   conditions:
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - shu prakash shayankhand
-  - shu shayankhand prakash
+  - શું પ્રકાશ shayankhandmaster
+  - શું shayankhandmaster પ્રકાશ
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - shu prakash shayankhand
-  - shu shayankhand prakash
+  - શું પ્રકાશ shayankhandmaster
+  - શું shayankhandmaster પ્રકાશ
 - name: query_light.hallway_light
   conditions:
   - type: query
     entity_id: light.hallway_light
   sentences:
-  - shu prakash hallway
-  - shu hallway prakash
+  - શું પ્રકાશ hallway
+  - શું hallway પ્રકાશ
 - name: query_light.family_ceiling
   conditions:
   - type: query
     entity_id: light.family_ceiling
   sentences:
-  - shu prakash kutumb
-  - shu kutumb prakash
+  - શું પ્રકાશ kutumb
+  - શું kutumb પ્રકાશ
 - name: query_light.dining_pendant
   conditions:
   - type: query
     entity_id: light.dining_pendant
   sentences:
-  - shu prakash kutumbess
-  - shu kutumbess prakash
+  - શું પ્રકાશ kutumbess
+  - શું kutumbess પ્રકાશ
 - name: query_light.garage_light
   conditions:
   - type: query
     entity_id: light.garage_light
   sentences:
-  - shu prakash garage
-  - shu garage prakash
+  - શું પ્રકાશ garage
+  - શું garage પ્રકાશ
 - name: query_light.bedroom2_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom2_ceiling
   sentences:
-  - shu prakash shayankhand2
-  - shu shayankhand2 prakash
+  - શું પ્રકાશ shayankhand2
+  - શું shayankhand2 પ્રકાશ
 - name: query_light.bedroom3_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom3_ceiling
   sentences:
-  - shu prakash shayankhand3
-  - shu shayankhand3 prakash
+  - શું પ્રકાશ shayankhand3
+  - શું shayankhand3 પ્રકાશ
 - name: query_light.bedroom4_ceiling
   conditions:
   - type: query
     entity_id: light.bedroom4_ceiling
   sentences:
-  - shu prakash shayankhand4
-  - shu shayankhand4 prakash
+  - શું પ્રકાશ shayankhand4
+  - શું shayankhand4 પ્રકાશ
 - name: query_light.entryway_light
   conditions:
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - shu prakash pravesh
-  - shu pravesh prakash
+  - શું પ્રકાશ pravesh
+  - શું pravesh પ્રકાશ
 - name: query_light.laundry_light
   conditions:
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - shu prakash dhovanu
-  - shu dhovanu prakash
+  - શું પ્રકાશ dhovanu
+  - શું dhovanu પ્રકાશ
 - name: query_light.main_bath_light
   conditions:
   - type: query
     entity_id: light.main_bath_light
   sentences:
-  - shu prakash main bath
-  - shu main bath prakash
+  - શું પ્રકાશ main bath
+  - શું main bath પ્રકાશ
 - name: query_light.powder_room_light
   conditions:
   - type: query
     entity_id: light.powder_room_light
   sentences:
-  - shu prakash shauchalay
-  - shu shauchalay prakash
+  - શું પ્રકાશ shauchalay
+  - શું shauchalay પ્રકાશ
 - name: query_light.master_ensuite
   conditions:
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - shu ensuite shayankhand
-  - shu shayankhand ensuite
+  - શું ensuite shayankhandmaster
+  - શું shayankhandmaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - shu prakash shayankhand
-  - shu shayankhand prakash
+  - શું પ્રકાશ shayankhandmaster
+  - શું shayankhandmaster પ્રકાશ
 - name: query_light.master_bath_light
   conditions:
   - type: query
     entity_id: light.master_bath_light
   sentences:
-  - shu prakash mukhyasnan
-  - shu mukhyasnan prakash
+  - શું પ્રકાશ mukhyasnan
+  - શું mukhyasnan પ્રકાશ

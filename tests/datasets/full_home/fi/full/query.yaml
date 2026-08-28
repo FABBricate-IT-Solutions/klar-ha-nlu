@@ -87,8 +87,8 @@
   - type: query
     entity_id: cover.master_blinds
   sentences:
-  - mika verho makuuhuone
-  - mika makuuhuone verho
+  - mika verho makuuhuonemaster
+  - mika makuuhuonemaster verho
 - name: query_cover.garage_door
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - mika lampo makuuhuone
-  - mika makuuhuone lampo
+  - mika lampo makuuhuonemaster
+  - mika makuuhuonemaster lampo
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - mika lammitys makuuhuone
-  - mika makuuhuone lammitys
+  - mika lammitys makuuhuonemaster
+  - mika makuuhuonemaster lammitys
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -150,8 +150,8 @@
   - type: query
     entity_id: fan.master_fan
   sentences:
-  - mika tuuletin makuuhuone
-  - mika makuuhuone tuuletin
+  - mika tuuletin makuuhuonemaster
+  - mika makuuhuonemaster tuuletin
 - name: query_vacuum.robot
   conditions:
   - type: query
@@ -178,15 +178,15 @@
   - type: query
     entity_id: light.master_ceiling
   sentences:
-  - mika valo makuuhuone
-  - mika makuuhuone valo
+  - mika valo makuuhuonemaster
+  - mika makuuhuonemaster valo
 - name: query_light.master_bedside_left
   conditions:
   - type: query
     entity_id: light.master_bedside_left
   sentences:
-  - mika valo makuuhuone
-  - mika makuuhuone valo
+  - mika valo makuuhuonemaster
+  - mika makuuhuonemaster valo
 - name: query_light.hallway_light
   conditions:
   - type: query
@@ -269,15 +269,15 @@
   - type: query
     entity_id: light.master_ensuite
   sentences:
-  - mika ensuite makuuhuone
-  - mika makuuhuone ensuite
+  - mika ensuite makuuhuonemaster
+  - mika makuuhuonemaster ensuite
 - name: query_light.master_bedside_right
   conditions:
   - type: query
     entity_id: light.master_bedside_right
   sentences:
-  - mika valo makuuhuone
-  - mika makuuhuone valo
+  - mika valo makuuhuonemaster
+  - mika makuuhuonemaster valo
 - name: query_light.master_bath_light
   conditions:
   - type: query

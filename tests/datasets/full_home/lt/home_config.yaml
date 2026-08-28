@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Miegamasis
+  name: Miegamasismaster
   floor: upper
   aliases:
+  - miegamasismaster
   - miegamasis
 - id: bedroom_2
   name: Miegamasis2
@@ -130,10 +131,10 @@ devices:
   - lubos
 - id: light.living_lamp
   area_id: living
-  name: svetaine sviesa
+  name: svetaine lamp
   aliases:
-  - svetaine sviesa
-  - sviesa
+  - svetaine lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: svetainefamess sviesa
@@ -190,29 +191,29 @@ devices:
   - sviesa
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: miegamasis lubos
+  name: miegamasismaster lubos
   aliases:
-  - miegamasis lubos
+  - miegamasismaster lubos
   - lubos
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: miegamasis ensuite
+  name: miegamasismaster ensuite
   aliases:
-  - miegamasis ensuite
+  - miegamasismaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: miegamasis left naktinis
+  name: miegamasismaster left naktinis
   aliases:
-  - miegamasis left naktinis
+  - miegamasismaster left naktinis
   - naktinis
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: miegamasis right naktinis
+  name: miegamasismaster right naktinis
   aliases:
-  - miegamasis right naktinis
+  - miegamasismaster right naktinis
   - naktinis
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - uzuolaida
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: miegamasis uzuolaida
+  name: miegamasismaster uzuolaida
   aliases:
-  - miegamasis uzuolaida
+  - miegamasismaster uzuolaida
   - uzuolaida
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - sildymas
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: miegamasis sildymas
+  name: miegamasismaster sildymas
   aliases:
-  - miegamasis sildymas
+  - miegamasismaster sildymas
   - sildymas
 - id: climate.master_ac
   area_id: master_bedroom
-  name: sildymas miegamasis
+  name: sildymas miegamasismaster
   aliases:
-  - sildymas miegamasis
+  - sildymas miegamasismaster
   - sildymas
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - ventiliatorius
 - id: fan.master_fan
   area_id: master_bedroom
-  name: miegamasis ventiliatorius
+  name: miegamasismaster ventiliatorius
   aliases:
-  - miegamasis ventiliatorius
+  - miegamasismaster ventiliatorius
   - ventiliatorius
 - id: fan.bedroom2_fan
   area_id: bedroom_2

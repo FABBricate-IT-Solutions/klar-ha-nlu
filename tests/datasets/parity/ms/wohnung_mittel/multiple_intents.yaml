@@ -1,26 +1,30 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - matikan semua lampu kecuali bilik kecuali dapur
 multiple_intents/multi::licht_und_heizung:
-- hidupkan lampu ruang dan tetapkan pendingin ruang 23
+- hidupkan semua lampu ruang then tetapkan pendingin ruang 23
 multiple_intents/multi::wohn_und_ess_aus:
-- matikan lampu ruang dan matikan lampu ruankeluargaess
+- matikan semua lampu ruang then matikan semua lampu ruankeluargaess
 multiple_intents/multi::wohn_und_ess_rot:
-- tetapkan lampu ruang red dan tetapkan lampu ruankeluargaess red
+- tetapkan semua lampu ruang red then tetapkan semua lampu ruankeluargaess red
 multiple_intents/multi::wz_und_kuche_licht:
-- hidupkan lampu ruang dan hidupkan lampu dapur
+- hidupkan semua lampu ruang then hidupkan semua lampu dapur
 multiple_intents/multi::zwei_raeume_und_heizung:
-- hidupkan lampu ruang dan hidupkan lampu dapur dan tetapkan pendingin ruang 23
+- hidupkan semua lampu ruang then hidupkan semua lampu dapur then tetapkan pendingin
+  ruang 23
 multiple_intents/spoken::drei_raeume_an:
-- hidupkan lampu ruang dan hidupkan lampu ruankeluargaess dan hidupkan lampu dapur
+- hidupkan semua lampu ruang then hidupkan semua lampu ruankeluargaess then hidupkan
+  semua lampu dapur
 multiple_intents/spoken::drei_raeume_aus:
-- matikan lampu ruang dan matikan lampu ruankeluargaess dan matikan lampu dapur
+- matikan semua lampu ruang then matikan semua lampu ruankeluargaess then matikan
+  semua lampu dapur
 multiple_intents/spoken::ess_und_wohn_aus:
-- matikan lampu ruang dan matikan lampu ruankeluargaess
+- matikan semua lampu ruang then matikan semua lampu ruankeluargaess
 multiple_intents/spoken::kugel_und_decke_aus:
-- matikan bola dan matikan siling
+- bola dan siling bilik matikan
 multiple_intents/spoken_more::kuche_und_ess_an:
-- hidupkan lampu dapur dan hidupkan lampu ruankeluargaess
+- hidupkan semua lampu dapur then hidupkan semua lampu ruankeluargaess
 multiple_intents/spoken_more::wz_ess_arbeit_aus:
-- matikan lampu ruang dan matikan lampu ruankeluargaess
+- matikan semua lampu ruang then matikan semua lampu ruankeluargaess then matikan
+  semua lampu office
 multiple_intents/spoken_more::wz_und_arbeit_aus:
-- matikan lampu ruang
+- matikan semua lampu ruang then matikan semua lampu office

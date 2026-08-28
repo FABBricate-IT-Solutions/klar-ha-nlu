@@ -5,23 +5,28 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import tarfile
+import tempfile
 import unittest
+from io import BytesIO
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def _load_require_sha256():
+def _load_archive():
     path = ROOT / "custom_components" / "klar_nlu" / "archive.py"
     spec = importlib.util.spec_from_file_location("klar_archive", path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"cannot load {path}")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    return mod.require_sha256
+    return mod
 
 
-require_sha256 = _load_require_sha256()
+archive = _load_archive()
+require_sha256 = archive.require_sha256
+pick_klar_member = archive.pick_klar_member
 
 
 class DigestTests(unittest.TestCase):
@@ -40,6 +45,44 @@ class DigestTests(unittest.TestCase):
     def test_mismatch(self) -> None:
         with self.assertRaises(RuntimeError):
             require_sha256("sha256:" + ("0" * 64), b"x")
+
+
+class MemberTests(unittest.TestCase):
+    def test_prefers_klar(self) -> None:
+        self.assertEqual(
+            pick_klar_member(["LICENSE", "klar-linux-x86_64", "klar"]),
+            "klar",
+        )
+
+    def test_accepts_legacy_linux_name(self) -> None:
+        self.assertEqual(
+            pick_klar_member(["LICENSE", "klar-linux-x86_64", "THIRD_PARTY"]),
+            "klar-linux-x86_64",
+        )
+
+    def test_rejects_license_only(self) -> None:
+        self.assertIsNone(pick_klar_member(["LICENSE", "THIRD_PARTY"]))
+
+    def test_rejects_path_escape(self) -> None:
+        self.assertIsNone(pick_klar_member(["../klar"]))
+
+
+class ExtractTests(unittest.TestCase):
+    def test_writes_binary_and_ui(self) -> None:
+        blob = BytesIO()
+        with tarfile.open(fileobj=blob, mode="w:gz") as tar:
+            info = tarfile.TarInfo("klar")
+            payload = b"engine"
+            info.size = len(payload)
+            tar.addfile(info, BytesIO(payload))
+            ui = tarfile.TarInfo("ui/index.html")
+            html = b"<html></html>"
+            ui.size = len(html)
+            tar.addfile(ui, BytesIO(html))
+        dest = Path(tempfile.mkdtemp())
+        archive.extract_klar_archive(blob.getvalue(), dest)
+        self.assertEqual((dest / "klar").read_bytes(), b"engine")
+        self.assertEqual((dest / "ui" / "index.html").read_bytes(), html)
 
 
 if __name__ == "__main__":

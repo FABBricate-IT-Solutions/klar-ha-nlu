@@ -76,9 +76,10 @@ areas:
   aliases:
   - garden
 - id: master_bedroom
-  name: Phongngu
+  name: Phongngumaster
   floor: upper
   aliases:
+  - phongngumaster
   - phongngu
 - id: bedroom_2
   name: Phongngu2
@@ -130,10 +131,10 @@ devices:
   - tran
 - id: light.living_lamp
   area_id: living
-  name: phongkhach bongden
+  name: phongkhach lamp
   aliases:
-  - phongkhach bongden
-  - bongden
+  - phongkhach lamp
+  - lamp
 - id: light.dining_pendant
   area_id: dining
   name: phonggiadinhess bongden
@@ -190,29 +191,29 @@ devices:
   - bongden
 - id: light.master_ceiling
   area_id: master_bedroom
-  name: phongngu tran
+  name: phongngumaster tran
   aliases:
-  - phongngu tran
+  - phongngumaster tran
   - tran
 - id: light.master_ensuite
   area_id: master_bedroom
-  name: phongngu ensuite
+  name: phongngumaster ensuite
   aliases:
-  - phongngu ensuite
+  - phongngumaster ensuite
   - ensuite
   tags:
   - ensuite
 - id: light.master_bedside_left
   area_id: master_bedroom
-  name: phongngu left dau giuong
+  name: phongngumaster left dau giuong
   aliases:
-  - phongngu left dau giuong
+  - phongngumaster left dau giuong
   - dau giuong
 - id: light.master_bedside_right
   area_id: master_bedroom
-  name: phongngu right dau giuong
+  name: phongngumaster right dau giuong
   aliases:
-  - phongngu right dau giuong
+  - phongngumaster right dau giuong
   - dau giuong
 - id: light.bedroom2_ceiling
   area_id: bedroom_2
@@ -264,9 +265,9 @@ devices:
   - rem
 - id: cover.master_blinds
   area_id: master_bedroom
-  name: phongngu rem
+  name: phongngumaster rem
   aliases:
-  - phongngu rem
+  - phongngumaster rem
   - rem
 - id: cover.bedroom2_blinds
   area_id: bedroom_2
@@ -294,15 +295,15 @@ devices:
   - dieuhoa
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: phongngu dieuhoa
+  name: phongngumaster dieuhoa
   aliases:
-  - phongngu dieuhoa
+  - phongngumaster dieuhoa
   - dieuhoa
 - id: climate.master_ac
   area_id: master_bedroom
-  name: dieuhoa phongngu
+  name: dieuhoa phongngumaster
   aliases:
-  - dieuhoa phongngu
+  - dieuhoa phongngumaster
   - dieuhoa
   - ac
   tags:
@@ -315,9 +316,9 @@ devices:
   - quat
 - id: fan.master_fan
   area_id: master_bedroom
-  name: phongngu quat
+  name: phongngumaster quat
   aliases:
-  - phongngu quat
+  - phongngumaster quat
   - quat
 - id: fan.bedroom2_fan
   area_id: bedroom_2

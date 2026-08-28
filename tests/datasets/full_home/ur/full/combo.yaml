@@ -117,8 +117,8 @@
     entity_id: light.master_bedside_left
     state: 'on'
   sentences:
-  - چالو bedroom چھت اور bedroom بسترکنار
-  - bedroom چھت اور bedroom بسترکنار چالو
+  - چالو bedroommaster چھت اور bedroommaster بسترکنار
+  - bedroommaster چھت اور bedroommaster بسترکنار چالو
 - name: and_light.master_ceiling_light.master_bedside_left_off
   conditions:
   - type: action
@@ -128,8 +128,8 @@
     entity_id: light.master_bedside_left
     state: 'off'
   sentences:
-  - بند bedroom چھت اور bedroom بسترکنار
-  - bedroom چھت اور bedroom بسترکنار بند
+  - بند bedroommaster چھت اور bedroommaster بسترکنار
+  - bedroommaster چھت اور bedroommaster بسترکنار بند
 - name: and_light.family_ceiling_light.dining_pendant_on
   conditions:
   - type: action
@@ -183,8 +183,8 @@
     entity_id: light.kitchen_island
     state: 'on'
   sentences:
-  - چالو bedroom پنکھا اور باورچی جزیرہ
-  - bedroom پنکھا اور باورچی جزیرہ چالو
+  - چالو bedroommaster پنکھا اور باورچی جزیرہ
+  - bedroommaster پنکھا اور باورچی جزیرہ چالو
 - name: and_cover.living_blinds_light.living_ceiling_on
   conditions:
   - type: action
@@ -257,8 +257,8 @@
     domain: light
     state: 'off'
   sentences:
-  - بند روشنی bedroom اور main bath
-  - روشنی bedroom اور main bath بند
+  - بند روشنی bedroommaster اور main bath
+  - روشنی bedroommaster اور main bath بند
 - name: off_family_room_dining
   conditions:
   - type: action
@@ -1321,8 +1321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - بند سب روشنی سوا لانج اور bedroom
-  - سب روشنی بند سوا لانج اور bedroom
+  - بند سب روشنی سوا لانج اور bedroommaster
+  - سب روشنی بند سوا لانج اور bedroommaster
   forbid:
   - living
   - master_bedroom
@@ -1468,8 +1468,8 @@
     domain: light
     state: 'off'
   sentences:
-  - بند سب روشنی اوپر سوا bedroom
-  - سب روشنی اوپر بند سوا bedroom
+  - بند سب روشنی اوپر سوا bedroommaster
+  - سب روشنی اوپر بند سوا bedroommaster
   forbid:
   - master_bedroom
 - name: floor_ground_except_office
@@ -1526,8 +1526,8 @@
     domain: cover
     state: open
   sentences:
-  - کھولو پردہ لانج اور bedroom
-  - پردہ لانج اور bedroom کھولو
+  - کھولو پردہ لانج اور bedroommaster
+  - پردہ لانج اور bedroommaster کھولو
 - name: covers_living_master_close
   conditions:
   - type: action
@@ -1539,8 +1539,8 @@
     domain: cover
     state: closed
   sentences:
-  - بندکرو پردہ لانج اور bedroom
-  - پردہ لانج اور bedroom بندکرو
+  - بندکرو پردہ لانج اور bedroommaster
+  - پردہ لانج اور bedroommaster بندکرو
 - name: climate_living_master_21
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - رکھو گرمی لانج اور bedroom 21
-  - گرمی لانج اور bedroom 21
+  - رکھو گرمی لانج اور bedroommaster 21
+  - گرمی لانج اور bedroommaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action

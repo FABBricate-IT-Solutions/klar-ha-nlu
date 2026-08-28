@@ -4,13 +4,13 @@
     entity_id: vacuum.robot
     state: 'on'
   sentences:
-  - eru thudaippu
-  - thudaippu eru
+  - ஏற்று துடைப்பு
+  - துடைப்பு ஏற்று
 - name: vacuum_dock
   conditions:
   - type: action
     entity_id: vacuum.robot
     state: 'off'
   sentences:
-  - anai thudaippu
-  - thudaippu anai
+  - அணை துடைப்பு
+  - துடைப்பு அணை
