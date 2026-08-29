@@ -60,6 +60,8 @@ from .fallback import (
     news_followup_prompt,
     news_prompt,
     with_personality,
+    yarn_asks_permission,
+    yarn_nudge,
     yarn_prompt,
     yarn_request,
 )
@@ -245,7 +247,7 @@ class KlarConversationEntity(ConversationEntity):
             if rendered:
                 speech = rendered
         if hit == "llm" and action and not clarify and not payload.get("unreachable"):
-            prompt = yarn_prompt(pack, action) if yarn_request(user_input.text) else chat_only_prompt(pack, action)
+            prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action)
             fallback = await self._fallback(
                 user_input, chat_log, pack, True, prompt, retrieval
             )
@@ -499,12 +501,12 @@ class KlarConversationEntity(ConversationEntity):
         elif self._nlu_rag():
             system = rag_prompt(pack, retrieval, with_personality(extra_s, voice))
         elif yarn_request(user_input.text):
-            system = yarn_prompt(pack, with_personality(extra_s, voice))
+            system = yarn_prompt(pack, with_personality(extra_s, voice), user_input.text)
         else:
             system = chat_only_prompt(pack, with_personality(extra_s, voice))
         session_id = self._llm_session_id(user_input)
         prior = history_prompt(pack, self._llm_turns(session_id))
-        if prior:
+        if prior and not yarn_request(user_input.text):
             system = f"{system}\n\n{prior}"
         try:
             result = await conversation.async_converse(
@@ -517,6 +519,17 @@ class KlarConversationEntity(ConversationEntity):
         except Exception as err:  # noqa: BLE001 — other agent is a system boundary
             _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)
             return None
+        if result is not None and yarn_request(user_input.text) and yarn_asks_permission(_speech_from_result(result)):
+            try:
+                result = await conversation.async_converse(
+                    self.hass,
+                    user_input.text,
+                    isolated_conversation_id(),
+                    user_input.context,
+                    **nested_llm_session(agent_id, speak_tag(pack), yarn_nudge(pack, system)),
+                )
+            except Exception as err:  # noqa: BLE001 — other agent is a system boundary
+                _LOGGER.warning("LLM-Fallback-Wiederholung fehlgeschlagen: %s", err)
         return result
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:

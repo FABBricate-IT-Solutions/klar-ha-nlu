@@ -1,6 +1,6 @@
 use klar_nlu::home::default_home;
 use klar_nlu::nlu::parse;
-use klar_nlu::session::Session;
+use klar_nlu::session::{Session, Sessions};
 use klar_nlu::types::{EntityRec, ParseDecision, Settings};
 
 fn settings(lang: &str) -> Settings {
@@ -194,6 +194,58 @@ fn de_guten_morgen_is_not_tomorrow_agenda() {
         let (decision, names, _) = outcome(text, "de");
         assert!(!names.iter().any(|name| name == "KlarGetCalendarEvents"), "{text} {decision:?} {names:?}");
     }
+}
+
+#[test]
+fn de_create_keeps_hyphenated_retest_title_and_hour() {
+    let (decision, names, slots) = outcome("Trage den Termin Klar-Retest-62 morgen um 15 Uhr in den Kalender ein", "de");
+    assert!(matches!(decision, ParseDecision::Execute), "{decision:?}");
+    assert!(names.iter().any(|name| name == "KlarCreateCalendarEvent"), "{names:?}");
+    let summary = slots.iter().find(|(name, _)| name == "summary").map(|(_, value)| value.as_str()).unwrap_or("");
+    assert!(summary.contains("klar-retest-62"), "summary={summary:?} {slots:?}");
+    assert!(slots.iter().any(|(name, value)| name == "hour" && value == "15"), "{slots:?}");
+    assert!(!names.iter().any(|name| name.contains("Volume")), "{names:?}");
+}
+
+#[test]
+fn de_create_after_media_last_target_is_not_volume() {
+    let home = default_home();
+    let mut session = Session::default();
+    session.remember(
+        &klar_nlu::types::Intent::new("HassMediaUnpause").with("entity_id", "media_player.kitchen").with("domain", "media_player"),
+    );
+    let parsed = parse("Trage den Termin Klar-Retest-62 morgen um 15 Uhr in den Kalender ein", &home, &mut session, &[], &settings("de"));
+    let names: Vec<_> = parsed.plan.as_ref().map(|plan| plan.intents().into_iter().map(|item| item.name).collect()).unwrap_or_default();
+    let slots = parsed
+        .plan
+        .as_ref()
+        .and_then(|plan| plan.intents().into_iter().next())
+        .map(|intent| intent.slots.into_iter().map(|slot| (slot.name, slot.value)).collect::<Vec<_>>())
+        .unwrap_or_default();
+    assert!(matches!(parsed.decision, ParseDecision::Execute), "{:?} {names:?}", parsed.decision);
+    assert!(names.iter().any(|name| name == "KlarCreateCalendarEvent"), "{names:?}");
+    assert!(!names.iter().any(|name| name.contains("Volume") || name.contains("Media")), "{names:?}");
+    let summary = slots.iter().find(|(name, _)| name == "summary").map(|(_, value)| value.as_str()).unwrap_or("");
+    assert!(summary.contains("klar-retest-62"), "summary={summary:?} {slots:?}");
+}
+
+#[test]
+fn de_create_after_other_conversation_media_is_not_volume() {
+    let home = default_home();
+    let settings = settings("de");
+    let mut sessions = Sessions::default();
+    let mut music = sessions.take(Some("live-62-music"));
+    music.remember(
+        &klar_nlu::types::Intent::new("HassMediaUnpause").with("entity_id", "media_player.kitchen").with("domain", "media_player"),
+    );
+    sessions.put(music);
+    let mut calendar = sessions.take(Some("live-62-cal"));
+    let parsed = parse("Trage den Termin Klar-Retest-62 morgen um 15 Uhr in den Kalender ein", &home, &mut calendar, &[], &settings);
+    let names: Vec<_> = parsed.plan.as_ref().map(|plan| plan.intents().into_iter().map(|item| item.name).collect()).unwrap_or_default();
+    assert!(matches!(parsed.decision, ParseDecision::Execute), "{:?} {names:?}", parsed.decision);
+    assert!(names.iter().any(|name| name == "KlarCreateCalendarEvent"), "{names:?}");
+    assert!(!names.iter().any(|name| name.contains("Volume") || name.contains("Media")), "{names:?}");
+    assert!(!calendar.last_entities().any(|id| id.starts_with("media_player.")));
 }
 
 #[test]

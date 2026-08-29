@@ -11,6 +11,7 @@ const EARLY: &[(PolicyId, EarlyFn)] =
 
 pub(crate) fn early_special_clauses(
     tokens: &[String],
+    raw: &[String],
     home: &HomeGraph,
     early: Action,
     number: Option<i32>,
@@ -18,7 +19,8 @@ pub(crate) fn early_special_clauses(
 ) -> Vec<ClauseCandidate> {
     let mut candidates = Vec::new();
     for (policy, evaluate) in EARLY {
-        if let Some(outcome) = evaluate(tokens, home, early, number, domain) {
+        let input = if *policy == PolicyId::Calendar { raw } else { tokens };
+        if let Some(outcome) = evaluate(input, home, early, number, domain) {
             candidates.push(candidate(*policy, early, outcome));
         }
     }
