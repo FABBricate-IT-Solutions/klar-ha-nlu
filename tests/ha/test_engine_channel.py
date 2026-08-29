@@ -191,6 +191,16 @@ class EngineChannelTests(unittest.TestCase):
             (const.MODE_REMOTE, discovered),
         )
 
+    def test_engine_url_candidates_add_hassio_fqdn(self) -> None:
+        self.assertEqual(
+            const.engine_url_candidates("http://klar-nlu:10520"),
+            ["http://klar-nlu:10520", "http://klar-nlu.local.hass.io:10520"],
+        )
+        fqdn = "http://8db2ab02-klar-nlu.local.hass.io:10520"
+        self.assertEqual(const.engine_url_candidates(fqdn), [fqdn])
+        custom = "http://192.168.1.40:10520"
+        self.assertEqual(const.engine_url_candidates(custom), [custom])
+
     def test_channel_for_addon_slug(self) -> None:
         self.assertEqual(
             const.channel_for_addon_slug("klar_nlu_staging"),

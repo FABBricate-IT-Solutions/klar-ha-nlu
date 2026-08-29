@@ -16,6 +16,7 @@ class ConversationFallbackTests(unittest.TestCase):
         end = src.index("fallback = await self._fallback", start)
         block = src[start:end]
         self.assertIn("self._fallback_agent_id()", block)
+        self.assertIn("keeps_engine_chat(hit, chat, engine_speech)", block)
         self.assertNotIn("_nlu_rag()", block)
         self.assertNotIn("decision_type != \"reject\"", block)
 

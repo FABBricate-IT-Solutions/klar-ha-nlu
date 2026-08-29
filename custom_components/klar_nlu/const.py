@@ -90,6 +90,7 @@ def resolve_channel(value: object) -> str:
 
 _ADDON_STABLE = "klar-nlu"
 _ADDON_STAGING = "klar-nlu-staging"
+_HASSIO_TLD = "local.hass.io"
 
 
 def _normalize_engine_url(url: object) -> str:
@@ -122,6 +123,22 @@ def _supervisor_addon_prefix(host: str) -> str | None:
         prefix = label[: -len(_ADDON_STABLE)].rstrip("-")
         return prefix or None
     return None
+
+
+def _url_with_host(url: str, host: str) -> str:
+    parsed = urlparse(_normalize_engine_url(url))
+    netloc = f"{host}:{parsed.port}" if parsed.port else host
+    return parsed._replace(netloc=netloc).geturl()
+
+
+def engine_url_candidates(url: object) -> list[str]:
+    """Try the configured host first, then Supervisor's `.local.hass.io` name."""
+    text = _normalize_engine_url(url)
+    host = _engine_host(text)
+    if not text or not host or "." in host or host in {"localhost", "127.0.0.1"}:
+        return [text] if text else []
+    fqdn = _url_with_host(text, f"{host}.{_HASSIO_TLD}")
+    return [text, fqdn] if fqdn != text else [text]
 
 
 def addon_url_for_channel(channel: object) -> str:

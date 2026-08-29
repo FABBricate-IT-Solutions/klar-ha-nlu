@@ -13,7 +13,7 @@ pub(super) fn route(context: &ParseContext<'_>, tokens: &[String]) -> Option<Dra
     if tokens.is_empty() {
         return None;
     }
-    let blob = fold_umlaut(context.text.trim());
+    let blob = fold_umlaut(context.text.trim()).replace(['\'', '’', '`'], "");
     if let Some(draft) = match_routine(context, &blob) {
         return Some(draft);
     }
@@ -385,5 +385,19 @@ mod tests {
         let spoken = spoken_clock(&FALLBACK);
         assert!(spoken.contains(':') || spoken.is_empty());
         assert!(!spoken.contains("date"));
+        assert_eq!(spoken.matches(':').count(), 1, "{spoken}");
+        assert!(!spoken.contains("sekunde"));
+    }
+
+    #[test]
+    fn english_weather_keeps_apostrophe() {
+        let home = default_home();
+        let session = Session::new();
+        let custom = Vec::new();
+        let settings = Box::leak(Box::new(Settings::pinned("en")));
+        let catalog = catalog_for(&["en".into()]);
+        let context = ParseContext::new("What's the weather?", &home, &session, &custom, settings, catalog);
+        let draft = route(&context, &["what".into(), "s".into(), "the".into(), "weather".into()]).expect("weather");
+        assert!(matches!(draft.decision, ParseDecision::Chat | ParseDecision::Execute), "{:?}", draft.decision);
     }
 }

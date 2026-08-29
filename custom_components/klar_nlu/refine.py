@@ -28,9 +28,11 @@ except ImportError:  # stdlib tests load this module without a package
         return not controls_home
 
 try:
+    from .clock_speech import strip_clock_seconds
     from .refine_voices import _PERSONALITY, _RULES, voice_block
     from .speech import style
 except ImportError:  # stdlib tests load this module without a package
+    from clock_speech import strip_clock_seconds
     from refine_voices import _PERSONALITY, _RULES, voice_block
     from speech import style
 
@@ -240,7 +242,7 @@ def clean_refined(text: str) -> str:
     speech = (text or "").strip().strip("\"'`“”«»")
     if "\n" in speech:
         speech = " ".join(line.strip() for line in speech.splitlines() if line.strip())
-    return speech.strip()
+    return strip_clock_seconds(speech.strip())
 
 
 def accept_refined(original: str, refined: str) -> str | None:

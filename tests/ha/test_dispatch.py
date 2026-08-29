@@ -62,6 +62,10 @@ def _load_dispatch() -> types.ModuleType:
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
+        _load(f"{PACKAGE}.clock_speech", "clock_speech.py")
+        _load(f"{PACKAGE}.speech_place", "speech_place.py")
+        _load("clock_speech", "clock_speech.py")
+        _load("speech_place", "speech_place.py")
         _load(f"{PACKAGE}.speech", "speech.py")
         _load(f"{PACKAGE}.speech_locale", "speech_locale.py")
         _load(f"{PACKAGE}.calendar_session", "calendar_session.py")

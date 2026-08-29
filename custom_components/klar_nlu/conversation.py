@@ -3,7 +3,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import aiohttp
 from homeassistant.components import conversation
 from homeassistant.components.conversation import (
     ChatLog,
@@ -45,8 +44,9 @@ from .const import (
     parse_session_id,
     resolve_personality,
 )
+from .engine_http import post_parse
 from .lang_select import advertise, enabled_packs, resolve_pack, speak_tag
-from .contracts import executable_intents, validate_v2_payload
+from .contracts import executable_intents
 from .executor import execute_plan
 from .fallback import (
     agent_has_home_control,
@@ -64,7 +64,12 @@ from .fallback import (
 from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
-from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
+from .policy_actions import (
+    hit_and_payload,
+    keeps_engine_chat,
+    render_user_template,
+    skips_llm_fallback,
+)
 from .refine import (
     async_finish_speech,
     emit_assistant_speech,
@@ -75,6 +80,7 @@ from .refine import (
 )
 from .quiet import play_chime, quiet_ack_applies
 from .sensor import remember_turn
+from .speech import finish_clock_speech
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -240,6 +246,7 @@ class KlarConversationEntity(ConversationEntity):
                 return replied
         if (
             not skips_llm_fallback(hit)
+            and not keeps_engine_chat(hit, chat, engine_speech)
             and not clarify
             and not intents
             and not payload.get("unreachable")
@@ -323,6 +330,8 @@ class KlarConversationEntity(ConversationEntity):
         decision: str = "",
     ) -> ConversationResult:
         agent_id = self._fallback_agent_id()
+        if decision == "chat":
+            speech = finish_clock_speech(speech, pack)
         if not skip_rewrite(decision):
             speech = await async_finish_speech(
                 self.hass,
@@ -508,7 +517,6 @@ class KlarConversationEntity(ConversationEntity):
     async def _parse(
         self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
-        url = f"{self._url}/api/v2/parse"
         pack = resolve_pack(language, self._packs())
         body: dict[str, Any] = {
             "text": text,
@@ -520,26 +528,19 @@ class KlarConversationEntity(ConversationEntity):
             body["preferred_area"] = area
         if self._nlu_rag():
             body["nlu_rag"] = True
-        try:
-            session = async_get_clientsession(self.hass)
-            async with session.post(
-                url,
-                json=body,
-                headers=self._headers(),
-                timeout=aiohttp.ClientTimeout(total=5),
-            ) as resp:
-                resp.raise_for_status()
-                payload = await resp.json()
-                return validate_v2_payload(payload)
-        except Exception as err:  # noqa: BLE001 — boundary to the local engine
-            _LOGGER.warning("Klar nicht erreichbar: %s", err)
-            return {
-                "schema_version": "2.0",
-                "speech": _cue(_UNREACHABLE, pack, "Klar is not responding right now."),
-                "decision": {"type": "error", "code": "unreachable", "message": str(err)},
-                "plan": None,
-                "unreachable": True,
-            }
+        payload, last_err = await post_parse(
+            async_get_clientsession(self.hass), self._url, body, self._headers()
+        )
+        if payload is not None:
+            return payload
+        _LOGGER.warning("Klar nicht erreichbar: %s", last_err)
+        return {
+            "schema_version": "2.0",
+            "speech": _cue(_UNREACHABLE, pack, "Klar is not responding right now."),
+            "decision": {"type": "error", "code": "unreachable", "message": str(last_err or "")},
+            "plan": None,
+            "unreachable": True,
+        }
 
     def _llm_session_id(self, user_input: ConversationInput) -> str:
         return llm_conversation_id(

@@ -8,26 +8,57 @@ pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Ve
     if !catalog().any(tokens, catalog().tv_words()) {
         return;
     }
-    for entity in home.entities.iter().filter(|entity| looks_like_tv(entity) && assist_visible(entity, home) && !is_infra(entity)) {
+    let mentioned: Vec<String> =
+        home.areas.iter().filter(|area| area_mentioned(tokens, &area.area_id, home)).map(|area| area.area_id.clone()).collect();
+    if mentioned.is_empty() {
+        let exact: Vec<(f64, EntityRec)> = candidates
+            .iter()
+            .filter(|(_, entity)| {
+                looks_like_tv(entity)
+                    && entity.aliases.iter().any(|alias| {
+                        let folded = compact(&fold_umlaut(alias));
+                        catalog().tv_words().iter().any(|word| folded == compact(word))
+                    })
+            })
+            .cloned()
+            .collect();
+        if !exact.is_empty() {
+            *candidates = exact;
+        }
+        return;
+    }
+    for entity in home.entities.iter().filter(|entity| {
+        looks_like_tv(entity)
+            && assist_visible(entity, home)
+            && !is_infra(entity)
+            && entity.area.as_deref().is_some_and(|area| mentioned.iter().any(|id| id == area))
+    }) {
         if !candidates.iter().any(|(_, existing)| existing.entity_id == entity.entity_id) {
             candidates.push((0.95, entity.clone()));
         }
     }
-    let tvs: Vec<(f64, EntityRec)> = candidates.iter().filter(|(_, entity)| looks_like_tv(entity)).cloned().collect();
-    if tvs.is_empty() {
+    let in_area: Vec<(f64, EntityRec)> = candidates
+        .iter()
+        .filter(|(_, entity)| looks_like_tv(entity) && entity.area.as_deref().is_some_and(|area| mentioned.iter().any(|id| id == area)))
+        .cloned()
+        .collect();
+    if !in_area.is_empty() {
+        let media: Vec<(f64, EntityRec)> = in_area.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
+        *candidates = if media.is_empty() { in_area } else { media };
         return;
     }
-    let in_area: Vec<(f64, EntityRec)> =
-        tvs.iter().filter(|(_, entity)| entity.area.as_deref().is_some_and(|area| area_mentioned(tokens, area, home))).cloned().collect();
-    if in_area.is_empty() {
-        let media: Vec<(f64, EntityRec)> = tvs.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
-        if !media.is_empty() {
-            *candidates = media;
-        }
-        return;
-    }
-    let media: Vec<(f64, EntityRec)> = in_area.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
-    *candidates = if media.is_empty() { in_area } else { media };
+    let media: Vec<(f64, EntityRec)> = home
+        .entities
+        .iter()
+        .filter(|entity| {
+            entity.domain == "media_player"
+                && assist_visible(entity, home)
+                && !is_infra(entity)
+                && entity.area.as_deref().is_some_and(|area| mentioned.iter().any(|id| id == area))
+        })
+        .map(|entity| (0.92, entity.clone()))
+        .collect();
+    *candidates = media;
 }
 
 fn area_mentioned(tokens: &[String], area_id: &str, home: &HomeGraph) -> bool {
@@ -383,6 +414,58 @@ mod tests {
         let en = Settings { languages: vec!["de".into(), "en".into()], ..Settings::default() };
         let english = parse("Activate All off", &home, &mut Session::new(), &[], &en);
         assert_eq!(english.intents.first().and_then(|intent| intent.slot("entity_id")), Some("scene.alles_aus"), "{english:?}");
+        let tv = parse("Mach den Fernseher im Wohnzimmer an.", &home, &mut Session::new(), &[], &settings);
+        assert_eq!(tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.wohnzimmer_tv"), "{tv:?}");
+        assert_ne!(tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{tv:?}");
+    }
+
+    #[test]
+    fn named_room_tv_does_not_fall_back_to_bedroom() {
+        let mut home = lock_home();
+        home.areas.push(AreaRec {
+            area_id: "wohnzimmer".into(),
+            name: "Wohnzimmer".into(),
+            aliases: vec!["wohnzimmer".into(), "living".into()],
+            floor_id: None,
+        });
+        home.areas.push(AreaRec {
+            area_id: "schlafzimmer".into(),
+            name: "Schlafzimmer".into(),
+            aliases: vec!["schlafzimmer".into(), "bedroom".into()],
+            floor_id: None,
+        });
+        home.entities.push(EntityRec {
+            entity_id: "switch.schlafzimmer_tv".into(),
+            name: "Schlafzimmer TV".into(),
+            domain: "switch".into(),
+            platform: None,
+            area: Some("schlafzimmer".into()),
+            aliases: vec!["Fernseher".into()],
+            tags: Vec::new(),
+        });
+        home.entities.push(EntityRec {
+            entity_id: "media_player.wohnzimmer".into(),
+            name: "Wohnzimmer Player".into(),
+            domain: "media_player".into(),
+            platform: Some("music_assistant".into()),
+            area: Some("wohnzimmer".into()),
+            aliases: vec![],
+            tags: Vec::new(),
+        });
+        home.entities.push(EntityRec {
+            entity_id: "light.wohnzimmer".into(),
+            name: "Wohnzimmer Licht".into(),
+            domain: "light".into(),
+            platform: None,
+            area: Some("wohnzimmer".into()),
+            aliases: vec![],
+            tags: Vec::new(),
+        });
+        let result = parse("Mach den Fernseher im Wohnzimmer an.", &home, &mut Session::new(), &[], &Settings::pinned("de"));
+        let id = result.intents.first().and_then(|intent| intent.slot("entity_id"));
+        assert_ne!(id, Some("switch.schlafzimmer_tv"), "{result:?}");
+        assert_ne!(id, Some("light.wohnzimmer"), "{result:?}");
+        assert_eq!(id, Some("media_player.wohnzimmer"), "{result:?}");
     }
 
     #[test]

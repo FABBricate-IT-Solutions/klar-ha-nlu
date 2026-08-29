@@ -18,7 +18,7 @@ Die Integrationsoption **Nur für Assist freigegebene Entitäten steuern** ist e
 - Conversation-Engine der Pipeline muss **Klar NLU** sein, nicht das Smalltalk-LLM.
 - Engine und Integration dieselbe CalVer (V2: nur `POST /api/v2/parse`).
 - Mitgelieferte Engine: warten, bis das GitHub-Release in `/config/klar_nlu/` liegt.
-- App / Docker: Integrations-URL `http://klar-nlu:10520` (HAOS) oder `http://127.0.0.1:10520` (Host-Netz). App und mitgelieferte Engine nicht gleichzeitig.
+- App / Docker: Integrations-URL `http://klar-nlu:10520` (HAOS) oder `http://127.0.0.1:10520` (Host-Netz). Löst `klar-nlu` im Supervisor nicht auf, versucht Klar automatisch `http://klar-nlu.local.hass.io:10520` (bzw. `{slug}.local.hass.io`). App und mitgelieferte Engine nicht gleichzeitig.
 - Confirm / Clarify rufen keine Services. `ja` / `yes` in derselben Conversation, oder das Gerät nennen.
 
 ## Medien und Music Assistant

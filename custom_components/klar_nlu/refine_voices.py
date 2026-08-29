@@ -29,6 +29,7 @@ _RULES = {
         "Keine Home-Assistant-Werkzeuge, keine Gerätesteuerung. "
         "Gleiche Sprache. Fehlt eine Zahl, erfinde keine. "
         "Lieber einen gesprochenen Satz als ein Telegramm. "
+        "Uhrzeiten ohne Sekunden, ein Satz: 14:44 nicht 14:44:55. "
         "Keine feste Eröffnungsformel. Die Stimme steckt im Satz, nicht in einem Stempel. "
         f"{_BAN}\n"
         "2 Lichter an, 3 Lichter aus. → 2 Lichter sind an, 3 Lichter sind aus.\n"
@@ -49,6 +50,7 @@ _RULES = {
         "Do not call Home Assistant tools and do not control devices. "
         "Same language. If a number is missing, do not invent one. "
         "Prefer one spoken sentence over a telegram. "
+        "Clock times without seconds, one sentence: 14:44 not 14:44:55. "
         "No fixed opening cue. The voice lives in the sentence, not in a stamp. "
         f"{_BAN}\n"
         "2 lights on, 3 lights off. → 2 lights are on, 3 lights are off.\n"
@@ -78,6 +80,7 @@ _PERSONALITY = {
             "Wohnzimmer Licht ist an. → Das Licht im Wohnzimmer ist an.\n"
             "Küche Licht ist aus. → Das Licht in der Küche ist aus.\n"
             "Schlafzimmerlicht ist an. → Das Schlafzimmerlicht ist an.\n"
+            "Es ist 14:44:55. → Es ist 14:44.\n"
             "Better Thermostat Wohnzimmer ist 21,5 °C. → Im Wohnzimmer sind es 21,5 °C.\n"
             "Heizung Flur auf 20 Grad. → Die Heizung im Flur steht auf 20 Grad.",
         ),
@@ -86,6 +89,7 @@ _PERSONALITY = {
             "Living room light is on. → The living room light is on.\n"
             "Kitchen light is off. → The kitchen light is off.\n"
             "Bedroom light is on. → The bedroom light is on.\n"
+            "It is 14:44:55. → It is 14:44.\n"
             "Better Thermostat living room is 21.5 °C. → It is 21.5 °C in the living room.\n"
             "Heat hallway is at 20 degrees. → The hallway heat is at 20 degrees.",
         ),

@@ -6,6 +6,12 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from .clock_speech import finish_clock_speech, strip_clock_seconds
+    from .speech_place import pretty_where as _pretty_where_place
+except ImportError:
+    from clock_speech import finish_clock_speech, strip_clock_seconds
+    from speech_place import pretty_where as _pretty_where_place
+try:
     from .speech_locale import SPEECH_PACKS
 except ImportError:
     try:
@@ -417,27 +423,16 @@ def _drop_prefixes(names: list[str]) -> list[str]:
     return out
 
 def _pretty_where(handled: Any, item: dict, pack: str) -> str:
-    slots = _slots(item)
-    entity_id = str(slots.get("entity_id") or "")
-    names = [
-        _spoken_device(
-            str(getattr(target, "name", None) or ""),
-            str(getattr(target, "id", None) or entity_id),
-            pack,
-        )
-        for target in getattr(handled, "success_results", None) or []
-    ]
-    names = _drop_prefixes([name for name in names if name])
-    if names:
-        return (_locale(pack).get("and_join") or " and ").join(names)
-    raw = str(slots.get("name") or slots.get("area") or "")
-    if "." in raw:
-        raw = ""
-    if raw:
-        return _spoken_device(raw, entity_id, pack)
-    if entity_id:
-        return _spoken_device("", entity_id, pack)
-    return "Zuhause" if pack == "de" else "home"
+    return _pretty_where_place(
+        handled,
+        item,
+        pack,
+        slots=_slots(item),
+        spoken_device=_spoken_device,
+        drop_prefixes=_drop_prefixes,
+        locale=_locale(pack),
+        humanize=_humanize,
+    )
 
 def _slots(item: dict) -> dict[str, str]:
     return {

@@ -48,6 +48,8 @@ class RefineTests(unittest.TestCase):
         self.assertIn("21,5 °C", prompt)
         self.assertIn("Keine neuen Zahlen", prompt)
         self.assertIn("ein Satz", prompt)
+        self.assertIn("Uhrzeiten ohne Sekunden", prompt)
+        self.assertIn("14:44 nicht 14:44:55", prompt)
         self.assertIn("Ein oder zwei Sätze.", prompt)
         self.assertIn("Offene Fragen", prompt)
         self.assertIn("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage.", prompt)
@@ -117,6 +119,7 @@ class RefineTests(unittest.TestCase):
         self.assertIn("open questions", prompt.lower())
         self.assertIn("Do not stamp the same opening every time.", prompt)
         self.assertIn("all set", prompt)
+        self.assertIn("Clock times without seconds", prompt)
         self.assertIn("Do not translate into German", prompt)
         self.assertNotIn("Additional style instruction", prompt)
 
@@ -171,6 +174,8 @@ class RefineTests(unittest.TestCase):
             "Das Licht ist an. Ich habe es eingeschaltet.",
         )
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an. " + ("x" * 400)))
+        self.assertEqual(refine.clean_refined("Es ist 14:44:55."), "Es ist 14:44.")
+        self.assertEqual(refine.accept_refined("Es ist 14:44.", "Es ist 14:44:55."), "Es ist 14:44.")
 
     def test_should_refine_any_spoken_reply(self) -> None:
         self.assertTrue(

@@ -18,7 +18,7 @@ The integration option **Only control entities exposed to Assist** is a develope
 - Pipeline conversation engine must be **Klar NLU**, not the chit-chat LLM.
 - Engine and integration must be the same CalVer (V2: `POST /api/v2/parse` only).
 - Bundled engine: wait until the GitHub Release has finished downloading into `/config/klar_nlu/`.
-- App / Docker: integration URL `http://klar-nlu:10520` (HAOS) or `http://127.0.0.1:10520` (host network). Do not run the App and the bundled engine together.
+- App / Docker: integration URL `http://klar-nlu:10520` (HAOS) or `http://127.0.0.1:10520` (host network). If `klar-nlu` does not resolve on Supervisor, Klar also tries `http://klar-nlu.local.hass.io:10520` (or `{slug}.local.hass.io`). Do not run the App and the bundled engine together.
 - Confirm / clarify never call services. Answer `yes` / `ja` on the same conversation, or name the device.
 
 ## Media and Music Assistant

@@ -13,7 +13,7 @@ from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.helpers import area_registry, device_registry, entity_registry, floor_registry, label_registry
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL
+from .const import CONF_ASSIST_FILTER, DEFAULT_ASSIST_FILTER, DEFAULT_URL, CONF_URL, engine_url_candidates
 
 _LOGGER = logging.getLogger(__name__)
 _EVENTS = (
@@ -68,18 +68,24 @@ class HomeGraphSync:
         snapshot = self.build_snapshot()
         session = async_get_clientsession(self.hass)
         headers = {"X-Klar-Token": self._token} if self._token else {}
-        try:
-            async with session.post(
-                f"{self._url}/api/v2/home",
-                json=snapshot,
-                headers=headers,
-                timeout=ClientTimeout(total=8),
-            ) as resp:
-                if resp.status >= 400:
-                    _LOGGER.warning("Klar home snapshot rejected: %s", resp.status)
+        last_err: Exception | None = None
+        for base in engine_url_candidates(self._url):
+            try:
+                async with session.post(
+                    f"{base}/api/v2/home",
+                    json=snapshot,
+                    headers=headers,
+                    timeout=ClientTimeout(total=8),
+                ) as resp:
+                    if resp.status >= 400:
+                        _LOGGER.warning("Klar home snapshot rejected: %s", resp.status)
+                        return
                     return
-        except (ClientError, TimeoutError, OSError) as err:
-            _LOGGER.debug("Klar home snapshot not pushed: %s", err)
+            except (ClientError, TimeoutError, OSError) as err:
+                last_err = err
+                continue
+        if last_err is not None:
+            _LOGGER.debug("Klar home snapshot not pushed: %s", last_err)
 
     def build_snapshot(self) -> dict[str, Any]:
         er = entity_registry.async_get(self.hass)

@@ -403,7 +403,7 @@ pub const PACK: LanguagePack = LanguagePack {
         explain: &["what did you hear", "what did you understand", "why did you stop", "why did you reject"],
         undo: &["undo that", "undo", "take that back"],
         clock: &["what time", "whats the time", "the time is it"],
-        weather: &["whats the weather", "what is the weather", "weather forecast"],
+        weather: &["whats the weather", "what's the weather", "what is the weather", "weather forecast"],
         clock_skip: &["timer", "alarm"],
         heard_nothing: "I have not heard anything yet.",
         heard: "I heard: {text}.",
