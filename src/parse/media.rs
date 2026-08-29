@@ -87,6 +87,9 @@ fn status_intent(tokens: &[String]) -> Option<Intent> {
 }
 
 fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> Option<Intent> {
+    if catalog().any(tokens, catalog().climate_nouns()) {
+        return None;
+    }
     let session_media =
         session.last_domains().any(|d| d == "media_player") || session.last_entities().any(|id| id.starts_with("media_player."));
     let intent = if let Some(n) = number.filter(|_| has_volume_word(tokens) || session_media) {

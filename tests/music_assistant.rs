@@ -216,12 +216,26 @@ fn named_kitchen_music_does_not_start_living_satellite() {
 #[test]
 fn heat_setpoint_does_not_bind_living_satellite_volume() {
     let home = home_with_satellite_and_kitchen_alexa();
-    let result = parse("Heizung Wohnzimmer auf 21", &home, &mut Session::new(), &[], &settings("de"));
+    let mut session = Session::new();
+    session.remember_entity("media_player.satellite1_db12c8");
+    let result = parse("Heizung Wohnzimmer auf 21", &home, &mut session, &[], &settings("de"));
     let intent = result.intents.first().expect("intent");
     assert!(!result.clarify, "{result:?}");
     assert_eq!(intent.name, "HassClimateSetTemperature", "{result:?}");
     assert_eq!(intent.slot("temperature"), Some("21"), "{result:?}");
     assert_ne!(intent.slot("entity_id"), Some("media_player.satellite1_db12c8"), "{result:?}");
+}
+
+#[test]
+fn volume_number_after_satellite_still_sets_volume() {
+    let home = home_with_satellite_and_kitchen_alexa();
+    let mut session = Session::new();
+    session.remember_entity("media_player.satellite1_db12c8");
+    let result = parse("auf 21", &home, &mut session, &[], &settings("de"));
+    let intent = result.intents.first().expect("intent");
+    assert_eq!(intent.name, "HassSetVolume", "{result:?}");
+    assert_eq!(intent.slot("volume_level"), Some("21"), "{result:?}");
+    assert_eq!(intent.slot("entity_id"), Some("media_player.satellite1_db12c8"), "{result:?}");
 }
 
 #[test]
