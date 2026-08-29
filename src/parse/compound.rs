@@ -2,9 +2,7 @@ use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra_light;
 use crate::home::policy::is_whole_home;
-use crate::home::roles::{looks_like_tv, tv_asked};
 use crate::lang::catalog;
-use crate::parse::action::Action;
 use crate::parse::fuzzy::{evidence, select_unique, Profile};
 use crate::parse::media::is_media_move_or_play;
 use crate::parse::normalize::{compact, fold_marks, fold_umlaut, inflected_eq, umlaut_eq};
@@ -439,30 +437,6 @@ fn area_words(home: &HomeGraph, areas: &[String]) -> HashSet<String> {
         words.extend(area.aliases.iter().map(|alias| compact(alias)));
     }
     words
-}
-
-pub(crate) fn area_slots(
-    action: Action,
-    area: &str,
-    domain: Option<&str>,
-    home: &HomeGraph,
-    tokens: &[String],
-) -> (Option<String>, Option<String>, Option<String>) {
-    if tv_asked(tokens) {
-        let id = crate::parse::resolve::unique_in_area(home, area, "media_player", tokens)
-            .filter(|entity_id| home.entities.iter().any(|entity| entity.entity_id == *entity_id && looks_like_tv(entity)));
-        return (id, Some(area.to_string()), Some("media_player".into()));
-    }
-    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
-        return match light_aim(home, area, tokens) {
-            LightAim::RoomGroup(id) | LightAim::Unique(id) => (Some(id), None, None),
-            LightAim::OccupiedId | LightAim::AreaLights | LightAim::Clarify => (None, Some(area.to_string()), Some("light".into())),
-        };
-    }
-    let id = domain
-        .filter(|d| matches!(*d, "climate" | "fan" | "media_player" | "lock"))
-        .and_then(|d| crate::parse::resolve::unique_in_area(home, area, d, tokens));
-    (id, Some(area.to_string()), domain.map(str::to_string))
 }
 
 fn pick_compound_light(home: &HomeGraph, area: &str) -> Option<EntityRec> {

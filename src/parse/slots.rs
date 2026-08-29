@@ -4,7 +4,7 @@ use crate::home::roles::is_light_like;
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
-use crate::parse::compound::area_slots;
+use crate::parse::clause_area::area_slots;
 use crate::parse::infer::{
     bind_domain, color_word, except_focus, except_tail, light_level, mentions_lamp_fixture, wants_all_lights, LightLevel,
 };
