@@ -35,20 +35,15 @@ pub(crate) fn session_areas(ctx: &Clause) -> Option<ClauseOut> {
     if !allows_session_replay(ctx) {
         return None;
     }
-    let areas = if which_lights_query(ctx.tokens) {
-        session_light_areas(ctx.session, ctx.home)
-    } else {
-        last_turn_areas(ctx.session, ctx.home)
-    };
+    let areas =
+        if which_lights_query(ctx.tokens) { session_light_areas(ctx.session, ctx.home) } else { last_turn_areas(ctx.session, ctx.home) };
     (!areas.is_empty()).then(|| {
         let intents = areas
             .into_iter()
             .map(|area| {
                 let id = ctx
                     .domain
-                    .filter(|d| {
-                        matches!(*d, "media_player" | "fan") || (*d == "climate" && !matches!(ctx.action, Action::GetState))
-                    })
+                    .filter(|d| matches!(*d, "media_player" | "fan") || (*d == "climate" && !matches!(ctx.action, Action::GetState)))
                     .and_then(|d| unique_in_area(ctx.home, &area, d, ctx.tokens));
                 fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), Some(&area), ctx.domain)
             })

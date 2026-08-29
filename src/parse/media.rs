@@ -36,10 +36,8 @@ pub(crate) fn media_clause(
         return Some(ClauseOut::Intents(Vec::new()));
     }
     let allow_session_media = !matches!(intent.name.as_str(), "HassMediaSearchAndPlay" | "MassPlayMedia" | "MassTransferQueue");
-    let volume_default = matches!(
-        intent.name.as_str(),
-        "HassSetVolume" | "HassSetVolumeRelative" | "HassMediaPlayerMute" | "HassMediaPlayerUnmute"
-    );
+    let volume_default =
+        matches!(intent.name.as_str(), "HassSetVolume" | "HassSetVolumeRelative" | "HassMediaPlayerMute" | "HassMediaPlayerUnmute");
     let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only, volume_default) else {
         let any_player =
             home.entities.iter().any(|entity| entity.domain == "media_player" && assist_visible(entity, home) && !is_infra(entity));
@@ -292,11 +290,7 @@ fn target_player<'a>(
     select_player(&players, session).or_else(|| {
         volume_default
             .then(|| {
-                players
-                    .iter()
-                    .copied()
-                    .find(|player| player.area.as_deref() == Some("wohnzimmer"))
-                    .or_else(|| players.first().copied())
+                players.iter().copied().find(|player| player.area.as_deref() == Some("wohnzimmer")).or_else(|| players.first().copied())
             })
             .flatten()
     })
@@ -398,20 +392,26 @@ fn strip_area_query(query: String, home: &HomeGraph) -> String {
             || umlaut_eq(&folded, &compact(&area.name))
             || area.aliases.iter().any(|alias| compact(alias) == folded || umlaut_eq(&folded, &compact(alias)))
     });
-    if area_only { String::new() } else { query }
+    if area_only {
+        String::new()
+    } else {
+        query
+    }
 }
 
 fn area_from_tokens(tokens: &[String], home: &HomeGraph) -> Option<String> {
     home.areas.iter().find_map(|area| {
-        tokens.iter().any(|token| {
-            let folded = compact(token);
-            folded == compact(&area.area_id)
-                || folded == compact(&area.name)
-                || umlaut_eq(&folded, &compact(&area.area_id))
-                || umlaut_eq(&folded, &compact(&area.name))
-                || area.aliases.iter().any(|alias| folded == compact(alias) || umlaut_eq(&folded, &compact(alias)))
-        })
-        .then(|| area.area_id.clone())
+        tokens
+            .iter()
+            .any(|token| {
+                let folded = compact(token);
+                folded == compact(&area.area_id)
+                    || folded == compact(&area.name)
+                    || umlaut_eq(&folded, &compact(&area.area_id))
+                    || umlaut_eq(&folded, &compact(&area.name))
+                    || area.aliases.iter().any(|alias| folded == compact(alias) || umlaut_eq(&folded, &compact(alias)))
+            })
+            .then(|| area.area_id.clone())
     })
 }
 

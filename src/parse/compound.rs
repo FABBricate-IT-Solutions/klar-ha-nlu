@@ -264,9 +264,8 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
 
 fn scene_compact_hit(id: &str, blob: &str, home: &HomeGraph) -> bool {
     let tail = compact(id.rsplit('.').next().unwrap_or(""));
-    (tail.len() > 3 && blob.contains(&tail)) || home.entities.iter().any(|e| {
-        e.entity_id == id && e.aliases.iter().any(|a| compact(a).len() > 3 && blob.contains(&compact(a)))
-    })
+    (tail.len() > 3 && blob.contains(&tail))
+        || home.entities.iter().any(|e| e.entity_id == id && e.aliases.iter().any(|a| compact(a).len() > 3 && blob.contains(&compact(a))))
 }
 
 fn scene_token(token: &str) -> String {

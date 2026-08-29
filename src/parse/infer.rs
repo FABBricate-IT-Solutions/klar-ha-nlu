@@ -228,9 +228,7 @@ pub(crate) enum LightLevel {
 
 pub(crate) fn color_word(tokens: &[String]) -> Option<String> {
     if tokens.iter().any(|token| matches!(token.as_str(), "warmweiss" | "warmwhite" | "warmweis"))
-        || tokens.windows(2).any(|pair| {
-            pair[0] == "warm" && matches!(pair[1].as_str(), "white" | "weiss" | "weis")
-        })
+        || tokens.windows(2).any(|pair| pair[0] == "warm" && matches!(pair[1].as_str(), "white" | "weiss" | "weis"))
     {
         return Some("warmwhite".into());
     }

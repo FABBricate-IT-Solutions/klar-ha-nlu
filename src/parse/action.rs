@@ -1,5 +1,4 @@
 use crate::lang::{catalog, VerbKind};
-use crate::session::Session;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Action {
@@ -197,34 +196,6 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
         )
     ) || (matches!(command, Some(Action::On))
         && tokens.iter().any(|token| catalog().scene_nouns().contains(token.as_str()) || catalog().script_words().contains(token.as_str())))
-}
-
-pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<i32>) -> Action {
-    if number.is_some() {
-        return crate::parse::numbers::guess_numbered_action(
-            tokens,
-            session.last_entities().any(|entity| entity.starts_with("climate."))
-                || session.last_names().any(|name| name.contains("Climate"))
-                || session.last_domains().any(|domain| domain == "climate"),
-            session.last_entities().any(|entity| entity.starts_with("cover.")) || session.last_domains().any(|domain| domain == "cover"),
-            session.last_entities().any(|entity| entity.starts_with("fan.")) || session.last_domains().any(|domain| domain == "fan"),
-        );
-    }
-    if tokens.iter().any(|token| super::also::is_also_token(token)) {
-        followup_action(tokens, session)
-    } else {
-        Action::GetState
-    }
-}
-
-fn followup_action(tokens: &[String], session: &Session) -> Action {
-    if catalog().any(tokens, catalog().off_words()) {
-        return Action::Off;
-    }
-    match session.last.first().map(|turn| turn.name.as_str()) {
-        Some("HassLightSet") => Action::SetLight,
-        _ => Action::On,
-    }
 }
 
 fn has_structural_anchor(tokens: &[String]) -> bool {

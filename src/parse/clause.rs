@@ -1,6 +1,7 @@
 use crate::home::policy::{fallback_climate, fallback_cover_area};
 use crate::lang::catalog;
-use crate::parse::action::{detect_actions, domain_for, guess_action, is_hard_command, Action};
+use crate::parse::action::{detect_actions, domain_for, is_hard_command, Action};
+use crate::parse::also::guess_action;
 use crate::parse::clause_area::{
     area_command, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
 };
