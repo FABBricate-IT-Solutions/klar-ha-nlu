@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.61](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.59...2026.8.61) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #165 from FABBricate-IT-Solutions/fix/live-story-joke-calendar([228964d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/228964d8b14665131f9151a478451d792801c9ec))
+
+- Keep Guten Morgen from listing tomorrow's calendar.([b20a95b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b20a95ba86f32b7747c735fd811687eda68fde2d))
+
+- Tell stories, list tomorrow, keep calendar titles.([6317f11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6317f119d731b436beb87e7bcb2eda2a7695c24f))
+
+- Merge pull request #164 from FABBricate-IT-Solutions/chore/release-2026.8.60([00c8158](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/00c8158a73e2388c69db77e76e9953e1c43b9021))
+
+- Merge pull request #163 from FABBricate-IT-Solutions/fix/live-heat-not-session-volume([8d68136](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8d68136317959d617711363693cc2dc8d6d94890))
+
+- Stop heat setpoints from becoming satellite volume.([6289a86](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6289a8678e09a029326d0e165e60eb42177d88d4))
+
 ## [2026.8.60](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.59...2026.8.60) - 2026-08-29
 
 
