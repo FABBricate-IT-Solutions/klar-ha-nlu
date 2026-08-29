@@ -46,7 +46,7 @@ pub(crate) fn run_parity(lang: &str) -> RunStats {
     let mut stats = RunStats { ok: 0, fail: 0, fails: Vec::new() };
     if lang == "en" {
         stats.absorb(run_groups("wohnung_en", WOHNUNG, suite_home("wohnung_en")));
-        stats.absorb(run_groups("wohnung_en", &["conversation"], suite_home("wohnung_en")));
+        stats.absorb(run_groups_lang("wohnung_en", &["conversation"], suite_home("wohnung_en"), Some("en-only"), None));
         stats.absorb(run_groups("family_home_en", FAMILY, suite_home("family_home_en")));
         stats.absorb(run_groups("family_home_en", &["m0_exact"], suite_home("family_home_en")));
         stats.absorb(run_groups("family_home_en", &["m2_floors"], suite_home("family_home_en")));

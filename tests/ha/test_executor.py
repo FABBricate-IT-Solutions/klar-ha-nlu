@@ -62,6 +62,10 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
     with patch.dict(sys.modules, modules):
         contracts = _load(f"{PACKAGE}.contracts", "contracts.py")
         sys.modules[f"{PACKAGE}.contracts"] = contracts
+        _load(f"{PACKAGE}.clock_speech", "clock_speech.py")
+        _load(f"{PACKAGE}.speech_place", "speech_place.py")
+        _load("clock_speech", "clock_speech.py")
+        _load("speech_place", "speech_place.py")
         speech = _load(f"{PACKAGE}.speech", "speech.py")
         sys.modules[f"{PACKAGE}.speech"] = speech
         _load(f"{PACKAGE}.speech_locale", "speech_locale.py")

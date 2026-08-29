@@ -55,6 +55,11 @@ class SessionIsolationTests(unittest.TestCase):
         start = src.index("async def _parse")
         body = src[start : src.index("def _llm_session_id")]
         self.assertIn("parse_session_id(conversation_id, device_id, satellite_id)", body)
+        self.assertIn("post_parse(", src)
+        self.assertIn("finish_clock_speech", src)
+        self.assertIn("keeps_engine_chat", src)
+        http = (ROOT / "custom_components" / "klar_nlu" / "engine_http.py").read_text(encoding="utf-8")
+        self.assertIn("engine_url_candidates(url)", http)
         self.assertNotIn('"conversation_id": engine_session_id(device_id, satellite_id)', body)
 
     def test_empty_plan_does_not_say_done(self) -> None:

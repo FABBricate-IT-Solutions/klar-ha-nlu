@@ -144,6 +144,11 @@ class ConfigFlowSchemaTests(unittest.TestCase):
         marker = next(item for item in schema.schema if item.schema == config_flow.CONF_LANGUAGES)
         self.assertEqual(marker.default, config_flow.LANGUAGE_SYSTEM)
 
+    def test_hassio_discovery_uses_local_hass_io(self) -> None:
+        src = (ROOT / "custom_components" / "klar_nlu" / "config_flow.py").read_text(encoding="utf-8")
+        self.assertIn('f"http://{host}.local.hass.io:10520"', src)
+        self.assertNotIn('f"http://{host}:10520"', src)
+
 
 if __name__ == "__main__":
     unittest.main()

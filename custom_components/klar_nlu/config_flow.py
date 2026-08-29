@@ -195,7 +195,7 @@ class KlarConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return await self.async_step_user(
             {
                 CONF_MODE: MODE_REMOTE,
-                CONF_URL: f"http://{host}:10520",
+                CONF_URL: f"http://{host}.local.hass.io:10520",
                 CONF_CHANNEL: channel_for_addon_slug(slug),
             }
         )
