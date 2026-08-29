@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.56](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.55...2026.8.56) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- play kitchen Alexa and refuse non-TV living-room binds([9ac83a1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9ac83a18dfb73836c23b49961176a4876e661717))
+
+
+### Other
+
+- Merge pull request #155 from FABBricate-IT-Solutions/fix/live-kitchen-alexa-honest-tv([f3367db](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f3367db78a12e7a4ce4303fd286e70f4e5a40e4b))
+
+
+### Refactor
+
+- move area_slots so compound.rs stays under 500 lines([6ae422b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6ae422bd99c7497c4b464881faf8dc7cd1cfd7cc))
+
 ## [2026.8.55](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.54...2026.8.55) - 2026-08-29
 
 
