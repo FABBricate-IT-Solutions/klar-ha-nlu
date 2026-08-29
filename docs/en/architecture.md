@@ -4,6 +4,12 @@
 
 Klar is a rule-based NLU. A sentence is tokenized, checked against word lists, and turned into Home Assistant intents. There is no neural net in the engine.
 
+## Runtime map
+
+Interactive Assist → `POST /api/v2/parse` → `nlu::parse` → intent path, with Git-verified source ranges. Open [runtime.html](../architecture/runtime.html) locally; the typed source is [runtime.architecture.json](../architecture/runtime.architecture.json).
+
+[![Klar NLU runtime](../architecture/runtime.png)](../architecture/runtime.html)
+
 ## Pipeline
 
 ```

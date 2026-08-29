@@ -4,6 +4,12 @@
 
 Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. Es gibt kein neuronales Netz in der Engine.
 
+## Laufzeitkarte
+
+Interaktiver Weg Assist → `POST /api/v2/parse` → `nlu::parse` → Intent, mit git-geprüften Quellstellen. [runtime.html](architecture/runtime.html) lokal öffnen; typisierte Quelle: [runtime.architecture.json](architecture/runtime.architecture.json).
+
+[![Klar NLU runtime](architecture/runtime.png)](architecture/runtime.html)
+
 ## Ablauf
 
 ```
