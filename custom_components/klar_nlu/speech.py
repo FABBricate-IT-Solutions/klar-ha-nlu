@@ -24,6 +24,7 @@ _FALLBACK_ACTION = {
     "HassTurnOff": "{where} is off.",
     "HassToggle": "{where} is switched.",
     "HassLightSet": "{where} is at {level}.",
+    "HassClimateSetTemperature": "{where} is at {level}.",
 }
 _WRAP = 0
 
@@ -206,6 +207,11 @@ def media_state_speech(state: Any, status: str, pack: str) -> str:
 
 def _media_action_speech(name: str, pack: str, item: dict, handled: Any) -> str:
     where = _pretty_where(handled, item, pack)
+    if name == "HassClimateSetTemperature":
+        temp = _slots(item).get("temperature") or "?"
+        if _en(pack):
+            return f"{where} is at {temp} degrees."
+        return f"{where} auf {temp} Grad."
     if name == "HassSetVolume":
         if _en(pack):
             return f"{where} volume is set to {_level(item, pack)}."
@@ -450,6 +456,7 @@ _COLORS = {
     "pink": {"de": "pink", "en": "pink"},
     "black": {"de": "schwarz", "en": "black"},
     "white": {"de": "weiß", "en": "white"},
+    "warmwhite": {"de": "warmweiß", "en": "warm white"},
     "purple": {"de": "lila", "en": "purple"},
 }
 

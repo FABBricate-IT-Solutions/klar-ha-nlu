@@ -208,7 +208,7 @@ fn device_label(name: &str, domain: &str) -> String {
 }
 
 fn area_label(area: &str, domain: &str, intent: &str, home: Option<&HomeGraph>) -> String {
-    let light = domain == "light" || matches!(intent, "HassTurnOn" | "HassTurnOff" | "HassToggle" | "HassLightSet");
+    let light = domain == "light" || intent == "HassLightSet";
     if light && domain != "climate" && domain != "fan" && domain != "media_player" && domain != "switch" {
         speech().area_light.replace("{loc}", &loc(area, home))
     } else {

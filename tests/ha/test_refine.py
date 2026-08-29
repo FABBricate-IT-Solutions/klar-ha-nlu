@@ -157,6 +157,13 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(refine.accept_refined("Klimaanlage auf 19 Grad.", "Die Klimaanlage ist auf neunzehn Grad."))
         self.assertIsNone(refine.accept_refined("Erledigt: HassSetPosition.", "HassSetPosition ist erledigt."))
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an..."))
+        self.assertIsNone(
+            refine.accept_refined("Wohnzimmer TV ist an.", "Das Licht im Wohnzimmer ist an.")
+        )
+        self.assertIsNone(
+            refine.accept_refined("Der Fernseher ist gerade nicht erreichbar.", "Das Licht im Wohnzimmer ist an.")
+        )
+        self.assertTrue(refine.skip_rewrite("error"))
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"))
         self.assertEqual(
             refine.accept_refined("Meinst du Küche oder Wohnzimmer?", "Küche oder Wohnzimmer, Sir?"),

@@ -132,6 +132,47 @@ class SpeechTests(unittest.TestCase):
         self.assertNotIn("Satellite", spoken)
         self.assertNotIn("40", spoken)
 
+    def test_climate_set_speaks_degrees(self) -> None:
+        item = {
+            "name": "HassClimateSetTemperature",
+            "slots": [
+                {"name": "entity_id", "value": "climate.better_thermostat_wohnzimmer"},
+                {"name": "name", "value": "Heizung Wohnzimmer"},
+                {"name": "temperature", "value": "21"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertEqual(spoken, "Heizung Wohnzimmer auf 21 Grad.")
+        self.assertNotIn("nicht geklappt", spoken)
+
+    def test_warm_white_speaks_color_not_percent(self) -> None:
+        item = {
+            "name": "HassLightSet",
+            "slots": [
+                {"name": "entity_id", "value": "light.wohnzimmer"},
+                {"name": "color", "value": "warmwhite"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("warmweiß", spoken)
+        self.assertNotIn("Prozent", spoken)
+        self.assertNotIn("orange", spoken)
+
+    def test_tv_turn_on_does_not_claim_lights(self) -> None:
+        item = {
+            "name": "HassTurnOn",
+            "slots": [
+                {"name": "entity_id", "value": "media_player.wohnzimmer_tv"},
+                {"name": "name", "value": "Wohnzimmer TV"},
+                {"name": "area", "value": "wohnzimmer"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("TV", spoken)
+        self.assertNotIn("Licht", spoken)
+
     def test_light_set_speaks_color(self) -> None:
         item = {
             "name": "HassLightSet",

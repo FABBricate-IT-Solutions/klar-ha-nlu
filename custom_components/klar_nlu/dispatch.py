@@ -95,17 +95,22 @@ async def handle_intent(
         if (
             state is None
             or not exposed(entity_id)
-            or str(getattr(state, "state", "")).lower()
-            in {"unavailable", "unknown"}
+            or media_missing(state)
         ):
             return _fail("media_status_unavailable")
         return _ok(media_state_speech(state, media_status, pack))
+    if name == "HassMediaUnpause" and entity_id:
+        started = await start_idle_music(hass, entity_id, pack, item, exposed)
+        if started is not None:
+            return started
     if name in _SERVICE_ONLY:
         if not entity_id:
             return _fail("missing_entity")
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
-    if entity_id and (name in ENTITY_SERVICES or name == "HassLightSet"):
+    if entity_id and (name in ENTITY_SERVICES or name in {"HassLightSet", "HassClimateSetTemperature"}):
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
+    if name == "HassClimateSetTemperature":
+        return await climate_set(hass, slots, pack, item, exposed)
     if entity_id:
         if not exposed(entity_id):
             return _fail("entity_not_exposed")
@@ -113,7 +118,7 @@ async def handle_intent(
         if state is None:
             return _fail("entity_unavailable")
         domain = entity_id.split(".", 1)[0]
-        if domain == "media_player" and str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}:
+        if domain == "media_player" and media_missing(state):
             return _fail("media_unavailable")
         slots["name"] = {"value": state.name}
         slots.setdefault("domain", {"value": domain})
@@ -247,22 +252,18 @@ async def run_entity(
     if not exposed(entity_id):
         return _fail("entity_not_exposed")
     domain = entity_id.split(".", 1)[0]
-    if (
-        domain == "media_player"
-        and name in MEDIA_SERVICES
-        and str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
-    ):
+    if domain == "media_player" and media_missing(state):
         return _fail("media_unavailable")
     data: dict[str, Any] = {"entity_id": entity_id}
     if name == "HassLightSet" and domain == "light":
         service = "turn_on"
-        if (bri := slots.get("brightness", {}).get("value")) is not None:
-            try:
-                data["brightness_pct"] = max(0, min(100, int(bri)))
-            except (TypeError, ValueError):
-                pass
-        if color := slots.get("color", {}).get("value"):
-            data["color_name"] = str(color)
+        data.update(light_turn_on(slots))
+    elif name == "HassClimateSetTemperature" and domain == "climate":
+        service = "set_temperature"
+        extra = climate_set_data(slots, state)
+        if extra is None:
+            return _fail("invalid_temperature")
+        data.update(extra)
     elif domain == "media_player" and name in MEDIA_SERVICES:
         service = MEDIA_SERVICES[name]
         if name == "HassSetVolume":
@@ -320,7 +321,7 @@ async def run_mass(
     if (
         state is None
         or not exposed(entity_id)
-        or str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+        or media_missing(state)
     ):
         return _fail("mass_target_unavailable")
     if name == "MassFavorite":
@@ -349,8 +350,7 @@ async def run_mass(
                 source_state is None
                 or source_player == entity_id
                 or not exposed(source_player)
-                or str(getattr(source_state, "state", "")).lower()
-                in {"unavailable", "unknown"}
+                or media_missing(source_state)
             ):
                 return _fail("transfer_source_unavailable")
             await hass.services.async_call("music_assistant", "transfer_queue", data, blocking=True, target={"entity_id": entity_id})
@@ -388,6 +388,85 @@ def clean_service_data(slots: dict[str, Any], names: list[str]) -> dict[str, Any
         if value not in (None, ""):
             data[name] = value
     return data
+
+
+def media_missing(state: Any) -> bool:
+    return str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+
+
+def light_turn_on(slots: dict[str, Any]) -> dict[str, Any]:
+    data: dict[str, Any] = {}
+    if (bri := slots.get("brightness", {}).get("value")) is not None:
+        try:
+            data["brightness_pct"] = max(0, min(100, int(bri)))
+        except (TypeError, ValueError):
+            pass
+    step = str(slots.get("brightness_step", {}).get("value") or "")
+    if step in {"up", "down"}:
+        data["brightness_step_pct"] = 15 if step == "up" else -15
+    color = str(slots.get("color", {}).get("value") or "")
+    key = color.casefold().replace(" ", "").replace("ß", "ss")
+    if key in {"warmwhite", "warmweiss"}:
+        data["color_temp_kelvin"] = 2700
+    elif color:
+        data["color_name"] = color
+    return data
+
+
+def climate_set_data(slots: dict[str, Any], state: Any) -> dict[str, Any] | None:
+    try:
+        data = {"temperature": float(slots.get("temperature", {}).get("value"))}
+    except (TypeError, ValueError):
+        return None
+    attrs = getattr(state, "attributes", None) or {}
+    mode = str((attrs.get("hvac_mode") if isinstance(attrs, dict) else None) or getattr(state, "state", "") or "")
+    if mode.casefold() in {"off", "idle", "frost"}:
+        data["hvac_mode"] = "heat"
+    return data
+
+
+async def climate_set(
+    hass: HomeAssistant,
+    slots: dict[str, Any],
+    pack: str,
+    item: dict,
+    exposed: Callable[[str], bool],
+) -> IntentStepResult:
+    area_key = str(slots.get("area", {}).get("value") or "")
+    states = [state for state in climate_states_in_area(hass, area_key) if exposed(state.entity_id)]
+    if not states:
+        return _fail("climate_unavailable")
+    last = _fail("climate_unavailable")
+    for state in states:
+        last = await run_entity(hass, "HassClimateSetTemperature", state.entity_id, slots, pack, item, exposed)
+        if last.ok:
+            return last
+    return last
+
+
+async def start_idle_music(
+    hass: HomeAssistant,
+    entity_id: str,
+    pack: str,
+    item: dict,
+    exposed: Callable[[str], bool],
+) -> IntentStepResult | None:
+    state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
+    if state is None or not exposed(entity_id) or media_missing(state):
+        return None
+    if str(getattr(state, "state", "")).lower() not in {"idle", "off", "on", "standby"}:
+        return None
+    if not music_assistant_player(hass, entity_id):
+        return None
+    query = "Musik" if pack == "de" or pack.startswith("de-") else "music"
+    return await run_mass(
+        hass,
+        "MassPlayMedia",
+        {"entity_id": {"value": entity_id}, "media_id": {"value": query}},
+        pack,
+        {**item, "name": "MassPlayMedia", "slots": [*(item.get("slots") or []), {"name": "media_id", "value": query}]},
+        exposed,
+    )
 
 
 def music_assistant_player(hass: HomeAssistant, entity_id: str) -> bool:
