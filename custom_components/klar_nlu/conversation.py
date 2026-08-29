@@ -45,7 +45,7 @@ from .const import (
     resolve_personality,
 )
 from .engine_http import post_parse
-from .lang_select import advertise, enabled_packs, resolve_pack, speak_tag
+from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
 from .contracts import executable_intents
 from .executor import execute_plan
 from .fallback import (
@@ -140,9 +140,16 @@ class KlarConversationEntity(ConversationEntity):
             getattr(self.hass.config, "language", None),
         )
 
+    def _request_pack(self, language: str | None) -> str:
+        choice = self._entry.options.get(CONF_LANGUAGES)
+        hass_language = getattr(self.hass.config, "language", None)
+        if language:
+            return resolve_pack(language, self._packs())
+        return default_pack(choice, hass_language)
+
     @property
     def supported_languages(self) -> list[str]:
-        return advertise(self._packs())
+        return advertised_languages()
 
     @property
     def _url(self) -> str:
@@ -203,7 +210,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
-        pack = resolve_pack(user_input.language, self._packs())
+        pack = self._request_pack(user_input.language)
         triggered = await self._sentence_triggers(user_input, chat_log, pack)
         if triggered is not None:
             return triggered
@@ -526,7 +533,7 @@ class KlarConversationEntity(ConversationEntity):
     async def _parse(
         self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
-        pack = resolve_pack(language, self._packs())
+        pack = self._request_pack(language)
         body: dict[str, Any] = {
             "text": text,
             "conversation_id": parse_session_id(conversation_id, device_id, satellite_id),

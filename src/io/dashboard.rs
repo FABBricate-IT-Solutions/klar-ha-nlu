@@ -44,7 +44,9 @@ async fn get_ui(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    Ok(Json(sanitize_ui(load_overlay(&state.data_dir).ui)))
+    let mut ui = sanitize_ui(load_overlay(&state.data_dir).ui);
+    ui.locale = effective_ui_locale(&ui);
+    Ok(Json(ui))
 }
 
 async fn set_ui(
@@ -62,18 +64,42 @@ async fn set_ui(
     Ok(Json(overlay.ui))
 }
 
+fn locale_from_env(raw: Option<&str>) -> Option<String> {
+    let trimmed = raw?.trim();
+    if trimmed.is_empty() {
+        return None;
+    }
+    Some(resolve_ui_locale(trimmed))
+}
+
+fn effective_ui_locale(ui: &UiState) -> String {
+    effective_ui_locale_with(ui, std::env::var("KLAR_UI_LOCALE").ok().as_deref())
+}
+
+fn effective_ui_locale_with(ui: &UiState, env: Option<&str>) -> String {
+    if ui.locale_set && !ui.locale.is_empty() {
+        return resolve_ui_locale(&ui.locale);
+    }
+    locale_from_env(env).unwrap_or_else(|| "en".into())
+}
+
 fn resolve_ui_locale(raw: &str) -> String {
+    if raw.is_empty() {
+        return "en".into();
+    }
     if let Some(id) = crate::lang::LangId::from_code(raw) {
         return id.code().to_string();
     }
     if let Some(id) = crate::lang::LangId::from_tag(raw) {
         return id.code().to_string();
     }
-    "de".into()
+    "en".into()
 }
 
 fn sanitize_ui(mut ui: UiState) -> UiState {
-    ui.locale = resolve_ui_locale(&ui.locale);
+    if ui.locale_set || !ui.locale.is_empty() {
+        ui.locale = resolve_ui_locale(&ui.locale);
+    }
     if ui.tab.is_empty() || ui.tab.len() > 32 {
         ui.tab = "home".into();
     }
@@ -182,7 +208,7 @@ mod tests {
             ..Default::default()
         });
         assert_eq!(ui.tab, "home");
-        assert_eq!(ui.locale, "de");
+        assert_eq!(ui.locale, "en");
         assert_eq!(ui.dismissed, vec!["light.ok"]);
         assert!(!ui.wizard_done);
         assert_eq!(ui.house_view, "calibrate");
@@ -227,6 +253,20 @@ mod tests {
         assert_eq!(resolve_ui_locale("zh-CN"), "zh-CN");
         assert_eq!(resolve_ui_locale("sr-Latn"), "sr-Latn");
         assert_eq!(resolve_ui_locale("de-CH"), "de-CH");
-        assert_eq!(resolve_ui_locale("nope"), "de");
+        assert_eq!(resolve_ui_locale("nope"), "en");
+        assert_eq!(resolve_ui_locale(""), "en");
+    }
+
+    #[test]
+    fn operator_chrome_uses_saved_locale_or_klar_ui_locale() {
+        let saved = UiState { locale: "de".into(), locale_set: true, ..Default::default() };
+        assert_eq!(effective_ui_locale_with(&saved, Some("fr")), "de");
+        let unset = UiState { locale: String::new(), locale_set: false, ..Default::default() };
+        assert_eq!(effective_ui_locale_with(&unset, Some("fr")), "fr");
+        assert_eq!(effective_ui_locale_with(&unset, Some("en-GB")), "en-GB");
+        assert_eq!(effective_ui_locale_with(&unset, Some("")), "en");
+        assert_eq!(effective_ui_locale_with(&unset, None), "en");
+        assert_eq!(locale_from_env(Some("de-DE")).as_deref(), Some("de"));
+        assert_eq!(locale_from_env(Some("  ")), None);
     }
 }

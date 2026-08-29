@@ -111,6 +111,8 @@ async def handle_intent(
         if not entity_id:
             return _fail("missing_entity")
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
+    if name == "HassLightSet" and not entity_id:
+        return _fail("missing_entity")
     if entity_id and (name in ENTITY_SERVICES or name in {"HassLightSet", "HassClimateSetTemperature"}):
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
     if name == "HassClimateSetTemperature":

@@ -9,7 +9,7 @@ Zuerst der Haushaltsweg: [Einstieg](getting-started.md). Hier: Fehltreffer, Writ
 1. **Freigabe.** Einstellungen → Sprachassistenten → Freigeben. Die Option **Nur für Assist freigegebene Entitäten steuern** ist standardmäßig an. Versteckte Sensoren und Schalter sind keine Ziele.
 2. **Name und Raum.** Die Entität braucht einen sprechbaren Namen und einen Raum in Home Assistant. Ein generisches „Licht“ in einem Raum mit drei Lampen wird zur Rückfrage.
 3. **Zuordnung.** App-Seitenleiste **Klar NLU** → **Haus → Zuordnung** (nicht Lovelace **Klar**). Alias setzen oder Raumvorschlag übernehmen. Keine zweite Geräteliste in Klar bauen.
-4. **Sprache.** Assist auf die gesprochene Locale pinnen (`de`, `en`, `fr`, …). Klar bindet dieses Pack für den Request.
+4. **Sprache.** Das Sprachassistenten-Dropdown listet jede kompilierte Locale. Pipeline-Sprache wählen (`de`, `en`, `fr`, …). Klar bindet dieses Pack, außer Sprachen ist ein einzelnes gepinntes Pack.
 
 Die Integrationsoption **Nur für Assist freigegebene Entitäten steuern** ist eine Entwickler-Ausnahme. Aus trifft auch versteckte Entitäten — leichter das falsche Gerät.
 

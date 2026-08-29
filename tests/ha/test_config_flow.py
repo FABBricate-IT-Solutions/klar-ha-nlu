@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 import types
 import unittest
@@ -143,6 +144,15 @@ class ConfigFlowSchemaTests(unittest.TestCase):
             self.assertTrue(str(item["label"]).strip())
         marker = next(item for item in schema.schema if item.schema == config_flow.CONF_LANGUAGES)
         self.assertEqual(marker.default, config_flow.LANGUAGE_SYSTEM)
+        src = (ROOT / "custom_components" / "klar_nlu" / "config_flow.py").read_text(encoding="utf-8")
+        self.assertIn('translation_key="nlu_language"', src)
+        self.assertIn('translation_key="personality"', src)
+        strings = json.loads((ROOT / "custom_components" / "klar_nlu" / "strings.json").read_text(encoding="utf-8"))
+        german = json.loads((ROOT / "custom_components" / "klar_nlu" / "translations" / "de.json").read_text(encoding="utf-8"))
+        self.assertEqual(strings["selector"]["nlu_language"]["options"]["system"], "System language")
+        self.assertEqual(german["selector"]["nlu_language"]["options"]["system"], "Systemsprache")
+        self.assertEqual(strings["entity"]["select"]["personality"]["name"], "Personality")
+        self.assertEqual(german["entity"]["select"]["personality"]["name"], "Persönlichkeit")
 
     def test_hassio_discovery_uses_local_hass_io(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "config_flow.py").read_text(encoding="utf-8")

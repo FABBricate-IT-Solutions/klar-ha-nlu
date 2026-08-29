@@ -489,6 +489,21 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("rgb_color", args.args[2])
         self.assertIn("warmweiß", spoken.speech or "")
 
+    async def test_light_set_without_entity_does_not_claim_success(self) -> None:
+        hass = _hass()
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassLightSet", brightness=100),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "missing_entity")
+        hass.services.async_call.assert_not_awaited()
+        dispatch.intent.async_handle.assert_not_awaited()
+
     async def test_idle_kitchen_music_starts_mass_playback(self) -> None:
         player = _State(
             "media_player.kuchenbereich",
