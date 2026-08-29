@@ -239,6 +239,45 @@ fn volume_number_after_satellite_still_sets_volume() {
 }
 
 #[test]
+fn living_room_percent_does_not_bind_satellite_volume() {
+    let home = home_with_satellite_and_kitchen_alexa();
+    for sentence in [
+        "Wohnzimmerlicht auf 100%",
+        "Wohnzimmer Licht auf 100 Prozent",
+        "Licht im Wohnzimmer auf 100 Prozent",
+        "Wohnzimmerlicht auf 50%",
+        "living room lights at 100%",
+    ] {
+        let mut session = Session::new();
+        session.remember_entity("media_player.satellite1_db12c8");
+        let result = parse(sentence, &home, &mut session, &[], &settings("de"));
+        let intent = result.intents.first().expect(sentence);
+        assert!(!result.clarify, "{sentence}: {result:?}");
+        assert_eq!(intent.name, "HassLightSet", "{sentence}: {result:?}");
+        let want = if sentence.contains("50") { "50" } else { "100" };
+        assert_eq!(intent.slot("brightness"), Some(want), "{sentence}: {result:?}");
+        assert_eq!(intent.slot("entity_id"), Some("light.wohnzimmer"), "{sentence}: {result:?}");
+        assert_ne!(intent.slot("entity_id"), Some("media_player.satellite1_db12c8"), "{sentence}: {result:?}");
+    }
+}
+
+#[test]
+fn living_room_hell_and_volle_helligkeit_set_full_brightness() {
+    let home = home_with_satellite_and_kitchen_alexa();
+    for sentence in ["Wohnzimmer hell", "volle Helligkeit"] {
+        let mut session = Session::new();
+        session.remember_entity("media_player.satellite1_db12c8");
+        session.preferred_area = Some("wohnzimmer".into());
+        let result = parse(sentence, &home, &mut session, &[], &settings("de"));
+        let intent = result.intents.first().expect(sentence);
+        assert!(!result.clarify, "{sentence}: {result:?}");
+        assert_eq!(intent.name, "HassLightSet", "{sentence}: {result:?}");
+        assert_eq!(intent.slot("brightness"), Some("100"), "{sentence}: {result:?}");
+        assert_eq!(intent.slot("entity_id"), Some("light.wohnzimmer"), "{sentence}: {result:?}");
+    }
+}
+
+#[test]
 fn tv_an_stays_plain_media_player_turn_on() {
     let intent = one("Wohnzimmer TV an", "de");
     assert_eq!(intent.name, "HassTurnOn");

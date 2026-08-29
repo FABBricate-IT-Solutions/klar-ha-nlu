@@ -52,3 +52,8 @@ class OperatorUiParity(unittest.TestCase):
         self.assertIn("chromeLocale(ui.locale)", app)
         self.assertNotIn("chromeLocale(settings.languages", app)
         self.assertNotIn('locale: "de"', app)
+        overlay = (ROOT / "src" / "home" / "overlay.rs").read_text(encoding="utf-8")
+        dashboard = (ROOT / "src" / "io" / "dashboard.rs").read_text(encoding="utf-8")
+        self.assertIn('fn default_locale() -> String {\n    "en".into()', overlay)
+        self.assertNotIn('"de".into()', dashboard)
+        self.assertIn("locale_from_accept_language", dashboard)

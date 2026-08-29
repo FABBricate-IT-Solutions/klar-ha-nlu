@@ -109,9 +109,15 @@ pub(crate) fn detect_actions_bounded(tokens: &[String], maximum: usize) -> Vec<(
             Some(VerbKind::Stop) => stop_action(tokens),
             Some(VerbKind::Toggle) => Some(Action::Toggle),
             Some(VerbKind::Dim) => Some(Action::SetLight),
-            Some(VerbKind::Brightness) => {
-                Some(if crate::parse::numbers::first_number(tokens).is_some() { Action::SetLight } else { Action::GetState })
-            }
+            Some(VerbKind::Brightness) => Some(
+                if crate::parse::numbers::first_number(tokens).is_some()
+                    || tokens.iter().any(|token| matches!(token.as_str(), "voll" | "volle" | "full" | "maximal" | "maximum"))
+                {
+                    Action::SetLight
+                } else {
+                    Action::GetState
+                },
+            ),
             Some(VerbKind::Speed) => {
                 Some(if crate::parse::numbers::first_number(tokens).is_some() { Action::FanSpeed } else { Action::GetState })
             }
@@ -253,7 +259,7 @@ fn has_fan_noun(tokens: &[String]) -> bool {
 }
 
 pub(crate) fn has_light_noun(tokens: &[String]) -> bool {
-    catalog().any(tokens, catalog().light_nouns())
+    catalog().any(tokens, catalog().light_nouns()) || tokens.iter().any(|token| matches!(token.as_str(), "light" | "lights"))
 }
 
 fn has_climate_noun(tokens: &[String]) -> bool {

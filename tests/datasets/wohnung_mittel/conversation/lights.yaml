@@ -14,6 +14,68 @@
     - nicht geklappt
     - what seems to be the issue
 
+- name: brightness_percent_100
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - Wohnzimmerlicht auf 100%
+    - Wohnzimmer Licht auf 100 Prozent
+    - Licht im Wohnzimmer auf 100 Prozent
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_percent_50
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 50}
+  sentences:
+    - Wohnzimmerlicht auf 50%
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 50}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_wohnzimmer_hell
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - Wohnzimmer hell
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - r2d2
+
+- name: brightness_volle_helligkeit
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - - Licht im Wohnzimmer an
+      - volle Helligkeit
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+
 - name: relative_dim
   setup:
     - {entity_id: light.wohnzimmer, state: 'on', brightness: 80}

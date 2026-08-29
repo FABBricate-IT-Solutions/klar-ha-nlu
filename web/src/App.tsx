@@ -370,7 +370,7 @@ export function App() {
             lastTurn={journal ? journal.at(-1) ?? null : undefined}
           />
         )}
-        {ui.tab === "conversations" && <ConversationsPage t={t} onReplay={replay} onTeach={teach} />}
+        {ui.tab === "conversations" && <ConversationsPage t={t} locale={locale} onReplay={replay} onTeach={teach} />}
         {ui.tab === "rules" && (
           <RulesPage
             t={t}

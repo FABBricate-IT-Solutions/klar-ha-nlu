@@ -84,6 +84,11 @@ class LangSelectTests(unittest.TestCase):
         self.assertEqual(chrome, "zh-CN")
         self.assertEqual(lang.chrome_locale("de"), "de")
         self.assertEqual(lang.chrome_locale("en-GB"), "en-GB")
+        self.assertEqual(lang.chrome_locale(None), "en")
+        self.assertEqual(lang.chrome_locale(""), "en")
+        pinned, chrome = lang.engine_language_state("de", None)
+        self.assertEqual(pinned, ["de"])
+        self.assertEqual(chrome, "en")
 
 
 if __name__ == "__main__":

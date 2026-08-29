@@ -61,7 +61,7 @@ fn default_tab() -> String {
 }
 
 fn default_locale() -> String {
-    "de".into()
+    "en".into()
 }
 
 fn default_house_view() -> String {

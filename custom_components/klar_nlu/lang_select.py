@@ -90,6 +90,8 @@ def enabled_packs(raw: object, hass_language: str | None = None) -> list[str]:
 
 def chrome_locale(hass_language: str | None = None) -> str:
     """HA system/frontend language for integration and app chrome, not the NLU pin."""
+    if not str(hass_language or "").strip():
+        return "en"
     return resolve_pack(hass_language)
 
 

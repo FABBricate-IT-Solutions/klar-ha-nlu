@@ -245,6 +245,9 @@ pub(crate) fn light_level(tokens: &[String]) -> Option<LightLevel> {
     if tokens.iter().any(|token| matches!(token.as_str(), "dunkler" | "dimmer" | "darker" | "dimme" | "dimmen" | "dim")) {
         return Some(LightLevel::Step("down"));
     }
+    if tokens.iter().any(|token| matches!(token.as_str(), "voll" | "volle" | "full" | "maximal" | "maximum" | "hell" | "bright")) {
+        return Some(LightLevel::Absolute(100));
+    }
     None
 }
 

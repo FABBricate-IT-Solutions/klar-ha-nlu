@@ -14,6 +14,37 @@
     - nicht geklappt
     - what seems to be the issue
 
+- name: brightness_percent_100
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - living room lights at 100%
+    - Set the living room lights to 100 percent
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_percent_50
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 50}
+  sentences:
+    - living room lights at 50%
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 50}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
 - name: relative_dim
   setup:
     - {entity_id: light.wohnzimmer, state: 'on', brightness: 80}

@@ -44,7 +44,11 @@ async fn get_ui(
     if !reads_allowed(Some(peer), &headers, &state.token) {
         return Err(StatusCode::UNAUTHORIZED);
     }
-    Ok(Json(sanitize_ui(load_overlay(&state.data_dir).ui)))
+    let mut ui = sanitize_ui(load_overlay(&state.data_dir).ui);
+    if let Some(locale) = locale_from_accept_language(&headers) {
+        ui.locale = locale;
+    }
+    Ok(Json(ui))
 }
 
 async fn set_ui(
@@ -62,14 +66,32 @@ async fn set_ui(
     Ok(Json(overlay.ui))
 }
 
+fn locale_from_accept_language(headers: &HeaderMap) -> Option<String> {
+    let raw = headers.get("accept-language")?.to_str().ok()?;
+    for part in raw.split(',') {
+        let tag = part.split(';').next()?.trim();
+        if tag.is_empty() || tag == "*" {
+            continue;
+        }
+        let resolved = resolve_ui_locale(tag);
+        if resolved != "en" || tag.to_ascii_lowercase().starts_with("en") {
+            return Some(resolved);
+        }
+    }
+    None
+}
+
 fn resolve_ui_locale(raw: &str) -> String {
+    if raw.is_empty() {
+        return "en".into();
+    }
     if let Some(id) = crate::lang::LangId::from_code(raw) {
         return id.code().to_string();
     }
     if let Some(id) = crate::lang::LangId::from_tag(raw) {
         return id.code().to_string();
     }
-    "de".into()
+    "en".into()
 }
 
 fn sanitize_ui(mut ui: UiState) -> UiState {
@@ -182,7 +204,7 @@ mod tests {
             ..Default::default()
         });
         assert_eq!(ui.tab, "home");
-        assert_eq!(ui.locale, "de");
+        assert_eq!(ui.locale, "en");
         assert_eq!(ui.dismissed, vec!["light.ok"]);
         assert!(!ui.wizard_done);
         assert_eq!(ui.house_view, "calibrate");
@@ -227,6 +249,19 @@ mod tests {
         assert_eq!(resolve_ui_locale("zh-CN"), "zh-CN");
         assert_eq!(resolve_ui_locale("sr-Latn"), "sr-Latn");
         assert_eq!(resolve_ui_locale("de-CH"), "de-CH");
-        assert_eq!(resolve_ui_locale("nope"), "de");
+        assert_eq!(resolve_ui_locale("nope"), "en");
+        assert_eq!(resolve_ui_locale(""), "en");
+    }
+
+    #[test]
+    fn operator_chrome_follows_accept_language_not_nlu_pin() {
+        let mut headers = HeaderMap::new();
+        headers.insert("accept-language", "de-DE,de;q=0.9,en;q=0.8".parse().unwrap());
+        assert_eq!(locale_from_accept_language(&headers).as_deref(), Some("de"));
+        headers.insert("accept-language", "en-GB,en;q=0.9".parse().unwrap());
+        assert_eq!(locale_from_accept_language(&headers).as_deref(), Some("en-GB"));
+        headers.insert("accept-language", "fr-FR,fr;q=0.8".parse().unwrap());
+        assert_eq!(locale_from_accept_language(&headers).as_deref(), Some("fr"));
+        assert_eq!(locale_from_accept_language(&HeaderMap::new()), None);
     }
 }

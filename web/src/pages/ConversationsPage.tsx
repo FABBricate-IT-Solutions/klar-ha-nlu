@@ -21,17 +21,18 @@ function turnTitle(turn: ConversationTurn, locale: string | undefined): string {
 
 export function ConversationsPage({
   t,
+  locale,
   onReplay,
   onTeach,
 }: {
   t: Messages;
+  locale: string;
   onReplay: (text: string) => void;
   onTeach?: (heard: string) => void;
 }) {
   const [turns, setTurns] = useState<ConversationTurn[] | null>(null);
   const [error, setError] = useState("");
   const [why, setWhy] = useState<ConversationTurn | null>(null);
-  const locale = t.replay === "Nochmal" ? "de" : undefined;
   useEffect(() => {
     api.conversations()
       .then((rows) => setTurns(asTurns(rows)))
