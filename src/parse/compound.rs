@@ -2,6 +2,7 @@ use crate::home::classify::is_generic_room_light;
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra_light;
 use crate::home::policy::is_whole_home;
+use crate::home::roles::{looks_like_tv, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::fuzzy::{evidence, select_unique, Profile};
@@ -447,6 +448,11 @@ pub(crate) fn area_slots(
     home: &HomeGraph,
     tokens: &[String],
 ) -> (Option<String>, Option<String>, Option<String>) {
+    if tv_asked(tokens) {
+        let id = crate::parse::resolve::unique_in_area(home, area, "media_player", tokens)
+            .filter(|entity_id| home.entities.iter().any(|entity| entity.entity_id == *entity_id && looks_like_tv(entity)));
+        return (id, Some(area.to_string()), Some("media_player".into()));
+    }
     if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
         return match light_aim(home, area, tokens) {
             LightAim::RoomGroup(id) | LightAim::Unique(id) => (Some(id), None, None),

@@ -1,6 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::home::roles::matches_domain;
+use crate::home::roles::{looks_like_tv, matches_domain, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::fuzzy::{evidence, Profile};
@@ -183,6 +183,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                 .filter(|e| assist_visible(e, home))
                 .filter(|e| matches_domain(e, d, catalog()) && !is_infra(e))
                 .filter(|e| scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
+                .filter(|e| d != "media_player" || !tv_asked(tokens) || looks_like_tv(e))
                 .cloned()
                 .collect();
             if in_domain.len() == 1 {

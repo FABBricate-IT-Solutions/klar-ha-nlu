@@ -1,7 +1,7 @@
 use crate::home::classify::is_tv_switch;
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::lang::Catalog;
+use crate::lang::{catalog, Catalog};
 use crate::parse::normalize::compact;
 use crate::types::{EntityRec, HomeGraph};
 use serde::Deserialize;
@@ -92,10 +92,26 @@ pub fn is_music_assistant_player(entity: &EntityRec) -> bool {
     entity.domain == "media_player" && entity.platform.as_deref() == Some("music_assistant")
 }
 
+pub fn tv_asked(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| matches!(compact(token).as_str(), "tv" | "fernseher" | "television"))
+        || catalog().any(tokens, catalog().tv_words())
+}
+
+pub fn looks_like_tv(entity: &EntityRec) -> bool {
+    if entity.domain != "media_player" && entity.domain != "switch" {
+        return false;
+    }
+    let folded = compact(&format!("{} {} {}", entity.entity_id, entity.name, entity.aliases.join(" ")));
+    folded.contains("tv") || folded.contains("fernseher") || folded.contains("television")
+}
+
 pub fn is_music_player(entity: &EntityRec) -> bool {
+    if entity.domain != "media_player" || looks_like_tv(entity) {
+        return false;
+    }
     is_music_assistant_player(entity)
-        || (entity.domain == "media_player"
-            && entity.tags.iter().any(|tag| matches!(compact(tag).as_str(), "musik" | "music" | "medien" | "media")))
+        || entity.platform.as_deref() == Some("alexa_devices")
+        || entity.tags.iter().any(|tag| matches!(compact(tag).as_str(), "musik" | "music" | "medien" | "media"))
 }
 
 pub fn matches_domain(entity: &EntityRec, domain: &str, cat: &Catalog) -> bool {
