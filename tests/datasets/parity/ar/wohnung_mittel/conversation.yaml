@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - شغل تكييف صالون
+  - '21'
+conversation/climate::heat_setpoint:
+- حط تكييف صالون 21
+conversation/climate::temperature_query:
+- ايش تكييف صالون
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - اطفئ ضوء غرفة
+  - شغل ضوء صالون
+  - و مطبخ ايضا
+conversation/followup::followup_same_action_other_room:
+- - شغل ضوء صالون
+  - و مطبخ ايضا
+conversation/house::clock_calendar_weather:
+- ايش hour
+- ايش تقويم
+- ايش تكييف
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- شغل alloff
+conversation/lights::ambiguous_light:
+- شغل ضوء
+conversation/lights::brightness_percent:
+- حط ضوء صالون 30 بالمئة
+conversation/lights::color_red:
+- - شغل ضوء صالون
+  - red
+conversation/lights::dim_then_level:
+- - اغمق ضوء صالون
+  - متوسط
+conversation/lights::relative_dim:
+- - شغل ضوء صالون
+  - اغمق
+conversation/lights::warm_white:
+- - شغل ضوء صالون
+  - ابيضدافئ
+conversation/lights::which_lights_on:
+- - شغل ضوء صالون
+  - شغل ضوء مطبخ
+  - ايش ضوء
+conversation/media::music_artist_then_now_playing:
+- - تشغيل queen مطبخ
+  - ايش موسيقى
+conversation/media::music_play_in_room:
+- تشغيل موسيقى مطبخ
+conversation/media::next_and_pause:
+- - تشغيل موسيقى مطبخ
+  - next
+  - pause
+conversation/media::tv_not_light:
+- شغل تلفاز صالون
+conversation/media::volume_down:
+- اخفض موسيقى

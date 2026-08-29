@@ -47,7 +47,7 @@ class RefineTests(unittest.TestCase):
         self.assertIn("2 Lichter sind an, 3 Lichter sind aus.", prompt)
         self.assertIn("21,5 °C", prompt)
         self.assertIn("Keine neuen Zahlen", prompt)
-        self.assertIn("ein oder zwei Sätze", prompt)
+        self.assertIn("ein Satz", prompt)
         self.assertIn("Ein oder zwei Sätze.", prompt)
         self.assertIn("Offene Fragen", prompt)
         self.assertIn("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage.", prompt)
@@ -102,7 +102,10 @@ class RefineTests(unittest.TestCase):
             prompt = refine.refine_prompt("de", name, None)
             self.assertIn(marker, prompt, name)
             self.assertNotIn("Hänge immer an", prompt, name)
-            self.assertRegex(prompt, r"→ .+\. .+", name)
+            self.assertRegex(prompt, r"→ .+\.", name)
+            if name == "default":
+                self.assertNotIn("Es ist eingeschaltet", prompt)
+                self.assertNotIn("That is done.", refine.refine_prompt("en", "default", None))
             self.assertNotIn(prompt, seen)
             seen.add(prompt)
 

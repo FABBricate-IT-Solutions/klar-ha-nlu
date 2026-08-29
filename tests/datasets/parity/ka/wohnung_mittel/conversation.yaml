@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ჩართე გათბობა მისაღები
+  - '21'
+conversation/climate::heat_setpoint:
+- დააყენე გათბობა მისაღები 21
+conversation/climate::temperature_query:
+- რა გათბობა მისაღები
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - გამორთე სინათლე sadzinebeli
+  - ჩართე სინათლე მისაღები
+  - და სამზარეულო c
+conversation/followup::followup_same_action_other_room:
+- - ჩართე სინათლე მისაღები
+  - და სამზარეულო c
+conversation/house::clock_calendar_weather:
+- რა hour
+- რა კალენდარი
+- რა გათბობა
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ჩართე alloff
+conversation/lights::ambiguous_light:
+- ჩართე სინათლე
+conversation/lights::brightness_percent:
+- დააყენე სინათლე მისაღები 30 protsenti
+conversation/lights::color_red:
+- - ჩართე სინათლე მისაღები
+  - red
+conversation/lights::dim_then_level:
+- - upro სინათლე მისაღები
+  - shuaguli
+conversation/lights::relative_dim:
+- - ჩართე სინათლე მისაღები
+  - upro
+conversation/lights::warm_white:
+- - ჩართე სინათლე მისაღები
+  - tbili tetri
+conversation/lights::which_lights_on:
+- - ჩართე სინათლე მისაღები
+  - ჩართე სინათლე სამზარეულო
+  - რა სინათლე
+conversation/media::music_artist_then_now_playing:
+- - დაკვრა queen სამზარეულო
+  - რა televizori
+conversation/media::music_play_in_room:
+- დაკვრა televizori სამზარეულო
+conversation/media::next_and_pause:
+- - დაკვრა televizori სამზარეულო
+  - next
+  - პაუზა
+conversation/media::tv_not_light:
+- ჩართე tv მისაღები
+conversation/media::volume_down:
+- unda televizori

@@ -33,6 +33,7 @@ VOICE_DE = (
     "suite_deutsch_familienhaus",
     "suite_m0_exact_german",
     "suite_m2_floors_german",
+    "suite_conversation_german",
     "suite_wohnung_live_assist",
 )
 VOICE_EN = (
@@ -40,6 +41,7 @@ VOICE_EN = (
     "suite_english_family_home",
     "suite_m0_exact_english",
     "suite_m2_floors_english",
+    "suite_conversation_english",
 )
 
 

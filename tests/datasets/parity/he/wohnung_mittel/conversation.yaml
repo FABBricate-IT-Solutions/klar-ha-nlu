@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - הדלק חימום סלון
+  - '21'
+conversation/climate::heat_setpoint:
+- שים חימום סלון 21
+conversation/climate::temperature_query:
+- מה חימום סלון
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - כבה אור חדרשינה
+  - הדלק אור סלון
+  - ו מטבח גם
+conversation/followup::followup_same_action_other_room:
+- - הדלק אור סלון
+  - ו מטבח גם
+conversation/house::clock_calendar_weather:
+- מה hour
+- מה יומן
+- מה חימום
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- הדלק alloff
+conversation/lights::ambiguous_light:
+- הדלק אור
+conversation/lights::brightness_percent:
+- שים אור סלון 30 אחוז
+conversation/lights::color_red:
+- - הדלק אור סלון
+  - red
+conversation/lights::dim_then_level:
+- - כהה אור סלון
+  - בינוני
+conversation/lights::relative_dim:
+- - הדלק אור סלון
+  - כהה
+conversation/lights::warm_white:
+- - הדלק אור סלון
+  - לבןחם
+conversation/lights::which_lights_on:
+- - הדלק אור סלון
+  - הדלק אור מטבח
+  - מה אור
+conversation/media::music_artist_then_now_playing:
+- - נגן queen מטבח
+  - מה מוזיקה
+conversation/media::music_play_in_room:
+- נגן מוזיקה מטבח
+conversation/media::next_and_pause:
+- - נגן מוזיקה מטבח
+  - next
+  - pause
+conversation/media::tv_not_light:
+- הדלק טלוויזיה סלון
+conversation/media::volume_down:
+- שקטיותר מוזיקה

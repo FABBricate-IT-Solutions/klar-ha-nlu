@@ -85,8 +85,15 @@ pub(crate) fn query_area(ctx: &Clause) -> Option<ClauseOut> {
     {
         return None;
     }
-    let intents =
-        ctx.resolved.areas.iter().map(|area| fill_intent(ctx.action, ctx.tokens, ctx.number, None, Some(area), ctx.domain)).collect();
+    let intents = ctx
+        .resolved
+        .areas
+        .iter()
+        .map(|area| {
+            let id = ctx.domain.filter(|domain| *domain == "climate").and_then(|domain| unique_in_area(ctx.home, area, domain, ctx.tokens));
+            fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), Some(area), ctx.domain)
+        })
+        .collect();
     Some(finish_intents(intents, ctx))
 }
 
@@ -130,10 +137,11 @@ pub(crate) fn grounded_entities(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 pub(crate) fn grounded_ambiguous(ctx: &Clause) -> Option<ClauseOut> {
-    (!ctx.resolved.ambiguous.is_empty()).then(|| {
-        let names = ctx.resolved.ambiguous.iter().map(|e| e.entity_id.clone()).collect();
-        ClauseOut::Clarify(names, intent_from_action(ctx.action, ctx.tokens))
-    })
+    if ctx.resolved.ambiguous.is_empty() || ctx.resolved.areas.len() > 1 {
+        return None;
+    }
+    let names = ctx.resolved.ambiguous.iter().map(|e| e.entity_id.clone()).collect();
+    Some(ClauseOut::Clarify(names, intent_from_action(ctx.action, ctx.tokens)))
 }
 
 pub(crate) fn grounded_areas(ctx: &Clause) -> Option<ClauseOut> {

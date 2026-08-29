@@ -58,6 +58,8 @@ fn every_compiled_locale_has_assist_and_parity_suites() {
             let dir = root.join("tests/datasets/parity").join(code).join(suite);
             assert!(dir.is_dir(), "missing parity suite {} for {code}", dir.display());
         }
+        let conversation = root.join("tests/datasets/parity").join(code).join("wohnung_mittel/conversation.yaml");
+        assert!(conversation.is_file(), "missing conversation overlay for {code}");
     }
     assert!(root.join("tests/datasets/wohnung_mittel").is_dir());
     assert!(root.join("tests/datasets/wohnung_en").is_dir());

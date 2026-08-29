@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ಹಚ್ಚು ಬಿಸಿ ಹಾಲ್
+  - '21'
+conversation/climate::heat_setpoint:
+- ಹೊಂದಿಸು ಬಿಸಿ ಹಾಲ್ 21
+conversation/climate::temperature_query:
+- ಏನು ಬಿಸಿ ಹಾಲ್
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - ಆರಿಸು ಬೆಳಕು shayanakone
+  - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - ಮತ್ತು ಅಡುಗೆ kooda
+conversation/followup::followup_same_action_other_room:
+- - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - ಮತ್ತು ಅಡುಗೆ kooda
+conversation/house::clock_calendar_weather:
+- ಏನು hour
+- ಏನು ಕ್ಯಾಲೆಂಡರ್
+- ಏನು ಬಿಸಿ
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ಹಚ್ಚು alloff
+conversation/lights::ambiguous_light:
+- ಹಚ್ಚು ಬೆಳಕು
+conversation/lights::brightness_percent:
+- ಹೊಂದಿಸು ಬೆಳಕು ಹಾಲ್ 30 shatamsha
+conversation/lights::color_red:
+- - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - red
+conversation/lights::dim_then_level:
+- - heccu ಬೆಳಕು ಹಾಲ್
+  - madhya
+conversation/lights::relative_dim:
+- - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - heccu
+conversation/lights::warm_white:
+- - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - bisi bili
+conversation/lights::which_lights_on:
+- - ಹಚ್ಚು ಬೆಳಕು ಹಾಲ್
+  - ಹಚ್ಚು ಬೆಳಕು ಅಡುಗೆ
+  - ಏನು ಬೆಳಕು
+conversation/media::music_artist_then_now_playing:
+- - ಹಾಡು queen ಅಡುಗೆ
+  - ಏನು tivi
+conversation/media::music_play_in_room:
+- ಹಾಡು tivi ಅಡುಗೆ
+conversation/media::next_and_pause:
+- - ಹಾಡು tivi ಅಡುಗೆ
+  - next
+  - ನಿಲ್ಲಿಸು
+conversation/media::tv_not_light:
+- ಹಚ್ಚು tv ಹಾಲ್
+conversation/media::volume_down:
+- nidhanavagi tivi

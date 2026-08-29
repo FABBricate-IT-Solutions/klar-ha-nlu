@@ -78,3 +78,19 @@ fn suite_m2_floors_german() {
     assert!(stats.ok > 0, "German m2_floors cases are missing");
     assert_eq!(stats.fail, 0, "German m2_floors failures:\n{}", stats.fails.join("\n"));
 }
+
+#[test]
+fn suite_conversation_german() {
+    let stats = run_groups("wohnung_mittel", &["conversation"], suite_home("wohnung_mittel"));
+    print_stats("Klar NLU · Conversation German", &stats);
+    assert!(stats.ok > 0, "German conversation cases are missing");
+    assert_eq!(stats.fail, 0, "German conversation failures:\n{}", stats.fails.join("\n"));
+}
+
+#[test]
+fn suite_conversation_english() {
+    let stats = run_groups("wohnung_en", &["conversation"], suite_home("wohnung_en"));
+    print_stats("Klar NLU · Conversation English", &stats);
+    assert!(stats.ok > 0, "English conversation cases are missing");
+    assert_eq!(stats.fail, 0, "English conversation failures:\n{}", stats.fails.join("\n"));
+}

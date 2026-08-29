@@ -247,12 +247,26 @@ pub(crate) fn named_scene_or_script(tokens: &[String], home: &HomeGraph) -> Opti
             tokens.iter().any(|token| token == tail || scene_token(token) == tail)
                 || (compact_tail.len() > 3 && compact_tokens.contains(&compact_tail))
                 || scene_name_hit(tokens, &e.name, home)
-                || e.aliases.iter().any(|n| scene_name_hit(tokens, n, home))
+                || e.aliases.iter().any(|n| {
+                    let compact_alias = compact(n);
+                    (compact_alias.len() > 3 && compact_tokens.contains(&compact_alias)) || scene_name_hit(tokens, n, home)
+                })
         })
         .map(|e| e.entity_id.clone())
         .collect();
+    if hits.len() > 1 {
+        let blob: String = tokens.iter().map(|token| compact(token)).collect();
+        hits.retain(|id| scene_compact_hit(id, &blob, home));
+    }
     let named = mentioned || catalog().any(tokens, catalog().scene_named());
     (hits.len() == 1 && (named || tokens.iter().any(|t| t.len() > 5))).then_some(hits.pop()).flatten()
+}
+
+fn scene_compact_hit(id: &str, blob: &str, home: &HomeGraph) -> bool {
+    let tail = compact(id.rsplit('.').next().unwrap_or(""));
+    (tail.len() > 3 && blob.contains(&tail)) || home.entities.iter().any(|e| {
+        e.entity_id == id && e.aliases.iter().any(|a| compact(a).len() > 3 && blob.contains(&compact(a)))
+    })
 }
 
 fn scene_token(token: &str) -> String {
@@ -285,6 +299,7 @@ fn scene_name_hit(tokens: &[String], name: &str, home: &HomeGraph) -> bool {
         }
         let fuzzy = mapped
             .iter()
+            .filter(|token| token.len() >= 4)
             .filter_map(|token| evidence(token, part, Profile::Target))
             .max_by(|left, right| left.score.partial_cmp(&right.score).unwrap_or(std::cmp::Ordering::Equal));
         if fuzzy.is_some() {

@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ஏற்று வெப்பம் அறை
+  - '21'
+conversation/climate::heat_setpoint:
+- அமை வெப்பம் அறை 21
+conversation/climate::temperature_query:
+- என்ன வெப்பம் அறை
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - அணை விளக்கு padukkaiyarai
+  - ஏற்று விளக்கு அறை
+  - மற்றும் சமையல் um
+conversation/followup::followup_same_action_other_room:
+- - ஏற்று விளக்கு அறை
+  - மற்றும் சமையல் um
+conversation/house::clock_calendar_weather:
+- என்ன hour
+- என்ன நாட்காட்டி
+- என்ன வெப்பம்
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ஏற்று alloff
+conversation/lights::ambiguous_light:
+- ஏற்று விளக்கு
+conversation/lights::brightness_percent:
+- அமை விளக்கு அறை 30 satham
+conversation/lights::color_red:
+- - ஏற்று விளக்கு அறை
+  - red
+conversation/lights::dim_then_level:
+- - irundal விளக்கு அறை
+  - nadu
+conversation/lights::relative_dim:
+- - ஏற்று விளக்கு அறை
+  - irundal
+conversation/lights::warm_white:
+- - ஏற்று விளக்கு அறை
+  - velukku vellai
+conversation/lights::which_lights_on:
+- - ஏற்று விளக்கு அறை
+  - ஏற்று விளக்கு சமையல்
+  - என்ன விளக்கு
+conversation/media::music_artist_then_now_playing:
+- - இயக்கு queen சமையல்
+  - என்ன tivi
+conversation/media::music_play_in_room:
+- இயக்கு tivi சமையல்
+conversation/media::next_and_pause:
+- - இயக்கு tivi சமையல்
+  - next
+  - நிறுத்து
+conversation/media::tv_not_light:
+- ஏற்று tv அறை
+conversation/media::volume_down:
+- meduva tivi

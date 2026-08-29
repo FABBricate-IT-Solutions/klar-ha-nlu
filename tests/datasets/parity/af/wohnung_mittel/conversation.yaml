@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - skakel verwarming sitkamer
+  - '21'
+conversation/climate::heat_setpoint:
+- stel verwarming sitkamer 21
+conversation/climate::temperature_query:
+- wat verwarming sitkamer
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - doof lig slaapkamer
+  - skakel lig sitkamer
+  - en kombuis ook
+conversation/followup::followup_same_action_other_room:
+- - skakel lig sitkamer
+  - en kombuis ook
+conversation/house::clock_calendar_weather:
+- wat hour
+- wat kalender
+- wat verwarming
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- skakel alloff
+conversation/lights::ambiguous_light:
+- skakel lig
+conversation/lights::brightness_percent:
+- stel lig sitkamer 30 persent
+conversation/lights::color_red:
+- - skakel lig sitkamer
+  - rooi
+conversation/lights::dim_then_level:
+- - donkerder lig sitkamer
+  - medium
+conversation/lights::relative_dim:
+- - skakel lig sitkamer
+  - donkerder
+conversation/lights::warm_white:
+- - skakel lig sitkamer
+  - warmwit
+conversation/lights::which_lights_on:
+- - skakel lig sitkamer
+  - skakel lig kombuis
+  - wat lig
+conversation/media::music_artist_then_now_playing:
+- - speel queen kombuis
+  - wat musiek
+conversation/media::music_play_in_room:
+- speel musiek kombuis
+conversation/media::next_and_pause:
+- - speel musiek kombuis
+  - next
+  - pause
+conversation/media::tv_not_light:
+- skakel tv sitkamer
+conversation/media::volume_down:
+- sagter musiek

@@ -7,7 +7,6 @@ use uuid::Uuid;
 
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
-const RECENT_FOLLOW_TTL: Duration = Duration::from_secs(15 * 60);
 const LAST_KEEP: usize = 8;
 const WRONG_LOG_KEEP: usize = 32;
 
@@ -227,9 +226,7 @@ impl Sessions {
     }
 
     pub fn take(&mut self, id: Option<&str>) -> Session {
-        let mut session = self.get_or_create(id).clone();
-        self.seed_followup(&mut session);
-        session
+        self.get_or_create(id).clone()
     }
 
     pub fn put(&mut self, mut session: Session) {
@@ -242,27 +239,6 @@ impl Sessions {
             self.recent_id = Some(session.id.clone());
         }
         self.inner.insert(session.id.clone(), session);
-    }
-
-    fn seed_followup(&self, session: &mut Session) {
-        if !session.last.is_empty() {
-            return;
-        }
-        let Some(recent_id) = self.recent_id.as_deref() else {
-            return;
-        };
-        if recent_id == session.id {
-            return;
-        }
-        let Some(recent) = self.inner.get(recent_id) else {
-            return;
-        };
-        if Instant::now().duration_since(recent.last_used) >= RECENT_FOLLOW_TTL || recent.last.is_empty() {
-            return;
-        }
-        session.last = recent.last.clone();
-        session.last_execute = recent.last_execute.clone();
-        session.last_turn_id = recent.last_turn_id;
     }
 
     #[cfg(test)]
@@ -317,14 +293,14 @@ mod tests {
     }
 
     #[test]
-    fn new_conversation_inherits_recent_last() {
+    fn new_conversation_does_not_inherit_recent_last() {
         let mut sessions = Sessions::default();
         let mut first = sessions.take(Some("wake-1"));
         first.remember_entity("light.wohnzimmer");
         sessions.put(first);
         let follow = sessions.take(Some("wake-2"));
         assert_eq!(follow.id, "wake-2");
-        assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
+        assert!(follow.last_entities().next().is_none());
     }
 
     #[test]

@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - aprinde incalzire sufragerie
+  - '21'
+conversation/climate::heat_setpoint:
+- pune incalzire sufragerie 21
+conversation/climate::temperature_query:
+- ce incalzire sufragerie
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - stinge lumina dormitor
+  - aprinde lumina sufragerie
+  - si bucatarie deasemenea
+conversation/followup::followup_same_action_other_room:
+- - aprinde lumina sufragerie
+  - si bucatarie deasemenea
+conversation/house::clock_calendar_weather:
+- ce ora
+- ce calendar
+- ce incalzire
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- aprinde alloff
+conversation/lights::ambiguous_light:
+- aprinde lumina
+conversation/lights::brightness_percent:
+- pune lumina sufragerie 30 la suta
+conversation/lights::color_red:
+- - aprinde lumina sufragerie
+  - rosu
+conversation/lights::dim_then_level:
+- - maiintunecat lumina sufragerie
+  - mediu
+conversation/lights::relative_dim:
+- - aprinde lumina sufragerie
+  - maiintunecat
+conversation/lights::warm_white:
+- - aprinde lumina sufragerie
+  - albcald
+conversation/lights::which_lights_on:
+- - aprinde lumina sufragerie
+  - aprinde lumina bucatarie
+  - ce lumina
+conversation/media::music_artist_then_now_playing:
+- - redata queen bucatarie
+  - ce muzica
+conversation/media::music_play_in_room:
+- redata muzica bucatarie
+conversation/media::next_and_pause:
+- - redata muzica bucatarie
+  - next
+  - pauza
+conversation/media::tv_not_light:
+- aprinde tv sufragerie
+conversation/media::volume_down:
+- maincet muzica

@@ -68,7 +68,7 @@ fn media_type_word(word: &str) -> Option<&'static str> {
 }
 
 pub(super) fn has_volume_word(tokens: &[String]) -> bool {
-    tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke")) || media_context(tokens)
+    tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke" | "leiser" | "quieter"))
 }
 
 pub(super) fn queue_status(tokens: &[String]) -> bool {

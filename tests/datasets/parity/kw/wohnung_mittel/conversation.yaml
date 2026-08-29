@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - enow tomder stafell
+  - '21'
+conversation/climate::heat_setpoint:
+- settya tomder stafell 21
+conversation/climate::temperature_query:
+- pyth tomder stafell
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - diffyg golow chambour
+  - enow golow stafell
+  - ha kegin ynwedh
+conversation/followup::followup_same_action_other_room:
+- - enow golow stafell
+  - ha kegin ynwedh
+conversation/house::clock_calendar_weather:
+- pyth hour
+- pyth devis
+- pyth tomder
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- enow alloff
+conversation/lights::ambiguous_light:
+- enow golow
+conversation/lights::brightness_percent:
+- settya golow stafell 30 kans
+conversation/lights::color_red:
+- - enow golow stafell
+  - red
+conversation/lights::dim_then_level:
+- - tewldir golow stafell
+  - kres
+conversation/lights::relative_dim:
+- - enow golow stafell
+  - tewldir
+conversation/lights::warm_white:
+- - enow golow stafell
+  - gwynn toemm
+conversation/lights::which_lights_on:
+- - enow golow stafell
+  - enow golow kegin
+  - pyth golow
+conversation/media::music_artist_then_now_playing:
+- - gwari queen kegin
+  - pyth pellwolok
+conversation/media::music_play_in_room:
+- gwari pellwolok kegin
+conversation/media::next_and_pause:
+- - gwari pellwolok kegin
+  - next
+  - pause
+conversation/media::tv_not_light:
+- enow pellwolok stafell
+conversation/media::volume_down:
+- kosel pellwolok

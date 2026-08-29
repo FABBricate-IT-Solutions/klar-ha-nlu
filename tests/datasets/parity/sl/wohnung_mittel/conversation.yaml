@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - prizgi ogrevanje dnevna
+  - '21'
+conversation/climate::heat_setpoint:
+- nastavi ogrevanje dnevna 21
+conversation/climate::temperature_query:
+- kaj ogrevanje dnevna
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - ugasni luc spalnica
+  - prizgi luc dnevna
+  - in kuhinja tudi
+conversation/followup::followup_same_action_other_room:
+- - prizgi luc dnevna
+  - in kuhinja tudi
+conversation/house::clock_calendar_weather:
+- kaj hour
+- kaj koledar
+- kaj ogrevanje
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- prizgi alloff
+conversation/lights::ambiguous_light:
+- prizgi luc
+conversation/lights::brightness_percent:
+- nastavi luc dnevna 30 odstotkov
+conversation/lights::color_red:
+- - prizgi luc dnevna
+  - red
+conversation/lights::dim_then_level:
+- - temneje luc dnevna
+  - srednje
+conversation/lights::relative_dim:
+- - prizgi luc dnevna
+  - temneje
+conversation/lights::warm_white:
+- - prizgi luc dnevna
+  - toplabela
+conversation/lights::which_lights_on:
+- - prizgi luc dnevna
+  - prizgi luc kuhinja
+  - kaj luc
+conversation/media::music_artist_then_now_playing:
+- - predvajaj queen kuhinja
+  - kaj glasba
+conversation/media::music_play_in_room:
+- predvajaj glasba kuhinja
+conversation/media::next_and_pause:
+- - predvajaj glasba kuhinja
+  - next
+  - pause
+conversation/media::tv_not_light:
+- prizgi tv dnevna
+conversation/media::volume_down:
+- tise glasba

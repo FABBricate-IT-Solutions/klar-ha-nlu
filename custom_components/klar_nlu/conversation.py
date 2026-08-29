@@ -42,6 +42,7 @@ from .const import (
     DOMAIN,
     engine_session_id,
     keeps_conversation,
+    parse_session_id,
     resolve_personality,
 )
 from .lang_select import advertise, enabled_packs, resolve_pack, speak_tag
@@ -87,6 +88,14 @@ _DONE = {"de": "Erledigt.", "en": "Done."}
 
 def _cue(table: dict[str, str], pack: str, fallback: str) -> str:
     return table.get(pack) or fallback
+
+
+def _ack_speech(engine_speech: str, pack: str, executed: bool) -> str:
+    if engine_speech.strip():
+        return engine_speech
+    if executed:
+        return _cue(_DONE, pack, "OK")
+    return engine_speech
 
 
 async def async_setup_entry(
@@ -194,10 +203,10 @@ class KlarConversationEntity(ConversationEntity):
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
-        speech = engine_speech or _cue(_DONE, pack, "OK")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
         intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
+        speech = _ack_speech(engine_speech, pack, decision_type == "execute" and bool(intents))
         clarify = decision_type in {"clarify", "confirm"}
         chat = decision_type == "chat"
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
@@ -211,7 +220,7 @@ class KlarConversationEntity(ConversationEntity):
                     return briefing
             else:
                 return await self._spoken(
-                    user_input, chat_log, pack, engine_speech or _cue(_DONE, pack, "OK"), conversation_id, False
+                    user_input, chat_log, pack, _ack_speech(engine_speech, pack, False), conversation_id, False
                 )
 
         retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
@@ -295,7 +304,7 @@ class KlarConversationEntity(ConversationEntity):
             return tooled
         llm = _speech_from_result(fallback)
         if leaks_klar_tools(llm):
-            llm = speech or _cue(_DONE, pack, "OK")
+            llm = speech
             return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False)
         self._note_llm_turn(user_input, llm)
         return await self._spoken(
@@ -432,7 +441,7 @@ class KlarConversationEntity(ConversationEntity):
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
                     return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), True, "execute")
-            speech = str(payload.get("speech") or _cue(_DONE, pack, "OK"))
+            speech = str(payload.get("speech") or "")
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
         if tool.get("tool") == "klar.act" and tool.get("intent"):
             item = act_payload(str(tool["intent"]), tool.get("slots") or {})
@@ -497,13 +506,13 @@ class KlarConversationEntity(ConversationEntity):
         return None
 
     async def _parse(
-        self, text: str, _conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
+        self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
         url = f"{self._url}/api/v2/parse"
         pack = resolve_pack(language, self._packs())
         body: dict[str, Any] = {
             "text": text,
-            "conversation_id": engine_session_id(device_id, satellite_id),
+            "conversation_id": parse_session_id(conversation_id, device_id, satellite_id),
             "language": pack,
             "personality": self._personality(),
         }

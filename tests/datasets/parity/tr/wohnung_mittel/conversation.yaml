@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - yak klima salon
+  - '21'
+conversation/climate::heat_setpoint:
+- ayarla klima salon 21
+conversation/climate::temperature_query:
+- ne klima salon
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - sondur isik yatakodasi
+  - yak isik salon
+  - ve mutfak dahi
+conversation/followup::followup_same_action_other_room:
+- - yak isik salon
+  - ve mutfak dahi
+conversation/house::clock_calendar_weather:
+- ne hour
+- ne takvim
+- ne klima
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- yak alloff
+conversation/lights::ambiguous_light:
+- yak isik
+conversation/lights::brightness_percent:
+- ayarla isik salon 30 yuzde
+conversation/lights::color_red:
+- - yak isik salon
+  - red
+conversation/lights::dim_then_level:
+- - daha isik salon
+  - orta
+conversation/lights::relative_dim:
+- - yak isik salon
+  - daha
+conversation/lights::warm_white:
+- - yak isik salon
+  - sicakbeyaz
+conversation/lights::which_lights_on:
+- - yak isik salon
+  - yak isik mutfak
+  - ne isik
+conversation/media::music_artist_then_now_playing:
+- - oynat queen mutfak
+  - ne muzik
+conversation/media::music_play_in_room:
+- oynat muzik mutfak
+conversation/media::next_and_pause:
+- - oynat muzik mutfak
+  - next
+  - pause
+conversation/media::tv_not_light:
+- yak tv salon
+conversation/media::volume_down:
+- kisik muzik

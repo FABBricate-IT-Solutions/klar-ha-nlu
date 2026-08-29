@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - tand varme vardagsrum
+  - '21'
+conversation/climate::heat_setpoint:
+- satt varme vardagsrum 21
+conversation/climate::temperature_query:
+- vad varme vardagsrum
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - slack ljus sovrum
+  - tand ljus vardagsrum
+  - och kok ocksa
+conversation/followup::followup_same_action_other_room:
+- - tand ljus vardagsrum
+  - och kok ocksa
+conversation/house::clock_calendar_weather:
+- vad hour
+- vad kalender
+- vad varme
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- tand alloff
+conversation/lights::ambiguous_light:
+- tand ljus
+conversation/lights::brightness_percent:
+- satt ljus vardagsrum 30 procent
+conversation/lights::color_red:
+- - tand ljus vardagsrum
+  - rod
+conversation/lights::dim_then_level:
+- - morkare ljus vardagsrum
+  - medium
+conversation/lights::relative_dim:
+- - tand ljus vardagsrum
+  - morkare
+conversation/lights::warm_white:
+- - tand ljus vardagsrum
+  - varmvit
+conversation/lights::which_lights_on:
+- - tand ljus vardagsrum
+  - tand ljus kok
+  - vad ljus
+conversation/media::music_artist_then_now_playing:
+- - spela queen kok
+  - vad musik
+conversation/media::music_play_in_room:
+- spela musik kok
+conversation/media::next_and_pause:
+- - spela musik kok
+  - next
+  - pause
+conversation/media::tv_not_light:
+- tand tv vardagsrum
+conversation/media::volume_down:
+- lagre musik

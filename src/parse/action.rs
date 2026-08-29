@@ -32,7 +32,9 @@ pub enum Action {
 }
 
 pub fn domain_for(action: Action, tokens: &[String]) -> Option<&'static str> {
-    forced_domain(action).or_else(|| crate::parse::resolve::domain_hint(tokens)).or_else(|| implied_domain(action))
+    forced_domain(action)
+        .or_else(|| crate::parse::resolve::domain_hint(tokens).filter(|domain| !matches!(action, Action::SetLight) || *domain == "light"))
+        .or_else(|| implied_domain(action))
 }
 
 fn forced_domain(action: Action) -> Option<&'static str> {
@@ -208,18 +210,20 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
             session.last_entities().any(|entity| entity.starts_with("fan.")) || session.last_domains().any(|domain| domain == "fan"),
         );
     }
-    if tokens.iter().any(|token| matches!(token.as_str(), "auch" | "too" | "also" | "well")) {
-        if session.last_names().any(|name| name == "HassTurnOff") {
-            Action::Off
-        } else if session.last_names().any(|name| name == "HassLightSet") {
-            Action::SetLight
-        } else if session.last_names().any(|name| name == "HassTurnOn") {
-            Action::On
-        } else {
-            Action::GetState
-        }
+    if tokens.iter().any(|token| super::also::is_also_token(token)) {
+        followup_action(tokens, session)
     } else {
         Action::GetState
+    }
+}
+
+fn followup_action(tokens: &[String], session: &Session) -> Action {
+    if catalog().any(tokens, catalog().off_words()) {
+        return Action::Off;
+    }
+    match session.last.first().map(|turn| turn.name.as_str()) {
+        Some("HassLightSet") => Action::SetLight,
+        _ => Action::On,
     }
 }
 

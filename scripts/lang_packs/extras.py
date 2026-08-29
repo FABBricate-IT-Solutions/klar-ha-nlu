@@ -7,6 +7,7 @@ pack_extras() only copies spoken laundry/entry/except words into compiled packs.
 
 from __future__ import annotations
 
+from lang_packs.convo import pack_words
 from lang_packs.dock_play import dock_words, play_words
 
 # code -> except tokens
@@ -468,4 +469,6 @@ def pack_extras(code: str) -> dict[str, list[str]]:
         extra.setdefault("dock", dock)
     if play := play_words(code):
         extra.setdefault("play", play)
+    for key, words in pack_words(code).items():
+        extra.setdefault(key, words)
     return extra

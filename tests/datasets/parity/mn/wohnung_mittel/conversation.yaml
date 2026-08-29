@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - асаа халаалт зочны
+  - '21'
+conversation/climate::heat_setpoint:
+- тохируул халаалт зочны 21
+conversation/climate::temperature_query:
+- юу халаалт зочны
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - унтраа гэрэл untlagiin
+  - асаа гэрэл зочны
+  - ба галтогоо ch
+conversation/followup::followup_same_action_other_room:
+- - асаа гэрэл зочны
+  - ба галтогоо ch
+conversation/house::clock_calendar_weather:
+- юу hour
+- юу хуанли
+- юу халаалт
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- асаа alloff
+conversation/lights::ambiguous_light:
+- асаа гэрэл
+conversation/lights::brightness_percent:
+- тохируул гэрэл зочны 30 huvi
+conversation/lights::color_red:
+- - асаа гэрэл зочны
+  - red
+conversation/lights::dim_then_level:
+- - ilh гэрэл зочны
+  - dund
+conversation/lights::relative_dim:
+- - асаа гэрэл зочны
+  - ilh
+conversation/lights::warm_white:
+- - асаа гэрэл зочны
+  - dulaan tsagaan
+conversation/lights::which_lights_on:
+- - асаа гэрэл зочны
+  - асаа гэрэл галтогоо
+  - юу гэрэл
+conversation/media::music_artist_then_now_playing:
+- - тоглуул queen галтогоо
+  - юу televiz
+conversation/media::music_play_in_room:
+- тоглуул televiz галтогоо
+conversation/media::next_and_pause:
+- - тоглуул televiz галтогоо
+  - next
+  - зогсоо
+conversation/media::tv_not_light:
+- асаа tv зочны
+conversation/media::volume_down:
+- suu televiz

@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - 켜 난방 거실
+  - '21'
+conversation/climate::heat_setpoint:
+- 설정 난방 거실 21
+conversation/climate::temperature_query:
+- 뭔 난방 거실
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - 꺼 불 chimsil
+  - 켜 불 거실
+  - 그리고 부엌 도
+conversation/followup::followup_same_action_other_room:
+- - 켜 불 거실
+  - 그리고 부엌 도
+conversation/house::clock_calendar_weather:
+- 뭔 hour
+- 뭔 캘린더
+- 뭔 난방
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- 켜 alloff
+conversation/lights::ambiguous_light:
+- 켜 불
+conversation/lights::brightness_percent:
+- 설정 불 거실 30 퍼센트
+conversation/lights::color_red:
+- - 켜 불 거실
+  - 빨강
+conversation/lights::dim_then_level:
+- - 더어둡게 불 거실
+  - 중간
+conversation/lights::relative_dim:
+- - 켜 불 거실
+  - 더어둡게
+conversation/lights::warm_white:
+- - 켜 불 거실
+  - 따뜻한흰색
+conversation/lights::which_lights_on:
+- - 켜 불 거실
+  - 켜 불 부엌
+  - 뭔 불
+conversation/media::music_artist_then_now_playing:
+- - 재생 queen 부엌
+  - 뭔 eumak
+conversation/media::music_play_in_room:
+- 재생 eumak 부엌
+conversation/media::next_and_pause:
+- - 재생 eumak 부엌
+  - next
+  - 일시정지
+conversation/media::tv_not_light:
+- 켜 tv 거실
+conversation/media::volume_down:
+- 더작게 eumak

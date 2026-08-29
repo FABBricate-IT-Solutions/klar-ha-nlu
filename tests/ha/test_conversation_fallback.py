@@ -47,7 +47,8 @@ class ConversationFallbackTests(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("keeps_conversation(decision_type)", src)
-        self.assertIn("engine_session_id(device_id, satellite_id)", src)
+        self.assertIn("parse_session_id(", src)
+        self.assertIn("engine_session_id", src)
 
 
 if __name__ == "__main__":

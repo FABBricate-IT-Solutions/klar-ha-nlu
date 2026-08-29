@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ijunk sildymas svetaine
+  - '21'
+conversation/climate::heat_setpoint:
+- nustatyk sildymas svetaine 21
+conversation/climate::temperature_query:
+- kas sildymas svetaine
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - isjunk sviesa miegamasis
+  - ijunk sviesa svetaine
+  - ir virtuve irgi
+conversation/followup::followup_same_action_other_room:
+- - ijunk sviesa svetaine
+  - ir virtuve irgi
+conversation/house::clock_calendar_weather:
+- kas hour
+- kas kalendorius
+- kas sildymas
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ijunk alloff
+conversation/lights::ambiguous_light:
+- ijunk sviesa
+conversation/lights::brightness_percent:
+- nustatyk sviesa svetaine 30 procentu
+conversation/lights::color_red:
+- - ijunk sviesa svetaine
+  - red
+conversation/lights::dim_then_level:
+- - tamsiau sviesa svetaine
+  - vidutinis
+conversation/lights::relative_dim:
+- - ijunk sviesa svetaine
+  - tamsiau
+conversation/lights::warm_white:
+- - ijunk sviesa svetaine
+  - silta balta
+conversation/lights::which_lights_on:
+- - ijunk sviesa svetaine
+  - ijunk sviesa virtuve
+  - kas sviesa
+conversation/media::music_artist_then_now_playing:
+- - grotu queen virtuve
+  - kas televizorius
+conversation/media::music_play_in_room:
+- grotu televizorius virtuve
+conversation/media::next_and_pause:
+- - grotu televizorius virtuve
+  - next
+  - pause
+conversation/media::tv_not_light:
+- ijunk tv svetaine
+conversation/media::volume_down:
+- tyliau televizorius

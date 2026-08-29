@@ -384,6 +384,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("pink", "pink"),
             ("schwarz", "black"),
             ("weiss", "white"),
+            ("warmweiss", "warmwhite"),
+            ("warmwhite", "warmwhite"),
             ("lila", "purple"),
         ],
         numbers: &[

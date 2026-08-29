@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - चालू उष्णता बैठक
+  - '21'
+conversation/climate::heat_setpoint:
+- सेट उष्णता बैठक 21
+conversation/climate::temperature_query:
+- काय उष्णता बैठक
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - बंद दिवा shayankaksh
+  - चालू दिवा बैठक
+  - आणि स्वयंपाक suddha
+conversation/followup::followup_same_action_other_room:
+- - चालू दिवा बैठक
+  - आणि स्वयंपाक suddha
+conversation/house::clock_calendar_weather:
+- काय hour
+- काय दिनदर्शिका
+- काय उष्णता
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- चालू alloff
+conversation/lights::ambiguous_light:
+- चालू दिवा
+conversation/lights::brightness_percent:
+- सेट दिवा बैठक 30 takke
+conversation/lights::color_red:
+- - चालू दिवा बैठक
+  - red
+conversation/lights::dim_then_level:
+- - jahal दिवा बैठक
+  - madhyam
+conversation/lights::relative_dim:
+- - चालू दिवा बैठक
+  - jahal
+conversation/lights::warm_white:
+- - चालू दिवा बैठक
+  - garam pandhra
+conversation/lights::which_lights_on:
+- - चालू दिवा बैठक
+  - चालू दिवा स्वयंपाक
+  - काय दिवा
+conversation/media::music_artist_then_now_playing:
+- - चालव queen स्वयंपाक
+  - काय tivi
+conversation/media::music_play_in_room:
+- चालव tivi स्वयंपाक
+conversation/media::next_and_pause:
+- - चालव tivi स्वयंपाक
+  - next
+  - थांबव
+conversation/media::tv_not_light:
+- चालू tv बैठक
+conversation/media::volume_down:
+- halu tivi

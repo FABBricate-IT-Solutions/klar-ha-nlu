@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ukljuci grejanje dnevna
+  - '21'
+conversation/climate::heat_setpoint:
+- stavi grejanje dnevna 21
+conversation/climate::temperature_query:
+- sta grejanje dnevna
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - iskljuci svetlo spavaca
+  - ukljuci svetlo dnevna
+  - i kuhinja takodje
+conversation/followup::followup_same_action_other_room:
+- - ukljuci svetlo dnevna
+  - i kuhinja takodje
+conversation/house::clock_calendar_weather:
+- sta hour
+- sta kalendar
+- sta grejanje
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ukljuci alloff
+conversation/lights::ambiguous_light:
+- ukljuci svetlo
+conversation/lights::brightness_percent:
+- stavi svetlo dnevna 30 procenat
+conversation/lights::color_red:
+- - ukljuci svetlo dnevna
+  - red
+conversation/lights::dim_then_level:
+- - tamnije svetlo dnevna
+  - srednje
+conversation/lights::relative_dim:
+- - ukljuci svetlo dnevna
+  - tamnije
+conversation/lights::warm_white:
+- - ukljuci svetlo dnevna
+  - toplobelo
+conversation/lights::which_lights_on:
+- - ukljuci svetlo dnevna
+  - ukljuci svetlo kuhinja
+  - sta svetlo
+conversation/media::music_artist_then_now_playing:
+- - pusti queen kuhinja
+  - sta muzika
+conversation/media::music_play_in_room:
+- pusti muzika kuhinja
+conversation/media::next_and_pause:
+- - pusti muzika kuhinja
+  - next
+  - pause
+conversation/media::tv_not_light:
+- ukljuci tv dnevna
+conversation/media::volume_down:
+- tise muzika
