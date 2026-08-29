@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Klar NLU runtime",
+    "locale": "en",
+    "output": "runtime.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/FABBricate-IT-Solutions/klar-ha-nlu",
+      "revision": "660d0aa44fc1a388b62e1444a20a218ac1a01861"
+    },
+    "views": [
+      {
+        "id": "primary-path",
+        "label": "Assist parse path",
+        "focus": ["voice", "haAssist", "hacsAgent", "httpApi", "nluParse"],
+        "note": "Spoken text reaches nlu::parse only through POST /api/v2/parse."
+      },
+      {
+        "id": "execute",
+        "label": "Intent execution",
+        "focus": ["hacsAgent", "executor", "devices"],
+        "note": "Device control stays in Home Assistant after a Klar execute plan."
+      },
+      {
+        "id": "engine-state",
+        "label": "Engine state",
+        "focus": ["nluParse", "homeGraph", "sessions", "wyoming"],
+        "note": "HTTP and Wyoming share HomeStore and the same session map."
+      },
+      {
+        "id": "chat-fallback",
+        "label": "Chat fallback",
+        "focus": ["hacsAgent", "llmFallback"],
+        "note": "An optional LLM talks only after Klar returns chat; it has no device tools."
+      }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [40, 40],
+    "cols": 5,
+    "gapX": 64,
+    "gapY": 72,
+    "cellW": 152,
+    "cellH": 64
+  },
+  "components": [
+    {
+      "id": "voice",
+      "type": "external",
+      "label": "Voice user",
+      "sublabel": "Assist satellite",
+      "row": 1,
+      "col": 0
+    },
+    {
+      "id": "haAssist",
+      "type": "frontend",
+      "label": "HA Assist",
+      "sublabel": "Conversation pipeline",
+      "row": 1,
+      "col": 1
+    },
+    {
+      "id": "hacsAgent",
+      "type": "backend",
+      "label": "Klar conversation",
+      "sublabel": "HACS agent",
+      "row": 1,
+      "col": 2,
+      "sources": [
+        { "path": "custom_components/klar_nlu/conversation.py", "line": 121, "end_line": 218, "label": "handle message" },
+        { "path": "custom_components/klar_nlu/engine_http.py", "line": 13, "end_line": 32, "label": "post_parse" }
+      ]
+    },
+    {
+      "id": "httpApi",
+      "type": "backend",
+      "label": "HTTP API",
+      "sublabel": "0.0.0.0:10520",
+      "tag": "/api/v2/parse",
+      "row": 1,
+      "col": 3,
+      "sources": [
+        { "path": "src/io/web.rs", "line": 34, "end_line": 51, "label": "router" },
+        { "path": "src/io/bootstrap.rs", "line": 21, "end_line": 54, "label": "io::run" }
+      ]
+    },
+    {
+      "id": "nluParse",
+      "type": "backend",
+      "label": "nlu::parse",
+      "sublabel": "rule-based pipeline",
+      "tag": "schema 2.0",
+      "row": 1,
+      "col": 4,
+      "sources": [
+        { "path": "src/nlu/mod.rs", "line": 51, "end_line": 73, "label": "parse_with_policies" }
+      ]
+    },
+    {
+      "id": "llmFallback",
+      "type": "external",
+      "label": "Optional LLM",
+      "sublabel": "chat / refine only",
+      "tag": "no device tools",
+      "row": 0,
+      "col": 2,
+      "sources": [
+        { "path": "custom_components/klar_nlu/fallback.py", "line": 8, "end_line": 31, "label": "chat-only" },
+        { "path": "custom_components/klar_nlu/refine.py", "line": 155, "end_line": 193, "label": "refine speech" }
+      ]
+    },
+    {
+      "id": "wyoming",
+      "type": "messagebus",
+      "label": "Wyoming",
+      "sublabel": "0.0.0.0:10500",
+      "tag": "recognize",
+      "row": 2,
+      "col": 3,
+      "sources": [
+        { "path": "src/io/wyoming.rs", "line": 19, "end_line": 41, "label": "serve" }
+      ]
+    },
+    {
+      "id": "homeGraph",
+      "type": "database",
+      "label": "Home Graph",
+      "sublabel": "HomeStore",
+      "row": 2,
+      "col": 4,
+      "sources": [
+        { "path": "src/home/load.rs", "line": 17, "end_line": 36, "label": "load_merged" }
+      ]
+    },
+    {
+      "id": "sessions",
+      "type": "database",
+      "label": "Sessions",
+      "sublabel": "last target / confirm",
+      "row": 0,
+      "col": 4,
+      "sources": [
+        { "path": "src/session.rs", "line": 53, "end_line": 80, "label": "Session" }
+      ]
+    },
+    {
+      "id": "executor",
+      "type": "backend",
+      "label": "Intent executor",
+      "sublabel": "execute_plan",
+      "row": 2,
+      "col": 2,
+      "sources": [
+        { "path": "custom_components/klar_nlu/executor.py", "line": 42, "end_line": 70, "label": "execute_plan" }
+      ]
+    },
+    {
+      "id": "devices",
+      "type": "external",
+      "label": "Exposed devices",
+      "sublabel": "HA entities",
+      "row": 2,
+      "col": 1
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Home Assistant",
+      "wraps": ["haAssist", "hacsAgent", "executor", "devices"]
+    },
+    {
+      "kind": "region",
+      "label": "Klar engine",
+      "wraps": ["httpApi", "nluParse", "homeGraph", "sessions", "wyoming"]
+    },
+    {
+      "kind": "security-group",
+      "label": "Chat only — no device tools",
+      "wraps": ["llmFallback"]
+    }
+  ],
+  "connections": [
+    { "id": "voice-to-assist", "from": "voice", "to": "haAssist", "label": "spoken text", "variant": "emphasis" },
+    { "id": "assist-to-hacs", "from": "haAssist", "to": "hacsAgent", "label": "conversation" },
+    { "id": "hacs-to-http", "from": "hacsAgent", "to": "httpApi", "label": "POST /api/v2/parse" },
+    { "id": "http-to-nlu", "from": "httpApi", "to": "nluParse", "label": "parse_with_policies", "labelDy": -17 },
+    { "id": "nlu-to-home", "from": "nluParse", "to": "homeGraph", "label": "resolve targets", "labelDy": 24 },
+    { "id": "nlu-to-sessions", "from": "nluParse", "to": "sessions", "label": "conversation_id" },
+    { "id": "hacs-to-executor", "from": "hacsAgent", "to": "executor", "label": "execute plan", "labelDy": 24 },
+    { "id": "executor-to-devices", "from": "executor", "to": "devices", "label": "HA intents" },
+    { "id": "hacs-to-llm", "from": "hacsAgent", "to": "llmFallback", "label": "chat fallback", "variant": "dashed" },
+    { "id": "wyoming-to-nlu", "from": "wyoming", "to": "nluParse", "label": "recognize", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Entry",
+      "items": [
+        "Assist uses the HACS agent; pick one engine host (App or bundled)",
+        "Wyoming :10500 shares AppState with HTTP, not a second parser"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Engine",
+      "items": [
+        "Rule-based nlu::parse — tokenize, resolve, rank, then safety policy",
+        "67 language packs bind before parse; schema_version 2.0 on every outcome"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Trust",
+      "items": [
+        "LLM fallback and refine never receive Assist tools or run intents",
+        "KLAR_TOKEN gates overlay writes from non-loopback clients"
+      ]
+    }
+  ]
+}
