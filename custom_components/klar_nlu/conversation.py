@@ -61,6 +61,7 @@ from .fallback import (
     news_prompt,
     with_personality,
     yarn_asks_permission,
+    yarn_canned,
     yarn_nudge,
     yarn_prompt,
     yarn_request,
@@ -322,6 +323,8 @@ class KlarConversationEntity(ConversationEntity):
         if tooled is not None:
             return tooled
         llm = _speech_from_result(fallback)
+        if yarn_request(user_input.text) and yarn_asks_permission(llm):
+            llm = yarn_canned(pack, user_input.text)
         if leaks_klar_tools(llm):
             llm = speech
             return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False)

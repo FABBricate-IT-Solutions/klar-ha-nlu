@@ -33,6 +33,7 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("yarn_asks_permission", body)
         self.assertIn("yarn_nudge", body)
         self.assertNotIn("user_input.language", body)
+        self.assertIn("yarn_canned", src)
 
     def test_calendar_queries_can_go_to_llm(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
