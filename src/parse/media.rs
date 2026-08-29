@@ -308,15 +308,20 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
     {
         return home.entities.iter().filter(|entity| eligible_media_player(entity, home)).collect();
     }
-    if let Some(area) = area_from_tokens(tokens, home) {
-        let in_area: Vec<&EntityRec> = music.iter().copied().filter(|entity| entity.area.as_deref() == Some(area.as_str())).collect();
-        return in_area;
+    if music_request(tokens) {
+        if let Some(area) = area_from_tokens(tokens, home) {
+            return music.iter().copied().filter(|entity| entity.area.as_deref() == Some(area.as_str())).collect();
+        }
     }
     let mass: Vec<&EntityRec> = music.iter().copied().filter(|entity| is_music_assistant_player(entity)).collect();
     if !mass.is_empty() {
         return mass;
     }
     music
+}
+
+fn music_request(tokens: &[String]) -> bool {
+    music_context(tokens) || tokens.iter().any(|token| is_play_word(token))
 }
 
 fn music_in_named_area<'a>(home: &'a HomeGraph, players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {

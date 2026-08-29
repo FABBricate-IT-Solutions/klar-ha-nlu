@@ -171,8 +171,7 @@ fn kitchen_alexa_player_is_music_target() {
     assert_eq!(result.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.kuchenbereich_2"), "{result:?}");
 }
 
-#[test]
-fn named_kitchen_music_does_not_start_living_satellite() {
+fn home_with_satellite_and_kitchen_alexa() -> HomeGraph {
     let mut home = default_home();
     home.entities.push(entity(
         "media_player.satellite1_db12c8",
@@ -192,6 +191,12 @@ fn named_kitchen_music_does_not_start_living_satellite() {
         &["kueche", "kitchen"],
         &["assist"],
     ));
+    home
+}
+
+#[test]
+fn named_kitchen_music_does_not_start_living_satellite() {
+    let home = home_with_satellite_and_kitchen_alexa();
     for sentence in ["Musik in der Küche", "Spiel Musik in der Küche"] {
         let result = parse(sentence, &home, &mut Session::new(), &[], &settings("de"));
         assert!(!result.clarify, "{sentence}: {result:?}");
@@ -206,6 +211,17 @@ fn named_kitchen_music_does_not_start_living_satellite() {
             "{sentence}: {result:?}"
         );
     }
+}
+
+#[test]
+fn heat_setpoint_does_not_bind_living_satellite_volume() {
+    let home = home_with_satellite_and_kitchen_alexa();
+    let result = parse("Heizung Wohnzimmer auf 21", &home, &mut Session::new(), &[], &settings("de"));
+    let intent = result.intents.first().expect("intent");
+    assert!(!result.clarify, "{result:?}");
+    assert_eq!(intent.name, "HassClimateSetTemperature", "{result:?}");
+    assert_eq!(intent.slot("temperature"), Some("21"), "{result:?}");
+    assert_ne!(intent.slot("entity_id"), Some("media_player.satellite1_db12c8"), "{result:?}");
 }
 
 #[test]
