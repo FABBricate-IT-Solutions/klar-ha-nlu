@@ -88,14 +88,19 @@ def enabled_packs(raw: object, hass_language: str | None = None) -> list[str]:
     return [choice]
 
 
+def chrome_locale(hass_language: str | None = None) -> str:
+    """HA system/frontend language for integration and app chrome, not the NLU pin."""
+    return resolve_pack(hass_language)
+
+
 def engine_language_state(
     raw: object, hass_language: str | None = None
 ) -> tuple[list[str], str]:
-    """Pin the engine to the integration language; empty means every pack."""
+    """Pin parse packs from the NLU option; chrome always follows Home Assistant."""
     packs = enabled_packs(raw, hass_language)
     choice = normalize_language_choice(raw)
     pinned = [] if choice == LANGUAGE_ALL else list(packs)
-    return pinned, resolve_pack(hass_language, packs)
+    return pinned, chrome_locale(hass_language)
 
 
 def advertise(packs: list[str]) -> list[str]:

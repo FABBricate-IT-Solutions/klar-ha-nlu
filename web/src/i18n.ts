@@ -66,11 +66,8 @@ function browserLanguage(): string {
   return typeof navigator !== "undefined" ? navigator.language : "";
 }
 
-export function chromeLocale(languages: string[] = [], saved?: string): Locale {
-  if (languages.length === 1) {
-    return matchLocale(languages[0]) || matchLocale(saved) || matchLocale(browserLanguage()) || "de";
-  }
-  return matchLocale(saved) || matchLocale(browserLanguage()) || "de";
+export function chromeLocale(saved?: string): Locale {
+  return matchLocale(saved) || matchLocale(browserLanguage()) || "en";
 }
 
 export function fill(template: string, slots: Record<string, string>): string {

@@ -60,7 +60,7 @@ def _language_options() -> list[dict[str, str]]:
         for code in SUPPORTED_LANGUAGES
     ]
     return [
-        {"value": LANGUAGE_SYSTEM, "label": "System language"},
+        {"value": LANGUAGE_SYSTEM, "label": "System language"},  # HA translates via nlu_language
         {"value": LANGUAGE_ALL, "label": "All languages"},
         *packs,
     ]

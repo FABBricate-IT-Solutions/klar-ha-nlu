@@ -72,7 +72,9 @@ class LangSelectTests(unittest.TestCase):
         self.assertIn("Deutsch", lang.language_lock("de"))
 
     def test_engine_follows_integration_language(self) -> None:
-        self.assertEqual(lang.engine_language_state("fr", "de"), (["fr"], "fr"))
+        self.assertEqual(lang.engine_language_state("fr", "de"), (["fr"], "de"))
+        self.assertEqual(lang.engine_language_state("en", "de"), (["en"], "de"))
+        self.assertEqual(lang.engine_language_state("de", "en"), (["de"], "en"))
         self.assertEqual(lang.engine_language_state("system", "en-GB"), (["en-GB"], "en-GB"))
         pinned, chrome = lang.engine_language_state("all", "nl")
         self.assertEqual(pinned, [])
@@ -80,6 +82,8 @@ class LangSelectTests(unittest.TestCase):
         pinned, chrome = lang.engine_language_state("all", "zh-CN")
         self.assertEqual(pinned, [])
         self.assertEqual(chrome, "zh-CN")
+        self.assertEqual(lang.chrome_locale("de"), "de")
+        self.assertEqual(lang.chrome_locale("en-GB"), "en-GB")
 
 
 if __name__ == "__main__":

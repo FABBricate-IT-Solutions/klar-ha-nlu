@@ -32,7 +32,7 @@ const legacyTab: Record<string, Tab> = {
 };
 const defaultUi: UiState = {
   tab: "home",
-  locale: "de",
+  locale: "",
   dismissed: [],
   last_apply: [],
   graph: {},
@@ -202,8 +202,8 @@ export function App() {
   const [error, setError] = useState("");
   const uiLoaded = useRef(false);
   const [inspectId, setInspectId] = useState("");
-  const locale = chromeLocale(settings.languages, ui.locale);
-  const t = dictionaries[locale] || dictionaries.de;
+  const locale = chromeLocale(ui.locale);
+  const t = dictionaries[locale] || dictionaries.en;
   const theme = ui.theme || "dark";
 
   const refresh = async () => {
@@ -231,7 +231,7 @@ export function App() {
         setUi(applyRoute({
           ...defaultUi,
           ...nextUi,
-          locale: chromeLocale(next.languages, nextUi.locale),
+          locale: chromeLocale(nextUi.locale),
           tab: asTab(nextUi.tab),
           house_view: asHouseView(nextUi.house_view),
           rules_view: asRulesView(nextUi.rules_view),

@@ -43,3 +43,12 @@ class OperatorUiParity(unittest.TestCase):
             self.assertEqual(set(english), set(payload), code)
             self.assertIn("{room}", payload["tryOn"], code)
             self.assertIn("{{ text }}", payload["payloadTemplate"], code)
+
+    def test_operator_chrome_follows_saved_ui_not_nlu_pin(self) -> None:
+        i18n = (ROOT / "web" / "src" / "i18n.ts").read_text(encoding="utf-8")
+        app = (ROOT / "web" / "src" / "App.tsx").read_text(encoding="utf-8")
+        self.assertIn("export function chromeLocale(saved?: string)", i18n)
+        self.assertNotIn("languages.length === 1", i18n)
+        self.assertIn("chromeLocale(ui.locale)", app)
+        self.assertNotIn("chromeLocale(settings.languages", app)
+        self.assertNotIn('locale: "de"', app)
