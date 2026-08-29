@@ -265,10 +265,10 @@ fn target_player<'a>(
         return select_player(&candidates, session);
     }
     match resolved.areas.as_slice() {
-        [area] => return select_area_player(&players, area, session),
+        [area] => return music_in_named_area(home, &players, area, session),
         [] => {
             if let Some(area) = area_from_tokens(tokens, home) {
-                return select_area_player(&players, &area, session);
+                return music_in_named_area(home, &players, &area, session);
             }
         }
         _ => return None,
@@ -308,11 +308,19 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
     {
         return home.entities.iter().filter(|entity| eligible_media_player(entity, home)).collect();
     }
+    if let Some(area) = area_from_tokens(tokens, home) {
+        let in_area: Vec<&EntityRec> = music.iter().copied().filter(|entity| entity.area.as_deref() == Some(area.as_str())).collect();
+        return in_area;
+    }
     let mass: Vec<&EntityRec> = music.iter().copied().filter(|entity| is_music_assistant_player(entity)).collect();
     if !mass.is_empty() {
         return mass;
     }
     music
+}
+
+fn music_in_named_area<'a>(home: &'a HomeGraph, players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {
+    select_area_player(players, area, session).or_else(|| select_area_player(&music_players(home), area, session))
 }
 
 fn music_players(home: &HomeGraph) -> Vec<&EntityRec> {

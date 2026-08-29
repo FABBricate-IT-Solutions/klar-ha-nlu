@@ -172,6 +172,43 @@ fn kitchen_alexa_player_is_music_target() {
 }
 
 #[test]
+fn named_kitchen_music_does_not_start_living_satellite() {
+    let mut home = default_home();
+    home.entities.push(entity(
+        "media_player.satellite1_db12c8",
+        "satellite1-db12c8",
+        "media_player",
+        Some("music_assistant"),
+        Some("wohnzimmer"),
+        &["satellite"],
+        &["Musik"],
+    ));
+    home.entities.push(entity(
+        "media_player.kuchenbereich_2",
+        "Küchenbereich",
+        "media_player",
+        Some("alexa_devices"),
+        Some("kuche"),
+        &["kueche", "kitchen"],
+        &["assist"],
+    ));
+    for sentence in ["Musik in der Küche", "Spiel Musik in der Küche"] {
+        let result = parse(sentence, &home, &mut Session::new(), &[], &settings("de"));
+        assert!(!result.clarify, "{sentence}: {result:?}");
+        assert_eq!(
+            result.intents.first().and_then(|intent| intent.slot("entity_id")),
+            Some("media_player.kuchenbereich_2"),
+            "{sentence}: {result:?}"
+        );
+        assert_ne!(
+            result.intents.first().and_then(|intent| intent.slot("entity_id")),
+            Some("media_player.satellite1_db12c8"),
+            "{sentence}: {result:?}"
+        );
+    }
+}
+
+#[test]
 fn tv_an_stays_plain_media_player_turn_on() {
     let intent = one("Wohnzimmer TV an", "de");
     assert_eq!(intent.name, "HassTurnOn");
