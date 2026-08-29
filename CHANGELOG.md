@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.57](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.56...2026.8.57) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #157 from FABBricate-IT-Solutions/fix/live-kitchen-named-room-not-satellite([e93524f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e93524f733803c31952720b491e9c70c156c5eea))
+
+- Prefer the named-room music player over a global MASS satellite.([660d0aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/660d0aa44fc1a388b62e1444a20a218ac1a01861))
+
 ## [2026.8.56](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.55...2026.8.56) - 2026-08-29
 
 
