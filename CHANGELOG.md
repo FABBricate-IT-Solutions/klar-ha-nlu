@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.63](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.62...2026.8.63) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #170 from FABBricate-IT-Solutions/fix/yarn-canned-if-permission([584f578](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/584f578837b07a38d3e38a0dd9a805b18d22ed43))
+
+- If Gemma still offers a story or joke, speak a canned one instead of asking permission.([ea2fc4e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ea2fc4e875d8e275f9c7ee7de3f004736a27d00f))
+
 ## [2026.8.62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.61...2026.8.62) - 2026-08-29
 
 
