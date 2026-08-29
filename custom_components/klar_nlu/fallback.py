@@ -162,12 +162,31 @@ _PERMISSION = (
     "womit soll",
     "kurz oder lang",
     "welche art",
+    "wollen sie",
+    "möchtest",
+    "moechtest",
+    "möchten sie",
+    "moechten sie",
+    "kann dir gerne",
+    "kann ich dir",
+    "gerne eine geschichte",
     "shall i",
     "should i",
     "do you want",
     "would you like",
     "what kind",
+    "want me to",
+    "i can tell",
+    "i'd be happy",
 )
+_CANNED_STORY = {
+    "de": "Es war einmal ein Fuchs, der nachts über den stillen Hof lief und den Mond begrüßte, bevor er wieder im Wald verschwand.",
+    "en": "Once there was a fox who crossed a quiet yard at night, nodded to the moon, and slipped back into the woods.",
+}
+_CANNED_JOKE = {
+    "de": "Warum tragen Geister keine Hüte? Weil sie durch sind.",
+    "en": "Why don't ghosts wear hats? They go right through them.",
+}
 
 
 def joke_request(text: str) -> bool:
@@ -187,11 +206,14 @@ def yarn_request(text: str) -> bool:
 
 
 def yarn_asks_permission(speech: str) -> bool:
-    text = speech or ""
-    if "?" not in text:
-        return False
-    blob = text.casefold()
+    blob = (speech or "").casefold()
     return any(phrase in blob for phrase in _PERMISSION)
+
+
+def yarn_canned(pack: str, text: str) -> str:
+    if joke_request(text):
+        return _CANNED_JOKE.get(pack) or _CANNED_JOKE["en"]
+    return _CANNED_STORY.get(pack) or _CANNED_STORY["en"]
 
 
 def yarn_nudge(pack: str, prompt: str) -> str:
