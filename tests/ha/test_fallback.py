@@ -41,6 +41,15 @@ class FallbackTests(unittest.TestCase):
     def test_unknown_features_fail_closed(self) -> None:
         self.assertTrue(fallback.agent_has_home_control("nope"))
 
+    def test_yarn_prompt_tells_not_asks(self) -> None:
+        self.assertTrue(fallback.yarn_request("Erzähle eine Geschichte"))
+        self.assertTrue(fallback.yarn_request("Tell me a joke"))
+        self.assertFalse(fallback.yarn_request("Licht an"))
+        prompt = fallback.yarn_prompt("de", None)
+        self.assertIn("Geschichte", prompt)
+        self.assertIn("sofort", prompt)
+        self.assertIn("Keine Geräte", prompt)
+
     def test_prompt_appends_chat_only(self) -> None:
         prompt = fallback.chat_only_prompt("de", "Sei kurz.")
         self.assertIn("Sei kurz.", prompt)

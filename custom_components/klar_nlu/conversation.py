@@ -60,6 +60,8 @@ from .fallback import (
     news_followup_prompt,
     news_prompt,
     with_personality,
+    yarn_prompt,
+    yarn_request,
 )
 from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
@@ -236,8 +238,9 @@ class KlarConversationEntity(ConversationEntity):
             if rendered:
                 speech = rendered
         if hit == "llm" and action and not clarify and not payload.get("unreachable"):
+            prompt = yarn_prompt(pack, action) if yarn_request(user_input.text) else chat_only_prompt(pack, action)
             fallback = await self._fallback(
-                user_input, chat_log, pack, True, chat_only_prompt(pack, action), retrieval
+                user_input, chat_log, pack, True, prompt, retrieval
             )
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
@@ -283,11 +286,9 @@ class KlarConversationEntity(ConversationEntity):
                 fallback = await self._fallback(
                     user_input, chat_log, pack, True, calendar_prompt(pack, speech, extra_s)
                 )
-                replied = await self._after_fallback(
-                    user_input, chat_log, pack, fallback, speech, conversation_id
-                )
-                if replied is not None:
-                    return replied
+                llm = _speech_from_result(fallback) if fallback is not None else ""
+                if llm.strip() and "?" not in llm:
+                    speech = llm
             if self._quiet_ack() and quiet_ack_applies(executed, plan):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
@@ -358,6 +359,10 @@ class KlarConversationEntity(ConversationEntity):
         if speech.strip():
             await emit_assistant_speech(chat_log, user_input.agent_id, speech)
         response = intent.IntentResponse(language=speak_tag(pack))
+        kinds = getattr(intent, "IntentResponseType", None)
+        query = getattr(kinds, "QUERY_ANSWER", None) if kinds is not None else None
+        if query is not None and decision in {"chat", "llm"}:
+            response.response_type = query
         response.async_set_speech(speech)
         return ConversationResult(
             conversation_id=conversation_id,
@@ -486,6 +491,8 @@ class KlarConversationEntity(ConversationEntity):
             system = with_personality(prompt, voice)
         elif self._nlu_rag():
             system = rag_prompt(pack, retrieval, with_personality(extra_s, voice))
+        elif yarn_request(user_input.text):
+            system = yarn_prompt(pack, with_personality(extra_s, voice))
         else:
             system = chat_only_prompt(pack, with_personality(extra_s, voice))
         session_id = self._llm_session_id(user_input)
@@ -545,6 +552,9 @@ class KlarConversationEntity(ConversationEntity):
         }
 
     def _llm_session_id(self, user_input: ConversationInput) -> str:
+        assist_id = str(user_input.conversation_id or "").strip()
+        if assist_id:
+            return llm_conversation_id(assist_id[:128])
         return llm_conversation_id(
             engine_session_id(user_input.device_id, getattr(user_input, "satellite_id", None))
         )

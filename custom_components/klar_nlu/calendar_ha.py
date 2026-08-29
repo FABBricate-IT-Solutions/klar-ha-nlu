@@ -121,8 +121,15 @@ async def _list(
     targets = _calendars(hass, item, exposed)
     if not targets:
         return True, _fill(pack, "calendar_none"), None
-    events, records = await calendar_entity.collect(hass, targets)
+    day = _slot(item, "day")
+    start = end = None
+    if day or _slot(item, "in_days"):
+        start, end, _ = _when_bounds(item, hass)
+    events, records = await calendar_entity.collect(hass, targets, start, end)
     calendar_session.remember(conversation_id, records)
+    if not events and day == "tomorrow":
+        empty = {"de": "Morgen steht nichts an.", "en": "Nothing tomorrow."}
+        return True, empty.get(pack) or empty["en"], None
     return True, calendar_say.list_speech(events, pack, hass), None
 
 

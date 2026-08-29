@@ -7,7 +7,7 @@ use crate::types::{EntityRec, HomeGraph, Intent};
 
 pub(crate) fn mentions_calendar(tokens: &[String]) -> bool {
     let cat = catalog();
-    any_lexeme(tokens, cat.calendar_nouns()) || any_exact(tokens, cat.calendar_query())
+    any_lexeme(tokens, cat.calendar_nouns()) || any_exact(tokens, cat.calendar_query()) || agenda_query(tokens)
 }
 
 pub(crate) fn calendar_clause(
@@ -23,7 +23,8 @@ pub(crate) fn calendar_clause(
     let has_create = any_stem(tokens, cat.calendar_create());
     let has_delete = any_stem(tokens, cat.calendar_delete());
     let has_move = any_stem(tokens, cat.calendar_move());
-    if !has_noun && !has_query {
+    let agenda = agenda_query(tokens);
+    if !has_noun && !has_query && !agenda {
         return None;
     }
     if other_domain_noun(tokens) && !has_noun {
@@ -42,14 +43,14 @@ pub(crate) fn calendar_clause(
     if has_move && (follow || when.has_date) && !has_create {
         return Some(move_outcome(summary.as_deref(), &when));
     }
-    if !has_noun && !has_query {
+    if !has_noun && !has_query && !agenda {
         return None;
     }
-    let create = !question && has_create || (!question && has_noun && when.has_date && summary.is_some() && !has_query);
+    let create = !question && has_create || (!question && has_noun && when.has_date && summary.is_some() && !has_query && !agenda);
     if create {
         return Some(create_outcome(summary.as_deref(), &when));
     }
-    Some(ClauseOut::Intents(vec![list_intent()]))
+    Some(ClauseOut::Intents(vec![list_intent(&when)]))
 }
 
 fn any_lexeme(tokens: &[String], set: &std::collections::HashSet<&str>) -> bool {
@@ -108,8 +109,42 @@ fn other_domain_noun(tokens: &[String]) -> bool {
         || cat.any(tokens, cat.scene_nouns())
 }
 
-fn list_intent() -> Intent {
-    Intent::new("KlarGetCalendarEvents").with("domain", "calendar")
+fn agenda_query(tokens: &[String]) -> bool {
+    let cat = catalog();
+    let day = cat.any(tokens, cat.calendar_today()) || has_tomorrow(tokens);
+    let ask = looks_like_question(tokens)
+        || any_exact(tokens, cat.calendar_query())
+        || tokens.iter().any(|token| matches!(token.as_str(), "habe" | "haben" | "have" | "got" | "steht"));
+    day && ask && !other_domain_noun(tokens)
+}
+
+fn has_tomorrow(tokens: &[String]) -> bool {
+    let cat = catalog();
+    tokens.iter().enumerate().any(|(index, token)| {
+        if greeting_morning_word(token) || !cat.calendar_tomorrow().contains(token.as_str()) {
+            return false;
+        }
+        !greeting_morning_pair(index.checked_sub(1).and_then(|prev| tokens.get(prev)).map(String::as_str), token)
+    })
+}
+
+fn greeting_morning_word(token: &str) -> bool {
+    matches!(token, "gutenmorgen" | "goedenmorgen")
+}
+
+fn greeting_morning_pair(prev: Option<&str>, token: &str) -> bool {
+    matches!((prev.unwrap_or(""), token), ("guten", "morgen") | ("goeden", "morgen") | ("good", "morning"))
+}
+
+fn list_intent(when: &WhenSlots) -> Intent {
+    let mut intent = Intent::new("KlarGetCalendarEvents").with("domain", "calendar");
+    if let Some(day) = when.day {
+        intent = intent.with("day", day);
+    }
+    if let Some(days) = when.in_days {
+        intent = intent.with("in_days", days.to_string());
+    }
+    intent
 }
 
 fn delete_outcome(summary: Option<&str>) -> ClauseOut {
@@ -177,7 +212,7 @@ struct WhenSlots {
 fn when_slots(tokens: &[String], number: Option<i32>) -> WhenSlots {
     let cat = catalog();
     let today = cat.any(tokens, cat.calendar_today());
-    let tomorrow = cat.any(tokens, cat.calendar_tomorrow());
+    let tomorrow = has_tomorrow(tokens);
     let weekday = tokens.iter().any(|token| cat.calendar_when().contains(token.as_str()) && !clock_particle(token));
     let in_days = in_days_slot(tokens, number);
     let hour = number.filter(|value| (0..=23).contains(value));
@@ -210,11 +245,11 @@ fn title_leftover(tokens: &[String]) -> Option<String> {
         .iter()
         .filter(|token| {
             let value = token.as_str();
-            !cat.calendar_nouns().iter().any(|word| lexeme_hit(value, word))
-                && !cat.calendar_query().iter().any(|word| lexeme_hit(value, word))
-                && !cat.calendar_create().iter().any(|word| lexeme_hit(value, word))
-                && !cat.calendar_delete().iter().any(|word| lexeme_hit(value, word))
-                && !cat.calendar_move().iter().any(|word| lexeme_hit(value, word))
+            !cat.calendar_nouns().contains(value)
+                && !cat.calendar_query().contains(value)
+                && !cat.calendar_create().iter().any(|word| stem_hit(value, word) || lexeme_hit(value, word))
+                && !cat.calendar_delete().iter().any(|word| stem_hit(value, word) || lexeme_hit(value, word))
+                && !cat.calendar_move().iter().any(|word| stem_hit(value, word) || lexeme_hit(value, word))
                 && !cat.calendar_today().contains(value)
                 && !cat.calendar_tomorrow().contains(value)
                 && !cat.calendar_when().contains(value)
@@ -225,7 +260,10 @@ fn title_leftover(tokens: &[String]) -> Option<String> {
                 && !cat.minutes().contains(value)
                 && !cat.seconds().contains(value)
                 && !cat.fillers().contains(value)
-                && !matches!(value, "it" | "that" | "this" | "den" | "ihn" | "das" | "es" | "le" | "la" | "lo")
+                && !matches!(
+                    value,
+                    "it" | "that" | "this" | "den" | "ihn" | "das" | "es" | "le" | "la" | "lo" | "ein" | "in" | "ins" | "im"
+                )
                 && value.parse::<i32>().is_err()
         })
         .map(String::as_str)
@@ -263,6 +301,13 @@ pub(crate) fn speak_calendar_need(intent: &Intent) -> String {
 mod tests {
     use super::mentions_calendar;
     use crate::parse::normalize::{strip_fillers, tokenize};
+
+    #[test]
+    fn guten_morgen_is_not_a_calendar_cue() {
+        let _bind = crate::lang::bind(&["de".into()]);
+        let tokens = strip_fillers(&tokenize("Ist Guten Morgen an"));
+        assert!(!mentions_calendar(&tokens), "{tokens:?}");
+    }
 
     #[test]
     fn french_rendezvous_is_a_calendar_cue() {
