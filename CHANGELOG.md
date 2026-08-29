@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.54](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.52...2026.8.54) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- restore last-light seed and stop media from stealing TV or scripts([e7493ed](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e7493edcf8eda9addda353ada0466e9b75e8bdbb))
+
+- rustfmt the suite and keep action.rs under 500 lines([f190499](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f1904995466c378424546a86a1c7b0595ea60460))
+
+
+### Features
+
+- isolate Assist sessions and land the conversation suite([1111544](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1111544c0f01448aca2169b4ea5bd28255e56888))
+
+
+### Miscellaneous
+
+- land CalVer cuts through a release PR([4dcbbcf](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4dcbbcf66b410dd86eeedfb2c412051f06f9c2fb))
+
+
+### Other
+
+- Merge pull request #148 from FABBricate-IT-Solutions/chore/release-2026.8.53([91b458c](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/91b458c539a47d2613c661e98afe3805145d0df1))
+
+- Merge pull request #149 from FABBricate-IT-Solutions/fix/release-cut-protected-main([0355ebc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0355ebc79a1d7b3311f24fb6bf4db561ae4eea9b))
+
+- Merge pull request #147 from FABBricate-IT-Solutions/feat/conversation-suite([162b115](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/162b115d06bcf6ad035cb4f424380c0be65199c2))
+
 ## [2026.8.53](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.52...2026.8.53) - 2026-08-29
 
 
