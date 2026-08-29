@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.54](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.53...2026.8.54) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- keep bare TV on the Fernseher alias, room TV on the living player([66230d3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/66230d3eae16ac957cf19ba8361ae0c97ab3713b))
+
+- keep clock, living-room TV, and kitchen follow-up honest on Assist([278f4cf](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/278f4cfd85a9d2fcbe235df0f0d195060bc24039))
+
+
+### Other
+
+- Merge pull request #151 from FABBricate-IT-Solutions/fix/live-clock-tv-followup([1db0ddc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1db0ddc5e45c6d1c19a0fd099c70f29a38eaa2ed))
+
+
+### Refactor
+
+- move prefer.rs tests out so the 500-line gate stays green([7452627](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/74526273bc44c7993a979ffdb5974472f6ecb106))
+
+
+### Testing
+
+- treat What's the weather as household, not OOD([802905d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/802905d4c52246c8f7c563be074a6b8c3125e568))
+
 ## [2026.8.53](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.52...2026.8.53) - 2026-08-29
 
 
