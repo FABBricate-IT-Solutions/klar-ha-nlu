@@ -116,44 +116,100 @@ def _language_lock(pack: str) -> str:
         )
 
 
-_YARN = {
+_STORY = {
     "de": (
-        "Der Nutzer will Unterhaltung. "
-        "Geschichte: erzähle sofort eine kurze Geschichte (ein Beat). Nicht um Erlaubnis fragen. Kein Witz. "
-        "Witz: erzähle sofort einen Witz. Nicht fragen. "
-        "Nach Ja oder Bitte dieselbe Art fortsetzen, nicht wechseln. "
+        "Der Nutzer will eine Geschichte. Erzähl jetzt eine kurze Geschichte (ein Beat). "
+        "Antwort = die Geschichte selbst. Keine Frage. Nicht um Erlaubnis fragen. Kein Witz. "
+        "Verboten: Soll ich, Darf ich, Womit soll, Kurz oder lang, Welche Art. "
         "Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id."
     ),
     "en": (
-        "The user wants entertainment. "
-        "Story: tell a short story immediately (one beat). Do not ask permission. Do not tell a joke. "
-        "Joke: tell a joke immediately. Do not ask. "
-        "After yes or please, continue the same kind, do not switch. "
+        "The user wants a story. Tell a short story now (one beat). "
+        "Your reply is the story itself. No question. Do not ask permission. Do not tell a joke. "
+        "Forbidden: shall I, should I, do you want, what kind. "
         "One or two sentences, then stop. No devices, no entity ids."
     ),
 }
 
+_JOKE = {
+    "de": (
+        "Der Nutzer will einen Witz. Erzähl jetzt einen Witz. Nicht fragen. Keine Geschichte. "
+        "Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id."
+    ),
+    "en": (
+        "The user wants a joke. Tell a joke now. Do not ask. Do not tell a story. "
+        "One or two sentences, then stop. No devices, no entity ids."
+    ),
+}
+
+_YARN = {
+    "de": _STORY["de"] + " " + _JOKE["de"],
+    "en": _STORY["en"] + " " + _JOKE["en"],
+}
+
+_STORY_WORDS = (
+    "geschichte",
+    "story",
+    "stories",
+    "fairytale",
+    "märchen",
+    "maerchen",
+)
+_JOKE_WORDS = ("witz", "joke", "jokes")
+_PERMISSION = (
+    "soll ich",
+    "darf ich",
+    "womit soll",
+    "kurz oder lang",
+    "welche art",
+    "shall i",
+    "should i",
+    "do you want",
+    "would you like",
+    "what kind",
+)
+
+
+def joke_request(text: str) -> bool:
+    blob = (text or "").casefold()
+    return any(word in blob for word in _JOKE_WORDS)
+
+
+def story_request(text: str) -> bool:
+    if joke_request(text):
+        return False
+    blob = (text or "").casefold()
+    return any(word in blob for word in _STORY_WORDS)
+
 
 def yarn_request(text: str) -> bool:
-    blob = (text or "").casefold()
-    return any(
-        word in blob
-        for word in (
-            "geschichte",
-            "story",
-            "stories",
-            "witz",
-            "joke",
-            "jokes",
-            "fairytale",
-            "märchen",
-            "maerchen",
-        )
+    return story_request(text) or joke_request(text)
+
+
+def yarn_asks_permission(speech: str) -> bool:
+    text = speech or ""
+    if "?" not in text:
+        return False
+    blob = text.casefold()
+    return any(phrase in blob for phrase in _PERMISSION)
+
+
+def yarn_nudge(pack: str, prompt: str) -> str:
+    extra = (
+        "Erzähl jetzt. Keine Frage. Beginne mit der Geschichte oder dem Witz."
+        if pack == "de" or pack.startswith("de-")
+        else "Tell it now. No question. Start with the story or joke."
     )
+    return f"{prompt}\n{extra}"
 
 
-def yarn_prompt(pack: str, extra: str | None) -> str:
-    body = _YARN.get(pack) or _YARN["en"]
+def yarn_prompt(pack: str, extra: str | None, text: str | None = None) -> str:
+    if text and joke_request(text):
+        body = _JOKE.get(pack) or _JOKE["en"]
+    elif text and story_request(text):
+        body = _STORY.get(pack) or _STORY["en"]
+    else:
+        body = _YARN.get(pack) or _YARN["en"]
     return chat_only_prompt(pack, _join_extra(extra, body))
 
 

@@ -46,7 +46,21 @@
 - name: calendar_create_named
   sentences:
     - Add Klar-Test Witzkalender tomorrow at 3 to my calendar
+    - Add Klar-Retest-62 tomorrow at 3 to my calendar
   nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - volume
+    - percent
+
+- name: calendar_create_exact_title
+  sentences:
+    - Add the event Klar-Retest-62 tomorrow at 3 to my calendar
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+        slots: {summary: klar-retest-62, day: tomorrow, hour: '3', domain: calendar}
     reject: false
     clarify: false
 
@@ -61,6 +75,8 @@
   speech_forbids:
     - entity_id
     - That is done
+    - Shall I
+    - Do you want
 
 - name: joke_chat
   sentences:
@@ -72,6 +88,8 @@
   speech_forbids:
     - entity_id
     - That is done
+    - Shall I
+    - Do you want
 
 - name: false_done_forbidden
   sentences:

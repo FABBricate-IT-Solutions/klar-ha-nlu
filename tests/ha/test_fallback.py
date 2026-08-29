@@ -42,13 +42,21 @@ class FallbackTests(unittest.TestCase):
         self.assertTrue(fallback.agent_has_home_control("nope"))
 
     def test_yarn_prompt_tells_not_asks(self) -> None:
-        self.assertTrue(fallback.yarn_request("Erzähle eine Geschichte"))
+        self.assertTrue(fallback.story_request("Erzähle eine Geschichte"))
+        self.assertFalse(fallback.joke_request("Erzähle eine Geschichte"))
         self.assertTrue(fallback.yarn_request("Tell me a joke"))
         self.assertFalse(fallback.yarn_request("Licht an"))
-        prompt = fallback.yarn_prompt("de", None)
-        self.assertIn("Geschichte", prompt)
-        self.assertIn("sofort", prompt)
-        self.assertIn("Keine Geräte", prompt)
+        story = fallback.yarn_prompt("de", None, "Erzähle eine Geschichte")
+        self.assertIn("Geschichte", story)
+        self.assertIn("Antwort = die Geschichte selbst", story)
+        self.assertIn("Soll ich", story)
+        self.assertNotIn("Erzähl jetzt einen Witz", story)
+        joke = fallback.yarn_prompt("de", None, "Erzähle einen Witz")
+        self.assertIn("Witz", joke)
+        self.assertNotIn("Antwort = die Geschichte selbst", joke)
+        self.assertTrue(fallback.yarn_asks_permission("Soll ich dir eine kurze Geschichte erzählen?"))
+        self.assertFalse(fallback.yarn_asks_permission("Es war einmal ein Fuchs im Wald."))
+        self.assertFalse(fallback.yarn_asks_permission("Warum tragen Geister keine Hüte? Weil sie durch sind."))
 
     def test_prompt_appends_chat_only(self) -> None:
         prompt = fallback.chat_only_prompt("de", "Sei kurz.")

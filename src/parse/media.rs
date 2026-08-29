@@ -87,12 +87,16 @@ fn status_intent(tokens: &[String]) -> Option<Intent> {
 }
 
 fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> Option<Intent> {
-    if catalog().any(tokens, catalog().climate_nouns()) || crate::parse::action::has_light_noun(tokens) {
+    if catalog().any(tokens, catalog().climate_nouns())
+        || crate::parse::action::has_light_noun(tokens)
+        || crate::parse::calendar::mentions_calendar(tokens)
+    {
         return None;
     }
     let session_media =
         session.last_domains().any(|d| d == "media_player") || session.last_entities().any(|id| id.starts_with("media_player."));
-    let intent = if let Some(n) = number.filter(|_| has_volume_word(tokens) || session_media) {
+    let volume_number = has_volume_word(tokens) || (session_media && !clock_volume_trap(tokens));
+    let intent = if let Some(n) = number.filter(|_| volume_number) {
         Intent::new("HassSetVolume").with("volume_level", n.clamp(0, 100).to_string())
     } else if any(tokens, &["lauter", "louder", "hoch"]) {
         Intent::new("HassSetVolumeRelative").with("volume_step", "up")
@@ -106,6 +110,11 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
         return None;
     };
     Some(intent)
+}
+
+fn clock_volume_trap(tokens: &[String]) -> bool {
+    let cat = catalog();
+    tokens.iter().any(|token| token == "uhr" || token == "um" || token == "at" || token == "à" || cat.hours().contains(token.as_str()))
 }
 
 fn transport_intent(tokens: &[String], action: Action, home: &HomeGraph, resolved: &Resolved) -> Option<Intent> {

@@ -8,6 +8,8 @@ use uuid::Uuid;
 const MAX_SESSIONS: usize = 256;
 const SESSION_TTL: Duration = Duration::from_secs(2 * 60 * 60);
 const RECENT_FOLLOW_TTL: Duration = Duration::from_secs(15 * 60);
+#[cfg(test)]
+const FOLLOWUP_ID: &str = "klar-followup";
 const LAST_KEEP: usize = 8;
 const WRONG_LOG_KEEP: usize = 32;
 
@@ -251,6 +253,7 @@ impl Sessions {
         session.last = recent.last.clone();
         session.last_execute = recent.last_execute.clone();
         session.last_turn_id = recent.last_turn_id;
+        drop_media_followup(session);
     }
 
     pub fn put(&mut self, mut session: Session) {
@@ -290,6 +293,23 @@ impl Sessions {
     }
 }
 
+fn drop_media_followup(session: &mut Session) {
+    session.last.retain(|turn| !media_last(turn));
+    session.last_execute.retain(|intent| !media_execute(intent));
+}
+
+fn media_last(turn: &LastTurn) -> bool {
+    turn.domain.as_deref() == Some("media_player") || turn.entity.as_deref().is_some_and(|id| id.starts_with("media_player."))
+}
+
+fn media_execute(intent: &Intent) -> bool {
+    intent.slot("entity_id").is_some_and(|id| id.starts_with("media_player."))
+        || intent.slot("domain") == Some("media_player")
+        || intent.name.contains("Volume")
+        || intent.name.contains("Media")
+        || intent.name.starts_with("Mass")
+}
+
 fn truncate_chars(value: &mut String, maximum: usize) {
     if value.chars().count() > maximum {
         *value = value.chars().take(maximum).collect();
@@ -317,13 +337,26 @@ mod tests {
     }
 
     #[test]
-    fn new_conversation_inherits_recent_last() {
+    fn new_conversation_inherits_light_not_media() {
+        let mut sessions = Sessions::default();
+        let mut first = sessions.take(Some("assist-music"));
+        first.remember_entity("media_player.kuchenbereich_2");
+        first.remember_entity("light.wohnzimmer");
+        sessions.put(first);
+        let follow = sessions.take(Some("assist-calendar"));
+        assert_eq!(follow.id, "assist-calendar");
+        let entities: Vec<_> = follow.last_entities().collect();
+        assert_eq!(entities, ["light.wohnzimmer"]);
+    }
+
+    #[test]
+    fn followup_fallback_still_inherits_recent_last() {
         let mut sessions = Sessions::default();
         let mut first = sessions.take(Some("wake-1"));
         first.remember_entity("light.wohnzimmer");
         sessions.put(first);
-        let follow = sessions.take(Some("wake-2"));
-        assert_eq!(follow.id, "wake-2");
+        let follow = sessions.take(Some(FOLLOWUP_ID));
+        assert_eq!(follow.id, FOLLOWUP_ID);
         assert_eq!(follow.last_entities().collect::<Vec<_>>(), ["light.wohnzimmer"]);
     }
 

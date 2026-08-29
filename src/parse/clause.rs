@@ -78,7 +78,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     let early = infer_action(guessed, tokens, number, question, session, None);
     let domain = domain_for(early, tokens);
 
-    let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, home, early, number, domain);
+    let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, raw, home, early, number, domain);
 
     let mut resolved = resolve_targets(tokens, home, settings, domain, early);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
