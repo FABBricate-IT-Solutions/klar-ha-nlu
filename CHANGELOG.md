@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.57...2026.8.58) - 2026-08-29
+
+
+
+### Documentation
+
+- add an interactive runtime architecture map([e8aae11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e8aae119fce178222c663ae0fff1546046d92cfd))
+
+
+### Other
+
+- Merge pull request #158 from FABBricate-IT-Solutions/docs/runtime-architecture-map([147dabc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/147dabc16a956afb8934e087b6b4e3317a3fa436))
+
 ## [2026.8.57](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.56...2026.8.57) - 2026-08-29
 
 
