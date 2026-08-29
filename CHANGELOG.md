@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.53](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.52...2026.8.53) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- restore last-light seed and stop media from stealing TV or scripts([e7493ed](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e7493edcf8eda9addda353ada0466e9b75e8bdbb))
+
+- rustfmt the suite and keep action.rs under 500 lines([f190499](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f1904995466c378424546a86a1c7b0595ea60460))
+
+
+### Features
+
+- isolate Assist sessions and land the conversation suite([1111544](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1111544c0f01448aca2169b4ea5bd28255e56888))
+
+
+### Other
+
+- Merge pull request #147 from FABBricate-IT-Solutions/feat/conversation-suite([162b115](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/162b115d06bcf6ad035cb4f424380c0be65199c2))
+
 ## [2026.8.52](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.51...2026.8.52) - 2026-08-28
 
 
