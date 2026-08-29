@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.61...2026.8.62) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #168 from FABBricate-IT-Solutions/fix/story-and-calendar-session([bec3e4f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bec3e4ff3a7ead096e51484ccd04d59bbc64e84d))
+
+- Tell a requested story immediately and keep hyphenated calendar titles off the last kitchen player.([8265969](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/82659696bbe927d28344f0a3098c5bf6930aa080))
+
 ## [2026.8.61](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.59...2026.8.61) - 2026-08-29
 
 
