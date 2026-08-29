@@ -32,6 +32,8 @@ CONSTANTS = {
     "modeContext": "Rooms only",
     "engineHint": "Mode binds devices or rooms only. House context on a miss is optional.",
     "inLab": "In Lab",
+    "operatorLanguage": "Operator language",
+    "operatorLanguageHint": "This app only. Saved here, or KLAR_UI_LOCALE before the first save. Not Assist, not the Home Assistant profile.",
 }
 
 CATALOG_KEYS = (
@@ -122,8 +124,6 @@ CATALOG_KEYS = (
     "languageSearch",
     "allLanguages",
     "noLanguageMatch",
-    "operatorLanguage",
-    "operatorLanguageHint",
     "languageHint",
     "mappingHint",
     "parseSample",
