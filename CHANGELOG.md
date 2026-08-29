@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.59](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.58...2026.8.59) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #161 from FABBricate-IT-Solutions/fix/live-heat-not-satellite-volume([f0c7a65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f0c7a65cd523dec7801176e00b46376093be9591))
+
+- Keep named-room music targeting off heat and volume parses.([d3add3a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d3add3aa3e3c658360c79b98150623ca03152b08))
+
 ## [2026.8.58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.57...2026.8.58) - 2026-08-29
 
 
