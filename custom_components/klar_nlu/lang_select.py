@@ -80,16 +80,29 @@ def normalize_language_choice(raw: object) -> str:
 
 
 def enabled_packs(raw: object, hass_language: str | None = None) -> list[str]:
+    """Parse allow-list. system/all = every compiled pack; a single pin stays that pack."""
+    del hass_language
     choice = normalize_language_choice(raw)
-    if choice == LANGUAGE_ALL:
+    if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM}:
         return list(SUPPORTED_LANGUAGES)
-    if choice == LANGUAGE_SYSTEM:
-        return [resolve_pack(hass_language)]
     return [choice]
 
 
+def default_pack(raw: object, hass_language: str | None = None) -> str:
+    """Fallback pack when the request has no language."""
+    choice = normalize_language_choice(raw)
+    if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM}:
+        return resolve_pack(hass_language)
+    return choice
+
+
+def advertised_languages() -> list[str]:
+    """Voice-assistants dropdown: always every compiled pack and its variants."""
+    return advertise(list(SUPPORTED_LANGUAGES))
+
+
 def chrome_locale(hass_language: str | None = None) -> str:
-    """HA system/frontend language for integration and app chrome, not the NLU pin."""
+    """Resolve a Home Assistant language tag to a pack. Not operator chrome."""
     if not str(hass_language or "").strip():
         return "en"
     return resolve_pack(hass_language)
@@ -97,12 +110,12 @@ def chrome_locale(hass_language: str | None = None) -> str:
 
 def engine_language_state(
     raw: object, hass_language: str | None = None
-) -> tuple[list[str], str]:
-    """Pin parse packs from the NLU option; chrome always follows Home Assistant."""
-    packs = enabled_packs(raw, hass_language)
+) -> tuple[list[str], None]:
+    """Pin parse packs from the NLU option. Do not push operator chrome from HA."""
+    del hass_language
     choice = normalize_language_choice(raw)
-    pinned = [] if choice == LANGUAGE_ALL else list(packs)
-    return pinned, chrome_locale(hass_language)
+    pinned = [] if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM} else [choice]
+    return pinned, None
 
 
 def advertise(packs: list[str]) -> list[str]:

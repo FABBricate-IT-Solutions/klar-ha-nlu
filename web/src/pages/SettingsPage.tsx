@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { api, download, setToken } from "../api";
+import { api, download, setToken, type LanguagePack } from "../api";
 import { Drawer } from "../components/common";
-import type { Messages } from "../i18n";
-import type { BundleList, Settings, Theme } from "../types";
+import { SearchSelect, withCurrent } from "../components/SearchSelect";
+import { dictionaries, type Messages } from "../i18n";
+import type { BundleList, Locale, Settings, Theme } from "../types";
 
 function readTheme(theme?: Theme): Theme {
   if (theme === "light" || theme === "dark") return theme;
@@ -11,6 +12,8 @@ function readTheme(theme?: Theme): Theme {
 
 export function SettingsPage({
   t,
+  locale,
+  onLocale,
   settings,
   onSettings,
   onReplayWizard,
@@ -18,6 +21,8 @@ export function SettingsPage({
   onTheme,
 }: {
   t: Messages;
+  locale: Locale;
+  onLocale: (locale: Locale) => void;
   settings: Settings;
   onSettings: (s: Settings) => void;
   onReplayWizard?: () => void;
@@ -29,10 +34,21 @@ export function SettingsPage({
   const [confirmClear, setConfirmClear] = useState(false);
   const [token, setTokenValue] = useState(localStorage.getItem("klar_token") || "");
   const [picked, setPicked] = useState<Theme>(() => readTheme(theme));
+  const [packs, setPacks] = useState<LanguagePack[]>([]);
   const refresh = () => api.bundle().then(setBundle).catch(() => undefined);
   useEffect(() => {
     refresh();
   }, []);
+  useEffect(() => {
+    api.languages().then(setPacks).catch(() => undefined);
+  }, []);
+  const chromeCodes = new Set(Object.keys(dictionaries));
+  const localeOptions = (packs.length ? packs.filter((pack) => chromeCodes.has(pack.code)) : [...chromeCodes].map((code) => ({
+    code,
+    native_name: code,
+    script: "",
+    variants: [code],
+  }))).map((pack) => ({ value: pack.code, label: `${pack.native_name} (${pack.code})` }));
   useEffect(() => {
     if (theme === "light" || theme === "dark") setPicked(theme);
   }, [theme]);
@@ -79,8 +95,16 @@ export function SettingsPage({
             <option value="full">{t.modeFull}</option>
             <option value="context_only">{t.modeContext}</option>
           </select>
+          <label>{t.operatorLanguage}</label>
+          <SearchSelect
+            value={locale}
+            options={withCurrent(localeOptions, locale)}
+            onChange={onLocale}
+            allowEmpty={false}
+            placeholder={t.languageSearch}
+          />
+          <p className="caption">{t.operatorLanguageHint}</p>
           <label>{t.languages}</label>
-          <p>{settings.languages.length ? settings.languages.join(" · ") : t.allLanguages}</p>
           <p className="caption">{t.languageHint}</p>
           <label className="row">
             <input type="checkbox" checked={settings.confirm_risky_actions} onChange={(ev) => onSettings({ ...settings, confirm_risky_actions: ev.target.checked })} style={{ width: "auto" }} />

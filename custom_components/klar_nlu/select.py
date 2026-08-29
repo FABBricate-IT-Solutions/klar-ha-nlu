@@ -15,7 +15,7 @@ from .const import (
     PERSONALITIES,
     resolve_personality,
 )
-from .lang_select import enabled_packs, resolve_pack
+from .lang_select import default_pack
 from .refine_voices import editable_prompt
 
 
@@ -57,8 +57,7 @@ class KlarPersonalitySelect(SelectEntity):
         if personality not in PERSONALITIES or personality == self.current_option:
             return
         hass_language = getattr(getattr(self.hass, "config", None), "language", None)
-        packs = enabled_packs(self._entry.options.get(CONF_LANGUAGES), hass_language)
-        pack = packs[0] if len(packs) == 1 else resolve_pack(hass_language, packs)
+        pack = default_pack(self._entry.options.get(CONF_LANGUAGES), hass_language)
         self.hass.config_entries.async_update_entry(
             self._entry,
             options={

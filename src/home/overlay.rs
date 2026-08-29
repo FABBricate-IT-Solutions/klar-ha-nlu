@@ -24,6 +24,9 @@ pub struct UiState {
     pub tab: String,
     #[serde(default = "default_locale")]
     pub locale: String,
+    /// True after the operator saves a UI language. Until then `KLAR_UI_LOCALE` may seed chrome.
+    #[serde(default)]
+    pub locale_set: bool,
     #[serde(default)]
     pub dismissed: Vec<String>,
     #[serde(default)]
@@ -45,6 +48,7 @@ impl Default for UiState {
         Self {
             tab: default_tab(),
             locale: default_locale(),
+            locale_set: false,
             dismissed: Vec::new(),
             last_apply: Vec::new(),
             graph: HashMap::new(),
@@ -61,7 +65,7 @@ fn default_tab() -> String {
 }
 
 fn default_locale() -> String {
-    "en".into()
+    String::new()
 }
 
 fn default_house_view() -> String {
@@ -218,6 +222,7 @@ mod tests {
             ui: UiState {
                 tab: "graph".into(),
                 locale: "en".into(),
+                locale_set: true,
                 dismissed: vec!["light.hue_play_1".into()],
                 last_apply: vec![UiApplyRow {
                     entity_id: "light.hue_play_1".into(),
@@ -236,6 +241,7 @@ mod tests {
         let loaded = load_overlay(&dir);
         assert_eq!(loaded.ui.tab, "graph");
         assert_eq!(loaded.ui.locale, "en");
+        assert!(loaded.ui.locale_set);
         assert_eq!(loaded.ui.dismissed, vec!["light.hue_play_1"]);
         assert_eq!(loaded.ui.last_apply[0].before.as_deref(), Some("wohnzimmer"));
         assert_eq!(loaded.ui.graph["light.schlafzimmer"].x, 120.0);
@@ -253,6 +259,8 @@ mod tests {
         assert_eq!(ui.house_view, "calibrate");
         assert_eq!(ui.rules_view, "routines");
         assert_eq!(ui.theme, "dark");
+        assert_eq!(ui.locale, "");
+        assert!(!ui.locale_set);
     }
 
     #[test]

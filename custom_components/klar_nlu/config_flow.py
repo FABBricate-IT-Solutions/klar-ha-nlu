@@ -47,7 +47,7 @@ from .const import (
     resolve_engine_target,
     resolve_personality,
 )
-from .lang_select import enabled_packs, normalize_language_choice, resolve_pack
+from .lang_select import default_pack, normalize_language_choice
 from .languages import LANGUAGE_NAMES
 from .refine_voices import editable_prompt, resolve_stored_prompt
 
@@ -215,13 +215,10 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
 
     def _pack(self, language_choice: object | None = None) -> str:
         hass_language = getattr(getattr(self.hass, "config", None), "language", None)
-        packs = enabled_packs(
+        return default_pack(
             language_choice if language_choice is not None else self.config_entry.options.get(CONF_LANGUAGES),
             hass_language,
         )
-        if len(packs) == 1:
-            return packs[0]
-        return resolve_pack(hass_language, packs)
 
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None

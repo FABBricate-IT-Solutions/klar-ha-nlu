@@ -60,7 +60,6 @@ function resolveLast(passed: ConversationTurn | null | undefined, turns: Convers
 export function DashboardPage({
   data,
   t,
-  locale,
   dismissed,
   onReplay,
   onApply,
@@ -68,10 +67,12 @@ export function DashboardPage({
   canApply,
   lastTurn,
   onTeach,
+  parseLanguage,
 }: {
   data: DashboardData;
   t: Messages;
   locale: Locale;
+  parseLanguage?: string;
   dismissed: string[];
   onReplay: (text: string) => void;
   onApply: () => void;
@@ -117,7 +118,7 @@ export function DashboardPage({
   const undoLast = async () => {
     setBusy(true);
     try {
-      await api.parse(t.tryUndo, locale);
+      await api.parse(t.tryUndo, parseLanguage || "");
       const next = await api.conversations();
       setTurns(next);
     } finally {

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "./api";
 import { Drawer } from "./components/common";
 import { TEACH_HEARD_KEY } from "./components/TeachFromMiss";
-import { chromeLocale, dictionaries, isRtl } from "./i18n";
+import { assistParseLanguage, chromeLocale, dictionaries, isRtl } from "./i18n";
 import { ConversationsPage } from "./pages/ConversationsPage";
 import { DashboardPage } from "./pages/Dashboard";
 import { HousePage } from "./pages/HousePage";
@@ -33,6 +33,7 @@ const legacyTab: Record<string, Tab> = {
 const defaultUi: UiState = {
   tab: "home",
   locale: "",
+  locale_set: false,
   dismissed: [],
   last_apply: [],
   graph: {},
@@ -232,6 +233,7 @@ export function App() {
           ...defaultUi,
           ...nextUi,
           locale: chromeLocale(nextUi.locale),
+          locale_set: Boolean(nextUi.locale_set),
           tab: asTab(nextUi.tab),
           house_view: asHouseView(nextUi.house_view),
           rules_view: asRulesView(nextUi.rules_view),
@@ -250,7 +252,11 @@ export function App() {
 
   useEffect(() => {
     if (!uiLoaded.current) return;
-    const timer = window.setTimeout(() => api.saveUi({ ...ui, locale }).catch(() => undefined), 350);
+    const timer = window.setTimeout(() => api.saveUi({
+      ...ui,
+      locale: ui.locale_set ? locale : "",
+      locale_set: Boolean(ui.locale_set),
+    }).catch(() => undefined), 350);
     return () => window.clearTimeout(timer);
   }, [ui, locale]);
 
@@ -309,7 +315,11 @@ export function App() {
   const finishWizard = () => {
     setUi((prev) => {
       const next = { ...prev, wizard_done: true };
-      api.saveUi({ ...next, locale }).catch(() => undefined);
+      api.saveUi({
+        ...next,
+        locale: next.locale_set ? locale : "",
+        locale_set: Boolean(next.locale_set),
+      }).catch(() => undefined);
       return next;
     });
   };
@@ -368,6 +378,7 @@ export function App() {
             canApply={applyCandidates.length > 0}
             onTeach={teach}
             lastTurn={journal ? journal.at(-1) ?? null : undefined}
+            parseLanguage={assistParseLanguage(settings.languages)}
           />
         )}
         {ui.tab === "conversations" && <ConversationsPage t={t} locale={locale} onReplay={replay} onTeach={teach} />}
@@ -395,10 +406,20 @@ export function App() {
             inspectId={inspectId || undefined}
           />
         )}
-        {ui.tab === "lab" && <ParsePage t={t} locale={locale} replayText={replayText} nluRag={settings.nlu_rag} rooms={dashboard?.rooms || []} />}
+        {ui.tab === "lab" && (
+          <ParsePage
+            t={t}
+            parseLanguage={assistParseLanguage(settings.languages)}
+            replayText={replayText}
+            nluRag={settings.nlu_rag}
+            rooms={dashboard?.rooms || []}
+          />
+        )}
         {ui.tab === "settings" && (
           <SettingsPage
             t={t}
+            locale={locale}
+            onLocale={(next) => setUi((prev) => ({ ...prev, locale: next, locale_set: true }))}
             settings={settings}
             onSettings={setSettings}
             onReplayWizard={replayWizard}

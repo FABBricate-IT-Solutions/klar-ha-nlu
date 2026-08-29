@@ -122,6 +122,8 @@ CATALOG_KEYS = (
     "languageSearch",
     "allLanguages",
     "noLanguageMatch",
+    "operatorLanguage",
+    "operatorLanguageHint",
     "languageHint",
     "mappingHint",
     "parseSample",

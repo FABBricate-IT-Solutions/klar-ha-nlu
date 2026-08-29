@@ -22,8 +22,9 @@ UI: open **Klar NLU** from the Home Assistant sidebar (the App). Lovelace **Klar
 |--------|---------|
 | `token` | Shared write secret → `KLAR_TOKEN`. Empty = no token. Same string as the integration write token. |
 | `support_bundle` | Record Assist requests, replies, and actions under `/data`. |
+| `ui_locale` | Seeds operator chrome → `KLAR_UI_LOCALE` until App → Settings → Operator language is saved. |
 
-Settings stay in `/data/klar_nlu.json`, recordings in `/data/support_bundle.jsonl`. In the Klar UI you can download, delete selected rows, or clear the log. Downloads are redacted (hashed conversation IDs, pseudonymized names) unless you turn on raw text in Settings. Environment `KLAR_SUPPORT_BUNDLE=1` only seeds the first start; the UI setting wins afterwards.
+Settings stay in `/data/klar_nlu.json`, recordings in `/data/support_bundle.jsonl`. In the Klar UI you can download, delete selected rows, or clear the log. Downloads are redacted (hashed conversation IDs, pseudonymized names) unless you turn on raw text in Settings. Environment `KLAR_SUPPORT_BUNDLE=1` only seeds the first start; the UI setting wins afterwards. `KLAR_UI_LOCALE` / `ui_locale` seeds the operator language until Settings is saved.
 
 ## Docker without the add-on
 

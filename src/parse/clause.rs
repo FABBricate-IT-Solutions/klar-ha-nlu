@@ -67,9 +67,9 @@ pub(crate) fn parse_clause_candidates_for_action(
             && !(cat.any(tokens, cat.question_words()) || tokens.first().is_some_and(|token| cat.is_question_start(token)))
         {
             Action::Scene
-        } else if crate::parse::infer::color_word(tokens).is_some() && !question {
-            Action::SetLight
-        } else if crate::parse::infer::light_level(tokens).is_some() && !question {
+        } else if !question
+            && (crate::parse::infer::color_word(tokens).is_some() || crate::parse::infer::light_level(tokens).is_some())
+        {
             Action::SetLight
         } else if question && number.is_none() && !hard {
             Action::GetState

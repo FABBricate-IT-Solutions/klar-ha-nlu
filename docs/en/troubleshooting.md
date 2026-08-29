@@ -9,7 +9,7 @@ Household setup first: [getting started](getting-started.md). This page covers m
 1. **Expose.** Settings → Voice assistants → Expose. Klar’s option **Only control entities exposed to Assist** is on by default. Hidden sensors and switches are not targets.
 2. **Name and area.** The entity needs a spoken name and a room in Home Assistant. Generic “light” in a room with three lamps becomes a clarify question.
 3. **Mapping.** App sidebar **Klar NLU** → **House → Mapping** (not Lovelace **Klar**). Add an alias or accept a room suggestion. Do not build a second device list in Klar.
-4. **Language.** Pin Assist to the locale you speak (`de`, `en`, `fr`, …). Klar binds that pack for the request.
+4. **Language.** The Voice assistants dropdown lists every compiled pack. Pick the pipeline language you speak (`de`, `en`, `fr`, …). Klar binds that pack for the request unless Sprachen is a single pinned locale.
 
 The integration option **Only control entities exposed to Assist** is a developer escape hatch. Off matches hidden entities too — easier to hit the wrong device.
 

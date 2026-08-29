@@ -210,6 +210,8 @@ Persistent UI state under `/data/klar_nlu.json`:
 }
 ```
 
+`locale` is operator chrome only. A saved Settings pick (`locale_set: true`) wins. Until then `GET` uses `KLAR_UI_LOCALE`, then `en`. This is not the Assist pin and not `Accept-Language`.
+
 `POST` requires the write token like other write endpoints, except from loopback.
 
 ### `POST /api/assignment/apply`

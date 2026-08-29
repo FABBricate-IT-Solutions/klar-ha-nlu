@@ -210,6 +210,8 @@ Persistenter UI-Zustand unter `/data/klar_nlu.json`:
 }
 ```
 
+`locale` ist nur Operator-Chrome. Eine gespeicherte Einstellung (`locale_set: true`) gewinnt. Bis dahin nutzt `GET` `KLAR_UI_LOCALE`, sonst `en`. Das ist nicht der Assist-Pin und nicht `Accept-Language`.
+
 `POST` braucht wie andere Schreibzugriffe den Token, außer von Loopback.
 
 ### `POST /api/assignment/apply`

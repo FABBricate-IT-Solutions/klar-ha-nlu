@@ -45,9 +45,7 @@ async fn get_ui(
         return Err(StatusCode::UNAUTHORIZED);
     }
     let mut ui = sanitize_ui(load_overlay(&state.data_dir).ui);
-    if let Some(locale) = locale_from_accept_language(&headers) {
-        ui.locale = locale;
-    }
+    ui.locale = effective_ui_locale(&ui);
     Ok(Json(ui))
 }
 
@@ -66,19 +64,23 @@ async fn set_ui(
     Ok(Json(overlay.ui))
 }
 
-fn locale_from_accept_language(headers: &HeaderMap) -> Option<String> {
-    let raw = headers.get("accept-language")?.to_str().ok()?;
-    for part in raw.split(',') {
-        let tag = part.split(';').next()?.trim();
-        if tag.is_empty() || tag == "*" {
-            continue;
-        }
-        let resolved = resolve_ui_locale(tag);
-        if resolved != "en" || tag.to_ascii_lowercase().starts_with("en") {
-            return Some(resolved);
-        }
+fn locale_from_env(raw: Option<&str>) -> Option<String> {
+    let trimmed = raw?.trim();
+    if trimmed.is_empty() {
+        return None;
     }
-    None
+    Some(resolve_ui_locale(trimmed))
+}
+
+fn effective_ui_locale(ui: &UiState) -> String {
+    effective_ui_locale_with(ui, std::env::var("KLAR_UI_LOCALE").ok().as_deref())
+}
+
+fn effective_ui_locale_with(ui: &UiState, env: Option<&str>) -> String {
+    if ui.locale_set && !ui.locale.is_empty() {
+        return resolve_ui_locale(&ui.locale);
+    }
+    locale_from_env(env).unwrap_or_else(|| "en".into())
 }
 
 fn resolve_ui_locale(raw: &str) -> String {
@@ -95,7 +97,9 @@ fn resolve_ui_locale(raw: &str) -> String {
 }
 
 fn sanitize_ui(mut ui: UiState) -> UiState {
-    ui.locale = resolve_ui_locale(&ui.locale);
+    if ui.locale_set || !ui.locale.is_empty() {
+        ui.locale = resolve_ui_locale(&ui.locale);
+    }
     if ui.tab.is_empty() || ui.tab.len() > 32 {
         ui.tab = "home".into();
     }
@@ -254,14 +258,15 @@ mod tests {
     }
 
     #[test]
-    fn operator_chrome_follows_accept_language_not_nlu_pin() {
-        let mut headers = HeaderMap::new();
-        headers.insert("accept-language", "de-DE,de;q=0.9,en;q=0.8".parse().unwrap());
-        assert_eq!(locale_from_accept_language(&headers).as_deref(), Some("de"));
-        headers.insert("accept-language", "en-GB,en;q=0.9".parse().unwrap());
-        assert_eq!(locale_from_accept_language(&headers).as_deref(), Some("en-GB"));
-        headers.insert("accept-language", "fr-FR,fr;q=0.8".parse().unwrap());
-        assert_eq!(locale_from_accept_language(&headers).as_deref(), Some("fr"));
-        assert_eq!(locale_from_accept_language(&HeaderMap::new()), None);
+    fn operator_chrome_uses_saved_locale_or_klar_ui_locale() {
+        let saved = UiState { locale: "de".into(), locale_set: true, ..Default::default() };
+        assert_eq!(effective_ui_locale_with(&saved, Some("fr")), "de");
+        let unset = UiState { locale: String::new(), locale_set: false, ..Default::default() };
+        assert_eq!(effective_ui_locale_with(&unset, Some("fr")), "fr");
+        assert_eq!(effective_ui_locale_with(&unset, Some("en-GB")), "en-GB");
+        assert_eq!(effective_ui_locale_with(&unset, Some("")), "en");
+        assert_eq!(effective_ui_locale_with(&unset, None), "en");
+        assert_eq!(locale_from_env(Some("de-DE")).as_deref(), Some("de"));
+        assert_eq!(locale_from_env(Some("  ")), None);
     }
 }
