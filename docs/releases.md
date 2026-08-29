@@ -59,8 +59,10 @@ Jeder Merge auf `main` schneidet automatisch die nächste `YYYY.M.PATCH`. Der Re
 1. berechnet die nächste CalVer-Version
 2. schreibt sie nach `Cargo.toml`, `config.yaml`, `addon/config.yaml` und das HA-Manifest
 3. erzeugt `CHANGELOG.md` neu
-4. committet `chore(release): prepare for YYYY.M.PATCH` auf `main` und taggt
+4. öffnet oder aktualisiert `chore/release-YYYY.M.PATCH`, wartet auf die 10 Required Checks, merget mit `gh pr merge` (kein `--admin`) und taggt
 5. ruft **Build** im selben Lauf auf (`workflow_call`)
+
+Ist der Push schon ein Land von `chore(release): prepare for YYYY.M.PATCH` (oder ein Merge von `chore/release-*`), taggt der Cut nur. Er pusht keinen neuen Commit nach `main`.
 
 **Actions → Release → Run workflow** bleibt für einen manuellen Override (Feld leer = nächste Version, oder z. B. `2026.8.0`).
 
@@ -68,7 +70,7 @@ Build erzeugt linux-x86_64 und linux-aarch64 und hängt die Tarballs an das GitH
 
 Ein Tag von deinem Rechner startet Build weiter selbst: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-Der Cut nutzt nur den kurzlebigen `GITHUB_TOKEN` des Jobs. `main` und `staging` verlangen die Required Checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) vor jedem PR-Merge, auch für Admins. Der Version-Commit bleibt ein Direkt-Push vom Release-Job und umgeht diese Merge-Checks.
+Der Cut nutzt nur den kurzlebigen `GITHUB_TOKEN` des Jobs. `main` und `staging` verlangen die Required Checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) vor jedem PR-Merge, auch für Admins. Der Versionsbump läuft über denselben PR-Weg, damit die Checks zuerst grün werden können.
 
 ## Changelog lokal
 

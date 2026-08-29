@@ -59,8 +59,10 @@ Every merge to `main` cuts the next `YYYY.M.PATCH` automatically. The Release wo
 1. Computes the next CalVer
 2. Writes it into `Cargo.toml`, `config.yaml`, `addon/config.yaml`, and the HA manifest
 3. Regenerates `CHANGELOG.md`
-4. Commits `chore(release): prepare for YYYY.M.PATCH` on `main` and tags
+4. Opens or updates `chore/release-YYYY.M.PATCH`, waits for the 10 required checks, merges with `gh pr merge` (no `--admin`), and tags
 5. Calls **Build** in the same run (`workflow_call`)
+
+If the push is already a `chore(release): prepare for YYYY.M.PATCH` land (or a merge of `chore/release-*`), the cut only tags. It never `git push`es a new commit to `main`.
 
 **Actions → Release → Run workflow** remains for a manual override (empty = next version, or e.g. `2026.8.0`).
 
@@ -68,7 +70,7 @@ Build compiles linux-x86_64 and linux-aarch64 and attaches the tarballs to the G
 
 A tag pushed from your machine still triggers Build on its own: `git tag 2026.8.0 && git push origin 2026.8.0`.
 
-The cut uses only the job-scoped `GITHUB_TOKEN`. `main` and `staging` require the status checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) before any PR merge, including admins. The version commit is still a direct push from the Release job and does not go through those merge checks.
+The cut uses only the job-scoped `GITHUB_TOKEN`. `main` and `staging` require the status checks (`test`, `clippy`, `rustfmt`, `web`, `release-gates`, `cargo-audit`, `cargo-deny`, `gitleaks`, `hassfest`, `hacs`) before any PR merge, including admins. The version bump lands through that same PR path so the required checks can go green first.
 
 ## Local changelog
 
