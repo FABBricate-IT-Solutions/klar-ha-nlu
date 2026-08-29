@@ -165,7 +165,7 @@ pub const PACK: LanguagePack = LanguagePack {
         list_complete: &["complete", "completed", "check", "done", "finished"],
         playback_resume: &["resume", "unpause", "play", "continue"],
         calendar_query: &["upcoming", "schedule", "agenda"],
-        calendar_create: &["schedule", "book", "add"],
+        calendar_create: &["schedule", "book", "add", "set", "create", "put"],
         calendar_today: &["today"],
         calendar_tomorrow: &["tomorrow"],
         calendar_when: &["at", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],

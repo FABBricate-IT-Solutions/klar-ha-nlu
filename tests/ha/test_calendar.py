@@ -148,6 +148,20 @@ class CalendarDispatchTests(unittest.TestCase):
         self.assertIn("dentist", speech or "")
         self.assertIn("all day", (speech or "").lower())
 
+    def test_tomorrow_empty_is_honest(self) -> None:
+        hass = _Hass(_Cal([]), language="de")
+        ok, speech, error = asyncio.run(
+            calendar_ha.handle_calendar_intent(
+                hass,
+                {"name": "KlarGetCalendarEvents", "slots": [{"name": "day", "value": "tomorrow"}]},
+                "de",
+                lambda _: True,
+            )
+        )
+        self.assertTrue(ok)
+        self.assertIsNone(error)
+        self.assertEqual(speech, "Morgen steht nichts an.")
+
     def test_create_calls_entity_and_speaks(self) -> None:
         hass = _Hass()
         ok, speech, error = asyncio.run(

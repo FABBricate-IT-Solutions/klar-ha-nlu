@@ -116,6 +116,47 @@ def _language_lock(pack: str) -> str:
         )
 
 
+_YARN = {
+    "de": (
+        "Der Nutzer will Unterhaltung. "
+        "Geschichte: erzähle sofort eine kurze Geschichte (ein Beat). Nicht um Erlaubnis fragen. Kein Witz. "
+        "Witz: erzähle sofort einen Witz. Nicht fragen. "
+        "Nach Ja oder Bitte dieselbe Art fortsetzen, nicht wechseln. "
+        "Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id."
+    ),
+    "en": (
+        "The user wants entertainment. "
+        "Story: tell a short story immediately (one beat). Do not ask permission. Do not tell a joke. "
+        "Joke: tell a joke immediately. Do not ask. "
+        "After yes or please, continue the same kind, do not switch. "
+        "One or two sentences, then stop. No devices, no entity ids."
+    ),
+}
+
+
+def yarn_request(text: str) -> bool:
+    blob = (text or "").casefold()
+    return any(
+        word in blob
+        for word in (
+            "geschichte",
+            "story",
+            "stories",
+            "witz",
+            "joke",
+            "jokes",
+            "fairytale",
+            "märchen",
+            "maerchen",
+        )
+    )
+
+
+def yarn_prompt(pack: str, extra: str | None) -> str:
+    body = _YARN.get(pack) or _YARN["en"]
+    return chat_only_prompt(pack, _join_extra(extra, body))
+
+
 def chat_only_prompt(pack: str, extra: str | None) -> str:
     only = _CHAT_ONLY.get(pack) or _ANSWER_IN_PACK.format(pack=pack)
     lock = _language_lock(pack)

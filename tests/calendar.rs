@@ -179,6 +179,42 @@ fn family_script_list_smokes() {
 }
 
 #[test]
+fn de_tomorrow_agenda_lists_with_day() {
+    for text in ["Was habe ich morgen?", "Was steht morgen im Kalender?"] {
+        let (decision, names, slots) = outcome(text, "de");
+        assert!(matches!(decision, ParseDecision::Execute), "{text} {decision:?}");
+        assert!(names.iter().any(|name| name == "KlarGetCalendarEvents"), "{text} {names:?}");
+        assert!(slots.iter().any(|(name, value)| name == "day" && value == "tomorrow"), "{text} {slots:?}");
+    }
+}
+
+#[test]
+fn de_create_keeps_requested_title() {
+    for text in [
+        "Trage den Termin Klar-Test Witzkalender morgen um 15 Uhr in den Kalender ein",
+        "Lege heute um 21 Uhr den Termin Klar-Test Witzkalender an",
+        "Setze den Termin Klar-Test Witzkalender morgen um 15 Uhr",
+    ] {
+        let (decision, names, slots) = outcome(text, "de");
+        assert!(matches!(decision, ParseDecision::Execute), "{text} {decision:?}");
+        assert!(names.iter().any(|name| name == "KlarCreateCalendarEvent"), "{text} {names:?}");
+        let summary = slots.iter().find(|(name, _)| name == "summary").map(|(_, value)| value.as_str()).unwrap_or("");
+        assert!(summary.contains("witzkalender"), "{text} summary={summary:?} {slots:?}");
+        assert!(!summary.contains("lege"), "{text} summary={summary:?}");
+        assert!(!summary.contains("trage"), "{text} summary={summary:?}");
+        assert!(!summary.contains("setz"), "{text} summary={summary:?}");
+    }
+}
+
+#[test]
+fn en_tomorrow_agenda_lists_with_day() {
+    let (decision, names, slots) = outcome("What do I have tomorrow", "en");
+    assert!(matches!(decision, ParseDecision::Execute), "{decision:?}");
+    assert!(names.iter().any(|name| name == "KlarGetCalendarEvents"), "{names:?}");
+    assert!(slots.iter().any(|(name, value)| name == "day" && value == "tomorrow"), "{slots:?}");
+}
+
+#[test]
 fn family_script_delete_smokes() {
     for (lang, text) in [("fr", "supprime dentiste calendrier"), ("ja", "sakujo haisha karendaa"), ("ar", "احذف طبيب تقويم")] {
         let (decision, names, _) = outcome(text, lang);

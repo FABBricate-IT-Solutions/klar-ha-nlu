@@ -264,7 +264,7 @@ fn allowed_slots(name: &str) -> &'static [&'static str] {
         "HassListAddItem" | "HassListCompleteItem" | "HassShoppingListAddItem" | "HassShoppingListCompleteItem" => {
             &["entity_id", "name", "item"]
         }
-        "KlarGetCalendarEvents" => &["entity_id", "domain"],
+        "KlarGetCalendarEvents" => &["entity_id", "domain", "day", "hour", "in_days"],
         "KlarCreateCalendarEvent" | "KlarDeleteCalendarEvent" | "KlarMoveCalendarEvent" => {
             &["entity_id", "domain", "summary", "day", "hour", "in_days", "need"]
         }
