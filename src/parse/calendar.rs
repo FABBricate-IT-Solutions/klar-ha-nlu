@@ -111,11 +111,29 @@ fn other_domain_noun(tokens: &[String]) -> bool {
 
 fn agenda_query(tokens: &[String]) -> bool {
     let cat = catalog();
-    let day = cat.any(tokens, cat.calendar_today()) || cat.any(tokens, cat.calendar_tomorrow());
+    let day = cat.any(tokens, cat.calendar_today()) || has_tomorrow(tokens);
     let ask = looks_like_question(tokens)
         || any_exact(tokens, cat.calendar_query())
         || tokens.iter().any(|token| matches!(token.as_str(), "habe" | "haben" | "have" | "got" | "steht"));
     day && ask && !other_domain_noun(tokens)
+}
+
+fn has_tomorrow(tokens: &[String]) -> bool {
+    let cat = catalog();
+    tokens.iter().enumerate().any(|(index, token)| {
+        if greeting_morning_word(token) || !cat.calendar_tomorrow().contains(token.as_str()) {
+            return false;
+        }
+        !greeting_morning_pair(index.checked_sub(1).and_then(|prev| tokens.get(prev)).map(String::as_str), token)
+    })
+}
+
+fn greeting_morning_word(token: &str) -> bool {
+    matches!(token, "gutenmorgen" | "goedenmorgen")
+}
+
+fn greeting_morning_pair(prev: Option<&str>, token: &str) -> bool {
+    matches!((prev.unwrap_or(""), token), ("guten", "morgen") | ("goeden", "morgen") | ("good", "morning"))
 }
 
 fn list_intent(when: &WhenSlots) -> Intent {
@@ -194,7 +212,7 @@ struct WhenSlots {
 fn when_slots(tokens: &[String], number: Option<i32>) -> WhenSlots {
     let cat = catalog();
     let today = cat.any(tokens, cat.calendar_today());
-    let tomorrow = cat.any(tokens, cat.calendar_tomorrow());
+    let tomorrow = has_tomorrow(tokens);
     let weekday = tokens.iter().any(|token| cat.calendar_when().contains(token.as_str()) && !clock_particle(token));
     let in_days = in_days_slot(tokens, number);
     let hour = number.filter(|value| (0..=23).contains(value));
@@ -283,6 +301,13 @@ pub(crate) fn speak_calendar_need(intent: &Intent) -> String {
 mod tests {
     use super::mentions_calendar;
     use crate::parse::normalize::{strip_fillers, tokenize};
+
+    #[test]
+    fn guten_morgen_is_not_a_calendar_cue() {
+        let _bind = crate::lang::bind(&["de".into()]);
+        let tokens = strip_fillers(&tokenize("Ist Guten Morgen an"));
+        assert!(!mentions_calendar(&tokens), "{tokens:?}");
+    }
 
     #[test]
     fn french_rendezvous_is_a_calendar_cue() {

@@ -180,11 +180,19 @@ fn family_script_list_smokes() {
 
 #[test]
 fn de_tomorrow_agenda_lists_with_day() {
-    for text in ["Was habe ich morgen?", "Was steht morgen im Kalender?"] {
+    for text in ["Was habe ich morgen?", "Was steht morgen im Kalender?", "Guten Morgen, was habe ich morgen?"] {
         let (decision, names, slots) = outcome(text, "de");
         assert!(matches!(decision, ParseDecision::Execute), "{text} {decision:?}");
         assert!(names.iter().any(|name| name == "KlarGetCalendarEvents"), "{text} {names:?}");
         assert!(slots.iter().any(|(name, value)| name == "day" && value == "tomorrow"), "{text} {slots:?}");
+    }
+}
+
+#[test]
+fn de_guten_morgen_is_not_tomorrow_agenda() {
+    for text in ["Ist Guten Morgen an", "Mach die Lichter im Gäste-WC aus und Ist Guten Morgen an"] {
+        let (decision, names, _) = outcome(text, "de");
+        assert!(!names.iter().any(|name| name == "KlarGetCalendarEvents"), "{text} {decision:?} {names:?}");
     }
 }
 
