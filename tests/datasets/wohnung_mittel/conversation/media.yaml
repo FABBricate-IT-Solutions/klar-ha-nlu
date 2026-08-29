@@ -3,6 +3,7 @@
     - {entity_id: media_player.wohnzimmer_tv, state: 'on'}
   sentences:
     - Mach den Fernseher im Wohnzimmer an.
+    - Fernseher im Wohnzimmer
   nlu_expect:
     intents:
       - intent: HassTurnOn
@@ -12,10 +13,14 @@
   forbid:
     - light.wohnzimmer
     - switch.schlafzimmer_tv
+  speech_forbids:
+    - Licht im Wohnzimmer ist an
+    - Das Licht im Wohnzimmer ist an.
 
 - name: music_play_in_room
   sentences:
     - Spiel Musik in der Küche.
+    - Musik in der Küche
   nlu_expect:
     intents:
       - intent: HassMediaUnpause

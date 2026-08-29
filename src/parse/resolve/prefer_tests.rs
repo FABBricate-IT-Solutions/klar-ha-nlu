@@ -168,6 +168,14 @@ fn wohnung_kitchen_music_and_all_off_scene() {
     let music = parse("Spiel Musik in der Küche.", &home, &mut Session::new(), &[], &settings);
     assert!(!music.clarify, "{music:?}");
     assert_eq!(music.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.kuchenbereich"), "{music:?}");
+    let bare_music = parse("Musik in der Küche", &home, &mut Session::new(), &[], &settings);
+    assert!(!bare_music.clarify, "{bare_music:?}");
+    assert_eq!(bare_music.intents.first().map(|intent| intent.name.as_str()), Some("HassMediaUnpause"), "{bare_music:?}");
+    assert_eq!(
+        bare_music.intents.first().and_then(|intent| intent.slot("entity_id")),
+        Some("media_player.kuchenbereich"),
+        "{bare_music:?}"
+    );
     let scene = parse("Aktiviere Alles aus", &home, &mut Session::new(), &[], &settings);
     assert_eq!(scene.intents.first().and_then(|intent| intent.slot("entity_id")), Some("scene.alles_aus"), "{scene:?}");
     let en = Settings { languages: vec!["de".into(), "en".into()], ..Settings::default() };
@@ -176,9 +184,19 @@ fn wohnung_kitchen_music_and_all_off_scene() {
     let tv = parse("Mach den Fernseher im Wohnzimmer an.", &home, &mut Session::new(), &[], &settings);
     assert_eq!(tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.wohnzimmer_tv"), "{tv:?}");
     assert_ne!(tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{tv:?}");
+    let bare_tv = parse("Fernseher im Wohnzimmer", &home, &mut Session::new(), &[], &settings);
+    assert!(!bare_tv.clarify, "{bare_tv:?}");
+    assert_eq!(bare_tv.intents.first().map(|intent| intent.name.as_str()), Some("HassTurnOn"), "{bare_tv:?}");
+    assert_eq!(bare_tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.wohnzimmer_tv"), "{bare_tv:?}");
+    assert!(!bare_tv.speech.to_lowercase().contains("licht"), "{bare_tv:?}");
     let bare = parse("Mach den Fernseher an.", &home, &mut Session::new(), &[], &settings);
     assert!(!bare.clarify, "{bare:?}");
     assert_eq!(bare.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{bare:?}");
+    let heat = parse("Heizung Wohnzimmer auf 21", &home, &mut Session::new(), &[], &settings);
+    assert!(!heat.clarify, "{heat:?}");
+    assert_eq!(heat.intents.first().map(|intent| intent.name.as_str()), Some("HassClimateSetTemperature"), "{heat:?}");
+    assert_eq!(heat.intents.first().and_then(|intent| intent.slot("temperature")), Some("21"), "{heat:?}");
+    assert_eq!(heat.intents.first().and_then(|intent| intent.slot("entity_id")), Some("climate.better_thermostat_wohnzimmer"), "{heat:?}");
     let status = parse("Status TV", &home, &mut Session::new(), &[], &settings);
     assert!(!status.clarify, "{status:?}");
     assert_eq!(status.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{status:?}");

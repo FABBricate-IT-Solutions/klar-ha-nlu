@@ -16,6 +16,7 @@
     - {entity_id: climate.better_thermostat_wohnzimmer, temperature: 21}
   sentences:
     - Stell die Heizung im Wohnzimmer auf 21 Grad.
+    - Heizung Wohnzimmer auf 21
   nlu_expect:
     intents:
       - intent: HassClimateSetTemperature

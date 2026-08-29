@@ -271,6 +271,8 @@ class KlarConversationEntity(ConversationEntity):
             )
             if executed.get("speech"):
                 speech = str(executed["speech"])
+            if executed.get("outcome") == "error":
+                decision_type = "error"
             if (
                 self._calendar_llm()
                 and calendar_query_only(plan)

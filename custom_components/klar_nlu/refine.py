@@ -70,7 +70,7 @@ def isolated_conversation_id() -> str:
 
 def skip_rewrite(decision: str) -> bool:
     """LLM fallback already applied the personality prompt — a second pass rewrites after TTS started."""
-    return decision in {"chat", "llm", "chime"}
+    return decision in {"chat", "llm", "chime", "error"}
 
 
 def nested_llm_session(agent_id: str, language: str | None, prompt: str | None) -> dict[str, Any]:
@@ -172,6 +172,9 @@ async def async_finish_speech(
     return refined or style(speech, personality, pack)
 
 
+_LIGHT_CLAIM = ("licht", "light", "lampe", "lamp")
+_FAIL_CLAIM = ("nicht geklappt", "did not work", "nicht erreichbar", "not available")
+_DONE_CLAIM = ("ist an", "is on", "läuft", "playing", "eingeschaltet")
 _STAMP_BAN = (
     "zur kenntnis genommen",
     "notiert",
@@ -262,7 +265,12 @@ def accept_refined(original: str, refined: str) -> str | None:
     if len(speech) > max(len(original) * 6, 280):
         return None
     folded = speech.casefold()
+    original_fold = original.casefold()
     if any(ban in folded for ban in _STAMP_BAN):
+        return None
+    if any(word in folded for word in _LIGHT_CLAIM) and not any(word in original_fold for word in _LIGHT_CLAIM):
+        return None
+    if any(word in original_fold for word in _FAIL_CLAIM) and any(word in folded for word in _DONE_CLAIM):
         return None
     return speech
 

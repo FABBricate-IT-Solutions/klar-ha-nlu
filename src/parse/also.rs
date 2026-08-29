@@ -77,7 +77,13 @@ pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<
         );
     }
     if tokens.iter().any(|token| is_also_token(token)) {
-        followup_action(tokens, session)
+        return followup_action(tokens, session);
+    }
+    let cat = catalog();
+    if cat.any(tokens, cat.tv_words()) {
+        Action::On
+    } else if cat.any(tokens, cat.media_nouns()) {
+        Action::MediaPlay
     } else {
         Action::GetState
     }

@@ -72,9 +72,10 @@ def pretty_where(
     ]
     names = drop_prefixes([name for name in names if name])
     room = spoken_room_from_item(item, pack, slots, humanize)
+    media = _media_where(item, entity_id)
     if names:
         joined = (locale.get("and_join") or " and ").join(names)
-        if room and all(generic_light(name) for name in names):
+        if room and all(generic_light(name) for name in names) and not media:
             return area_light_phrase(room, pack)
         return joined
     raw = str(slots.get("name") or slots.get("area") or "")
@@ -82,14 +83,19 @@ def pretty_where(
         raw = ""
     if raw:
         spoken = spoken_device(raw, entity_id, pack)
-        if room and generic_light(spoken):
+        if room and generic_light(spoken) and not media:
             return area_light_phrase(room, pack)
         return spoken
     if entity_id:
         spoken = spoken_device("", entity_id, pack)
-        if room and (generic_light(spoken) or (light_word(spoken) and room.casefold() not in spoken.casefold())):
+        if room and not media and (generic_light(spoken) or (light_word(spoken) and room.casefold() not in spoken.casefold())):
             return area_light_phrase(room, pack)
         return spoken
     if room:
-        return area_light_phrase(room, pack)
+        return room if media else area_light_phrase(room, pack)
     return "Zuhause" if pack == "de" else "home"
+
+
+def _media_where(item: dict, entity_id: str) -> bool:
+    name = str(item.get("name") or "")
+    return name.startswith(("HassMedia", "Mass")) or entity_id.startswith("media_player.")
