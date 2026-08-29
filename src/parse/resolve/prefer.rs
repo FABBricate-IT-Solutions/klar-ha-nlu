@@ -9,9 +9,7 @@ pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Ve
         return;
     }
     for entity in home.entities.iter().filter(|entity| looks_like_tv(entity) && assist_visible(entity, home) && !is_infra(entity)) {
-        if entity.area.as_deref().is_some_and(|area| area_mentioned(tokens, area, home))
-            && !candidates.iter().any(|(_, existing)| existing.entity_id == entity.entity_id)
-        {
+        if !candidates.iter().any(|(_, existing)| existing.entity_id == entity.entity_id) {
             candidates.push((0.95, entity.clone()));
         }
     }
@@ -22,7 +20,10 @@ pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Ve
     let in_area: Vec<(f64, EntityRec)> =
         tvs.iter().filter(|(_, entity)| entity.area.as_deref().is_some_and(|area| area_mentioned(tokens, area, home))).cloned().collect();
     if in_area.is_empty() {
-        candidates.retain(|(_, entity)| !(looks_like_tv(entity) && entity.domain == "media_player"));
+        let media: Vec<(f64, EntityRec)> = tvs.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
+        if !media.is_empty() {
+            *candidates = media;
+        }
         return;
     }
     let media: Vec<(f64, EntityRec)> = in_area.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();

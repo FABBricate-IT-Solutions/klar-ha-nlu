@@ -1,4 +1,5 @@
 use crate::home::policy::{fallback_climate, fallback_cover_area};
+use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
 use crate::parse::action::{detect_actions, domain_for, is_hard_command, Action};
 use crate::parse::also::guess_action;
@@ -138,7 +139,10 @@ pub(crate) fn parse_clause_candidates_for_action(
     }
     if media_claimed_empty(&candidates) {
         let transfer = ctx.tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer"));
-        let named = !transfer && ctx.resolved.entities.iter().any(|entity| entity_has_name_evidence(ctx.tokens, entity, ctx.home));
+        let named = !transfer
+            && ctx.resolved.entities.iter().any(|entity| {
+                entity_has_name_evidence(ctx.tokens, entity, ctx.home) && (is_music_assistant_player(entity) || is_music_player(entity))
+            });
         retain_after_media_claim(&mut candidates, named);
     } else if candidates.iter().any(|candidate| {
         candidate.policy == PolicyId::Media && matches!(&candidate.outcome, ClauseOut::Intents(intents) if !intents.is_empty())

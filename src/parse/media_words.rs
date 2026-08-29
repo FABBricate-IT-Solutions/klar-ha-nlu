@@ -151,6 +151,11 @@ pub(super) fn entity_word(word: &str, entity: &EntityRec) -> bool {
     label_has_word(&entity.name, word) || label_has_word(suffix, word) || entity.aliases.iter().any(|alias| label_has_word(alias, word))
 }
 
+pub(crate) fn is_media_move_or_play(tokens: &[String]) -> bool {
+    catalog().any(tokens, catalog().media_nouns())
+        && tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer" | "spiel" | "spiele" | "play" | "queue"))
+}
+
 fn label_has_word(label: &str, word: &str) -> bool {
     let folded = fold_umlaut(label);
     folded.split(|c: char| !crate::parse::normalize::is_word_char(c)).any(|part| part == word)

@@ -12,8 +12,8 @@ use crate::types::{EntityRec, HomeGraph, Intent};
 
 #[path = "media_words.rs"]
 mod media_words;
-pub(crate) use media_words::now_playing_status;
 use media_words::*;
+pub(crate) use media_words::{is_media_move_or_play, now_playing_status};
 
 pub(crate) fn media_clause(
     tokens: &[String],
@@ -248,13 +248,6 @@ fn target_player<'a>(
     volume_default: bool,
 ) -> Option<&'a EntityRec> {
     let players = player_pool(home, tokens, mass_only);
-    let token_area = area_from_tokens(tokens, home);
-    let area = resolved.areas.first().map(String::as_str).or(token_area.as_deref());
-    if let Some(area) = area {
-        if let Some(player) = select_area_player(&players, area, session) {
-            return Some(player);
-        }
-    }
     let resolved_ids: Vec<&str> = resolved
         .entities
         .iter()
@@ -273,7 +266,11 @@ fn target_player<'a>(
     }
     match resolved.areas.as_slice() {
         [area] => return select_area_player(&players, area, session),
-        [] => {}
+        [] => {
+            if let Some(area) = area_from_tokens(tokens, home) {
+                return select_area_player(&players, &area, session);
+            }
+        }
         _ => return None,
     }
     if let Some(area) = session.preferred_area.as_deref() {
