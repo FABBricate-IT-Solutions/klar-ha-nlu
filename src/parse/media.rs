@@ -1,6 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::home::roles::{is_music_assistant_player, is_music_player};
+use crate::home::roles::{is_music_assistant_player, is_music_player, looks_like_tv, tv_asked};
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
@@ -298,8 +298,10 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
         return mass_players(home);
     }
     let music = music_players(home);
-    if any(tokens, &["tv", "television", "fernseher", "soundbar"])
-        || catalog().any(tokens, catalog().tv_words())
+    if tv_asked(tokens) && !any(tokens, &["soundbar"]) {
+        return home.entities.iter().filter(|entity| eligible_media_player(entity, home) && looks_like_tv(entity)).collect();
+    }
+    if any(tokens, &["soundbar"])
         || (tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke"))
             && !music_context(tokens)
             && music.is_empty())

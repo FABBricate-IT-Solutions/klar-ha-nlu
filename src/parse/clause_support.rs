@@ -54,6 +54,9 @@ pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens
     if domain == Some("media_player") && cat.any(tokens, cat.media_nouns()) {
         return Some("media_player");
     }
+    if crate::home::roles::tv_asked(tokens) {
+        return Some("media_player");
+    }
     None
 }
 

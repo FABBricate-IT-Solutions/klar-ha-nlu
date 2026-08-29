@@ -1,5 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
+use crate::home::roles::looks_like_tv;
 use crate::lang::catalog;
 use crate::parse::normalize::{compact, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph};
@@ -57,18 +58,8 @@ pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Ve
         *candidates = if media.is_empty() { in_area } else { media };
         return;
     }
-    let media: Vec<(f64, EntityRec)> = home
-        .entities
-        .iter()
-        .filter(|entity| {
-            entity.domain == "media_player"
-                && assist_visible(entity, home)
-                && !is_infra(entity)
-                && entity.area.as_deref().is_some_and(|area| mentioned.iter().any(|id| id == area))
-        })
-        .map(|entity| (0.92, entity.clone()))
-        .collect();
-    *candidates = media;
+    candidates
+        .retain(|(_, entity)| looks_like_tv(entity) && entity.area.as_deref().is_some_and(|area| mentioned.iter().any(|id| id == area)));
 }
 
 fn area_mentioned(tokens: &[String], area_id: &str, home: &HomeGraph) -> bool {
@@ -79,15 +70,6 @@ fn area_mentioned(tokens: &[String], area_id: &str, home: &HomeGraph) -> bool {
                 || area.aliases.iter().any(|alias| fold_umlaut(alias) == *token || compact(alias) == *token)
         })
     })
-}
-
-fn looks_like_tv(entity: &EntityRec) -> bool {
-    if entity.domain != "media_player" && entity.domain != "switch" {
-        return false;
-    }
-    let hay = format!("{} {} {}", entity.entity_id, entity.name, entity.aliases.join(" "));
-    let folded = compact(&fold_umlaut(&hay));
-    folded.contains("tv") || folded.contains("fernseher") || folded.contains("television")
 }
 
 fn tv_token(token: &str) -> bool {

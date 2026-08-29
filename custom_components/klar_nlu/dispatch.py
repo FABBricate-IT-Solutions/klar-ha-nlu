@@ -80,6 +80,10 @@ async def handle_intent(
         return _ok(speech) if ok else _fail(error or "calendar_failed")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    if name == "HassTurnOn" and tv_request(getattr(user_input, "text", "")):
+        state = hass.states.get(entity_id) if entity_id else None
+        if not entity_id or not tv_named(entity_id, state):
+            return _fail("media_unavailable")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
         query = str(slots.get("media_id", {}).get("value") or slots.get("search_query", {}).get("value") or "")
         if query:
@@ -456,17 +460,59 @@ async def start_idle_music(
         return None
     if str(getattr(state, "state", "")).lower() not in {"idle", "off", "on", "standby"}:
         return None
-    if not music_assistant_player(hass, entity_id):
+    if music_assistant_player(hass, entity_id):
+        query = "Musik" if pack == "de" or pack.startswith("de-") else "music"
+        return await run_mass(
+            hass,
+            "MassPlayMedia",
+            {"entity_id": {"value": entity_id}, "media_id": {"value": query}},
+            pack,
+            {**item, "name": "MassPlayMedia", "slots": [*(item.get("slots") or []), {"name": "media_id", "value": query}]},
+            exposed,
+        )
+    device_id = alexa_device_id(hass, entity_id)
+    if not device_id:
         return None
-    query = "Musik" if pack == "de" or pack.startswith("de-") else "music"
-    return await run_mass(
-        hass,
-        "MassPlayMedia",
-        {"entity_id": {"value": entity_id}, "media_id": {"value": query}},
-        pack,
-        {**item, "name": "MassPlayMedia", "slots": [*(item.get("slots") or []), {"name": "media_id", "value": query}]},
-        exposed,
-    )
+    command = "spiel Musik" if pack == "de" or pack.startswith("de-") else "play music"
+    try:
+        await hass.services.async_call(
+            "alexa_devices",
+            "send_text_command",
+            {"device_id": device_id, "text_command": command},
+            blocking=True,
+        )
+    except Exception as err:  # noqa: BLE001 — Alexa is a service boundary
+        _LOGGER.debug("Alexa-Wiedergabe für %s fehlgeschlagen: %s", entity_id, err)
+        return _fail(str(err) or "alexa_play_failed")
+    spoken = {**item, "name": "HassMediaSearchAndPlay", "slots": [*(item.get("slots") or []), {"name": "name", "value": state.name}]}
+    return _ok(from_handled(None, pack, spoken))
+
+
+def tv_request(text: str) -> bool:
+    folded = f" {(text or '').casefold()} "
+    return "fernseher" in folded or "television" in folded or " tv " in folded or folded.startswith(" tv")
+
+
+def tv_named(entity_id: str, state: Any) -> bool:
+    attrs = getattr(state, "attributes", None) or {} if state is not None else {}
+    name = str(attrs.get("friendly_name") or "") if isinstance(attrs, dict) else ""
+    name = name or str(getattr(state, "name", "") or "")
+    blob = f"{entity_id} {name}".casefold()
+    return "tv" in blob or "fernseher" in blob or "television" in blob
+
+
+def registry_entry(hass: HomeAssistant, entity_id: str) -> Any:
+    try:
+        return entity_registry.async_get(hass).async_get(entity_id)
+    except Exception:  # noqa: BLE001 — registry is a system boundary
+        return None
+
+
+def alexa_device_id(hass: HomeAssistant, entity_id: str) -> str:
+    entry = registry_entry(hass, entity_id)
+    if entry is None or getattr(entry, "platform", None) != "alexa_devices":
+        return ""
+    return str(getattr(entry, "device_id", "") or "")
 
 
 def music_assistant_player(hass: HomeAssistant, entity_id: str) -> bool:
@@ -478,10 +524,7 @@ def music_assistant_player(hass: HomeAssistant, entity_id: str) -> bool:
         attrs.get("mass_player_type") or "music assistant" in str(attrs.get("source") or "").lower()
     ):
         return True
-    try:
-        entry = entity_registry.async_get(hass).async_get(entity_id)
-    except Exception:  # noqa: BLE001 — registry is a system boundary
-        return False
+    entry = registry_entry(hass, entity_id)
     return bool(entry is not None and getattr(entry, "platform", None) == "music_assistant")
 
 

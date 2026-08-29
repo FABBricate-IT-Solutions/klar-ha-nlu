@@ -110,8 +110,8 @@ def _hass(*states: _State) -> SimpleNamespace:
     return SimpleNamespace(states=_States(*states), services=SimpleNamespace(async_call=AsyncMock()))
 
 
-def _input() -> SimpleNamespace:
-    return SimpleNamespace(text="test", context=object(), language="de")
+def _input(text: str = "test") -> SimpleNamespace:
+    return SimpleNamespace(text=text, context=object(), language="de")
 
 
 def _item(name: str, **slots: object) -> dict[str, object]:
@@ -511,6 +511,56 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(call.args[:2], ("music_assistant", "play_media"))
         self.assertEqual(call.args[2]["media_id"], "Musik")
         self.assertEqual(call.kwargs["target"], {"entity_id": player.entity_id})
+        self.assertNotIn("volume_level", call.args[2])
+
+    async def test_tv_request_without_entity_is_unavailable(self) -> None:
+        hass = _hass()
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Fernseher im Wohnzimmer"),
+            _item("HassTurnOn", domain="media_player", area="wohnzimmer"),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "media_unavailable")
+        hass.services.async_call.assert_not_awaited()
+        dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_tv_request_does_not_turn_on_soundbar(self) -> None:
+        player = _State("media_player.lg_dsn9yg_8909", "idle", friendly_name="Wohnzimmer")
+        hass = _hass(player)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Fernseher im Wohnzimmer"),
+            _item("HassTurnOn", entity_id=player.entity_id),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "media_unavailable")
+        hass.services.async_call.assert_not_awaited()
+
+    async def test_idle_alexa_kitchen_starts_text_command(self) -> None:
+        player = _State("media_player.kuchenbereich_2", "idle", friendly_name="Küchenbereich", volume_level=0.33)
+        hass = _hass(player)
+        entry = SimpleNamespace(platform="alexa_devices", device_id="kitchen-echo")
+        with patch.object(dispatch.entity_registry, "async_get", return_value=SimpleNamespace(async_get=lambda _id: entry)):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input("Musik in der Küche"),
+                _item("HassMediaUnpause", entity_id=player.entity_id),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("alexa_devices", "send_text_command"))
+        self.assertEqual(call.args[2]["device_id"], "kitchen-echo")
+        self.assertEqual(call.args[2]["text_command"], "spiel Musik")
         self.assertNotIn("volume_level", call.args[2])
 
     async def test_unavailable_tv_turn_on_does_not_claim_success(self) -> None:

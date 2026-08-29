@@ -1,12 +1,14 @@
 use crate::home::expose::assist_visible;
+use crate::home::roles::{looks_like_tv, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
-use crate::parse::compound::{area_slots, query_keeps_entity, wants_light_clarify};
+use crate::parse::compound::{light_aim, query_keeps_entity, wants_light_clarify, LightAim};
 use crate::parse::infer::looks_like_named_device;
 use crate::parse::resolve::{query_grounded, unique_in_area};
 use crate::parse::slots::{fill_intent, intent_from_action, pick_singular_lamp, ClauseOut};
 use crate::parse::split::wants_group_clarify;
+use crate::types::HomeGraph;
 
 pub(crate) fn area_command(ctx: &Clause) -> Option<ClauseOut> {
     if ctx.resolved.areas.is_empty() || looks_like_named_device(ctx.tokens) || !ctx.resolved.entities.is_empty() {
@@ -150,4 +152,27 @@ pub(crate) fn grounded_areas(ctx: &Clause) -> Option<ClauseOut> {
             ctx.resolved.areas.iter().map(|area| fill_intent(ctx.action, ctx.tokens, ctx.number, None, Some(area), ctx.domain)).collect();
         finish_intents(intents, ctx)
     })
+}
+
+pub(crate) fn area_slots(
+    action: Action,
+    area: &str,
+    domain: Option<&str>,
+    home: &HomeGraph,
+    tokens: &[String],
+) -> (Option<String>, Option<String>, Option<String>) {
+    if tv_asked(tokens) {
+        let id = unique_in_area(home, area, "media_player", tokens)
+            .filter(|entity_id| home.entities.iter().any(|entity| entity.entity_id == *entity_id && looks_like_tv(entity)));
+        return (id, Some(area.to_string()), Some("media_player".into()));
+    }
+    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
+        return match light_aim(home, area, tokens) {
+            LightAim::RoomGroup(id) | LightAim::Unique(id) => (Some(id), None, None),
+            LightAim::OccupiedId | LightAim::AreaLights | LightAim::Clarify => (None, Some(area.to_string()), Some("light".into())),
+        };
+    }
+    let id =
+        domain.filter(|d| matches!(*d, "climate" | "fan" | "media_player" | "lock")).and_then(|d| unique_in_area(home, area, d, tokens));
+    (id, Some(area.to_string()), domain.map(str::to_string))
 }

@@ -153,6 +153,25 @@ fn musik_an_resumes_ma_player_not_script_alias() {
 }
 
 #[test]
+fn kitchen_alexa_player_is_music_target() {
+    let mut home = default_home();
+    home.entities.push(entity(
+        "media_player.kuchenbereich_2",
+        "Küchenbereich",
+        "media_player",
+        Some("alexa_devices"),
+        Some("kuche"),
+        &["kueche", "kitchen"],
+        &["assist"],
+    ));
+    let mut session = Session::new();
+    let result = parse("Musik in der Küche", &home, &mut session, &[], &settings("de"));
+    assert!(!result.clarify, "{result:?}");
+    assert_eq!(result.intents.first().map(|intent| intent.name.as_str()), Some("HassMediaUnpause"), "{result:?}");
+    assert_eq!(result.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.kuchenbereich_2"), "{result:?}");
+}
+
+#[test]
 fn tv_an_stays_plain_media_player_turn_on() {
     let intent = one("Wohnzimmer TV an", "de");
     assert_eq!(intent.name, "HassTurnOn");

@@ -248,7 +248,9 @@ fn named_room_tv_does_not_fall_back_to_bedroom() {
     let id = result.intents.first().and_then(|intent| intent.slot("entity_id"));
     assert_ne!(id, Some("switch.schlafzimmer_tv"), "{result:?}");
     assert_ne!(id, Some("light.wohnzimmer"), "{result:?}");
-    assert_eq!(id, Some("media_player.wohnzimmer"), "{result:?}");
+    assert_ne!(id, Some("media_player.wohnzimmer"), "{result:?}");
+    assert_eq!(result.intents.first().map(|intent| intent.name.as_str()), Some("HassTurnOn"), "{result:?}");
+    assert_eq!(result.intents.first().and_then(|intent| intent.slot("domain")), Some("media_player"), "{result:?}");
 }
 
 #[test]

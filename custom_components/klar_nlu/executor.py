@@ -71,7 +71,7 @@ async def execute_plan(
 
 
 def _error_speech(pack: str, hint: str, intents: list[dict[str, Any]]) -> str:
-    if hint == "media_unavailable" and any(_tv_item(item) for item in intents):
+    if hint == "media_unavailable" and any(item.get("name") == "HassTurnOn" or _tv_item(item) for item in intents):
         return _TV_UNAVAILABLE.get(pack) or _TV_UNAVAILABLE["en"]
     return (_FAILED_HINT.get(hint) or {}).get(pack) or _FAILED.get(pack, _FAILED["en"])
 
