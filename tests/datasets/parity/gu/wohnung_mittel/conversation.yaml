@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ચાલુ ગરમી ઓરડો
+  - '21'
+conversation/climate::heat_setpoint:
+- સેટ ગરમી ઓરડો 21
+conversation/climate::temperature_query:
+- શું ગરમી ઓરડો
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - બંધ પ્રકાશ shayankhand
+  - ચાલુ પ્રકાશ ઓરડો
+  - અને રસોડું pan
+conversation/followup::followup_same_action_other_room:
+- - ચાલુ પ્રકાશ ઓરડો
+  - અને રસોડું pan
+conversation/house::clock_calendar_weather:
+- શું hour
+- શું કેલેન્ડર
+- શું ગરમી
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ચાલુ alloff
+conversation/lights::ambiguous_light:
+- ચાલુ પ્રકાશ
+conversation/lights::brightness_percent:
+- સેટ પ્રકાશ ઓરડો 30 takka
+conversation/lights::color_red:
+- - ચાલુ પ્રકાશ ઓરડો
+  - red
+conversation/lights::dim_then_level:
+- - vadhuneandharu પ્રકાશ ઓરડો
+  - madhyam
+conversation/lights::relative_dim:
+- - ચાલુ પ્રકાશ ઓરડો
+  - vadhuneandharu
+conversation/lights::warm_white:
+- - ચાલુ પ્રકાશ ઓરડો
+  - garam safed
+conversation/lights::which_lights_on:
+- - ચાલુ પ્રકાશ ઓરડો
+  - ચાલુ પ્રકાશ રસોડું
+  - શું પ્રકાશ
+conversation/media::music_artist_then_now_playing:
+- - ચલાવો queen રસોડું
+  - શું tivi
+conversation/media::music_play_in_room:
+- ચલાવો tivi રસોડું
+conversation/media::next_and_pause:
+- - ચલાવો tivi રસોડું
+  - next
+  - અટકાવો
+conversation/media::tv_not_light:
+- ચાલુ tv ઓરડો
+conversation/media::volume_down:
+- dhime tivi

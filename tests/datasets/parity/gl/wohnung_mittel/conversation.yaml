@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - acende calefaccion salon
+  - '21'
+conversation/climate::heat_setpoint:
+- pon calefaccion salon 21
+conversation/climate::temperature_query:
+- que calefaccion salon
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - apaga luz cuarto
+  - acende luz salon
+  - e cociña tamén
+conversation/followup::followup_same_action_other_room:
+- - acende luz salon
+  - e cociña tamén
+conversation/house::clock_calendar_weather:
+- que hour
+- que calendario
+- que calefaccion
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- acende alloff
+conversation/lights::ambiguous_light:
+- acende luz
+conversation/lights::brightness_percent:
+- pon luz salon 30 por cento
+conversation/lights::color_red:
+- - acende luz salon
+  - red
+conversation/lights::dim_then_level:
+- - maisescuro luz salon
+  - medio
+conversation/lights::relative_dim:
+- - acende luz salon
+  - maisescuro
+conversation/lights::warm_white:
+- - acende luz salon
+  - brancocálido
+conversation/lights::which_lights_on:
+- - acende luz salon
+  - acende luz cociña
+  - que luz
+conversation/media::music_artist_then_now_playing:
+- - reproduce queen cociña
+  - que tele
+conversation/media::music_play_in_room:
+- reproduce tele cociña
+conversation/media::next_and_pause:
+- - reproduce tele cociña
+  - next
+  - pause
+conversation/media::tv_not_light:
+- acende tv salon
+conversation/media::volume_down:
+- maisbaixo tele

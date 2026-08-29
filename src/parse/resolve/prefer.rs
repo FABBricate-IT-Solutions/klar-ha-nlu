@@ -1,8 +1,53 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
 use crate::lang::catalog;
-use crate::parse::normalize::fold_umlaut;
+use crate::parse::normalize::{compact, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph};
+
+pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Vec<(f64, EntityRec)>) {
+    if !catalog().any(tokens, catalog().tv_words()) {
+        return;
+    }
+    for entity in home.entities.iter().filter(|entity| looks_like_tv(entity) && assist_visible(entity, home) && !is_infra(entity)) {
+        if !candidates.iter().any(|(_, existing)| existing.entity_id == entity.entity_id) {
+            candidates.push((0.95, entity.clone()));
+        }
+    }
+    let tvs: Vec<(f64, EntityRec)> = candidates.iter().filter(|(_, entity)| looks_like_tv(entity)).cloned().collect();
+    if tvs.is_empty() {
+        return;
+    }
+    let in_area: Vec<(f64, EntityRec)> =
+        tvs.iter().filter(|(_, entity)| entity.area.as_deref().is_some_and(|area| area_mentioned(tokens, area, home))).cloned().collect();
+    if in_area.is_empty() {
+        let media: Vec<(f64, EntityRec)> = tvs.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
+        if !media.is_empty() {
+            *candidates = media;
+        }
+        return;
+    }
+    let media: Vec<(f64, EntityRec)> = in_area.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
+    *candidates = if media.is_empty() { in_area } else { media };
+}
+
+fn area_mentioned(tokens: &[String], area_id: &str, home: &HomeGraph) -> bool {
+    home.areas.iter().filter(|area| area.area_id == area_id).any(|area| {
+        tokens.iter().any(|token| {
+            token == area.area_id.as_str()
+                || fold_umlaut(&area.name) == *token
+                || area.aliases.iter().any(|alias| fold_umlaut(alias) == *token || compact(alias) == *token)
+        })
+    })
+}
+
+fn looks_like_tv(entity: &EntityRec) -> bool {
+    if entity.domain != "media_player" && entity.domain != "switch" {
+        return false;
+    }
+    let hay = format!("{} {} {}", entity.entity_id, entity.name, entity.aliases.join(" "));
+    let folded = compact(&fold_umlaut(&hay));
+    folded.contains("tv") || folded.contains("fernseher") || folded.contains("television")
+}
 
 pub(super) fn prefer_entry_lock(tokens: &[String], home: &HomeGraph, candidates: &mut Vec<(f64, EntityRec)>) {
     let cat = catalog();
@@ -323,6 +368,21 @@ mod tests {
         assert!(!result.clarify, "{result:?}");
         assert_eq!(result.intents.len(), 1, "{result:?}");
         assert_eq!(result.intents[0].slot("entity_id"), Some("lock.garage_entry"), "{result:?}");
+    }
+
+    #[test]
+    fn wohnung_kitchen_music_and_all_off_scene() {
+        let path = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("tests/datasets/wohnung_mittel/home_config.yaml");
+        let home = crate::home::load_home_config(&path).expect("wohnung home");
+        let settings = Settings { languages: vec!["de".into()], ..Settings::default() };
+        let music = parse("Spiel Musik in der Küche.", &home, &mut Session::new(), &[], &settings);
+        assert!(!music.clarify, "{music:?}");
+        assert_eq!(music.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.kuchenbereich"), "{music:?}");
+        let scene = parse("Aktiviere Alles aus", &home, &mut Session::new(), &[], &settings);
+        assert_eq!(scene.intents.first().and_then(|intent| intent.slot("entity_id")), Some("scene.alles_aus"), "{scene:?}");
+        let en = Settings { languages: vec!["de".into(), "en".into()], ..Settings::default() };
+        let english = parse("Activate All off", &home, &mut Session::new(), &[], &en);
+        assert_eq!(english.intents.first().and_then(|intent| intent.slot("entity_id")), Some("scene.alles_aus"), "{english:?}");
     }
 
     #[test]

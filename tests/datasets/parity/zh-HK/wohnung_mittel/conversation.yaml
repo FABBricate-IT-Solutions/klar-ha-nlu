@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - 打開 空調 客廳
+  - '21'
+conversation/climate::heat_setpoint:
+- 設置 空調 客廳 21
+conversation/climate::temperature_query:
+- 咩 空調 客廳
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - 關閉 燈 woshi
+  - 打開 燈 客廳
+  - 同 廚房 都
+conversation/followup::followup_same_action_other_room:
+- - 打開 燈 客廳
+  - 同 廚房 都
+conversation/house::clock_calendar_weather:
+- 咩 hour
+- 咩 日曆
+- 咩 空調
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- 打開 alloff
+conversation/lights::ambiguous_light:
+- 打開 燈
+conversation/lights::brightness_percent:
+- 設置 燈 客廳 30 百分之
+conversation/lights::color_red:
+- - 打開 燈 客廳
+  - 紅
+conversation/lights::dim_then_level:
+- - 暗啲 燈 客廳
+  - 中等
+conversation/lights::relative_dim:
+- - 打開 燈 客廳
+  - 暗啲
+conversation/lights::warm_white:
+- - 打開 燈 客廳
+  - 暖白
+conversation/lights::which_lights_on:
+- - 打開 燈 客廳
+  - 打開 燈 廚房
+  - 咩 燈
+conversation/media::music_artist_then_now_playing:
+- - 播放 queen 廚房
+  - 咩 yinyue
+conversation/media::music_play_in_room:
+- 播放 yinyue 廚房
+conversation/media::next_and_pause:
+- - 播放 yinyue 廚房
+  - next
+  - 暫停
+conversation/media::tv_not_light:
+- 打開 dianshi 客廳
+conversation/media::volume_down:
+- 細聲啲 yinyue

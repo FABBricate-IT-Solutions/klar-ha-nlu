@@ -71,6 +71,13 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
     prefer::prefer_entry_lock(tokens, home, &mut candidates);
+    prefer::prefer_tv(tokens, home, &mut candidates);
+    if crate::parse::compound::named_scene_or_script(tokens, home).is_none()
+        && !catalog().any(tokens, catalog().scene_nouns())
+        && !catalog().any(tokens, catalog().script_words())
+    {
+        candidates.retain(|(_, entity)| entity.domain != "scene" && entity.domain != "script");
+    }
     sort_hits(&mut candidates, tokens, home);
     if let Some(locks) = prefer::mentioned_locks(tokens, &candidates) {
         return Resolved { areas, floors, entities: locks, ambiguous: Vec::new() };

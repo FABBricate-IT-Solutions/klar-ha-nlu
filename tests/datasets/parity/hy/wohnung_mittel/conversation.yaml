@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - միացրու ջեռուցում հյուրասենյակ
+  - '21'
+conversation/climate::heat_setpoint:
+- դիր ջեռուցում հյուրասենյակ 21
+conversation/climate::temperature_query:
+- ինչ ջեռուցում հյուրասենյակ
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - անջատիր լույս qnakaran
+  - միացրու լույս հյուրասենյակ
+  - և խոհանոց el
+conversation/followup::followup_same_action_other_room:
+- - միացրու լույս հյուրասենյակ
+  - և խոհանոց el
+conversation/house::clock_calendar_weather:
+- ինչ hour
+- ինչ օրացույց
+- ինչ ջեռուցում
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- միացրու alloff
+conversation/lights::ambiguous_light:
+- միացրու լույս
+conversation/lights::brightness_percent:
+- դիր լույս հյուրասենյակ 30 tokos
+conversation/lights::color_red:
+- - միացրու լույս հյուրասենյակ
+  - red
+conversation/lights::dim_then_level:
+- - aveli լույս հյուրասենյակ
+  - mijn
+conversation/lights::relative_dim:
+- - միացրու լույս հյուրասենյակ
+  - aveli
+conversation/lights::warm_white:
+- - միացրու լույս հյուրասենյակ
+  - jag spitak
+conversation/lights::which_lights_on:
+- - միացրու լույս հյուրասենյակ
+  - միացրու լույս խոհանոց
+  - ինչ լույս
+conversation/media::music_artist_then_now_playing:
+- - նվագիր queen խոհանոց
+  - ինչ herustatsuyts
+conversation/media::music_play_in_room:
+- նվագիր herustatsuyts խոհանոց
+conversation/media::next_and_pause:
+- - նվագիր herustatsuyts խոհանոց
+  - next
+  - դադար
+conversation/media::tv_not_light:
+- միացրու tv հյուրասենյակ
+conversation/media::volume_down:
+- aveli tsatsr herustatsuyts

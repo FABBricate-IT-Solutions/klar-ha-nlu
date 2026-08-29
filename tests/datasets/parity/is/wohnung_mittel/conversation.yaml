@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - kveiktu hiti stofa
+  - '21'
+conversation/climate::heat_setpoint:
+- settu hiti stofa 21
+conversation/climate::temperature_query:
+- hvad hiti stofa
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - slokktu ljos svefnherbergi
+  - kveiktu ljos stofa
+  - og eldhus lika
+conversation/followup::followup_same_action_other_room:
+- - kveiktu ljos stofa
+  - og eldhus lika
+conversation/house::clock_calendar_weather:
+- hvad hour
+- hvad dagatal
+- hvad hiti
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- kveiktu alloff
+conversation/lights::ambiguous_light:
+- kveiktu ljos
+conversation/lights::brightness_percent:
+- settu ljos stofa 30 prosent
+conversation/lights::color_red:
+- - kveiktu ljos stofa
+  - red
+conversation/lights::dim_then_level:
+- - dekkra ljos stofa
+  - midlungs
+conversation/lights::relative_dim:
+- - kveiktu ljos stofa
+  - dekkra
+conversation/lights::warm_white:
+- - kveiktu ljos stofa
+  - heitthvitt
+conversation/lights::which_lights_on:
+- - kveiktu ljos stofa
+  - kveiktu ljos eldhus
+  - hvad ljos
+conversation/media::music_artist_then_now_playing:
+- - spila queen eldhus
+  - hvad sjonvarp
+conversation/media::music_play_in_room:
+- spila sjonvarp eldhus
+conversation/media::next_and_pause:
+- - spila sjonvarp eldhus
+  - next
+  - pause
+conversation/media::tv_not_light:
+- kveiktu sjónvarp stofa
+conversation/media::volume_down:
+- hlaera sjonvarp

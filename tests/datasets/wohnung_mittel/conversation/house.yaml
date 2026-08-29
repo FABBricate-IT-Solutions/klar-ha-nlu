@@ -1,0 +1,40 @@
+- name: scene_all_off
+  world_expect:
+    - {entity_id: scene.alles_aus, state: 'on'}
+  sentences:
+    - Aktiviere Alles aus
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: scene.alles_aus, domain: scene}
+    reject: false
+    clarify: false
+  forbid:
+    - light.wohnzimmer
+    - light.kuche_kuche
+    - light.alle_lichter
+
+- name: clock_calendar_weather
+  sentences:
+    - Wie spät ist es?
+    - Was steht im Kalender?
+    - Wie wird das Wetter?
+  nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - erledigt
+    - Das ist erledigt
+    - sekunde
+
+- name: false_done_forbidden
+  sentences:
+    - Was ist die Hauptstadt von Frankreich
+  nlu_expect:
+    intents: []
+    reject: true
+    clarify: false
+  speech_forbids:
+    - Das ist erledigt
+    - erledigt
+    - That is done

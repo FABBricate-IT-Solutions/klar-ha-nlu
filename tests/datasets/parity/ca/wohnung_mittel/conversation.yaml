@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - encen calefaccio sala
+  - '21'
+conversation/climate::heat_setpoint:
+- posa calefaccio sala 21
+conversation/climate::temperature_query:
+- que calefaccio sala
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - apaga llum habitacio
+  - encen llum sala
+  - i cuina tambe
+conversation/followup::followup_same_action_other_room:
+- - encen llum sala
+  - i cuina tambe
+conversation/house::clock_calendar_weather:
+- que hora
+- que calendari
+- que calefaccio
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- encen alloff
+conversation/lights::ambiguous_light:
+- encen llum
+conversation/lights::brightness_percent:
+- posa llum sala 30 percent
+conversation/lights::color_red:
+- - encen llum sala
+  - vermell
+conversation/lights::dim_then_level:
+- - mesfosc llum sala
+  - mitja
+conversation/lights::relative_dim:
+- - encen llum sala
+  - mesfosc
+conversation/lights::warm_white:
+- - encen llum sala
+  - blanccalent
+conversation/lights::which_lights_on:
+- - encen llum sala
+  - encen llum cuina
+  - que llum
+conversation/media::music_artist_then_now_playing:
+- - reprodueix queen cuina
+  - que musica
+conversation/media::music_play_in_room:
+- reprodueix musica cuina
+conversation/media::next_and_pause:
+- - reprodueix musica cuina
+  - next
+  - pausa
+conversation/media::tv_not_light:
+- encen tele sala
+conversation/media::volume_down:
+- mesbaix musica

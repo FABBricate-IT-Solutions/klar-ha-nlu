@@ -14,6 +14,17 @@ def engine_session_id(device_id: object = None, satellite_id: object = None) -> 
     return FOLLOWUP_SESSION
 
 
+def parse_session_id(
+    assist_id: object = None,
+    device_id: object = None,
+    satellite_id: object = None,
+) -> str:
+    text = str(assist_id or "").strip()
+    if text:
+        return text[:128]
+    return engine_session_id(device_id, satellite_id)
+
+
 def keeps_conversation(decision: object) -> bool:
     return str(decision or "") in {"clarify", "confirm", "execute", "chat"}
 

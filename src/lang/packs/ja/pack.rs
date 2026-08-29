@@ -234,6 +234,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("黒", "black"),
             ("白", "white"),
             ("紫", "purple"),
+            ("暖色", "warmwhite"),
         ],
         numbers: &[
             ("ゼロ", 0),

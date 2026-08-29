@@ -238,6 +238,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("tbili tetri", "warmwhite"),
         ],
         numbers: &[
             ("nuli", 0),

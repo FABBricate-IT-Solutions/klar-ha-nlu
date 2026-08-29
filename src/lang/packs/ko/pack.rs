@@ -234,6 +234,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("검정", "black"),
             ("하양", "white"),
             ("보라", "purple"),
+            ("따뜻한흰색", "warmwhite"),
         ],
         numbers: &[
             ("영", 0),

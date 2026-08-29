@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - zapni topeni obyvak
+  - '21'
+conversation/climate::heat_setpoint:
+- nastav topeni obyvak 21
+conversation/climate::temperature_query:
+- co topeni obyvak
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - vypni svetlo loznice
+  - zapni svetlo obyvak
+  - a kuchyne taky
+conversation/followup::followup_same_action_other_room:
+- - zapni svetlo obyvak
+  - a kuchyne taky
+conversation/house::clock_calendar_weather:
+- co hour
+- co kalendar
+- co topeni
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- zapni alloff
+conversation/lights::ambiguous_light:
+- zapni svetlo
+conversation/lights::brightness_percent:
+- nastav svetlo obyvak 30 procent
+conversation/lights::color_red:
+- - zapni svetlo obyvak
+  - cervena
+conversation/lights::dim_then_level:
+- - tmavsi svetlo obyvak
+  - stredni
+conversation/lights::relative_dim:
+- - zapni svetlo obyvak
+  - tmavsi
+conversation/lights::warm_white:
+- - zapni svetlo obyvak
+  - teplabila
+conversation/lights::which_lights_on:
+- - zapni svetlo obyvak
+  - zapni svetlo kuchyne
+  - co svetlo
+conversation/media::music_artist_then_now_playing:
+- - play queen kuchyne
+  - co hudba
+conversation/media::music_play_in_room:
+- play hudba kuchyne
+conversation/media::next_and_pause:
+- - play hudba kuchyne
+  - next
+  - pause
+conversation/media::tv_not_light:
+- zapni televize obyvak
+conversation/media::volume_down:
+- tiseji hudba

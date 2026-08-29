@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - روشن سرما پذیرایی
+  - '21'
+conversation/climate::heat_setpoint:
+- بگذار سرما پذیرایی 21
+conversation/climate::temperature_query:
+- چی سرما پذیرایی
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - خاموش چراغ اتاقخواب
+  - روشن چراغ پذیرایی
+  - و آشپزخانه هم
+conversation/followup::followup_same_action_other_room:
+- - روشن چراغ پذیرایی
+  - و آشپزخانه هم
+conversation/house::clock_calendar_weather:
+- چی hour
+- چی تقویم
+- چی سرما
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- روشن alloff
+conversation/lights::ambiguous_light:
+- روشن چراغ
+conversation/lights::brightness_percent:
+- بگذار چراغ پذیرایی 30 درصد
+conversation/lights::color_red:
+- - روشن چراغ پذیرایی
+  - red
+conversation/lights::dim_then_level:
+- - تیره‌تر چراغ پذیرایی
+  - متوسط
+conversation/lights::relative_dim:
+- - روشن چراغ پذیرایی
+  - تیره‌تر
+conversation/lights::warm_white:
+- - روشن چراغ پذیرایی
+  - سفیدگرم
+conversation/lights::which_lights_on:
+- - روشن چراغ پذیرایی
+  - روشن چراغ آشپزخانه
+  - چی چراغ
+conversation/media::music_artist_then_now_playing:
+- - پخش queen آشپزخانه
+  - چی موسیقی
+conversation/media::music_play_in_room:
+- پخش موسیقی آشپزخانه
+conversation/media::next_and_pause:
+- - پخش موسیقی آشپزخانه
+  - next
+  - pause
+conversation/media::tv_not_light:
+- روشن تلویزیون پذیرایی
+conversation/media::volume_down:
+- آرامتر موسیقی

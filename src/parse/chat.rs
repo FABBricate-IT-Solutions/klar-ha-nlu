@@ -29,7 +29,9 @@ fn has_home_domain_cue(tokens: &[String]) -> bool {
         || cat.any(tokens, cat.lock_nouns())
         || cat.any(tokens, cat.climate_nouns())
         || cat.any(tokens, cat.tv_words())
-        || tokens.iter().any(|token| matches!(token.as_str(), "queue" | "playing" | "volume" | "lautstarke" | "wiedergabe"))
+        || tokens.iter().any(|token| {
+            matches!(token.as_str(), "queue" | "playing" | "volume" | "lautstarke" | "wiedergabe" | "prozent" | "percent" | "percentage")
+        })
 }
 
 pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {

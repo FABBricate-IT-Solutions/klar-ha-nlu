@@ -47,6 +47,8 @@ class EngineChannelTests(unittest.TestCase):
         self.assertEqual(const.engine_session_id("dev-1", None), "dev:dev-1")
         self.assertEqual(const.engine_session_id(None, "sat-1"), "dev:sat-1")
         self.assertEqual(const.engine_session_id(None, None), const.FOLLOWUP_SESSION)
+        self.assertEqual(const.parse_session_id("assist-9", None, None), "assist-9")
+        self.assertEqual(const.parse_session_id(None, None, None), const.FOLLOWUP_SESSION)
 
     def test_resolve_channel_defaults_stable(self) -> None:
         self.assertEqual(const.resolve_channel(None), const.CHANNEL_STABLE)

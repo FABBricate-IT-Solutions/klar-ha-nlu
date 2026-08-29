@@ -232,18 +232,6 @@ impl Sessions {
         session
     }
 
-    pub fn put(&mut self, mut session: Session) {
-        self.sweep_ttl();
-        session.last_used = Instant::now();
-        if session.id.chars().count() > 128 || session.id.chars().any(char::is_control) {
-            session.id = Uuid::new_v4().to_string();
-        }
-        if !session.last.is_empty() {
-            self.recent_id = Some(session.id.clone());
-        }
-        self.inner.insert(session.id.clone(), session);
-    }
-
     fn seed_followup(&self, session: &mut Session) {
         if !session.last.is_empty() {
             return;
@@ -263,6 +251,18 @@ impl Sessions {
         session.last = recent.last.clone();
         session.last_execute = recent.last_execute.clone();
         session.last_turn_id = recent.last_turn_id;
+    }
+
+    pub fn put(&mut self, mut session: Session) {
+        self.sweep_ttl();
+        session.last_used = Instant::now();
+        if session.id.chars().count() > 128 || session.id.chars().any(char::is_control) {
+            session.id = Uuid::new_v4().to_string();
+        }
+        if !session.last.is_empty() {
+            self.recent_id = Some(session.id.clone());
+        }
+        self.inner.insert(session.id.clone(), session);
     }
 
     #[cfg(test)]

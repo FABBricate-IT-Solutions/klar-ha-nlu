@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - cas teas seomra
+  - '21'
+conversation/climate::heat_setpoint:
+- socraigh teas seomra 21
+conversation/climate::temperature_query:
+- cad teas seomra
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - much solas seomraleong
+  - cas solas seomra
+  - agus cistin freisin
+conversation/followup::followup_same_action_other_room:
+- - cas solas seomra
+  - agus cistin freisin
+conversation/house::clock_calendar_weather:
+- cad hour
+- cad feilire
+- cad teas
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- cas alloff
+conversation/lights::ambiguous_light:
+- cas solas
+conversation/lights::brightness_percent:
+- socraigh solas seomra 30 faoin gcead
+conversation/lights::color_red:
+- - cas solas seomra
+  - red
+conversation/lights::dim_then_level:
+- - nios solas seomra
+  - meánach
+conversation/lights::relative_dim:
+- - cas solas seomra
+  - nios
+conversation/lights::warm_white:
+- - cas solas seomra
+  - ban te
+conversation/lights::which_lights_on:
+- - cas solas seomra
+  - cas solas cistin
+  - cad solas
+conversation/media::music_artist_then_now_playing:
+- - seinn queen cistin
+  - cad teilifis
+conversation/media::music_play_in_room:
+- seinn teilifis cistin
+conversation/media::next_and_pause:
+- - seinn teilifis cistin
+  - next
+  - pause
+conversation/media::tv_not_light:
+- cas teilifis seomra
+conversation/media::volume_down:
+- nios ciúine teilifis

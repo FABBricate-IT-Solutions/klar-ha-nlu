@@ -12,12 +12,18 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from conversation import conversation_overlay
 from lang_packs.lexicons import ALL_CORES
 from lex import DATA, lex_of
 from sentences import sentence_for
 
 GROUPS = ["area", "devices", "query_area", "query_devices", "multiple_intents", "assist", "clarifications", "state_persistance", "timers", "lists"]
-SUITES = (("wohnung_mittel", GROUPS), ("familienhaus_de", GROUPS), ("familienhaus_de", ["m0_exact"]), ("familienhaus_de", ["m2_floors"]))
+SUITES = (
+    ("wohnung_mittel", GROUPS + ["conversation"]),
+    ("familienhaus_de", GROUPS),
+    ("familienhaus_de", ["m0_exact"]),
+    ("familienhaus_de", ["m2_floors"]),
+)
 
 
 def load_cases(path: Path) -> list[dict]:
@@ -40,7 +46,15 @@ def write_sentences(lex: dict) -> None:
             src = DATA / suite / group
             if not src.is_dir():
                 continue
-            overlay = {f"{group}/{path.stem}::{case.get('name') or path.stem}": sentence_for(case, lex, suite) for path in sorted(src.glob("*.yaml")) for case in load_cases(path)}
+            overlay = (
+                conversation_overlay(lex)
+                if group == "conversation"
+                else {
+                    f"{group}/{path.stem}::{case.get('name') or path.stem}": sentence_for(case, lex, suite)
+                    for path in sorted(src.glob("*.yaml"))
+                    for case in load_cases(path)
+                }
+            )
             if overlay:
                 dest = DATA / "parity" / lex["code"] / dest_suite / f"{group}.yaml"
                 dest.parent.mkdir(parents=True, exist_ok=True)

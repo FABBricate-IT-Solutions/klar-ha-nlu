@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - taend varme stue
+  - '21'
+conversation/climate::heat_setpoint:
+- saet varme stue 21
+conversation/climate::temperature_query:
+- hvad varme stue
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - sluk lys sovevaerelse
+  - taend lys stue
+  - og kokken ogsaa
+conversation/followup::followup_same_action_other_room:
+- - taend lys stue
+  - og kokken ogsaa
+conversation/house::clock_calendar_weather:
+- hvad hour
+- hvad kalender
+- hvad varme
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- taend alloff
+conversation/lights::ambiguous_light:
+- taend lys
+conversation/lights::brightness_percent:
+- saet lys stue 30 procent
+conversation/lights::color_red:
+- - taend lys stue
+  - rod
+conversation/lights::dim_then_level:
+- - morkere lys stue
+  - medium
+conversation/lights::relative_dim:
+- - taend lys stue
+  - morkere
+conversation/lights::warm_white:
+- - taend lys stue
+  - varmhvid
+conversation/lights::which_lights_on:
+- - taend lys stue
+  - taend lys kokken
+  - hvad lys
+conversation/media::music_artist_then_now_playing:
+- - spil queen kokken
+  - hvad musik
+conversation/media::music_play_in_room:
+- spil musik kokken
+conversation/media::next_and_pause:
+- - spil musik kokken
+  - next
+  - pause
+conversation/media::tv_not_light:
+- taend tv stue
+conversation/media::volume_down:
+- lavere musik

@@ -131,7 +131,13 @@ fn validate_slots(intent: &Intent) -> Result<(), PlanInvalid> {
         return Err(PlanInvalid::Schema);
     }
     match intent.name.as_str() {
-        "HassLightSet" if intent.slot("brightness").is_none() && intent.slot("color").is_none() => Err(PlanInvalid::Schema),
+        "HassLightSet"
+            if intent.slot("brightness").is_none()
+                && intent.slot("color").is_none()
+                && !matches!(intent.slot("brightness_step"), Some("up" | "down")) =>
+        {
+            Err(PlanInvalid::Schema)
+        }
         "HassClimateSetTemperature" if intent.slot("temperature").is_none() => Err(PlanInvalid::Schema),
         "HassFanSetSpeed" if intent.slot("percentage").is_none() => Err(PlanInvalid::Schema),
         "HassSetPosition" if intent.slot("position").is_none() => Err(PlanInvalid::Schema),
@@ -235,7 +241,7 @@ fn allowed_slots(name: &str) -> &'static [&'static str] {
     match name {
         "HassTurnOn" | "HassTurnOff" | "HassToggle" => &["entity_id", "area", "floor", "domain"],
         "HassGetState" => &["entity_id", "area", "floor", "domain", "media_status"],
-        "HassLightSet" => &["entity_id", "area", "floor", "domain", "brightness", "color"],
+        "HassLightSet" => &["entity_id", "area", "floor", "domain", "brightness", "color", "brightness_step"],
         "HassClimateSetTemperature" => &["entity_id", "area", "floor", "domain", "temperature"],
         "HassClimateGetTemperature" => &["entity_id", "area", "floor", "domain"],
         "HassFanSetSpeed" => &["entity_id", "area", "floor", "domain", "percentage"],

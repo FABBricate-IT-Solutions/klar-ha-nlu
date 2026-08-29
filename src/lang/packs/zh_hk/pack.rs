@@ -233,6 +233,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("黑", "black"),
             ("白", "white"),
             ("紫", "purple"),
+            ("暖白", "warmwhite"),
         ],
         numbers: &[
             ("零", 0),

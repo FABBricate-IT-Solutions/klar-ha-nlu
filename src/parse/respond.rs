@@ -90,9 +90,11 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassTurnOn" => fill(pack.turn_on),
         "HassTurnOff" => fill(pack.turn_off),
         "HassToggle" => fill(pack.toggle),
-        "HassLightSet" => match (intent.slot("color"), intent.slot("brightness")) {
-            (Some(color), None) => fill(pack.light_color).replace("{color}", &catalog().color_spoken(color)),
-            (_, brightness) => fill(pack.light_set).replace("{n}", brightness.unwrap_or("?")),
+        "HassLightSet" => match (intent.slot("color"), intent.slot("brightness"), intent.slot("brightness_step")) {
+            (Some(color), None, _) => fill(pack.light_color).replace("{color}", &catalog().color_spoken(color)),
+            (_, Some(brightness), _) => fill(pack.light_set).replace("{n}", brightness),
+            (_, _, Some(_)) => fill(pack.get_state),
+            _ => fill(pack.light_set).replace("{n}", "?"),
         },
         "HassClimateSetTemperature" => {
             let noun = climate_noun(intent);

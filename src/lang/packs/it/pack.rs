@@ -213,6 +213,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("nero", "black"),
             ("bianco", "white"),
             ("viola", "purple"),
+            ("biancocaldo", "warmwhite"),
         ],
         numbers: &[
             ("zero", 0),

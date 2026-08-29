@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - piztu berogailu egongela
+  - '21'
+conversation/climate::heat_setpoint:
+- jarri berogailu egongela 21
+conversation/climate::temperature_query:
+- zer berogailu egongela
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - itzali argia logela
+  - piztu argia egongela
+  - eta sukaldea ere
+conversation/followup::followup_same_action_other_room:
+- - piztu argia egongela
+  - eta sukaldea ere
+conversation/house::clock_calendar_weather:
+- zer hour
+- zer egutegi
+- zer berogailu
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- piztu alloff
+conversation/lights::ambiguous_light:
+- piztu argia
+conversation/lights::brightness_percent:
+- jarri argia egongela 30 ehuneko
+conversation/lights::color_red:
+- - piztu argia egongela
+  - red
+conversation/lights::dim_then_level:
+- - ilunago argia egongela
+  - ertain
+conversation/lights::relative_dim:
+- - piztu argia egongela
+  - ilunago
+conversation/lights::warm_white:
+- - piztu argia egongela
+  - zuri bero
+conversation/lights::which_lights_on:
+- - piztu argia egongela
+  - piztu argia sukaldea
+  - zer argia
+conversation/media::music_artist_then_now_playing:
+- - erreproduzitu queen sukaldea
+  - zer telebista
+conversation/media::music_play_in_room:
+- erreproduzitu telebista sukaldea
+conversation/media::next_and_pause:
+- - erreproduzitu telebista sukaldea
+  - next
+  - pause
+conversation/media::tv_not_light:
+- piztu tb egongela
+conversation/media::volume_down:
+- isilago telebista

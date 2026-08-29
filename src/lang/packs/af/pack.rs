@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("swart", "black"),
             ("wit", "white"),
             ("pers", "purple"),
+            ("warmwit", "warmwhite"),
         ],
         numbers: &[
             ("nul", 0),

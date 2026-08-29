@@ -144,7 +144,7 @@ pub const PACK: LanguagePack = LanguagePack {
         on_words: &["on"],
         off_words: &["off"],
         scene_named: &["leaving", "movie", "cozy", "filmabend", "gemuetlich"],
-        temp_query: &["temperature", "degrees", "hot", "cold"],
+        temp_query: &["temperature", "degrees", "hot", "cold", "warm"],
         timer_query: &["remaining", "left", "status", "check", "how"],
         brightness: &["brightness"],
         start_words: &["start"],
@@ -344,6 +344,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("pink", "pink"),
             ("black", "black"),
             ("white", "white"),
+            ("warmwhite", "warmwhite"),
+            ("warmweiss", "warmwhite"),
             ("purple", "purple"),
         ],
         numbers: &[

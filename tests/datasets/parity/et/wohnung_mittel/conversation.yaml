@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - lulita kyte elutuba
+  - '21'
+conversation/climate::heat_setpoint:
+- sea kyte elutuba 21
+conversation/climate::temperature_query:
+- mis kyte elutuba
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - kustuta vali magamistuba
+  - lulita vali elutuba
+  - ja kook ka
+conversation/followup::followup_same_action_other_room:
+- - lulita vali elutuba
+  - ja kook ka
+conversation/house::clock_calendar_weather:
+- mis hour
+- mis kalender
+- mis kyte
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- lulita alloff
+conversation/lights::ambiguous_light:
+- lulita vali
+conversation/lights::brightness_percent:
+- sea vali elutuba 30 protsenti
+conversation/lights::color_red:
+- - lulita vali elutuba
+  - red
+conversation/lights::dim_then_level:
+- - tumedam vali elutuba
+  - keskmine
+conversation/lights::relative_dim:
+- - lulita vali elutuba
+  - tumedam
+conversation/lights::warm_white:
+- - lulita vali elutuba
+  - soe valge
+conversation/lights::which_lights_on:
+- - lulita vali elutuba
+  - lulita vali kook
+  - mis vali
+conversation/media::music_artist_then_now_playing:
+- - mangi queen kook
+  - mis teler
+conversation/media::music_play_in_room:
+- mangi teler kook
+conversation/media::next_and_pause:
+- - mangi teler kook
+  - next
+  - pause
+conversation/media::tv_not_light:
+- lulita tv elutuba
+conversation/media::volume_down:
+- vaiksemalt teler

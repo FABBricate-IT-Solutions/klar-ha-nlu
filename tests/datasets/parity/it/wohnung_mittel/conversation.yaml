@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - accendi riscaldamento soggiorno
+  - '21'
+conversation/climate::heat_setpoint:
+- metti riscaldamento soggiorno 21
+conversation/climate::temperature_query:
+- cosa riscaldamento soggiorno
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - spegni luce camera
+  - accendi luce soggiorno
+  - e cucina anche
+conversation/followup::followup_same_action_other_room:
+- - accendi luce soggiorno
+  - e cucina anche
+conversation/house::clock_calendar_weather:
+- cosa ora
+- cosa calendario
+- cosa riscaldamento
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- accendi alloff
+conversation/lights::ambiguous_light:
+- accendi luce
+conversation/lights::brightness_percent:
+- metti luce soggiorno 30 percento
+conversation/lights::color_red:
+- - accendi luce soggiorno
+  - rosso
+conversation/lights::dim_then_level:
+- - piuoscuro luce soggiorno
+  - medio
+conversation/lights::relative_dim:
+- - accendi luce soggiorno
+  - piuoscuro
+conversation/lights::warm_white:
+- - accendi luce soggiorno
+  - biancocaldo
+conversation/lights::which_lights_on:
+- - accendi luce soggiorno
+  - accendi luce cucina
+  - cosa luce
+conversation/media::music_artist_then_now_playing:
+- - riproduci queen cucina
+  - cosa musica
+conversation/media::music_play_in_room:
+- riproduci musica cucina
+conversation/media::next_and_pause:
+- - riproduci musica cucina
+  - next
+  - pausa
+conversation/media::tv_not_light:
+- accendi tv soggiorno
+conversation/media::volume_down:
+- piubasso musica

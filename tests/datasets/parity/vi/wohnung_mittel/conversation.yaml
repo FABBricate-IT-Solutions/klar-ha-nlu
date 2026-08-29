@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - bat dieuhoa phongkhach
+  - '21'
+conversation/climate::heat_setpoint:
+- dat dieuhoa phongkhach 21
+conversation/climate::temperature_query:
+- gi dieuhoa phongkhach
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - tat bongden phongngu
+  - bat bongden phongkhach
+  - va bep nua
+conversation/followup::followup_same_action_other_room:
+- - bat bongden phongkhach
+  - va bep nua
+conversation/house::clock_calendar_weather:
+- gi hour
+- gi lich
+- gi dieuhoa
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- bat alloff
+conversation/lights::ambiguous_light:
+- bat bongden
+conversation/lights::brightness_percent:
+- dat bongden phongkhach 30 phantram
+conversation/lights::color_red:
+- - bat bongden phongkhach
+  - red
+conversation/lights::dim_then_level:
+- - toihon bongden phongkhach
+  - trungbinh
+conversation/lights::relative_dim:
+- - bat bongden phongkhach
+  - toihon
+conversation/lights::warm_white:
+- - bat bongden phongkhach
+  - trangam
+conversation/lights::which_lights_on:
+- - bat bongden phongkhach
+  - bat bongden bep
+  - gi bongden
+conversation/media::music_artist_then_now_playing:
+- - phat queen bep
+  - gi tivi
+conversation/media::music_play_in_room:
+- phat tivi bep
+conversation/media::next_and_pause:
+- - phat tivi bep
+  - next
+  - pause
+conversation/media::tv_not_light:
+- bat tivi phongkhach
+conversation/media::volume_down:
+- nhohon tivi

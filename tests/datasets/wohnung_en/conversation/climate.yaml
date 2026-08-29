@@ -1,0 +1,42 @@
+- name: temperature_query
+  sentences:
+    - - What's the temperature in the living room?
+    - - How warm is it in the living room?
+    - - How warm is it in the living room?
+      - How warm is it
+  nlu_expect:
+    intents:
+      - intent: HassClimateGetTemperature
+        slots: {entity_id: climate.better_thermostat_wohnzimmer}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - eingestellt
+    - that is set
+
+- name: heat_setpoint
+  world_expect:
+    - {entity_id: climate.better_thermostat_wohnzimmer, temperature: 21}
+  sentences:
+    - Set the living room heat to 21 degrees.
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.better_thermostat_wohnzimmer, temperature: 21}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - what seems to be the issue
+
+- name: heat_on_then_set
+  world_expect:
+    - {entity_id: climate.better_thermostat_wohnzimmer, temperature: 21}
+  sentences:
+    - - Turn on the living room heat
+      - to 21
+  nlu_expect:
+    intents:
+      - intent: HassClimateSetTemperature
+        slots: {entity_id: climate.better_thermostat_wohnzimmer, temperature: 21}
+    reject: false
+    clarify: false

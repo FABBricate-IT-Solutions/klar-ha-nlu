@@ -1,6 +1,8 @@
 use crate::home::policy::{fallback_climate, fallback_cover_area};
+use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
-use crate::parse::action::{detect_actions, domain_for, guess_action, is_hard_command, Action};
+use crate::parse::action::{detect_actions, domain_for, is_hard_command, Action};
+use crate::parse::also::guess_action;
 use crate::parse::clause_area::{
     area_command, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
 };
@@ -61,7 +63,13 @@ pub(crate) fn parse_clause_candidates_for_action(
     let command = prefer_action(&actions);
     let hard = is_hard_command(command, tokens);
     let guessed = forced_action.unwrap_or_else(|| {
-        if question && number.is_none() && !hard {
+        if crate::parse::compound::named_scene_or_script(tokens, home).is_some()
+            && !(cat.any(tokens, cat.question_words()) || tokens.first().is_some_and(|token| cat.is_question_start(token)))
+        {
+            Action::Scene
+        } else if crate::parse::infer::color_word(tokens).is_some() && !question {
+            Action::SetLight
+        } else if question && number.is_none() && !hard {
             Action::GetState
         } else {
             command.or_else(|| actions.first().map(|(_, a)| *a)).unwrap_or_else(|| guess_action(tokens, session, number))
@@ -124,10 +132,22 @@ pub(crate) fn parse_clause_candidates_for_action(
             candidates.push(candidate(*policy, action, outcome));
         }
     }
+    if candidates.iter().any(|candidate| {
+        candidate.policy == PolicyId::NamedScene && matches!(&candidate.outcome, ClauseOut::Intents(intents) if !intents.is_empty())
+    }) {
+        candidates.retain(|candidate| candidate.policy == PolicyId::NamedScene);
+    }
     if media_claimed_empty(&candidates) {
         let transfer = ctx.tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer"));
-        let named = !transfer && ctx.resolved.entities.iter().any(|entity| entity_has_name_evidence(ctx.tokens, entity, ctx.home));
+        let named = !transfer
+            && ctx.resolved.entities.iter().any(|entity| {
+                entity_has_name_evidence(ctx.tokens, entity, ctx.home) && (is_music_assistant_player(entity) || is_music_player(entity))
+            });
         retain_after_media_claim(&mut candidates, named);
+    } else if candidates.iter().any(|candidate| {
+        candidate.policy == PolicyId::Media && matches!(&candidate.outcome, ClauseOut::Intents(intents) if !intents.is_empty())
+    }) {
+        candidates.retain(|candidate| !matches!(candidate.policy, PolicyId::GroundedAmbiguous | PolicyId::GroundedEntities));
     }
     candidates
 }

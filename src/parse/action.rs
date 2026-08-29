@@ -1,5 +1,4 @@
 use crate::lang::{catalog, VerbKind};
-use crate::session::Session;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Action {
@@ -32,7 +31,9 @@ pub enum Action {
 }
 
 pub fn domain_for(action: Action, tokens: &[String]) -> Option<&'static str> {
-    forced_domain(action).or_else(|| crate::parse::resolve::domain_hint(tokens)).or_else(|| implied_domain(action))
+    forced_domain(action)
+        .or_else(|| crate::parse::resolve::domain_hint(tokens).filter(|domain| !matches!(action, Action::SetLight) || *domain == "light"))
+        .or_else(|| implied_domain(action))
 }
 
 fn forced_domain(action: Action) -> Option<&'static str> {
@@ -195,32 +196,6 @@ pub(crate) fn is_hard_command(command: Option<Action>, tokens: &[String]) -> boo
         )
     ) || (matches!(command, Some(Action::On))
         && tokens.iter().any(|token| catalog().scene_nouns().contains(token.as_str()) || catalog().script_words().contains(token.as_str())))
-}
-
-pub(crate) fn guess_action(tokens: &[String], session: &Session, number: Option<i32>) -> Action {
-    if number.is_some() {
-        return crate::parse::numbers::guess_numbered_action(
-            tokens,
-            session.last_entities().any(|entity| entity.starts_with("climate."))
-                || session.last_names().any(|name| name.contains("Climate"))
-                || session.last_domains().any(|domain| domain == "climate"),
-            session.last_entities().any(|entity| entity.starts_with("cover.")) || session.last_domains().any(|domain| domain == "cover"),
-            session.last_entities().any(|entity| entity.starts_with("fan.")) || session.last_domains().any(|domain| domain == "fan"),
-        );
-    }
-    if tokens.iter().any(|token| matches!(token.as_str(), "auch" | "too" | "also" | "well")) {
-        if session.last_names().any(|name| name == "HassTurnOff") {
-            Action::Off
-        } else if session.last_names().any(|name| name == "HassLightSet") {
-            Action::SetLight
-        } else if session.last_names().any(|name| name == "HassTurnOn") {
-            Action::On
-        } else {
-            Action::GetState
-        }
-    } else {
-        Action::GetState
-    }
 }
 
 fn has_structural_anchor(tokens: &[String]) -> bool {

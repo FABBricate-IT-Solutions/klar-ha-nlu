@@ -1,0 +1,69 @@
+- name: tv_not_light
+  world_expect:
+    - {entity_id: media_player.wohnzimmer_tv, state: 'on'}
+  sentences:
+    - Mach den Fernseher im Wohnzimmer an.
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: media_player.wohnzimmer_tv}
+    reject: false
+    clarify: false
+  forbid:
+    - light.wohnzimmer
+
+- name: music_play_in_room
+  sentences:
+    - Spiel Musik in der Küche.
+  nlu_expect:
+    intents:
+      - intent: HassMediaUnpause
+        slots: {entity_id: media_player.kuchenbereich}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - satellite
+    - media_player.
+
+- name: music_artist_then_now_playing
+  sentences:
+    - - Spiel Queen in der Küche
+      - was läuft
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {entity_id: media_player.kuchenbereich, media_status: now_playing}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - satellite1
+    - media_player.
+
+- name: volume_down
+  sentences:
+    - Mach die Musik etwas leiser
+  nlu_expect:
+    intents:
+      - intent: HassSetVolumeRelative
+        slots: {entity_id: media_player.wohnzimmer, volume_step: down}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - satellite
+
+- name: next_and_pause
+  sentences:
+    - - Spiel Musik in der Küche
+      - nächster Titel
+      - Pause
+  nlu_expect:
+    intents:
+      - intent: HassMediaPause
+        slots: {entity_id: media_player.kuchenbereich}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - media_player.
+    - satellite
+    - kuchenbereich

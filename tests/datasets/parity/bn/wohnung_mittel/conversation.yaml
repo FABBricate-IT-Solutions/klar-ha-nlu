@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - জ্বালাও গরম বসার
+  - '21'
+conversation/climate::heat_setpoint:
+- সেট গরম বসার 21
+conversation/climate::temperature_query:
+- কি গরম বসার
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - নিভাও আলো shobarghor
+  - জ্বালাও আলো বসার
+  - এবং রান্না o
+conversation/followup::followup_same_action_other_room:
+- - জ্বালাও আলো বসার
+  - এবং রান্না o
+conversation/house::clock_calendar_weather:
+- কি hour
+- কি ক্যালেন্ডার
+- কি গরম
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- জ্বালাও alloff
+conversation/lights::ambiguous_light:
+- জ্বালাও আলো
+conversation/lights::brightness_percent:
+- সেট আলো বসার 30 shatakara
+conversation/lights::color_red:
+- - জ্বালাও আলো বসার
+  - red
+conversation/lights::dim_then_level:
+- - aroandhar আলো বসার
+  - madhyam
+conversation/lights::relative_dim:
+- - জ্বালাও আলো বসার
+  - aroandhar
+conversation/lights::warm_white:
+- - জ্বালাও আলো বসার
+  - goromsada
+conversation/lights::which_lights_on:
+- - জ্বালাও আলো বসার
+  - জ্বালাও আলো রান্না
+  - কি আলো
+conversation/media::music_artist_then_now_playing:
+- - চালাও queen রান্না
+  - কি tivi
+conversation/media::music_play_in_room:
+- চালাও tivi রান্না
+conversation/media::next_and_pause:
+- - চালাও tivi রান্না
+  - next
+  - থামাও
+conversation/media::tv_not_light:
+- জ্বালাও tv বসার
+conversation/media::volume_down:
+- asthe tivi

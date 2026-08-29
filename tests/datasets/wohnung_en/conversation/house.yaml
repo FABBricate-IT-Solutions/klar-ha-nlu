@@ -1,0 +1,40 @@
+- name: scene_all_off
+  world_expect:
+    - {entity_id: scene.alles_aus, state: 'on'}
+  sentences:
+    - Activate All off
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: scene.alles_aus, domain: scene}
+    reject: false
+    clarify: false
+  forbid:
+    - light.wohnzimmer
+    - light.kuche_kuche
+    - light.alle_lichter
+
+- name: clock_calendar_weather
+  sentences:
+    - What time is it?
+    - What's on the calendar?
+    - What's the weather?
+  nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - That is done
+    - erledigt
+    - seconds
+
+- name: false_done_forbidden
+  sentences:
+    - What is the capital of France
+  nlu_expect:
+    intents: []
+    reject: true
+    clarify: false
+  speech_forbids:
+    - That is done
+    - Das ist erledigt
+    - 'Done.'

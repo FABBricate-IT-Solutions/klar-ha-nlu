@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - iesledz apkure istaba
+  - '21'
+conversation/climate::heat_setpoint:
+- iestati apkure istaba 21
+conversation/climate::temperature_query:
+- kas apkure istaba
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - izsledz gaisma gulamistaba
+  - iesledz gaisma istaba
+  - un virtuve ari
+conversation/followup::followup_same_action_other_room:
+- - iesledz gaisma istaba
+  - un virtuve ari
+conversation/house::clock_calendar_weather:
+- kas hour
+- kas kalendars
+- kas apkure
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- iesledz alloff
+conversation/lights::ambiguous_light:
+- iesledz gaisma
+conversation/lights::brightness_percent:
+- iestati gaisma istaba 30 procenti
+conversation/lights::color_red:
+- - iesledz gaisma istaba
+  - red
+conversation/lights::dim_then_level:
+- - tumšak gaisma istaba
+  - videji
+conversation/lights::relative_dim:
+- - iesledz gaisma istaba
+  - tumšak
+conversation/lights::warm_white:
+- - iesledz gaisma istaba
+  - silti balts
+conversation/lights::which_lights_on:
+- - iesledz gaisma istaba
+  - iesledz gaisma virtuve
+  - kas gaisma
+conversation/media::music_artist_then_now_playing:
+- - atskanot queen virtuve
+  - kas televizors
+conversation/media::music_play_in_room:
+- atskanot televizors virtuve
+conversation/media::next_and_pause:
+- - atskanot televizors virtuve
+  - next
+  - pause
+conversation/media::tv_not_light:
+- iesledz tv istaba
+conversation/media::volume_down:
+- klusak televizors

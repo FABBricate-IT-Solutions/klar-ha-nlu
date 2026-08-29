@@ -230,6 +230,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("ดำ", "black"),
             ("ขาว", "white"),
             ("ม่วง", "purple"),
+            ("ขาวนวล", "warmwhite"),
         ],
         numbers: &[
             ("ศูนย์", 0),

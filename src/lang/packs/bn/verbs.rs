@@ -2,16 +2,19 @@
 use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
+    ("aroandhar", VerbKind::Dim),
     ("bari", VerbKind::Dock),
     ("black", VerbKind::Color),
     ("blue", VerbKind::Color),
     ("bondho", VerbKind::Close),
     ("drishyo", VerbKind::Scene),
+    ("goromsada", VerbKind::Color),
     ("green", VerbKind::Color),
     ("jalao", VerbKind::On),
     ("jharu", VerbKind::VacuumNoun),
     ("khol", VerbKind::Open),
     ("ki", VerbKind::Query),
+    ("madhyam", VerbKind::Dim),
     ("nibhao", VerbKind::Off),
     ("orange", VerbKind::Color),
     ("pakha", VerbKind::FanNoun),
@@ -19,6 +22,7 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("purple", VerbKind::Color),
     ("red", VerbKind::Color),
     ("set", VerbKind::Set),
+    ("shatakara", VerbKind::Percent),
     ("station", VerbKind::Dock),
     ("tala", VerbKind::Lock),
     ("talika", VerbKind::List),

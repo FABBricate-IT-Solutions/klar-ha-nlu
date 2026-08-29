@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - αναψε θερμανση σαλονι
+  - '21'
+conversation/climate::heat_setpoint:
+- βαλε θερμανση σαλονι 21
+conversation/climate::temperature_query:
+- τι θερμανση σαλονι
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - σβησε φως υπνοδωματο
+  - αναψε φως σαλονι
+  - και κουζινα επισης
+conversation/followup::followup_same_action_other_room:
+- - αναψε φως σαλονι
+  - και κουζινα επισης
+conversation/house::clock_calendar_weather:
+- τι hour
+- τι ημερολογιο
+- τι θερμανση
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- αναψε alloff
+conversation/lights::ambiguous_light:
+- αναψε φως
+conversation/lights::brightness_percent:
+- βαλε φως σαλονι 30 τοις εκατο
+conversation/lights::color_red:
+- - αναψε φως σαλονι
+  - red
+conversation/lights::dim_then_level:
+- - πιο φως σαλονι
+  - μεσαίο
+conversation/lights::relative_dim:
+- - αναψε φως σαλονι
+  - πιο
+conversation/lights::warm_white:
+- - αναψε φως σαλονι
+  - ζεστολευκο
+conversation/lights::which_lights_on:
+- - αναψε φως σαλονι
+  - αναψε φως κουζινα
+  - τι φως
+conversation/media::music_artist_then_now_playing:
+- - παιξε queen κουζινα
+  - τι μουσικη
+conversation/media::music_play_in_room:
+- παιξε μουσικη κουζινα
+conversation/media::next_and_pause:
+- - παιξε μουσικη κουζινα
+  - next
+  - pause
+conversation/media::tv_not_light:
+- αναψε τηλεοραση σαλονι
+conversation/media::volume_down:
+- πιοσιγα μουσικη

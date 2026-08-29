@@ -221,8 +221,31 @@ pub(crate) fn looks_like_named_device(tokens: &[String]) -> bool {
     catalog().any(tokens, catalog().named_device())
 }
 
+pub(crate) enum LightLevel {
+    Absolute(i32),
+    Step(&'static str),
+}
+
 pub(crate) fn color_word(tokens: &[String]) -> Option<String> {
+    if tokens.iter().any(|token| matches!(token.as_str(), "warmweiss" | "warmwhite" | "warmweis"))
+        || tokens.windows(2).any(|pair| pair[0] == "warm" && matches!(pair[1].as_str(), "white" | "weiss" | "weis"))
+    {
+        return Some("warmwhite".into());
+    }
     tokens.iter().find_map(|t| catalog().color(t).map(str::to_string))
+}
+
+pub(crate) fn light_level(tokens: &[String]) -> Option<LightLevel> {
+    if tokens.iter().any(|token| matches!(token.as_str(), "mittelhell" | "medium")) {
+        return Some(LightLevel::Absolute(50));
+    }
+    if tokens.iter().any(|token| matches!(token.as_str(), "heller" | "brighter")) {
+        return Some(LightLevel::Step("up"));
+    }
+    if tokens.iter().any(|token| matches!(token.as_str(), "dunkler" | "dimmer" | "darker" | "dimme" | "dimmen" | "dim")) {
+        return Some(LightLevel::Step("down"));
+    }
+    None
 }
 
 pub(crate) fn looks_like_question(tokens: &[String]) -> bool {

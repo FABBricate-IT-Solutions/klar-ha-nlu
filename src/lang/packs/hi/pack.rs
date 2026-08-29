@@ -228,6 +228,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("काला", "black"),
             ("सफेद", "white"),
             ("बैंगनी", "purple"),
+            ("garam safed", "warmwhite"),
         ],
         numbers: &[
             ("शून्य", 0),

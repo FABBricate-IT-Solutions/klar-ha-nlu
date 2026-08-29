@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - sytyta lampo olohuone
+  - '21'
+conversation/climate::heat_setpoint:
+- aseta lampo olohuone 21
+conversation/climate::temperature_query:
+- mika lampo olohuone
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - sammuta valo makuuhuone
+  - sytyta valo olohuone
+  - ja keittio myos
+conversation/followup::followup_same_action_other_room:
+- - sytyta valo olohuone
+  - ja keittio myos
+conversation/house::clock_calendar_weather:
+- mika hour
+- mika kalenteri
+- mika lampo
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- sytyta alloff
+conversation/lights::ambiguous_light:
+- sytyta valo
+conversation/lights::brightness_percent:
+- aseta valo olohuone 30 prosenttia
+conversation/lights::color_red:
+- - sytyta valo olohuone
+  - punainen
+conversation/lights::dim_then_level:
+- - tummempi valo olohuone
+  - keskitaso
+conversation/lights::relative_dim:
+- - sytyta valo olohuone
+  - tummempi
+conversation/lights::warm_white:
+- - sytyta valo olohuone
+  - lamminvalkoinen
+conversation/lights::which_lights_on:
+- - sytyta valo olohuone
+  - sytyta valo keittio
+  - mika valo
+conversation/media::music_artist_then_now_playing:
+- - soita queen keittio
+  - mika musiikki
+conversation/media::music_play_in_room:
+- soita musiikki keittio
+conversation/media::next_and_pause:
+- - soita musiikki keittio
+  - next
+  - pause
+conversation/media::tv_not_light:
+- sytyta tv olohuone
+conversation/media::volume_down:
+- hiljaisempi musiikki

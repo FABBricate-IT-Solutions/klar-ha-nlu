@@ -193,6 +193,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("musta", "black"),
             ("valkoinen", "white"),
             ("violetti", "purple"),
+            ("lamminvalkoinen", "warmwhite"),
         ],
         numbers: &[
             ("nolla", 0),
