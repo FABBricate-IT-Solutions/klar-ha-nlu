@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.55](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.54...2026.8.55) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- apply heat, relative dim, Kelvin, kitchen play, and honest TV speech([34fdb07](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/34fdb0790f1d4bc98eff98e8090628674dd5fa82))
+
+
+### Other
+
+- Merge pull request #153 from FABBricate-IT-Solutions/fix/live-heat-dim-kelvin-music-tv([99f0e4f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/99f0e4f5763bf434d59826e6e3df16216a02b642))
+
 ## [2026.8.54](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.53...2026.8.54) - 2026-08-29
 
 
