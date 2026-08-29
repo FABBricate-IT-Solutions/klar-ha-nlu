@@ -5,25 +5,35 @@ use crate::parse::normalize::{compact, fold_umlaut};
 use crate::types::{EntityRec, HomeGraph};
 
 pub(super) fn prefer_tv(tokens: &[String], home: &HomeGraph, candidates: &mut Vec<(f64, EntityRec)>) {
-    if !catalog().any(tokens, catalog().tv_words()) {
+    if !tv_utterance(tokens) {
         return;
     }
     let mentioned: Vec<String> =
         home.areas.iter().filter(|area| area_mentioned(tokens, &area.area_id, home)).map(|area| area.area_id.clone()).collect();
     if mentioned.is_empty() {
-        let exact: Vec<(f64, EntityRec)> = candidates
-            .iter()
-            .filter(|(_, entity)| {
-                looks_like_tv(entity)
-                    && entity.aliases.iter().any(|alias| {
-                        let folded = compact(&fold_umlaut(alias));
-                        catalog().tv_words().iter().any(|word| folded == compact(word))
-                    })
-            })
-            .cloned()
-            .collect();
-        if !exact.is_empty() {
-            *candidates = exact;
+        let aliased: Vec<(f64, EntityRec)> =
+            candidates.iter().filter(|(_, entity)| looks_like_tv(entity) && has_tv_alias(entity)).cloned().collect();
+        if aliased.len() == 1 {
+            *candidates = aliased;
+            return;
+        }
+        for entity in home.entities.iter().filter(|entity| looks_like_tv(entity) && assist_visible(entity, home) && !is_infra(entity)) {
+            if !candidates.iter().any(|(_, existing)| existing.entity_id == entity.entity_id) {
+                candidates.push((0.95, entity.clone()));
+            }
+        }
+        let tvs: Vec<(f64, EntityRec)> = candidates.iter().filter(|(_, entity)| looks_like_tv(entity)).cloned().collect();
+        if tvs.is_empty() {
+            return;
+        }
+        let aliased: Vec<(f64, EntityRec)> = tvs.iter().filter(|(_, entity)| has_tv_alias(entity)).cloned().collect();
+        if aliased.len() == 1 {
+            *candidates = aliased;
+            return;
+        }
+        let media: Vec<(f64, EntityRec)> = tvs.iter().filter(|(_, entity)| entity.domain == "media_player").cloned().collect();
+        if media.len() == 1 {
+            *candidates = media;
         }
         return;
     }
@@ -78,6 +88,19 @@ fn looks_like_tv(entity: &EntityRec) -> bool {
     let hay = format!("{} {} {}", entity.entity_id, entity.name, entity.aliases.join(" "));
     let folded = compact(&fold_umlaut(&hay));
     folded.contains("tv") || folded.contains("fernseher") || folded.contains("television")
+}
+
+fn tv_token(token: &str) -> bool {
+    let folded = compact(&fold_umlaut(token));
+    folded == "tv" || folded == "fernseher" || folded == "television" || catalog().tv_words().iter().any(|word| folded == compact(word))
+}
+
+fn tv_utterance(tokens: &[String]) -> bool {
+    tokens.iter().any(|token| tv_token(token))
+}
+
+fn has_tv_alias(entity: &EntityRec) -> bool {
+    entity.aliases.iter().any(|alias| tv_token(alias))
 }
 
 pub(super) fn prefer_entry_lock(tokens: &[String], home: &HomeGraph, candidates: &mut Vec<(f64, EntityRec)>) {
@@ -417,6 +440,12 @@ mod tests {
         let tv = parse("Mach den Fernseher im Wohnzimmer an.", &home, &mut Session::new(), &[], &settings);
         assert_eq!(tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("media_player.wohnzimmer_tv"), "{tv:?}");
         assert_ne!(tv.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{tv:?}");
+        let bare = parse("Mach den Fernseher an.", &home, &mut Session::new(), &[], &settings);
+        assert!(!bare.clarify, "{bare:?}");
+        assert_eq!(bare.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{bare:?}");
+        let status = parse("Status TV", &home, &mut Session::new(), &[], &settings);
+        assert!(!status.clarify, "{status:?}");
+        assert_eq!(status.intents.first().and_then(|intent| intent.slot("entity_id")), Some("switch.schlafzimmer_tv"), "{status:?}");
     }
 
     #[test]

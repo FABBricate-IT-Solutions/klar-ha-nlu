@@ -101,16 +101,14 @@ fn en_casual_and_special_are_chat() {
         assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
         assert!(result.chat, "{text}: chat fehlt");
     }
-    for text in ["What is the capital of France"] {
-        let mut session = Session::new();
-        let result = parse(text, &home, &mut session, &[], &settings("en"));
-        assert!(result.intents.is_empty(), "{text}: {:?}", result.intents);
-        assert!(!result.chat, "{text}: OOD darf nicht chat sein");
-    }
+    let ood = parse("What is the capital of France", &home, &mut Session::new(), &[], &settings("en"));
+    assert!(ood.intents.is_empty(), "{:?}", ood.intents);
+    assert!(!ood.chat, "OOD darf nicht chat sein");
     let weather = parse("What's the weather", &home, &mut Session::new(), &[], &settings("en"));
     assert!(weather.chat || !weather.intents.is_empty(), "What's the weather: {}", weather.speech);
     assert!(
-        weather.intents.is_empty() || weather.intents.iter().any(|intent| intent.slot("entity_id").unwrap_or_default().starts_with("weather.")),
+        weather.intents.is_empty()
+            || weather.intents.iter().any(|intent| intent.slot("entity_id").unwrap_or_default().starts_with("weather.")),
         "{:?}",
         weather.intents
     );
