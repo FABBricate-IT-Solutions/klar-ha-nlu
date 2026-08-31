@@ -176,6 +176,8 @@ class StreamTests(unittest.TestCase):
         self.assertIn("_attr_supports_streaming = True", src)
         self.assertIn("stream_chat", src)
         self.assertIn("klar_published", src)
+        self.assertIn("_was_published", src)
+        self.assertNotIn("result.klar_published", src)
         spoken = src[src.index("async def _spoken") : src.index("async def _briefing")]
         self.assertIn("published", spoken)
 
