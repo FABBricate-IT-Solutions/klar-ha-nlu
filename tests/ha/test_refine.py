@@ -201,6 +201,39 @@ class RefineTests(unittest.TestCase):
         self.assertFalse(hasattr(refine, "_TIMEOUT"))
         self.assertFalse(hasattr(refine, "nlu_home_turn"))
 
+    def test_client_lookup_reads_mapping_proxy_and_agent_model(self) -> None:
+        from types import MappingProxyType, SimpleNamespace
+
+        hass = object()
+        client = SimpleNamespace(chat=object())
+        fake = types.ModuleType("conversation")
+        original = refine.conversation
+
+        def resolve(agent: object):
+            fake.async_get_agent = lambda _hass, _agent_id: agent
+            refine.conversation = fake
+            try:
+                return refine.llm_client_and_model(hass, "conversation.llm")
+            finally:
+                refine.conversation = original
+
+        proxy_agent = SimpleNamespace(
+            entry=SimpleNamespace(
+                runtime_data=client,
+                options=MappingProxyType({}),
+                data=MappingProxyType({}),
+            ),
+            subentry=SimpleNamespace(data=MappingProxyType({"model": "Gemma-4-E2B-it-GGUF"})),
+        )
+        self.assertEqual(resolve(proxy_agent), (client, "Gemma-4-E2B-it-GGUF"))
+
+        named = SimpleNamespace(
+            model="Gemma-4-E4B-it-GGUF",
+            entry=SimpleNamespace(runtime_data=client, options={}, data={}),
+            subentry=None,
+        )
+        self.assertEqual(resolve(named), (client, "Gemma-4-E4B-it-GGUF"))
+
     def test_extra_body_disables_thinking_for_ha_openai_client(self) -> None:
         self.assertEqual(
             refine.refine_extra_body(),
@@ -337,6 +370,9 @@ class RefineTests(unittest.TestCase):
             refine.speech_chunks("Set to 21.5 degrees. The light is on."),
             ["Set to 21.5 degrees.", " The light is on."],
         )
+        done, rest = refine.pop_complete_sentences("Set to 21.5 degrees. The light")
+        self.assertEqual(done, ["Set to 21.5 degrees."])
+        self.assertEqual(rest, " The light")
 
     def test_emit_streams_sentences_as_deltas(self) -> None:
         class Log:
@@ -369,9 +405,9 @@ class RefineTests(unittest.TestCase):
         asyncio.run(refine.emit_assistant_speech(log, "conversation.klar_nlu", speech))
         self.assertEqual(log.content[-1], speech)
         self.assertEqual(log.without, [])
-        self.assertEqual(log.deltas[0]["role"], "assistant")
-        self.assertEqual(log.deltas[0]["content"], "Natürlich, Sir.")
-        self.assertEqual(log.deltas[1], {"content": " Das Licht im Wohnzimmer ist an."})
+        self.assertEqual(log.deltas[0], {"role": "assistant"})
+        self.assertEqual(log.deltas[1], {"content": "Natürlich, Sir."})
+        self.assertEqual(log.deltas[2], {"content": " Das Licht im Wohnzimmer ist an."})
 
     def test_emit_falls_back_without_delta_stream(self) -> None:
         class Log:
