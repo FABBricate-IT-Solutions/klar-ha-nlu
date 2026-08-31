@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.66](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65...2026.8.66) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- close Assist listen after execute([41491a3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/41491a39b666fe12e660efb15e6b3bc20d874e6c))
+
+
+### Other
+
+- Merge pull request #178 from FABBricate-IT-Solutions/fix/close-conversation-after-execute([219a432](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/219a43215b708aa17a584b1cb86c4ae0235bf253))
+
 ## [2026.8.65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.64...2026.8.65) - 2026-08-31
 
 
