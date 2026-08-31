@@ -126,3 +126,35 @@ fn kitchen_followup_names_the_room() {
     let en = speak(&[intent], Personality::Default, false, Some(&home));
     assert!(en.to_lowercase().contains("kitchen") || en.to_lowercase().contains("küche"), "{en}");
 }
+
+#[test]
+fn empty_bind_clarify_and_confirm_are_english() {
+    let _bind = bind(&[]);
+    let speech = speak_clarify(&["Kitchen Light".into(), "Hall Light".into()], None);
+    assert!(speech.contains("Do you mean"), "{speech}");
+    assert!(speech.contains(" or "), "{speech}");
+    assert!(!speech.contains("Meinst du"), "{speech}");
+    assert!(!speech.contains(" oder "), "{speech}");
+    assert_eq!(crate::lang::catalog().speech().confirm, "Should I really do that?");
+}
+
+#[test]
+fn clarify_and_confirm_follow_pinned_locale() {
+    let names = ["Kitchen Light".into(), "Hall Light".into()];
+    let cases = [
+        ("de", "Meinst du", " oder ", "Soll ich das wirklich ausführen?"),
+        ("en", "Do you mean", " or ", "Should I really do that?"),
+        ("fr", "Tu veux dire", " ou ", "Je dois vraiment le faire?"),
+        ("ja", "Kitchen Light", "か", "本当に実行しますか？"),
+    ];
+    for (code, clarify, join, confirm) in cases {
+        let _bind = bind(&[code.into()]);
+        let speech = speak_clarify(&names, None);
+        assert!(speech.contains(clarify), "{code}: {speech}");
+        assert!(speech.contains(join), "{code}: {speech}");
+        if code != "de" {
+            assert!(!speech.contains("Meinst du"), "{code}: {speech}");
+        }
+        assert_eq!(crate::lang::catalog().speech().confirm, confirm, "{code}");
+    }
+}

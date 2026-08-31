@@ -24,6 +24,8 @@ def resolve_pack(language: str | None, enabled: list[str] | None = None) -> str:
             variants = LANGUAGE_VARIANTS.get(code, (code,))
             if any(tag.lower() == variant.lower() for variant in variants):
                 return code
+    if "en" in allowed:
+        return "en"
     return allowed[0]
 
 

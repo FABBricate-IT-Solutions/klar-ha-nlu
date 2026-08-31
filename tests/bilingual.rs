@@ -1,7 +1,9 @@
 use klar_nlu::home::default_home;
+use klar_nlu::lang::bind;
 use klar_nlu::parse::parse;
+use klar_nlu::parse::respond::speak_clarify;
 use klar_nlu::session::Session;
-use klar_nlu::types::Settings;
+use klar_nlu::types::{EntityRec, HomeGraph, Settings};
 
 fn settings(lang: &str) -> Settings {
     Settings { languages: vec![lang.into()], ..Settings::default() }
@@ -27,6 +29,16 @@ fn en_office_light_uses_english_speech() {
     assert_eq!(names, vec!["HassTurnOn"], "{speech}");
     assert!(speech.contains("is on") || speech.contains("light"), "{speech}");
     assert!(!speech.contains("ist an"), "{speech}");
+}
+
+#[test]
+fn empty_languages_last_resort_speech_is_english() {
+    let home = default_home();
+    let mut session = Session::new();
+    let result = parse("zzzznotaword", &home, &mut session, &[], &Settings::default());
+    assert!(result.speech.contains("I did not catch that") || result.speech.contains("Do you mean"), "{}", result.speech);
+    assert!(!result.speech.contains("Meinst du"), "{}", result.speech);
+    assert!(!result.speech.contains("nicht verstanden"), "{}", result.speech);
 }
 
 fn slots(text: &str, lang: &str) -> Vec<(String, Vec<(String, String)>)> {
@@ -131,4 +143,74 @@ fn en_news_briefing_keeps_yes_on_llm() {
     let stop = parse("no thanks", &home, &mut session, &[], &settings("en"));
     assert!(!stop.chat, "{}", stop.speech);
     assert!(stop.briefing);
+}
+
+fn screenshot_lights() -> Vec<(&'static str, &'static str)> {
+    vec![
+        ("light.bathroom_closet_a", "Bathroom Closet A Light"),
+        ("light.bathroom_closet_b", "Bathroom Closet B Light"),
+        ("light.bedroom_ceiling_fan", "Bedroom Ceiling Fan Light"),
+        ("light.living_ceiling_fan", "Living Room Ceiling Fan Light"),
+        ("light.kitchen_overhead", "Kitchen Overhead Light"),
+        ("light.living_bar", "Living Room Bar Light"),
+        ("light.living_cat", "Living Room Cat Light"),
+    ]
+}
+
+fn screenshot_home() -> HomeGraph {
+    let mut home = default_home();
+    for (id, name) in screenshot_lights() {
+        home.entities.push(EntityRec {
+            entity_id: id.into(),
+            name: name.into(),
+            domain: "light".into(),
+            platform: None,
+            area: Some("wohnzimmer".into()),
+            aliases: Vec::new(),
+            tags: Vec::new(),
+        });
+    }
+    home
+}
+
+#[test]
+fn hot_tub_light_clarify_speech_is_english_not_german() {
+    let home = screenshot_home();
+    let ids: Vec<String> = screenshot_lights().into_iter().map(|(id, _)| id.into()).collect();
+
+    let _empty = bind(&[]);
+    let unpinned = speak_clarify(&ids, Some(&home));
+    assert!(unpinned.contains("Do you mean"), "{unpinned}");
+    assert!(unpinned.contains(" or "), "{unpinned}");
+    assert!(unpinned.contains("Bathroom Closet A Light"), "{unpinned}");
+    assert!(!unpinned.contains("Meinst du"), "{unpinned}");
+    assert!(!unpinned.contains(" oder "), "{unpinned}");
+    drop(_empty);
+
+    let _en = bind(&["en".into()]);
+    let english = speak_clarify(&ids, Some(&home));
+    assert!(english.contains("Do you mean"), "{english}");
+    assert!(!english.contains("Meinst du"), "{english}");
+    drop(_en);
+
+    let _de = bind(&["de".into()]);
+    let german = speak_clarify(&ids, Some(&home));
+    assert!(german.contains("Meinst du"), "{german}");
+    assert!(german.contains(" oder "), "{german}");
+
+    for langs in [Vec::new(), vec!["en".into()]] {
+        let mut session = Session::new();
+        let settings = Settings { languages: langs.clone(), ..Settings::default() };
+        let result = klar_nlu::nlu::parse("turn on hot tub light", &home, &mut session, &[], &settings);
+        assert!(!result.speech.contains("Meinst du"), "{langs:?} {}", result.speech);
+        assert!(!result.speech.contains(" oder "), "{langs:?} {}", result.speech);
+        assert!(
+            matches!(result.decision, klar_nlu::types::ParseDecision::Clarify { .. }),
+            "{langs:?} {:?} {}",
+            result.decision,
+            result.speech
+        );
+        assert!(result.speech.contains("Do you mean"), "{langs:?} {}", result.speech);
+        assert!(result.speech.contains(" or "), "{langs:?} {}", result.speech);
+    }
 }
