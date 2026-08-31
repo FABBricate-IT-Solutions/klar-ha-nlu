@@ -337,6 +337,9 @@ class RefineTests(unittest.TestCase):
             refine.speech_chunks("Set to 21.5 degrees. The light is on."),
             ["Set to 21.5 degrees.", " The light is on."],
         )
+        done, rest = refine.pop_complete_sentences("Set to 21.5 degrees. The light")
+        self.assertEqual(done, ["Set to 21.5 degrees."])
+        self.assertEqual(rest, " The light")
 
     def test_emit_streams_sentences_as_deltas(self) -> None:
         class Log:
