@@ -68,6 +68,7 @@ from .fallback import (
 )
 from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
+from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
     hit_and_payload,
@@ -79,7 +80,9 @@ from .refine import (
     async_finish_speech,
     emit_assistant_speech,
     isolated_conversation_id,
+    llm_client_and_model,
     nested_llm_session,
+    pop_complete_sentences,
     refine_prompt,
     skip_rewrite,
 )
@@ -123,9 +126,47 @@ def _speech_from_result(result: ConversationResult) -> str:
     return str(plain.get("speech") or "")
 
 
+def _mark_published(result: ConversationResult | None, published: bool) -> ConversationResult | None:
+    if result is not None:
+        result.klar_published = published
+    return result
+
+
+def _speech_result(pack: str, speech: str, published: bool) -> ConversationResult:
+    response = intent.IntentResponse(language=speak_tag(pack))
+    response.async_set_speech(speech)
+    result = ConversationResult(
+        conversation_id=isolated_conversation_id(),
+        response=response,
+        continue_conversation=True,
+    )
+    return _mark_published(result, published)
+
+
+def _stream_hold(yarn: bool, rag: bool):
+    if not yarn and not rag:
+        return None
+
+    def hold(speech: str) -> bool | None:
+        stripped = speech.lstrip()
+        if parse_tool_reply(stripped) or leaks_klar_tools(speech):
+            return None
+        if rag and (stripped.startswith("KLAR_") or len(stripped) < 8):
+            return False
+        if yarn:
+            if not pop_complete_sentences(speech)[0]:
+                return False
+            if yarn_asks_permission(speech):
+                return None
+        return True
+
+    return hold
+
+
 class KlarConversationEntity(ConversationEntity):
     _attr_name = "Klar NLU"
     _attr_supported_features = conversation.ConversationEntityFeature.CONTROL
+    _attr_supports_streaming = True
 
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None:
         self.hass = hass
@@ -332,6 +373,7 @@ class KlarConversationEntity(ConversationEntity):
         return await self._spoken(
             user_input, chat_log, pack, llm, conversation_id,
             bool(getattr(fallback, "continue_conversation", False)), "chat",
+            bool(getattr(fallback, "klar_published", False)),
         )
 
     async def _spoken(
@@ -343,6 +385,7 @@ class KlarConversationEntity(ConversationEntity):
         conversation_id: str | None,
         continue_conversation: bool,
         decision: str = "",
+        published: bool = False,
     ) -> ConversationResult:
         agent_id = self._fallback_agent_id()
         if decision == "chat":
@@ -368,7 +411,7 @@ class KlarConversationEntity(ConversationEntity):
             decision,
             self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
         )
-        if speech.strip():
+        if speech.strip() and not published:
             await emit_assistant_speech(chat_log, user_input.agent_id, speech)
         response = intent.IntentResponse(language=speak_tag(pack))
         kinds = getattr(intent, "IntentResponseType", None)
@@ -399,7 +442,7 @@ class KlarConversationEntity(ConversationEntity):
             prompt = news_prompt(pack, headlines, extra_s)
         else:
             prompt = news_followup_prompt(pack, extra_s)
-        result = await self._fallback(user_input, chat_log, pack, True, prompt)
+        result = await self._fallback(user_input, chat_log, pack, True, prompt, publish=False)
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
@@ -498,8 +541,8 @@ class KlarConversationEntity(ConversationEntity):
         chat: bool = False,
         prompt: str | None = None,
         retrieval: dict[str, Any] | None = None,
+        publish: bool = True,
     ) -> ConversationResult | None:
-        del chat_log
         agent_id = self._fallback_agent_id()
         if not agent_id:
             return None
@@ -521,6 +564,20 @@ class KlarConversationEntity(ConversationEntity):
         prior = history_prompt(pack, self._llm_turns(session_id))
         if prior and not yarn_request(user_input.text):
             system = f"{system}\n\n{prior}"
+        yarn = yarn_request(user_input.text)
+        resolved = llm_client_and_model(self.hass, agent_id)
+        if resolved is not None:
+            streamed = await self._stream_fallback(
+                resolved[0],
+                resolved[1],
+                user_input,
+                pack,
+                system,
+                chat_log if publish else None,
+                yarn,
+            )
+            if streamed is not None:
+                return streamed
         try:
             result = await conversation.async_converse(
                 self.hass,
@@ -532,7 +589,7 @@ class KlarConversationEntity(ConversationEntity):
         except Exception as err:  # noqa: BLE001 — other agent is a system boundary
             _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)
             return None
-        if result is not None and yarn_request(user_input.text) and yarn_asks_permission(_speech_from_result(result)):
+        if result is not None and yarn and yarn_asks_permission(_speech_from_result(result)):
             try:
                 result = await conversation.async_converse(
                     self.hass,
@@ -544,6 +601,49 @@ class KlarConversationEntity(ConversationEntity):
             except Exception as err:  # noqa: BLE001 — other agent is a system boundary
                 _LOGGER.warning("LLM-Fallback-Wiederholung fehlgeschlagen: %s", err)
         return result
+
+    async def _stream_fallback(
+        self,
+        client: Any,
+        model: str,
+        user_input: ConversationInput,
+        pack: str,
+        system: str,
+        chat_log: ChatLog | None,
+        yarn: bool,
+    ) -> ConversationResult | None:
+        hold = _stream_hold(yarn, self._nlu_rag())
+        try:
+            speech, published = await stream_chat(
+                client,
+                model,
+                user_input.text,
+                system,
+                chat_log,
+                getattr(user_input, "agent_id", None),
+                hold=hold,
+            )
+        except Exception as err:  # noqa: BLE001 — client shape varies by agent
+            _LOGGER.debug("LLM-Stream fehlgeschlagen, converse: %s", err)
+            return None
+        if not speech:
+            return None
+        if yarn and yarn_asks_permission(speech) and not published:
+            try:
+                speech, published = await stream_chat(
+                    client,
+                    model,
+                    user_input.text,
+                    yarn_nudge(pack, system),
+                    chat_log,
+                    getattr(user_input, "agent_id", None),
+                )
+            except Exception as err:  # noqa: BLE001 — retry is best-effort
+                _LOGGER.debug("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
+                return None
+            if not speech:
+                return None
+        return _speech_result(pack, speech, published and chat_log is not None)
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
         registry = device_registry.async_get(self.hass)
