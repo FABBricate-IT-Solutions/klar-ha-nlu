@@ -46,13 +46,16 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("calendar_prompt(pack, speech", block)
         self.assertIn("self._calendar_llm()", block)
 
-    def test_execute_keeps_conversation_and_stable_session(self) -> None:
+    def test_execute_closes_conversation_and_keeps_stable_session(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
             encoding="utf-8"
         )
         self.assertIn("keeps_conversation(decision_type)", src)
         self.assertIn("parse_session_id(", src)
         self.assertIn("engine_session_id", src)
+        spoken = src[src.index("if self._quiet_ack()") : src.index("async def _after_fallback")]
+        self.assertIn(', False, "chime"', spoken)
+        self.assertNotIn(', True, "execute"', src)
 
 
 if __name__ == "__main__":
