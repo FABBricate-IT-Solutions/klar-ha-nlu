@@ -132,21 +132,24 @@ def _speech_from_result(result: ConversationResult) -> str:
     return str(plain.get("speech") or "")
 
 
-def _mark_published(result: ConversationResult | None, published: bool) -> ConversationResult | None:
-    if result is not None:
-        result.klar_published = published
-    return result
+def _was_published(result: ConversationResult | None) -> bool:
+    if result is None:
+        return False
+    speech = result.response.speech or {}
+    plain = speech.get("plain") or {}
+    extra = plain.get("extra_data")
+    return bool(isinstance(extra, dict) and extra.get("klar_published"))
 
 
 def _speech_result(pack: str, speech: str, published: bool) -> ConversationResult:
     response = intent.IntentResponse(language=speak_tag(pack))
-    response.async_set_speech(speech)
-    result = ConversationResult(
+    extra = {"klar_published": True} if published else None
+    response.async_set_speech(speech, extra_data=extra)
+    return ConversationResult(
         conversation_id=isolated_conversation_id(),
         response=response,
         continue_conversation=True,
     )
-    return _mark_published(result, published)
 
 
 def _stream_hold(yarn: bool, rag: bool):
@@ -379,7 +382,7 @@ class KlarConversationEntity(ConversationEntity):
         return await self._spoken(
             user_input, chat_log, pack, llm, conversation_id,
             bool(getattr(fallback, "continue_conversation", False)), "chat",
-            bool(getattr(fallback, "klar_published", False)),
+            _was_published(fallback),
         )
 
     async def _spoken(
