@@ -125,9 +125,28 @@ class StreamTests(unittest.TestCase):
         )
         self.assertTrue(published)
         self.assertEqual(speech, "Natürlich, Sir. Licht ist an.")
-        self.assertEqual(log.deltas[0], {"role": "assistant", "content": "Natür"})
-        self.assertEqual([item.get("content") for item in log.deltas], ["Natür", "lich, Sir. ", "Licht ist an."])
+        self.assertEqual(log.deltas[0], {"role": "assistant"})
+        self.assertEqual(
+            [item.get("content") for item in log.deltas if item.get("content")],
+            ["Natür", "lich, Sir. ", "Licht ist an."],
+        )
         self.assertTrue(client.kwargs.get("stream"))
+
+    def test_emit_awaits_coroutine_streamer(self) -> None:
+        log = types.SimpleNamespace(content=[], deltas=[])
+
+        async def streamer(agent_id, deltas):
+            del agent_id
+            async for delta in deltas:
+                log.deltas.append(delta)
+
+        log.async_add_delta_content_stream = streamer
+        speech, published = asyncio.run(
+            stream.stream_chat(_Client(["Hi"]), "Gemma-4-E4B-it-GGUF", "hi", "sys", log, "conversation.klar_nlu")
+        )
+        self.assertTrue(published)
+        self.assertEqual(speech, "Hi")
+        self.assertEqual(log.deltas, [{"role": "assistant"}, {"content": "Hi"}])
 
     def test_hold_blocks_tool_line(self) -> None:
         log = _Log()

@@ -33,6 +33,7 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("yarn_asks_permission", body)
         self.assertIn("yarn_nudge", body)
         self.assertIn("stream_chat", body)
+        self.assertIn("holds_klar_tool_prefix", src)
         self.assertNotIn("user_input.language", body)
         self.assertIn("yarn_canned", src)
         self.assertIn("_attr_supports_streaming = True", src)

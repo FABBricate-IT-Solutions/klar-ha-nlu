@@ -24,6 +24,27 @@ except ImportError:
 Hold = Callable[[str], bool | None]
 
 
+async def _open_stream(create: Any, kwargs: dict[str, Any]) -> Any:
+    try:
+        stream = create(**kwargs)
+    except TypeError:
+        kwargs.pop("extra_body", None)
+        try:
+            stream = create(**kwargs)
+        except TypeError:
+            kwargs.pop("max_tokens", None)
+            stream = create(**kwargs)
+    if inspect.isawaitable(stream):
+        try:
+            return await stream
+        except TypeError:
+            kwargs.pop("extra_body", None)
+            stream = create(**kwargs)
+            if inspect.isawaitable(stream):
+                return await stream
+    return stream
+
+
 async def iter_completion_tokens(
     client: Any,
     model: str,
@@ -32,24 +53,20 @@ async def iter_completion_tokens(
     max_tokens: int = 768,
 ) -> AsyncIterator[str]:
     create = client.chat.completions.create
-    kwargs: dict[str, Any] = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ],
-        "max_tokens": max_tokens,
-        "temperature": 0.65,
-        "stream": True,
-        "extra_body": refine_extra_body(),
-    }
-    try:
-        stream = create(**kwargs)
-    except TypeError:
-        kwargs.pop("extra_body", None)
-        stream = create(**kwargs)
-    if inspect.isawaitable(stream):
-        stream = await stream
+    stream = await _open_stream(
+        create,
+        {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+            "max_tokens": max_tokens,
+            "temperature": 0.65,
+            "stream": True,
+            "extra_body": refine_extra_body(),
+        },
+    )
     if hasattr(stream, "__aiter__"):
         async for chunk in stream:
             text = speech_from_stream_delta(chunk)
@@ -67,21 +84,28 @@ async def iter_token_deltas(
     collected: list[str],
     hold: Hold | None = None,
 ) -> AsyncIterator[dict[str, str]]:
-    first = True
+    opened = False
     pending: list[str] = []
     released = hold is None
 
-    def delta(text: str) -> dict[str, str]:
-        nonlocal first
-        if first:
-            first = False
-            return {"role": "assistant", "content": text}
-        return {"content": text}
+    def open_block() -> dict[str, str] | None:
+        nonlocal opened
+        if opened:
+            return None
+        opened = True
+        return {"role": "assistant"}
+
+    async def publish(text: str) -> AsyncIterator[dict[str, str]]:
+        role = open_block()
+        if role is not None:
+            yield role
+        yield {"content": text}
 
     async for token in tokens:
         collected.append(token)
         if released:
-            yield delta(token)
+            async for delta in publish(token):
+                yield delta
             continue
         pending.append(token)
         speech = "".join(collected)
@@ -94,12 +118,14 @@ async def iter_token_deltas(
             continue
         released = True
         for part in pending:
-            yield delta(part)
+            async for delta in publish(part):
+                yield delta
         pending.clear()
     if not released and collected:
         decision = hold("".join(collected)) if hold else True
         if decision:
-            yield delta("".join(collected))
+            async for delta in publish("".join(collected)):
+                yield delta
 
 
 async def emit_delta_stream(chat_log: Any, agent_id: str | None, deltas: AsyncIterator[dict[str, str]]) -> bool:
@@ -114,10 +140,13 @@ async def emit_delta_stream(chat_log: Any, agent_id: str | None, deltas: AsyncIt
             pass
         return False
     posted = streamer(agent_id, deltas)
+    if inspect.isawaitable(posted):
+        posted = await posted
     if hasattr(posted, "__aiter__"):
         async for _ in posted:
             pass
-    return True
+        return True
+    return posted is not False
 
 
 async def stream_chat(
