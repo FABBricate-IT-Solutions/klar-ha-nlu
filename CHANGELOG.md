@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.64](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.63...2026.8.64) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- speak clarify and guards in the request locale, not German([0c5988b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0c5988bf8e3ca6a371bfe41f8ef1bb02c4cd2e75))
+
+
+### Other
+
+- Merge pull request #174 from FABBricate-IT-Solutions/fix/locale-clarify-speech([5584f4b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5584f4b7122a237a6dbfb3f05ef3beba48859ec9))
+
+- bump @types/react-dom in /web in the npm-patch group([d8c65ef](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d8c65efe8774e86a3303c1ae32e823780cfc768e))
+
+- bump uuid from 1.24.1 to 1.26.0 in the rust-minor group([c744247](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c7442479d391bb0b7e1e0decb03cff7606bcb6ea))
+
 ## [2026.8.63](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.62...2026.8.63) - 2026-08-29
 
 
