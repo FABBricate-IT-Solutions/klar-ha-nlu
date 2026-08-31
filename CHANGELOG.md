@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.64...2026.8.65) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- use Option::map for native ceiling fixture tokens([703250e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/703250e13b11581df8e5b765253c49aed2068549))
+
+- close per-language parity gaps and always test all locales([4aa8988](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4aa8988a47adafcbdd53ab419529b172fe480a01))
+
+
+### Other
+
+- Merge pull request #176 from FABBricate-IT-Solutions/fix/parity-all-langs-ci([a241e2b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a241e2bdd3c14f9039b6f81d73b6771c3a94feed))
+
 ## [2026.8.64](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.63...2026.8.64) - 2026-08-31
 
 
