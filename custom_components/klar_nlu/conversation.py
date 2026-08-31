@@ -302,7 +302,7 @@ class KlarConversationEntity(ConversationEntity):
             if self._quiet_ack() and quiet_ack_applies(executed, plan):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
-                    user_input, chat_log, pack, "", conversation_id, True, "chime"
+                    user_input, chat_log, pack, "", conversation_id, False, "chime"
                 )
         return await self._spoken(
             user_input, chat_log, pack, speech, conversation_id, keeps_conversation(decision_type), decision_type
@@ -468,7 +468,9 @@ class KlarConversationEntity(ConversationEntity):
                 if intents:
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
-                    return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), True, "execute")
+                    return await self._spoken(
+                        user_input, chat_log, pack, speech, payload.get("conversation_id"), False, "execute"
+                    )
             speech = str(payload.get("speech") or "")
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
         if tool.get("tool") == "klar.act" and tool.get("intent"):
@@ -477,7 +479,15 @@ class KlarConversationEntity(ConversationEntity):
             if not intents:
                 return None
             executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
-            return await self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _cue(_DONE, pack, "OK")), user_input.conversation_id, True, "execute")
+            return await self._spoken(
+                user_input,
+                chat_log,
+                pack,
+                str(executed.get("speech") or _cue(_DONE, pack, "OK")),
+                user_input.conversation_id,
+                False,
+                "execute",
+            )
         return None
 
     async def _fallback(

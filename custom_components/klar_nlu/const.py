@@ -26,7 +26,7 @@ def parse_session_id(
 
 
 def keeps_conversation(decision: object) -> bool:
-    return str(decision or "") in {"clarify", "confirm", "execute", "chat"}
+    return str(decision or "") in {"clarify", "confirm", "chat"}
 
 
 DEFAULT_URL = "http://127.0.0.1:10520"
