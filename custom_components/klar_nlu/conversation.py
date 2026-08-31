@@ -67,7 +67,13 @@ from .fallback import (
     yarn_request,
 )
 from .intents import home_intents, registered_intent_names
-from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
+from .rag_tools import (
+    act_payload,
+    holds_klar_tool_prefix,
+    leaks_klar_tools,
+    parse_tool_reply,
+    rag_prompt,
+)
 from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
@@ -151,7 +157,7 @@ def _stream_hold(yarn: bool, rag: bool):
         stripped = speech.lstrip()
         if parse_tool_reply(stripped) or leaks_klar_tools(speech):
             return None
-        if rag and (stripped.startswith("KLAR_") or len(stripped) < 8):
+        if rag and holds_klar_tool_prefix(stripped):
             return False
         if yarn:
             if not pop_complete_sentences(speech)[0]:
@@ -624,7 +630,7 @@ class KlarConversationEntity(ConversationEntity):
                 hold=hold,
             )
         except Exception as err:  # noqa: BLE001 — client shape varies by agent
-            _LOGGER.debug("LLM-Stream fehlgeschlagen, converse: %s", err)
+            _LOGGER.warning("LLM-Stream fehlgeschlagen, converse: %s", err)
             return None
         if not speech:
             return None
@@ -639,7 +645,7 @@ class KlarConversationEntity(ConversationEntity):
                     getattr(user_input, "agent_id", None),
                 )
             except Exception as err:  # noqa: BLE001 — retry is best-effort
-                _LOGGER.debug("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
+                _LOGGER.warning("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
                 return None
             if not speech:
                 return None

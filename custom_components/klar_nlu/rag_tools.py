@@ -69,6 +69,12 @@ def parse_tool_reply(speech: str) -> dict[str, Any] | None:
     return None
 
 
+def holds_klar_tool_prefix(speech: str) -> bool:
+    stripped = (speech or "").lstrip()
+    marker = "KLAR_"
+    return not stripped or stripped.startswith(marker) or marker.startswith(stripped)
+
+
 def leaks_klar_tools(speech: str) -> bool:
     """True when the model named Klar tools instead of using the protocol line."""
     if parse_tool_reply(speech) is not None:
