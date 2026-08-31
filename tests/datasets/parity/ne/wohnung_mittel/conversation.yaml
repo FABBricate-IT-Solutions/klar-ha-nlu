@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - बाल तातो बैठक
+  - '21'
+conversation/climate::heat_setpoint:
+- सेट तातो बैठक 21
+conversation/climate::temperature_query:
+- के तातो बैठक
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - निभाऊ बत्ती sutnekotha
+  - बाल बत्ती बैठक
+  - र भान्सा pani
+conversation/followup::followup_same_action_other_room:
+- - बाल बत्ती बैठक
+  - र भान्सा pani
+conversation/house::clock_calendar_weather:
+- के hour
+- के पात्रो
+- के तातो
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- बाल alloff
+conversation/lights::ambiguous_light:
+- बाल बत्ती
+conversation/lights::brightness_percent:
+- सेट बत्ती बैठक 30 pratishat
+conversation/lights::color_red:
+- - बाल बत्ती बैठक
+  - red
+conversation/lights::dim_then_level:
+- - badhi बत्ती बैठक
+  - madhyam
+conversation/lights::relative_dim:
+- - बाल बत्ती बैठक
+  - badhi
+conversation/lights::warm_white:
+- - बाल बत्ती बैठक
+  - nyano seto
+conversation/lights::which_lights_on:
+- - बाल बत्ती बैठक
+  - बाल बत्ती भान्सा
+  - के बत्ती
+conversation/media::music_artist_then_now_playing:
+- - चलाऊ queen भान्सा
+  - के tivi
+conversation/media::music_play_in_room:
+- चलाऊ tivi भान्सा
+conversation/media::next_and_pause:
+- - चलाऊ tivi भान्सा
+  - next
+  - रोक
+conversation/media::tv_not_light:
+- बाल tv बैठक
+conversation/media::volume_down:
+- bistari tivi

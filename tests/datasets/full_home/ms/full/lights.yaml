@@ -5,8 +5,8 @@
     domain: light
     state: 'on'
   sentences:
-  - hidupkan lampu lorong
-  - lampu lorong hidupkan
+  - hidupkan lampu lobi
+  - lampu lobi hidupkan
 - name: lights_entryway_off
   conditions:
   - type: action
@@ -14,8 +14,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan lampu lorong
-  - lampu lorong matikan
+  - matikan lampu lobi
+  - lampu lobi matikan
 - name: lights_living_on
   conditions:
   - type: action
@@ -1448,16 +1448,16 @@
     entity_id: light.entryway_light
     state: 'on'
   sentences:
-  - hidupkan lampu lorong
-  - lampu lorong hidupkan
+  - hidupkan lampu lobi
+  - lampu lobi hidupkan
 - name: light.entryway_light_off
   conditions:
   - type: action
     entity_id: light.entryway_light
     state: 'off'
   sentences:
-  - matikan lampu lorong
-  - lampu lorong matikan
+  - matikan lampu lobi
+  - lampu lobi matikan
 - name: light.entryway_light_bright_20
   conditions:
   - type: action
@@ -1465,8 +1465,8 @@
     attributes:
       brightness: 20
   sentences:
-  - tetapkan lampu lorong 20
-  - lampu lorong 20
+  - tetapkan lampu lobi 20
+  - lampu lobi 20
 - name: light.entryway_light_bright_40
   conditions:
   - type: action
@@ -1474,8 +1474,8 @@
     attributes:
       brightness: 40
   sentences:
-  - tetapkan lampu lorong 40
-  - lampu lorong 40
+  - tetapkan lampu lobi 40
+  - lampu lobi 40
 - name: light.entryway_light_bright_50
   conditions:
   - type: action
@@ -1483,8 +1483,8 @@
     attributes:
       brightness: 50
   sentences:
-  - tetapkan lampu lorong 50
-  - lampu lorong 50
+  - tetapkan lampu lobi 50
+  - lampu lobi 50
 - name: light.entryway_light_bright_60
   conditions:
   - type: action
@@ -1492,8 +1492,8 @@
     attributes:
       brightness: 60
   sentences:
-  - tetapkan lampu lorong 60
-  - lampu lorong 60
+  - tetapkan lampu lobi 60
+  - lampu lobi 60
 - name: light.entryway_light_bright_80
   conditions:
   - type: action
@@ -1501,8 +1501,8 @@
     attributes:
       brightness: 80
   sentences:
-  - tetapkan lampu lorong 80
-  - lampu lorong 80
+  - tetapkan lampu lobi 80
+  - lampu lobi 80
 - name: light.entryway_light_bright_100
   conditions:
   - type: action
@@ -1510,8 +1510,8 @@
     attributes:
       brightness: 100
   sentences:
-  - tetapkan lampu lorong 100
-  - lampu lorong 100
+  - tetapkan lampu lobi 100
+  - lampu lobi 100
 - name: light.laundry_light_on
   conditions:
   - type: action
@@ -2803,8 +2803,8 @@
     attributes:
       color: red
   sentences:
-  - tetapkan lampu lorong red
-  - lampu lorong red
+  - tetapkan lampu lobi red
+  - lampu lobi red
 - name: light.entryway_light_blue
   conditions:
   - type: action
@@ -2812,8 +2812,8 @@
     attributes:
       color: blue
   sentences:
-  - tetapkan lampu lorong blue
-  - lampu lorong blue
+  - tetapkan lampu lobi blue
+  - lampu lobi blue
 - name: light.entryway_light_green
   conditions:
   - type: action
@@ -2821,8 +2821,8 @@
     attributes:
       color: green
   sentences:
-  - tetapkan lampu lorong green
-  - lampu lorong green
+  - tetapkan lampu lobi green
+  - lampu lobi green
 - name: light.entryway_light_white
   conditions:
   - type: action
@@ -2830,8 +2830,8 @@
     attributes:
       color: white
   sentences:
-  - tetapkan lampu lorong white
-  - lampu lorong white
+  - tetapkan lampu lobi white
+  - lampu lobi white
 - name: light.entryway_light_yellow
   conditions:
   - type: action
@@ -2839,8 +2839,8 @@
     attributes:
       color: yellow
   sentences:
-  - tetapkan lampu lorong yellow
-  - lampu lorong yellow
+  - tetapkan lampu lobi yellow
+  - lampu lobi yellow
 - name: light.entryway_light_black
   conditions:
   - type: action
@@ -2848,8 +2848,8 @@
     attributes:
       color: black
   sentences:
-  - tetapkan lampu lorong black
-  - lampu lorong black
+  - tetapkan lampu lobi black
+  - lampu lobi black
 - name: light.laundry_light_red
   conditions:
   - type: action
@@ -3593,8 +3593,8 @@
     domain: light
     state: 'off'
   sentences:
-  - matikan semua lampu kecuali lorong
-  - semua lampu matikan kecuali lorong
+  - matikan semua lampu kecuali lobi
+  - semua lampu matikan kecuali lobi
   forbid:
   - entryway
 - name: all_except_living

@@ -289,16 +289,16 @@ devices:
   - tirai
 - id: climate.ground_thermostat
   area_id: living
-  name: ruang ac
+  name: ruang pemanas
   aliases:
-  - ruang ac
-  - ac
+  - ruang pemanas
+  - pemanas
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: kamarmaster ac
+  name: kamarmaster pemanas
   aliases:
-  - kamarmaster ac
-  - ac
+  - kamarmaster pemanas
+  - pemanas
 - id: climate.master_ac
   area_id: master_bedroom
   name: ac kamarmaster

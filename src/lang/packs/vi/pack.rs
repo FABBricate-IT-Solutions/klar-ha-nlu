@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["canh"],
         switch_plural: &[],
         device_side: &["bongden", "canh", "dryer", "khoa", "maygiat", "quat", "rem", "tivi"],
-        named_device: &["cau", "chen", "maygiat", "tivi"],
+        named_device: &["cau", "maygiat", "mayruachen", "pc", "tivi"],
     },
     fixtures: Fixtures {
         island: &["dao"],
@@ -62,7 +62,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("tran", &["ceiling", "decke", "deckenlampe", "tran"]),
             ("cau", &["cau", "globe", "kugel"]),
             ("dau giuong", &["bedside", "dau giuong", "nacht", "nachttisch"]),
-            ("chen", &["chen", "dishwasher", "spuelmaschine", "spulmaschine"]),
+            ("mayruachen", &["dishwasher", "mayruachen", "spuelmaschine", "spulmaschine"]),
             ("maygiat", &["maygiat", "waschmaschine", "washer", "washing"]),
             ("tivi", &["fernseher", "tivi", "tv"]),
             ("dryer", &["dryer", "trockner"]),
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["bat", "tat"],
         command_hedges: &[],
-        skip_light: &["chen", "dryer", "maygiat", "quat", "thietbi", "tivi"],
+        skip_light: &["dryer", "maygiat", "mayruachen", "pc", "quat", "thietbi", "tivi"],
         laundry_area: &["phonggiat"],
         laundry_machines: &["dryer", "maygiat"],
         kitchen: &["bep"],
@@ -135,7 +135,7 @@ pub const PACK: LanguagePack = LanguagePack {
         role_fan: &["quat"],
         generic: &["bep", "bongden", "canh", "cua", "danhsach", "dieuhoa", "hen", "hutbui", "khoa", "phongkhach", "quat", "rem", "tivi"],
         room_level: &["bongden"],
-        extra_device_nouns: &["cau", "chen", "dryer", "maygiat", "thietbi", "tivi"],
+        extra_device_nouns: &["cau", "dryer", "maygiat", "mayruachen", "pc", "thietbi", "tivi"],
         synonym_pairs: &[
             ("phongkhach", "wohnzimmer"),
             ("bep", "kuche"),
@@ -143,7 +143,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("tran", "ceiling"),
             ("cau", "globe"),
             ("dau giuong", "bedside"),
-            ("chen", "dishwasher"),
+            ("mayruachen", "dishwasher"),
             ("maygiat", "washer"),
             ("tivi", "tv"),
             ("dryer", "trockner"),
@@ -187,6 +187,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("trangam", "warmwhite"),
         ],
         numbers: &[
             ("khong", 0),

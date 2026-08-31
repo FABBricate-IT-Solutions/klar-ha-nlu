@@ -24,8 +24,8 @@
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - ne klima salon
-  - ne salon klima
+  - ne sicaklik salon
+  - ne salon sicaklik
 - name: query_media_player.living_tv
   conditions:
   - type: query
@@ -108,15 +108,15 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - ne klima yatakodasimaster
-  - ne yatakodasimaster klima
+  - ne sicaklik yatakodasimaster
+  - ne yatakodasimaster sicaklik
 - name: query_climate.master_ac
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - ne sicaklik yatakodasimaster
-  - ne yatakodasimaster sicaklik
+  - ne klima yatakodasimaster
+  - ne yatakodasimaster klima
 - name: query_media_player.family_tv
   conditions:
   - type: query
@@ -248,8 +248,8 @@
   - type: query
     entity_id: light.laundry_light
   sentences:
-  - ne isik camasir
-  - ne camasir isik
+  - ne isik camasirhane
+  - ne camasirhane isik
 - name: query_light.main_bath_light
   conditions:
   - type: query

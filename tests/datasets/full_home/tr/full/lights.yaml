@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - yak isik camasir
-  - isik camasir yak
+  - yak isik camasirhane
+  - isik camasirhane yak
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik camasir
-  - isik camasir sondur
+  - sondur isik camasirhane
+  - isik camasirhane sondur
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -1518,16 +1518,16 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - yak isik camasir
-  - isik camasir yak
+  - yak isik camasirhane
+  - isik camasirhane yak
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - sondur isik camasir
-  - isik camasir sondur
+  - sondur isik camasirhane
+  - isik camasirhane sondur
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - ayarla isik camasir 20
-  - isik camasir 20
+  - ayarla isik camasirhane 20
+  - isik camasirhane 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - ayarla isik camasir 40
-  - isik camasir 40
+  - ayarla isik camasirhane 40
+  - isik camasirhane 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - ayarla isik camasir 50
-  - isik camasir 50
+  - ayarla isik camasirhane 50
+  - isik camasirhane 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - ayarla isik camasir 60
-  - isik camasir 60
+  - ayarla isik camasirhane 60
+  - isik camasirhane 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - ayarla isik camasir 80
-  - isik camasir 80
+  - ayarla isik camasirhane 80
+  - isik camasirhane 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,8 +1580,8 @@
     attributes:
       brightness: 100
   sentences:
-  - ayarla isik camasir 100
-  - isik camasir 100
+  - ayarla isik camasirhane 100
+  - isik camasirhane 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - ayarla isik camasir red
-  - isik camasir red
+  - ayarla isik camasirhane red
+  - isik camasirhane red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - ayarla isik camasir blue
-  - isik camasir blue
+  - ayarla isik camasirhane blue
+  - isik camasirhane blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - ayarla isik camasir green
-  - isik camasir green
+  - ayarla isik camasirhane green
+  - isik camasirhane green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - ayarla isik camasir white
-  - isik camasir white
+  - ayarla isik camasirhane white
+  - isik camasirhane white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - ayarla isik camasir yellow
-  - isik camasir yellow
+  - ayarla isik camasirhane yellow
+  - isik camasirhane yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - ayarla isik camasir black
-  - isik camasir black
+  - ayarla isik camasirhane black
+  - isik camasirhane black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur hepsi isik haric camasir
-  - hepsi isik sondur haric camasir
+  - sondur hepsi isik haric camasirhane
+  - hepsi isik sondur haric camasirhane
   forbid:
   - laundry
 - name: all_except_powder_room

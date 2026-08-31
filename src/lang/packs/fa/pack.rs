@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["صحنه"],
         switch_plural: &[],
         device_side: &["dryer", "تلویزیون", "صحنه", "قفل", "لباسشویی", "پرده", "پنکه", "چراغ"],
-        named_device: &["تلویزیون", "ظرفشویی", "لباسشویی", "گوی"],
+        named_device: &["pc", "تلویزیون", "ظرفشویی", "لباسشویی", "گوی"],
     },
     fixtures: Fixtures {
         island: &["جزیره"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["خاموش", "روشن"],
         command_hedges: &[],
-        skip_light: &["dryer", "تلویزیون", "دستگاه", "ظرفشویی", "لباسشویی", "پنکه"],
+        skip_light: &["dryer", "pc", "تلویزیون", "دستگاه", "ظرفشویی", "لباسشویی", "پنکه"],
         laundry_area: &["رختشویی"],
         laundry_machines: &["dryer", "لباسشویی"],
         kitchen: &["آشپزخانه"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "چراغ",
         ],
         room_level: &["چراغ"],
-        extra_device_nouns: &["dryer", "تلویزیون", "دستگاه", "ظرفشویی", "لباسشویی", "گوی"],
+        extra_device_nouns: &["dryer", "pc", "تلویزیون", "دستگاه", "ظرفشویی", "لباسشویی", "گوی"],
         synonym_pairs: &[
             ("پذیرایی", "wohnzimmer"),
             ("آشپزخانه", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("سفیدگرم", "warmwhite"),
         ],
         numbers: &[
             ("صفر", 0),

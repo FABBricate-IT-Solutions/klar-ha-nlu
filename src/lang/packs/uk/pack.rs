@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["сцена"],
         switch_plural: &[],
         device_side: &["dryer", "вентилятор", "замок", "пральна", "світло", "сцена", "телевізор", "штора"],
-        named_device: &["куля", "посудомийка", "пральна", "тв"],
+        named_device: &["pc", "куля", "посудомийка", "пральна", "тв"],
     },
     fixtures: Fixtures {
         island: &["острів"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["вимкни", "увімкни"],
         command_hedges: &[],
-        skip_light: &["dryer", "вентилятор", "посудомийка", "пральна", "пристрій", "тв", "телевізор"],
+        skip_light: &["dryer", "pc", "вентилятор", "посудомийка", "пральна", "пристрій", "тв", "телевізор"],
         laundry_area: &["пральня"],
         laundry_machines: &["dryer", "пральна"],
         kitchen: &["кухня"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["пральня"],
         bare_switch: &["appliance", "dryer", "machine", "пральна"],
         outlet_words: &[],
-        tv_words: &["телевізор"],
+        tv_words: &["тв"],
         climate_cool: &["температура"],
         climate_heat: &["опалення"],
         role_light: &["світло"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "штора",
         ],
         room_level: &["світло"],
-        extra_device_nouns: &["dryer", "куля", "посудомийка", "пральна", "пристрій", "тв"],
+        extra_device_nouns: &["dryer", "pc", "куля", "посудомийка", "пральна", "пристрій", "тв"],
         synonym_pairs: &[
             ("вітальня", "wohnzimmer"),
             ("кухня", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("теплийбілий", "warmwhite"),
         ],
         numbers: &[
             ("нуль", 0),

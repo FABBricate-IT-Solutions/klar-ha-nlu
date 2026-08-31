@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["radharc"],
         switch_plural: &[],
         device_side: &["cuirtin", "dryer", "fean", "glas", "meaisinniocadh", "radharc", "solas", "teilifis"],
-        named_device: &["liathroid", "meaisinniocadh", "soitheach", "teilifis"],
+        named_device: &["liathroid", "meaisinniocadh", "pc", "soitheach", "teilifis"],
     },
     fixtures: Fixtures {
         island: &["oilean"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["cas", "much"],
         command_hedges: &[],
-        skip_light: &["dryer", "fean", "gleas", "meaisinniocadh", "soitheach", "teilifis"],
+        skip_light: &["dryer", "fean", "gleas", "meaisinniocadh", "pc", "soitheach", "teilifis"],
         laundry_area: &["seomraniochta"],
         laundry_machines: &["dryer", "meaisinniocadh"],
         kitchen: &["cistin"],
@@ -149,7 +149,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "teilifis",
         ],
         room_level: &["solas"],
-        extra_device_nouns: &["dryer", "gleas", "liathroid", "meaisinniocadh", "soitheach", "teilifis"],
+        extra_device_nouns: &["dryer", "gleas", "liathroid", "meaisinniocadh", "pc", "soitheach", "teilifis"],
         synonym_pairs: &[
             ("seomra", "wohnzimmer"),
             ("cistin", "kuche"),
@@ -201,6 +201,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("ban te", "warmwhite"),
         ],
         numbers: &[
             ("naid", 0),

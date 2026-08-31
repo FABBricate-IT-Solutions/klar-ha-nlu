@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - ჩართე basement სინათლე და saretskhave სინათლე
-  - basement სინათლე და saretskhave სინათლე ჩართე
+  - ჩართე basement სინათლე და samretskhao სინათლე
+  - basement სინათლე და samretskhao სინათლე ჩართე
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - გამორთე basement სინათლე და saretskhave სინათლე
-  - basement სინათლე და saretskhave სინათლე გამორთე
+  - გამორთე basement სინათლე და samretskhao სინათლე
+  - basement სინათლე და samretskhao სინათლე გამორთე
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - ჩართე saretskhave saretskhave და saretskhave dryer
-  - saretskhave saretskhave და saretskhave dryer ჩართე
+  - ჩართე samretskhao saretskhave და samretskhao dryer
+  - samretskhao saretskhave და samretskhao dryer ჩართე
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - გამორთე სინათლე garden და basement და saretskhave
-  - სინათლე garden basement და saretskhave გამორთე
+  - გამორთე სინათლე garden და basement და samretskhao
+  - სინათლე garden basement და samretskhao გამორთე
 - name: except_light.kitchen_island
   conditions:
   - type: action

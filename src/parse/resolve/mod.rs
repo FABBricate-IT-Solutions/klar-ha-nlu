@@ -1,6 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::home::roles::matches_domain;
+use crate::home::roles::{looks_like_tv, matches_domain, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::{has_light_noun, is_garage_cover, is_query_token};
 use crate::parse::fuzzy::{evidence, Profile};
@@ -71,6 +71,13 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
         }
     }
     prefer::prefer_entry_lock(tokens, home, &mut candidates);
+    prefer::prefer_tv(tokens, home, &mut candidates);
+    if crate::parse::compound::named_scene_or_script(tokens, home).is_none()
+        && !catalog().any(tokens, catalog().scene_nouns())
+        && !catalog().any(tokens, catalog().script_words())
+    {
+        candidates.retain(|(_, entity)| entity.domain != "scene" && entity.domain != "script");
+    }
     sort_hits(&mut candidates, tokens, home);
     if let Some(locks) = prefer::mentioned_locks(tokens, &candidates) {
         return Resolved { areas, floors, entities: locks, ambiguous: Vec::new() };
@@ -126,17 +133,14 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
     }
 
     if domain.is_none_or(|d| d == "light") && catalog().any(tokens, catalog().ceiling()) {
+        let needle = tokens.iter().find(|t| catalog().ceiling().contains(t.as_str())).map(String::as_str).unwrap_or("ceiling");
         let fixtures: Vec<EntityRec> = home
             .entities
             .iter()
             .filter(|e| assist_visible(e, home))
             .filter(|e| {
                 e.domain == "light"
-                    && catalog().ceiling().iter().any(|needle| {
-                        e.name.to_lowercase().contains(needle)
-                            || e.entity_id.contains(needle)
-                            || e.aliases.iter().any(|a| a.contains(needle))
-                    })
+                    && fixture_matches(e, needle)
                     && (scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
             })
             .cloned()
@@ -176,6 +180,7 @@ pub fn resolve(tokens: &[String], home: &HomeGraph, domain: Option<&str>) -> Res
                 .filter(|e| assist_visible(e, home))
                 .filter(|e| matches_domain(e, d, catalog()) && !is_infra(e))
                 .filter(|e| scope.is_empty() || e.area.as_ref().is_some_and(|a| scope.contains(a)))
+                .filter(|e| d != "media_player" || !tv_asked(tokens) || looks_like_tv(e))
                 .cloned()
                 .collect();
             if in_domain.len() == 1 {
@@ -243,10 +248,8 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
         Some("floor")
     } else if !room_level && cat.any(tokens, cat.lamp_fixture()) {
         Some("lamp")
-    } else if cat.any(tokens, cat.ceiling()) {
-        Some("ceiling")
     } else {
-        None
+        tokens.iter().find(|t| cat.ceiling().contains(t.as_str())).map(|word| word.as_str())
     }?;
     let hits: Vec<EntityRec> = home
         .entities
@@ -380,6 +383,15 @@ pub fn domain_hint(tokens: &[String]) -> Option<&'static str> {
     let cat = catalog();
     if cat.any(tokens, cat.timer_nouns()) {
         return Some("timer");
+    }
+    // Generic "device/appliance" in the laundry room is washer-vs-dryer, not lights.
+    if cat.any(tokens, cat.laundry_area())
+        && cat.any(tokens, cat.extra_device_nouns())
+        && !has_light_noun(tokens)
+        && !cat.any(tokens, cat.laundry_machines())
+        && !cat.any(tokens, cat.skip_light())
+    {
+        return Some("switch");
     }
     for t in tokens {
         if *t == "hue" {

@@ -1,12 +1,14 @@
 use crate::home::policy::{fallback_climate, fallback_cover_area};
+use crate::home::roles::{is_music_assistant_player, is_music_player};
 use crate::lang::catalog;
-use crate::parse::action::{detect_actions, domain_for, guess_action, is_hard_command, Action};
+use crate::parse::action::{detect_actions, domain_for, is_hard_command, Action};
+use crate::parse::also::guess_action;
 use crate::parse::clause_area::{
-    area_command, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
+    area_command, area_slots, grounded_ambiguous, grounded_areas, grounded_entities, multi_area, query_area, query_ungrounded,
 };
 use crate::parse::clause_session::{session_areas, session_climate_cover, session_entities};
 use crate::parse::clause_support::{named_scene_policy, preferred_area_domain, resolve_targets};
-use crate::parse::compound::{apply_compound_light, area_slots};
+use crate::parse::compound::apply_compound_light;
 use crate::parse::infer::{except_tail, infer_action, looks_like_named_device, looks_like_question, prefer_action, wants_all_lights};
 use crate::parse::media::{media_clause, now_playing_status};
 use crate::parse::numbers::first_number;
@@ -61,7 +63,13 @@ pub(crate) fn parse_clause_candidates_for_action(
     let command = prefer_action(&actions);
     let hard = is_hard_command(command, tokens);
     let guessed = forced_action.unwrap_or_else(|| {
-        if question && number.is_none() && !hard {
+        if crate::parse::compound::named_scene_or_script(tokens, home).is_some()
+            && !(cat.any(tokens, cat.question_words()) || tokens.first().is_some_and(|token| cat.is_question_start(token)))
+        {
+            Action::Scene
+        } else if !question && (crate::parse::infer::color_word(tokens).is_some() || crate::parse::infer::light_level(tokens).is_some()) {
+            Action::SetLight
+        } else if question && number.is_none() && !hard {
             Action::GetState
         } else {
             command.or_else(|| actions.first().map(|(_, a)| *a)).unwrap_or_else(|| guess_action(tokens, session, number))
@@ -70,7 +78,7 @@ pub(crate) fn parse_clause_candidates_for_action(
     let early = infer_action(guessed, tokens, number, question, session, None);
     let domain = domain_for(early, tokens);
 
-    let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, home, early, number, domain);
+    let mut candidates = crate::parse::clause_early::early_special_clauses(tokens, raw, home, early, number, domain);
 
     let mut resolved = resolve_targets(tokens, home, settings, domain, early);
     apply_compound_light(home, tokens, light_areas, &mut resolved);
@@ -124,10 +132,22 @@ pub(crate) fn parse_clause_candidates_for_action(
             candidates.push(candidate(*policy, action, outcome));
         }
     }
+    if candidates.iter().any(|candidate| {
+        candidate.policy == PolicyId::NamedScene && matches!(&candidate.outcome, ClauseOut::Intents(intents) if !intents.is_empty())
+    }) {
+        candidates.retain(|candidate| candidate.policy == PolicyId::NamedScene);
+    }
     if media_claimed_empty(&candidates) {
         let transfer = ctx.tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer"));
-        let named = !transfer && ctx.resolved.entities.iter().any(|entity| entity_has_name_evidence(ctx.tokens, entity, ctx.home));
+        let named = !transfer
+            && ctx.resolved.entities.iter().any(|entity| {
+                entity_has_name_evidence(ctx.tokens, entity, ctx.home) && (is_music_assistant_player(entity) || is_music_player(entity))
+            });
         retain_after_media_claim(&mut candidates, named);
+    } else if candidates.iter().any(|candidate| {
+        candidate.policy == PolicyId::Media && matches!(&candidate.outcome, ClauseOut::Intents(intents) if !intents.is_empty())
+    }) {
+        candidates.retain(|candidate| !matches!(candidate.policy, PolicyId::GroundedAmbiguous | PolicyId::GroundedEntities));
     }
     candidates
 }
@@ -271,7 +291,7 @@ fn fallback_cover(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 fn leftover_command(ctx: &Clause) -> Option<ClauseOut> {
-    (!matches!(ctx.action, Action::On | Action::Off | Action::Toggle))
+    (!matches!(ctx.action, Action::On | Action::Off | Action::Toggle | Action::GetState))
         .then(|| finish_intents(vec![fill_intent(ctx.action, ctx.tokens, ctx.number, None, None, ctx.domain)], ctx))
 }
 

@@ -22,8 +22,9 @@ CI uses [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profil
 | `suite_deutsch_familienhaus` | `tests/datasets/familienhaus_de` | ≥ 99.5%, target 100% |
 | `suite_english_family_home` | `tests/datasets/family_home_en` | ≥ 99.5%, target 100% |
 | `suite_m0_exact_*` / `suite_m2_floors_*` | `m0_exact` / `m2_floors` | `fail == 0` |
+| `suite_conversation_german` / `suite_conversation_english` | `wohnung_*/conversation/` (handwritten, live review) | `fail == 0` |
 | `compiled_assist_packs_execute_home_commands` | 2 smokes per compiled locale, including de/en | all green (PR CI) |
-| `parity_*` + `voice_suite` | Wohn+Family+m0+m2 per locale | **local** (`cargo nextest run`); PR CI runs changed locales by path (`scripts/ci_lang_tests.py`); full matrix: `language-parity.yml` |
+| `parity_*` + `voice_suite` | Wohn+Family+m0+m2+conversation overlays per locale | PR CI runs all `parity_langs` (`fail == 0`, no fail-fast); de/en conversation in `voice_suite` locally; other locales conversation with `KLAR_PARITY_REPORT=1`; weekly `language-parity.yml` also runs `full_home_quick` |
 | `tests/contract.rs` | V2 `ParseOutcome` | all green |
 | `tests/policy.rs` | Confirm/OOD/multi-intent | all green |
 | `tests/eval.rs` held-out | `m7_heldout` EN/DE | Intent-F1 ≥ 0.98, Slot-F1 ≥ 0.99, pairing ≥ 0.97, ASR ≥ 0.92, Clarify P ≥ 0.95 |
@@ -103,6 +104,8 @@ python3 scripts/voice_suite/gen_family_de.py  # familienhaus_de from family_home
 
 `scripts/gen_voice_suite.py` calls the apartment generators under `scripts/voice_suite/wohnung/`. `de_assist.py` writes sentences checked via Assist (`conversation.process` on `conversation.klar_nlu`) to `wohnung_mittel/assist` and `wohnung_live/assist`. `scripts/voice_suite/gen_family_de.py` translates `family_home_en` into `familienhaus_de`, including `home_config.yaml`. Regenerating overwrites the affected fixture files.
 
+Conversation YAML under `wohnung_mittel/conversation/` and `wohnung_en/conversation/` stays handwritten (live review). Other locales get overlays from `scripts/parity/conversation.py` via `python3 scripts/parity/generate.py` (auch/too form, not a second full command).
+
 ## What the suites watch
 
 - Device vs area (`lights in the living room` often stays area-level; a named lamp binds a device)
@@ -135,6 +138,7 @@ Stdlib tests, no Home Assistant install:
 ```bash
 python3 tests/ha/test_refine.py
 python3 tests/ha/test_speech.py
+python3 tests/ha/test_session.py
 python3 tests/ha/test_fallback.py
 ```
 

@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - enable heating lounge
+  - '21'
+conversation/climate::heat_setpoint:
+- set heating lounge 21
+conversation/climate::temperature_query:
+- what heating lounge
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - extinguish light bedroom
+  - enable light lounge
+  - and kitchen too
+conversation/followup::followup_same_action_other_room:
+- - enable light lounge
+  - and kitchen too
+conversation/house::clock_calendar_weather:
+- what time
+- what calendar
+- whats the weather
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- enable alloff
+conversation/lights::ambiguous_light:
+- enable light
+conversation/lights::brightness_percent:
+- set light lounge 30 percent
+conversation/lights::color_red:
+- - enable light lounge
+  - red
+conversation/lights::dim_then_level:
+- - dimmer light lounge
+  - medium
+conversation/lights::relative_dim:
+- - enable light lounge
+  - dimmer
+conversation/lights::warm_white:
+- - enable light lounge
+  - warmwhite
+conversation/lights::which_lights_on:
+- - enable light lounge
+  - enable light kitchen
+  - what light
+conversation/media::music_artist_then_now_playing:
+- - play queen kitchen
+  - what music
+conversation/media::music_play_in_room:
+- play music kitchen
+conversation/media::next_and_pause:
+- - play music kitchen
+  - next
+  - pause
+conversation/media::tv_not_light:
+- enable telly lounge
+conversation/media::volume_down:
+- quieter music

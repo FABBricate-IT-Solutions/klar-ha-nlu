@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["シーン"],
         switch_plural: &[],
         device_side: &["fan", "kansouki", "raito", "sentakuki", "カーテン", "シーン", "テレビ", "ファン", "ライト", "鍵", "電気"],
-        named_device: &["sentakuki", "shokkaiki", "tama", "terebi"],
+        named_device: &["pc", "sentakuki", "shokkaiki", "tama", "terebi"],
     },
     fixtures: Fixtures {
         island: &["shima"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["keshite", "tsukete", "つけて", "オフ", "オン", "消して", "消す", "点ける"],
         command_hedges: &[],
-        skip_light: &["fan", "kansouki", "kiki", "sentakuki", "shokkaiki", "terebi", "テレビ", "ファン"],
+        skip_light: &["fan", "kansouki", "kiki", "pc", "sentakuki", "shokkaiki", "terebi", "テレビ", "ファン"],
         laundry_area: &["sentakushitsu"],
         laundry_machines: &["kansouki", "sentakuki"],
         kitchen: &["kitchin", "キッチン"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["sentakushitsu"],
         bare_switch: &["appliance", "kansouki", "machine", "sentakuki"],
         outlet_words: &[],
-        tv_words: &["テレビ"],
+        tv_words: &["terebi"],
         climate_cool: &["eakon"],
         climate_heat: &["エアコン"],
         role_light: &["ライト", "電気"],
@@ -165,7 +165,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "音楽",
         ],
         room_level: &["電気"],
-        extra_device_nouns: &["kansouki", "kiki", "sentakuki", "shokkaiki", "tama", "terebi"],
+        extra_device_nouns: &["kansouki", "kiki", "pc", "sentakuki", "shokkaiki", "tama", "terebi"],
         synonym_pairs: &[
             ("リビング", "wohnzimmer"),
             ("キッチン", "kuche"),
@@ -234,6 +234,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("黒", "black"),
             ("白", "white"),
             ("紫", "purple"),
+            ("暖色", "warmwhite"),
         ],
         numbers: &[
             ("ゼロ", 0),

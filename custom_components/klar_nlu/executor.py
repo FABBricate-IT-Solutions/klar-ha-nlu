@@ -15,6 +15,10 @@ _FAILED = {
     "de": "Das hat nicht geklappt.",
     "en": "That did not work.",
 }
+_TV_UNAVAILABLE = {
+    "de": "Der Fernseher ist gerade nicht erreichbar.",
+    "en": "That TV is not available.",
+}
 _FAILED_HINT = {
     "media_unavailable": {
         "de": "Der Player ist gerade nicht erreichbar.",
@@ -62,8 +66,23 @@ async def execute_plan(
     else:
         outcome = "error"
         hint = next((step.get("error") for step in steps if step.get("error")), None)
-        speech = (_FAILED_HINT.get(str(hint)) or {}).get(pack) or _FAILED.get(pack, _FAILED["en"])
+        speech = _error_speech(pack, str(hint or ""), intents)
     return validate_execute_result({"outcome": outcome, "speech": speech, "steps": steps})
+
+
+def _error_speech(pack: str, hint: str, intents: list[dict[str, Any]]) -> str:
+    if hint == "media_unavailable" and any(item.get("name") == "HassTurnOn" or _tv_item(item) for item in intents):
+        return _TV_UNAVAILABLE.get(pack) or _TV_UNAVAILABLE["en"]
+    return (_FAILED_HINT.get(hint) or {}).get(pack) or _FAILED.get(pack, _FAILED["en"])
+
+
+def _tv_item(item: dict[str, Any]) -> bool:
+    blob = " ".join(
+        str(slot.get("value") or "")
+        for slot in item.get("slots") or []
+        if isinstance(slot, dict) and slot.get("name") in {"entity_id", "name"}
+    ).casefold()
+    return "tv" in blob or "fernseher" in blob
 
 
 def _step(index: int, item: dict[str, Any], result: IntentStepResult) -> dict[str, Any]:

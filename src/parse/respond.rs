@@ -90,9 +90,11 @@ fn describe(intent: &Intent, home: Option<&HomeGraph>) -> String {
         "HassTurnOn" => fill(pack.turn_on),
         "HassTurnOff" => fill(pack.turn_off),
         "HassToggle" => fill(pack.toggle),
-        "HassLightSet" => match (intent.slot("color"), intent.slot("brightness")) {
-            (Some(color), None) => fill(pack.light_color).replace("{color}", &catalog().color_spoken(color)),
-            (_, brightness) => fill(pack.light_set).replace("{n}", brightness.unwrap_or("?")),
+        "HassLightSet" => match (intent.slot("color"), intent.slot("brightness"), intent.slot("brightness_step")) {
+            (Some(color), None, _) => fill(pack.light_color).replace("{color}", &catalog().color_spoken(color)),
+            (_, Some(brightness), _) => fill(pack.light_set).replace("{n}", brightness),
+            (_, _, Some(_)) => fill(pack.get_state),
+            _ => fill(pack.light_set).replace("{n}", "?"),
         },
         "HassClimateSetTemperature" => {
             let noun = climate_noun(intent);
@@ -146,7 +148,16 @@ fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
         }
         if let Some(ent) = home.and_then(|h| h.entities.iter().find(|e| e.entity_id == id)) {
             let name = if looks_like_entity_id(&ent.name) { object_id(id) } else { ent.name.clone() };
-            return device_label(&name, &ent.domain);
+            let label = device_label(&name, &ent.domain);
+            if ent.domain == "light" {
+                if let Some(area) = ent.area.as_deref() {
+                    let room = pretty_room(area, home);
+                    if light_needs_room_label(&label, &room) {
+                        return area_label(area, "light", &intent.name, home);
+                    }
+                }
+            }
+            return label;
         }
         return device_label(&object_id(id), domain_of(id));
     }
@@ -160,6 +171,16 @@ fn spoken_where(intent: &Intent, home: Option<&HomeGraph>) -> String {
         return title_word(&floor.replace('_', " "));
     }
     String::new()
+}
+
+fn light_needs_room_label(label: &str, room: &str) -> bool {
+    let folded = compact(label);
+    let room = compact(room);
+    if room.is_empty() || folded.contains(&room) || umlaut_eq(&folded, &room) {
+        return false;
+    }
+    catalog().light_nouns().iter().any(|noun| folded == compact(noun) || folded.contains(&compact(noun)))
+        || catalog().light_singular().iter().any(|noun| folded == compact(noun) || folded.contains(&compact(noun)))
 }
 
 fn looks_started(id: &str) -> bool {
@@ -187,7 +208,7 @@ fn device_label(name: &str, domain: &str) -> String {
 }
 
 fn area_label(area: &str, domain: &str, intent: &str, home: Option<&HomeGraph>) -> String {
-    let light = domain == "light" || matches!(intent, "HassTurnOn" | "HassTurnOff" | "HassToggle" | "HassLightSet");
+    let light = domain == "light" || intent == "HassLightSet";
     if light && domain != "climate" && domain != "fan" && domain != "media_player" && domain != "switch" {
         speech().area_light.replace("{loc}", &loc(area, home))
     } else {
@@ -366,119 +387,5 @@ fn pick_variant(body: &str, n: usize) -> usize {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::lang::bind;
-    use crate::types::Intent;
-
-    #[test]
-    fn speech_follows_pinned_pack() {
-        let intent = Intent::new("HassTurnOn").with("area", "wohnzimmer");
-        let _de = bind(&["de".into()]);
-        let de = speak(std::slice::from_ref(&intent), Personality::Default, false, None);
-        assert!(de.contains("ist an") || de.contains("Licht"), "{de}");
-        drop(_de);
-        let _en = bind(&["en".into()]);
-        let en = speak(&[intent], Personality::Default, false, None);
-        assert!(en.contains("is on") || en.contains("light"), "{en}");
-        assert!(!en.contains("ist an"), "{en}");
-    }
-
-    #[test]
-    fn speech_compounds_room_light() {
-        let _de = bind(&["de".into()]);
-        let intent = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer_licht");
-        let de = speak(&[intent], Personality::Default, false, None);
-        assert_eq!(de, "Schlafzimmerlicht ist an.");
-        assert!(!de.contains("light."));
-        let kugel = Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer");
-        assert_eq!(speak(&[kugel], Personality::Default, false, None), "Schlafzimmerlicht ist an.");
-        let butler = speak(&[Intent::new("HassTurnOn").with("entity_id", "light.schlafzimmer")], Personality::Butler, false, None);
-        let body = "Schlafzimmerlicht ist an.";
-        let prefixes = crate::lang::catalog().speech().personality_prefixes("butler");
-        assert!(!prefixes.is_empty(), "butler must have spoken variants");
-        assert!(prefixes.iter().any(|prefix| butler == format!("{prefix}{body}")), "{butler} not in {prefixes:?}");
-    }
-
-    #[test]
-    fn clarify_uses_friendly_name() {
-        let _de = bind(&["de".into()]);
-        let home = crate::home::default_home();
-        let speech = speak_clarify(&["light.schlafzimmer_kugel".into()], Some(&home));
-        assert!(speech.contains("Kugel"), "{speech}");
-        assert!(!speech.contains("schlafzimmer"), "{speech}");
-        let raw = speak_clarify(&["light.schlafzimmer".into()], None);
-        assert!(raw.contains("Schlafzimmer"), "{raw}");
-        assert!(!raw.contains("light."), "{raw}");
-    }
-
-    #[test]
-    fn vacuum_speech_uses_device_name() {
-        let _de = bind(&["de".into()]);
-        let mut home = crate::home::default_home();
-        if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == "vacuum.r2d2") {
-            ent.name = "Saugroboter".into();
-        }
-        let intent = Intent::new("HassVacuumStart").with("entity_id", "vacuum.r2d2");
-        let speech = speak(&[intent], Personality::Default, false, Some(&home));
-        assert!(speech.contains("Saugroboter"), "{speech}");
-        assert!(!speech.contains("R2D2"), "{speech}");
-    }
-
-    #[test]
-    fn climate_speech_does_not_repeat_heizung() {
-        let home = crate::home::default_home();
-        let intent =
-            Intent::new("HassClimateSetTemperature").with("entity_id", "climate.better_thermostat_wohnzimmer").with("temperature", "21");
-        let _de = bind(&["de".into()]);
-        let de = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
-        assert_eq!(de, "Heizung Wohnzimmer auf 21 Grad.");
-        assert_eq!(de.matches("Heizung").count(), 1, "{de}");
-        drop(_de);
-        let _en = bind(&["en".into()]);
-        let en = speak(&[intent], Personality::Default, false, Some(&home));
-        assert_eq!(en, "Heizung Wohnzimmer is at 21 degrees.");
-        assert!(!en.contains("Heat Heizung"), "{en}");
-    }
-
-    #[test]
-    fn light_set_speaks_color_not_percent() {
-        let _de = bind(&["de".into()]);
-        let intent = Intent::new("HassLightSet").with("area", "schlafzimmer").with("domain", "light").with("color", "red");
-        let de = speak(std::slice::from_ref(&intent), Personality::Default, false, None);
-        assert!(de.to_lowercase().contains("rot"), "{de}");
-        assert!(!de.contains('?'), "{de}");
-        assert!(!de.to_lowercase().contains("prozent"), "{de}");
-    }
-
-    #[test]
-    fn climate_speech_adds_noun_when_target_is_room_only() {
-        let _de = bind(&["de".into()]);
-        let intent = Intent::new("HassClimateSetTemperature").with("area", "wohnzimmer").with("temperature", "21");
-        assert_eq!(speak(&[intent], Personality::Default, false, None), "Heizung Wohnzimmer auf 21 Grad.");
-    }
-
-    #[test]
-    fn climate_speech_humanizes_entity_id_names() {
-        let mut home = crate::home::default_home();
-        if let Some(ent) = home.entities.iter_mut().find(|e| e.entity_id == "climate.better_thermostat_wohnzimmer") {
-            ent.name = "climate.better_thermostat_wohnzimmer".into();
-        }
-        let intent =
-            Intent::new("HassClimateSetTemperature").with("entity_id", "climate.better_thermostat_wohnzimmer").with("temperature", "21");
-        let _de = bind(&["de".into()]);
-        let speech = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
-        assert_eq!(speech, "Better Thermostat Wohnzimmer auf 21 Grad.");
-        assert!(!speech.contains("climate."), "{speech}");
-    }
-
-    #[test]
-    fn kitchen_status_speaks_umlaut_not_slug() {
-        let _de = bind(&["de".into()]);
-        let home = crate::home::default_home();
-        let intent = Intent::new("HassGetState").with("area", "kuche");
-        let speech = speak(std::slice::from_ref(&intent), Personality::Default, false, Some(&home));
-        assert!(speech.contains("Küche"), "{speech}");
-        assert!(!speech.contains("Kuche"), "{speech}");
-    }
-}
+#[path = "respond_tests.rs"]
+mod tests;

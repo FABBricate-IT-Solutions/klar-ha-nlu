@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - skru varme stue
+  - '21'
+conversation/climate::heat_setpoint:
+- sett varme stue 21
+conversation/climate::temperature_query:
+- hva varme stue
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - slaa lys soverom
+  - skru lys stue
+  - og kjokken ogsaa
+conversation/followup::followup_same_action_other_room:
+- - skru lys stue
+  - og kjokken ogsaa
+conversation/house::clock_calendar_weather:
+- hva hour
+- hva kalender
+- hva varme
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- skru alloff
+conversation/lights::ambiguous_light:
+- skru lys
+conversation/lights::brightness_percent:
+- sett lys stue 30 prosent
+conversation/lights::color_red:
+- - skru lys stue
+  - rod
+conversation/lights::dim_then_level:
+- - morkere lys stue
+  - medium
+conversation/lights::relative_dim:
+- - skru lys stue
+  - morkere
+conversation/lights::warm_white:
+- - skru lys stue
+  - varmhvit
+conversation/lights::which_lights_on:
+- - skru lys stue
+  - skru lys kjokken
+  - hva lys
+conversation/media::music_artist_then_now_playing:
+- - spill queen kjokken
+  - hva musikk
+conversation/media::music_play_in_room:
+- spill musikk kjokken
+conversation/media::next_and_pause:
+- - spill musikk kjokken
+  - next
+  - pause
+conversation/media::tv_not_light:
+- skru tv stue
+conversation/media::volume_down:
+- lavere musikk

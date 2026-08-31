@@ -60,7 +60,9 @@ Ein neuer Kombinator ist eine neue Variante plus Tests. `De | En`-Matches nicht 
 
 ## Home Assistant
 
-Die Integration liest `custom_components/klar_nlu/languages.py` (generiert). Die Optionen listen jede kompilierte Locale mit ihrem Eigennamen. Default-Freigabe ist der volle kompilierte Satz. Assist pinnt pro Request ein Pack. `pt-BR` und `de-CH` werden nicht auf ISO-639-1 gestutzt.
+Die Integration liest `custom_components/klar_nlu/languages.py` (generiert). Die Optionen listen jede kompilierte Locale mit ihrem Eigennamen. Default ist **Systemsprache**: die Pipeline-/Request-Sprache wählt das Pack, und das Sprachassistenten-Dropdown listet immer jede kompilierte Locale. Ein einzelnes gepinntes Pack beschränkt weiter nur das Parsing. `pt-BR` und `de-CH` werden nicht auf ISO-639-1 gestutzt.
+
+Operator-Chrome (die offizielle Klar-App) ist **nicht** der Assist-Pin und **nicht** das Home-Assistant-Profil. Setzen in App → Einstellungen → Operator-Sprache, oder mit `KLAR_UI_LOCALE` vor dem ersten Speichern. Gespeicherte Einstellung gewinnt. Integrationsformulare bleiben bei Home Assistant `translations/{lang}.json`.
 
 ## Tests
 
@@ -82,7 +84,7 @@ Er liest die DE-Oracles (`wohnung_mittel`, `familienhaus_de`, `m0_exact`, `m2_fl
 
 DE und EN sind keine Overlays: sie **sind** die Oracles. Neu erzeugen mit `python3 scripts/gen_voice_suite.py` (Familie: `docs/testing.md`). Danach `scripts/parity/generate.py`, damit die anderen Locales mitziehen.
 
-CI prüft, dass der Generator ein No-Op ist. Die volle 65-Locale-Matrix läuft nicht. Ändert ein PR ein Pack- oder Datensatz-Pfad, läuft die Suite dieser Locale (`scripts/ci_lang_tests.py`): de/en hart, andere nur Report. Lokal:
+CI prüft, dass der Generator ein No-Op ist, und läuft die volle `parity_langs`-Matrix (jede kompilierte Locale, kein Fail-Fast). Lokal:
 
 ```bash
 python3 scripts/lang_packs/generate.py

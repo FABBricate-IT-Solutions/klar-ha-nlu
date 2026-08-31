@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - जलाओ गर्मी बैठक
+  - '21'
+conversation/climate::heat_setpoint:
+- सेट गर्मी बैठक 21
+conversation/climate::temperature_query:
+- क्या गर्मी बैठक
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - बुझाओ बत्ती shayankaksh
+  - जलाओ बत्ती बैठक
+  - और रसोई bhi
+conversation/followup::followup_same_action_other_room:
+- - जलाओ बत्ती बैठक
+  - और रसोई bhi
+conversation/house::clock_calendar_weather:
+- क्या hour
+- क्या कैलेंडर
+- क्या गर्मी
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- जलाओ alloff
+conversation/lights::ambiguous_light:
+- जलाओ बत्ती
+conversation/lights::brightness_percent:
+- सेट बत्ती बैठक 30 pratishat
+conversation/lights::color_red:
+- - जलाओ बत्ती बैठक
+  - लाल
+conversation/lights::dim_then_level:
+- - zyadagehra बत्ती बैठक
+  - madhyam
+conversation/lights::relative_dim:
+- - जलाओ बत्ती बैठक
+  - zyadagehra
+conversation/lights::warm_white:
+- - जलाओ बत्ती बैठक
+  - garam safed
+conversation/lights::which_lights_on:
+- - जलाओ बत्ती बैठक
+  - जलाओ बत्ती रसोई
+  - क्या बत्ती
+conversation/media::music_artist_then_now_playing:
+- - चलाओ queen रसोई
+  - क्या tivi
+conversation/media::music_play_in_room:
+- चलाओ tivi रसोई
+conversation/media::next_and_pause:
+- - चलाओ tivi रसोई
+  - next
+  - रोको
+conversation/media::tv_not_light:
+- जलाओ tv बैठक
+conversation/media::volume_down:
+- ahista tivi

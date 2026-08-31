@@ -9,7 +9,7 @@ Household setup first: [getting started](getting-started.md). This page covers m
 1. **Expose.** Settings → Voice assistants → Expose. Klar’s option **Only control entities exposed to Assist** is on by default. Hidden sensors and switches are not targets.
 2. **Name and area.** The entity needs a spoken name and a room in Home Assistant. Generic “light” in a room with three lamps becomes a clarify question.
 3. **Mapping.** App sidebar **Klar NLU** → **House → Mapping** (not Lovelace **Klar**). Add an alias or accept a room suggestion. Do not build a second device list in Klar.
-4. **Language.** Pin Assist to the locale you speak (`de`, `en`, `fr`, …). Klar binds that pack for the request.
+4. **Language.** The Voice assistants dropdown lists every compiled pack. Pick the pipeline language you speak (`de`, `en`, `fr`, …). Klar binds that pack for the request unless Sprachen is a single pinned locale.
 
 The integration option **Only control entities exposed to Assist** is a developer escape hatch. Off matches hidden entities too — easier to hit the wrong device.
 
@@ -18,7 +18,7 @@ The integration option **Only control entities exposed to Assist** is a develope
 - Pipeline conversation engine must be **Klar NLU**, not the chit-chat LLM.
 - Engine and integration must be the same CalVer (V2: `POST /api/v2/parse` only).
 - Bundled engine: wait until the GitHub Release has finished downloading into `/config/klar_nlu/`.
-- App / Docker: integration URL `http://klar-nlu:10520` (HAOS) or `http://127.0.0.1:10520` (host network). Do not run the App and the bundled engine together.
+- App / Docker: integration URL `http://klar-nlu:10520` (HAOS) or `http://127.0.0.1:10520` (host network). If `klar-nlu` does not resolve on Supervisor, Klar also tries `http://klar-nlu.local.hass.io:10520` (or `{slug}.local.hass.io`). Do not run the App and the bundled engine together.
 - Confirm / clarify never call services. Answer `yes` / `ja` on the same conversation, or name the device.
 
 ## Media and Music Assistant

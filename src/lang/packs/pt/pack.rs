@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["cena"],
         switch_plural: &[],
         device_side: &["cena", "cortina", "dryer", "fechadura", "lampada", "luz", "maquina", "tv", "ventoinha"],
-        named_device: &["globo", "loica", "maquina", "tv"],
+        named_device: &["globo", "loica", "maquina", "pc", "tv"],
     },
     fixtures: Fixtures {
         island: &["ilha"],
@@ -62,7 +62,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("teto", &["ceiling", "decke", "deckenlampe", "teto"]),
             ("globo", &["globe", "globo", "kugel"]),
             ("cabeceira", &["bedside", "cabeceira", "nacht", "nachttisch"]),
-            ("loiça", &["dishwasher", "loica", "spuelmaschine", "spulmaschine"]),
+            ("loica", &["dishwasher", "loica", "spuelmaschine", "spulmaschine"]),
             ("maquina", &["maquina", "waschmaschine", "washer", "washing"]),
             ("tv", &["fernseher", "tv"]),
             ("dryer", &["dryer", "trockner"]),
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["acende", "apaga", "ativa", "desliga", "liga"],
         command_hedges: &[],
-        skip_light: &["aparelho", "dryer", "loica", "maquina", "tv", "ventoinha"],
+        skip_light: &["aparelho", "dryer", "loica", "maquina", "pc", "tv", "ventoinha"],
         laundry_area: &["lavandaria"],
         laundry_machines: &["dryer", "maquina"],
         kitchen: &["cozinha"],
@@ -154,7 +154,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventoinha",
         ],
         room_level: &["luz"],
-        extra_device_nouns: &["aparelho", "dryer", "globo", "loica", "maquina", "tv"],
+        extra_device_nouns: &["aparelho", "dryer", "globo", "loica", "maquina", "pc", "tv"],
         synonym_pairs: &[
             ("sala", "wohnzimmer"),
             ("cozinha", "kuche"),
@@ -213,6 +213,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("preto", "black"),
             ("branco", "white"),
             ("roxo", "purple"),
+            ("brancquente", "warmwhite"),
         ],
         numbers: &[
             ("zero", 0),

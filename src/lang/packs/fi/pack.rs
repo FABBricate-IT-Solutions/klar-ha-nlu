@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["kohtaus"],
         switch_plural: &[],
         device_side: &["dryer", "kohtaus", "lukko", "pesukone", "tuuletin", "tv", "valo", "verho"],
-        named_device: &["astianpesu", "pallo", "pesukone", "tv"],
+        named_device: &["astianpesu", "pallo", "pc", "pesukone", "tv"],
     },
     fixtures: Fixtures {
         island: &["saareke"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["sammuta", "sytyta"],
         command_hedges: &[],
-        skip_light: &["astianpesu", "dryer", "laite", "pesukone", "tuuletin", "tv"],
+        skip_light: &["astianpesu", "dryer", "laite", "pc", "pesukone", "tuuletin", "tv"],
         laundry_area: &["kodinhoito"],
         laundry_machines: &["dryer", "pesukone"],
         kitchen: &["keittio"],
@@ -138,7 +138,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "tv", "valo", "verho",
         ],
         room_level: &["valo"],
-        extra_device_nouns: &["astianpesu", "dryer", "laite", "pallo", "pesukone", "tv"],
+        extra_device_nouns: &["astianpesu", "dryer", "laite", "pallo", "pc", "pesukone", "tv"],
         synonym_pairs: &[
             ("olohuone", "wohnzimmer"),
             ("keittio", "kuche"),
@@ -193,6 +193,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("musta", "black"),
             ("valkoinen", "white"),
             ("violetti", "purple"),
+            ("lamminvalkoinen", "warmwhite"),
         ],
         numbers: &[
             ("nolla", 0),

@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["сцена"],
         switch_plural: &[],
         device_side: &["dryer", "брава", "вентилатор", "веш", "завеса", "светло", "сцена", "телевизор"],
-        named_device: &["веш", "кугла", "судови", "тв"],
+        named_device: &["pc", "веш", "кугла", "судови", "тв"],
     },
     fixtures: Fixtures {
         island: &["острво"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["искључи", "укључи"],
         command_hedges: &[],
-        skip_light: &["dryer", "вентилатор", "веш", "судови", "тв", "телевизор", "уређај"],
+        skip_light: &["dryer", "pc", "вентилатор", "веш", "судови", "тв", "телевизор", "уређај"],
         laundry_area: &["вешерница"],
         laundry_machines: &["dryer", "веш"],
         kitchen: &["кухиња"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["вешерница"],
         bare_switch: &["appliance", "dryer", "machine", "веш"],
         outlet_words: &[],
-        tv_words: &["телевизор"],
+        tv_words: &["тв"],
         climate_cool: &["температура"],
         climate_heat: &["грејање"],
         role_light: &["светло"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "усисивач",
         ],
         room_level: &["светло"],
-        extra_device_nouns: &["dryer", "веш", "кугла", "судови", "тв", "уређај"],
+        extra_device_nouns: &["dryer", "pc", "веш", "кугла", "судови", "тв", "уређај"],
         synonym_pairs: &[
             ("дневна", "wohnzimmer"),
             ("кухиња", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("топлобело", "warmwhite"),
         ],
         numbers: &[
             ("нула", 0),

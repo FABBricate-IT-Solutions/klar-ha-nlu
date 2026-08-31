@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["pralka", "scena", "suszarka", "swiatlo", "telewizor", "wentylator", "zamek", "zaslona"],
-        named_device: &["kula", "pralka", "telewizor", "zmywarka"],
+        named_device: &["kula", "pc", "pralka", "telewizor", "zmywarka"],
     },
     fixtures: Fixtures {
         island: &["wyspa"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["wlacz", "wylacz"],
         command_hedges: &[],
-        skip_light: &["pralka", "suszarka", "telewizor", "urzadzenie", "wentylator", "zmywarka"],
+        skip_light: &["pc", "pralka", "suszarka", "telewizor", "urzadzenie", "wentylator", "zmywarka"],
         laundry_area: &["pralnia"],
         laundry_machines: &["pralka", "suszarka"],
         kitchen: &["kuchnia"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zaslona",
         ],
         room_level: &["swiatlo"],
-        extra_device_nouns: &["kula", "pralka", "suszarka", "telewizor", "urzadzenie", "zmywarka"],
+        extra_device_nouns: &["kula", "pc", "pralka", "suszarka", "telewizor", "urzadzenie", "zmywarka"],
         synonym_pairs: &[
             ("salon", "wohnzimmer"),
             ("kuchnia", "kuche"),
@@ -206,6 +206,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("czarny", "black"),
             ("bialy", "white"),
             ("fioletowy", "purple"),
+            ("cieplabiala", "warmwhite"),
         ],
         numbers: &[
             ("zero", 0),

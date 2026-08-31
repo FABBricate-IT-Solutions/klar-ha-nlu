@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - yak basement isik ve camasir isik
-  - basement isik ve camasir isik yak
+  - yak basement isik ve camasirhane isik
+  - basement isik ve camasirhane isik yak
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - sondur basement isik ve camasir isik
-  - basement isik ve camasir isik sondur
+  - sondur basement isik ve camasirhane isik
+  - basement isik ve camasirhane isik sondur
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - yak camasir camasir ve camasir dryer
-  - camasir camasir ve camasir dryer yak
+  - yak camasirhane camasir ve camasirhane dryer
+  - camasirhane camasir ve camasirhane dryer yak
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - sondur isik garden ve basement ve camasir
-  - isik garden basement ve camasir sondur
+  - sondur isik garden ve basement ve camasirhane
+  - isik garden basement ve camasirhane sondur
 - name: except_light.kitchen_island
   conditions:
   - type: action
@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - ayarla klima salon ve yatakodasimaster 21
-  - klima salon ve yatakodasimaster 21
+  - ayarla sicaklik salon ve yatakodasimaster 21
+  - sicaklik salon ve yatakodasimaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - ne klima salon ve sondur isik mutfak
-  - sondur isik mutfak ve ne klima salon
+  - ne sicaklik salon ve sondur isik mutfak
+  - sondur isik mutfak ve ne sicaklik salon
 - name: locks_front_and_garage
   conditions:
   - type: action

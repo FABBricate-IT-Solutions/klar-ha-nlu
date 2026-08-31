@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - เปิด แอร์ ห้องนั่งเล่น
+  - '21'
+conversation/climate::heat_setpoint:
+- ตั้ง แอร์ ห้องนั่งเล่น 21
+conversation/climate::temperature_query:
+- อะไร แอร์ ห้องนั่งเล่น
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - ปิด ไฟ hongnon
+  - เปิด ไฟ ห้องนั่งเล่น
+  - และ ห้องครัว duay
+conversation/followup::followup_same_action_other_room:
+- - เปิด ไฟ ห้องนั่งเล่น
+  - และ ห้องครัว duay
+conversation/house::clock_calendar_weather:
+- อะไร hour
+- อะไร ปฏิทิน
+- อะไร แอร์
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- เปิด alloff
+conversation/lights::ambiguous_light:
+- เปิด ไฟ
+conversation/lights::brightness_percent:
+- ตั้ง ไฟ ห้องนั่งเล่น 30 เปอร์เซ็นต์
+conversation/lights::color_red:
+- - เปิด ไฟ ห้องนั่งเล่น
+  - แดง
+conversation/lights::dim_then_level:
+- - มืดลง ไฟ ห้องนั่งเล่น
+  - ปานกลาง
+conversation/lights::relative_dim:
+- - เปิด ไฟ ห้องนั่งเล่น
+  - มืดลง
+conversation/lights::warm_white:
+- - เปิด ไฟ ห้องนั่งเล่น
+  - ขาวนวล
+conversation/lights::which_lights_on:
+- - เปิด ไฟ ห้องนั่งเล่น
+  - เปิด ไฟ ห้องครัว
+  - อะไร ไฟ
+conversation/media::music_artist_then_now_playing:
+- - เล่น queen ห้องครัว
+  - อะไร phleng
+conversation/media::music_play_in_room:
+- เล่น phleng ห้องครัว
+conversation/media::next_and_pause:
+- - เล่น phleng ห้องครัว
+  - next
+  - หยุด
+conversation/media::tv_not_light:
+- เปิด thorathat ห้องนั่งเล่น
+conversation/media::volume_down:
+- เบาลง phleng

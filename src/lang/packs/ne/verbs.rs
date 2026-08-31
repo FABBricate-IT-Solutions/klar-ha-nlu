@@ -2,6 +2,8 @@
 use crate::lang::verbs::VerbKind;
 
 pub(super) const VERBS: &[(&str, VerbKind)] = &[
+    ("andhyaro", VerbKind::Dim),
+    ("badhi", VerbKind::Dim),
     ("bal", VerbKind::On),
     ("banda", VerbKind::Close),
     ("black", VerbKind::Color),
@@ -12,10 +14,13 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("ke", VerbKind::Query),
     ("khol", VerbKind::Open),
     ("kucho", VerbKind::VacuumNoun),
+    ("madhyam", VerbKind::Dim),
     ("nibhau", VerbKind::Off),
+    ("nyano seto", VerbKind::Color),
     ("orange", VerbKind::Color),
     ("pankha", VerbKind::FanNoun),
     ("pink", VerbKind::Color),
+    ("pratishat", VerbKind::Percent),
     ("purple", VerbKind::Color),
     ("red", VerbKind::Color),
     ("set", VerbKind::Set),

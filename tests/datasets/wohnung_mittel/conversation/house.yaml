@@ -1,0 +1,117 @@
+- name: scene_all_off
+  world_expect:
+    - {entity_id: scene.alles_aus, state: 'on'}
+  sentences:
+    - Aktiviere Alles aus
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: scene.alles_aus, domain: scene}
+    reject: false
+    clarify: false
+  forbid:
+    - light.wohnzimmer
+    - light.kuche_kuche
+    - light.alle_lichter
+
+- name: clock_calendar_weather
+  sentences:
+    - Wie spät ist es?
+    - Was steht im Kalender?
+    - Was habe ich morgen?
+    - Was steht morgen im Kalender?
+    - Wie wird das Wetter?
+  nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - erledigt
+    - Das ist erledigt
+    - sekunde
+
+- name: calendar_tomorrow_query
+  sentences:
+    - Was habe ich morgen?
+    - Was steht morgen im Kalender?
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+        slots: {day: tomorrow, domain: calendar}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - eingestellt
+    - entity_id
+    - calendar.wohnung
+
+- name: calendar_create_named
+  sentences:
+    - Trage den Termin Klar-Test Witzkalender morgen um 15 Uhr in den Kalender ein
+    - Lege heute um 21 Uhr den Termin Klar-Test Witzkalender an
+    - Trage den Termin Klar-Retest-62 morgen um 15 Uhr in den Kalender ein
+  nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - lege test
+    - entity_id
+    - lautstärke
+    - Prozent
+
+- name: calendar_create_exact_title
+  sentences:
+    - Trage den Termin Klar-Retest-62 morgen um 15 Uhr in den Kalender ein
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+        slots: {summary: klar-retest-62, day: tomorrow, hour: '15', domain: calendar}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - lautstärke
+    - Prozent
+    - entity_id
+
+- name: story_chat
+  sentences:
+    - Erzähle eine Geschichte
+    - Erzähl mir eine kurze Geschichte
+  nlu_expect:
+    intents: []
+    reject: false
+    clarify: false
+  speech_forbids:
+    - entity_id
+    - Das ist erledigt
+    - erledigt
+    - Soll ich
+    - Womit soll
+    - Kurz oder lang
+    - kann dir gerne
+    - Wollen Sie
+
+- name: joke_chat
+  sentences:
+    - Erzähle einen Witz
+  nlu_expect:
+    intents: []
+    reject: false
+    clarify: false
+  speech_forbids:
+    - entity_id
+    - Das ist erledigt
+    - erledigt
+    - Wollen Sie
+    - Soll ich
+
+- name: false_done_forbidden
+  sentences:
+    - Was ist die Hauptstadt von Frankreich
+  nlu_expect:
+    intents: []
+    reject: true
+    clarify: false
+  speech_forbids:
+    - Das ist erledigt
+    - erledigt
+    - That is done

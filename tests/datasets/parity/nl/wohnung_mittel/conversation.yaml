@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - aanzetten verwarming woonkamer
+  - '21'
+conversation/climate::heat_setpoint:
+- stel verwarming woonkamer 21
+conversation/climate::temperature_query:
+- wat verwarming woonkamer
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - uitzetten licht slaapkamer
+  - aanzetten licht woonkamer
+  - en keuken ook
+conversation/followup::followup_same_action_other_room:
+- - aanzetten licht woonkamer
+  - en keuken ook
+conversation/house::clock_calendar_weather:
+- wat uur
+- wat kalender
+- wat verwarming
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- aanzetten alloff
+conversation/lights::ambiguous_light:
+- aanzetten licht
+conversation/lights::brightness_percent:
+- stel licht woonkamer 30 procent
+conversation/lights::color_red:
+- - aanzetten licht woonkamer
+  - rood
+conversation/lights::dim_then_level:
+- - donkerder licht woonkamer
+  - medium
+conversation/lights::relative_dim:
+- - aanzetten licht woonkamer
+  - donkerder
+conversation/lights::warm_white:
+- - aanzetten licht woonkamer
+  - warmwit
+conversation/lights::which_lights_on:
+- - aanzetten licht woonkamer
+  - aanzetten licht keuken
+  - wat licht
+conversation/media::music_artist_then_now_playing:
+- - speel queen keuken
+  - wat volume
+conversation/media::music_play_in_room:
+- speel volume keuken
+conversation/media::next_and_pause:
+- - speel volume keuken
+  - next
+  - pauze
+conversation/media::tv_not_light:
+- aanzetten tv woonkamer
+conversation/media::volume_down:
+- zachter volume

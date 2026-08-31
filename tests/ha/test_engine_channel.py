@@ -41,12 +41,17 @@ const = _load_const()
 
 class EngineChannelTests(unittest.TestCase):
     def test_followup_session_key_and_keep(self) -> None:
-        self.assertTrue(const.keeps_conversation("execute"))
+        self.assertFalse(const.keeps_conversation("execute"))
+        self.assertFalse(const.keeps_conversation("reject"))
+        self.assertFalse(const.keeps_conversation("error"))
         self.assertTrue(const.keeps_conversation("clarify"))
-        self.assertFalse(const.keeps_conversation("chat"))
+        self.assertTrue(const.keeps_conversation("confirm"))
+        self.assertTrue(const.keeps_conversation("chat"))
         self.assertEqual(const.engine_session_id("dev-1", None), "dev:dev-1")
         self.assertEqual(const.engine_session_id(None, "sat-1"), "dev:sat-1")
         self.assertEqual(const.engine_session_id(None, None), const.FOLLOWUP_SESSION)
+        self.assertEqual(const.parse_session_id("assist-9", None, None), "assist-9")
+        self.assertEqual(const.parse_session_id(None, None, None), const.FOLLOWUP_SESSION)
 
     def test_resolve_channel_defaults_stable(self) -> None:
         self.assertEqual(const.resolve_channel(None), const.CHANNEL_STABLE)
@@ -188,6 +193,16 @@ class EngineChannelTests(unittest.TestCase):
             ),
             (const.MODE_REMOTE, discovered),
         )
+
+    def test_engine_url_candidates_add_hassio_fqdn(self) -> None:
+        self.assertEqual(
+            const.engine_url_candidates("http://klar-nlu:10520"),
+            ["http://klar-nlu:10520", "http://klar-nlu.local.hass.io:10520"],
+        )
+        fqdn = "http://8db2ab02-klar-nlu.local.hass.io:10520"
+        self.assertEqual(const.engine_url_candidates(fqdn), [fqdn])
+        custom = "http://192.168.1.40:10520"
+        self.assertEqual(const.engine_url_candidates(custom), [custom])
 
     def test_channel_for_addon_slug(self) -> None:
         self.assertEqual(

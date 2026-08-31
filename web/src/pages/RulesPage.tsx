@@ -156,7 +156,11 @@ export function RulesPage({
   };
 
   const evaluate = async () => {
-    setEvalOut(await api.evaluatePolicies({ text: utterance, language: locale, policies: rules }));
+    setEvalOut(await api.evaluatePolicies({
+      text: utterance,
+      language: languages.length === 1 ? languages[0] : undefined,
+      policies: rules,
+    }));
   };
 
   const addRule = () => {

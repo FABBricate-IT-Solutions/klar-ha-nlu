@@ -1,5 +1,6 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
+use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
 use crate::parse::resolve::unique_in_area;
@@ -23,19 +24,26 @@ pub(crate) fn session_climate_cover(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 pub(crate) fn session_entities(ctx: &Clause) -> Option<ClauseOut> {
+    if !allows_session_replay(ctx) || which_lights_query(ctx.tokens) {
+        return None;
+    }
     let intents = replay_session_intents(ctx.session, ctx.home, ctx.tokens, ctx.action, ctx.number, ctx.domain);
     (!intents.is_empty()).then(|| finish_intents(intents, ctx))
 }
 
 pub(crate) fn session_areas(ctx: &Clause) -> Option<ClauseOut> {
-    let areas = last_turn_areas(ctx.session, ctx.home);
+    if !allows_session_replay(ctx) {
+        return None;
+    }
+    let areas =
+        if which_lights_query(ctx.tokens) { session_light_areas(ctx.session, ctx.home) } else { last_turn_areas(ctx.session, ctx.home) };
     (!areas.is_empty()).then(|| {
         let intents = areas
             .into_iter()
             .map(|area| {
                 let id = ctx
                     .domain
-                    .filter(|d| matches!(*d, "climate" | "media_player" | "fan"))
+                    .filter(|d| matches!(*d, "media_player" | "fan") || (*d == "climate" && !matches!(ctx.action, Action::GetState)))
                     .and_then(|d| unique_in_area(ctx.home, &area, d, ctx.tokens));
                 fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), Some(&area), ctx.domain)
             })
@@ -76,6 +84,45 @@ pub(crate) fn replay_session_intents(
         intents.push(fill_intent(action, tokens, number, id.as_deref(), Some(&area), domain));
     }
     intents
+}
+
+fn allows_session_replay(ctx: &Clause) -> bool {
+    !matches!(ctx.action, Action::GetState) || wants_status_query(ctx.tokens)
+}
+
+fn which_lights_query(tokens: &[String]) -> bool {
+    let cat = catalog();
+    wants_status_query(tokens) && (cat.any(tokens, cat.light_plural()) || crate::parse::action::has_light_noun(tokens))
+}
+
+fn session_light_areas(session: &Session, home: &HomeGraph) -> Vec<String> {
+    let mut areas = Vec::new();
+    for item in session.last.iter().rev() {
+        let light = item.entity.as_deref().is_some_and(|id| id.starts_with("light."))
+            || item.domain.as_deref() == Some("light")
+            || matches!(item.name.as_str(), "HassTurnOn" | "HassTurnOff" | "HassLightSet");
+        if !light {
+            continue;
+        }
+        if let Some(area) = item.area.as_deref() {
+            if !areas.iter().any(|have| have == area) {
+                areas.push(area.to_string());
+            }
+            continue;
+        }
+        if let Some(area) = item.entity.as_deref().and_then(|id| entity_area(home, id)) {
+            if !areas.contains(&area) {
+                areas.push(area);
+            }
+        }
+    }
+    areas
+}
+
+fn wants_status_query(tokens: &[String]) -> bool {
+    let cat = catalog();
+    cat.any(tokens, cat.status_words())
+        || tokens.iter().any(|token| cat.is_query_hint(token) || cat.is_question_word(token) || cat.is_question_start(token))
 }
 
 fn last_turn_targets(session: &Session, home: &HomeGraph, domain: Option<&str>) -> (Vec<String>, Vec<String>) {

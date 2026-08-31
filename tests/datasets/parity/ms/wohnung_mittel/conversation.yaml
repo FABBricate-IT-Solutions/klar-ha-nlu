@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - hidupkan pendingin ruang
+  - '21'
+conversation/climate::heat_setpoint:
+- tetapkan pendingin ruang 21
+conversation/climate::temperature_query:
+- apa pendingin ruang
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - matikan lampu bilik
+  - hidupkan lampu ruang
+  - dan dapur juga
+conversation/followup::followup_same_action_other_room:
+- - hidupkan lampu ruang
+  - dan dapur juga
+conversation/house::clock_calendar_weather:
+- apa hour
+- apa kalendar
+- apa pendingin
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- hidupkan alloff
+conversation/lights::ambiguous_light:
+- hidupkan lampu
+conversation/lights::brightness_percent:
+- tetapkan lampu ruang 30 peratus
+conversation/lights::color_red:
+- - hidupkan lampu ruang
+  - red
+conversation/lights::dim_then_level:
+- - lebihgelap lampu ruang
+  - sederhana
+conversation/lights::relative_dim:
+- - hidupkan lampu ruang
+  - lebihgelap
+conversation/lights::warm_white:
+- - hidupkan lampu ruang
+  - putihhangat
+conversation/lights::which_lights_on:
+- - hidupkan lampu ruang
+  - hidupkan lampu dapur
+  - apa lampu
+conversation/media::music_artist_then_now_playing:
+- - mainkan queen dapur
+  - apa tv
+conversation/media::music_play_in_room:
+- mainkan tv dapur
+conversation/media::next_and_pause:
+- - mainkan tv dapur
+  - next
+  - pause
+conversation/media::tv_not_light:
+- hidupkan tv ruang
+conversation/media::volume_down:
+- lebihperlahan tv

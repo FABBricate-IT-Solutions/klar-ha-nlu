@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["దృశ్యం"],
         switch_plural: &[],
         device_side: &["dryer", "fanu", "velugu", "washing", "టీవీ", "తాళం", "తెర", "దృశ్యం", "ఫ్యాన్", "వెలుగు"],
-        named_device: &["burra", "ginjalu", "tv", "washing"],
+        named_device: &["burra", "ginjalu", "pc", "tv", "washing"],
     },
     fixtures: Fixtures {
         island: &["dweepam"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["arpu", "veliginchu", "ఆర్పు", "వెలిగించు"],
         command_hedges: &[],
-        skip_light: &["dryer", "fanu", "ginjalu", "tv", "washing", "yantram", "టీవీ", "ఫ్యాన్"],
+        skip_light: &["dryer", "fanu", "ginjalu", "pc", "tv", "washing", "yantram", "టీవీ", "ఫ్యాన్"],
         laundry_area: &["laundry"],
         laundry_machines: &["dryer", "washing"],
         kitchen: &["vantagadi", "వంటగది"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["laundry"],
         bare_switch: &["appliance", "dryer", "machine", "washing"],
         outlet_words: &[],
-        tv_words: &["టీవీ"],
+        tv_words: &["tv"],
         climate_cool: &["vedi"],
         climate_heat: &["వేడి"],
         role_light: &["velugu", "వెలుగు"],
@@ -162,7 +162,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "వేడి",
         ],
         room_level: &["వెలుగు"],
-        extra_device_nouns: &["burra", "dryer", "ginjalu", "tv", "washing", "yantram"],
+        extra_device_nouns: &["burra", "dryer", "ginjalu", "pc", "tv", "washing", "yantram"],
         synonym_pairs: &[
             ("గది", "wohnzimmer"),
             ("వంటగది", "kuche"),
@@ -227,6 +227,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("vedi telupu", "warmwhite"),
         ],
         numbers: &[
             ("sunna", 0),

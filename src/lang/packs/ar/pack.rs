@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["مشهد"],
         switch_plural: &[],
         device_side: &["dryer", "تلفاز", "ستارة", "ضوء", "غسالة", "قفل", "مروحة", "مشهد"],
-        named_device: &["تلفاز", "جلاية", "غسالة", "كرة"],
+        named_device: &["pc", "تلفاز", "جلاية", "غسالة", "كرة"],
     },
     fixtures: Fixtures {
         island: &["جزيرة"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["اطفئ", "شغل"],
         command_hedges: &[],
-        skip_light: &["dryer", "تلفاز", "جلاية", "جهاز", "غسالة", "مروحة"],
+        skip_light: &["dryer", "pc", "تلفاز", "جلاية", "جهاز", "غسالة", "مروحة"],
         laundry_area: &["غسيل"],
         laundry_machines: &["dryer", "غسالة"],
         kitchen: &["مطبخ"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "موسيقى",
         ],
         room_level: &["ضوء"],
-        extra_device_nouns: &["dryer", "تلفاز", "جلاية", "جهاز", "غسالة", "كرة"],
+        extra_device_nouns: &["dryer", "pc", "تلفاز", "جلاية", "جهاز", "غسالة", "كرة"],
         synonym_pairs: &[
             ("صالون", "wohnzimmer"),
             ("مطبخ", "kuche"),
@@ -207,6 +207,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("ابيضدافئ", "warmwhite"),
         ],
         numbers: &[
             ("صفر", 0),

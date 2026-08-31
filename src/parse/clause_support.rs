@@ -54,11 +54,18 @@ pub(crate) fn preferred_area_domain(domain: Option<&str>, action: Action, tokens
     if domain == Some("media_player") && cat.any(tokens, cat.media_nouns()) {
         return Some("media_player");
     }
+    if crate::home::roles::tv_asked(tokens) {
+        return Some("media_player");
+    }
     None
 }
 
 pub(crate) fn named_scene_policy(tokens: &[String], home: &HomeGraph, question: bool, action: Action) -> Option<ClauseOut> {
-    if question || media_transport_form(tokens, action) || !matches!(action, Action::On | Action::Scene | Action::GetState) {
+    let asked = catalog().any(tokens, catalog().question_words()) || tokens.first().is_some_and(|token| catalog().is_question_start(token));
+    if (question && asked)
+        || media_transport_form(tokens, action)
+        || !matches!(action, Action::On | Action::Off | Action::Scene | Action::GetState)
+    {
         return None;
     }
     let id = named_scene_or_script(tokens, home)?;

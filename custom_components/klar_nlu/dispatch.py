@@ -80,6 +80,10 @@ async def handle_intent(
         return _ok(speech) if ok else _fail(error or "calendar_failed")
     slots = item_slots(item)
     entity_id = str(slots.get("entity_id", {}).get("value") or "")
+    if name == "HassTurnOn" and tv_request(getattr(user_input, "text", "")):
+        state = hass.states.get(entity_id) if entity_id else None
+        if not entity_id or not tv_named(entity_id, state):
+            return _fail("media_unavailable")
     if name == "HassMediaSearchAndPlay" and music_assistant_player(hass, entity_id):
         query = str(slots.get("media_id", {}).get("value") or slots.get("search_query", {}).get("value") or "")
         if query:
@@ -95,17 +99,24 @@ async def handle_intent(
         if (
             state is None
             or not exposed(entity_id)
-            or str(getattr(state, "state", "")).lower()
-            in {"unavailable", "unknown"}
+            or media_missing(state)
         ):
             return _fail("media_status_unavailable")
         return _ok(media_state_speech(state, media_status, pack))
+    if name == "HassMediaUnpause" and entity_id:
+        started = await start_idle_music(hass, entity_id, pack, item, exposed)
+        if started is not None:
+            return started
     if name in _SERVICE_ONLY:
         if not entity_id:
             return _fail("missing_entity")
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
-    if entity_id and (name in ENTITY_SERVICES or name == "HassLightSet"):
+    if name == "HassLightSet" and not entity_id:
+        return _fail("missing_entity")
+    if entity_id and (name in ENTITY_SERVICES or name in {"HassLightSet", "HassClimateSetTemperature"}):
         return await run_entity(hass, name, entity_id, slots, pack, item, exposed)
+    if name == "HassClimateSetTemperature":
+        return await climate_set(hass, slots, pack, item, exposed)
     if entity_id:
         if not exposed(entity_id):
             return _fail("entity_not_exposed")
@@ -113,7 +124,7 @@ async def handle_intent(
         if state is None:
             return _fail("entity_unavailable")
         domain = entity_id.split(".", 1)[0]
-        if domain == "media_player" and str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}:
+        if domain == "media_player" and media_missing(state):
             return _fail("media_unavailable")
         slots["name"] = {"value": state.name}
         slots.setdefault("domain", {"value": domain})
@@ -247,22 +258,18 @@ async def run_entity(
     if not exposed(entity_id):
         return _fail("entity_not_exposed")
     domain = entity_id.split(".", 1)[0]
-    if (
-        domain == "media_player"
-        and name in MEDIA_SERVICES
-        and str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
-    ):
+    if domain == "media_player" and media_missing(state):
         return _fail("media_unavailable")
     data: dict[str, Any] = {"entity_id": entity_id}
     if name == "HassLightSet" and domain == "light":
         service = "turn_on"
-        if (bri := slots.get("brightness", {}).get("value")) is not None:
-            try:
-                data["brightness_pct"] = max(0, min(100, int(bri)))
-            except (TypeError, ValueError):
-                pass
-        if color := slots.get("color", {}).get("value"):
-            data["color_name"] = str(color)
+        data.update(light_turn_on(slots))
+    elif name == "HassClimateSetTemperature" and domain == "climate":
+        service = "set_temperature"
+        extra = climate_set_data(slots, state)
+        if extra is None:
+            return _fail("invalid_temperature")
+        data.update(extra)
     elif domain == "media_player" and name in MEDIA_SERVICES:
         service = MEDIA_SERVICES[name]
         if name == "HassSetVolume":
@@ -320,7 +327,7 @@ async def run_mass(
     if (
         state is None
         or not exposed(entity_id)
-        or str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+        or media_missing(state)
     ):
         return _fail("mass_target_unavailable")
     if name == "MassFavorite":
@@ -349,8 +356,7 @@ async def run_mass(
                 source_state is None
                 or source_player == entity_id
                 or not exposed(source_player)
-                or str(getattr(source_state, "state", "")).lower()
-                in {"unavailable", "unknown"}
+                or media_missing(source_state)
             ):
                 return _fail("transfer_source_unavailable")
             await hass.services.async_call("music_assistant", "transfer_queue", data, blocking=True, target={"entity_id": entity_id})
@@ -390,6 +396,127 @@ def clean_service_data(slots: dict[str, Any], names: list[str]) -> dict[str, Any
     return data
 
 
+def media_missing(state: Any) -> bool:
+    return str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+
+
+def light_turn_on(slots: dict[str, Any]) -> dict[str, Any]:
+    data: dict[str, Any] = {}
+    if (bri := slots.get("brightness", {}).get("value")) is not None:
+        try:
+            data["brightness_pct"] = max(0, min(100, int(bri)))
+        except (TypeError, ValueError):
+            pass
+    step = str(slots.get("brightness_step", {}).get("value") or "")
+    if step in {"up", "down"}:
+        data["brightness_step_pct"] = 15 if step == "up" else -15
+    color = str(slots.get("color", {}).get("value") or "")
+    key = color.casefold().replace(" ", "").replace("ß", "ss")
+    if key in {"warmwhite", "warmweiss"}:
+        data["color_temp_kelvin"] = 2700
+    elif color:
+        data["color_name"] = color
+    return data
+
+
+def climate_set_data(slots: dict[str, Any], state: Any) -> dict[str, Any] | None:
+    try:
+        data = {"temperature": float(slots.get("temperature", {}).get("value"))}
+    except (TypeError, ValueError):
+        return None
+    attrs = getattr(state, "attributes", None) or {}
+    mode = str((attrs.get("hvac_mode") if isinstance(attrs, dict) else None) or getattr(state, "state", "") or "")
+    if mode.casefold() in {"off", "idle", "frost"}:
+        data["hvac_mode"] = "heat"
+    return data
+
+
+async def climate_set(
+    hass: HomeAssistant,
+    slots: dict[str, Any],
+    pack: str,
+    item: dict,
+    exposed: Callable[[str], bool],
+) -> IntentStepResult:
+    area_key = str(slots.get("area", {}).get("value") or "")
+    states = [state for state in climate_states_in_area(hass, area_key) if exposed(state.entity_id)]
+    if not states:
+        return _fail("climate_unavailable")
+    last = _fail("climate_unavailable")
+    for state in states:
+        last = await run_entity(hass, "HassClimateSetTemperature", state.entity_id, slots, pack, item, exposed)
+        if last.ok:
+            return last
+    return last
+
+
+async def start_idle_music(
+    hass: HomeAssistant,
+    entity_id: str,
+    pack: str,
+    item: dict,
+    exposed: Callable[[str], bool],
+) -> IntentStepResult | None:
+    state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
+    if state is None or not exposed(entity_id) or media_missing(state):
+        return None
+    if str(getattr(state, "state", "")).lower() not in {"idle", "off", "on", "standby"}:
+        return None
+    if music_assistant_player(hass, entity_id):
+        query = "Musik" if pack == "de" or pack.startswith("de-") else "music"
+        return await run_mass(
+            hass,
+            "MassPlayMedia",
+            {"entity_id": {"value": entity_id}, "media_id": {"value": query}},
+            pack,
+            {**item, "name": "MassPlayMedia", "slots": [*(item.get("slots") or []), {"name": "media_id", "value": query}]},
+            exposed,
+        )
+    device_id = alexa_device_id(hass, entity_id)
+    if not device_id:
+        return None
+    command = "spiel Musik" if pack == "de" or pack.startswith("de-") else "play music"
+    try:
+        await hass.services.async_call(
+            "alexa_devices",
+            "send_text_command",
+            {"device_id": device_id, "text_command": command},
+            blocking=True,
+        )
+    except Exception as err:  # noqa: BLE001 — Alexa is a service boundary
+        _LOGGER.debug("Alexa-Wiedergabe für %s fehlgeschlagen: %s", entity_id, err)
+        return _fail(str(err) or "alexa_play_failed")
+    spoken = {**item, "name": "HassMediaSearchAndPlay", "slots": [*(item.get("slots") or []), {"name": "name", "value": state.name}]}
+    return _ok(from_handled(None, pack, spoken))
+
+
+def tv_request(text: str) -> bool:
+    folded = f" {(text or '').casefold()} "
+    return "fernseher" in folded or "television" in folded or " tv " in folded or folded.startswith(" tv")
+
+
+def tv_named(entity_id: str, state: Any) -> bool:
+    attrs = getattr(state, "attributes", None) or {} if state is not None else {}
+    name = str(attrs.get("friendly_name") or "") if isinstance(attrs, dict) else ""
+    name = name or str(getattr(state, "name", "") or "")
+    blob = f"{entity_id} {name}".casefold()
+    return "tv" in blob or "fernseher" in blob or "television" in blob
+
+
+def registry_entry(hass: HomeAssistant, entity_id: str) -> Any:
+    try:
+        return entity_registry.async_get(hass).async_get(entity_id)
+    except Exception:  # noqa: BLE001 — registry is a system boundary
+        return None
+
+
+def alexa_device_id(hass: HomeAssistant, entity_id: str) -> str:
+    entry = registry_entry(hass, entity_id)
+    if entry is None or getattr(entry, "platform", None) != "alexa_devices":
+        return ""
+    return str(getattr(entry, "device_id", "") or "")
+
+
 def music_assistant_player(hass: HomeAssistant, entity_id: str) -> bool:
     if not entity_id.startswith("media_player."):
         return False
@@ -399,10 +526,7 @@ def music_assistant_player(hass: HomeAssistant, entity_id: str) -> bool:
         attrs.get("mass_player_type") or "music assistant" in str(attrs.get("source") or "").lower()
     ):
         return True
-    try:
-        entry = entity_registry.async_get(hass).async_get(entity_id)
-    except Exception:  # noqa: BLE001 — registry is a system boundary
-        return False
+    entry = registry_entry(hass, entity_id)
     return bool(entry is not None and getattr(entry, "platform", None) == "music_assistant")
 
 

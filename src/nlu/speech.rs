@@ -7,7 +7,7 @@ pub(super) fn apply_rule_speech(draft: &mut Draft, context: &ParseContext<'_>, r
     let Some(rule) = rule else {
         return;
     };
-    let language = context.catalog.langs.first().map(|lang| lang.code()).unwrap_or("de");
+    let language = context.catalog.langs.first().map(|lang| lang.code()).unwrap_or("en");
     let Some(template) = pick_speech(
         context.speech_bank,
         &rule.id,

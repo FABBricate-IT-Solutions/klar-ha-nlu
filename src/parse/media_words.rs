@@ -68,7 +68,7 @@ fn media_type_word(word: &str) -> Option<&'static str> {
 }
 
 pub(super) fn has_volume_word(tokens: &[String]) -> bool {
-    tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke")) || media_context(tokens)
+    tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke" | "leiser" | "quieter"))
 }
 
 pub(super) fn queue_status(tokens: &[String]) -> bool {
@@ -149,6 +149,11 @@ pub(super) fn area_word(word: &str, area_id: &str, home: &HomeGraph) -> bool {
 pub(super) fn entity_word(word: &str, entity: &EntityRec) -> bool {
     let suffix = entity.entity_id.rsplit('.').next().unwrap_or(&entity.entity_id);
     label_has_word(&entity.name, word) || label_has_word(suffix, word) || entity.aliases.iter().any(|alias| label_has_word(alias, word))
+}
+
+pub(crate) fn is_media_move_or_play(tokens: &[String]) -> bool {
+    catalog().any(tokens, catalog().media_nouns())
+        && tokens.iter().any(|token| matches!(token.as_str(), "verschiebe" | "move" | "transfer" | "spiel" | "spiele" | "play" | "queue"))
 }
 
 fn label_has_word(label: &str, word: &str) -> bool {

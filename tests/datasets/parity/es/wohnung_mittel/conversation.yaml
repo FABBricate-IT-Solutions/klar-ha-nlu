@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - enciende calefaccion salon
+  - '21'
+conversation/climate::heat_setpoint:
+- pon calefaccion salon 21
+conversation/climate::temperature_query:
+- que calefaccion salon
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - apaga luz dormitorio
+  - enciende luz salon
+  - y cocina tambien
+conversation/followup::followup_same_action_other_room:
+- - enciende luz salon
+  - y cocina tambien
+conversation/house::clock_calendar_weather:
+- que hora
+- que calendario
+- que calefaccion
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- enciende alloff
+conversation/lights::ambiguous_light:
+- enciende luz
+conversation/lights::brightness_percent:
+- pon luz salon 30 porciento
+conversation/lights::color_red:
+- - enciende luz salon
+  - rojo
+conversation/lights::dim_then_level:
+- - masoscuro luz salon
+  - medio
+conversation/lights::relative_dim:
+- - enciende luz salon
+  - masoscuro
+conversation/lights::warm_white:
+- - enciende luz salon
+  - blancocalido
+conversation/lights::which_lights_on:
+- - enciende luz salon
+  - enciende luz cocina
+  - que luz
+conversation/media::music_artist_then_now_playing:
+- - reproduce queen cocina
+  - que musica
+conversation/media::music_play_in_room:
+- reproduce musica cocina
+conversation/media::next_and_pause:
+- - reproduce musica cocina
+  - next
+  - pausa
+conversation/media::tv_not_light:
+- enciende tele salon
+conversation/media::volume_down:
+- masbajo musica

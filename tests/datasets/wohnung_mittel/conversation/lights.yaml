@@ -1,0 +1,167 @@
+- name: brightness_percent
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 30}
+  sentences:
+    - Wohnzimmer Licht auf 30 Prozent
+    - Stell das Licht im Wohnzimmer auf 30 Prozent
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 30}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_percent_100
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - Wohnzimmerlicht auf 100%
+    - Wohnzimmer Licht auf 100 Prozent
+    - Licht im Wohnzimmer auf 100 Prozent
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_percent_50
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 50}
+  sentences:
+    - Wohnzimmerlicht auf 50%
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 50}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_wohnzimmer_hell
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - Wohnzimmer hell
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - r2d2
+
+- name: brightness_volle_helligkeit
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - - Licht im Wohnzimmer an
+      - volle Helligkeit
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+
+- name: relative_dim
+  setup:
+    - {entity_id: light.wohnzimmer, state: 'on', brightness: 80}
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness_step: down}
+  sentences:
+    - - Licht im Wohnzimmer an
+      - ein bisschen dunkler
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness_step: down}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - ist an.
+
+- name: dim_then_level
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 50}
+  sentences:
+    - - Dimme das Licht im Wohnzimmer
+      - mittelhell
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 50}
+    reject: false
+    clarify: false
+
+- name: color_red
+  sentences:
+    - - Licht im Wohnzimmer an
+      - auf Rot
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, color: red}
+    reject: false
+    clarify: false
+  speech_has:
+    - rot
+  speech_forbids:
+    - prozent
+    - '?'
+
+- name: warm_white
+  world_expect:
+    - {entity_id: light.wohnzimmer, color: warmwhite}
+  sentences:
+    - - Licht im Wohnzimmer an
+      - wieder warmweiß
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, color: warmwhite}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - rot
+    - orange
+    - prozent
+
+- name: which_lights_on
+  sentences:
+    - - Licht im Wohnzimmer an
+      - Licht in der Küche an
+      - Welche Lichter sind an?
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {area: wohnzimmer, domain: light}
+      - intent: HassGetState
+        slots: {area: kuche, domain: light}
+    reject: false
+    clarify: false
+  speech_has:
+    - wohnzimmer
+    - küche
+
+- name: ambiguous_light
+  sentences:
+    - Mach das Licht an.
+  nlu_expect:
+    intents: []
+    clarify: true
+    reject: false
+  speech_has:
+    - '?'

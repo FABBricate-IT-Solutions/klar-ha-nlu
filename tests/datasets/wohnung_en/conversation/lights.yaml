@@ -1,0 +1,136 @@
+- name: brightness_percent
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 30}
+  sentences:
+    - Set the living room lights to 30 percent
+    - Living room lights to 30 percent
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 30}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_percent_100
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 100}
+  sentences:
+    - living room lights at 100%
+    - Set the living room lights to 100 percent
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 100}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: brightness_percent_50
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 50}
+  sentences:
+    - living room lights at 50%
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 50}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - nicht geklappt
+    - what seems to be the issue
+
+- name: relative_dim
+  setup:
+    - {entity_id: light.wohnzimmer, state: 'on', brightness: 80}
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness_step: down}
+  sentences:
+    - - Turn on the living room lights
+      - a bit dimmer
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness_step: down}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - is on.
+
+- name: dim_then_level
+  world_expect:
+    - {entity_id: light.wohnzimmer, brightness: 50}
+  sentences:
+    - - Dim the living room lights
+      - medium
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, brightness: 50}
+    reject: false
+    clarify: false
+
+- name: color_red
+  sentences:
+    - - Turn on the living room lights
+      - to red
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, color: red}
+    reject: false
+    clarify: false
+  speech_has:
+    - red
+  speech_forbids:
+    - percent
+    - '?'
+
+- name: warm_white
+  world_expect:
+    - {entity_id: light.wohnzimmer, color: warmwhite}
+  sentences:
+    - - Turn on the living room lights
+      - warm white
+  nlu_expect:
+    intents:
+      - intent: HassLightSet
+        slots: {entity_id: light.wohnzimmer, color: warmwhite}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - red
+    - orange
+    - percent
+
+- name: which_lights_on
+  sentences:
+    - - Turn on the living room lights
+      - Turn on the kitchen lights
+      - Which lights are on?
+  nlu_expect:
+    intents:
+      - intent: HassGetState
+        slots: {area: wohnzimmer, domain: light}
+      - intent: HassGetState
+        slots: {area: kuche, domain: light}
+    reject: false
+    clarify: false
+  speech_has:
+    - wohnzimmer
+    - kitchen
+
+- name: ambiguous_light
+  sentences:
+    - Turn on the light.
+  nlu_expect:
+    intents: []
+    clarify: true
+    reject: false
+  speech_has:
+    - '?'

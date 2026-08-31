@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - բացիր կողպեք garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- միացրու հեռուստացույց yntaniq
+- միացրու tv yntaniq
 devices/media_player_family_tv::media_player_family_tv_pause:
 - դադար tv yntaniq
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- անջատիր հեռուստացույց yntaniq
+- անջատիր tv yntaniq
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- միացրու հեռուստացույց yntaniq
+- միացրու tv yntaniq
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- միացրու հեռուստացույց yntaniq
+- միացրու tv yntaniq
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- միացրու հեռուստացույց yntaniq
+- միացրու tv yntaniq
 devices/media_player_living_tv::media_player_living_tv_mute:
-- միացրու հեռուստացույց հյուրասենյակ
+- միացրու tv հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_pause:
 - դադար tv հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- անջատիր հեռուստացույց հյուրասենյակ
+- անջատիր tv հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- միացրու հեռուստացույց հյուրասենյակ
+- միացրու tv հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- միացրու հեռուստացույց հյուրասենյակ
+- միացրու tv հյուրասենյակ
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- միացրու հեռուստացույց հյուրասենյակ
+- միացրու tv հյուրասենյակ
 devices/scenes::dinner_time:
 - դիր լույս yntaniqess 90 yev միացրու stalat խոհանոց yev դիր kghzi խոհանոց 80
 devices/scenes::good_morning:
@@ -247,8 +247,8 @@ devices/scenes::kids_bedtime:
 - անջատիր stalat qnakaran2 yev անջատիր stalat qnakaran3 yev անջատիր stalat qnakaran4
   yev դիր լույս mutqgang 15
 devices/scenes::movie_night:
-- անջատիր stalat հյուրասենյակ yev դիր luys հյուրասենյակ 20 yev միացրու հեռուստացույց
-  հյուրասենյակ yev փակիր վարագույր հյուրասենյակ
+- անջատիր stalat հյուրասենյակ yev դիր luys հյուրասենյակ 20 yev միացրու tv հյուրասենյակ
+  yev փակիր վարագույր հյուրասենյակ
 devices/scripts::good_night:
 - անջատիր stalat հյուրասենյակ yev անջատիր luys հյուրասենյակ yev անջատիր լույս yntaniqess
   yev անջատիր stalat խոհանոց yev անջատիր kghzi խոհանոց yev անջատիր stalat yntaniq

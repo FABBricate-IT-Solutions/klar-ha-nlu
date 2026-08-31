@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - liga ar sala
+  - '21'
+conversation/climate::heat_setpoint:
+- poe ar sala 21
+conversation/climate::temperature_query:
+- que ar sala
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - desliga luz quarto
+  - liga luz sala
+  - e cozinha tambem
+conversation/followup::followup_same_action_other_room:
+- - liga luz sala
+  - e cozinha tambem
+conversation/house::clock_calendar_weather:
+- que hour
+- que calendario
+- que ar
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- liga alloff
+conversation/lights::ambiguous_light:
+- liga luz
+conversation/lights::brightness_percent:
+- poe luz sala 30 porcento
+conversation/lights::color_red:
+- - liga luz sala
+  - vermelho
+conversation/lights::dim_then_level:
+- - maisescuro luz sala
+  - medio
+conversation/lights::relative_dim:
+- - liga luz sala
+  - maisescuro
+conversation/lights::warm_white:
+- - liga luz sala
+  - brancquente
+conversation/lights::which_lights_on:
+- - liga luz sala
+  - liga luz cozinha
+  - que luz
+conversation/media::music_artist_then_now_playing:
+- - toca queen cozinha
+  - que musica
+conversation/media::music_play_in_room:
+- toca musica cozinha
+conversation/media::next_and_pause:
+- - toca musica cozinha
+  - next
+  - pause
+conversation/media::tv_not_light:
+- liga tv sala
+conversation/media::volume_down:
+- maisbaixo musica

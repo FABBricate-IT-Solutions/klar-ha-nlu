@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - kapcsold futes nappali
+  - '21'
+conversation/climate::heat_setpoint:
+- allitsd futes nappali 21
+conversation/climate::temperature_query:
+- mi futes nappali
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - oltsd villany haloszoba
+  - kapcsold villany nappali
+  - es konyha is
+conversation/followup::followup_same_action_other_room:
+- - kapcsold villany nappali
+  - es konyha is
+conversation/house::clock_calendar_weather:
+- mi hour
+- mi naptar
+- mi futes
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- kapcsold alloff
+conversation/lights::ambiguous_light:
+- kapcsold villany
+conversation/lights::brightness_percent:
+- allitsd villany nappali 30 szazalek
+conversation/lights::color_red:
+- - kapcsold villany nappali
+  - red
+conversation/lights::dim_then_level:
+- - sotetebb villany nappali
+  - kozepes
+conversation/lights::relative_dim:
+- - kapcsold villany nappali
+  - sotetebb
+conversation/lights::warm_white:
+- - kapcsold villany nappali
+  - melegfeher
+conversation/lights::which_lights_on:
+- - kapcsold villany nappali
+  - kapcsold villany konyha
+  - mi villany
+conversation/media::music_artist_then_now_playing:
+- - jatszd queen konyha
+  - mi zene
+conversation/media::music_play_in_room:
+- jatszd zene konyha
+conversation/media::next_and_pause:
+- - jatszd zene konyha
+  - next
+  - pause
+conversation/media::tv_not_light:
+- kapcsold tv nappali
+conversation/media::volume_down:
+- halkabban zene

@@ -79,11 +79,14 @@ def target_words(lex: dict, cond: dict, suite: str) -> str:
             return script_label(lex, ident)
         if domain == "climate" and ("ac" in ident or "klima" in f"{ident} {info['name']}".lower()):
             where = room(lex, str(area or info["area"]))
-            return f"ac {where}".strip()
+            # "ac" is the open verb in Turkish; use the locale cool noun there.
+            cool = "klima" if lex.get("open") == "ac" else "ac"
+            return f"{cool} {where}".strip()
         if domain == "binary_sensor":
             return f"sensor {lex['door']} {room(lex, str(area or info['area']))}".strip()
-        if domain == "media_player" and cond.get("state") == "paused":
-            return f"tv {room(lex, str(area or info['area']))}".strip()
+        if domain == "media_player":
+            where = room(lex, str(area or info["area"]))
+            return f"{lex.get('tv') or lex['media']} {where}".strip()
         if domain in {"climate", "fan", "cover"} and (area or info["area"]):
             return f"{domain_noun(lex, domain)} {room(lex, str(area or info['area']))}"
         if "alle" in ident:
@@ -110,6 +113,13 @@ def target_words(lex: dict, cond: dict, suite: str) -> str:
             return script_label(lex, ident)
         if domain == "switch":
             return switch_label(lex, ident, info)
+        if domain == "lock":
+            where = str(area or info["area"])
+            # Wohnungstür sits in flur; {entry}gang is a hallway leftover and collides with scenes.
+            if where in {"flur", "hallway"}:
+                where = "entryway"
+            noun = domain_noun(lex, domain)
+            return f"{noun} {room(lex, where)}".strip() if where else noun
         if info["area"]:
             return f"{domain_noun(lex, domain)} {room(lex, info['area'])}"
         return domain_noun(lex, domain)

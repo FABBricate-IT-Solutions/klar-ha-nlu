@@ -1,0 +1,39 @@
+# Live-review follow-ups. Same IDs as wohnung_en/conversation.
+- name: followup_same_action_other_room
+  world_expect:
+    - {entity_id: light.kuche_kuche, state: 'on'}
+  sentences:
+    - - Licht im Wohnzimmer an
+      - und die Küche auch
+    - - Mach das Licht im Wohnzimmer an
+      - und die Küche auch
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kuche_kuche}
+    reject: false
+    clarify: false
+  speech_has:
+    - küche
+  speech_forbids:
+    - aus
+
+- name: followup_not_poisoned_by_prior_off
+  world_expect:
+    - {entity_id: light.kuche_kuche, state: 'on'}
+  sentences:
+    - - Licht im Schlafzimmer aus
+      - Mach das Licht im Wohnzimmer an
+      - und die Küche auch
+    - - Alle Lichter aus
+      - und die Küche auch
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kuche_kuche}
+    reject: false
+    clarify: false
+  speech_has:
+    - küche
+  speech_forbids:
+    - aus

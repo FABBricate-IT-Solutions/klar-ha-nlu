@@ -1,12 +1,14 @@
 use crate::home::expose::assist_visible;
+use crate::home::roles::{looks_like_tv, tv_asked};
 use crate::lang::catalog;
 use crate::parse::action::Action;
 use crate::parse::clause::{finish_intents, Clause};
-use crate::parse::compound::{area_slots, query_keeps_entity, wants_light_clarify};
+use crate::parse::compound::{light_aim, query_keeps_entity, wants_light_clarify, LightAim};
 use crate::parse::infer::looks_like_named_device;
 use crate::parse::resolve::{query_grounded, unique_in_area};
 use crate::parse::slots::{fill_intent, intent_from_action, pick_singular_lamp, ClauseOut};
 use crate::parse::split::wants_group_clarify;
+use crate::types::HomeGraph;
 
 pub(crate) fn area_command(ctx: &Clause) -> Option<ClauseOut> {
     if ctx.resolved.areas.is_empty() || looks_like_named_device(ctx.tokens) || !ctx.resolved.entities.is_empty() {
@@ -85,8 +87,15 @@ pub(crate) fn query_area(ctx: &Clause) -> Option<ClauseOut> {
     {
         return None;
     }
-    let intents =
-        ctx.resolved.areas.iter().map(|area| fill_intent(ctx.action, ctx.tokens, ctx.number, None, Some(area), ctx.domain)).collect();
+    let intents = ctx
+        .resolved
+        .areas
+        .iter()
+        .map(|area| {
+            let id = ctx.domain.filter(|domain| *domain == "climate").and_then(|domain| unique_in_area(ctx.home, area, domain, ctx.tokens));
+            fill_intent(ctx.action, ctx.tokens, ctx.number, id.as_deref(), Some(area), ctx.domain)
+        })
+        .collect();
     Some(finish_intents(intents, ctx))
 }
 
@@ -130,10 +139,11 @@ pub(crate) fn grounded_entities(ctx: &Clause) -> Option<ClauseOut> {
 }
 
 pub(crate) fn grounded_ambiguous(ctx: &Clause) -> Option<ClauseOut> {
-    (!ctx.resolved.ambiguous.is_empty()).then(|| {
-        let names = ctx.resolved.ambiguous.iter().map(|e| e.entity_id.clone()).collect();
-        ClauseOut::Clarify(names, intent_from_action(ctx.action, ctx.tokens))
-    })
+    if ctx.resolved.ambiguous.is_empty() || ctx.resolved.areas.len() > 1 {
+        return None;
+    }
+    let names = ctx.resolved.ambiguous.iter().map(|e| e.entity_id.clone()).collect();
+    Some(ClauseOut::Clarify(names, intent_from_action(ctx.action, ctx.tokens)))
 }
 
 pub(crate) fn grounded_areas(ctx: &Clause) -> Option<ClauseOut> {
@@ -142,4 +152,27 @@ pub(crate) fn grounded_areas(ctx: &Clause) -> Option<ClauseOut> {
             ctx.resolved.areas.iter().map(|area| fill_intent(ctx.action, ctx.tokens, ctx.number, None, Some(area), ctx.domain)).collect();
         finish_intents(intents, ctx)
     })
+}
+
+pub(crate) fn area_slots(
+    action: Action,
+    area: &str,
+    domain: Option<&str>,
+    home: &HomeGraph,
+    tokens: &[String],
+) -> (Option<String>, Option<String>, Option<String>) {
+    if tv_asked(tokens) {
+        let id = unique_in_area(home, area, "media_player", tokens)
+            .filter(|entity_id| home.entities.iter().any(|entity| entity.entity_id == *entity_id && looks_like_tv(entity)));
+        return (id, Some(area.to_string()), Some("media_player".into()));
+    }
+    if matches!(action, Action::On | Action::Off | Action::Toggle | Action::SetLight) && domain.is_none_or(|d| d == "light") {
+        return match light_aim(home, area, tokens) {
+            LightAim::RoomGroup(id) | LightAim::Unique(id) => (Some(id), None, None),
+            LightAim::OccupiedId | LightAim::AreaLights | LightAim::Clarify => (None, Some(area.to_string()), Some("light".into())),
+        };
+    }
+    let id =
+        domain.filter(|d| matches!(*d, "climate" | "fan" | "media_player" | "lock")).and_then(|d| unique_in_area(home, area, d, tokens));
+    (id, Some(area.to_string()), domain.map(str::to_string))
 }

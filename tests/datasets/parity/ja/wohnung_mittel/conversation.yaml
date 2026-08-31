@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - つけて エアコン リビング
+  - '21'
+conversation/climate::heat_setpoint:
+- セット エアコン リビング 21
+conversation/climate::temperature_query:
+- 何 エアコン リビング
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - 消して 電気 shinshitsu
+  - つけて 電気 リビング
+  - と キッチン も
+conversation/followup::followup_same_action_other_room:
+- - つけて 電気 リビング
+  - と キッチン も
+conversation/house::clock_calendar_weather:
+- 何 hour
+- 何 カレンダー
+- 何 エアコン
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- つけて alloff
+conversation/lights::ambiguous_light:
+- つけて 電気
+conversation/lights::brightness_percent:
+- セット 電気 リビング 30 パーセント
+conversation/lights::color_red:
+- - つけて 電気 リビング
+  - 赤
+conversation/lights::dim_then_level:
+- - 暗く 電気 リビング
+  - 中くらい
+conversation/lights::relative_dim:
+- - つけて 電気 リビング
+  - 暗く
+conversation/lights::warm_white:
+- - つけて 電気 リビング
+  - 暖色
+conversation/lights::which_lights_on:
+- - つけて 電気 リビング
+  - つけて 電気 キッチン
+  - 何 電気
+conversation/media::music_artist_then_now_playing:
+- - 再生 queen キッチン
+  - 何 ongaku
+conversation/media::music_play_in_room:
+- 再生 ongaku キッチン
+conversation/media::next_and_pause:
+- - 再生 ongaku キッチン
+  - next
+  - 一時停止
+conversation/media::tv_not_light:
+- つけて terebi リビング
+conversation/media::volume_down:
+- 小さく ongaku

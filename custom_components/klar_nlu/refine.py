@@ -28,9 +28,11 @@ except ImportError:  # stdlib tests load this module without a package
         return not controls_home
 
 try:
+    from .clock_speech import strip_clock_seconds
     from .refine_voices import _PERSONALITY, _RULES, voice_block
     from .speech import style
 except ImportError:  # stdlib tests load this module without a package
+    from clock_speech import strip_clock_seconds
     from refine_voices import _PERSONALITY, _RULES, voice_block
     from speech import style
 
@@ -68,7 +70,7 @@ def isolated_conversation_id() -> str:
 
 def skip_rewrite(decision: str) -> bool:
     """LLM fallback already applied the personality prompt — a second pass rewrites after TTS started."""
-    return decision in {"chat", "llm", "chime"}
+    return decision in {"chat", "llm", "chime", "error"}
 
 
 def nested_llm_session(agent_id: str, language: str | None, prompt: str | None) -> dict[str, Any]:
@@ -98,6 +100,9 @@ _ABBREV_TAIL = re.compile(
 )
 
 
+_END = re.compile(r"(?:(?:\.\.\.|…|[.!?。！？])[\"'»”’]*)$")
+
+
 def speech_chunks(speech: str) -> list[str]:
     text = speech.strip()
     if not text:
@@ -113,6 +118,44 @@ def speech_chunks(speech: str) -> list[str]:
         elif chunk.strip():
             merged.append(chunk)
     return merged or [text]
+
+
+def sentence_finished(chunk: str) -> bool:
+    text = chunk.rstrip()
+    return bool(text) and bool(_END.search(text)) and not _ABBREV_TAIL.search(text)
+
+
+def pop_complete_sentences(buf: str) -> tuple[list[str], str]:
+    chunks = speech_chunks(buf) if buf.strip() else []
+    if not chunks:
+        return [], buf
+    complete: list[str] = []
+    rest: list[str] = []
+    for index, chunk in enumerate(chunks):
+        last = index == len(chunks) - 1
+        if rest or (last and not sentence_finished(chunk)):
+            rest.append(chunk)
+        else:
+            complete.append(chunk)
+    return complete, "".join(rest)
+
+
+def speech_from_stream_delta(chunk: Any) -> str:
+    if isinstance(chunk, dict):
+        choices = chunk.get("choices") or []
+        if not choices:
+            return ""
+        delta = choices[0].get("delta") if isinstance(choices[0], dict) else None
+        if isinstance(delta, dict):
+            return str(delta.get("content") or "")
+        return ""
+    choices = getattr(chunk, "choices", None) or []
+    if not choices:
+        return ""
+    delta = getattr(choices[0], "delta", None)
+    if isinstance(delta, dict):
+        return str(delta.get("content") or "")
+    return str(getattr(delta, "content", None) or "")
 
 
 async def iter_speech_deltas(speech: str) -> AsyncIterator[dict[str, str]]:
@@ -170,6 +213,9 @@ async def async_finish_speech(
     return refined or style(speech, personality, pack)
 
 
+_LIGHT_CLAIM = ("licht", "light", "lampe", "lamp")
+_FAIL_CLAIM = ("nicht geklappt", "did not work", "nicht erreichbar", "not available")
+_DONE_CLAIM = ("ist an", "is on", "läuft", "playing", "eingeschaltet")
 _STAMP_BAN = (
     "zur kenntnis genommen",
     "notiert",
@@ -240,7 +286,7 @@ def clean_refined(text: str) -> str:
     speech = (text or "").strip().strip("\"'`“”«»")
     if "\n" in speech:
         speech = " ".join(line.strip() for line in speech.splitlines() if line.strip())
-    return speech.strip()
+    return strip_clock_seconds(speech.strip())
 
 
 def accept_refined(original: str, refined: str) -> str | None:
@@ -260,7 +306,12 @@ def accept_refined(original: str, refined: str) -> str | None:
     if len(speech) > max(len(original) * 6, 280):
         return None
     folded = speech.casefold()
+    original_fold = original.casefold()
     if any(ban in folded for ban in _STAMP_BAN):
+        return None
+    if any(word in folded for word in _LIGHT_CLAIM) and not any(word in original_fold for word in _LIGHT_CLAIM):
+        return None
+    if any(word in original_fold for word in _FAIL_CLAIM) and any(word in folded for word in _DONE_CLAIM):
         return None
     return speech
 
@@ -313,12 +364,24 @@ def llm_client_and_model(hass: HomeAssistant, agent_id: str) -> tuple[Any, str] 
     if agent is None:
         return None
     entry = getattr(agent, "entry", None) or getattr(agent, "_entry", None)
-    client = _openai_client(getattr(entry, "runtime_data", None))
-    if client is None:
-        client = _openai_client(getattr(agent, "client", None) or getattr(agent, "_client", None))
+    client = None
+    for raw in (
+        getattr(entry, "runtime_data", None),
+        getattr(agent, "client", None),
+        getattr(agent, "_client", None),
+        getattr(agent, "openai", None),
+        getattr(getattr(agent, "coordinator", None), "client", None),
+    ):
+        client = _openai_client(raw)
+        if client is not None:
+            break
     if client is None:
         return None
-    model = _first_model(getattr(agent, "subentry", None), getattr(entry, "options", None), getattr(entry, "data", None))
+    model = _first_model(
+        getattr(agent, "subentry", None),
+        getattr(entry, "options", None),
+        getattr(entry, "data", None),
+    )
     if not model:
         return None
     return client, model

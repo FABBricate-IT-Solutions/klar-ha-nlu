@@ -145,21 +145,21 @@ query_area/kitchen_switchs::kitchen_switchs_list_off_switchs:
 query_area/kitchen_switchs::kitchen_switchs_list_on_switchs:
 - ne cihaz mutfak
 query_area/laundry_lights::laundry_lights_get_brightness:
-- ne isik camasir
+- ne isik camasirhane
 query_area/laundry_lights::laundry_lights_get_state:
-- ne isik camasir
+- ne isik camasirhane
 query_area/laundry_lights::laundry_lights_list_off_lights:
-- ne isik camasir
+- ne isik camasirhane
 query_area/laundry_lights::laundry_lights_list_on_lights:
-- ne isik camasir
+- ne isik camasirhane
 query_area/laundry_switchs::laundry_switchs_get_state:
-- ne cihaz camasir
+- ne cihaz camasirhane
 query_area/laundry_switchs::laundry_switchs_list_off_switchs:
-- ne cihaz camasir
+- ne cihaz camasirhane
 query_area/laundry_switchs::laundry_switchs_list_on_switchs:
-- ne cihaz camasir
+- ne cihaz camasirhane
 query_area/living_climates::living_climates_get_temperature:
-- ne klima salon
+- ne sicaklik salon
 query_area/living_covers::living_covers_get_position:
 - ne perde salon
 query_area/living_covers::living_covers_get_state:
@@ -213,7 +213,7 @@ query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_li
 query_area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_list_open_covers:
 - ne perde yatakodasimaster then ne perde salon
 query_area/master_bedroom_climates::master_bedroom_climates_get_temperature:
-- ne klima yatakodasimaster
+- ne sicaklik yatakodasimaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_position:
 - ne perde yatakodasimaster
 query_area/master_bedroom_covers::master_bedroom_covers_get_state:

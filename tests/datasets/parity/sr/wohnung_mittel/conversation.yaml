@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - укључи грејање дневна
+  - '21'
+conversation/climate::heat_setpoint:
+- стави грејање дневна 21
+conversation/climate::temperature_query:
+- шта грејање дневна
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - искључи светло спавача
+  - укључи светло дневна
+  - и кухиња такође
+conversation/followup::followup_same_action_other_room:
+- - укључи светло дневна
+  - и кухиња такође
+conversation/house::clock_calendar_weather:
+- шта hour
+- шта календар
+- шта грејање
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- укључи alloff
+conversation/lights::ambiguous_light:
+- укључи светло
+conversation/lights::brightness_percent:
+- стави светло дневна 30 проценат
+conversation/lights::color_red:
+- - укључи светло дневна
+  - red
+conversation/lights::dim_then_level:
+- - тамније светло дневна
+  - средње
+conversation/lights::relative_dim:
+- - укључи светло дневна
+  - тамније
+conversation/lights::warm_white:
+- - укључи светло дневна
+  - топлобело
+conversation/lights::which_lights_on:
+- - укључи светло дневна
+  - укључи светло кухиња
+  - шта светло
+conversation/media::music_artist_then_now_playing:
+- - пусти queen кухиња
+  - шта музика
+conversation/media::music_play_in_room:
+- пусти музика кухиња
+conversation/media::next_and_pause:
+- - пусти музика кухиња
+  - next
+  - pause
+conversation/media::tv_not_light:
+- укључи тв дневна
+conversation/media::volume_down:
+- тише музика

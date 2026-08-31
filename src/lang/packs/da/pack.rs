@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scene"],
         switch_plural: &[],
         device_side: &["dryer", "gardin", "laas", "lys", "scene", "tv", "vaskemaskine", "ventilator"],
-        named_device: &["kugle", "opvask", "tv", "vaskemaskine"],
+        named_device: &["kugle", "opvask", "pc", "tv", "vaskemaskine"],
     },
     fixtures: Fixtures {
         island: &["oe"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["sluk", "taend"],
         command_hedges: &[],
-        skip_light: &["apparat", "dryer", "opvask", "tv", "vaskemaskine", "ventilator"],
+        skip_light: &["apparat", "dryer", "opvask", "pc", "tv", "vaskemaskine", "ventilator"],
         laundry_area: &["vaskerum"],
         laundry_machines: &["dryer", "vaskemaskine"],
         kitchen: &["kokken"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventilator",
         ],
         room_level: &["lys"],
-        extra_device_nouns: &["apparat", "dryer", "kugle", "opvask", "tv", "vaskemaskine"],
+        extra_device_nouns: &["apparat", "dryer", "kugle", "opvask", "pc", "tv", "vaskemaskine"],
         synonym_pairs: &[
             ("stue", "wohnzimmer"),
             ("kokken", "kuche"),
@@ -206,6 +206,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("sort", "black"),
             ("hvid", "white"),
             ("lilla", "purple"),
+            ("varmhvid", "warmwhite"),
         ],
         numbers: &[
             ("nul", 0),

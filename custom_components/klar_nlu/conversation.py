@@ -3,7 +3,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import aiohttp
 from homeassistant.components import conversation
 from homeassistant.components.conversation import (
     ChatLog,
@@ -42,35 +41,54 @@ from .const import (
     DOMAIN,
     engine_session_id,
     keeps_conversation,
+    parse_session_id,
     resolve_personality,
 )
-from .lang_select import advertise, enabled_packs, resolve_pack, speak_tag
-from .contracts import executable_intents, validate_v2_payload
+from .engine_http import post_parse
+from .lang_select import advertised_languages, default_pack, enabled_packs, resolve_pack, speak_tag
+from .contracts import executable_intents
 from .executor import execute_plan
 from .fallback import (
     agent_has_home_control,
+    append_llm_turn,
     can_use_fallback_agent,
     calendar_prompt,
     calendar_query_only,
     chat_only_prompt,
+    history_prompt,
+    llm_conversation_id,
     news_followup_prompt,
     news_prompt,
     with_personality,
+    yarn_asks_permission,
+    yarn_canned,
+    yarn_nudge,
+    yarn_prompt,
+    yarn_request,
 )
 from .intents import home_intents, registered_intent_names
 from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
+from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
-from .policy_actions import hit_and_payload, render_user_template, skips_llm_fallback
+from .policy_actions import (
+    hit_and_payload,
+    keeps_engine_chat,
+    render_user_template,
+    skips_llm_fallback,
+)
 from .refine import (
     async_finish_speech,
     emit_assistant_speech,
     isolated_conversation_id,
+    llm_client_and_model,
     nested_llm_session,
+    pop_complete_sentences,
     refine_prompt,
     skip_rewrite,
 )
 from .quiet import play_chime, quiet_ack_applies
 from .sensor import remember_turn
+from .speech import finish_clock_speech
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -84,6 +102,14 @@ _DONE = {"de": "Erledigt.", "en": "Done."}
 
 def _cue(table: dict[str, str], pack: str, fallback: str) -> str:
     return table.get(pack) or fallback
+
+
+def _ack_speech(engine_speech: str, pack: str, executed: bool) -> str:
+    if engine_speech.strip():
+        return engine_speech
+    if executed:
+        return _cue(_DONE, pack, "OK")
+    return engine_speech
 
 
 async def async_setup_entry(
@@ -100,9 +126,47 @@ def _speech_from_result(result: ConversationResult) -> str:
     return str(plain.get("speech") or "")
 
 
+def _mark_published(result: ConversationResult | None, published: bool) -> ConversationResult | None:
+    if result is not None:
+        result.klar_published = published
+    return result
+
+
+def _speech_result(pack: str, speech: str, published: bool) -> ConversationResult:
+    response = intent.IntentResponse(language=speak_tag(pack))
+    response.async_set_speech(speech)
+    result = ConversationResult(
+        conversation_id=isolated_conversation_id(),
+        response=response,
+        continue_conversation=True,
+    )
+    return _mark_published(result, published)
+
+
+def _stream_hold(yarn: bool, rag: bool):
+    if not yarn and not rag:
+        return None
+
+    def hold(speech: str) -> bool | None:
+        stripped = speech.lstrip()
+        if parse_tool_reply(stripped) or leaks_klar_tools(speech):
+            return None
+        if rag and (stripped.startswith("KLAR_") or len(stripped) < 8):
+            return False
+        if yarn:
+            if not pop_complete_sentences(speech)[0]:
+                return False
+            if yarn_asks_permission(speech):
+                return None
+        return True
+
+    return hold
+
+
 class KlarConversationEntity(ConversationEntity):
     _attr_name = "Klar NLU"
     _attr_supported_features = conversation.ConversationEntityFeature.CONTROL
+    _attr_supports_streaming = True
 
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None:
         self.hass = hass
@@ -120,9 +184,16 @@ class KlarConversationEntity(ConversationEntity):
             getattr(self.hass.config, "language", None),
         )
 
+    def _request_pack(self, language: str | None) -> str:
+        choice = self._entry.options.get(CONF_LANGUAGES)
+        hass_language = getattr(self.hass.config, "language", None)
+        if language:
+            return resolve_pack(language, self._packs())
+        return default_pack(choice, hass_language)
+
     @property
     def supported_languages(self) -> list[str]:
-        return advertise(self._packs())
+        return advertised_languages()
 
     @property
     def _url(self) -> str:
@@ -183,7 +254,7 @@ class KlarConversationEntity(ConversationEntity):
         user_input: ConversationInput,
         chat_log: ChatLog,
     ) -> ConversationResult:
-        pack = resolve_pack(user_input.language, self._packs())
+        pack = self._request_pack(user_input.language)
         triggered = await self._sentence_triggers(user_input, chat_log, pack)
         if triggered is not None:
             return triggered
@@ -191,10 +262,10 @@ class KlarConversationEntity(ConversationEntity):
             user_input.text, user_input.conversation_id, pack, user_input.device_id, getattr(user_input, "satellite_id", None)
         )
         engine_speech = str(payload.get("speech") or "")
-        speech = engine_speech or _cue(_DONE, pack, "OK")
         decision = payload.get("decision") if isinstance(payload.get("decision"), dict) else {}
         decision_type = str(decision.get("type") or "")
         intents = home_intents(executable_intents(payload), registered_intent_names(self.hass))
+        speech = _ack_speech(engine_speech, pack, decision_type == "execute" and bool(intents))
         clarify = decision_type in {"clarify", "confirm"}
         chat = decision_type == "chat"
         conversation_id = payload.get("conversation_id") or user_input.conversation_id
@@ -208,7 +279,7 @@ class KlarConversationEntity(ConversationEntity):
                     return briefing
             else:
                 return await self._spoken(
-                    user_input, chat_log, pack, engine_speech or _cue(_DONE, pack, "OK"), conversation_id, False
+                    user_input, chat_log, pack, _ack_speech(engine_speech, pack, False), conversation_id, False
                 )
 
         retrieval = payload.get("retrieval") if isinstance(payload.get("retrieval"), dict) else None
@@ -218,8 +289,9 @@ class KlarConversationEntity(ConversationEntity):
             if rendered:
                 speech = rendered
         if hit == "llm" and action and not clarify and not payload.get("unreachable"):
+            prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action)
             fallback = await self._fallback(
-                user_input, chat_log, pack, True, chat_only_prompt(pack, action), retrieval
+                user_input, chat_log, pack, True, prompt, retrieval
             )
             replied = await self._after_fallback(
                 user_input, chat_log, pack, fallback, speech, conversation_id
@@ -228,6 +300,7 @@ class KlarConversationEntity(ConversationEntity):
                 return replied
         if (
             not skips_llm_fallback(hit)
+            and not keeps_engine_chat(hit, chat, engine_speech)
             and not clarify
             and not intents
             and not payload.get("unreachable")
@@ -252,6 +325,8 @@ class KlarConversationEntity(ConversationEntity):
             )
             if executed.get("speech"):
                 speech = str(executed["speech"])
+            if executed.get("outcome") == "error":
+                decision_type = "error"
             if (
                 self._calendar_llm()
                 and calendar_query_only(plan)
@@ -262,15 +337,13 @@ class KlarConversationEntity(ConversationEntity):
                 fallback = await self._fallback(
                     user_input, chat_log, pack, True, calendar_prompt(pack, speech, extra_s)
                 )
-                replied = await self._after_fallback(
-                    user_input, chat_log, pack, fallback, speech, conversation_id
-                )
-                if replied is not None:
-                    return replied
+                llm = _speech_from_result(fallback) if fallback is not None else ""
+                if llm.strip() and "?" not in llm:
+                    speech = llm
             if self._quiet_ack() and quiet_ack_applies(executed, plan):
                 await play_chime(self.hass, user_input)
                 return await self._spoken(
-                    user_input, chat_log, pack, "", conversation_id, True, "chime"
+                    user_input, chat_log, pack, "", conversation_id, False, "chime"
                 )
         return await self._spoken(
             user_input, chat_log, pack, speech, conversation_id, keeps_conversation(decision_type), decision_type
@@ -291,12 +364,16 @@ class KlarConversationEntity(ConversationEntity):
         if tooled is not None:
             return tooled
         llm = _speech_from_result(fallback)
+        if yarn_request(user_input.text) and yarn_asks_permission(llm):
+            llm = yarn_canned(pack, user_input.text)
         if leaks_klar_tools(llm):
-            llm = speech or _cue(_DONE, pack, "OK")
+            llm = speech
             return await self._spoken(user_input, chat_log, pack, llm, conversation_id, False)
+        self._note_llm_turn(user_input, llm)
         return await self._spoken(
             user_input, chat_log, pack, llm, conversation_id,
             bool(getattr(fallback, "continue_conversation", False)), "chat",
+            bool(getattr(fallback, "klar_published", False)),
         )
 
     async def _spoken(
@@ -308,8 +385,11 @@ class KlarConversationEntity(ConversationEntity):
         conversation_id: str | None,
         continue_conversation: bool,
         decision: str = "",
+        published: bool = False,
     ) -> ConversationResult:
         agent_id = self._fallback_agent_id()
+        if decision == "chat":
+            speech = finish_clock_speech(speech, pack)
         if not skip_rewrite(decision):
             speech = await async_finish_speech(
                 self.hass,
@@ -331,9 +411,13 @@ class KlarConversationEntity(ConversationEntity):
             decision,
             self._preferred_area(user_input.device_id, getattr(user_input, "satellite_id", None)),
         )
-        if speech.strip():
+        if speech.strip() and not published:
             await emit_assistant_speech(chat_log, user_input.agent_id, speech)
         response = intent.IntentResponse(language=speak_tag(pack))
+        kinds = getattr(intent, "IntentResponseType", None)
+        query = getattr(kinds, "QUERY_ANSWER", None) if kinds is not None else None
+        if query is not None and decision in {"chat", "llm"}:
+            response.response_type = query
         response.async_set_speech(speech)
         return ConversationResult(
             conversation_id=conversation_id,
@@ -358,10 +442,11 @@ class KlarConversationEntity(ConversationEntity):
             prompt = news_prompt(pack, headlines, extra_s)
         else:
             prompt = news_followup_prompt(pack, extra_s)
-        result = await self._fallback(user_input, chat_log, pack, True, prompt)
+        result = await self._fallback(user_input, chat_log, pack, True, prompt, publish=False)
         llm = _speech_from_result(result) if result is not None else ""
         extra_nudge = nudge(pack) if intro and not asked_for_more(llm) else ""
         spoken = compose_speech(intro, llm, extra_nudge, announced) or intro or _cue(_DONE, pack, "OK")
+        self._note_llm_turn(user_input, spoken)
         return await self._spoken(user_input, chat_log, pack, spoken, conversation_id, True, "chat")
 
     def _nlu_rag(self) -> bool:
@@ -426,8 +511,10 @@ class KlarConversationEntity(ConversationEntity):
                 if intents:
                     executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
                     speech = str(executed.get("speech") or payload.get("speech") or _cue(_DONE, pack, "OK"))
-                    return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), True, "execute")
-            speech = str(payload.get("speech") or _cue(_DONE, pack, "OK"))
+                    return await self._spoken(
+                        user_input, chat_log, pack, speech, payload.get("conversation_id"), False, "execute"
+                    )
+            speech = str(payload.get("speech") or "")
             return await self._spoken(user_input, chat_log, pack, speech, payload.get("conversation_id"), False)
         if tool.get("tool") == "klar.act" and tool.get("intent"):
             item = act_payload(str(tool["intent"]), tool.get("slots") or {})
@@ -435,7 +522,15 @@ class KlarConversationEntity(ConversationEntity):
             if not intents:
                 return None
             executed = await execute_plan(self.hass, user_input, intents, pack, self._assistant(), self._exposed)
-            return await self._spoken(user_input, chat_log, pack, str(executed.get("speech") or _cue(_DONE, pack, "OK")), user_input.conversation_id, True, "execute")
+            return await self._spoken(
+                user_input,
+                chat_log,
+                pack,
+                str(executed.get("speech") or _cue(_DONE, pack, "OK")),
+                user_input.conversation_id,
+                False,
+                "execute",
+            )
         return None
 
     async def _fallback(
@@ -446,8 +541,8 @@ class KlarConversationEntity(ConversationEntity):
         chat: bool = False,
         prompt: str | None = None,
         retrieval: dict[str, Any] | None = None,
+        publish: bool = True,
     ) -> ConversationResult | None:
-        del chat_log
         agent_id = self._fallback_agent_id()
         if not agent_id:
             return None
@@ -461,8 +556,28 @@ class KlarConversationEntity(ConversationEntity):
             system = with_personality(prompt, voice)
         elif self._nlu_rag():
             system = rag_prompt(pack, retrieval, with_personality(extra_s, voice))
+        elif yarn_request(user_input.text):
+            system = yarn_prompt(pack, with_personality(extra_s, voice), user_input.text)
         else:
             system = chat_only_prompt(pack, with_personality(extra_s, voice))
+        session_id = self._llm_session_id(user_input)
+        prior = history_prompt(pack, self._llm_turns(session_id))
+        if prior and not yarn_request(user_input.text):
+            system = f"{system}\n\n{prior}"
+        yarn = yarn_request(user_input.text)
+        resolved = llm_client_and_model(self.hass, agent_id)
+        if resolved is not None:
+            streamed = await self._stream_fallback(
+                resolved[0],
+                resolved[1],
+                user_input,
+                pack,
+                system,
+                chat_log if publish else None,
+                yarn,
+            )
+            if streamed is not None:
+                return streamed
         try:
             result = await conversation.async_converse(
                 self.hass,
@@ -474,7 +589,61 @@ class KlarConversationEntity(ConversationEntity):
         except Exception as err:  # noqa: BLE001 — other agent is a system boundary
             _LOGGER.warning("LLM-Fallback fehlgeschlagen: %s", err)
             return None
+        if result is not None and yarn and yarn_asks_permission(_speech_from_result(result)):
+            try:
+                result = await conversation.async_converse(
+                    self.hass,
+                    user_input.text,
+                    isolated_conversation_id(),
+                    user_input.context,
+                    **nested_llm_session(agent_id, speak_tag(pack), yarn_nudge(pack, system)),
+                )
+            except Exception as err:  # noqa: BLE001 — other agent is a system boundary
+                _LOGGER.warning("LLM-Fallback-Wiederholung fehlgeschlagen: %s", err)
         return result
+
+    async def _stream_fallback(
+        self,
+        client: Any,
+        model: str,
+        user_input: ConversationInput,
+        pack: str,
+        system: str,
+        chat_log: ChatLog | None,
+        yarn: bool,
+    ) -> ConversationResult | None:
+        hold = _stream_hold(yarn, self._nlu_rag())
+        try:
+            speech, published = await stream_chat(
+                client,
+                model,
+                user_input.text,
+                system,
+                chat_log,
+                getattr(user_input, "agent_id", None),
+                hold=hold,
+            )
+        except Exception as err:  # noqa: BLE001 — client shape varies by agent
+            _LOGGER.debug("LLM-Stream fehlgeschlagen, converse: %s", err)
+            return None
+        if not speech:
+            return None
+        if yarn and yarn_asks_permission(speech) and not published:
+            try:
+                speech, published = await stream_chat(
+                    client,
+                    model,
+                    user_input.text,
+                    yarn_nudge(pack, system),
+                    chat_log,
+                    getattr(user_input, "agent_id", None),
+                )
+            except Exception as err:  # noqa: BLE001 — retry is best-effort
+                _LOGGER.debug("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
+                return None
+            if not speech:
+                return None
+        return _speech_result(pack, speech, published and chat_log is not None)
 
     def _preferred_area(self, device_id: str | None, satellite_id: str | None = None) -> str | None:
         registry = device_registry.async_get(self.hass)
@@ -488,13 +657,12 @@ class KlarConversationEntity(ConversationEntity):
         return None
 
     async def _parse(
-        self, text: str, _conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
+        self, text: str, conversation_id: str | None, language: str | None, device_id: str | None, satellite_id: str | None = None
     ) -> dict[str, Any]:
-        url = f"{self._url}/api/v2/parse"
-        pack = resolve_pack(language, self._packs())
+        pack = self._request_pack(language)
         body: dict[str, Any] = {
             "text": text,
-            "conversation_id": engine_session_id(device_id, satellite_id),
+            "conversation_id": parse_session_id(conversation_id, device_id, satellite_id),
             "language": pack,
             "personality": self._personality(),
         }
@@ -502,23 +670,33 @@ class KlarConversationEntity(ConversationEntity):
             body["preferred_area"] = area
         if self._nlu_rag():
             body["nlu_rag"] = True
-        try:
-            session = async_get_clientsession(self.hass)
-            async with session.post(
-                url,
-                json=body,
-                headers=self._headers(),
-                timeout=aiohttp.ClientTimeout(total=5),
-            ) as resp:
-                resp.raise_for_status()
-                payload = await resp.json()
-                return validate_v2_payload(payload)
-        except Exception as err:  # noqa: BLE001 — boundary to the local engine
-            _LOGGER.warning("Klar nicht erreichbar: %s", err)
-            return {
-                "schema_version": "2.0",
-                "speech": _cue(_UNREACHABLE, pack, "Klar is not responding right now."),
-                "decision": {"type": "error", "code": "unreachable", "message": str(err)},
-                "plan": None,
-                "unreachable": True,
-            }
+        payload, last_err = await post_parse(
+            async_get_clientsession(self.hass), self._url, body, self._headers()
+        )
+        if payload is not None:
+            return payload
+        _LOGGER.warning("Klar nicht erreichbar: %s", last_err)
+        return {
+            "schema_version": "2.0",
+            "speech": _cue(_UNREACHABLE, pack, "Klar is not responding right now."),
+            "decision": {"type": "error", "code": "unreachable", "message": str(last_err or "")},
+            "plan": None,
+            "unreachable": True,
+        }
+
+    def _llm_session_id(self, user_input: ConversationInput) -> str:
+        assist_id = str(user_input.conversation_id or "").strip()
+        if assist_id:
+            return llm_conversation_id(assist_id[:128])
+        return llm_conversation_id(
+            engine_session_id(user_input.device_id, getattr(user_input, "satellite_id", None))
+        )
+
+    def _llm_turns(self, session_id: str) -> list[tuple[str, str]]:
+        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
+        return list(store.get(session_id) or [])
+
+    def _note_llm_turn(self, user_input: ConversationInput, speech: str) -> None:
+        session_id = self._llm_session_id(user_input)
+        store = self.hass.data.setdefault(DOMAIN, {}).setdefault("llm_turns", {})
+        store[session_id] = append_llm_turn(store.get(session_id), user_input.text, speech)

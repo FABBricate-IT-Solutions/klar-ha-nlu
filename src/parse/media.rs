@@ -1,10 +1,10 @@
 use crate::home::expose::assist_visible;
 use crate::home::policy::is_infra;
-use crate::home::roles::{is_music_assistant_player, is_music_player};
+use crate::home::roles::{is_music_assistant_player, is_music_player, looks_like_tv, tv_asked};
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
-use crate::parse::normalize::compact;
+use crate::parse::normalize::{compact, umlaut_eq};
 use crate::parse::resolve::Resolved;
 use crate::parse::slots::ClauseOut;
 use crate::session::Session;
@@ -12,8 +12,8 @@ use crate::types::{EntityRec, HomeGraph, Intent};
 
 #[path = "media_words.rs"]
 mod media_words;
-pub(crate) use media_words::now_playing_status;
 use media_words::*;
+pub(crate) use media_words::{is_media_move_or_play, now_playing_status};
 
 pub(crate) fn media_clause(
     tokens: &[String],
@@ -36,7 +36,9 @@ pub(crate) fn media_clause(
         return Some(ClauseOut::Intents(Vec::new()));
     }
     let allow_session_media = !matches!(intent.name.as_str(), "HassMediaSearchAndPlay" | "MassPlayMedia" | "MassTransferQueue");
-    let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only) else {
+    let volume_default =
+        matches!(intent.name.as_str(), "HassSetVolume" | "HassSetVolumeRelative" | "HassMediaPlayerMute" | "HassMediaPlayerUnmute");
+    let Some(target) = target_player(tokens, home, session, resolved, allow_session_media, mass_only, volume_default) else {
         let any_player =
             home.entities.iter().any(|entity| entity.domain == "media_player" && assist_visible(entity, home) && !is_infra(entity));
         if any_player {
@@ -85,13 +87,20 @@ fn status_intent(tokens: &[String]) -> Option<Intent> {
 }
 
 fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> Option<Intent> {
+    if catalog().any(tokens, catalog().climate_nouns())
+        || crate::parse::action::has_light_noun(tokens)
+        || crate::parse::calendar::mentions_calendar(tokens)
+    {
+        return None;
+    }
     let session_media =
         session.last_domains().any(|d| d == "media_player") || session.last_entities().any(|id| id.starts_with("media_player."));
-    let intent = if let Some(n) = number.filter(|_| has_volume_word(tokens) || session_media) {
+    let volume_number = has_volume_word(tokens) || (session_media && !clock_volume_trap(tokens));
+    let intent = if let Some(n) = number.filter(|_| volume_number) {
         Intent::new("HassSetVolume").with("volume_level", n.clamp(0, 100).to_string())
     } else if any(tokens, &["lauter", "louder", "hoch"]) {
         Intent::new("HassSetVolumeRelative").with("volume_step", "up")
-    } else if any(tokens, &["leiser", "quieter", "runter"]) {
+    } else if any(tokens, &["leiser", "quieter", "runter"]) || (any(tokens, &["down"]) && has_volume_word(tokens)) {
         Intent::new("HassSetVolumeRelative").with("volume_step", "down")
     } else if any(tokens, &["stumm", "lautlos", "mute", "silence", "quiet"]) && media_context(tokens) {
         Intent::new("HassMediaPlayerMute")
@@ -101,6 +110,11 @@ fn volume_intent(tokens: &[String], session: &Session, number: Option<i32>) -> O
         return None;
     };
     Some(intent)
+}
+
+fn clock_volume_trap(tokens: &[String]) -> bool {
+    let cat = catalog();
+    tokens.iter().any(|token| token == "uhr" || token == "um" || token == "at" || token == "à" || cat.hours().contains(token.as_str()))
 }
 
 fn transport_intent(tokens: &[String], action: Action, home: &HomeGraph, resolved: &Resolved) -> Option<Intent> {
@@ -222,8 +236,8 @@ fn media_request(raw: &[String], home: &HomeGraph, resolved: &Resolved) -> Optio
     } else {
         (raw.to_vec(), String::new())
     };
-    let media_id = clean_media_words(&main, home, resolved).join(" ");
-    if media_id.is_empty() && artist.is_empty() && !music_resume(raw) {
+    let media_id = strip_area_query(clean_media_words(&main, home, resolved).join(" "), home);
+    if media_id.is_empty() && artist.is_empty() && !music_resume(raw) && !music_context(raw) {
         return None;
     }
     Some(MediaRequest {
@@ -243,6 +257,7 @@ fn target_player<'a>(
     resolved: &Resolved,
     allow_session_media: bool,
     mass_only: bool,
+    volume_default: bool,
 ) -> Option<&'a EntityRec> {
     let players = player_pool(home, tokens, mass_only);
     let resolved_ids: Vec<&str> = resolved
@@ -262,8 +277,12 @@ fn target_player<'a>(
         return select_player(&candidates, session);
     }
     match resolved.areas.as_slice() {
-        [area] => return select_area_player(&players, area, session),
-        [] => {}
+        [area] => return music_in_named_area(home, &players, area, session),
+        [] => {
+            if let Some(area) = area_from_tokens(tokens, home) {
+                return music_in_named_area(home, &players, &area, session);
+            }
+        }
         _ => return None,
     }
     if let Some(area) = session.preferred_area.as_deref() {
@@ -277,7 +296,13 @@ fn target_player<'a>(
             return Some(entity);
         }
     }
-    select_player(&players, session)
+    select_player(&players, session).or_else(|| {
+        volume_default
+            .then(|| {
+                players.iter().copied().find(|player| player.area.as_deref() == Some("wohnzimmer")).or_else(|| players.first().copied())
+            })
+            .flatten()
+    })
 }
 
 fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> Vec<&'a EntityRec> {
@@ -285,19 +310,34 @@ fn player_pool<'a>(home: &'a HomeGraph, tokens: &[String], mass_only: bool) -> V
         return mass_players(home);
     }
     let music = music_players(home);
-    if any(tokens, &["tv", "television", "fernseher", "soundbar"])
-        || catalog().any(tokens, catalog().tv_words())
+    if tv_asked(tokens) && !any(tokens, &["soundbar"]) {
+        return home.entities.iter().filter(|entity| eligible_media_player(entity, home) && looks_like_tv(entity)).collect();
+    }
+    if any(tokens, &["soundbar"])
         || (tokens.iter().any(|token| token.contains("volume") || matches!(token.as_str(), "laut" | "lautstaerke"))
             && !music_context(tokens)
             && music.is_empty())
     {
         return home.entities.iter().filter(|entity| eligible_media_player(entity, home)).collect();
     }
+    if music_request(tokens) {
+        if let Some(area) = area_from_tokens(tokens, home) {
+            return music.iter().copied().filter(|entity| entity.area.as_deref() == Some(area.as_str())).collect();
+        }
+    }
     let mass: Vec<&EntityRec> = music.iter().copied().filter(|entity| is_music_assistant_player(entity)).collect();
     if !mass.is_empty() {
         return mass;
     }
     music
+}
+
+fn music_request(tokens: &[String]) -> bool {
+    music_context(tokens) || tokens.iter().any(|token| is_play_word(token))
+}
+
+fn music_in_named_area<'a>(home: &'a HomeGraph, players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {
+    select_area_player(players, area, session).or_else(|| select_area_player(&music_players(home), area, session))
 }
 
 fn music_players(home: &HomeGraph) -> Vec<&EntityRec> {
@@ -362,6 +402,41 @@ fn explicit_destination(tokens: &[String], home: &HomeGraph, resolved: &Resolved
             area || entity
         },
     )
+}
+
+fn strip_area_query(query: String, home: &HomeGraph) -> String {
+    let folded = compact(&query);
+    if folded.is_empty() {
+        return String::new();
+    }
+    let area_only = home.areas.iter().any(|area| {
+        compact(&area.area_id) == folded
+            || compact(&area.name) == folded
+            || umlaut_eq(&folded, &compact(&area.area_id))
+            || umlaut_eq(&folded, &compact(&area.name))
+            || area.aliases.iter().any(|alias| compact(alias) == folded || umlaut_eq(&folded, &compact(alias)))
+    });
+    if area_only {
+        String::new()
+    } else {
+        query
+    }
+}
+
+fn area_from_tokens(tokens: &[String], home: &HomeGraph) -> Option<String> {
+    home.areas.iter().find_map(|area| {
+        tokens
+            .iter()
+            .any(|token| {
+                let folded = compact(token);
+                folded == compact(&area.area_id)
+                    || folded == compact(&area.name)
+                    || umlaut_eq(&folded, &compact(&area.area_id))
+                    || umlaut_eq(&folded, &compact(&area.name))
+                    || area.aliases.iter().any(|alias| folded == compact(alias) || umlaut_eq(&folded, &compact(alias)))
+            })
+            .then(|| area.area_id.clone())
+    })
 }
 
 fn select_area_player<'a>(players: &[&'a EntityRec], area: &str, session: &Session) -> Option<&'a EntityRec> {

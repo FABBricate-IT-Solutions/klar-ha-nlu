@@ -62,6 +62,10 @@ def _load_dispatch() -> types.ModuleType:
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
+        _load(f"{PACKAGE}.clock_speech", "clock_speech.py")
+        _load(f"{PACKAGE}.speech_place", "speech_place.py")
+        _load("clock_speech", "clock_speech.py")
+        _load("speech_place", "speech_place.py")
         _load(f"{PACKAGE}.speech", "speech.py")
         _load(f"{PACKAGE}.speech_locale", "speech_locale.py")
         _load(f"{PACKAGE}.calendar_session", "calendar_session.py")
@@ -106,8 +110,8 @@ def _hass(*states: _State) -> SimpleNamespace:
     return SimpleNamespace(states=_States(*states), services=SimpleNamespace(async_call=AsyncMock()))
 
 
-def _input() -> SimpleNamespace:
-    return SimpleNamespace(text="test", context=object(), language="de")
+def _input(text: str = "test") -> SimpleNamespace:
+    return SimpleNamespace(text=text, context=object(), language="de")
 
 
 def _item(name: str, **slots: object) -> dict[str, object]:
@@ -423,6 +427,172 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         args = hass.services.async_call.await_args
         self.assertEqual(args.args[:2], ("light", "turn_on"))
         self.assertEqual(args.args[2]["entity_id"], "light.kuche_kuche")
+
+    async def test_climate_set_calls_set_temperature(self) -> None:
+        climate = _State(
+            "climate.better_thermostat_wohnzimmer",
+            "off",
+            friendly_name="Heizung Wohnzimmer",
+            temperature=6.0,
+        )
+        hass = _hass(climate)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassClimateSetTemperature", entity_id=climate.entity_id, temperature=21),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        dispatch.intent.async_handle.assert_not_awaited()
+        hass.services.async_call.assert_awaited()
+        args = hass.services.async_call.await_args
+        self.assertEqual(args.args[:2], ("climate", "set_temperature"))
+        self.assertEqual(args.args[2]["entity_id"], climate.entity_id)
+        self.assertEqual(args.args[2]["temperature"], 21.0)
+        self.assertEqual(args.args[2]["hvac_mode"], "heat")
+        self.assertNotIn("nicht geklappt", (spoken.speech or "").lower())
+
+    async def test_relative_dim_sends_brightness_step(self) -> None:
+        light = _State("light.wohnzimmer", "on", friendly_name="Wohnzimmer Licht", brightness=80)
+        hass = _hass(light)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassLightSet", entity_id=light.entity_id, brightness_step="down"),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        args = hass.services.async_call.await_args
+        self.assertEqual(args.args[:2], ("light", "turn_on"))
+        self.assertEqual(args.args[2]["brightness_step_pct"], -15)
+        self.assertNotIn("brightness_pct", args.args[2])
+
+    async def test_warm_white_uses_kelvin_not_color_name(self) -> None:
+        light = _State("light.wohnzimmer", "on", friendly_name="Wohnzimmer Licht")
+        hass = _hass(light)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassLightSet", entity_id=light.entity_id, color="warmwhite"),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        args = hass.services.async_call.await_args
+        self.assertEqual(args.args[2]["color_temp_kelvin"], 2700)
+        self.assertNotIn("color_name", args.args[2])
+        self.assertNotIn("rgb_color", args.args[2])
+        self.assertIn("warmweiß", spoken.speech or "")
+
+    async def test_light_set_without_entity_does_not_claim_success(self) -> None:
+        hass = _hass()
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassLightSet", brightness=100),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "missing_entity")
+        hass.services.async_call.assert_not_awaited()
+        dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_idle_kitchen_music_starts_mass_playback(self) -> None:
+        player = _State(
+            "media_player.kuchenbereich",
+            "idle",
+            mass_player_type="player",
+            friendly_name="Küche Player",
+            volume_level=0.33,
+        )
+        hass = _hass(player)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassMediaUnpause", entity_id=player.entity_id),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertTrue(spoken.ok)
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("music_assistant", "play_media"))
+        self.assertEqual(call.args[2]["media_id"], "Musik")
+        self.assertEqual(call.kwargs["target"], {"entity_id": player.entity_id})
+        self.assertNotIn("volume_level", call.args[2])
+
+    async def test_tv_request_without_entity_is_unavailable(self) -> None:
+        hass = _hass()
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Fernseher im Wohnzimmer"),
+            _item("HassTurnOn", domain="media_player", area="wohnzimmer"),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "media_unavailable")
+        hass.services.async_call.assert_not_awaited()
+        dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_tv_request_does_not_turn_on_soundbar(self) -> None:
+        player = _State("media_player.lg_dsn9yg_8909", "idle", friendly_name="Wohnzimmer")
+        hass = _hass(player)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input("Fernseher im Wohnzimmer"),
+            _item("HassTurnOn", entity_id=player.entity_id),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "media_unavailable")
+        hass.services.async_call.assert_not_awaited()
+
+    async def test_idle_alexa_kitchen_starts_text_command(self) -> None:
+        player = _State("media_player.kuchenbereich_2", "idle", friendly_name="Küchenbereich", volume_level=0.33)
+        hass = _hass(player)
+        entry = SimpleNamespace(platform="alexa_devices", device_id="kitchen-echo")
+        with patch.object(dispatch.entity_registry, "async_get", return_value=SimpleNamespace(async_get=lambda _id: entry)):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input("Musik in der Küche"),
+                _item("HassMediaUnpause", entity_id=player.entity_id),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        call = hass.services.async_call.await_args
+        self.assertEqual(call.args[:2], ("alexa_devices", "send_text_command"))
+        self.assertEqual(call.args[2]["device_id"], "kitchen-echo")
+        self.assertEqual(call.args[2]["text_command"], "spiel Musik")
+        self.assertNotIn("volume_level", call.args[2])
+
+    async def test_unavailable_tv_turn_on_does_not_claim_success(self) -> None:
+        tv = _State("media_player.wohnzimmer_tv", "unavailable", friendly_name="Wohnzimmer TV")
+        hass = _hass(tv)
+        spoken = await dispatch.handle_intent(
+            hass,
+            _input(),
+            _item("HassTurnOn", entity_id=tv.entity_id),
+            "de",
+            None,
+            lambda _entity_id: True,
+        )
+        self.assertFalse(spoken.ok)
+        self.assertEqual(spoken.error, "media_unavailable")
+        hass.services.async_call.assert_not_awaited()
+        dispatch.intent.async_handle.assert_not_awaited()
 
     async def test_area_climate_get_reads_room_states_when_ha_fails(self) -> None:
         climate = _State(

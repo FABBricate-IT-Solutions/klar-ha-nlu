@@ -4,10 +4,14 @@
 from __future__ import annotations
 
 import importlib.util
+import sys
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+PKG = ROOT / "custom_components" / "klar_nlu"
+if str(PKG) not in sys.path:
+    sys.path.insert(0, str(PKG))
 
 
 def _load(name: str, rel: str):
@@ -58,6 +62,37 @@ class SpeechTests(unittest.TestCase):
         self.assertIn("Kugel", spoken)
         self.assertNotIn("light.", spoken)
 
+    def test_clock_speech_is_one_sentence_without_seconds(self) -> None:
+        from datetime import datetime
+
+        now = datetime(2026, 8, 29, 16, 2, 55)
+        self.assertEqual(speech.finish_clock_speech("Es ist 14:44:55.", "de", now), "Es ist 16:02.")
+        self.assertEqual(
+            speech.finish_clock_speech("Es ist 14:44:55. Die genaue Uhrzeit.", "de", now),
+            "Es ist 16:02.",
+        )
+        self.assertEqual(speech.finish_clock_speech("It is 14:44:55.", "en", now), "It is 16:02.")
+        self.assertEqual(speech.strip_clock_seconds("Es ist 14:44:55."), "Es ist 14:44.")
+        self.assertEqual(speech.finish_clock_speech("Licht ist an.", "de", now), "Licht ist an.")
+
+    def test_kitchen_turn_on_names_the_room(self) -> None:
+        item = {
+            "name": "HassTurnOn",
+            "slots": [{"name": "entity_id", "value": "light.kuche_kuche"}],
+        }
+        handled = type("Handled", (), {})()
+        handled.success_results = [type("Hit", (), {"name": "Licht", "id": "light.kuche_kuche"})()]
+        spoken = speech.from_handled(handled, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("Küche", spoken)
+        self.assertNotIn("kuche kuche", spoken.lower())
+        english = speech.from_handled(handled, "en", item)
+        self.assertIsNotNone(english)
+        self.assertIn("kitchen", english.lower())
+        bare = speech.from_handled(None, "de", item)
+        self.assertIsNotNone(bare)
+        self.assertIn("Küche", bare)
+
     def test_kitchen_status_names_the_room(self) -> None:
         handled = _States(
             [
@@ -96,6 +131,47 @@ class SpeechTests(unittest.TestCase):
         self.assertIn("Wohnzimmer", spoken)
         self.assertNotIn("Satellite", spoken)
         self.assertNotIn("40", spoken)
+
+    def test_climate_set_speaks_degrees(self) -> None:
+        item = {
+            "name": "HassClimateSetTemperature",
+            "slots": [
+                {"name": "entity_id", "value": "climate.better_thermostat_wohnzimmer"},
+                {"name": "name", "value": "Heizung Wohnzimmer"},
+                {"name": "temperature", "value": "21"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertEqual(spoken, "Heizung Wohnzimmer auf 21 Grad.")
+        self.assertNotIn("nicht geklappt", spoken)
+
+    def test_warm_white_speaks_color_not_percent(self) -> None:
+        item = {
+            "name": "HassLightSet",
+            "slots": [
+                {"name": "entity_id", "value": "light.wohnzimmer"},
+                {"name": "color", "value": "warmwhite"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("warmweiß", spoken)
+        self.assertNotIn("Prozent", spoken)
+        self.assertNotIn("orange", spoken)
+
+    def test_tv_turn_on_does_not_claim_lights(self) -> None:
+        item = {
+            "name": "HassTurnOn",
+            "slots": [
+                {"name": "entity_id", "value": "media_player.wohnzimmer_tv"},
+                {"name": "name", "value": "Wohnzimmer TV"},
+                {"name": "area", "value": "wohnzimmer"},
+            ],
+        }
+        spoken = speech.from_handled(None, "de", item)
+        self.assertIsNotNone(spoken)
+        self.assertIn("TV", spoken)
+        self.assertNotIn("Licht", spoken)
 
     def test_light_set_speaks_color(self) -> None:
         item = {

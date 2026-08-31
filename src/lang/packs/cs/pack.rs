@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["pracka", "scena", "susicka", "svetlo", "televize", "ventilator", "zamek", "zaves"],
-        named_device: &["koule", "mycka", "pracka", "televize"],
+        named_device: &["koule", "mycka", "pc", "pracka", "televize"],
     },
     fixtures: Fixtures {
         island: &["ostrov"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["vypni", "zapni"],
         command_hedges: &[],
-        skip_light: &["mycka", "pracka", "pristroj", "susicka", "televize", "ventilator"],
+        skip_light: &["mycka", "pc", "pracka", "pristroj", "susicka", "televize", "ventilator"],
         laundry_area: &["pradelna"],
         laundry_machines: &["pracka", "susicka"],
         kitchen: &["kuchyne"],
@@ -152,7 +152,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zaves",
         ],
         room_level: &["svetlo"],
-        extra_device_nouns: &["koule", "mycka", "pracka", "pristroj", "susicka", "televize"],
+        extra_device_nouns: &["koule", "mycka", "pc", "pracka", "pristroj", "susicka", "televize"],
         synonym_pairs: &[
             ("obyvak", "wohnzimmer"),
             ("kuchyne", "kuche"),
@@ -208,6 +208,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("cerna", "black"),
             ("bila", "white"),
             ("fialova", "purple"),
+            ("teplabila", "warmwhite"),
         ],
         numbers: &[
             ("nula", 0),

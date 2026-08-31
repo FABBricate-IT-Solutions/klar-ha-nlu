@@ -24,6 +24,8 @@ def resolve_pack(language: str | None, enabled: list[str] | None = None) -> str:
             variants = LANGUAGE_VARIANTS.get(code, (code,))
             if any(tag.lower() == variant.lower() for variant in variants):
                 return code
+    if "en" in allowed:
+        return "en"
     return allowed[0]
 
 
@@ -80,22 +82,42 @@ def normalize_language_choice(raw: object) -> str:
 
 
 def enabled_packs(raw: object, hass_language: str | None = None) -> list[str]:
+    """Parse allow-list. system/all = every compiled pack; a single pin stays that pack."""
+    del hass_language
     choice = normalize_language_choice(raw)
-    if choice == LANGUAGE_ALL:
+    if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM}:
         return list(SUPPORTED_LANGUAGES)
-    if choice == LANGUAGE_SYSTEM:
-        return [resolve_pack(hass_language)]
     return [choice]
+
+
+def default_pack(raw: object, hass_language: str | None = None) -> str:
+    """Fallback pack when the request has no language."""
+    choice = normalize_language_choice(raw)
+    if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM}:
+        return resolve_pack(hass_language)
+    return choice
+
+
+def advertised_languages() -> list[str]:
+    """Voice-assistants dropdown: always every compiled pack and its variants."""
+    return advertise(list(SUPPORTED_LANGUAGES))
+
+
+def chrome_locale(hass_language: str | None = None) -> str:
+    """Resolve a Home Assistant language tag to a pack. Not operator chrome."""
+    if not str(hass_language or "").strip():
+        return "en"
+    return resolve_pack(hass_language)
 
 
 def engine_language_state(
     raw: object, hass_language: str | None = None
-) -> tuple[list[str], str]:
-    """Pin the engine to the integration language; empty means every pack."""
-    packs = enabled_packs(raw, hass_language)
+) -> tuple[list[str], None]:
+    """Pin parse packs from the NLU option. Do not push operator chrome from HA."""
+    del hass_language
     choice = normalize_language_choice(raw)
-    pinned = [] if choice == LANGUAGE_ALL else list(packs)
-    return pinned, resolve_pack(hass_language, packs)
+    pinned = [] if choice in {LANGUAGE_ALL, LANGUAGE_SYSTEM} else [choice]
+    return pinned, None
 
 
 def advertise(packs: list[str]) -> list[str]:

@@ -29,7 +29,9 @@ fn has_home_domain_cue(tokens: &[String]) -> bool {
         || cat.any(tokens, cat.lock_nouns())
         || cat.any(tokens, cat.climate_nouns())
         || cat.any(tokens, cat.tv_words())
-        || tokens.iter().any(|token| matches!(token.as_str(), "queue" | "playing" | "volume" | "lautstarke" | "wiedergabe"))
+        || tokens.iter().any(|token| {
+            matches!(token.as_str(), "queue" | "playing" | "volume" | "lautstarke" | "wiedergabe" | "prozent" | "percent" | "percentage")
+        })
 }
 
 pub fn is_news(tokens: &[String], home: &HomeGraph) -> bool {
@@ -61,7 +63,17 @@ pub fn is_news_dismiss(tokens: &[String]) -> bool {
 }
 
 pub fn briefing_followup(tokens: &[String], home: &HomeGraph, session: &Session) -> bool {
-    session.briefing && !tokens.is_empty() && !looks_like_home(tokens, home) && !is_news_dismiss(tokens)
+    if !in_llm_turn(session) || tokens.is_empty() || looks_like_home(tokens, home) {
+        return false;
+    }
+    if session.briefing && is_news_dismiss(tokens) {
+        return false;
+    }
+    true
+}
+
+fn in_llm_turn(session: &Session) -> bool {
+    session.briefing || session.last_heard.as_ref().is_some_and(|heard| heard.decision == "chat")
 }
 
 pub(crate) fn looks_like_home(tokens: &[String], home: &HomeGraph) -> bool {
@@ -115,6 +127,7 @@ fn is_open_question(tokens: &[String]) -> bool {
 mod tests {
     use super::*;
     use crate::home::default_home;
+    use crate::session::Session;
 
     fn toks(text: &str) -> Vec<String> {
         crate::parse::normalize::tokenize(text)
@@ -197,5 +210,27 @@ mod tests {
         assert!(is_news_dismiss(&toks("danke")));
         assert!(!is_news_dismiss(&toks("nein die erste")));
         assert!(!is_news_dismiss(&toks("mehr zur ersten Meldung")));
+    }
+
+    #[test]
+    fn llm_chat_keeps_story_replies() {
+        let home = default_home();
+        let mut session = Session::new();
+        session.last_heard = Some(crate::session::LastHeard {
+            text: "erzähl eine geschichte".into(),
+            decision: "chat".into(),
+            speech: String::new(),
+            reason: None,
+            area: Some("wohnzimmer".into()),
+            names: Vec::new(),
+        });
+        for text in ["über einen Elefanten", "länger", "egal", "science fiction"] {
+            assert!(briefing_followup(&toks(text), &home, &session), "{text}");
+        }
+        for text in ["Licht im Wohnzimmer aus", "mach sie aus"] {
+            assert!(!briefing_followup(&toks(text), &home, &session), "{text}");
+        }
+        session.briefing = true;
+        assert!(!briefing_followup(&toks("egal"), &home, &session));
     }
 }

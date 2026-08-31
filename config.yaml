@@ -1,5 +1,5 @@
 name: Klar NLU
-version: "2026.8.49"
+version: "2026.8.65"
 slug: klar_nlu
 stage: stable
 description: Lokale NLU statt Home Assistant Assist. 67 Sprachen. 100 % vs 31 % auf 9.922 DE/EN-Sätzen. Wyoming + UI.
@@ -28,6 +28,8 @@ map:
     path: /config
 options:
   support_bundle: false
+  ui_locale: ""
 schema:
   support_bundle: bool?
+  ui_locale: str?
 image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}

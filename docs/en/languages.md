@@ -60,7 +60,9 @@ A new combinator is a new variant plus tests. Do not extend `De | En` matches.
 
 ## Home Assistant
 
-The integration reads `custom_components/klar_nlu/languages.py` (generated). Options list every compiled locale with its native name. Default enablement is the full compiled set. Assist still pins one pack per request. `pt-BR` and `de-CH` are not stripped to ISO-639-1.
+The integration reads `custom_components/klar_nlu/languages.py` (generated). Options list every compiled locale with its native name. Default choice is **system language**: the request/pipeline language selects the pack, and the Voice assistants dropdown always lists every compiled locale. A single pinned pack still restricts parsing to that pack. `pt-BR` and `de-CH` are not stripped to ISO-639-1.
+
+Operator chrome (the official Klar app) is **not** the Assist pin and **not** the Home Assistant profile. Set it in App → Settings → Operator language, or with `KLAR_UI_LOCALE` before the first save. Saved Settings wins. Integration form labels stay on Home Assistant `translations/{lang}.json`.
 
 ## Tests
 
@@ -82,7 +84,7 @@ It reads the DE oracles (`wohnung_mittel`, `familienhaus_de`, `m0_exact`, `m2_fl
 
 DE and EN are not overlays: they **are** the oracles. Regenerate those with `python3 scripts/gen_voice_suite.py` (and the family-home scripts in `docs/en/testing.md`). Then re-run `scripts/parity/generate.py` so every other locale stays in lockstep.
 
-CI checks that this generator is a no-op (freshness). It does not run the full 65-locale matrix. If a PR changes a pack or dataset path, CI runs that locale's suite (`scripts/ci_lang_tests.py`): de/en hard-gate, others report-only. Locally:
+CI checks that this generator is a no-op (freshness) and runs the full `parity_langs` matrix (every compiled locale, no fail-fast). Locally:
 
 ```bash
 python3 scripts/lang_packs/generate.py   # packs + assist smokes

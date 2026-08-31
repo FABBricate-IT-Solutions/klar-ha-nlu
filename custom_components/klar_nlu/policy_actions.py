@@ -21,6 +21,11 @@ def skips_llm_fallback(hit: str) -> bool:
     return hit in {"reply", "template", "script"}
 
 
+def keeps_engine_chat(hit: str, chat: bool, speech: str) -> bool:
+    """Clock and other household replies already have speech — do not ask the LLM."""
+    return bool(chat and speech.strip() and hit not in {"llm", "template"})
+
+
 async def render_user_template(hass: Any, raw: str, text: str) -> str | None:
     from homeassistant.exceptions import TemplateError
     from homeassistant.helpers.template import Template

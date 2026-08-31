@@ -47,7 +47,9 @@ class RefineTests(unittest.TestCase):
         self.assertIn("2 Lichter sind an, 3 Lichter sind aus.", prompt)
         self.assertIn("21,5 °C", prompt)
         self.assertIn("Keine neuen Zahlen", prompt)
-        self.assertIn("ein oder zwei Sätze", prompt)
+        self.assertIn("ein Satz", prompt)
+        self.assertIn("Uhrzeiten ohne Sekunden", prompt)
+        self.assertIn("14:44 nicht 14:44:55", prompt)
         self.assertIn("Ein oder zwei Sätze.", prompt)
         self.assertIn("Offene Fragen", prompt)
         self.assertIn("Ist die Vorlage eine Frage, bleibt die Antwort eine Frage.", prompt)
@@ -102,7 +104,10 @@ class RefineTests(unittest.TestCase):
             prompt = refine.refine_prompt("de", name, None)
             self.assertIn(marker, prompt, name)
             self.assertNotIn("Hänge immer an", prompt, name)
-            self.assertRegex(prompt, r"→ .+\. .+", name)
+            self.assertRegex(prompt, r"→ .+\.", name)
+            if name == "default":
+                self.assertNotIn("Es ist eingeschaltet", prompt)
+                self.assertNotIn("That is done.", refine.refine_prompt("en", "default", None))
             self.assertNotIn(prompt, seen)
             seen.add(prompt)
 
@@ -114,6 +119,7 @@ class RefineTests(unittest.TestCase):
         self.assertIn("open questions", prompt.lower())
         self.assertIn("Do not stamp the same opening every time.", prompt)
         self.assertIn("all set", prompt)
+        self.assertIn("Clock times without seconds", prompt)
         self.assertIn("Do not translate into German", prompt)
         self.assertNotIn("Additional style instruction", prompt)
 
@@ -151,6 +157,13 @@ class RefineTests(unittest.TestCase):
         self.assertIsNone(refine.accept_refined("Klimaanlage auf 19 Grad.", "Die Klimaanlage ist auf neunzehn Grad."))
         self.assertIsNone(refine.accept_refined("Erledigt: HassSetPosition.", "HassSetPosition ist erledigt."))
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an..."))
+        self.assertIsNone(
+            refine.accept_refined("Wohnzimmer TV ist an.", "Das Licht im Wohnzimmer ist an.")
+        )
+        self.assertIsNone(
+            refine.accept_refined("Der Fernseher ist gerade nicht erreichbar.", "Das Licht im Wohnzimmer ist an.")
+        )
+        self.assertTrue(refine.skip_rewrite("error"))
         self.assertIsNone(refine.accept_refined("Temperatur im Schlafzimmer.", "Wie ist die Temperatur im Schlafzimmer?"))
         self.assertEqual(
             refine.accept_refined("Meinst du Küche oder Wohnzimmer?", "Küche oder Wohnzimmer, Sir?"),
@@ -168,6 +181,8 @@ class RefineTests(unittest.TestCase):
             "Das Licht ist an. Ich habe es eingeschaltet.",
         )
         self.assertIsNone(refine.accept_refined("Licht ist an.", "Licht ist an. " + ("x" * 400)))
+        self.assertEqual(refine.clean_refined("Es ist 14:44:55."), "Es ist 14:44.")
+        self.assertEqual(refine.accept_refined("Es ist 14:44.", "Es ist 14:44:55."), "Es ist 14:44.")
 
     def test_should_refine_any_spoken_reply(self) -> None:
         self.assertTrue(
@@ -322,6 +337,9 @@ class RefineTests(unittest.TestCase):
             refine.speech_chunks("Set to 21.5 degrees. The light is on."),
             ["Set to 21.5 degrees.", " The light is on."],
         )
+        done, rest = refine.pop_complete_sentences("Set to 21.5 degrees. The light")
+        self.assertEqual(done, ["Set to 21.5 degrees."])
+        self.assertEqual(rest, " The light")
 
     def test_emit_streams_sentences_as_deltas(self) -> None:
         class Log:

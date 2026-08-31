@@ -62,15 +62,12 @@ export function matchLocale(raw?: string): Locale | undefined {
   return undefined;
 }
 
-function browserLanguage(): string {
-  return typeof navigator !== "undefined" ? navigator.language : "";
+export function chromeLocale(saved?: string): Locale {
+  return matchLocale(saved) || "en";
 }
 
-export function chromeLocale(languages: string[] = [], saved?: string): Locale {
-  if (languages.length === 1) {
-    return matchLocale(languages[0]) || matchLocale(saved) || matchLocale(browserLanguage()) || "de";
-  }
-  return matchLocale(saved) || matchLocale(browserLanguage()) || "de";
+export function assistParseLanguage(languages: string[], chrome?: string): string | undefined {
+  return languages.length === 1 ? languages[0] : chrome;
 }
 
 export function fill(template: string, slots: Record<string, string>): string {

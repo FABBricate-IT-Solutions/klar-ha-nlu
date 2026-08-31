@@ -279,7 +279,7 @@ async def async_push_personality(
     languages: list[str] | None = None,
     ui_locale: str | None = None,
 ) -> None:
-    """Write HA personality and language onto the engine so the Klar UI matches Assist."""
+    """Write HA personality and the Assist pin onto the engine. Operator chrome is not synced."""
     session = async_get_clientsession(hass)
     base = url.rstrip("/")
     headers = {"X-Klar-Token": token} if token else {}

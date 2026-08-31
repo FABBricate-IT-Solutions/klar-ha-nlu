@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - mach heizung wohnzimmer
+  - '21'
+conversation/climate::heat_setpoint:
+- stell heizung wohnzimmer 21
+conversation/climate::temperature_query:
+- was heizung wohnzimmer
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - schalt licht schlafzimmer
+  - mach licht wohnzimmer
+  - und kuche auch
+conversation/followup::followup_same_action_other_room:
+- - mach licht wohnzimmer
+  - und kuche auch
+conversation/house::clock_calendar_weather:
+- wie spaet
+- was kalender
+- wie ist das wetter
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- mach alloff
+conversation/lights::ambiguous_light:
+- mach licht
+conversation/lights::brightness_percent:
+- stell licht wohnzimmer 30 prozent
+conversation/lights::color_red:
+- - mach licht wohnzimmer
+  - rot
+conversation/lights::dim_then_level:
+- - dunkler licht wohnzimmer
+  - mittelhell
+conversation/lights::relative_dim:
+- - mach licht wohnzimmer
+  - dunkler
+conversation/lights::warm_white:
+- - mach licht wohnzimmer
+  - warmweiss
+conversation/lights::which_lights_on:
+- - mach licht wohnzimmer
+  - mach licht kuche
+  - was licht
+conversation/media::music_artist_then_now_playing:
+- - spiel queen kuche
+  - was musik
+conversation/media::music_play_in_room:
+- spiel musik kuche
+conversation/media::next_and_pause:
+- - spiel musik kuche
+  - next
+  - pause
+conversation/media::tv_not_light:
+- mach tv wohnzimmer
+conversation/media::volume_down:
+- leiser musik

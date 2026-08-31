@@ -57,7 +57,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "տեսարան",
             "օդափոխիչ",
         ],
-        named_device: &["aman", "gundayin", "lvacqimekena", "tv"],
+        named_device: &["aman", "gundayin", "lvacqimekena", "pc", "tv"],
     },
     fixtures: Fixtures {
         island: &["kghzi"],
@@ -85,7 +85,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["anjatir", "miatsu", "անջատիր", "միացրու"],
         command_hedges: &[],
-        skip_light: &["aman", "dryer", "lvacqimekena", "odapokhich", "sark", "tv", "հեռուստացույց", "օդափոխիչ"],
+        skip_light: &["aman", "dryer", "lvacqimekena", "odapokhich", "pc", "sark", "tv", "հեռուստացույց", "օդափոխիչ"],
         laundry_area: &["lvacqaran"],
         laundry_machines: &["dryer", "lvacqimekena"],
         kitchen: &["khohanots", "խոհանոց"],
@@ -137,7 +137,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["lvacqaran"],
         bare_switch: &["appliance", "dryer", "lvacqimekena", "machine"],
         outlet_words: &[],
-        tv_words: &["հեռուստացույց"],
+        tv_words: &["tv"],
         climate_cool: &["jerutsum"],
         climate_heat: &["ջեռուցում"],
         role_light: &["luys", "լույս"],
@@ -173,7 +173,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "օդափոխիչ",
         ],
         room_level: &["լույս"],
-        extra_device_nouns: &["aman", "dryer", "gundayin", "lvacqimekena", "sark", "tv"],
+        extra_device_nouns: &["aman", "dryer", "gundayin", "lvacqimekena", "pc", "sark", "tv"],
         synonym_pairs: &[
             ("հյուրասենյակ", "wohnzimmer"),
             ("խոհանոց", "kuche"),
@@ -238,6 +238,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("jag spitak", "warmwhite"),
         ],
         numbers: &[
             ("zro", 0),

@@ -57,7 +57,7 @@ pub fn split_clauses(tokens: &[String], home: &HomeGraph) -> Vec<Vec<String>> {
         if is_same_command(a0, a1) && !has_conj {
             continue;
         }
-        if a0 == a1 && is_particle(&tokens[i1]) {
+        if a0 == a1 && is_particle(&tokens[i1]) || trailing_power_particle(tokens, i1, a0, a1, has_conj) {
             continue;
         }
         if has_conj || (is_new_action_span(a1) && a1 != a0) {
@@ -202,6 +202,19 @@ fn is_new_action_span(action: Action) -> bool {
 
 fn is_particle(token: &str) -> bool {
     catalog().is_particle(token)
+}
+
+fn trailing_power_particle(tokens: &[String], i1: usize, a0: Action, a1: Action, has_conj: bool) -> bool {
+    if i1 + 1 != tokens.len() || !is_particle(&tokens[i1]) {
+        return false;
+    }
+    if matches!((a0, a1), (Action::On, Action::Off) | (Action::Off, Action::On)) {
+        return !has_conj;
+    }
+    matches!(a0, Action::GetState)
+        && matches!(a1, Action::On | Action::Off)
+        && catalog().any(tokens, catalog().climate_nouns())
+        && !tokens.iter().any(|token| catalog().is_question_word(token) || catalog().is_question_start(token))
 }
 
 fn is_same_command(a: Action, b: Action) -> bool {
@@ -353,6 +366,17 @@ mod tests {
 
     fn parse_de(sentence: &str, home: HomeGraph) -> crate::types::ParseResult {
         parse(sentence, &home, &mut Session::new(), &[], &Settings::pinned("de"))
+    }
+
+    #[test]
+    fn trailing_particle_clause_cuts() {
+        let _bound = crate::lang::bind_catalog(crate::lang::catalog_for(&["de".into(), "en".into()]));
+        let home = leftover_home();
+        let one = |words: &[&str]| words.iter().map(|word| (*word).to_string()).collect::<Vec<_>>();
+        assert_eq!(split_clauses(&one(&["activate", "all", "off"]), &home).len(), 1);
+        assert_eq!(split_clauses(&one(&["mach", "heizung", "schlafzimmer", "und", "wohnzimmer", "an"]), &home).len(), 1);
+        assert_eq!(split_clauses(&one(&["wie", "warm", "ist", "wohnzimmer", "und", "mach", "lichter", "aus"]), &home).len(), 2);
+        assert_eq!(split_clauses(&one(&["ist", "kinderzimmer", "an", "und", "mach", "lichter", "aus"]), &home).len(), 2);
     }
 
     #[test]

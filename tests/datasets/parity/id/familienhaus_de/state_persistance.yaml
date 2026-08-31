@@ -41,7 +41,7 @@ state_persistance/area_laundry_lights::laundry_lights_set_brightness:
 - - apa lampu binatu
   - ' 62'
 state_persistance/area_living_climates::living_climates_set_temperature:
-- - apa ac ruang
+- - apa pemanas ruang
   - ' 95'
 state_persistance/area_living_covers::living_covers_set_position:
 - - apa tirai ruang
@@ -56,13 +56,13 @@ state_persistance/area_master_bath_lights::master_bath_lights_set_brightness:
 - - apa lampu kamarmandimaster
   - ' 50'
 state_persistance/area_master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- - apa ac kamarmaster then apa ac ruang
+- - apa pemanas kamarmaster then apa pemanas ruang
   - ' 69'
 state_persistance/area_master_bedroom_and_living_covers::master_bedroom_and_living_covers_set_position:
 - - apa tirai kamarmaster then apa tirai ruang
   - ' 15'
 state_persistance/area_master_bedroom_climates::master_bedroom_climates_set_temperature:
-- - apa ac kamarmaster
+- - apa pemanas kamarmaster
   - ' 44'
 state_persistance/area_master_bedroom_covers::master_bedroom_covers_set_position:
 - - apa tirai kamarmaster

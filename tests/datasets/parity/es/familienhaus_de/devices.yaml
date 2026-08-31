@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - abre cerradura garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- enciende tv estancia
+- enciende tele estancia
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pausa tv estancia
+- pausa tele estancia
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- apaga tv estancia
+- apaga tele estancia
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- enciende tv estancia
+- enciende tele estancia
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- enciende tv estancia
+- enciende tele estancia
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- enciende tv estancia
+- enciende tele estancia
 devices/media_player_living_tv::media_player_living_tv_mute:
-- enciende tv salon
+- enciende tele salon
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pausa tv salon
+- pausa tele salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- apaga tv salon
+- apaga tele salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- enciende tv salon
+- enciende tele salon
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- enciende tv salon
+- enciende tele salon
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- enciende tv salon
+- enciende tele salon
 devices/scenes::dinner_time:
 - pon luz estanciaess 90 then enciende techo cocina then pon isla cocina 80
 devices/scenes::good_morning:
@@ -247,8 +247,8 @@ devices/scenes::kids_bedtime:
 - apaga techo dormitorio2 then apaga techo dormitorio3 then apaga techo dormitorio4
   then pon luz entradagang 15
 devices/scenes::movie_night:
-- apaga techo salon then pon lampara salon 20 then enciende tv salon then cierra cortina
-  salon
+- apaga techo salon then pon lampara salon 20 then enciende tele salon then cierra
+  cortina salon
 devices/scripts::good_night:
 - apaga techo salon then apaga lampara salon then apaga luz estanciaess then apaga
   techo cocina then apaga isla cocina then apaga techo estancia then apaga luz entrada

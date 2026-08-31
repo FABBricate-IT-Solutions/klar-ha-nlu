@@ -188,9 +188,9 @@ fn unbound_catalog() -> &'static Catalog {
     }
 }
 
-/// Language of spoken replies: the first bound pack (`en` when Assist pins English).
+/// Language of spoken replies: the first bound pack. Last resort is English, never German.
 pub fn speech_lang() -> LangId {
-    catalog().langs.first().copied().or_else(|| LangId::all().first().copied()).unwrap_or_else(|| LangId::all()[0])
+    catalog().langs.first().copied().unwrap_or(LangId::En)
 }
 
 pub struct CatalogBind {

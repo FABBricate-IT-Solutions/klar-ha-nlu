@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["장면"],
         switch_plural: &[],
         device_side: &["bul", "dryer", "seonpunggi", "setakgi", "불", "선풍기", "자물쇠", "장면", "조명", "커튼", "티비"],
-        named_device: &["gong", "setakgi", "sikgi", "tv"],
+        named_device: &["gong", "pc", "setakgi", "sikgi", "tv"],
     },
     fixtures: Fixtures {
         island: &["seom"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["kkaeo", "kyeo", "꺼", "꺼줘", "켜", "켜줘"],
         command_hedges: &[],
-        skip_light: &["dryer", "jangchi", "seonpunggi", "setakgi", "sikgi", "tv", "선풍기", "티비"],
+        skip_light: &["dryer", "jangchi", "pc", "seonpunggi", "setakgi", "sikgi", "tv", "선풍기", "티비"],
         laundry_area: &["setaksil"],
         laundry_machines: &["dryer", "setakgi"],
         kitchen: &["bueok", "부엌"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["setaksil"],
         bare_switch: &["appliance", "dryer", "machine", "setakgi"],
         outlet_words: &[],
-        tv_words: &["티비"],
+        tv_words: &["tv"],
         climate_cool: &["nanbang"],
         climate_heat: &["난방"],
         role_light: &["불", "조명"],
@@ -165,7 +165,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "티비",
         ],
         room_level: &["불"],
-        extra_device_nouns: &["dryer", "gong", "jangchi", "setakgi", "sikgi", "tv"],
+        extra_device_nouns: &["dryer", "gong", "jangchi", "pc", "setakgi", "sikgi", "tv"],
         synonym_pairs: &[
             ("거실", "wohnzimmer"),
             ("부엌", "kuche"),
@@ -234,6 +234,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("검정", "black"),
             ("하양", "white"),
             ("보라", "purple"),
+            ("따뜻한흰색", "warmwhite"),
         ],
         numbers: &[
             ("영", 0),

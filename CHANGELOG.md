@@ -6,6 +6,235 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.64...2026.8.65) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- use Option::map for native ceiling fixture tokens([703250e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/703250e13b11581df8e5b765253c49aed2068549))
+
+- close per-language parity gaps and always test all locales([4aa8988](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/4aa8988a47adafcbdd53ab419529b172fe480a01))
+
+
+### Other
+
+- Merge pull request #176 from FABBricate-IT-Solutions/fix/parity-all-langs-ci([a241e2b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a241e2bdd3c14f9039b6f81d73b6771c3a94feed))
+
+## [2026.8.64](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.63...2026.8.64) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- speak clarify and guards in the request locale, not German([0c5988b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/0c5988bf8e3ca6a371bfe41f8ef1bb02c4cd2e75))
+
+
+### Other
+
+- Merge pull request #174 from FABBricate-IT-Solutions/fix/locale-clarify-speech([5584f4b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5584f4b7122a237a6dbfb3f05ef3beba48859ec9))
+
+- bump @types/react-dom in /web in the npm-patch group([d8c65ef](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d8c65efe8774e86a3303c1ae32e823780cfc768e))
+
+- bump uuid from 1.24.1 to 1.26.0 in the rust-minor group([c744247](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c7442479d391bb0b7e1e0decb03cff7606bcb6ea))
+
+## [2026.8.63](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.62...2026.8.63) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #170 from FABBricate-IT-Solutions/fix/yarn-canned-if-permission([584f578](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/584f578837b07a38d3e38a0dd9a805b18d22ed43))
+
+- If Gemma still offers a story or joke, speak a canned one instead of asking permission.([ea2fc4e](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/ea2fc4e875d8e275f9c7ee7de3f004736a27d00f))
+
+## [2026.8.62](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.61...2026.8.62) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #168 from FABBricate-IT-Solutions/fix/story-and-calendar-session([bec3e4f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/bec3e4ff3a7ead096e51484ccd04d59bbc64e84d))
+
+- Tell a requested story immediately and keep hyphenated calendar titles off the last kitchen player.([8265969](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/82659696bbe927d28344f0a3098c5bf6930aa080))
+
+## [2026.8.61](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.59...2026.8.61) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #165 from FABBricate-IT-Solutions/fix/live-story-joke-calendar([228964d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/228964d8b14665131f9151a478451d792801c9ec))
+
+- Keep Guten Morgen from listing tomorrow's calendar.([b20a95b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/b20a95ba86f32b7747c735fd811687eda68fde2d))
+
+- Tell stories, list tomorrow, keep calendar titles.([6317f11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6317f119d731b436beb87e7bcb2eda2a7695c24f))
+
+- Merge pull request #164 from FABBricate-IT-Solutions/chore/release-2026.8.60([00c8158](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/00c8158a73e2388c69db77e76e9953e1c43b9021))
+
+- Merge pull request #163 from FABBricate-IT-Solutions/fix/live-heat-not-session-volume([8d68136](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8d68136317959d617711363693cc2dc8d6d94890))
+
+- Stop heat setpoints from becoming satellite volume.([6289a86](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6289a8678e09a029326d0e165e60eb42177d88d4))
+
+## [2026.8.60](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.59...2026.8.60) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #163 from FABBricate-IT-Solutions/fix/live-heat-not-session-volume([8d68136](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/8d68136317959d617711363693cc2dc8d6d94890))
+
+- Stop heat setpoints from becoming satellite volume.([6289a86](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6289a8678e09a029326d0e165e60eb42177d88d4))
+
+## [2026.8.59](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.58...2026.8.59) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #161 from FABBricate-IT-Solutions/fix/live-heat-not-satellite-volume([f0c7a65](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f0c7a65cd523dec7801176e00b46376093be9591))
+
+- Keep named-room music targeting off heat and volume parses.([d3add3a](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/d3add3aa3e3c658360c79b98150623ca03152b08))
+
+## [2026.8.58](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.57...2026.8.58) - 2026-08-29
+
+
+
+### Documentation
+
+- add an interactive runtime architecture map([e8aae11](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e8aae119fce178222c663ae0fff1546046d92cfd))
+
+
+### Other
+
+- Merge pull request #158 from FABBricate-IT-Solutions/docs/runtime-architecture-map([147dabc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/147dabc16a956afb8934e087b6b4e3317a3fa436))
+
+## [2026.8.57](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.56...2026.8.57) - 2026-08-29
+
+
+
+### Other
+
+- Merge pull request #157 from FABBricate-IT-Solutions/fix/live-kitchen-named-room-not-satellite([e93524f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e93524f733803c31952720b491e9c70c156c5eea))
+
+- Prefer the named-room music player over a global MASS satellite.([660d0aa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/660d0aa44fc1a388b62e1444a20a218ac1a01861))
+
+## [2026.8.56](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.55...2026.8.56) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- play kitchen Alexa and refuse non-TV living-room binds([9ac83a1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/9ac83a18dfb73836c23b49961176a4876e661717))
+
+
+### Other
+
+- Merge pull request #155 from FABBricate-IT-Solutions/fix/live-kitchen-alexa-honest-tv([f3367db](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f3367db78a12e7a4ce4303fd286e70f4e5a40e4b))
+
+
+### Refactor
+
+- move area_slots so compound.rs stays under 500 lines([6ae422b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6ae422bd99c7497c4b464881faf8dc7cd1cfd7cc))
+
+## [2026.8.55](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.54...2026.8.55) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- apply heat, relative dim, Kelvin, kitchen play, and honest TV speech([34fdb07](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/34fdb0790f1d4bc98eff98e8090628674dd5fa82))
+
+
+### Other
+
+- Merge pull request #153 from FABBricate-IT-Solutions/fix/live-heat-dim-kelvin-music-tv([99f0e4f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/99f0e4f5763bf434d59826e6e3df16216a02b642))
+
+## [2026.8.54](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.53...2026.8.54) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- keep bare TV on the Fernseher alias, room TV on the living player([66230d3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/66230d3eae16ac957cf19ba8361ae0c97ab3713b))
+
+- keep clock, living-room TV, and kitchen follow-up honest on Assist([278f4cf](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/278f4cfd85a9d2fcbe235df0f0d195060bc24039))
+
+
+### Other
+
+- Merge pull request #151 from FABBricate-IT-Solutions/fix/live-clock-tv-followup([1db0ddc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1db0ddc5e45c6d1c19a0fd099c70f29a38eaa2ed))
+
+
+### Refactor
+
+- move prefer.rs tests out so the 500-line gate stays green([7452627](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/74526273bc44c7993a979ffdb5974472f6ecb106))
+
+
+### Testing
+
+- treat What's the weather as household, not OOD([802905d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/802905d4c52246c8f7c563be074a6b8c3125e568))
+
+## [2026.8.53](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.52...2026.8.53) - 2026-08-29
+
+
+
+### Bug Fixes
+
+- restore last-light seed and stop media from stealing TV or scripts([e7493ed](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/e7493edcf8eda9addda353ada0466e9b75e8bdbb))
+
+- rustfmt the suite and keep action.rs under 500 lines([f190499](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/f1904995466c378424546a86a1c7b0595ea60460))
+
+
+### Features
+
+- isolate Assist sessions and land the conversation suite([1111544](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/1111544c0f01448aca2169b4ea5bd28255e56888))
+
+
+### Other
+
+- Merge pull request #147 from FABBricate-IT-Solutions/feat/conversation-suite([162b115](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/162b115d06bcf6ad035cb4f424380c0be65199c2))
+
+## [2026.8.52](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.51...2026.8.52) - 2026-08-28
+
+
+
+### Bug Fixes
+
+- satisfy rustfmt, clippy, and the isolated-fallback session test([5748f16](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/5748f16c961521b004b5ccd426ccfdd38a52c500))
+
+- give the story LLM prior turns so egal stays on topic([c49a5fd](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/c49a5fd272bf5cde73d8fe6ca5758d824ef0eca6))
+
+
+### Other
+
+- Merge pull request #145 from FABBricate-IT-Solutions/fix/llm-story-context([afd3032](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/afd3032481135cd2997fad59d6798f12b5b0efd3))
+
+## [2026.8.51](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.50...2026.8.51) - 2026-08-28
+
+
+
+### Bug Fixes
+
+- keep LLM story replies in chat instead of living-room status([47893b3](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/47893b3fdaa11cb87a7c0054d860094f779d2e06))
+
+
+### Other
+
+- Merge pull request #143 from FABBricate-IT-Solutions/fix/llm-chat-followup([08bf4d8](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/08bf4d8ade981df90782a03f57f6088a0334f14a))
+
+## [2026.8.50](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.49-staging.fcb456d...2026.8.50) - 2026-08-28
+
+
+
+### Bug Fixes
+
+- keep the last light so "schalte es wieder ein" works after a new wake ([#140](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/140), [#141](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/pull/141))([484f98d](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/484f98d304df69c9d4a4873a4c179c991b33d8ee))
+
+### Other
+
+- Merge pull request #141 from FABBricate-IT-Solutions/staging([01c20fb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/01c20fb91756ed85cc34dfa4fc39f270ae26d1ea))
+
 ## [2026.8.49](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.48-staging.4801af1...2026.8.49) - 2026-08-28
 
 

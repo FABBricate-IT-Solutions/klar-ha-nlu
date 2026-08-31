@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["gweles"],
         switch_plural: &[],
         device_side: &["alhwedh", "curtayn", "dryer", "golow", "gweles", "gwyns", "jynnwolhi", "pellwolok"],
-        named_device: &["jynnwolhi", "lestri", "pel", "pellwolok"],
+        named_device: &["jynnwolhi", "lestri", "pc", "pel", "pellwolok"],
     },
     fixtures: Fixtures {
         island: &["enys"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["diffyg", "enow"],
         command_hedges: &[],
-        skip_light: &["dryer", "gwyns", "jynnwolhi", "lestri", "pellwolok", "tol"],
+        skip_light: &["dryer", "gwyns", "jynnwolhi", "lestri", "pc", "pellwolok", "tol"],
         laundry_area: &["stevellgolhi"],
         laundry_machines: &["dryer", "jynnwolhi"],
         kitchen: &["kegin"],
@@ -149,7 +149,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "tomder",
         ],
         room_level: &["golow"],
-        extra_device_nouns: &["dryer", "jynnwolhi", "lestri", "pel", "pellwolok", "tol"],
+        extra_device_nouns: &["dryer", "jynnwolhi", "lestri", "pc", "pel", "pellwolok", "tol"],
         synonym_pairs: &[
             ("stafell", "wohnzimmer"),
             ("kegin", "kuche"),
@@ -201,6 +201,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("gwynn toemm", "warmwhite"),
         ],
         numbers: &[
             ("mann", 0),

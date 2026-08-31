@@ -16,6 +16,7 @@ class ConversationFallbackTests(unittest.TestCase):
         end = src.index("fallback = await self._fallback", start)
         block = src[start:end]
         self.assertIn("self._fallback_agent_id()", block)
+        self.assertIn("keeps_engine_chat(hit, chat, engine_speech)", block)
         self.assertNotIn("_nlu_rag()", block)
         self.assertNotIn("decision_type != \"reject\"", block)
 
@@ -27,7 +28,14 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("chat_only_prompt", body)
         self.assertIn("refine_prompt", body)
         self.assertIn("speak_tag(pack)", body)
+        self.assertIn("history_prompt", body)
+        self.assertIn("_llm_session_id", body)
+        self.assertIn("yarn_asks_permission", body)
+        self.assertIn("yarn_nudge", body)
+        self.assertIn("stream_chat", body)
         self.assertNotIn("user_input.language", body)
+        self.assertIn("yarn_canned", src)
+        self.assertIn("_attr_supports_streaming = True", src)
 
     def test_calendar_queries_can_go_to_llm(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
@@ -40,12 +48,16 @@ class ConversationFallbackTests(unittest.TestCase):
         self.assertIn("calendar_prompt(pack, speech", block)
         self.assertIn("self._calendar_llm()", block)
 
-    def test_execute_keeps_conversation_and_stable_session(self) -> None:
+    def test_execute_closes_conversation_and_keeps_stable_session(self) -> None:
         src = (ROOT / "custom_components" / "klar_nlu" / "conversation.py").read_text(
             encoding="utf-8"
         )
         self.assertIn("keeps_conversation(decision_type)", src)
-        self.assertIn("engine_session_id(device_id, satellite_id)", src)
+        self.assertIn("parse_session_id(", src)
+        self.assertIn("engine_session_id", src)
+        spoken = src[src.index("if self._quiet_ack()") : src.index("async def _after_fallback")]
+        self.assertIn(', False, "chime"', spoken)
+        self.assertNotIn(', True, "execute"', src)
 
 
 if __name__ == "__main__":

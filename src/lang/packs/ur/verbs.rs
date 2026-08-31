@@ -17,8 +17,11 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("بیس", VerbKind::Dock),
     ("تالا", VerbKind::Lock),
     ("جھاڑو", VerbKind::VacuumNoun),
+    ("درمیانہ", VerbKind::Dim),
+    ("دھندلا", VerbKind::Dim),
     ("رکھو", VerbKind::Set),
     ("فہرست", VerbKind::List),
+    ("فیصد", VerbKind::Percent),
     ("منظر", VerbKind::Scene),
     ("ٹائمر", VerbKind::Timer),
     ("پنکھا", VerbKind::FanNoun),
@@ -27,4 +30,6 @@ pub(super) const VERBS: &[(&str, VerbKind)] = &[
     ("کھولو", VerbKind::Open),
     ("کیا", VerbKind::Query),
     ("کیسے", VerbKind::Query),
+    ("گرم سفید", VerbKind::Color),
+    ("گہرا", VerbKind::Dim),
 ];

@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - tro gwres ystafell
+  - '21'
+conversation/climate::heat_setpoint:
+- gosod gwres ystafell 21
+conversation/climate::temperature_query:
+- beth gwres ystafell
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - diffodd golau llofft
+  - tro golau ystafell
+  - a cegin hefyd
+conversation/followup::followup_same_action_other_room:
+- - tro golau ystafell
+  - a cegin hefyd
+conversation/house::clock_calendar_weather:
+- beth hour
+- beth calendr
+- beth gwres
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- tro alloff
+conversation/lights::ambiguous_light:
+- tro golau
+conversation/lights::brightness_percent:
+- gosod golau ystafell 30 y cant
+conversation/lights::color_red:
+- - tro golau ystafell
+  - red
+conversation/lights::dim_then_level:
+- - tywyllach golau ystafell
+  - canolig
+conversation/lights::relative_dim:
+- - tro golau ystafell
+  - tywyllach
+conversation/lights::warm_white:
+- - tro golau ystafell
+  - gwyncynnes
+conversation/lights::which_lights_on:
+- - tro golau ystafell
+  - tro golau cegin
+  - beth golau
+conversation/media::music_artist_then_now_playing:
+- - chwarae queen cegin
+  - beth teledu
+conversation/media::music_play_in_room:
+- chwarae teledu cegin
+conversation/media::next_and_pause:
+- - chwarae teledu cegin
+  - next
+  - pause
+conversation/media::tv_not_light:
+- tro teledu ystafell
+conversation/media::volume_down:
+- tawelach teledu

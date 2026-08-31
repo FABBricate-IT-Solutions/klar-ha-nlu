@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["jelenet"],
         switch_plural: &[],
         device_side: &["dryer", "fuggony", "jelenet", "mosogep", "tv", "ventilator", "villany", "zar"],
-        named_device: &["gomb", "mosogatogep", "mosogep", "tv"],
+        named_device: &["gomb", "mosogatogep", "mosogep", "pc", "tv"],
     },
     fixtures: Fixtures {
         island: &["sziget"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["kapcsold", "oltsd"],
         command_hedges: &[],
-        skip_light: &["dryer", "keszulek", "mosogatogep", "mosogep", "tv", "ventilator"],
+        skip_light: &["dryer", "keszulek", "mosogatogep", "mosogep", "pc", "tv", "ventilator"],
         laundry_area: &["mosokonyha"],
         laundry_machines: &["dryer", "mosogep"],
         kitchen: &["konyha"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zene",
         ],
         room_level: &["villany"],
-        extra_device_nouns: &["dryer", "gomb", "keszulek", "mosogatogep", "mosogep", "tv"],
+        extra_device_nouns: &["dryer", "gomb", "keszulek", "mosogatogep", "mosogep", "pc", "tv"],
         synonym_pairs: &[
             ("nappali", "wohnzimmer"),
             ("konyha", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("melegfeher", "warmwhite"),
         ],
         numbers: &[
             ("nulla", 0),

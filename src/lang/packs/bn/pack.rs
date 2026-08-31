@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["দৃশ্য"],
         switch_plural: &[],
         device_side: &["alo", "dryer", "pakha", "washing", "আলো", "টিভি", "তালা", "দৃশ্য", "পর্দা", "পাখা"],
-        named_device: &["basan", "gola", "tv", "washing"],
+        named_device: &["basan", "gola", "pc", "tv", "washing"],
     },
     fixtures: Fixtures {
         island: &["dip"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["jalao", "nibhao", "জ্বালাও", "নিভাও"],
         command_hedges: &[],
-        skip_light: &["basan", "dryer", "jantro", "pakha", "tv", "washing", "টিভি", "পাখা"],
+        skip_light: &["basan", "dryer", "jantro", "pakha", "pc", "tv", "washing", "টিভি", "পাখা"],
         laundry_area: &["dhoa"],
         laundry_machines: &["dryer", "washing"],
         kitchen: &["ranna", "রান্না"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["dhoa"],
         bare_switch: &["appliance", "dryer", "machine", "washing"],
         outlet_words: &[],
-        tv_words: &["টিভি"],
+        tv_words: &["tv"],
         climate_cool: &["gorom"],
         climate_heat: &["গরম"],
         role_light: &["alo", "আলো"],
@@ -162,7 +162,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "রান্না",
         ],
         room_level: &["আলো"],
-        extra_device_nouns: &["basan", "dryer", "gola", "jantro", "tv", "washing"],
+        extra_device_nouns: &["basan", "dryer", "gola", "jantro", "pc", "tv", "washing"],
         synonym_pairs: &[
             ("বসার", "wohnzimmer"),
             ("রান্না", "kuche"),
@@ -227,6 +227,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("goromsada", "warmwhite"),
         ],
         numbers: &[
             ("shunno", 0),

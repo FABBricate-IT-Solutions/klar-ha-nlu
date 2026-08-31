@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["dryer", "scena", "skalbimo", "spyna", "sviesa", "televizorius", "uzuolaida", "ventiliatorius"],
-        named_device: &["indaplove", "rutulys", "skalbimo", "tv"],
+        named_device: &["indaplove", "pc", "rutulys", "skalbimo", "tv"],
     },
     fixtures: Fixtures {
         island: &["sala"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["ijunk", "isjunk"],
         command_hedges: &[],
-        skip_light: &["dryer", "indaplove", "prietaisas", "skalbimo", "televizorius", "tv", "ventiliatorius"],
+        skip_light: &["dryer", "indaplove", "pc", "prietaisas", "skalbimo", "televizorius", "tv", "ventiliatorius"],
         laundry_area: &["skalbykla"],
         laundry_machines: &["dryer", "skalbimo"],
         kitchen: &["virtuve"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["skalbykla"],
         bare_switch: &["appliance", "dryer", "machine", "skalbimo"],
         outlet_words: &[],
-        tv_words: &["televizorius"],
+        tv_words: &["tv"],
         climate_cool: &["sildymas"],
         climate_heat: &["sildymas"],
         role_light: &["sviesa"],
@@ -149,7 +149,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "virtuve",
         ],
         room_level: &["sviesa"],
-        extra_device_nouns: &["dryer", "indaplove", "prietaisas", "rutulys", "skalbimo", "tv"],
+        extra_device_nouns: &["dryer", "indaplove", "pc", "prietaisas", "rutulys", "skalbimo", "tv"],
         synonym_pairs: &[
             ("svetaine", "wohnzimmer"),
             ("virtuve", "kuche"),
@@ -201,6 +201,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("silta balta", "warmwhite"),
         ],
         numbers: &[
             ("nulis", 0),

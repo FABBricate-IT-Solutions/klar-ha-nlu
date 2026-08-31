@@ -4,7 +4,7 @@
 mod voice_suite_support;
 
 use klar_nlu::types::HomeGraph;
-use voice_suite_support::{print_stats, run_groups, run_suite, suite_home};
+use voice_suite_support::{print_stats, run_groups, run_groups_lang, run_suite, suite_home};
 
 #[test]
 fn suite_wohnung_live_assist() {
@@ -77,4 +77,20 @@ fn suite_m2_floors_german() {
     print_stats("Klar NLU · M2 floors German", &stats);
     assert!(stats.ok > 0, "German m2_floors cases are missing");
     assert_eq!(stats.fail, 0, "German m2_floors failures:\n{}", stats.fails.join("\n"));
+}
+
+#[test]
+fn suite_conversation_german() {
+    let stats = run_groups("wohnung_mittel", &["conversation"], suite_home("wohnung_mittel"));
+    print_stats("Klar NLU · Conversation German", &stats);
+    assert!(stats.ok > 0, "German conversation cases are missing");
+    assert_eq!(stats.fail, 0, "German conversation failures:\n{}", stats.fails.join("\n"));
+}
+
+#[test]
+fn suite_conversation_english() {
+    let stats = run_groups_lang("wohnung_en", &["conversation"], suite_home("wohnung_en"), Some("en-only"), None);
+    print_stats("Klar NLU · Conversation English", &stats);
+    assert!(stats.ok > 0, "English conversation cases are missing");
+    assert_eq!(stats.fail, 0, "English conversation failures:\n{}", stats.fails.join("\n"));
 }

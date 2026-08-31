@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - ਚਾਲੂ ਗਰਮੀ ਬੈਠਕ
+  - '21'
+conversation/climate::heat_setpoint:
+- ਸੈੱਟ ਗਰਮੀ ਬੈਠਕ 21
+conversation/climate::temperature_query:
+- ਕੀ ਗਰਮੀ ਬੈਠਕ
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - ਬੰਦ ਰੋਸ਼ਨੀ bedroom
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - ਅਤੇ ਰਸੋਈ vi
+conversation/followup::followup_same_action_other_room:
+- - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - ਅਤੇ ਰਸੋਈ vi
+conversation/house::clock_calendar_weather:
+- ਕੀ hour
+- ਕੀ ਕੈਲੰਡਰ
+- ਕੀ ਗਰਮੀ
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- ਚਾਲੂ alloff
+conversation/lights::ambiguous_light:
+- ਚਾਲੂ ਰੋਸ਼ਨੀ
+conversation/lights::brightness_percent:
+- ਸੈੱਟ ਰੋਸ਼ਨੀ ਬੈਠਕ 30 satkar
+conversation/lights::color_red:
+- - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - red
+conversation/lights::dim_then_level:
+- - zyada ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - vichkar
+conversation/lights::relative_dim:
+- - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - zyada
+conversation/lights::warm_white:
+- - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - garam chitta
+conversation/lights::which_lights_on:
+- - ਚਾਲੂ ਰੋਸ਼ਨੀ ਬੈਠਕ
+  - ਚਾਲੂ ਰੋਸ਼ਨੀ ਰਸੋਈ
+  - ਕੀ ਰੋਸ਼ਨੀ
+conversation/media::music_artist_then_now_playing:
+- - ਚਲਾਓ queen ਰਸੋਈ
+  - ਕੀ tivi
+conversation/media::music_play_in_room:
+- ਚਲਾਓ tivi ਰਸੋਈ
+conversation/media::next_and_pause:
+- - ਚਲਾਓ tivi ਰਸੋਈ
+  - next
+  - ਰੋਕੋ
+conversation/media::tv_not_light:
+- ਚਾਲੂ tv ਬੈਠਕ
+conversation/media::volume_down:
+- hauli tivi

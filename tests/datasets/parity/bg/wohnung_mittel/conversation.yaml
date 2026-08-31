@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - включи парно хол
+  - '21'
+conversation/climate::heat_setpoint:
+- сложи парно хол 21
+conversation/climate::temperature_query:
+- какво парно хол
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - изключи светлина спалня
+  - включи светлина хол
+  - и кухня също
+conversation/followup::followup_same_action_other_room:
+- - включи светлина хол
+  - и кухня също
+conversation/house::clock_calendar_weather:
+- какво hour
+- какво календар
+- какво парно
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- включи alloff
+conversation/lights::ambiguous_light:
+- включи светлина
+conversation/lights::brightness_percent:
+- сложи светлина хол 30 процент
+conversation/lights::color_red:
+- - включи светлина хол
+  - red
+conversation/lights::dim_then_level:
+- - по-тъмно светлина хол
+  - средно
+conversation/lights::relative_dim:
+- - включи светлина хол
+  - по-тъмно
+conversation/lights::warm_white:
+- - включи светлина хол
+  - топлобяло
+conversation/lights::which_lights_on:
+- - включи светлина хол
+  - включи светлина кухня
+  - какво светлина
+conversation/media::music_artist_then_now_playing:
+- - пусни queen кухня
+  - какво музика
+conversation/media::music_play_in_room:
+- пусни музика кухня
+conversation/media::next_and_pause:
+- - пусни музика кухня
+  - next
+  - pause
+conversation/media::tv_not_light:
+- включи тв хол
+conversation/media::volume_down:
+- по-тихо музика

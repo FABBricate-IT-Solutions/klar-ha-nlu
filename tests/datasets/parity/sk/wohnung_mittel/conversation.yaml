@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - zapni kurenie obyvacka
+  - '21'
+conversation/climate::heat_setpoint:
+- nastav kurenie obyvacka 21
+conversation/climate::temperature_query:
+- co kurenie obyvacka
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - vypni svetlo spalna
+  - zapni svetlo obyvacka
+  - a kuchyne tiez
+conversation/followup::followup_same_action_other_room:
+- - zapni svetlo obyvacka
+  - a kuchyne tiez
+conversation/house::clock_calendar_weather:
+- co hour
+- co kalendar
+- co kurenie
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- zapni alloff
+conversation/lights::ambiguous_light:
+- zapni svetlo
+conversation/lights::brightness_percent:
+- nastav svetlo obyvacka 30 percent
+conversation/lights::color_red:
+- - zapni svetlo obyvacka
+  - red
+conversation/lights::dim_then_level:
+- - tmavsi svetlo obyvacka
+  - stredne
+conversation/lights::relative_dim:
+- - zapni svetlo obyvacka
+  - tmavsi
+conversation/lights::warm_white:
+- - zapni svetlo obyvacka
+  - teplabela
+conversation/lights::which_lights_on:
+- - zapni svetlo obyvacka
+  - zapni svetlo kuchyne
+  - co svetlo
+conversation/media::music_artist_then_now_playing:
+- - pust queen kuchyne
+  - co hudba
+conversation/media::music_play_in_room:
+- pust hudba kuchyne
+conversation/media::next_and_pause:
+- - pust hudba kuchyne
+  - next
+  - pause
+conversation/media::tv_not_light:
+- zapni televizor obyvacka
+conversation/media::volume_down:
+- tissie hudba

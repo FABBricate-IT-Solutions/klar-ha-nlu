@@ -62,6 +62,10 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
     with patch.dict(sys.modules, modules):
         contracts = _load(f"{PACKAGE}.contracts", "contracts.py")
         sys.modules[f"{PACKAGE}.contracts"] = contracts
+        _load(f"{PACKAGE}.clock_speech", "clock_speech.py")
+        _load(f"{PACKAGE}.speech_place", "speech_place.py")
+        _load("clock_speech", "clock_speech.py")
+        _load("speech_place", "speech_place.py")
         speech = _load(f"{PACKAGE}.speech", "speech.py")
         sys.modules[f"{PACKAGE}.speech"] = speech
         _load(f"{PACKAGE}.speech_locale", "speech_locale.py")
@@ -145,6 +149,25 @@ class ExecutorTests(unittest.IsolatedAsyncioTestCase):
             )
         self.assertEqual(payload["outcome"], "error")
         self.assertIn("nicht erreichbar", payload["speech"])
+        self.assertNotEqual(payload["speech"], "Das hat nicht geklappt.")
+
+    async def test_unavailable_tv_names_the_television(self) -> None:
+        with patch.object(
+            executor,
+            "handle_intent",
+            return_value=dispatch.IntentStepResult(False, error="media_unavailable"),
+        ):
+            payload = await executor.execute_plan(
+                SimpleNamespace(),
+                SimpleNamespace(text="x", context=object(), language="de"),
+                [_item("HassTurnOn", entity_id="media_player.wohnzimmer_tv")],
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertEqual(payload["outcome"], "error")
+        self.assertIn("Fernseher", payload["speech"])
+        self.assertNotIn("Licht", payload["speech"])
         self.assertNotEqual(payload["speech"], "Das hat nicht geklappt.")
 
     def test_confirm_payload_never_yields_intents(self) -> None:

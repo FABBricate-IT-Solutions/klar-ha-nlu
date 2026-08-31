@@ -192,6 +192,7 @@ export type Dashboard = {
 export type UiState = {
   tab: Tab;
   locale: Locale;
+  locale_set?: boolean;
   dismissed: string[];
   last_apply: ApplyRow[];
   graph: Record<string, { x: number; y: number }>;

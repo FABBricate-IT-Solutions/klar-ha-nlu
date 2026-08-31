@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - چالو گرمی لانج
+  - '21'
+conversation/climate::heat_setpoint:
+- رکھو گرمی لانج 21
+conversation/climate::temperature_query:
+- کیا گرمی لانج
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - بند روشنی bedroom
+  - چالو روشنی لانج
+  - اور باورچی بھی
+conversation/followup::followup_same_action_other_room:
+- - چالو روشنی لانج
+  - اور باورچی بھی
+conversation/house::clock_calendar_weather:
+- کیا hour
+- کیا کیلنڈر
+- کیا گرمی
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- چالو alloff
+conversation/lights::ambiguous_light:
+- چالو روشنی
+conversation/lights::brightness_percent:
+- رکھو روشنی لانج 30 فیصد
+conversation/lights::color_red:
+- - چالو روشنی لانج
+  - red
+conversation/lights::dim_then_level:
+- - گہرا روشنی لانج
+  - درمیانہ
+conversation/lights::relative_dim:
+- - چالو روشنی لانج
+  - گہرا
+conversation/lights::warm_white:
+- - چالو روشنی لانج
+  - گرم سفید
+conversation/lights::which_lights_on:
+- - چالو روشنی لانج
+  - چالو روشنی باورچی
+  - کیا روشنی
+conversation/media::music_artist_then_now_playing:
+- - چلاو queen باورچی
+  - کیا موسیقی
+conversation/media::music_play_in_room:
+- چلاو موسیقی باورچی
+conversation/media::next_and_pause:
+- - چلاو موسیقی باورچی
+  - next
+  - pause
+conversation/media::tv_not_light:
+- چالو tv لانج
+conversation/media::volume_down:
+- آہستہ موسیقی

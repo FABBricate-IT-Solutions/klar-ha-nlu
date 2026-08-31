@@ -116,6 +116,125 @@ def _language_lock(pack: str) -> str:
         )
 
 
+_STORY = {
+    "de": (
+        "Der Nutzer will eine Geschichte. Erzähl jetzt eine kurze Geschichte (ein Beat). "
+        "Antwort = die Geschichte selbst. Keine Frage. Nicht um Erlaubnis fragen. Kein Witz. "
+        "Verboten: Soll ich, Darf ich, Womit soll, Kurz oder lang, Welche Art. "
+        "Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id."
+    ),
+    "en": (
+        "The user wants a story. Tell a short story now (one beat). "
+        "Your reply is the story itself. No question. Do not ask permission. Do not tell a joke. "
+        "Forbidden: shall I, should I, do you want, what kind. "
+        "One or two sentences, then stop. No devices, no entity ids."
+    ),
+}
+
+_JOKE = {
+    "de": (
+        "Der Nutzer will einen Witz. Erzähl jetzt einen Witz. Nicht fragen. Keine Geschichte. "
+        "Ein oder zwei Sätze, dann Schluss. Keine Geräte, keine entity_id."
+    ),
+    "en": (
+        "The user wants a joke. Tell a joke now. Do not ask. Do not tell a story. "
+        "One or two sentences, then stop. No devices, no entity ids."
+    ),
+}
+
+_YARN = {
+    "de": _STORY["de"] + " " + _JOKE["de"],
+    "en": _STORY["en"] + " " + _JOKE["en"],
+}
+
+_STORY_WORDS = (
+    "geschichte",
+    "story",
+    "stories",
+    "fairytale",
+    "märchen",
+    "maerchen",
+)
+_JOKE_WORDS = ("witz", "joke", "jokes")
+_PERMISSION = (
+    "soll ich",
+    "darf ich",
+    "womit soll",
+    "kurz oder lang",
+    "welche art",
+    "wollen sie",
+    "möchtest",
+    "moechtest",
+    "möchten sie",
+    "moechten sie",
+    "kann dir gerne",
+    "kann ich dir",
+    "gerne eine geschichte",
+    "shall i",
+    "should i",
+    "do you want",
+    "would you like",
+    "what kind",
+    "want me to",
+    "i can tell",
+    "i'd be happy",
+)
+_CANNED_STORY = {
+    "de": "Es war einmal ein Fuchs, der nachts über den stillen Hof lief und den Mond begrüßte, bevor er wieder im Wald verschwand.",
+    "en": "Once there was a fox who crossed a quiet yard at night, nodded to the moon, and slipped back into the woods.",
+}
+_CANNED_JOKE = {
+    "de": "Warum tragen Geister keine Hüte? Weil sie durch sind.",
+    "en": "Why don't ghosts wear hats? They go right through them.",
+}
+
+
+def joke_request(text: str) -> bool:
+    blob = (text or "").casefold()
+    return any(word in blob for word in _JOKE_WORDS)
+
+
+def story_request(text: str) -> bool:
+    if joke_request(text):
+        return False
+    blob = (text or "").casefold()
+    return any(word in blob for word in _STORY_WORDS)
+
+
+def yarn_request(text: str) -> bool:
+    return story_request(text) or joke_request(text)
+
+
+def yarn_asks_permission(speech: str) -> bool:
+    blob = (speech or "").casefold()
+    return any(phrase in blob for phrase in _PERMISSION)
+
+
+def yarn_canned(pack: str, text: str) -> str:
+    if joke_request(text):
+        return _CANNED_JOKE.get(pack) or _CANNED_JOKE["en"]
+    return _CANNED_STORY.get(pack) or _CANNED_STORY["en"]
+
+
+def yarn_nudge(pack: str, prompt: str) -> str:
+    extra = (
+        "Erzähl jetzt. Keine Frage. Beginne mit der Geschichte oder dem Witz."
+        if pack == "de" or pack.startswith("de-")
+        else "Tell it now. No question. Start with the story or joke."
+    )
+    return f"{prompt}\n{extra}"
+
+
+def yarn_prompt(pack: str, extra: str | None, text: str | None = None) -> str:
+    if text and joke_request(text):
+        body = _JOKE.get(pack) or _JOKE["en"]
+    elif text and story_request(text):
+        body = _STORY.get(pack) or _STORY["en"]
+    else:
+        body = _YARN.get(pack) or _YARN["en"]
+    return chat_only_prompt(pack, _join_extra(extra, body))
+
+
 def chat_only_prompt(pack: str, extra: str | None) -> str:
     only = _CHAT_ONLY.get(pack) or _ANSWER_IN_PACK.format(pack=pack)
     lock = _language_lock(pack)
@@ -175,6 +294,40 @@ def calendar_prompt(pack: str, facts: str, extra: str | None = None) -> str:
 def _join_extra(extra: str | None, body: str) -> str:
     extra = (extra or "").strip()
     return f"{extra}\n{body}" if extra else body
+
+
+def llm_conversation_id(session_key: str) -> str:
+    key = (session_key or "klar-followup").strip() or "klar-followup"
+    return f"klar-llm-{key}"[:128]
+
+
+def append_llm_turn(
+    turns: list[tuple[str, str]] | None, user: str, assistant: str, keep: int = 8
+) -> list[tuple[str, str]]:
+    out = list(turns or [])
+    user, assistant = user.strip(), assistant.strip()
+    if user or assistant:
+        out.append((user, assistant))
+    return out[-keep:]
+
+
+def history_prompt(pack: str, turns: list[tuple[str, str]] | None) -> str:
+    if not turns:
+        return ""
+    german = pack == "de" or pack.startswith("de-")
+    header = (
+        "Bisher im Gespräch (behalte Thema und Auftrag, auch bei kurzen Antworten wie egal):"
+        if german
+        else "Conversation so far (keep the topic and task, including short replies like whatever):"
+    )
+    who = "Nutzer" if german else "User"
+    lines = [header]
+    for user, assistant in turns:
+        if user:
+            lines.append(f"{who}: {user}")
+        if assistant:
+            lines.append(f"Klar: {assistant}")
+    return "\n".join(lines)
 
 
 def can_use_fallback_agent(controls_home: bool, chat: bool = False) -> bool:

@@ -4,8 +4,10 @@ use crate::home::roles::is_light_like;
 use crate::lang::catalog;
 use crate::lang::VerbKind;
 use crate::parse::action::Action;
-use crate::parse::compound::area_slots;
-use crate::parse::infer::{bind_domain, color_word, except_focus, except_tail, mentions_lamp_fixture, wants_all_lights};
+use crate::parse::clause_area::area_slots;
+use crate::parse::infer::{
+    bind_domain, color_word, except_focus, except_tail, light_level, mentions_lamp_fixture, wants_all_lights, LightLevel,
+};
 use crate::parse::normalize::compact;
 use crate::parse::resolve::resolve;
 use crate::types::{EntityRec, HomeGraph, Intent};
@@ -25,7 +27,7 @@ pub(crate) fn all_lights_clause(
     number: Option<i32>,
     areas: &[String],
 ) -> Option<ClauseOut> {
-    if !wants_all_lights(tokens) {
+    if !wants_all_lights(tokens) || crate::parse::compound::named_scene_or_script(tokens, home).is_some() {
         return None;
     }
     if except_tail(tokens).is_some() {
@@ -184,6 +186,11 @@ pub(crate) fn fill_intent(
                 intent = intent.with("color", c);
             } else if let Some(n) = number {
                 intent = intent.with("brightness", n.to_string());
+            } else if let Some(level) = light_level(tokens) {
+                intent = match level {
+                    LightLevel::Absolute(n) => intent.with("brightness", n.to_string()),
+                    LightLevel::Step(step) => intent.with("brightness_step", step),
+                };
             }
         }
         Action::SetTemp => {

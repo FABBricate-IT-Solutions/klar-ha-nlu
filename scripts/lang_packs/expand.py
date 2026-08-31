@@ -9,20 +9,15 @@ that locale's lexicon actually lists them. de-CH/de-AT may keep German.
 from __future__ import annotations
 
 from lang_packs.calendar_lex import calendar_for
+from lang_packs.convo import with_warm_white
 from lang_packs.extras import pack_extras
 from lang_packs.native_apply import apply_native, is_script_pack
 from lang_packs.voices import normalize_personality
 
 ROOMS = (
-    ("wohnzimmer", "living"),
-    ("esszimmer", "dining"),
-    ("schlafzimmer", "bedroom"),
-    ("kuche", "kitchen"),
-    ("badezimmer", "bathroom"),
-    ("arbeitszimmer", "office"),
-    ("flur", "hallway"),
-    ("balkon", "balcony"),
-    ("wohnung", "home"),
+    ("wohnzimmer", "living"), ("esszimmer", "dining"), ("schlafzimmer", "bedroom"),
+    ("kuche", "kitchen"), ("badezimmer", "bathroom"), ("arbeitszimmer", "office"),
+    ("flur", "hallway"), ("balkon", "balcony"), ("wohnung", "home"),
 )
 
 def expand(core: dict) -> dict:
@@ -48,7 +43,7 @@ def expand(core: dict) -> dict:
             speech.setdefault(key, value)
     chat = dict(core["chat"])
     chat["news_intro"] = speech["unknown"]
-    colors = list(core.get("colors") or default_colors())
+    colors = with_warm_white(core["code"], list(core.get("colors") or default_colors()))
     numbers = list(core.get("numbers", []))
     rooms = list(core.get("rooms", []))
     synonyms = [(native, canon) for native, canon in rooms]
@@ -111,6 +106,8 @@ def expand(core: dict) -> dict:
         verbs.append((word, "Color"))
     for word in w.get("percent", []):
         verbs.append((word, "Percent"))
+    for word in unique(list(w.get("dim") or []) + list(w.get("medium") or [])):
+        verbs.append((word, "Dim"))
     for word in w.get("stop", off[:1]):
         verbs.append((word, "Stop"))
     for word in unique(list(w.get("play") or []) + extra_play):
@@ -205,7 +202,7 @@ def expand(core: dict) -> dict:
             "script_words": w.get("script", scene[:1]),
             "switch_plural": unique([word for word in w.get("switch", []) if word not in (w.get("device") or [])]),
             "device_side": unique(light + fan + media[:1] + cover[:1] + lock[:1] + scene[:1] + w.get("washer", []) + w.get("dryer", [])),
-            "named_device": unique(w.get("named", []) + w.get("globe", [])),
+            "named_device": unique(w.get("named", []) + w.get("globe", []) + ["pc"]),
         },
         "fixtures": {
             "island": w.get("island", []),
@@ -235,6 +232,7 @@ def expand(core: dict) -> dict:
                     + w.get("dishwasher", [])
                     + w.get("dryer", [])
                     + w.get("tv", [])
+                    + ["pc"]
                     if word not in light
                 ]
             ),
@@ -294,7 +292,7 @@ def expand(core: dict) -> dict:
             "laundry_hint": w.get("laundry", []),
             "bare_switch": unique(w.get("washer", []) + w.get("dryer", []) + ["machine", "appliance"]),
             "outlet_words": w.get("outlet", []),
-            "tv_words": media[:1],
+            "tv_words": unique(w.get("tv", []) or media[:1]),
             "climate_cool": climate[-1:],
             "climate_heat": climate[:1],
             "role_light": light[:2],
@@ -312,6 +310,7 @@ def expand(core: dict) -> dict:
                 + w.get("tv", [])
                 + w.get("globe", [])
                 + w.get("named", [])
+                + ["pc"]
             ),
             "synonym_pairs": synonyms,
             "scene_synonyms": scene_synonym_rows(core, w),
@@ -341,11 +340,12 @@ def household_from(core: dict, w: dict, speech: dict) -> dict:
     door = w.get("door") or w.get("light") or []
     q0, s0, o0 = (query[:1] or [""])[0], (sett[:1] or [""])[0], (off[:1] or [""])[0]
     climate0, timer0, door0 = (climate[-1:] or [""])[0], (timer[:1] or [""])[0], (door[:1] or [""])[0]
-    teach = unique(w.get("teach", []) + extra.get("teach", []) + ([f"{s0} {door0} "] if s0 and door0 else []))
-    explain = unique(w.get("explain", []) + extra.get("explain", []) + ([f"{q0} {o0} {s0}".strip()] if q0 and o0 and s0 else []))
-    undo = unique(w.get("undo", []) + extra.get("undo", []) + ([f"{o0} {door0}".strip()] if o0 and door0 else []))
-    clock = unique(w.get("clock", []) + extra.get("clock", []) + ([f"{q0} {timer0}".strip()] if q0 and timer0 else []))
-    weather = unique(w.get("weather", []) + extra.get("weather", []) + ([f"{q0} {climate0}".strip()] if q0 and climate0 else []))
+    add = lambda key, extra_word: unique(w.get(key, []) + extra.get(key, []) + ([extra_word] if extra_word else []))
+    teach = add("teach", f"{s0} {door0} " if s0 and door0 else "")
+    explain = add("explain", f"{q0} {o0} {s0}".strip() if q0 and o0 and s0 else "")
+    undo = add("undo", f"{o0} {door0}".strip() if o0 and door0 else "")
+    clock = add("clock", f"{q0} {timer0}".strip() if q0 and timer0 else "")
+    weather = add("weather", f"{q0} {climate0}".strip() if q0 and climate0 else "")
     return {
         "teach": teach,
         "explain": explain,

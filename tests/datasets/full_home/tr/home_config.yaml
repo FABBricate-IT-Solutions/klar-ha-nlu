@@ -51,10 +51,10 @@ areas:
   aliases:
   - aile
 - id: laundry
-  name: Camasir
+  name: Camasirhane
   floor: ground
   aliases:
-  - camasir
+  - camasirhane
 - id: powder_room
   name: Wc
   floor: ground
@@ -161,9 +161,9 @@ devices:
   - tavan
 - id: light.laundry_light
   area_id: laundry
-  name: camasir isik
+  name: camasirhane isik
   aliases:
-  - camasir isik
+  - camasirhane isik
   - isik
 - id: light.powder_room_light
   area_id: powder_room
@@ -289,25 +289,25 @@ devices:
   - perde
 - id: climate.ground_thermostat
   area_id: living
-  name: salon klima
+  name: salon sicaklik
   aliases:
-  - salon klima
-  - klima
+  - salon sicaklik
+  - sicaklik
 - id: climate.upper_thermostat
   area_id: master_bedroom
-  name: yatakodasimaster klima
+  name: yatakodasimaster sicaklik
   aliases:
-  - yatakodasimaster klima
-  - klima
+  - yatakodasimaster sicaklik
+  - sicaklik
 - id: climate.master_ac
   area_id: master_bedroom
-  name: sicaklik yatakodasimaster
+  name: klima yatakodasimaster
   aliases:
-  - sicaklik yatakodasimaster
-  - sicaklik
+  - klima yatakodasimaster
+  - klima
   - ac
   tags:
-  - sicaklik
+  - klima
 - id: fan.family_fan
   area_id: family_room
   name: aile vantilator
@@ -356,9 +356,9 @@ devices:
   - rangehood
 - id: switch.washing_machine
   area_id: laundry
-  name: camasir camasir
+  name: camasirhane camasir
   aliases:
-  - camasir camasir
+  - camasirhane camasir
   - camasir
   - washer
   tags:
@@ -366,9 +366,9 @@ devices:
   - camasir
 - id: switch.dryer
   area_id: laundry
-  name: camasir dryer
+  name: camasirhane dryer
   aliases:
-  - camasir dryer
+  - camasirhane dryer
   - dryer
   tags:
   - dryer

@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["ਦ੍ਰਿਸ਼"],
         switch_plural: &[],
         device_side: &["dryer", "pakha", "roshni", "washing", "ਟੀਵੀ", "ਤਾਲਾ", "ਦ੍ਰਿਸ਼", "ਪਰਦਾ", "ਪੱਖਾ", "ਰੋਸ਼ਨੀ"],
-        named_device: &["bartan", "gola", "tv", "washing"],
+        named_device: &["bartan", "gola", "pc", "tv", "washing"],
     },
     fixtures: Fixtures {
         island: &["tapu"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["band", "chalu", "ਚਾਲੂ", "ਬੰਦ"],
         command_hedges: &[],
-        skip_light: &["bartan", "dryer", "pakha", "tv", "upkaran", "washing", "ਟੀਵੀ", "ਪੱਖਾ"],
+        skip_light: &["bartan", "dryer", "pakha", "pc", "tv", "upkaran", "washing", "ਟੀਵੀ", "ਪੱਖਾ"],
         laundry_area: &["dhon"],
         laundry_machines: &["dryer", "washing"],
         kitchen: &["rasoi", "ਰਸੋਈ"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["dhon"],
         bare_switch: &["appliance", "dryer", "machine", "washing"],
         outlet_words: &[],
-        tv_words: &["ਟੀਵੀ"],
+        tv_words: &["tv"],
         climate_cool: &["garmi"],
         climate_heat: &["ਗਰਮੀ"],
         role_light: &["roshni", "ਰੋਸ਼ਨੀ"],
@@ -162,7 +162,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ਸੂਚੀ",
         ],
         room_level: &["ਰੋਸ਼ਨੀ"],
-        extra_device_nouns: &["bartan", "dryer", "gola", "tv", "upkaran", "washing"],
+        extra_device_nouns: &["bartan", "dryer", "gola", "pc", "tv", "upkaran", "washing"],
         synonym_pairs: &[
             ("ਬੈਠਕ", "wohnzimmer"),
             ("ਰਸੋਈ", "kuche"),
@@ -227,6 +227,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("garam chitta", "warmwhite"),
         ],
         numbers: &[
             ("sifar", 0),

@@ -83,7 +83,7 @@ async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> No
     stored = (hass.data.get(DOMAIN) or {}).get(entry.entry_id) or {}
     token = stored.get("token") or _option(entry, CONF_TOKEN)
     url = _option(entry, CONF_URL) or DEFAULT_URL
-    languages, ui_locale = engine_language_state(
+    languages, _chrome = engine_language_state(
         entry.options.get(CONF_LANGUAGES),
         getattr(hass.config, "language", None),
     )
@@ -93,7 +93,6 @@ async def _async_sync_personality(hass: HomeAssistant, entry: ConfigEntry) -> No
         resolve_personality(entry.options.get(CONF_PERSONALITY)),
         token=str(token) if token else None,
         languages=languages,
-        ui_locale=ui_locale,
     )
 
 

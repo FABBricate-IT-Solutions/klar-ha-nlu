@@ -211,7 +211,7 @@ pub const PACK: LanguagePack = LanguagePack {
         list_complete: &["haken", "erledigt", "abgehakt"],
         playback_resume: &["weiter", "fortsetzen"],
         calendar_query: &["steht", "anstehend", "kommende", "naechste"],
-        calendar_create: &["anlegen", "eintragen", "planen", "setz"],
+        calendar_create: &["anlegen", "eintragen", "eintrag", "planen", "setz", "trage", "trag", "lege", "leg"],
         calendar_today: &["heute"],
         calendar_tomorrow: &["morgen"],
         calendar_when: &["um", "uhr", "montag", "dienstag", "mittwoch", "donnerstag", "freitag", "samstag", "sonntag"],
@@ -384,6 +384,8 @@ pub const PACK: LanguagePack = LanguagePack {
             ("pink", "pink"),
             ("schwarz", "black"),
             ("weiss", "white"),
+            ("warmweiss", "warmwhite"),
+            ("warmwhite", "warmwhite"),
             ("lila", "purple"),
         ],
         numbers: &[

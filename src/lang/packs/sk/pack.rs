@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["pracka", "scena", "susicka", "svetlo", "televizia", "ventilator", "zamok", "zaves"],
-        named_device: &["gula", "pracka", "televizor", "umyvacka"],
+        named_device: &["gula", "pc", "pracka", "televizor", "umyvacka"],
     },
     fixtures: Fixtures {
         island: &["ostrov"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["vypni", "zapni"],
         command_hedges: &[],
-        skip_light: &["pracka", "pristroj", "susicka", "televizia", "televizor", "umyvacka", "ventilator"],
+        skip_light: &["pc", "pracka", "pristroj", "susicka", "televizia", "televizor", "umyvacka", "ventilator"],
         laundry_area: &["pradelna"],
         laundry_machines: &["pracka", "susicka"],
         kitchen: &["kuchyne"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["pradelna"],
         bare_switch: &["appliance", "machine", "pracka", "susicka"],
         outlet_words: &[],
-        tv_words: &["televizia"],
+        tv_words: &["televizor"],
         climate_cool: &["teplota"],
         climate_heat: &["kurenie"],
         role_light: &["svetlo"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zoznam",
         ],
         room_level: &["svetlo"],
-        extra_device_nouns: &["gula", "pracka", "pristroj", "susicka", "televizor", "umyvacka"],
+        extra_device_nouns: &["gula", "pc", "pracka", "pristroj", "susicka", "televizor", "umyvacka"],
         synonym_pairs: &[
             ("obyvacka", "wohnzimmer"),
             ("kuchyne", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("teplabela", "warmwhite"),
         ],
         numbers: &[
             ("nula", 0),

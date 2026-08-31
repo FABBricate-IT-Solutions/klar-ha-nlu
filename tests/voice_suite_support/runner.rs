@@ -41,6 +41,7 @@ pub(crate) fn run_groups_lang(
 ) -> RunStats {
     let settings = match language {
         Some("de") | Some("en") => Settings { languages: vec!["de".into(), "en".into()], ..Settings::default() },
+        Some("en-only") => Settings::pinned("en"),
         Some(code) => Settings::pinned(code),
         None => Settings { languages: vec!["de".into(), "en".into()], ..Settings::default() },
     };

@@ -36,6 +36,10 @@ class PolicyActionTests(unittest.TestCase):
         self.assertTrue(actions.skips_llm_fallback("template"))
         self.assertFalse(actions.skips_llm_fallback("llm"))
         self.assertFalse(actions.skips_llm_fallback(""))
+        self.assertTrue(actions.keeps_engine_chat("", True, "Es ist 14:44."))
+        self.assertFalse(actions.keeps_engine_chat("llm", True, "Es ist 14:44."))
+        self.assertFalse(actions.keeps_engine_chat("", True, ""))
+        self.assertFalse(actions.keeps_engine_chat("", False, "Es ist 14:44."))
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 [profile.default]
+fail-fast = false
 test-threads = "num-cpus"
 
 [profile.ci]
@@ -7,9 +8,8 @@ test-threads = "num-cpus"
 slow-timeout = { period = "120s", terminate-after = 2 }
 status-level = "fail"
 final-status-level = "flaky"
-# Full datasets stay local / language-parity.yml.
-# PR CI: assist smoke for every locale, plus path-scoped parity (scripts/ci_lang_tests.py).
-default-filter = "not (binary(parity_langs) | binary(voice_suite) | binary(full_home))"
+# Full Wohn+Family+m0+m2 for every compiled locale. voice_suite / full_home stay local.
+default-filter = "not (binary(voice_suite) | binary(full_home))"
 
 [profile.ci-lang]
 fail-fast = false

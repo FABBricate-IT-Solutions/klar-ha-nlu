@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - തെളി ചൂട് ഹാൾ
+  - '21'
+conversation/climate::heat_setpoint:
+- സെറ്റ് ചൂട് ഹാൾ 21
+conversation/climate::temperature_query:
+- എന്ത് ചൂട് ഹാൾ
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - അണയ്ക്ക് വിളക്ക് kitappumuri
+  - തെളി വിളക്ക് ഹാൾ
+  - ഉം അടുക്കള koode
+conversation/followup::followup_same_action_other_room:
+- - തെളി വിളക്ക് ഹാൾ
+  - ഉം അടുക്കള koode
+conversation/house::clock_calendar_weather:
+- എന്ത് hour
+- എന്ത് കലണ്ടർ
+- എന്ത് ചൂട്
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- തെളി alloff
+conversation/lights::ambiguous_light:
+- തെളി വിളക്ക്
+conversation/lights::brightness_percent:
+- സെറ്റ് വിളക്ക് ഹാൾ 30 shatamanam
+conversation/lights::color_red:
+- - തെളി വിളക്ക് ഹാൾ
+  - red
+conversation/lights::dim_then_level:
+- - kooduthal വിളക്ക് ഹാൾ
+  - madhyamam
+conversation/lights::relative_dim:
+- - തെളി വിളക്ക് ഹാൾ
+  - kooduthal
+conversation/lights::warm_white:
+- - തെളി വിളക്ക് ഹാൾ
+  - chusukulla vella
+conversation/lights::which_lights_on:
+- - തെളി വിളക്ക് ഹാൾ
+  - തെളി വിളക്ക് അടുക്കള
+  - എന്ത് വിളക്ക്
+conversation/media::music_artist_then_now_playing:
+- - പ്ലേ queen അടുക്കള
+  - എന്ത് tivi
+conversation/media::music_play_in_room:
+- പ്ലേ tivi അടുക്കള
+conversation/media::next_and_pause:
+- - പ്ലേ tivi അടുക്കള
+  - next
+  - നിർത്ത്
+conversation/media::tv_not_light:
+- തെളി tv ഹാൾ
+conversation/media::volume_down:
+- shabdhamkuraykku tivi

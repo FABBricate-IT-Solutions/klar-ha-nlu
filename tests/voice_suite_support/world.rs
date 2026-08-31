@@ -5,6 +5,7 @@ use std::collections::BTreeMap;
 const ENTITY_FIELDS: &[&str] = &[
     "state",
     "brightness",
+    "brightness_step",
     "color",
     "percentage",
     "position",

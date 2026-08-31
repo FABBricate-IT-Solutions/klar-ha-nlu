@@ -4,7 +4,7 @@ import { StageBars } from "../components/charts";
 import { Pipeline } from "../components/pipeline";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
-import type { Locale, ParseResult } from "../types";
+import type { ParseResult } from "../types";
 
 function asError(err: unknown): string {
   return err instanceof Error ? err.message : String(err);
@@ -18,13 +18,13 @@ function bannerText(error: string, result: ParseResult | null): string {
 
 export function ParsePage({
   t,
-  locale,
+  parseLanguage,
   replayText,
   nluRag,
   rooms,
 }: {
   t: Messages;
-  locale: Locale;
+  parseLanguage?: string;
   replayText: string;
   nluRag: boolean;
   rooms: { area_id: string; name: string }[];
@@ -59,7 +59,7 @@ export function ParsePage({
   const submit = async () => {
     setError("");
     try {
-      const data = await api.parse(text, locale, conversationId, nluRag || undefined, area || undefined);
+      const data = await api.parse(text, parseLanguage || "", conversationId, nluRag || undefined, area || undefined);
       setConversationId(data.conversation_id);
       setResult(data);
       setTeachStatus("");

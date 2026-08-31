@@ -1,0 +1,39 @@
+# Live-review follow-ups. Same IDs as wohnung_mittel/conversation.
+- name: followup_same_action_other_room
+  world_expect:
+    - {entity_id: light.kuche_kuche, state: 'on'}
+  sentences:
+    - - Turn on the living room lights
+      - and the kitchen too
+    - - Turn on the living room lights
+      - the kitchen as well
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kuche_kuche}
+    reject: false
+    clarify: false
+  speech_has:
+    - kitchen
+  speech_forbids:
+    - ' off'
+
+- name: followup_not_poisoned_by_prior_off
+  world_expect:
+    - {entity_id: light.kuche_kuche, state: 'on'}
+  sentences:
+    - - Turn off the bedroom lights
+      - Turn on the living room lights
+      - and the kitchen too
+    - - Turn off all the lights
+      - and the kitchen too
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: light.kuche_kuche}
+    reject: false
+    clarify: false
+  speech_has:
+    - kitchen
+  speech_forbids:
+    - ' off'

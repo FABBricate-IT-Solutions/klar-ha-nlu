@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["sena"],
         switch_plural: &[],
         device_side: &["dryer", "gardina", "las", "ljos", "sena", "sjonvarp", "thvottavel", "viftu"],
-        named_device: &["kula", "sjonvarp", "thvottavel", "uppvthvott"],
+        named_device: &["kula", "pc", "sjonvarp", "thvottavel", "uppvthvott"],
     },
     fixtures: Fixtures {
         island: &["eyja"],
@@ -64,7 +64,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("nattbord", &["bedside", "nacht", "nachttisch", "nattbord"]),
             ("uppvthvott", &["dishwasher", "spuelmaschine", "spulmaschine", "uppvthvott"]),
             ("thvottavel", &["thvottavel", "waschmaschine", "washer", "washing"]),
-            ("sjónvarp", &["fernseher", "sjonvarp", "tv"]),
+            ("sjonvarp", &["fernseher", "sjonvarp", "tv"]),
             ("dryer", &["dryer", "trockner"]),
         ],
         group_clarify: Some(GroupClarify { trigger: &[], pairs: &[], triples: &[] }),
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["kveiktu", "slokktu"],
         command_hedges: &[],
-        skip_light: &["dryer", "sjonvarp", "taeki", "thvottavel", "uppvthvott", "viftu"],
+        skip_light: &["dryer", "pc", "sjonvarp", "taeki", "thvottavel", "uppvthvott", "viftu"],
         laundry_area: &["thvottahus"],
         laundry_machines: &["dryer", "thvottavel"],
         kitchen: &["eldhus"],
@@ -135,7 +135,7 @@ pub const PACK: LanguagePack = LanguagePack {
         role_fan: &["viftu"],
         generic: &["eldhus", "gardina", "hiti", "hurd", "las", "listi", "ljos", "ryksuga", "sena", "sjonvarp", "stofa", "timi", "viftu"],
         room_level: &["ljos"],
-        extra_device_nouns: &["dryer", "kula", "sjonvarp", "taeki", "thvottavel", "uppvthvott"],
+        extra_device_nouns: &["dryer", "kula", "pc", "sjonvarp", "taeki", "thvottavel", "uppvthvott"],
         synonym_pairs: &[
             ("stofa", "wohnzimmer"),
             ("eldhus", "kuche"),
@@ -187,6 +187,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("heitthvitt", "warmwhite"),
         ],
         numbers: &[
             ("null", 0),

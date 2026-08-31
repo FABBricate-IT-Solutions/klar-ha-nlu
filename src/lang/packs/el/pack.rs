@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["σκηνη"],
         switch_plural: &[],
         device_side: &["dryer", "ανεμιστηρας", "κλειδαρια", "κουρτινα", "πλυντηριο", "σκηνη", "τηλεοραση", "φως"],
-        named_device: &["πιατα", "πλυντηριο", "σφαιρα", "τηλεοραση"],
+        named_device: &["pc", "πιατα", "πλυντηριο", "σφαιρα", "τηλεοραση"],
     },
     fixtures: Fixtures {
         island: &["νησι"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["αναψε", "σβησε"],
         command_hedges: &[],
-        skip_light: &["dryer", "ανεμιστηρας", "πιατα", "πλυντηριο", "συσκευη", "τηλεοραση"],
+        skip_light: &["dryer", "pc", "ανεμιστηρας", "πιατα", "πλυντηριο", "συσκευη", "τηλεοραση"],
         laundry_area: &["πλυσταριο"],
         laundry_machines: &["dryer", "πλυντηριο"],
         kitchen: &["κουζινα"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "χρονομετρο",
         ],
         room_level: &["φως"],
-        extra_device_nouns: &["dryer", "πιατα", "πλυντηριο", "συσκευη", "σφαιρα", "τηλεοραση"],
+        extra_device_nouns: &["dryer", "pc", "πιατα", "πλυντηριο", "συσκευη", "σφαιρα", "τηλεοραση"],
         synonym_pairs: &[
             ("σαλονι", "wohnzimmer"),
             ("κουζινα", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("ζεστολευκο", "warmwhite"),
         ],
         numbers: &[
             ("μηδεν", 0),

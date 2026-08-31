@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - వెలిగించు వేడి గది
+  - '21'
+conversation/climate::heat_setpoint:
+- సెట్ వేడి గది 21
+conversation/climate::temperature_query:
+- ఏమి వేడి గది
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - ఆర్పు వెలుగు padakagadi
+  - వెలిగించు వెలుగు గది
+  - మరియు వంటగది kuda
+conversation/followup::followup_same_action_other_room:
+- - వెలిగించు వెలుగు గది
+  - మరియు వంటగది kuda
+conversation/house::clock_calendar_weather:
+- ఏమి hour
+- ఏమి క్యాలెండర్
+- ఏమి వేడి
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- వెలిగించు alloff
+conversation/lights::ambiguous_light:
+- వెలిగించు వెలుగు
+conversation/lights::brightness_percent:
+- సెట్ వెలుగు గది 30 satam
+conversation/lights::color_red:
+- - వెలిగించు వెలుగు గది
+  - red
+conversation/lights::dim_then_level:
+- - ekkuva వెలుగు గది
+  - madhyam
+conversation/lights::relative_dim:
+- - వెలిగించు వెలుగు గది
+  - ekkuva
+conversation/lights::warm_white:
+- - వెలిగించు వెలుగు గది
+  - vedi telupu
+conversation/lights::which_lights_on:
+- - వెలిగించు వెలుగు గది
+  - వెలిగించు వెలుగు వంటగది
+  - ఏమి వెలుగు
+conversation/media::music_artist_then_now_playing:
+- - ప్లే queen వంటగది
+  - ఏమి tivi
+conversation/media::music_play_in_room:
+- ప్లే tivi వంటగది
+conversation/media::next_and_pause:
+- - ప్లే tivi వంటగది
+  - next
+  - ఆపు
+conversation/media::tv_not_light:
+- వెలిగించు tv గది
+conversation/media::volume_down:
+- mellaga tivi

@@ -29,7 +29,9 @@ map:
 options:
   token: ""
   support_bundle: false
+  ui_locale: ""
 schema:
   token: str?
   support_bundle: bool?
+  ui_locale: str?
 image: ghcr.io/fabbricate-it-solutions/klar-nlu-{arch}

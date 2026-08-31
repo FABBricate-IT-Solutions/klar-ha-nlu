@@ -69,8 +69,14 @@ def as_event(entity_id: str, raw: Any) -> dict[str, Any]:
     }
 
 
-async def collect(hass: HomeAssistant, targets: list[str]) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
-    start, end = window(hass)
+async def collect(
+    hass: HomeAssistant,
+    targets: list[str],
+    start: datetime | None = None,
+    end: datetime | None = None,
+) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
+    if start is None or end is None:
+        start, end = window(hass)
     events: list[dict[str, Any]] = []
     records: list[dict[str, str]] = []
     for entity_id in targets:

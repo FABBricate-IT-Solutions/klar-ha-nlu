@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - allume chauffage salon
+  - '21'
+conversation/climate::heat_setpoint:
+- mets chauffage salon 21
+conversation/climate::temperature_query:
+- quel chauffage salon
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - eteins lumiere chambre
+  - allume lumiere salon
+  - et cuisine aussi
+conversation/followup::followup_same_action_other_room:
+- - allume lumiere salon
+  - et cuisine aussi
+conversation/house::clock_calendar_weather:
+- quel heure
+- quel calendrier
+- quel chauffage
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- allume alloff
+conversation/lights::ambiguous_light:
+- allume lumiere
+conversation/lights::brightness_percent:
+- mets lumiere salon 30 pourcent
+conversation/lights::color_red:
+- - allume lumiere salon
+  - rouge
+conversation/lights::dim_then_level:
+- - sombre lumiere salon
+  - moyen
+conversation/lights::relative_dim:
+- - allume lumiere salon
+  - sombre
+conversation/lights::warm_white:
+- - allume lumiere salon
+  - blancchaud
+conversation/lights::which_lights_on:
+- - allume lumiere salon
+  - allume lumiere cuisine
+  - quel lumiere
+conversation/media::music_artist_then_now_playing:
+- - joue queen cuisine
+  - quel musique
+conversation/media::music_play_in_room:
+- joue musique cuisine
+conversation/media::next_and_pause:
+- - joue musique cuisine
+  - next
+  - pause
+conversation/media::tv_not_light:
+- allume tele salon
+conversation/media::volume_down:
+- moinsfort musique

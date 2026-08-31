@@ -1,0 +1,106 @@
+- name: scene_all_off
+  world_expect:
+    - {entity_id: scene.alles_aus, state: 'on'}
+  sentences:
+    - Activate All off
+  nlu_expect:
+    intents:
+      - intent: HassTurnOn
+        slots: {entity_id: scene.alles_aus, domain: scene}
+    reject: false
+    clarify: false
+  forbid:
+    - light.wohnzimmer
+    - light.kuche_kuche
+    - light.alle_lichter
+
+- name: clock_calendar_weather
+  sentences:
+    - What time is it?
+    - What's on the calendar?
+    - What do I have tomorrow?
+    - What's on the calendar tomorrow?
+    - What's the weather?
+  nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - That is done
+    - erledigt
+    - seconds
+
+- name: calendar_tomorrow_query
+  sentences:
+    - What do I have tomorrow?
+    - What's on the calendar tomorrow?
+  nlu_expect:
+    intents:
+      - intent: KlarGetCalendarEvents
+        slots: {day: tomorrow, domain: calendar}
+    reject: false
+    clarify: false
+  speech_forbids:
+    - set
+    - entity_id
+
+- name: calendar_create_named
+  sentences:
+    - Add Klar-Test Witzkalender tomorrow at 3 to my calendar
+    - Add Klar-Retest-62 tomorrow at 3 to my calendar
+  nlu_expect:
+    reject: false
+    clarify: false
+  speech_forbids:
+    - volume
+    - percent
+
+- name: calendar_create_exact_title
+  sentences:
+    - Add the event Klar-Retest-62 tomorrow at 3 to my calendar
+  nlu_expect:
+    intents:
+      - intent: KlarCreateCalendarEvent
+        slots: {summary: klar-retest-62, day: tomorrow, hour: '3', domain: calendar}
+    reject: false
+    clarify: false
+
+- name: story_chat
+  sentences:
+    - Tell me a story
+    - Tell me a short story
+  nlu_expect:
+    intents: []
+    reject: false
+    clarify: false
+  speech_forbids:
+    - entity_id
+    - That is done
+    - Shall I
+    - Do you want
+    - I can tell
+
+- name: joke_chat
+  sentences:
+    - Tell me a joke
+  nlu_expect:
+    intents: []
+    reject: false
+    clarify: false
+  speech_forbids:
+    - entity_id
+    - That is done
+    - Shall I
+    - Do you want
+    - I can tell
+
+- name: false_done_forbidden
+  sentences:
+    - What is the capital of France
+  nlu_expect:
+    intents: []
+    reject: true
+    clarify: false
+  speech_forbids:
+    - That is done
+    - Das ist erledigt
+    - 'Done.'

@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["toneel"],
         switch_plural: &[],
         device_side: &["dryer", "gordyn", "lig", "slot", "toneel", "tv", "waaier", "wasmasjien"],
-        named_device: &["bol", "skottelgoed", "tv", "wasmasjien"],
+        named_device: &["bol", "pc", "skottelgoed", "tv", "wasmasjien"],
     },
     fixtures: Fixtures {
         island: &["eiland"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["doof", "skakel"],
         command_hedges: &[],
-        skip_light: &["dryer", "skottelgoed", "toestel", "tv", "waaier", "wasmasjien"],
+        skip_light: &["dryer", "pc", "skottelgoed", "toestel", "tv", "waaier", "wasmasjien"],
         laundry_area: &["waskamer"],
         laundry_machines: &["dryer", "wasmasjien"],
         kitchen: &["kombuis"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "waaier",
         ],
         room_level: &["lig"],
-        extra_device_nouns: &["bol", "dryer", "skottelgoed", "toestel", "tv", "wasmasjien"],
+        extra_device_nouns: &["bol", "dryer", "pc", "skottelgoed", "toestel", "tv", "wasmasjien"],
         synonym_pairs: &[
             ("sitkamer", "wohnzimmer"),
             ("kombuis", "kuche"),
@@ -205,6 +205,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("swart", "black"),
             ("wit", "white"),
             ("pers", "purple"),
+            ("warmwit", "warmwhite"),
         ],
         numbers: &[
             ("nul", 0),

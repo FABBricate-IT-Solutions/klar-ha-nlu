@@ -323,6 +323,7 @@ def north() -> list[dict]:
             personality=triples(("Muito bem. ", "Com prazer. ", ""), ("Feito. ", "Beleza. ", ""), ("Ja faco. ", "Tudo bem. ", ""), ("Bora. ", "Legal. ", ""), ("Tudo bem. ", "Se for preciso. ", ""), ("Claro. ", "Que surpresa. ", ""), ("Aye. ", "Capitao. ", ""), ("De boa. ", "Calma. ", ""), ("Sim. ", "Sim, meu tesouro. ", "")),
             numbers=["zero", "um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze", "catorze", "quinze", "dezesseis", "dezessete", "dezoito", "dezenove", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa", "cem"],
             colors=[("vermelho", "red"), ("azul", "blue"), ("verde", "green"), ("amarelo", "yellow"), ("laranja", "orange"), ("rosa", "pink"), ("preto", "black"), ("branco", "white"), ("roxo", "purple")],
+            extra_w={"unlock": ["abre"], "lock_v": ["tranca"]},
             and_join=" e ",
             or_join=" ou ",
         ),

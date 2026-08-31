@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["golygfa"],
         switch_plural: &[],
         device_side: &["clo", "dryer", "golau", "golygfa", "gwyntyll", "llen", "peiriannolchi", "teledu"],
-        named_device: &["llestri", "peiriannolchi", "pelen", "teledu"],
+        named_device: &["llestri", "pc", "peiriannolchi", "pelen", "teledu"],
     },
     fixtures: Fixtures {
         island: &["ynys"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["diffodd", "tro"],
         command_hedges: &[],
-        skip_light: &["dryer", "dyfais", "gwyntyll", "llestri", "peiriannolchi", "teledu"],
+        skip_light: &["dryer", "dyfais", "gwyntyll", "llestri", "pc", "peiriannolchi", "teledu"],
         laundry_area: &["ystafellolchi"],
         laundry_machines: &["dryer", "peiriannolchi"],
         kitchen: &["cegin"],
@@ -137,7 +137,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "amserydd", "cegin", "clo", "drws", "golau", "golygfa", "gwres", "gwyntyll", "llen", "rhestr", "sugnwr", "teledu", "ystafell",
         ],
         room_level: &["golau"],
-        extra_device_nouns: &["dryer", "dyfais", "llestri", "peiriannolchi", "pelen", "teledu"],
+        extra_device_nouns: &["dryer", "dyfais", "llestri", "pc", "peiriannolchi", "pelen", "teledu"],
         synonym_pairs: &[
             ("ystafell", "wohnzimmer"),
             ("cegin", "kuche"),
@@ -189,6 +189,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("black", "black"),
             ("white", "white"),
             ("purple", "purple"),
+            ("gwyncynnes", "warmwhite"),
         ],
         numbers: &[
             ("dim", 0),

@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["szene"],
         switch_plural: &[],
         device_side: &["fernseher", "leuchte", "licht", "schloss", "szene", "trockner", "ventilator", "vorhang", "waschmaschine"],
-        named_device: &["kugel"],
+        named_device: &["kugel", "pc"],
     },
     fixtures: Fixtures {
         island: &["insel"],
@@ -75,7 +75,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["mach", "schalt"],
         command_hedges: &[],
-        skip_light: &["fernseher", "geraet", "spuelmaschine", "trockner", "tv", "ventilator", "waschmaschine"],
+        skip_light: &["fernseher", "geraet", "pc", "spuelmaschine", "trockner", "tv", "ventilator", "waschmaschine"],
         laundry_area: &["waschraum"],
         laundry_machines: &["trockner", "waschmaschine"],
         kitchen: &["kuche"],
@@ -127,7 +127,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["waschraum"],
         bare_switch: &["appliance", "machine", "trockner", "waschmaschine"],
         outlet_words: &[],
-        tv_words: &["fernseher"],
+        tv_words: &["tv"],
         climate_cool: &["temperatur"],
         climate_heat: &["heizung"],
         role_light: &["leuchte", "licht"],
@@ -154,7 +154,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "wohnzimmer",
         ],
         room_level: &["licht"],
-        extra_device_nouns: &["geraet", "kugel", "spuelmaschine", "trockner", "tv", "waschmaschine"],
+        extra_device_nouns: &["geraet", "kugel", "pc", "spuelmaschine", "trockner", "tv", "waschmaschine"],
         synonym_pairs: &[
             ("wohnzimmer", "wohnzimmer"),
             ("kuche", "kuche"),
@@ -212,6 +212,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("schwarz", "black"),
             ("weiss", "white"),
             ("violett", "purple"),
+            ("warmweiss", "warmwhite"),
         ],
         numbers: &[
             ("null", 0),

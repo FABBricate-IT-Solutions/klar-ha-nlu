@@ -41,6 +41,28 @@ class FallbackTests(unittest.TestCase):
     def test_unknown_features_fail_closed(self) -> None:
         self.assertTrue(fallback.agent_has_home_control("nope"))
 
+    def test_yarn_prompt_tells_not_asks(self) -> None:
+        self.assertTrue(fallback.story_request("Erzähle eine Geschichte"))
+        self.assertFalse(fallback.joke_request("Erzähle eine Geschichte"))
+        self.assertTrue(fallback.yarn_request("Tell me a joke"))
+        self.assertFalse(fallback.yarn_request("Licht an"))
+        story = fallback.yarn_prompt("de", None, "Erzähle eine Geschichte")
+        self.assertIn("Geschichte", story)
+        self.assertIn("Antwort = die Geschichte selbst", story)
+        self.assertIn("Soll ich", story)
+        self.assertNotIn("Erzähl jetzt einen Witz", story)
+        joke = fallback.yarn_prompt("de", None, "Erzähle einen Witz")
+        self.assertIn("Witz", joke)
+        self.assertNotIn("Antwort = die Geschichte selbst", joke)
+        self.assertTrue(fallback.yarn_asks_permission("Soll ich dir eine kurze Geschichte erzählen?"))
+        self.assertTrue(fallback.yarn_asks_permission("Ich kann dir gerne eine Geschichte erzählen."))
+        self.assertTrue(fallback.yarn_asks_permission("Wollen Sie einen Witz hören?"))
+        self.assertFalse(fallback.yarn_asks_permission("Es war einmal ein Fuchs im Wald."))
+        self.assertFalse(fallback.yarn_asks_permission("Warum tragen Geister keine Hüte? Weil sie durch sind."))
+        self.assertIn("Fuchs", fallback.yarn_canned("de", "Erzähle eine Geschichte"))
+        self.assertIn("Geister", fallback.yarn_canned("de", "Erzähle einen Witz"))
+        self.assertNotIn("Soll ich", fallback.yarn_canned("de", "Erzähle eine Geschichte"))
+
     def test_prompt_appends_chat_only(self) -> None:
         prompt = fallback.chat_only_prompt("de", "Sei kurz.")
         self.assertIn("Sei kurz.", prompt)
@@ -109,6 +131,21 @@ class FallbackTests(unittest.TestCase):
                 self.assertNotIn("Termine", prompt)
             if pack not in {"en", "en-GB"}:
                 self.assertNotEqual(ask, say.LLM["en"][0], pack)
+
+    def test_history_prompt_keeps_story_thread(self) -> None:
+        self.assertEqual(fallback.llm_conversation_id("klar-followup"), "klar-llm-klar-followup")
+        turns = fallback.append_llm_turn(
+            None, "erzähl eine Geschichte", "Kurz oder lang?"
+        )
+        turns = fallback.append_llm_turn(turns, "science fiction", "Raumschiff oder KI?")
+        prompt = fallback.history_prompt("de", turns)
+        self.assertIn("erzähl eine Geschichte", prompt)
+        self.assertIn("science fiction", prompt)
+        self.assertIn("Nutzer:", prompt)
+        self.assertTrue(prompt.startswith("Bisher im Gespräch"))
+        self.assertEqual(fallback.history_prompt("de", []), "")
+        trimmed = fallback.append_llm_turn(turns, "a", "b", keep=2)
+        self.assertEqual(len(trimmed), 2)
 
 
 if __name__ == "__main__":

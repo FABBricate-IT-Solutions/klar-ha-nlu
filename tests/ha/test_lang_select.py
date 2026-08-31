@@ -44,10 +44,18 @@ class LangSelectTests(unittest.TestCase):
         self.assertIn("fr", packs)
         self.assertGreater(len(packs), 2)
 
-    def test_system_follows_home_assistant_language(self) -> None:
-        self.assertEqual(lang.enabled_packs("system", "de"), ["de"])
-        self.assertEqual(lang.enabled_packs("system", "en-GB"), ["en-GB"])
-        self.assertEqual(lang.enabled_packs(["system"], "fr"), ["fr"])
+    def test_system_keeps_all_compiled_packs_for_parse(self) -> None:
+        self.assertGreater(len(lang.enabled_packs("system", "de")), 2)
+        self.assertIn("de", lang.enabled_packs("system", "de"))
+        self.assertIn("en", lang.enabled_packs("system", "de"))
+        self.assertEqual(lang.enabled_packs("system", "de"), lang.enabled_packs("all", "de"))
+        self.assertEqual(lang.default_pack("system", "de"), "de")
+        self.assertEqual(lang.default_pack("system", "en-GB"), "en-GB")
+        self.assertEqual(lang.default_pack(["system"], "fr"), "fr")
+        self.assertEqual(lang.default_pack("system", "ja"), "ja")
+        self.assertEqual(lang.default_pack("system", None), "en")
+        self.assertEqual(lang.default_pack("all", None), "en")
+        self.assertEqual(lang.resolve_pack(None), "en")
 
     def test_one_pack_and_legacy_lists(self) -> None:
         self.assertEqual(lang.enabled_packs("nl"), ["nl"])
@@ -71,15 +79,34 @@ class LangSelectTests(unittest.TestCase):
         self.assertIn("German", lock)
         self.assertIn("Deutsch", lang.language_lock("de"))
 
-    def test_engine_follows_integration_language(self) -> None:
-        self.assertEqual(lang.engine_language_state("fr", "de"), (["fr"], "fr"))
-        self.assertEqual(lang.engine_language_state("system", "en-GB"), (["en-GB"], "en-GB"))
+    def test_engine_pin_does_not_push_operator_chrome(self) -> None:
+        self.assertEqual(lang.engine_language_state("fr", "de"), (["fr"], None))
+        self.assertEqual(lang.engine_language_state("en", "de"), (["en"], None))
+        self.assertEqual(lang.engine_language_state("de", "en"), (["de"], None))
+        self.assertEqual(lang.engine_language_state("system", "en-GB"), ([], None))
         pinned, chrome = lang.engine_language_state("all", "nl")
         self.assertEqual(pinned, [])
-        self.assertEqual(chrome, "nl")
+        self.assertIsNone(chrome)
         pinned, chrome = lang.engine_language_state("all", "zh-CN")
         self.assertEqual(pinned, [])
-        self.assertEqual(chrome, "zh-CN")
+        self.assertIsNone(chrome)
+        self.assertEqual(lang.chrome_locale("de"), "de")
+        self.assertEqual(lang.chrome_locale("en-GB"), "en-GB")
+        self.assertEqual(lang.chrome_locale(None), "en")
+        self.assertEqual(lang.chrome_locale(""), "en")
+        pinned, chrome = lang.engine_language_state("de", None)
+        self.assertEqual(pinned, ["de"])
+        self.assertIsNone(chrome)
+
+    def test_voice_dropdown_always_lists_compiled_packs(self) -> None:
+        advertised = lang.advertised_languages()
+        self.assertIn("de", advertised)
+        self.assertIn("de-DE", advertised)
+        self.assertIn("en", advertised)
+        self.assertGreater(len(advertised), 2)
+        self.assertEqual(lang.resolve_pack("en", lang.enabled_packs("system", "de")), "en")
+        self.assertEqual(lang.resolve_pack("de", lang.enabled_packs("system", "en")), "de")
+        self.assertEqual(lang.resolve_pack("en", lang.enabled_packs("de", "de")), "de")
 
 
 if __name__ == "__main__":

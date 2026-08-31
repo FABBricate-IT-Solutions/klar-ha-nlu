@@ -199,9 +199,15 @@ def pack_rs(lang: dict) -> str:
     ch = lang["chat"]
     s = lang["speech"]
     code = lang["code"]
-    aliases = ",\n".join(
-        f'            ({rust_str(key)}, {rust_list(vals, "            ")})' for key, vals in lang.get("fixture_aliases", [])
-    ) or ""
+    seen_alias: set[str] = set()
+    alias_rows: list[str] = []
+    for key, vals in lang.get("fixture_aliases", []):
+        folded = fold_latin(key)
+        if not folded or folded in seen_alias:
+            continue
+        seen_alias.add(folded)
+        alias_rows.append(f'            ({rust_str(folded)}, {rust_list(vals, "            ")})')
+    aliases = ",\n".join(alias_rows)
     alias_block = f"&[\n{aliases},\n        ]" if aliases else "&[]"
     numbers = ",\n".join(
         f'            ({rust_str(fold_latin(word))}, {num})' for word, num in m["numbers"] if fold_latin(word)

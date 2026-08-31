@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["escena"],
         switch_plural: &[],
         device_side: &["cerradura", "cortina", "escena", "lampara", "lavadora", "luz", "secadora", "tv", "ventilador"],
-        named_device: &["bola", "lavadora", "lavavajillas", "tele"],
+        named_device: &["bola", "lavadora", "lavavajillas", "pc", "tele"],
     },
     fixtures: Fixtures {
         island: &["isla"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["activar", "apaga", "desactiva", "enciende", "prende"],
         command_hedges: &[],
-        skip_light: &["aparato", "lavadora", "lavavajillas", "secadora", "tele", "tv", "ventilador"],
+        skip_light: &["aparato", "lavadora", "lavavajillas", "pc", "secadora", "tele", "tv", "ventilador"],
         laundry_area: &["lavadero"],
         laundry_machines: &["lavadora", "secadora"],
         kitchen: &["cocina"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["lavadero"],
         bare_switch: &["appliance", "lavadora", "machine", "secadora"],
         outlet_words: &[],
-        tv_words: &["tv"],
+        tv_words: &["tele"],
         climate_cool: &["aire"],
         climate_heat: &["calefaccion"],
         role_light: &["lampara", "luz"],
@@ -154,7 +154,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventilador",
         ],
         room_level: &["luz"],
-        extra_device_nouns: &["aparato", "bola", "lavadora", "lavavajillas", "secadora", "tele"],
+        extra_device_nouns: &["aparato", "bola", "lavadora", "lavavajillas", "pc", "secadora", "tele"],
         synonym_pairs: &[
             ("salon", "wohnzimmer"),
             ("cocina", "kuche"),
@@ -214,6 +214,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("negro", "black"),
             ("blanco", "white"),
             ("morado", "purple"),
+            ("blancocalido", "warmwhite"),
         ],
         numbers: &[
             ("cero", 0),

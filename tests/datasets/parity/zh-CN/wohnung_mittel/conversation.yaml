@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - 打开 空调 客厅
+  - '21'
+conversation/climate::heat_setpoint:
+- 设置 空调 客厅 21
+conversation/climate::temperature_query:
+- 什么 空调 客厅
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - 关闭 灯 woshi
+  - 打开 灯 客厅
+  - 和 厨房 也
+conversation/followup::followup_same_action_other_room:
+- - 打开 灯 客厅
+  - 和 厨房 也
+conversation/house::clock_calendar_weather:
+- 什么 hour
+- 什么 日历
+- 什么 空调
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- 打开 alloff
+conversation/lights::ambiguous_light:
+- 打开 灯
+conversation/lights::brightness_percent:
+- 设置 灯 客厅 30 百分之
+conversation/lights::color_red:
+- - 打开 灯 客厅
+  - 红
+conversation/lights::dim_then_level:
+- - 暗一点 灯 客厅
+  - 中等
+conversation/lights::relative_dim:
+- - 打开 灯 客厅
+  - 暗一点
+conversation/lights::warm_white:
+- - 打开 灯 客厅
+  - 暖白
+conversation/lights::which_lights_on:
+- - 打开 灯 客厅
+  - 打开 灯 厨房
+  - 什么 灯
+conversation/media::music_artist_then_now_playing:
+- - 播放 queen 厨房
+  - 什么 yinyue
+conversation/media::music_play_in_room:
+- 播放 yinyue 厨房
+conversation/media::next_and_pause:
+- - 播放 yinyue 厨房
+  - next
+  - 暂停
+conversation/media::tv_not_light:
+- 打开 dianshi 客厅
+conversation/media::volume_down:
+- 小点声 yinyue

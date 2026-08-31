@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - 열어 자물쇠 garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- 켜 티비 gajoksil
+- 켜 tv gajoksil
 devices/media_player_family_tv::media_player_family_tv_pause:
 - 일시정지 tv gajoksil
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- 꺼 티비 gajoksil
+- 꺼 tv gajoksil
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- 켜 티비 gajoksil
+- 켜 tv gajoksil
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- 켜 티비 gajoksil
+- 켜 tv gajoksil
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- 켜 티비 gajoksil
+- 켜 tv gajoksil
 devices/media_player_living_tv::media_player_living_tv_mute:
-- 켜 티비 거실
+- 켜 tv 거실
 devices/media_player_living_tv::media_player_living_tv_pause:
 - 일시정지 tv 거실
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- 꺼 티비 거실
+- 꺼 tv 거실
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- 켜 티비 거실
+- 켜 tv 거실
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- 켜 티비 거실
+- 켜 tv 거실
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- 켜 티비 거실
+- 켜 tv 거실
 devices/scenes::dinner_time:
 - 설정 불 gajoksiless 90 then 켜 cheonjang 부엌 then 설정 seom 부엌 80
 devices/scenes::good_morning:
@@ -246,7 +246,7 @@ devices/scenes::kids_bedtime:
 - 꺼 cheonjang chimsil2 then 꺼 cheonjang chimsil3 then 꺼 cheonjang chimsil4 then 설정
   불 hyeongwangang 15
 devices/scenes::movie_night:
-- 꺼 cheonjang 거실 then 설정 조명 거실 20 then 켜 티비 거실 then 닫아 커튼 거실
+- 꺼 cheonjang 거실 then 설정 조명 거실 20 then 켜 tv 거실 then 닫아 커튼 거실
 devices/scripts::good_night:
 - 꺼 cheonjang 거실 then 꺼 조명 거실 then 꺼 불 gajoksiless then 꺼 cheonjang 부엌 then 꺼 seom
   부엌 then 꺼 cheonjang gajoksil then 꺼 불 hyeongwan then 꺼 불 hyeongwangang then 자물쇠

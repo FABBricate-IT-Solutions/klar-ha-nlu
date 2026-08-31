@@ -17,8 +17,8 @@
   - type: query
     entity_id: lock.front_door
   sentences:
-  - apa kunci lorong
-  - apa lorong kunci
+  - apa kunci lobi
+  - apa lobi kunci
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
@@ -38,8 +38,8 @@
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - apa doorsensor lorong
-  - apa lorong doorsensor
+  - apa doorsensor lobi
+  - apa lobi doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
@@ -241,8 +241,8 @@
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - apa lampu lorong
-  - apa lorong lampu
+  - apa lampu lobi
+  - apa lobi lampu
 - name: query_light.laundry_light
   conditions:
   - type: query

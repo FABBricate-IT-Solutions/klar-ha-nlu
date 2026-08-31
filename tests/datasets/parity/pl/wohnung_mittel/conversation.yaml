@@ -1,0 +1,55 @@
+conversation/climate::heat_on_then_set:
+- - wlacz ogrzewanie salon
+  - '21'
+conversation/climate::heat_setpoint:
+- ustaw ogrzewanie salon 21
+conversation/climate::temperature_query:
+- co ogrzewanie salon
+conversation/followup::followup_not_poisoned_by_prior_off:
+- - wylacz swiatlo sypialnia
+  - wlacz swiatlo salon
+  - i kuchnia tez
+conversation/followup::followup_same_action_other_room:
+- - wlacz swiatlo salon
+  - i kuchnia tez
+conversation/house::clock_calendar_weather:
+- co hour
+- co kalendarz
+- co ogrzewanie
+conversation/house::false_done_forbidden:
+- capital france
+conversation/house::scene_all_off:
+- wlacz alloff
+conversation/lights::ambiguous_light:
+- wlacz swiatlo
+conversation/lights::brightness_percent:
+- ustaw swiatlo salon 30 procent
+conversation/lights::color_red:
+- - wlacz swiatlo salon
+  - czerwony
+conversation/lights::dim_then_level:
+- - ciemniej swiatlo salon
+  - srednio
+conversation/lights::relative_dim:
+- - wlacz swiatlo salon
+  - ciemniej
+conversation/lights::warm_white:
+- - wlacz swiatlo salon
+  - cieplabiala
+conversation/lights::which_lights_on:
+- - wlacz swiatlo salon
+  - wlacz swiatlo kuchnia
+  - co swiatlo
+conversation/media::music_artist_then_now_playing:
+- - odtworz queen kuchnia
+  - co muzyka
+conversation/media::music_play_in_room:
+- odtworz muzyka kuchnia
+conversation/media::next_and_pause:
+- - odtworz muzyka kuchnia
+  - next
+  - pause
+conversation/media::tv_not_light:
+- wlacz telewizor salon
+conversation/media::volume_down:
+- ciszej muzyka
