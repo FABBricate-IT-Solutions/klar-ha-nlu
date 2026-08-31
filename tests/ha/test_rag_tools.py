@@ -55,6 +55,13 @@ class RagToolsTests(unittest.TestCase):
         self.assertEqual(act["slots"], {"entity_id": "light.kugel"})
         self.assertIsNone(rag.parse_tool_reply("Just chatting."))
 
+    def test_holds_klar_tool_prefix(self) -> None:
+        self.assertTrue(rag.holds_klar_tool_prefix(""))
+        self.assertTrue(rag.holds_klar_tool_prefix("KL"))
+        self.assertTrue(rag.holds_klar_tool_prefix("KLAR_PARSE: Licht"))
+        self.assertFalse(rag.holds_klar_tool_prefix("Natürlich"))
+        self.assertFalse(rag.holds_klar_tool_prefix("Klar, gerne."))
+
     def test_act_payload_has_no_plan(self) -> None:
         item = rag.act_payload("HassTurnOn", {"entity_id": "light.kugel"})
         self.assertEqual(item["name"], "HassTurnOn")

@@ -67,7 +67,13 @@ from .fallback import (
     yarn_request,
 )
 from .intents import home_intents, registered_intent_names
-from .rag_tools import act_payload, leaks_klar_tools, parse_tool_reply, rag_prompt
+from .rag_tools import (
+    act_payload,
+    holds_klar_tool_prefix,
+    leaks_klar_tools,
+    parse_tool_reply,
+    rag_prompt,
+)
 from .stream import stream_chat
 from .news import announce, asked_for_more, compose_speech, fetch_headlines, nudge
 from .policy_actions import (
@@ -126,21 +132,24 @@ def _speech_from_result(result: ConversationResult) -> str:
     return str(plain.get("speech") or "")
 
 
-def _mark_published(result: ConversationResult | None, published: bool) -> ConversationResult | None:
-    if result is not None:
-        result.klar_published = published
-    return result
+def _was_published(result: ConversationResult | None) -> bool:
+    if result is None:
+        return False
+    speech = result.response.speech or {}
+    plain = speech.get("plain") or {}
+    extra = plain.get("extra_data")
+    return bool(isinstance(extra, dict) and extra.get("klar_published"))
 
 
 def _speech_result(pack: str, speech: str, published: bool) -> ConversationResult:
     response = intent.IntentResponse(language=speak_tag(pack))
-    response.async_set_speech(speech)
-    result = ConversationResult(
+    extra = {"klar_published": True} if published else None
+    response.async_set_speech(speech, extra_data=extra)
+    return ConversationResult(
         conversation_id=isolated_conversation_id(),
         response=response,
         continue_conversation=True,
     )
-    return _mark_published(result, published)
 
 
 def _stream_hold(yarn: bool, rag: bool):
@@ -151,7 +160,7 @@ def _stream_hold(yarn: bool, rag: bool):
         stripped = speech.lstrip()
         if parse_tool_reply(stripped) or leaks_klar_tools(speech):
             return None
-        if rag and (stripped.startswith("KLAR_") or len(stripped) < 8):
+        if rag and holds_klar_tool_prefix(stripped):
             return False
         if yarn:
             if not pop_complete_sentences(speech)[0]:
@@ -373,7 +382,7 @@ class KlarConversationEntity(ConversationEntity):
         return await self._spoken(
             user_input, chat_log, pack, llm, conversation_id,
             bool(getattr(fallback, "continue_conversation", False)), "chat",
-            bool(getattr(fallback, "klar_published", False)),
+            _was_published(fallback),
         )
 
     async def _spoken(
@@ -624,7 +633,7 @@ class KlarConversationEntity(ConversationEntity):
                 hold=hold,
             )
         except Exception as err:  # noqa: BLE001 — client shape varies by agent
-            _LOGGER.debug("LLM-Stream fehlgeschlagen, converse: %s", err)
+            _LOGGER.warning("LLM-Stream fehlgeschlagen, converse: %s", err)
             return None
         if not speech:
             return None
@@ -639,7 +648,7 @@ class KlarConversationEntity(ConversationEntity):
                     getattr(user_input, "agent_id", None),
                 )
             except Exception as err:  # noqa: BLE001 — retry is best-effort
-                _LOGGER.debug("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
+                _LOGGER.warning("LLM-Stream-Wiederholung fehlgeschlagen: %s", err)
                 return None
             if not speech:
                 return None
