@@ -216,7 +216,7 @@ impl Catalog {
     }
 
     pub fn speech(&self) -> &'static Speech {
-        self.speech.first().copied().unwrap_or(&super::packs::de::PACK.speech)
+        self.speech.first().copied().unwrap_or(&super::packs::en::PACK.speech)
     }
 
     pub fn synonyms<'a>(&'a self, token: &'a str) -> impl Iterator<Item = &'a str> + 'a {
@@ -258,5 +258,15 @@ mod tests {
         assert_eq!(cat.color("rote"), Some("red"));
         assert_eq!(cat.color("rotes"), Some("red"));
         assert_eq!(cat.color_spoken("red"), "rot");
+    }
+
+    #[test]
+    fn empty_catalog_speech_is_english() {
+        let _bind = crate::lang::bind(&[]);
+        let speech = catalog().speech();
+        assert_eq!(speech.clarify, "Do you mean {names}?");
+        assert_eq!(speech.clarify_or, " or ");
+        assert_eq!(speech.confirm, "Should I really do that?");
+        assert!(!speech.clarify.contains("Meinst du"));
     }
 }

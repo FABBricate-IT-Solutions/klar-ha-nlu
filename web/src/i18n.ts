@@ -66,8 +66,8 @@ export function chromeLocale(saved?: string): Locale {
   return matchLocale(saved) || "en";
 }
 
-export function assistParseLanguage(languages: string[]): string | undefined {
-  return languages.length === 1 ? languages[0] : undefined;
+export function assistParseLanguage(languages: string[], chrome?: string): string | undefined {
+  return languages.length === 1 ? languages[0] : chrome;
 }
 
 export function fill(template: string, slots: Record<string, string>): string {

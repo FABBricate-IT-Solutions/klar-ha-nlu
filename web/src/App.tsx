@@ -378,7 +378,7 @@ export function App() {
             canApply={applyCandidates.length > 0}
             onTeach={teach}
             lastTurn={journal ? journal.at(-1) ?? null : undefined}
-            parseLanguage={assistParseLanguage(settings.languages)}
+            parseLanguage={assistParseLanguage(settings.languages, locale)}
           />
         )}
         {ui.tab === "conversations" && <ConversationsPage t={t} locale={locale} onReplay={replay} onTeach={teach} />}
@@ -409,7 +409,7 @@ export function App() {
         {ui.tab === "lab" && (
           <ParsePage
             t={t}
-            parseLanguage={assistParseLanguage(settings.languages)}
+            parseLanguage={assistParseLanguage(settings.languages, locale)}
             replayText={replayText}
             nluRag={settings.nlu_rag}
             rooms={dashboard?.rooms || []}

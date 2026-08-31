@@ -52,6 +52,10 @@ class LangSelectTests(unittest.TestCase):
         self.assertEqual(lang.default_pack("system", "de"), "de")
         self.assertEqual(lang.default_pack("system", "en-GB"), "en-GB")
         self.assertEqual(lang.default_pack(["system"], "fr"), "fr")
+        self.assertEqual(lang.default_pack("system", "ja"), "ja")
+        self.assertEqual(lang.default_pack("system", None), "en")
+        self.assertEqual(lang.default_pack("all", None), "en")
+        self.assertEqual(lang.resolve_pack(None), "en")
 
     def test_one_pack_and_legacy_lists(self) -> None:
         self.assertEqual(lang.enabled_packs("nl"), ["nl"])
