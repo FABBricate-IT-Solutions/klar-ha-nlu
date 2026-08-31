@@ -17,7 +17,7 @@ cargo check
 cargo nextest run
 ```
 
-CI uses `cargo nextest run --locked --profile ci`: same assist smoke for every compiled locale. If a PR touches `src/lang/packs/{code}/`, a de/en pack, or that locale's datasets, CI also runs that locale's Wohn+Family suite (`scripts/ci_lang_tests.py`). de/en stay a hard gate; other locales are report-only until fail==0. A generator rewrite that touches more than 8 locales is skipped (use `language-parity.yml`). Locally, `cargo nextest run` still runs every locale.
+CI uses `cargo nextest run --locked --profile ci --no-fail-fast`: assist smoke plus the full Wohn+Family+m0+m2 parity suite for every compiled locale. `voice_suite` and `full_home` stay local / `language-parity.yml`.
 
 Do **not** run `python3 scripts/lang_packs/generate.py` in pre-commit or as a drive-by. Regeneration is a deliberate pack change.
 

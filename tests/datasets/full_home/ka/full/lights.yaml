@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - ჩართე სინათლე saretskhave
-  - სინათლე saretskhave ჩართე
+  - ჩართე სინათლე samretskhao
+  - სინათლე samretskhao ჩართე
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - გამორთე სინათლე saretskhave
-  - სინათლე saretskhave გამორთე
+  - გამორთე სინათლე samretskhao
+  - სინათლე samretskhao გამორთე
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -1518,16 +1518,16 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - ჩართე სინათლე saretskhave
-  - სინათლე saretskhave ჩართე
+  - ჩართე სინათლე samretskhao
+  - სინათლე samretskhao ჩართე
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - გამორთე სინათლე saretskhave
-  - სინათლე saretskhave გამორთე
+  - გამორთე სინათლე samretskhao
+  - სინათლე samretskhao გამორთე
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - დააყენე სინათლე saretskhave 20
-  - სინათლე saretskhave 20
+  - დააყენე სინათლე samretskhao 20
+  - სინათლე samretskhao 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - დააყენე სინათლე saretskhave 40
-  - სინათლე saretskhave 40
+  - დააყენე სინათლე samretskhao 40
+  - სინათლე samretskhao 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - დააყენე სინათლე saretskhave 50
-  - სინათლე saretskhave 50
+  - დააყენე სინათლე samretskhao 50
+  - სინათლე samretskhao 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - დააყენე სინათლე saretskhave 60
-  - სინათლე saretskhave 60
+  - დააყენე სინათლე samretskhao 60
+  - სინათლე samretskhao 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - დააყენე სინათლე saretskhave 80
-  - სინათლე saretskhave 80
+  - დააყენე სინათლე samretskhao 80
+  - სინათლე samretskhao 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,8 +1580,8 @@
     attributes:
       brightness: 100
   sentences:
-  - დააყენე სინათლე saretskhave 100
-  - სინათლე saretskhave 100
+  - დააყენე სინათლე samretskhao 100
+  - სინათლე samretskhao 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - დააყენე სინათლე saretskhave red
-  - სინათლე saretskhave red
+  - დააყენე სინათლე samretskhao red
+  - სინათლე samretskhao red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - დააყენე სინათლე saretskhave blue
-  - სინათლე saretskhave blue
+  - დააყენე სინათლე samretskhao blue
+  - სინათლე samretskhao blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - დააყენე სინათლე saretskhave green
-  - სინათლე saretskhave green
+  - დააყენე სინათლე samretskhao green
+  - სინათლე samretskhao green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - დააყენე სინათლე saretskhave white
-  - სინათლე saretskhave white
+  - დააყენე სინათლე samretskhao white
+  - სინათლე samretskhao white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - დააყენე სინათლე saretskhave yellow
-  - სინათლე saretskhave yellow
+  - დააყენე სინათლე samretskhao yellow
+  - სინათლე samretskhao yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - დააყენე სინათლე saretskhave black
-  - სინათლე saretskhave black
+  - დააყენე სინათლე samretskhao black
+  - სინათლე samretskhao black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - გამორთე ყველა სინათლე garda saretskhave
-  - ყველა სინათლე გამორთე garda saretskhave
+  - გამორთე ყველა სინათლე garda samretskhao
+  - ყველა სინათლე გამორთე garda samretskhao
   forbid:
   - laundry
 - name: all_except_powder_room

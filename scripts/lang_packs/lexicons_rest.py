@@ -96,7 +96,7 @@ def _eu_west() -> list[dict]:
         pack(
             "lb", "Letzebuergesch", ["lb", "lb-LU"],
             on=["maach"], off=["maachaus"], open_=["opmaachen"], close=["zoumaachen"], query=["wat"], set_=["stell"],
-            light=["luucht"], cover=["riddo"], climate=["heizung"], media=["tele"], lock=["schlass"], door=["dir"],
+            light=["luucht"], cover=["riddo"], climate=["heizung", "ac"], media=["tele"], lock=["schlass"], door=["dir"],
             timer=["timer"], list_=["lescht"], fan=["ventilator"], vacuum=["staubsauger"], scene=["szen"],
             fillers=["d", "am"], and_=["an"], or_=["oder"], yes=["jo"], all_=["all"],
             living="wunnen", kitchen="kichen",
@@ -159,7 +159,7 @@ def _se_asia() -> list[dict]:
         pack(
             "id", "Bahasa Indonesia", ["id", "id-ID"],
             on=["nyalakan"], off=["matikan"], open_=["buka"], close=["tutup"], query=["apa"], set_=["setel"],
-            light=["lampu"], cover=["tirai"], climate=["ac"], media=["tv"], lock=["kunci"], door=["pintu"],
+            light=["lampu"], cover=["tirai"], climate=["pemanas", "suhu", "ac"], media=["tv"], lock=["kunci"], door=["pintu"],
             timer=["timer"], list_=["daftar"], fan=["kipas"], vacuum=["vakum"], scene=["adegan"],
             fillers=["yang", "di"], and_=["dan"], or_=["atau"], yes=["ya"], all_=["semua"],
             living="ruang", kitchen="dapur",
@@ -181,6 +181,7 @@ def _se_asia() -> list[dict]:
             personality=triples(("Baik. ", "Dengan senang. ", ""), ("Faham. ", "Siap. ", ""), ("Saya buat sekarang. ", "Semua baik. ", ""), ("Jom. ", "Cantik. ", ""), ("Baiklah. ", "Kalau perlu. ", ""), ("Sudah tentu. ", "Alamak kejutan. ", ""), ("Aye. ", "Kapten. ", ""), ("Santai. ", "Tenang. ", ""), ("Ya. ", "Ya, permata ku. ", "")),
             numbers=["kosong", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "lapan", "sembilan", "sepuluh", "sebelas", "duabelas", "tigabelas", "empatbelas", "limabelas", "enambelas", "tujuhbelas", "lapanbelas", "sembilanbelas", "duapuluh", "tigapuluh", "empatpuluh", "limapuluh", "enampuluh", "tujuhpuluh", "lapanpuluh", "sembilanpuluh", "seratus"],
             and_join=" dan ", or_join=" atau ",
+            extra_w={"lock_v": ["kuncikan"]},
         ),
         pack(
             "sw", "Kiswahili", ["sw", "sw-KE"],

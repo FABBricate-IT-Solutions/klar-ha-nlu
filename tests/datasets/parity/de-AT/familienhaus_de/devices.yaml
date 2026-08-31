@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - oeffne schloss garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- mach fernseher wohnstube
+- mach tv wohnstube
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv wohnstube
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- schalt fernseher wohnstube
+- schalt tv wohnstube
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- mach fernseher wohnstube
+- mach tv wohnstube
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- mach fernseher wohnstube
+- mach tv wohnstube
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- mach fernseher wohnstube
+- mach tv wohnstube
 devices/media_player_living_tv::media_player_living_tv_mute:
-- mach fernseher wohnzimmer
+- mach tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- schalt fernseher wohnzimmer
+- schalt tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- mach fernseher wohnzimmer
+- mach tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- mach fernseher wohnzimmer
+- mach tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- mach fernseher wohnzimmer
+- mach tv wohnzimmer
 devices/scenes::dinner_time:
 - stell licht wohnstubeess 90 then mach decke kuche then stell insel kuche 80
 devices/scenes::good_morning:
@@ -247,7 +247,7 @@ devices/scenes::kids_bedtime:
 - schalt decke schlafzimmer2 then schalt decke schlafzimmer3 then schalt decke schlafzimmer4
   then stell licht vorzimmergang 15
 devices/scenes::movie_night:
-- schalt decke wohnzimmer then stell leuchte wohnzimmer 20 then mach fernseher wohnzimmer
+- schalt decke wohnzimmer then stell leuchte wohnzimmer 20 then mach tv wohnzimmer
   then schliesse vorhang wohnzimmer
 devices/scripts::good_night:
 - schalt decke wohnzimmer then schalt leuchte wohnzimmer then schalt licht wohnstubeess

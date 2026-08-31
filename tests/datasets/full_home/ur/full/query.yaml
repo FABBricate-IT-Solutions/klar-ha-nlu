@@ -31,8 +31,8 @@
   - type: query
     entity_id: media_player.living_tv
   sentences:
-  - کیا ٹی وی لانج
-  - کیا لانج ٹی وی
+  - کیا tv لانج
+  - کیا لانج tv
 - name: query_binary_sensor.front_door_sensor
   conditions:
   - type: query
@@ -122,8 +122,8 @@
   - type: query
     entity_id: media_player.family_tv
   sentences:
-  - کیا ٹی وی خاندانی
-  - کیا خاندانی ٹی وی
+  - کیا tv خاندانی
+  - کیا خاندانی tv
 - name: query_media_player.living_music
   conditions:
   - type: query

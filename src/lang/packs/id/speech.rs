@@ -19,7 +19,7 @@ pub(super) const SPEECH: Speech = Speech {
     light_set: "{target} {n}%",
     light_color: "{target} {color}",
     climate_set: "{noun} {target} {n}",
-    heat_noun: "ac",
+    heat_noun: "pemanas",
     cool_noun: "ac",
     get_temp: "Suhu {loc}.",
     get_state: "Saya cek {target}.",

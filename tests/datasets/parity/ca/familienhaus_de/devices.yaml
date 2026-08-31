@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - obri pany garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- encen tv salaestar
+- encen tele salaestar
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pausa tv salaestar
+- pausa tele salaestar
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- apaga tv salaestar
+- apaga tele salaestar
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- encen tv salaestar
+- encen tele salaestar
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- encen tv salaestar
+- encen tele salaestar
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- encen tv salaestar
+- encen tele salaestar
 devices/media_player_living_tv::media_player_living_tv_mute:
-- encen tv sala
+- encen tele sala
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pausa tv sala
+- pausa tele sala
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- apaga tv sala
+- apaga tele sala
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- encen tv sala
+- encen tele sala
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- encen tv sala
+- encen tele sala
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- encen tv sala
+- encen tele sala
 devices/scenes::dinner_time:
 - posa llum salaestaress 90 then encen sostre cuina then posa illa cuina 80
 devices/scenes::good_morning:
@@ -247,7 +247,7 @@ devices/scenes::kids_bedtime:
 - apaga sostre habitacio2 then apaga sostre habitacio3 then apaga sostre habitacio4
   then posa llum entradagang 15
 devices/scenes::movie_night:
-- apaga sostre sala then posa lampada sala 20 then encen tv sala then tanca cortina
+- apaga sostre sala then posa lampada sala 20 then encen tele sala then tanca cortina
   sala
 devices/scripts::good_night:
 - apaga sostre sala then apaga lampada sala then apaga llum salaestaress then apaga

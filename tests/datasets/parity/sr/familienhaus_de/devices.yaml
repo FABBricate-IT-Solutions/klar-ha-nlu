@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - отвори брава garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- укључи телевизор дневнаfam
+- укључи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv дневнаfam
+- pause тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- искључи телевизор дневнаfam
+- искључи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- укључи телевизор дневнаfam
+- укључи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- укључи телевизор дневнаfam
+- укључи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- укључи телевизор дневнаfam
+- укључи тв дневнаfam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- укључи телевизор дневна
+- укључи тв дневна
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv дневна
+- pause тв дневна
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- искључи телевизор дневна
+- искључи тв дневна
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- укључи телевизор дневна
+- укључи тв дневна
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- укључи телевизор дневна
+- укључи тв дневна
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- укључи телевизор дневна
+- укључи тв дневна
 devices/scenes::dinner_time:
 - стави светло дневнаfamess 90 then укључи плафон кухиња then стави острво кухиња
   80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - искључи плафон спавача2 then искључи плафон спавача3 then искључи плафон спавача4
   then стави светло улазgang 15
 devices/scenes::movie_night:
-- искључи плафон дневна then стави lamp дневна 20 then укључи телевизор дневна then
-  затвори завеса дневна
+- искључи плафон дневна then стави lamp дневна 20 then укључи тв дневна then затвори
+  завеса дневна
 devices/scripts::good_night:
 - искључи плафон дневна then искључи lamp дневна then искључи светло дневнаfamess
   then искључи плафон кухиња then искључи острво кухиња then искључи плафон дневнаfam

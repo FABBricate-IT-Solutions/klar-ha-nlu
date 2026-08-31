@@ -17,8 +17,8 @@
   - type: query
     entity_id: lock.front_door
   sentences:
-  - que fechadura hallentrada
-  - que hallentrada fechadura
+  - que fechadura entrada
+  - que entrada fechadura
 - name: query_climate.ground_thermostat
   conditions:
   - type: query
@@ -38,8 +38,8 @@
   - type: query
     entity_id: binary_sensor.front_door_sensor
   sentences:
-  - que doorsensor hallentrada
-  - que hallentrada doorsensor
+  - que doorsensor entrada
+  - que entrada doorsensor
 - name: query_binary_sensor.living_window
   conditions:
   - type: query
@@ -241,8 +241,8 @@
   - type: query
     entity_id: light.entryway_light
   sentences:
-  - que luz hallentrada
-  - que hallentrada luz
+  - que luz entrada
+  - que entrada luz
 - name: query_light.laundry_light
   conditions:
   - type: query

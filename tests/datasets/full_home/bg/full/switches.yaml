@@ -20,32 +20,32 @@
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - включи пералня пералня
-  - пералня пералня включи
+  - включи пералня прална
+  - пералня прална включи
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - изключи пералня пералня
-  - пералня пералня изключи
+  - изключи пералня прална
+  - пералня прална изключи
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - включи dryer пералня
-  - dryer пералня включи
+  - включи dryer прална
+  - dryer прална включи
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - изключи dryer пералня
-  - dryer пералня изключи
+  - изключи dryer прална
+  - dryer прална изключи
 - name: switch.rangehood_on
   conditions:
   - type: action

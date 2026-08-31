@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["ฉาก"],
         switch_plural: &[],
         device_side: &["dryer", "fai", "phat", "sakpha", "กุญแจ", "ฉาก", "ทีวี", "พัดลม", "ม่าน", "ไฟ"],
-        named_device: &["langchan", "luk", "sakpha", "thorathat"],
+        named_device: &["langchan", "luk", "pc", "sakpha", "thorathat"],
     },
     fixtures: Fixtures {
         island: &["ko"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["pitfai", "poetfai", "ปิด", "เปิด"],
         command_hedges: &[],
-        skip_light: &["dryer", "khrueang", "langchan", "phat", "sakpha", "thorathat", "ทีวี", "พัดลม"],
+        skip_light: &["dryer", "khrueang", "langchan", "pc", "phat", "sakpha", "thorathat", "ทีวี", "พัดลม"],
         laundry_area: &["hongsakpha"],
         laundry_machines: &["dryer", "sakpha"],
         kitchen: &["hongkrua", "ห้องครัว"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["hongsakpha"],
         bare_switch: &["appliance", "dryer", "machine", "sakpha"],
         outlet_words: &[],
-        tv_words: &["ทีวี"],
+        tv_words: &["thorathat"],
         climate_cool: &["air"],
         climate_heat: &["แอร์"],
         role_light: &["fai", "ไฟ"],
@@ -164,7 +164,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ไฟ",
         ],
         room_level: &["ไฟ"],
-        extra_device_nouns: &["dryer", "khrueang", "langchan", "luk", "sakpha", "thorathat"],
+        extra_device_nouns: &["dryer", "khrueang", "langchan", "luk", "pc", "sakpha", "thorathat"],
         synonym_pairs: &[
             ("ห้องนั่งเล่น", "wohnzimmer"),
             ("ห้องครัว", "kuche"),

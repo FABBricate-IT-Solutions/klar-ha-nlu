@@ -84,7 +84,7 @@ It reads the DE oracles (`wohnung_mittel`, `familienhaus_de`, `m0_exact`, `m2_fl
 
 DE and EN are not overlays: they **are** the oracles. Regenerate those with `python3 scripts/gen_voice_suite.py` (and the family-home scripts in `docs/en/testing.md`). Then re-run `scripts/parity/generate.py` so every other locale stays in lockstep.
 
-CI checks that this generator is a no-op (freshness). It does not run the full 65-locale matrix. If a PR changes a pack or dataset path, CI runs that locale's suite (`scripts/ci_lang_tests.py`): de/en hard-gate, others report-only. Locally:
+CI checks that this generator is a no-op (freshness) and runs the full `parity_langs` matrix (every compiled locale, no fail-fast). Locally:
 
 ```bash
 python3 scripts/lang_packs/generate.py   # packs + assist smokes

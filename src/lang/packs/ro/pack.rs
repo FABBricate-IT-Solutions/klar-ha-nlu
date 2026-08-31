@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["dryer", "lampa", "lumina", "masina", "perdea", "scena", "tv", "ventilator", "yala"],
-        named_device: &["globe", "masina", "tv", "vase"],
+        named_device: &["globe", "masina", "pc", "tv", "vase"],
     },
     fixtures: Fixtures {
         island: &["insula"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["aprinde", "opreste", "porneste", "stinge"],
         command_hedges: &[],
-        skip_light: &["aparat", "dryer", "masina", "tv", "vase", "ventilator"],
+        skip_light: &["aparat", "dryer", "masina", "pc", "tv", "vase", "ventilator"],
         laundry_area: &["spalatorie"],
         laundry_machines: &["dryer", "masina"],
         kitchen: &["bucatarie"],
@@ -154,7 +154,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "yala",
         ],
         room_level: &["lumina"],
-        extra_device_nouns: &["aparat", "dryer", "globe", "masina", "tv", "vase"],
+        extra_device_nouns: &["aparat", "dryer", "globe", "masina", "pc", "tv", "vase"],
         synonym_pairs: &[
             ("sufragerie", "wohnzimmer"),
             ("bucatarie", "kuche"),

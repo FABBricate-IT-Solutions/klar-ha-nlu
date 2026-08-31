@@ -4,24 +4,24 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - fechadura fechadura hallentrada
-  - fechadura hallentrada fechadura
+  - tranca fechadura entrada
+  - fechadura entrada tranca
 - name: lock.front_door_unlock
   conditions:
   - type: action
     entity_id: lock.front_door
     state: unlocked
   sentences:
-  - abre fechadura hallentrada
-  - fechadura hallentrada abre
+  - abre fechadura entrada
+  - fechadura entrada abre
 - name: lock.garage_entry_lock
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - fechadura fechadura garage
-  - fechadura garage fechadura
+  - tranca fechadura garage
+  - fechadura garage tranca
 - name: lock.garage_entry_unlock
   conditions:
   - type: action
@@ -36,13 +36,13 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - fechadura fechadura hallentrada
-  - fechadura hallentrada fechadura
+  - tranca fechadura entrada
+  - fechadura entrada tranca
 - name: lock.garage_entry_lock_extra
   conditions:
   - type: action
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - fechadura fechadura garage
-  - fechadura garage fechadura
+  - tranca fechadura garage
+  - fechadura garage tranca

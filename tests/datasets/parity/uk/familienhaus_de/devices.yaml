@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - відкрий замок garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- увімкни телевізор вітальняfam
+- увімкни тв вітальняfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv вітальняfam
+- pause тв вітальняfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- вимкни телевізор вітальняfam
+- вимкни тв вітальняfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- увімкни телевізор вітальняfam
+- увімкни тв вітальняfam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- увімкни телевізор вітальняfam
+- увімкни тв вітальняfam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- увімкни телевізор вітальняfam
+- увімкни тв вітальняfam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- увімкни телевізор вітальня
+- увімкни тв вітальня
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv вітальня
+- pause тв вітальня
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- вимкни телевізор вітальня
+- вимкни тв вітальня
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- увімкни телевізор вітальня
+- увімкни тв вітальня
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- увімкни телевізор вітальня
+- увімкни тв вітальня
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- увімкни телевізор вітальня
+- увімкни тв вітальня
 devices/scenes::dinner_time:
 - постав світло вітальняfamess 90 then увімкни стеля кухня then постав острів кухня
   80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - вимкни стеля спальня2 then вимкни стеля спальня3 then вимкни стеля спальня4 then
   постав світло передпокійgang 15
 devices/scenes::movie_night:
-- вимкни стеля вітальня then постав lamp вітальня 20 then увімкни телевізор вітальня
-  then закрий штора вітальня
+- вимкни стеля вітальня then постав lamp вітальня 20 then увімкни тв вітальня then
+  закрий штора вітальня
 devices/scripts::good_night:
 - вимкни стеля вітальня then вимкни lamp вітальня then вимкни світло вітальняfamess
   then вимкни стеля кухня then вимкни острів кухня then вимкни стеля вітальняfam then

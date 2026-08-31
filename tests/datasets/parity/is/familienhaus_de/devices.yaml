@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - opnadu las garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- kveiktu sjonvarp stofafam
+- kveiktu sjónvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv stofafam
+- pause sjónvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- slokktu sjonvarp stofafam
+- slokktu sjónvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- kveiktu sjonvarp stofafam
+- kveiktu sjónvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- kveiktu sjonvarp stofafam
+- kveiktu sjónvarp stofafam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- kveiktu sjonvarp stofafam
+- kveiktu sjónvarp stofafam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- kveiktu sjonvarp stofa
+- kveiktu sjónvarp stofa
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv stofa
+- pause sjónvarp stofa
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- slokktu sjonvarp stofa
+- slokktu sjónvarp stofa
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- kveiktu sjonvarp stofa
+- kveiktu sjónvarp stofa
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- kveiktu sjonvarp stofa
+- kveiktu sjónvarp stofa
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- kveiktu sjonvarp stofa
+- kveiktu sjónvarp stofa
 devices/scenes::dinner_time:
 - settu ljos stofafamess 90 then kveiktu loft eldhus then settu eyja eldhus 80
 devices/scenes::good_morning:
@@ -247,7 +247,7 @@ devices/scenes::kids_bedtime:
 - slokktu loft svefnherbergi2 then slokktu loft svefnherbergi3 then slokktu loft svefnherbergi4
   then settu ljos anddyrigang 15
 devices/scenes::movie_night:
-- slokktu loft stofa then settu lamp stofa 20 then kveiktu sjonvarp stofa then lokadu
+- slokktu loft stofa then settu lamp stofa 20 then kveiktu sjónvarp stofa then lokadu
   gardina stofa
 devices/scripts::good_night:
 - slokktu loft stofa then slokktu lamp stofa then slokktu ljos stofafamess then slokktu

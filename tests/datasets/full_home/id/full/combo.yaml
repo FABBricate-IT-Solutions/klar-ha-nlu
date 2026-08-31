@@ -1554,8 +1554,8 @@
     attributes:
       temperature: 21
   sentences:
-  - setel ac ruang dan kamarmaster 21
-  - ac ruang dan kamarmaster 21
+  - setel pemanas ruang dan kamarmaster 21
+  - pemanas ruang dan kamarmaster 21
 - name: bright_living_kitchen_50
   conditions:
   - type: action
@@ -1606,8 +1606,8 @@
     domain: light
     state: 'off'
   sentences:
-  - apa ac ruang dan matikan lampu dapur
-  - matikan lampu dapur dan apa ac ruang
+  - apa pemanas ruang dan matikan lampu dapur
+  - matikan lampu dapur dan apa pemanas ruang
 - name: locks_front_and_garage
   conditions:
   - type: action

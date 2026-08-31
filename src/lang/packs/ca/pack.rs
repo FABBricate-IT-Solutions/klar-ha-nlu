@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["escena"],
         switch_plural: &[],
         device_side: &["cortina", "dryer", "escena", "lampada", "llum", "pany", "rentadora", "tv", "ventilador"],
-        named_device: &["bola", "eixugadora", "rentadora", "tele"],
+        named_device: &["bola", "eixugadora", "pc", "rentadora", "tele"],
     },
     fixtures: Fixtures {
         island: &["illa"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["activa", "apaga", "desactiva", "encen"],
         command_hedges: &[],
-        skip_light: &["aparell", "dryer", "eixugadora", "rentadora", "tele", "tv", "ventilador"],
+        skip_light: &["aparell", "dryer", "eixugadora", "pc", "rentadora", "tele", "tv", "ventilador"],
         laundry_area: &["bugaderia"],
         laundry_machines: &["dryer", "rentadora"],
         kitchen: &["cuina"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["bugaderia"],
         bare_switch: &["appliance", "dryer", "machine", "rentadora"],
         outlet_words: &[],
-        tv_words: &["tv"],
+        tv_words: &["tele"],
         climate_cool: &["aire"],
         climate_heat: &["calefaccio"],
         role_light: &["lampada", "llum"],
@@ -154,7 +154,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventilador",
         ],
         room_level: &["llum"],
-        extra_device_nouns: &["aparell", "bola", "dryer", "eixugadora", "rentadora", "tele"],
+        extra_device_nouns: &["aparell", "bola", "dryer", "eixugadora", "pc", "rentadora", "tele"],
         synonym_pairs: &[
             ("sala", "wohnzimmer"),
             ("cuina", "kuche"),

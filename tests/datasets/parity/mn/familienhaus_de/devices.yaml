@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - нээ түгжээ garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- асаа телевиз gerbul
+- асаа tv gerbul
 devices/media_player_family_tv::media_player_family_tv_pause:
 - зогсоо tv gerbul
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- унтраа телевиз gerbul
+- унтраа tv gerbul
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- асаа телевиз gerbul
+- асаа tv gerbul
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- асаа телевиз gerbul
+- асаа tv gerbul
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- асаа телевиз gerbul
+- асаа tv gerbul
 devices/media_player_living_tv::media_player_living_tv_mute:
-- асаа телевиз зочны
+- асаа tv зочны
 devices/media_player_living_tv::media_player_living_tv_pause:
 - зогсоо tv зочны
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- унтраа телевиз зочны
+- унтраа tv зочны
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- асаа телевиз зочны
+- асаа tv зочны
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- асаа телевиз зочны
+- асаа tv зочны
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- асаа телевиз зочны
+- асаа tv зочны
 devices/scenes::dinner_time:
 - тохируул гэрэл gerbuless 90 ba асаа taaz галтогоо ba тохируул aran галтогоо 80
 devices/scenes::good_morning:
@@ -247,8 +247,7 @@ devices/scenes::kids_bedtime:
 - унтраа taaz untlagiin2 ba унтраа taaz untlagiin3 ba унтраа taaz untlagiin4 ba тохируул
   гэрэл orolgang 15
 devices/scenes::movie_night:
-- унтраа taaz зочны ba тохируул gerel зочны 20 ba асаа телевиз зочны ba хаа хөшиг
-  зочны
+- унтраа taaz зочны ba тохируул gerel зочны 20 ba асаа tv зочны ba хаа хөшиг зочны
 devices/scripts::good_night:
 - унтраа taaz зочны ba унтраа gerel зочны ba унтраа гэрэл gerbuless ba унтраа taaz
   галтогоо ba унтраа aran галтогоо ba унтраа taaz gerbul ba унтраа гэрэл orol ba унтраа

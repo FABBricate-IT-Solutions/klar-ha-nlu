@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - deverrouille serrure garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- allume tv famille
+- allume tele famille
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv famille
+- pause tele famille
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- eteins tv famille
+- eteins tele famille
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- allume tv famille
+- allume tele famille
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- allume tv famille
+- allume tele famille
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- allume tv famille
+- allume tele famille
 devices/media_player_living_tv::media_player_living_tv_mute:
-- allume tv salon
+- allume tele salon
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv salon
+- pause tele salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- eteins tv salon
+- eteins tele salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- allume tv salon
+- allume tele salon
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- allume tv salon
+- allume tele salon
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- allume tv salon
+- allume tele salon
 devices/scenes::dinner_time:
 - mets lumiere salle 90 puis allume plafond cuisine puis mets ilot cuisine 80
 devices/scenes::good_morning:
@@ -247,8 +247,8 @@ devices/scenes::kids_bedtime:
 - eteins plafond chambre2 puis eteins plafond chambre3 puis eteins plafond chambre4
   puis mets lumiere couloir 15
 devices/scenes::movie_night:
-- eteins plafond salon puis mets lampe salon 20 puis allume tv salon puis ferme store
-  salon
+- eteins plafond salon puis mets lampe salon 20 puis allume tele salon puis ferme
+  store salon
 devices/scripts::good_night:
 - eteins plafond salon puis eteins lampe salon puis eteins lumiere salle puis eteins
   plafond cuisine puis eteins ilot cuisine puis eteins plafond famille puis eteins

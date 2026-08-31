@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["منظر"],
         switch_plural: &[],
         device_side: &["dryer", "تالا", "روشنی", "منظر", "واشنگ", "ٹی وی", "پردہ", "پنکھا"],
-        named_device: &["برتن", "واشنگ", "ٹی وی", "گولا"],
+        named_device: &["pc", "tv", "برتن", "واشنگ", "گولا"],
     },
     fixtures: Fixtures {
         island: &["جزیرہ"],
@@ -64,7 +64,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("بسترکنار", &["bedside", "nacht", "nachttisch", "بسترکنار"]),
             ("برتن", &["dishwasher", "spuelmaschine", "spulmaschine", "برتن"]),
             ("واشنگ", &["waschmaschine", "washer", "washing", "واشنگ"]),
-            ("ٹی وی", &["fernseher", "tv", "ٹی وی"]),
+            ("tv", &["fernseher", "tv"]),
             ("dryer", &["dryer", "trockner"]),
         ],
         group_clarify: Some(GroupClarify { trigger: &[], pairs: &[], triples: &[] }),
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["بند", "چالو"],
         command_hedges: &[],
-        skip_light: &["dryer", "آلہ", "برتن", "واشنگ", "ٹی وی", "پنکھا"],
+        skip_light: &["dryer", "pc", "tv", "آلہ", "برتن", "واشنگ", "ٹی وی", "پنکھا"],
         laundry_area: &["لانڈری"],
         laundry_machines: &["dryer", "واشنگ"],
         kitchen: &["باورچی"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["لانڈری"],
         bare_switch: &["appliance", "dryer", "machine", "واشنگ"],
         outlet_words: &[],
-        tv_words: &["ٹی وی"],
+        tv_words: &["tv"],
         climate_cool: &["درجہ"],
         climate_heat: &["گرمی"],
         role_light: &["روشنی"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "گرمی",
         ],
         room_level: &["روشنی"],
-        extra_device_nouns: &["dryer", "آلہ", "برتن", "واشنگ", "ٹی وی", "گولا"],
+        extra_device_nouns: &["dryer", "pc", "tv", "آلہ", "برتن", "واشنگ", "گولا"],
         synonym_pairs: &[
             ("لانج", "wohnzimmer"),
             ("باورچی", "kuche"),
@@ -161,7 +161,7 @@ pub const PACK: LanguagePack = LanguagePack {
             ("بسترکنار", "bedside"),
             ("برتن", "dishwasher"),
             ("واشنگ", "washer"),
-            ("ٹی وی", "tv"),
+            ("tv", "fernseher"),
             ("dryer", "trockner"),
         ],
         scene_synonyms: &[

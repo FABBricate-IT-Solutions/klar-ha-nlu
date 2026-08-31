@@ -145,8 +145,8 @@
     attributes:
       temperature: 18
   sentences:
-  - stell heizung schlofzëmmermaster 18
-  - heizung schlofzëmmermaster 18
+  - stell ac schlofzëmmermaster 18
+  - ac schlofzëmmermaster 18
 - name: climate.master_ac_19
   conditions:
   - type: action
@@ -154,8 +154,8 @@
     attributes:
       temperature: 19
   sentences:
-  - stell heizung schlofzëmmermaster 19
-  - heizung schlofzëmmermaster 19
+  - stell ac schlofzëmmermaster 19
+  - ac schlofzëmmermaster 19
 - name: climate.master_ac_20
   conditions:
   - type: action
@@ -163,8 +163,8 @@
     attributes:
       temperature: 20
   sentences:
-  - stell heizung schlofzëmmermaster 20
-  - heizung schlofzëmmermaster 20
+  - stell ac schlofzëmmermaster 20
+  - ac schlofzëmmermaster 20
 - name: climate.master_ac_21
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     attributes:
       temperature: 21
   sentences:
-  - stell heizung schlofzëmmermaster 21
-  - heizung schlofzëmmermaster 21
+  - stell ac schlofzëmmermaster 21
+  - ac schlofzëmmermaster 21
 - name: climate.master_ac_22
   conditions:
   - type: action
@@ -181,8 +181,8 @@
     attributes:
       temperature: 22
   sentences:
-  - stell heizung schlofzëmmermaster 22
-  - heizung schlofzëmmermaster 22
+  - stell ac schlofzëmmermaster 22
+  - ac schlofzëmmermaster 22
 - name: climate.master_ac_23
   conditions:
   - type: action
@@ -190,8 +190,8 @@
     attributes:
       temperature: 23
   sentences:
-  - stell heizung schlofzëmmermaster 23
-  - heizung schlofzëmmermaster 23
+  - stell ac schlofzëmmermaster 23
+  - ac schlofzëmmermaster 23
 - name: climate.master_ac_24
   conditions:
   - type: action
@@ -199,15 +199,15 @@
     attributes:
       temperature: 24
   sentences:
-  - stell heizung schlofzëmmermaster 24
-  - heizung schlofzëmmermaster 24
+  - stell ac schlofzëmmermaster 24
+  - ac schlofzëmmermaster 24
 - name: climate.master_ac_get
   conditions:
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - wat heizung schlofzëmmermaster
-  - heizung schlofzëmmermaster
+  - wat ac schlofzëmmermaster
+  - ac schlofzëmmermaster
 - name: climate.ground_thermostat_get_full
   conditions:
   - type: query
@@ -227,5 +227,5 @@
   - type: query
     entity_id: climate.master_ac
   sentences:
-  - wat heizung schlofzëmmermaster
-  - heizung schlofzëmmermaster
+  - wat ac schlofzëmmermaster
+  - ac schlofzëmmermaster

@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - otvori brava garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- ukljuci televizor dnevnafam
+- ukljuci tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- iskljuci televizor dnevnafam
+- iskljuci tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- ukljuci televizor dnevnafam
+- ukljuci tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- ukljuci televizor dnevnafam
+- ukljuci tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- ukljuci televizor dnevnafam
+- ukljuci tv dnevnafam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- ukljuci televizor dnevna
+- ukljuci tv dnevna
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- iskljuci televizor dnevna
+- iskljuci tv dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- ukljuci televizor dnevna
+- ukljuci tv dnevna
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- ukljuci televizor dnevna
+- ukljuci tv dnevna
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- ukljuci televizor dnevna
+- ukljuci tv dnevna
 devices/scenes::dinner_time:
 - stavi svetlo dnevnafamess 90 then ukljuci plafon kuhinja then stavi ostrvo kuhinja
   80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - iskljuci plafon spavaca2 then iskljuci plafon spavaca3 then iskljuci plafon spavaca4
   then stavi svetlo ulazgang 15
 devices/scenes::movie_night:
-- iskljuci plafon dnevna then stavi lamp dnevna 20 then ukljuci televizor dnevna then
-  zatvori zavesa dnevna
+- iskljuci plafon dnevna then stavi lamp dnevna 20 then ukljuci tv dnevna then zatvori
+  zavesa dnevna
 devices/scripts::good_night:
 - iskljuci plafon dnevna then iskljuci lamp dnevna then iskljuci svetlo dnevnafamess
   then iskljuci plafon kuhinja then iskljuci ostrvo kuhinja then iskljuci plafon dnevnafam

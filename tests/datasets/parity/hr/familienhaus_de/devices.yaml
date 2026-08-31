@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - otvori brava garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- upali televizor dnevnifam
+- upali tv dnevnifam
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv dnevnifam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- ugasi televizor dnevnifam
+- ugasi tv dnevnifam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- upali televizor dnevnifam
+- upali tv dnevnifam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- upali televizor dnevnifam
+- upali tv dnevnifam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- upali televizor dnevnifam
+- upali tv dnevnifam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- upali televizor dnevni
+- upali tv dnevni
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv dnevni
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- ugasi televizor dnevni
+- ugasi tv dnevni
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- upali televizor dnevni
+- upali tv dnevni
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- upali televizor dnevni
+- upali tv dnevni
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- upali televizor dnevni
+- upali tv dnevni
 devices/scenes::dinner_time:
 - stavi svjetlo dnevnifamess 90 then upali strop kuhinja then stavi otok kuhinja 80
 devices/scenes::good_morning:
@@ -247,8 +247,8 @@ devices/scenes::kids_bedtime:
 - ugasi strop spavaca2 then ugasi strop spavaca3 then ugasi strop spavaca4 then stavi
   svjetlo hodnikgang 15
 devices/scenes::movie_night:
-- ugasi strop dnevni then stavi lamp dnevni 20 then upali televizor dnevni then zatvori
-  zavjesa dnevni
+- ugasi strop dnevni then stavi lamp dnevni 20 then upali tv dnevni then zatvori zavjesa
+  dnevni
 devices/scripts::good_night:
 - ugasi strop dnevni then ugasi lamp dnevni then ugasi svjetlo dnevnifamess then ugasi
   strop kuhinja then ugasi otok kuhinja then ugasi strop dnevnifam then ugasi svjetlo

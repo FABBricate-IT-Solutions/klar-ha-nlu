@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - odpri kljucavnica garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- prizgi televizor dnevnafam
+- prizgi tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- ugasni televizor dnevnafam
+- ugasni tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- prizgi televizor dnevnafam
+- prizgi tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- prizgi televizor dnevnafam
+- prizgi tv dnevnafam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- prizgi televizor dnevnafam
+- prizgi tv dnevnafam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- prizgi televizor dnevna
+- prizgi tv dnevna
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- ugasni televizor dnevna
+- ugasni tv dnevna
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- prizgi televizor dnevna
+- prizgi tv dnevna
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- prizgi televizor dnevna
+- prizgi tv dnevna
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- prizgi televizor dnevna
+- prizgi tv dnevna
 devices/scenes::dinner_time:
 - nastavi luc dnevnafamess 90 then prizgi strop kuhinja then nastavi otok kuhinja
   80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - ugasni strop spalnica2 then ugasni strop spalnica3 then ugasni strop spalnica4 then
   nastavi luc predsobagang 15
 devices/scenes::movie_night:
-- ugasni strop dnevna then nastavi lamp dnevna 20 then prizgi televizor dnevna then
-  zapri zavesa dnevna
+- ugasni strop dnevna then nastavi lamp dnevna 20 then prizgi tv dnevna then zapri
+  zavesa dnevna
 devices/scripts::good_night:
 - ugasni strop dnevna then ugasni lamp dnevna then ugasni luc dnevnafamess then ugasni
   strop kuhinja then ugasni otok kuhinja then ugasni strop dnevnafam then ugasni luc

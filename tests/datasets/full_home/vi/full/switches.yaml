@@ -4,16 +4,16 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - bat chen bep
-  - chen bep bat
+  - bat mayruachen bep
+  - mayruachen bep bat
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - tat chen bep
-  - chen bep tat
+  - tat mayruachen bep
+  - mayruachen bep tat
 - name: switch.washing_machine_on
   conditions:
   - type: action

@@ -1,4 +1,5 @@
 use super::*;
+use crate::lang::bind;
 use crate::types::{AreaRec, EntityRec, HomeGraph};
 
 fn lamp(id: &str, name: &str, area: &str) -> EntityRec {
@@ -42,4 +43,46 @@ fn resolve_skips_nlu_ignored_entities() {
     };
     let hit = resolve(&["calendar".into(), "event".into()], &home, None);
     assert!(!hit.entities.iter().any(|entity| entity.entity_id == "switch.create_calendar_event"), "{hit:?}");
+}
+
+#[test]
+fn french_plafond_picks_decke_not_room_light() {
+    let _bind = bind(&["fr".into()]);
+    let home = HomeGraph {
+        areas: vec![AreaRec {
+            area_id: "schlafzimmer".into(),
+            name: "Schlafzimmer".into(),
+            aliases: vec!["chambre".into(), "schlafzimmer".into()],
+            floor_id: None,
+        }],
+        entities: vec![
+            EntityRec {
+                entity_id: "light.schlafzimmer_licht".into(),
+                name: "Schlafzimmer Licht".into(),
+                domain: "light".into(),
+                platform: None,
+                area: Some("schlafzimmer".into()),
+                aliases: vec!["licht".into()],
+                tags: Vec::new(),
+            },
+            EntityRec {
+                entity_id: "light.schlafzimmer_decke".into(),
+                name: "Schlafzimmer Decke".into(),
+                domain: "light".into(),
+                platform: None,
+                area: Some("schlafzimmer".into()),
+                aliases: vec!["decke".into(), "deckenlampe".into()],
+                tags: Vec::new(),
+            },
+        ],
+        ..HomeGraph::default()
+    };
+    let hit = resolve(&["plafond".into(), "chambre".into()], &home, Some("light"));
+    assert_eq!(hit.entities.iter().map(|e| e.entity_id.as_str()).collect::<Vec<_>>(), ["light.schlafzimmer_decke"], "{hit:?}");
+}
+
+#[test]
+fn french_laundry_device_hints_switch() {
+    let _bind = bind(&["fr".into()]);
+    assert_eq!(domain_hint(&["allumer".into(), "appareil".into(), "buanderie".into()]), Some("switch"));
 }

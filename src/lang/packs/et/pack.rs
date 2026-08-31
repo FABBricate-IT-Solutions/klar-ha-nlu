@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["stseen"],
         switch_plural: &[],
         device_side: &["dryer", "kardin", "lukk", "pesumasin", "stseen", "teler", "vali", "ventilaator"],
-        named_device: &["kera", "noudepesu", "pesumasin", "tv"],
+        named_device: &["kera", "noudepesu", "pc", "pesumasin", "tv"],
     },
     fixtures: Fixtures {
         island: &["saar"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["kustuta", "lulita"],
         command_hedges: &[],
-        skip_light: &["dryer", "noudepesu", "pesumasin", "seade", "teler", "tv", "ventilaator"],
+        skip_light: &["dryer", "noudepesu", "pc", "pesumasin", "seade", "teler", "tv", "ventilaator"],
         laundry_area: &["pesuruum"],
         laundry_machines: &["dryer", "pesumasin"],
         kitchen: &["kook"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["pesuruum"],
         bare_switch: &["appliance", "dryer", "machine", "pesumasin"],
         outlet_words: &[],
-        tv_words: &["teler"],
+        tv_words: &["tv"],
         climate_cool: &["kyte"],
         climate_heat: &["kyte"],
         role_light: &["vali"],
@@ -149,7 +149,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventilaator",
         ],
         room_level: &["vali"],
-        extra_device_nouns: &["dryer", "kera", "noudepesu", "pesumasin", "seade", "tv"],
+        extra_device_nouns: &["dryer", "kera", "noudepesu", "pc", "pesumasin", "seade", "tv"],
         synonym_pairs: &[
             ("elutuba", "wohnzimmer"),
             ("kook", "kuche"),

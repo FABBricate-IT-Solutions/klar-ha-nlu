@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["दृश्य"],
         switch_plural: &[],
         device_side: &["diva", "dryer", "pankha", "washing", "कुलूप", "टीव्ही", "दिवा", "दृश्य", "पंखा", "पडदा"],
-        named_device: &["bhandi", "gol", "tv", "washing"],
+        named_device: &["bhandi", "gol", "pc", "tv", "washing"],
     },
     fixtures: Fixtures {
         island: &["dweep"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["band", "chalu", "चालू", "बंद"],
         command_hedges: &[],
-        skip_light: &["bhandi", "dryer", "pankha", "tv", "upkaran", "washing", "टीव्ही", "पंखा"],
+        skip_light: &["bhandi", "dryer", "pankha", "pc", "tv", "upkaran", "washing", "टीव्ही", "पंखा"],
         laundry_area: &["dhune"],
         laundry_machines: &["dryer", "washing"],
         kitchen: &["svayampak", "स्वयंपाक"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["dhune"],
         bare_switch: &["appliance", "dryer", "machine", "washing"],
         outlet_words: &[],
-        tv_words: &["टीव्ही"],
+        tv_words: &["tv"],
         climate_cool: &["ushnata"],
         climate_heat: &["उष्णता"],
         role_light: &["diva", "दिवा"],
@@ -162,7 +162,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "स्वयंपाक",
         ],
         room_level: &["दिवा"],
-        extra_device_nouns: &["bhandi", "dryer", "gol", "tv", "upkaran", "washing"],
+        extra_device_nouns: &["bhandi", "dryer", "gol", "pc", "tv", "upkaran", "washing"],
         synonym_pairs: &[
             ("बैठक", "wohnzimmer"),
             ("स्वयंपाक", "kuche"),

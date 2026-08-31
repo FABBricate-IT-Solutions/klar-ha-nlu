@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scene"],
         switch_plural: &[],
         device_side: &["droger", "gordijn", "lamp", "licht", "scene", "slot", "tv", "ventilator", "verlichting", "wasmachine"],
-        named_device: &["bol", "tv", "vaatwasser", "wasmachine"],
+        named_device: &["bol", "pc", "tv", "vaatwasser", "wasmachine"],
     },
     fixtures: Fixtures {
         island: &["eiland"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["aanzetten", "activeer", "deactiveer", "doe", "start", "stop", "uitzetten"],
         command_hedges: &[],
-        skip_light: &["apparaat", "droger", "tv", "vaatwasser", "ventilator", "wasmachine"],
+        skip_light: &["apparaat", "droger", "pc", "tv", "vaatwasser", "ventilator", "wasmachine"],
         laundry_area: &["wasruimte"],
         laundry_machines: &["droger", "wasmachine"],
         kitchen: &["keuken"],
@@ -165,7 +165,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "woonkamer",
         ],
         room_level: &["licht"],
-        extra_device_nouns: &["apparaat", "bol", "droger", "tv", "vaatwasser", "wasmachine"],
+        extra_device_nouns: &["apparaat", "bol", "droger", "pc", "tv", "vaatwasser", "wasmachine"],
         synonym_pairs: &[
             ("woonkamer", "wohnzimmer"),
             ("keuken", "kuche"),

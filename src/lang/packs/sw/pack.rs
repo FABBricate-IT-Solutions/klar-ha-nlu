@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["tukio"],
         switch_plural: &[],
         device_side: &["dryer", "feni", "kufuli", "mashine", "pazia", "runinga", "taa", "tukio"],
-        named_device: &["mashine", "tufe", "tv", "vyombo"],
+        named_device: &["mashine", "pc", "tufe", "tv", "vyombo"],
     },
     fixtures: Fixtures {
         island: &["kisiwa"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["washa", "zima"],
         command_hedges: &[],
-        skip_light: &["dryer", "feni", "kifaa", "mashine", "runinga", "tv", "vyombo"],
+        skip_light: &["dryer", "feni", "kifaa", "mashine", "pc", "runinga", "tv", "vyombo"],
         laundry_area: &["chumbayaosha"],
         laundry_machines: &["dryer", "mashine"],
         kitchen: &["jikonini"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["chumbayaosha"],
         bare_switch: &["appliance", "dryer", "machine", "mashine"],
         outlet_words: &[],
-        tv_words: &["runinga"],
+        tv_words: &["tv"],
         climate_cool: &["joto"],
         climate_heat: &["joto"],
         role_light: &["taa"],
@@ -137,7 +137,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "feni", "jikonini", "joto", "kifagio", "kipima", "kufuli", "mlango", "orodha", "pazia", "runinga", "sebuleni", "taa", "tukio",
         ],
         room_level: &["taa"],
-        extra_device_nouns: &["dryer", "kifaa", "mashine", "tufe", "tv", "vyombo"],
+        extra_device_nouns: &["dryer", "kifaa", "mashine", "pc", "tufe", "tv", "vyombo"],
         synonym_pairs: &[
             ("sebuleni", "wohnzimmer"),
             ("jikonini", "kuche"),

@@ -202,7 +202,7 @@ def expand(core: dict) -> dict:
             "script_words": w.get("script", scene[:1]),
             "switch_plural": unique([word for word in w.get("switch", []) if word not in (w.get("device") or [])]),
             "device_side": unique(light + fan + media[:1] + cover[:1] + lock[:1] + scene[:1] + w.get("washer", []) + w.get("dryer", [])),
-            "named_device": unique(w.get("named", []) + w.get("globe", [])),
+            "named_device": unique(w.get("named", []) + w.get("globe", []) + ["pc"]),
         },
         "fixtures": {
             "island": w.get("island", []),
@@ -232,6 +232,7 @@ def expand(core: dict) -> dict:
                     + w.get("dishwasher", [])
                     + w.get("dryer", [])
                     + w.get("tv", [])
+                    + ["pc"]
                     if word not in light
                 ]
             ),
@@ -291,7 +292,7 @@ def expand(core: dict) -> dict:
             "laundry_hint": w.get("laundry", []),
             "bare_switch": unique(w.get("washer", []) + w.get("dryer", []) + ["machine", "appliance"]),
             "outlet_words": w.get("outlet", []),
-            "tv_words": media[:1],
+            "tv_words": unique(w.get("tv", []) or media[:1]),
             "climate_cool": climate[-1:],
             "climate_heat": climate[:1],
             "role_light": light[:2],
@@ -309,6 +310,7 @@ def expand(core: dict) -> dict:
                 + w.get("tv", [])
                 + w.get("globe", [])
                 + w.get("named", [])
+                + ["pc"]
             ),
             "synonym_pairs": synonyms,
             "scene_synonyms": scene_synonym_rows(core, w),

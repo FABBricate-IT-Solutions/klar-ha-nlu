@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - 開けて 鍵 garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- つけて テレビ famirii
+- つけて terebi famirii
 devices/media_player_family_tv::media_player_family_tv_pause:
-- 一時停止 tv famirii
+- 一時停止 terebi famirii
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- 消して テレビ famirii
+- 消して terebi famirii
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- つけて テレビ famirii
+- つけて terebi famirii
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- つけて テレビ famirii
+- つけて terebi famirii
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- つけて テレビ famirii
+- つけて terebi famirii
 devices/media_player_living_tv::media_player_living_tv_mute:
-- つけて テレビ リビング
+- つけて terebi リビング
 devices/media_player_living_tv::media_player_living_tv_pause:
-- 一時停止 tv リビング
+- 一時停止 terebi リビング
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- 消して テレビ リビング
+- 消して terebi リビング
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- つけて テレビ リビング
+- つけて terebi リビング
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- つけて テレビ リビング
+- つけて terebi リビング
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- つけて テレビ リビング
+- つけて terebi リビング
 devices/scenes::dinner_time:
 - セット 電気 famiriiess 90 then つけて tenjo キッチン then セット shima キッチン 80
 devices/scenes::good_morning:
@@ -246,7 +246,7 @@ devices/scenes::kids_bedtime:
 - 消して tenjo shinshitsu2 then 消して tenjo shinshitsu3 then 消して tenjo shinshitsu4 then
   セット 電気 genkangang 15
 devices/scenes::movie_night:
-- 消して tenjo リビング then セット ライト リビング 20 then つけて テレビ リビング then 閉めて カーテン リビング
+- 消して tenjo リビング then セット ライト リビング 20 then つけて terebi リビング then 閉めて カーテン リビング
 devices/scripts::good_night:
 - 消して tenjo リビング then 消して ライト リビング then 消して 電気 famiriiess then 消して tenjo キッチン then
   消して shima キッチン then 消して tenjo famirii then 消して 電気 genkan then 消して 電気 genkangang

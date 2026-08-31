@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["adegan"],
         switch_plural: &[],
         device_side: &["adegan", "dryer", "kipas", "kunci", "lampu", "langsir", "mesinbasuh", "tv"],
-        named_device: &["bola", "mesinbasuh", "pinggan", "tv"],
+        named_device: &["bola", "mesinbasuh", "pc", "pinggan", "tv"],
     },
     fixtures: Fixtures {
         island: &["pulau"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["hidupkan", "matikan"],
         command_hedges: &[],
-        skip_light: &["alat", "dryer", "kipas", "mesinbasuh", "pinggan", "tv"],
+        skip_light: &["alat", "dryer", "kipas", "mesinbasuh", "pc", "pinggan", "tv"],
         laundry_area: &["dobi"],
         laundry_machines: &["dryer", "mesinbasuh"],
         kitchen: &["dapur"],
@@ -94,8 +94,8 @@ pub const PACK: LanguagePack = LanguagePack {
         replay_on_off: &["hidupkan", "matikan"],
         replay_off: &["matikan"],
         sensor_words: &["sensor"],
-        lock_verbs: &["kunci"],
-        entry_words: &["lorong"],
+        lock_verbs: &["kunci", "kuncikan"],
+        entry_words: &["lobi"],
         oven: &["oven"],
         laundry_timer: &["dobi"],
         illuminate: &[],
@@ -149,7 +149,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "vakum",
         ],
         room_level: &["lampu"],
-        extra_device_nouns: &["alat", "bola", "dryer", "mesinbasuh", "pinggan", "tv"],
+        extra_device_nouns: &["alat", "bola", "dryer", "mesinbasuh", "pc", "pinggan", "tv"],
         synonym_pairs: &[
             ("ruang", "wohnzimmer"),
             ("dapur", "kuche"),

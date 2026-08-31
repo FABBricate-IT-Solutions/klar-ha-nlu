@@ -161,8 +161,8 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - включи basement светлина и пералня светлина
-  - basement светлина и пералня светлина включи
+  - включи basement светлина и прална светлина
+  - basement светлина и прална светлина включи
 - name: and_light.basement_light.laundry_light_off
   conditions:
   - type: action
@@ -172,8 +172,8 @@
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - изключи basement светлина и пералня светлина
-  - basement светлина и пералня светлина изключи
+  - изключи basement светлина и прална светлина
+  - basement светлина и прална светлина изключи
 - name: and_fan.master_fan_light.kitchen_island_on
   conditions:
   - type: action
@@ -205,8 +205,8 @@
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - включи пералня пералня и пералня dryer
-  - пералня пералня и пералня dryer включи
+  - включи прална пералня и прална dryer
+  - прална пералня и прална dryer включи
 - name: off_living_kitchen
   conditions:
   - type: action
@@ -321,8 +321,8 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи светлина garden и basement и пералня
-  - светлина garden basement и пералня изключи
+  - изключи светлина garden и basement и прална
+  - светлина garden basement и прална изключи
 - name: except_light.kitchen_island
   conditions:
   - type: action

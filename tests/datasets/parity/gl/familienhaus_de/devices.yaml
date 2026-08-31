@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - abre pechadura garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- acende tele salafam
+- acende tv salafam
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv salafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- apaga tele salafam
+- apaga tv salafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- acende tele salafam
+- acende tv salafam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- acende tele salafam
+- acende tv salafam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- acende tele salafam
+- acende tv salafam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- acende tele salon
+- acende tv salon
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- apaga tele salon
+- apaga tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- acende tele salon
+- acende tv salon
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- acende tele salon
+- acende tv salon
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- acende tele salon
+- acende tv salon
 devices/scenes::dinner_time:
 - pon luz salafamess 90 then acende teito cociña then pon illa cociña 80
 devices/scenes::good_morning:
@@ -247,7 +247,7 @@ devices/scenes::kids_bedtime:
 - apaga teito cuarto2 then apaga teito cuarto3 then apaga teito cuarto4 then pon luz
   entradagang 15
 devices/scenes::movie_night:
-- apaga teito salon then pon lamp salon 20 then acende tele salon then pecha cortina
+- apaga teito salon then pon lamp salon 20 then acende tv salon then pecha cortina
   salon
 devices/scripts::good_night:
 - apaga teito salon then apaga lamp salon then apaga luz salafamess then apaga teito
