@@ -1617,8 +1617,8 @@
     entity_id: lock.garage_entry
     state: locked
   sentences:
-  - fechadura front porta e garage porta
-  - fechadura fechadura hallentrada e garage
+  - tranca front porta e garage porta
+  - tranca fechadura entrada e garage
 - name: scene_and_powder_off
   conditions:
   - type: action

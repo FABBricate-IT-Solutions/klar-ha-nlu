@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- setel ac ruang 23
+- setel pemanas ruang 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- setel ac kamarmaster 19
+- setel pemanas kamarmaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - setel tirai kamar2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -254,7 +254,7 @@ devices/scripts::good_night:
 - matikan langit ruang then matikan lamp ruang then matikan lampu ruangkeluargaess
   then matikan langit dapur then matikan pulau dapur then matikan langit ruangkeluarga
   then matikan lampu lorong then matikan lampu loronggang then kunci kunci lorong
-  then kunci kunci garage then setel ac kamarmaster 20
+  then kunci kunci garage then setel pemanas kamarmaster 20
 devices/scripts::leaving_home:
 - matikan langit ruang then matikan lamp ruang then matikan langit dapur then matikan
   langit ruangkeluarga then matikan lampu lorong then kunci kunci lorong then kunci

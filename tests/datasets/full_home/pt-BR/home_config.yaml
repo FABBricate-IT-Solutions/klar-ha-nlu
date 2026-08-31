@@ -26,10 +26,10 @@ floors:
   - keller
 areas:
 - id: entryway
-  name: Hallentrada
+  name: Entrada
   floor: ground
   aliases:
-  - hallentrada
+  - entrada
 - id: living
   name: Sala
   floor: ground
@@ -119,9 +119,9 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: hallentrada luz
+  name: entrada luz
   aliases:
-  - hallentrada luz
+  - entrada luz
   - luz
 - id: light.living_ceiling
   area_id: living
@@ -435,9 +435,9 @@ devices:
   - aspirador
 - id: binary_sensor.front_door_sensor
   area_id: entryway
-  name: hallentrada doorsensor
+  name: entrada doorsensor
   aliases:
-  - hallentrada doorsensor
+  - entrada doorsensor
   - doorsensor
   tags:
   - doorsensor

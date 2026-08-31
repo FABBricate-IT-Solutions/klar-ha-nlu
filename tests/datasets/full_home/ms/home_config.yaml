@@ -26,10 +26,10 @@ floors:
   - keller
 areas:
 - id: entryway
-  name: Lorong
+  name: Lobi
   floor: ground
   aliases:
-  - lorong
+  - lobi
 - id: living
   name: Ruang
   floor: ground
@@ -119,9 +119,9 @@ areas:
 devices:
 - id: light.entryway_light
   area_id: entryway
-  name: lorong lampu
+  name: lobi lampu
   aliases:
-  - lorong lampu
+  - lobi lampu
   - lampu
 - id: light.living_ceiling
   area_id: living
@@ -435,9 +435,9 @@ devices:
   - vakum
 - id: binary_sensor.front_door_sensor
   area_id: entryway
-  name: lorong doorsensor
+  name: lobi doorsensor
   aliases:
-  - lorong doorsensor
+  - lobi doorsensor
   - doorsensor
   tags:
   - doorsensor

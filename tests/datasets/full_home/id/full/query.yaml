@@ -24,8 +24,8 @@
   - type: query
     entity_id: climate.ground_thermostat
   sentences:
-  - apa ac ruang
-  - apa ruang ac
+  - apa pemanas ruang
+  - apa ruang pemanas
 - name: query_media_player.living_tv
   conditions:
   - type: query
@@ -108,8 +108,8 @@
   - type: query
     entity_id: climate.upper_thermostat
   sentences:
-  - apa ac kamarmaster
-  - apa kamarmaster ac
+  - apa pemanas kamarmaster
+  - apa kamarmaster pemanas
 - name: query_climate.master_ac
   conditions:
   - type: query

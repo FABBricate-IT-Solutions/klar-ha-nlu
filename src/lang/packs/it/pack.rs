@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["asciugatrice", "lampada", "lavatrice", "luce", "scena", "serratura", "tenda", "tv", "ventola"],
-        named_device: &["lavastoviglie", "lavatrice", "sfera", "tv"],
+        named_device: &["lavastoviglie", "lavatrice", "pc", "sfera", "tv"],
     },
     fixtures: Fixtures {
         island: &["isola"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["accendi", "attiva", "disattiva", "spegni"],
         command_hedges: &[],
-        skip_light: &["apparecchio", "asciugatrice", "lavastoviglie", "lavatrice", "tv", "ventola"],
+        skip_light: &["apparecchio", "asciugatrice", "lavastoviglie", "lavatrice", "pc", "tv", "ventola"],
         laundry_area: &["lavanderia"],
         laundry_machines: &["asciugatrice", "lavatrice"],
         kitchen: &["cucina"],
@@ -154,7 +154,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventola",
         ],
         room_level: &["luce"],
-        extra_device_nouns: &["apparecchio", "asciugatrice", "lavastoviglie", "lavatrice", "sfera", "tv"],
+        extra_device_nouns: &["apparecchio", "asciugatrice", "lavastoviglie", "lavatrice", "pc", "sfera", "tv"],
         synonym_pairs: &[
             ("soggiorno", "wohnzimmer"),
             ("cucina", "kuche"),

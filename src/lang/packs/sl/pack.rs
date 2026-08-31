@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["dryer", "kljucavnica", "luc", "pralni", "scena", "televizor", "ventilator", "zavesa"],
-        named_device: &["krogla", "pomivalni", "pralni", "tv"],
+        named_device: &["krogla", "pc", "pomivalni", "pralni", "tv"],
     },
     fixtures: Fixtures {
         island: &["otok"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["prizgi", "ugasni"],
         command_hedges: &[],
-        skip_light: &["dryer", "naprava", "pomivalni", "pralni", "televizor", "tv", "ventilator"],
+        skip_light: &["dryer", "naprava", "pc", "pomivalni", "pralni", "televizor", "tv", "ventilator"],
         laundry_area: &["pralnica"],
         laundry_machines: &["dryer", "pralni"],
         kitchen: &["kuhinja"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["pralnica"],
         bare_switch: &["appliance", "dryer", "machine", "pralni"],
         outlet_words: &[],
-        tv_words: &["televizor"],
+        tv_words: &["tv"],
         climate_cool: &["temperatura"],
         climate_heat: &["ogrevanje"],
         role_light: &["luc"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zavesa",
         ],
         room_level: &["luc"],
-        extra_device_nouns: &["dryer", "krogla", "naprava", "pomivalni", "pralni", "tv"],
+        extra_device_nouns: &["dryer", "krogla", "naprava", "pc", "pomivalni", "pralni", "tv"],
         synonym_pairs: &[
             ("dnevna", "wohnzimmer"),
             ("kuhinja", "kuche"),

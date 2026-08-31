@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["eszena"],
         switch_plural: &[],
         device_side: &["argia", "dryer", "eszena", "garbigailu", "gortina", "haizagailua", "sarraila", "telebista"],
-        named_device: &["bola", "garbigailu", "ontzigailu", "tb"],
+        named_device: &["bola", "garbigailu", "ontzigailu", "pc", "tb"],
     },
     fixtures: Fixtures {
         island: &["uharte"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["itzali", "piztu"],
         command_hedges: &[],
-        skip_light: &["dryer", "gailu", "garbigailu", "haizagailua", "ontzigailu", "tb", "telebista"],
+        skip_light: &["dryer", "gailu", "garbigailu", "haizagailua", "ontzigailu", "pc", "tb", "telebista"],
         laundry_area: &["garbiketa"],
         laundry_machines: &["dryer", "garbigailu"],
         kitchen: &["sukaldea"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["garbiketa"],
         bare_switch: &["appliance", "dryer", "garbigailu", "machine"],
         outlet_words: &[],
-        tv_words: &["telebista"],
+        tv_words: &["tb"],
         climate_cool: &["berogailu"],
         climate_heat: &["berogailu"],
         role_light: &["argia"],
@@ -149,7 +149,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zerrenda",
         ],
         room_level: &["argia"],
-        extra_device_nouns: &["bola", "dryer", "gailu", "garbigailu", "ontzigailu", "tb"],
+        extra_device_nouns: &["bola", "dryer", "gailu", "garbigailu", "ontzigailu", "pc", "tb"],
         synonym_pairs: &[
             ("egongela", "wohnzimmer"),
             ("sukaldea", "kuche"),

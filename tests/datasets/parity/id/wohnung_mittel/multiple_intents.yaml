@@ -1,7 +1,7 @@
 multiple_intents/multi::alle_ausser_schlaf_und_kueche:
 - matikan semua lampu kecuali kamar kecuali dapur
 multiple_intents/multi::licht_und_heizung:
-- nyalakan semua lampu ruang then setel ac ruang 23
+- nyalakan semua lampu ruang then setel pemanas ruang 23
 multiple_intents/multi::wohn_und_ess_aus:
 - matikan semua lampu ruang then matikan semua lampu ruangkeluargaess
 multiple_intents/multi::wohn_und_ess_rot:
@@ -9,7 +9,8 @@ multiple_intents/multi::wohn_und_ess_rot:
 multiple_intents/multi::wz_und_kuche_licht:
 - nyalakan semua lampu ruang then nyalakan semua lampu dapur
 multiple_intents/multi::zwei_raeume_und_heizung:
-- nyalakan semua lampu ruang then nyalakan semua lampu dapur then setel ac ruang 23
+- nyalakan semua lampu ruang then nyalakan semua lampu dapur then setel pemanas ruang
+  23
 multiple_intents/spoken::drei_raeume_an:
 - nyalakan semua lampu ruang then nyalakan semua lampu ruangkeluargaess then nyalakan
   semua lampu dapur

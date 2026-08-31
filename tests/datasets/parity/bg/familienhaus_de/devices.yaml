@@ -135,13 +135,13 @@ devices/light_kitchen_island::light_kitchen_island_turn_off:
 devices/light_kitchen_island::light_kitchen_island_turn_on:
 - включи остров кухня
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- сложи светлина пералня 18
+- сложи светлина прална 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- сложи светлина пералня white
+- сложи светлина прална white
 devices/light_laundry_light::light_laundry_light_turn_off:
-- изключи светлина пералня
+- изключи светлина прална
 devices/light_laundry_light::light_laundry_light_turn_on:
-- включи светлина пералня
+- включи светлина прална
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
 - сложи таван хол 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - отвори ключалка garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- включи телевизор дневнаfam
+- включи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv дневнаfam
+- pause тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- изключи телевизор дневнаfam
+- изключи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- включи телевизор дневнаfam
+- включи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- включи телевизор дневнаfam
+- включи тв дневнаfam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- включи телевизор дневнаfam
+- включи тв дневнаfam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- включи телевизор хол
+- включи тв хол
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv хол
+- pause тв хол
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- изключи телевизор хол
+- изключи тв хол
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- включи телевизор хол
+- включи тв хол
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- включи телевизор хол
+- включи тв хол
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- включи телевизор хол
+- включи тв хол
 devices/scenes::dinner_time:
 - сложи светлина дневнаfamess 90 then включи таван кухня then сложи остров кухня 80
 devices/scenes::good_morning:
@@ -247,8 +247,8 @@ devices/scenes::kids_bedtime:
 - изключи таван спалня2 then изключи таван спалня3 then изключи таван спалня4 then
   сложи светлина антреgang 15
 devices/scenes::movie_night:
-- изключи таван хол then сложи lamp хол 20 then включи телевизор хол then затвори
-  завеса хол
+- изключи таван хол then сложи lamp хол 20 then включи тв хол then затвори завеса
+  хол
 devices/scripts::good_night:
 - изключи таван хол then изключи lamp хол then изключи светлина дневнаfamess then
   изключи таван кухня then изключи остров кухня then изключи таван дневнаfam then

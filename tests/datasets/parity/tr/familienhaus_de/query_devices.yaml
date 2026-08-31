@@ -1,9 +1,9 @@
 query_devices/binary_sensor_front_door_sensor::binary_sensor_front_door_sensor_get_status:
 - ne sensor kapi giris
 query_devices/climate_ground_thermostat::climate_ground_thermostat_get_temperature:
-- ne klima salon
+- ne sicaklik salon
 query_devices/climate_upper_thermostat::climate_upper_thermostat_get_temperature:
-- ne klima yatakodasimaster
+- ne sicaklik yatakodasimaster
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_position:
 - ne perde yatakodasi2
 query_devices/cover_bedroom2_blinds::cover_bedroom2_blinds_get_status:
@@ -77,9 +77,9 @@ query_devices/light_kitchen_island::light_kitchen_island_get_brightness:
 query_devices/light_kitchen_island::light_kitchen_island_get_status:
 - ne ada mutfak
 query_devices/light_laundry_light::light_laundry_light_get_brightness:
-- ne isik camasir
+- ne isik camasirhane
 query_devices/light_laundry_light::light_laundry_light_get_status:
-- ne isik camasir
+- ne isik camasirhane
 query_devices/light_living_ceiling::light_living_ceiling_get_brightness:
 - ne tavan salon
 query_devices/light_living_ceiling::light_living_ceiling_get_status:
@@ -121,9 +121,9 @@ query_devices/lock_front_door::lock_front_door_get_status:
 query_devices/lock_garage_entry::lock_garage_entry_get_status:
 - ne kilit garage
 query_devices/media_player_family_tv::media_player_family_tv_get_status:
-- ne televizyon aile
+- ne tv aile
 query_devices/media_player_living_tv::media_player_living_tv_get_status:
-- ne televizyon salon
+- ne tv salon
 query_devices/switch_dishwasher::switch_dishwasher_get_status:
 - ne bulasik
 query_devices/switch_dryer::switch_dryer_get_status:

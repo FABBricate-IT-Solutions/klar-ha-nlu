@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["場景"],
         switch_plural: &[],
         device_side: &["deng", "dryer", "fengshan", "xiyiji", "場景", "燈", "簾子", "鎖", "電視", "風扇"],
-        named_device: &["dianshi", "qiudeng", "xiwanji", "xiyiji"],
+        named_device: &["dianshi", "pc", "qiudeng", "xiwanji", "xiyiji"],
     },
     fixtures: Fixtures {
         island: &["daotai"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["dakai", "guanbi", "打開", "開", "關", "關閉"],
         command_hedges: &[],
-        skip_light: &["dianshi", "dryer", "fengshan", "shebei", "xiwanji", "xiyiji", "電視", "風扇"],
+        skip_light: &["dianshi", "dryer", "fengshan", "pc", "shebei", "xiwanji", "xiyiji", "電視", "風扇"],
         laundry_area: &["xiyifang"],
         laundry_machines: &["dryer", "xiyiji"],
         kitchen: &["chufang", "廚房"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["xiyifang"],
         bare_switch: &["appliance", "dryer", "machine", "xiyiji"],
         outlet_words: &[],
-        tv_words: &["電視"],
+        tv_words: &["dianshi"],
         climate_cool: &["kongtiao"],
         climate_heat: &["空調"],
         role_light: &["deng", "燈"],
@@ -165,7 +165,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "風扇",
         ],
         room_level: &["燈"],
-        extra_device_nouns: &["dianshi", "dryer", "qiudeng", "shebei", "xiwanji", "xiyiji"],
+        extra_device_nouns: &["dianshi", "dryer", "pc", "qiudeng", "shebei", "xiwanji", "xiyiji"],
         synonym_pairs: &[
             ("客廳", "wohnzimmer"),
             ("廚房", "kuche"),

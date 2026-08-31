@@ -95,8 +95,8 @@
     domain: light
     state: 'on'
   sentences:
-  - включи светлина пералня
-  - светлина пералня включи
+  - включи светлина прална
+  - светлина прална включи
 - name: lights_laundry_off
   conditions:
   - type: action
@@ -104,8 +104,8 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи светлина пералня
-  - светлина пералня изключи
+  - изключи светлина прална
+  - светлина прална изключи
 - name: lights_powder_room_on
   conditions:
   - type: action
@@ -1518,16 +1518,16 @@
     entity_id: light.laundry_light
     state: 'on'
   sentences:
-  - включи светлина пералня
-  - светлина пералня включи
+  - включи светлина прална
+  - светлина прална включи
 - name: light.laundry_light_off
   conditions:
   - type: action
     entity_id: light.laundry_light
     state: 'off'
   sentences:
-  - изключи светлина пералня
-  - светлина пералня изключи
+  - изключи светлина прална
+  - светлина прална изключи
 - name: light.laundry_light_bright_20
   conditions:
   - type: action
@@ -1535,8 +1535,8 @@
     attributes:
       brightness: 20
   sentences:
-  - сложи светлина пералня 20
-  - светлина пералня 20
+  - сложи светлина прална 20
+  - светлина прална 20
 - name: light.laundry_light_bright_40
   conditions:
   - type: action
@@ -1544,8 +1544,8 @@
     attributes:
       brightness: 40
   sentences:
-  - сложи светлина пералня 40
-  - светлина пералня 40
+  - сложи светлина прална 40
+  - светлина прална 40
 - name: light.laundry_light_bright_50
   conditions:
   - type: action
@@ -1553,8 +1553,8 @@
     attributes:
       brightness: 50
   sentences:
-  - сложи светлина пералня 50
-  - светлина пералня 50
+  - сложи светлина прална 50
+  - светлина прална 50
 - name: light.laundry_light_bright_60
   conditions:
   - type: action
@@ -1562,8 +1562,8 @@
     attributes:
       brightness: 60
   sentences:
-  - сложи светлина пералня 60
-  - светлина пералня 60
+  - сложи светлина прална 60
+  - светлина прална 60
 - name: light.laundry_light_bright_80
   conditions:
   - type: action
@@ -1571,8 +1571,8 @@
     attributes:
       brightness: 80
   sentences:
-  - сложи светлина пералня 80
-  - светлина пералня 80
+  - сложи светлина прална 80
+  - светлина прална 80
 - name: light.laundry_light_bright_100
   conditions:
   - type: action
@@ -1580,8 +1580,8 @@
     attributes:
       brightness: 100
   sentences:
-  - сложи светлина пералня 100
-  - светлина пералня 100
+  - сложи светлина прална 100
+  - светлина прална 100
 - name: light.main_bath_light_on
   conditions:
   - type: action
@@ -2857,8 +2857,8 @@
     attributes:
       color: red
   sentences:
-  - сложи светлина пералня red
-  - светлина пералня red
+  - сложи светлина прална red
+  - светлина прална red
 - name: light.laundry_light_blue
   conditions:
   - type: action
@@ -2866,8 +2866,8 @@
     attributes:
       color: blue
   sentences:
-  - сложи светлина пералня blue
-  - светлина пералня blue
+  - сложи светлина прална blue
+  - светлина прална blue
 - name: light.laundry_light_green
   conditions:
   - type: action
@@ -2875,8 +2875,8 @@
     attributes:
       color: green
   sentences:
-  - сложи светлина пералня green
-  - светлина пералня green
+  - сложи светлина прална green
+  - светлина прална green
 - name: light.laundry_light_white
   conditions:
   - type: action
@@ -2884,8 +2884,8 @@
     attributes:
       color: white
   sentences:
-  - сложи светлина пералня white
-  - светлина пералня white
+  - сложи светлина прална white
+  - светлина прална white
 - name: light.laundry_light_yellow
   conditions:
   - type: action
@@ -2893,8 +2893,8 @@
     attributes:
       color: yellow
   sentences:
-  - сложи светлина пералня yellow
-  - светлина пералня yellow
+  - сложи светлина прална yellow
+  - светлина прална yellow
 - name: light.laundry_light_black
   conditions:
   - type: action
@@ -2902,8 +2902,8 @@
     attributes:
       color: black
   sentences:
-  - сложи светлина пералня black
-  - светлина пералня black
+  - сложи светлина прална black
+  - светлина прална black
 - name: light.main_bath_light_red
   conditions:
   - type: action
@@ -3893,8 +3893,8 @@
     domain: light
     state: 'off'
   sentences:
-  - изключи всичко светлина освен пералня
-  - всичко светлина изключи освен пералня
+  - изключи всичко светлина освен прална
+  - всичко светлина изключи освен прална
   forbid:
   - laundry
 - name: all_except_powder_room

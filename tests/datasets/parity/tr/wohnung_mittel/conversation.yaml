@@ -1,10 +1,10 @@
 conversation/climate::heat_on_then_set:
-- - yak klima salon
+- - yak sicaklik salon
   - '21'
 conversation/climate::heat_setpoint:
-- ayarla klima salon 21
+- ayarla sicaklik salon 21
 conversation/climate::temperature_query:
-- ne klima salon
+- ne sicaklik salon
 conversation/followup::followup_not_poisoned_by_prior_off:
 - - sondur isik yatakodasi
   - yak isik salon
@@ -15,7 +15,7 @@ conversation/followup::followup_same_action_other_room:
 conversation/house::clock_calendar_weather:
 - ne hour
 - ne takvim
-- ne klima
+- ne sicaklik
 conversation/house::false_done_forbidden:
 - capital france
 conversation/house::scene_all_off:

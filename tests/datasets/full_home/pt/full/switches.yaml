@@ -4,16 +4,16 @@
     entity_id: switch.dishwasher
     state: 'on'
   sentences:
-  - liga loiça cozinha
-  - loiça cozinha liga
+  - liga loica cozinha
+  - loica cozinha liga
 - name: switch.dishwasher_off
   conditions:
   - type: action
     entity_id: switch.dishwasher
     state: 'off'
   sentences:
-  - desliga loiça cozinha
-  - loiça cozinha desliga
+  - desliga loica cozinha
+  - loica cozinha desliga
 - name: switch.washing_machine_on
   conditions:
   - type: action

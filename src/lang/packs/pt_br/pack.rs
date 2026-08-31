@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["cena"],
         switch_plural: &[],
         device_side: &["cena", "cortina", "dryer", "fechadura", "luz", "maquina", "tv", "ventilador"],
-        named_device: &["globo", "louca", "maquina", "tv"],
+        named_device: &["globo", "louca", "maquina", "pc", "tv"],
     },
     fixtures: Fixtures {
         island: &["ilha"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["desliga", "liga"],
         command_hedges: &[],
-        skip_light: &["aparelho", "dryer", "louca", "maquina", "tv", "ventilador"],
+        skip_light: &["aparelho", "dryer", "louca", "maquina", "pc", "tv", "ventilador"],
         laundry_area: &["lavanderia"],
         laundry_machines: &["dryer", "maquina"],
         kitchen: &["cozinha"],
@@ -94,8 +94,8 @@ pub const PACK: LanguagePack = LanguagePack {
         replay_on_off: &["desliga", "liga"],
         replay_off: &["desliga"],
         sensor_words: &["sensor"],
-        lock_verbs: &["fechadura"],
-        entry_words: &["hallentrada"],
+        lock_verbs: &["abre", "fechadura", "tranca"],
+        entry_words: &["entrada"],
         oven: &["oven"],
         laundry_timer: &["lavanderia"],
         illuminate: &[],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "ventilador",
         ],
         room_level: &["luz"],
-        extra_device_nouns: &["aparelho", "dryer", "globo", "louca", "maquina", "tv"],
+        extra_device_nouns: &["aparelho", "dryer", "globo", "louca", "maquina", "pc", "tv"],
         synonym_pairs: &[
             ("sala", "wohnzimmer"),
             ("cozinha", "kuche"),

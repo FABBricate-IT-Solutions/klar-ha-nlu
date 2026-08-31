@@ -24,7 +24,7 @@ CI uses [cargo-nextest](https://nexte.st/) (`cargo nextest run --locked --profil
 | `suite_m0_exact_*` / `suite_m2_floors_*` | `m0_exact` / `m2_floors` | `fail == 0` |
 | `suite_conversation_german` / `suite_conversation_english` | `wohnung_*/conversation/` (handwritten, live review) | `fail == 0` |
 | `compiled_assist_packs_execute_home_commands` | 2 smokes per compiled locale, including de/en | all green (PR CI) |
-| `parity_*` + `voice_suite` | Wohn+Family+m0+m2+conversation overlays per locale | **local** (`cargo nextest run --locked`); de/en hard `fail == 0`; other locales conversation first with `KLAR_PARITY_REPORT=1`; PR CI: `scripts/ci_lang_tests.py`; full matrix: `language-parity.yml` |
+| `parity_*` + `voice_suite` | Wohn+Family+m0+m2+conversation overlays per locale | PR CI runs all `parity_langs` (`fail == 0`, no fail-fast); de/en conversation in `voice_suite` locally; other locales conversation with `KLAR_PARITY_REPORT=1`; weekly `language-parity.yml` also runs `full_home_quick` |
 | `tests/contract.rs` | V2 `ParseOutcome` | all green |
 | `tests/policy.rs` | Confirm/OOD/multi-intent | all green |
 | `tests/eval.rs` held-out | `m7_heldout` EN/DE | Intent-F1 ≥ 0.98, Slot-F1 ≥ 0.99, pairing ≥ 0.97, ASR ≥ 0.92, Clarify P ≥ 0.95 |

@@ -53,10 +53,10 @@ areas:
   aliases:
   - ojakhisotakhi
 - id: laundry
-  name: Saretskhave
+  name: Samretskhao
   floor: ground
   aliases:
-  - saretskhave
+  - samretskhao
 - id: powder_room
   name: Wc
   floor: ground
@@ -163,9 +163,9 @@ devices:
   - potoloni
 - id: light.laundry_light
   area_id: laundry
-  name: saretskhave სინათლე
+  name: samretskhao სინათლე
   aliases:
-  - saretskhave სინათლე
+  - samretskhao სინათლე
   - სინათლე
 - id: light.powder_room_light
   area_id: powder_room
@@ -358,9 +358,9 @@ devices:
   - rangehood
 - id: switch.washing_machine
   area_id: laundry
-  name: saretskhave saretskhave
+  name: samretskhao saretskhave
   aliases:
-  - saretskhave saretskhave
+  - samretskhao saretskhave
   - saretskhave
   - washer
   tags:
@@ -368,9 +368,9 @@ devices:
   - saretskhave
 - id: switch.dryer
   area_id: laundry
-  name: saretskhave dryer
+  name: samretskhao dryer
   aliases:
-  - saretskhave dryer
+  - samretskhao dryer
   - dryer
   tags:
   - dryer

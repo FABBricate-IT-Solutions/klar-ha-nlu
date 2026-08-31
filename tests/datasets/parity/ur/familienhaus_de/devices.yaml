@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - کھولو تالا garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- چالو ٹی وی خاندانی
+- چالو tv خاندانی
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv خاندانی
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- بند ٹی وی خاندانی
+- بند tv خاندانی
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- چالو ٹی وی خاندانی
+- چالو tv خاندانی
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- چالو ٹی وی خاندانی
+- چالو tv خاندانی
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- چالو ٹی وی خاندانی
+- چالو tv خاندانی
 devices/media_player_living_tv::media_player_living_tv_mute:
-- چالو ٹی وی لانج
+- چالو tv لانج
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv لانج
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- بند ٹی وی لانج
+- بند tv لانج
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- چالو ٹی وی لانج
+- چالو tv لانج
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- چالو ٹی وی لانج
+- چالو tv لانج
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- چالو ٹی وی لانج
+- چالو tv لانج
 devices/scenes::dinner_time:
 - رکھو روشنی خاندانیess 90 then چالو چھت باورچی then رکھو جزیرہ باورچی 80
 devices/scenes::good_morning:
@@ -247,7 +247,7 @@ devices/scenes::kids_bedtime:
 - بند چھت bedroom2 then بند چھت bedroom3 then بند چھت bedroom4 then رکھو روشنی داخلہgang
   15
 devices/scenes::movie_night:
-- بند چھت لانج then رکھو lamp لانج 20 then چالو ٹی وی لانج then بندکرو پردہ لانج
+- بند چھت لانج then رکھو lamp لانج 20 then چالو tv لانج then بندکرو پردہ لانج
 devices/scripts::good_night:
 - بند چھت لانج then بند lamp لانج then بند روشنی خاندانیess then بند چھت باورچی then
   بند جزیرہ باورچی then بند چھت خاندانی then بند روشنی داخلہ then بند روشنی داخلہgang

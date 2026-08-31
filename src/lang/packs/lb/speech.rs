@@ -20,7 +20,7 @@ pub(super) const SPEECH: Speech = Speech {
     light_color: "{target} {color}",
     climate_set: "{noun} {target} {n}",
     heat_noun: "heizung",
-    cool_noun: "heizung",
+    cool_noun: "ac",
     get_temp: "D Temperatur {loc}.",
     get_state: "Ech kucken no {target}.",
     media_pause: "Ofspilung ass pauseiert.",

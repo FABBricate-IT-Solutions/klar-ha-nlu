@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - atver sledzene garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- iesledz televizors dzivojamafam
+- iesledz tv dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- izsledz televizors dzivojamafam
+- izsledz tv dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- iesledz televizors dzivojamafam
+- iesledz tv dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- iesledz televizors dzivojamafam
+- iesledz tv dzivojamafam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- iesledz televizors dzivojamafam
+- iesledz tv dzivojamafam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- iesledz televizors istaba
+- iesledz tv istaba
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv istaba
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- izsledz televizors istaba
+- izsledz tv istaba
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- iesledz televizors istaba
+- iesledz tv istaba
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- iesledz televizors istaba
+- iesledz tv istaba
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- iesledz televizors istaba
+- iesledz tv istaba
 devices/scenes::dinner_time:
 - iestati gaisma dzivojamafamess 90 then iesledz griesti virtuve then iestati sala
   virtuve 80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - izsledz griesti gulamistaba2 then izsledz griesti gulamistaba3 then izsledz griesti
   gulamistaba4 then iestati gaisma prieksnamsgang 15
 devices/scenes::movie_night:
-- izsledz griesti istaba then iestati lamp istaba 20 then iesledz televizors istaba
-  then aizver aizkars istaba
+- izsledz griesti istaba then iestati lamp istaba 20 then iesledz tv istaba then aizver
+  aizkars istaba
 devices/scripts::good_night:
 - izsledz griesti istaba then izsledz lamp istaba then izsledz gaisma dzivojamafamess
   then izsledz griesti virtuve then izsledz sala virtuve then izsledz griesti dzivojamafam

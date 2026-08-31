@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["סצנה"],
         switch_plural: &[],
         device_side: &["dryer", "אור", "וילון", "טלוויזיה", "מאוורר", "מכונתכביסה", "מנעול", "סצנה"],
-        named_device: &["טלוויזיה", "כדור", "מדיח", "מכונתכביסה"],
+        named_device: &["pc", "טלוויזיה", "כדור", "מדיח", "מכונתכביסה"],
     },
     fixtures: Fixtures {
         island: &["אי"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["הדלק", "כבה"],
         command_hedges: &[],
-        skip_light: &["dryer", "טלוויזיה", "מאוורר", "מדיח", "מכונתכביסה", "מכשיר"],
+        skip_light: &["dryer", "pc", "טלוויזיה", "מאוורר", "מדיח", "מכונתכביסה", "מכשיר"],
         laundry_area: &["כביסה"],
         laundry_machines: &["dryer", "מכונתכביסה"],
         kitchen: &["מטבח"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "שואב",
         ],
         room_level: &["אור"],
-        extra_device_nouns: &["dryer", "טלוויזיה", "כדור", "מדיח", "מכונתכביסה", "מכשיר"],
+        extra_device_nouns: &["dryer", "pc", "טלוויזיה", "כדור", "מדיח", "מכונתכביסה", "מכשיר"],
         synonym_pairs: &[
             ("סלון", "wohnzimmer"),
             ("מטבח", "kuche"),

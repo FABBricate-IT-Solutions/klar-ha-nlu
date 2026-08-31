@@ -49,17 +49,17 @@ area/dining_lights::dining_lights_turn_off:
 area/dining_lights::dining_lights_turn_on:
 - liga tudo luz salafamess
 area/entryway_lights::entryway_lights_change_brightness:
-- poe tudo luz hallentrada 72
+- poe tudo luz entrada 72
 area/entryway_lights::entryway_lights_change_color:
-- poe tudo luz hallentrada preto
+- poe tudo luz entrada preto
 area/entryway_lights::entryway_lights_turn_off:
-- desliga tudo luz hallentrada
+- desliga tudo luz entrada
 area/entryway_lights::entryway_lights_turn_on:
-- liga tudo luz hallentrada
+- liga tudo luz entrada
 area/entryway_locks::entryway_locks_lock:
-- fechadura fechadura hallentrada
+- tranca fechadura entrada
 area/entryway_locks::entryway_locks_unlock:
-- abre fechadura hallentrada
+- abre fechadura entrada
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_brightness:
 - poe tudo luz salafam 39 then poe tudo luz cozinha 39
 area/family_room_and_kitchen_lights::family_room_and_kitchen_lights_change_color:
@@ -97,25 +97,25 @@ area/garage_lights::garage_lights_turn_off:
 area/garage_lights::garage_lights_turn_on:
 - liga tudo luz garage
 area/garage_locks::garage_locks_lock:
-- fechadura fechadura garage
+- tranca fechadura garage
 area/garage_locks::garage_locks_unlock:
 - abre fechadura garage
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_brightness:
-- poe tudo luz hallentradagang 26 then poe tudo luz lavabo 26
+- poe tudo luz entradagang 26 then poe tudo luz lavabo 26
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_change_color:
-- poe tudo luz hallentradagang roxo then poe tudo luz lavabo roxo
+- poe tudo luz entradagang roxo then poe tudo luz lavabo roxo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_off:
-- desliga tudo luz hallentradagang then desliga tudo luz lavabo
+- desliga tudo luz entradagang then desliga tudo luz lavabo
 area/hallway_and_powder_room_lights::hallway_and_powder_room_lights_turn_on:
-- liga tudo luz hallentradagang then liga tudo luz lavabo
+- liga tudo luz entradagang then liga tudo luz lavabo
 area/hallway_lights::hallway_lights_change_brightness:
-- poe tudo luz hallentradagang 61
+- poe tudo luz entradagang 61
 area/hallway_lights::hallway_lights_change_color:
-- poe tudo luz hallentradagang laranja
+- poe tudo luz entradagang laranja
 area/hallway_lights::hallway_lights_turn_off:
-- desliga tudo luz hallentradagang
+- desliga tudo luz entradagang
 area/hallway_lights::hallway_lights_turn_on:
-- liga tudo luz hallentradagang
+- liga tudo luz entradagang
 area/kitchen_lights::kitchen_lights_change_brightness:
 - poe tudo luz cozinha 45
 area/kitchen_lights::kitchen_lights_change_color:

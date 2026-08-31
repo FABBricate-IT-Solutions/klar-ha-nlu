@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["үзэгдэл"],
         switch_plural: &[],
         device_side: &["dryer", "gerel", "sens", "ugaalgyn", "гэрэл", "сэнс", "телевиз", "түгжээ", "хөшиг", "үзэгдэл"],
-        named_device: &["bomboo", "sav", "tv", "ugaalgyn"],
+        named_device: &["bomboo", "pc", "sav", "tv", "ugaalgyn"],
     },
     fixtures: Fixtures {
         island: &["aran"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["asaa", "untraa", "асаа", "унтраа"],
         command_hedges: &[],
-        skip_light: &["dryer", "sav", "sens", "togkhoromj", "tv", "ugaalgyn", "сэнс", "телевиз"],
+        skip_light: &["dryer", "pc", "sav", "sens", "togkhoromj", "tv", "ugaalgyn", "сэнс", "телевиз"],
         laundry_area: &["ugaalga"],
         laundry_machines: &["dryer", "ugaalgyn"],
         kitchen: &["galtogoo", "галтогоо"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["ugaalga"],
         bare_switch: &["appliance", "dryer", "machine", "ugaalgyn"],
         outlet_words: &[],
-        tv_words: &["телевиз"],
+        tv_words: &["tv"],
         climate_cool: &["khalaalt"],
         climate_heat: &["халаалт"],
         role_light: &["gerel", "гэрэл"],
@@ -162,7 +162,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "үзэгдэл",
         ],
         room_level: &["гэрэл"],
-        extra_device_nouns: &["bomboo", "dryer", "sav", "togkhoromj", "tv", "ugaalgyn"],
+        extra_device_nouns: &["bomboo", "dryer", "pc", "sav", "togkhoromj", "tv", "ugaalgyn"],
         synonym_pairs: &[
             ("зочны", "wohnzimmer"),
             ("галтогоо", "kuche"),

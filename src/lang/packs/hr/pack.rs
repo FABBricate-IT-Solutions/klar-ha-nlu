@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scena"],
         switch_plural: &[],
         device_side: &["brava", "dryer", "perilica", "scena", "svjetlo", "televizor", "ventilator", "zavjesa"],
-        named_device: &["kugla", "perilica", "posuda", "tv"],
+        named_device: &["kugla", "pc", "perilica", "posuda", "tv"],
     },
     fixtures: Fixtures {
         island: &["otok"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["ugasi", "upali"],
         command_hedges: &[],
-        skip_light: &["dryer", "perilica", "posuda", "televizor", "tv", "uredaj", "ventilator"],
+        skip_light: &["dryer", "pc", "perilica", "posuda", "televizor", "tv", "uredaj", "ventilator"],
         laundry_area: &["perionica"],
         laundry_machines: &["dryer", "perilica"],
         kitchen: &["kuhinja"],
@@ -126,7 +126,7 @@ pub const PACK: LanguagePack = LanguagePack {
         laundry_hint: &["perionica"],
         bare_switch: &["appliance", "dryer", "machine", "perilica"],
         outlet_words: &[],
-        tv_words: &["televizor"],
+        tv_words: &["tv"],
         climate_cool: &["temperatura"],
         climate_heat: &["grijanje"],
         role_light: &["svjetlo"],
@@ -151,7 +151,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "zavjesa",
         ],
         room_level: &["svjetlo"],
-        extra_device_nouns: &["dryer", "kugla", "perilica", "posuda", "tv", "uredaj"],
+        extra_device_nouns: &["dryer", "kugla", "pc", "perilica", "posuda", "tv", "uredaj"],
         synonym_pairs: &[
             ("dnevni", "wohnzimmer"),
             ("kuhinja", "kuche"),

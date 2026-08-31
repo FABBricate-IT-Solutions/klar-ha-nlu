@@ -135,13 +135,13 @@ devices/light_kitchen_island::light_kitchen_island_turn_off:
 devices/light_kitchen_island::light_kitchen_island_turn_on:
 - ჩართე kuntkhuli სამზარეულო
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- დააყენე სინათლე saretskhave 18
+- დააყენე სინათლე samretskhao 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- დააყენე სინათლე saretskhave white
+- დააყენე სინათლე samretskhao white
 devices/light_laundry_light::light_laundry_light_turn_off:
-- გამორთე სინათლე saretskhave
+- გამორთე სინათლე samretskhao
 devices/light_laundry_light::light_laundry_light_turn_on:
-- ჩართე სინათლე saretskhave
+- ჩართე სინათლე samretskhao
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
 - დააყენე potoloni მისაღები 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - გახსენი საკეტი garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- ჩართე ტელევიზორი ojakhisotakhi
+- ჩართე tv ojakhisotakhi
 devices/media_player_family_tv::media_player_family_tv_pause:
 - პაუზა tv ojakhisotakhi
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- გამორთე ტელევიზორი ojakhisotakhi
+- გამორთე tv ojakhisotakhi
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- ჩართე ტელევიზორი ojakhisotakhi
+- ჩართე tv ojakhisotakhi
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- ჩართე ტელევიზორი ojakhisotakhi
+- ჩართე tv ojakhisotakhi
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- ჩართე ტელევიზორი ojakhisotakhi
+- ჩართე tv ojakhisotakhi
 devices/media_player_living_tv::media_player_living_tv_mute:
-- ჩართე ტელევიზორი მისაღები
+- ჩართე tv მისაღები
 devices/media_player_living_tv::media_player_living_tv_pause:
 - პაუზა tv მისაღები
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- გამორთე ტელევიზორი მისაღები
+- გამორთე tv მისაღები
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- ჩართე ტელევიზორი მისაღები
+- ჩართე tv მისაღები
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- ჩართე ტელევიზორი მისაღები
+- ჩართე tv მისაღები
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- ჩართე ტელევიზორი მისაღები
+- ჩართე tv მისაღები
 devices/scenes::dinner_time:
 - დააყენე სინათლე ojakhisotakhiess 90 da ჩართე potoloni სამზარეულო da დააყენე kuntkhuli
   სამზარეულო 80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - გამორთე potoloni sadzinebeli2 da გამორთე potoloni sadzinebeli3 da გამორთე potoloni
   sadzinebeli4 da დააყენე სინათლე shemosasvleligang 15
 devices/scenes::movie_night:
-- გამორთე potoloni მისაღები da დააყენე sinatle მისაღები 20 da ჩართე ტელევიზორი მისაღები
-  da დახურე ფარდა მისაღები
+- გამორთე potoloni მისაღები da დააყენე sinatle მისაღები 20 da ჩართე tv მისაღები da
+  დახურე ფარდა მისაღები
 devices/scripts::good_night:
 - გამორთე potoloni მისაღები da გამორთე sinatle მისაღები da გამორთე სინათლე ojakhisotakhiess
   da გამორთე potoloni სამზარეულო da გამორთე kuntkhuli სამზარეულო da გამორთე potoloni

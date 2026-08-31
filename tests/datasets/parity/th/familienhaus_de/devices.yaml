@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - เปิด กุญแจ garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- เปิด ทีวี hongkhropkhrua
+- เปิด thorathat hongkhropkhrua
 devices/media_player_family_tv::media_player_family_tv_pause:
-- หยุด tv hongkhropkhrua
+- หยุด thorathat hongkhropkhrua
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- ปิด ทีวี hongkhropkhrua
+- ปิด thorathat hongkhropkhrua
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- เปิด ทีวี hongkhropkhrua
+- เปิด thorathat hongkhropkhrua
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- เปิด ทีวี hongkhropkhrua
+- เปิด thorathat hongkhropkhrua
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- เปิด ทีวี hongkhropkhrua
+- เปิด thorathat hongkhropkhrua
 devices/media_player_living_tv::media_player_living_tv_mute:
-- เปิด ทีวี ห้องนั่งเล่น
+- เปิด thorathat ห้องนั่งเล่น
 devices/media_player_living_tv::media_player_living_tv_pause:
-- หยุด tv ห้องนั่งเล่น
+- หยุด thorathat ห้องนั่งเล่น
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- ปิด ทีวี ห้องนั่งเล่น
+- ปิด thorathat ห้องนั่งเล่น
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- เปิด ทีวี ห้องนั่งเล่น
+- เปิด thorathat ห้องนั่งเล่น
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- เปิด ทีวี ห้องนั่งเล่น
+- เปิด thorathat ห้องนั่งเล่น
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- เปิด ทีวี ห้องนั่งเล่น
+- เปิด thorathat ห้องนั่งเล่น
 devices/scenes::dinner_time:
 - ตั้ง ไฟ hongkhropkhruaess 90 then เปิด phalang ห้องครัว then ตั้ง ko ห้องครัว 80
 devices/scenes::good_morning:
@@ -247,7 +247,7 @@ devices/scenes::kids_bedtime:
 - ปิด phalang hongnon2 then ปิด phalang hongnon3 then ปิด phalang hongnon4 then ตั้ง
   ไฟ thangkhaugang 15
 devices/scenes::movie_night:
-- ปิด phalang ห้องนั่งเล่น then ตั้ง fai ห้องนั่งเล่น 20 then เปิด ทีวี ห้องนั่งเล่น
+- ปิด phalang ห้องนั่งเล่น then ตั้ง fai ห้องนั่งเล่น 20 then เปิด thorathat ห้องนั่งเล่น
   then ปิด ม่าน ห้องนั่งเล่น
 devices/scripts::good_night:
 - ปิด phalang ห้องนั่งเล่น then ปิด fai ห้องนั่งเล่น then ปิด ไฟ hongkhropkhruaess

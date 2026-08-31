@@ -46,7 +46,7 @@ pub const PACK: LanguagePack = LanguagePack {
         script_words: &["scene"],
         switch_plural: &[],
         device_side: &["bulb", "curtain", "dryer", "fan", "light", "lock", "scene", "telly", "washer"],
-        named_device: &["dishwasher", "globe", "telly", "washer"],
+        named_device: &["dishwasher", "globe", "pc", "telly", "washer"],
     },
     fixtures: Fixtures {
         island: &["island"],
@@ -74,7 +74,7 @@ pub const PACK: LanguagePack = LanguagePack {
     cues: Cues {
         power_words: &["enable", "extinguish"],
         command_hedges: &[],
-        skip_light: &["device", "dishwasher", "dryer", "fan", "telly", "washer"],
+        skip_light: &["device", "dishwasher", "dryer", "fan", "pc", "telly", "washer"],
         laundry_area: &["utility"],
         laundry_machines: &["dryer", "washer"],
         kitchen: &["kitchen"],
@@ -153,7 +153,7 @@ pub const PACK: LanguagePack = LanguagePack {
             "timer",
         ],
         room_level: &["light"],
-        extra_device_nouns: &["device", "dishwasher", "dryer", "globe", "telly", "washer"],
+        extra_device_nouns: &["device", "dishwasher", "dryer", "globe", "pc", "telly", "washer"],
         synonym_pairs: &[
             ("lounge", "wohnzimmer"),
             ("kitchen", "kuche"),

@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - atidaryk spyna garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- ijunk televizorius svetainefam
+- ijunk tv svetainefam
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv svetainefam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- isjunk televizorius svetainefam
+- isjunk tv svetainefam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- ijunk televizorius svetainefam
+- ijunk tv svetainefam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- ijunk televizorius svetainefam
+- ijunk tv svetainefam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- ijunk televizorius svetainefam
+- ijunk tv svetainefam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- ijunk televizorius svetaine
+- ijunk tv svetaine
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv svetaine
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- isjunk televizorius svetaine
+- isjunk tv svetaine
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- ijunk televizorius svetaine
+- ijunk tv svetaine
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- ijunk televizorius svetaine
+- ijunk tv svetaine
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- ijunk televizorius svetaine
+- ijunk tv svetaine
 devices/scenes::dinner_time:
 - nustatyk sviesa svetainefamess 90 then ijunk lubos virtuve then nustatyk sala virtuve
   80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - isjunk lubos miegamasis2 then isjunk lubos miegamasis3 then isjunk lubos miegamasis4
   then nustatyk sviesa prieskambarisgang 15
 devices/scenes::movie_night:
-- isjunk lubos svetaine then nustatyk lamp svetaine 20 then ijunk televizorius svetaine
-  then uzdaryk uzuolaida svetaine
+- isjunk lubos svetaine then nustatyk lamp svetaine 20 then ijunk tv svetaine then
+  uzdaryk uzuolaida svetaine
 devices/scripts::good_night:
 - isjunk lubos svetaine then isjunk lamp svetaine then isjunk sviesa svetainefamess
   then isjunk lubos virtuve then isjunk sala virtuve then isjunk lubos svetainefam

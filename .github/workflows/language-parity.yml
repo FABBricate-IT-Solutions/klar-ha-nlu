@@ -29,7 +29,7 @@ jobs:
           shared-key: ci-linux
           cache-on-failure: true
       - name: Per-locale parity
-        run: cargo nextest run --locked --test parity_langs
+        run: cargo nextest run --locked --profile ci-lang --no-fail-fast --test parity_langs
       - name: Full-home quick (every locale)
         env:
           KLAR_FULL_HOME_REPORT: "1"

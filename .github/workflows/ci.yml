@@ -98,22 +98,8 @@ jobs:
           shared-key: ci-linux
           cache-on-failure: true
       - name: Test
-        timeout-minutes: 20
-        run: cargo nextest run --locked --profile ci
-      - name: Path-scoped language datasets
-        timeout-minutes: 15
-        run: |
-          set -euo pipefail
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            base="${{ github.event.pull_request.base.sha }}"
-            git fetch --no-tags --depth=1 origin "$base" \
-              || { echo "could not fetch PR base; skip path-scoped datasets"; exit 0; }
-            python3 scripts/ci_lang_tests.py --diff-from "$base" --run
-          else
-            git fetch --no-tags --depth=1 origin main \
-              || { echo "could not fetch main; skip path-scoped datasets"; exit 0; }
-            python3 scripts/ci_lang_tests.py --diff-from origin/main --run
-          fi
+        timeout-minutes: 30
+        run: cargo nextest run --locked --profile ci --no-fail-fast
 
   web:
     name: web

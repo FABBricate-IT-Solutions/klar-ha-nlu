@@ -20,32 +20,32 @@
     entity_id: switch.washing_machine
     state: 'on'
   sentences:
-  - yak camasir camasir
-  - camasir camasir yak
+  - yak camasir camasirhane
+  - camasir camasirhane yak
 - name: switch.washing_machine_off
   conditions:
   - type: action
     entity_id: switch.washing_machine
     state: 'off'
   sentences:
-  - sondur camasir camasir
-  - camasir camasir sondur
+  - sondur camasir camasirhane
+  - camasir camasirhane sondur
 - name: switch.dryer_on
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'on'
   sentences:
-  - yak dryer camasir
-  - dryer camasir yak
+  - yak dryer camasirhane
+  - dryer camasirhane yak
 - name: switch.dryer_off
   conditions:
   - type: action
     entity_id: switch.dryer
     state: 'off'
   sentences:
-  - sondur dryer camasir
-  - dryer camasir sondur
+  - sondur dryer camasirhane
+  - dryer camasirhane sondur
 - name: switch.rangehood_on
   conditions:
   - type: action

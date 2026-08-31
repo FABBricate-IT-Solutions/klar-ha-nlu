@@ -51,10 +51,10 @@ areas:
   aliases:
   - дневнаfam
 - id: laundry
-  name: пералня
+  name: прална
   floor: ground
   aliases:
-  - пералня
+  - прална
 - id: powder_room
   name: тоалетна
   floor: ground
@@ -161,9 +161,9 @@ devices:
   - таван
 - id: light.laundry_light
   area_id: laundry
-  name: пералня светлина
+  name: прална светлина
   aliases:
-  - пералня светлина
+  - прална светлина
   - светлина
 - id: light.powder_room_light
   area_id: powder_room
@@ -356,9 +356,9 @@ devices:
   - rangehood
 - id: switch.washing_machine
   area_id: laundry
-  name: пералня пералня
+  name: прална пералня
   aliases:
-  - пералня пералня
+  - прална пералня
   - пералня
   - washer
   tags:
@@ -366,9 +366,9 @@ devices:
   - пералня
 - id: switch.dryer
   area_id: laundry
-  name: пералня dryer
+  name: прална dryer
   aliases:
-  - пералня dryer
+  - прална dryer
   - dryer
   tags:
   - dryer

@@ -296,7 +296,7 @@ def script() -> list[dict]:
             set_=["ayarla"],
             light=["isik"],
             cover=["perde"],
-            climate=["klima", "sicaklik"],
+            climate=["sicaklik", "klima"],
             media=["televizyon", "muzik"],
             lock=["kilit"],
             door=["kapi"],

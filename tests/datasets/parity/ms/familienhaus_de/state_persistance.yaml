@@ -17,7 +17,7 @@ state_persistance/area_dining_lights::dining_lights_set_brightness:
 - - apa lampu ruankeluargaess
   - ' 68'
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - apa lampu lorong
+- - apa lampu lobi
   - ' 54'
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
 - - apa siling ruankeluarga
@@ -29,10 +29,10 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - apa lampu garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - apa lampu loronggang then apa lampu wc
+- - apa lampu lobigang then apa lampu wc
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - apa lampu loronggang
+- - apa lampu lobigang
   - ' 69'
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
 - - apa lampu dapur
@@ -98,23 +98,23 @@ state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - apa kipas ruankeluarga
   - hidupkan
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - apa lampu lorong
+- - apa lampu lobi
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - apa lampu lorong
+- - apa lampu lobi
   - matikan
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - apa lampu lorong
+- - apa lampu lobi
   - hidupkan
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - apa kunci lorong
-  - kunci
+- - apa kunci lobi
+  - kuncikan
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - apa kunci lorong
+- - apa kunci lobi
   - buka
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - apa kunci garage
-  - kunci
+  - kuncikan
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - apa kunci garage
   - buka

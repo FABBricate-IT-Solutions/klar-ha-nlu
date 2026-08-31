@@ -217,7 +217,7 @@ devices/lock_garage_entry::lock_garage_entry_unlock:
 devices/media_player_family_tv::media_player_family_tv_mute:
 - bat tivi phonggiadinh
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv phonggiadinh
+- pause tivi phonggiadinh
 devices/media_player_family_tv::media_player_family_tv_turn_off:
 - tat tivi phonggiadinh
 devices/media_player_family_tv::media_player_family_tv_turn_on:
@@ -229,7 +229,7 @@ devices/media_player_family_tv::media_player_family_tv_unpause:
 devices/media_player_living_tv::media_player_living_tv_mute:
 - bat tivi phongkhach
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv phongkhach
+- pause tivi phongkhach
 devices/media_player_living_tv::media_player_living_tv_turn_off:
 - tat tivi phongkhach
 devices/media_player_living_tv::media_player_living_tv_turn_on:
@@ -259,9 +259,9 @@ devices/scripts::leaving_home:
   then tat bongden loivao then khoa khoa loivao then khoa khoa garage then dong rem
   garage
 devices/switch_dishwasher::switch_dishwasher_turn_off:
-- tat chen
+- tat mayruachen
 devices/switch_dishwasher::switch_dishwasher_turn_on:
-- bat chen
+- bat mayruachen
 devices/switch_dryer::switch_dryer_turn_off:
 - tat dryer
 devices/switch_dryer::switch_dryer_turn_on:

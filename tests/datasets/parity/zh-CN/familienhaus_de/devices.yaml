@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - 开启 锁 garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- 打开 电视 jiatingfang
+- 打开 dianshi jiatingfang
 devices/media_player_family_tv::media_player_family_tv_pause:
-- 暂停 tv jiatingfang
+- 暂停 dianshi jiatingfang
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- 关闭 电视 jiatingfang
+- 关闭 dianshi jiatingfang
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- 打开 电视 jiatingfang
+- 打开 dianshi jiatingfang
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- 打开 电视 jiatingfang
+- 打开 dianshi jiatingfang
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- 打开 电视 jiatingfang
+- 打开 dianshi jiatingfang
 devices/media_player_living_tv::media_player_living_tv_mute:
-- 打开 电视 客厅
+- 打开 dianshi 客厅
 devices/media_player_living_tv::media_player_living_tv_pause:
-- 暂停 tv 客厅
+- 暂停 dianshi 客厅
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- 关闭 电视 客厅
+- 关闭 dianshi 客厅
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- 打开 电视 客厅
+- 打开 dianshi 客厅
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- 打开 电视 客厅
+- 打开 dianshi 客厅
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- 打开 电视 客厅
+- 打开 dianshi 客厅
 devices/scenes::dinner_time:
 - 设置 灯 jiatingfangess 90 then 打开 tianhuaban 厨房 then 设置 daotai 厨房 80
 devices/scenes::good_morning:
@@ -246,7 +246,7 @@ devices/scenes::kids_bedtime:
 - 关闭 tianhuaban woshi2 then 关闭 tianhuaban woshi3 then 关闭 tianhuaban woshi4 then 设置
   灯 xuanguangang 15
 devices/scenes::movie_night:
-- 关闭 tianhuaban 客厅 then 设置 deng 客厅 20 then 打开 电视 客厅 then 合上 帘子 客厅
+- 关闭 tianhuaban 客厅 then 设置 deng 客厅 20 then 打开 dianshi 客厅 then 合上 帘子 客厅
 devices/scripts::good_night:
 - 关闭 tianhuaban 客厅 then 关闭 deng 客厅 then 关闭 灯 jiatingfangess then 关闭 tianhuaban 厨房
   then 关闭 daotai 厨房 then 关闭 tianhuaban jiatingfang then 关闭 灯 xuanguan then 关闭 灯 xuanguangang

@@ -1,7 +1,7 @@
 devices/climate_ground_thermostat::climate_ground_thermostat_set_temperature:
-- ayarla klima salon 23
+- ayarla sicaklik salon 23
 devices/climate_upper_thermostat::climate_upper_thermostat_set_temperature:
-- ayarla klima yatakodasimaster 19
+- ayarla sicaklik yatakodasimaster 19
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_change_position:
 - ayarla perde yatakodasi2 67
 devices/cover_bedroom2_blinds::cover_bedroom2_blinds_close:
@@ -135,13 +135,13 @@ devices/light_kitchen_island::light_kitchen_island_turn_off:
 devices/light_kitchen_island::light_kitchen_island_turn_on:
 - yak ada mutfak
 devices/light_laundry_light::light_laundry_light_change_brightness:
-- ayarla isik camasir 18
+- ayarla isik camasirhane 18
 devices/light_laundry_light::light_laundry_light_change_color:
-- ayarla isik camasir white
+- ayarla isik camasirhane white
 devices/light_laundry_light::light_laundry_light_turn_off:
-- sondur isik camasir
+- sondur isik camasirhane
 devices/light_laundry_light::light_laundry_light_turn_on:
-- yak isik camasir
+- yak isik camasirhane
 devices/light_living_ceiling::light_living_ceiling_change_brightness:
 - ayarla tavan salon 72
 devices/light_living_ceiling::light_living_ceiling_change_color:
@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - kilidiac kilit garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- yak televizyon aile
+- yak tv aile
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv aile
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- sondur televizyon aile
+- sondur tv aile
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- yak televizyon aile
+- yak tv aile
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- yak televizyon aile
+- yak tv aile
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- yak televizyon aile
+- yak tv aile
 devices/media_player_living_tv::media_player_living_tv_mute:
-- yak televizyon salon
+- yak tv salon
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- sondur televizyon salon
+- sondur tv salon
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- yak televizyon salon
+- yak tv salon
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- yak televizyon salon
+- yak tv salon
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- yak televizyon salon
+- yak tv salon
 devices/scenes::dinner_time:
 - ayarla isik aileess 90 then yak tavan mutfak then ayarla ada mutfak 80
 devices/scenes::good_morning:
@@ -247,13 +247,13 @@ devices/scenes::kids_bedtime:
 - sondur tavan yatakodasi2 then sondur tavan yatakodasi3 then sondur tavan yatakodasi4
   then ayarla isik girisgang 15
 devices/scenes::movie_night:
-- sondur tavan salon then ayarla lamp salon 20 then yak televizyon salon then kapat
-  perde salon
+- sondur tavan salon then ayarla lamp salon 20 then yak tv salon then kapat perde
+  salon
 devices/scripts::good_night:
 - sondur tavan salon then sondur lamp salon then sondur isik aileess then sondur tavan
   mutfak then sondur ada mutfak then sondur tavan aile then sondur isik giris then
   sondur isik girisgang then kilitle kilit giris then kilitle kilit garage then ayarla
-  klima yatakodasimaster 20
+  sicaklik yatakodasimaster 20
 devices/scripts::leaving_home:
 - sondur tavan salon then sondur lamp salon then sondur tavan mutfak then sondur tavan
   aile then sondur isik giris then kilitle kilit giris then kilitle kilit garage then

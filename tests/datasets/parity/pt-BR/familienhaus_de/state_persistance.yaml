@@ -17,7 +17,7 @@ state_persistance/area_dining_lights::dining_lights_set_brightness:
 - - que luz salafamess
   - ' 68'
 state_persistance/area_entryway_lights::entryway_lights_set_brightness:
-- - que luz hallentrada
+- - que luz entrada
   - ' 54'
 state_persistance/area_family_room_lights::family_room_lights_set_brightness:
 - - que teto salafam
@@ -29,10 +29,10 @@ state_persistance/area_garage_lights::garage_lights_set_brightness:
 - - que luz garage
   - ' 27'
 state_persistance/area_hallway_and_powder_room_lights::hallway_and_powder_room_lights_set_brightness:
-- - que luz hallentradagang then que luz lavabo
+- - que luz entradagang then que luz lavabo
   - ' 100'
 state_persistance/area_hallway_lights::hallway_lights_set_brightness:
-- - que luz hallentradagang
+- - que luz entradagang
   - ' 69'
 state_persistance/area_kitchen_lights::kitchen_lights_set_brightness:
 - - que luz cozinha
@@ -98,23 +98,23 @@ state_persistance/device_fan_family_fan::fan_family_fan_turn_on:
 - - que ventilador salafam
   - liga
 state_persistance/device_light_entryway_light::light_entryway_light_persistance_brightness:
-- - que luz hallentrada
+- - que luz entrada
   - '12'
 state_persistance/device_light_entryway_light::light_entryway_light_turn_off:
-- - que luz hallentrada
+- - que luz entrada
   - desliga
 state_persistance/device_light_entryway_light::light_entryway_light_turn_on:
-- - que luz hallentrada
+- - que luz entrada
   - liga
 state_persistance/device_lock_front_door::lock_front_door_lock:
-- - que fechadura hallentrada
-  - fechadura
+- - que fechadura entrada
+  - tranca
 state_persistance/device_lock_front_door::lock_front_door_unlock:
-- - que fechadura hallentrada
+- - que fechadura entrada
   - abre
 state_persistance/device_lock_garage_entry::lock_garage_entry_lock:
 - - que fechadura garage
-  - fechadura
+  - tranca
 state_persistance/device_lock_garage_entry::lock_garage_entry_unlock:
 - - que fechadura garage
   - abre

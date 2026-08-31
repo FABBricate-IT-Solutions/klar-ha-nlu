@@ -301,13 +301,12 @@ devices:
   - heizung
 - id: climate.master_ac
   area_id: master_bedroom
-  name: heizung schlofzëmmermaster
+  name: ac schlofzëmmermaster
   aliases:
-  - heizung schlofzëmmermaster
-  - heizung
+  - ac schlofzëmmermaster
   - ac
   tags:
-  - heizung
+  - ac
 - id: fan.family_fan
   area_id: family_room
   name: wunnsall ventilator

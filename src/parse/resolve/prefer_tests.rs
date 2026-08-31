@@ -51,6 +51,26 @@ fn lock_home() -> HomeGraph {
 }
 
 #[test]
+fn malay_kuncikan_locks_the_door() {
+    let home = HomeGraph {
+        areas: vec![AreaRec { area_id: "flur".into(), name: "Flur".into(), aliases: vec!["lobigang".into()], floor_id: None }],
+        entities: vec![EntityRec {
+            entity_id: "lock.wohnungstuer".into(),
+            name: "Wohnungstür".into(),
+            domain: "lock".into(),
+            platform: None,
+            area: Some("flur".into()),
+            aliases: vec!["wohnungstuer".into()],
+            tags: Vec::new(),
+        }],
+        ..HomeGraph::default()
+    };
+    let result = parse("kuncikan kunci lobi", &home, &mut Session::new(), &[], &Settings::pinned("ms"));
+    assert!(!result.clarify, "{result:?}");
+    assert_eq!(result.intents.iter().filter_map(|intent| intent.slot("entity_id")).collect::<Vec<_>>(), ["lock.wohnungstuer"]);
+}
+
+#[test]
 fn two_named_locks_stay_both() {
     let result = parse("schliess tuer eingang und garage", &lock_home(), &mut Session::new(), &[], &Settings::pinned("de"));
     let ids: Vec<_> = result.intents.iter().filter_map(|intent| intent.slot("entity_id")).collect();

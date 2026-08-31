@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - ufmache schloss garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- mach fernseh stube
+- mach tv stube
 devices/media_player_family_tv::media_player_family_tv_pause:
 - pause tv stube
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- loesch fernseh stube
+- loesch tv stube
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- mach fernseh stube
+- mach tv stube
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- mach fernseh stube
+- mach tv stube
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- mach fernseh stube
+- mach tv stube
 devices/media_player_living_tv::media_player_living_tv_mute:
-- mach fernseh wohnzimmer
+- mach tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_pause:
 - pause tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- loesch fernseh wohnzimmer
+- loesch tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- mach fernseh wohnzimmer
+- mach tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- mach fernseh wohnzimmer
+- mach tv wohnzimmer
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- mach fernseh wohnzimmer
+- mach tv wohnzimmer
 devices/scenes::dinner_time:
 - stell liecht stubeess 90 then mach decke chuchi then stell insel chuchi 80
 devices/scenes::good_morning:
@@ -247,8 +247,8 @@ devices/scenes::kids_bedtime:
 - loesch decke schlafzimmer2 then loesch decke schlafzimmer3 then loesch decke schlafzimmer4
   then stell liecht einganggang 15
 devices/scenes::movie_night:
-- loesch decke wohnzimmer then stell lamp wohnzimmer 20 then mach fernseh wohnzimmer
-  then zue store wohnzimmer
+- loesch decke wohnzimmer then stell lamp wohnzimmer 20 then mach tv wohnzimmer then
+  zue store wohnzimmer
 devices/scripts::good_night:
 - loesch decke wohnzimmer then loesch lamp wohnzimmer then loesch liecht stubeess
   then loesch decke chuchi then loesch insel chuchi then loesch decke stube then loesch

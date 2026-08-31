@@ -21,8 +21,8 @@
     entity_id: lock.front_door
     state: locked
   sentences:
-  - desliga luz sala e fechadura porta
-  - desliga sala e fechadura porta
+  - desliga luz sala e tranca porta
+  - desliga sala e tranca porta
 - name: multi_kitchen_dining
   conditions:
   - type: action

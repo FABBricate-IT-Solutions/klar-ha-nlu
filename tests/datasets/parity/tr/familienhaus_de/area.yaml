@@ -129,19 +129,19 @@ area/kitchen_switchs::kitchen_switchs_turn_off:
 area/kitchen_switchs::kitchen_switchs_turn_on:
 - yak hepsi cihaz mutfak
 area/laundry_lights::laundry_lights_change_brightness:
-- ayarla hepsi isik camasir 62
+- ayarla hepsi isik camasirhane 62
 area/laundry_lights::laundry_lights_change_color:
-- ayarla hepsi isik camasir yellow
+- ayarla hepsi isik camasirhane yellow
 area/laundry_lights::laundry_lights_turn_off:
-- sondur hepsi isik camasir
+- sondur hepsi isik camasirhane
 area/laundry_lights::laundry_lights_turn_on:
-- yak hepsi isik camasir
+- yak hepsi isik camasirhane
 area/laundry_switchs::laundry_switchs_turn_off:
-- sondur hepsi cihaz camasir
+- sondur hepsi cihaz camasirhane
 area/laundry_switchs::laundry_switchs_turn_on:
-- yak hepsi cihaz camasir
+- yak hepsi cihaz camasirhane
 area/living_climates::living_climates_set_temperature:
-- ayarla klima salon 20
+- ayarla sicaklik salon 20
 area/living_covers::living_covers_close:
 - kapat perde salon
 area/living_covers::living_covers_open:
@@ -181,7 +181,7 @@ area/master_bath_switchs::master_bath_switchs_turn_off:
 area/master_bath_switchs::master_bath_switchs_turn_on:
 - yak hepsi cihaz ebatmaster
 area/master_bedroom_and_living_climates::master_bedroom_and_living_climates_set_temperature:
-- ayarla klima yatakodasimaster 20 then ayarla klima salon 20
+- ayarla sicaklik yatakodasimaster 20 then ayarla sicaklik salon 20
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_close:
 - kapat perde yatakodasimaster then kapat perde salon
 area/master_bedroom_and_living_covers::master_bedroom_and_living_covers_open:
@@ -205,7 +205,7 @@ area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_tu
 area/master_bedroom_and_main_bath_lights::master_bedroom_and_main_bath_lights_turn_on:
 - yak hepsi isik yatakodasimaster then yak hepsi isik main bath
 area/master_bedroom_climates::master_bedroom_climates_set_temperature:
-- ayarla klima yatakodasimaster 20
+- ayarla sicaklik yatakodasimaster 20
 area/master_bedroom_covers::master_bedroom_covers_close:
 - kapat perde yatakodasimaster
 area/master_bedroom_covers::master_bedroom_covers_open:

@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - ireki sarraila garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- piztu telebista familiagela
+- piztu tb familiagela
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv familiagela
+- pause tb familiagela
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- itzali telebista familiagela
+- itzali tb familiagela
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- piztu telebista familiagela
+- piztu tb familiagela
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- piztu telebista familiagela
+- piztu tb familiagela
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- piztu telebista familiagela
+- piztu tb familiagela
 devices/media_player_living_tv::media_player_living_tv_mute:
-- piztu telebista egongela
+- piztu tb egongela
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv egongela
+- pause tb egongela
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- itzali telebista egongela
+- itzali tb egongela
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- piztu telebista egongela
+- piztu tb egongela
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- piztu telebista egongela
+- piztu tb egongela
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- piztu telebista egongela
+- piztu tb egongela
 devices/scenes::dinner_time:
 - jarri argia familiagelaess 90 then piztu sabai sukaldea then jarri uharte sukaldea
   80
@@ -248,8 +248,8 @@ devices/scenes::kids_bedtime:
 - itzali sabai logela2 then itzali sabai logela3 then itzali sabai logela4 then jarri
   argia sarreragang 15
 devices/scenes::movie_night:
-- itzali sabai egongela then jarri lamp egongela 20 then piztu telebista egongela
-  then itxi gortina egongela
+- itzali sabai egongela then jarri lamp egongela 20 then piztu tb egongela then itxi
+  gortina egongela
 devices/scripts::good_night:
 - itzali sabai egongela then itzali lamp egongela then itzali argia familiagelaess
   then itzali sabai sukaldea then itzali uharte sukaldea then itzali sabai familiagela

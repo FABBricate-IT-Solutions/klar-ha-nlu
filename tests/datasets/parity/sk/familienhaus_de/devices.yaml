@@ -215,29 +215,29 @@ devices/lock_garage_entry::lock_garage_entry_lock:
 devices/lock_garage_entry::lock_garage_entry_unlock:
 - otvor zamok garage
 devices/media_player_family_tv::media_player_family_tv_mute:
-- zapni televizia obyvackafam
+- zapni televizor obyvackafam
 devices/media_player_family_tv::media_player_family_tv_pause:
-- pause tv obyvackafam
+- pause televizor obyvackafam
 devices/media_player_family_tv::media_player_family_tv_turn_off:
-- vypni televizia obyvackafam
+- vypni televizor obyvackafam
 devices/media_player_family_tv::media_player_family_tv_turn_on:
-- zapni televizia obyvackafam
+- zapni televizor obyvackafam
 devices/media_player_family_tv::media_player_family_tv_unmute:
-- zapni televizia obyvackafam
+- zapni televizor obyvackafam
 devices/media_player_family_tv::media_player_family_tv_unpause:
-- zapni televizia obyvackafam
+- zapni televizor obyvackafam
 devices/media_player_living_tv::media_player_living_tv_mute:
-- zapni televizia obyvacka
+- zapni televizor obyvacka
 devices/media_player_living_tv::media_player_living_tv_pause:
-- pause tv obyvacka
+- pause televizor obyvacka
 devices/media_player_living_tv::media_player_living_tv_turn_off:
-- vypni televizia obyvacka
+- vypni televizor obyvacka
 devices/media_player_living_tv::media_player_living_tv_turn_on:
-- zapni televizia obyvacka
+- zapni televizor obyvacka
 devices/media_player_living_tv::media_player_living_tv_unmute:
-- zapni televizia obyvacka
+- zapni televizor obyvacka
 devices/media_player_living_tv::media_player_living_tv_unpause:
-- zapni televizia obyvacka
+- zapni televizor obyvacka
 devices/scenes::dinner_time:
 - nastav svetlo obyvackafamess 90 then zapni strop kuchyne then nastav ostrov kuchyne
   80
@@ -248,7 +248,7 @@ devices/scenes::kids_bedtime:
 - vypni strop spalna2 then vypni strop spalna3 then vypni strop spalna4 then nastav
   svetlo predsiengang 15
 devices/scenes::movie_night:
-- vypni strop obyvacka then nastav lamp obyvacka 20 then zapni televizia obyvacka
+- vypni strop obyvacka then nastav lamp obyvacka 20 then zapni televizor obyvacka
   then zatvor zaves obyvacka
 devices/scripts::good_night:
 - vypni strop obyvacka then vypni lamp obyvacka then vypni svetlo obyvackafamess then
