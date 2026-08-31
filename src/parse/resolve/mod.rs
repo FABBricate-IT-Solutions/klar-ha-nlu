@@ -248,10 +248,8 @@ fn pick_fixture(tokens: &[String], home: &HomeGraph, areas: &[String]) -> Option
         Some("floor")
     } else if !room_level && cat.any(tokens, cat.lamp_fixture()) {
         Some("lamp")
-    } else if let Some(word) = tokens.iter().find(|t| cat.ceiling().contains(t.as_str())) {
-        Some(word.as_str())
     } else {
-        None
+        tokens.iter().find(|t| cat.ceiling().contains(t.as_str())).map(|word| word.as_str())
     }?;
     let hits: Vec<EntityRec> = home
         .entities
