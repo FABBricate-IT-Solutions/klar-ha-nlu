@@ -6,6 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.8.67](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.66...2026.8.67) - 2026-08-31
+
+
+
+### Bug Fixes
+
+- store stream-published flag on speech extra_data([cf6accc](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/cf6accca3328daa067b59b7819793256ffacf804))
+
+- publish LLM tokens into Assist chat([47108f2](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/47108f216287227caf6e95fd9f69d815c6bf6e8c))
+
+
+### Features
+
+- stream LLM deltas into Assist chat and TTS([fb8d530](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/fb8d530a0473a5c66035b50cdfc74406b6398dd5))
+
+
+### Other
+
+- Merge pull request #183 from FABBricate-IT-Solutions/release/promote-2026.9.0([3b3539b](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/3b3539bff51146bd8f8ae39e3d4fe0b59a7140ad))
+
 ## [2026.8.66](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.65...2026.8.66) - 2026-08-31
 
 
