@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.67...2026.9.0) - 2026-09-02
+
+
+
+### Features
+
+- let users opt in to Assist tools on the chit-chat LLM([a87a2fa](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/a87a2fae58fdac688bbe87ca07296fcabbca28f5))
+
+
+### Other
+
+- Merge pull request #186 from FABBricate-IT-Solutions/release/promote-allow-llm-tools([6c28793](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/6c28793c83f7af6dd60319cbcb3b54e0c848eb4a))
+
 ## [2026.8.67](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.66...2026.8.67) - 2026-08-31
 
 
