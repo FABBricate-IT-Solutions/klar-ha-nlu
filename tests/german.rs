@@ -279,14 +279,6 @@ fn status_der_wohnung_is_one_floor_get_state() {
     let result = parse("Wie ist der Status der Wohnung", &home, &mut session, &[], &Settings::pinned("de"));
     assert_eq!(result.intents.len(), 1, "{:#?}", result.intents);
     assert_eq!(result.intents[0].name, "HassGetState");
-    assert!(
-        result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"),
-        "{:#?}",
-        result.intents[0]
-    );
-    assert!(
-        result.intents[0].slots.iter().all(|slot| slot.name != "area"),
-        "{:#?}",
-        result.intents[0]
-    );
+    assert!(result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"), "{:#?}", result.intents[0]);
+    assert!(result.intents[0].slots.iter().all(|slot| slot.name != "area"), "{:#?}", result.intents[0]);
 }
