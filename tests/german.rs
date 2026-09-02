@@ -261,3 +261,32 @@ fn wohn_und_esszimmer_auf_rot() {
     assert_eq!(found.len(), 2, "{found:?}");
     assert!(found.iter().all(|(name, slots)| name == "HassLightSet" && slots.iter().any(|(k, v)| k == "color" && v == "red")), "{found:?}");
 }
+
+#[test]
+fn status_der_wohnung_is_one_floor_get_state() {
+    let mut home = default_home();
+    home.areas.retain(|area| area.area_id != "wohnung");
+    for area in &mut home.areas {
+        area.floor_id = Some("wohnung".into());
+    }
+    home.floors.push(klar_nlu::types::FloorRec {
+        floor_id: "wohnung".into(),
+        name: "Wohnung".into(),
+        aliases: vec!["zuhause".into(), "home".into(), "apartment".into()],
+        level: Some(0),
+    });
+    let mut session = Session::new();
+    let result = parse("Wie ist der Status der Wohnung", &home, &mut session, &[], &Settings::pinned("de"));
+    assert_eq!(result.intents.len(), 1, "{:#?}", result.intents);
+    assert_eq!(result.intents[0].name, "HassGetState");
+    assert!(
+        result.intents[0].slots.iter().any(|slot| slot.name == "floor" && slot.value == "wohnung"),
+        "{:#?}",
+        result.intents[0]
+    );
+    assert!(
+        result.intents[0].slots.iter().all(|slot| slot.name != "area"),
+        "{:#?}",
+        result.intents[0]
+    );
+}
