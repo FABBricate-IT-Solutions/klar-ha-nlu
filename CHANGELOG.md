@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versions follow Home Assistant calendar versioning (`YYYY.M.PATCH`)
 and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## [2026.9.1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.9.0...2026.9.1) - 2026-09-02
+
+
+
+### Features
+
+- speak named devices in floor and room status([095bac1](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/095bac1f2d7f1a7118ad832304c43f91e09c940d))
+
+
+### Other
+
+- Merge pull request #189 from FABBricate-IT-Solutions/release/promote-named-room-status([72aeadb](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/72aeadbdd84637f642e91c4461f3503ccb002cfa))
+
+
+### Styling
+
+- rustfmt the floor-status parse test([7d4df2f](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/commit/7d4df2f915b8fa5893bd32d3531829bd25b1e201))
+
 ## [2026.9.0](https://github.com/FABBricate-IT-Solutions/klar-ha-nlu/compare/2026.8.67...2026.9.0) - 2026-09-02
 
 
