@@ -196,6 +196,10 @@ HTTP akzeptiert den Token als `x-klar-token` oder `Authorization: Bearer ...`. W
 
 Die Integration führt nur `decision.type == execute` aus. Confirm, Clarify und Reject lösen keine Services aus. Ein Execute-Plan läuft in Planreihenfolge über `intent.async_handle`. Jeder Schritt liefert success oder error; Teilfehler sind ein eigenes Ergebnis (Sprache plus strukturierte Fehler), kein stilles Gesamterfolg. Direkte Service-Calls gibt es nur, wo HA keinen nativen Intent hat (Music Assistant, Relativlautstärke, Mute). Custom Sentences in Klar NLU (`/api/custom`) können auf dieselben oder eigene Intent-Namen zeigen; eigene Namen brauchen einen Handler in HA.
 
+## Etagen- und Raumstatus
+
+`Wie ist der Status der Wohnung` bleibt **ein** `HassGetState` mit `floor` — Klar zerlegt das nicht in acht Raum-Intents (das würde Confirm auslösen). Die Integration sammelt die Areas auf der Etage und spricht fest: Raum, dann jedes Licht und jede Steckdose mit Namen, Anwesenheit, Temperatur, Lux, dann die übrigen Geräte mit Namen. Switches ohne `device_class: outlet` und Climate zählen zu den benannten Geräten, nicht als anonyme Steckdose oder nur als Gradzahl. Derselbe Klauselbau gilt für `Status vom Wohnzimmer`. Alle Assist-Sprachpakete nutzen dieselbe Reihenfolge; eine leere Etage oder ein leerer Raum sagt lokalisiert „Keine Geräte“, nicht den gemischten HA-Kurzbericht. Technik ohne Floor bleibt draußen.
+
 ## Medien und Music Assistant
 
 Pause, weiter, zurück, stumm und Lautstärke nutzen den genannten `media_player` oder den im Raum. Der Player muss für Assist freigegeben sein und ein Music-Assistant-Player oder mit einem Musik-Tag versehen. Fehlt der Player, ist das Setup — nicht das Lexikon.

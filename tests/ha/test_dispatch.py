@@ -46,9 +46,15 @@ def _load_dispatch() -> types.ModuleType:
     area_registry.async_get = Mock()
     entity_registry = types.ModuleType("homeassistant.helpers.entity_registry")
     entity_registry.async_get = Mock()
+    floor_registry = types.ModuleType("homeassistant.helpers.floor_registry")
+    floor_registry.async_get = Mock()
+    device_registry = types.ModuleType("homeassistant.helpers.device_registry")
+    device_registry.async_get = Mock()
     helpers.intent = intent
     helpers.area_registry = area_registry
     helpers.entity_registry = entity_registry
+    helpers.floor_registry = floor_registry
+    helpers.device_registry = device_registry
     package = _module(PACKAGE)
     modules = {
         "homeassistant": homeassistant,
@@ -59,6 +65,8 @@ def _load_dispatch() -> types.ModuleType:
         "homeassistant.helpers.intent": intent,
         "homeassistant.helpers.area_registry": area_registry,
         "homeassistant.helpers.entity_registry": entity_registry,
+        "homeassistant.helpers.floor_registry": floor_registry,
+        "homeassistant.helpers.device_registry": device_registry,
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
@@ -79,6 +87,11 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.const", "const.py")
         _load(f"{PACKAGE}.lang_select", "lang_select.py")
         _load(f"{PACKAGE}.intents", "intents.py")
+        _load(f"{PACKAGE}.speech_status_device", "speech_status_device.py")
+        _load(f"{PACKAGE}.speech_status", "speech_status.py")
+        _load(f"{PACKAGE}.floor_query", "floor_query.py")
+        _load(f"{PACKAGE}.dispatch_result", "dispatch_result.py")
+        _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
         return _load(f"{PACKAGE}.dispatch", "dispatch.py")
 
 
@@ -619,6 +632,63 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(spoken.ok)
         self.assertIn("21", spoken.speech or "")
         self.assertIn("Schlafzimmer", spoken.speech or "")
+
+    async def test_floor_status_speaks_each_area(self) -> None:
+        living = _State("light.wohnzimmer", "on", friendly_name="Wohnzimmer")
+        kitchen = _State("light.kuche", "off", friendly_name="Küche")
+        hass = _hass(living, kitchen)
+        with patch.object(
+            dispatch,
+            "place_get_state",
+            return_value="Wohnzimmer. Licht an. Küche. Licht aus.",
+        ):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item("HassGetState", floor="wohnung"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        self.assertIn("Wohnzimmer", spoken.speech or "")
+        self.assertIn("Küche", spoken.speech or "")
+        dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_area_status_uses_place_speech(self) -> None:
+        living = _State("light.wohnzimmer", "on", friendly_name="Wohnzimmer")
+        hass = _hass(living)
+        with patch.object(
+            dispatch,
+            "place_get_state",
+            return_value="Wohnzimmer. Licht an.",
+        ):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input(),
+                _item("HassGetState", area="wohnzimmer"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        self.assertEqual(spoken.speech, "Wohnzimmer. Licht an.")
+        dispatch.intent.async_handle.assert_not_awaited()
+
+    async def test_empty_floor_does_not_call_ha(self) -> None:
+        hass = _hass()
+        with patch.object(dispatch, "place_get_state", return_value="Keine Geräte."):
+            spoken = await dispatch.handle_intent(
+                hass,
+                _input("Wie ist der Status der Wohnung"),
+                _item("HassGetState", floor="wohnung"),
+                "de",
+                None,
+                lambda _entity_id: True,
+            )
+        self.assertTrue(spoken.ok)
+        self.assertEqual(spoken.speech, "Keine Geräte.")
+        dispatch.intent.async_handle.assert_not_awaited()
 
 
 if __name__ == "__main__":
