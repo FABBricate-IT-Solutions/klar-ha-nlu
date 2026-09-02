@@ -24,7 +24,8 @@ def _load(name: str, rel: str):
     return mod
 
 
-speech = _load("klar_speech", "speech.py")
+speech = _load("speech", "speech.py")
+sys.modules["klar_speech"] = speech
 
 
 class SpeechTests(unittest.TestCase):
@@ -109,8 +110,10 @@ class SpeechTests(unittest.TestCase):
         spoken = speech.from_handled(handled, "de", item)
         self.assertIsNotNone(spoken)
         self.assertIn("Küche", spoken)
-        self.assertIn("aus", spoken)
-        self.assertNotEqual(spoken, "Licht ist aus.")
+        self.assertIn("Licht aus", spoken)
+        self.assertNotIn("In der Küche", spoken)
+        french = speech.from_handled(handled, "fr", item)
+        self.assertIn("Licht éteinte", french)
 
     def test_room_temperature_drops_satellite(self) -> None:
         handled = _States(

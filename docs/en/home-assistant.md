@@ -196,6 +196,10 @@ HTTP accepts the token as `x-klar-token` or `Authorization: Bearer ...`. Wyoming
 
 The integration executes only `decision.type == execute`. Confirm, clarify, and reject never call services. An execute plan runs in plan order through `intent.async_handle`. Each step reports success or error; partial failure is a first-class outcome (speech plus structured errors), not silent total success. Direct service calls are used only where HA has no native intent (Music Assistant, relative volume, mute). Custom sentences in Klar NLU (`/api/custom`) can point at the same names or your own; custom names need a handler in HA.
 
+## Floor and room status
+
+`What's the status of the apartment` stays **one** `HassGetState` with `floor` — Klar does not expand that into eight room intents (that would trip confirm). The integration collects the areas on the floor and speaks a fixed order: room, then each light and outlet by name, presence, temperature, lux, then the other devices by name. Switches without `device_class: outlet` and climate entities are named devices, not an anonymous socket or a temperature number alone. The same clauses are used for a single-room status. Every Assist speech pack uses that order. An empty floor or room says a localized “No devices”, not Home Assistant’s mixed short report. Areas without a floor stay out.
+
 ## Media and Music Assistant
 
 Pause, next, previous, mute, and volume use the named `media_player` or the one in that room. The player must be Assist-exposed and either a Music Assistant player or tagged for music. Without that player the miss is setup, not a missing English lexicon.

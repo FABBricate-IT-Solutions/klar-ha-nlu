@@ -122,6 +122,10 @@ def query_speech(handled: Any, pack: str, item: dict | None = None) -> str:
     rows = [_state_value(state, pack) for state in states[:12]]
     rows = [row for row in rows if row[0] and row[1]]
     area = _room_label(item)
+    if area and (item or {}).get("name") == "HassGetState":
+        spoken = _area_status_speech(area, states, pack)
+        if spoken:
+            return spoken
     if area:
         return _room_status(rows, area, pack)
     lights = [row for row in rows if row[2] == "light"]
@@ -226,6 +230,15 @@ def _media_action_speech(name: str, pack: str, item: dict, handled: Any) -> str:
     if not templates:
         return ""
     return templates[1 if _en(pack) else 0].format(where=where)
+
+def _area_status_speech(name: str, states: list[Any], pack: str) -> str:
+    # Circular: speech_status imports _infra_state from this module.
+    try:
+        from .speech_status import area_status_speech
+    except ImportError:
+        from speech_status import area_status_speech
+    return area_status_speech(name, states, pack)
+
 
 def _room_label(item: dict | None) -> str:
     if not item:
