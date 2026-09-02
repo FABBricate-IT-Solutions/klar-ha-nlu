@@ -93,6 +93,17 @@ class FallbackTests(unittest.TestCase):
         self.assertTrue(fallback.can_use_fallback_agent(False, False))
         self.assertFalse(fallback.can_use_fallback_agent(True, False))
         self.assertFalse(fallback.can_use_fallback_agent(True, True))
+        self.assertTrue(fallback.can_use_fallback_agent(True, False, True))
+        self.assertTrue(fallback.can_use_fallback_agent(True, True, True))
+
+    def test_tools_ok_prompt_replaces_chat_only(self) -> None:
+        blocked = fallback.chat_only_prompt("en", None)
+        self.assertIn("Do not control devices", blocked)
+        allowed = fallback.chat_only_prompt("en", None, True)
+        self.assertIn("You may use Home Assistant tools", allowed)
+        self.assertNotIn("Do not control devices", allowed)
+        de = fallback.chat_only_prompt("de", None, True)
+        self.assertIn("Home-Assistant-Werkzeuge", de)
 
     def test_calendar_query_only_is_list_intent(self) -> None:
         self.assertTrue(

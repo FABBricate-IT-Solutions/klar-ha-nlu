@@ -55,6 +55,9 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "options.step.init.data.personality": f["personality"],
         "options.step.init.data.languages": f["languages"],
         "options.step.init.data.fallback_agent": f["fallback"],
+        "options.step.init.data.allow_llm_tools": f.get(
+            "allow_llm_tools", "Allow Assist tools on the chit-chat agent"
+        ),
         "options.step.init.data.refine_speech": f["refine_speech"],
         "options.step.init.data.refine_prompt": f["refine_prompt"],
         "options.step.init.data.url": f["url"],
@@ -72,6 +75,10 @@ def expand(fields: dict[str, str]) -> dict[str, str]:
         "options.step.init.data_description.nlu_rag": f["help_rag"],
         "options.step.init.data_description.quiet_ack": f["help_quiet"],
         "options.step.init.data_description.calendar_llm": f["help_calendar_llm"],
+        "options.step.init.data_description.allow_llm_tools": f.get(
+            "help_allow_llm_tools",
+            "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
+        ),
         "options.step.init.data_description.languages": f["help_languages"],
         "options.step.init.data_description.channel": f["help_channel"],
         "options.error.invalid_url": f["invalid"],

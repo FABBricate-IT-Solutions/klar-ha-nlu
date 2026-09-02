@@ -29,6 +29,7 @@
           "personality": "Osebnost",
           "languages": "Jeziki",
           "fallback_agent": "Pogovorni agent za klepet",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Naj LLM preoblikuje odgovore NLU",
           "refine_prompt": "Poziv za izboljšavo",
           "url": "URL Klar API",
@@ -48,6 +49,7 @@
           "nlu_rag": "Privzeto izklopljeno. Pri klepetu gre rezervnemu modelu samo ujemajoči se del.",
           "quiet_ack": "Pri preprostem vklopu/izklopu luči ni govora, le kratek zvok na satelitu.",
           "calendar_llm": "Privzeto izklopljeno. Vklopljeno: Klar prebere koledar, nadomestni LLM pove dogodke. Izklopljeno: Klar pove seznam. Ustvarjanje, brisanje in premikanje ostanejo pri Klarju.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Privzeto sledi jeziku sistema Home Assistant.",
           "channel": "Kadarkoli. Staging kaže na Klar NLU (Staging)."
         }
