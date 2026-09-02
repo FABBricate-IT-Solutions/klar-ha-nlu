@@ -29,6 +29,7 @@
           "personality": "Persönlichkeit",
           "languages": "Sprache",
           "fallback_agent": "Conversation-Agent für Smalltalk",
+          "allow_llm_tools": "Assist-Wärchzüüg bim Smalltalk-Agent erlaube",
           "refine_speech": "NLU-Antworten vom LLM verfyynere",
           "refine_prompt": "Verfyynerigs-Prompt",
           "url": "URL vo de Klar-API",
@@ -48,6 +49,7 @@
           "nlu_rag": "Standard us. Bi Chat nume de gmatchti Uschnitt ans Fallback-Modell.",
           "quiet_ack": "Bi eifachem Liecht aa/us kei gredti Antwort, nur en churze Ton.",
           "calendar_llm": "Standard us. Aa: Klar liest de Kalender, s Fallback-LLM seit d Termin. Us: Klar seit d Liste sälber. Aalege, Lösche und Verschiebe blibed bi Klar.",
+          "allow_llm_tools": "Standard us. Aa: Klar rueft de Smalltalk-Agent au, wenn er Home Assistant stüre darf. Us: Klar überspringt s LLM, wenn de Agent Assist-Wärchzüüg het.",
           "languages": "Standard isch d Home-Assistant-Systemsprach.",
           "channel": "Jederzit. Staging uf Klar NLU (Staging), Stable uf d App oder d mitglieferte Engine."
         }

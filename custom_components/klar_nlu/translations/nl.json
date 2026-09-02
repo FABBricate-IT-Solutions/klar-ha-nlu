@@ -29,6 +29,7 @@
           "personality": "Persoonlijkheid",
           "languages": "Talen",
           "fallback_agent": "Conversatie-agent voor smalltalk",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "NLU-antwoorden door de LLM laten herschrijven",
           "refine_prompt": "Verfijningsprompt",
           "url": "Klar-API-URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "Standaard uit. Bij chat alleen het herkende stuk naar het fallback-model.",
           "quiet_ack": "Bij eenvoudig licht of schakelaar aan/uit geen gesproken antwoord, alleen een korte toon.",
           "calendar_llm": "Standaard uit. Aan: Klar leest de agenda, het fallback-LLM spreekt de afspraken. Uit: Klar spreekt de lijst zelf. Aanmaken, verwijderen en verplaatsen blijven bij Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Standaard is de Home Assistant-systeemtaal.",
           "channel": "Altijd. Staging wijst naar Klar NLU (Staging), Stable naar de app of de meegeleverde engine."
         }

@@ -29,6 +29,7 @@
           "personality": "Personība",
           "languages": "Valodas",
           "fallback_agent": "Sarunu aģents tērzēšanai",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Ļaut LLM pārfrāzēt NLU atbildes",
           "refine_prompt": "Uzlabošanas uzvedne",
           "url": "Klar API URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "Pēc noklusējuma izslēgts. Tērzēšanā rezerves modelim iet tikai atpazītais fragments.",
           "quiet_ack": "Vienkāršai gaismas ieslēgšanai/izslēgšanai nav teikuma, tikai īss skaņa uz satelīta.",
           "calendar_llm": "Pēc noklusējuma izslēgts. Ieslēgts: Klar lasa kalendāru, rezerves LLM saka notikumus. Izslēgts: Klar saka sarakstu. Izveide, dzēšana un pārvietošana paliek Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Pēc noklusējuma seko Home Assistant sistēmas valodai.",
           "channel": "Jebkurā laikā. Staging norāda uz Klar NLU (Staging)."
         }

@@ -29,6 +29,7 @@
           "personality": "Personality",
           "languages": "Languages",
           "fallback_agent": "Conversation agent for chit-chat",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Let the LLM refine NLU replies",
           "refine_prompt": "Refinement prompt",
           "url": "Klar API URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "Off by default. When on, chat and empty rejects send the already-matched slice to the fallback model. The model may recover a command only through Klar tools, never Assist or Home Assistant control tools.",
           "quiet_ack": "On simple light or switch on/off, skip the spoken reply and play a short chime on the satellite.",
           "calendar_llm": "Off by default. On: Klar still reads the calendar, then the fallback LLM speaks the events. Off: Klar speaks the list itself. Create, delete, and move stay in Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Assist parsing and spoken replies. Default follows the Home Assistant system language. This form stays in the Home Assistant language. All languages keeps every compiled Assist locale enabled.",
           "channel": "Works anytime. On Home Assistant OS, Staging points at Klar NLU (Staging) even if setup started the bundled engine. Stable goes back to the Klar NLU app or the bundled engine. A custom URL is left alone. Do not edit `.storage`."
         }

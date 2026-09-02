@@ -29,6 +29,7 @@
           "personality": "პიროვნება",
           "languages": "ენები",
           "fallback_agent": "საუბრის აგენტი ჩატისთვის",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "LLM-მა გადააფორმოს NLU პასუხები",
           "refine_prompt": "დახვეწის მოთხოვნა",
           "url": "Klar API URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "ნაგულისხმევად გამორთული. ჩატში სარეზერვო მოდელს მხოლოდ დამთხვეული ნაწილი მიდის.",
           "quiet_ack": "მარტივი სინათლის ჩართვა/გამორთვა უსიტყვოდ, მხოლოდ მოკლე ხმა თანამგზავრზე.",
           "calendar_llm": "Standartulad gamtishulia. Chartuli: Klari kitkhulobs kalendars, rezervuli LLM ambobs movlenebs. Gamortuli: Klari ambobs sias. Shekmna, washla da gadatanili rcheba Klartan.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "ნაგულისხმევი მიჰყვება Home Assistant სისტემის ენას.",
           "channel": "ნებისმიერ დროს. Staging მიუთითებს Klar NLU (Staging)."
         }

@@ -48,7 +48,7 @@ Ablauf:
 4. Keine Intents, einschließlich Reject → Weiterleitung an den gewählten Agenten. NLU-RAG ist nicht nötig.
 5. Klar selbst und ein unerreichbarer Motor lösen keinen Fallback aus.
 
-Der Agent bekommt den Hinweis, keine Geräte zu steuern und in der Assist-Sprache des Nutzers zu antworten. Wenn der Agent in seiner eigenen Integration HA-Tools hat, können die trotzdem greifen — Tools dort aus lassen, wenn Smalltalk nur reden soll.
+Der Agent bekommt den Hinweis, keine Geräte zu steuern und in der Assist-Sprache des Nutzers zu antworten. Hat der Agent in seiner eigenen Integration HA-Tools, überspringt Klar ihn, außer **Assist-Werkzeuge beim Smalltalk-Agenten erlauben** ist an. Die Option ist standardmäßig aus. Ist sie an, darf das Modell Lichter schalten und Skripte starten.
 
 ## Persönlichkeit
 
@@ -78,7 +78,7 @@ Standardmäßig aus. Einstellungen → Geräte & Dienste → Klar NLU → Konfig
 1. **Conversation-Agent für Smalltalk** setzen (OpenAI-kompatibel, lokales Gemma reicht).
 2. **NLU-Antworten vom LLM verfeinern** einschalten.
 3. Assist-Pipeline: Conversation-Engine = **Klar NLU**.
-4. Assist-Werkzeuge bei diesem LLM-Agenten **aus**. Kann der Agent das Haus steuern, fällt Refine aus.
+4. Assist-Werkzeuge bei diesem LLM-Agenten **aus**, außer **Assist-Werkzeuge beim Smalltalk-Agenten erlauben** ist an. Kann der Agent das Haus steuern und die Option ist aus, fällt Refine aus.
 
 Ablauf nach einem Hausbefehl:
 

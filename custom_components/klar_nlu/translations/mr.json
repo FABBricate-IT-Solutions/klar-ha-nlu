@@ -29,6 +29,7 @@
           "personality": "व्यक्तिमत्त्व",
           "languages": "भाषा",
           "fallback_agent": "गप्पांसाठी संभाषण एजंट",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "LLM ने NLU उत्तरे सुधारू द्या",
           "refine_prompt": "सुधारणा प्रॉम्प्ट",
           "url": "Klar API URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "डीफॉल्ट बंद. गप्पांमध्ये फक्त जुळलेला तुकडा बॅकअप मॉडेलकडे जातो.",
           "quiet_ack": "साधी दिवा चालू/बंद करताना वाक्य नाही, उपग्रहावर थोडा आवाज.",
           "calendar_llm": "डीफॉल्ट बंद. चालू: क्लार दिनदर्शिका वाचतो, बॅकअप LLM कार्यक्रम सांगतो. बंद: क्लार यादी स्वतः सांगतो. तयार, हटवणे, हलवणे क्लारकडेच राहते.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "डीफॉल्ट Home Assistant ची सिस्टम भाषा आहे.",
           "channel": "कधीही. Staging Klar NLU (Staging) कडे दर्शवते."
         }

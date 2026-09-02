@@ -29,6 +29,7 @@
           "personality": "Personalidade",
           "languages": "Idiomas",
           "fallback_agent": "Agente de conversação para conversa",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Deixar o LLM reformular as respostas NLU",
           "refine_prompt": "Prompt de refinamento",
           "url": "URL da API Klar",
@@ -48,6 +49,7 @@
           "nlu_rag": "Desligado por predefinição. No chat só o excerto reconhecido vai para o modelo de recurso.",
           "quiet_ack": "Num ligar ou desligar simples, sem frase: só um sinal curto no satélite.",
           "calendar_llm": "Desligado por predefinição. Ligado: o Klar lê o calendário e o LLM de recurso diz os eventos. Desligado: o Klar diz a lista. Criar, apagar e mover ficam no Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "A predefinição é o idioma do sistema do Home Assistant.",
           "channel": "Em qualquer altura. Staging aponta para Klar NLU (Staging); Stable para a app ou o motor incluído."
         }
