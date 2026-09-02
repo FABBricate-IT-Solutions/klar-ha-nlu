@@ -22,6 +22,7 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import (
+    CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
     CONF_CALENDAR_LLM,
     CONF_FALLBACK_AGENT,
@@ -33,6 +34,7 @@ from .const import (
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
+    DEFAULT_ALLOW_LLM_TOOLS,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_CALENDAR_LLM,
     DEFAULT_NLU_RAG,
@@ -298,7 +300,7 @@ class KlarConversationEntity(ConversationEntity):
             if rendered:
                 speech = rendered
         if hit == "llm" and action and not clarify and not payload.get("unreachable"):
-            prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action)
+            prompt = yarn_prompt(pack, action, user_input.text) if yarn_request(user_input.text) else chat_only_prompt(pack, action, self._allow_llm_tools())
             fallback = await self._fallback(
                 user_input, chat_log, pack, True, prompt, retrieval
             )
@@ -411,6 +413,7 @@ class KlarConversationEntity(ConversationEntity):
                 pack,
                 self._personality(),
                 str(self._entry.options.get(CONF_REFINE_PROMPT) or ""),
+                self._allow_llm_tools(),
             )
         remember_turn(
             self.hass,
@@ -466,6 +469,9 @@ class KlarConversationEntity(ConversationEntity):
 
     def _calendar_llm(self) -> bool:
         return bool(self._entry.options.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM))
+
+    def _allow_llm_tools(self) -> bool:
+        return bool(self._entry.options.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS))
 
     async def async_reload(self, language: str | None = None) -> None:
         """Honor conversation.reload; registered intents are read live."""
@@ -555,7 +561,9 @@ class KlarConversationEntity(ConversationEntity):
         agent_id = self._fallback_agent_id()
         if not agent_id:
             return None
-        if not can_use_fallback_agent(self._agent_controls_home(agent_id), chat):
+        if not can_use_fallback_agent(
+            self._agent_controls_home(agent_id), chat, self._allow_llm_tools()
+        ):
             _LOGGER.warning("LLM-Fallback %s hat Assist-Werkzeuge — übersprungen", agent_id)
             return None
         extra_s = getattr(user_input, "extra_system_prompt", None)
@@ -568,7 +576,9 @@ class KlarConversationEntity(ConversationEntity):
         elif yarn_request(user_input.text):
             system = yarn_prompt(pack, with_personality(extra_s, voice), user_input.text)
         else:
-            system = chat_only_prompt(pack, with_personality(extra_s, voice))
+            system = chat_only_prompt(
+                pack, with_personality(extra_s, voice), self._allow_llm_tools()
+            )
         session_id = self._llm_session_id(user_input)
         prior = history_prompt(pack, self._llm_turns(session_id))
         if prior and not yarn_request(user_input.text):

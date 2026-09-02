@@ -48,7 +48,7 @@ Flow:
 4. No intents, including reject → forward to the chosen agent. NLU-RAG is not required.
 5. Klar itself and an unreachable engine do not trigger fallback.
 
-The agent is told not to control devices and to answer in the user’s Assist language. If that agent still has HA tools in its own integration, they can still fire — turn tools off there if chit-chat should only talk.
+The agent is told not to control devices and to answer in the user’s Assist language. If that agent still has HA tools in its own integration, Klar skips it unless you turn on **Allow Assist tools on the chit-chat agent**. That option is off by default. When it is on, the model may turn lights and run scripts.
 
 ## Personality
 
@@ -78,7 +78,7 @@ Off by default. Settings → Devices & services → Klar NLU → Configure:
 1. Set **Conversation agent for chit-chat** (OpenAI-compatible, local Gemma is fine).
 2. Turn on **Let the LLM refine NLU replies**.
 3. Keep Assist’s conversation engine = **Klar NLU**.
-4. Turn Assist tools **off** on that LLM agent. If the agent can control the home, refine is skipped.
+4. Keep Assist tools **off** on that LLM agent unless you also turn on **Allow Assist tools on the chit-chat agent**. If the agent can control the home and that option is off, refine is skipped.
 
 Flow after a home command:
 

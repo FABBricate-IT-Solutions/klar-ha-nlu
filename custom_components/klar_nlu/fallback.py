@@ -30,6 +30,17 @@ _ANSWER_IN_PACK = (
     "Answer in the user's language (Assist pack code: {pack})."
 )
 
+_TOOLS_OK = {
+    "de": (
+        "Du darfst Home-Assistant-Werkzeuge nutzen, "
+        "wenn der Nutzer das Haus oder aktuelle Fakten braucht."
+    ),
+    "en": (
+        "You may use Home Assistant tools when the user needs "
+        "the house or current facts."
+    ),
+}
+
 
 def agent_has_home_control(features: object) -> bool:
     try:
@@ -235,8 +246,12 @@ def yarn_prompt(pack: str, extra: str | None, text: str | None = None) -> str:
     return chat_only_prompt(pack, _join_extra(extra, body))
 
 
-def chat_only_prompt(pack: str, extra: str | None) -> str:
-    only = _CHAT_ONLY.get(pack) or _ANSWER_IN_PACK.format(pack=pack)
+def chat_only_prompt(pack: str, extra: str | None, allow_tools: bool = False) -> str:
+    only = (
+        (_TOOLS_OK.get(pack) or _TOOLS_OK["en"])
+        if allow_tools
+        else (_CHAT_ONLY.get(pack) or _ANSWER_IN_PACK.format(pack=pack))
+    )
     lock = _language_lock(pack)
     extra = (extra or "").strip()
     body = f"{extra}\n{only}" if extra else only
@@ -330,6 +345,8 @@ def history_prompt(pack: str, turns: list[tuple[str, str]] | None) -> str:
     return "\n".join(lines)
 
 
-def can_use_fallback_agent(controls_home: bool, chat: bool = False) -> bool:
+def can_use_fallback_agent(
+    controls_home: bool, chat: bool = False, allow_tools: bool = False
+) -> bool:
     del chat
-    return not controls_home
+    return allow_tools or not controls_home

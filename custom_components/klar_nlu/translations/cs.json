@@ -29,6 +29,7 @@
           "personality": "Osobnost",
           "languages": "Jazyky",
           "fallback_agent": "Konverzační agent pro pokec",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Nechat LLM upravit odpovědi NLU",
           "refine_prompt": "Prompt pro úpravu",
           "url": "URL Klar API",
@@ -48,6 +49,7 @@
           "nlu_rag": "Ve výchozím stavu vypnuto. V chatu jde na záložní model jen rozpoznaný úsek.",
           "quiet_ack": "U jednoduchého zapnutí nebo vypnutí světla žádná věta, jen krátký tón.",
           "calendar_llm": "Ve výchozím stavu vypnuto. Zapnuto: Klar přečte kalendář, záložní LLM řekne události. Vypnuto: Klar řekne seznam. Vytvoření, smazání a přesun zůstanou v Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Výchozí je systémový jazyk Home Assistantu.",
           "channel": "Kdykoli. Staging míří na Klar NLU (Staging)."
         }

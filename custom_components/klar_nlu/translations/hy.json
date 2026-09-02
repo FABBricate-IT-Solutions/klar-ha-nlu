@@ -29,6 +29,7 @@
           "personality": "Անհատականություն",
           "languages": "Լեզուներ",
           "fallback_agent": "Զրույցի գործակալ շաղակրատանքի համար",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Թող LLM-ը վերաձևակերպի NLU պատասխանները",
           "refine_prompt": "Հղկման հուշում",
           "url": "Klar API հասցե",
@@ -48,6 +49,7 @@
           "nlu_rag": "Լռելյայն անջատված։ Զրույցում պահեստային մոդելին գնում է միայն համընկած հատվածը։",
           "quiet_ack": "Պարզ լույս միացնել/անջատելիս խոսք չկա, միայն կարճ ձայն արբանյակի վրա։",
           "calendar_llm": "Lreljyayn anjatkan. Miacvac: Klary kardum e oracuycy, reservayin LLM-n asum e iradarjutyunnery. Anjatkan: Klary asum e cucaky. Steghtsumn, jnjumn u teghapoxumn mnun en Klary tesakum.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Լռելյայն հետևում է Home Assistant համակարգի լեզվին։",
           "channel": "Ցանկացած պահի։ Staging-ը մատնանշում է Klar NLU (Staging)։"
         }

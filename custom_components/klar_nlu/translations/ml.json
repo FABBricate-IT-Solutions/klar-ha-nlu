@@ -29,6 +29,7 @@
           "personality": "വ്യക്തിത്വം",
           "languages": "ഭാഷകൾ",
           "fallback_agent": "സംസാരത്തിനുള്ള സംഭാഷണ ഏജന്റ്",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "LLM NLU മറുപടികൾ തിരുത്തട്ടെ",
           "refine_prompt": "മെച്ചപ്പെടുത്തൽ പ്രോംപ്റ്റ്",
           "url": "Klar API URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "ഡിഫോൾട്ട് ഓഫ്. സംസാരത്തിൽ പൊരുത്തപ്പെട്ട ഭാഗം മാത്രം ബാക്കപ്പ് മോഡലിലേക്ക്.",
           "quiet_ack": "ലളിതമായ ലൈറ്റ് ഓൺ/ഓഫിൽ വാക്യമില്ല, സാറ്റലൈറ്റിൽ ചെറിയ ശബ്ദം മാത്രം.",
           "calendar_llm": "ഡിഫോൾട്ട് ഓഫ്. സംസാരത്തിൽ പൊരുത്തപ്പെട്ട ഭാഗം മാത്രം ബാക്കപ്പ് മോഡലിലേക്ക്. കലണ്ടർ ചോദ്യങ്ങൾ LLM-ലേക്ക് അയയ്ക്കുക.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "ഡിഫോൾട്ട് Home Assistant സിസ്റ്റം ഭാഷയാണ്.",
           "channel": "Works anytime. Staging points at Klar NLU (Staging)."
         }

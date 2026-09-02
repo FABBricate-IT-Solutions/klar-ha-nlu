@@ -26,6 +26,7 @@ class ConversationFallbackTests(unittest.TestCase):
         end = src.index("def _preferred_area")
         body = src[start:end]
         self.assertIn("chat_only_prompt", body)
+        self.assertIn("self._allow_llm_tools()", body)
         self.assertIn("refine_prompt", body)
         self.assertIn("speak_tag(pack)", body)
         self.assertIn("history_prompt", body)

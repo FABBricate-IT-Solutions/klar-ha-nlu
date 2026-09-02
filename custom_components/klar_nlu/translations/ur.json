@@ -29,6 +29,7 @@
           "personality": "شخصیت",
           "languages": "زبانیں",
           "fallback_agent": "گپ شپ کے لیے گفتگو ایجنٹ",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "LLM سے NLU جواب درست کریں",
           "refine_prompt": "درستگی کا پرامپٹ",
           "url": "Klar API یو آر ایل",
@@ -48,6 +49,7 @@
           "nlu_rag": "طے شدہ آف۔ بات چیت میں صرف پہچانا ہوا ٹکڑا بیک اپ ماڈل کو جاتا ہے۔",
           "quiet_ack": "سادہ بتی آن/آف پر بات نہیں، سیٹلائٹ پر صرف مختصر آواز۔",
           "calendar_llm": "طے شدہ بند۔ آن: کلار کیلنڈر پڑھتا ہے، بیک اپ ماڈل تقریبات کہتا ہے۔ آف: کلار فہرست خود کہتا ہے۔ بنانا، مٹانا اور منتقل کلار ہی کرتا ہے۔",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "طے شدہ Home Assistant کی سسٹم زبان ہے۔",
           "channel": "کسی بھی وقت۔ Staging Klar NLU (Staging) کی طرف ہے۔"
         }

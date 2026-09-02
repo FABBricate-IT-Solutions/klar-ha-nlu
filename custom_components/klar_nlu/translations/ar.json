@@ -29,6 +29,7 @@
           "personality": "الشخصية",
           "languages": "اللغات",
           "fallback_agent": "وكيل محادثة للدردشة",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "دع نموذج اللغة يعيد صياغة ردود NLU",
           "refine_prompt": "موجه التحسين",
           "url": "عنوان واجهة Klar",
@@ -48,6 +49,7 @@
           "nlu_rag": "متوقف افتراضياً. في الدردشة يُرسل الجزء المطابق فقط للنموذج الاحتياطي.",
           "quiet_ack": "عند تشغيل أو إطفاء ضوء بسيط لا كلام، رنين قصير على القمر فقط.",
           "calendar_llm": "متوقف افتراضياً. تشغيل: يقرأ كلار التقويم ويتحدث النموذج الاحتياطي بالمواعيد. إيقاف: يتحدث كلار بالقائمة. الإنشاء والحذف والنقل تبقى لدى كلار.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "الافتراضي يتبع لغة نظام Home Assistant.",
           "channel": "في أي وقت. Staging يشير إلى Klar NLU (Staging)."
         }

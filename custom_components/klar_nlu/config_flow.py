@@ -12,6 +12,7 @@ from homeassistant.helpers import selector
 from .const import (
     CHANNEL_STABLE,
     CHANNEL_STAGING,
+    CONF_ALLOW_LLM_TOOLS,
     CONF_ASSIST_FILTER,
     CONF_CHANNEL,
     CONF_FALLBACK_AGENT,
@@ -25,6 +26,7 @@ from .const import (
     CONF_REFINE_SPEECH,
     CONF_TOKEN,
     CONF_URL,
+    DEFAULT_ALLOW_LLM_TOOLS,
     DEFAULT_ASSIST_FILTER,
     DEFAULT_CALENDAR_LLM,
     DEFAULT_CHANNEL,
@@ -96,6 +98,9 @@ def _options_schema() -> vol.Schema:
         ),
         vol.Optional(CONF_FALLBACK_AGENT): selector.ConversationAgentSelector(
             selector.ConversationAgentSelectorConfig()
+        ),
+        vol.Optional(CONF_ALLOW_LLM_TOOLS, default=DEFAULT_ALLOW_LLM_TOOLS): (
+            selector.BooleanSelector()
         ),
         vol.Optional(CONF_REFINE_SPEECH, default=DEFAULT_REFINE_SPEECH): (
             selector.BooleanSelector()
@@ -308,6 +313,9 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             data[CONF_CALENDAR_LLM] = bool(
                 user_input.get(CONF_CALENDAR_LLM, DEFAULT_CALENDAR_LLM)
             )
+            data[CONF_ALLOW_LLM_TOOLS] = bool(
+                user_input.get(CONF_ALLOW_LLM_TOOLS, DEFAULT_ALLOW_LLM_TOOLS)
+            )
             data[CONF_QUIET_ACK] = bool(
                 user_input.get(
                     CONF_QUIET_ACK,
@@ -323,6 +331,7 @@ class KlarOptionsFlow(config_entries.OptionsFlow):
             CONF_REFINE_SPEECH: DEFAULT_REFINE_SPEECH,
             CONF_NLU_RAG: DEFAULT_NLU_RAG,
             CONF_CALENDAR_LLM: DEFAULT_CALENDAR_LLM,
+            CONF_ALLOW_LLM_TOOLS: DEFAULT_ALLOW_LLM_TOOLS,
             CONF_QUIET_ACK: DEFAULT_QUIET_ACK,
             CONF_MODE: self.config_entry.options.get(
                 CONF_MODE, self.config_entry.data.get(CONF_MODE, MODE_LOCAL)

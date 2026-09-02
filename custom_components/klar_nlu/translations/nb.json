@@ -29,6 +29,7 @@
           "personality": "Personlighet",
           "languages": "Språk",
           "fallback_agent": "Samtaleagent for småprat",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "La LLM omskrive NLU-svar",
           "refine_prompt": "Forbedringsprompt",
           "url": "Klar-API-URL",
@@ -48,6 +49,7 @@
           "nlu_rag": "Av som standard. Ved prat sendes bare det gjenkjente utsnittet til reservemodellen.",
           "quiet_ack": "Ved enkelt lys eller bryter av/på ingen setning, bare en kort tone.",
           "calendar_llm": "Av som standard. På: Klar leser kalenderen, reserve-LLM-et sier avtalene. Av: Klar sier listen selv. Opprett, slett og flytt blir i Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Standard er Home Assistants systemspråk.",
           "channel": "Når som helst. Staging peker på Klar NLU (Staging)."
         }
