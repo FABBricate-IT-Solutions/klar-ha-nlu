@@ -44,9 +44,13 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
     intent.async_handle = AsyncMock()
     area_registry = types.ModuleType("homeassistant.helpers.area_registry")
     entity_registry = types.ModuleType("homeassistant.helpers.entity_registry")
+    floor_registry = types.ModuleType("homeassistant.helpers.floor_registry")
+    device_registry = types.ModuleType("homeassistant.helpers.device_registry")
     helpers.intent = intent
     helpers.area_registry = area_registry
     helpers.entity_registry = entity_registry
+    helpers.floor_registry = floor_registry
+    helpers.device_registry = device_registry
     package = _module(PACKAGE)
     modules = {
         "homeassistant": homeassistant,
@@ -57,6 +61,8 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
         "homeassistant.helpers.intent": intent,
         "homeassistant.helpers.area_registry": area_registry,
         "homeassistant.helpers.entity_registry": entity_registry,
+        "homeassistant.helpers.floor_registry": floor_registry,
+        "homeassistant.helpers.device_registry": device_registry,
         PACKAGE: package,
     }
     with patch.dict(sys.modules, modules):
@@ -81,6 +87,11 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
         _load(f"{PACKAGE}.lang_select", "lang_select.py")
         intents = _load(f"{PACKAGE}.intents", "intents.py")
         sys.modules[f"{PACKAGE}.intents"] = intents
+        _load(f"{PACKAGE}.speech_status_device", "speech_status_device.py")
+        _load(f"{PACKAGE}.speech_status", "speech_status.py")
+        _load(f"{PACKAGE}.floor_query", "floor_query.py")
+        _load(f"{PACKAGE}.dispatch_result", "dispatch_result.py")
+        _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
         dispatch = _load(f"{PACKAGE}.dispatch", "dispatch.py")
         sys.modules[f"{PACKAGE}.dispatch"] = dispatch
         executor = _load(f"{PACKAGE}.executor", "executor.py")
