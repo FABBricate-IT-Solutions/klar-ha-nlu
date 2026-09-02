@@ -46,6 +46,7 @@ CONF_REFINE_SPEECH = "refine_speech"
 CONF_NLU_RAG = "nlu_rag"
 CONF_QUIET_ACK = "quiet_ack"
 CONF_CALENDAR_LLM = "calendar_llm"
+CONF_ALLOW_LLM_TOOLS = "allow_llm_tools"
 CONF_TOKEN = "token"
 CONF_CHANNEL = "channel"
 ENGINE_VERSION = "2026.8.67"
@@ -56,6 +57,7 @@ DEFAULT_REFINE_SPEECH = False
 DEFAULT_NLU_RAG = False
 DEFAULT_QUIET_ACK = False
 DEFAULT_CALENDAR_LLM = False
+DEFAULT_ALLOW_LLM_TOOLS = False
 PERSONALITIES = (
     "default",
     "butler",

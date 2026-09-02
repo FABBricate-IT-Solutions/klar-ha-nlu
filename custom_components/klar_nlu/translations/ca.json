@@ -29,6 +29,7 @@
           "personality": "Personalitat",
           "languages": "Llengües",
           "fallback_agent": "Agent de conversa per a xerrameca",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Deixar que l'LLM reformuli les respostes NLU",
           "refine_prompt": "Indicació de refinament",
           "url": "URL de l’API Klar",
@@ -48,6 +49,7 @@
           "nlu_rag": "Desactivat per defecte. Al xat només el fragment reconegut va al model de reserva.",
           "quiet_ack": "En encendre o apagar simple, sense frase: només un timbre curt al satèl·lit.",
           "calendar_llm": "Desactivat per defecte. Activat: Klar llegeix el calendari i l'LLM de reserva diu els esdeveniments. Desactivat: Klar diu la llista. Crear, esborrar i moure queden a Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Per defecte, la llengua del sistema de Home Assistant.",
           "channel": "En qualsevol moment. Staging apunta a Klar NLU (Staging)."
         }

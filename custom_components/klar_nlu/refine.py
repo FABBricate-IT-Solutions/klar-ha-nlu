@@ -23,9 +23,11 @@ try:
     from .fallback import can_use_fallback_agent
 except ImportError:  # stdlib tests load this module without a package
 
-    def can_use_fallback_agent(controls_home: bool, chat: bool = False) -> bool:
+    def can_use_fallback_agent(
+        controls_home: bool, chat: bool = False, allow_tools: bool = False
+    ) -> bool:
         del chat
-        return not controls_home
+        return allow_tools or not controls_home
 
 try:
     from .clock_speech import strip_clock_seconds
@@ -204,11 +206,21 @@ async def async_finish_speech(
     pack: str,
     personality: str,
     extra_prompt: str | None,
+    allow_tools: bool = False,
 ) -> str:
     if not should_refine(enabled, agent_id, speech):
         return style(speech, personality, pack)
     refined = await async_refine_speech(
-        hass, str(agent_id), controls_home, speech, context, language, pack, personality, extra_prompt
+        hass,
+        str(agent_id),
+        controls_home,
+        speech,
+        context,
+        language,
+        pack,
+        personality,
+        extra_prompt,
+        allow_tools,
     )
     return refined or style(speech, personality, pack)
 
@@ -427,6 +439,7 @@ async def async_refine_speech(
     pack: str,
     personality: str,
     extra_prompt: str | None,
+    allow_tools: bool = False,
 ) -> str | None:
     if conversation is None:
         return None
@@ -434,7 +447,7 @@ async def async_refine_speech(
     _LOGGER.debug("LLM-Refine Stimme %s", personality)
     user = refine_input(speech, pack)
     raw = await _async_refine_raw(
-        hass, agent_id, user, prompt, language or pack, context, controls_home
+        hass, agent_id, user, prompt, language or pack, context, controls_home, allow_tools
     )
     return accept_refined(speech, raw or "")
 
@@ -447,6 +460,7 @@ async def _async_refine_raw(
     language: str,
     context: Context,
     controls_home: bool,
+    allow_tools: bool = False,
 ) -> str | None:
     resolved = llm_client_and_model(hass, agent_id)
     if resolved is not None:
@@ -465,7 +479,7 @@ async def _async_refine_raw(
             return speech_from_completion(result)
         except Exception as err:  # noqa: BLE001 — client shape varies by agent
             _LOGGER.debug("LLM-Refine direkt fehlgeschlagen, converse: %s", err)
-    if not can_use_fallback_agent(controls_home):
+    if not can_use_fallback_agent(controls_home, allow_tools=allow_tools):
         _LOGGER.warning("LLM-Refine %s hat Assist-Werkzeuge — converse übersprungen", agent_id)
         return None
     try:

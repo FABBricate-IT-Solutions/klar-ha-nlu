@@ -29,6 +29,7 @@
           "personality": "אישיות",
           "languages": "שפות",
           "fallback_agent": "סוכן שיחה לפטפוט",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "לתת ל-LLM לנסח מחדש תשובות NLU",
           "refine_prompt": "הנחיית עידון",
           "url": "כתובת API של Klar",
@@ -48,6 +49,7 @@
           "nlu_rag": "כבוי כברירת מחדל. בצ'אט נשלח למודל הרזרבי רק הקטע שזוהה.",
           "quiet_ack": "בהדלקה/כיבוי פשוט של אור אין דיבור, רק צליל קצר בלוויין.",
           "calendar_llm": "כבוי כברירת מחדל. דלוק: קלאר קורא את היומן וסוכן הגיבוי אומר את האירועים. כבוי: קלאר אומר את הרשימה. יצירה, מחיקה והעברה נשארות אצל קלאר.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "ברירת המחדל היא שפת המערכת של Home Assistant.",
           "channel": "בכל עת. Staging מצביע על Klar NLU (Staging)."
         }

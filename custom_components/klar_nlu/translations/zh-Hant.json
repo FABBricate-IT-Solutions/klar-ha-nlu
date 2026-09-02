@@ -29,6 +29,7 @@
           "personality": "人格",
           "languages": "語言",
           "fallback_agent": "閒聊對話代理",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "用 LLM 潤飾 NLU 回覆",
           "refine_prompt": "潤飾提示",
           "url": "Klar API 網址",
@@ -48,6 +49,7 @@
           "nlu_rag": "預設關閉。閒聊時只把已比對片段送給後援模型。",
           "quiet_ack": "簡單開關燈時不說話，只在衛星播放短提示音。",
           "calendar_llm": "預設關閉。開：Klar 讀取日曆，由後援模型唸行程。關：Klar 自己唸清單。建立、刪除和移動仍由 Klar 處理。",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "預設跟隨 Home Assistant 系統語言。",
           "channel": "隨時可改。預發佈指向 Klar NLU（Staging）。"
         }

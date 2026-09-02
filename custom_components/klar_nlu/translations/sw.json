@@ -29,6 +29,7 @@
           "personality": "Tabia",
           "languages": "Lugha",
           "fallback_agent": "Ajenti wa mazungumzo kwa gumzo",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Acha LLM iandike upya majibu ya NLU",
           "refine_prompt": "Kidokezo cha kuboresha",
           "url": "URL ya API ya Klar",
@@ -48,6 +49,7 @@
           "nlu_rag": "Imezimwa kwa chaguo-msingi. Kwenye gumzo kipande kilicholingana tu huenda kwa modeli ya akiba.",
           "quiet_ack": "Kuwasha/kuzima taa rahisi hakuna sentensi, sauti fupi tu kwenye satelaiti.",
           "calendar_llm": "Zimwa kwa chaguo-msingi. Washa: Klar inasoma kalenda, LLM ya akiba inasema matukio. Zima: Klar inasema orodha. Kuunda, kufuta na kuhamisha vinabaki kwa Klar.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Chaguo-msingi hufuata lugha ya mfumo wa Home Assistant.",
           "channel": "Wakati wowote. Staging inaelekeza Klar NLU (Staging)."
         }

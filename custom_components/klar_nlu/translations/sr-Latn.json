@@ -29,6 +29,7 @@
           "personality": "Ličnost",
           "languages": "Jezici",
           "fallback_agent": "Razgovorni agent za ćaskanje",
+          "allow_llm_tools": "Allow Assist tools on the chit-chat agent",
           "refine_speech": "Neka LLM preformuliše NLU odgovore",
           "refine_prompt": "Upit za doradu",
           "url": "URL Klar API-ja",
@@ -48,6 +49,7 @@
           "nlu_rag": "Podrazumevano isključeno. U razgovoru samo prepoznati odsečak ide rezervnom modelu.",
           "quiet_ack": "Kod prostog uključivanja/isključivanja svetla nema govora, samo kratak zvuk na satelitu.",
           "calendar_llm": "Podrazumevano isključeno. Uključeno: Klar čita kalendar, rezervni LLM izgovara događaje. Isključeno: Klar izgovara spisak. Pravljenje, brisanje i premeštanje ostaju u Klaru.",
+          "allow_llm_tools": "Off by default. On: Klar still calls the chit-chat agent even if that agent can control Home Assistant. The model may turn lights and run scripts. Off: Klar skips the LLM when that agent has Assist tools.",
           "languages": "Podrazumevano prati jezik sistema Home Assistant.",
           "channel": "Bilo kada. Staging pokazuje na Klar NLU (Staging)."
         }
