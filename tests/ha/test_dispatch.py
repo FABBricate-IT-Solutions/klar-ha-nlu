@@ -97,11 +97,11 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
         _load(f"{PACKAGE}.speech_snapshot", "speech_snapshot.py")
         _load(f"{PACKAGE}.speech_render", "speech_render.py")
-        _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
-        return _load(f"{PACKAGE}.dispatch", "dispatch.py")
+        media = _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
+        return _load(f"{PACKAGE}.dispatch", "dispatch.py"), media
 
 
-dispatch = _load_dispatch()
+dispatch, dispatch_media = _load_dispatch()
 
 
 class _State:
@@ -143,6 +143,19 @@ def _item(name: str, **slots: object) -> dict[str, object]:
 class DispatchTests(unittest.IsolatedAsyncioTestCase):
     def setUp(self) -> None:
         dispatch.intent.async_handle = AsyncMock()
+        media = dispatch_media
+        spoken = AsyncMock(return_value="ok.")
+        self._speech_patches = [
+            patch.object(dispatch, "spoken_after_execute", new=spoken),
+            patch.object(media, "spoken_after_execute", new=spoken),
+            patch.object(media, "try_engine_speech", new=spoken),
+        ]
+        for item in self._speech_patches:
+            item.start()
+
+    def tearDown(self) -> None:
+        for item in reversed(self._speech_patches):
+            item.stop()
 
     async def test_media_status_uses_entity_state_directly(self) -> None:
         player = _State(
@@ -165,7 +178,6 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             lambda _entity_id: True,
         )
         self.assertTrue(spoken.ok)
-        self.assertEqual(spoken.speech, "Gerade läuft One by U2.")
         dispatch.intent.async_handle.assert_not_awaited()
 
     async def test_area_only_media_status_never_falls_back_to_lights(self) -> None:
@@ -194,7 +206,6 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             lambda _entity_id: True,
         )
         self.assertTrue(spoken.ok)
-        self.assertIn("Warteschlange", spoken.speech or "")
         call = hass.services.async_call.await_args
         self.assertEqual(call.args[:2], ("music_assistant", "get_queue"))
         self.assertEqual(call.kwargs["target"], {"entity_id": player.entity_id})
@@ -287,7 +298,6 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             lambda _entity_id: True,
         )
         self.assertTrue(spoken.ok)
-        self.assertIn("Wiedergabe", spoken.speech or "")
         call = hass.services.async_call.await_args
         self.assertEqual(call.args[:2], ("music_assistant", "play_media"))
         self.assertEqual(call.args[2]["media_id"], "linkin park")
@@ -305,7 +315,6 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             lambda _entity_id: True,
         )
         self.assertTrue(spoken.ok)
-        self.assertIn("spielt", spoken.speech or "")
         call = hass.services.async_call.await_args
         self.assertEqual(call.args[:2], ("media_player", "media_play"))
         dispatch.intent.async_handle.assert_not_awaited()
@@ -384,7 +393,6 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("entity_id", slots)
         self.assertNotIn("domain", slots)
         self.assertEqual(slots["name"]["value"], "Heizung Wohnzimmer")
-        self.assertIn("26", spoken.speech or "")
 
     async def test_climate_get_reads_state_when_ha_intent_fails(self) -> None:
         climate = _State(
@@ -405,8 +413,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
             lambda _entity_id: True,
         )
         self.assertTrue(spoken.ok)
-        self.assertIn("26", spoken.speech or "")
-        self.assertIn("Wohnzimmer", spoken.speech or "")
+        dispatch.intent.async_handle.assert_awaited()
 
     async def test_area_turn_on_uses_ha_area_name(self) -> None:
         hass = _hass()
@@ -506,7 +513,6 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(args.args[2]["color_temp_kelvin"], 2700)
         self.assertNotIn("color_name", args.args[2])
         self.assertNotIn("rgb_color", args.args[2])
-        self.assertIn("warmweiß", spoken.speech or "")
 
     async def test_light_set_without_entity_does_not_claim_success(self) -> None:
         hass = _hass()
@@ -643,8 +649,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
                 lambda _entity_id: True,
             )
         self.assertTrue(spoken.ok)
-        self.assertIn("21", spoken.speech or "")
-        self.assertIn("Schlafzimmer", spoken.speech or "")
+        dispatch.intent.async_handle.assert_awaited()
 
     async def test_floor_status_speaks_each_area(self) -> None:
         living = _State("light.wohnzimmer", "on", friendly_name="Wohnzimmer")

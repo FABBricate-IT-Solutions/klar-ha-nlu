@@ -10,7 +10,6 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry
 
 from .dispatch_result import IntentStepResult, fail, ok
-from .speech import queue_speech
 from .speech_render import spoken_after_execute, try_engine_speech
 from .speech_snapshot import entity_from_state
 
@@ -64,9 +63,7 @@ async def run_mass(
                 extra_entities=extra,
                 media_queue=queue,
             )
-            if spoken is not None:
-                return ok(spoken)
-            return ok(queue_speech(response, state, pack))
+            return ok(spoken)
         if name == "MassTransferQueue":
             data = clean_service_data(slots, ["source_player", "auto_play"])
             source_player = str(data.get("source_player") or "")

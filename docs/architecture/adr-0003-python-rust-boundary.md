@@ -77,7 +77,7 @@ Neue **Write**-Route, nicht auf dem Parse-Pfad:
 
 `POST /api/v2/home` bleibt der Graph-Sync. Nicht mit Live-Attributen überladen.
 
-Solange der Renderer fehlt, behält Python `speech.py`. Nach Parity ruft Assist Render auf, `speech.py` wird 404-Fallback, danach gelöscht.
+Assist ruft `/speech/render` nach dem Execute. `speech.py` behält `style()` (und Uhr-Wrap) am Assist-Finish; Post-Execute-Vorlagen liegen in der Engine. Fehlendes Render fällt geschlossen fehl.
 
 ## Folgen
 
@@ -89,7 +89,7 @@ Solange der Renderer fehlt, behält Python `speech.py`. Nach Parity ruft Assist 
 
 ### Negativ
 
-- Versionsversatz: eine alte Engine kennt `/llm/refine` oder `/speech/render` nicht. Staging liefert Engine + Integration zusammen; Python behält einen 404-Fallback für einen Bake, dann fällt das Duplikat.
+- Versionsversatz: eine alte Engine kennt `/llm/refine` oder `/speech/render` nicht. Staging liefert Engine + Integration zusammen. Fehlende Routen fallen geschlossen fehl, statt eines zweiten Python-Produktpfads.
 
 - Zwei Sprachquellen gibt es **heute** (`respond.rs` vs `speech.py`). Der Renderer darf nicht beide TTS-en. Assist überschreibt Parse-Sprache nach dem Execute bereits; das bleibt.
 

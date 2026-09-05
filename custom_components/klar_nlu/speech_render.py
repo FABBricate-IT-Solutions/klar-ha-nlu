@@ -1,4 +1,4 @@
-"""Call engine post-execute speech; 404 keeps Python from_handled."""
+"""Call engine post-execute speech. Missing route fails closed (no Python templates)."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 from typing import Any
 
 from .engine_llm import EngineSpeechMissing, complete_engine_speech_render
-from .speech import from_handled
 from .speech_snapshot import build_snapshot, entities_from_handled
 
 _LOGGER = logging.getLogger(__name__)
@@ -83,6 +82,4 @@ async def spoken_after_execute(
         url=url,
         token=token,
     )
-    if spoken is not None:
-        return spoken or None
-    return from_handled(handled, pack, item)
+    return spoken or None

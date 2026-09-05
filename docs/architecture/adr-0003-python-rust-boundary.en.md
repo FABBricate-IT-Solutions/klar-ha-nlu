@@ -77,7 +77,7 @@ New **write** route, not on the parse path:
 
 `POST /api/v2/home` stays the graph sync. Do not overload it with live attributes.
 
-Until the renderer exists, Python keeps `speech.py`. After parity, Assist calls render and `speech.py` becomes a 404 fallback, then is deleted.
+Assist calls `/speech/render` after execute. `speech.py` keeps `style()` (and clock wrap) at Assist finish; post-execute templates live in the engine. Missing render fails closed.
 
 ## Consequences
 
@@ -89,7 +89,7 @@ Until the renderer exists, Python keeps `speech.py`. After parity, Assist calls 
 
 ### Negative
 
-- Version skew: an old engine has no `/llm/refine` or `/speech/render`. Staging ships engine + integration together; Python keeps a 404 fallback for one bake, then deletes the duplicate.
+- Version skew: an old engine has no `/llm/refine` or `/speech/render`. Staging ships engine + integration together. Missing routes fail closed instead of a second Python product path.
 - Dual speech sources exist **today** (`respond.rs` vs `speech.py`). The renderer must not TTS both. Assist already overwrites parse speech after execute; keep that.
 
 ### Neutral

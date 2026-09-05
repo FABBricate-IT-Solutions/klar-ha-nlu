@@ -149,7 +149,7 @@ class StreamTests(unittest.TestCase):
     def test_conversation_enables_ha_streaming(self) -> None:
         src = (PKG / "conversation.py").read_text(encoding="utf-8")
         self.assertIn("_attr_supports_streaming = True", src)
-        self.assertIn("stream_engine_chat", src)
+        self.assertIn("stream_engine_assist", src)
         self.assertNotIn("stream_chat", src)
         self.assertIn("klar_published", src)
         self.assertIn("_was_published", src)

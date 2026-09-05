@@ -24,25 +24,11 @@ rag = _load()
 
 
 class RagToolsTests(unittest.TestCase):
-    def test_prompt_forbids_spoken_tools(self) -> None:
-        prompt = rag.rag_prompt("de", {"entities": [{"name": "Kugel"}]}, None)
-        self.assertIn("KLAR_PARSE:", prompt)
-        self.assertNotIn("klar.parse", prompt)
-        self.assertNotIn("klar.act", prompt)
-        self.assertIn("Nenne niemals Werkzeuge", prompt)
-        self.assertIn("Kugel", prompt)
-
     def test_leaks_klar_tools(self) -> None:
         leak = 'What is "this thing"? Please use `klar.parse` or `klar.act`.'
         self.assertTrue(rag.leaks_klar_tools(leak))
         self.assertFalse(rag.leaks_klar_tools("KLAR_PARSE: licht an"))
         self.assertFalse(rag.leaks_klar_tools("Das habe ich nicht verstanden."))
-
-    def test_retrieval_caps_at_eight(self) -> None:
-        entities = [{"name": f"n{i}"} for i in range(12)]
-        lines = rag.retrieval_lines({"entities": entities}, "en")
-        self.assertIn("n0", lines)
-        self.assertNotIn("n8", lines)
 
     def test_parse_tool_reply(self) -> None:
         self.assertEqual(

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Engine speech render glue falls back to from_handled."""
+"""Engine speech render glue fails closed when the route is missing."""
 
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ render = _load("klar_nlu.speech_render", "speech_render.py")
 
 
 class SpeechRenderGlueTests(unittest.TestCase):
-    def test_missing_engine_keeps_from_handled(self) -> None:
+    def test_missing_engine_returns_none(self) -> None:
         hass = types.SimpleNamespace(data={})
         item = {
             "name": "HassTurnOn",
@@ -59,9 +59,7 @@ class SpeechRenderGlueTests(unittest.TestCase):
             return await render.spoken_after_execute(hass, "de", "default", item)
 
         spoken = asyncio.run(run())
-        self.assertIsNotNone(spoken)
-        self.assertIn("Kugel", spoken)
-        self.assertNotIn("light.", spoken)
+        self.assertIsNone(spoken)
 
 
 if __name__ == "__main__":
