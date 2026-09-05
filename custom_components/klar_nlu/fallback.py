@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 # homeassistant.components.conversation.ConversationEntityFeature.CONTROL
 _CONTROL = 1
 
@@ -88,14 +90,53 @@ _CALENDAR = {
     "de": (
         "Der Nutzer fragt nach seinem Kalender. "
         "Formuliere die folgenden Termine natürlich und knapp. "
-        "Erfinde keine Termine. Wenn die Liste leer ist, sag das klar."
+        "Erfinde keine Termine. Wenn die Liste leer ist, sag das klar. "
+        "Kein Wetter und keine Vorhersage."
     ),
     "en": (
         "The user is asking about their calendar. "
         "Say the following events naturally and briefly. "
-        "Do not invent events. If the list is empty, say so clearly."
+        "Do not invent events. If the list is empty, say so clearly. "
+        "Do not report weather or a forecast."
     ),
 }
+
+_CALENDAR_NO_WEATHER = {
+    "de": "Kein Wetter, keine Vorhersage. Keine Home-Assistant-Werkzeuge.",
+    "en": "Do not report weather or a forecast. Do not call Home Assistant tools.",
+}
+
+_WEATHER_WORDS = (
+    "weather",
+    "forecast",
+    "degrees",
+    "celsius",
+    "fahrenheit",
+    "humidity",
+    "precipitation",
+    "sunny",
+    "cloudy",
+    "rain",
+    "rainy",
+    "raining",
+    "wetter",
+    "vorhersage",
+    "regen",
+    "sonnig",
+    "regnerisch",
+    "bewölkt",
+    "bewolkt",
+)
+_WEATHER_STEMS = ("°c", "°f", "luftfeucht")
+_WEATHER_WORD = re.compile(r"\b(?:" + "|".join(_WEATHER_WORDS) + r")\b")
+
+
+def weather_claim(text: str) -> bool:
+    """True when speech reports a forecast. 'training' must not count as 'rain'."""
+    fold = (text or "").casefold()
+    if any(stem in fold for stem in _WEATHER_STEMS):
+        return True
+    return bool(_WEATHER_WORD.search(fold))
 
 
 def _calendar_copy(pack: str) -> tuple[str, str]:
@@ -302,8 +343,25 @@ def calendar_prompt(pack: str, facts: str, extra: str | None = None) -> str:
         body = f"{body}\n\n{label}:\n{facts}"
     lock = _language_lock(pack)
     extra = (extra or "").strip()
+    stay = _CALENDAR_NO_WEATHER.get(pack) or _CALENDAR_NO_WEATHER["en"]
     core = f"{extra}\n{body}" if extra else body
-    return f"{lock}\n{core}\n{lock}"
+    return f"{lock}\n{core}\n{stay}\n{lock}"
+
+
+def calendar_readback(pack: str, facts: str) -> str:
+    events = (facts or "").strip() or (
+        "Keine Termine." if pack == "de" or pack.startswith("de-") else "No events."
+    )
+    if pack == "de" or pack.startswith("de-"):
+        return f"Lies nur diese Kalendertermine vor:\n{events}"
+    return f"Read back only these calendar events:\n{events}"
+
+
+def keeps_calendar_reply(facts: str, llm: str) -> bool:
+    speech = (llm or "").strip()
+    if not speech or "?" in speech:
+        return False
+    return not weather_claim(speech) or weather_claim(facts)
 
 
 def _join_extra(extra: str | None, body: str) -> str:

@@ -4,7 +4,21 @@ import { StageBars } from "../components/charts";
 import { Pipeline } from "../components/pipeline";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
-import type { ParseResult } from "../types";
+import type { ParseResult, Settings } from "../types";
+
+const SKIP_REFINE = new Set(["chat", "llm", "chime", "error", ""]);
+const SIMPLE_ON_OFF = new Set(["HassTurnOn", "HassTurnOff"]);
+const QUIET_DOMAINS = new Set(["light", "switch"]);
+const QUIET_BLOCKED = new Set([
+  "scene",
+  "script",
+  "cover",
+  "lock",
+  "climate",
+  "fan",
+  "media_player",
+  "vacuum",
+]);
 
 function asError(err: unknown): string {
   return err instanceof Error ? err.message : String(err);
@@ -16,17 +30,117 @@ function bannerText(error: string, result: ParseResult | null): string {
   return "";
 }
 
+function on(settings: Settings, key: keyof Settings): boolean {
+  return Boolean(settings[key]);
+}
+
+function intentNames(result: ParseResult | null): string[] {
+  return result?.plan?.steps.map((step) => step.intent.name).filter(Boolean) ?? [];
+}
+
+export function armedPipeline(settings: Settings): string[] {
+  const chips: string[] = [];
+  if (settings.personality && settings.personality !== "default") chips.push(settings.personality);
+  if (settings.mode === "context_only") chips.push("context only");
+  if (settings.nlu_rag) chips.push("NLU-RAG");
+  if (settings.semantic_adapters) chips.push("semantic");
+  if (settings.confirm_risky_actions === false) chips.push("no confirm");
+  if (on(settings, "refine_speech")) chips.push("LLM refine");
+  if (on(settings, "calendar_llm")) chips.push("calendar LLM");
+  if (on(settings, "quiet_ack")) chips.push("quiet ack");
+  if (on(settings, "allow_llm_tools")) chips.push("LLM tools");
+  if (on(settings, "fallback_llm")) chips.push("fallback LLM");
+  return chips;
+}
+
+export function labDecisionLabel(result: ParseResult | null): string {
+  if (!result) return "…";
+  const band = result.decision.type;
+  const names = intentNames(result);
+  const hit = result.policy_trace?.hit || "";
+  if (band === "execute") return names.join(" · ") || "Klar execute";
+  if (result.briefing) return "briefing";
+  if (hit === "llm" || hit === "template" || hit === "script") return hit;
+  return band || "…";
+}
+
+function firstSlots(result: ParseResult | null): Record<string, string> {
+  const first = result?.plan?.steps[0]?.intent;
+  if (!first) return {};
+  return Object.fromEntries(first.slots.map((slot) => [slot.name, slot.value]));
+}
+
+function quietAckLikely(result: ParseResult | null, names: string[]): boolean {
+  if (result?.decision.type !== "execute" || names.length !== 1) return false;
+  if (!SIMPLE_ON_OFF.has(names[0] || "")) return false;
+  const slots = firstSlots(result);
+  const domain = slots.domain || "";
+  const entity = slots.entity_id || "";
+  const prefix = entity.includes(".") ? entity.split(".", 1)[0] : "";
+  if (QUIET_BLOCKED.has(domain) || QUIET_BLOCKED.has(prefix)) return false;
+  if (QUIET_DOMAINS.has(domain) || QUIET_DOMAINS.has(prefix)) return true;
+  if (slots.area || slots.floor) return domain === "" || QUIET_DOMAINS.has(domain);
+  return false;
+}
+
+export function labPath(
+  result: ParseResult | null,
+  settings: Settings,
+  parseLanguage?: string,
+): string[] {
+  const parse = parseLanguage ? `Klar parse · ${parseLanguage}` : "Klar parse";
+  if (!result) return [parse, "…"];
+  const steps = [parse];
+  const band = result.decision.type;
+  const names = intentNames(result);
+  const hit = result.policy_trace?.hit || "";
+  const chatLike = Boolean(result.briefing) || hit === "llm" || band === "chat";
+  if (settings.nlu_rag && (band === "chat" || band === "reject")) steps.push("NLU-RAG");
+  if (settings.semantic_adapters && band === "reject") steps.push("semantic");
+  if (settings.mode === "context_only") steps.push("context only");
+  steps.push(labDecisionLabel(result));
+  const calendar =
+    on(settings, "calendar_llm")
+    && on(settings, "fallback_llm")
+    && band === "execute"
+    && names.length > 0
+    && names.every((name) => name === "KlarGetCalendarEvents");
+  const quiet = on(settings, "quiet_ack") && quietAckLikely(result, names);
+  if (calendar) steps.push("calendar LLM");
+  if (
+    !quiet
+    && on(settings, "refine_speech")
+    && on(settings, "fallback_llm")
+    && !SKIP_REFINE.has(band)
+    && !chatLike
+  ) {
+    steps.push("LLM refine");
+  }
+  if (quiet) steps.push("quiet ack");
+  if (on(settings, "allow_llm_tools") && (hit === "llm" || (band === "chat" && !result.speech))) {
+    steps.push("LLM tools");
+  }
+  if (settings.confirm_risky_actions && band === "confirm") steps.push("confirm risky");
+  return steps;
+}
+
+function pathChipClass(step: string, decision: string, band?: string): string {
+  if (step.startsWith("Klar parse")) return band && band !== "chat" ? "chip intent" : "chip";
+  if (step === decision) return band === "execute" ? "chip lab-band-chip intent" : "chip lab-band-chip";
+  return "chip";
+}
+
 export function ParsePage({
   t,
   parseLanguage,
   replayText,
-  nluRag,
+  settings,
   rooms,
 }: {
   t: Messages;
   parseLanguage?: string;
   replayText: string;
-  nluRag: boolean;
+  settings: Settings;
   rooms: { area_id: string; name: string }[];
 }) {
   const [text, setText] = useState(t.parseSample);
@@ -44,6 +158,9 @@ export function ParsePage({
   const roomOptions = rooms.map((room) => ({ value: room.area_id, label: room.name }));
   const intentOptions = (knownIntents.length ? knownIntents : [teachIntent]).map((name) => ({ value: name, label: name }));
   const band = result?.decision.type;
+  const executeName = labDecisionLabel(result);
+  const path = labPath(result, settings, parseLanguage);
+  const armed = armedPipeline(settings);
   const banner = bannerText(error, result);
 
   useEffect(() => {
@@ -59,7 +176,7 @@ export function ParsePage({
   const submit = async () => {
     setError("");
     try {
-      const data = await api.parse(text, parseLanguage || "", conversationId, nluRag || undefined, area || undefined);
+      const data = await api.parse(text, parseLanguage || "", conversationId, settings.nlu_rag || undefined, area || undefined);
       setConversationId(data.conversation_id);
       setResult(data);
       setTeachStatus("");
@@ -121,14 +238,18 @@ export function ParsePage({
         </div>
         {heardIn ? <span className="chip">{t.heardIn}: {heardIn}</span> : null}
         <div className="flow" aria-label={t.processPath}>
-          <span className="chip">HA trigger</span>
-          <span className="muted">→</span>
-          <span className={`chip${band && band !== "chat" ? " intent" : ""}`}>Klar parse</span>
-          <span className="muted">→</span>
-          <span className={`chip lab-band-chip${band === "execute" ? " intent" : ""}`}>
-            {band === "execute" ? "dispatch / intent_script" : band || "…"}
-          </span>
+          {path.map((step, index) => (
+            <span key={`${step}-${index}`}>
+              {index > 0 ? <span className="muted"> → </span> : null}
+              <span className={pathChipClass(step, executeName, band)}>{step}</span>
+            </span>
+          ))}
         </div>
+        {armed.length > 0 && (
+          <div className="flow lab-pipeline-armed" aria-label="pipeline">
+            {armed.map((chip) => <span className="chip" key={chip}>{chip}</span>)}
+          </div>
+        )}
         <p className="caption">{t.triggerFirst}</p>
       </div>
       <label htmlFor="lab-command">{t.command}</label>

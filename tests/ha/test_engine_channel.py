@@ -230,12 +230,24 @@ class EngineChannelTests(unittest.TestCase):
         engine = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text()
         self.assertIn("languages", engine)
         self.assertIn("ui_locale", engine)
+        self.assertIn("pipeline: dict[str, object] | None = None", engine)
         self.assertNotIn("armv7", engine)
         build = (ROOT / ".github" / "workflows" / "build.yml").read_text()
         self.assertNotIn("armv7", build)
         self.assertIn("x86_64-unknown-linux-musl", build)
         self.assertIn("aarch64-unknown-linux-musl", build)
         self.assertNotIn("unknown-linux-gnu", build)
+        init = (ROOT / "custom_components" / "klar_nlu" / "__init__.py").read_text()
+        for flag in (
+            "nlu_rag",
+            "refine_speech",
+            "calendar_llm",
+            "quiet_ack",
+            "allow_llm_tools",
+            "fallback_llm",
+        ):
+            self.assertIn(flag, init)
+        self.assertIn("pipeline=_pipeline_flags(entry)", init)
         for rel in (
             "config.yaml",
             "addon/config.yaml",
@@ -244,6 +256,35 @@ class EngineChannelTests(unittest.TestCase):
             "addon-staging/build.yaml",
         ):
             self.assertNotIn("armv7", (ROOT / rel).read_text(), rel)
+
+    def test_merge_engine_settings_copies_pipeline_flags(self) -> None:
+        source = (ROOT / "custom_components" / "klar_nlu" / "engine.py").read_text()
+        start = source.index("def merge_engine_settings(")
+        end = source.index("def merge_ui_locale(")
+        ns = {"resolve_personality": lambda value: value or "default"}
+        exec(source[start:end], ns)  # noqa: S102 — isolated merge helper
+        merged = ns["merge_engine_settings"](
+            {"personality": "default", "nlu_rag": False},
+            "butler",
+            ["de"],
+            {
+                "nlu_rag": True,
+                "refine_speech": True,
+                "calendar_llm": True,
+                "quiet_ack": True,
+                "allow_llm_tools": True,
+                "fallback_llm": True,
+            },
+        )
+        self.assertEqual(merged["personality"], "butler")
+        self.assertEqual(merged["languages"], ["de"])
+        self.assertTrue(merged["nlu_rag"])
+        self.assertTrue(merged["refine_speech"])
+        self.assertTrue(merged["calendar_llm"])
+        self.assertTrue(merged["quiet_ack"])
+        self.assertTrue(merged["allow_llm_tools"])
+        self.assertTrue(merged["fallback_llm"])
+        self.assertIsNone(ns["merge_engine_settings"]("nope", "default", None))
 
 
 if __name__ == "__main__":

@@ -226,6 +226,40 @@ async def async_finish_speech(
 
 
 _LIGHT_CLAIM = ("licht", "light", "lampe", "lamp")
+_WEATHER_WORDS = (
+    "weather",
+    "forecast",
+    "degrees",
+    "celsius",
+    "fahrenheit",
+    "humidity",
+    "precipitation",
+    "sunny",
+    "cloudy",
+    "rain",
+    "rainy",
+    "raining",
+    "wetter",
+    "vorhersage",
+    "regen",
+    "sonnig",
+    "regnerisch",
+    "bewölkt",
+    "bewolkt",
+)
+_WEATHER_STEMS = ("°c", "°f", "luftfeucht")
+_WEATHER_WORD = re.compile(r"\b(?:" + "|".join(_WEATHER_WORDS) + r")\b")
+
+
+def _weather_claim(text: str) -> bool:
+    fold = (text or "").casefold()
+    if any(stem in fold for stem in _WEATHER_STEMS):
+        return True
+    return bool(_WEATHER_WORD.search(fold))
+
+
+def _invents_weather(original: str, refined: str) -> bool:
+    return _weather_claim(refined) and not _weather_claim(original)
 _FAIL_CLAIM = ("nicht geklappt", "did not work", "nicht erreichbar", "not available")
 _DONE_CLAIM = ("ist an", "is on", "läuft", "playing", "eingeschaltet")
 _STAMP_BAN = (
@@ -322,6 +356,8 @@ def accept_refined(original: str, refined: str) -> str | None:
     if any(ban in folded for ban in _STAMP_BAN):
         return None
     if any(word in folded for word in _LIGHT_CLAIM) and not any(word in original_fold for word in _LIGHT_CLAIM):
+        return None
+    if _invents_weather(original, speech):
         return None
     if any(word in original_fold for word in _FAIL_CLAIM) and any(word in folded for word in _DONE_CLAIM):
         return None

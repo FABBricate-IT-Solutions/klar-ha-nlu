@@ -59,6 +59,13 @@ class IntentPassThroughTests(unittest.TestCase):
         out = intents.home_intents([{"name": "NotRegistered", "slots": []}], set())
         self.assertEqual(out, [])
 
+    def test_lab_execute_keeps_unfiltered_plan(self) -> None:
+        raw = [{"name": "KlarGetCalendarEvents", "slots": [{"name": "day", "value": "tomorrow"}]}]
+        self.assertEqual(intents.keep_lab_plan(raw, set())[0]["name"], "KlarGetCalendarEvents")
+        unknown = [{"name": "NotRegistered", "slots": []}]
+        self.assertEqual(intents.keep_lab_plan(unknown, set()), unknown)
+        self.assertEqual(intents.home_intents(unknown, set()), [])
+
     def test_get_state_without_target_is_dropped(self) -> None:
         out = intents.home_intents([{"name": "HassGetState", "slots": []}], set())
         self.assertEqual(out, [])

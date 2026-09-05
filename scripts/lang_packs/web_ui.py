@@ -32,6 +32,22 @@ PACKS.update(ASIA)
 PACKS.update(MENA)
 PACKS.update(INDIC)
 
+_LAB_HINT = {
+    "de": "Das Labor ist der Assist-Pfad für die gewählte Sprache. Entscheidung und Intents hier führt Klar aus. Satztrigger nur, wenn Klar nicht erreichbar ist.",
+    "de-AT": "Das Labor ist der Assist-Pfad für die gewählte Sprache. Entscheidung und Intents hier führt Klar aus. Satztrigger nur, wenn Klar nicht erreichbar ist.",
+    "de-CH": "S Labor isch de Assist-Pfad für d gwählt Sproch. Entscheid und Intents da führt Klar us. Satztrigger nur, wenn Klar nöd erreichbar isch.",
+}
+_LAB_PATH = {
+    "de": "Klar-Parse, dann dieser Pfad. Assist startet keinen anderen Intent, keinen Satztrigger und keinen Wetter-Fallback.",
+    "de-AT": "Klar-Parse, dann dieser Pfad. Assist startet keinen anderen Intent, keinen Satztrigger und keinen Wetter-Fallback.",
+    "de-CH": "Klar-Parse, denn de Pfad. Assist startet kein andere Intent, kein Satztrigger und kein Wetter-Fallback.",
+}
+_LAB_HINT_EN = "Lab is the Assist path for the selected language. Decision and intents here are what Klar runs. Sentence triggers run only if Klar is unreachable."
+_LAB_PATH_EN = "Klar parse, then that path. Assist does not run a different intent, a sentence trigger, or a weather fallback."
+for _code, _fields in PACKS.items():
+    _fields["parseHint"] = _LAB_HINT.get(_code, _LAB_HINT_EN)
+    _fields["triggerFirst"] = _LAB_PATH.get(_code, _LAB_PATH_EN)
+
 
 def english_keys() -> list[str]:
     return re.findall(r"^\s+(\w+):", EN_TS.read_text(encoding="utf-8"), re.M)
