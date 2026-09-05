@@ -90,3 +90,55 @@ def _opt(value: Any) -> str | None:
         return None
     text = str(value).strip()
     return text[:128] if text else None
+
+
+def entities_from_handled(handled: Any, item: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    states = list(getattr(handled, "matched_states", None) or [])
+    if not states:
+        states = list(getattr(handled, "unmatched_states", None) or [])
+    rows = [_state_row(state) for state in states]
+    rows = [row for row in rows if row]
+    if rows:
+        return rows
+    slots = {
+        str(slot.get("name") or ""): str(slot.get("value") or "")
+        for slot in (item or {}).get("slots") or []
+        if isinstance(slot, dict)
+    }
+    entity_id = slots.get("entity_id") or ""
+    if not entity_id:
+        return []
+    domain = entity_id.split(".", 1)[0]
+    return [
+        {
+            "entity_id": entity_id,
+            "name": slots.get("name") or "",
+            "domain": domain,
+            "state": "",
+            "area": slots.get("area") or None,
+            "area_name": slots.get("area_name") or None,
+            "attributes": {},
+        }
+    ]
+
+
+def entity_from_state(state: Any) -> dict[str, Any] | None:
+    return _state_row(state)
+
+
+def _state_row(state: Any) -> dict[str, Any] | None:
+    entity_id = str(getattr(state, "entity_id", "") or "")
+    if not entity_id:
+        return None
+    attrs = getattr(state, "attributes", None) or {}
+    if not isinstance(attrs, dict):
+        attrs = {}
+    name = str(attrs.get("friendly_name") or getattr(state, "name", "") or "")
+    domain = entity_id.split(".", 1)[0]
+    return {
+        "entity_id": entity_id,
+        "name": name,
+        "domain": domain,
+        "state": str(getattr(state, "state", "") or ""),
+        "attributes": attrs,
+    }

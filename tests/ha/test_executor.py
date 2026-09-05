@@ -91,6 +91,12 @@ def _load_stack() -> tuple[types.ModuleType, types.ModuleType, types.ModuleType]
         _load(f"{PACKAGE}.speech_status", "speech_status.py")
         _load(f"{PACKAGE}.floor_query", "floor_query.py")
         _load(f"{PACKAGE}.dispatch_result", "dispatch_result.py")
+        _load(f"{PACKAGE}.refine_voices", "refine_voices.py")
+        _load(f"{PACKAGE}.refine", "refine.py")
+        _load(f"{PACKAGE}.stream", "stream.py")
+        _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
+        _load(f"{PACKAGE}.speech_snapshot", "speech_snapshot.py")
+        _load(f"{PACKAGE}.speech_render", "speech_render.py")
         _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
         dispatch = _load(f"{PACKAGE}.dispatch", "dispatch.py")
         sys.modules[f"{PACKAGE}.dispatch"] = dispatch

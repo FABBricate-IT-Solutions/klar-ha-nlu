@@ -89,6 +89,7 @@ jobs:
             src/llm/refine_shots_d.rs
             src/llm/refine_shots_e.rs
             src/llm/refine_shots_f.rs
+            src/speech/generated.rs
           )
           dirty="$(git status --porcelain -- "${paths[@]}")"
           if [[ -n "$dirty" ]]; then

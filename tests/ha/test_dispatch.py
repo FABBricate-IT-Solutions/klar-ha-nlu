@@ -91,6 +91,12 @@ def _load_dispatch() -> types.ModuleType:
         _load(f"{PACKAGE}.speech_status", "speech_status.py")
         _load(f"{PACKAGE}.floor_query", "floor_query.py")
         _load(f"{PACKAGE}.dispatch_result", "dispatch_result.py")
+        _load(f"{PACKAGE}.refine_voices", "refine_voices.py")
+        _load(f"{PACKAGE}.refine", "refine.py")
+        _load(f"{PACKAGE}.stream", "stream.py")
+        _load(f"{PACKAGE}.engine_llm", "engine_llm.py")
+        _load(f"{PACKAGE}.speech_snapshot", "speech_snapshot.py")
+        _load(f"{PACKAGE}.speech_render", "speech_render.py")
         _load(f"{PACKAGE}.dispatch_media", "dispatch_media.py")
         return _load(f"{PACKAGE}.dispatch", "dispatch.py")
 
@@ -308,7 +314,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         player = _State("media_player.wohnzimmer", friendly_name="Wohnzimmer")
         hass = _hass(player)
         dispatch.intent.async_handle.return_value = object()
-        with patch.object(dispatch, "from_handled", return_value="Wohnzimmer auf 35 Prozent."):
+        with patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Wohnzimmer auf 35 Prozent.")):
             spoken = await dispatch.handle_intent(
                 hass,
                 _input(),
@@ -407,7 +413,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         dispatch.intent.async_handle.return_value = object()
         with (
             patch.object(dispatch, "area_label", return_value="Wohnzimmer"),
-            patch.object(dispatch, "from_handled", return_value="Licht im Wohnzimmer an."),
+            patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Licht im Wohnzimmer an.")),
         ):
             spoken = await dispatch.handle_intent(
                 hass,
@@ -425,7 +431,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
     async def test_generic_named_light_turns_on_by_entity_id(self) -> None:
         light = _State("light.kuche_kuche", "off", friendly_name="Licht")
         hass = _hass(light)
-        with patch.object(dispatch, "from_handled", return_value="Licht ist an."):
+        with patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Licht ist an.")):
             spoken = await dispatch.handle_intent(
                 hass,
                 _input(),
@@ -546,7 +552,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
         dispatch.intent.async_handle.return_value = object()
         with (
             patch.object(dispatch, "area_label", return_value="Wohnzimmer"),
-            patch.object(dispatch, "from_handled", return_value="Fernseher an."),
+            patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Fernseher an.")),
         ):
             spoken = await dispatch.handle_intent(
                 hass,
@@ -563,7 +569,7 @@ class DispatchTests(unittest.IsolatedAsyncioTestCase):
     async def test_lab_turn_on_runs_the_bound_player(self) -> None:
         player = _State("media_player.lg_dsn9yg_8909", "idle", friendly_name="Wohnzimmer")
         hass = _hass(player)
-        with patch.object(dispatch, "from_handled", return_value="Wohnzimmer an."):
+        with patch.object(dispatch, "spoken_after_execute", new=AsyncMock(return_value="Wohnzimmer an.")):
             spoken = await dispatch.handle_intent(
                 hass,
                 _input("Fernseher im Wohnzimmer"),

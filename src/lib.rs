@@ -9,4 +9,5 @@ pub mod migrate;
 pub mod nlu;
 pub mod parse;
 pub mod session;
+pub mod speech;
 pub mod types;

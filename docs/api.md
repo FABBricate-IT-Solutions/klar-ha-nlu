@@ -148,7 +148,7 @@ Die Engine besitzt Yarn/Chat/RAG/Kalender/News-Prompts und `yarn_canned` / `yarn
 
 ### `POST /api/v2/speech/render`
 
-Post-Execute-Snapshot aus Home Assistant. Die Engine prüft Caps und Allow-List; sie interpoliert in diesem Zyklus noch nicht (`source: "unrendered"`). Assist spricht weiter `from_handled`. Write-Token nötig.
+Post-Execute-Snapshot aus Home Assistant. Die Engine interpoliert Pack-Templates zu einem faktischen Satz (`source: "post_execute"`). Persönlichkeit kommt später beim Assist-Finish. Assist ruft das nach Execute; `404` behält `from_handled`. Write-Token nötig.
 
 ```json
 {
@@ -189,7 +189,7 @@ Post-Execute-Snapshot aus Home Assistant. Die Engine prüft Caps und Allow-List;
 }
 ```
 
-Antwort: `{ "speech": "", "quiet_ack": false, "source": "unrendered" }`. `outcome` ist `success` | `partial` | `error`. `now` ist Pflicht (Uhr). Unbekannte Attribut-Keys werden verworfen. Fehlendes `schema_version` → `400`. Caps: 32 Entities, 16 Kalenderzeilen, 8 Queue-Titel, Attributwerte ≤ 256 Zeichen.
+Antwort: `{ "speech": "Licht im Wohnzimmer ist an.", "quiet_ack": false, "source": "post_execute" }`. `outcome` ist `success` | `partial` | `error`. `now` ist Pflicht (Uhr). Unbekannte Attribut-Keys werden verworfen. Fehlendes `schema_version` → `400`. Caps: 32 Entities, 16 Kalenderzeilen, 8 Queue-Titel, Attributwerte ≤ 256 Zeichen. Fehlendes Klima-/MASS-Attribut → Unavailable-Satz, keine Erfindung.
 
 ### `POST /api/v2/policies/trainer/chat`
 

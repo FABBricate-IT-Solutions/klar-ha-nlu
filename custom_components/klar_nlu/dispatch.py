@@ -33,7 +33,8 @@ from .intents import (
     timer_slots,
 )
 from .lang_select import speak_tag
-from .speech import from_handled, media_state_speech
+from .speech_render import spoken_after_execute
+from .speech_snapshot import entity_from_state
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -85,7 +86,16 @@ async def handle_intent(
         state = hass.states.get(entity_id) if entity_id.startswith("media_player.") else None
         if state is None or not exposed(entity_id) or media_missing(state):
             return _fail("media_status_unavailable")
-        return _ok(media_state_speech(state, media_status, pack))
+        extra = [row] if (row := entity_from_state(state)) else None
+        spoken = await spoken_after_execute(
+            hass,
+            pack,
+            "default",
+            {**item, "name": name},
+            SimpleNamespace(matched_states=[state], response_type="query_answer"),
+            extra_entities=extra,
+        )
+        return _ok(spoken) if spoken else _fail("media_status_unavailable")
     if name == "HassGetState" and not entity_id:
         spoken = place_get_state(hass, slots, pack, exposed)
         if spoken:
@@ -176,15 +186,17 @@ async def climate_query(
         states = [item_state for item_state in climate_states_in_area(hass, area_key) if exposed(item_state.entity_id)]
     if not states:
         return first
-    spoken = from_handled(
+    spoken = await spoken_after_execute(
+        hass,
+        pack,
+        "default",
+        {**item, "name": "HassClimateGetTemperature"},
         SimpleNamespace(
             matched_states=states,
             unmatched_states=[],
             success_results=[],
             response_type="query_answer",
         ),
-        pack,
-        {**item, "name": "HassClimateGetTemperature"},
     )
     return _ok(spoken) if spoken else first
 
@@ -236,7 +248,7 @@ async def invoke_intent(
     except Exception as err:  # noqa: BLE001 — HA intent system is a boundary
         _LOGGER.debug("Intent %s nicht ausgeführt: %s", name, err)
         return _fail(str(err) or name)
-    return _ok(from_handled(handled, pack, {**item, "name": name}))
+    return _ok(await spoken_after_execute(hass, pack, "default", {**item, "name": name}, handled))
 
 
 async def run_entity(
@@ -294,7 +306,8 @@ async def run_entity(
         pretty = str(attrs.get("friendly_name") or "")
     pretty = pretty or str(getattr(state, "name", None) or "")
     spoken = {**item, "name": name, "slots": [*(item.get("slots") or []), {"name": "name", "value": pretty}]}
-    return _ok(from_handled(None, pack, spoken))
+    extra = [row] if (row := entity_from_state(state)) else None
+    return _ok(await spoken_after_execute(hass, pack, "default", spoken, extra_entities=extra))
 
 
 def light_turn_on(slots: dict[str, Any]) -> dict[str, Any]:

@@ -10,7 +10,9 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_registry
 
 from .dispatch_result import IntentStepResult, fail, ok
-from .speech import from_handled, queue_speech
+from .speech import queue_speech
+from .speech_render import spoken_after_execute, try_engine_speech
+from .speech_snapshot import entity_from_state
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -47,10 +49,23 @@ async def run_mass(
         except Exception as err:  # noqa: BLE001 — HA services are a boundary
             _LOGGER.debug("Favorit für %s nicht gesetzt: %s", entity_id, err)
             return fail(str(err) or "favorite_failed")
-        return ok(from_handled(None, pack, {**item, "name": name}))
+        extra = [row] if (row := entity_from_state(state)) else None
+        return ok(await spoken_after_execute(hass, pack, "default", {**item, "name": name}, extra_entities=extra))
     try:
         if name == "MassGetQueue":
             response = await call_with_response(hass, "music_assistant", "get_queue", {}, {"entity_id": entity_id})
+            extra = [row] if (row := entity_from_state(state)) else None
+            queue = [{"title": str(item.get("name") or item.get("title") or "")} for item in _queue_rows(response)]
+            spoken = await try_engine_speech(
+                hass,
+                pack,
+                "default",
+                {**item, "name": name},
+                extra_entities=extra,
+                media_queue=queue,
+            )
+            if spoken is not None:
+                return ok(spoken)
             return ok(queue_speech(response, state, pack))
         if name == "MassTransferQueue":
             data = clean_service_data(slots, ["source_player", "auto_play"])
@@ -84,7 +99,8 @@ async def run_mass(
     except Exception as err:  # noqa: BLE001 — Music Assistant is a service boundary
         _LOGGER.debug("Music Assistant Intent %s fehlgeschlagen: %s", name, err)
         return fail(str(err) or "mass_failed")
-    return ok(from_handled(None, pack, {**item, "name": name}))
+    extra = [row] if (row := entity_from_state(state)) else None
+    return ok(await spoken_after_execute(hass, pack, "default", {**item, "name": name}, extra_entities=extra))
 
 
 async def call_with_response(
@@ -114,6 +130,22 @@ def clean_service_data(slots: dict[str, Any], names: list[str]) -> dict[str, Any
 
 def media_missing(state: Any) -> bool:
     return str(getattr(state, "state", "")).lower() in {"unavailable", "unknown"}
+
+
+def _queue_rows(response: Any) -> list[dict[str, Any]]:
+    if isinstance(response, list):
+        return [row for row in response if isinstance(row, dict)]
+    if not isinstance(response, dict):
+        return []
+    for key in ("items", "queue", "queue_items", "media_items"):
+        nested = response.get(key)
+        if isinstance(nested, list):
+            return [row for row in nested if isinstance(row, dict)]
+        if isinstance(nested, dict):
+            found = _queue_rows(nested)
+            if found:
+                return found
+    return []
 
 
 async def start_idle_music(
@@ -161,7 +193,8 @@ async def start_idle_music(
         "name": "HassMediaSearchAndPlay",
         "slots": [*(item.get("slots") or []), {"name": "name", "value": state.name}],
     }
-    return ok(from_handled(None, pack, spoken))
+    extra = [row] if (row := entity_from_state(state)) else None
+    return ok(await spoken_after_execute(hass, pack, "default", spoken, extra_entities=extra))
 
 
 def tv_request(text: str) -> bool:
