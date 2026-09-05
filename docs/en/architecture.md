@@ -6,6 +6,8 @@ Klar is a rule-based NLU. A sentence is tokenized, checked against word lists, a
 
 Optionally the engine speaks an **OpenAI-compatible** chat API (`src/llm/`, SSE streaming) for the trainer and speech fallback. Python in the integration is glue: copy the HA agent's endpoint, stream tokens into the Assist chat log. See [adr-0002-openai-llm-client.md](../architecture/adr-0002-openai-llm-client.md).
 
+Proposal to control Match / language seed / house in the operator UI and draw the parse path: [ADR 0001](../architecture/adr-0001-rules-and-trainer.en.md) · [plan](../architecture/adr-0001-plan.en.md) (ships on `staging`, not a main release).
+
 ## Runtime map
 
 Interactive Assist → `POST /api/v2/parse` → `nlu::parse` → intent path, with Git-verified source ranges. Open [runtime.html](../architecture/runtime.html) locally; the typed source is [runtime.architecture.json](../architecture/runtime.architecture.json).

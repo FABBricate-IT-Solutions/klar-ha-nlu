@@ -6,6 +6,8 @@ Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten gep
 
 Optional spricht die Engine eine **OpenAI-kompatible** Chat-API (`src/llm/`, SSE-Streaming) für Trainer und Sprach-Fallback. Python in der Integration ist nur Kleber: Endpoint aus dem HA-Agenten kopieren, Tokens ins Assist-Chat-Log schieben. Siehe [adr-0002-openai-llm-client.md](architecture/adr-0002-openai-llm-client.md).
 
+Vorschlag, Match / Sprach-Seed / Haus in der Operator-UI zu steuern und den Parse-Pfad zu zeichnen: [ADR 0001](architecture/adr-0001-rules-and-trainer.md) · [Plan](architecture/adr-0001-plan.md) (Umsetzung auf `staging`, kein Hauptrelease).
+
 ## Laufzeitkarte
 
 Interaktiver Weg Assist → `POST /api/v2/parse` → `nlu::parse` → Intent, mit git-geprüften Quellstellen. [runtime.html](architecture/runtime.html) lokal öffnen; typisierte Quelle: [runtime.architecture.json](architecture/runtime.architecture.json).
