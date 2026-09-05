@@ -378,11 +378,7 @@ mod tests {
         let session = Session::new();
         let custom = Vec::new();
         let context = ctx("Wie wird das Wetter morgen", &home, &session, &custom);
-        let draft = route(
-            &context,
-            &["wie".into(), "wird".into(), "das".into(), "wetter".into(), "morgen".into()],
-        )
-        .expect("weather");
+        let draft = route(&context, &["wie".into(), "wird".into(), "das".into(), "wetter".into(), "morgen".into()]).expect("weather");
         assert!(matches!(draft.decision, ParseDecision::Execute));
         assert_eq!(draft.plan.as_ref().unwrap().intents()[0].name, "HassGetState");
         assert_eq!(draft.plan.as_ref().unwrap().intents()[0].slot("entity_id"), Some("weather.home"));
