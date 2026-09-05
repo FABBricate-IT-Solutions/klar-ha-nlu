@@ -1,4 +1,4 @@
-use super::{chat, chat_stream, ChatMessage, ChatRequest, LlmEndpoint};
+use super::{chat, chat_stream, refine, ChatMessage, ChatRequest, LlmEndpoint, RefineRequest};
 use axum::routing::post;
 use axum::{Json, Router};
 use serde_json::{json, Value};
@@ -14,7 +14,6 @@ async fn serve(chunks: Vec<String>, stream: bool) -> (String, tokio::task::JoinH
                 let chunks = chunks.clone();
                 async move {
                     assert_eq!(body["model"], "test-model");
-                    assert_eq!(body["messages"][0]["role"], "user");
                     if stream {
                         let mut payload = String::new();
                         for chunk in &chunks {
@@ -63,5 +62,47 @@ async fn completes_without_stream() {
     let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
     let text = chat(&endpoint, request("hi")).await.unwrap();
     assert_eq!(text, "done");
+    handle.abort();
+}
+
+#[tokio::test]
+async fn refine_accepts_safe_rewrite() {
+    let (base, handle) = serve(vec!["Das Licht im Wohnzimmer ist an.".into()], false).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let out = refine(
+        &endpoint,
+        RefineRequest {
+            speech: "Wohnzimmer Licht ist an.".into(),
+            language: "de".into(),
+            personality: "default".into(),
+            extra_prompt: String::new(),
+            stream: Some(false),
+        },
+    )
+    .await
+    .unwrap();
+    assert!(out.accepted);
+    assert_eq!(out.text, "Das Licht im Wohnzimmer ist an.");
+    handle.abort();
+}
+
+#[tokio::test]
+async fn refine_returns_original_when_accept_rejects() {
+    let (base, handle) = serve(vec!["Tomorrow will be sunny.".into()], false).await;
+    let endpoint = LlmEndpoint::from_parts(&base, "", "test-model").unwrap();
+    let out = refine(
+        &endpoint,
+        RefineRequest {
+            speech: "Nothing tomorrow.".into(),
+            language: "en".into(),
+            personality: "default".into(),
+            extra_prompt: String::new(),
+            stream: Some(false),
+        },
+    )
+    .await
+    .unwrap();
+    assert!(!out.accepted);
+    assert_eq!(out.text, "Nothing tomorrow.");
     handle.abort();
 }

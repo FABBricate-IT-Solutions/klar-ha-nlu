@@ -312,6 +312,8 @@ class RefineTests(unittest.TestCase):
         self.assertIn("async_converse", body)
         self.assertNotIn("chat.completions.create", body)
         self.assertLess(body.index("complete_engine_chat"), body.index("async_converse"))
+        self.assertIn("complete_engine_refine", src)
+        self.assertLess(src.index("complete_engine_refine"), src.index("async def _async_refine_raw"))
 
     def test_no_homeassistant_runtime_falls_back_to_none(self) -> None:
         out = asyncio.run(
