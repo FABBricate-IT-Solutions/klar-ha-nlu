@@ -15,3 +15,7 @@
 - No model on the parse hot path.
 - No new PolicyId matchers from the trainer.
 - Python must not grow a parallel OpenAI SDK path for new features.
+
+## See also
+
+Remaining Python product logic (refine accept, Assist system prompts, post-execute speech) is [ADR 0003](adr-0003-python-rust-boundary.en.md) · [plan](adr-0003-plan.en.md). That cycle also deletes the leftover OpenAI SDK calls on Assist paths.

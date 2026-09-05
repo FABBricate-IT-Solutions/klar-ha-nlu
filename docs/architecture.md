@@ -8,6 +8,8 @@ Optional spricht die Engine eine **OpenAI-kompatible** Chat-API (`src/llm/`, SSE
 
 Vorschlag, Match / Sprach-Seed / Haus in der Operator-UI zu steuern und den Parse-Pfad zu zeichnen: [ADR 0001](architecture/adr-0001-rules-and-trainer.md) · [Plan](architecture/adr-0001-plan.md) (Umsetzung auf `staging`, kein Hauptrelease).
 
+Assist-Produktlogik (Refine-Regeln, Fallback-Prompts, Sprache nach dem HA-Execute) gehört in die Engine, nicht in die Integration: [ADR 0003](architecture/adr-0003-python-rust-boundary.md) · [Plan](architecture/adr-0003-plan.md) (ebenfalls `staging`).
+
 ## Laufzeitkarte
 
 Interaktiver Weg Assist → `POST /api/v2/parse` → `nlu::parse` → Intent, mit git-geprüften Quellstellen. [runtime.html](architecture/runtime.html) lokal öffnen; typisierte Quelle: [runtime.architecture.json](architecture/runtime.architecture.json).
