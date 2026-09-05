@@ -1,0 +1,7 @@
+# cargo-audit 0.22 reads this path, not a repo-root audit.toml.
+[advisories]
+ignore = [
+    # url 2.5.2 is pinned so rustc 1.85 does not pull idna/icu 1.x.
+    # Klar rejects userinfo in LLM base URLs.
+    "RUSTSEC-2024-0421",
+]
