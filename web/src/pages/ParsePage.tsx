@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import { StageBars } from "../components/charts";
 import { Pipeline } from "../components/pipeline";
+import { PolicyPath } from "../components/PolicyPath";
 import { SearchSelect, withCurrent } from "../components/SearchSelect";
 import type { Messages } from "../i18n";
 import type { ParseResult, Settings } from "../types";
@@ -238,12 +239,7 @@ export function ParsePage({
         </div>
         {heardIn ? <span className="chip">{t.heardIn}: {heardIn}</span> : null}
         <div className="flow" aria-label={t.processPath}>
-          {path.map((step, index) => (
-            <span key={`${step}-${index}`}>
-              {index > 0 ? <span className="muted"> → </span> : null}
-              <span className={pathChipClass(step, executeName, band)}>{step}</span>
-            </span>
-          ))}
+          <PolicyPath t={t} trace={result?.policy_trace} />
         </div>
         {armed.length > 0 && (
           <div className="flow lab-pipeline-armed" aria-label="pipeline">

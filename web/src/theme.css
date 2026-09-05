@@ -249,6 +249,32 @@ button.chip { background: transparent; }
   flex-wrap: wrap;
 }
 .flow .card { min-width: 120px; }
+.policy-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+}
+.policy-path-step { display: inline-flex; align-items: center; gap: 8px; }
+.policy-path-node {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 120px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text);
+  text-align: start;
+}
+.policy-path-node.hit { border-color: var(--accent); }
+.policy-path-node:disabled { opacity: 1; cursor: default; }
+.policy-path-discarded { flex-basis: 100%; margin-top: 8px; }
+.policy-lanes .chip.origin { font-family: "IBM Plex Mono", monospace; font-size: 11px; }
+.lexicon-delta { font-family: "IBM Plex Mono", monospace; font-size: 12px; }
 @media (max-width: 860px) {
   .app-shell { grid-template-columns: 1fr; }
   .rail {
@@ -269,6 +295,8 @@ button.chip { background: transparent; }
   .status { width: 100%; }
   .hero { display: block; }
   .grid.two, .grid.three, .pipeline, .timeline-item { grid-template-columns: 1fr; }
+  .policy-lanes > .card { display: none; }
+  .policy-lanes > .card.lane-open { display: block; }
   .drawer { top: auto; height: 82vh; border-left: 0; border-top: 1px solid var(--line); }
 }
 
