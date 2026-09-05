@@ -108,6 +108,7 @@ jobs:
       - uses: aquasecurity/trivy-action@v0.36.0
         if: steps.image.outputs.present == 'true'
         with:
+          version: v0.74.0
           image-ref: ghcr.io/fabbricate-it-solutions/klar-nlu:latest
           severity: HIGH,CRITICAL
           ignore-unfixed: true
