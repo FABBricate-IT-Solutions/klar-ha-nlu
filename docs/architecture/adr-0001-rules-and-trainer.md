@@ -4,241 +4,215 @@
 
 Status: **vorgeschlagen** (noch keine Implementierung)
 
-Klar bleibt eine deterministische, lokale NLU. Ein LLM darf das Haus **einrichten**, nicht den Parse-Pfad **fahren**.
+Klar bleibt eine deterministische, lokale NLU. Ein LLM darf das Haus **einrichten**, nicht den Parse-Pfad **fahren**. Alle drei Ebenen sind in der Operator-UI **sichtbar, steuerbar und trainierbar**. Jeder Parse zeichnet denselben Pfad.
 
 ## Idee, wie wir sie verstehen
 
-Heute steckt Verhalten an zwei Stellen, die beide „Policy“ heißen, aber verschiedene Jobs haben:
+Verhalten lebt auf **drei Ebenen**, die derselbe Satz nacheinander durchläuft:
 
-1. **Match** — kompilierte Klausel-Strategien in Rust (`PolicyId` in `src/parse/policy.rs` und `src/parse/clause.rs`): *wie* ein Satz zu einem Intent wird (`area_command`, `grounded_entities`, `media`, …).
-2. **Govern** — Overlay-Regeln (`PolicyRule` in `src/types/policy.rs`, Tab **Regeln**): *ob* ein schon erkannter Plan ausgeführt, bestätigt, blockiert, bevorzugt oder in eine Antwort/ein Script umgebogen wird.
+1. **Match** — *wie* Tokens zu einem Intent-Kandidaten werden (`PolicyId`: `area_command`, `grounded_entities`, `media`, …).
+2. **Sprache (Seed)** — Default-Govern der gebundenen Locale (Confirm für Schlösser, Phrase-Defaults). Mit dem Pack ausgeliefert.
+3. **Haus** — Overlay dieses Graphen: Operator- und Trainer-Regeln, die den Seed überschreiben oder ergänzen.
 
-Zusätzlich liegen **Safety** (`requires_confirmation` für Schlösser/Cover, Infra-Filter, Confidence-Schwellen) und **Haushaltsphrasen** (Uhr, Wetter, Erklären, Undo) fest im Code plus Sprachpack.
+Heute sind Match und Safety unsichtbar im Code, der Tab Regeln kennt nur eine leere Haus-Liste, und das Labor zeigt einen groben Prozess-Chip (`conversation.process`), aber nicht *welche Ebene warum* entschieden hat.
 
-Die gewünschte Richtung:
+Gewünscht:
 
-- Ein LLM tritt als **Trainer** auf: es sieht den Home-Graph (Räume, Geräte, Tags, Lücken) und schlägt **passende Govern-Regeln** vor — dieselben `PolicyRule`-Objekte, die der Tab Regeln schon speichern kann.
-- Alles, was heute **im Code** feststeckt und Verhalten ändert, soll **sichtbar** sein: gleiche Liste, gleiches Evaluate, gleicher Why-Trace. Sonst bleibt „warum Confirm?“ ein Geheimnis hinter `compiled_risky`.
-- Verhalten soll **hausgenau** anpassbar sein, besonders damit der Trainer etwas hat, das er schreiben darf, ohne die Engine umzubauen.
+- Alle drei Ebenen in der Operator-UI **verwalten**: an/aus, Reihenfolge, Inhalt — plus **LLM-Vorschläge** pro Ebene.
+- Dieselben drei Ebenen **scharf visualisieren**: statisch (wie sie geschichtet sind) und live (welchen Pfad *dieser* Satz genommen hat). Ein Klick auf einen Knoten öffnet die Regel.
 
-Offene Strategiefrage: alles in die Rules Engine heben (plus vorbefüllte Regel-Datenbanken pro Sprache) — oder Match kompiliert lassen und nur Govern/Safety/Haushaltsdefaults datengetrieben machen.
+Match bleibt kompiliert (keine frei erfundene Matching-DSL). Steuerbar heißt: Overlay auf dem Katalog (enable, Precedence), nicht neue `PolicyId`-Funktionen aus dem Modell.
 
 ## Ist-Zustand (knapp)
 
 ```
-Text
-  → tokenize / Katalog der gebundenen Sprache
-  → PolicyId-Matching (kompiliert) → Kandidaten
-  → Ranking + Evidence
-  → Overlay-PolicyRule (Govern) + compiled_risky
-  → Band: execute / confirm / clarify / reject / chat
+Text → tokenize → PolicyId-Match (starr) → Ranking
+    → Overlay-PolicyRule (oft leer) + compiled_risky
+    → Band: execute / confirm / clarify / reject / chat
 ```
 
-Bereits vorhanden und nutzbar:
+| Baustein | Lücke |
+|----------|--------|
+| Overlay-`PolicyRule` | nur Haus, leer, kein Origin, max. 64 |
+| Evaluate / Labor-`.flow` | Overlay-Treffer + `compiled_risky`; kein Ebenen-Pfad |
+| `IntentCandidate.policy` | Match-Name in JSON, nicht in der Regeln-UI |
+| Sprachpacks | Lexikon, keine Govern-Seeds |
+| `risky_intent` / Infra | unsichtbar |
+| Trainer | fehlt |
 
-| Baustein | Ort | Lücke |
-|----------|-----|--------|
-| Overlay-`PolicyRule` (max. 64) | `klar_nlu.json`, `GET/POST /api/v2/policies` | leer beim Start, kein Seed, kein Origin |
-| Evaluate | `POST /api/v2/policies/evaluate` | zeigt Overlay-Treffer + `compiled_risky`, nicht *welche* kompilierte Match-Policy und *warum* riskant |
-| `PolicyTrace` | `ParseOutcome` | nur Overlay-Regel + Flag |
-| `IntentCandidate.policy` | Ranking | PolicyId-String, nicht in der Regeln-UI |
-| Sprachpacks | `src/lang/packs/{code}/` | Lexikon und Haushaltsphrasen, keine Govern-Seeds |
-| Household-Route | `src/nlu/household.rs` | Phrase→Aktion im Code |
-| Safety | `src/nlu/validation.rs` `risky_intent` | unsichtbar, nicht abschaltbar über Regeln |
-| Infra | Tags + `infra_needles.txt` | nur teilweise Overlay (`infra_id` / Tags) |
-| Trainer | — | fehlt. LLM in HA redet oder formuliert um, schreibt keine Regeln |
+## Strategie: drei Steuerflächen, ein Interpreter
 
-Zwei verschiedene Dinge heißen Policy. Der Trainer darf nur **Govern** schreiben. **Match** ist ein Algorithmus.
-
-## Drei Strategien
-
-### A — Nur UI/Trace, Engine unverändert
-
-Katalog der PolicyIds + erweiterter Why-Trace. Overlay-Regeln bleiben hausgemacht.
-
-- Günstig, kein Benchmark-Risiko.
-- Trainer hat nichts Standardmäßiges, das er klonen oder überschreiben kann. Safety bleibt unsichtbar.
-
-### B — Alles in die Rules Engine (Match als Daten)
-
-`area_command`, Resolver, Session-Replay, Media-vs-Licht als DSL in vorbefüllten Datenbanken pro Sprache. Trainer schreibt beliebige Matching-Regeln.
-
-- Ein Modell, maximale Flexibilität.
-- Die heutigen PolicyIds sind **Funktionen** (Session, Compounds, Media-Claim, Ranking-Caps), keine `when`/`effect`-Zeilen. Eine DSL, die das ausdrückt, ist eine zweite Sprache plus Interpreter. Das 9.922-Satz-DE/EN-Gate und die Locale-Parity würden an generiertem Matching hängen. Ein LLM, das Match-Regeln erfindet, kann Assist leise zerlegen. Das widerspricht „kein Netz in der Engine“.
-
-**Nicht der Weg**, solange Klar lokal, deterministisch und benchmark-stabil bleiben soll.
-
-### C — Hybrid (Empfehlung)
-
-Drei Schichten mit klaren Schreibrechten:
+Nicht Strategie B (Match als frei schreibbare DSL). Nicht nur Trace ohne Knöpfe.
 
 ```
-Match (kompiliert, read-only im Katalog)
-  PolicyId + Resolver + Ranking + Schwellen
-
-Govern (datengetrieben, sichtbar, überschreibbar)
-  Sprach-Seed  →  Haus-Overlay (Operator / Trainer)
-  confirm / block / allow / prefer / reply / script / template / llm
-
-Invarianten (kompiliert, selten, immer im Trace)
-  Plan-Validierung, Expose-Filter, Schema, optionale Safety-Untergrenze
+Match-Katalog (kompilierte Funktionen)
+  + Match-Overlay: enabled, precedence     ← UI + Trainer
+       ↓ Kandidaten
+Govern-Seed der Sprache                    ← UI + Trainer (an/aus, Reset)
+       ↓ erste passende Seed-Regel
+Haus-Overlay                               ← UI + Trainer (volle PolicyRule)
+       ↓ erste passende Haus-Regel gewinnt vor Seed
+Invarianten: validate_plan, Expose, Schema (immer im Trace, kein Trainer)
 ```
 
-Das LLM sieht das Haus und schreibt **nur Haus-Overlay-Regeln** (plus optional Aliase, Tags, Custom Sentences). Es ändert weder PolicyIds noch Wortlisten der Packs.
-
-Vorbefüllte „Datenbanken pro Sprache“ gibt es dann **zwei**, und sie bleiben getrennt:
-
-1. **Lexikon-Pack** (schon da): Verben, Nomina, Haushaltsphrasen.
-2. **Govern-Seed** (neu): Default-Regeln dieser Sprache, als echte `PolicyRule[]`.
-
-## Warum C und nicht B
-
-- Der Trainer braucht ein **enges Schema**. `PolicyRule` hat das schon (`when` + `effect` + `prefer`/`payload`). `sanitize_rules` und Evaluate existieren.
-- Sichtbarkeit heißt nicht „derselbe Interpreter“. Match-Policies können als Katalogzeilen erscheinen (`id`, Label, Precedence, „was sie tun“), ohne dass ihre Rust-Funktion zur editierbaren Regel wird.
-- Safety, die heute in `risky_intent` steckt, *kann* als Seed-Regel erscheinen (`when.domain = lock` → `confirm`). Dann sieht man sie, kann sie überschreiben, und Evaluate zeigt `matched_rule` statt nur `compiled_risky`.
-- Sprach-Seeds geben dem Trainer Vorlagen: „in diesem Haus gibt es `lock.Haustuer` und `cover.rollo_wohnzimmer` — instanziiere die Seed-Regeln auf diese Entity-Ids.“
+Vorbefüllte Daten pro Sprache bleiben **zwei** getrennte Dinge: Lexikon-Pack (Verben/Nomina) und Govern-Seed (`PolicyRule[]`).
 
 ## Schichtenvertrag
 
-### 1. Match-Katalog (Engine, read-only)
+### 1. Match — Katalog plus Overlay
 
-Jede `PolicyId` wird eine Katalogzeile, z. B.:
+Jede `PolicyId` ist eine Katalogzeile. Der Operator sieht die **volle Liste** (heute ~24 Ids, Precedence 0–21), nicht nur die, die gegriffen hat.
+
+Steuerung im Overlay, nicht in Rust:
 
 ```json
-{
-  "id": "area_command",
-  "layer": "match",
-  "origin": "engine",
-  "editable": false,
-  "precedence": 8,
-  "summary": "Raum + Domain ohne Gerätenamen → Area-Intent"
-}
+{ "id": "media", "enabled": false, "precedence": 3 }
 ```
 
-Im Parse-Trace steht immer die gewählte Match-Policy (heute schon `candidates[].policy`), plus Verlierer und Margin. Die Regeln-UI zeigt diese Zeilen als **Engine**, nicht als editierbare Liste.
+| Darf | Darf nicht |
+|------|------------|
+| an/aus, Precedence ziehen, auf Engine-Default zurück | neue PolicyId erfinden, Matcher-Quelltext, Tokenizer/Fuzzy umschreiben |
 
-Nicht in diesen Katalog als editierbare Regeln: Tokenizer, Fuzzy, Session-Memory, Compound-Split. Das bleibt Code. Der Trace sagt nur, *dass* sie gegriffen haben.
+Beispiel: Haus ohne `media_player` → `media` aus. Viele gleichnamige Lampen → `grounded_ambiguous` vor `follow_named`. Trainer schlägt genau solche Overlays vor, mit Begründung aus dem Graph.
 
-### 2. Govern-Seed pro Sprache (neu)
+Disabled Ids werden in `parse_clause_candidates_for_action` übersprungen. Unbekannte Ids → 400. Reset löscht die Overlay-Zeile.
 
-Mit dem Lexikon-Pack ausgeliefert, z. B. `src/lang/packs/de/govern.json` (oder generiert wie die Packs). Inhalt sind normale `PolicyRule`s mit stabilen Ids:
+### 2. Sprache — Govern-Seed
 
-| Beispiel-Id | when | effect | Zweck |
-|-------------|------|--------|--------|
-| `seed:confirm-lock` | domain `lock` | `confirm` | sichtbare Form von `risky_intent` für Schlösser |
-| `seed:confirm-cover-close` | domain `cover`, intent `HassTurnOff` | `confirm` | Rollo zu |
-| `seed:block-area-lock` | domain `lock` + area gesetzt | `block` | kein „alle Schlösser im Stockwerk“ |
-| `seed:prefer-climate` | — | `prefer_entity` | nur wenn `preferred_climate` gesetzt; Trainer füllt `prefer` |
+Mit dem Pack, z. B. `src/lang/packs/de/govern.json`. Normale `PolicyRule`s, stabile Ids:
 
-Haushaltsphrasen, die schon wie Regeln aussehen (`reply` / `script`), können in einer späteren Phase hier landen. Uhr/Wetter/Undo bleiben zuerst Code, bis der Seed denselben Vertrag erfüllt (Tests in `tests/policy.rs` / Household-Unit).
+| Id | when | effect |
+|----|------|--------|
+| `seed:confirm-lock` | domain `lock` | `confirm` |
+| `seed:confirm-cover-close` | cover + `HassTurnOff` | `confirm` |
+| `seed:block-area-lock` | lock + area | `block` |
 
-Seed-Regeln zählen **nicht** gegen das 64er Haus-Quota. Haus-Regeln mit derselben Id **ersetzen** den Seed. Zusätzliche Haus-Regeln stehen **davor** (erste passende gewinnt, wie heute).
+UI: Liste der gebundenen Sprache, Toggle, „Seed zurücksetzen“. Kein Freitext-`when` am Seed (sonst driftet die Locale). Haus-Regel mit derselben Id **ersetzt** den Seed. Extra Haus-Regeln stehen **davor**. Seeds zählen nicht gegen die 64.
 
-### 3. Haus-Overlay (Operator + Trainer)
+Trainer: welche Seeds zu diesem Graph passen (`prefer` auf `climate.wohnzimmer` setzen, `confirm-lock` lassen, Cover-Seed aus wenn keine Cover).
 
-Genau das heutige Bundle in `klar_nlu.json`. Neu: `origin` (`operator` \| `trainer`) und `replaces` (Seed-Id). Evaluate läuft gegen den **gemergten** Satz Seed⊕Haus.
+### 3. Haus — Overlay
 
-### 4. Invarianten
+Heutiges Bundle in `klar_nlu.json`, plus `origin` (`operator` \| `trainer`) und `replaces`. Volle `PolicyRule`-Editorik wie heute. Trainer schreibt hausgenaue Regeln (Kinder-AC blocken, „gute Nacht“ → Script, Prefer Decke).
 
-Auch wenn jemand `seed:confirm-lock` abschaltet, bleiben `validate_plan`, Assist-Expose und Schema. Ob `compiled_risky` als unsichtbare Untergrenze erhalten bleibt, ist eine offene Frage unten — Empfehlung: **anfangs ja**, Trace unterscheidet `hit: confirm` (Regel) vs. `compiled_risky: true` (Untergrenze). Wenn Seeds die Tests 1:1 abdecken, kann die Untergrenze hinter einem Setting zurücktreten.
+### Invarianten
 
-## LLM-Trainer
+`validate_plan`, Assist-Expose, Schema bleiben. `compiled_risky` als Untergrenze: anfangs an, Trace unterscheidet Regel-`confirm` vs. Floor.
 
-Kein Parse-Hot-Path. Kein Werkzeug, das Intents ausführt. Optional, Operator-ausgelöst.
+## Operator-UI: drei Spuren, ein Pfad
 
-```
-Home-Graph (sichtbare Entities/Areas/Floors/Tags)
-  + Govern-Seed der gebundenen Sprache
-  + aktuelle Haus-Regeln
-  + Gaps (unbenannte Geräte, fehlende Areas)
-  + optionales redigiertes Journal
-      → Trainer-Prompt mit JSON-Schema = PolicyRule[]
-      → sanitize_rules
-      → Grounding: entity_id / area / prefer existieren im Graph
-      → Dry-Run: Evaluate auf Haus-Smokes + Locale-Smokes
-      → Diff in der UI: übernehmen / ablehnen / einzeln editieren
-```
+Der Tab Regeln wird die Steuerzentrale. Labor und Gespräche **lesen denselben Pfad**, sie editieren ihn nicht.
 
-Was der Trainer schreiben **darf**: `PolicyRule`, optional Aliase, `nlu_ignore`/`infra`-Tags, Custom Sentences.
+### Statisch — Schichtung
 
-Was er **nicht** darf: PolicyIds, Ranking-Schwellen, Wortlisten, neue Effects außerhalb des Enums, Entity-Ids, die nicht im Graph sind.
-
-Haus-Beispiele, die der Seed nicht kennen kann:
-
-- `when.entity_id = climate.kinderzimmer` → `block` (Kinder-AC nachts)
-- `when.phrase = „gute nacht“` → `script.good_night`
-- `prefer_entity` für die Wohnzimmer-Decke, wenn mehrere Lichter heißen „Lampe“
-- `confirm` nur für `lock.Haustuer`, nicht für das Schuppen-Schloss
-
-Das Modell sitzt dort, wo schon der Fallback-Agent ist (HA). Die Engine bleibt ohne Netz. Der Prompt bekommt nur den Graph-Snapshot und das Schema, keine Assist-Tools.
-
-## Sichtbarkeit („was passiert und warum“)
-
-Ein Why-Trace pro Turn, eine UI-Liste mit drei Origins:
+Drei Spalten, eine Reihenfolge, die der Runtime entspricht:
 
 ```
-matched_match:     area_command          (Engine)
-matched_govern:    seed:confirm-lock     (Seed, sichtbar)
-overridden_by:     house:allow-shed-lock (Haus, Trainer)
-compiled_risky:    false
-band:              execute
+Match (Engine)          Sprache (Seed)           Haus
+──────────────          ──────────────           ────
+[on] laundry_switch 0   [on] seed:confirm-lock   1  Kinder-AC  block
+[on] timer          1   [on] seed:confirm-cover  2  Gute Nacht script
+[off] media         3   [off] seed:prefer-climate
+[on] area_command   8
+…
+Trainer für diese Spur →  Evaluate-Satz  →  Pfad unten
 ```
 
-„Was hast du gehört?“ (`household.explain`) und `POST /api/lang/explain` sollen dieselben Ids sprechen, nicht nur `Entscheidung: confirm`.
+- Aktive Spur bestimmt, was Speichern / Trainer / Reset tun.
+- Drag nur innerhalb der Spur (Match-Precedence, Haus-Reihenfolge). Seed-Reihenfolge kommt aus dem Pack.
+- Origin-Chip: `engine` / `seed` / `operator` / `trainer`.
 
-Der Evaluator im Tab Regeln merkt Seed- vs. Haus-Treffer und die Match-Policy des Rankings.
+### Live — Pfad dieses Satzes
 
-## Was bewusst *nicht* in die Rules Engine wandert
+Evaluate und Labor ersetzen die fünf Karten (`compiled_risky`, `matched_rule`, …) durch **eine Spur mit drei Pflicht-Knoten**. Übersprungene Ebenen bleiben als Knoten stehen (`—`), sonst sieht man nicht, dass sie geprüft wurden.
 
-- `PolicyId`-Funktionen und ihre Precedence
-- Confidence-Bänder (`EXECUTE_MIN_CONFIDENCE` …) — höchstens später als dokumentierte Settings, nicht als LLM-Output
-- Resolver / Fuzzy / Compounds
-- Sprachlexikon (das *ist* schon die Sprach-Datenbank)
+```mermaid
+flowchart LR
+  utterance["Licht im Wohnzimmer an"]
+  matchNode["Match: area_command"]
+  seedNode["Seed: —"]
+  houseNode["Haus: prefer-decke"]
+  bandNode["Band: execute"]
+  utterance --> matchNode --> seedNode --> houseNode --> bandNode
+```
 
-Sonst trainiert das LLM die NLU selbst. Genau das soll Klar nicht sein.
+Jeder Knoten:
 
-## Phasen (technisch, ohne Kalender)
+- **Ebene** + **Id** oder `—`
+- kurz warum: Score/Margin bei Match, `when`-Treffer bei Govern, `compiled_risky` nur wenn kein Seed/Haus gegriffen hat
+- Klick springt in die Spur und selektiert die Zeile
+- darunter Match-Verlierer (`discarded`, schon in `ParseTrace`)
 
-1. **Vokabular + Katalog + Why-Trace**  
-   Match-Katalog API, `PolicyTrace` um Match-Id, Seed-Id, Risky-Grund erweitern. Regeln-UI: Engine-Liste read-only. Kein Verhaltenswechsel. Gate: Contract-Tests für Trace-Felder; DE/EN-Scorecard unverändert.
+Denselben `PolicyPath` in Regeln-Evaluate, Labor (heute `.flow` / `processPath`) und optional Gesprächszeile. Eine Quelle, drei Oberflächen.
 
-2. **Safety als Seed, Verhalten gleich**  
-   `risky_intent` und `allow_permitted` als Seed-Regeln für `de`/`en`. `compiled_risky` bleibt Untergrenze, bis Parity-Tests zeigen, dass Seeds denselben Band erzeugen. Quota: Seed getrennt vom Haus-Limit.
+Erklären-Sprache und `POST /api/lang/explain` sprechen dieselben Ids: „Match `area_command`, Haus `prefer-decke`, ausgeführt.“
 
-3. **Govern-Seeds für alle kompilierten Locales**  
-   Wie Lexikon-Packs: Referenz `de`/`en` handgeschrieben, Rest generiert oder dünn (Safety-Universalien sind sprachunabhängig; Phrase-Seeds nicht). Generator-Freshness wie bei `scripts/lang_packs`.
+## LLM-Trainer, pro Ebene
 
-4. **Trainer-Endpoint**  
-   `POST /api/v2/policies/propose` liefert einen Vorschlag (kein Speichern). UI: Diff, Evaluate, Apply. Prompt und Schema versioniert. Grounding-Tests mit `tests/datasets/familienhaus_de` und `family_home_en`.
+Weiterhin kein Parse-Hot-Path, keine Geräte-Tools. Operator löst **pro Spur** oder „Haus einrichten (alle Spuren)“ aus.
 
-5. **Optional: Household-Phrasen → Phrase-Regeln**  
-   Nur wenn Seed+Overlay denselben Undo/Explain/Clock-Vertrag erfüllen. Sonst bleiben sie Code.
+```
+Graph + Gaps + aktuelle Overlays + Seed der Sprache + Match-Katalog
+  → Vorschlag mit layer-Feld
+  → sanitize + Grounding
+  → Dry-Run auf Haus- und Locale-Smokes
+  → Diff auf der Spur: übernehmen / ablehnen / editieren
+```
 
-Jede Phase braucht ein eigenes PR; dieses ADR ist die Klammer, kein Implementierungs-Diff.
+| Ebene | Schema | Beispiel |
+|-------|--------|----------|
+| Match | `{ id, enabled, precedence? }[]` | `media` aus, weil kein Player im Graph |
+| Seed | `{ id, enabled, prefer? }[]` | `seed:prefer-climate` auf `climate.wohnzimmer` |
+| Haus | `PolicyRule[]` | Phrase „gute Nacht“ → `script.good_night` |
 
-## Offene Punkte (Entscheidung vor Phase 2/4)
+Das Modell darf keine neuen Match-Ids, keine neuen Effects, keine Entity-Ids außerhalb des Graphen. Prompt versioniert, HA-Fallback-LLM, Engine ohne Netz.
 
-1. Darf der Operator `seed:confirm-lock` wirklich abschalten, oder bleibt `compiled_risky` immer die Untergrenze?
-2. Läuft der Trainer nur in der Klar-UI (Empfehlung für v1) oder auch als Assist-Gespräch („richte mein Haus ein“)?
-3. Werden Haushaltsphrasen in Phase 5 zu Regeln, oder bleiben sie Lexikon+Code?
-4. Soll `origin: trainer` nach Apply wie Operator-Regeln aussehen, oder bleibt die Herkunft dauerhaft sichtbar?
-5. Infra-Needles: weiter kompiliert, oder Trainer taggt nur Graph-Entities (`infra` / `nlu_ignore`)?
+## Phasen
 
-Empfehlungen dazu: (1) Untergrenze anfangs an, Setting später. (2) Nur UI. (3) Später. (4) Herkunft behalten. (5) Tags am Graph, Needles als Default-Vorschlag.
+1. **Pfad + Katalog, noch starr**  
+   `PolicyTrace` mit `match`, `seed`, `house`, `band`, `discarded`. Gemeinsame Pfad-Komponente in Regeln und Labor. Drei Spuren sichtbar, Match/Seed zunächst Toggle-los (read-only), Haus wie heute. Gate: Contract-Tests; Scorecard unverändert.
 
-## Folgen, wenn wir C umsetzen
+2. **Match- und Seed-Steuerung**  
+   Overlay `match_controls`; Seed-Toggles. Evaluate respektiert beides. Reset-auf-Default. Parity: Defaults = heutiges Verhalten.
 
-- Tab Regeln wird die Wahrheit: Engine (sichtbar, starr), Sprache (Seed, überschreibbar), Haus (editierbar, trainierbar).
-- Der Trainer hat ein begrenztes Schreibrecht und einen Dry-Run gegen dasselbe Evaluate wie der Mensch.
-- Match bleibt schnell, getestet und lokal.
-- Die 64-Regel-Grenze gilt nur fürs Haus; Seeds sind ein zweites Bundle.
-- Risiko von Phase 2: Seed-Safety muss bitgleich zu `risky_intent` sein, sonst kippt Confirm auf Schlössern.
+3. **Safety als Seed, Verhalten gleich**  
+   `risky_intent` / `allow_permitted` als Seed-Zeilen. `compiled_risky` bleibt Floor, bis Tests bitgleich sind.
+
+4. **Seeds für alle Locales**  
+   `de`/`en` handgeschrieben, Rest generiert oder dünn.
+
+5. **Trainer**  
+   `POST /api/v2/policies/propose` mit `layer`. UI-Diff auf der Spur. Tests an `familienhaus_de` / `family_home_en`.
+
+6. **Optional: Household-Phrasen in den Seed**  
+   Nur bei gleichem Undo/Explain/Clock-Vertrag.
+
+Jede Phase eigenes PR. Dieses ADR ist die Klammer.
+
+## Offene Punkte
+
+1. `compiled_risky`-Untergrenze, wenn der Operator `seed:confirm-lock` ausmacht? (anfangs: Floor an)
+2. Trainer nur UI oder auch Assist-Gespräch? (v1: nur UI, Vorschläge landen in der Spur)
+3. Household-Phrasen in Phase 6? (später)
+4. `origin: trainer` dauerhaft sichtbar? (ja)
+5. Infra: Tags am Graph, Needles als Match/Seed-Hinweis, kein Freitext aus dem Modell
+
+Neu durch die drei Spuren:
+
+6. Darf Precedence-Ziehen Match so weit verdrehen, dass Locale-Smokes rot werden? (Evaluate warnt; Speichern erlaubt; Reset bleibt ein Klick)
+7. Ein Trainer-Lauf über alle Spuren oder immer eine Spur? (UI kann beides; Apply bleibt pro Spur bestätigt)
+
+## Folgen
+
+- Tab Regeln ist die Wahrheit für alle drei Ebenen; Labor und Gespräche zeigen denselben Pfad.
+- Flexibilität sitzt auf **Overlays** (Match-Controls, Seed-Toggles, Haus-Regeln), nicht auf einer Matching-DSL.
+- Der Trainer hat drei enge Schemas und denselben Dry-Run wie der Mensch.
+- Defaults bleiben das heutige Assist-Verhalten, bis jemand eine Spur ändert.
 
 ## Verweise
 
 - Overlay-Regeln: `src/types/policy.rs`, `src/nlu/policy_route.rs`, `src/io/policies.rs`
 - Match-Policies: `src/parse/policy.rs`, `src/parse/clause.rs`
 - Safety: `src/nlu/draft.rs` `safety_decision`, `src/nlu/validation.rs` `risky_intent`
-- Ranking-Katalog (Namen): `IntentCandidate.policy`
-- Sprachpacks: [Sprachen](../languages.md)
+- Labor-Pfad (heute): `web/src/pages/ParsePage.tsx` (`.flow`, `processPath`)
 - API: [API](../api.md) (`/api/v2/policies`, `/api/v2/policies/evaluate`)

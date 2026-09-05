@@ -4,7 +4,7 @@
 
 Klar is a rule-based NLU. A sentence is tokenized, checked against word lists, and turned into Home Assistant intents. There is no neural net in the engine.
 
-Proposal to split overlay rules, language seeds, and an LLM trainer: [ADR 0001](../architecture/adr-0001-rules-and-trainer.en.md).
+Proposal to control Match / language seed / house in the operator UI and draw the parse path: [ADR 0001](../architecture/adr-0001-rules-and-trainer.en.md).
 
 ## Runtime map
 

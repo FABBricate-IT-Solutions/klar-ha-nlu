@@ -4,7 +4,7 @@
 
 Klar ist eine regelbasierte NLU. Ein Satz wird tokenisiert, gegen Wortlisten geprüft und in Home-Assistant-Intents übersetzt. Es gibt kein neuronales Netz in der Engine.
 
-Vorschlag, Overlay-Regeln, Sprach-Seeds und einen LLM-Trainer zu trennen: [ADR 0001](architecture/adr-0001-rules-and-trainer.md).
+Vorschlag, Match / Sprach-Seed / Haus in der Operator-UI zu steuern und den Parse-Pfad zu zeichnen: [ADR 0001](architecture/adr-0001-rules-and-trainer.md).
 
 ## Laufzeitkarte
 

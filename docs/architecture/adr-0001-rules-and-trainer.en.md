@@ -4,241 +4,215 @@
 
 Status: **proposed** (no implementation in this change)
 
-Klar stays a deterministic, local NLU. An LLM may **set up** the house; it must not **drive** the parse path.
+Klar stays a deterministic, local NLU. An LLM may **set up** the house; it must not **drive** the parse path. All three layers are **visible, controllable, and trainable** in the operator UI. Every parse draws the same path.
 
 ## The idea, as we understand it
 
-Behavior lives in two places that both say “policy” and do different jobs:
+Behavior lives on **three layers** that the same utterance walks in order:
 
-1. **Match** — compiled clause strategies in Rust (`PolicyId` in `src/parse/policy.rs` and `src/parse/clause.rs`): *how* a sentence becomes an intent (`area_command`, `grounded_entities`, `media`, …).
-2. **Govern** — overlay rules (`PolicyRule` in `src/types/policy.rs`, **Rules** tab): *whether* a plan already recognized is executed, confirmed, blocked, preferred, or turned into a reply/script.
+1. **Match** — *how* tokens become an intent candidate (`PolicyId`: `area_command`, `grounded_entities`, `media`, …).
+2. **Language (seed)** — default govern for the bound locale (confirm locks, phrase defaults). Shipped with the pack.
+3. **House** — overlay for this graph: operator and trainer rules that replace or extend the seed.
 
-On top of that, **safety** (`requires_confirmation` for locks/covers, infra filters, confidence bands) and **household phrases** (clock, weather, explain, undo) are compiled plus language-pack strings.
+Today Match and safety are invisible in code, the Rules tab only knows an empty house list, and Lab shows a coarse process chip (`conversation.process`) rather than *which layer decided why*.
 
-Desired direction:
+Desired:
 
-- An LLM acts as a **trainer**: it looks at the home graph (rooms, devices, tags, gaps) and proposes **govern rules** — the same `PolicyRule` objects the Rules tab already stores.
-- Everything that today is **hard-coded** and changes behavior should be **visible**: same list, same evaluate, same why-trace. Otherwise “why confirm?” stays a secret behind `compiled_risky`.
-- Behavior should be **house-precise**, especially so the trainer has something it is allowed to write without rewriting the engine.
+- **Manage** all three layers in the operator UI: on/off, order, content — plus **LLM proposals** per layer.
+- **Visualize** those three layers sharply: static (how they stack) and live (which path *this* sentence took). A click on a node opens the rule.
 
-Open strategy question: lift *everything* into the rules engine (plus pre-seeded rule databases per language) — or keep Match compiled and make only Govern / safety / household defaults data-driven.
+Match stays compiled (no freely invented matching DSL). Controllable means an overlay on the catalog (enable, precedence), not new `PolicyId` functions from the model.
 
 ## Current state (short)
 
 ```
-Text
-  → tokenize / bound language catalog
-  → PolicyId matching (compiled) → candidates
-  → ranking + evidence
-  → overlay PolicyRule (govern) + compiled_risky
-  → band: execute / confirm / clarify / reject / chat
+Text → tokenize → PolicyId match (fixed) → ranking
+    → overlay PolicyRule (often empty) + compiled_risky
+    → band: execute / confirm / clarify / reject / chat
 ```
 
-Already there and reusable:
+| Piece | Gap |
+|-------|-----|
+| Overlay `PolicyRule` | house only, empty, no origin, max 64 |
+| Evaluate / Lab `.flow` | overlay hit + `compiled_risky`; no layer path |
+| `IntentCandidate.policy` | match name in JSON, not in the Rules UI |
+| Language packs | lexicon, no govern seeds |
+| `risky_intent` / infra | invisible |
+| Trainer | missing |
 
-| Piece | Where | Gap |
-|-------|--------|-----|
-| Overlay `PolicyRule` (max 64) | `klar_nlu.json`, `GET/POST /api/v2/policies` | empty at start, no seed, no origin |
-| Evaluate | `POST /api/v2/policies/evaluate` | overlay hit + `compiled_risky`; not *which* compiled match policy or *why* risky |
-| `PolicyTrace` | `ParseOutcome` | overlay rule + flag only |
-| `IntentCandidate.policy` | ranking | PolicyId string, not in the Rules UI |
-| Language packs | `src/lang/packs/{code}/` | lexicon and household phrases, no govern seeds |
-| Household route | `src/nlu/household.rs` | phrase→action in code |
-| Safety | `src/nlu/validation.rs` `risky_intent` | invisible, not overridable via rules |
-| Infra | tags + `infra_needles.txt` | only partly overlay (`infra_id` / tags) |
-| Trainer | — | missing. The HA LLM talks or rewrites; it does not write rules |
+## Strategy: three control surfaces, one interpreter
 
-Two different things are named policy. The trainer may write **govern** only. **Match** is an algorithm.
-
-## Three strategies
-
-### A — UI/trace only, engine unchanged
-
-Catalog of PolicyIds plus a richer why-trace. Overlay rules stay hand-made.
-
-- Cheap, no benchmark risk.
-- The trainer has no standard rules to clone or override. Safety stays invisible.
-
-### B — Everything in the rules engine (Match as data)
-
-`area_command`, resolver, session replay, media-vs-lights as a DSL in pre-seeded per-language databases. The trainer writes arbitrary matching rules.
-
-- One model, maximum flexibility.
-- Today’s PolicyIds are **functions** (session, compounds, media claim, ranking caps), not `when`/`effect` rows. A DSL that can express them is a second language plus an interpreter. The 9,922-sentence DE/EN gate and locale parity would hang on generated matching. An LLM that invents match rules can quietly break Assist. That fights “no net in the engine.”
-
-**Not the path** while Klar should stay local, deterministic, and benchmark-stable.
-
-### C — Hybrid (recommendation)
-
-Three layers with explicit write rights:
+Not strategy B (Match as a freely writable DSL). Not trace-only with no knobs.
 
 ```
-Match (compiled, read-only in the catalog)
-  PolicyId + resolver + ranking + thresholds
-
-Govern (data-driven, visible, overridable)
-  language seed  →  house overlay (operator / trainer)
-  confirm / block / allow / prefer / reply / script / template / llm
-
-Invariants (compiled, rare, always in the trace)
-  plan validation, expose filter, schema, optional safety floor
+Match catalog (compiled functions)
+  + match overlay: enabled, precedence     ← UI + trainer
+       ↓ candidates
+Language govern seed                       ← UI + trainer (on/off, reset)
+       ↓ first matching seed rule
+House overlay                              ← UI + trainer (full PolicyRule)
+       ↓ first matching house rule wins over seed
+Invariants: validate_plan, expose, schema (always in the trace, no trainer)
 ```
 
-The LLM sees the house and writes **house overlay rules only** (plus optional aliases, tags, custom sentences). It does not change PolicyIds or pack word lists.
-
-Pre-seeded “databases per language” then exist in **two** forms, and they stay separate:
-
-1. **Lexicon pack** (already there): verbs, nouns, household phrases.
-2. **Govern seed** (new): default rules for that language, as real `PolicyRule[]`.
-
-## Why C, not B
-
-- The trainer needs a **tight schema**. `PolicyRule` already has it (`when` + `effect` + `prefer`/`payload`). `sanitize_rules` and evaluate already exist.
-- Visibility is not “the same interpreter.” Match policies can appear as catalog rows (`id`, label, precedence, “what it does”) without turning their Rust function into an editable rule.
-- Safety that today lives in `risky_intent` *can* appear as a seed rule (`when.domain = lock` → `confirm`). Then you see it, you can override it, and evaluate shows `matched_rule` instead of only `compiled_risky`.
-- Language seeds give the trainer templates: “this house has `lock.front_door` and `cover.living_shade` — instantiate the seed rules onto those entity ids.”
+Pre-seeded data per language stays **two** separate things: lexicon pack (verbs/nouns) and govern seed (`PolicyRule[]`).
 
 ## Layer contract
 
-### 1. Match catalog (engine, read-only)
+### 1. Match — catalog plus overlay
 
-Each `PolicyId` becomes a catalog row, for example:
+Each `PolicyId` is a catalog row. The operator sees the **full list** (about 24 ids, precedence 0–21 today), not only the one that fired.
+
+Control lives in the overlay, not in Rust:
 
 ```json
-{
-  "id": "area_command",
-  "layer": "match",
-  "origin": "engine",
-  "editable": false,
-  "precedence": 8,
-  "summary": "Area + domain without a device name → area intent"
-}
+{ "id": "media", "enabled": false, "precedence": 3 }
 ```
 
-The parse trace always includes the chosen match policy (already `candidates[].policy`) plus losers and margin. The Rules UI shows these rows as **Engine**, not as an editable list.
+| May | Must not |
+|-----|----------|
+| on/off, drag precedence, reset to engine default | invent a PolicyId, rewrite matcher source, change tokenizer/fuzzy |
 
-Not in this catalog as editable rules: tokenizer, fuzzy, session memory, compound split. That stays code. The trace only says *that* they fired.
+Example: house with no `media_player` → turn `media` off. Many lamps with the same name → put `grounded_ambiguous` ahead of `follow_named`. The trainer proposes exactly those overlays, with a reason from the graph.
 
-### 2. Govern seed per language (new)
+Disabled ids are skipped in `parse_clause_candidates_for_action`. Unknown ids → 400. Reset deletes the overlay row.
 
-Shipped with the lexicon pack, e.g. `src/lang/packs/de/govern.json` (or generated like packs). Contents are ordinary `PolicyRule`s with stable ids:
+### 2. Language — govern seed
 
-| Example id | when | effect | Role |
-|------------|------|--------|------|
-| `seed:confirm-lock` | domain `lock` | `confirm` | visible form of `risky_intent` for locks |
-| `seed:confirm-cover-close` | domain `cover`, intent `HassTurnOff` | `confirm` | closing covers |
-| `seed:block-area-lock` | domain `lock` + area set | `block` | no “every lock on the floor” |
-| `seed:prefer-climate` | — | `prefer_entity` | only if `preferred_climate` is set; trainer fills `prefer` |
+Shipped with the pack, e.g. `src/lang/packs/de/govern.json`. Ordinary `PolicyRule`s, stable ids:
 
-Household phrases that already look like rules (`reply` / `script`) can move here in a later phase. Clock/weather/undo stay code first, until the seed meets the same contract (tests in `tests/policy.rs` / household unit tests).
+| Id | when | effect |
+|----|------|--------|
+| `seed:confirm-lock` | domain `lock` | `confirm` |
+| `seed:confirm-cover-close` | cover + `HassTurnOff` | `confirm` |
+| `seed:block-area-lock` | lock + area | `block` |
 
-Seed rules **do not** count against the 64 house quota. A house rule with the same id **replaces** the seed. Extra house rules sit **in front** (first match wins, as today).
+UI: list for the bound language, toggle, “reset seed”. No free-text `when` on the seed (that would drift the locale). A house rule with the same id **replaces** the seed. Extra house rules sit **in front**. Seeds do not count against the 64.
 
-### 3. House overlay (operator + trainer)
+Trainer: which seeds fit this graph (point `prefer` at `climate.living_room`, keep `confirm-lock`, drop the cover seed if there are no covers).
 
-Exactly today’s bundle in `klar_nlu.json`. New: `origin` (`operator` \| `trainer`) and `replaces` (seed id). Evaluate runs against the **merged** seed⊕house set.
+### 3. House — overlay
 
-### 4. Invariants
+Today’s bundle in `klar_nlu.json`, plus `origin` (`operator` \| `trainer`) and `replaces`. Full `PolicyRule` editing as today. The trainer writes house-precise rules (block the kids’ AC, “good night” → script, prefer the ceiling light).
 
-Even if someone disables `seed:confirm-lock`, `validate_plan`, Assist expose, and schema stay. Whether `compiled_risky` remains an invisible floor is an open question below — recommendation: **yes at first**. The trace distinguishes `hit: confirm` (rule) vs `compiled_risky: true` (floor). Once seeds cover the tests 1:1, the floor can hide behind a setting.
+### Invariants
 
-## LLM trainer
+`validate_plan`, Assist expose, and schema stay. `compiled_risky` as a floor: on at first; the trace distinguishes rule `confirm` vs the floor.
 
-Not on the parse hot path. Not a tool that executes intents. Optional, operator-triggered.
+## Operator UI: three lanes, one path
 
-```
-Home graph (visible entities/areas/floors/tags)
-  + govern seed of the bound language
-  + current house rules
-  + gaps (unnamed devices, missing areas)
-  + optional redacted journal
-      → trainer prompt with JSON schema = PolicyRule[]
-      → sanitize_rules
-      → grounding: entity_id / area / prefer exist on the graph
-      → dry-run: evaluate on house smokes + locale smokes
-      → UI diff: accept / reject / edit one-by-one
-```
+The Rules tab becomes the control surface. Lab and conversations **read the same path**; they do not edit it.
 
-What the trainer **may** write: `PolicyRule`, optional aliases, `nlu_ignore`/`infra` tags, custom sentences.
+### Static — the stack
 
-What it **must not** write: PolicyIds, ranking thresholds, word lists, new effects outside the enum, entity ids that are not on the graph.
-
-House examples the seed cannot know:
-
-- `when.entity_id = climate.kids_room` → `block` (kids’ AC at night)
-- `when.phrase = “good night”` → `script.good_night`
-- `prefer_entity` for the living-room ceiling when several lights are named “lamp”
-- `confirm` only for `lock.front_door`, not the shed lock
-
-The model lives where the fallback agent already lives (HA). The engine stays without a net. The prompt gets a graph snapshot and the schema, not Assist tools.
-
-## Visibility (“what happened and why”)
-
-One why-trace per turn, one UI list with three origins:
+Three columns, one order, matching runtime:
 
 ```
-matched_match:     area_command          (engine)
-matched_govern:    seed:confirm-lock     (seed, visible)
-overridden_by:     house:allow-shed-lock (house, trainer)
-compiled_risky:    false
-band:              execute
+Match (engine)          Language (seed)          House
+──────────────          ──────────────           ────
+[on] laundry_switch 0   [on] seed:confirm-lock   1  kids AC    block
+[on] timer          1   [on] seed:confirm-cover  2  good night script
+[off] media         3   [off] seed:prefer-climate
+[on] area_command   8
+…
+Trainer for this lane →  evaluate utterance  →  path below
 ```
 
-“What did you hear?” (`household.explain`) and `POST /api/lang/explain` should speak these ids, not only `decision: confirm`.
+- The active lane decides what Save / Trainer / Reset do.
+- Drag only inside a lane (match precedence, house order). Seed order comes from the pack.
+- Origin chip: `engine` / `seed` / `operator` / `trainer`.
 
-The evaluator on the Rules tab marks seed vs house hits and the ranking match policy.
+### Live — path of this sentence
 
-## What deliberately does *not* move into the rules engine
+Evaluate and Lab replace the five cards (`compiled_risky`, `matched_rule`, …) with **one track of three required nodes**. Skipped layers still render as nodes (`—`), otherwise you cannot see that they were checked.
 
-- `PolicyId` functions and their precedence
-- Confidence bands (`EXECUTE_MIN_CONFIDENCE` …) — at most later as documented settings, never as LLM output
-- Resolver / fuzzy / compounds
-- The language lexicon (that *is* already the per-language database)
+```mermaid
+flowchart LR
+  utterance["turn on the living room lights"]
+  matchNode["Match: area_command"]
+  seedNode["Seed: —"]
+  houseNode["House: prefer-ceiling"]
+  bandNode["Band: execute"]
+  utterance --> matchNode --> seedNode --> houseNode --> bandNode
+```
 
-Otherwise the LLM trains the NLU itself. That is exactly what Klar is not.
+Each node:
 
-## Phases (technical, no calendar)
+- **layer** + **id** or `—`
+- short why: score/margin on Match, `when` hit on govern, `compiled_risky` only if neither seed nor house fired
+- click jumps to the lane and selects the row
+- underneath: match losers (`discarded`, already on `ParseTrace`)
 
-1. **Vocabulary + catalog + why-trace**  
-   Match-catalog API; extend `PolicyTrace` with match id, seed id, risky reason. Rules UI: engine list read-only. No behavior change. Gate: contract tests for trace fields; DE/EN scorecard unchanged.
+The same `PolicyPath` in Rules evaluate, Lab (today `.flow` / `processPath`), and optionally a conversation row. One source, three surfaces.
 
-2. **Safety as seed, same behavior**  
-   `risky_intent` and `allow_permitted` as seed rules for `de`/`en`. `compiled_risky` stays the floor until parity tests show seeds produce the same band. Quota: seed separate from the house limit.
+Explain speech and `POST /api/lang/explain` speak the same ids: “Match `area_command`, house `prefer-ceiling`, executed.”
 
-3. **Govern seeds for every compiled locale**  
-   Like lexicon packs: hand-written `de`/`en` reference, the rest generated or thin (safety universals are language-agnostic; phrase seeds are not). Generator freshness like `scripts/lang_packs`.
+## LLM trainer, per layer
 
-4. **Trainer endpoint**  
-   `POST /api/v2/policies/propose` returns a proposal (no save). UI: diff, evaluate, apply. Prompt and schema versioned. Grounding tests on `tests/datasets/familienhaus_de` and `family_home_en`.
+Still not on the parse hot path, no device tools. The operator triggers **per lane** or “set up the house (all lanes).”
 
-5. **Optional: household phrases → phrase rules**  
-   Only if seed+overlay meet the same undo/explain/clock contract. Otherwise they stay code.
+```
+Graph + gaps + current overlays + language seed + match catalog
+  → proposal with a layer field
+  → sanitize + grounding
+  → dry-run on house and locale smokes
+  → diff on the lane: accept / reject / edit
+```
 
-Each phase is its own PR. This ADR is the frame, not an implementation diff.
+| Layer | Schema | Example |
+|-------|--------|---------|
+| Match | `{ id, enabled, precedence? }[]` | turn `media` off because the graph has no player |
+| Seed | `{ id, enabled, prefer? }[]` | point `seed:prefer-climate` at `climate.living_room` |
+| House | `PolicyRule[]` | phrase “good night” → `script.good_night` |
 
-## Open questions (decide before phase 2/4)
+The model must not invent match ids, new effects, or entity ids off the graph. Prompt versioned, HA fallback LLM, engine without a net.
 
-1. May the operator really turn off `seed:confirm-lock`, or does `compiled_risky` always remain the floor?
-2. Does the trainer run only in the Klar UI (v1 recommendation) or also as an Assist conversation (“set up my house”)?
-3. Do household phrases become rules in phase 5, or stay lexicon+code?
-4. After apply, does `origin: trainer` look like operator rules, or does provenance stay visible?
-5. Infra needles: stay compiled, or does the trainer only tag graph entities (`infra` / `nlu_ignore`)?
+## Phases
 
-Recommendations: (1) floor on at first, setting later. (2) UI only. (3) later. (4) keep provenance. (5) tags on the graph, needles as default suggestions.
+1. **Path + catalog, still rigid**  
+   `PolicyTrace` with `match`, `seed`, `house`, `band`, `discarded`. Shared path component in Rules and Lab. Three lanes visible; Match/Seed still toggle-less (read-only); house as today. Gate: contract tests; scorecard unchanged.
 
-## Consequences if we ship C
+2. **Match and seed controls**  
+   Overlay `match_controls`; seed toggles. Evaluate honors both. Reset-to-default. Parity: defaults = today’s behavior.
 
-- The Rules tab becomes the source of truth: engine (visible, rigid), language (seed, overridable), house (editable, trainable).
-- The trainer has a bounded write right and a dry-run against the same evaluate as a human.
-- Match stays fast, tested, and local.
-- The 64-rule cap applies to the house only; seeds are a second bundle.
-- Phase-2 risk: seed safety must match `risky_intent` bit-for-bit, or lock confirms will drift.
+3. **Safety as seed, same behavior**  
+   `risky_intent` / `allow_permitted` as seed rows. `compiled_risky` stays the floor until tests match bit-for-bit.
+
+4. **Seeds for every locale**  
+   Hand-written `de`/`en`, the rest generated or thin.
+
+5. **Trainer**  
+   `POST /api/v2/policies/propose` with `layer`. UI diff on the lane. Tests on `familienhaus_de` / `family_home_en`.
+
+6. **Optional: household phrases into the seed**  
+   Only if the undo/explain/clock contract stays the same.
+
+Each phase is its own PR. This ADR is the frame.
+
+## Open questions
+
+1. Keep the `compiled_risky` floor if the operator turns off `seed:confirm-lock`? (at first: floor on)
+2. Trainer UI-only or also an Assist conversation? (v1: UI only; proposals land on the lane)
+3. Household phrases in phase 6? (later)
+4. Keep `origin: trainer` visible? (yes)
+5. Infra: tags on the graph, needles as match/seed hints, no free text from the model
+
+New because of the three lanes:
+
+6. May dragging precedence twist Match enough to fail locale smokes? (evaluate warns; save allowed; reset is one click)
+7. One trainer run across all lanes, or always one lane? (UI can offer both; apply stays confirmed per lane)
+
+## Consequences
+
+- The Rules tab is the source of truth for all three layers; Lab and conversations show the same path.
+- Flexibility sits on **overlays** (match controls, seed toggles, house rules), not on a matching DSL.
+- The trainer has three tight schemas and the same dry-run as a human.
+- Defaults remain today’s Assist behavior until someone changes a lane.
 
 ## References
 
 - Overlay rules: `src/types/policy.rs`, `src/nlu/policy_route.rs`, `src/io/policies.rs`
 - Match policies: `src/parse/policy.rs`, `src/parse/clause.rs`
 - Safety: `src/nlu/draft.rs` `safety_decision`, `src/nlu/validation.rs` `risky_intent`
-- Ranking names: `IntentCandidate.policy`
-- Language packs: [languages](../en/languages.md)
+- Lab path (today): `web/src/pages/ParsePage.tsx` (`.flow`, `processPath`)
 - API: [api](../en/api.md) (`/api/v2/policies`, `/api/v2/policies/evaluate`)
