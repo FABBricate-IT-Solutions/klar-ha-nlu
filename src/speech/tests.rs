@@ -312,11 +312,8 @@ fn floor_status_groups_rooms_and_empty_uses_pack_line() {
         device_class: None,
         attributes: BTreeMap::new(),
     };
-    let out = render_snapshot(&snap(
-        "HassGetState",
-        vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }],
-        vec![kitchen, living],
-    ));
+    let out =
+        render_snapshot(&snap("HassGetState", vec![SpeechSlot { name: "floor".into(), value: "wohnung".into() }], vec![kitchen, living]));
     assert!(out.speech.contains("Küche"));
     assert!(out.speech.contains("Wohnzimmer"));
     assert!(out.speech.contains("aus"));

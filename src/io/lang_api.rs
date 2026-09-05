@@ -277,9 +277,8 @@ fn path_explain_speech(language: &str, outcome: &ParseOutcome, decision: &str) -
     let trace = outcome.policy_trace.as_ref();
     let match_id = trace.and_then(|row| row.match_node.as_ref()).map(|node| node.id.as_str()).filter(|id| !id.is_empty());
     let seed_id = trace.and_then(|row| row.seed.as_ref()).map(|node| node.id.as_str()).filter(|id| !id.is_empty());
-    let house_id = trace
-        .and_then(|row| row.house.as_ref().map(|node| node.id.as_str()).or(row.matched_rule.as_deref()))
-        .filter(|id| !id.is_empty());
+    let house_id =
+        trace.and_then(|row| row.house.as_ref().map(|node| node.id.as_str()).or(row.matched_rule.as_deref())).filter(|id| !id.is_empty());
     let band = trace.and_then(|row| row.band.as_deref()).filter(|id| !id.is_empty()).unwrap_or(decision);
     let de = language == "de" || language.starts_with("de-");
     let mut parts = Vec::new();
@@ -480,7 +479,11 @@ mod tests {
             retrieval: None,
             policy_trace: Some(crate::types::PolicyTrace {
                 match_node: Some(crate::types::PolicyTraceMatch { id: "area_command".into(), score: 0.93, origin: "engine".into() }),
-                house: Some(crate::types::PolicyTraceLayer { id: "prefer-ceiling".into(), hit: Some("prefer_entity".into()), origin: "operator".into() }),
+                house: Some(crate::types::PolicyTraceLayer {
+                    id: "prefer-ceiling".into(),
+                    hit: Some("prefer_entity".into()),
+                    origin: "operator".into(),
+                }),
                 band: Some("execute".into()),
                 ..crate::types::PolicyTrace::default()
             }),
@@ -492,7 +495,10 @@ mod tests {
         assert!(out.speech.contains("Match `area_command`"));
         assert!(out.speech.contains("house `prefer-ceiling`"));
         assert!(out.speech.contains("execute"));
-        assert_eq!(out.policy_trace.as_ref().and_then(|trace| trace.match_node.as_ref()).map(|node| node.id.as_str()), Some("area_command"));
+        assert_eq!(
+            out.policy_trace.as_ref().and_then(|trace| trace.match_node.as_ref()).map(|node| node.id.as_str()),
+            Some("area_command")
+        );
         let de = explain_outcome("de", &outcome);
         assert!(de.speech.contains("Haus `prefer-ceiling`"));
         assert!(de.speech.contains("ausgeführt"));

@@ -366,11 +366,7 @@ fn empty_place(pack: &str) -> String {
         return (*line).to_string();
     }
     let base = pack.split('-').next().unwrap_or(pack);
-    EMPTY_PLACE
-        .iter()
-        .find(|(code, _)| *code == base)
-        .map(|(_, line)| (*line).to_string())
-        .unwrap_or_else(|| "No devices.".into())
+    EMPTY_PLACE.iter().find(|(code, _)| *code == base).map(|(_, line)| (*line).to_string()).unwrap_or_else(|| "No devices.".into())
 }
 
 fn title(raw: &str) -> String {
