@@ -2,7 +2,24 @@
 
 [Deutsch](adr-0001-plan.md) · [English](adr-0001-plan.en.md)
 
-Rahmen: [ADR 0001](adr-0001-rules-and-trainer.md). Jede Stufe ist ein eigenes PR. Defaults bleiben heutiges Assist-Verhalten, bis jemand eine Spur ändert. Kein Kalender — Abhängigkeit und Risiko steuern die Reihenfolge.
+Rahmen: [ADR 0001](adr-0001-rules-and-trainer.md). Jede Stufe ist ein eigenes PR **gegen `staging`**. Defaults bleiben heutiges Assist-Verhalten, bis jemand eine Spur ändert. Kein Kalender — Abhängigkeit und Risiko steuern die Reihenfolge.
+
+## Lieferkanal: Staging, kein Hauptrelease
+
+Diese Arbeit ist ein **langer Staging-Zyklus**. Nichts davon ist ein Stable-/CalVer-Release, solange nicht ausdrücklich `staging` → `main` freigegeben wird.
+
+| Was | Festlegung |
+|-----|------------|
+| Basis jedes Umsetzungs-PRs | `staging` (geschützt, per PR mergen) |
+| Dieses Plan-/ADR-PR | ebenfalls `staging` |
+| Nach Merge auf `staging` | bestehender Staging-Workflow: Prerelease-Tag `{CalVer}-staging.{sha7}`, Image-Tag `staging`, nie `latest` |
+| Testen | HA **Release-Kanal = Staging** (`http://klar-nlu-staging:10520` / GitHub-Prerelease) |
+| `staging` → `main` | **nicht** Teil dieses Plans. Eigener Promote-PR, erst nach langem Feilen |
+| CalVer / `latest` | unberührt, bis dieser Promote bewusst kommt |
+
+Staging-CI fährt Quality+Security wie Release, **nicht** die wöchentliche `parity_langs`-Vollmatrix. Die Locale-Invariante gilt trotzdem: `assist_langs` bleibt PR-Gate; `parity_langs` vor jedem Seed-/Parse-Merge lokal oder per `workflow_dispatch`/`language-parity.yml`, nicht „erst auf main“.
+
+Kein `--admin`, kein Direkt-Push auf `staging` oder `main`.
 
 ## Locale-Invariante
 
@@ -145,10 +162,11 @@ Ziel: LLM richtet ein, Engine bleibt ohne Netz. Context und Validate sind **loca
 
 Nicht parallel zu Stufe 3: Seed-Merge ändert `safety_decision`. Stufe 1 darf auf Stufe 0 landen, sobald Catalog+Trace da sind.
 
-Stopp und zurück, wenn: irgendeine Locale in `assist_langs` / `parity_langs` rot wird, Confirm-Lock driftet, Catalog Locales merget, Trainer ohne Validate speichert, oder eine Stufe nur für de/en landet.
+Stopp und zurück, wenn: irgendeine Locale in `assist_langs` / `parity_langs` rot wird, Confirm-Lock driftet, Catalog Locales merget, Trainer ohne Validate speichert, eine Stufe nur für de/en landet, oder jemand `staging` → `main` ohne Freigabe öffnet.
 
 ## Explizit draußen
 
+- Ein Promote `staging` → `main` ohne ausdrückliche Freigabe
 - Eine Stufe oder ein Seed, das nur de/en beliefert
 - Neue `PolicyId` aus der UI oder dem Modell
 - Pack-Dateien zur Laufzeit ersetzen

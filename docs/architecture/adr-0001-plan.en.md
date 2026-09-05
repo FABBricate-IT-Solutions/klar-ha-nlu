@@ -2,7 +2,24 @@
 
 [Deutsch](adr-0001-plan.md) · [English](adr-0001-plan.en.md)
 
-Frame: [ADR 0001](adr-0001-rules-and-trainer.en.md). Each stage is its own PR. Defaults stay today’s Assist behavior until someone changes a lane. No calendar — order follows dependencies and risk.
+Frame: [ADR 0001](adr-0001-rules-and-trainer.en.md). Each stage is its own PR **against `staging`**. Defaults stay today’s Assist behavior until someone changes a lane. No calendar — order follows dependencies and risk.
+
+## Delivery channel: staging, not a main release
+
+This work is a **long staging cycle**. None of it is a stable / CalVer release until `staging` → `main` is explicitly approved.
+
+| What | Decision |
+|------|----------|
+| Base of every implementation PR | `staging` (protected, merge via PR) |
+| This plan/ADR PR | `staging` as well |
+| After merge to `staging` | existing staging workflow: prerelease tag `{CalVer}-staging.{sha7}`, image tag `staging`, never `latest` |
+| Testing | HA **Release channel = Staging** (`http://klar-nlu-staging:10520` / GitHub prerelease) |
+| `staging` → `main` | **not** part of this plan. A separate promote PR, only after a long bake |
+| CalVer / `latest` | untouched until that promote is deliberate |
+
+Staging CI runs quality+security like Release, **not** the weekly full `parity_langs` matrix. The locale invariant still holds: `assist_langs` stays a PR gate; run `parity_langs` before every seed/parse merge locally or via `workflow_dispatch` / `language-parity.yml` — not “only on main”.
+
+No `--admin`, no direct push to `staging` or `main`.
 
 ## Locale invariant
 
@@ -145,10 +162,11 @@ Goal: the LLM sets the house up; the engine stays without a net. Context and val
 
 Do not parallelize with stage 3: seed merge changes `safety_decision`. Stage 1 may land on stage 0 as soon as catalog+trace exist.
 
-Stop and revert if: any locale in `assist_langs` / `parity_langs` goes red, lock confirm drifts, the catalog merges locales, the trainer saves without validate, or a stage lands de/en-only.
+Stop and revert if: any locale in `assist_langs` / `parity_langs` goes red, lock confirm drifts, the catalog merges locales, the trainer saves without validate, a stage lands de/en-only, or someone opens `staging` → `main` without an explicit go-ahead.
 
 ## Explicitly out
 
+- A `staging` → `main` promote without an explicit go-ahead
 - A stage or seed that only ships de/en
 - New `PolicyId` from the UI or the model
 - Replacing pack files at runtime

@@ -2,7 +2,7 @@
 
 [Deutsch](adr-0001-rules-and-trainer.md) · [English](adr-0001-rules-and-trainer.en.md)
 
-Status: **proposed** — direction accepted. Execution: [plan](adr-0001-plan.en.md).
+Status: **proposed** — direction accepted. Implementation on **`staging`**, not a main release: [plan](adr-0001-plan.en.md).
 
 Klar stays a deterministic, local NLU. An LLM may **set up** the house; it must not **drive** the parse path. All three layers are **visible, controllable, and trainable** in the operator UI. Every parse draws the same path.
 
@@ -204,7 +204,7 @@ The model must not invent match ids, new effects, or entity ids off the graph. P
 5. **Optional: household phrases**  
    Only via a generator for `LangId::all()`.
 
-Each stage is its own PR; the [implementation plan](adr-0001-plan.en.md) is the order with files, gates, and stop rules. This ADR stays the frame.
+Each stage is its own PR against **`staging`**; the [implementation plan](adr-0001-plan.en.md) is the order with files, gates, stop rules, and delivery channel. Promoting to `main` is a later, deliberate step — not the default. This ADR stays the frame.
 
 ## Open questions
 
